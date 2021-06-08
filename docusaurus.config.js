@@ -1,31 +1,35 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'LUKSO',
+  tagline: 'Documentation',
+  url: 'https://docs.lukso.network/',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  onBrokenLinks: 'ignore',
+  onBrokenMarkdownLinks: 'ignore',
+  favicon: 'img/favicon.png',
+  organizationName: 'lukso-network', // Usually your GitHub org/user name.
+  projectName: 'docs-website', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'LUKSO Documentation',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'LUKSO Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
           type: 'doc',
-          docId: 'intro',
+          docId: 'tutorial',
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://bit.ly/LUKSOWhitepaper',
+          label: 'Whitepaper',
+          position: 'right',
+        },
+        {
+          href: 'https://github.com/lukso-network/',
           label: 'GitHub',
           position: 'right',
         },
@@ -35,11 +39,11 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Developers',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'GitHub',
+              href: 'https://github.com/lukso-network',
             },
           ],
         },
@@ -47,34 +51,21 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.gg/E2rJPP4',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://twitter.com/lukso_io',
             },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
             {
               label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+              href: 'https://medium.com/lukso',
+            }
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Built with Docusaurus.`,
     },
   },
   presets: [
@@ -83,15 +74,9 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
+          routeBasePath: "/",
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/lukso-network/docs-website/tree/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
