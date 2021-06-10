@@ -19,9 +19,15 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'tutorial',
+          docId: 'introduction',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Getting started',
+        },
+        {
+          type: 'doc',
+          docId: 'packages/getting-started',
+          position: 'left',
+          label: 'Packages',
         },
         {
           href: 'https://bit.ly/LUKSOWhitepaper',
@@ -59,7 +65,7 @@ module.exports = {
               href: 'https://twitter.com/lukso_io',
             },
             {
-              label: 'Blog',
+              label: 'Medium',
               href: 'https://medium.com/lukso',
             }
           ],
