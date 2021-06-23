@@ -2,8 +2,8 @@
 module.exports = {
   title: 'LUKSO',
   tagline: 'Documentation',
-  url: 'https://docs.lukso.network/',
-  baseUrl: '/',
+  url: 'https://lukso-network.github.io/',
+  baseUrl: '/docs-website/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'ignore',
   favicon: 'img/favicon.png',
