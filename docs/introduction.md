@@ -11,4 +11,4 @@ This section is a work in progress.
 
 :::
 
-Welcome to the LUKSO developers portal.
+Welcome to the [LUKSO](https://lukso.network/) developers portal.
