@@ -25,9 +25,9 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'packages/getting-started',
+          docId: 'tools/getting-started',
           position: 'left',
-          label: 'Packages',
+          label: 'Tools',
         },
         {
           href: 'https://bit.ly/LUKSOWhitepaper',
