@@ -5,10 +5,4 @@ slug: /
 
 # Introduction
 
-:::caution
-
-This section is a work in progress.
-
-:::
-
-Welcome to the [LUKSO](https://lukso.network/) developers portal.
+Welcome to the LUKSO documentation portal. If you have any questions, you are welcome to ask them in our [Discord](https://discord.gg/E2rJPP4) server.

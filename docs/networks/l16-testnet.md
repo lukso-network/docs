@@ -4,8 +4,8 @@ sidebar_position: 2
 
 # L16 Public Testnet
 
-:::caution
+To be announced.
 
-This section is a work in progress.
+## Repository
 
-:::
+- <https://github.com/lukso-network/l16-multinet>
