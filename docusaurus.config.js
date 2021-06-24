@@ -11,7 +11,7 @@ module.exports = {
   projectName: 'docs-website', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'LUKSO Documentation',
+      title: 'LUKSO',
       logo: {
         alt: 'LUKSO Logo',
         src: 'img/logo.png',
@@ -22,6 +22,18 @@ module.exports = {
           docId: 'introduction',
           position: 'left',
           label: 'Getting started',
+        },
+        {
+          type: 'doc',
+          docId: 'networks/mainnet',
+          position: 'left',
+          label: 'Networks',
+        },
+        {
+          type: 'doc',
+          docId: 'standards/introduction',
+          position: 'left',
+          label: 'Standards',
         },
         {
           type: 'doc',
@@ -67,11 +79,25 @@ module.exports = {
             {
               label: 'Medium',
               href: 'https://medium.com/lukso',
+            },
+            {
+              label: 'YouTube',
+              href: 'https://www.youtube.com/channel/UCG3TAT6pSpfafGihCMUcrjA',
             }
           ],
         },
+        {
+          title: 'About',
+          items: [
+            { label: 'Team', href: 'https://lukso.network/about' },
+            { label: 'Careers', href: 'https://lukso.network/jobs' },
+            {
+              label: 'Privacy Policy', href: 'https://lukso.network/privacy'
+            }
+          ]
+        }
       ],
-      copyright: `Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} LUKSO Blockchain GmbH &mdash; hello@lukso.network`,
     },
   },
   presets: [
