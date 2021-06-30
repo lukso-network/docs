@@ -2,7 +2,7 @@
 sidebar_label: Fetch Universal Profile data
 ---
 
-# How to read a Universal Profile contract's data with ERC725.js ?
+# How to read a Universal Profile contract's data with erc725.js ?
 
 :::caution
 
