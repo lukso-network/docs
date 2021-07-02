@@ -41,6 +41,14 @@ module.exports = {
           position: 'left',
           label: 'Tools',
         },
+        // should be dynamic https://github.com/facebook/docusaurus/issues/3930
+        // should be solvable like this https://github.com/facebook/docusaurus/issues/3930#issuecomment-819520796
+        // but i did not manage to get it loaded / working
+        // {
+        //   type: 'docsVersionDropdown',
+        //   position: 'right',
+        //   docsPluginId: 'erc-js', 
+        // },
         {
           href: 'https://bit.ly/LUKSOWhitepaper',
           label: 'Whitepaper',
@@ -106,7 +114,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: "/",
+          path: 'docs/general',
+          routeBasePath: '/general', // the links to /tools break when this is '/'
           editUrl:
             'https://github.com/lukso-network/docs-website/tree/main/',
         },
@@ -115,5 +124,16 @@ module.exports = {
         },
       },
     ],
+  ],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'erc-js',
+        path: 'docs/tools/erc725-js',
+        routeBasePath: '/tools/erc725-js/',
+        // ... other options
+      },
+    ]
   ],
 };
