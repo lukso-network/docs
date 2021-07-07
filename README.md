@@ -2,6 +2,17 @@
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
+Live URL <https://docs.lukso.network/>
+
+# How to generate documentation for erc725.js
+
+1. Run typedoc command in erc725.js repo
+
+```sh
+npx typedoc --out docs src/index.ts --includeVersion --hideInPageTOC true --sort visibility
+```
+
+2. Replace content of tools/erc725js/technical-reference/ with content generated in docs/
 ## Installation
 
 ```console
