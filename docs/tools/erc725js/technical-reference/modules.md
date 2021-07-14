@@ -1,20 +1,20 @@
-[erc725.js - v0.5.7](README.md) / Exports
+erc725.js - v0.5.7
 
 # erc725.js - v0.5.7
 
 ## Classes
 
-- [ERC725](classes/erc725.md)
+- [ERC725](classes/ERC725.md)
 
 ## Interfaces
 
-- [Erc725Schema](interfaces/erc725schema.md)
+- [Erc725Schema](interfaces/Erc725Schema.md)
 
 ## References
 
 ### default
 
-Renames and exports: [ERC725](classes/erc725.md)
+Renames and exports: [ERC725](classes/ERC725.md)
 
 ## Type aliases
 
@@ -24,7 +24,7 @@ Renames and exports: [ERC725](classes/erc725.md)
 
 #### Defined in
 
-[types/Erc725Schema.ts:3](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L3)
+[types/Erc725Schema.ts:3](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L3)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:5](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L5)
+[types/Erc725Schema.ts:5](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L5)
 
 ___
 
@@ -44,4 +44,4 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:15](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L15)
+[types/Erc725Schema.ts:15](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L15)

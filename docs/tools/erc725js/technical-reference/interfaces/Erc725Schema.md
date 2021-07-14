@@ -1,4 +1,4 @@
-[erc725.js - v0.5.7](../README.md) / [Exports](../modules.md) / Erc725Schema
+[erc725.js - v0.5.7](../modules.md) / Erc725Schema
 
 # Interface: Erc725Schema
 
@@ -23,7 +23,7 @@ Detailed information available on [LSP-2-ERC725YJSONSchema](https://github.com/l
 
 #### Defined in
 
-[types/Erc725Schema.ts:42](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L42)
+[types/Erc725Schema.ts:42](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L42)
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:43](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L43)
+[types/Erc725Schema.ts:43](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L43)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:44](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L44)
+[types/Erc725Schema.ts:44](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L44)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:45](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L45)
+[types/Erc725Schema.ts:45](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L45)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:46](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L46)
+[types/Erc725Schema.ts:46](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L46)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:47](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L47)
+[types/Erc725Schema.ts:47](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L47)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:48](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L48)
+[types/Erc725Schema.ts:48](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L48)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:49](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L49)
+[types/Erc725Schema.ts:49](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L49)
 
 ___
 
@@ -103,4 +103,4 @@ ___
 
 #### Defined in
 
-[types/Erc725Schema.ts:50](https://github.com/Hugoo/erc725.js/blob/f9ac670/src/types/Erc725Schema.ts#L50)
+[types/Erc725Schema.ts:50](https://github.com/ERC725Alliance/erc725.js/blob/68c4bcb/src/types/Erc725Schema.ts#L50)
