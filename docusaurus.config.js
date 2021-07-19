@@ -99,6 +99,9 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} LUKSO Blockchain GmbH &mdash; hello@lukso.network`,
     },
+    prism: {
+      additionalLanguages: ['solidity'],
+    },
   },
   presets: [
     [
