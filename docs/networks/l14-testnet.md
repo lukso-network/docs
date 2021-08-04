@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# L14 Testnet
+# L14 Public Testnet
 
 We currently have our [L14 test-network](http://explorer.l14.lukso.network/) running, that you can connect to, run a node and build upon. L14 is up-to-date with the latest Ethereum forks until Constantinople.
 
