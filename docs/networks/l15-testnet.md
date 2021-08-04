@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# L16 Public Testnet
+# L15 Public Testnet
 
 To be announced.
 
