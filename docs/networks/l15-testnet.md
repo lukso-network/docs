@@ -2,7 +2,9 @@
 sidebar_position: 4
 ---
 
-This testnet is ephemeral, which is smooth gateway to [L16](l16-testnet.md).
+# L15 Public Testnet
+
+This testnet is ephemeral, which is smooth gateway to [L16 Public Testnet](l16-testnet.md).
 
 Current state of development can be found at https://github.com/lukso-network/l16-multinet/issues/10
 
@@ -12,7 +14,6 @@ You can track chain progression under those domains:
 - https://explorer.pandora.l15.lukso.network/
 - https://stats.vanguard.l15.lukso.network/
 - https://explorer.vanguard.l15.lukso.network/
-
 
 ## Repository
 
