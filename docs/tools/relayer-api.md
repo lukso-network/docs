@@ -37,8 +37,8 @@ To create a [Universal Profile](standards/universal-profile.md) with a key manag
 
 - `address`: address of the deployed Universal Profile contract. You can view this profile on `https://universalprofile.cloud/{address}`.
 - `ownerAddress`: same as above, the public key you control.
-- `keyManagerAddress`: address of the deployed key manager smart contract. This `keyManager` smart contract has ownership on the Universal Profile smart contract.
-- `universalDelegateAddress`: address of the deployed UniversalReceiver Delegate smart contract.
+- `keyManagerAddress`: address of the deployed [SimpleKeyManager](https://github.com/lukso-network/universalprofile-smart-contracts/blob/main/contracts/KeyManager/SimpleKeyManager.sol) smart contract. This key manager smart contract has ownership on the Universal Profile smart contract.
+- `universalDelegateAddress`: address of the deployed [UniversalReceiverAddressStore](https://github.com/lukso-network/universalprofile-smart-contracts/blob/main/contracts/UniversalReceiver/UniversalReceiverAddressStore.sol) delegate smart contract.
 
 ## Smart contracts
 
