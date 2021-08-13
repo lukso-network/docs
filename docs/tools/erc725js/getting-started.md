@@ -4,21 +4,21 @@ sidebar_position: 1.1
 
 # Getting Started
 
-The `erc725.js` package allows you to easily interact with the ERC-725 schemas.
+The `@erc725/erc725.js` package allows you to easily interact with the ERC-725 schemas.
 
 - GitHub repo: https://github.com/ERC725Alliance/erc725.js
-- NPM: https://www.npmjs.com/package/erc725.js
+- NPM: https://www.npmjs.com/package/@erc725/erc725.js
 
 ## Installation
 
 ```bash
-  npm install erc725.js
+  npm install @erc725/erc725.js
 ```
 
 ## Instantiation
 
 ```js
-import { ERC725 } from "erc725.js";
+import { ERC725 } from "@erc725/erc725.js";
 import Web3 from "web3";
 
 // Part of LSP3-UniversalProfile Schema
@@ -65,20 +65,28 @@ await erc725.getOwner();
 // > '0x28D25E70819140daF65b724158D00c373D1a18ee'
 
 await erc725.getData("SupportedStandards:ERC725Account");
-// > '0xafdeb5d6'
+/* > 
+{
+  'SupportedStandards:ERC725Account': '0xafdeb5d6'
+}
+*/
 
-await erc725.getData("LSP3Profile");
+await erc725.getData(["LSP3Profile", "SupportedStandards:ERC725Account"]);
 /* >
 {
+  LSP3Profile: {
     url: 'ipfs://QmXybv2LdJWscy1C6yRKUjvnaj6aqKktZX4g4xmz2nyYj2',
     hash: '0xb4f9d72e83bbe7e250ed9ec80332c493b7b3d73e0d72f7b2c7ab01c39216eb1a',
     hashFunction: 'keccak256(utf8)'
+  },
+  'SupportedStandards:ERC725Account': '0xafdeb5d6'
 }
 */
 
 await erc725.fetchData("LSP3Profile"); // downloads and verifies the linked JSON
 /* > 
 {
+  LSP3Profile: {
     LSP3Profile: {
         name: 'frozeman',
         description: 'The inventor of ERC725 and ERC20...',
@@ -88,6 +96,7 @@ await erc725.fetchData("LSP3Profile"); // downloads and verifies the linked JSON
         ],
         ...
     }
+  }
 }
 */
 ```
