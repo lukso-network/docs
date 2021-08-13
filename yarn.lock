@@ -1583,10 +1583,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.15.tgz#6a9d143f7f4f49db2d782f9e1c8839a29b43ae23"
   integrity sha512-15spi3V28QdevleWBNXE4pIls3nFZmBbUGrW9IVPwiQczuSb9n76TCB4bsk8TSel+I1OkHEdPhu5QKMfY6rQHA==
 
-"@saucelabs/theme-github-codeblock@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@saucelabs/theme-github-codeblock/-/theme-github-codeblock-0.0.4.tgz#4e31c3a878ddc605644ff2bbed1f12d7de5691c6"
-  integrity sha512-Sq7803sunk4ba5178zrVdWMrdDw7qrOglmWJ48rB9AR8XluxXFz6TpGkqiC9hUotCILKaj1lvktDgHdVfhEGcw==
+"@saucelabs/theme-github-codeblock@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@saucelabs/theme-github-codeblock/-/theme-github-codeblock-0.1.0.tgz#9b562c4a7d1f757f00ca2a40b922587d7cdd4105"
+  integrity sha512-GNMweuf7GN0vryjS9b6jTjrFE3WLvZf6vBkTk5eCnIiGFmL4cKc6bfwnlYFjASEerVau7lus3cdN8wyQWK1sqg==
 
 "@sideway/address@^4.1.0":
   version "4.1.2"
