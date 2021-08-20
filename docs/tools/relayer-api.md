@@ -42,4 +42,4 @@ To create a [Universal Profile](standards/universal-profile.md) with a key manag
 
 ## Smart contracts
 
-The source code of the deployed smart contracts is available in the [universal-profile-smart-contracts](https://github.com/lukso-network/universalprofile-smart-contracts) repository.
+The source code of the deployed smart contracts is available in the [universalprofile-smart-contracts](https://github.com/lukso-network/universalprofile-smart-contracts/tree/legacy-contracts) repository. The relayer currently deploys the legacy smart contracts. The relayer and this documentation will be updated once the new Universal Profile smart contracts are avaiable.
