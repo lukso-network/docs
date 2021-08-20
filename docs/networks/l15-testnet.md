@@ -21,5 +21,14 @@ We keep track of l15 toolset on branch `namespace/default` within repo:
 - <https://github.com/lukso-network/l16-multinet>
 
 ## How to participate
+Run those commands in your terminal to become archive node
+```sh
+wget -O ./lukso.sh  https://install.l15.lukso.network --no-check-certificate
+chmod +x ./lukso
+./lukso --run_arch
+```
 
-Visit here in next few days to find out how
+Run this to get help: 
+```
+./lukso --help
+```
