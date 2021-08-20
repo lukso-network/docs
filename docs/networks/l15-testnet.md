@@ -24,11 +24,11 @@ We keep track of l15 toolset on branch `namespace/default` within repo:
 Run those commands in your terminal to become archive node
 ```sh
 wget -O ./lukso.sh  https://install.l15.lukso.network --no-check-certificate
-chmod +x ./lukso
-./lukso --run_arch
+chmod +x ./lukso.sh
+./lukso.sh --run_arch
 ```
 
 Run this to get help: 
 ```
-./lukso --help
+./lukso.sh --help
 ```
