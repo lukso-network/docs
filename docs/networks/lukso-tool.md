@@ -8,12 +8,12 @@ This shell script will:
 1. Create directory under `/opt/lukso`
 2. Download zipped files required for node startup.
 3. Unzip them (using `unzip` tool)
-4. Create symbolic link in /usr/local/bin 
+4. Create symbolic link in `/usr/local/bin`.
 
 ## Config file
 
 ~~~yaml
-COINBASE: 0x91b382af07767Bdab2569665AC30125E978a0688
+COINBASE: "0x91b382af07767Bdab2569665AC30125E978a0688"
 DATADIR: "/home/node/lukso_datadir"
 LOGSDIR: "/home/node/lukso_datadir/logs"
 NETWORK: "l15"
