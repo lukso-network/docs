@@ -1,33 +1,40 @@
-# Lukso binary tool
+# Lukso setup/cli tool
 
->⚠️ This page may change and do not reflect current state of binary
+>⚠️ This page may change and does not reflect current state of binary yet.
 
 ## Installation
-`curl https://install.l15.lukso.network | sh`
+`curl https://install.l15.lukso.network | bash`
 This shell script will: 
 1. Create directory under `/opt/lukso`
 2. Download zipped files required for node startup.
 3. Unzip them (using `unzip` tool)
+4. Create symbolic link in /usr/local/bin 
 
+## Config file
 
-```yaml
-DATADIR: "/mnt/persistent/l15-content"
-ETHERBASE: "0x144a9533B3d759d647597762d33a1cD6f9Bf118c"
+~~~yaml
+COINBASE: 0x91b382af07767Bdab2569665AC30125E978a0688
+DATADIR: "/home/node/lukso_datadir"
+LOGSDIR: "/home/node/lukso_datadir/logs"
+NETWORK: "l15"
 NODE_NAME: "l15-johnsmith123"
-VALIDATOR: true
-```
+WALLET_DIR: "/home/node/.lukso/l15/vanguard_wallet"
+~~~
 
 ## Available parameters
-`lukso-cli <command> [--flags]`
+`lukso-cli <command> [argument] [--flags]`
 
-| command   | description            |
-|-----------|------------------------|
-| start     | Starts up all programs |
-| stop      | Stops all programs     |
-| config    | Interactive tool for creating config file |
-| keygen    | Runs `eth2deposit-cli` |
-| wallet    | Imports `eth2deposit-cli` keys |
-| bind-binaries | Creates symlinks to binaries in `/opt/lukso/networks/l15/bin` |
+| command   | description            | argument |
+|-----------|------------------------|----------------------|
+| start     | Starts up all or specific client(s) | [orchestrator, pandora, vanguard, validator, eth2stats-client, **all**] |
+| stop      | Stops all or specific client(s)     | [orchestrator, pandora, vanguard, validator, eth2stats-client, **all**] |
+| reset     | Clears client(s) datadirs (this also removes chain-data) | [orchestrator, pandora, vanguard, validator, all, **none**]
+| config    | Interactive tool for creating config file | |
+| keygen    | Runs `eth2deposit-cli` | |
+| wallet    | Imports `eth2deposit-cli` keys | |
+| logs      | Show logs | [orchestrator, pandora, vanguard, validator, eth2stats-client] |
+| bind-binaries | Creates symlinks to binaries in `/opt/lukso/networks/l15/bin` | |
+> In **bold** is a behaviour when argument is skipped (default)
 
 ### start
 
