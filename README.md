@@ -2,7 +2,7 @@
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-Live URL <https://docs.lukso.network/>
+Live URL <https://docs.lukso.tech/>
 
 # How to generate documentation for erc725.js
 
