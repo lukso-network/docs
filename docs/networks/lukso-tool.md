@@ -22,7 +22,7 @@ WALLET_DIR: "/home/node/.lukso/l15/vanguard_wallet"
 ~~~
 
 ## Available parameters
-`lukso-cli <command> [argument] [--flags]`
+`lukso <command> [argument] [--flags]`
 
 | command   | description            | argument |
 |-----------|------------------------|----------------------|
