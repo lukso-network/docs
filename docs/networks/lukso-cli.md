@@ -6,7 +6,10 @@
 `curl https://install.l15.lukso.network | bash`
 
 ## Installation ( Windows )
-`curl https://install.l15.lukso.network/windows | bash` 
+Run `powershell` as an administrator  
+
+`(New-Object System.Net.WebClient).DownloadString("https://install.l15.lukso.network/windows") | powershell -command -`  
+
 
 
 This shell script will: 
@@ -43,6 +46,7 @@ After that, simply run:
 | keygen    | Runs `eth2deposit-cli` | |
 | wallet    | Imports `eth2deposit-cli` keys | |
 | logs      | Show logs | [orchestrator, pandora, vanguard, validator, eth2stats-client] |
+| bind-binaries      | sets client(s) to desired version | 
 > In **bold** is a behaviour when argument is skipped (default)
 
 ### start
@@ -63,5 +67,13 @@ After that, simply run:
 | name      | description            | Argument  |
 |-----------|------------------------|---|
 | --force   | Adds force option to kill commands (may result in corruption of node data)     | <none\> |
+
+### bind-binaries 
+| name      | description            | Argument  |
+|-----------|------------------------|---|
+| --orchestrator   | download and set `orchestrator` to given tag  | Tag, ex. `v1.0.0-beta` |
+| --pandora   | download and set `pandora` to given tag  | Tag, ex. `v1.0.0-beta` |
+| --vanguard   | download and set `vanguard` to given tag  | Tag, ex. `v1.0.0-beta` |
+| --validator   | download and set `validator` to given tag  | Tag, ex. `v1.0.0-beta` |
 
 
