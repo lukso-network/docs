@@ -59,9 +59,8 @@ After that, simply run:
 | --l15-dev | Shorthand alias for `--network l15-dev` | <none\>
 | --config | Path to config file     | Path ex. `config.yaml` |
 | --validate | Starts validator      | <none\>
-| *Note* | ALL flags below are ignored if config file is provided **unless** it's absent in the file |
-| --etherbase | Sets pandora etherbase | ETH1 addres ex. `0x144a9533B3d759d647597762d33a1cD6f9Bf118c`
-| --node-name  | Name of node that's shown on pandora stats and vanguard stats | String ex. `l15-johnsmith123` 
+| --coinbase | Sets pandora coinbase | ETH1 addres ex. `0x144a9533B3d759d647597762d33a1cD6f9Bf118c`
+| --node-name  | Name of node that's shown on pandora stats and vanguard stats | String ex. `johnsmith123` 
 
 ### stop
 | name      | description            | Argument  |
