@@ -8,7 +8,7 @@ module.exports = {
   onBrokenMarkdownLinks: "ignore",
   favicon: "img/favicon.png",
   organizationName: "lukso-network", // Usually your GitHub org/user name.
-  projectName: "docs-website", // Usually your repo name.
+  projectName: "docs", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "LUKSO",
@@ -112,7 +112,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
-          editUrl: "https://github.com/lukso-network/docs-website/tree/main/",
+          editUrl: "https://github.com/lukso-network/docs/tree/main/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
