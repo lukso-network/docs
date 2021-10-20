@@ -1,7 +1,7 @@
 ---
 id: relayer-api
 title: Relayer API
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 ## Create Universal Profile
