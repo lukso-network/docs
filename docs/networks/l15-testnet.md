@@ -31,5 +31,19 @@ We keep track of `l15` clients on branch `develop` within these repositories:
 
 ## How to participate
 
-Check out this page to get all informations about our `lukso` install script: 
+You need to have our node setup on your local machine first. Check out this page to get all informations about our `lukso` install script: 
 - <https://docs.lukso.tech/networks/lukso-cli>
+
+### How to become an ETH2.0 LUKSO Validator
+
+Step 1:
+Go to LUKSO Launchpad and click `BECOME A VALIDATOR` and follow instructions there. Website is:
+- <https://launchpad.l15.lukso.network>
+
+Step 2:
+When you generate your keys start importing them into `lukso-validator` by typing: `lukso wallet`. You will be instructed by `lukso` interactive inteface.
+
+Step 3:
+Just run your validator by `lukso start --validator`!
+
+You can check your `lukso-validator` status here: <https://explorer.vanguard.l15.lukso.network/>. You can find your `lukso-validator` page by `publicKey`. Search for your validator by providing `publicKey`.
