@@ -48,7 +48,7 @@ lukso --help
 
 You may need to use `sudo` for `macos` devices.
 
-### How to become an ETH2.0 LUKSO Validator
+### How to become a LUKSO Validator
 
 Step 1:
 Go to LUKSO Launchpad and click `BECOME A VALIDATOR` and follow instructions there. Website is:
