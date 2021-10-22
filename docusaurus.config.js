@@ -104,6 +104,7 @@ module.exports = {
     prism: {
       additionalLanguages: ["solidity"],
       theme: require('prism-react-renderer/themes/github'),
+      darkTheme: require('prism-react-renderer/themes/dracula'),
     },
   },
   presets: [
