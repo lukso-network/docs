@@ -46,6 +46,8 @@ You can use `help` to see available flags and usage:
 lukso --help
 ```
 
+You may need to use `sudo` for `macos` devices.
+
 ### How to become an ETH2.0 LUKSO Validator
 
 Step 1:
