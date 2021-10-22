@@ -19,7 +19,7 @@ This shell script will:
 4. Create symbolic link in `/usr/local/bin`.
 
 ## Running
-Enter `lukso config` in your shell to generate config file.
+Enter `lukso config` in your shell to generate config file. You may need to use `sudo` on `macos` devices.
 
 Example:
 ~~~yaml
@@ -59,8 +59,27 @@ After that, simply run:
 | --l15-dev | Shorthand alias for `--network l15-dev` | <none\>
 | --config | Path to config file     | Path ex. `config.yaml` |
 | --validate | Starts validator      | <none\>
-| --coinbase | Sets pandora coinbase | ETH1 addres ex. `0x144a9533B3d759d647597762d33a1cD6f9Bf118c`
+| --coinbase | Sets pandora coinbase. This is public address for block mining rewards (default = first account created) (default: "0") | ETH1 addres ex. `0x144a9533B3d759d647597762d33a1cD6f9Bf118c`
 | --node-name  | Name of node that's shown on pandora stats and vanguard stats | String ex. `johnsmith123` 
+| --logsdir  | Sets the logs path | String ex. `/mnt/external/lukso-logs` 
+| --datadir  | Sets datadir path | String ex. `/mnt/external/lukso-datadir`
+| --home  | Sets path for datadir and logs in a single location (--datadir and --logs take priority) | String ex. `/var/lukso` 
+| --orchestrator-verbosity  | Sets orchestrator logging depth | String ex. `silent, error, warn, info, debug, trace` 
+| --pandora-verbosity  | Sets pandora logging depth (note: pandora uses integers for that flag, script will convert those to proper values) | String ex. `silent, error, warn, info, debug, trace` 
+| --pandora-bootnodes  | Sets pandora bootnodes | Strings of bootnodes separated by commas: `enode://72caa...,enode://b4a11a...`
+| --pandora-http-port  | Sets pandora RPC (over http) port | Number between 1023-65535
+| --pandora-metrics  | Enables pandora metrics server | <none\>
+| --pandora-nodekey  | P2P node key file | Path to file (relative or absolute)
+| --pandora-external-ip  | Sets external IP for pandora (overrides --external-ip if present) | String ex. `72.122.32.234`
+| --vanguard-verbosity  | Sets vanguard logging depth | String ex. `silent, error, warn, info, debug, trace`
+| --vanguard-bootnodes  | Sets vanguard bootnodes | Strings of bootnodes separated by commas: `enr:-Ku4QAmY...,enr:-M23QLmY...`
+| --vanguard-p2p-priv-key  | The file containing the private key to use in communications with other peers. | Path to file (relative or absolute)
+| --vanguard-p2p-host-dns  | Sets host DNS vanguard (overrides --external-ip AND --vanguard-external-ip if present) | String ex. `72.122.32.234`
+| --validator-verbosity  | Sets validator logging depth | String ex. `silent, error, warn, info, debug, trace`
+| --external-ip  | Sets external IP for pandora and vanguard | String ex. `72.122.32.234`
+| --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none\>
+
+How to use flags with values? Provide a flag and value like: `lukso start --datadir /data/network-node`
 
 ### stop
 | name      | description            | Argument  |
@@ -70,9 +89,9 @@ After that, simply run:
 ### bind-binaries 
 | name      | description            | Argument  |
 |-----------|------------------------|---|
-| --orchestrator   | download and set `orchestrator` to given tag  | Tag, ex. `v1.0.0-beta` |
-| --pandora   | download and set `pandora` to given tag  | Tag, ex. `v1.0.0-beta` |
-| --vanguard   | download and set `vanguard` to given tag  | Tag, ex. `v1.0.0-beta` |
-| --validator   | download and set `validator` to given tag  | Tag, ex. `v1.0.0-beta` |
+| --orchestrator   | download and set `orchestrator` to given tag  | Tag, ex. `v0.1.0-rc.1` |
+| --pandora   | download and set `pandora` to given tag  | Tag, ex. `v0.1.0-rc.1` |
+| --vanguard   | download and set `vanguard` to given tag  | Tag, ex. `v0.1.0-rc.1` |
+| --validator   | download and set `validator` to given tag  | Tag, ex. `v0.1.0-rc.1` |
 
 
