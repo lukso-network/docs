@@ -48,14 +48,14 @@ lukso --help
 
 You may need to use `sudo` for `macos` devices.
 
-### How to become an ETH2.0 LUKSO Validator
+### How to become a LUKSO Validator
 
 Step 1:
 Go to LUKSO Launchpad and click `BECOME A VALIDATOR` and follow instructions there. Website is:
 - <https://launchpad.l15.lukso.network>
 
 Step 2:
-When you generate your keys start importing them into `lukso-validator` by typing: `lukso wallet`. You will be instructed by `lukso` interactive inteface.
+When you generate your keys start importing them into `lukso-validator` by typing: `lukso wallet`. You will be instructed by `lukso` interactive interface.
 
 Step 3:
 Just run your validator by `lukso start --validator`!
