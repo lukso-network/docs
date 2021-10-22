@@ -54,8 +54,8 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 
 | name      | description            | Argument  |
 |-----------|------------------------|---|
-| --network | Picks which setup to use | Name of network from list: `mainnet, l15, l15-staging, l15-dev`
-| --l15 | Shorthand alias for `--network l15` | <none\>
+| --network | Picks which setup to use | Name of network from list: `mainnet, l15-prod, l15-staging, l15-dev`
+| --l15-prod | Shorthand alias for `--network l15-prod` | <none\>
 | --l15-staging | Shorthand alias for `--network l15-staging` | <none\>
 | --l15-dev | Shorthand alias for `--network l15-dev` | <none\>
 | --config | Path to config file     | Path ex. `config.yaml` |
