@@ -30,14 +30,6 @@ We keep track of `l15` clients on branch `develop` within these repositories:
 - `Orchestrator`: <https://github.com/lukso-network/lukso-orchestrator>
 
 ## How to participate
-Run those commands in your terminal to become archive node
-```sh
-wget -O ./lukso.sh  https://install.l15.lukso.network --no-check-certificate
-chmod +x ./lukso.sh
-./lukso.sh --run_arch
-```
 
-Run this to get help: 
-```
-./lukso.sh --help
-```
+Check out this page to get all informations about our `lukso` install script: 
+- <https://docs.lukso.tech/networks/lukso-cli>
