@@ -4,13 +4,13 @@ sidebar_position: 4
 
 # L14 Public Testnet
 
-We currently have our [L14 test-network](http://explorer.l14.lukso.network/) running, that you can connect to, run a node and build upon. L14 is up-to-date with the latest Ethereum forks until Constantinople.
+The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon deprecated POA test network, currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
 
 Network ID: `22 (0x16)`
 
 - RPC Endpoint: <https://rpc.l14.lukso.network>
 - Explorer: <https://blockscout.com/lukso/l14>
-- Faucet: <http://faucet.l14.lukso.network/>
+- Faucet: <http://faucet.l14.lukso.network>
 
 ## How to run a L14 testnet node
 

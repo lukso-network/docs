@@ -4,8 +4,4 @@ sidebar_position: 2
 
 # L16 Public Testnet
 
-To be announced.
-
-## Repository
-
-- <https://github.com/lukso-network/l16-multinet>
+Currently only then L15 testnet is running, [please see here](l15-testnet.md).

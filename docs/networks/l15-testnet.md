@@ -4,60 +4,60 @@ sidebar_position: 3
 
 # L15 Public Testnet
 
-This testnet is ephemeral, which is smooth gateway to [L16 Public Testnet](l16-testnet.md).
+This testnet is ephemeral, meaning its not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
 
-Current state of development can be found at https://github.com/lukso-network/l16-multinet/issues/10
+## Links:
 
-You can track chain progression under those domains:
-- https://launchpad.l15.lukso.network/
-- https://stats.pandora.l15.lukso.network/
-- https://explorer.pandora.l15.lukso.network/
-- https://stats.vanguard.l15.lukso.network/
-- https://explorer.vanguard.l15.lukso.network/
-- https://rpc.l15.lukso.network/
+- https://faucet.l15.lukso.network To get some LYXt (test LYX)
+- https://launchpad.l15.lukso.network The Launchpad to participate as a validator
+
+---
+
+
+- https://stats.vanguard.l15.lukso.network Statistic page for the vanguard consensus chain
+- https://explorer.vanguard.l15.lukso.network Block Explorer page for the vanguard consensus chain
+
+--- 
+
+- https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain
+- https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain
+- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain
+
 
 ## Repositories
 
-Our network configs repository:
+The network configuration files
 - <https://github.com/lukso-network/network-configs>
 
-`lukso` script repository:
-- <https://github.com/lukso-network/lukso-orchestrator/tree/feature/l15-setup>
-
-We keep track of `l15` clients on branch `develop` within these repositories:
+Clients:
 - `Vanguard`: <https://github.com/lukso-network/vanguard-consensus-engine/>
 - `Pandora`: <https://github.com/lukso-network/pandora-execution-engine/>
 - `Orchestrator`: <https://github.com/lukso-network/lukso-orchestrator>
 
 ## How to participate
 
-Run this command on your `linux` or `macos` machine:
+Run this command on a unix machine:
 ```
-curl https://install.l15.lukso.network | bash
-lukso start
-```
-
-This quick startup will allow you to start `LUKSO` node as an archive node. For `Windows` you should look at our `lukso` script documentation:
-- <https://docs.lukso.tech/networks/lukso-cli/>
-
-You can use `help` to see available flags and usage:
-
-```
-lukso --help
+$ curl https://install.l15.lukso.network | bash
+$ lukso start --node-name "my-freetown-node"
 ```
 
-You may need to use `sudo` for `macos` devices.
+Your node will then show up at as "my-freetown-node" the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
+
+This start your nodes as a archive nodes.
+
+For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
+
 
 ### How to become an ETH2.0 LUKSO Validator
 
-Step 1:
-Go to LUKSO Launchpad and click `BECOME A VALIDATOR` and follow instructions there. Website is:
-- <https://launchpad.l15.lukso.network>
+**Step 1:**
+Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
 
-Step 2:
-When you generate your keys start importing them into `lukso-validator` by typing: `lukso wallet`. You will be instructed by `lukso` interactive inteface.
+**Step 2:**
+When you have generated your keys, you can importing them into the `lukso-validator` by typing: `$ lukso wallet`. You will then be instructed by the interactive interface.
 
-Step 3:
-Just run your validator by `lukso start --validator`!
+**Step 3:**
+Now run your node as validator node with `$ lukso start --validator`
 
-You can check your `lukso-validator` status here: <https://explorer.vanguard.l15.lukso.network/>. You can find your `lukso-validator` page by `publicKey`. Search for your validator by providing `publicKey`.
+You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
