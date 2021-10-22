@@ -37,7 +37,7 @@ Clients:
 ## How to participate
 
 Run this command on a unix machine:
-```
+```bash
 $ curl https://install.l15.lukso.network | bash
 $ lukso start --node-name "my-freetown-node"
 ```
