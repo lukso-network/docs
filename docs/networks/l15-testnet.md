@@ -15,10 +15,18 @@ You can track chain progression under those domains:
 - https://stats.vanguard.l15.lukso.network/
 - https://explorer.vanguard.l15.lukso.network/
 
-## Repository
+## Repositories
 
-We keep track of l15 toolset on branch `namespace/default` within repo:
-- <https://github.com/lukso-network/l16-multinet>
+Our network configs repository:
+- <https://github.com/lukso-network/network-configs>
+
+`lukso` script repository:
+- <https://github.com/lukso-network/lukso-orchestrator/tree/feature/l15-setup>
+
+We keep track of `l15` clients on branch `develop` within these repositories:
+- `Vanguard`: <https://github.com/lukso-network/vanguard-consensus-engine/>
+- `Pandora`: <https://github.com/lukso-network/pandora-execution-engine/>
+- `Orchestrator`: <https://github.com/lukso-network/lukso-orchestrator>
 
 ## How to participate
 Run those commands in your terminal to become archive node
