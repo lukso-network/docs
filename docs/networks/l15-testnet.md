@@ -40,6 +40,12 @@ lukso start
 This quick startup will allow you to start `LUKSO` node as an archive node. For `Windows` you should look at our `lukso` script documentation:
 - <https://docs.lukso.tech/networks/lukso-cli/>
 
+You can use `help` to see available flags and usage:
+
+```
+lukso --help
+```
+
 ### How to become an ETH2.0 LUKSO Validator
 
 Step 1:
