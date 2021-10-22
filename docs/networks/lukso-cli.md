@@ -59,7 +59,7 @@ After that, simply run:
 | --l15-dev | Shorthand alias for `--network l15-dev` | <none\>
 | --config | Path to config file     | Path ex. `config.yaml` |
 | --validate | Starts validator      | <none\>
-| --coinbase | Sets pandora coinbase | ETH1 addres ex. `0x144a9533B3d759d647597762d33a1cD6f9Bf118c`
+| --coinbase | Sets pandora coinbase. This is public address for block mining rewards (default = first account created) (default: "0") | ETH1 addres ex. `0x144a9533B3d759d647597762d33a1cD6f9Bf118c`
 | --node-name  | Name of node that's shown on pandora stats and vanguard stats | String ex. `johnsmith123` 
 | --logsdir  | Sets the logs path | String ex. `/mnt/external/lukso-logs` 
 | --datadir  | Sets datadir path | String ex. `/mnt/external/lukso-datadir`
