@@ -31,8 +31,14 @@ We keep track of `l15` clients on branch `develop` within these repositories:
 
 ## How to participate
 
-You need to have our node setup on your local machine first. Check out this page to get all informations about our `lukso` install script: 
-- <https://docs.lukso.tech/networks/lukso-cli>
+Run this command on your `linux` or `macos` machine:
+```
+curl https://install.l15.lukso.network | bash
+lukso start
+```
+
+This quick startup will allow you to start `LUKSO` node as an archive node. For `Windows` you should look at our `lukso` script documentation:
+- <https://docs.lukso.tech/networks/lukso-cli/>
 
 ### How to become an ETH2.0 LUKSO Validator
 
