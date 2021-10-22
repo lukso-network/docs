@@ -5,33 +5,36 @@
 ## Installation ( Linux/MacOS )
 `curl https://install.l15.lukso.network | bash`
 
-## Installation ( Windows )
-Run `powershell` as an administrator  
-
-`(New-Object System.Net.WebClient).DownloadString("https://install.l15.lukso.network/windows") | powershell -command -`  
-
-
-
-This shell script will: 
+This shell script will:
 1. Create directory under `/opt/lukso`
-2. Download zipped files required for node startup.
-3. Unzip them (using `unzip` tool)
+2. Download binary executables and config files required for node startup.
+3. Place them in `/opt/lukso`
 4. Create symbolic link in `/usr/local/bin`.
 
+
+## Installation ( Windows )
+>🛠️ Work In Progress, available soon.  
+> Requires [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
+
 ## Running
-Enter `lukso config` in your shell to generate config file. You may need to use `sudo` on `macos` devices.
+Enter `lukso start` to start an archive node  
+Enter `lukso start --validate --coinbase <ETH1_Address>` to start a validator node (Read instructions on validating first) 
+
+You may need to use `sudo` on `macos` devices.
+
+## Config file
+Enter `lukso config` in your shell to generate config file.
 
 Example:
 ~~~yaml
 COINBASE: "0x616e6f6e796d6f75730000000000000000000000"
-WALLET_DIR: "/home/user/.lukso/l15/vanguard-wallet"
-DATADIR: "/home/user/.lukso/l15/datadirs"
-LOGSDIR: "/home/user/.lukso/l15/logs"
-NODE_NAME: "l15-60F08373"
+WALLET_DIR: "/home/user/.lukso/l15-prod/vanguard-wallet"
+DATADIR: "/home/user/.lukso/l15-prod/datadirs"
+LOGSDIR: "/home/user/.lukso/l15-prod/logs"
+NODE_NAME: "l15-johnsmith123"
 ~~~
-After that, simply run:  
-`lukso start` to start an archive node  
-`lukso start --validate` to start a validator node
+After that, you can use `--config /path/to/config.yaml` insted of other flags:  
+
 
 
 ## Available parameters
@@ -53,8 +56,8 @@ After that, simply run:
 
 | name      | description            | Argument  |
 |-----------|------------------------|---|
-| --network | Picks which setup to use | Name of network from list: `mainnet, l15, l15-staging, l15-dev`
-| --l15 | Shorthand alias for `--network l15` | <none\>
+| --network | Picks which setup to use | Name of network from list: `mainnet, l15-prod, l15-staging, l15-dev`
+| --l15-prod | Shorthand alias for `--network l15-prod` | <none\>
 | --l15-staging | Shorthand alias for `--network l15-staging` | <none\>
 | --l15-dev | Shorthand alias for `--network l15-dev` | <none\>
 | --config | Path to config file     | Path ex. `config.yaml` |
