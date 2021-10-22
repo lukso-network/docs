@@ -49,7 +49,7 @@ This start your nodes as a archive nodes.
 For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
 
 
-### How to become an ETH2.0 LUKSO Validator
+### How to become a LUKSO Validator
 
 **Step 1:**
 Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
