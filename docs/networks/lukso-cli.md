@@ -68,7 +68,7 @@ After that, simply run:
 | --pandora-verbosity  | Sets pandora logging depth (note: pandora uses integers for that flag, script will convert those to proper values) | String ex. `silent, error, warn, info, debug, trace` 
 | --pandora-bootnodes  | Sets pandora bootnodes | Strings of bootnodes separated by commas: `enode://72caa...,enode://b4a11a...`
 | --pandora-http-port  | Sets pandora RPC (over http) port | Number between 1023-65535
-| --pandora-metrics  | Enables pandora metrics server | <none>
+| --pandora-metrics  | Enables pandora metrics server | <none\>
 | --pandora-nodekey  | P2P node key file | Path to file (relative or absolute)
 | --pandora-external-ip  | Sets external IP for pandora (overrides --external-ip if present) | String ex. `72.122.32.234`
 | --vanguard-verbosity  | Sets vanguard logging depth | String ex. `silent, error, warn, info, debug, trace`
@@ -77,7 +77,7 @@ After that, simply run:
 | --vanguard-p2p-host-dns  | Sets host DNS vanguard (overrides --external-ip AND --vanguard-external-ip if present) | String ex. `72.122.32.234`
 | --validator-verbosity  | Sets validator logging depth | String ex. `silent, error, warn, info, debug, trace`
 | --external-ip  | Sets external IP for pandora and vanguard | String ex. `72.122.32.234`
-| --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none>
+| --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none\>
 
 How to use flags with values? Provide a flag and value like: `lukso start --datadir /data/network-node`
 
