@@ -55,7 +55,7 @@ Go to LUKSO Launchpad and click `BECOME A VALIDATOR` and follow instructions the
 - <https://launchpad.l15.lukso.network>
 
 Step 2:
-When you generate your keys start importing them into `lukso-validator` by typing: `lukso wallet`. You will be instructed by `lukso` interactive inteface.
+When you generate your keys start importing them into `lukso-validator` by typing: `lukso wallet`. You will be instructed by `lukso` interactive interface.
 
 Step 3:
 Just run your validator by `lukso start --validator`!
