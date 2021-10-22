@@ -19,7 +19,7 @@ This shell script will:
 4. Create symbolic link in `/usr/local/bin`.
 
 ## Running
-Enter `lukso config` in your shell to generate config file.
+Enter `lukso config` in your shell to generate config file. You may need to use `sudo` on `macos` devices.
 
 Example:
 ~~~yaml
