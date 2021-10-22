@@ -4,8 +4,8 @@ module.exports = {
   tagline: "Documentation",
   url: "https://docs.lukso.tech/",
   baseUrl: "/",
-  onBrokenLinks: "ignore",
-  onBrokenMarkdownLinks: "ignore",
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
   favicon: "img/favicon.png",
   organizationName: "lukso-network", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.
