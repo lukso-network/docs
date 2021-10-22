@@ -26,9 +26,9 @@ Enter `lukso config` in your shell to generate config file.
 Example:
 ~~~yaml
 COINBASE: "0x616e6f6e796d6f75730000000000000000000000"
-WALLET_DIR: "/home/user/.lukso/l15/vanguard-wallet"
+WALLET_DIR: "/home/user/.lukso/l15-prod/vanguard-wallet"
 DATADIR: "/home/user/.lukso/l15-prod/datadirs"
-LOGSDIR: "/home/user/.lukso/l15/logs"
+LOGSDIR: "/home/user/.lukso/l15-prod/logs"
 NODE_NAME: "l15-johnsmith123"
 ~~~
 After that, you can use `--config /path/to/config.yaml` insted of other flags:  
@@ -69,7 +69,7 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | --pandora-verbosity  | Sets pandora logging depth (note: pandora uses integers for that flag, script will convert those to proper values) | String ex. `silent, error, warn, info, debug, trace` 
 | --pandora-bootnodes  | Sets pandora bootnodes | Strings of bootnodes separated by commas: `enode://72caa...,enode://b4a11a...`
 | --pandora-http-port  | Sets pandora RPC (over http) port | Number between 1023-65535
-| --pandora-metrics  | Enables pandora metrics server | <none>
+| --pandora-metrics  | Enables pandora metrics server | <none\>
 | --pandora-nodekey  | P2P node key file | Path to file (relative or absolute)
 | --pandora-external-ip  | Sets external IP for pandora (overrides --external-ip if present) | String ex. `72.122.32.234`
 | --vanguard-verbosity  | Sets vanguard logging depth | String ex. `silent, error, warn, info, debug, trace`
@@ -78,7 +78,7 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | --vanguard-p2p-host-dns  | Sets host DNS vanguard (overrides --external-ip AND --vanguard-external-ip if present) | String ex. `72.122.32.234`
 | --validator-verbosity  | Sets validator logging depth | String ex. `silent, error, warn, info, debug, trace`
 | --external-ip  | Sets external IP for pandora and vanguard | String ex. `72.122.32.234`
-| --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none>
+| --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none\>
 
 How to use flags with values? Provide a flag and value like: `lukso start --datadir /data/network-node`
 
