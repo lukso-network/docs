@@ -14,6 +14,7 @@ You can track chain progression under those domains:
 - https://explorer.pandora.l15.lukso.network/
 - https://stats.vanguard.l15.lukso.network/
 - https://explorer.vanguard.l15.lukso.network/
+- https://rpc.l15.lukso.network/
 
 ## Repositories
 
