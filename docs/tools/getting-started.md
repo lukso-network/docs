@@ -35,7 +35,7 @@ if(!web3.eth.accounts.wallet.length) {
     // Then we log the address and send test LYX from the L14 faucet here: http://faucet.l14.lukso.network
     console.log('My new key address ', web3.eth.accounts.wallet[0].address)
 
-// We we already have a key created we display it, with its current balance
+// If we already have a key created we display it, with its current balance
 } else {
     const myKeyAddress = web3.eth.accounts.wallet[0].address
 
@@ -43,7 +43,7 @@ if(!web3.eth.accounts.wallet.length) {
     console.log('Balance ', web3.utils.fromWei(await web3.eth.getBalance(myKeyAddress), 'ether'), 'LYXt')
 }
 
-// stop here if our key is yet created and funded
+// Stop here if our key is yet created and funded
 if(!myKeyAddress)
     return
 ```
