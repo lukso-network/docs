@@ -5,33 +5,34 @@
 ## Installation ( Linux/MacOS )
 `curl https://install.l15.lukso.network | bash`
 
-## Installation ( Windows )
-Run `powershell` as an administrator  
-
-`(New-Object System.Net.WebClient).DownloadString("https://install.l15.lukso.network/windows") | powershell -command -`  
-
-
-
-This shell script will: 
+This shell script will:
 1. Create directory under `/opt/lukso`
-2. Download zipped files required for node startup.
-3. Unzip them (using `unzip` tool)
+2. Download binary executables and config files required for node startup.
+3. Place them in `/opt/lukso`
 4. Create symbolic link in `/usr/local/bin`.
 
+
+## Installation ( Windows )
+>🛠️ Work In Progress, available soon.  
+> Requires [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
+
 ## Running
+Enter `lukso start` to start an archive node  
+Enter `lukso start --validate --coinbase <ETH1_Address>` to start a validator node (Read instructions on validating first) 
+
+## Config file
 Enter `lukso config` in your shell to generate config file.
 
 Example:
 ~~~yaml
 COINBASE: "0x616e6f6e796d6f75730000000000000000000000"
 WALLET_DIR: "/home/user/.lukso/l15/vanguard-wallet"
-DATADIR: "/home/user/.lukso/l15/datadirs"
+DATADIR: "/home/user/.lukso/l15-prod/datadirs"
 LOGSDIR: "/home/user/.lukso/l15/logs"
-NODE_NAME: "l15-60F08373"
+NODE_NAME: "l15-johnsmith123"
 ~~~
-After that, simply run:  
-`lukso start` to start an archive node  
-`lukso start --validate` to start a validator node
+After that, you can use `--config /path/to/config.yaml` insted of other flags:  
+
 
 
 ## Available parameters
