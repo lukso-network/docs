@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # L15 Public Testnet
 
-This testnet is ephemeral, meaning its not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
+This testnet is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
 
 ## Links:
 
@@ -39,12 +39,10 @@ Clients:
 Run this command on a unix machine:
 ```bash
 $ curl https://install.l15.lukso.network | bash
-$ lukso start --node-name "my-freetown-node"
+$ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
 
-Your node will then show up at as "my-freetown-node" the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
-
-This start your nodes as a archive nodes.
+This starts your node as an archive node, and your node will then show up as "REPLACE-WITH-NODE-NAME" on the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
 
 For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
 
@@ -55,9 +53,9 @@ For all options and windows `Windows` please look at our [lukso cli documentatio
 Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
 
 **Step 2:**
-When you have generated your keys, you can importing them into the `lukso-validator` by typing: `$ lukso wallet`. You will then be instructed by the interactive interface.
+When you have generated your keys, you can import them into the `lukso-validator` by typing: `$ lukso wallet`. You will then be instructed by the interactive interface.
 
 **Step 3:**
-Now run your node as validator node with `$ lukso start --validator`
+Now run your node as validator node with `$ lukso start --validator  --node-name "REPLACE-WITH-NODE-NAME"`
 
 You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
