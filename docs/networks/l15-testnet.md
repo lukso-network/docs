@@ -6,6 +6,20 @@ sidebar_position: 3
 
 This testnet is ephemeral, meaning its not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
 
+## How to participate
+
+Run this command on a unix machine:
+```bash
+$ curl https://install.l15.lukso.network | bash
+$ lukso start --node-name "my-freetown-node"
+```
+
+Your node will then show up at as "my-freetown-node" the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
+
+This start your nodes as a archive nodes.
+
+For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
+
 ## Links:
 
 - https://faucet.l15.lukso.network To get some LYXt (test LYX)
@@ -34,19 +48,6 @@ Clients:
 - `Pandora`: <https://github.com/lukso-network/pandora-execution-engine/>
 - `Orchestrator`: <https://github.com/lukso-network/lukso-orchestrator>
 
-## How to participate
-
-Run this command on a unix machine:
-```bash
-$ curl https://install.l15.lukso.network | bash
-$ lukso start --node-name "my-freetown-node"
-```
-
-Your node will then show up at as "my-freetown-node" the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
-
-This start your nodes as a archive nodes.
-
-For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
 
 
 ### How to become a LUKSO Validator
