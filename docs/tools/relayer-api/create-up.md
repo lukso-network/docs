@@ -1,14 +1,12 @@
 ---
-id: relayer-api
-title: Relayer API
-sidebar_position: 4
+id: create-up
+title: Create Universal Profile
+sidebar_position: 1
 ---
-
-## Create Universal Profile
 
 To create a [Universal Profile](standards/universal-profile.md) with a key manager and a [LSP-1 UniversalReceiver Delegate](https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-1-UniversalReceiver.md) contract:
 
-![post](https://img.shields.io/badge/-POST-green) `https://relayer.lukso.network/create-profile`
+![post](https://img.shields.io/badge/-POST-green) `https://relayer.lukso.network/api/v1/create-profile`
 
 ### Payload
 
