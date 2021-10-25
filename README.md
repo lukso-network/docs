@@ -9,10 +9,10 @@ Live URL: <https://docs.lukso.tech/>
 1. Run typedoc command in erc725.js repo
 
 ```sh
-npx typedoc --out docs src/index.ts --includeVersion --hideInPageTOC true --sort visibility
+npx typedoc --out docs/technical-reference src/index.ts --includeVersion --hideInPageTOC true --sort visibility
 ```
 
-2. Replace content of tools/erc725js/technical-reference/ with content generated in docs/
+2. Replace content of tools/erc725js/technical-reference/ with content generated in docs/technical-reference
 ## Installation
 
 ```console
