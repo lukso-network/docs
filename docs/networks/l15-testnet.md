@@ -18,7 +18,7 @@ Your node will then show up at as "my-freetown-node" the [pandora](https://stats
 
 This start your nodes as a archive nodes.
 
-For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
+For all options and `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
 
 ## Links:
 
