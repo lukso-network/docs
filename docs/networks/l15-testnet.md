@@ -31,6 +31,20 @@ Now run your node as validator node with `$ lukso start --validate --node-name "
 
 You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
+## How to participate
+
+Run this command on a unix machine:
+```bash
+$ curl https://install.l15.lukso.network | bash
+$ lukso start --node-name "my-freetown-node"
+```
+
+Your node will then show up at as "my-freetown-node" the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
+
+This start your nodes as a archive nodes.
+
+For all options and `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
+
 ## Links:
 
 - https://faucet.l15.lukso.network To get some LYXt (test LYX)
