@@ -27,7 +27,7 @@ Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the 
 When you have generated your keys, you can import them into the `lukso-validator` by typing: `$ lukso wallet`. You will then be instructed by the interactive interface.
 
 **Step 3:**
-Now run your node as validator node with `$ lukso start --validator  --node-name "REPLACE-WITH-NODE-NAME"`
+Now run your node as validator node with `$ lukso start --validate --node-name "REPLACE-WITH-NODE-NAME"`
 
 You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
