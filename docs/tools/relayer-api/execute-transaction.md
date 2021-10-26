@@ -1,7 +1,7 @@
 ---
 id: execute-transaction
 title: Execute Transaction
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 To execute a transaction on behalf of a Universal Profile:
