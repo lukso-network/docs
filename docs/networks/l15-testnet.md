@@ -18,24 +18,25 @@ This starts your node as an archive node, and your node will then show up as "RE
 
 For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G2DSFqYwteI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### How to become a LUKSO Validator
 
-Coming soon.
-<!-- **Step 1:**
+**Step 1:**
 Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
 
 **Step 2:**
 When you have generated your keys, you can import them into the `lukso-validator` by typing: `$ lukso wallet`. You will then be instructed by the interactive interface.
 
 **Step 3:**
-Now run your node as validator node with `$ lukso start --validate --node-name "REPLACE-WITH-NODE-NAME"`
+Now run your node as a validator with `$ lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /path/to/wallet/password-file.txt`
 
-You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key. -->
+You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
 ## Links:
 
 - https://faucet.l15.lukso.network To get some LYXt (test LYX)
-- https://launchpad.l15.lukso.network The Launchpad to participate as a validator (coming soon)
+- https://launchpad.l15.lukso.network The Launchpad to participate as a validator
 
 ---
 
@@ -47,7 +48,7 @@ You can check your validator status in the [Vanguard Block Explorer](https://exp
 
 - https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain
 - https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain
-- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain (coming soon)
+- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain
 
 
 ## Repositories
