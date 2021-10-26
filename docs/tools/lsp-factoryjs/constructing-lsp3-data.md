@@ -75,7 +75,7 @@ Then deploy your UP
 ```javascript
 const myContracts = await lspFactory.ERC725UniversalProfile.deploy({
     controllingAccounts: ['0x...'],
-    lsp3Profile: myUniversalProfileIPFSUrl | myUniversalProfileData // LSP3 Metadata object or IPFS url
+    lsp3Profile: myUniversalProfileIPFSUrl | myUniversalProfileData // LSP3 Metadata object or IPFS URL
   });
 };
 ```

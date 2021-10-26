@@ -6,7 +6,7 @@ sidebar_position: 1
 
 To create a [Universal Profile](standards/universal-profile.md) with a key manager and a [LSP-1 UniversalReceiver Delegate](https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-1-UniversalReceiver.md) contract:
 
-![post](https://img.shields.io/badge/-POST-green) `https://relayer.lukso.network/api/v1/create-profile`
+![post](https://img.shields.io/badge/-POST-green) `https://relayer.lukso.network/create-profile`
 
 ### Payload
 

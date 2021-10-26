@@ -4,7 +4,7 @@ sidebar_position: 1.3
 
 # Reactive Deployment
 
-LSPFactory uses [`rxjs`](https://github.com/ReactiveX/rxjs) to deploy Universal Profiles. This can be leveraged to achieve reactive deployment of Universal Profiles.
+`lsp-factory.js` uses [RxJS](https://github.com/ReactiveX/rxjs) to deploy Universal Profiles. This can be leveraged to achieve reactive deployment of Universal Profiles.
 
 Use the `reactiveDeploy` function with `subscribe` to listen for deployment events.
 
@@ -28,7 +28,7 @@ The function defined in `next` will be called whenever a new deployment event is
 The function defined in `complete` will be called once after deployment is finished. Here we log the `deploymentEvents` array.
 
 
-```typescript title="console.log output"
+```typescript title="console.log(deploymentEvents) output"
 [
   { type: 'PROXY',        contractName: 'ERC725Account',                                              status: 'PENDING',  transaction:  {} },
   { type: "PROXY",        contractName: 'ERC725Account',                                              status: 'PENDING',  receipt:      {} },

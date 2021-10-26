@@ -4,9 +4,13 @@ title: Execute Transaction
 sidebar_position: 2
 ---
 
-To execute a transaction on behalf of a Universal Profile. ![post](https://img.shields.io/badge/-POST-green) `https://relayer.lukso.network/api/v1/execute`
+To execute a transaction on behalf of a Universal Profile:
 
-Once your transaction has been sent to the relayer get the status of your transaction using ![get](https://img.shields.io/badge/-GET-blue) `https://relayer.lukso.network/api/v1/task/{taskId}`
+![post](https://img.shields.io/badge/-POST-green) `https://relayer.lukso.network/api/v1/execute`
+
+Once your transaction has been sent to the relayer get the status of your transaction using:
+
+![get](https://img.shields.io/badge/-GET-blue) `https://relayer.lukso.network/api/v1/task/{taskId}`
 
 
 ### Payload
@@ -19,7 +23,7 @@ Once your transaction has been sent to the relayer get the status of your transa
         "signature": "0x43c958b1729586749169599d7e776f18afc6223c7da21107161477d291d497973b4fc50a724b1b2ab98f3f8cf1d5cdbbbdf3512e4fbfbdc39732229a15beb14a1b",
         "nonce": 1
     }
-  }
+}
 ```
 
 - `keyManagerAddress`: the address of the [`KeyManager`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md) contract which controls the Universal Profile
@@ -50,7 +54,10 @@ Once your transaction has been sent to the relayer get the status of your transa
 - `nonce`: nonce of the KeyManager contract you sent
 
 
-## Usage Example - Sending LYX
+## Example
+
+### Sending LYX
+
 This example shows how to prepare a transaction for the relayer. The same logic can be applied to any transaction.
 
 You will need the address of the UP making the transaction, and the private key of the account which controls the UP.
@@ -72,7 +79,7 @@ const keyManagerAddress = await myUniversalProfile.methods.owner().call();
 const KeyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddress);
 ```
 
-Get the nonce of the KeyManager 
+Get the nonce of the KeyManager:
 
 ```typescript
 const controllerAccount = web3.eth.accounts.privateKeyToAccount(controllerPrivateKey);
@@ -81,10 +88,9 @@ const controllerAddress = controllerAccount.address;
 const nonce = await KeyManager.methods.getNonce(controllerAddress).call()
 ```
 
-Encode you transaction ABI. Here we show how to transfer LYX from one UP to another, though this step will be different for different use cases
+Here we show how to transfer LYX from one UP to another, though this step will be different for different use cases.
 
-
-```typescript
+```typescript title="Encode transaction ABI"
 const abiPayload = myUniversalProfile.methods.execute(
     0, // The OPERATION_CALL value. 0 for a LYX transaction
     '0x...', // Recipient address
@@ -93,9 +99,7 @@ const abiPayload = myUniversalProfile.methods.execute(
 ).encodeABI()) ;
 ```
 
-Sign the transaction
-
-```typescript
+```typescript title="Sign the transaction"
 const message = web3.utils.soliditySha3(
     keyManagerAddress,
     {
@@ -109,7 +113,7 @@ const signatureObject = controllerAccount.sign(message);
 const signature = signatureObject.signature;
 ```
 
-Now you have everything you need to send your transaction to the relayer for execution
+Now you have everything you need to send your transaction to the relayer for execution:
 
 ```typescript
 const payload = {
@@ -124,4 +128,4 @@ const payload = {
 const response = await axios.post(`https://relayer.lukso.network/api/v1/execute`, payload);
 ```
 
-Check the status of your transaction using the returned `taskId` at `/task/{taskId}`. It will be marked as complete once it has been executed on the blockchain
+Check the status of your transaction using the returned `taskId` at `/task/{taskId}`. It will be marked as complete once it has been executed on the blockchain.

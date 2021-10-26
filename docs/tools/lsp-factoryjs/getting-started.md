@@ -28,11 +28,11 @@ const lspFactory = new LSPFactory(signer, provider);
 
 ## Usage
 
-Deploying a Universal Profile is as simple as running 
+Deploying a Universal Profile is as simple as running:
 
 ```javascript
 const myContracts = await lspFactory.ERC725UniversalProfile.deploy({
-    controllingAccounts: ['0x...'], // Account address which will controll the UP
+    controllingAccounts: ['0x...'], // Account addresses which will control the UP
     lsp3Profile: myUniversalProfileData
   });
 };
@@ -70,17 +70,17 @@ const myUniversalProfileData = {
 
 When deploying your UP your LSP3 data will be automatically uploaded to IPFS.
 
-If you already have LSP3 data uploaded then simply pass an IPFS url:
+If you already have LSP3 data uploaded then simply pass an IPFS URL:
 ```javascript
 const myUniversalProfileData = 'https://ipfs.lukso.network/ipfs/QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy'
 ```
 
 
 
-To create a 'faceless' Universal Profile omit the `lsp3Profile` value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP. 
+To create a 'faceless' Universal Profile, omit the `lsp3Profile` value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP. 
 
 
-You can now continue using your UP address
+You can now continue using your UP address:
 
 ```javascript
 const myUPAddress = myContracts.erc725Account.address;
