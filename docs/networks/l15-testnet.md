@@ -18,6 +18,8 @@ This starts your node as an archive node, and your node will then show up as "RE
 
 For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G2DSFqYwteI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### How to become a LUKSO Validator
 
 **Step 1:**
