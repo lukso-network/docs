@@ -34,7 +34,7 @@ You can check your validator status in the [Vanguard Block Explorer](https://exp
 ## Links:
 
 - https://faucet.l15.lukso.network To get some LYXt (test LYX)
-- https://launchpad.l15.lukso.network The Launchpad to participate as a validator (coming soon)
+- https://launchpad.l15.lukso.network The Launchpad to participate as a validator
 
 ---
 
@@ -46,7 +46,7 @@ You can check your validator status in the [Vanguard Block Explorer](https://exp
 
 - https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain
 - https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain
-- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain (coming soon)
+- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain
 
 
 ## Repositories
