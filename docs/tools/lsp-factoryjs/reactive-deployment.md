@@ -6,13 +6,13 @@ sidebar_position: 1.3
 
 `lsp-factory.js` uses [RxJS](https://github.com/ReactiveX/rxjs) to deploy Universal Profiles. This can be leveraged to achieve reactive deployment of Universal Profiles.
 
-Use the `reactiveDeploy` function with `subscribe` to listen for deployment events.
+Use the `deployReactive()` function with `subscribe()` to listen for deployment events.
 
 ```typescript
 let deploymentEvents = [];
 
 lspFactory.LSP3UniversalProfile
-  .deploy(// ... omitted for brevity)
+  .deployReactive(// ... omitted for brevity)
   .subscribe({
     next: (deploymentEvent: DeploymentEvent<any>) => {
       deploymenLogs.push(deploymentEvent);
