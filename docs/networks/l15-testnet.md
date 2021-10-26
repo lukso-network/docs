@@ -20,17 +20,16 @@ For all options and windows `Windows` please look at our [lukso cli documentatio
 
 ### How to become a LUKSO Validator
 
-Coming soon.
-<!-- **Step 1:**
+**Step 1:**
 Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
 
 **Step 2:**
 When you have generated your keys, you can import them into the `lukso-validator` by typing: `$ lukso wallet`. You will then be instructed by the interactive interface.
 
 **Step 3:**
-Now run your node as validator node with `$ lukso start --validate --node-name "REPLACE-WITH-NODE-NAME"`
+Now run your node as a validator with `$ lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /path/to/wallet/password-file.txt`
 
-You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key. -->
+You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
 ## Links:
 
