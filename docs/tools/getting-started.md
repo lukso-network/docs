@@ -89,4 +89,5 @@ const myUPAddress = deployedContracts.erc725Account.address;
 
 ## 🔌 Services
 
+- [Relayer](./relayer-api/execute-transaction)
 - [ERC725 Inspect 📝🔍](./erc725-tools)
