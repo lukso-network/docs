@@ -16,7 +16,7 @@ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 
 This starts your node as an archive node, and your node will then show up as "REPLACE-WITH-NODE-NAME" on the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
 
-For all options and windows `Windows` please look at our [lukso cli documentation](https://docs.lukso.tech/networks/lukso-cli)
+For all options and Windows please look at our [LUKSO CLI documentation](lukso-cli.md).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G2DSFqYwteI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
