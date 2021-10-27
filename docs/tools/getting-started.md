@@ -7,14 +7,14 @@ sidebar_position: 1
 Here you will find tutorials and tools that help you building on LUKSO. As LUKSO is an EVM based Blockchain, all tools tutorials for Ethereum work well for LUKSO to, if you need EVM and Smart Contract knowledge we advise you look at [these great resources from the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/).
 
 
-Other than most EVM chains, you're encouraged on LUKSO to mainly use [UniversalProfiles](../standards/universal-profile.md) as the main account of your dApps and as a gateway for your users to the LUKSO Blockchain. It is disencouraged to use simple EOAs as accounts, as they are insecrue, inflexible and don't track incoming assets.
+Other than most EVM chains, you're encouraged on LUKSO to mainly use [Universal Profiles](../standards/universal-profile.md) as the main account of your dApps and as a gateway for your users to the LUKSO Blockchain. It is disencouraged to use simple EOAs as accounts, as they are insecrue, inflexible and don't track incoming assets.
 
 ## UP in 1-2-3
 
 This little tutorial will show you how to deploy and interact with a UniversalProfile.
 You can run this tutorial in the console of <https://universalprofile.cloud>, which has all necessary contract objects available.
 
-First generate a key, that will control your UP and fund it via the [L14 Facuet](http://faucet.l14.lukso.network):
+First generate a key, that will control your UP and fund it via the [L14 Faucet](http://faucet.l14.lukso.network):
 
 ```js
 import Web3 from 'web3'
@@ -48,7 +48,7 @@ if(!myKeyAddress)
     return
 ```
 
-Next we deploy your UP smart contracts using the [LSPFactory NPM package](./lsp-factoryjs/getting-started)
+Next we deploy your UP smart contracts using the [LSPFactory NPM package](./lsp-factoryjs/getting-started):
 
 ```js
 import LSPFactory from 'lsp-factory.js'
