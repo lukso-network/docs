@@ -66,8 +66,8 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | stop      | Stops all or specific client(s)     | [orchestrator, pandora, vanguard, validator, eth2stats-client, **all**] |
 | reset     | Clears client(s) datadirs (this also removes chain-data) | [orchestrator, pandora, vanguard, validator, all, **none**]
 | config    | Interactive tool for creating config file | |
-| keygen    | Runs `eth2deposit-cli` | |
-| wallet    | Imports `eth2deposit-cli` keys | |
+| keygen    | Runs `lukso-deposit-cli` | |
+| wallet    | Imports `lukso-deposit-cli` keys into `lukso-validator` wallet| |
 | logs      | Show logs | [orchestrator, pandora, vanguard, validator, eth2stats-client] |
 | bind-binaries      | sets client(s) to desired version | 
 > In **bold** is a behaviour when argument is skipped (default)
@@ -93,12 +93,21 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | --pandora-http-port  | Sets pandora RPC (over http) port | Number between 1023-65535
 | --pandora-metrics  | Enables pandora metrics server | <none\>
 | --pandora-nodekey  | P2P node key file | Path to file (relative or absolute)
+| --pandora-rpcvhosts  | Sets pandora rpc virtual hosts (use quotes if you want to set \* `'*'` otherwise shell will resolve it) | Comma-separated list of virtual hosts Ex. `localhost` or `*`
 | --pandora-external-ip  | Sets external IP for pandora (overrides --external-ip if present) | String ex. `72.122.32.234`
+| --pandora-universal-profile-expose  | Exposes "net,eth,txpool,web3" API's on Pandora RPC | <none\>
+| --pandora-unsafe-expose  | Exposes ALL API's ("admin,net,eth,debug,miner,personal,txpool,web3") API's on Pandora RPC | <none\>
 | --vanguard-verbosity  | Sets vanguard logging depth | String ex. `silent, error, warn, info, debug, trace`
 | --vanguard-bootnodes  | Sets vanguard bootnodes | Strings of bootnodes separated by commas: `enr:-Ku4QAmY...,enr:-M23QLmY...`
 | --vanguard-p2p-priv-key  | The file containing the private key to use in communications with other peers. | Path to file (relative or absolute)
-| --vanguard-p2p-host-dns  | Sets host DNS vanguard (overrides --external-ip AND --vanguard-external-ip if present) | String ex. `72.122.32.234`
+| --vanguard-external-ip  | Sets external IP for vanguard (overrides --external-ip if present) | IP ex. `72.122.32.234`
+| --vanguard-p2p-host-dns  | Sets host DNS vanguard (overrides --external-ip AND --vanguard-external-ip if present) | DNS name ex. `l15-nodes-1.nodes.l15.lukso.network`
+| --vanguard-rpc-host  | Sets vanguard RPC listening interface | IP ex. `127.0.0.1`
+| --vanguard-monitoring-host  | Sets vanguard monitoring listening interface | IP ex. `127.0.0.1`
 | --validator-verbosity  | Sets validator logging depth | String ex. `silent, error, warn, info, debug, trace`
+| --wallet-dir  | Sets directory of `lukso-validator` wallet  | Path to directory, relative or absolute
+| --wallet-password-file  | Sets directory of `lukso-validator` wallet  | Path to directory, relative or absolute
+| --cors-domain  | Sets CORS domain (note: if you want to set every origin you must type asterisk wrapped in quotes `'*'` otherwise shell may try to resolve it | CORS Domain ex. `localhost`, `*`
 | --external-ip  | Sets external IP for pandora and vanguard | String ex. `72.122.32.234`
 | --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none\>
 
@@ -109,6 +118,21 @@ How to use flags with values? Provide a flag and value like: `lukso start --data
 |-----------|------------------------|---|
 | --force   | Adds force option to kill commands (may result in corruption of node data)     | <none\> |
 
+### keygen
+| name      | description            | Argument  |
+|-----------|------------------------|---|
+| --keys-dir  | Sets directory of `lukso-deposit-cli` keys | Path to directory, relative or absolute
+| --keys-password-file  | Sets directory of `lukso-deposit-cli` keys | Path to directory, relative or absolute
+
+### wallet
+| name      | description            | Argument  |
+|-----------|------------------------|---|
+| --keys-dir  | Sets directory of `lukso-deposit-cli` keys | Path to directory, relative or absolute
+| --keys-password-file  | Sets directory of `lukso-deposit-cli` keys | Path to directory, relative or absolute
+| --wallet-dir  | Sets directory of `lukso-validator` wallet  | Path to directory, relative or absolute
+| --wallet-password-file  | Sets directory of `lukso-validator` wallet  | Path to directory, relative or absolute
+
+
 ### bind-binaries 
 | name      | description            | Argument  |
 |-----------|------------------------|---|
@@ -116,5 +140,7 @@ How to use flags with values? Provide a flag and value like: `lukso start --data
 | --pandora   | download and set `pandora` to given tag  | Tag, ex. `v0.1.0-rc.1` |
 | --vanguard   | download and set `vanguard` to given tag  | Tag, ex. `v0.1.0-rc.1` |
 | --validator   | download and set `validator` to given tag  | Tag, ex. `v0.1.0-rc.1` |
+| --deposit   | download and set `lukso-deposit-cli` to given tag  | Tag, ex. `v0.1.0-rc.1` |
+| --eth2stats   | download and set `eth2stats` to given tag  | Tag, ex. `v0.1.0-rc.1` |
 
 
