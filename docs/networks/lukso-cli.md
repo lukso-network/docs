@@ -3,7 +3,9 @@
 >⚠️ This page may change. Not everything is ready yet.
 
 ## System requirements
+
 ### Minimum specifications
+
 These specifications must be met in order to successfully run the Vanguard, Pandora, and Orchestrator clients.
 
 - Operating System: 64-bit Linux, Mac OS X 10.14+
@@ -12,7 +14,8 @@ These specifications must be met in order to successfully run the Vanguard, Pand
 - Storage: 20GB available space SSD
 - Internet: Broadband connection
 
-## Recommended specifications
+### Recommended specifications
+
 These hardware specifications are recommended, but not required to run the Vanguard, Pandora, and Orchestrator clients.
 
 - Processor: Intel Core i7–4770 or AMD FX-8310 or better
@@ -23,6 +26,7 @@ These hardware specifications are recommended, but not required to run the Vangu
 >⚠️ Currently we do not support Apples new M1 chips and Windows yet. 
 
 ## Installation ( Linux/MacOS )
+
 `curl https://install.l15.lukso.network | bash`
 
 This shell script will:
