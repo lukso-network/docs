@@ -12,6 +12,21 @@ Network ID: `22 (0x16)`
 - Explorer: <https://blockscout.com/lukso/l14>
 - Faucet: <http://faucet.l14.lukso.network>
 
+Enabled EiPs are:
+
+- [eip140](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-140.md)
+- [eip145](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md)
+- [eip211](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-211.md)
+- [eip214](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-214.md)
+- [eip658](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-658.md)
+- [eip1014](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1014.md)
+- [eip1052](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1052.md)
+- [eip1283](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1283.md)
+
+Not included compared to Ethereum mainnet:
+
+- [eip1234](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1234.md) (Difficulty bomb adjustment)
+
 ## How to run a L14 testnet node
 
 ### Installing the node
