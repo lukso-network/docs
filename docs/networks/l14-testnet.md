@@ -53,7 +53,7 @@ Should the above boot-node not work, you can find the current boot-node [here](h
 - <https://github.com/lukso-network/l14-chain-spec>
 - <https://github.com/lukso-network/l14-dapps-validators>
 
-## Ressources
+## Resources
 
 - https://medium.com/lukso/announcing-the-l14-test-network-38d7c622c6cb
 - https://github.com/lukso-network/l14-deploy-node-gcloud
