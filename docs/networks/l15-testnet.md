@@ -18,7 +18,9 @@ This starts your node as an archive node, and your node will then show up as "RE
 
 For all options and Windows please look at our [LUKSO CLI documentation](lukso-cli.md).
 
+<div style={{textAlign: 'center'}}>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G2DSFqYwteI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ### How to become a LUKSO Validator
 
@@ -53,7 +55,7 @@ You can check your validator status in the [Vanguard Block Explorer](https://exp
 
 ## Repositories
 
-The network configuration files
+The network configuration files:
 - <https://github.com/lukso-network/network-configs>
 
 Clients:

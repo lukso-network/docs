@@ -37,3 +37,10 @@ To develop DApps, you can use [web3.js](https://github.com/ethereum/web3.js/), t
 You can see all transaction on our [BlockScout explorer](http://explorer.l14.lukso.network/).
 
 There are apps for [validators](http://validators.l14.lukso.network/) and [validator voting](http://voting.l14.lukso.network/), which you can have a look if your wallet extension is connected to the L14 testnet.
+
+## Resources
+
+- [Solidity Documentation](https://solidity.readthedocs.io/en/latest/)
+- [Solidty Tutorials](https://ethereumbuilders.gitbooks.io/guide/content/en/solidity_tutorials.html)
+- [Web3.js Documentation](https://web3js.readthedocs.io/en/1.0/)
+- [Ethereum Glossary](https://github.com/ethereum/wiki/wiki/Glossary)
