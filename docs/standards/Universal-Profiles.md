@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Universal Profiles
 
-Universal Profiles are smart contract accounts, that should be used instead of simple EOAs (simple genertaed keys), as they have the following advantages:
+Universal Profiles are smart contract accounts, that should be used instead of simple EOAs (simple generated keys), as they have the following advantages:
 
 - Security is upgradeable, controlling keys or smart contracts can be changed over time, and even the whole key manager logic
 - Accounts can attach information though [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y), meaning things from [profile information](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md) to protocols and other data, can be attached to your account.
