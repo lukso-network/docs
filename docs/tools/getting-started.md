@@ -12,11 +12,14 @@ Other than most EVM chains, you're encouraged on LUKSO to mainly use [Universal 
 ## UP in 1-2-3
 
 This little tutorial will show you how to deploy and interact with a UniversalProfile.
-You can run this tutorial in the console of <https://universalprofile.cloud>, which has all necessary contract objects available.
+You can:
+
+- run this tutorial in the console of <https://universalprofile.cloud>, which has all necessary contract objects available
+- clone the [`up-sample-react-app`](https://github.com/Hugoo/up-sample-react-app) repo
 
 First generate a key, that will control your UP and fund it via the [L14 Faucet](http://faucet.l14.lukso.network):
 
-```js
+```js title="Load web3"
 import Web3 from 'web3'
 
 const web3 = new Web3('https://rpc.l14.lukso.network')
@@ -48,9 +51,9 @@ if(!myKeyAddress)
     return
 ```
 
-Next we deploy your UP smart contracts using the [LSPFactory NPM package](./lsp-factoryjs/getting-started):
+Next we deploy your UP smart contracts using the [lsp-factory.js NPM package](./lsp-factoryjs/getting-started):
 
-```js
+```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js'
 
 // We initialize the LSPFactory with the right chain RPC endpoint and a privatekey from which we will deploy the UPs
@@ -78,9 +81,71 @@ const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
 
 // Get the UP address
 const myUPAddress = deployedContracts.ERC725Account.address;
-
+// 0xB46BBD556589565730C06bB4B7454B1596c9E70A
 ```
 
+Finally, we can read the UP smart contract ERC725Y keys/values with the [erc725.js NPM package](./erc725js/getting-started):
+
+```js title="Read Universal Profile ERC725 keys/values with erc725.js"
+import { ERC725 } from '@erc725/erc725.js';
+
+// Part of LSP3-UniversalProfile Schema
+// https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-3-UniversalProfile.md
+const schema = [
+  {
+    name: 'SupportedStandards:ERC725Account',
+    key: '0xeafec4d89fa9619884b6b89135626455000000000000000000000000afdeb5d6',
+    keyType: 'Mapping',
+    valueContent: '0xafdeb5d6',
+    valueType: 'bytes',
+  },
+  {
+    name: 'LSP3Profile',
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    keyType: 'Singleton',
+    valueContent: 'JSONURL',
+    valueType: 'bytes',
+  },
+  {
+    name: 'LSP1UniversalReceiverDelegate',
+    key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
+    keyType: 'Singleton',
+    valueContent: 'Address',
+    valueType: 'address',
+  },
+];
+
+const provider = new Web3.providers.HttpProvider("https://rpc.l14.lukso.network");
+
+const erc725 = new ERC725(schema, myUPAddress, provider);
+
+const data = await erc725.getData();
+
+console.log(data);
+```
+
+```json title="console.log(data)"
+{
+  "SupportedStandards:ERC725Account": "0xafdeb5d6",
+  "LSP3Profile": {
+    "LSP3Profile": {
+      "name": "My Universal Profile",
+      "description": "My Cool Universal Profile",
+      "backgroundImage": [],
+      "tags": [
+        "Public Profile"
+      ],
+      "links": [
+        {
+          "title": "My Website",
+          "url": "http://my-website.com"
+        }
+      ]
+    }
+  },
+  "LSP1UniversalReceiverDelegate": "0x9A668677384CD4F5c49Cb057f0cEB2b783Ed670F"
+}
+```
 
 ## 🛠 Tools
 
