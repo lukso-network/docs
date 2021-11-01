@@ -35,7 +35,7 @@ const lspFactory = new LSPFactory(provider, {
 Deploying a Universal Profile is as simple as running:
 
 ```javascript
-const myContracts = await lspFactory.ERC725UniversalProfile.deploy({
+const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
     controllingAccounts: ['0x...'], // Account addresses which will control the UP
     lsp3Profile: myUniversalProfileData
   });
@@ -87,5 +87,5 @@ To create a 'faceless' Universal Profile, omit the `lsp3Profile` value. This can
 You can now continue using your UP address:
 
 ```javascript
-const myUPAddress = myContracts.erc725Account.address;
+const myUPAddress = myContracts.ERC725Account.address;
 ```
