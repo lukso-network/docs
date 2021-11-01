@@ -1,4 +1,5 @@
 ---
+title: The LUKSO Standard Proposals
 sidebar_position: 1
 ---
 
@@ -6,9 +7,9 @@ sidebar_position: 1
 
 LUKSO comes with a set of new standards for smart contracts that should be used as the core pieces of your dApp.
 
-The main new standards are based around [Universal Profiles](./Universal-Profiles.md) and [NFT2.0](./NFT2.0.md).
+The main new standards are based around [Universal Profiles](Universal-Profiles.md) and [NFT2.0](./NFT2.0.md).
 
-To see Universal Profiles (🆙) live on the [L14 testnet](../networks/l14-testnet.md) check out the [universalprofile.cloud](https://universalprofile.cloud/) lets you easily browse the deployed profiles.
+To see Universal Profiles (🆙 ) live on the [L14 testnet](../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed profiles.
 
 ## More to watch:
 
