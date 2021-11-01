@@ -20,10 +20,14 @@ npm install @lukso/lsp-factory.js
 ```javascript
 import { LSPFactory } from "@lukso/lsp-factory.js";
 
-const signer = '0x...' // Private key of the account which will deploy UPs
+const deployKey = '0x...' // Private key of the account which will deploy UPs
 const provider = "https://rpc.l14.lukso.network" // RPC url used to connect to the network
+const chainId = 22 // Chain Id of the network you want to connect to
 
-const lspFactory = new LSPFactory(signer, provider);
+const lspFactory = new LSPFactory(provider, {
+  deployKey,
+  chainId
+});
 ```
 
 ## Usage
@@ -64,7 +68,7 @@ const myUniversalProfileData = {
       },
     ],
     tags: ['Fashion', 'Design'],
-    links: ['www.my-website.com'],
+    links: [{ title: "My Website", url: "www.my-website.com" }],
 },
 ```
 

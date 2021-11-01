@@ -15,7 +15,7 @@ lspFactory.LSP3UniversalProfile
   .deployReactive(// ... omitted for brevity)
   .subscribe({
     next: (deploymentEvent: DeploymentEvent<any>) => {
-      deploymenLogs.push(deploymentEvent);
+      deploymentEvents.push(deploymentEvent);
     },
     complete: () => {
       console.log(deploymentEvents);

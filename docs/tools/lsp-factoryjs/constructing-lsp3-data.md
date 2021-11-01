@@ -32,7 +32,7 @@ const myUniversalProfileData = {
         },
     ],
     tags: ['Fashion', 'Design'],
-    links: ['www.my-website.com'],
+    links: [{ title: "My Website", url: "www.my-website.com" }],
 },
 ```
 
@@ -50,7 +50,7 @@ const myUniversalProfileData = {
         profileImage: myLocalFile,
         backgroundImage: myLocalFile,
         tags: ['Fashion', 'Design'],
-        links: ['www.my-website.com'],
+        links: [{ title: "My Website", url: "www.my-website.com" }],
     },
 <script/>
 ```
@@ -63,7 +63,7 @@ If a `File` object is passed it will will automatically be uploaded to IPFS.
 If you wish to upload your LSP3 metadata before deploying you can do so using the static `uploadProfileData` method. This uses the same `lsp3Profile` object schema defined above for `myUniversalProfileData`:
 
 ```javascript
-const uploadResult = await LSP3UniversalProfile.uploadProfileData({
+const uploadResult = await lspFactory.LSP3UniversalProfile.uploadProfileData({
     ...myUniversalProfileData
 });
 
@@ -73,7 +73,7 @@ const myUniversalProfileIPFSUrl = uploadResult.url; // 'https://ipfs.lukso.netwo
 Then deploy your UP  
 
 ```javascript
-const myContracts = await lspFactory.ERC725UniversalProfile.deploy({
+const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
     controllingAccounts: ['0x...'],
     lsp3Profile: myUniversalProfileIPFSUrl | myUniversalProfileData // LSP3 Metadata object or IPFS URL
   });
