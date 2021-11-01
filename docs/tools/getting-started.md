@@ -24,13 +24,13 @@ const web3 = new Web3('https://rpc.l14.lukso.network')
 const myDummyPassword = 'mypassword'
 
 // Here we try to load an already created key from the localstorage
-web3.eth.accounts.wallet.load(myPassword)
+web3.eth.accounts.wallet.load(myDummyPassword)
 
 // If none exists we create a new key
 if(!web3.eth.accounts.wallet.length) {
   
     web3.eth.accounts.wallet.create(1)
-    web3.eth.accounts.wallet.save(myPassword)
+    web3.eth.accounts.wallet.save(myDummyPassword)
 
     // Then we log the address and send test LYX from the L14 faucet here: http://faucet.l14.lukso.network
     console.log('My new key address ', web3.eth.accounts.wallet[0].address)
