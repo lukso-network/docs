@@ -114,6 +114,34 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | --cors-domain  | Sets CORS domain (note: if you want to set every origin you must type asterisk wrapped in quotes `'*'` otherwise shell may try to resolve it | CORS Domain ex. `localhost`, `*`
 | --external-ip  | Sets external IP for pandora and vanguard | String ex. `72.122.32.234`
 | --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none\>
+| --vanguard-http-web3provider  | An eth1 web3 provider string http endpoint or IPC socket path. (default: http://127.0.0.1:8545) | <none\>
+| --vanguard-rpc-host  | Host on which the RPC server should listen. (default: 127.0.0.1) | <none\>
+| --van-rpc-port  | Port on which the RPC server should listen. (default: 4000) | <none\>
+| --van-udp-port  | Vanguard beacon chain client UDP port. The port used by discv5. (default: 12000) | <none\>
+| --van-tcp-port   | Vanguard beacon chain client TCP port. The port used by libp2p. (default: 13000) | <none\>
+| --van-grpc-gateway-port   | Vanguard gRPC gateway port. The port on which the gateway server runs on (default: 3500) | <none\>
+| --vanguard-orc-rpc-provider   | A orchestrator string rpc endpoint. This is our orchestrator client http endpoint or socket path. (default: http://127.0.0.1:7877) | <none\>
+| --validator-beacon-rpc-provider | Beacon node (vanguard) RPC provider endpoint. (default is: 127.0.0.1:4000) | <none\>
+| --validator-pandora-http-provider | A pandora string rpc endpoint. This is our pandora client http endpoint. (default is: http://127.0.0.1:8545) | <none\>
+| --orchestrator-vanguard-rpc-endpoint | Enables Vanguard node RPC provider endpoint. (default is: 127.0.0.1:4000) | <none\>
+| --orchestrator-pandora-rpc-endpoint | Pandora node RP provider endpoint. (default: ws://127.0.0.1:8546) | <none\>
+| --eth2stats-beacon-addr | Beacon node endpoint address for eth2stats-client. (default: 127.0.0.1:4000) | <none\>
+| --orc-http-port | Orchestrator HTTP port exposed. Default is: 7877 | <none\>
+| --orc-http-addr | Orchestrator HTTP address exposed. Default is: 127.0.0.1 | <none\>
+| --orc-ws-port | Orchestrator websocket port exposed. Default is: 7878 | <none\>
+| --orc-ws-addr | Orchestrator websocket address exposed. Default is: 127.0.0.1 | <none\>
+| --pan-port | Pandora client TCP/UDP port exposed. Default is: 30405 | <none\>
+| --pan-http-addr | Pandora client http address exposed. Default is: 127.0.0.1 | <none\>
+| --pan-http-port | Pandora client http port exposed. Default is: 8545 | <none\>
+| --pan-ws-addr  | Pandora client websocket address exposed. Default is: 127.0.0.1 | <none\>
+| --pan-ws-port | Pandora client websocket port exposed. Default is: 8546 | <none\>
+| --pan-http-miner-addr | Pandora HTTP URL to notify of new work packages. Default is: http://127.0.0.1:7877 | <none\>
+| --pan-ws-miner-addr | Pandora Websocket URL to notify of new work packages. Default is: ws://127.0.0.1:7878 | <none\>
+| --pan-ethstats | Pandora flag to activate ethstats listing on remote dashboard. It's disabled by default. If enabled you should see your node by your node name provided via --node-name flag or lukso config. | <none\>
+| --van-ethstats | Vanguard flag fo activate eth2stats listing on remote dashboard. It's disabled by default. If enabled you should see your node by your node name provided via --node-name flag or lukso config. | <none\>
+| --van-min-sync-peers | The required number of valid Vanguard peers to connect with before syncing. (default: 2) | <none\>
+| --van-max-p2p-peers | The max number of Vanguard p2p peers to maintain. (default: 50) | <none\>
+| --van-ethstats-metrics | The metrics address for Vanguard eth2stats-client service (default: http://127.0.0.1:8080/metrics) | <none\>
 
 How to use flags with values? Provide a flag and value like: `lukso start --datadir /data/network-node`
 
