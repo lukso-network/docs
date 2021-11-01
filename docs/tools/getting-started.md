@@ -51,7 +51,7 @@ if(!myKeyAddress)
 Next we deploy your UP smart contracts using the [LSPFactory NPM package](./lsp-factoryjs/getting-started):
 
 ```js
-import LSPFactory from 'lsp-factory.js'
+import { LSPFactory } from '@lukso/lsp-factory.js'
 
 // We initialize the LSPFactory with the right chain RPC endpoint and a privatekey from which we will deploy the UPs
 const lspFactory = new LSPFactory("https://rpc.l14.lukso.network", {
@@ -61,7 +61,7 @@ const lspFactory = new LSPFactory("https://rpc.l14.lukso.network", {
 
 const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
   controllerAddresses: [myKeyAddress], // our key will be controlling our UP in the beginning
-  LSP3Profile: {
+  lsp3Profile: {
     name: "My Universal Profile",
     description: "My Cool Universal Profile",
     profileImage: [fileBlob], // got some Image uploaded?
@@ -77,7 +77,7 @@ const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
 });
 
 // Get the UP address
-const myUPAddress = deployedContracts.erc725Account.address;
+const myUPAddress = deployedContracts.ERC725Account.address;
 
 ```
 
