@@ -7,11 +7,38 @@ import TabItem from '@theme/TabItem';
 
 # LSP6-KeyManager
 
-This is a smart contract that can act as the owner of an ERC725Account. It reads permissions of addresses from the key value store of the ERC725Account contract, and restricts access based on these permissions.
+The Key Manager is a smart contract that functions as a gateway for an ERC725Account, sitting between an Account and other smart contracts or EOA that want to interact with it.
 
-## List of Permissions
+The idea of the Key Manager is not only about restricting, but also giving permissions to others, so that they can act on behalf of your ERC725 Account, based on the permissions you have granted to them.
 
-The following permissions are available to be set for any address. They are listed according to their importance.
+:x: **Without a Key Manager**, only the ERC725Account's owner can use its Account.
+
+:white_check_mark: **With a Key Manager** attached to an ERC725Account, you can enable contracts or EOAs to use your Account on your behalf.
+
+The Key Manager can act as the owner of an ERC725Account. It can reads permissions of addresses from the key value store of the ERC725Account contract, and restricts access based on these permissions.
+
+Permissions for a specific `<address>` are stored inside the ERC725Account contract storage, under specific keys listed in the table below. ([See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress))
+
+| Permission Type     | Key |
+| ------------------- | :----------- |
+| Address Permissions | `0x4b80742d0000000082ac0000<address>`       |
+| Allowed Addresses   | `0x4b80742d00000000c6dd0000<address>`        |
+| Allowed Functions   | `0x4b80742d000000008efe0000<address>`        |
+
+Since permissions are stored under the ERC725Account contract, they are not attached to the Key Manager itself. The Key Manager can then easily be upgraded without the need to set all the permissions again.
+
+## Types of permissions
+
+There are 3 main types of permissions that can be set for addresses interacting with a Universal Profile.
+
+- [**Address Permissions:**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress) defines a set of **permission values** for an `address`.
+
+- [**Allowed Addresses:**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress) defines which EOA or contract addresses an `address` is allowed to interact with.
+
+- [**Allowed Functions:**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) defines which function selectors an `address` is allowed to run on a specific contract.
+### Permission values
+
+The following default permissions can be set for any address. They are listed according to their importance.
 
 <details>
     <summary><code>CHANGEOWNER</code>: Allows changing the owner of the controlled contract</summary>
@@ -61,7 +88,19 @@ The following permissions are available to be set for any address. They are list
     <summary><code>SIGN</code>: Allows signing on behalf of the controlled account, for example for login purposes</summary>
 </details>
 
-## Allowed addresses
+:::note
+
+When deployed with the **lsp-factory**, the Universal Profile owner will have all the permissions below set by default.
+
+:::
+
+:::danger
+
+Even if set, the permission **`DELEGATECALL`** is currently disallowed on the KeyManager because of its dangerous nature, as some malicious code could be executed in the context of the Universal Profile..
+
+:::
+
+### Allowed addresses
 
 You can also set an address to interact only with specific addresses like contracts.
 Let's say you want Bob to interact only with the contract at address `<target-contract-address>`
@@ -74,13 +113,14 @@ value = `<target-contract-address>`
 
 **If no addresses are set, interacting with any addresses is allowed.**
 
-:::1§
+:::
+
+### Allowed functions
+
 
 
 
 ## How to set permissions
-
-### Setup
 
 We will start with an initial setup.
 
@@ -106,8 +146,6 @@ const enum PERMISSIONS {
   SIGN          = "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
 }
 ```
-
-### Granting permissions to an address
 
 The code snippets below show how to set permissions for **Bob** on your Universal Profile, owned by `yourEOA`.
 It assumes that your profile has been deployed using lsp-factory.js tool.
@@ -158,6 +196,11 @@ await keyManager.connect(yourEOA).execute(payload)
 
   </TabItem>
 </Tabs>
+
+
+## Listing addresses with permissions
+
+The key `AddressPermissions[]` key will contain all the addresses that have a permission set on the ERC725Account.
 
 ## References
 
