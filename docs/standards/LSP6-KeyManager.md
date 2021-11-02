@@ -101,7 +101,7 @@ When deployed with the **lsp-factory**, the Universal Profile owner will have al
 
 :::danger
 
-Even if set, the permission **`DELEGATECALL`** is currently disallowed on the KeyManager because of its dangerous nature, as some malicious code could be executed in the context of the Universal Profile..
+**`DELEGATECALL`** is currently disallowed (even if set on the KeyManager) because of its dangerous nature, as some malicious code can be executed in the context of the linked Account contract.
 
 :::
 
