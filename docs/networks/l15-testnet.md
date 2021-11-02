@@ -54,7 +54,7 @@ $ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 <TabItem value="macos" label="MacOS">
 
 ```bash
-$ curl https://install.l15.lukso.network | bash
+$ sudo curl https://install.l15.lukso.network | bash
 $ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
 
