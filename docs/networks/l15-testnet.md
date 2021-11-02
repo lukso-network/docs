@@ -69,7 +69,7 @@ For all options and Windows please look at our [LUKSO CLI documentation](lukso-c
 
 :::info
 
-In case you are currently running an archive node, please run `lukso stop` (with sudo for MacOS) before continuing.
+In case you are currently running an archive node, please run `lukso stop` (`sudo lukso stop` for MacOS) before continuing.
 
 :::
 
