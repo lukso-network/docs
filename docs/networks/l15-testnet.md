@@ -46,8 +46,8 @@ import TabItem from '@theme/TabItem';
 <TabItem value="linux" label="Linux">
 
 ```bash
-curl https://install.l15.lukso.network | bash
-lukso start --node-name "REPLACE-WITH-NODE-NAME"
+$ curl https://install.l15.lukso.network | bash
+$ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
 
 </TabItem>
