@@ -152,7 +152,7 @@ console.log(data);
 }
 ```
 
-If you prefer interact directly with the contracts, you can load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
+To interact directly with any smart contract through you UP, load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
 
 ```js title="Interact directly through your UP"
 import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
@@ -166,13 +166,14 @@ const myUP = new web3.eth.Contract(
 const keyManagerAddress = await myUP.methods.owner().call();
 
 console.log(keyManagerAddress);
-// 0x72662E4da74278430123cE51405c1e7A1B87C294
+// e.g. 0x72662E4da74278430123cE51405c1e7A1B87C294
 
 const myKeyManager = new web3.eth.Contract(
   KeyManager.abi,
   keyManagerAddress,
 );
 
+// Set data on your own UP, though the key manager
 const abi = myUP.methods
   .setData(
     ['0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'], // LSP3Profile
@@ -188,6 +189,24 @@ await myKeyManager.methods.execute(abi).send({
   gas: 200_000,
   gasPrice: web3.utils.toWei('20', 'gwei'),
 });
+
+
+// OR interact with another contract
+let myOtherSC = new web3.eth.Contract(MyOtherSC.abi, myOtherSCAddress)
+
+// get the ABI of the call on the other contract
+let abi = myOtherSC.methods.myCoolfunction('dummyParameter').encodeABI()
+
+// call the execute function on your UP (operation = 0 = CALL, to, value, calldata)
+abi = myUP.methods.execute(0, myOtherSCAddress, 0, abi).encodeABI()
+
+// send your tx to the blockchain, from the controlling key address, through the key manager
+myKeyManager.methods.execute(abi).send({
+  from: web3.eth.accounts.wallet[0].address,
+  gas: 200_000,
+  gasPrice: web3.utils.toWei(20, 'gwei')
+})
+
 ```
 
 
