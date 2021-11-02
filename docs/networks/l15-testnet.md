@@ -18,6 +18,7 @@ Since we are resetting the network, please make sure to delete the currently exi
 ```bash
 lukso stop
 lukso reset all
+curl https://install.l15.lukso.network | bash
 ```
 
 </TabItem>
@@ -26,6 +27,7 @@ lukso reset all
 ```bash
 sudo lukso stop
 sudo lukso reset all
+sudo curl https://install.l15.lukso.network | bash
 ```
 
 </TabItem>
