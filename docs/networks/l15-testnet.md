@@ -67,6 +67,12 @@ For all options and Windows please look at our [LUKSO CLI documentation](lukso-c
 
 ### How to become a validator
 
+:::info
+
+In case you are currently running an archive node, please run `lukso stop` (with sudo for MacOS) before continuing.
+
+:::
+
 **Step 1:**
 Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
 
