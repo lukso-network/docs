@@ -16,6 +16,7 @@ Since we are resetting the network, please make sure to delete the currently exi
 <TabItem value="linux" label="Linux">
 
 ```bash
+lukso stop
 lukso reset all
 ```
 
@@ -23,6 +24,7 @@ lukso reset all
 <TabItem value="macos" label="MacOS">
 
 ```bash
+sudo lukso stop
 sudo lukso reset all
 ```
 
