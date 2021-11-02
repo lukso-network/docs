@@ -61,7 +61,13 @@ $ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 </TabItem>
 </Tabs>
 
-This starts your node as an archive node, and your node will then show up as "REPLACE-WITH-NODE-NAME" on the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages.
+This starts your node as an archive node.
+
+:::info
+
+Please note that currently we do not attach your node to the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages. This is because these pages are not able to monitor 100+ nodes and start freezing the browser. Right now we are working on a local status page for Pandora and Vanguard.
+
+:::
 
 For all options and Windows please look at our [LUKSO CLI documentation](lukso-cli.md).
 
