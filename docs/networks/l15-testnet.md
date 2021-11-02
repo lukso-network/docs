@@ -8,7 +8,7 @@ This testnet is ephemeral, meaning it is not meant to be fully stable and usable
 
 ## How to participate
 
-:::caution Read carefully
+:::caution Please Read carefully
 
 Since we are resetting the network, please make sure to delete the currently existing datadirs by running the following command:
 
