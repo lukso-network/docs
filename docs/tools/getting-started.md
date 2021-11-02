@@ -15,9 +15,11 @@ This little tutorial will show you how to deploy and interact with a UniversalPr
 You can:
 
 - run this tutorial in the console of <https://universalprofile.cloud>, which has all necessary contract objects available
-- clone the [`up-sample-react-app`](https://github.com/Hugoo/up-sample-react-app) repo
+- clone the [`up-sample-react-app`](https://github.com/Hugoo/up-sample-react-app) repo and work in it
+- write your own JS/TS scripts
+- check the [demo app](https://hugoo.github.io/up-sample-react-app/)
 
-First generate a key, that will control your UP and fund it via the [L14 Faucet](http://faucet.l14.lukso.network):
+First, generate a key that will control your UP and fund it via the [L14 Faucet](http://faucet.l14.lukso.network):
 
 ```js title="Load web3"
 import Web3 from 'web3'
@@ -84,7 +86,7 @@ const myUPAddress = deployedContracts.ERC725Account.address;
 // 0xB46BBD556589565730C06bB4B7454B1596c9E70A
 ```
 
-Finally, we can read the UP smart contract ERC725Y keys/values with the [erc725.js NPM package](./erc725js/getting-started):
+We can read the UP smart contract ERC725Y keys/values with the [erc725.js NPM package](./erc725js/getting-started):
 
 ```js title="Read Universal Profile ERC725 keys/values with erc725.js"
 import { ERC725 } from '@erc725/erc725.js';
@@ -118,8 +120,11 @@ const schema = [
 const provider = new Web3.providers.HttpProvider("https://rpc.l14.lukso.network");
 
 const erc725 = new ERC725(schema, myUPAddress, provider);
+const config = {
+    ipfsGateway: 'https://ipfs.lukso.network/ipfs/',
+};
 
-const data = await erc725.getData();
+const data = await erc725.fetchData();
 
 console.log(data);
 ```
@@ -146,6 +151,64 @@ console.log(data);
   "LSP1UniversalReceiverDelegate": "0x9A668677384CD4F5c49Cb057f0cEB2b783Ed670F"
 }
 ```
+
+To interact directly with any smart contract through you UP, load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
+
+```js title="Interact directly through your UP"
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
+
+const myUP = new web3.eth.Contract(
+    UniversalProfile.abi,
+    erc725Address,
+);
+
+const keyManagerAddress = await myUP.methods.owner().call();
+
+console.log(keyManagerAddress);
+// e.g. 0x72662E4da74278430123cE51405c1e7A1B87C294
+
+const myKeyManager = new web3.eth.Contract(
+  KeyManager.abi,
+  keyManagerAddress,
+);
+
+// Set data on your own UP, though the key manager
+const abi = myUP.methods
+  .setData(
+    ['0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'], // LSP3Profile
+    [
+      '0x6f357c6ad6c04598b25d41b96fb88a8c8ec4f4c3de2dc9bdaab7e71f40ed012b84d0c126697066733a2f2f516d6262447348577a4d4d724538594345766e3342633254706756793176535736414d3946376168595642573874',
+    ], // encoded JSONURL: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#jsonurl
+  )
+  .encodeABI();
+
+// send your tx to the blockchain, from the controlling key address, through the key manager
+await myKeyManager.methods.execute(abi).send({
+  from: web3.eth.accounts.wallet[0].address,
+  gas: 200_000,
+  gasPrice: web3.utils.toWei('20', 'gwei'),
+});
+
+
+// OR interact with another contract
+let myOtherSC = new web3.eth.Contract(MyOtherSC.abi, myOtherSCAddress)
+
+// get the ABI of the call on the other contract
+let abi = myOtherSC.methods.myCoolfunction('dummyParameter').encodeABI()
+
+// call the execute function on your UP (operation = 0 = CALL, to, value, calldata)
+abi = myUP.methods.execute(0, myOtherSCAddress, 0, abi).encodeABI()
+
+// send your tx to the blockchain, from the controlling key address, through the key manager
+myKeyManager.methods.execute(abi).send({
+  from: web3.eth.accounts.wallet[0].address,
+  gas: 200_000,
+  gasPrice: web3.utils.toWei(20, 'gwei')
+})
+
+```
+
 
 ## 🛠 Tools
 
