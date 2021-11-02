@@ -108,11 +108,11 @@ When deployed with the **lsp-factory**, the Universal Profile owner will have al
 ### Allowed addresses
 
 You can also set an address to interact only with specific addresses like contracts.
-Let's say you want Bob to interact only with the contract at address `<target-contract-address>`
-You can do so by setting up the following key:
 
-key = `0x4b80742d00000000c6dd0000<bob-address>`
-value = `<target-contract-address>`
+To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>`, the key-value pair below can be set in the ERC725Y contract storage.
+
+- **key:** `0x4b80742d00000000c6dd0000<address>`
+- **value:** `<target-contract-address>`
 
 :::info Infos
 
@@ -122,36 +122,53 @@ value = `<target-contract-address>`
 
 ### Allowed functions
 
-## Setting permissions
+You can also restrict which functions a specific address can run, by providing a list of bytes4 function selector for a specific `address`.
 
-We will start with an initial setup.
+To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
+
+- **key:** `0x4b80742d000000008efe0000<address>`
+- **value:** `0xa9059cbb`
+
+:::info Infos
+
+**If no bytes4 selectors are set, the caller address can execute any functions.**
+
+:::
+
+## Permission Keys
+
+Below is a list of ERC725Y Permission Keys related to the Key Manager, stored as constants to be used in our code snippets.
 
 ```typescript
 const PERMISSIONS_KEY_PREFIX = "0x4b80742d0000000082ac0000";
 const ADDRESS_PERMISSIONS_ARRAY_KEY =
   "0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3";
 
+// prettier-ignore
 const enum KEYS {
-  PERMISSIONS = "0x4b80742d0000000082ac0000", // AddressPermissions:Permissions:<address> --> bytes32
+  PERMISSIONS      = "0x4b80742d0000000082ac0000", // AddressPermissions:Permissions:<address> --> bytes32
   ALLOWEDADDRESSES = "0x4b80742d00000000c6dd0000", // AddressPermissions:AllowedAddresses:<address> --> address[]
   ALLOWEDFUNCTIONS = "0x4b80742d000000008efe0000", // AddressPermissions:AllowedFunctions:<address> --> bytes4[]
 }
 
+// prettier-ignore
 const enum PERMISSIONS {
-  CHANGEOWNER = "0x0000000000000000000000000000000000000000000000000000000000000001", // .... 0000 0000 0001
-  CHANGEKEYS = "0x0000000000000000000000000000000000000000000000000000000000000002", // .... .... .... 0010
-  SETDATA = "0x0000000000000000000000000000000000000000000000000000000000000004", // .... .... .... 0100
-  CALL = "0x0000000000000000000000000000000000000000000000000000000000000008", // .... .... .... 1000
-  STATICCALL = "0x0000000000000000000000000000000000000000000000000000000000000010", // .... .... 0001 ....
-  DELEGATECALL = "0x0000000000000000000000000000000000000000000000000000000000000020", // .... .... 0010 ....
-  DEPLOY = "0x0000000000000000000000000000000000000000000000000000000000000040", // .... .... 0100 ....
+  CHANGEOWNER   = "0x0000000000000000000000000000000000000000000000000000000000000001", // .... 0000 0000 0001
+  CHANGEKEYS    = "0x0000000000000000000000000000000000000000000000000000000000000002", // .... .... .... 0010
+  SETDATA       = "0x0000000000000000000000000000000000000000000000000000000000000004", // .... .... .... 0100
+  CALL          = "0x0000000000000000000000000000000000000000000000000000000000000008", // .... .... .... 1000
+  STATICCALL    = "0x0000000000000000000000000000000000000000000000000000000000000010", // .... .... 0001 ....
+  DELEGATECALL  = "0x0000000000000000000000000000000000000000000000000000000000000020", // .... .... 0010 ....
+  DEPLOY        = "0x0000000000000000000000000000000000000000000000000000000000000040", // .... .... 0100 ....
   TRANSFERVALUE = "0x0000000000000000000000000000000000000000000000000000000000000080", // .... .... 1000 ....
-  SIGN = "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
+  SIGN          = "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
 }
 ```
 
-The code snippets below show how to set permissions for **Bob** on your Universal Profile, owned by `yourEOA`.
-It assumes that your profile has been deployed using lsp-factory.js tool.
+## Setting permissions
+
+The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
+It assumes that the profile has been deployed using lsp-factory.js tool.
 
 <Tabs>
   <TabItem value="web3js" label="web3.js" default>
@@ -203,10 +220,6 @@ await keyManager.connect(yourEOA).execute(payload);
 
   </TabItem>
 </Tabs>
-
-## Listing addresses with permissions
-
-The key `AddressPermissions[]` contains all the addresses that have a permission set on the ERC725Account.
 
 ## References
 
