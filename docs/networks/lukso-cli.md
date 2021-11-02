@@ -74,6 +74,7 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | wallet    | Imports `lukso-deposit-cli` keys into `lukso-validator` wallet| |
 | logs      | Show logs | [orchestrator, pandora, vanguard, validator, eth2stats-client] |
 | bind-binaries      | sets client(s) to desired version | 
+| version      | Shows the LUKSO script version | 
 > In **bold** is a behaviour when argument is skipped (default)
 
 ### start
