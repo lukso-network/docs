@@ -16,18 +16,18 @@ Since we are resetting the network, please make sure to delete the currently exi
 <TabItem value="linux" label="Linux">
 
 ```bash
-lukso stop
-lukso reset all
-curl https://install.l15.lukso.network | bash
+$ lukso stop
+$ lukso reset all
+$ curl https://install.l15.lukso.network | bash
 ```
 
 </TabItem>
 <TabItem value="macos" label="MacOS">
 
 ```bash
-sudo lukso stop
-sudo lukso reset all
-sudo curl https://install.l15.lukso.network | bash
+$ sudo lukso stop
+$ sudo lukso reset all
+$ sudo curl https://install.l15.lukso.network | bash
 ```
 
 </TabItem>
@@ -54,8 +54,8 @@ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 <TabItem value="macos" label="MacOS">
 
 ```bash
-curl https://install.l15.lukso.network | bash
-sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
+$ curl https://install.l15.lukso.network | bash
+$ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
 
 </TabItem>
@@ -87,16 +87,16 @@ Execute the following commands:
 <TabItem value="linux" label="Linux">
 
 ```bash
-curl https://install.l15.lukso.network | bash
-lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /path/to/wallet/password-file.txt`
+$ curl https://install.l15.lukso.network | bash
+$ lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /path/to/wallet/password-file.txt`
 ```
 
 </TabItem>
 <TabItem value="macos" label="MacOS">
 
 ```bash
-curl https://install.l15.lukso.network | bash
-sudo lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /Users/YOUR_USER_NAME/Library/LUKSO/l15-prod/vanguard_wallet/password`
+$ curl https://install.l15.lukso.network | bash
+$ sudo lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /Users/YOUR_USER_NAME/Library/LUKSO/l15-prod/vanguard_wallet/password`
 ```
 
 </TabItem>
