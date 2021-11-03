@@ -70,10 +70,10 @@ const myUpAddress = '0x...'
 Then instantiate a Web3 `Contract` object for your UP and KeyManager using the contract ABIs from the [`@lukso/universalprofile-smart-contracts`](https://github.com/lukso-network/universalprofile-smart-contracts) npm package
 
 ```typescript
-import LSP3AccountContract from '@lukso/universalprofile-smart-contracts/build/artifacts/LSP3Account.json';
+import UniversalProfileContract from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
 import KeyManagerContract from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
 
-const myUniversalProfile = new web3.eth.Contract(LSP3AccountContract.abi, myUpAddress);
+const myUniversalProfile = new web3.eth.Contract(UniversalProfileContract.abi, myUpAddress);
 
 const keyManagerAddress = await myUniversalProfile.methods.owner().call();
 const KeyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddress);
@@ -85,7 +85,7 @@ Get the nonce of the KeyManager:
 const controllerAccount = web3.eth.accounts.privateKeyToAccount(controllerPrivateKey);
 const controllerAddress = controllerAccount.address;
 
-const nonce = await KeyManager.methods.getNonce(controllerAddress).call()
+const nonce = await KeyManager.methods.getNonce(controllerAddress, 0).call()
 ```
 
 Here we show how to transfer LYX from one UP to another, though this step will be different for different use cases.
@@ -101,12 +101,11 @@ const abiPayload = myUniversalProfile.methods.execute(
 
 ```typescript title="Sign the transaction"
 const message = web3.utils.soliditySha3(
-    keyManagerAddress,
+    keyManagerAddress, nonce,
     {
         t: 'bytes',
         v: abiPayload,
     },
-    nonce,
 );
 
 const signatureObject = controllerAccount.sign(message);
