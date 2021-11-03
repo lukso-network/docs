@@ -27,7 +27,7 @@ const myNFT = new web3.eth.Contract(
     myDigitalAsset.LSP7DigitalAsset.address
 );
 
-myNFT.methods.totalSupply().totalSupply()
+const totalSupply = myNFT.methods.totalSupply().call()
 ```
 
 To create an LSP8 Identifiable Digital Asset
@@ -46,5 +46,5 @@ const myNFT = new web3.eth.Contract(
     LSP8Contract.LSP8IdentifiableDigitalAsset.address
 );
 
-myNFT.methods.totalSupply().totalSupply()
+const totalSupply = myNFT.methods.totalSupply().call()
 ```
