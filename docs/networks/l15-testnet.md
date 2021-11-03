@@ -87,27 +87,6 @@ In case you are currently running a node, please run `lukso stop` (`sudo lukso s
 Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
 
 **Step 2:**
-Execute the following commands:
-
-<Tabs groupId="operating-systems">
-<TabItem value="linux" label="Linux">
-
-```bash
-$ curl https://install.l15.lukso.network | bash
-$ lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /path/to/wallet/password-file.txt`
-```
-
-</TabItem>
-<TabItem value="macos" label="MacOS">
-
-```bash
-$ curl https://install.l15.lukso.network | bash
-$ sudo lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-password-file /Users/YOUR_USER_NAME/Library/LUKSO/l15-prod/vanguard_wallet/password`
-```
-
-</TabItem>
-</Tabs>
-
 You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
 ### Metamask
