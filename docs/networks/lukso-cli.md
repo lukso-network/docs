@@ -143,6 +143,7 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | --van-min-sync-peers | The required number of valid Vanguard peers to connect with before syncing. (default: 2) | Number of required peers, e.g. `1`
 | --van-max-p2p-peers | The max number of Vanguard p2p peers to maintain. (default: 50) | Peers count, e.g. `70`
 | --van-ethstats-metrics | The metrics address for Vanguard eth2stats-client service (default: http://127.0.0.1:8080/metrics) | HTTP address with port and `metrics` endpoint, e.g. `http://127.0.0.1:8080/metrics`
+| --status-page | This flag is for lukso-status activation. With this service you can check you node status over web browser (default: disabled). Default web address is: http://127.0.0.1:8111 | <none\>
 
 How to use flags with values? Provide a flag and value like: `lukso start --datadir /data/network-node`
 
