@@ -139,7 +139,7 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | --pan-http-miner-addr | Pandora HTTP URL to notify of new work packages. Default is: http://127.0.0.1:7877 | HTTP address, e.g. `http://127.0.0.1:7877`
 | --pan-ws-miner-addr | Pandora Websocket URL to notify of new work packages. Default is: ws://127.0.0.1:7878 | WS address, e.g. `ws://127.0.0.1:7878`
 | --pan-ethstats | Pandora flag to activate ethstats listing on remote dashboard. If enabled you should see your node by your node name provided via --node-name flag or lukso config. (default:  disabled) | Token and address like `token123@stats.example.com`
-| --van-ethstats | Vanguard flag fo activate eth2stats listing on remote dashboard. If enabled you should see your node by your node name provided via --node-name flag or lukso config. (default:  disabled) | Address, e.g. `192.168.0.1:9090`
+| --van-ethstats | Vanguard flag fo activate eth2stats listing on remote dashboard. If enabled you should see your node by your node name provided via --node-name flag or lukso config. (default:  disabled) | Address with port, e.g. `192.168.0.1:9090`
 | --van-min-sync-peers | The required number of valid Vanguard peers to connect with before syncing. (default: 2) | Number of required peers, e.g. `1`
 | --van-max-p2p-peers | The max number of Vanguard p2p peers to maintain. (default: 50) | Peers count, e.g. `70`
 | --van-ethstats-metrics | The metrics address for Vanguard eth2stats-client service (default: http://127.0.0.1:8080/metrics) | HTTP address with port and `metrics` endpoint, e.g. `http://127.0.0.1:8080/metrics`
