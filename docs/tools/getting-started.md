@@ -214,6 +214,7 @@ myKeyManager.methods.execute(abi).send({
 
 - [erc725.js](./erc725js/getting-started)
 - [lsp-factory.js](./lsp-factoryjs/getting-started)
+- [universalprofile-smart-contracts](https://github.com/lukso-network/lsp-universalprofile-smart-contracts)
 
 ## 🔌 Services
 
