@@ -101,7 +101,7 @@ To add the L15 Network to Metamask, these are the settings:
 | Currency Symbol    | LYXt                                       |
 | Block Explorer URL | https://explorer.pandora.l15.lukso.network |
 
-And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)
+And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
 ## Links
 
