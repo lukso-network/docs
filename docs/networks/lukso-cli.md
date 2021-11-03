@@ -66,13 +66,13 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 
 | command   | description            | argument |
 |-----------|------------------------|----------------------|
-| start     | Starts up all or specific client(s) | [orchestrator, pandora, vanguard, validator, eth2stats-client, **all**] |
-| stop      | Stops all or specific client(s)     | [orchestrator, pandora, vanguard, validator, eth2stats-client, **all**] |
+| start     | Starts up all or specific client(s) | [orchestrator, pandora, vanguard, validator, eth2stats-client, lukso-status, **all**] |
+| stop      | Stops all or specific client(s)     | [orchestrator, pandora, vanguard, validator, eth2stats-client, lukso-status, **all**] |
 | reset     | Clears client(s) datadirs (this also removes chain-data) | [orchestrator, pandora, vanguard, validator, all, **none**]
 | config    | Interactive tool for creating config file | |
 | keygen    | Runs `lukso-deposit-cli` | |
 | wallet    | Imports `lukso-deposit-cli` keys into `lukso-validator` wallet| |
-| logs      | Show logs | [orchestrator, pandora, vanguard, validator, eth2stats-client] |
+| logs      | Show logs | [orchestrator, pandora, vanguard, validator, eth2stats-client, lukso-status] |
 | bind-binaries      | sets client(s) to desired version | 
 | version      | Shows the LUKSO script version | 
 > In **bold** is a behaviour when argument is skipped (default)
@@ -175,5 +175,6 @@ How to use flags with values? Provide a flag and value like: `lukso start --data
 | --validator   | download and set `validator` to given tag  | Tag, ex. `v0.1.0-rc.1` |
 | --deposit   | download and set `lukso-deposit-cli` to given tag  | Tag, ex. `v0.1.0-rc.1` |
 | --eth2stats   | download and set `eth2stats` to given tag  | Tag, ex. `v0.1.0-rc.1` |
+| --lukso-status   | download and set `lukso-status` to given tag  | Tag, ex. `v0.1.0-rc.1` |
 
 
