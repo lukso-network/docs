@@ -114,13 +114,13 @@ You can check your validator status in the [Vanguard Block Explorer](https://exp
 
 To add the L15 Network to Metamask, these are the settings:
 
-| Setting            | Value                                     |
-| ------------------ | ----------------------------------------- |
-| Network Name       | L15                                       |
-| New RPC URL        | https//rpc.l15.lukso.network              |
-| Chain ID           | 23                                        |
-| Currency Symbol    | LYXt                                      |
-| Block Explorer URL | https//explorer.pandora.l15.lukso.network |
+| Setting            | Value                                      |
+| ------------------ | ------------------------------------------ |
+| Network Name       | L15                                        |
+| New RPC URL        | https://rpc.l15.lukso.network              |
+| Chain ID           | 23                                         |
+| Currency Symbol    | LYXt                                       |
+| Block Explorer URL | https://explorer.pandora.l15.lukso.network |
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)
 
