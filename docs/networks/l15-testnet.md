@@ -8,7 +8,7 @@ This testnet is ephemeral, meaning it is not meant to be fully stable and usable
 
 ## How to participate
 
-:::caution Please Read carefully
+:::warning Please Read carefully
 
 Since we are resetting the network, please make sure to delete the currently existing datadirs by running the following command:
 
@@ -77,9 +77,9 @@ For all options and Windows please look at our [LUKSO CLI documentation](lukso-c
 
 ### How to become a validator
 
-:::info
+:::caution
 
-In case you are currently running an archive node, please run `lukso stop` (`sudo lukso stop` for MacOS) before continuing.
+In case you are currently running a node, please run `lukso stop` (`sudo lukso stop` for MacOS) before continuing.
 
 :::
 
@@ -110,7 +110,21 @@ $ sudo lukso start --validate --node-name "REPLACE-WITH-NODE-NAME" --wallet-pass
 
 You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
-## Links:
+### Metamask
+
+To add the L15 Network to Metamask, these are the settings:
+
+| Setting            | Value                                     |
+| ------------------ | ----------------------------------------- |
+| Network Name       | L15                                       |
+| New RPC URL        | https//rpc.l15.lukso.network              |
+| Chain ID           | 23                                        |
+| Currency Symbol    | LYXt                                      |
+| Block Explorer URL | https//explorer.pandora.l15.lukso.network |
+
+And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)
+
+## Links
 
 - https://faucet.l15.lukso.network To get some LYXt (test LYX)
 - https://launchpad.l15.lukso.network The Launchpad to participate as a validator
