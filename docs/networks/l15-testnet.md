@@ -8,9 +8,13 @@ This testnet is ephemeral, meaning it is not meant to be fully stable and usable
 
 ## How to participate
 
-:::warning Please Read carefully
+:::warning Currently the L15-Testnet is not running.
 
-Since we are resetting the network, please make sure to delete the currently existing datadirs by running the following command:
+We are currently working on a fix and as soon as the fix is thorougly tested, we will start it again.
+
+:::
+
+<!-- Since we are resetting the network, please make sure to delete the currently existing datadirs by running the following command:
 
 <Tabs groupId="operating-systems">
 <TabItem value="linux" label="Linux">
@@ -33,9 +37,7 @@ $ sudo curl https://install.l15.lukso.network | bash
 </TabItem>
 </Tabs>
 
-This is a one-time operation and it's nescessary to be able to join the fun.
-
-:::
+This is a one-time operation and it's nescessary to be able to join the fun. -->
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -63,11 +65,11 @@ $ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 
 This starts your node as an archive node.
 
-:::info
+<!-- :::info
 
 Please note that currently we do not attach your node to the [pandora](https://stats.pandora.l15.lukso.network) and [vanguard](https://stats.vanguard.l15.lukso.network) stats pages. This is because these pages are not able to monitor 100+ nodes and start freezing the browser. Right now we are working on a local status page for Pandora and Vanguard.
 
-:::
+::: -->
 
 For all options and Windows please look at our [LUKSO CLI documentation](lukso-cli.md).
 
@@ -105,19 +107,25 @@ And if you need it, [here is a tutorial on how to do it](https://metamask.zendes
 
 ## Links
 
-- https://faucet.l15.lukso.network To get some LYXt (test LYX)
-- https://launchpad.l15.lukso.network The Launchpad to participate as a validator
+:::warning Currently the L15-Testnet is not running.
+
+We are currently working on a fix and as soon as the fix is thorougly tested, we will start it again.
+
+:::
+
+- https://faucet.l15.lukso.network To get some LYXt (test LYX) (coming soon)
+- https://launchpad.l15.lukso.network The Launchpad to participate as a validator (coming soon)
 
 ---
 
-- https://stats.vanguard.l15.lukso.network Statistic page for the vanguard consensus chain
-- https://explorer.vanguard.l15.lukso.network Block Explorer page for the vanguard consensus chain
+- https://stats.vanguard.l15.lukso.network Statistic page for the vanguard consensus chain (coming soon)
+- https://explorer.vanguard.l15.lukso.network Block Explorer page for the vanguard consensus chain (coming soon)
 
 ---
 
-- https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain
-- https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain
-- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain
+- https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain (coming soon)
+- https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain (coming soon)
+- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain (coming soon)
 
 ## Repositories
 
