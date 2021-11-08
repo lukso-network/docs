@@ -9,37 +9,37 @@ import TabItem from '@theme/TabItem';
 
 ![Key Manager flow chart](https://user-images.githubusercontent.com/31145285/129574099-9eba52d4-4f82-4f11-8ac5-8bfa18ce97d6.jpeg)
 
-An ERC725Account on its own comes with limited usability. Since it is an **owned contract**, only the Account's owner can write data into it, or use it to interact with other smart contracts.
+An [ERC725Account](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) on its own comes with limited usability. Since it is an **owned contract**, only the Account's owner can write data into it, or use it to interact with other smart contracts.
 
 Here comes the Key Manager. It is a smart contract that controls an ERC725Account by becoming its new owner. It then functions as a gateway for an ERC725Account.
 
-The idea is to give permissions to other addresses (like EOAs or smart contracts), so they can act on an ERC725Account through the Key Manager. When these addresses try to interact with the Account contract, the Key Manager will allow or restrict access based on these previously set permissions.
+The idea is to give [permissions](#types-of-permissions) to other addresses, like Externally Owned Accounts (EOA) or smart contracts, so they can act on an **ERC725Account** through the Key Manager. When these addresses try to interact with the Account contract, the Key Manager will allow or restrict access based on these previously set permissions.
 
 :x: **Without a Key Manager**, only the ERC725Account's owner can use its Account.
 
 :white_check_mark: **With a Key Manager** attached to an ERC725Account, other addresses (EOAs or contracts) can use an Account on behalf of its owner.
 
-Permissions for a specific `address` are stored inside the ERC725Account contract storage, under specific keys listed in the table below. ([See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress))
+Permissions for a specific `address` are stored inside the ERC725Account contract storage, under specific keys listed in the table below. ([See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys))
 
-| Permission Type     | Key                                   |
-| ------------------- | :------------------------------------ |
-| Address Permissions | `0x4b80742d0000000082ac0000<address>` |
-| Allowed Addresses   | `0x4b80742d00000000c6dd0000<address>` |
-| Allowed Functions   | `0x4b80742d000000008efe0000<address>` |
+| Permission Type                                                                                                                         | Key                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------- |
+| [Address Permissions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress)    | `0x4b80742d0000000082ac0000<address>`   |
+| [Allowed Addresses](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress) | `0x4b80742d00000000c6dd0000**<address>` |
+| [Allowed Functions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) | `0x4b80742d000000008efe0000<address>`   |
 
 Since permissions are stored under the ERC725Account contract, they are not attached to the Key Manager itself. The Key Manager can then easily be upgraded without the need to set all the permissions again.
 
-## Types of permissions
+## <a name="types-of-permissions"></a> Types of permissions
 
 There are 3 main types of permissions that can be set for addresses interacting with a Universal Profile.
 
-- [**Address Permissions:**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress) defines a set of **permission values** for an `address`.
+- [**Address Permissions**](#permissions-value): defines a set of **permission values** for an `address`.
 
-- [**Allowed Addresses:**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress) defines which EOA or contract addresses an `address` is allowed to interact with.
+- [**Allowed Addresses:**](#allowed-addresses) defines which EOA or contract addresses an `address` is allowed to interact with.
 
-- [**Allowed Functions:**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) defines which function selectors an `address` is allowed to run on a specific contract.
+- [**Allowed Functions:**](#allowed-functions) defines which function selectors an `address` is allowed to run on a specific contract.
 
-### Permission values
+### <a name="permissions-value"></a> Permission values
 
 The following default permissions can be set for any address. They are listed according to their importance.
 
@@ -56,13 +56,13 @@ The following default permissions can be set for any address. They are listed ac
 
 <details>
     <summary><code>SETDATA</code>: Allows setting data on the controlled contract</summary>
-    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#setdata">ERC725Y</a> key-value store of the linked `ERC725Account` (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
+    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked `ERC725Account` (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
 </details>
 
 <details>
     <summary><code>CALL</code>, <code>STATICCALL</code>: Allows calling other contracts through the controlled contract</summary>
     <p>This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts)</p>
-    <p>The difference between <code>CALL</code> and <code>STATICCALL</code> is that <b>staticcall</b> disallows state change at the target contract.</p>
+    <p>The difference between <code>CALL</code> and <a href="https://eips.ethereum.org/EIPS/eip-214"><code>STATICCALL</code></a> is that <b>staticcall</b> disallows state change at the target contract.</p>
     <blockquote>If any state is changed at a target contract through a <code>STATICCALL</code>, the call will revert.</blockquote>
 </details>
 
@@ -76,7 +76,7 @@ The following default permissions can be set for any address. They are listed ac
 <details>
     <summary><code>DEPLOY</code>: Allows deploying other contracts through the controlled contract</summary>
     <p>Enables the caller to deploy a smart contract, using the linked ERC725Account as a deployer. The bytecode of the contract to be deployed should be provided in the payload (abi-encoded) passed to the Key Manager.</p>
-    <blockquote>Both the CREATE or CREATE2 opcode can be used to deploy the contract.</blockquote>
+    <blockquote>Both the <code>CREATE</code> or <a href="https://eips.ethereum.org/EIPS/eip-1014"><code>CREATE2</code></a> opcode can be used to deploy the contract.</blockquote>
 </details>
 
 <details>
@@ -95,7 +95,7 @@ The following default permissions can be set for any address. They are listed ac
 
 :::note
 
-When deployed with the **lsp-factory**, the Universal Profile owner will have all the permissions above set by default.
+When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started/), the Universal Profile owner will have all the permissions above set by default.
 
 :::
 
@@ -105,11 +105,11 @@ When deployed with the **lsp-factory**, the Universal Profile owner will have al
 
 :::
 
-### Allowed addresses
+### <a name="allowed-addresses"></a> Allowed addresses
 
 You can also set an address to interact only with specific addresses like contracts.
 
-To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>`, the key-value pair below can be set in the ERC725Y contract storage.
+To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>`, the key-value pair below can be set in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage.
 
 - **key:** `0x4b80742d00000000c6dd0000<address>`
 - **value:** `<target-contract-address>`
@@ -120,7 +120,7 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 
 :::
 
-### Allowed functions
+### <a name="allowed-functions"></a> Allowed functions
 
 You can also restrict which functions a specific address can run, by providing a list of bytes4 function selector for a specific `address`.
 
@@ -168,7 +168,7 @@ const enum PERMISSIONS {
 ## Setting permissions
 
 The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
-It assumes that the profile has been deployed using lsp-factory.js tool.
+It assumes that the profile has been deployed using [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) tool.
 
 <Tabs>
   <TabItem value="web3js" label="web3.js" default>
