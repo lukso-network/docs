@@ -256,7 +256,9 @@ It assumes that the profile has been deployed with our [lsp-factory.js](https://
   <TabItem value="web3js" label="web3.js" default>
 
 ```typescript
-const GAS_LIMIT = 3_000_000;
+import UniversalProfile from "@lukso/universalprofile-smart-contracts/build/contracts/UniversalProfile.json";
+
+const universalProfile = new this.web3.eth.Contract(UniversalProfile.abi);
 
 let payload = await universalProfile.methods
   .setData(
@@ -274,7 +276,7 @@ let payload = await universalProfile.methods
   )
   .encodeABI();
 
-keyManager.execute(payload).send({ from: yourEOA, gas: GAS_LIMIT });
+keyManager.execute(payload).send({ from: yourEOA, gas: 300_000 });
 ```
 
   </TabItem>
