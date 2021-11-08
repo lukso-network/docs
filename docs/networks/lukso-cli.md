@@ -111,7 +111,7 @@ After that, you can use `--config /path/to/config.yaml` insted of other flags:
 | --vanguard-monitoring-host  | Sets vanguard monitoring listening interface | IP ex. `127.0.0.1`
 | --validator-verbosity  | Sets validator logging depth | String ex. `silent, error, warn, info, debug, trace`
 | --wallet-dir  | Sets directory of `lukso-validator` wallet  | Path to directory, relative or absolute
-| --wallet-password-file  | Sets directory of `lukso-validator` wallet  | Path to directory, relative or absolute
+| --wallet-password-file  | Sets location of password file for validator (without it, it will always prompt for password)  | Path to a file, relative or absolute
 | --cors-domain  | Sets CORS domain (note: if you want to set every origin you must type asterisk wrapped in quotes `'*'` otherwise shell may try to resolve it | CORS Domain ex. `localhost`, `*`
 | --external-ip  | Sets external IP for pandora and vanguard | String ex. `72.122.32.234`
 | --allow-respin  | Deletes all datadirs IF network config changed (based on genesis time) | <none\>
