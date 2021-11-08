@@ -32,6 +32,8 @@ Permissions for an `address` are stored inside the key-value store of the ERC725
 <br/>
 Since permissions are stored under the ERC725Account contract, they are not attached to the Key Manager itself. The Key Manager can then easily be upgraded without the need to set all the permissions again.
 
+---
+
 ## <a name="types-of-permissions"></a> Types of permissions
 
 There are 3 main types of permissions that can be set for addresses interacting with a Universal Profile.
@@ -44,26 +46,42 @@ There are 3 main types of permissions that can be set for addresses interacting 
 
 ### <a name="permissions-value"></a> Permission values
 
-The following default permissions can be set for any address. They are listed according to their importance.
+The following default permissions can be set for any address. They are listed in the table below, according to their importance.
+
+You can find **more details about each permissions by clicking on the toggles below**.
 
 <details>
     <summary><code>CHANGEOWNER</code> - Allows changing the owner of the controlled contract</summary>
+        <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+            <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000001</code>
+        </p>
         <p>Enables to change the owner of the linked ERC725Account.</p>
         <p>Using this permission, you can easily upgrade the <code>KeyManager</code> attached to the Account by transferring ownership to a new <code>KeyManagerV2</code>.</p>
 </details>
 
 <details>
     <summary><code>CHANGEPERMISSIONS</code> - Allows changing of permissions of addresses</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
+    </p>
     <p>This permission allows an address to grant or revoke permissions for any specific address (including itself).</p>
 </details>
 
 <details>
     <summary><code>SETDATA</code> - Allows setting data on the controlled contract</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
+    </p>
     Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked `ERC725Account` (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
+
 </details>
 
 <details>
     <summary><code>CALL</code>, <code>STATICCALL</code> - Allows calling other contracts through the controlled contract</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value for CALL = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code><br/>
+        <b>value for STATICCALL = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code>
+    </p>
     <p>This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts)</p>
     <p>The difference between <code>CALL</code> and <a href="https://eips.ethereum.org/EIPS/eip-214"><code>STATICCALL</code></a> is that <b>staticcall</b> disallows state change at the target contract.</p>
     <blockquote>If any state is changed at a target contract through a <code>STATICCALL</code>, the call will revert.</blockquote>
@@ -71,19 +89,26 @@ The following default permissions can be set for any address. They are listed ac
 
 <details>
     <summary><code>DELEGATECALL</code> - Allows delegate calling other contracts through the controlled contract</summary>
-    
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
+    </p>
     <blockquote>This call type is currently disallowed. See note below for more details.</blockquote>
-
 </details>
 
 <details>
     <summary><code>DEPLOY</code> - Allows deploying other contracts through the controlled contract</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
+    </p>
     <p>Enables the caller to deploy a smart contract, using the linked ERC725Account as a deployer. The bytecode of the contract to be deployed should be provided in the payload (abi-encoded) passed to the Key Manager.</p>
     <blockquote>Both the <code>CREATE</code> or <a href="https://eips.ethereum.org/EIPS/eip-1014"><code>CREATE2</code></a> opcode can be used to deploy the contract.</blockquote>
 </details>
 
 <details>
     <summary><code>TRANSFERVALUE</code> - Allows transfering value to other contracts from the controlled contract</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
+    </p>
     Enables to send native currency from the linked ERC725Account to any address.<br/><br/>
     <blockquote>
         NB: for a simple native token transfer, no data (<code>""</code>) should be passed to the fourth parameter of the <code>execute</code> function of the Account contract.<br/>
@@ -93,12 +118,62 @@ The following default permissions can be set for any address. They are listed ac
 
 <details>
     <summary><code>SIGN</code>: Allows signing on behalf of the controlled account, for example for login purposes</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
+    </p>
     The <code>SIGN</code> permission can be used for keys to sign login messages. It is mostly for web2.0 apps to know which key SHOULD sign.
 </details>
+
+**Permissions can be combined together**, if an address needs to hold more than one permission.
+
+Simply calculate the sum of their decimal value, and convert the result back into hexadecimal. For instance:
+
+> [See LSP6 Specs for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#permission-values-in-addresspermissionspermissionsaddress)
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+```solidity
+permissions: CHANGEPERMISSIONS + SETDATA
+
+  0x0000000000000000000000000000000000000000000000000000000000000002 (2 in decimal)
++ 0x0000000000000000000000000000000000000000000000000000000000000004 (4)
+---------------------------------------------------------------------
+= 0x0000000000000000000000000000000000000000000000000000000000000006 (= 8)
+```
+
+</TabItem>
+<TabItem value="example2" label="Example 2">
+
+```solidity
+permissions: CALL + TRANSFERVALUE
+
+  0x0000000000000000000000000000000000000000000000000000000000000008 (8 in decimal)
++ 0x0000000000000000000000000000000000000000000000000000000000000080 (128)
+---------------------------------------------------------------------
+= 0x0000000000000000000000000000000000000000000000000000000000000088 (= 136)
+```
+
+</TabItem>
+
+</Tabs>
 
 :::note
 
 When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started/), the Universal Profile owner will have all the permissions above set by default.
+
+:::
+
+:::caution
+
+Each permission MUST be:
+
+- **exactly 32 bytes long**
+- zero left-padded
+  - So ✅ `0x0000000000000000000000000000000000000000000000000000000000000004`
+  - Not ❌ `0x0400000000000000000000000000000000000000000000000000000000000000`
+
+For instance, if you try to set the permission SETDATA for an address as `0x04`, this will be stored internally as `0x0400000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
 
 :::
 
@@ -138,6 +213,8 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 
 :::
 
+---
+
 ## Permission Keys
 
 Below is a list of ERC725Y Permission Keys related to the Key Manager, stored as constants to be used in our code snippets.
@@ -167,6 +244,8 @@ const enum PERMISSIONS {
   SIGN          = "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
 }
 ```
+
+---
 
 ## Setting permissions
 
