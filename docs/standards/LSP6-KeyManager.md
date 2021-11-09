@@ -29,7 +29,6 @@ Permissions for an `address` are stored inside the key-value store of the ERC725
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
 
-<br/>
 Since permissions are stored under the ERC725Account contract, they are not attached to the Key Manager itself. The Key Manager can then easily be upgraded without the need to set all the permissions again.
 
 ---
@@ -220,10 +219,7 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 Below is a list of ERC725Y Permission Keys related to the Key Manager.
 We will store these values in a file `constants.js`, and reuse them through the next code snippets.
 
-```javascript
-// file: constants.js
-
-// prettier-ignore
+```javascript title="constants.js"
 const KEYS = {
   PERMISSIONS:      "0x4b80742d0000000082ac0000", // AddressPermissions:Permissions:<address> --> bytes32
   ALLOWEDADDRESSES: "0x4b80742d00000000c6dd0000", // AddressPermissions:AllowedAddresses:<address> --> address[]
@@ -231,7 +227,6 @@ const KEYS = {
   PERMISSIONS_ARRAY: "0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3" // keccak256('AddressPermissions[]')
 }
 
-// prettier-ignore
 const PERMISSIONS = {
   CHANGEOWNER:   "0x0000000000000000000000000000000000000000000000000000000000000001", // .... 0000 0000 0001
   CHANGEKEYS:    "0x0000000000000000000000000000000000000000000000000000000000000002", // .... .... .... 0010
@@ -336,5 +331,5 @@ setBobPermission();
 
 ## References
 
-- [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, Github)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
-- [LSP6 KeyManager: Solidity implementations (Github)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP6-KeyManager)
+- [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
+- [LSP6 KeyManager: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP6-KeyManager)
