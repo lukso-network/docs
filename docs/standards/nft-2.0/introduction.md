@@ -1,5 +1,6 @@
 ---
-sidebar_position: 4
+sidebar_label: "Introduction"
+sidebar_position: 4.1
 ---
 
 # NFT2.0
@@ -11,7 +12,6 @@ NFT2.0 is a collective name for the new token standards [LSP7-DigitalAsset](http
 This section is a work in progress.
 
 :::
-
 
 ## References
 

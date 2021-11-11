@@ -1,8 +1,15 @@
 ---
-sidebar_position: 2
+sidebar_label: "Introduction"
+sidebar_position: 3.1
 ---
 
-# Universal Profiles
+:::caution
+
+This section is a work in progress.
+
+:::
+
+> To see Universal Profiles (🆙 ) live on the [L14 testnet](../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed profiles.
 
 Universal Profiles are smart contract accounts, that should be used instead of simple EOAs (simple generated keys), as they have the following advantages:
 
@@ -26,3 +33,9 @@ To add profile information you can add the keys of [LSP3-UniversalProfile-Metada
 - https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md
 - https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts/LSP1-UniversalReceiver
 - https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md
+
+##
+
+## References
+
+- https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-3-UniversalProfile.md
