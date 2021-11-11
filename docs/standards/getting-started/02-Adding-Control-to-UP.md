@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Adding control to your UP"
+sidebar_label: "Add control with a Key Manager"
 sidebar_position: 5.2
 ---
 

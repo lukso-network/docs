@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Make your UP interactive"
+sidebar_label: "Interact with Universal Receiver"
 sidebar_position: 5.3
 ---
 
