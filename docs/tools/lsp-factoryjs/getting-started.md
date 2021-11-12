@@ -4,7 +4,7 @@ sidebar_position: 1.1
 
 # Getting Started
 
-The `@lukso/lsp-factory.js` package allows simple deployments of [LSP3-UniversalProfiles](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile.md) and [LSP4-DigitalCertificates](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalCertificate.md).
+The `@lukso/lsp-factory.js` package allows simple deployments of [ERC725-UniversalProfiles](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md), [LSP7-DigitalAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md) and [LSP8-IdentifiableDigitalAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md).
 
 - GitHub repo: https://github.com/lukso-network/tools-lsp-factory
 - NPM: https://www.npmjs.com/package/@lukso/lsp-factory.js
