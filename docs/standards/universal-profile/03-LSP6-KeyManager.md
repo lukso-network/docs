@@ -1,6 +1,7 @@
----
+\*\*\*\*---
 sidebar_label: "LSP6 - Key Manager"
 sidebar_position: 4.4
+
 ---
 
 import Tabs from '@theme/Tabs';
@@ -20,15 +21,7 @@ The idea is to give [permissions](#types-of-permissions) to any `address`, like 
 
 :white_check_mark: &nbsp; **With a Key Manager** attached to an ERC725Account, other addresses (EOAs or contracts) can use an Account on behalf of its owner.
 
-Permissions for an `address` are stored inside the key-value store of the ERC725Account contract, under specific keys listed below.
-
-| Permission Type                                                                                                                         | Key                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------- |
-| [Address Permissions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress)    | `0x4b80742d0000000082ac0000<address>`   |
-| [Allowed Addresses](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress) | `0x4b80742d00000000c6dd0000**<address>` |
-| [Allowed Functions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) | `0x4b80742d000000008efe0000<address>`   |
-
-> [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
+Permissions for an `address` are stored inside the key-value store of the ERC725Account contract, under specific keys listed in the [**Permission Keys**](#permissions-keys) section.
 
 Since permissions are stored under the ERC725Account contract, they are not attached to the Key Manager itself. The Key Manager can then easily be upgraded without the need to set all the permissions again.
 
@@ -38,15 +31,103 @@ Since permissions are stored under the ERC725Account contract, they are not atta
 
 There are 3 main types of permissions that can be set for addresses interacting with a Universal Profile.
 
-- [**Address Permissions**](#permissions-value): defines a set of **permission values** for an `address`.
+- [**Address Permissions**](#address-permissions): defines a set of [**permission values**](<(#permissions-value)>) for an `address`.
 
 - [**Allowed Addresses:**](#allowed-addresses) defines which EOA or contract addresses an `address` is allowed to interact with.
 
 - [**Allowed Functions:**](#allowed-functions) defines which function selectors an `address` is allowed to run on a specific contract.
 
-### <a name="permissions-value"></a> Permission values
+<br/>
 
-The following default permissions can be set for any address. They are listed in the table below, according to their importance.
+### <a name="address-permissions"></a> Address Permissions
+
+An address can hold one (or more) permissions, enabling it to perform multiple set of actions on an ERC725Account. Such actions include **setting data**, **calling other contracts**, **transferring native tokens** and more.
+
+To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage.
+
+- **key:** `0x4b80742d0000000082ac0000<address>`
+- **value:** one of the available options below.
+
+| Permission Name   | Value                                                                |
+| ----------------- | :------------------------------------------------------------------- |
+| CHANGEOWNER       | `0x0000000000000000000000000000000000000000000000000000000000000001` |
+| CHANGEPERMISSIONS | `0x0000000000000000000000000000000000000000000000000000000000000002` |
+| SETDATA           | `0x0000000000000000000000000000000000000000000000000000000000000004` |
+| CALL              | `0x0000000000000000000000000000000000000000000000000000000000000008` |
+| STATICCALL        | `0x0000000000000000000000000000000000000000000000000000000000000010` |
+| DELEGATECALL      | `0x0000000000000000000000000000000000000000000000000000000000000020` |
+| DEPLOY            | `0x0000000000000000000000000000000000000000000000000000000000000040` |
+| TRANSFERVALUE     | `0x0000000000000000000000000000000000000000000000000000000000000080` |
+| SIGN              | `0x0000000000000000000000000000000000000000000000000000000000000100` |
+
+> See section [**_Permissions Values_**](#permission-values) for more infos about what each permission enables
+
+:::caution
+
+Each permission MUST be:
+
+- **exactly 32 bytes long**
+- zero left-padded
+  - `0x0000000000000000000000000000000000000000000000000000000000000004` ✅
+  - `0x0400000000000000000000000000000000000000000000000000000000000000` ❌
+
+For instance, if you try to set the permission SETDATA for an address as `0x04`, this will be stored internally as `0x0400000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
+
+:::
+
+<br/>
+
+### <a name="allowed-addresses"></a> Allowed addresses
+
+You can restrict an address to interact only with specific contracts or EOAs.
+
+To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>`, the key-value pair below can be set in the ERC725Y contract storage.
+
+- **key:** `0x4b80742d00000000c6dd0000<address>`
+- **value:** `<target-contract-address>`
+
+:::info Infos
+
+**If no addresses are set, interacting with any address is allowed (= all addresses are whitelisted).**
+
+:::
+
+<br/>
+
+### <a name="allowed-functions"></a> Allowed functions
+
+You can also restrict which functions a specific address can run, by providing a list of `bytes4` function selector.
+
+To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
+
+- **key:** `0x4b80742d000000008efe0000<address>`
+- **value:** `0xa9059cbb`
+
+:::info Infos
+
+**If no bytes4 selectors are set, the caller address can execute any functions.**
+
+:::
+
+---
+
+## <a name="permissions-keys"></a> Permission Keys
+
+The following keys are available to set the different types of permissions.
+
+| Permission Type                                                                                                                         | Key                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------- |
+| [Address Permissions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress)    | `0x4b80742d0000000082ac0000<address>`   |
+| [Allowed Addresses](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress) | `0x4b80742d00000000c6dd0000**<address>` |
+| [Allowed Functions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) | `0x4b80742d000000008efe0000<address>`   |
+
+> [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
+
+---
+
+## <a name="permission-values"></a> Permission Values
+
+The following default permissions can be set for any address. They are listed below, according to their order of importance.
 
 You can find **more details about each permissions by clicking on the toggles below**.
 
@@ -164,171 +245,13 @@ When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-
 
 :::
 
-:::caution
-
-Each permission MUST be:
-
-- **exactly 32 bytes long**
-- zero left-padded
-  - So ✅ `0x0000000000000000000000000000000000000000000000000000000000000004`
-  - Not ❌ `0x0400000000000000000000000000000000000000000000000000000000000000`
-
-For instance, if you try to set the permission SETDATA for an address as `0x04`, this will be stored internally as `0x0400000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
-
-:::
-
 :::danger
 
 **`DELEGATECALL`** is currently disallowed (even if set on the KeyManager) because of its dangerous nature, as some malicious code can be executed in the context of the linked Account contract.
 
 :::
 
-### <a name="allowed-addresses"></a> Allowed addresses
-
-You can restrict an address to interact only with specific contracts or EOAs.
-
-To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>`, the key-value pair below can be set in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage.
-
-- **key:** `0x4b80742d00000000c6dd0000<address>`
-- **value:** `<target-contract-address>`
-
-:::info Infos
-
-**If no addresses are set, interacting with any address is allowed (= all addresses are whitelisted).**
-
-:::
-
-### <a name="allowed-functions"></a> Allowed functions
-
-You can also restrict which functions a specific address can run, by providing a list of `bytes4` function selector.
-
-To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
-
-- **key:** `0x4b80742d000000008efe0000<address>`
-- **value:** `0xa9059cbb`
-
-:::info Infos
-
-**If no bytes4 selectors are set, the caller address can execute any functions.**
-
-:::
-
 ---
-
-## Permission Keys
-
-Below is a list of ERC725Y Permission Keys related to the Key Manager.
-We will store these values in a file `constants.js`, and reuse them through the next code snippets.
-
-```javascript title="constants.js"
-const KEYS = {
-  PERMISSIONS: "0x4b80742d0000000082ac0000", // AddressPermissions:Permissions:<address> --> bytes32
-  ALLOWEDADDRESSES: "0x4b80742d00000000c6dd0000", // AddressPermissions:AllowedAddresses:<address> --> address[]
-  ALLOWEDFUNCTIONS: "0x4b80742d000000008efe0000", // AddressPermissions:AllowedFunctions:<address> --> bytes4[]
-  PERMISSIONS_ARRAY: "0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3", // keccak256('AddressPermissions[]')
-};
-
-const PERMISSIONS = {
-  CHANGEOWNER: "0x0000000000000000000000000000000000000000000000000000000000000001", // .... 0000 0000 0001
-  CHANGEKEYS: "0x0000000000000000000000000000000000000000000000000000000000000002", // .... .... .... 0010
-  SETDATA: "0x0000000000000000000000000000000000000000000000000000000000000004", // .... .... .... 0100
-  CALL: "0x0000000000000000000000000000000000000000000000000000000000000008", // .... .... .... 1000
-  STATICCALL: "0x0000000000000000000000000000000000000000000000000000000000000010", // .... .... 0001 ....
-  DELEGATECALL: "0x0000000000000000000000000000000000000000000000000000000000000020", // .... .... 0010 ....
-  DEPLOY: "0x0000000000000000000000000000000000000000000000000000000000000040", // .... .... 0100 ....
-  TRANSFERVALUE: "0x0000000000000000000000000000000000000000000000000000000000000080", // .... .... 1000 ....
-  SIGN: "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
-};
-
-module.exports = {
-  KEYS,
-  PERMISSIONS,
-};
-```
-
----
-
-## Setting permissions
-
-The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
-It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) tool.
-
-<Tabs>
-  <TabItem value="web3js" label="web3.js" default>
-
-```javascript
-const { KEYS, PERMISSIONS } = require("./constants");
-
-const UniversalProfile = require("@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json");
-const KeyManager = require("@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json");
-
-const universalProfile = new web3.eth.Contract(UniversalProfile.abi, "<your-UniversalProfile-address>");
-const keyManager = new web3.eth.Contract(KeyManager.abi, "<your-KeyManager-Address>");
-
-let bobAddress = "0xcafecafecafecafecafecafecafecafecafecafe";
-let bobPermissions = PERMISSIONS.SETDATA;
-
-// give the permission SETDATA to Bob
-async function setBobPermission() {
-  let payload = await universalProfile.methods
-    .setData(
-      [
-        KEYS.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
-        KEYS.PERMISSIONS_ARRAY, // length of AddressPermissions[]
-        KEYS.PERMISSIONS_ARRAY.slice(0, 34) + "00000000000000000000000000000001", // add Bob's address into the list of permissions
-      ],
-      [
-        bobPermissions,
-        3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
-        bobAddress,
-      ]
-    )
-    .encodeABI();
-
-  keyManager.execute(payload).send({ from: "<your-eoa-address>", gas: 300_000 });
-}
-
-setBobPermission();
-```
-
-  </TabItem>
-  <TabItem value="etherjs" label="ether.js">
-
-```javascript
-const { KEYS, PERMISSIONS } = require("./constants");
-
-const UniversalProfile = require("@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json");
-const KeyManager = require("@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json");
-
-const universalProfile = new ethers.Contract("<your-UniversalProfile-address>", UniversalProfile.abi);
-const keyManager = new ethers.Contract("<your-KeyManager-Address>", KeyManager.abi);
-
-let bobAddress = "0xcafecafecafecafecafecafecafecafecafecafe";
-let bobPermissions = ethers.utils.hexZeroPad(PERMISSIONS.SETDATA, 32);
-
-// give the permission SETDATA to Bob
-async function setBobPermission() {
-  let payload = universalProfile.interface.encodeFunctionData("setData", [
-    [
-      KEYS.PERMISSIONS + bobAddress.substr(2),
-      KEYS.PERMISSIONS_ARRAY, // length of AddressPermissions[]
-      KEYS.PERMISSIONS_ARRAY.slice(0, 34) + "00000000000000000000000000000001", // add Bob's address into the list of
-    ],
-    [
-      bobPermissions,
-      3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
-      bobAddress,
-    ],
-  ]);
-
-  await keyManager.connect(yourEOA).execute(payload); // yourEOA should be of type Signer
-}
-
-setBobPermission();
-```
-
-  </TabItem>
-</Tabs>
 
 ## References
 
