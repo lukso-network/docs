@@ -18,18 +18,19 @@ We will start with a Universal Profile as our _main lego block_, and **"plug new
 
 **Foundational LSPs**
 
-| LSP  | Title               | Description                                     |
-| :--- | :------------------ | ----------------------------------------------- |
-| LSP0 | ERC725 Account      | a blockchain account (based on ERC725 standard) |
-| LSP2 | ERC725Y JSON Schema | a schema to describe a set of key-value pairs   |
+| LSP  | Title               | Description                                                           |
+| :--- | :------------------ | --------------------------------------------------------------------- |
+| LSP1 | Universal Receiver  | add custom behaviour to an ERC725Account, making the account reactive |
+| LSP2 | ERC725Y JSON Schema | a schema to describe a set of key-value pairs                         |
 
 **Universal Profiles LSPs**
 
-| LSP  | Title              | Description                                                                              |
-| ---- | ------------------ | ---------------------------------------------------------------------------------------- |
-| LSP3 | Universal Profile  | set of key-value pairs representing a smart contract based profile                       |
-| LSP6 | Key Manager        | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
-| LSP1 | Universal Receiver | add custom behaviour to an ERC725Account. make account reactive when                     |
+| LSP  | Title                       | Description                                                                              |
+| ---- | --------------------------- | ---------------------------------------------------------------------------------------- |
+| LSP0 | ERC725 Account              | a blockchain account (based on ERC725 standard)                                          |
+| LSP3 | Universal Profile           | set of key-value pairs representing a smart contract based profile                       |
+| LSP6 | Key Manager                 | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
+| LSP1 | Universal Receiver Delegate | delegate the universal receiver functionality to an external smart contract              |
 
 **NFT 2.0 LSPs**
 
