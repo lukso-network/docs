@@ -3,9 +3,6 @@ sidebar_label: "LSP6 - Key Manager"
 sidebar_position: 4.4
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Key Manager
 
 ![Key Manager flow chart](https://user-images.githubusercontent.com/31145285/129574099-9eba52d4-4f82-4f11-8ac5-8bfa18ce97d6.jpeg)

@@ -1,7 +1,10 @@
 ---
 sidebar_label: "Add control with a Key Manager"
-sidebar_position: 5.2
+sidebar_position: 2.2
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Adding control to your UP via a KeyManager
 
@@ -54,6 +57,12 @@ module.exports = {
 ```
 
 ## Setting permissions
+
+### For the owner
+
+If
+
+### For an other address
 
 The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
 It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) tool.
