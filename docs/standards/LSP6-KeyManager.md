@@ -159,7 +159,7 @@ permissions: CALL + TRANSFERVALUE
 
 :::note
 
-When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started/), the Universal Profile owner will have all the permissions above set by default.
+When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
 
 :::
 
@@ -250,7 +250,7 @@ module.exports = {
 ## Setting permissions
 
 The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
-It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) tool.
+It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started) tool.
 
 <Tabs>
   <TabItem value="web3js" label="web3.js" default>

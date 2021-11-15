@@ -1,8 +1,11 @@
 ---
-sidebar_position: 1.2
+sidebar_position: 1.1
+title: Universal Profile
 ---
 
-# Constructing LSP3 Metadata
+# Deploying Universal Profile
+
+## Constructing LSP3 Metadata
 
 When deploying a Universal Profile you can specify your Universal Profile metadata using the `lsp3Profile` key.
 
@@ -70,7 +73,7 @@ const uploadResult = await lspFactory.LSP3UniversalProfile.uploadProfileData({
 const myUniversalProfileIPFSUrl = uploadResult.url; // 'https://ipfs.lukso.network/ipfs/QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy'
 ```
 
-Then deploy your UP  
+## Deploy your UniversalProfile
 
 ```javascript
 const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
