@@ -6,15 +6,9 @@ sidebar_position: 1
 
 # The LUKSO Standard Proposals (LSPs)
 
-> LSPs are like lego bricks. They are individual and unique pieces on their own.
->
-> Combined together, they enable to build of unique pieces such as Universal Profile, or a new generation of NFTs.
-
 LUKSO comes with a set of new standards for smart contracts and Dapp development. These new standards are based around [Universal Profiles](Universal-Profiles.md) and [NFT2.0](./NFT2.0.md).
 
-In this docs, we will give an overview of what each LSP does and how to start using them together.
-
-We will start with a Universal Profile as our _main lego block_, and **"plug new lego pieces"** **(= add new LSPs)** to enhance it.
+This section will give you an overview of what each LSP does and how to start using them together.
 
 **Foundational LSPs**
 

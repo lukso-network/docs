@@ -1,7 +1,6 @@
-\*\*\*\*---
+---
 sidebar_label: "LSP6 - Key Manager"
 sidebar_position: 4.4
-
 ---
 
 import Tabs from '@theme/Tabs';
