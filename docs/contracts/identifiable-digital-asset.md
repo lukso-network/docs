@@ -1,9 +1,9 @@
 ---
-title: LSP8-Identifiable Digital Asset
+title: LSP8 Identifiable Digital Asset
 sidebar_position: 6
 ---
 
-# LSP8-Identifiable Digital Asset
+# LSP8 Identifiable Digital Asset
 
 The **IdentifiableDigitalAsset** contract represents identifiable digital assets, where tokens to be uniquely traded and given metadata using **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**. 
 Tokens are identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
@@ -11,7 +11,7 @@ Tokens are identified with a tokenId, based on **[ERC721](https://github.com/Ope
 A **bytes32** value is used for tokenId to allow many uses of token identification including numbers, contract addresses, and hashed values (ie. serial numbers).
 
 :::note
-**_IdentifiableDigitalAsset implementation contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract to attach metadata to the asset. _**
+**_IdentifiableDigitalAsset implementation also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract to attach metadata to the asset. _**
 :::
 
 ## Functions
@@ -19,7 +19,7 @@ A **bytes32** value is used for tokenId to allow many uses of token identificati
 ### totalSupply
 
 ```solidity
-  function totalSupply() public view returns (uint256 value); 
+  function totalSupply() public view returns (uint256 value)
 ```
 
 Returns the number of existing tokens.
@@ -29,7 +29,7 @@ Returns the number of existing tokens.
 
 | Name    | Type      | Description                    |
 | :-------| :-------- | :----------------------------  |
-| `value` |  uint256  | The number of existing assets. |
+| `value` |  uint256  | The number of existing tokens. |
 
 
 
@@ -38,7 +38,7 @@ Returns the number of existing tokens.
 ```solidity
   function balanceOf(
     address tokenOwner
-  ) public view returns (uint256 value);
+  ) public view returns (uint256 value)
 ```
 
 Returns the number of tokens owned by `tokenOwner`.
@@ -55,7 +55,7 @@ Returns the number of tokens owned by `tokenOwner`.
 
 | Name    | Type      | Description                                 |
 | :-------| :-------- | :-----------------------------------------  |
-| `value` |  uint256  | the number of assets owned by this address. |
+| `value` |  uint256  | the number of tokens owned by this address. |
 
 
 ### tokenOwnerOf
@@ -63,7 +63,7 @@ Returns the number of tokens owned by `tokenOwner`.
 ```solidity
   function tokenOwnerOf(
     bytes32 tokenId
-  ) public view returns (address tokenOwner);
+  ) public view returns (address tokenOwner)
 ```
 
 Returns the `tokenOwner` address of the `tokenId` token.
@@ -96,7 +96,7 @@ Returns the `tokenOwner` address of the `tokenId` token.
 ```solidity
   function tokenIdsOf(
     address tokenOwner
-  ) public view returns (bytes32[] memory tokensId);
+  ) public view returns (bytes32[] memory tokensId)
 ```
 
 Returns the list of `tokenIds` for the `tokenOwner` address.
@@ -122,7 +122,7 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
   function authorizeOperator(
     address operator,
     bytes32 tokenId
-  ) public ;
+  ) public 
 ```
 
 Makes `operator` address an operator of `tokenId`.
@@ -157,7 +157,7 @@ Makes `operator` address an operator of `tokenId`.
   function revokeOperator(
     address operator
     bytes32 tokenId
-  ) public ;
+  ) public 
 ```
 
 Removes `operator` address as an operator of `tokenId`.
@@ -192,7 +192,7 @@ Removes `operator` address as an operator of `tokenId`.
   function isOperatorFor(
     address operator,
     bytes32 tokenId
-  ) public view returns (bool result);
+  ) public view returns (bool result)
 ```
 
 Returns whether `operator` address is an operator of `tokenId`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is their own operator.
@@ -227,7 +227,7 @@ Returns whether `operator` address is an operator of `tokenId`. Operators can se
 ```solidity
   function getOperatorsOf(
     bytes32 tokenId
-  ) public view returns (address[] memory operators);
+  ) public view returns (address[] memory operators)
 ```
 
 Returns all `operator` addresses of `tokenId`.
@@ -264,7 +264,7 @@ Returns all `operator` addresses of `tokenId`.
     bytes32 tokenId,
     bool force,
     bytes memory data
-  ) public ;
+  ) public 
 ```
 
 Transfers `tokenId` token from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver.
@@ -303,7 +303,7 @@ Transfers `tokenId` token from `from` to `to`. The `force` parameter will be use
     bytes32[] tokenId,
     bool[] force,
     bytes[] memory data
-  ) public ;
+  ) public 
 ```
 
 Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
@@ -351,7 +351,7 @@ Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer 
 _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 
 
-#### Parameters:
+#### Values:
 
 | Name       | Type    | Description                                                                                                                           |
 | :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
@@ -375,7 +375,7 @@ _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 
 _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed successfully._
 
-#### Parameters:
+#### Values:
 
 | Name         | Type    | Description                                                        |
 | :----------- | :------ | :----------------------------------------------------------------- |
@@ -397,7 +397,7 @@ _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed
 _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed successfully._
 
 
-#### Parameters:
+#### Values:
 
 | Name         | Type    | Description                                 |
 | :----------- | :------ | :------------------------------------------ |

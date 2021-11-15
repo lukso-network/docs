@@ -1,16 +1,16 @@
 ---
-title: LSP7-Digital Asset
+title: LSP7 Digital Asset
 sidebar_position: 5
 ---
 
-# LSP7-Digital Asset
+# LSP7 Digital Asset
 
 The **DigitalAsset** contract represents digital assets, for either fungible or non-fungible tokens where minting and transfering is specified with an amount of tokens. It have some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
 
-This contract serve as a **Fungible Token Contract** when  `isNFT`  bool is marked as **FALSE** in the constructor, and serve as **Non-Fungible Token Contract** otherwise. 
+This contract serves as a **Fungible Token Contract** when  `isNFT`  bool is set to `false` in the constructor, and serves as **Non-Fungible Token Contract** otherwise. 
 
 :::note
-**_DigitalAsset implementation contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract to attach metadata to the asset._**
+**_DigitalAsset implementation also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract to attach metadata to the asset._**
 :::
 
 ## Functions
@@ -19,7 +19,7 @@ This contract serve as a **Fungible Token Contract** when  `isNFT`  bool is mark
 ### decimals
 
 ```solidity
-  function decimals() public view returns (uint256 value); 
+  function decimals() public view returns (uint256 value)
 ```
 
 Returns the number of decimals used to get its user representation.
@@ -37,7 +37,7 @@ If the contract represents a **NFT** then `0`  **SHOULD** be used, otherwise `18
 ### totalSupply
 
 ```solidity
-  function totalSupply() public view returns (uint256 value); 
+  function totalSupply() public view returns (uint256 value)
 ```
 
 Returns the number of existing tokens.
@@ -47,7 +47,7 @@ Returns the number of existing tokens.
 
 | Name    | Type      | Description                    |
 | :-------| :-------- | :----------------------------  |
-| `value` |  uint256  | The number of existing assets. |
+| `value` |  uint256  | The number of existing tokens. |
 
 
 
@@ -56,7 +56,7 @@ Returns the number of existing tokens.
 ```solidity
   function balanceOf(
     address tokenOwner
-  ) public view returns (uint256 value);
+  ) public view returns (uint256 value)
 ```
 
 Returns the number of tokens owned by `tokenOwner`.
@@ -73,7 +73,7 @@ Returns the number of tokens owned by `tokenOwner`.
 
 | Name    | Type      | Description                                 |
 | :-------| :-------- | :-----------------------------------------  |
-| `value` |  uint256  | The number of assets owned by this address. |
+| `value` |  uint256  | The number of tokens owned by this address. |
 
 
 ### authorizeOperator
@@ -82,7 +82,7 @@ Returns the number of tokens owned by `tokenOwner`.
   function authorizeOperator(
     address operator,
     uint256 amount
-  ) public ;
+  ) public 
 ```
 
 Sets `amount` as the amount of tokens `operator` address has access to from callers tokens.
@@ -113,7 +113,7 @@ Sets `amount` as the amount of tokens `operator` address has access to from call
 ```solidity
   function revokeOperator(
     address operator
-  ) public ;
+  ) public 
 ```
 
 Removes `operator` address as an operator of callers tokens.
@@ -143,7 +143,7 @@ Removes `operator` address as an operator of callers tokens.
   function isOperatorFor(
     address tokenOwner,
     address operator
-  ) public view returns (uint256 amount);
+  ) public view returns (uint256 amount)
 ```
 
 Returns amount of tokens `operator` address has access to from `tokenOwner`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is their own operator.
@@ -172,7 +172,7 @@ Returns amount of tokens `operator` address has access to from `tokenOwner`. Ope
     uint256 amount,
     bool force,
     bytes memory data
-  ) public ;
+  ) public 
 ```
 
 Transfers amount of tokens from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver and revert.
@@ -212,7 +212,7 @@ Transfers amount of tokens from `from` to `to`. The `force` parameter will be us
     uint256[] amount,
     bool[] force,
     bytes[] memory data
-  ) public ;
+  ) public 
 ```
 
 Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
@@ -262,7 +262,7 @@ Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer 
 _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 
 
-#### Parameters:
+#### Values:
 
 | Name       | Type    | Description                                                                                                                           |
 | :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
@@ -286,7 +286,7 @@ _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed successfully._
 
 
-#### Parameters:
+#### Values:
 
 | Name         | Type    | Description                                                              |
 | :----------- | :------ | :----------------------------------------------------------------------- |
@@ -306,7 +306,7 @@ _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed
 
 _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed successfully._
 
-#### Parameters:
+#### Values:
 
 | Name         | Type    | Description                         |
 | :----------- | :------ | :---------------------------------- |
