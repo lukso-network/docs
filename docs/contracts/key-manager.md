@@ -1,17 +1,17 @@
 ---
-title: Key Manager
+title: LSP6 Key Manager
 sidebar_position: 3
 ---
 
-# Key Manager
+# LSP6 Key Manager
 
-The **KeyManager** is a contract that control the **[UniversalProfile](./universal-profile.md)**, it comes with a set of pre-defined permissions for addresses.
+The **KeyManager** is a contract that controls the **[ERC725Account](./erc725-account.md)**. It comes with a set of pre-defined permissions for addresses.
 The permissions could range from setting data, executing, changing owner and more as written in the **[Permissions Section](../standards/LSP6-KeyManager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](../standards/LSP6-KeyManager.md)**.
 
-Currently the **`DelegateCall`** operation to execute is unavailable for the users since it have malicious impact on their profiles.
+Currently the **`DelegateCall`** operation to execute is unavailable for the users since it have malicious impact on their accounts.
 
 :::note
-**_KeyManager implementation contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_KeyManager implementation also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
 :::
 
 
@@ -27,7 +27,7 @@ Currently the **`DelegateCall`** operation to execute is unavailable for the use
   ) public payable returns (bytes memory result)
 ```
 
-Execute a payload on the **UniversalProfile**. This payload could represent the ABI of any function on the Profile ; **[setData](./universal-profile.md#setdata)** or **[execute](./universal-profile.md#execute)**, etc ..
+Execute a payload on the **ERC725Account**. This payload could represent the ABI of any function on the account ; **[setData](./erc725-account.md#setdata)** or **[execute](./erc725-account.md#execute)**, etc ..
 
 *Triggers the **[Executed](#executed)** event when a call is successfully executed.*
 
@@ -43,7 +43,7 @@ Execute a payload on the **UniversalProfile**. This payload could represent the 
 
 | Name     | Type    | Description                                                                                                                     |
 | :--------| :------ | :------------------------------------------------------------------------------------------------------------------------------ |
-| `result` |  bytes  | The returned data as ABI-encoded bytes if the call on the **UniversalProfile** succeeded, otherwise revert with a reason-string.|
+| `result` |  bytes  | The returned data as ABI-encoded bytes if the call on the account succeeded, otherwise revert with a reason-string.|
 
 
 ### getNonce
@@ -57,7 +57,7 @@ Execute a payload on the **UniversalProfile**. This payload could represent the 
 
 Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[executeRelayCall](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
 
-_More info about `channel` could be found here: **[What are multi-channel nonces](../standards/FAQ/Channel-Nonce.md)**_
+_More info about `channel` could be found here: **[What are multi-channel nonces](../standards/faq/channel-nonce.md)**_
 
 #### Parameters:
 
@@ -86,7 +86,7 @@ _More info about `channel` could be found here: **[What are multi-channel nonces
   ) public
 ```
 
-Allows anybody to execute data payload on the **UniversalProfile**, given they have a signed message from an executor.
+Allows anybody to execute data payload on the **ERC725Account**, given they have a signed message from an executor.
 
 *Triggers the **[Executed](#executed)** event when a call is successfully executed.*
 
@@ -112,9 +112,9 @@ Allows anybody to execute data payload on the **UniversalProfile**, given they h
   )
 ```
 
-_**MUST** be fired when a transaction was successfully executed in **[execute](#execute)** and **[executeRelayCall](#executerelaycall)**._
+_**MUST** be fired when a transaction was successfully executed in **[execute](#execute)** or **[executeRelayCall](#executerelaycall)**._
 
-#### Parameters:
+#### Values:
 
 | Name    | Type    | Description                           |
 | :------ | :------ | :------------------------------------ |
