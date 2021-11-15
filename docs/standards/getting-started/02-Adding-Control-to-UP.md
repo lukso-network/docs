@@ -14,7 +14,9 @@ In order to interact with the KeyManager, you will need to download its ABI from
 import KeyManager from "@lukso/universalprofile-smart-contracts/build/contracts/KeyManager/KeyManager.json";
 ```
 
-## Using LSPFactory
+## Setting up a Key Manager
+
+### Using LSPFactory
 
 when you create a Universal Profile using the LSP Factory tools, a Key Manager is automatically deployed and ownership of your UP is automatically transfered to it.
 
@@ -25,7 +27,13 @@ let keyManagerAddress = await myUP.methods.owner().call();
 let myKeyManager = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
 ```
 
-## Setup
+### Manually with web3.js / ethers.js
+
+#### 1. Deploy your Key Manager
+
+...
+
+#### 2. Setting permissions for owner
 
 Below is a list of ERC725Y Permission Keys related to the Key Manager.
 We will store these values in a file `constants.js`, and reuse them through the next code snippets.
@@ -56,13 +64,20 @@ module.exports = {
 };
 ```
 
-## Setting permissions
+#### 3. Transfering ownership to your Key Manager
 
-### For the owner
+Once you have deployed + setup your KeyManager with the relevant permissions for you, you can now make the Key Manager acts as the new owner of your Universal Profile.
 
-If
+:::danger
 
-### For an other address
+Make sure to have properly set all the permissions for the owner of your Universal Profile.
+If you haven't, your Universal Profile can become stuck, making it irrevisible and not possible to interact with your Universal Profile.
+
+:::
+
+---
+
+## Setting permissions for other addresses
 
 The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
 It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) tool.
@@ -143,3 +158,11 @@ setBobPermission();
 
   </TabItem>
 </Tabs>
+
+## UP interaction via your Key Manager
+
+### Setting data
+
+### transferring LYX
+
+### Interacting with other contracts

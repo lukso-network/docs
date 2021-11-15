@@ -27,6 +27,8 @@ contract Example {
 
 For humans, it is difficult to remember the slot number. The more data you attach to a smart contract, the more impractical it becomes.
 
+Finally, everyone can store information differently on an ERC725Account, depending on individual use cases and needs. There is no standardize schema of how the data looks like. This make it very hard for ERC725 Account to interact with each other, and for external services to interact with ERC725Accounts.
+
 ## How does LSP2 work?
 
 LSP2 introduces a schema that enables to represent the storage of a smart contract in more understandble keys. Coming back to our previous example, it is easier to remember that your `age` is stored at the key `MyAge`, instead of at slot number 1.
