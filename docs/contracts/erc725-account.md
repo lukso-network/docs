@@ -132,9 +132,9 @@ Gets array of data at multiple given key.
   ) public returns (bytes memory result)
 ```
 
-Emit an event with the parameters passed to it and forwards the Call to the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** contract, if his address was set in the storage as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** and if the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** in the contract using **ERC165Storage**. 
+Emit an event with the parameters passed to it and forwards the call to the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** contract, if his address was set in the storage as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** and if the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** in the contract using **ERC165Storage**. 
 
-The current implementation of the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** writes **[LSP7](./digital-asset.md)** & **[LSP8](./identifiable-digital-asset.md)** assets to the account storage.
+The current implementation of the **UniversalReceiverDelegate** writes **[LSP7](./digital-asset.md)** & **[LSP8](./identifiable-digital-asset.md)** assets to the account storage.
 
 
 *Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully.*
