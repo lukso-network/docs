@@ -13,10 +13,9 @@ This **ERC725Account** contract could be used as an _account system_ to be used 
 **_ERC725Account implementation also contains the methods from [ERC173](https://eips.ethereum.org/EIPS/eip-173) and [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
 :::
 
---------------------------------------------------------------------------------------------------------------
+---
 
 ## Functions
-
 
 ### receive
 
@@ -24,8 +23,7 @@ This **ERC725Account** contract could be used as an _account system_ to be used 
   receive() external payable
 ```
 
-*Triggers the **[ValueReceived](#valuereceived)** event when a native token transfer was received.*
-
+_Triggers the **[ValueReceived](#valuereceived)** event when a native token transfer was received._
 
 ### execute
 
@@ -40,23 +38,22 @@ This **ERC725Account** contract could be used as an _account system_ to be used 
 
 Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
 
-*Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations.*
+_Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
 
-*Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations.*
+_Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
 
 :::note
 **It can only be called by the current owner of the contract.**
 :::
 
-
 #### Parameters:
 
-| Name            | Type    | Description                                                                                                      |
-| :-------------- | :------ | :--------------------------------------------------------------------------------------------------------------- |
-| `operationType` | uint256 | The operation to execute.                                                                                        |
-| `to`            | address | The smart contract or address to interact with. `to` will be unused if a contract is created (operation 1 & 2).  |
-| `value`         | uint256 | The desired value to transfer.                                                                                   |
-| `data`          | bytes   | The call data (ABI of the function to execute) , or the contract data to deploy.                                 |
+| Name            | Type    | Description                                                                                                     |
+| :-------------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
+| `operationType` | uint256 | The operation to execute.                                                                                       |
+| `to`            | address | The smart contract or address to interact with. `to` will be unused if a contract is created (operation 1 & 2). |
+| `value`         | uint256 | The desired value to transfer.                                                                                  |
+| `data`          | bytes   | The call data (ABI of the function to execute) , or the contract data to deploy.                                |
 
 The **[operationType](#execute)** can execute the following operations:
 
@@ -68,10 +65,9 @@ The **[operationType](#execute)** can execute the following operations:
 
 #### Return Values:
 
-| Name     | Type    | Description                                                                                        |
-| :--------| :------ | :------------------------------------------------------------------------------------------------- |
-| `result` |  bytes  | The returned data of the called function, or the address of the contract created (operation 1 & 2).|
-
+| Name     | Type  | Description                                                                                         |
+| :------- | :---- | :-------------------------------------------------------------------------------------------------- |
+| `result` | bytes | The returned data of the called function, or the address of the contract created (operation 1 & 2). |
 
 ### setData
 
@@ -82,10 +78,9 @@ The **[operationType](#execute)** can execute the following operations:
   ) public
 ```
 
-Sets array of data as `bytes` in the account storage at multiple keys. 
+Sets array of data as `bytes` in the account storage at multiple keys.
 
-*Triggers the **[DataChanged](#datachanged)** event when setting data successfully.*
-
+_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
 
 :::note
 **It can only be called by the current owner of the contract.**
@@ -93,11 +88,10 @@ Sets array of data as `bytes` in the account storage at multiple keys.
 
 #### Parameters:
 
-| Name         | Type       | Description                         |
-| :----------- | :--------- | :---------------------------------- |
-| `keys`       | bytes32[ ] | The keys which values to retrieve.  |
-| `values`     | bytes[ ]   | The array of bytes to set.          |
-
+| Name     | Type       | Description                        |
+| :------- | :--------- | :--------------------------------- |
+| `keys`   | bytes32[ ] | The keys which values to retrieve. |
+| `values` | bytes[ ]   | The array of bytes to set.         |
 
 ### getData
 
@@ -111,17 +105,15 @@ Gets array of data at multiple given key.
 
 #### Parameters:
 
-| Name     | Type       | Description                        |
-| :------- | :--------- | :--------------------------------- |
-| `keys`   | bytes32[ ] | The keys which values to retrieve. |
+| Name   | Type       | Description                        |
+| :----- | :--------- | :--------------------------------- |
+| `keys` | bytes32[ ] | The keys which values to retrieve. |
 
 #### Return Values:
 
-| Name      | Type     | Description                                |
-| :-------- | :------- | :----------------------------------------- |
-| `values`  | bytes[ ] | Array of the values for the requested keys.|
-
-
+| Name     | Type     | Description                                 |
+| :------- | :------- | :------------------------------------------ |
+| `values` | bytes[ ] | Array of the values for the requested keys. |
 
 ### universalReceiver
 
@@ -132,13 +124,11 @@ Gets array of data at multiple given key.
   ) public returns (bytes memory result)
 ```
 
-Emit an event with the parameters passed to it and forwards the call to the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** contract, if his address was set in the storage as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** and if the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** in the contract using **ERC165Storage**. 
+Emit an event with the parameters passed to it and forwards the call to the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** contract, if his address was set in the storage as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** and if the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** in the contract using **ERC165Storage**.
 
 The current implementation of the **UniversalReceiverDelegate** writes **[LSP7](./digital-asset.md)** & **[LSP8](./identifiable-digital-asset.md)** assets to the account storage.
 
-
-*Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully.*
-
+_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully._
 
 #### Parameters:
 
@@ -150,9 +140,8 @@ The current implementation of the **UniversalReceiverDelegate** writes **[LSP7](
 #### Return Values:
 
 | Name     | Type  | Description                            |
-| :--------| :---- | :------------------------------------- |
+| :------- | :---- | :------------------------------------- |
 | `result` | bytes | Can be used to encode response values. |
-
 
 ### isValidSignature
 
@@ -172,11 +161,10 @@ Should return whether the signature provided is valid for the provided data.
 | `hash`      | bytes32 | The hash of the data signed on the behalf of address. |
 | `signature` | bytes   | The Owner's signature(s) of the data.                 |
 
-
 #### Return Values:
 
 | Name         | Type   | Description                                                            |
-| :----------- | :----  | :--------------------------------------------------------------------- |
+| :----------- | :----- | :--------------------------------------------------------------------- |
 | `magicValue` | bytes4 | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
 
 ## Events
@@ -199,7 +187,6 @@ _**MUST** be fired when **[receive](#receive)** is successfully executed._
 | `sender` | address | The address of the sender. |
 | `value`  | uint256 | The amount sent.           |
 
-
 ### Executed
 
 ```solidity
@@ -215,14 +202,12 @@ _**MUST** be fired when **[execute](#execute)** creates a new call using the `CA
 
 #### Values:
 
-
 | Name        | Type    | Description                                    |
-| :---------- | :------ | :--------------------------------------------  |
+| :---------- | :------ | :--------------------------------------------- |
 | `operation` | uint256 | The operation executed.                        |
 | `to`        | address | The smart contract or address interacted with. |
 | `value`     | uint256 | The value transferred.                         |
 | `data`      | bytes   | The Call data.                                 |
-
 
 ### ContractCreated
 
@@ -238,13 +223,11 @@ _**MUST** be fired when **[execute](#execute)** creates a new contract using the
 
 #### Values:
 
-
-| Name        | Type    | Description                                    |
-| :---------- | :------ | :--------------------------------------------  |
-| `operation` | uint256 | The operation executed.                        |
-| `to`        | address | The address of the created contract.           |
-| `value`     | uint256 | The value sent to the contract.                |
-
+| Name        | Type    | Description                          |
+| :---------- | :------ | :----------------------------------- |
+| `operation` | uint256 | The operation executed.              |
+| `to`        | address | The address of the created contract. |
+| `value`     | uint256 | The value sent to the contract.      |
 
 ### DataChanged
 
@@ -259,12 +242,10 @@ _**MUST** be fired when **[setData](#setdata)** is successfully executed._
 
 #### Values:
 
-
 | Name    | Type    | Description                       |
-| :------ | :------ | :-------------------------------  |
+| :------ | :------ | :-------------------------------- |
 | `key`   | bytes32 | The key which value is retrieved. |
 | `value` | bytes   | The data of bytes set.            |
-
 
 ### UniversalReceiver
 
@@ -281,18 +262,9 @@ _**MUST** be fired when the **[universalReceiver](#universalreceiver)** is succe
 
 #### Values:
 
-
-| Name            | Type    | Description                                                    |
-| :-------------- | :------ | :------------------------------------------------------------- |
+| Name            | Type    | Description                                                  |
+| :-------------- | :------ | :----------------------------------------------------------- |
 | `from`          | address | The address calling the **universalReceiver** function.      |
-| `typeId`        | bytes32 | The hash of a specific standard or a hook.                     |
+| `typeId`        | bytes32 | The hash of a specific standard or a hook.                   |
 | `returnedValue` | bytes   | The return value of **universalReceiver** function.          |
 | `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function. |
-
-
-
-
-
-
-
-

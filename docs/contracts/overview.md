@@ -18,17 +18,15 @@ Implementation of **[LUKSO Standard Proposal](../standards/introduction.md)** wh
 - **[LSP7-DigitalAsset](./digital-asset.md)** contract implementation.
 - **[LSP8-IdentifiableDigitalAsset](./identifiable-digital-asset.md)** contract implementation.
 
-
--------------------------------------------------------------------------------------------------
+---
 
 ### **Installation**
 
 ```bash
-$ npm install @lukso/universalprofile-smart-contracts 
+$ npm install @lukso/universalprofile-smart-contracts
 ```
 
 ### **Usage**
-
 
 In **Solidity:**
 
@@ -37,7 +35,7 @@ Once installed, you can use the contracts by importing them:
 Create your own **UniversalProfile**:
 
 ```solidity
-// MyUP.sol 
+// MyUP.sol
 // SPDX-License-Identifier: MIT
 
 import UniversalProfile from "@lukso/universalprofile-smart-contracts/contracts/UniversalProfile.sol";
@@ -56,7 +54,7 @@ contract MyUP is UniversalProfile {
 Create your own **Fungible token**:
 
 ```solidity
-// MyToken.sol 
+// MyToken.sol
 // SPDX-License-Identifier: MIT
 
 import LSP7DigitalAsset from "@lukso/universalprofile-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
@@ -79,13 +77,16 @@ You can use the contracts JSON ABI by importing them as follow:
 ```js
 import UniversalProfile from "@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json";
 
-const UniversalProfileContract = new this.web3.eth.Contract(UniversalProfile.abi, "", defaultOptions);
+const UniversalProfileContract = new this.web3.eth.Contract(
+  UniversalProfile.abi,
+  "",
+  defaultOptions
+);
 ```
-
 
 ## **Learn More**
 
--------------------------------------------------------------------------------------------------------------
+---
 
 - **[Current Implementation](https://github.com/lukso-network/lsp-universalprofile-smart-contracts)**
 

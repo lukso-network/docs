@@ -14,10 +14,7 @@ Currently the **`DelegateCall`** operation to execute is unavailable for the use
 **_KeyManager implementation also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
 :::
 
-
-
 ## Functions
-
 
 ### execute
 
@@ -29,22 +26,19 @@ Currently the **`DelegateCall`** operation to execute is unavailable for the use
 
 Execute a payload on the **ERC725Account**. This payload could represent the ABI of any function on the account ; **[setData](./erc725-account.md#setdata)** or **[execute](./erc725-account.md#execute)**, etc ..
 
-*Triggers the **[Executed](#executed)** event when a call is successfully executed.*
-
+_Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
 #### Parameters:
 
 | Name   | Type  | Description                   |
-| :------| :---- | :---------------------------- |
+| :----- | :---- | :---------------------------- |
 | `data` | bytes | The call data to be executed. |
-
 
 #### Return Values:
 
-| Name     | Type    | Description                                                                                                                     |
-| :--------| :------ | :------------------------------------------------------------------------------------------------------------------------------ |
-| `result` |  bytes  | The returned data as ABI-encoded bytes if the call on the account succeeded, otherwise revert with a reason-string.|
-
+| Name     | Type  | Description                                                                                                         |
+| :------- | :---- | :------------------------------------------------------------------------------------------------------------------ |
+| `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded, otherwise revert with a reason-string. |
 
 ### getNonce
 
@@ -66,14 +60,11 @@ _More info about `channel` could be found here: **[What are multi-channel nonces
 | `signer`  | address | The address of the signer of the transaction.                            |
 | `channel` | uint256 | The channel which the signer wants to use for executing the transaction. |
 
-
 #### Return Values:
 
-| Name    | Type    | Description       |
-| :-------| :------ | :---------------- |
-| `nonce` | uint256 | The current nonce.|
-
-
+| Name    | Type    | Description        |
+| :------ | :------ | :----------------- |
+| `nonce` | uint256 | The current nonce. |
 
 ### executeRelayCall
 
@@ -88,8 +79,7 @@ _More info about `channel` could be found here: **[What are multi-channel nonces
 
 Allows anybody to execute data payload on the **ERC725Account**, given they have a signed message from an executor.
 
-*Triggers the **[Executed](#executed)** event when a call is successfully executed.*
-
+_Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
 #### Parameters:
 
@@ -99,7 +89,6 @@ Allows anybody to execute data payload on the **ERC725Account**, given they have
 | `nonce`     | uint256 | The nonce of the address that signed the message. |
 | `data`      | bytes   | The call data to be executed.                     |
 | `signature` | bytes   | The bytes32 ethereum signature.                   |
-
 
 ## Events
 

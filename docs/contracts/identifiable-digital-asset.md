@@ -5,7 +5,7 @@ sidebar_position: 6
 
 # LSP8 Identifiable Digital Asset
 
-The **IdentifiableDigitalAsset** contract represents identifiable digital assets, where tokens to be uniquely traded and given metadata using **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**. 
+The **IdentifiableDigitalAsset** contract represents identifiable digital assets, where tokens to be uniquely traded and given metadata using **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
 Tokens are identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
 
 A **bytes32** value is used for tokenId to allow many uses of token identification including numbers, contract addresses, and hashed values (ie. serial numbers).
@@ -24,14 +24,11 @@ A **bytes32** value is used for tokenId to allow many uses of token identificati
 
 Returns the number of existing tokens.
 
-
 #### Return Values:
 
-| Name    | Type      | Description                    |
-| :-------| :-------- | :----------------------------  |
-| `value` |  uint256  | The number of existing tokens. |
-
-
+| Name    | Type    | Description                    |
+| :------ | :------ | :----------------------------- |
+| `value` | uint256 | The number of existing tokens. |
 
 ### balanceOf
 
@@ -43,20 +40,17 @@ Returns the number of existing tokens.
 
 Returns the number of tokens owned by `tokenOwner`.
 
-
 #### Parameters:
 
 | Name         | Type    | Description           |
 | :----------- | :------ | :-------------------- |
 | `tokenOwner` | address | The address to query. |
 
-
 #### Return Values:
 
-| Name    | Type      | Description                                 |
-| :-------| :-------- | :-----------------------------------------  |
-| `value` |  uint256  | the number of tokens owned by this address. |
-
+| Name    | Type    | Description                                 |
+| :------ | :------ | :------------------------------------------ |
+| `value` | uint256 | the number of tokens owned by this address. |
 
 ### tokenOwnerOf
 
@@ -74,12 +68,11 @@ Returns the `tokenOwner` address of the `tokenId` token.
 | :-------- | :------ | :------------------ |
 | `tokenId` | bytes32 | The token to query. |
 
-
 #### Return Values:
 
-| Name         | Type      | Description      |
-| :----------- | :-------- | :--------------  |
-| `tokenOwner` |  address  | The token owner. |
+| Name         | Type    | Description      |
+| :----------- | :------ | :--------------- |
+| `tokenOwner` | address | The token owner. |
 
 :::note
 
@@ -88,8 +81,6 @@ Returns the `tokenOwner` address of the `tokenId` token.
 - `tokenId` must exist.
 
 :::
-
-
 
 ### tokenIdsOf
 
@@ -101,20 +92,17 @@ Returns the `tokenOwner` address of the `tokenId` token.
 
 Returns the list of `tokenIds` for the `tokenOwner` address.
 
-
 #### Parameters:
 
-| Name         | Type    | Description          |
-| :----------- | :------ | :------------------- |
-| `tokenOwner` | address | The address to query.|
-
+| Name         | Type    | Description           |
+| :----------- | :------ | :-------------------- |
+| `tokenOwner` | address | The address to query. |
 
 #### Return Values:
 
-| Name       | Type        | Description                  |
-| :--------- | :---------- | :--------------------------  |
-| `tokensId` |  bytes32[]  | The list of owned token ids. |
-
+| Name       | Type       | Description                  |
+| :--------- | :--------- | :--------------------------- |
+| `tokensId` | bytes32[ ] | The list of owned token ids. |
 
 ### authorizeOperator
 
@@ -122,22 +110,19 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
   function authorizeOperator(
     address operator,
     bytes32 tokenId
-  ) public 
+  ) public
 ```
 
 Makes `operator` address an operator of `tokenId`.
 
-*Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator*
-
-
+_Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator_
 
 #### Parameters:
 
-| Name       | Type    | Description                             |
-| :--------- | :------ | :-------------------------------------- |
-| `operator` | address | The address to authorize as an operator.|
-| `tokenId`  | bytes32 | The token to enable operator status to. |
-
+| Name       | Type    | Description                              |
+| :--------- | :------ | :--------------------------------------- |
+| `operator` | address | The address to authorize as an operator. |
+| `tokenId`  | bytes32 | The token to enable operator status to.  |
 
 :::note
 
@@ -150,21 +135,18 @@ Makes `operator` address an operator of `tokenId`.
 
 :::
 
-
 ### revokeOperator
 
 ```solidity
   function revokeOperator(
     address operator
     bytes32 tokenId
-  ) public 
+  ) public
 ```
 
 Removes `operator` address as an operator of `tokenId`.
 
-*Triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator*
-
-
+_Triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator_
 
 #### Parameters:
 
@@ -173,7 +155,6 @@ Removes `operator` address as an operator of `tokenId`.
 | `operator` | address | The address to revoke as an operator.    |
 | `tokenId`  | bytes32 | The token to disable operator status to. |
 
-
 :::note
 
 #### Requirements:
@@ -184,7 +165,6 @@ Removes `operator` address as an operator of `tokenId`.
 - `operator` cannot be the zero address.
 
 :::
-
 
 ### isOperatorFor
 
@@ -204,13 +184,11 @@ Returns whether `operator` address is an operator of `tokenId`. Operators can se
 | `operator` | address | The address to query operator status for. |
 | `tokenId`  | bytes32 | The token to query.                       |
 
-
 #### Return Values:
 
-| Name     | Type   | Description                                                               |
-| :------- | :----- | :------------------------------------------------------------------------ |
-| `result` |  bool  | TRUE if `operator` address is an operator for `tokenId`, false otherwise. |
-
+| Name     | Type | Description                                                               |
+| :------- | :--- | :------------------------------------------------------------------------ |
+| `result` | bool | TRUE if `operator` address is an operator for `tokenId`, false otherwise. |
 
 :::note
 
@@ -220,7 +198,6 @@ Returns whether `operator` address is an operator of `tokenId`. Operators can se
 - Caller must be current `tokenOwner` of `tokenId`.
 
 :::
-
 
 ### getOperatorsOf
 
@@ -232,28 +209,25 @@ Returns whether `operator` address is an operator of `tokenId`. Operators can se
 
 Returns all `operator` addresses of `tokenId`.
 
-
 #### Parameters:
 
-| Name      | Type    | Description        |
-| :-------- | :------ | :----------------- |
-| `tokenId` | bytes32 | The token to query.|
-
+| Name      | Type    | Description         |
+| :-------- | :------ | :------------------ |
+| `tokenId` | bytes32 | The token to query. |
 
 #### Return Values:
 
-| Name        | Type         | Description            |
-| :---------- | :----------- | :--------------------  |
-| `operators` |  address[ ]  | The list of operators. |
+| Name        | Type       | Description            |
+| :---------- | :--------- | :--------------------- |
+| `operators` | address[ ] | The list of operators. |
 
 :::note
 
 #### Requirements:
 
 - `tokenId` must exist
+
 :::
-
-
 
 ### transfer
 
@@ -264,23 +238,22 @@ Returns all `operator` addresses of `tokenId`.
     bytes32 tokenId,
     bool force,
     bytes memory data
-  ) public 
+  ) public
 ```
 
 Transfers `tokenId` token from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver.
 
-*Triggers the **[Transfer](#trasnfer-2)** event when token get transferred successfully.*
-
+_Triggers the **[Transfer](#trasnfer-2)** event when token get transferred successfully._
 
 #### Parameters:
 
-| Name      | Type    | Description                                                                                                                              |
-| :-------  | :------ | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address | The sending address.                                                                                                                     |
-| `to`      | address | The receiving address.                                                                                                                   |
-| `tokenId` | uint256 | The token to transfer.                                                                                                                   |
-| `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert.|
-| `data`    | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                      |
+| Name      | Type    | Description                                                                                                                               |
+| :-------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`    | address | The sending address.                                                                                                                      |
+| `to`      | address | The receiving address.                                                                                                                    |
+| `tokenId` | uint256 | The token to transfer.                                                                                                                    |
+| `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `data`    | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
 :::note
 
@@ -293,7 +266,6 @@ Transfers `tokenId` token from `from` to `to`. The `force` parameter will be use
 
 :::
 
-
 ### transferBatch
 
 ```solidity
@@ -303,23 +275,22 @@ Transfers `tokenId` token from `from` to `to`. The `force` parameter will be use
     bytes32[] tokenId,
     bool[] force,
     bytes[] memory data
-  ) public 
+  ) public
 ```
 
 Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
 
-*Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred successfully.*
-
+_Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred successfully._
 
 #### Parameters:
 
-| Name      | Type    | Description                                                                                                                                |
-| :-------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address[] | The list of sending addresses.                                                                                                           |
-| `to`      | address[] | The list of receiving addresses.                                                                                                         |
-| `tokenId` | bytes32[] | The amount of tokens to transfer.                                                                                                        |
-| `force`   | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert.|
-| `data`    | bytes[]   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                      |
+| Name      | Type      | Description                                                                                                                               |
+| :-------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`    | address[] | The list of sending addresses.                                                                                                            |
+| `to`      | address[] | The list of receiving addresses.                                                                                                          |
+| `tokenId` | bytes32[] | The amount of tokens to transfer.                                                                                                         |
+| `force`   | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `data`    | bytes[]   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
 :::note
 
@@ -350,7 +321,6 @@ Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer 
 
 _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 
-
 #### Values:
 
 | Name       | Type    | Description                                                                                                                           |
@@ -361,7 +331,6 @@ _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 | `tokenId`  | bytes32 | The token to transfer.                                                                                                                |
 | `force`    | bool    | When set to TRUE, to may be any address; when set to FALSE to must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.                       |
-
 
 ### AuthorizedOperator
 
@@ -383,7 +352,6 @@ _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed
 | `tokenOwner` | address | The token owner.                                                   |
 | `tokenId`    | bytes32 | The token that `operator` address has access to from `tokenOwner`. |
 
-
 ### RevokedOperator
 
 ```solidity
@@ -396,13 +364,10 @@ _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed
 
 _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed successfully._
 
-
 #### Values:
 
-| Name         | Type    | Description                                 |
-| :----------- | :------ | :------------------------------------------ |
-| `operator`   | address | The address authorized as an operator.      |
-| `tokenOwner` | address | The token owner.                            |
-| `tokenId`    | bytes32 | The token revoked from `operator` access.   |
-
-
+| Name         | Type    | Description                               |
+| :----------- | :------ | :---------------------------------------- |
+| `operator`   | address | The address authorized as an operator.    |
+| `tokenOwner` | address | The token owner.                          |
+| `tokenId`    | bytes32 | The token revoked from `operator` access. |
