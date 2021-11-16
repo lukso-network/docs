@@ -27,6 +27,8 @@ Permissions for an `address` are stored inside the key-value store of the ERC725
 | [Allowed Addresses](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress) | `0x4b80742d00000000c6dd0000**<address>` |
 | [Allowed Functions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) | `0x4b80742d000000008efe0000<address>`   |
 
+---
+
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
 
 <br/>
@@ -168,7 +170,7 @@ permissions: CHANGEPERMISSIONS + SETDATA
 
 :::note
 
-When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started/), the Universal Profile owner will have all the permissions above set by default.
+When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
 
 :::
 
@@ -267,7 +269,7 @@ module.exports = {
 ## Setting permissions
 
 The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
-It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) tool.
+It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started) tool.
 
 <Tabs>
   <TabItem value="web3js" label="web3.js" default>

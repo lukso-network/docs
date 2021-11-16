@@ -53,7 +53,7 @@ if(!myKeyAddress)
     return
 ```
 
-Next we deploy your UP smart contracts using the [lsp-factory.js NPM package](./lsp-factoryjs/getting-started):
+Next we deploy your UP smart contracts using the [lsp-factory.js NPM package](./lsp-factoryjs/introduction/getting-started):
 
 ```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js'
@@ -213,7 +213,7 @@ myKeyManager.methods.execute(abi).send({
 ## 🛠 Tools
 
 - [erc725.js](./erc725js/getting-started)
-- [lsp-factory.js](./lsp-factoryjs/getting-started)
+- [lsp-factory.js](./lsp-factoryjs/introduction/getting-started)
 - [universalprofile-smart-contracts](https://github.com/lukso-network/lsp-universalprofile-smart-contracts)
 
 ## 🔌 Services

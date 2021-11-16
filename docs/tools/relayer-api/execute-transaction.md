@@ -119,8 +119,8 @@ const payload = {
     keyManagerAddress,
         transaction: {
             abi: abiPayload,
-            signature: signature,
-            nonce: parseInt(nonce),
+            signature,
+            nonce,
     };,
 };
 
