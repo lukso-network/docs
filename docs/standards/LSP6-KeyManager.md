@@ -60,27 +60,35 @@ You can find **more details about each permissions by clicking on the toggles be
 </details>
 
 <details>
-    <summary><code>CHANGEPERMISSIONS</code> - Allows changing of permissions of addresses</summary>
+    <summary><code>CHANGEPERMISSIONS</code> - Allows changing of permissions of addresses (adding + removing)</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
     </p>
-    <p>This permission allows an address to grant or revoke permissions for any specific address (including itself).</p>
+    <p>This permission allows an address to <b>grant + revoke</b> permissions for any specific address (including itself).</p>
+</details>
+
+<details>
+    <summary><code>ADDPERMISSIONS</code> - Allows adding new permissions to addresses</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
+    </p>
+    <p>This permission allows an address to <b>grant <span style={{ color: "red" }}>(but not revoke)</span></b> permissions for any specific address (including itself).</p>
 </details>
 
 <details>
     <summary><code>SETDATA</code> - Allows setting data on the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
-    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked `ERC725Account` (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
+    Allows an address to write any form of data in the <a href="https://**github**.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked `ERC725Account` (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
 
 </details>
 
 <details>
     <summary><code>CALL</code>, <code>STATICCALL</code> - Allows calling other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value for CALL = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code><br/>
-        <b>value for STATICCALL = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code>
+        <b>value for CALL = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code><br/>
+        <b>value for STATICCALL = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
     </p>
     <p>This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts)</p>
     <p>The difference between <code>CALL</code> and <a href="https://eips.ethereum.org/EIPS/eip-214"><code>STATICCALL</code></a> is that <b>staticcall</b> disallows state change at the target contract.</p>
@@ -90,7 +98,7 @@ You can find **more details about each permissions by clicking on the toggles be
 <details>
     <summary><code>DELEGATECALL</code> - Allows delegate calling other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
     </p>
     <blockquote>This call type is currently disallowed. See note below for more details.</blockquote>
 </details>
@@ -98,7 +106,7 @@ You can find **more details about each permissions by clicking on the toggles be
 <details>
     <summary><code>DEPLOY</code> - Allows deploying other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
     </p>
     <p>Enables the caller to deploy a smart contract, using the linked ERC725Account as a deployer. The bytecode of the contract to be deployed should be provided in the payload (abi-encoded) passed to the Key Manager.</p>
     <blockquote>Both the <code>CREATE</code> or <a href="https://eips.ethereum.org/EIPS/eip-1014"><code>CREATE2</code></a> opcode can be used to deploy the contract.</blockquote>
@@ -107,7 +115,7 @@ You can find **more details about each permissions by clicking on the toggles be
 <details>
     <summary><code>TRANSFERVALUE</code> - Allows transfering value to other contracts from the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
     </p>
     Enables to send native currency from the linked ERC725Account to any address.<br/><br/>
     <blockquote>
@@ -119,7 +127,7 @@ You can find **more details about each permissions by clicking on the toggles be
 <details>
     <summary><code>SIGN</code>: Allows signing on behalf of the controlled account, for example for login purposes</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
     </p>
     The <code>SIGN</code> permission can be used for keys to sign login messages. It is mostly for web2.0 apps to know which key SHOULD sign.
 </details>
