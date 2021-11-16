@@ -1,8 +1,9 @@
 ---
-title: What are multi-channel nonces
+title: Multi-channel nonces
 sidebar_position: 2
 ---
 
+# What are multi-channel nonces?
 
 This concept was taken from [Out of order execution](https://github.com/amxx/permit#out-of-order-execution).
 
