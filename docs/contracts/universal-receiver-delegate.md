@@ -5,9 +5,11 @@ sidebar_position: 4
 
 # LSP1 Universal Receiver Delegate
 
-The **UniversalReceiverDelegate** is the contract called by the **[universalReceiver](./erc725-account.md#universalreceiver)** function on the **[ERC725Account](./erc725-account.md)** when the address of this contract is set as value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the **[ERC725Account](./erc725-account.md)** storage and when the contract register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** using **ERC165Storage**.
+The **UniversalReceiverDelegate** is the contract called by the **[universalReceiver](./erc725-account.md#universalreceiver)** function on the **[ERC725Account](./erc725-account.md)**.
 
-This contract writes **[LSP7](./identifiable-digital-asset.md)** and **[LSP8](./digital-asset.md)** Assets into your account storage, and remove them on balance equal 0.
+To be called, the address of this contract should be set as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the **ERC725Account** storage and also should register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** using **ERC165Storage**. If these 2 conditions aren't met, the **UniversalReceiverDelegate** contract won't be called when calling **[universalReceiver](./erc725-account.md#universalreceiver)** function on the account.
+
+This implementation writes **[LSP7](./identifiable-digital-asset.md)** and **[LSP8](./digital-asset.md)** Assets into your account storage, and remove them on balance equal 0.
 
 Assets are written according to the **[LSP5-ReceivedAssets standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
@@ -26,6 +28,8 @@ Assets are written according to the **[LSP5-ReceivedAssets standard](https://git
     bytes memory data
   ) public payable returns (bytes memory result)
 ```
+
+Get called by the **[universalReceiver](./erc725-account.md#universalreceiver)** function when the conditions mentioned **[above](#)** are met.
 
 Register the **Map** and the **Key in the ReceivedAsset Array** for incoming assets and remove them on balance equal 0.
 
