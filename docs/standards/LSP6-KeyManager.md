@@ -178,10 +178,10 @@ Each permission MUST be:
 
 - **exactly 32 bytes long**
 - zero left-padded
-  - So ✅ `0x0000000000000000000000000000000000000000000000000000000000000004`
-  - Not ❌ `0x0400000000000000000000000000000000000000000000000000000000000000`
+  - So ✅ `0x0000000000000000000000000000000000000000000000000000000000000008`
+  - Not ❌ `0x0800000000000000000000000000000000000000000000000000000000000000`
 
-For instance, if you try to set the permission SETDATA for an address as `0x04`, this will be stored internally as `0x0400000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
+For instance, if you try to set the permission SETDATA for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
 
 :::
 
@@ -231,30 +231,34 @@ We will store these values in a file `constants.js`, and reuse them through the 
 ```javascript
 // file: constants.js
 
+// keccak256('AddressPermissions[]')
+const PERMISSIONS_ARRAY = "0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3";
+
 // prettier-ignore
-const KEYS = {
+const ADDRESSES = {
   PERMISSIONS:      "0x4b80742d0000000082ac0000", // AddressPermissions:Permissions:<address> --> bytes32
   ALLOWEDADDRESSES: "0x4b80742d00000000c6dd0000", // AddressPermissions:AllowedAddresses:<address> --> address[]
   ALLOWEDFUNCTIONS: "0x4b80742d000000008efe0000", // AddressPermissions:AllowedFunctions:<address> --> bytes4[]
-  PERMISSIONS_ARRAY: "0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3" // keccak256('AddressPermissions[]')
 }
 
 // prettier-ignore
 const PERMISSIONS = {
-  CHANGEOWNER:   "0x0000000000000000000000000000000000000000000000000000000000000001", // .... 0000 0000 0001
-  CHANGEKEYS:    "0x0000000000000000000000000000000000000000000000000000000000000002", // .... .... .... 0010
-  SETDATA:       "0x0000000000000000000000000000000000000000000000000000000000000004", // .... .... .... 0100
-  CALL:          "0x0000000000000000000000000000000000000000000000000000000000000008", // .... .... .... 1000
-  STATICCALL:    "0x0000000000000000000000000000000000000000000000000000000000000010", // .... .... 0001 ....
-  DELEGATECALL:  "0x0000000000000000000000000000000000000000000000000000000000000020", // .... .... 0010 ....
-  DEPLOY:        "0x0000000000000000000000000000000000000000000000000000000000000040", // .... .... 0100 ....
-  TRANSFERVALUE: "0x0000000000000000000000000000000000000000000000000000000000000080", // .... .... 1000 ....
-  SIGN:          "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
+  CHANGEOWNER:      "0x0000000000000000000000000000000000000000000000000000000000000001", // 0000 0000 0000 0001
+  CHANGEPERMISSIONS:"0x0000000000000000000000000000000000000000000000000000000000000002", // .... .... .... 0010
+  ADDPERMISSIONS:   "0x0000000000000000000000000000000000000000000000000000000000000004", // .... .... .... 0100
+  SETDATA:          "0x0000000000000000000000000000000000000000000000000000000000000008", // .... .... .... 1000
+  CALL:             "0x0000000000000000000000000000000000000000000000000000000000000010", // .... .... 0001 ....
+  STATICCALL:       "0x0000000000000000000000000000000000000000000000000000000000000020", // .... .... 0010 ....
+  DELEGATECALL:     "0x0000000000000000000000000000000000000000000000000000000000000040", // .... .... 0100 ....
+  DEPLOY:           "0x0000000000000000000000000000000000000000000000000000000000000080", // .... .... 1000 ....
+  TRANSFERVALUE:    "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
+  SIGN:             "0x0000000000000000000000000000000000000000000000000000000000000200", // .... 0010 .... ....
 }
 
 module.exports = {
-  KEYS,
+  ADDRESSES,
   PERMISSIONS,
+  PERMISSIONS_ARRAY,
 };
 ```
 
@@ -269,7 +273,8 @@ It assumes that the profile has been deployed with our [lsp-factory.js](https://
   <TabItem value="web3js" label="web3.js" default>
 
 ```javascript
-const { KEYS, PERMISSIONS } = require("./constants");
+// see file above constants.js
+const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require("./constants");
 
 const UniversalProfile = require("@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json");
 const KeyManager = require("@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json");
@@ -285,9 +290,9 @@ async function setBobPermission() {
   let payload = await universalProfile.methods
     .setData(
       [
-        KEYS.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
-        KEYS.PERMISSIONS_ARRAY, // length of AddressPermissions[]
-        KEYS.PERMISSIONS_ARRAY.slice(0, 34) + "00000000000000000000000000000001", // add Bob's address into the list of permissions
+        ADDRESSES.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
+        PERMISSIONS_ARRAY, // length of AddressPermissions[]
+        PERMISSIONS_ARRAY.slice(0, 34) + "00000000000000000000000000000001", // add Bob's address into the list of permissions
       ],
       [
         bobPermissions,
@@ -307,7 +312,8 @@ setBobPermission();
   <TabItem value="etherjs" label="ether.js">
 
 ```javascript
-const { KEYS, PERMISSIONS } = require("./constants");
+// see file above constants.js
+const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require("./constants");
 
 const UniversalProfile = require("@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json");
 const KeyManager = require("@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json");
@@ -322,9 +328,9 @@ let bobPermissions = ethers.utils.hexZeroPad(PERMISSIONS.SETDATA, 32);
 async function setBobPermission() {
   let payload = universalProfile.interface.encodeFunctionData("setData", [
     [
-      KEYS.PERMISSIONS + bobAddress.substr(2),
-      KEYS.PERMISSIONS_ARRAY, // length of AddressPermissions[]
-      KEYS.PERMISSIONS_ARRAY.slice(0, 34) + "00000000000000000000000000000001", // add Bob's address into the list of
+      ADDRESSES.PERMISSIONS + bobAddress.substr(2),
+      PERMISSIONS_ARRAY, // length of AddressPermissions[]
+      PERMISSIONS_ARRAY.slice(0, 34) + "00000000000000000000000000000001", // add Bob's address into the list of
     ],
     [
       bobPermissions,
