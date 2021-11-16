@@ -17,7 +17,7 @@ However, **sequential nonces come with the following limitation**:
 
 Some users may want to sign multiple message, allowing the transfer of different assets to different recipients. In that case, the recipient want to be able to use / transfer their assets whenever they want, and will certainly not want to wait on anyone before signing another transaction.
 
- This is where **out-of-order execution** comes in.
+This is where **out-of-order execution** comes in.
 
 ### Introducing multi-channel nonces
 
@@ -29,23 +29,23 @@ The benefit is that the signer key can determine for which channel to sign the n
 
 The Key Manager allows out-of-order execution of messages by using nonces through multiple channels.
 
- Nonces are represented as `uint256` from the concatenation of two `uint128` : the `channelId` and the `nonceId`.
+Nonces are represented as `uint256` from the concatenation of two `uint128` : the `channelId` and the `nonceId`.
 
- - left most 128 bits : `channelId`
- - right most 128 bits: `nonceId`
+- left most 128 bits : `channelId`
+- right most 128 bits: `nonceId`
 
-![multi-channel-nonce](https://user-images.githubusercontent.com/31145285/133292580-42817340-104e-48c5-832b-533842b98d26.jpg)
+![multi-channel-nonce](../../../static/img/multi-channel-nonce.jpg)
 
 <p align="center">
 <i>Example of multi channel nonce, where channelId = 5 and nonceId = 1</i>
 </p>
-
 
 The current nonce can be queried using:
 
 ```solidity
 function getNonce(address _address, uint256 _channel) public view returns (uint256)
 ```
+
 Since the `channelId` represents the left-most 128 bits, using a minimal value like 1 will return a huge `nonce` number: `2**128` equal to 3402823669209384634633746074317682114**56**.
 
 After the signed transaction is executed the `nonceId` will be incremented by 1, this will increment the `nonce` by 1 as well because the nonceId represents the first 128 bits of the nonce so it will be 3402823669209384634633746074317682114**57**.
@@ -55,9 +55,9 @@ After the signed transaction is executed the `nonceId` will be incremented by 1,
 _nonces[signer][nonce >> 128]++
 
 ```
+
 `nonce >> 128` represents the channel which the signer chose for executing the transaction. After looking up the nonce of the signer at that specific channel it will be incremented by 1 `++`.
 
 For sequential messages, users could use channel `0` and for out-of-order messages they could use channel `n`.
 
 **Important:** It's up to the user to choose the channel that he wants to sign multiple sequential orders on it, not necessary `0`.
-
