@@ -77,7 +77,7 @@ If you haven't, your Universal Profile can become stuck, making it irrevisible a
 
 ---
 
-## Setting permissions for other addresses
+## Set permissions for other addresses
 
 The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
 It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) tool.
@@ -159,10 +159,10 @@ setBobPermission();
   </TabItem>
 </Tabs>
 
-## UP interaction via your Key Manager
+## Interact with your UP via the Key Manager
 
-### Setting data
+### Set data in the key-value store
 
-### transferring LYX
+### Transfer LYX
 
-### Interacting with other contracts
+### Interact with other smart contracts

@@ -8,9 +8,11 @@ import TabItem from '@theme/TabItem';
 
 # Setup
 
-We will first start by creating an instance of web3.js, connected to L14 test network.
+Let's get started by creating a wallet connected to the [LUKSO L14 test network](https://blockscout.com/lukso/l14).
 
-_add your address with a password (take Fabian gist)_
+You will also need some test LYX to follow the guides.
+
+You can request some via the [L14 faucet](http://faucet.l14.lukso.network/).
 
 <Tabs>
 
@@ -20,6 +22,26 @@ _add your address with a password (take Fabian gist)_
 const Web3 = require("web3");
 
 const web3 = new Web3("https://rpc.l14.lukso.network");
+
+// GENERATE a key to control your UP
+let myPassword = "mypassword";
+
+async function setupWallet() {
+  // create a new account, if one does not exist
+  if (!web3.eth.accounts.wallet.length) {
+    web3.eth.accounts.wallet.create(1, myPassword);
+    console.log("My new key address ", web3.eth.accounts.wallet[0].address);
+  } else {
+    console.log("Loaded existing key address ", web3.eth.accounts.wallet[0].address);
+    console.log(
+      "Balance ",
+      web3.utils.fromWei(await web3.eth.getBalance(web3.eth.accounts.wallet[0].address), "ether"),
+      "LYXt"
+    );
+  }
+}
+
+setupWallet();
 ```
 
   </TabItem>
@@ -27,9 +49,20 @@ const web3 = new Web3("https://rpc.l14.lukso.network");
   <TabItem value="etherjs" label="ether.js" default>
 
 ```javascript
-import { ether } from "ethers";
+const ethers = require("ethers");
 
-const provider = new ethers.provider.JsonRpcProvider("https://rpc.l14.lukso.network", { name: "L14", chainId: 22 });
+const provider = new ethers.providers.JsonRpcProvider("https://rpc.l14.lukso.network", {
+  name: "L14",
+  chainId: 22,
+});
+
+async function setupWallet() {
+  // create a new account
+  let wallet = ethers.Wallet.createRandom();
+  console.log("My new key address ", wallet.address);
+}
+
+setupWallet();
 ```
 
   </TabItem>
