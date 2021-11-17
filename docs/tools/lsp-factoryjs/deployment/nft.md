@@ -15,7 +15,7 @@ LSP7 allows one smart contract to have many indivisible NFTs, for example an NFT
 To deploy a LSP7 NFT call `DigitalAsset.deployLSP7DigitalAsset()` and set `isNFT` to true.
 
 ```javascript
-import { LSP7 } from '@lukso/universalprofile-smart-contracts/build/artifacts/LSP7.json';
+import LSP7DigitalAsset from '@lukso/universalprofile-smart-contracts/artifacts/LSP7DigitalAsset.json';
 
 const myDigitalAsset = await lspFactory.DigitalAsset.deployLSP7DigitalAsset({
     name: "My token",
@@ -41,7 +41,7 @@ LSP8 NFTs are smart contracts which relate to one identifiable token.
 To deploy LSP8 NFT
 
 ```javascript
-import { LSP8 } from '@lukso/universalprofile-smart-contracts/build/artifacts/LSP8.json';
+import LSP8IdentifiableDigitalAsset from '@lukso/universalprofile-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
 
 const myDigitalAsset =
   lspFactory.DigitalAsset.deployLSP8IdentifiableDigitalAsset({
