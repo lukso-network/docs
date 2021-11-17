@@ -8,7 +8,7 @@ The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon depreca
 
 Network ID: `22 (0x16)`
 
-- RPC Endpoint: <https://rpc.l14.lukso.network>
+- RPC Endpoint: <https://rpc.l14.lukso.network>, <wss://rpc.l14.lukso.network/ws>
 - Explorer: <https://blockscout.com/lukso/l14>
 - Faucet: <http://faucet.l14.lukso.network>
 
