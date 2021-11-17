@@ -278,8 +278,8 @@ It assumes that the profile has been deployed with our [lsp-factory.js](https://
 // see file above constants.js
 const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require("./constants");
 
-const UniversalProfile = require("@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json");
-const KeyManager = require("@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json");
+const UniversalProfile = require("@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json");
+const KeyManager = require("@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json");
 
 const universalProfile = new web3.eth.Contract(UniversalProfile.abi, "<your-UniversalProfile-address>");
 const keyManager = new web3.eth.Contract(KeyManager.abi, "<your-KeyManager-Address>");
@@ -317,8 +317,8 @@ setBobPermission();
 // see file above constants.js
 const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require("./constants");
 
-const UniversalProfile = require("@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json");
-const KeyManager = require("@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json");
+const UniversalProfile = require("@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json");
+const KeyManager = require("@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json");
 
 const universalProfile = new ethers.Contract("<your-UniversalProfile-address>", UniversalProfile.abi);
 const keyManager = new ethers.Contract("<your-KeyManager-Address>", KeyManager.abi);

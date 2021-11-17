@@ -155,8 +155,8 @@ console.log(data);
 To interact directly with any smart contract through you UP, load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
 
 ```js title="Interact directly through your UP"
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const myUP = new web3.eth.Contract(
     UniversalProfile.abi,
