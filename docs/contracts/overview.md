@@ -38,7 +38,7 @@ Create your own **UniversalProfile**:
 // MyUP.sol
 // SPDX-License-Identifier: MIT
 
-import UniversalProfile from "@lukso/universalprofile-smart-contracts/contracts/UniversalProfile.sol";
+import "@lukso/universalprofile-smart-contracts/contracts/UniversalProfile.sol";
 
 pragma solidity ^0.8.0;
 
@@ -57,7 +57,7 @@ Create your own **Fungible token**:
 // MyToken.sol
 // SPDX-License-Identifier: MIT
 
-import LSP7DigitalAsset from "@lukso/universalprofile-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
+import "@lukso/universalprofile-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
 
 pragma solidity ^0.8.0;
 
