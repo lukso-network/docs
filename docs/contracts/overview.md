@@ -44,7 +44,7 @@ pragma solidity ^0.8.0;
 
 contract MyUP is UniversalProfile {
 
-    constructor() UniversalProfile(OwnerAddress) {
+    constructor() UniversalProfile(msg.sender) {
         // ..
     }
 }
@@ -62,8 +62,8 @@ import "@lukso/universalprofile-smart-contracts/contracts/LSP7DigitalAsset/LSP7D
 pragma solidity ^0.8.0;
 
 contract MyToken is LSP7DigitalAsset {
-    // 4th argument (FALSE) marks that this contract serves as a Fungible Token and not as a NFT.
-    constructor() LSP7("MyToken","MTKN",Owner,FALSE) {
+    // 4th argument (false) marks that this contract serves as a Fungible Token and not as a NFT.
+    constructor() LSP7("MyToken","MTKN",msg.sender,false) {
         // ..
     }
 }
