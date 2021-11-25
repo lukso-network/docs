@@ -6,7 +6,7 @@ Live URL: <https://docs.lukso.tech/>
 
 # How to generate documentation for erc725.js
 
-1. Run `docs:tools:sync` command to pull documentation from tool repository
+1. Run `docs:tools:sync` to pull documentation from tool repositories ([`erc725.js`](https://github.com/ERC725Alliance/erc725.js)).
 
 ```sh
 npm run docs:tools:sync
