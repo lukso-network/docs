@@ -22,7 +22,8 @@ To add profile information you can add the keys of [LSP3-UniversalProfile-Metada
 
 ## References
 
-- https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md
-- https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md
-- https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts/LSP1-UniversalReceiver
-- https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md
+- [LUKSO Standards Proposals: LSP0 - ERC725 Account (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
+- [LUKSO Standards Proposals: LSP3 - Universal Profile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
+- [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
+- [LSP1 Universal Receiver: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver)
+
