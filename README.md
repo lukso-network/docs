@@ -6,13 +6,13 @@ Live URL: <https://docs.lukso.tech/>
 
 # How to generate documentation for erc725.js
 
-1. Run typedoc command in erc725.js repo
+1. Run `docs:tools:sync` command to pull documentation from tool repository
 
 ```sh
-npx typedoc --out docs/technical-reference src/index.ts --includeVersion --hideInPageTOC true --sort visibility
+npm run docs:tools:sync
 ```
 
-2. Replace content of tools/erc725js/technical-reference/ with content generated in docs/technical-reference
+2. Commit and push generated changes
 ## Installation
 
 ```console
