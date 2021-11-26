@@ -26,7 +26,8 @@ function Index() {
             <div className={styles.card}>
               <h3>🛠 Tools</h3>
               <p>
-                Discover tools that help you to interact with Universal Profiles and NFT2.0.
+                Discover tools that help you to interact with Universal Profiles
+                and NFT2.0.
               </p>
             </div>
           </Link>
@@ -37,7 +38,8 @@ function Index() {
             <div className={styles.card}>
               <h3>📜 Standards</h3>
               <p>
-                Learn about the new smart contract standards that will change the way we interact with Blockchain.
+                Learn about the new smart contract standards that will change
+                the way we interact with Blockchain.
               </p>
             </div>
           </Link>
