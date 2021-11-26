@@ -8,21 +8,15 @@ This testnet is ephemeral, meaning it is not meant to be fully stable and usable
 
 ## How to participate
 
-:::warning Currently the L15-Testnet is not running.
-
-We are currently working on a fix and as soon as the fix is thorougly tested, we will start it again.
-
-:::
-
-<!-- Since we are resetting the network, please make sure to delete the currently existing datadirs by running the following command:
+Since we are resetting the network, please make sure to re-install the `lukso` binary:
 
 <Tabs groupId="operating-systems">
 <TabItem value="linux" label="Linux">
 
 ```bash
 $ lukso stop
-$ lukso reset all
 $ curl https://install.l15.lukso.network | bash
+$ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
 
 </TabItem>
@@ -30,8 +24,8 @@ $ curl https://install.l15.lukso.network | bash
 
 ```bash
 $ sudo lukso stop
-$ sudo lukso reset all
 $ sudo curl https://install.l15.lukso.network | bash
+$ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
 
 </TabItem>
@@ -107,25 +101,19 @@ And if you need it, [here is a tutorial on how to do it](https://metamask.zendes
 
 ## Links
 
-:::warning Currently the L15-Testnet is not running.
-
-We are currently working on a fix and as soon as the fix is thorougly tested, we will start it again.
-
-:::
-
-- https://faucet.l15.lukso.network To get some LYXt (test LYX) (coming soon)
-- https://launchpad.l15.lukso.network The Launchpad to participate as a validator (coming soon)
+- https://faucet.l15.lukso.network To get some LYXt (test LYX)
+- https://launchpad.l15.lukso.network The Launchpad to participate as a validator
 
 ---
 
-- https://stats.vanguard.l15.lukso.network Statistic page for the vanguard consensus chain (coming soon)
-- https://explorer.vanguard.l15.lukso.network Block Explorer page for the vanguard consensus chain (coming soon)
+- https://stats.vanguard.l15.lukso.network Statistic page for the vanguard consensus chain
+- https://explorer.vanguard.l15.lukso.network Block Explorer page for the vanguard consensus chain
 
 ---
 
-- https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain (coming soon)
-- https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain (coming soon)
-- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain (coming soon)
+- https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain
+- https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain
+- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain
 
 ## Repositories
 
