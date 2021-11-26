@@ -52,7 +52,7 @@ and because the script is using config files it is necessary to install third-pa
 https://www.powershellgallery.com/packages/powershell-yaml/0.4.2
 1. Run `PowerShell` as an Administrator
 2. Enter `Install-Module -Name powershell-yaml` into the shell
-3. Verify installation by running `ConvertFrom-Yaml`, it shouldn't give any output but also not throw any error.
+3. Verify installation by running `ConvertFrom-Yaml`  it shouldn't give any output but also not throw any error.
 
 ### Enable coloring for powershell
 This step is optional but recomended
