@@ -8,13 +8,14 @@ This testnet is ephemeral, meaning it is not meant to be fully stable and usable
 
 ## How to participate
 
-Since we are resetting the network, please make sure to re-install the `lukso` binary:
+Since we are resetting the network, please make sure to run `$ lukso reset all` and re-install the `lukso` binary:
 
 <Tabs groupId="operating-systems">
 <TabItem value="linux" label="Linux">
 
 ```bash
 $ lukso stop
+$ lukso reset all
 $ curl https://install.l15.lukso.network | bash
 $ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
@@ -24,6 +25,7 @@ $ lukso start --node-name "REPLACE-WITH-NODE-NAME"
 
 ```bash
 $ sudo lukso stop
+$ lukso reset all
 $ sudo curl https://install.l15.lukso.network | bash
 $ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 ```
