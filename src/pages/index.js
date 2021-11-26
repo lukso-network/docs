@@ -19,14 +19,14 @@ function Index() {
           <Link style={{ textDecoration: 'none' }} to="./networks/l15-testnet">
             <div className={styles.card}>
               <h3>🧬 Networks</h3>
-              <p>Everything related to LUKSO's networks.</p>
+              <p>Learn how to participate in LUKSO's test networks.</p>
             </div>
           </Link>
           <Link style={{ textDecoration: 'none' }} to="./tools/getting-started">
             <div className={styles.card}>
               <h3>🛠 Tools</h3>
               <p>
-                Discover our open-source tools to interact with LUKSO ecosystem.
+                Discover tools that help you to interact with Universal Profiles and NFT2.0.
               </p>
             </div>
           </Link>
@@ -37,7 +37,7 @@ function Index() {
             <div className={styles.card}>
               <h3>📜 Standards</h3>
               <p>
-                Learn about our standards such as Universal Profiles and NFT2.0.
+                Learn about the new smart contract standards that will change the way we interact with Blockchain.
               </p>
             </div>
           </Link>
