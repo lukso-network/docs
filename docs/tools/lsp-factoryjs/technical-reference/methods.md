@@ -3,250 +3,329 @@ sidebar_label: Methods
 sidebar_position: 1.1
 ---
 
-# Class: LSPFactory
 
-Factory for creating LSP3UniversalProfiles / LSP4DigitalCertificates
+## Class: LSPFactory
 
-## LSPFactory Constructor
+### Constructors
+
+#### constructor
 
 • **new LSPFactory**(`rpcUrlOrProvider`, `privateKeyOrSigner`)
 
-#### Parameters
+TBD
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `rpcUrlOrProvider` | `string` \| `Web3Provider` \| `JsonRpcProvider` |
 | `privateKeyOrSigner` | `string` \| `Signer` \| `SignerOptions` |
 
-#### Defined in
+##### Defined in
 
-[src/lib/lsp-factory.ts:24](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/lsp-factory.ts#L24)
+[lib/lsp-factory.ts:24](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/lsp-factory.ts#L24)
 
 
-# Class: LSP3UniversalProfile
+## Class: LSP3UniversalProfile
 
-## LSP3UniversalProfile Methods
+### Constructors
 
-### deploy
+#### constructor
 
-▸ **deploy**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<`DeployedContracts`\>
+• **new LSP3UniversalProfile**(`options`)
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `profileDeploymentOptions` | `ProfileDeploymentOptions` |
-| `contractDeploymentOptions?` | `ContractDeploymentOptions` |
+| `options` | [`LSPFactoryOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/LSPFactoryOptions.md) |
 
-#### Returns
+##### Defined in
 
-`Promise`<`DeployedContracts`\>
+[lib/classes/lsp3-universal-profile.ts:38](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L38)
 
-#### Defined in
+### Properties
 
-[src/lib/classes/lsp3-universal-profile.ts:125](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/lsp3-universal-profile.ts#L125)
+#### options
 
-___
+• **options**: [`LSPFactoryOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/LSPFactoryOptions.md)
 
-### deployBaseContracts
+##### Defined in
 
-▸ **deployBaseContracts**(): `Promise`<`DeployedContracts`\>
-
-#### Returns
-
-`Promise`<`DeployedContracts`\>
-
-#### Defined in
-
-[src/lib/classes/lsp3-universal-profile.ts:152](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/lsp3-universal-profile.ts#L152)
+[lib/classes/lsp3-universal-profile.ts:36](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L36)
 
 ___
 
-### deployReactive
+#### signer
 
-▸ **deployReactive**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`LSP3AccountDeploymentEvent` \| `DeploymentEventTransaction`\>
+• **signer**: `NonceManager`
+
+##### Defined in
+
+[lib/classes/lsp3-universal-profile.ts:37](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L37)
+
+### Methods
+
+#### deploy
+
+▸ **deploy**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<[`DeployedContracts`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/DeployedContracts.md) \>
 
 TODO: docs
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `profileDeploymentOptions` | `ProfileDeploymentOptions` |
-| `contractDeploymentOptions?` | `ContractDeploymentOptions` |
+| `profileDeploymentOptions` | [`ProfileDeploymentOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/ProfileDeploymentOptions.md) |
+| `contractDeploymentOptions?` | [`ContractDeploymentOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/ContractDeploymentOptions.md) |
 
-#### Returns
+##### Returns
 
-`Observable`<`LSP3AccountDeploymentEvent` \| `DeploymentEventTransaction`\>
+`Promise`<[`DeployedContracts`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/DeployedContracts.md) \>
 
-#### Defined in
+##### Defined in
 
-[src/lib/classes/lsp3-universal-profile.ts:46](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/lsp3-universal-profile.ts#L46)
+[lib/classes/lsp3-universal-profile.ts:123](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L123)
 
 ___
 
-### getDeployedByteCode
+#### deployBaseContracts
 
-▸ **getDeployedByteCode**(`contractAddress`): `Promise`<`string`\>
+▸ **deployBaseContracts**(): `Promise`<[`DeployedContracts`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/DeployedContracts.md) \>
 
-#### Parameters
+##### Returns
+
+`Promise`<[`DeployedContracts`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/DeployedContracts.md) \>
+
+##### Defined in
+
+[lib/classes/lsp3-universal-profile.ts:150](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L150)
+
+___
+
+#### deployReactive
+
+▸ **deployReactive**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`LSP3AccountDeploymentEvent` \| [`DeploymentEventTransaction`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/DeploymentEventTransaction.md) \>
+
+TODO: docs
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `profileDeploymentOptions` | [`ProfileDeploymentOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/ProfileDeploymentOptions.md) |
+| `contractDeploymentOptions?` | [`ContractDeploymentOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/ContractDeploymentOptions.md) |
+
+##### Returns
+
+`Observable`<`LSP3AccountDeploymentEvent` \| [`DeploymentEventTransaction`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/DeploymentEventTransaction.md) \>
+
+##### Defined in
+
+[lib/classes/lsp3-universal-profile.ts:46](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L46)
+
+___
+
+#### getDeployedByteCode
+
+▸ **getDeployedByteCode**(`contractAddress`): `Promise`<`string` \>
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `contractAddress` | `string` |
 
-#### Returns
+##### Returns
 
-`Promise`<`string`\>
+`Promise`<`string` \>
 
-#### Defined in
+##### Defined in
 
-[src/lib/classes/lsp3-universal-profile.ts:148](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/lsp3-universal-profile.ts#L148)
+[lib/classes/lsp3-universal-profile.ts:146](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L146)
 
 ___
 
-### preDeployContracts
+#### preDeployContracts
 
-▸ **preDeployContracts**(`version?`): `Promise`<`void`\>
+▸ **preDeployContracts**(`version?`): `Promise`<`void` \>
 
 Pre-deploys the latest Version of the LSP3UniversalProfile smart-contracts.
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `version?` | ``"string"`` |
 
-#### Returns
+##### Returns
 
-`Promise`<`void`\>
+`Promise`<`void` \>
 
-#### Defined in
+##### Defined in
 
-[src/lib/classes/lsp3-universal-profile.ts:182](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/lsp3-universal-profile.ts#L182)
+[lib/classes/lsp3-universal-profile.ts:180](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L180)
 
 ___
 
-### uploadProfileData
+#### uploadProfileData
 
-▸ `Static` **uploadProfileData**(`profileData`, `uploadOptions?`): `Promise`<`LSP3ProfileDataForEncoding`\>
+▸ `Static` **uploadProfileData**(`profileData`, `uploadOptions?`): `Promise`<`LSP3ProfileDataForEncoding` \>
 
 Uploads the LSP3Profile to the desired endpoint. This can be an `https` URL either pointing to
 a public, centralized storage endpoint or an IPFS Node / Cluster
 
 **`memberof`** LSP3UniversalProfile
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `profileData` | `ProfileDataBeforeUpload` |
+| `profileData` | [`ProfileDataBeforeUpload`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/ProfileDataBeforeUpload.md) |
 | `uploadOptions?` | `ProfileUploadOptions` |
 
-#### Returns
+##### Returns
 
-`Promise`<`LSP3ProfileDataForEncoding`\>
+`Promise`<`LSP3ProfileDataForEncoding` \>
 
-#### Defined in
+{(Promise<AddResult | string>)}
 
-[src/lib/classes/lsp3-universal-profile.ts:194](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/lsp3-universal-profile.ts#L194)
+##### Defined in
 
-# Class: DigitalAsset
+[lib/classes/lsp3-universal-profile.ts:192](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/lsp3-universal-profile.ts#L192)
 
-## DigitalAsset Methods
+## Class: DigitalAsset
 
-### deployBaseContracts
+### Constructors
 
-▸ **deployBaseContracts**(): `Promise`<`DeployedContracts`\>
+#### constructor
 
-#### Returns
+• **new DigitalAsset**(`options`)
 
-`Promise`<`DeployedContracts`\>
+##### Parameters
 
-#### Defined in
+| Name | Type |
+| :------ | :------ |
+| `options` | [`LSPFactoryOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/LSPFactoryOptions.md) |
 
-[src/lib/classes/digital-asset.ts:106](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/digital-asset.ts#L106)
+##### Defined in
+
+[lib/classes/digital-asset.ts:22](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L22)
+
+### Properties
+
+#### options
+
+• **options**: [`LSPFactoryOptions`](https://github.com/lukso-network/tools-lsp-factory/tree/main/docs/technical-reference/interfaces/LSPFactoryOptions.md)
+
+##### Defined in
+
+[lib/classes/digital-asset.ts:20](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L20)
 
 ___
 
-### deployLSP7DigitalAsset
+#### signer
 
-▸ **deployLSP7DigitalAsset**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<`DeployedContracts`\>
+• **signer**: `NonceManager`
 
-#### Parameters
+##### Defined in
+
+[lib/classes/digital-asset.ts:21](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L21)
+
+### Methods
+
+#### deployBaseContracts
+
+▸ **deployBaseContracts**(): `Promise`<`DeployedContracts` \>
+
+##### Returns
+
+`Promise`<`DeployedContracts` \>
+
+##### Defined in
+
+[lib/classes/digital-asset.ts:106](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L106)
+
+___
+
+#### deployLSP7DigitalAsset
+
+▸ **deployLSP7DigitalAsset**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<`DeployedContracts` \>
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `digitalAssetDeploymentOptions` | `LSP7DigitalAssetDeploymentOptions` |
 | `contractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
+##### Returns
 
-`Promise`<`DeployedContracts`\>
+`Promise`<`DeployedContracts` \>
 
-#### Defined in
+##### Defined in
 
-[src/lib/classes/digital-asset.ts:42](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/digital-asset.ts#L42)
+[lib/classes/digital-asset.ts:42](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L42)
 
 ___
 
-### deployLSP7DigitalAssetReactive
+#### deployLSP7DigitalAssetReactive
 
-▸ **deployLSP7DigitalAssetReactive**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`DigitalAssetDeploymentEvent`\>
+▸ **deployLSP7DigitalAssetReactive**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`DigitalAssetDeploymentEvent` \>
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `digitalAssetDeploymentOptions` | `LSP7DigitalAssetDeploymentOptions` |
 | `contractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
+##### Returns
 
-`Observable`<`DigitalAssetDeploymentEvent`\>
+`Observable`<`DigitalAssetDeploymentEvent` \>
 
-#### Defined in
+##### Defined in
 
-[src/lib/classes/digital-asset.ts:29](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/digital-asset.ts#L29)
+[lib/classes/digital-asset.ts:29](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L29)
 
 ___
 
-### deployLSP8IdentifiableDigitalAsset
+#### deployLSP8IdentifiableDigitalAsset
 
-▸ **deployLSP8IdentifiableDigitalAsset**(`digitalAssetDeploymentOptions`, `ContractDeploymentOptions?`): `Promise`<`DeployedContracts`\>
+▸ **deployLSP8IdentifiableDigitalAsset**(`digitalAssetDeploymentOptions`, `ContractDeploymentOptions?`): `Promise`<`DeployedContracts` \>
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `digitalAssetDeploymentOptions` | `DigitalAssetDeploymentOptions` |
 | `ContractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
+##### Returns
 
-`Promise`<`DeployedContracts`\>
+`Promise`<`DeployedContracts` \>
 
-#### Defined in
+##### Defined in
 
-[src/lib/classes/digital-asset.ts:83](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/digital-asset.ts#L83)
+[lib/classes/digital-asset.ts:83](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L83)
 
 ___
 
-### deployLSP8IdentifiableDigitalAssetReactive
+#### deployLSP8IdentifiableDigitalAssetReactive
 
-▸ **deployLSP8IdentifiableDigitalAssetReactive**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`DigitalAssetDeploymentEvent`\>
+▸ **deployLSP8IdentifiableDigitalAssetReactive**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`DigitalAssetDeploymentEvent` \>
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `digitalAssetDeploymentOptions` | `DigitalAssetDeploymentOptions` |
 | `contractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
+##### Returns
 
-`Observable`<`DigitalAssetDeploymentEvent`\>
+`Observable`<`DigitalAssetDeploymentEvent` \>
 
-#### Defined in
+##### Defined in
 
-[src/lib/classes/digital-asset.ts:67](https://github.com/lukso-network/tools-lsp-factory/blob/0803dfe/src/lib/classes/digital-asset.ts#L67)
+[lib/classes/digital-asset.ts:67](https://github.com/lukso-network/tools-lsp-factory/blob/8e385a2/src/lib/classes/digital-asset.ts#L67)
