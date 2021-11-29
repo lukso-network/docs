@@ -8,7 +8,13 @@ This testnet is ephemeral, meaning it is not meant to be fully stable and usable
 
 ## How to participate
 
-Since we are resetting the network, please make sure to run `$ lukso reset all` and re-install the `lukso` binary:
+:::warning Currently the L15-Testnet is not running.
+
+We are currently working on a fix and as soon as the fix is thorougly tested, we will start it again.
+
+:::
+
+<!-- Since we are resetting the network, please make sure to run `$ lukso reset all` and re-install the `lukso` binary:
 
 <Tabs groupId="operating-systems">
 <TabItem value="linux" label="Linux">
