@@ -1,6 +1,10 @@
 # LUKSO CLI
 
->⚠️ This page may change. Not everything is ready yet.
+:::caution
+
+This page may change. Not everything is ready yet.
+
+:::
 
 ## System requirements
 
