@@ -13,7 +13,7 @@ function Index() {
             padding: '4rem 0',
           }}
         >
-          <h1>Welcome to LUKSO Docs</h1>
+          <h1>Welcome to the LUKSO Documentation</h1>
         </div>
         <div className={styles.cardContainer}>
           <Link style={{ textDecoration: 'none' }} to="./networks/l15-testnet">
