@@ -20,10 +20,27 @@ When you create a Universal Profile using the LSP Factory tools, a Key Manager i
 
 You can then easily get you KeyManager's address by querying the `owner()` of the UP, and create an instance of the KM from this address.
 
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
 ```javascript
 let keyManagerAddress = await myUP.methods.owner().call();
 let myKeyManager = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
 ```
+
+  </TabItem>
+  
+  <TabItem value="ethersjs" label="ethers.js">
+
+```javascript
+let keyManagerAddress = await myUP.callStatic.owner();
+let myKeyManager = new ethers.Contract(keyManagerAddress, KeyManager.abi);
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Set permissions for other addresses
 
@@ -31,36 +48,35 @@ Below is a list of ERC725Y Permission Keys related to the Key Manager.
 We will store these values in a file `constants.js`, and reuse them through the next code snippets.
 
 ```javascript title="constants.js"
-const KEYS = {
-  PERMISSIONS: '0x4b80742d0000000082ac0000', // AddressPermissions:Permissions:<address> --> bytes32
-  ALLOWEDADDRESSES: '0x4b80742d00000000c6dd0000', // AddressPermissions:AllowedAddresses:<address> --> address[]
-  ALLOWEDFUNCTIONS: '0x4b80742d000000008efe0000', // AddressPermissions:AllowedFunctions:<address> --> bytes4[]
-  PERMISSIONS_ARRAY:
-    '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3', // keccak256('AddressPermissions[]')
-};
+// keccak256('AddressPermissions[]')
+const PERMISSIONS_ARRAY =
+  '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3';
 
+// prettier-ignore
+const ADDRESSES = {
+  PERMISSIONS:      "0x4b80742d0000000082ac0000", // AddressPermissions:Permissions:<address> --> bytes32
+  ALLOWEDADDRESSES: "0x4b80742d00000000c6dd0000", // AddressPermissions:AllowedAddresses:<address> --> address[]
+  ALLOWEDFUNCTIONS: "0x4b80742d000000008efe0000", // AddressPermissions:AllowedFunctions:<address> --> bytes4[]
+}
+
+// prettier-ignore
 const PERMISSIONS = {
-  CHANGEOWNER:
-    '0x0000000000000000000000000000000000000000000000000000000000000001',
-  CHANGEPERMISSIONS:
-    '0x0000000000000000000000000000000000000000000000000000000000000002',
-  ADDPERMISSIONS:
-    '0x0000000000000000000000000000000000000000000000000000000000000004',
-  SETDATA: '0x0000000000000000000000000000000000000000000000000000000000000008',
-  CALL: '0x0000000000000000000000000000000000000000000000000000000000000010',
-  STATICCALL:
-    '0x0000000000000000000000000000000000000000000000000000000000000020',
-  DELEGATECALL:
-    '0x0000000000000000000000000000000000000000000000000000000000000040',
-  DEPLOY: '0x0000000000000000000000000000000000000000000000000000000000000080',
-  TRANSFERVALUE:
-    '0x0000000000000000000000000000000000000000000000000000000000000100',
-  SIGN: '0x0000000000000000000000000000000000000000000000000000000000000200',
-};
+  CHANGEOWNER:      "0x0000000000000000000000000000000000000000000000000000000000000001", // 0000 0000 0000 0001
+  CHANGEPERMISSIONS:"0x0000000000000000000000000000000000000000000000000000000000000002", // .... .... .... 0010
+  ADDPERMISSIONS:   "0x0000000000000000000000000000000000000000000000000000000000000004", // .... .... .... 0100
+  SETDATA:          "0x0000000000000000000000000000000000000000000000000000000000000008", // .... .... .... 1000
+  CALL:             "0x0000000000000000000000000000000000000000000000000000000000000010", // .... .... 0001 ....
+  STATICCALL:       "0x0000000000000000000000000000000000000000000000000000000000000020", // .... .... 0010 ....
+  DELEGATECALL:     "0x0000000000000000000000000000000000000000000000000000000000000040", // .... .... 0100 ....
+  DEPLOY:           "0x0000000000000000000000000000000000000000000000000000000000000080", // .... .... 1000 ....
+  TRANSFERVALUE:    "0x0000000000000000000000000000000000000000000000000000000000000100", // .... 0001 .... ....
+  SIGN:             "0x0000000000000000000000000000000000000000000000000000000000000200", // .... 0010 .... ....
+}
 
 module.exports = {
-  KEYS,
+  ADDRESSES,
   PERMISSIONS,
+  PERMISSIONS_ARRAY,
 };
 ```
 
@@ -71,7 +87,8 @@ It assumes that the profile has been deployed with our [lsp-factory.js](https://
   <TabItem value="web3js" label="web3.js" default>
 
 ```javascript
-const { KEYS, PERMISSIONS } = require('./constants');
+// see file above constants.js
+const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require('./constants');
 
 const UniversalProfile = require('@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json');
 const KeyManager = require('@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json');
@@ -118,7 +135,8 @@ setBobPermission();
   <TabItem value="etherjs" label="ether.js">
 
 ```javascript
-const { KEYS, PERMISSIONS } = require('./constants');
+// see file above constants.js
+const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require('./constants');
 
 const UniversalProfile = require('@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json');
 const KeyManager = require('@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json');
