@@ -159,10 +159,172 @@ setBobPermission();
   </TabItem>
 </Tabs>
 
-## Interact with your UP via the Key Manager
+## Interact via the Key Manager
+
+To interact with a UP that has a Key Manager attached to it, all interactions should be sent to the Key Manager directly. You will need to encode the payload of the function you want to call on the UP, and pass it to the `keyManager.execute(_data)` function.
+
+The Key Manager will allow / disallow execution after checking the permissions of the calling address.
+
+The examples below are the same as the ones from the _Create a Universal Profile_ guide, adapted with the Key Manager.
 
 ### Set data in the key-value store
 
+You will need the following permissions, based on the keys you are trying to set.
+
+If setting permission keys:
+
+- **required permission =** `ADDPERMISSIONS` if granting some permissions for a new address.
+- **required permission =** `CHANGEPERMISSIONS` if changing the permissions of an address that already has some permissions set.
+
+For any other keys:
+
+- **required permission =** `SETDATA`
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```javascript
+const key = web3.utils.keccak256('MyFirstKey');
+const value = web3.utils.stringToHex('Hello LUKSO!');
+
+// 1. encode the setData payload
+let abiPayload - await myUp.methods.setData([key], [value]).encodeABI();
+
+// 2. execute via the KeyManager, passing the UP payload
+await myKeyManager.execute(abiPayload, { from: '<address-of-up-owner>' })
+```
+
+  </TabItem>
+  
+  <TabItem value="ethersjs" label="ethers.js">
+
+```javascript
+const key = web3.utils.keccak256('MyFirstKey');
+const value = web3.utils.stringToHex('Hello LUKSO!');
+
+// 1. encode the setData payload
+let abiPayload - await myUp.interface.encodeFunctionData("setData", [[key], [value]]);
+
+// 2. execute via the KeyManager, passing the UP payload
+await myKeyManager.connect(upOwner).execute(abiPayload)
+```
+
+  </TabItem>
+
+</Tabs>
+
 ### Transfer LYX
 
-### Interact with other smart contracts
+You will need the permissions `CALL` + `TRANSFERVALUE` to transfer LYX from a UP.
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```javascript
+const OPERATION_CALL = 0;
+const recipient = '0xcafecafecafecafecafecafecafecafecafecafe';
+const amount = web3.utils.toWei('3');
+// payload executed at the target. Here nothing (just a plain LYX transfer)
+const data = '0x';
+
+// 1. encode the payload to transfer 3 LYX from the UP
+let abiPayload = await myUp.methods
+  .execute(OPERATION_CALL, recipient, amount, data)
+  .encodeABI();
+
+// 2. execute via the KeyManager, passing the UP payload
+await myKeyManager.execute(abiPayload, { from: '<address-of-up-owner>' });
+```
+
+  </TabItem>
+  
+  <TabItem value="ethersjs" label="ethers.js">
+
+```javascript
+const OPERATION_CALL = 0;
+const recipient = '0xcafecafecafecafecafecafecafecafecafecafe';
+const amount = web3.utils.toWei('3');
+// payload executed at the target. Here nothing (just a plain LYX transfer)
+const data = '0x';
+
+// 1. encode the payload to transfer 3 LYX from the UP
+let abiPayload = await myUp.interface.encodeFunctionData('execute', [
+  OPERATION_CALL,
+  recipient,
+  amount,
+  data,
+]);
+
+// 2. execute via the KeyManager, passing the UP payload
+await myKeyManager.connect(upOwner).execute(abiPayload);
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Interact with other contracts
+
+You will need the permission `CALL` to interact with an other contract from a UP.
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```javascript
+const OPERATION_CALL = 0;
+
+// 1. encode the payload to be run at the targetContract
+// assuming targetContract is a Contract instance
+const targetPayload = targetContract.methods
+  .myCoolfunction('dummyParameter')
+  .encodeABI();
+
+// 2. encode the payload to be run on the UP,
+// passing the payload to be run at the targetContract as 4th parameter
+let abiPayload = await myUp.methods
+  .execute(OPERATION_CALL, targetContract.address, 0, targetPayload)
+  .encodeABI();
+
+// 3. execute via the KeyManager, passing the UP payload
+await myKeyManager.execute(abiPayload, { from: '<address-of-up-owner>' });
+```
+
+  </TabItem>
+  
+  <TabItem value="ethersjs" label="ethers.js">
+
+```javascript
+const OPERATION_CALL = 0;
+
+// 1. encode the payload to be run at the targetContract
+// assuming targetContract is a Contract instance
+const targetPayload = targetContract.interface.encodeFunctionData(
+  'myCoolfunction',
+  ['dummyParameter'],
+);
+
+// 2. encode the payload to be run on the UP,
+// passing the payload to be run at the targetContract as 4th parameter
+let abiPayload = myUp.interface.encodeFunctionData('execute', [
+  OPERATION_CALL,
+  targetContract.address,
+  0,
+  targetPayload,
+]);
+
+// 3. execute via the KeyManager, passing the UP payload
+await myKeyManager.connect(upOwner).execute(abiPayload);
+```
+
+  </TabItem>
+
+</Tabs>
+
+:::info
+
+See the [Solidity docs](https://docs.soliditylang.org/en/v0.8.10/abi-spec.html#function-selector-and-argument-encoding) for more infos on function + arguments encoding.
+
+:::
