@@ -1,5 +1,5 @@
 ---
-sidebar_label: "LSP0 - ERC725Account"
+sidebar_label: 'LSP0 - ERC725Account'
 sidebar_position: 4.2
 ---
 
@@ -11,7 +11,7 @@ Same as the functions. Once written and embedded in the Solidity code, these fun
 
 An ERC725Account aims to make a smart that acts as a generic account. It is composed of two main components.
 
-_picture of ERC725X and Y from presentation_
+<img src="../../../static/img/erc725.jpg" height="600" />
 
 ## ERC725X - Generic Executor
 
