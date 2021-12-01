@@ -3,13 +3,15 @@ sidebar_label: 'Introduction'
 sidebar_position: 4.1
 ---
 
+# Introduction
+
 :::caution
 
 This section is a work in progress.
 
 :::
 
-> To see Universal Profiles (🆙 ) live on the [L14 testnet](../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed profiles.
+> To see Universal Profiles (🆙 ) live on the [L14 testnet](../../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed profiles.
 
 Universal Profiles are smart contract accounts, that should be used instead of simple EOAs (simple generated keys), as they have the following advantages:
 

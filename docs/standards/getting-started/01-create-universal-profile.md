@@ -1,5 +1,5 @@
 ---
-**sidebar_label**: 'Create a Universal Profile'
+sidebar_label: 'Create a Universal Profile'
 sidebar_position: 2.2
 ---
 
@@ -10,13 +10,13 @@ import TabItem from '@theme/TabItem';
 
 :::success
 
-We recommend using our [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) tool. It is the easiest way to get started with Universal Profile. It will deploy your UP + make all the setup for you.
+We recommend using our [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) tool. It is the easiest way to get started with Universal Profile. It will deploy your UP + make all the setup for you.
 
 :::
 
 ## Deploy your Universal Profile
 
-Our [LSP Factory tool](../../tools/lsp-factoryjs/getting-started.md) let you easily deploy a Universal Profile with just few lines of code.
+Our [lsp-factory.js tool](../../tools/lsp-factoryjs/introduction/getting-started.md) let you easily deploy a Universal Profile with just few lines of code.
 
 ```javascript
 const { LSPFactory } = require("@lukso/lsp-factory.js");

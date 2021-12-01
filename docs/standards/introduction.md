@@ -1,12 +1,11 @@
 ---
-id: introduction
-title: "Introduction"
+title: 'Introduction'
 sidebar_position: 1
 ---
 
 # The LUKSO Standard Proposals (LSPs)
 
-LUKSO comes with a set of new standards for smart contracts and Dapp development. These new standards are based around [Universal Profiles](Universal-Profiles.md) and [NFT2.0](./NFT2.0.md).
+LUKSO comes with a set of new standards for smart contracts and Dapp development. These new standards are based around [Universal Profiles](./universal-profile/introduction.md) and [NFT2.0](./nft-2.0/introduction.md).
 
 This section will give you an overview of what each LSP does and how to start using them together.
 
