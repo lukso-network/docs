@@ -186,7 +186,15 @@ You can find **more details about each permissions by clicking on the toggles be
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
     </p>
-    <blockquote>This call type is currently disallowed. See note below for more details.</blockquote>
+
+This permission to execute code and functions from other contracts in the context of the UP.
+
+:::danger
+
+**`DELEGATECALL`** is currently disallowed (even if set on the KeyManager) because of its dangerous nature, as some malicious code can be executed in the context of the linked Account contract.
+
+:::
+
 </details>
 
 <details>
@@ -255,25 +263,6 @@ permissions: CHANGEPERMISSIONS + SETDATA
 :::note
 
 When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
-
-:::
-
-:::caution
-
-Each permission MUST be:
-
-- **exactly 32 bytes long**
-- zero left-padded
-  - So ✅ `0x0000000000000000000000000000000000000000000000000000000000000008`
-  - Not ❌ `0x0800000000000000000000000000000000000000000000000000000000000000`
-
-For instance, if you try to set the permission SETDATA for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
-
-:::
-
-:::danger
-
-**`DELEGATECALL`** is currently disallowed (even if set on the KeyManager) because of its dangerous nature, as some malicious code can be executed in the context of the linked Account contract.
 
 :::
 
