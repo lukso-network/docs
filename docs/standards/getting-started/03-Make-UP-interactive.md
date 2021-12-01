@@ -1,9 +1,9 @@
 ---
-sidebar_label: "Interact with Universal Receiver"
+sidebar_label: 'Interact with Universal Receiver'
 sidebar_position: 2.3
 ---
 
-# Make your UP interactive via a Universal Receiver
+# Interact with a Universal Receiver
 
 A Universal Receiver Delegate enables you to delegate the `universalReceiver` functionality to another smart contract.
 

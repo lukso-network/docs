@@ -1,22 +1,20 @@
 ---
-sidebar_label: "Create a Universal Profile"
+sidebar_label: 'Create a Universal Profile'
 sidebar_position: 2.2
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# Create a Universal Profile
+
 :::success
 
 We recommend using our [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) tool. It is the easiest way to get started with Universal Profile. It will deploy your UP + make all the setup for you.
 
-These docs also include code snippets to deploy from scratch using ethers.js or web3.js.
-
 :::
 
 ## Deploy your Universal Profile
-
-### Using LSP Factory
 
 Our [LSP Factory tool](../../tools/lsp-factoryjs/getting-started.md) let you easily deploy a Universal Profile with just few lines of code.
 
@@ -51,7 +49,7 @@ You can then create an instance of your UP ready to interact with.
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-import UniversalProfile from "@lukso/universalprofile-smart-contracts/build/contracts/UniversalProfile.json";
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/contracts/UniversalProfile.json';
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 ```
@@ -61,7 +59,7 @@ const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-import UniversalProfile from "@lukso/universalprofile-smart-contracts/build/contracts/UniversalProfile.json";
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/contracts/UniversalProfile.json';
 
 const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi);
 ```
@@ -71,29 +69,6 @@ const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi);
 </Tabs>
 
 <br/>
-
-### Manually with web3.js / ethers.js
-
-<details>
-    <summary><b>NB:</b> Alternatively, you can create your Universal Profile from scratch, via web3.js or ethers.js.</summary>
-
-<Tabs>
-
-  <TabItem value="web3js" label="web3.js">
-
-  </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-  </TabItem>
-
-</Tabs>
-
-</details>
-
-<br/>
-
----
 
 ## Interact with your UP
 
@@ -152,7 +127,7 @@ execute(
   0, // operation CALL
   recipient, // address of the recipient to send LYX to (an externally owned account, or a contract address)
   amount, // amount of LYX to transfer
-  "" // empty payload
+  '', // empty payload
 );
 ```
 
@@ -162,7 +137,9 @@ If the recipient is a smart contract where you want to run some function (for in
 
 ```javascript
 // do something on another SC
-let otherSC_abi = myOtherSC.methods.myCoolfunction("dummyParameter").encodeABI();
+let otherSC_abi = myOtherSC.methods
+  .myCoolfunction('dummyParameter')
+  .encodeABI();
 
 // call the execute function on your UP (operation, to, value, calldata)
 let abi = myUP.methods.execute(0, myOtherSCAddress, 0, otherSC_abi).encodeABI();
