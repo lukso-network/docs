@@ -1,13 +1,16 @@
 ---
-sidebar_label: "LSP2 - Storage Layout"
+sidebar_label: 'LSP2 - Storage Layout'
 sidebar_position: 3.3
 ---
 
 # The Storage Layout - LSP2 (JSON Schema)
 
-:::caution
+:::caution This section is a work in progress.
+:::
 
-our [javascript library `erc725.js`](../../tools/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema, without going through all the encoding complexity manually.
+:::success Useful Tip
+
+Our [javascript library `erc725.js`](../../tools/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema, without going through all the encoding complexity manually.
 
 :::
 

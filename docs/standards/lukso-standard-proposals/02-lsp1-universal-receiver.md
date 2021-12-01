@@ -5,4 +5,7 @@ sidebar_position: 3.2
 
 # Universal Receiver
 
+:::info Coming Soon
+:::
+
 The Universal Receiver is a standard that aims to notify an ERC725Account when certain events happen, such as token transfers, or incoming transactions.

@@ -5,8 +5,5 @@ sidebar_position: 5.2
 
 # Digital Asset
 
-:::info
-
-Coming soon.
-
+:::info Coming soon
 :::

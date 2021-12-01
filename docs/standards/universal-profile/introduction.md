@@ -5,10 +5,7 @@ sidebar_position: 4.1
 
 # Introduction
 
-:::caution
-
-This section is a work in progress.
-
+:::caution This section is a work in progress.
 :::
 
 > To see Universal Profiles (🆙 ) live on the [L14 testnet](../../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed profiles.

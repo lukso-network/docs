@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create a Universal Profile
 
-:::success
+:::success Useful Tip
 
 We recommend using our [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) tool. It is the easiest way to get started with Universal Profile. It will deploy your UP + make all the setup for you.
 

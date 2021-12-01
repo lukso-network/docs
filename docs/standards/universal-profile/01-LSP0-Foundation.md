@@ -5,6 +5,9 @@ sidebar_position: 4.2
 
 # The Foundation - LSP0 (ERC725Account)
 
+:::caution This section is a work in progress.
+:::
+
 Once deployed, smart contracts cannot be changed. Meaning that setting state variables make them set in stone in the contract. You cannot add or remove variables inside your contract.
 
 Same as the functions. Once written and embedded in the Solidity code, these functionality and behaviours cannot be changed.

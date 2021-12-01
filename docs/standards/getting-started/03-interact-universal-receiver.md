@@ -5,6 +5,9 @@ sidebar_position: 2.3
 
 # Interact with a Universal Receiver
 
+:::info Coming Soon
+:::
+
 A Universal Receiver Delegate enables you to delegate the `universalReceiver` functionality to another smart contract.
 
 ## Deploy your Universal Receiver Delegate
