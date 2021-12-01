@@ -1,100 +1,101 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "LUKSO",
-  tagline: "Documentation",
-  url: "https://docs.lukso.tech/",
-  baseUrl: "/",
+  title: 'LUKSO',
+  tagline: 'Documentation',
+  url: 'https://docs.lukso.tech/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: "img/favicon.png",
-  organizationName: "lukso-network", // Usually your GitHub org/user name.
-  projectName: "docs", // Usually your repo name.
+  favicon: 'img/favicon.png',
+  organizationName: 'lukso-network', // Usually your GitHub org/user name.
+  projectName: 'docs', // Usually your repo name.
+  plugins: ['docusaurus-plugin-sass'],
   themeConfig: {
     navbar: {
-      title: "LUKSO",
+      title: 'LUKSO',
       logo: {
-        alt: "LUKSO Logo",
-        src: "img/logo.png",
+        alt: 'LUKSO Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
-          type: "doc",
-          docId: "introduction",
-          position: "left",
-          label: "Getting started",
+          type: 'doc',
+          docId: 'networks/mainnet',
+          position: 'left',
+          label: 'Networks',
         },
         {
-          type: "doc",
-          docId: "networks/mainnet",
-          position: "left",
-          label: "Networks",
+          type: 'doc',
+          docId: 'standards/introduction',
+          position: 'left',
+          label: 'Standards',
         },
         {
-          type: "doc",
-          docId: "standards/introduction",
-          position: "left",
-          label: "Standards",
+          type: 'doc',
+          docId: 'contracts/overview',
+          position: 'left',
+          label: 'Contracts',
         },
         {
-          type: "doc",
-          docId: "tools/getting-started",
-          position: "left",
-          label: "Tools",
+          type: 'doc',
+          docId: 'tools/getting-started',
+          position: 'left',
+          label: 'Tools',
         },
         {
-          href: "https://bit.ly/LUKSOWhitepaper",
-          label: "Whitepaper",
-          position: "right",
+          href: 'https://bit.ly/LUKSOWhitepaper',
+          label: 'Whitepaper',
+          position: 'right',
         },
         {
-          href: "https://github.com/lukso-network/",
-          label: "GitHub",
-          position: "right",
+          href: 'https://github.com/lukso-network/',
+          label: 'GitHub',
+          position: 'right',
         },
       ],
     },
     footer: {
-      style: "dark",
+      style: 'dark',
       links: [
         {
-          title: "Developers",
+          title: 'Developers',
           items: [
             {
-              label: "GitHub",
-              href: "https://github.com/lukso-network",
+              label: 'GitHub',
+              href: 'https://github.com/lukso-network',
             },
           ],
         },
         {
-          title: "Community",
+          title: 'Community',
           items: [
             {
-              label: "Discord",
-              href: "https://discord.gg/E2rJPP4",
+              label: 'Discord',
+              href: 'https://discord.gg/E2rJPP4',
             },
             {
-              label: "Twitter",
-              href: "https://twitter.com/lukso_io",
+              label: 'Twitter',
+              href: 'https://twitter.com/lukso_io',
             },
             {
-              label: "Medium",
-              href: "https://medium.com/lukso",
+              label: 'Medium',
+              href: 'https://medium.com/lukso',
             },
             {
-              label: "YouTube",
-              href: "https://www.youtube.com/channel/UCG3TAT6pSpfafGihCMUcrjA",
+              label: 'YouTube',
+              href: 'https://www.youtube.com/channel/UCG3TAT6pSpfafGihCMUcrjA',
             },
           ],
         },
         {
-          title: "About",
+          title: 'About',
           items: [
-            { label: "LUKSO", href: "https://lukso.network/" },
-            { label: "Team", href: "https://lukso.network/about" },
-            { label: "Careers", href: "https://lukso.network/jobs" },
+            { label: 'LUKSO', href: 'https://lukso.network/' },
+            { label: 'Team', href: 'https://lukso.network/about' },
+            { label: 'Careers', href: 'https://lukso.network/jobs' },
             {
-              label: "Privacy Policy",
-              href: "https://lukso.network/privacy",
+              label: 'Privacy Policy',
+              href: 'https://lukso.network/privacy',
             },
           ],
         },
@@ -102,25 +103,25 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} LUKSO Blockchain GmbH &mdash; hello@lukso.network`,
     },
     prism: {
-      additionalLanguages: ["solidity"],
+      additionalLanguages: ['solidity'],
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/dracula'),
     },
   },
   presets: [
     [
-      "@docusaurus/preset-classic",
+      '@docusaurus/preset-classic',
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          routeBasePath: "/",
-          editUrl: "https://github.com/lukso-network/docs/tree/main/",
+          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: '/',
+          editUrl: 'https://github.com/lukso-network/docs/tree/main/',
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve('./src/css/custom.css'),
         },
       },
     ],
   ],
-  themes: ["@saucelabs/theme-github-codeblock"],
+  themes: ['@saucelabs/theme-github-codeblock'],
 };

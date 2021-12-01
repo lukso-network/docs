@@ -53,7 +53,7 @@ if(!myKeyAddress)
     return
 ```
 
-Next we deploy your UP smart contracts using the [lsp-factory.js NPM package](./lsp-factoryjs/getting-started):
+Next we deploy your UP smart contracts using the [lsp-factory.js NPM package](./lsp-factoryjs/introduction/getting-started):
 
 ```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js'
@@ -155,8 +155,8 @@ console.log(data);
 To interact directly with any smart contract through you UP, load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
 
 ```js title="Interact directly through your UP"
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const myUP = new web3.eth.Contract(
     UniversalProfile.abi,
@@ -213,7 +213,7 @@ myKeyManager.methods.execute(abi).send({
 ## 🛠 Tools
 
 - [erc725.js](./erc725js/getting-started)
-- [lsp-factory.js](./lsp-factoryjs/getting-started)
+- [lsp-factory.js](./lsp-factoryjs/introduction/getting-started)
 - [universalprofile-smart-contracts](https://github.com/lukso-network/lsp-universalprofile-smart-contracts)
 
 ## 🔌 Services

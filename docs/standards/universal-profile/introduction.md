@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Introduction"
+sidebar_label: 'Introduction'
 sidebar_position: 4.1
 ---
 
@@ -13,7 +13,7 @@ This section is a work in progress.
 
 Universal Profiles are smart contract accounts, that should be used instead of simple EOAs (simple generated keys), as they have the following advantages:
 
-- [Security is upgradeable](NFT2.0.md), controlling keys or smart contracts can be changed over time, and even the whole key manager logic
+- Security is upgradeable, controlling keys or smart contracts can be changed over time, and even the whole key manager logic
 - Accounts can attach information though [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y), meaning things from [profile information](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md) to protocols and other data, can be attached to your account.
 - Accounts can react to incoming assets, due to the an upgradeable [Universal Receiver](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md).
 
@@ -29,13 +29,7 @@ To add profile information you can add the keys of [LSP3-UniversalProfile-Metada
 
 ## References
 
-- https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md
-- https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md
-- https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts/LSP1-UniversalReceiver
-- https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md
-
-##
-
-## References
-
-- https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-3-UniversalProfile.md
+- [LUKSO Standards Proposals: LSP0 - ERC725 Account (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
+- [LUKSO Standards Proposals: LSP3 - Universal Profile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
+- [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
+- [LSP1 Universal Receiver: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver)

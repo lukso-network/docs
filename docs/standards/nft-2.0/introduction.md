@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Introduction"
+sidebar_label: 'Introduction'
 sidebar_position: 5.1
 ---
 
@@ -15,4 +15,4 @@ This section is a work in progress.
 
 ## References
 
-- https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-4-DigitalCertificate.md
+- [LUKSO Standards Proposals: LSP4 - Digital Certificate (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-4-DigitalCertificate.md)
