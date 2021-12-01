@@ -66,10 +66,10 @@ Each permission MUST be:
 
 - **exactly 32 bytes long**
 - zero left-padded
-  - `0x0000000000000000000000000000000000000000000000000000000000000004` ✅
-  - `0x0400000000000000000000000000000000000000000000000000000000000000` ❌
+  - `0x0000000000000000000000000000000000000000000000000000000000000008` ✅
+  - `0x0800000000000000000000000000000000000000000000000000000000000000` ❌
 
-For instance, if you try to set the permission SETDATA for an address as `0x04`, this will be stored internally as `0x0400000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
+For instance, if you try to set the permission SETDATA for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
 
 :::
 
