@@ -8,30 +8,40 @@ sidebar_position: 4.2
 :::caution This section is a work in progress.
 :::
 
-Once deployed, smart contracts cannot be changed. Meaning that setting state variables make them set in stone in the contract. You cannot add or remove variables inside your contract.
+Once deployed on a network, smart contracts cannot be changed: **they are set in stone**. This means that:
 
-Same as the functions. Once written and embedded in the Solidity code, these functionality and behaviours cannot be changed.
+- you cannot add or remove state variables inside the contract.
+- you cannot change the functionality or behaviours of the functions defined inside the contract.
 
-An ERC725Account aims to make a smart that acts as a generic account. It is composed of two main components.
+An ERC725Account aims to make a smart contract act like a generic account. It can change, evolve and be edited over time. It is composed of two substandards: ERC725**X** and ERC725**Y**.
 
-<img src="../../../static/img/erc725.jpg" height="600" />
+<div style={{ textAlign: 'center' }}>
+    <img src="../../../static/img/erc725.jpg" height="700" />
+</div>
 
 ## ERC725X - Generic Executor
 
-This component the contract to execute any arbitrary function of another smart contract, transfer tokens, or deploy new contracts.
+This substandard enables a contract to execute any arbitrary function of another smart contract, transfer tokens, or deploy new contracts.
+
+The operation types available are:
+
+- `CALL`
+- `CREATE`
+- `CREATE2`
+- `DELEGATECALL`
+- `STATICCALL`
 
 ## ERC725Y - Generic Key-Value Store
 
-This component gives flexibility to the contract storage, by enabling to attach any type of information to the contract, and update it easily.
+This substandard enables a contract to hold arbitrary data through a generic key/value store.
 
-The data can then easily be changed, linked or unlinked again.
+It gives flexibility to the contract storage, by enabling to attach any type of information to the contract, and update it easily. The data can easily be changed, linked or unlinked.
 
-## Additional features
+## Features of ERC725Account
+
+### Ownership
 
 ERC725Account are owned account, meaning they can be controlled only by their account owner.
+However, ownership is not restricted to a single owner. An ERC725Account can be managed by multiple private keys, including multi-signature wallets.
 
-This makes it possible to transferOwnership of an ERC725Account from one partie to another.
-
-This creates room for user-friendly backup schemes on the blockchain, without the need to write down backup phrases.
-
-Finally, an account can be managed by multiple private keys, including multi-signature wallets.
+Finally, ownership of an ERC725Account can be transfered from one partie to another. This øffers the possibility to use an ERC725Account to represent more than just user accounts. For instance, it can represent assets with specific data attached to them, that are transfered between owners during their lifetime.

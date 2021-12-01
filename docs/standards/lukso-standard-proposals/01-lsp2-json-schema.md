@@ -47,11 +47,3 @@ Under the hood:
 
 - keys are represented as `bytes32`.
 - variables are stored as `bytes` with an undefined length.
-
-### Singleton
-
-### Array
-
-### Bytes20 Mapping
-
-### Bytes20 Mapping with Grouping
