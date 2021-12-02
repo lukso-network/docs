@@ -18,7 +18,7 @@ Smart contracts understand only two things: **bytes** and **numbers**. For a sma
 
 Data in a smart contract is organised between slots. Each data is storaged at a slot number. Let's take this smart contract as an example.
 
-```
+```solidity
 contract Example {
 
     string name;    // storage slot 1
@@ -30,7 +30,7 @@ contract Example {
 
 For humans, it is difficult to remember the slot number. The more data you attach to a smart contract, the more impractical it becomes.
 
-Finally, everyone can store information differently on an ERC725Account, depending on individual use cases and needs. There is no standardize schema of how the data looks like. This make it very hard for ERC725 Account to interact with each other, and for external services to interact with ERC725Accounts.
+Finally, everyone can store information differently on an ERC725Account, depending on individual use cases and needs. There is no standardized schema of how the data looks like. This make it very hard for ERC725 Account to interact with each other, and for external services to interact with ERC725Accounts.
 
 ## How does LSP2 work?
 

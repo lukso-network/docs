@@ -44,4 +44,4 @@ It gives flexibility to the contract storage, by enabling to attach any type of 
 ERC725Account are owned account, meaning they can be controlled only by their account owner.
 However, ownership is not restricted to a single owner. An ERC725Account can be managed by multiple private keys, including multi-signature wallets.
 
-Finally, ownership of an ERC725Account can be transfered from one partie to another. This øffers the possibility to use an ERC725Account to represent more than just user accounts. For instance, it can represent assets with specific data attached to them, that are transfered between owners during their lifetime.
+Finally, ownership of an ERC725Account can be transfered from one party to another. This øffers the possibility to use an ERC725Account to represent more than just user accounts. For instance, it can represent assets with specific data attached to them, that are transfered between owners during their lifetime.

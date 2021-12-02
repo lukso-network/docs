@@ -51,7 +51,7 @@ You can then create an instance of your UP ready to interact with.
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/contracts/UniversalProfile.json';
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 ```
@@ -61,7 +61,7 @@ const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/contracts/UniversalProfile.json';
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
 
 const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi);
 ```
@@ -76,8 +76,8 @@ const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi);
 
 :::caution
 
-If you have deployed your UP via the lsp-factory, your UP is deployed with a KeyManager attached to it.
-Please head over _Interact via the Key Manager_ in the next page.
+If you have deployed your UP with [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md), your UP is deployed with a KeyManager attached to it.
+Please head over [_Interact via the Key Manager_](./02-add-key-manager.md) in the next page.
 
 :::
 
@@ -85,7 +85,7 @@ Please head over _Interact via the Key Manager_ in the next page.
 
 :::info
 
-If you have deployed your UP via the lsp-factory, you can skip this section. Your profile details were already setup on deployment :)
+If you have deployed your UP with [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md), you can skip this section. Your profile details were already setup on deployment :)
 
 :::
 
@@ -175,7 +175,7 @@ await myUp.connect(upOwner).execute(OPERATION_CALL, recipient, amount, data);
 
 </Tabs>
 
-As you can see from the code snippet above, transfering LYX from a Universal Profile is simply making a standard contract `CALL`, with some `_value` attached to the contract call. Since we are just making a simple LYX transfer, the fourth parameter `_data` should be empty.
+As you can see from the code snippet above, transferring LYX from a Universal Profile is as simple as making a standard contract `CALL`, with some `_value` attached to the contract call. Since we are just making a simple LYX transfer, the fourth parameter `_data` should be empty.
 
 ### Interact with other contracts
 

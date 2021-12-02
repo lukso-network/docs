@@ -12,7 +12,9 @@ A Universal Receiver Delegate enables you to delegate the `universalReceiver` fu
 
 ## Deploy your Universal Receiver Delegate
 
-### Link your URD to your UP
+Deploy the contract with web3.js / ethers.js
+
+## Link your URD to your UP
 
 In order to enable your URD on your Universal profile, you need to set the address of your UniversalReceiverDelegate contract in the following key on your Universal Profile.
 
@@ -20,3 +22,5 @@ In order to enable your URD on your Universal profile, you need to set the addre
 - **value:** `<urd-contract-address>`
 
 As a result, your Universal Profile contract will know at which contract address the functionality is handled.
+
+_add code snippets for web3.js / ethers.js_
