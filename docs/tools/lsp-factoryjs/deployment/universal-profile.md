@@ -20,7 +20,8 @@ const myUniversalProfileData = {
       width: 500,
       height: 500,
       hashFunction: 'keccak256(bytes)',
-      hash: '0x...', // bytes32 hex string of the image hash
+      // bytes32 hex string of the image hash
+      hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
       url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
     },
   ],
@@ -29,7 +30,8 @@ const myUniversalProfileData = {
       width: 500,
       height: 500,
       hashFunction: 'keccak256(bytes)',
-      hash: '0x...', // bytes32 hex string of the image hash
+      // bytes32 hex string of the image hash
+      hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
       url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
     },
   ],
