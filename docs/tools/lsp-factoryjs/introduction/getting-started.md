@@ -18,15 +18,15 @@ npm install @lukso/lsp-factory.js
 ## Instantiation
 
 ```javascript
-import { LSPFactory } from "@lukso/lsp-factory.js";
+import { LSPFactory } from '@lukso/lsp-factory.js';
 
-const deployKey = '0x...' // Private key of the account which will deploy UPs
-const provider = "https://rpc.l14.lukso.network" // RPC url used to connect to the network
-const chainId = 22 // Chain Id of the network you want to connect to
+const deployKey = '0x...'; // Private key of the account which will deploy UPs
+const provider = 'https://rpc.l14.lukso.network'; // RPC url used to connect to the network
+const chainId = 22; // Chain Id of the network you want to connect to
 
 const lspFactory = new LSPFactory(provider, {
   deployKey,
-  chainId
+  chainId,
 });
 ```
 
@@ -42,7 +42,6 @@ const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
 };
 ```
 
-
 `lsp3Profile` contains the LSP3 metadata of your Universal Profile. This is the 'face' of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
 
 ```javascript
@@ -54,7 +53,8 @@ const myUniversalProfileData = {
           width: 500,
           height: 500,
           hashFunction: "keccak256(bytes)",
-          hash: "0x...", // bytes32 hex string of the image hash
+          // bytes32 hex string of the image hash
+          hash: "0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14",
           url: "ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp",
       },
     ],
@@ -63,7 +63,8 @@ const myUniversalProfileData = {
           width: 500,
           height: 500,
           hashFunction: "keccak256(bytes)",
-          hash: "0x...", // bytes32 hex string of the image hash
+          // bytes32 hex string of the image hash
+          hash: "0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14",
           url: "ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp",
       },
     ],
@@ -75,18 +76,16 @@ const myUniversalProfileData = {
 When deploying your UP your LSP3 data will be automatically uploaded to IPFS.
 
 If you already have LSP3 data uploaded then simply pass an IPFS URL:
+
 ```javascript
-const myUniversalProfileData = 'ipfs://QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy'
+const myUniversalProfileData =
+  'ipfs://QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy';
 ```
 
-
-
-To create a 'faceless' Universal Profile, omit the `lsp3Profile` value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP. 
-
+To create a 'faceless' Universal Profile, omit the `lsp3Profile` value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP.
 
 You can now continue using your UP address:
 
 ```javascript
 const myUPAddress = myContracts.ERC725Account.address;
 ```
-
