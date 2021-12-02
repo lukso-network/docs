@@ -28,7 +28,7 @@ Since permissions are stored under the ERC725Account contract, they are not atta
 
 There are 3 main types of permissions that can be set for addresses interacting with a Universal Profile.
 
-- [**Address Permissions**](#address-permissions): defines a set of [**permission values**](<(#permissions-value)>) for an `address`.
+- [**Address Permissions**](#address-permissions): defines a set of [**permission values**](#permissions-value) for an `address`.
 
 - [**Allowed Addresses:**](#allowed-addresses) defines which EOA or contract addresses an `address` is allowed to interact with.
 
