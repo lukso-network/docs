@@ -1,15 +1,36 @@
 ---
-title: The LUKSO Standard Proposals
+title: 'Introduction'
 sidebar_position: 1
 ---
 
 # The LUKSO Standard Proposals (LSPs)
 
-LUKSO comes with a set of new standards for smart contracts that should be used as the core pieces of your dApp.
+LUKSO comes with a set of new standards for smart contracts and Dapp development. These new standards are based around [Universal Profiles](./universal-profile/introduction.md) and [NFT2.0](./nft-2.0/introduction.md).
 
-The main new standards are based around [Universal Profiles](Universal-Profiles.md) and [NFT2.0](./NFT2.0.md).
+This section will give you an overview of what each LSP does and how to start using them together.
 
-To see Universal Profiles (🆙 ) live on the [L14 testnet](../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed profiles.
+**Foundational LSPs**
+
+| LSP  | Title                                                                          | Description                                                           |
+| :--- | :----------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| LSP1 | [Universal Receiver](./lukso-standard-proposals/02-lsp1-universal-receiver.md) | add custom behaviour to an ERC725Account, making the account reactive |
+| LSP2 | [ERC725Y JSON Schema ](lukso-standard-proposals/01-lsp2-json-schema.md)        | a schema to describe a set of key-value pairs                         |
+
+**Universal Profiles LSPs**
+
+| LSP  | Title                                                                              | Description                                                                              |
+| ---- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| LSP0 | [ERC725 Account](universal-profile/01-LSP0-Foundation.md)                          | a blockchain account (based on ERC725 standard)                                          |
+| LSP3 | [Universal Profile](universal-profile/02-LSP3-Universal-Profiles.md)               | set of key-value pairs representing a smart contract based profile                       |
+| LSP6 | [Key Manager ](universal-profile/03-lsp6-key-manager.md)                           | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
+| LSP1 | [Universal Receiver Delegate](universal-profile/04-Universal-Receiver-Delegate.md) | delegate the universal receiver functionality to an external smart contract              |
+
+**NFT 2.0 LSPs**
+
+| LSP  | Title                                                                       | Description      |
+| ---- | --------------------------------------------------------------------------- | ---------------- |
+| LSP7 | [Digital Asset](nft-2.0/01-LSP7-Digital-Asset.md)                           | ERC20 like token |
+| LSP8 | [Identifiable Digital Asset](nft-2.0/02-LSP8-Identifiable-Digital-Asset.md) | ERC721 like NFT  |
 
 ## More to watch:
 
@@ -18,5 +39,5 @@ To see Universal Profiles (🆙 ) live on the [L14 testnet](../networks/l14-test
 
 ## References
 
-- <https://github.com/lukso-network/LIPs>
-- [ERC-725 Alliance](https://erc725alliance.org/)
+- [LUKSO Improvement Proposals - LIPs (Github)](https://github.com/lukso-network/LIPs)
+- [ERC-725 Alliance website](https://erc725alliance.org/)

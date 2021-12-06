@@ -19,12 +19,12 @@
 
 html[data-theme='dark'] {
   --ifm-color-primary: #c1cce8;
---ifm-color-primary-dark: #a2b3dc;
---ifm-color-primary-darker: #92a6d7;
---ifm-color-primary-darkest: #647fc5;
---ifm-color-primary-light: #e0e5f3;
---ifm-color-primary-lighter: #eff2f9;
---ifm-color-primary-lightest: #ffffff;
+  --ifm-color-primary-dark: #a2b3dc;
+  --ifm-color-primary-darker: #92a6d7;
+  --ifm-color-primary-darkest: #647fc5;
+  --ifm-color-primary-light: #e0e5f3;
+  --ifm-color-primary-lighter: #eff2f9;
+  --ifm-color-primary-lightest: #ffffff;
 }
 
 .docusaurus-highlight-code-line {
@@ -36,5 +36,9 @@ html[data-theme='dark'] {
 
 @counter-style codeblock-line {
   system: extends decimal;
-  suffix: ""
+  suffix: '';
+}
+
+.erc725 {
+  width: 10px;
 }
