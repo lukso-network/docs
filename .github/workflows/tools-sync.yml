@@ -1,0 +1,27 @@
+name: tools-sync
+
+on: 
+  push:
+    branches: [automated-tools-sync]
+
+jobs:
+  sync: 
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Pull tools docs
+      run: npm run docs:tools:sync
+
+    - name: Get diff
+      run: git diff --name-only
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with: 
+        draft: true
+        branch: tools-docs-sync
+        delete-branch: true
+        title: Test PR
