@@ -12,7 +12,7 @@ NFT2.0 is a collective name for the new token and NFT standards: [LSP7-DigitalAs
 
 > We have [LSP7 and LSP8 implementations that are backwards compatible with ERC20 and ERC721](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts), but we highly recommend using the native ones.
 
-The interfaces used to interact with these standards was inspired from EIP1155, a Multi-Token standard for multiple token types (fungible, non-fungible, or other configurations).
+The interfaces used to interact with these standards was inspired from [EIP1155](https://eips.ethereum.org/EIPS/eip-1155), a Multi-Token standard for multiple token types (fungible, non-fungible, or other configurations).
 
 One of the main questions about NFT 2.0 is which characteristics make them the next generation of digital assets on the blockchain.
 
@@ -26,7 +26,7 @@ Current tokens and NFTs standards do not have a standard way to attach informati
 
 The current ERC20 / ERC721 standards only contain name, symbol and asset url internally. But how about if we would like to attach some more specific data to them? Like an icon, the creators of the asset, their utility and motive, or even the community they are attached to.
 
-NFT 2.0 solves this problem by creating tokens and NFTs that use ERC725Y under the hood. ERC725Y enables to create smart contracts with a very flexible and extensible storage. With ERC725Y as a backbone, it is then possible to attach any type of information or metadata to the token or NFT.
+NFT 2.0 solves this problem by creating tokens and NFTs that use [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) under the hood. ERC725Y enables to create smart contracts with a very flexible and extensible storage. With ERC725Y as a backbone, it is then possible to attach any type of information or metadata to the token or NFT.
 
 ### Generic way to interact with smart contracts
 
@@ -36,11 +36,14 @@ Current tokens standards have no way to call other smart contracts. When a token
 
 NFT 2.0 implement a `force` parameter, that is `false` by default. It restrict from transferring to addresses (like plain Externally Owned Accounts) that cannot be controlled. As a result it prevents from loosing assets forever, if they would be transferred accidentally to unwanted addresses.
 
-## LSP4 Digital Assets Metadata
+## LSP4 Digital Asset Metadata
 
-Both standards are derived from LSP4 - Digital Asset Metadata. Their core information is stored as metadata within the contract storage.
+Both standards are derived from [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md). LSP4 is a metadata standard, that defines which keys can be used to represent a digital asset on the blockchain.
+
+With ERC20 and ERC721, `name` and `symbol` were stored as (public) variables in the smart contract.
+With LSP4, such informations are stored under the ERC725Y contract storage, under the keys `LSP4TokenName` and `LSP4TokenSymbol`.
 
 ## References
 
-- [LUKSO Standards Proposals: LSP4 - Digital Asset Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-4-DigitalCertificate.md)
+- [LUKSO Standards Proposals: LSP4 - Digital Asset Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)
 - [NFT NYC - Building Blocks for the New Creative Economy (Fabian Vogelsteller, Youtube)](https://www.youtube.com/watch?v=skA4Y-vvt5s&t=2s)
