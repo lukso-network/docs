@@ -29,3 +29,7 @@ If each NFT is represent by its own ERC725Y contract (= metadata contract), this
 
 - the `address` of the contract that minted this NFT.
 - the `tokenId` of this NFT.
+
+## References
+
+- [LUKSO Standards Proposals: LSP8 - Identifiable Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)
