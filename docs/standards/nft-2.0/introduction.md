@@ -28,10 +28,6 @@ The current ERC20 / ERC721 standards only contain name, symbol and asset url int
 
 NFT 2.0 solves this problem by creating tokens and NFTs that use [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) under the hood. ERC725Y enables to create smart contracts with a very flexible and extensible storage. With ERC725Y as a backbone, it is then possible to attach any type of information or metadata to the token or NFT.
 
-### Generic way to interact with smart contracts
-
-Current tokens standards have no way to call other smart contracts. When a token transfer happen, the token contract simply update the balance internally for addresses. If the receiving address is a contract, it has no way to be notified that a token transfer happened.
-
 ### Safer transfers
 
 NFT 2.0 implement a `force` parameter, that is `false` by default. It restrict from transferring to addresses (like plain Externally Owned Accounts) that cannot be controlled. As a result it prevents from loosing assets forever, if they would be transferred accidentally to unwanted addresses.
