@@ -10,7 +10,7 @@ sidebar_position: 5.3
 
 LSP8 Identifiable Digital Asset is a standard that aims to describe _non-fungible_ assets. The term _non-fungible_ means that each asset are unique and different. They are distinguisable from each other, and therefore are not interchangeable.
 
-LSP8 assets are similar in nature with [ERC721](https://eips.ethereum.org/EIPS/eip-721) tokens (NFTs)
+LSP8 assets are similar in nature to [ERC721](https://eips.ethereum.org/EIPS/eip-721) tokens (NFTs)
 
 Since every single asset is unique on its own, they are differentiated by a unique identifier: a `tokenId`. The identifier can be anything from a unique serial number, to an other [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) Smart contract that contain information and metadata specific to this `tokenId`.
 
