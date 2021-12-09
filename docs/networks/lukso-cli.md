@@ -44,7 +44,12 @@ You may need to use `sudo` on `macos` devices.
 
 ## Installation ( Windows )
 >🛠️ Work In Progress, available soon.  
-> Requires [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) 5.1+ (may work on earlier versions but not tested)
+> Requires [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) 5.1+ (may work on earlier versions but it wasn't tested)
+
+### Enable running scripts
+By default PowerShell does not allow running scripts. To change this you must:
+1. Run `PowerShell` as an Administrator
+2. Enter `Set-ExecutionPolicy Unrestricted` into the shell
 
 ### Install `powershell-yaml` module
 Powershell does not support `.yaml` files out-of-the-box  
@@ -55,8 +60,12 @@ https://www.powershellgallery.com/packages/powershell-yaml/0.4.2
 3. Verify installation by running `ConvertFrom-Yaml`  it shouldn't give any output but also not throw any error.
 
 ### Enable coloring for powershell
-This step is optional but recomended
+This step is optional but recommended 
+It lets you enable additional terminal color encoding used by some clients. (otherwise the output may be cluttered)
+
 `Set-ItemProperty HKCU:\Console VirtualTerminalLevel -Type DWORD 1`
+Restart `PowerShell` for changes to take effect.
+
 
 ### Install Setup
 1. Run `PowerShell` as an Administrator
