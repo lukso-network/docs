@@ -45,3 +45,23 @@ await myToken.methods
 ```
 
 ## Transfer tokens from your UP to another UP
+
+The following code snippet show how to transfer 15 tokens from your UP to another UP `bobUP`.
+To do so
+
+```javascript
+const bobUP = '<bob-up-address>';
+const amount = 15;
+
+// 1. generate the payload to transfer tokens
+const tokenPayload = myToken.methods
+  .transfer('<up-address>', bobUP, amount, false, '0x')
+  .encodeABI();
+
+// 2. instruct Universal Profile to execute the token transfer on the token contract
+await myUniversalProfile.methods
+  .execute(0, myToken._address, 0, tokenPayload)
+  .send({
+    from: myEOA.address,
+  });
+```
