@@ -10,39 +10,37 @@ import TabItem from '@theme/TabItem';
 
 :::success Useful Tip
 
-We recommend using our [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md) tool. It is the easiest way to get started with Universal Profile. It will deploy your UP + make all the setup for you.
+We recommend using our [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md) tool. It is the easiest way to get started with Universal Profile.
 
 :::
 
 ## Deploy your Universal Profile
 
+&nbsp;
+
+> :arrow_right: &nbsp; [See our lsp-factory.js guide on how to deploy a Universal Profile](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started#instantiation)
+
 Our [lsp-factory.js tool](../tools/lsp-factoryjs/introduction/getting-started.md) let you easily deploy a Universal Profile with just few lines of code.
 
+It will help you to get started quickly by:
+
+1. deploying all the necessary contracts (UniversalProfile, LSP6KeyManager, LSP1UniversalReceiverDelegate).
+2. setup everything for you (link your LSP1UniversalReceiverDelegate (URD) with your account + set all the permissions).
+
+You can obtain the address of each contract deployed as follow.
+
 ```javascript
-const { LSPFactory } = require("@lukso/lsp-factory.js");
+const myContracts = await lspFactory.LSP3UniversalProfile.deploy(...)
 
-const lspFactory = new LSPFactory(
-  provider.connection.url, // https://rpc.l14.lukso.network
-  {
-    deployKey: '0x...'; // Private key of the account which will deploy the UP,
-    chainId: 22, // chain Id of the L14 network
-  }
-);
-
-// Deploy UniversalProfile + KeyManager + UniversalReceiverDelegate
-const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
-    controllingAccounts: ["0x..."], // Address which will controll the UP
-    lsp3Profile: {
-        name: "My Universal Profile",
-        description: "My cool Universal Profile",
-        links: [{ title: "My Website", url: "www.my-website.com" }],
-    },
-});
-
+// UniversalProfile -> UP
 const myUPAddress = myContracts.ERC725Account.address;
-```
 
-## Create an instance
+// LSP6Keymanager -> KM
+const myKMAddress = myContracts.KeyManager.address;
+
+// UniversalReceiverDelegate -> URD
+const myURDAddress = myContracts.UniversalReceiverDelegate:.address;
+```
 
 You can then create an instance of your UP ready to interact with.
 
