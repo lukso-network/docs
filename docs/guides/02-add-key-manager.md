@@ -16,7 +16,7 @@ import KeyManager from '@lukso/universalprofile-smart-contracts/build/contracts/
 
 ## Setting up a Key Manager
 
-When you create a Universal Profile using [lsp-factory.js](./../../tools/lsp-factoryjs/introduction/getting-started.md), a Key Manager is automatically deployed and the ownership of your UP is automatically transferred to it.
+When you create a Universal Profile using [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md), a Key Manager is automatically deployed and the ownership of your UP is automatically transferred to it.
 
 You can then easily get your KeyManager's address by querying the `owner()` of the UP, and create an instance of the KM from this address.
 

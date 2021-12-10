@@ -10,13 +10,13 @@ import TabItem from '@theme/TabItem';
 
 :::success Useful Tip
 
-We recommend using our [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) tool. It is the easiest way to get started with Universal Profile. It will deploy your UP + make all the setup for you.
+We recommend using our [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md) tool. It is the easiest way to get started with Universal Profile. It will deploy your UP + make all the setup for you.
 
 :::
 
 ## Deploy your Universal Profile
 
-Our [lsp-factory.js tool](../../tools/lsp-factoryjs/introduction/getting-started.md) let you easily deploy a Universal Profile with just few lines of code.
+Our [lsp-factory.js tool](../tools/lsp-factoryjs/introduction/getting-started.md) let you easily deploy a Universal Profile with just few lines of code.
 
 ```javascript
 const { LSPFactory } = require("@lukso/lsp-factory.js");
@@ -76,7 +76,7 @@ const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi);
 
 :::caution
 
-If you have deployed your UP with [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md), your UP is deployed with a KeyManager attached to it.
+If you have deployed your UP with [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md), your UP is deployed with a KeyManager attached to it.
 Please head over [_Interact via the Key Manager_](./02-add-key-manager.md) in the next page.
 
 :::
@@ -85,7 +85,7 @@ Please head over [_Interact via the Key Manager_](./02-add-key-manager.md) in th
 
 :::info
 
-If you have deployed your UP with [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md), you can skip this section. Your profile details were already setup on deployment :)
+If you have deployed your UP with [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md), you can skip this section. Your profile details were already setup on deployment :)
 
 :::
 
