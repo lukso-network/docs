@@ -43,6 +43,12 @@ module.exports = {
           label: 'Tools',
         },
         {
+          type: 'doc',
+          docId: 'guides/getting-started',
+          position: 'left',
+          label: 'Guides',
+        },
+        {
           href: 'https://bit.ly/LUKSOWhitepaper',
           label: 'Whitepaper',
           position: 'right',

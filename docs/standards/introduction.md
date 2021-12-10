@@ -11,10 +11,10 @@ This section will give you an overview of what each LSP does and how to start us
 
 **Foundational LSPs**
 
-| LSP  | Title                                                                          | Description                                                           |
-| :--- | :----------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| LSP1 | [Universal Receiver](./lukso-standard-proposals/02-lsp1-universal-receiver.md) | add custom behaviour to an ERC725Account, making the account reactive |
-| LSP2 | [ERC725Y JSON Schema ](lukso-standard-proposals/01-lsp2-json-schema.md)        | a schema to describe a set of key-value pairs                         |
+| LSP  | Title                                                                   | Description                                                           |
+| :--- | :---------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| LSP1 | [Universal Receiver](./generic-standards/02-lsp1-universal-receiver.md) | add custom behaviour to an ERC725Account, making the account reactive |
+| LSP2 | [ERC725Y JSON Schema ](./generic-standards/01-lsp2-json-schema.md)      | a schema to describe a set of key-value pairs                         |
 
 **Universal Profiles LSPs**
 
