@@ -10,7 +10,7 @@ sidebar_position: 5.2
 
 LSP7 Digital Asset is a standard that aims to describe a fungible asset. The term _fungible_ means that these assets are mutually interchangeable between each other (*eg: *one token has the same value than an other token).
 
-LSP8 Digital Assets are similar in nature to [ERC20](https://eips.ethereum.org/EIPS/eip-20) Tokens.
+LSP7 Digital Assets are similar in nature to [ERC20](https://eips.ethereum.org/EIPS/eip-20) Tokens.
 
 LSP7 Digital Asset is an interface standard, meaning it creates a common base to use and interact with such assets. Contracts and clients can query and transfer such assets in the same way, using the same methods.
 
