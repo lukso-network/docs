@@ -19,7 +19,7 @@ You can request some via the [L14 faucet](http://faucet.l14.lukso.network/).
   <TabItem value="web3js" label="web3.js" default>
 
 ```javascript
-const Web3 = require('web3');
+import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
@@ -55,7 +55,7 @@ setupWallet();
   <TabItem value="etherjs" label="ether.js" default>
 
 ```javascript
-const ethers = require('ethers');
+import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(
   'https://rpc.l14.lukso.network',
