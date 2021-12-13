@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create a Universal Profile
 
-:::success Useful Tip
+:::success Recommendation
 
 We recommend using our [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md) tool. It is the easiest way to get started with Universal Profile.
 
@@ -18,16 +18,19 @@ We recommend using our [lsp-factory.js](../tools/lsp-factoryjs/introduction/gett
 
 > :arrow_right: &nbsp; [See our lsp-factory.js guide on how to deploy a Universal Profile](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started#instantiation)
 
-Our [lsp-factory.js tool](../tools/lsp-factoryjs/introduction/getting-started.md) let you easily deploy a Universal Profile (UP) with just few lines of code.
+Our [lsp-factory.js tool](../tools/lsp-factoryjs/introduction/getting-started.md) let you easily deploy a Universal Profile with just few lines of code.
 
 It will help you to get started quickly by:
 
-1. deploying all the necessary contracts (UniversalProfile, LSP6KeyManager, LSP1UniversalReceiverDelegate).
-2. setup everything for you (link your LSP1UniversalReceiverDelegate (URD) with your account + set all the permissions).
+1. deploying all the necessary contracts:
+   - [Universal Profile](../standards/universal-profile/03-lsp3-universal-profile.md) (UP)
+   - [Universal Receiver Delegate](../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD)
+   - [Key Manager](../standards/universal-profile/04-lsp6-key-manager.md) (KM)
+2. setup everything for you (link your URD with your UP account + set all the [permissions](./../standards/universal-profile/04-lsp6-key-manager.md#types-of-permissions)).
 
 ## Instantiate your contracts
 
-After deploying with the lsp-factory.js, can obtain the address of each contract deployed as follow:
+Deploying via _lsp-factory.js_ gives you an object that contain the address of each deployed contract.
 
 ```javascript
 const myContracts = await lspFactory.LSP3UniversalProfile.deploy(...)
@@ -42,7 +45,7 @@ const myURDAddress = myContracts.UniversalReceiverDelegate:.address;
 const myKMAddress = myContracts.KeyManager.address;
 ```
 
-You can then create an instance of your Universal Profile, Key Manager and Universal Receiver Delegate ready to be interact with.
+You can then create instances of your UP, KM and URD. These will be ready to be used and interacted with on the [L14 network](./../networks/l14-testnet.md).
 
 <Tabs>
   
@@ -76,11 +79,12 @@ const myKM = new ethers.Contract(myURDAddress, KeyManager.abi);
 
 </Tabs>
 
-:::info Alternative way to create a KeyManager instance
+<details>
+    <summary><b>Alternative way to create a KeyManager instance</b></summary>
 
-When you create a UP using [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md), ownership of your Universal Profile is automatically transferred to the Key Manager.
+When you create a Universal Profile with [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md), ownership of your Universal Profile is automatically transferred to the Key Manager.
 
-You can then easily get your KeyManager's address by querying the `owner()` of the UP, and create an instance of the KM from this address.
+You can then easily get your Key Manager's address by querying the `owner()` of the Universal Profile, and create an instance of your Key Manager from the returned address.
 
 <Tabs>
   
@@ -104,4 +108,4 @@ let myKeyManager = new ethers.Contract(keyManagerAddress, KeyManager.abi);
 
 </Tabs>
 
-:::
+</details>

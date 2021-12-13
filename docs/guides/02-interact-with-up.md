@@ -8,26 +8,34 @@ import TabItem from '@theme/TabItem';
 
 # Using your Universal Profile
 
-To interact with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow / disallow execution after checking the permissions of the calling address.
+To interact with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow / disallow execution after checking the [permissions](../standards/universal-profile/04-lsp6-key-manager.md#permission-values) of the calling address.
 
-To interact with your UP, you will need to encode the function call of your UP and pass the **payload** to the KM via `keyManager.execute(_data)`.
+To interact with your UP, you will need to encode the function call of your UP and pass the **payload** to the KM via [`keyManager.execute(_data)`](../contracts/key-manager.md#execute).
 
-### Edit your `LSP3Profile` metadata
+## Edit your `LSP3Profile` metadata
 
-You can add details to your Universal Profile (or edit existing ones) by adding / updating the LSP3Profile metadata.
+:::success Recommendation
 
-This take the form of a JSON file on stored on ipfs, where your Universal Profile refers to.
+We highly recommend to use our tools [lsp-factory.js](../tools/lsp-factoryjs/deployment/universal-profile.md#uploading-lsp3-metadata-to-ipfs) and [erc725.js](../tools/erc725js/writing-data.md#example) to edit your LSP3 Profile Metadata. These tools provide convenience functions for uploading and setting the key to your metadata on your UP.
 
-You can do so in 3 steps:
+:::
 
-1. upload the JSON file to IPFS (via lsp-factory, or manually)
-2. encode the JSON file (our `erc725.js` tool provide convenience for this)
-3. set your new `LSP3Profile` metadata in your profile.
+You can add (or edit) details to your UP by adding / updating the value stored in the [**LSP3Profile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key.
 
-### Set data in the key-value store
+This value takes the form of a reference to a JSON file stored on ipfs.
+
+You can add / edit informations and see the changes in 3 steps.
+
+1. upload the JSON file to IPFS (via [_lsp-factory.js_](../tools/lsp-factoryjs/deployment/universal-profile.md#uploading-lsp3-metadata-to-ipfs), or manually).
+2. encode the JSON file (our [_erc725.js_](../tools/erc725js/writing-data.md#example) tool provide convenience for this).
+3. set your new **LSP3Profile** metadata key in your profile.
+
+## Adding data to your Universal Profile
 
 <details>
     <summary>Permissions Required</summary>
+
+> _See the [permissions section of LSP6 - Key Manager](../standards/universal-profile/04-lsp6-key-manager.md#permissions-values) for more details_
 
 The permission required differs, based on the keys you are trying to set.
 
@@ -42,7 +50,7 @@ For any other keys:
 
 </details>
 
-Below is a basic example of how to set any key-value pair in the Universal Profile contract storage.
+You can add any new data or information to your UP by setting new key-value pairs in the [ERC725Y contract storage](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#abstract).
 
 <Tabs>
   
@@ -81,10 +89,12 @@ await myKeyManager.connect(upOwner).execute(abiPayload);
 
 </Tabs>
 
-### Transfer LYX
+## Transfer LYX
 
 <details>
     <summary>Permissions Required</summary>
+
+> _See the [permissions section of LSP6 - Key Manager](../standards/universal-profile/04-lsp6-key-manager.md#permissions-values) for more details_
 
 The caller needs the permissions `CALL` + `TRANSFERVALUE` to transfer LYX from a UP.
 
@@ -92,7 +102,7 @@ The `recipient` address should also be listed under the `AddressPermission:Allow
 
 </details>
 
-Transferring LYX from a Universal Profile is as simple as making a standard `CALL` to any `address`, attaching some `_value` to the call. You can transfer LYX from a UP via the `.execute(...)` function in the UP contract.
+Transferring LYX from a UP is as simple as making a standard [`CALL`](../standards/universal-profile/04-lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call. You can transfer LYX from a UP via the [`execute(...)`](../contracts/erc725-account.md#execute) function in the UP contract.
 
 The parameters of the function will be as follow:
 
@@ -150,10 +160,18 @@ await myKeyManager.connect(upOwner).execute(abiPayload);
 
 </Tabs>
 
-### Interact with other contracts
+## Interact with other contracts
+
+:::info
+
+See the [Solidity docs](https://docs.soliditylang.org/en/v0.8.10/abi-spec.html#function-selector-and-argument-encoding) for more infos on function + arguments encoding.
+
+:::
 
 <details>
     <summary>Permissions Required</summary>
+
+> _See the [permissions section of LSP6 - Key Manager](../standards/universal-profile/04-lsp6-key-manager.md#permissions-values) for more details_
 
 The caller needs the permissions `CALL` + `TRANSFERVALUE` to transfer LYX from a UP.
 
@@ -161,11 +179,11 @@ The `recipient` address should also be listed under the `AddressPermission:Allow
 
 </details>
 
-We have seen in the previous example how to send LYX from your UP via the `.execute` function.
+We have seen in the previous example how to send LYX from your UP via the [`execute(...)`](../contracts/erc725-account.md#execute) function.
 
 This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from your UP. The `_data` parameter is especially useful when the `_to` recipient is a smart contract.
 
-To make your UP call a function on a specific contract deployed on the network, the parameters of the `.execute` function will be as follow:
+To make your UP call a function on a specific contract deployed on the network, the parameters of the `execute(...)` function will be as follow:
 
 - `_operation`: `0` (for `CALL`).
 - `_to`: the `address` of the smart contract you want to interact with.
@@ -175,8 +193,6 @@ To make your UP call a function on a specific contract deployed on the network, 
 
 1. abi-encode the function call with the parameters you want to pass.
 2. pass this payload as the fourth argument `_data` of the `.execute` function.
-
-The code snippets below show you how to do this.
 
 <Tabs>
   
@@ -231,9 +247,3 @@ await myKeyManager.connect(upOwner).execute(abiPayload);
   </TabItem>
 
 </Tabs>
-
-:::info
-
-See the [Solidity docs](https://docs.soliditylang.org/en/v0.8.10/abi-spec.html#function-selector-and-argument-encoding) for more infos on function + arguments encoding.
-
-:::

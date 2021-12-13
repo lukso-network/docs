@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Giving permissions to addresses
 
-The KeyManager enables you to give permissions to other addresses, so they can edit data on your Universal Profile (UP) or interact with it on your behalf. In this section, we will see how to set up these permissions.
+The Key Manager (KM) enables you to give permissions to other addresses, so they can edit data on your Universal Profile (UP) or interact with it on your behalf. In this section, we will see how to set up these permissions.
 
 Below is a list of ERC725Y Permission Keys related to the Key Manager.
 We will store these values in a file `constants.js`, and reuse them through the next code snippets.
