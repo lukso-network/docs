@@ -39,16 +39,45 @@ This shell script will:
 3. Place them in `/opt/lukso`
 4. Create symbolic link in `/usr/local/bin`.
 
+### Running
+Enter `lukso start` to start an archive node  
+Enter `lukso start --validate --coinbase <ETH1_Address>` to start a validator node (Read instructions on validating first)
+
+You may need to use `sudo` on `macos` devices.
+
 
 ## Installation ( Windows )
 >🛠️ Work In Progress, available soon.  
-> Requires [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
+> Requires [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) 5.1+ (may work on earlier versions but it wasn't tested)
 
-## Running
-Enter `lukso start` to start an archive node  
-Enter `lukso start --validate --coinbase <ETH1_Address>` to start a validator node (Read instructions on validating first) 
+### Enable running scripts
+By default PowerShell does not allow running scripts. To change this you must:
+1. Run `PowerShell` as an Administrator
+2. Enter `Set-ExecutionPolicy Unrestricted` into the shell
 
-You may need to use `sudo` on `macos` devices.
+### Install `powershell-yaml` module
+Powershell does not support `.yaml` files out-of-the-box  
+and because the script is using config files it is necessary to install third-party module.  
+https://www.powershellgallery.com/packages/powershell-yaml/0.4.2
+1. Run `PowerShell` as an Administrator
+2. Enter `Install-Module -Name powershell-yaml` into the shell
+3. Verify installation by running `ConvertFrom-Yaml`  it shouldn't give any output but also not throw any error.
+
+### Enable coloring for powershell
+This step is optional but recommended 
+It lets you enable additional terminal color encoding used by some clients. (otherwise the output may be cluttered)
+
+`Set-ItemProperty HKCU:\Console VirtualTerminalLevel -Type DWORD 1`
+Restart `PowerShell` for changes to take effect.
+
+
+### Install Setup
+1. Run `PowerShell` as an Administrator
+2. `cd $HOME` (by default when running as an Admin you're in the `C:\Windows\System32` directory and this may cause problems)
+3. `Invoke-WebRequest -Uri https://install.l15.lukso.network/windows -OutFile ./install-lukso.ps1`
+4. `./install-lukso.ps1`
+
+
 
 ## Config file
 Enter `lukso config` in your shell to generate config file.
