@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 To interact with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow / disallow execution after checking the [permissions](../standards/universal-profile/04-lsp6-key-manager.md#permission-values) of the calling address.
 
-To interact with your UP, you will need to encode the function call of your UP and pass the **payload** to the KM via [`keyManager.execute(_data)`](../contracts/key-manager.md#execute).
+To interact with your UP, you will need to encode the function call of your UP and pass the **payload** to the [`execute(payload)`](../contracts/key-manager.md#execute) function on the KM.
 
 ## Edit your `LSP3Profile` metadata
 
