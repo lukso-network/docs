@@ -20,19 +20,19 @@ This section will give you an overview of what each LSP does and how to start us
 
 | LSP  | Title                                                                              | Description                                                                              |
 | ---- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| LSP0 | [ERC725 Account](universal-profile/01-LSP0-Foundation.md)                          | a blockchain account (based on ERC725 standard)                                          |
-| LSP3 | [Universal Profile](universal-profile/02-LSP3-Universal-Profiles.md)               | set of key-value pairs representing a smart contract based profile                       |
-| LSP6 | [Key Manager ](universal-profile/03-lsp6-key-manager.md)                           | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
-| LSP1 | [Universal Receiver Delegate](universal-profile/04-Universal-Receiver-Delegate.md) | delegate the universal receiver functionality to an external smart contract              |
+| LSP0 | [ERC725 Account](universal-profile/01-lsp0-foundation.md)                          | a blockchain account (based on ERC725 standard)                                          |
+| LSP3 | [Universal Profile](universal-profile/03-lsp3-universal-profile.md)                | set of key-value pairs representing a smart contract based profile                       |
+| LSP6 | [Key Manager ](universal-profile/04-lsp6-key-manager.md)                           | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
+| LSP1 | [Universal Receiver Delegate](universal-profile/02-universal-receiver-delegate.md) | delegate the universal receiver functionality to an external smart contract              |
 
 **NFT 2.0 LSPs**
 
 | LSP  | Title                                                                       | Description      |
 | ---- | --------------------------------------------------------------------------- | ---------------- |
-| LSP7 | [Digital Asset](nft-2.0/01-LSP7-Digital-Asset.md)                           | ERC20 like token |
-| LSP8 | [Identifiable Digital Asset](nft-2.0/02-LSP8-Identifiable-Digital-Asset.md) | ERC721 like NFT  |
+| LSP7 | [Digital Asset](nft-2.0/01-lsp7-digital-asset.md)                           | ERC20 like token |
+| LSP8 | [Identifiable Digital Asset](nft-2.0/02-lsp8-identifiable-digital-asset.md) | ERC721 like NFT  |
 
-## More to watch:
+## More to watch
 
 - [The New Standard for Blockchain Accounts and NFT 2.0](https://www.youtube.com/watch?v=7u0WGAS1k_Q)
 - [Tech Time with Fabian Ep.1 - LUKSO NFT's 2.0 Explained](https://www.youtube.com/watch?v=Nx5D9QWNIhI)

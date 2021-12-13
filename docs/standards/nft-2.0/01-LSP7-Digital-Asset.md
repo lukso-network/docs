@@ -23,6 +23,6 @@ This means that token amounts can have decimals (up to 18), an it is possible to
 
 On the contrary, a LSP7 Digital Asset created as **non-divisible** means that one of such token cannot be divided in fractional parts (for instance, you cannot transfer 1/10th of a token).
 
-## References
+## References
 
 - [LUKSO Standards Proposals: LSP7 - Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)
