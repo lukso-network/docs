@@ -1,6 +1,6 @@
 ---
 title: LSP1 Universal Receiver Delegate
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # LSP1 Universal Receiver Delegate

@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Introduction'
-sidebar_position: 4.1
+sidebar_position: 1
 ---
 
 # Introduction
