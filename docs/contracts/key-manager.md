@@ -6,7 +6,7 @@ sidebar_position: 4
 # LSP6 Key Manager
 
 The **KeyManager** is a contract that controls the **[ERC725Account](./erc725-account.md)**. It comes with a set of pre-defined permissions for addresses.
-The permissions could range from setting data, executing, changing owner and more as written in the **[Permissions Section](../standards/universal-profile/03-lsp6-key-manager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](../standards/universal-profile/03-lsp6-key-manager.md)**.
+The permissions could range from setting data, executing, changing owner and more as written in the **[Permissions Section](../standards/universal-profile/04-lsp6-key-manager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](../standards/universal-profile/04-lsp6-key-manager.md)**.
 
 Currently the **`DelegateCall`** operation to execute is unavailable for the users since it have malicious impact on their accounts.
 
