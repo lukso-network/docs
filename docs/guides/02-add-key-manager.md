@@ -6,43 +6,7 @@ sidebar_position: 2.2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Add control with a KeyManager
-
-In order to interact with the KeyManager, you will need to download its ABI from our npm package
-
-```javascript
-import KeyManager from '@lukso/universalprofile-smart-contracts/build/contracts/KeyManager/KeyManager.json';
-```
-
-## Setting up a Key Manager
-
-When you create a Universal Profile using [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md), a Key Manager is automatically deployed and the ownership of your UP is automatically transferred to it.
-
-You can then easily get your KeyManager's address by querying the `owner()` of the UP, and create an instance of the KM from this address.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```javascript
-let keyManagerAddress = await myUP.methods.owner().call();
-let myKeyManager = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
-```
-
-  </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-```javascript
-let keyManagerAddress = await myUP.callStatic.owner();
-let myKeyManager = new ethers.Contract(keyManagerAddress, KeyManager.abi);
-```
-
-  </TabItem>
-
-</Tabs>
-
-## Set permissions for other addresses
+# Set permissions for other addresses
 
 Below is a list of ERC725Y Permission Keys related to the Key Manager.
 We will store these values in a file `constants.js`, and reuse them through the next code snippets.
