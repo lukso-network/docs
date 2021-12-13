@@ -1,18 +1,18 @@
 ---
-sidebar_label: 'Setup'
+sidebar_label: 'Setup: create a wallet'
 sidebar_position: 2.1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Setup
+# Create a wallet
 
 Let's get started by creating a wallet connected to the [LUKSO L14 test network](https://blockscout.com/lukso/l14).
 
-You will also need some test LYX to follow the guides.
+This Externally Owned Account (EOA) will be used to deploy and control your Universal Profile.
 
-You can request some via the [L14 faucet](http://faucet.l14.lukso.network/).
+You will also need some test LYX to follow the guides. You can request some via the [L14 faucet](http://faucet.l14.lukso.network/), after creating your wallet.
 
 <Tabs>
 
@@ -26,28 +26,13 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 // GENERATE a key to control your UP
 let myPassword = 'mypassword';
 
-async function setupWallet() {
-  // create a new account, if one does not exist
-  if (!web3.eth.accounts.wallet.length) {
-    web3.eth.accounts.wallet.create(1, myPassword);
-    console.log('My new key address ', web3.eth.accounts.wallet[0].address);
-  } else {
-    console.log(
-      'Loaded existing key address ',
-      web3.eth.accounts.wallet[0].address,
-    );
-    console.log(
-      'Balance ',
-      web3.utils.fromWei(
-        await web3.eth.getBalance(web3.eth.accounts.wallet[0].address),
-        'ether',
-      ),
-      'LYXt',
-    );
-  }
+async function createWallet() {
+  // create a new account
+  web3.eth.accounts.wallet.create(1, myPassword);
+  console.log('My new key address ', web3.eth.accounts.wallet[0].address);
 }
 
-setupWallet();
+createWallet();
 ```
 
   </TabItem>
@@ -65,13 +50,13 @@ const provider = new ethers.providers.JsonRpcProvider(
   },
 );
 
-async function setupWallet() {
+async function createWallet() {
   // create a new account
   let wallet = ethers.Wallet.createRandom();
   console.log('My new key address ', wallet.address);
 }
 
-setupWallet();
+createWallet();
 ```
 
   </TabItem>
