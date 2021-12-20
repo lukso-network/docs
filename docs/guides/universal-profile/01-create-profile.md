@@ -14,23 +14,6 @@ In this guide, you will learn how to:
 
 We will be using Typescript and our [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) tool to create your Universal Profile. And this with **less than 50 lines of code!**.
 
-## Setup
-
-We will need to install some dependencies to get started.
-Open you terminal, create a new project directory.
-
-```shell
-mkdir myUP
-cd myUP
-npm init
-```
-
-Install the following dependencies that we will need to follow this tutorial
-
-```shell
-npm install web3 @lukso/lsp-factory.js
-```
-
 ## Introduction
 
 <!-- <div style="text-align:center"> -->
@@ -56,6 +39,23 @@ Under the hood, the lsp-factory.js performs the following actions:
 2. setup everything for you (link your URD with your UP account + set all the [permissions](../../standards/universal-profile/04-lsp6-key-manager.md#types-of-permissions)).
 
 > :arrow_right: &nbsp; [See our lsp-factory.js docs for more ](../../tools/lsp-factoryjs/introduction/getting-started)
+
+## Setup
+
+We will need to install some dependencies to get started.
+Open you terminal, create a new project directory.
+
+```shell
+mkdir myUP
+cd myUP
+npm init
+```
+
+Install the following dependencies that we will need to follow this tutorial
+
+```shell
+npm install web3 @lukso/lsp-factory.js
+```
 
 ## Step 1: Create a wallet
 

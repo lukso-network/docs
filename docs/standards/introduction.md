@@ -21,9 +21,9 @@ This section will give you an overview of what each LSP does and how to start us
 | LSP  | Title                                                                                     | Description                                                                              |
 | ---- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | LSP0 | [ERC725 Account](./universal-profile/01-lsp0-foundation.md)                               | a blockchain account (based on ERC725 standard)                                          |
+| LSP1 | [Universal Receiver Delegate](./universal-profile/02-lsp1-universal-receiver-delegate.md) | delegate the universal receiver functionality to an external smart contract              |
 | LSP3 | [Universal Profile](./universal-profile/03-lsp3-universal-profile.md)                     | set of key-value pairs representing a smart contract based profile                       |
 | LSP6 | [Key Manager ](./universal-profile/04-lsp6-key-manager.md)                                | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
-| LSP1 | [Universal Receiver Delegate](./universal-profile/02-lsp1-universal-receiver-delegate.md) | delegate the universal receiver functionality to an external smart contract              |
 
 **NFT 2.0 LSPs**
 
