@@ -124,11 +124,11 @@ Gets array of data at multiple given key.
   ) public returns (bytes memory result)
 ```
 
-Emits an event with the parameters passed to it.
+Emits an event when it's succesfully executed.
 
-Call the **[universalReceiverDelegate](.//universal-receiver-delegate.md#universalreceiverdelegate)** function in the **UniversalReceiverDelegate** contract, if his address was set in the storage as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** and if the **[UniversalReceiverDelegate](./universal-receiver-delegate.md)** register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** in the contract using **ERC165Storage**.
+Call the **[universalReceiverDelegate](.//universal-receiver-delegate.md#universalreceiverdelegate)** function in the **[universalReceiverDelegate](.//universal-receiver-delegate.md)** (URD) contract, if the address of the URD was set as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the account key/value value store of the same contract implementing the universalReceiver function and if the URD contract has the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** registred using **ERC165**.
 
-The current implementation of the **UniversalReceiverDelegate** writes **[LSP7](./digital-asset.md)** & **[LSP8](./identifiable-digital-asset.md)** assets to the account storage.
+The current implementation of the **UniversalReceiverDelegate** is found **[here](.//universal-receiver-delegate.md)**.
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully._
 
