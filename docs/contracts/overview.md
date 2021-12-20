@@ -23,7 +23,7 @@ Implementation of **[LUKSO Standard Proposal](../standards/introduction.md)** wh
 ### **Installation**
 
 ```bash
-$ npm install @lukso/universalprofile-smart-contracts
+npm install @lukso/universalprofile-smart-contracts
 ```
 
 ### **Usage**
