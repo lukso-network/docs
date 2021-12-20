@@ -44,7 +44,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'guides/getting-started',
+          docId: 'guides/universal-profile/create-profile',
           position: 'left',
           label: 'Guides',
         },

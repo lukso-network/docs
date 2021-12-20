@@ -12,7 +12,7 @@ In this guide, you will learn how to:
 
 ![My Universal Profile](./img/my-up.png)
 
-We will be using Typescript and our [lsp-factory.js] tool to create your Universal Profile. And this with **less than 50 lines of code!**.
+We will be using Typescript and our [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) tool to create your Universal Profile. And this with **less than 50 lines of code!**.
 
 ## Setup
 
@@ -45,17 +45,17 @@ You will use this EOA in this tutorial to create and deploy your Universal Profi
 
 ![](./img/universal-profile-overview.jpeg)
 
-In this guide, we will use our tool [lsp-factory.js](../tools/lsp-factoryjs/introduction/getting-started.md). It will help you to deploy + setup easily a Universal Profile, with just few lines of code.
+In this guide, we will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md). It will help you to deploy + setup easily a Universal Profile, with just few lines of code.
 
 Under the hood, the lsp-factory.js performs the following actions:
 
 1. deploying all the necessary contracts:
-   - [Universal Profile](../standards/universal-profile/03-lsp3-universal-profile.md) (UP)
-   - [Universal Receiver Delegate](../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD)
-   - [Key Manager](../standards/universal-profile/04-lsp6-key-manager.md) (KM)
-2. setup everything for you (link your URD with your UP account + set all the [permissions](./../standards/universal-profile/04-lsp6-key-manager.md#types-of-permissions)).
+   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile.md) (UP)
+   - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD)
+   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM)
+2. setup everything for you (link your URD with your UP account + set all the [permissions](../../standards/universal-profile/04-lsp6-key-manager.md#types-of-permissions)).
 
-> :arrow_right: &nbsp; [See our lsp-factory.js docs for more ](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started)
+> :arrow_right: &nbsp; [See our lsp-factory.js docs for more ](../../tools/lsp-factoryjs/introduction/getting-started)
 
 ## Step 1: Create a wallet
 
@@ -216,5 +216,4 @@ async function createUniversalProfile() {
 createUniversalProfile();
 ```
 
-[lsp-factory.js]: (../tools/lsp-factoryjs/deployment/universal-profile.md#uploading-lsp3-metadata-to-ipfs)
 [l14 faucet]: http://faucet.l14.lukso.network/
