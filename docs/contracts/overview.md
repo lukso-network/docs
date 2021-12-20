@@ -66,6 +66,10 @@ contract MyToken is LSP7DigitalAsset {
     constructor() LSP7("MyToken","MTKN",msg.sender,false) {
         // ..
     }
+
+    function mint() public {
+        _mint(...);
+    }
 }
 
 ```
