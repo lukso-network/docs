@@ -27,10 +27,10 @@ This section will give you an overview of what each LSP does and how to start us
 
 **NFT 2.0 LSPs**
 
-| LSP  | Title                                                                      | Description      |
-| ---- | -------------------------------------------------------------------------- | ---------------- |
-| LSP7 | [Digital Asset](./nft-2.0/lsp7-digital-asset.md)                           | ERC20 like token |
-| LSP8 | [Identifiable Digital Asset](./nft-2.0/lsp8-identifiable-digital-asset.md) | ERC721 like NFT  |
+| LSP  | Title                                                                   | Description      |
+| ---- | ----------------------------------------------------------------------- | ---------------- |
+| LSP7 | [Digital Asset](./nft-2.0/lsp7-digital-asset)                           | ERC20 like token |
+| LSP8 | [Identifiable Digital Asset](./nft-2.0/lsp8-identifiable-digital-asset) | ERC721 like NFT  |
 
 ## More to watch
 
