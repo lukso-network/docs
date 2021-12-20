@@ -11,28 +11,28 @@ This section will give you an overview of what each LSP does and how to start us
 
 **Foundational LSPs**
 
-| LSP  | Title                                                                          | Description                                                           |
-| :--- | :----------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| LSP1 | [Universal Receiver](./lukso-standard-proposals/02-lsp1-universal-receiver.md) | add custom behaviour to an ERC725Account, making the account reactive |
-| LSP2 | [ERC725Y JSON Schema ](lukso-standard-proposals/01-lsp2-json-schema.md)        | a schema to describe a set of key-value pairs                         |
+| LSP  | Title                                                                   | Description                                                           |
+| :--- | :---------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| LSP1 | [Universal Receiver](./generic-standards/02-lsp1-universal-receiver.md) | add custom behaviour to an ERC725Account, making the account reactive |
+| LSP2 | [ERC725Y JSON Schema ](./generic-standards/01-lsp2-json-schema.md)      | a schema to describe a set of key-value pairs                         |
 
 **Universal Profiles LSPs**
 
-| LSP  | Title                                                                              | Description                                                                              |
-| ---- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| LSP0 | [ERC725 Account](universal-profile/01-LSP0-Foundation.md)                          | a blockchain account (based on ERC725 standard)                                          |
-| LSP3 | [Universal Profile](universal-profile/02-LSP3-Universal-Profiles.md)               | set of key-value pairs representing a smart contract based profile                       |
-| LSP6 | [Key Manager ](universal-profile/03-lsp6-key-manager.md)                           | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
-| LSP1 | [Universal Receiver Delegate](universal-profile/04-Universal-Receiver-Delegate.md) | delegate the universal receiver functionality to an external smart contract              |
+| LSP  | Title                                                                                     | Description                                                                              |
+| ---- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| LSP0 | [ERC725 Account](./universal-profile/01-LSP0-Foundation.md)                               | a blockchain account (based on ERC725 standard)                                          |
+| LSP1 | [Universal Receiver Delegate](./universal-profile/02-lsp1-universal-receiver-delegate.md) | delegate the universal receiver functionality to an external smart contract              |
+| LSP3 | [Universal Profile](./universal-profile/03-lsp3-universal-profile.md)                     | set of key-value pairs representing a smart contract based profile                       |
+| LSP6 | [Key Manager ](./universal-profile/04-lsp6-key-manager.md)                                | add control to an ERC725Account. give permissions to third parties to act on our behalf. |
 
 **NFT 2.0 LSPs**
 
-| LSP  | Title                                                                       | Description      |
-| ---- | --------------------------------------------------------------------------- | ---------------- |
-| LSP7 | [Digital Asset](nft-2.0/01-LSP7-Digital-Asset.md)                           | ERC20 like token |
-| LSP8 | [Identifiable Digital Asset](nft-2.0/02-LSP8-Identifiable-Digital-Asset.md) | ERC721 like NFT  |
+| LSP  | Title                                                                   | Description      |
+| ---- | ----------------------------------------------------------------------- | ---------------- |
+| LSP7 | [Digital Asset](./nft-2.0/lsp7-digital-asset)                           | ERC20 like token |
+| LSP8 | [Identifiable Digital Asset](./nft-2.0/lsp8-identifiable-digital-asset) | ERC721 like NFT  |
 
-## More to watch:
+## More to watch
 
 - [The New Standard for Blockchain Accounts and NFT 2.0](https://www.youtube.com/watch?v=7u0WGAS1k_Q)
 - [Tech Time with Fabian Ep.1 - LUKSO NFT's 2.0 Explained](https://www.youtube.com/watch?v=Nx5D9QWNIhI)
