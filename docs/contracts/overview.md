@@ -23,7 +23,7 @@ Implementation of **[LUKSO Standard Proposal](../standards/introduction.md)** wh
 ### **Installation**
 
 ```bash
-$ npm install @lukso/universalprofile-smart-contracts
+npm install @lukso/universalprofile-smart-contracts
 ```
 
 ### **Usage**
@@ -66,24 +66,13 @@ contract MyToken is LSP7DigitalAsset {
     constructor() LSP7("MyToken","MTKN",msg.sender,false) {
         // ..
     }
+
+    function mint() public {
+        _mint(...);
+    }
 }
 
 ```
-
-In **Javascript:**
-
-You can use the contracts JSON ABI by importing them as follow:
-
-```js
-import UniversalProfile from "@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json";
-
-const UniversalProfileContract = new this.web3.eth.Contract(
-  UniversalProfile.abi,
-  "",
-  defaultOptions
-);
-```
-
 ## **Learn More**
 
 ---
