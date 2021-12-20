@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create a LSP7 Digital Asset (Token)
 
-In this guide, we will learn how to create our own token (known as [LSP7 Digital Asset](../standards/nft-2.0/01-lsp7-digital-asset.md)) and transfer it between Universal Profiles (UP).
+In this guide, we will learn how to create our own token (known as [LSP7 Digital Asset](../standards/nft-2.0/lsp7-digital-asset.md)) and transfer it between Universal Profiles (UP).
 
 ## Deploy a LSP7 Digital Asset contract
 
