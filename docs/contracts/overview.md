@@ -69,21 +69,6 @@ contract MyToken is LSP7DigitalAsset {
 }
 
 ```
-
-In **Javascript:**
-
-You can use the contracts JSON ABI by importing them as follow:
-
-```js
-import UniversalProfile from "@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json";
-
-const UniversalProfileContract = new this.web3.eth.Contract(
-  UniversalProfile.abi,
-  "",
-  defaultOptions
-);
-```
-
 ## **Learn More**
 
 ---
