@@ -5,11 +5,11 @@ sidebar_position: 3
 
 # LSP1 Universal Receiver Delegate
 
-The **UniversalReceiverDelegate** is the contract called by the **[universalReceiver](./erc725-account.md#universalreceiver)** function on the **[ERC725Account](./erc725-account.md)**.
+The **UniversalReceiverDelegate** (URD) is the contract called by the **[universalReceiver](./erc725-account.md#universalreceiver)** function on the **[ERC725Account](./erc725-account.md)**.
 
-To be called, the address of this contract should be set as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the **ERC725Account** storage and also should register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** using **ERC165Storage**. If these 2 conditions aren't met, the **UniversalReceiverDelegate** contract won't be called when calling **[universalReceiver](./erc725-account.md#universalreceiver)** function on the account.
+To be called, the address of this contract should be set as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the **ERC725Account** storage and the ERC725Account should be controlled by a KeyManager that grant the universalReceiverDelegate address the permission of **setData**, also the URD should register the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** using **ERC165Storage**. If these 2 conditions aren't met, the **UniversalReceiverDelegate** contract won't be called when calling **[universalReceiver](./erc725-account.md#universalreceiver)** function on the account.
 
-This implementation writes **[LSP7](./identifiable-digital-asset.md)** and **[LSP8](./digital-asset.md)** Assets into your account storage, and remove them on balance equal 0.
+This implementation writes **[LSP7-DigitalAsset](./identifiable-digital-asset.md)** and **[LSP8-IdentifiableDigitalAsset](./digital-asset.md)** Assets into your account storage, and remove them on balance equal 0.
 
 Assets are written according to the **[LSP5-ReceivedAssets standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 

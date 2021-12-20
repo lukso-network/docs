@@ -10,7 +10,7 @@ This testnet is ephemeral, meaning it is not meant to be fully stable and usable
 
 :::warning Currently the L15-Testnet is not running.
 
-We are currently working on a fix and as soon as the fix is thorougly tested, we will start it again.
+We are currently working on a fix and as soon as the fix is thoroughly tested, we will start it again.
 
 :::
 
