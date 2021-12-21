@@ -49,8 +49,8 @@ module.exports = {
           label: 'Guides',
         },
         {
-          href: 'https://bit.ly/LUKSOWhitepaper',
-          label: 'Whitepaper',
+          href: 'https://forms.gle/CJJNhL3UA4bCTtzJ8',
+          label: 'Feedback',
           position: 'right',
         },
         {
