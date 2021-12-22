@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 
 function Index() {
   return (
-    <Layout>
+    <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
         <div
           style={{
