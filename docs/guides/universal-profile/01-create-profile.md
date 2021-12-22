@@ -5,84 +5,116 @@ sidebar_position: 1.1
 
 # Create a Universal Profile
 
-In this guide, you will learn how to:
+In this guide, we will learn how to:
 
-- create your first Universal Profile.
-- see your created profile on [universalprofile.cloud](https://universalprofile.cloud).
+- create an Universal Profile.
+- see our new Universal Profile on [universalprofile.cloud](https://universalprofile.cloud).
 
 ![My Universal Profile](./img/my-up.png)
 
-We will be using Typescript and our [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) tool to create your Universal Profile. And this with **less than 50 lines of code!**.
+We will be using our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) to create a Universal Profile in **less than 50 lines of code!**.
 
 ## Introduction
 
-<!-- <div style="text-align:center"> -->
+A Universal Profile is a smart contract that implements the **Ownable** design pattern. This means it is a contract that has an owner. The Contract's owner is a blockchain `address` that can represent anything, such as:
+
+- an Externally Owned Account (EOA), or many EOAs.
+- a multi-sig wallet.
+- an other smart contract that can represent anything (a DAO, a DEX, etc...).
 
 ![](./img/universal-profile-ownership.jpeg)
 
-<!-- </div> -->
+With this design pattern, the contract can be designed with _functionalities that can only be performed by the owner_. This gives the contract owner more control and privileges.
 
-A Universal Profile is owned an controlled by an Externally Owned Account (EOA). So the first step to create your profile is to create an EOA that will control it.
+In the context of Universal Profiles, _reading data from the contract storage can be done by anyone_. But only the owner can:
 
-You will use this EOA in this tutorial to create and deploy your Universal Profile. In the next tutorials, you will use the same EOA to interact with your Universal Profile.
+- `setData` = add, edit or remove data from the ERC725Y storage.
+- `execute` = calling other contracts, doing LYX transfers, create other contracts (see ERC725X executor)
+
+In this guide, our Universal Profile's owner will be a contract called a Key Manager. The Key Manager is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
 
 ![](./img/universal-profile-overview.jpeg)
 
-In this guide, we will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md). It will help you to deploy + setup easily a Universal Profile, with just few lines of code.
+We will use our [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) tool to deploy + setup easily a Universal Profile, with just few lines of code.
 
-Under the hood, the lsp-factory.js performs the following actions:
+Under the hood, the lsp-factory.js performs the following:
 
-1. deploying all the necessary contracts:
-   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile.md) (UP)
-   - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD)
-   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM)
-2. setup everything for you (link your URD with your UP account + set all the [permissions](../../standards/universal-profile/04-lsp6-key-manager.md#types-of-permissions)).
+1. deploys all the necessary contracts:
+   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile.md) (UP) - core smart contract that represents your Universal Profile.
+   - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD) - contract that react on events, such as tokens received or transferred.
+   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) - controller for your Universal Profile.
+2. link your URD with your UP account + set its permissions
+3. set all the permissions for an EOA address, so that it can acts as the UP admin.
 
-> :arrow_right: &nbsp; [See our lsp-factory.js docs for more ](../../tools/lsp-factoryjs/introduction/getting-started)
+> :arrow_right: &nbsp; [See our lsp-factory.js docs for more details](../../tools/lsp-factoryjs/introduction/getting-started)
 
-## Setup
+:::info
+The figure above is our default setup for Universal Profile.<br/>
+However, using a Key Manager as an owner is optional. You can create a Universal Profile without a Key Manager (or a Universal Receiver Delegate linked to it).
 
-We will need to install some dependencies to get started.
-Open you terminal, create a new project directory.
+Bear in mind that you can implement any complex ownership structure on top of Universal Profiles.
+For more details, we recommend looking at [EIP-173: Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173)
+:::
+
+## Setup our project
+
+Before to get started, we are going to create a new folder that will contain all the code of our tutorial.
+We will also install in project folder the dependencies that we will use.
+
+First, open a terminal and create a new directory, and goes inside it.
 
 ```shell
 mkdir myUP
 cd myUP
-npm init
 ```
 
-Install the following dependencies that we will need to follow this tutorial
+Then, install the following dependencies that we will use in this tutorial.
 
 ```shell
-npm install web3 @lukso/lsp-factory.js
+npm install web3 @lukso/lsp-factory.js --save
 ```
 
-## Step 1: Create a wallet
+## Step 1: Create an EOA
 
-You can easily create an EOA with web3.js.
+As describe before in our introduction, the first step before to create our Universal Profile is to create an EOA that will control it.
+
+We can easily create an EOA with web3.js, with the [`web3.eth.accounts.create()`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#create) function. It will generate an object that contains:
+
+- a private key (32 bytes / 64 characters long).
+- an address (20 bytes / 40 characters long).
+- some singing methods like `sign`
+
+:::danger Never disclose your private key!
+Your private key is what enables you to control your EOA.
+Never discloses it, and always make sure it is stored securely.
+:::
 
 ```javascript title="1-create-wallet.js"
 import Web3 from 'web3';
 const web3 = new Web3();
 
-const wallet = web3.eth.accounts.wallet.create(1)[0];
-
-console.log('private key: ', wallet.privateKey);
-// 0x......... (64 characters long)
-
-console.log('address: ', wallet.address);
-// 0x......... (40 characters long)
+const myEOA = web3.eth.accounts.create();
+console.log(myEOA);
+// output: {
+//     address: "0xb8CE9ab6943e0eCED004cDe8e3bBed6568B2Fa01",
+//     privateKey: "0x348ce564d427a3311b6536bbcff9390d69395b06ed6c486954e971d960fe8709",
+//     signTransaction: function(tx){...},
+//     sign: function(data){...},
+//     encrypt: function(password){...}
+// }
 ```
+
+> See the [Web3.js docs](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#) for more infos on creating an EOA
 
 ## Step 2: Get some LYX
 
 Now that you have created an EOA that will control your profile, you will need to fund your address with some test LYXt (the native cryptocurrency of the LUKSO blockchain).
 
-You can request some test LYXt via the [L14 faucet]. Simply visit the faucet website, paste your generated address above in the field and click on **"REQUEST 5 LYX"**.
+You can [request some test LYXt via the L14 faucet](http://faucet.l14.lukso.network/). Simply visit the faucet website, paste your generated address above in the field and click on **"REQUEST 5 LYX"**.
 
 ![L14 Faucet screenshot](./img/L14-faucet.png)
 
-To ensure you have received some test LYXt, go to the L14 Explorer, and paste your address in the top right field _"Search by address..."_. You should see 5 LYX next to the field _Balance_.
+To ensure you have received some test LYXt, [go to the L14 Explorer](https://blockscout.com/lukso/l14), and paste your address in the top right field _"Search by address..."_. You should see 5 LYX next to the field _"Balance"_.
 
 ![L14 Explorer](./img/l14-explorer.png)
 
@@ -216,4 +248,4 @@ async function createUniversalProfile() {
 createUniversalProfile();
 ```
 
-[l14 faucet]: http://faucet.l14.lukso.network/
+[l14 faucet]:
