@@ -166,7 +166,7 @@ Now that your updated data is encoded, you are ready to set it in your Universal
 
 The first step is to create new instances of the Universal Profile and the Key Manager. You will need:
 
-- the contracts abi (from our npm package `@llukso/universalprofile-smart-contracts`).
+- the contracts abi (from our npm package `@lukso/universalprofile-smart-contracts`).
 - the contracts addresses.
 
 You can obtain the address of your KeyManager by calling the `owner()` function on your Universal Profile (if you have deployed your UP with our lsp-factory.js tool).
