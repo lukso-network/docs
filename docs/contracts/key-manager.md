@@ -109,3 +109,8 @@ _**MUST** be fired when a transaction was successfully executed in **[execute](#
 | :------ | :------ | :------------------------------------ |
 | `value` | uint256 | The amount to be sent with call data. |
 | `data`  | bytes   | The call data to be executed.         |
+
+## References
+
+- [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
+- [LSP6 KeyManager: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP6-KeyManager)

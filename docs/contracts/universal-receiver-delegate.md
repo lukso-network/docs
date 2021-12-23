@@ -46,3 +46,8 @@ Register the **Map** and the **Key in the ReceivedAsset Array** for incoming ass
 | Name     | Type  | Description                                                                            |
 | :------- | :---- | :------------------------------------------------------------------------------------- |
 | `result` | bytes | The return value of **keyManager**'s **[execute](./key-manager.md#execute)** function. |
+
+## References
+
+- [LUKSO Standards Proposals: LSP1 - Universal Receiver (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md)
+- [LSP1 Universal Receiver: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver)
