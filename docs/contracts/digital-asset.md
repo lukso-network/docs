@@ -139,7 +139,7 @@ Returns amount of tokens `operator` address has access to from `tokenOwner`. Ope
 | Name         | Type    | Description                               |
 | :----------- | :------ | :---------------------------------------- |
 | `tokenOwner` | address | The token owner.                          |
-| `tokenOwner` | address | The address to query operator status for. |
+| `operator`   | address | The address to query operator status for. |
 
 #### Return Values:
 
