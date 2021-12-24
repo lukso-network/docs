@@ -270,3 +270,8 @@ _**MUST** be fired when the **[universalReceiver](#universalreceiver)** is succe
 | `typeId`        | bytes32 | The hash of a specific standard or a hook.                   |
 | `returnedValue` | bytes   | The return value of **universalReceiver** function.          |
 | `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function. |
+
+## References
+
+- [LUKSO Standards Proposals: LSP3 - UniversalProfile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
+- [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts)
