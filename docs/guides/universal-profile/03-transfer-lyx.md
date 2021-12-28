@@ -68,7 +68,7 @@ const transferLYXPayload = await myUP.methods
 The final step is to pass the encoded LYX transfer function to the Key Manager. Since you are calling from the UP's owner address, the Key Manager will authorize, and execute the LYX transfer.
 
 ```typescript
-await myKM.execute(transferLYXPayload).send({ from: wallet.address });
+await myKM.methods.execute(transferLYXPayload).send({ from: wallet.address });
 ```
 
 ## Final Code
@@ -96,5 +96,5 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 
 // 3. execute the LYX transfer via the Key Manager
-await myKM.execute(transferLYXPayload).send({ from: wallet.address });
+await myKM.methods.execute(transferLYXPayload).send({ from: wallet.address });
 ```
