@@ -78,18 +78,15 @@ npm install web3 @lukso/lsp-factory.js --save
 
 As describe before in our introduction, the first step before to create our Universal Profile is to create an EOA that will control it.
 
-We can easily create an EOA with web3.js, with the [`web3.eth.accounts.create()`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#create) function. It will generate an object that contains:
+We can easily create an EOA with web3.js, with the [`web3.eth.accounts.create()`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#create) function.
+
+Create a **temporary file** and use the web3.js code snippet below to generate an EOA. It will generate an object that contains:
 
 - a private key (32 bytes / 64 characters long).
 - an address (20 bytes / 40 characters long).
 - some singing methods like `sign`
 
-:::danger Never disclose your private key!
-Your private key is what enables you to control your EOA.
-Never discloses it, and always make sure it is stored securely.
-:::
-
-```javascript title="1-create-wallet.js"
+```javascript title="create-wallet.js (temporary file)"
 import Web3 from 'web3';
 const web3 = new Web3();
 
@@ -106,36 +103,58 @@ console.log(myEOA);
 
 > See the [Web3.js docs](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#) for more infos on creating an EOA
 
+You can then load your EOA using the private key previously displayed via `console.log`.
+
+```javascript
+import Web3 from 'web3';
+
+const web3 = new Web3();
+
+const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
+const wallet = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+```
+
 ## Step 2: Get some LYX
 
-Now that you have created an EOA that will control your profile, you will need to fund your address with some test LYXt (the native cryptocurrency of the LUKSO blockchain).
+After we have created an EOA that will control your profile in **step 1**, we will need to fund our address with some test LYX (the native cryptocurrency of the LUKSO blockchain).
 
 You can [request some test LYXt via the L14 faucet](http://faucet.l14.lukso.network/). Simply visit the faucet website, paste your generated address above in the field and click on **"REQUEST 5 LYX"**.
 
 ![L14 Faucet screenshot](./img/L14-faucet.png)
 
-To ensure you have received some test LYXt, [go to the L14 Explorer](https://blockscout.com/lukso/l14), and paste your address in the top right field _"Search by address..."_. You should see 5 LYX next to the field _"Balance"_.
+To ensure you have received some test LYX, [go to the L14 Explorer](https://blockscout.com/lukso/l14), and paste your address in the top right field _"Search by address..."_. You should see 5 LYX next to the field _"Balance"_.
 
 ![L14 Explorer](./img/l14-explorer.png)
 
 ## Step 3: Deploy your Universal Profile
 
-Now that your wallet has been created, you are ready to create your first Universal Profile.
+Now that we have created our EOA, we are ready to create your first Universal Profile.
 
-**3.1) Setup web3.js + import your wallet**
+Create a **new main JS file** called `main.js`. It will contain all the main runtime script to create our Universal Profile.
+
+**3.1 - Setup web3.js + import your wallet**
 
 The first step is to setup web3.js to be connected to the [LUKSO L14 test network](https://blockscout.com/lukso/l14).
 
-You will then import your wallet, and use it to deploy your Universal Profile. To do so, import your private key previously created in step 1.
+We will start by import our EOA, and use it to deploy our Universal Profile. To do so, import the private key previously created in **step 1**.
 
-```javascript
+```javascript title="main.js"
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
-const PRIVATE_KEY = '0x...'; // your wallet private key (previously created)
-const wallet = web3.eth.accounts.wallet.add(PRIVATE_KEY);
+const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
+const wallet = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 ```
+
+:::danger Never expose your private key!
+Your private key is what enables you to control your EOA. Therefore, it should NEVER be exposed.
+
+For simplicity in this tutorial, we load the EOA by using a hardcoded private key (as a literal string).
+However, your private key should never be hardcoded in your code.
+
+**Conclusion: ALWAYS make sure that your private key is stored securely**, and never exposed.
+:::
 
 **3.2) Initiate the lsp-factory.js**
 
@@ -197,6 +216,10 @@ Congratulation, you have created your first Universal Profile !
 You can also see on the L14 Block explorer the contracts that have been created by this transaction:
 
 https://blockscout.com/lukso/l14/address/your-wallet-address/transactions
+
+:arrow_right: Go to the next tutorial to learn **[How to add a profile picture to your Universal Profile + edit your profile infos.](./02-edit-profile.md)**
+
+:arrow_down: Look a the full code snippet below to help you debugging.
 
 ## Final code
 

@@ -33,7 +33,7 @@ You can add (or edit) details to your UP by:
 We will use a new tool in this guide, [erc725.js].
 
 ```shell
-npm install @erc725/erc725.js
+npm install @erc725/erc725.js --save
 ```
 
 ## Step 1: Create a new LSP3Profile JSON file
