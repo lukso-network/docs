@@ -321,7 +321,7 @@ createUniversalProfile();
 **Adding more details** to our Universal Profile (_e.g.: links, profile images, background images..._) will be **our next tutorial!** :art:
 :::
 
-### 3.4 - Visualize our Universal Profile
+## Visualize our new Universal Profile
 
 If the deployment was successful, the address of our newly created Universal Profile can be accessed from the returned value.
 
@@ -342,7 +342,7 @@ async function createUniversalProfile() {
 createUniversalProfile();
 ```
 
-You can now visualize your UP on the universalprofile.cloud website, by pasting the returned address after the `/` (slash) as follow:
+We can now visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website, by adding the address of the deployed UP in the the url, after the `/` (slash), as follow:
 
 *https://universalprofile.cloud/your-up-address*
 
