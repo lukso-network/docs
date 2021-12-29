@@ -67,13 +67,15 @@ const transferLYXPayload = await myUP.methods
 
 The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize, and execute the LYX transfer.
 
-```typescript
-await myKM.execute(transferLYXPayload).send({ from: wallet.address });
+```javascript
+await myKM
+  .execute(transferLYXPayload)
+  .send({ from: wallet.address, gasLimit: 300_000 });
 ```
 
 ## Final Code
 
-```typescript
+```javascript
 const Web3 = require('web3');
 const UniversalProfile = require('@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json');
 const KeyManager = require('@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json');
@@ -96,5 +98,7 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 
 // 3. execute the LYX transfer via the Key Manager
-await myKM.execute(transferLYXPayload).send({ from: wallet.address });
+await myKM
+  .execute(transferLYXPayload)
+  .send({ from: wallet.address, gasLimit: 300_00 });
 ```

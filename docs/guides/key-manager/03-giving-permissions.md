@@ -89,7 +89,9 @@ async function setBobPermission() {
     )
     .encodeABI();
 
-  keyManager.execute(payload).send({ from: '<my-eoa-address>', gas: 300_000 });
+  keyManager
+    .execute(payload)
+    .send({ from: '<my-eoa-address>', gasLimit: 300_000 });
 }
 
 setBobPermission();

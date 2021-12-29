@@ -47,7 +47,10 @@ let abiPayload = await myUp.methods
   .encodeABI();
 
 // 3. execute via the KeyManager, passing the UP payload
-await myKeyManager.execute(abiPayload, { from: '<address-of-up-owner>' });
+await myKeyManager.execute(abiPayload, {
+  from: '<address-of-up-owner>',
+  gasLimit: 300_000,
+});
 ```
 
   </TabItem>

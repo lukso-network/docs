@@ -335,7 +335,7 @@ const abiPayload = await myUP.methods
 // execute via the KeyManager, passing the UP payload
 await myKM.methods
   .execute(abiPayload)
-  .send({ from: myEOA.address, gasLimit: 3_000_000 });
+  .send({ from: myEOA.address, gasLimit: 300_000 });
 ```
 
 ## Final Code
@@ -411,7 +411,7 @@ async function editProfileInfos() {
   // 4.3 execute via the KeyManager, passing the UP payload
   await myKM.methods
     .execute(abiPayload)
-    .send({ from: myEOA.address, gasLimit: 3_000_000 });
+    .send({ from: myEOA.address, gasLimit: 300_000 });
 }
 editProfileInfos();
 ```
