@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'Create a Universal Profile'
+sidebar_label: 'Create an Universal Profile'
 sidebar_position: 1.1
 ---
 
-# Create a Universal Profile
+# Create an Universal Profile
 
 In this guide, we will learn how to:
 
@@ -67,7 +67,7 @@ The figure above is our default setup for Universal Profile. However, _using a K
 You can create an Universal Profile without a Key Manager (or a Universal Receiver Delegate linked to it).
 :::
 
-## Setup our project
+## Setup
 
 Before to get started, we are going to create a new project folder. This is where we will write all the Javascript code of this tutorial.
 
@@ -88,8 +88,8 @@ npm install web3 @lukso/lsp-factory.js --save
 
 ## Step 1 - Create an EOA
 
-:::caution Notice
-This Step should be done in a **temporary file.**
+:::note Notice
+This step should be done in a **temporary file.**
 :::
 
 As describe before in the introduction, our first step is to create an EOA that will be used to control our Universal Profile.
@@ -158,8 +158,8 @@ We will look-up our address' balance in the **[LUKSO L14 Block Explorer](https:/
 
 ## Step 3 - Create our Universal Profile
 
-:::caution Notice
-The rest of this tutorial should be done in a **new file**.
+:::note Notice
+The rest of this tutorial should be done in a **new file (`main.js`)**.
 :::
 
 Now that we have created our EOA, we are ready to create our first Universal Profile.
@@ -179,8 +179,8 @@ const web3 = new Web3();
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 // {
-//     address: "0xb8CE9ab6943e0eCED004cDe8e3bBed6568B2Fa01",
-//     privateKey: "0x348ce564d427a3311b6536bbcff9390d69395b06ed6c486954e971d960fe8709",
+//     address: "0x...",
+//     privateKey: "0x...",
 //     signTransaction: function(tx){...},
 //     sign: function(data){...},
 //     encrypt: function(password){...}
