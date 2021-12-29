@@ -106,6 +106,7 @@ Run the script above with node.js to generate + display your EOA private key + a
 ```bash
 node create-eoa.js # or <name-of-your-temporary-file>.js
 ```
+
 > See the [Web3.js docs](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#) for more infos on creating an EOA
 
 You can then load your EOA using the private key previously displayed via `console.log`.
@@ -138,15 +139,15 @@ To ensure you have received some test LYX, go to the **[LUKSO L14 Block Explorer
 
 Now that we have created our EOA, we are ready to create our first Universal Profile.
 
-Create a **new file**: `main.js`. 
+Create a **new file**: `main.js`.
 
 It will contain all the main runtime script to create our Universal Profile.
 
 ### 3.1 - Import the wallet
 
-The first step is to setup web3.js to be connected to the [LUKSO L14 test network](https://blockscout.com/lukso/l14).
+We will start by importing our EOA in our main JS file, so that we can use it to deploy our Universal Profile.
 
-We will start by import our EOA, and use it to deploy our Universal Profile. To do so, import the private key previously created in **step 1**.
+To do so, import the private key previously created in **step 1**.
 
 ```javascript title="main.js"
 const Web3 = require('web3');
@@ -196,7 +197,7 @@ const lspFactory = new LSPFactory(
 
 ### 3.3 - Deploy the Universal Profile
 
-The final step is to deploy our UP via the `LSP3UniversalProfile.deploy(...)` method. 
+The final step is to deploy our UP via the `LSP3UniversalProfile.deploy(...)` method.
 
 The `deploy` function from the lsp-factory.js will take an object as argument, that must contain 2 elements:
 
@@ -206,7 +207,7 @@ The `deploy` function from the lsp-factory.js will take an object as argument, t
 > We keep our `LSP3Profile` metadata simple in this tutorial. But you can easily add more details about your UP in this object, like an original `name`, `description`, or some custom tags in the `tags` array.
 
 ```javascript
-// Put this in an `async` function 
+// Put this in an `async` function
 // so you can run the `deploy` method
 const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
   controllingAccounts: [myEOA.address], // our EOA will be controlling our UP
@@ -225,9 +226,9 @@ const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
 ```
 
 :::info Learn more
-**The Universal Profile can be controlled by multiple addresses.** The key `controllingAccounts` accept an array of addresses.
+**The Universal Profile can be controlled by multiple addresses.** The key `controllingAccounts` accepts an array of addresses.
 
-**Adding more details** to our Universal Profile (*e.g.: links, profile images, background images...*) will be **our next tutorial!** :art:
+**Adding more details** to our Universal Profile (_e.g.: links, profile images, background images..._) will be **our next tutorial!** :art:
 :::
 
 ### 3.4 - Visualise your Universal Profile
@@ -237,10 +238,10 @@ If the deployment of our UP went successfully, the address of our newly created 
 ```javascript
 const myUPAddress = deployedContracts.ERC725Account.address;
 console.log('my Universal Profile address: ', myUPAddress);
-// output: 0x... 
+// output: 0x...
 ```
 
-You can now visualize your UP on the universalprofile.cloud website, by pasting the returned address after the `/` (slash) as follow: 
+You can now visualize your UP on the universalprofile.cloud website, by pasting the returned address after the `/` (slash) as follow:
 
 *https://universalprofile.cloud/your-up-address*
 
@@ -248,7 +249,7 @@ You can also see on the LUKSO L14 Block explorer the contracts that have been cr
 
 *https://blockscout.com/lukso/l14/address/your-eoa-address/transactions*
 
-*picture of transaction on L14 + explanation of each contract created, linked to the picture shown above.*
+_picture of transaction on L14 + explanation of each contract created, linked to the picture shown above._
 
 ## Congratulation!
 

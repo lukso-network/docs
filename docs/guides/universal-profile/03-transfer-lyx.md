@@ -36,8 +36,8 @@ We will first need to create the instance of each contract. To do so we will nee
 - address of our KeyManager
 
 ```typescript
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json';
+const UniversalProfile = require('@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
@@ -48,7 +48,7 @@ const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
 The next step is to encode the action that we will perform on our Universal Profile. In our case, we want to transfer 3 LYX to an address, using the `execute(...)` function on the UP.
 
 ```typescript
-import Web3 from 'web3';
+const Web3 = require('web3');
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
 const OPERATION_CALL = 0;
@@ -74,9 +74,9 @@ await myKM.execute(transferLYXPayload).send({ from: wallet.address });
 ## Final Code
 
 ```typescript
-import Web3 from 'web3';
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json';
+const Web3 = require('web3');
+const UniversalProfile = require('@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
