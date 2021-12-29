@@ -1,19 +1,19 @@
 ---
-sidebar_label: 'Edit your Universal Profile'
+sidebar_label: 'Edit our Universal Profile'
 sidebar_position: 1.2
 ---
 
-# Edit your Universal Profile
+# Edit our Universal Profile
 
 :::success Requirements
 You will need an Universal Profile that you control to follow this guide. <br/>
-:arrow\*left: If you haven't created an Universal Profile yet, you can follow our previous guide: \*\*\*[Create a Universal Profile](./01-create-profile.md)\_\*\*.
+:arrow_left: If you haven't created an Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./01-create-profile.md).
 :::
 
 In this guide, we will learn how to write **customize our Universal Profile** programmatically in Javascript. This will include:
 
 - add a profile + cover picture to our Universal Profile.
-- edit our Universal Profile' infos (description, badges, links, etc...).
+- edit our Universal Profile infos (description, badges, links, etc...).
 
 We will then see our updated profile details and images on the [universalprofile.cloud](https://universalprofile.cloud) website.
 
@@ -48,32 +48,42 @@ We will use a new tool in this guide: [erc725.js].
 npm install web3 @lukso/lsp-factory.js @lukso/universalprofile-smart-contracts @erc725/erc725.js --save
 ```
 
-## Step 1: Create a new LSP3Profile JSON file
+## Step 1 - Create a new LSP3Profile JSON file
 
-We will use the JSON template file to create our profile metadata.
+We will use the JSON template file below to create our profile metadata. Follow the steps to fill the blank fields in the JSON file.
 
-Follow the steps below to fill the blank fields, indicated by the placeholders `...`
+, indicated by
 
-**1.1 - add your name, description, links and tags**
+### 1.1 - Add profile details (links, tags...)
 
-Be as creative as you want here, to make your profile as unique as possible! :art:
+Add more details about the Universal Profile for the entries `name`, `description`, `links` and `tags`.
+You can do so by filling the the placeholders `...` in the JSON file below.
+
+Be as creative as you want here, to make your Universal Profile as unique as possible! :art:
+
+:::info Learn More
+`links` and `tags` accept an array of objects / strings. So you can add as many as you want!
+
+For `profileImage` and `backgroundImage`, see **Step 1.2** below :arrow_down:
+:::
 
 ```json title="YourProfileMetadata.json"
 {
-  LSP3Profile: {
+  "LSP3Profile": {
     "name": "...", // a self chosen username
     "description": "...", // A description, describing the person, company, organisation or creator of the profile.
     "links": [ // links related to the profile
         {
             "title": "...", // a title for the link.
             "url": "..." // the link itself
-        }
+        },
+        // add more links...
     ],
-    "tags": [ "Public Profile" ], // tags related to the profile
+    "tags": [ "...", "..." ], // tags related to the profile
     "profileImage": [
         {
-            "width": Number, // in pixels
-            "height": Number, // in pixels
+            "width": Number, // in pixels (e.g.: 1080)
+            "height": Number, // in pixels (e.g.: 800)
             "hashFunction": "keccak256(bytes)", // do not change!
             "hash": "0x...", // add the keccak256 hash of the image here
             "url": "ipfs://..." // IPFS image identifier (CID)
@@ -92,11 +102,15 @@ Be as creative as you want here, to make your profile as unique as possible! :ar
 }
 ```
 
-**1.2 - add your profile and background image**
+### 1.2 - Add a profile + background image
+
+:::caution
+Image sizes should be written as numbers, not as strings.
+:::
 
 :::info
-The JSON file for LSP3Profile also accepts an array of images, each can be of multiple sizes.
-This way, client interfaces can know which images size to pick.
+The JSON file for LSP3Profile accepts an array of images, so that you images of different sizes / dimensions.
+This way, client interfaces can know which images to pick, based on the container size in their interface.
 :::
 
 For our `profileImage` and `backgroundImage`, we will need to add the following informations:
@@ -125,7 +139,11 @@ Save your JSON file after you have added all your details and images.
 
 We are now ready apply these changes on our Universal Profile. We will see how in the next section :arrow_down:
 
-## Step 2: upload your JSON file to IPFS
+## Step 2 - Upload our JSON file to IPFS
+
+:::note Notice
+The rest of this tutorial should be done in a **new file (`main.js`)**.
+:::
 
 We will now start writing the main code of the tutorial.
 Create a new file `main.js`.
@@ -137,17 +155,36 @@ const { LSP3UniversalProfile } = require('@lukso/lsp-factory.js');
 // reference to the previously created JSON file (LSP3Profile metadata)
 const jsonFile = require('./YourProfileMetadata.json');
 
-const uploadResult = await LSP3UniversalProfile.uploadProfileData(
-  jsonFile.LSP3Profile,
-);
-const profileMetadataIPFSUrl = uploadResult.url;
+async function uploadMetadataToIPFS() {
+  const uploadResult = await LSP3UniversalProfile.uploadProfileData(
+    jsonFile.LSP3Profile,
+  );
+  // {
+  //   profile: {
+  //     LSP3Profile: {
+  //       name: '...',
+  //       description: '...',
+  //       links: [Array],
+  //       tags: [Array],
+  //       profileImage: [Array],
+  //       backgroundImage: [Array]
+  //     }
+  //   },
+  //   url: 'ipfs://Q...'
+  // }
+  const profileMetadataIPFSUrl = uploadResult.url;
+  return profileMetadataIPFSUrl;
+}
+uploadMetadataToIPFS();
 ```
 
-## Step 3: encode data with erc725.js
+## Step 3 - Encode data with erc725.js
 
 The next step is to **prepare the data** that will be used to edit our Universal Profile. "Prepare the data" means **encoding it**, so that it can be written on our Universal Profile.
 
 To do so, we will use our [erc725.js] library. It will help us encode the data easily.
+
+### 3.1 - Setup erc725.js
 
 In order to setup the erc725.js library, we will need the following:
 
@@ -167,7 +204,7 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 const jsonFile = require('./YourProfileMetadata.json');
 const profileAddress = '0x...';
 
-// 3.1 setup erc725.js
+// Step 3.1 - Setup erc725.js
 const schema = [
   {
     name: 'LSP3Profile',
@@ -181,23 +218,53 @@ const schema = [
 const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
   ipfsGateway: 'https://ipfs.lukso.network/ipfs/',
 });
+// ERC725 {
+//   options: {
+//     schema: [ [Object] ],
+//     address: '0x...',
+//     provider: Web3ProviderWrapper { type: 'WEB3', provider: [HttpProvider] },
+//     config: { ipfsGateway: 'https://ipfs.lukso.network/ipfs/' }
+//   }
+// }
+```
 
-// 3.2 encode data to be written on your UP
+### 3.2 - Encode the LSP3Profile data
+
+```javascript title="main.js"
+const Web3 = require('web3');
+const { ERC725 } = require('@erc725/erc725.js');
+
+const web3 = new Web3('https://rpc.l14.lukso.network');
+
+// constants
+const jsonFile = require('./YourProfileMetadata.json');
+const profileAddress = '0x...';
+
+// Step 3.1 - Setup erc725.js
+// ...
+
+// Step 3.2 - Encode the LSP3Profile data (to be written on our UP)
 const encodedData = erc725.encodeData({
   LSP3Profile: {
     hashFunction: 'keccak256(utf8)',
     // hash the JSON file (LSP3Profile metadata)
     hash: web3.utils.keccak256(JSON.stringify(jsonFile)),
-    url: profileMetadataIPFSUrl, // see Step 2
+    url: profileMetadataIPFSUrl, // obtained in Step 2
   },
 });
+// {
+//   LSP3Profile: {
+//     key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'
+//     value: '0x...',
+//   }
+// }
 ```
 
-## Step 4: set new data on your Universal Profile
+## Step 4 - Set new data on our Universal Profile
 
 Now that our updated data is encoded, we are ready to set it in our Universal Profile. To do so, we will interact with our Universal Profile smart contract via web3.js.
 
-**4.1 - Load your EOA**
+### 4.1 - Load our EOA
 
 We will need to interact with the smart contracts from an EOA.
 
@@ -209,14 +276,27 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+// {
+//     address: "0x...",
+//     privateKey: "0x...",
+//     signTransaction: function(tx){...},
+//     sign: function(data){...},
+//     encrypt: function(password){...}
+// }
 ```
 
-**4.2 - Create instances of your contracts**
+### 4.2 - Create instances of our Contracts
 
 The first step is to create new instances of the Universal Profile and the Key Manager. We will need:
 
 - the contracts ABIs (from our npm package [`@lukso/universalprofile-smart-contracts`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts)).
 - the contracts addresses.
+
+If you haven't done it in the **Setup** section, install our npm package to obtain the smart contracts ABIs.
+
+```shell
+npm install @lukso/universalprofile-smart-contracts --save
+```
 
 If you have deployed your UP with our [lsp-factory.js](./01-create-profile.md) tool (like in our previous guide), the owner of the UP will point to the Key Manager's address.
 
@@ -239,7 +319,7 @@ const keyManagerAddress = await myUP.methods.owner().call();
 const myKM = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
 ```
 
-**4.3 - set Data on your Universal Profile**
+### 4.3 - Set data on our Universal Profile
 
 The final step is to edit our `LSP3Profile` key on our Universal Profile with the updated value. We can easily access both the key and value from the encoded data obtained with erc725.js.
 
@@ -247,6 +327,7 @@ Since our Universal Profile is owned by a Key Manager, the call will have to go 
 
 ```javascript title="main.js"
 // encode the setData payload
+// (`encodedData` is the value obtain from Step 3.2)
 const abiPayload = await myUP.methods
   .setData([encodedData.LSP3Profile.key], [encodedData.LSP3Profile.value])
   .encodeABI();
