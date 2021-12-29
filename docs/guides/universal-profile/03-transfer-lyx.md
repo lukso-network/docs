@@ -8,21 +8,21 @@ import TabItem from '@theme/TabItem';
 
 # Transfer LYX
 
-In this tutorial, you will learn how to transfer LYX from one Universal Profile (UP) to an other Universal Profile, or any other `address`.
+In this tutorial, we will learn how to transfer LYX from one Universal Profile (UP) to an other Universal Profile, or any other `address`.
 
 ## Introduction
 
 To interact with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow / disallow execution after checking the [permissions](../../standards/universal-profile/04-lsp6-key-manager.md#permission-values) of the calling address.
 
-Therefore to interact with your UP, you will need to encode the function call of your UP and pass the **payload** to the [`execute(payload)`](../../contracts/key-manager.md#execute) function on the KM.
+Therefore to interact with our UP, we will need to encode the function call of our UP and pass the **payload** to the [`execute(payload)`](../../contracts/key-manager.md#execute) function on the KM.
 
 Transferring LYX from a UP is as simple as making a standard [`CALL`](../../standards/universal-profile/04-lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call. You can transfer LYX from a UP via the [`execute(...)`](../../contracts/erc725-account.md#execute) function in the UP contract.
 
 The parameters of the function will be as follow:
 
 - `_operation`: `0` (for `CALL`).
-- `_to`: the `address` you want to send LYX to (Externally Owned Account or contract address).
-- `_value`: the amount of LYX you want to transfer (in Wei)
+- `_to`: the `address` we want to send LYX to (Externally Owned Account or contract address).
+- `_value`: the amount of LYX we want to transfer (in Wei)
 - `_data`: empty payload (`0x`)
 
 Since we are just making a simple LYX transfer, the fourth parameter `_data` will be empty.
@@ -65,7 +65,7 @@ const transferLYXPayload = await myUP.methods
 
 ## Step 3: send the payload to the Key Manager
 
-The final step is to pass the encoded LYX transfer function to the Key Manager. Since you are calling from the UP's owner address, the Key Manager will authorize, and execute the LYX transfer.
+The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize, and execute the LYX transfer.
 
 ```typescript
 await myKM.execute(transferLYXPayload).send({ from: wallet.address });

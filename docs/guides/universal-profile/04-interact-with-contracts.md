@@ -8,23 +8,23 @@ import TabItem from '@theme/TabItem';
 
 # Interact with other contracts
 
-In this guide, you will learn how to use your Universal Profile to interact with any other smart contract (like if you were using a regular Externally Owned Account).
+In this guide, we will learn how to use our Universal Profile to interact with any other smart contract (like if we were using a regular Externally Owned Account).
 
 ## Introduction
 
-We have seen in the previous example how to send LYX from your UP via the [`execute(...)`](../../contracts/erc725-account.md#execute) function.
+We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../contracts/erc725-account.md#execute) function.
 
-This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from your UP. The `_data` parameter is especially useful when the `_to` recipient is a smart contract.
+This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from our UP. The `_data` parameter is especially useful when the `_to` recipient is a smart contract.
 
-To make your UP call a function on a specific contract deployed on the network, the parameters of the `execute(...)` function will be as follow:
+To make our UP call a function on a specific contract deployed on the network, the parameters of the `execute(...)` function will be as follow:
 
 - `_operation`: `0` (for `CALL`).
-- `_to`: the `address` of the smart contract you want to interact with.
+- `_to`: the `address` of the smart contract we want to interact with.
 - `_value_`: empty (0).
 - `_data`: the abi-encoded function name + arguments, to to be run at the `_to` contract address.
-- Let's imagine a smart contract `targetContract` deployed on the network. You want your UP to call the function `myCoolFunction` on this contract. You will have to:
+- Let's imagine a smart contract `targetContract` deployed on the network. We want our UP to call the function `myCoolFunction` on this contract. We will have to:
 
-1. abi-encode the function call with the parameters you want to pass.
+1. abi-encode the function call with the parameters we want to pass.
 2. pass this payload as the fourth argument `_data` of the `.execute` function.
 
 <Tabs>
