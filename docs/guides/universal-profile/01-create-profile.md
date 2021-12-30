@@ -30,8 +30,8 @@ With the **Ownable** design pattern, a contract can be designed with _functional
 
 In the context of Universal Profile, _reading data from the contract storage can be done by anyone_. But **only the owner can**:
 
-- `setData` = add, edit or remove data from the ERC725Y storage.
-- `execute` = calling other contracts, doing LYX transfers, create other contracts (see ERC725X executor)
+- `setData` = add, edit or remove data from the [ERC725Y](../../standards/universal-profile/LSP0-Foundation#erc725y---generic-key-value-store) storage.
+- `execute` = calling other contracts, doing LYX transfers, create other contracts (see [ERC725X](../../standards/universal-profile/01-LSP0-Foundation.md#erc725x---generic-executor) executor)
 
 In this guide, our Universal Profile's owner will be a contract called a Key Manager. The Key Manager is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
 
@@ -109,8 +109,8 @@ const web3 = new Web3();
 const myEOA = web3.eth.accounts.create();
 console.log(myEOA);
 // output: {
-//     address: "0xb8CE9ab6943e0eCED004cDe8e3bBed6568B2Fa01",
-//     privateKey: "0x348ce564d427a3311b6536bbcff9390d69395b06ed6c486954e971d960fe8709",
+//     address: "0x...",
+//     privateKey: "0x...",
 //     signTransaction: function(tx){...},
 //     sign: function(data){...},
 //     encrypt: function(password){...}
@@ -364,7 +364,24 @@ The figure below describes each transactions performed by the lsp-factory.js, an
 
 :arrow_down: Look a the full code snippet below to help you debugging.
 
-## Final code
+## Final Code
+
+Below is the complete code snippet of this guide, with all the steps compiled together.
+
+```javascript title="create-eoa.js (temporary file) - run this code once to generate an EOA"
+const Web3 = require('web3');
+const web3 = new Web3();
+
+const myEOA = web3.eth.accounts.create();
+console.log(myEOA);
+// output: {
+//     address: "0x...",
+//     privateKey: "0x...",
+//     signTransaction: function(tx){...},
+//     sign: function(data){...},
+//     encrypt: function(password){...}
+// }
+```
 
 ```javascript title="main.js"
 const Web3 = require('web3');
