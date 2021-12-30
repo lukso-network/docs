@@ -15,9 +15,7 @@ Once deployed on a network, smart contracts cannot be changed: **they are set in
 
 An ERC725Account aims to make a smart contract act like a generic account. It can change, evolve and be edited over time. It is composed of two substandards: ERC725**X** and ERC725**Y**.
 
-<div style={{ textAlign: 'center' }}>
-    <img src="../../../static/img/erc725.jpg" height="700" />
-</div>
+![](img/erc725.jpg)
 
 ## ERC725X - Generic Executor
 

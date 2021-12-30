@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Giving permissions to addresses
 
-The Key Manager (KM) enables you to give permissions to other addresses, so they can edit data on your Universal Profile (UP) or interact with it on your behalf. In this section, we will see how to set up these permissions.
+The Key Manager (KM) enables us to give permissions to other addresses, so they can edit data on our Universal Profile (UP) or interact with it on our behalf. In this section, we will see how to set up these permissions.
 
 Below is a list of ERC725Y Permission Keys related to the Key Manager.
 We will store these values in a file `constants.js`, and reuse them through the next code snippets.
@@ -46,7 +46,7 @@ module.exports = {
 };
 ```
 
-The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `yourEOA`.
+The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `myEOA`.
 It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started.md) tool.
 
 <Tabs>
@@ -54,18 +54,18 @@ It assumes that the profile has been deployed with our [lsp-factory.js](https://
 
 ```javascript
 // see file above constants.js
-import { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } from './constants';
+const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require('./constants');
 
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
+const UniversalProfile = require('@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json');
 
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
-  '<your-UniversalProfile-address>',
+  '<my-UniversalProfile-address>',
 );
 const keyManager = new web3.eth.Contract(
   KeyManager.abi,
-  '<your-KeyManager-Address>',
+  '<my-KeyManager-Address>',
 );
 
 let bobAddress = '0xcafecafecafecafecafecafecafecafecafecafe';
@@ -78,8 +78,7 @@ async function setBobPermission() {
       [
         ADDRESSES.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
         PERMISSIONS_ARRAY, // length of AddressPermissions[]
-        PERMISSIONS_ARRAY.slice(0, 34) +
-          '00000000000000000000000000000001', // add Bob's address into the list of permissions
+        PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of permissions
       ],
       [
         bobPermissions,
@@ -91,7 +90,7 @@ async function setBobPermission() {
 
   keyManager
     .execute(payload)
-    .send({ from: '<your-eoa-address>', gas: 300_000 });
+    .send({ from: '<my-eoa-address>', gasLimit: 300_000 });
 }
 
 setBobPermission();
@@ -102,17 +101,17 @@ setBobPermission();
 
 ```javascript
 // see file above constants.js
-import { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } from './constants';
+const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require('./constants');
 
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
+const UniversalProfile = require('@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json');
 
 const universalProfile = new ethers.Contract(
-  '<your-UniversalProfile-address>',
+  '<my-UniversalProfile-address>',
   UniversalProfile.abi,
 );
 const keyManager = new ethers.Contract(
-  '<your-KeyManager-Address>',
+  '<my-KeyManager-Address>',
   KeyManager.abi,
 );
 
@@ -134,7 +133,7 @@ async function setBobPermission() {
     ],
   ]);
 
-  await keyManager.connect(yourEOA).execute(payload); // yourEOA should be of type Signer
+  await keyManager.connect(myEOA).execute(payload);
 }
 
 setBobPermission();
