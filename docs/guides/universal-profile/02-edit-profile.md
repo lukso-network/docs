@@ -10,14 +10,13 @@ You will need an Universal Profile that you control to follow this guide. <br/>
 :arrow_left: If you haven't created an Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./01-create-profile.md).
 :::
 
-In this guide, we will learn how to write **customize our Universal Profile** programmatically in Javascript. This will include:
+In this guide, we will learn how to **customize our Universal Profile** programmatically in Javascript. This will include:
 
 - add a profile + cover picture to our Universal Profile.
 - edit our Universal Profile infos (description, badges, links, etc...).
+- see the updated profile details and images of our Universal Profile on the [universalprofile.cloud](https://universalprofile.cloud) website.
 
-We will then see our updated profile details and images on the [universalprofile.cloud](https://universalprofile.cloud) website.
-
-To achieve this mini-project, we will perform the following steps:
+To achieve this goal, we will perform the following steps:
 
 1. create a JSON file that contains our profile details (`LSP3Profile` metadata).
 2. upload this JSON file to IPFS, using our [lsp-factory.js] tool.
@@ -27,18 +26,25 @@ To achieve this mini-project, we will perform the following steps:
 
 ## Introduction
 
-An Universal Profile is a smart contract that can be attached any informations to, thanks to its generic key-value store (see ERC725Y).
-A key-value store is a storage design that enables to attach any **value** to any specific **key**.
+An Universal Profile is a smart contract that uses a generic key-value store (ERC725Y) as a storage design. This makes it possible to attach any informations to our Universal Profile, by setting any specific **value** to any specific **key**.
+
+A set of ERC725Y keys is defined as an **ERC725Y schema**. The schema is an array of keys, where each key is represented by an object. Each key object describes the key `name`, the `keyType` (_e.g.: singleton, array, mapping..._), and the type of the data it contains (`valueType`).
+
+A schema enable us to know which ERC725Y keys we can set, and therefore **which informations we can retrieve + edit from our Universal Profile**.
+
+![](./img/ERC725Y-JSON-Schema-explained.jpeg)
+
+> For more details, see: [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#specification)
 
 One of main key of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key. It is a standardised key that refers to the metadata of the Universal Profile. This metadata takes the form of a JSON file stored on IPFS.
-
-_add figure of UP + LSP3Profile reference to IPFS._
 
 We can add (or edit) any informations related to our UP by:
 
 1. creating a new JSON file, with new / updated infos.
 2. upload this file to IPFS.
 3. change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our newly uploaded JSON file.
+
+![](img/profile-metadata-ipfs-explained.jpeg)
 
 ## Setup
 
@@ -49,6 +55,10 @@ npm install web3 @lukso/lsp-factory.js @lukso/universalprofile-smart-contracts @
 ```
 
 ## Step 1 - Create a new LSP3Profile JSON file
+
+:::success Recommendation
+A complete "ready to use" JSON file is available at the end in the [**Final Code**](#final-code) section.
+:::
 
 We will start by creating a **new JSON file** that will contain our `LSP3Profile` metadata.
 
