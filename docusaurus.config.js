@@ -1,8 +1,9 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'LUKSO',
-  tagline: 'Documentation',
-  url: 'https://docs.lukso.tech/',
+  title: 'LUKSO Tech Documentation',
+  tagline:
+    'Network, Standards, Tools and Guides for development on LUKSO and related standards.',
+  url: 'https://docs.lukso.tech',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -49,6 +50,12 @@ module.exports = {
           label: 'Guides',
         },
         {
+          type: 'doc',
+          docId: 'faq/lukso',
+          position: 'left',
+          label: 'FAQ',
+        },
+        {
           href: 'https://bit.ly/LUKSOWhitepaper',
           label: 'Whitepaper',
           position: 'right',
@@ -77,7 +84,7 @@ module.exports = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discord.gg/E2rJPP4',
+              href: 'https://discord.gg/lukso',
             },
             {
               label: 'Twitter',

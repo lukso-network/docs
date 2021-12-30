@@ -76,10 +76,9 @@ async function setBobPermission() {
   let payload = await universalProfile.methods
     .setData(
       [
-        KEYS.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on our UP
-        KEYS.PERMISSIONS_ARRAY, // length of AddressPermissions[]
-        KEYS.PERMISSIONS_ARRAY.slice(0, 34) +
-          '00000000000000000000000000000001', // add Bob's address into the list of permissions
+        ADDRESSES.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
+        PERMISSIONS_ARRAY, // length of AddressPermissions[]
+        PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of permissions
       ],
       [
         bobPermissions,
@@ -123,9 +122,9 @@ let bobPermissions = ethers.utils.hexZeroPad(PERMISSIONS.SETDATA, 32);
 async function setBobPermission() {
   let payload = universalProfile.interface.encodeFunctionData('setData', [
     [
-      KEYS.PERMISSIONS + bobAddress.substr(2),
-      KEYS.PERMISSIONS_ARRAY, // length of AddressPermissions[]
-      KEYS.PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of
+      ADDRESSES.PERMISSIONS + bobAddress.substr(2),
+      PERMISSIONS_ARRAY, // length of AddressPermissions[]
+      PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of
     ],
     [
       bobPermissions,
