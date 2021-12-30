@@ -75,7 +75,7 @@ You can create a Universal Profile without a Key Manager (or a Universal Receive
 
 Before to get started, we are going to create a new project folder. This is where we will write all the Javascript code of this tutorial.
 
-Open a terminal, create a new project folder, and goes inside it.
+Open a terminal, create a new project folder, and go inside it.
 
 ```shell
 mkdir myUP
@@ -96,7 +96,7 @@ npm install web3 @lukso/lsp-factory.js --save
 This step should be done in a **temporary file.**
 :::
 
-As describe before in the introduction, our first step is to create an EOA that will be used to control our Universal Profile.
+As described in the introduction, our first step is to create an EOA that will be used to control our Universal Profile.
 
 We can easily create an EOA using the [`web3.eth.accounts.create()`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#create) method from web3.js.
 
@@ -356,7 +356,7 @@ You can also see on the LUKSO L14 Block explorer the contracts that have been cr
 
 *https://blockscout.com/lukso/l14/address/your-eoa-address/transactions*
 
-The figure below describes each transactions performed by the lsp-factory.js, and map them to the architecture diagram shown at the beginning of this guide, in the **[Contracts Overview](#contracts-overview** section.
+The figure below describes each transaction performed by the lsp-factory.js, and map them to the architecture diagram shown at the beginning of this guide, in the **[Contracts Overview](#contracts-overview** section.
 
 ![](img/lsp-factory-deployments-explained.jpeg)
 

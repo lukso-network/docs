@@ -9,7 +9,7 @@ sidebar_position: 4
 
 :::
 
-LSP3 is a Metadata standard that aims to define a Universal Profile. a Universal Profile is a smart contract based profile, that contains some specific ERC725Y keys that describes the profile.
+LSP3 is a Metadata standard that aims to define a Universal Profile. A Universal Profile is a smart contract based profile, that contains some specific ERC725Y keys that describes the profile.
 
 This standard is based on ERC725Account. Therefore, a Universal Profile can:
 

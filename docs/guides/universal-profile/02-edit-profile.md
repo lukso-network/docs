@@ -30,7 +30,7 @@ A Universal Profile is a smart contract that uses a generic key-value store (ERC
 
 A set of ERC725Y keys is defined as an **ERC725Y schema**. The schema is an array of keys, where each key is represented by an object. Each key object describes the key `name`, the `keyType` (_e.g.: singleton, array, mapping..._), and the type of the data it contains (`valueType`).
 
-A schema enable us to know which ERC725Y keys we can set, and therefore **which informations we can retrieve + edit from our Universal Profile**.
+A schema enables us to know which ERC725Y keys we can set, and therefore **which information we can retrieve + edit from our Universal Profile**.
 
 ![](./img/ERC725Y-JSON-Schema-explained.jpeg)
 
@@ -125,7 +125,7 @@ The JSON file for LSP3Profile accepts an array of images, so that you images of 
 This way, client interfaces can know which images to pick, based on the container size in their interface.
 :::
 
-For our `profileImage` and `backgroundImage`, we will need to add the following informations:
+For our `profileImage` and `backgroundImage`, we will need to add the following information:
 
 - **`hash`**: use this **[keccak256 image hash generator](https://emn178.github.io/online-tools/keccak_256_checksum.html)**.
 - **`url`**: upload your images to the LUKSO IPFS Gateway.
@@ -148,7 +148,7 @@ Save your JSON file after you have added all your details and images.
 
 > **NB:** don't forget to delete the comments in the JSON file!
 
-We are now ready apply these changes on our Universal Profile. We will see how in the next section :arrow_down:
+We are now ready to apply these changes on our Universal Profile. We will see how in the next section :arrow_down:
 
 ## Step 2 - Upload our JSON file to IPFS
 
@@ -199,9 +199,9 @@ To do so, we will use our [erc725.js] library. It will help us encode the data e
 
 In order to setup the erc725.js library, we will need the following:
 
-- address of our Universal Profile contract = this is the address of our profile mentioned on the url after `/` on [universalprofile.cloud](https://universalprofile.cloud).
-- an ERC725Y JSON Schema = this is a set of ERC725Y key-value definitions (see)
-- a provider = it will our LUKSO L14 endpoint: *https://rpc.l14.lukso.network'*
+- address of our Universal Profile contract: this is the address of our profile mentioned on the url after `/` on [universalprofile.cloud](https://universalprofile.cloud).
+- an ERC725Y JSON Schema: this is a set of ERC725Y key-value definitions (see)
+- a provider: it will our LUKSO L14 endpoint: *https://rpc.l14.lukso.network'*
 
 **In the same file** `main.js`, setup the erc725.js library.
 
