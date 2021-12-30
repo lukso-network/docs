@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Edit an Universal Profile'
+sidebar_label: 'Edit a Universal Profile'
 sidebar_position: 1.2
 ---
 
-# Edit an Universal Profile
+# Edit a Universal Profile
 
 :::success Requirements
-You will need an Universal Profile that you control to follow this guide. <br/>
-:arrow_left: If you haven't created an Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./01-create-profile.md).
+You will need a Universal Profile that you control to follow this guide. <br/>
+:arrow_left: If you haven't created a Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./01-create-profile.md).
 :::
 
 In this guide, we will learn how to **customize our Universal Profile** programmatically in Javascript. This will include:
@@ -26,7 +26,7 @@ To achieve this goal, we will perform the following steps:
 
 ## Introduction
 
-An Universal Profile is a smart contract that uses a generic key-value store (ERC725Y) as a storage design. This makes it possible to attach any informations to our Universal Profile, by setting any specific **value** to any specific **key**.
+A Universal Profile is a smart contract that uses a generic key-value store (ERC725Y) as a storage design. This makes it possible to attach any informations to our Universal Profile, by setting any specific **value** to any specific **key**.
 
 A set of ERC725Y keys is defined as an **ERC725Y schema**. The schema is an array of keys, where each key is represented by an object. Each key object describes the key `name`, the `keyType` (_e.g.: singleton, array, mapping..._), and the type of the data it contains (`valueType`).
 
@@ -243,7 +243,7 @@ const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
 
 Once our erc725.js initialised, we can now encode our `LSP3Profile` data.
 
-To do so, we use the `encodeData(...)` function, passing an `LSP3Profile: { ... } ` object with the following properties:
+To do so, we use the `encodeData(...)` function, passing a `LSP3Profile: { ... } ` object with the following properties:
 
 - `hashFunction`: we use `keccak256` (standard hash function). Since we are hashing a JSON file that contains strings, we also specify the data type as `utf8`.
 - `hash` digest of the file: obtianed after hashing the JSON file with `keccak256`.

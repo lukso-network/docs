@@ -1,24 +1,24 @@
 ---
-sidebar_label: 'Create an Universal Profile'
+sidebar_label: 'Create a Universal Profile'
 sidebar_position: 1.1
 ---
 
-# Create an Universal Profile
+# Create a Universal Profile
 
 In this guide, we will learn how to:
 
-- create an Universal Profile.
+- create a Universal Profile.
 - see our new Universal Profile on [universalprofile.cloud](https://universalprofile.cloud).
 
 ![My Universal Profile](./img/my-up.png)
 
-We will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) to create an Universal Profile in **less than 50 lines of code!**
+We will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) to create a Universal Profile in **less than 50 lines of code!**
 
 ## Introduction
 
 ### Owned Contracts
 
-An Universal Profile is an **owned** smart contract. This means it is a contract that has an **owner**.
+A Universal Profile is an **owned** smart contract. This means it is a contract that has an **owner**.
 
 The Contract's owner is a blockchain `address` that can represent anything, such as:
 
@@ -53,14 +53,14 @@ For more details, see [LSP6 - Key Manager Standard](../../standards/universal-pr
 
 ![](./img/universal-profile-overview.jpeg)
 
-Our tool [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) will help us to deploy + setup easily an Universal Profile, with just few lines of code.
+Our tool [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) will help us to deploy + setup easily a Universal Profile, with just few lines of code.
 
 Under the hood, lsp-factory.js performs the following:
 
 1. deploys all the necessary contracts:
-   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile.md) (UP) - core smart contract that represents an Universal Profile.
+   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile.md) (UP) - core smart contract that represents a Universal Profile.
    - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD) - contract that react on events, such as tokens received or transferred.
-   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) - contract that acts as **owner of an Universal Profile**, to enable other address to interact with the UP.
+   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) - contract that acts as **owner of a Universal Profile**, to enable other address to interact with the UP.
 2. link the URD with the deployed UP account + set its permissions.
 3. set all the permissions for an EOA address, so that it can acts as the UP admin.
 
@@ -68,7 +68,7 @@ Under the hood, lsp-factory.js performs the following:
 
 :::info Learn More
 The figure above is our default setup for Universal Profile. However, _using a Key Manager as an owner is optional_.<br/>
-You can create an Universal Profile without a Key Manager (or a Universal Receiver Delegate linked to it).
+You can create a Universal Profile without a Key Manager (or a Universal Receiver Delegate linked to it).
 :::
 
 ## Setup
