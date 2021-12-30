@@ -22,7 +22,7 @@ To achieve this goal, we will perform the following steps:
 2. upload this JSON file to IPFS, using our [lsp-factory.js] tool.
 3. encode + set our new [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) metadata key in our profile with our [erc725.js] library and web3.js.
 
-![](./img/edit-profile.png)
+![Universal Profile with pictures and infos on universalprofile.cloud](./img/edit-profile.png)
 
 ## Introduction
 
@@ -32,7 +32,7 @@ A set of ERC725Y keys is defined as an **ERC725Y schema**. The schema is an arra
 
 A schema enables us to know which ERC725Y keys we can set, and therefore **which information we can retrieve + edit from our Universal Profile**.
 
-![](./img/ERC725Y-JSON-Schema-explained.jpeg)
+![Universal Profile + ERC725Y JSON schema (diagram)](./img/ERC725Y-JSON-Schema-explained.jpeg)
 
 > For more details, see: [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#specification)
 
@@ -44,7 +44,7 @@ We can add (or edit) any informations related to our UP by:
 2. upload this file to IPFS.
 3. change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our newly uploaded JSON file.
 
-![](img/profile-metadata-ipfs-explained.jpeg)
+![LSP3Profile Metadata as JSON file on IPFS (diagram)](img/profile-metadata-ipfs-explained.jpeg)
 
 ## Setup
 
@@ -363,7 +363,7 @@ You can now visualize your UP on the universalprofile.cloud website, by pasting 
 
 *https://universalprofile.cloud/your-up-address*
 
-![](./img/edit-profile.png)
+![Universal Profile with pictures and infos on universalprofile.cloud](./img/edit-profile.png)
 
 ## Final Code
 

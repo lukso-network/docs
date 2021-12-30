@@ -10,7 +10,7 @@ In this guide, we will learn how to:
 - create a Universal Profile.
 - see our new Universal Profile on [universalprofile.cloud](https://universalprofile.cloud).
 
-![My Universal Profile](./img/my-up.png)
+![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
 We will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) to create a Universal Profile in **less than 50 lines of code!**
 
@@ -26,7 +26,7 @@ The Contract's owner is a blockchain `address` that can represent anything, such
 - a multi-sig wallet.
 - an other smart contract that can represent anything (a DAO, a DEX, etc...).
 
-![](./img/universal-profile-ownership.jpeg)
+![Universal Profile smart contract: ownership diagram](./img/universal-profile-ownership.jpeg)
 
 > For more details, see [EIP-173: Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173)
 
@@ -51,7 +51,7 @@ For more details, see [LSP6 - Key Manager Standard](../../standards/universal-pr
 
 ### Contracts Overview
 
-![](./img/universal-profile-overview.jpeg)
+![Universal Profile: overview of deployed contracts](./img/universal-profile-overview.jpeg)
 
 Our tool [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) will help us to deploy + setup easily a Universal Profile, with just few lines of code.
 
@@ -158,7 +158,7 @@ We will look-up our address' balance in the **[LUKSO L14 Block Explorer](https:/
 
 :arrow_right: **[LUSKO L14 Block Explorer](https://blockscout.com/lukso/l14)**
 
-![L14 Explorer](./img/l14-explorer.png)
+![LUKSO L14 Network Block Explorer (screenshot)](./img/l14-explorer.png)
 
 ## Step 3 - Create our Universal Profile
 
@@ -350,7 +350,7 @@ We can now visualize our UP on the [universalprofile.cloud](https://universalpro
 
 *https://universalprofile.cloud/{your-up-address}*
 
-![My Universal Profile](./img/my-up.png)
+![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
 You can also see on the LUKSO L14 Block explorer the contracts that have been created by the lsp-factory.js:
 
@@ -358,9 +358,9 @@ You can also see on the LUKSO L14 Block explorer the contracts that have been cr
 
 The figure below describes each transaction performed by the lsp-factory.js, and map them to the architecture diagram shown at the beginning of this guide, in the **[Contracts Overview](#contracts-overview** section.
 
-![](img/lsp-factory-deployments-explained.jpeg)
+![lsp-factory.js: contract deployed on L14 and transactions flow](img/lsp-factory-deployments-explained.jpeg)
 
-## Congratulations!
+## Congratulations 🥳
 
 **You have successfully created your first Universal Profile!**
 
