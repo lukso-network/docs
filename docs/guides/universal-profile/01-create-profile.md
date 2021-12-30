@@ -37,7 +37,7 @@ In the context of Universal Profile, _reading data from the contract storage can
 - `setData` = add, edit or remove data from the [ERC725Y](../../standards/universal-profile/LSP0-Foundation#erc725y---generic-key-value-store) storage.
 - `execute` = calling other contracts, doing LYX transfers, create other contracts (see [ERC725X](../../standards/universal-profile/01-LSP0-Foundation.md#erc725x---generic-executor) executor)
 
-In this guide, our Universal Profile's owner will be a contract called a Key Manager. The Key Manager is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
+In this guide, our Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../contracts/key-manager.md) is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
 
 :::info Learn More
 You can implement any complex ownership structure (and fine-grained control) on top of Universal Profiles. This includes having a UP owned and controlled by:
@@ -93,7 +93,7 @@ npm install web3 @lukso/lsp-factory.js --save
 ## Step 1 - Create an EOA
 
 :::note Notice
-This step should be done in a **temporary file.**
+This step should be done in a **temporary file**.
 :::
 
 As described in the introduction, our first step is to create an EOA that will be used to control our Universal Profile.
@@ -121,10 +121,10 @@ console.log(myEOA);
 // }
 ```
 
-Run the script above with node.js to generate + display your EOA private key + address.
+Run the script above with Node.js to generate and display your EOA private key + address.
 
 ```bash
-node create-eoa.js # or <name-of-your-temporary-file>.js
+node create-eoa.js
 ```
 
 > See the [Web3.js docs](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#) for more infos on creating an EOA
@@ -348,13 +348,13 @@ createUniversalProfile();
 
 We can now visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website, by adding the address of the deployed UP in the the url, after the `/` (slash), as follow:
 
-*https://universalprofile.cloud/your-up-address*
+*https://universalprofile.cloud/{your-up-address}*
 
 ![My Universal Profile](./img/my-up.png)
 
 You can also see on the LUKSO L14 Block explorer the contracts that have been created by the lsp-factory.js:
 
-*https://blockscout.com/lukso/l14/address/your-eoa-address/transactions*
+*https://blockscout.com/lukso/l14/address/{your-eoa-address}/transactions*
 
 The figure below describes each transaction performed by the lsp-factory.js, and map them to the architecture diagram shown at the beginning of this guide, in the **[Contracts Overview](#contracts-overview** section.
 

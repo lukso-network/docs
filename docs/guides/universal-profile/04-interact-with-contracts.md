@@ -24,8 +24,8 @@ To make our UP call a function on a specific contract deployed on the network, t
 - `_data`: the abi-encoded function name + arguments, to to be run at the `_to` contract address.
 - Let's imagine a smart contract `targetContract` deployed on the network. We want our UP to call the function `myCoolFunction` on this contract. We will have to:
 
-1. abi-encode the function call with the parameters we want to pass.
-2. pass this payload as the fourth argument `_data` of the `.execute` function.
+1. [abi-encode](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-encodeabi) the function call with the parameters we want to pass.
+2. pass this payload as the fourth argument `_data` of the `execute(...)` function.
 
 <Tabs>
   

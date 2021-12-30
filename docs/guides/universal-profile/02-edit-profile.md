@@ -10,7 +10,7 @@ You will need a Universal Profile that you control to follow this guide. <br/>
 :arrow_left: If you haven't created a Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./01-create-profile.md).
 :::
 
-In this guide, we will learn how to **customize our Universal Profile** programmatically in Javascript. This will include:
+In this guide, we will learn how to **customize our Universal Profile** programmatically in JavaScript. This will include:
 
 - add a profile + cover picture to our Universal Profile.
 - edit our Universal Profile infos (description, badges, links, etc...).
@@ -200,7 +200,7 @@ To do so, we will use our [erc725.js] library. It will help us encode the data e
 In order to setup the erc725.js library, we will need the following:
 
 - address of our Universal Profile contract: this is the address of our profile mentioned on the url after `/` on [universalprofile.cloud](https://universalprofile.cloud).
-- an ERC725Y JSON Schema: this is a set of ERC725Y key-value definitions (see)
+- an ERC725Y JSON Schema: this is a set of ERC725Y key-value definitions (see [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md))
 - a provider: it will our LUKSO L14 endpoint: *https://rpc.l14.lukso.network'*
 
 **In the same file** `main.js`, setup the erc725.js library.
