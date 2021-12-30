@@ -18,13 +18,17 @@ We will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/unive
 
 ### Owned Contracts
 
-An Universal Profile is an **owned** smart contract. This means it is a contract that has an **owner**. The Contract's owner is a blockchain `address` that can represent anything, such as:
+An Universal Profile is an **owned** smart contract. This means it is a contract that has an **owner**.
+
+The Contract's owner is a blockchain `address` that can represent anything, such as:
 
 - an Externally Owned Account (EOA), or many EOAs.
 - a multi-sig wallet.
 - an other smart contract that can represent anything (a DAO, a DEX, etc...).
 
 ![](./img/universal-profile-ownership.jpeg)
+
+> For more details, see [EIP-173: Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173)
 
 With the **Ownable** design pattern, a contract can be designed with _functionalities that can only be performed by the owner_. This gives the contract owner more control and privileges.
 
@@ -36,13 +40,13 @@ In the context of Universal Profile, _reading data from the contract storage can
 In this guide, our Universal Profile's owner will be a contract called a Key Manager. The Key Manager is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
 
 :::info Learn More
-You can implement any complex ownership structure on top of Universal Profiles. This includes having a UP owned by:
+You can implement any complex ownership structure (and fine-grained control) on top of Universal Profiles. This includes having a UP owned and controlled by:
 
 - one or multiple EOAs
 - one or multiple smart contracts
 - a mixture of both
 
-For more details, see [EIP-173: Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173)
+For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/04-lsp6-key-manager.md)
 :::
 
 ### Contracts Overview
