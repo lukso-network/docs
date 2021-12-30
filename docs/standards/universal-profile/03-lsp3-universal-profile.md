@@ -5,19 +5,22 @@ sidebar_position: 4
 
 # Universal Profile
 
-LSP3 is a standard that aims to define a Universal Profile. It is based
+:::caution this section is a work in progress
 
-LSP3 is a Metadata standard. It defines a set of ERC725Y key that can be used to describe a Universal Profile.
+:::
 
-This standard is based on ERC725Account.
+LSP3 is a Metadata standard that aims to define a Universal Profile. a Universal Profile is a smart contract based profile, that contains some specific ERC725Y keys that describes the profile.
+
+This standard is based on ERC725Account. Therefore, a Universal Profile can:
+
+- interact with any address or contracts ([ERC725X](./01-LSP0-Foundation.md#erc725x---generic-executor)).
+- be attached any information ([ERC725Y](./LSP0-Foundation#erc725y---generic-key-value-store)).
 
 A Universal Profile contains the following main keys:
 
 ## LSP3Profile
 
 The value attached to this key is a JSON URL. It represents a reference to a file, stored on a centralised or decentralised storage.
-
-*Figure of UP with link to IPFS*
 
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces, so that they can download and serve the image with the dimensions that is the most suitable, instead of having to re-scale it.
 
