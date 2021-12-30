@@ -19,7 +19,7 @@ In this guide, we will learn how to **customize our Universal Profile** programm
 To achieve this goal, we will perform the following steps:
 
 1. create a JSON file that contains our profile details (`LSP3Profile` metadata).
-2. upload this JSON file to IPFS, using our [lsp-factory.js] tool.
+2. upload this JSON file to [IPFS], using our [lsp-factory.js] tool.
 3. encode + set our new [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) metadata key in our profile with our [erc725.js] library and web3.js.
 
 ![Universal Profile with pictures and infos on universalprofile.cloud](./img/edit-profile.png)
@@ -36,15 +36,22 @@ A schema enables us to know which ERC725Y keys we can set, and therefore **which
 
 > For more details, see: [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#specification)
 
-One of main key of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key. It is a standardised key that refers to the metadata of the Universal Profile. This metadata takes the form of a JSON file stored on IPFS.
+One of main ERC725Y key of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key. It is a standardised key that refers to the **metadata of the Universal Profile**. This metadata takes the form of a reference to a JSON file.
+
+In this guide, we will store our Universal Profile metadata on [IPFS], a distributed file storage.
 
 We can add (or edit) any informations related to our UP by:
 
 1. creating a new JSON file, with new / updated infos.
-2. upload this file to IPFS.
-3. change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our newly uploaded JSON file.
+2. uploading this file to IPFS.
+3. changing the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our newly uploaded JSON file.
 
 ![LSP3Profile Metadata as JSON file on IPFS (diagram)](img/profile-metadata-ipfs-explained.jpeg)
+
+:::info Learn More
+**IPFS is just one place among many** where you can store your Universal Profile metadata.<br/>
+You can use other file storage options to store your JSON file (_e.g.: [Swarm](https://www.ethswarm.org/), [Storj](https://www.storj.io/index.html), Google Drive, private FTP server, etc... _).
+:::
 
 ## Setup
 
@@ -483,3 +490,4 @@ editProfileInfos();
 
 [lsp-factory.js]: (../../tools/lsp-factoryjs/deployment/universal-profile.md#uploading-lsp3-metadata-to-ipfs)
 [erc725.js]: (../../tools/erc725js/writing-data.md#example)
+[ipfs]: https://ipfs.io/
