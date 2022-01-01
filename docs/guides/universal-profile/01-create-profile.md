@@ -356,7 +356,7 @@ You can also see on the LUKSO L14 Block explorer the contracts that have been cr
 
 *https://blockscout.com/lukso/l14/address/{your-eoa-address}/transactions*
 
-The figure below describes each transaction performed by the lsp-factory.js, and map them to the architecture diagram shown at the beginning of this guide, in the **[Contracts Overview](#contracts-overview** section.
+The figure below describes each transaction performed by the lsp-factory.js, and map them to the architecture diagram shown at the beginning of this guide, in the **[Contracts Overview](#contracts-overview)** section.
 
 ![lsp-factory.js: contract deployed on L14 and transactions flow](img/lsp-factory-deployments-explained.jpeg)
 
