@@ -42,7 +42,7 @@ const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
 };
 ```
 
-[`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) contains the LSP3 metadata of your Universal Profile. This is the 'face' of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
+`lsp3Profile` contains the LSP3 metadata of your Universal Profile. This is the 'face' of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
 
 ```javascript
 const myUniversalProfileData = {
@@ -82,7 +82,7 @@ const myUniversalProfileData =
   'ipfs://QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy';
 ```
 
-To create a 'faceless' Universal Profile, omit the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP.
+To create a 'faceless' Universal Profile, omit the `lsp3Profile` value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP.
 
 You can now continue using your UP address:
 
