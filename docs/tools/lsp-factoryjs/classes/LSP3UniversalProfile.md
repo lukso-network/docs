@@ -1,9 +1,10 @@
 ---
 sidebar_position: 1.2
 ---
+
 ## deploy
 
-**deploy**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<`DeployedContracts`>
+**deploy**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<`Object`>
 
 Deploys a [UniversalProfile](../../../standards/universal-profile/introduction) to the blockchain and uploads LSP3 Profile data to IPFS
 
@@ -11,29 +12,35 @@ Asyncronous version of `deployReactive`.
 
 ### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `profileDeploymentOptions` | `ProfileDeploymentOptions` |
-| `contractDeploymentOptions?` | `ContractDeploymentOptions` |
+1. `profileDeploymentOptions` - `Object`: The options used for deployment.
+   - `controllingAccounts` - `string[]`: A list of accounts (public addresses) which will be granted [all permissions](../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions) on the newly created Universal Profile.
+   - `lsp3Profile?` - `Object`: If set, the created Universal Profile will be populated with these values.
+     - `name` - `string`: The name of the Universal Profile
+     - `description` - `string`: The description of the Universal Profile
+     - `profileImage?` - `File | ImageBuffer | LSP3ProfileImage[]`
+     - `backgroundImage?` - `File | ImageBuffer | LSP3ProfileImage[]`
+     - `tags?` - `string[]`
+     - `links?` - `{title: string, url: string}[]`
+2. `contractDeploymentOptions?` - `Object`
 
 ### Returns
 
 Promise with object containing deployed contract details
 
-`Promise`<`DeployedContracts`\>
+`Promise`<`Object`\>
 
 ### Example
+
 ```javascript
 await lspFactory.LSP3UniversalProfile.deploy({
-   controllingAccounts: ['0xb74a88C43BCf691bd7A851f6603cb1868f6fc147'],
-   lsp3Profile: {
-      name: 'My Universal Profile',
-      description: 'My cool Universal Profile',
-      tags: ['Fashion', 'Design'],
-      links: [{ title: 'My Website', url: 'www.my-website.com' }],
-   }
+  controllingAccounts: ['0xb74a88C43BCf691bd7A851f6603cb1868f6fc147'],
+  lsp3Profile: {
+    name: 'My Universal Profile',
+    description: 'My cool Universal Profile',
+    tags: ['Fashion', 'Design'],
+    links: [{ title: 'My Website', url: 'www.my-website.com' }],
+  },
 });
-
 
 /**
 {
@@ -104,7 +111,7 @@ await lspFactory.LSP3UniversalProfile.deploy({
 */
 ```
 
-___
+---
 
 ## deployReactive
 
@@ -114,10 +121,7 @@ Deploys a [UniversalProfile](../../../standards/universal-profile/introduction) 
 
 ### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `profileDeploymentOptions` | `ProfileDeploymentOptions` |
-| `contractDeploymentOptions?` | `ContractDeploymentOptions` |
+Same as for the [asynchronous version](./LSP3UniversalProfile#parameters).
 
 ### Returns
 
@@ -125,16 +129,17 @@ Deploys a [UniversalProfile](../../../standards/universal-profile/introduction) 
 
 `Observable`<`LSP3AccountDeploymentEvent` \| `DeploymentEventTransaction`\>
 
-### Example 
+### Example
+
 ```javascript
 await lspFactory.LSP3UniversalProfile.deployReactive({
-  controllingAccounts: ["0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db"],
+  controllingAccounts: ['0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db'],
 }).subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);
   },
   complete: () => {
-    console.log("Deployment Complete");
+    console.log('Deployment Complete');
   },
 });
 
@@ -262,13 +267,15 @@ await lspFactory.LSP3UniversalProfile.deployReactive({
 Deployment Complete
 */
 ```
-___
+
+---
 
 ## deployBaseContracts
 
 **deployBaseContracts**(): `Promise`<`DeployedContracts`\>
 
 Deploys [UniversalProfile](../../../standards/universal-profile/introduction) base contracts.
+
 ### Returns
 
 Promise with object containing base contract details.
@@ -328,7 +335,7 @@ await lspFactory.LSP3UniversalProfile.deployBaseContracts();
 */
 ```
 
-___
+---
 
 ## getDeployedByteCode
 
@@ -338,8 +345,8 @@ Fetches bytecode deployed at provided contract address.
 
 ### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name              | Type     |
+| :---------------- | :------- |
 | `contractAddress` | `string` |
 
 ### Returns
@@ -352,13 +359,13 @@ Bytecode deployed at provided contract address
 
 ```javascript
 await lspFactory.LSP3UniversalProfile.getDeployedByteCode(
-  "0xd92C7cA9c493aFC0DF51cE480ec7bB7DC8394549"
+  '0xd92C7cA9c493aFC0DF51cE480ec7bB7DC8394549',
 );
 
 // 0x363d3d373d3d3d363d736533158b042775e2fdfef3ca1a782efdbb8eb9b15af43d82803e903d91602b57fd5bf3
 ```
 
-___
+---
 
 ## uploadProfileData
 
@@ -371,10 +378,10 @@ Will upload and process passed images.
 
 ### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `profileData` | `ProfileDataBeforeUpload` |
-| `uploadOptions?` | `ProfileUploadOptions` |
+| Name             | Type                      |
+| :--------------- | :------------------------ |
+| `profileData`    | `ProfileDataBeforeUpload` |
+| `uploadOptions?` | `ProfileUploadOptions`    |
 
 ### Returns
 
@@ -383,12 +390,13 @@ Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile) Da
 `Promise`<`LSP3ProfileDataForEncoding`\>
 
 ### Example
+
 ```javascript
 await LSP3UniversalProfile.uploadProfileData({
-  name: "My Universal Profile",
-  description: "My cool Universal Profile",
-  tags: ["Fashion", "Design"],
-  links: [{ title: "My Website", url: "www.my-website.com" }],
+  name: 'My Universal Profile',
+  description: 'My cool Universal Profile',
+  tags: ['Fashion', 'Design'],
+  links: [{ title: 'My Website', url: 'www.my-website.com' }],
   profileImage: [
     {
       width: 500,
@@ -407,7 +415,7 @@ await LSP3UniversalProfile.uploadProfileData({
       url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
     },
   ],
-})
+});
 
 /**
 {
