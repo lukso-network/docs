@@ -72,7 +72,7 @@ contract MyToken is LSP7DigitalAsset {
 }
 ```
 
-## **Learn More**
+## Learn More
 
 - **[Current Implementation](https://github.com/lukso-network/lsp-universalprofile-smart-contracts)**
 - **[LSP0-ERC725Account Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)** forms the main piece that **UniversalProfiles** are build on.
