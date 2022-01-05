@@ -133,6 +133,10 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        gtag: {
+          trackingID: 'G-2XGVSVVVD4',
+          anonymizeIP: true,
+        },
       },
     ],
   ],
