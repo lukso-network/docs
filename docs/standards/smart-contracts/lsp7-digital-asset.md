@@ -1,5 +1,5 @@
 ---
-title: LSP7 Digital Asset
+title: LSP7 - Digital Asset
 sidebar_position: 5
 ---
 
@@ -287,3 +287,8 @@ _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed succe
 | :----------- | :------ | :---------------------------------- |
 | `operator`   | address | The address revoked from operating. |
 | `tokenOwner` | address | The token owner.                    |
+
+## References
+
+- [LUKSO Standards Proposals: LSP7 - Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)
+- [LSP7 Digital Asset: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP7DigitalAsset)

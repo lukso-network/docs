@@ -1,12 +1,12 @@
 ---
-title: LSP6 Key Manager
+title: LSP6 - Key Manager
 sidebar_position: 4
 ---
 
 # LSP6 Key Manager
 
-The **KeyManager** is a contract that controls the **[ERC725Account](./erc725-account.md)**. It comes with a set of pre-defined permissions for addresses.
-The permissions could range from setting data, executing, changing owner and more as written in the **[Permissions Section](../standards/universal-profile/04-lsp6-key-manager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](../standards/universal-profile/04-lsp6-key-manager.md)**.
+The **KeyManager** is a contract that controls the **[ERC725Account](./lsp0-erc725-account.md)**. It comes with a set of pre-defined permissions for addresses.
+The permissions could range from setting data, executing, changing owner and more as written in the **[Permissions Section](./lsp6-key-manager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](./lsp6-key-manager.md)**.
 
 Currently the **`DelegateCall`** operation to execute is unavailable for the users since it have malicious impact on their accounts.
 
@@ -24,7 +24,7 @@ Currently the **`DelegateCall`** operation to execute is unavailable for the use
   ) public payable returns (bytes memory result)
 ```
 
-Execute a payload on the **ERC725Account**. This payload could represent the ABI of any function on the account ; **[setData](./erc725-account.md#setdata)** or **[execute](./erc725-account.md#execute)**, etc ..
+Execute a payload on the **ERC725Account**. This payload could represent the ABI of any function on the account ; **[setData](./lsp0-erc725-account.md#setdata)** or **[execute](./lsp0-erc725-account.md#execute)**, etc ..
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
@@ -51,7 +51,7 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[executeRelayCall](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
 
-_More info about `channel` could be found here: **[What are multi-channel nonces](../standards/faq/channel-nonce.md)**_
+_More info about `channel` could be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**_
 
 #### Parameters:
 

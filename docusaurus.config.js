@@ -33,12 +33,6 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'contracts/overview',
-          position: 'left',
-          label: 'Contracts',
-        },
-        {
-          type: 'doc',
           docId: 'tools/getting-started',
           position: 'left',
           label: 'Tools',
