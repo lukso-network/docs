@@ -33,12 +33,6 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'contracts/overview',
-          position: 'left',
-          label: 'Contracts',
-        },
-        {
-          type: 'doc',
           docId: 'tools/getting-started',
           position: 'left',
           label: 'Tools',
@@ -137,6 +131,41 @@ module.exports = {
           trackingID: 'G-2XGVSVVVD4',
           anonymizeIP: true,
         },
+      },
+    ],
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/contracts/overview',
+            to: '/standards/smart-contracts/overview',
+          },
+          {
+            from: '/contracts/erc725-account',
+            to: '/standards/smart-contracts/lsp0-erc725-account',
+          },
+          {
+            from: '/contracts/universal-receiver-delegate',
+            to: '/standards/smart-contracts/lsp1-universal-receiver-delegate',
+          },
+          {
+            from: '/contracts/key-manager',
+            to: '/standards/smart-contracts/lsp6-key-manager',
+          },
+          {
+            from: '/contracts/digital-asset',
+            to: '/standards/smart-contracts/lsp7-digital-asset',
+          },
+          {
+            from: '/contracts/identifiable-digital-asset',
+            to: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
+          },
+          {
+            from: '/contracts/interface-ids',
+            to: '/standards/smart-contracts/interface-ids',
+          },
+        ],
       },
     ],
   ],

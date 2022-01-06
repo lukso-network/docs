@@ -12,7 +12,7 @@ In this guide, we will learn how to use our Universal Profile to interact with a
 
 ## Introduction
 
-We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../contracts/erc725-account.md#execute) function.
+We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../standards/smart-contracts/lsp0-erc725-account.md#execute) function.
 
 This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from our UP. The `_data` parameter is especially useful when the `_to` recipient is a smart contract.
 

@@ -1,6 +1,5 @@
 ---
 sidebar_label: 'Introduction'
-sidebar_position: 5.1
 ---
 
 # NFT 2.0
@@ -32,7 +31,7 @@ NFT 2.0 solves this problem by creating tokens and NFTs that use [ERC725Y](https
 
 NFT 2.0 implement a `force` parameter, set to `false` by default. The intention behind it is to prevent accidental transfers, due to mistakes for instance (_eg: pasting the wrong recipient address, or making a typo in the recipient address_). It also aims to prevent transferring to unwanted or untrusted addresses. Such accidental transfers can result in assets lost forever.
 
-In the LUKSO ecosystem, the `force` parameter restricts transfer to Externally Owned Accounts (EOA) or contracts that do not implement [LSP1 - Universal Receiver](../generic-standards/02-lsp1-universal-receiver.md). The reason behind this is that contracts that do not implement the [`universalReceiver`](../../contracts/erc725-account.md#universalreceiver) functionality might not be able to register or transfer these assets after receiving them.
+In the LUKSO ecosystem, the `force` parameter restricts transfer to Externally Owned Accounts (EOA) or contracts that do not implement [LSP1 - Universal Receiver](../generic-standards/02-lsp1-universal-receiver.md). The reason behind this is that contracts that do not implement the [`universalReceiver`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver) functionality might not be able to register or transfer these assets after receiving them.
 
 ## LSP4 Digital Asset Metadata
 

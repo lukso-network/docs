@@ -1,5 +1,5 @@
 ---
-title: LSP0 ERC725Account
+title: LSP0 - ERC725Account
 sidebar_position: 2
 ---
 
@@ -126,9 +126,9 @@ Gets array of data at multiple given key.
 
 Emits an event when it's succesfully executed.
 
-Call the **[universalReceiverDelegate](.//universal-receiver-delegate.md#universalreceiverdelegate)** function in the **[universalReceiverDelegate](.//universal-receiver-delegate.md)** (URD) contract, if the address of the URD was set as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the account key/value value store of the same contract implementing the universalReceiver function and if the URD contract has the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** registred using **ERC165**.
+Call the **[universalReceiverDelegate](./lsp1-universal-receiver-delegate.md#universalreceiverdelegate)** function in the **[universalReceiverDelegate](./lsp1-universal-receiver-delegate.md)** (URD) contract, if the address of the URD was set as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the account key/value value store of the same contract implementing the universalReceiver function and if the URD contract has the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** registred using **ERC165**.
 
-The current implementation of the **UniversalReceiverDelegate** is found **[here](.//universal-receiver-delegate.md)**.
+The current implementation of the **UniversalReceiverDelegate** is found **[here](./lsp1-universal-receiver-delegate.md)**.
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully._
 
@@ -273,5 +273,6 @@ _**MUST** be fired when the **[universalReceiver](#universalreceiver)** is succe
 
 ## References
 
+- [LUKSO Standards Proposals: LSP0 - ERC725 Account (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
 - [LUKSO Standards Proposals: LSP3 - UniversalProfile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
 - [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts)

@@ -1,5 +1,5 @@
 ---
-title: LSP8 Identifiable Digital Asset
+title: LSP8 - Identifiable Digital Asset
 sidebar_position: 6
 ---
 
@@ -371,3 +371,8 @@ _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed succe
 | `operator`   | address | The address authorized as an operator.    |
 | `tokenOwner` | address | The token owner.                          |
 | `tokenId`    | bytes32 | The token revoked from `operator` access. |
+
+## References
+
+- [LUKSO Standards Proposals: LSP8 - Identifiable Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)
+- [LSP8 Identifiable Digital Asset: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP8IdentifiableDigitalAsset)
