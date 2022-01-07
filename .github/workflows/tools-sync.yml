@@ -18,12 +18,18 @@ jobs:
     - name: Pull tools docs
       run: npm run docs:tools:sync
 
-    - name: Get changed files
-      id: changed-files
-      uses: tj-actions/changed-files@v11.9
+    - name: Check if there are changes
+      id: changes
+      run: |- 
+        if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
+        then
+          echo '::set-output name=changed::0'
+        else
+          echo '::set-output name=changed::1'
+        fi
 
     - name: Create Pull Request
-      if: steps.changed-files.output.any_modified
+      if: steps.changes.outputs.changed == 1
       uses: peter-evans/create-pull-request@v3
       with: 
         draft: false
