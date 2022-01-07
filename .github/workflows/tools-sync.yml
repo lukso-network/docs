@@ -23,7 +23,7 @@ jobs:
       uses: tj-actions/changed-files@v11.9
 
     - name: Create Pull Request
-      if: steps.changed-files.any_changed
+      if: steps.changed-files.output.any_modified
       uses: peter-evans/create-pull-request@v3
       with: 
         draft: false
