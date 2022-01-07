@@ -21,7 +21,7 @@ const web3provider = new Web3(
 );
 ```
 
-## Ethereum (Metamask)
+## Ethereum (MetaMask)
 
 This is the provider available at `window.ethereum` injected into a
 compatible web browser from the [Metamask plugin](https://metamask.io/).
@@ -29,38 +29,3 @@ compatible web browser from the [Metamask plugin](https://metamask.io/).
 ```javascript
 const ethereumProvider = window.ethereum;
 ```
-
-## GraphQL (Apollo)
-
-Also supported is a [GraphQL
-client](https://www.apollographql.com/docs/) as the provider.
-
-:::tip
-The provider is located in an external package to avoid having a dependency to `graphql` by default.
-:::
-
-## Installation
-
-`npm i @erc725/provider-wrappers @apollo/client`
-
-## Usage
-
-```javascript
-import { GraphProviderWrapper } from '@erc725/provider-wrappers';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-
-const apolloProvider = new ApolloClient({
-  uri: 'http://localhost:8080/graphql',
-  cache: new InMemoryCache(),
-  fetchOptions: {
-    mode: 'no-cors',
-  },
-});
-
-const provider = new GraphProviderWrapper(apolloClient);
-```
-
-:::info Note
-Currently the `link` property of the options object for the Apollo client
-is not supported, and known to not function correctly.
-:::
