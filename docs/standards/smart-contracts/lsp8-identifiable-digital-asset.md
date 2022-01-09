@@ -1,20 +1,38 @@
 ---
 title: LSP8 - Identifiable Digital Asset
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # LSP8 Identifiable Digital Asset
 
-The **IdentifiableDigitalAsset** contract represents identifiable digital assets, where tokens to be uniquely traded and given metadata using **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
+The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital assets, where tokens to be uniquely traded and given metadata using **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
 Tokens are identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
 
 A **bytes32** value is used for tokenId to allow many uses of token identification including numbers, contract addresses, and hashed values (ie. serial numbers).
 
 :::note
-**_IdentifiableDigitalAsset implementation also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract to attach metadata to the asset. _**
+**_LSP8IdentifiableDigitalAsset contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
 :::
 
 ## Functions
+### Constructor
+
+```solidity
+  constructor(
+    string memory name_,
+    string memory symbol_,
+    address newOwner_
+    ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
+```
+Sets the token name and symbol and registers **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
+
+#### Parameters:
+
+| Name        | Type    | Description                |
+| :---------- | :------ | :------------------------- |
+| `name_`     | string  | The name of the token.     |
+| `symbol_`   | string  | The symbol of the token.   |
+| `newOwner_` | address | The owner of the contract. |
 
 ### totalSupply
 
@@ -50,7 +68,7 @@ Returns the number of tokens owned by `tokenOwner`.
 
 | Name    | Type    | Description                                 |
 | :------ | :------ | :------------------------------------------ |
-| `value` | uint256 | the number of tokens owned by this address. |
+| `value` | uint256 | The number of tokens owned by this address. |
 
 ### tokenOwnerOf
 
@@ -115,7 +133,7 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
 
 Makes `operator` address an operator of `tokenId`.
 
-_Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator_
+_Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator_.
 
 #### Parameters:
 
@@ -128,7 +146,7 @@ _Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an addres
 
 #### Requirements:
 
-- `tokenId` must exist
+- `tokenId` must exist.
 - Caller must be current `tokenOwner` of `tokenId`.
 - `operator` cannot be calling address.
 - `operator` cannot be the zero address.
@@ -146,7 +164,7 @@ _Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an addres
 
 Removes `operator` address as an operator of `tokenId`.
 
-_Triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator_
+_Triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator_.
 
 #### Parameters:
 
@@ -159,7 +177,7 @@ _Triggers the **[RevokedOperator](#revokedoperator)** event when an address get 
 
 #### Requirements:
 
-- `tokenId` must exist
+- `tokenId` must exist.
 - Caller must be current `tokenOwner` of `tokenId`.
 - `operator` cannot be calling address.
 - `operator` cannot be the zero address.
@@ -194,7 +212,7 @@ Returns whether `operator` address is an operator of `tokenId`. Operators can se
 
 #### Requirements:
 
-- `tokenId` must exist
+- `tokenId` must exist.
 - Caller must be current `tokenOwner` of `tokenId`.
 
 :::
@@ -225,7 +243,7 @@ Returns all `operator` addresses of `tokenId`.
 
 #### Requirements:
 
-- `tokenId` must exist
+- `tokenId` must exist.
 
 :::
 
@@ -374,5 +392,5 @@ _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed succe
 
 ## References
 
-- [LUKSO Standards Proposals: LSP8 - Identifiable Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)
+- [LUKSO Standards Proposals: LSP8 - Identifiable Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)
 - [LSP8 Identifiable Digital Asset: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP8IdentifiableDigitalAsset)

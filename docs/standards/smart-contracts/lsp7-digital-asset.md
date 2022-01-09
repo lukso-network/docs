@@ -1,19 +1,41 @@
 ---
 title: LSP7 - Digital Asset
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # LSP7 Digital Asset
 
-The **DigitalAsset** contract represents digital assets, for either fungible or non-fungible tokens where minting and transfering is specified with an amount of tokens. It have some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
+The **LSP7DigitalAsset** contract represents digital assets, for either fungible or non-fungible tokens where minting and transfering is specified with an amount of tokens. It have some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
 
-This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to `false` in the constructor, and serves as **Non-Fungible Token Contract** otherwise.
+This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to **false** in the constructor, and serves as **Non-Fungible Token Contract** otherwise.
 
 :::note
-**_DigitalAsset implementation also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract to attach metadata to the asset._**
+**_LSP7DigitalAsset contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
 :::
 
 ## Functions
+
+### Constructor
+
+```solidity
+  constructor(
+    string memory name_,
+    string memory symbol_,
+    address newOwner_,
+    bool isNFT_
+    ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
+```
+Sets the token name and symbol, specify if the contract represent a fungible token or an NFT and registers **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
+
+#### Parameters:
+
+| Name        | Type    | Description                                                           |
+| :---------- | :------ | :-------------------------------------------------------------------- |
+| `name_`     | string  | The name of the token.                                                |
+| `symbol_`   | string  | The symbol of the token.                                              |
+| `newOwner_` | address | The owner of the contract.                                            |
+| `isNFT_`    | bool    | Specify if the contract represent a fungible or a non-fungible token. |
+
 
 ### decimals
 
@@ -23,7 +45,7 @@ This contract serves as a **Fungible Token Contract** when `isNFT` bool is set t
 
 Returns the number of decimals used to get its user representation.
 
-If the contract represents a **NFT** then `0` **SHOULD** be used, otherwise `18` is the common value.
+If the contract represents a **NFT** then **0** SHOULD be used, otherwise **18** is the common value.
 
 #### Return Values:
 
@@ -78,7 +100,7 @@ Returns the number of tokens owned by `tokenOwner`.
 
 Sets `amount` as the amount of tokens `operator` address has access to from callers tokens.
 
-_Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator_
+_Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator_.
 
 #### Parameters:
 
@@ -106,7 +128,7 @@ _Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an addres
 
 Removes `operator` address as an operator of callers tokens.
 
-_Triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator_
+_Triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator_.
 
 #### Parameters:
 
