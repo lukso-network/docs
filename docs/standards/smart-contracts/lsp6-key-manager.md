@@ -5,16 +5,28 @@ sidebar_position: 4
 
 # LSP6 Key Manager
 
-The **KeyManager** is a contract that controls the **[ERC725Account](./lsp0-erc725-account.md)**. It comes with a set of pre-defined permissions for addresses.
-The permissions could range from setting data, executing, changing owner and more as written in the **[Permissions Section](./lsp6-key-manager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](./lsp6-key-manager.md)**.
+The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with a set of pre-defined permissions for addresses that could range from setting data, executing, changing owner and more as written in the **[Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md)**.
 
-Currently the **`DelegateCall`** operation to execute is unavailable for the users since it have malicious impact on their accounts.
+Currently the [**DELEGATECALL**](../universal-profile/04-lsp6-key-manager.md#-address-permissions) operation to execute is unavailable for the users since it have malicious impact on their accounts.
 
 :::note
-**_KeyManager implementation also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP6KeyManager contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
 :::
 
 ## Functions
+
+### Constructor
+
+```solidity
+constructor(address account)
+```
+Initiates the account with the address of the **LSP0ERC725Account** contract and registers **[LSP6KeyManager InterfaceId](./interface-ids.md)**.
+
+#### Parameters:
+
+| Name      | Type    | Description                                                    |
+| :-------- | :------ | :------------------------------------------------------------- |
+| `account` | address | The address of the **LSP0ER725Account** contract to control.   |
 
 ### execute
 
@@ -24,7 +36,9 @@ Currently the **`DelegateCall`** operation to execute is unavailable for the use
   ) public payable returns (bytes memory result)
 ```
 
-Execute a payload on the **ERC725Account**. This payload could represent the ABI of any function on the account ; **[setData](./lsp0-erc725-account.md#setdata)** or **[execute](./lsp0-erc725-account.md#execute)**, etc ..
+Executes a payload on the **LSP0ERC725Account** contract. 
+
+This payload must represent the encoded-ABI of one of the **LSP0ERC725Account** contract functions, **[setData](./lsp0-erc725-account.md#setdata)** or **[execute](./lsp0-erc725-account.md#execute)**, etc ..
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
@@ -32,13 +46,13 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 | Name   | Type  | Description                   |
 | :----- | :---- | :---------------------------- |
-| `data` | bytes | The call data to be executed. |
+| `data` | bytes | The payload to be executed.   |
 
 #### Return Values:
 
 | Name     | Type  | Description                                                                                                         |
 | :------- | :---- | :------------------------------------------------------------------------------------------------------------------ |
-| `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded, otherwise revert with a reason-string. |
+| `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded.                                        |
 
 ### getNonce
 
@@ -51,7 +65,7 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[executeRelayCall](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
 
-_More info about `channel` could be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**_
+_More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**_
 
 #### Parameters:
 
@@ -77,7 +91,7 @@ _More info about `channel` could be found here: **[What are multi-channel nonces
   ) public
 ```
 
-Allows anybody to execute data payload on the **ERC725Account**, given they have a signed message from an executor.
+Allows anybody to execute a payload on the **LSP0ERC725Account**, given they have a signed message from an executor.
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
@@ -87,7 +101,7 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 | :---------- | :------ | :------------------------------------------------ |
 | `signedFor` | address | The KeyManager contract address.                  |
 | `nonce`     | uint256 | The nonce of the address that signed the message. |
-| `data`      | bytes   | The call data to be executed.                     |
+| `data`      | bytes   | The payload to be executed.                       |
 | `signature` | bytes   | The bytes32 ethereum signature.                   |
 
 ## Events
@@ -105,12 +119,12 @@ _**MUST** be fired when a transaction was successfully executed in **[execute](#
 
 #### Values:
 
-| Name    | Type    | Description                           |
-| :------ | :------ | :------------------------------------ |
-| `value` | uint256 | The amount to be sent with call data. |
-| `data`  | bytes   | The call data to be executed.         |
+| Name    | Type    | Description                             |
+| :------ | :------ | :-------------------------------------- |
+| `value` | uint256 | The amount to be sent with the payload. |
+| `data`  | bytes   | The payload to be executed.             |
 
 ## References
 
 - [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
-- [LSP6 KeyManager: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP6-KeyManager)
+- [LSP6 KeyManager: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP6KeyManager)
