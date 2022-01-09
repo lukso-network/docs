@@ -5,17 +5,30 @@ sidebar_position: 2
 
 # LSP0 ERC725Account
 
-The **ERC725Account** contract is basically an implementation for the **[LSP0-ERC725Account Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)**, this contract could also use simultaneously the **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** to form a **UniversalProfile** where you could attach information to the Profile like the name, pictures, owned assets, etc under a certain schema.
+The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/01-LSP0-Foundation.md)**, the combination of this contract with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** forms a **UniversalProfile**.
 
-This **ERC725Account** contract could be used as an _account system_ to be used by humans, machines, organizations, or even other smart contracts. It has all the functionalities that an _EOA_ have and even more, starting from executing functions, transferring value, deploying smart contracts via **[execute](#execute)** function, verifying signatures via **[isValidSignature](#isvalidsignature)** function, being notified of incoming assets via **[universalReceiver](#universalreceiver)** function and the ability to set any information on the account via **[setData](#setdata)** function.
+This contract could be used as an _account system_ to be used by humans, machines, organizations, or even other smart contracts. It has all the functionalities that an _EOA_ have and even more, starting from executing functions, transferring value, deploying smart contracts via **[execute](#execute)** function, verifying signatures via **[isValidSignature](#isvalidsignature)** function, being notified of incoming calls and assets via **[universalReceiver](#universalreceiver)** function and the ability to set any information on the account via **[setData](#setdata)** function.
 
 :::note
-**_ERC725Account implementation also contains the methods from [ERC173](https://eips.ethereum.org/EIPS/eip-173) and [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP0ERC725Account contract also contains the methods from [ERC173](https://eips.ethereum.org/EIPS/eip-173) and [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
 :::
 
 ---
 
 ## Functions
+
+### Constructor
+
+```solidity
+  constructor(address newOwner) ERC725(newOwner)
+```
+Sets the **owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
+
+#### Parameters:
+
+| Name       | Type    | Description                |
+| :--------- | :------ | :------------------------- |
+| `newOwner` | address | The owner of the contract. |
 
 ### receive
 
@@ -23,7 +36,9 @@ This **ERC725Account** contract could be used as an _account system_ to be used 
   receive() external payable
 ```
 
-_Triggers the **[ValueReceived](#valuereceived)** event when a native token transfer was received._
+Executed on plain value transfers.
+
+_Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
 ### execute
 
@@ -38,6 +53,14 @@ _Triggers the **[ValueReceived](#valuereceived)** event when a native token tran
 
 Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
 
+The **operationType** can execute the following operations:
+
+- `0` for `CALL`
+- `1` for `CREATE`
+- `2` for `CREATE2`
+- `3` for `STATICCALL`
+- `4` for `DELEGATECALL`
+
 _Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
 
 _Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
@@ -51,18 +74,9 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 | Name            | Type    | Description                                                                                                     |
 | :-------------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
 | `operationType` | uint256 | The operation to execute.                                                                                       |
-| `to`            | address | The smart contract or address to interact with. `to` will be unused if a contract is created (operation 1 & 2). |
+| `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2).                   |
 | `value`         | uint256 | The desired value to transfer.                                                                                  |
 | `data`          | bytes   | The call data (ABI of the function to execute) , or the contract data to deploy.                                |
-
-The **[operationType](#execute)** can execute the following operations:
-
-- `0` for `CALL`
-- `1` for `CREATE`
-- `2` for `CREATE2`
-- `3` for `STATICCALL`
-- `4` for `DELEGATECALL`
-
 #### Return Values:
 
 | Name     | Type  | Description                                                                                         |
@@ -78,7 +92,7 @@ The **[operationType](#execute)** can execute the following operations:
   ) public
 ```
 
-Sets array of data as `bytes` in the account storage at multiple keys.
+Sets array of data as **bytes** in the account storage at multiple keys.
 
 _Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
 
@@ -124,11 +138,9 @@ Gets array of data at multiple given key.
   ) public returns (bytes memory result)
 ```
 
-Emits an event when it's succesfully executed.
+Forwards the call to the **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**  contract if the owner of the **LSP0ERC725Account** has set the **[LSP1UniversalReceiverDelegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate)** Key to the address of the **LSP1UniversalReceiverDelegateUP** contract.
 
-Call the **[universalReceiverDelegate](./lsp1-universal-receiver-delegate.md#universalreceiverdelegate)** function in the **[universalReceiverDelegate](./lsp1-universal-receiver-delegate.md)** (URD) contract, if the address of the URD was set as a value for the **[UniversalReceiverKey](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#implementation)** in the account key/value value store of the same contract implementing the universalReceiver function and if the URD contract has the **[LSP1UniversalReceiverDelegate Interface ID](./interface-ids.md)** registred using **ERC165**.
-
-The current implementation of the **UniversalReceiverDelegate** is found **[here](./lsp1-universal-receiver-delegate.md)**.
+The **LSP1UniversalReceiverDelegateUP** contract should implement **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)** using **ERC165**.
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully._
 
@@ -154,7 +166,7 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
   ) public view returns (bytes4 magicValue)
 ```
 
-Should return whether the signature provided is valid for the provided data.
+Returns whether the signature provided is valid for the provided data.
 
 #### Parameters:
 
@@ -260,7 +272,7 @@ _**MUST** be fired when **[setData](#setdata)** is successfully executed._
   )
 ```
 
-_**MUST** be fired when the **[universalReceiver](#universalreceiver)** is succesfully executed._
+_**MUST** be fired when the **[universalReceiver](#universalreceiver)** function is succesfully executed._
 
 #### Values:
 
