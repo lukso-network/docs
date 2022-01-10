@@ -262,7 +262,7 @@ permissions: CHANGEPERMISSIONS + SETDATA
 
 :::note
 
-When deployed with our [**lsp-factory** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
+When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
 
 :::
 
