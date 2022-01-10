@@ -93,9 +93,9 @@ Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the 
 **Step 2:**
 You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
-### Metamask
+### MetaMask
 
-To add the L15 Network to Metamask, these are the settings:
+To add the L15 Network to MetaMask, these are the settings:
 
 | Setting            | Value                                      |
 | ------------------ | ------------------------------------------ |
@@ -131,6 +131,6 @@ The network configuration files:
 
 Clients:
 
-- `Vanguard`: <https://github.com/lukso-network/vanguard-consensus-engine/>
-- `Pandora`: <https://github.com/lukso-network/pandora-execution-engine/>
+- `Vanguard`: <https://github.com/lukso-network/vanguard-consensus-engine>
+- `Pandora`: <https://github.com/lukso-network/pandora-execution-engine>
 - `Orchestrator`: <https://github.com/lukso-network/lukso-orchestrator>
