@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # LSP1 Universal Receiver Delegate UP
 
-The **LSP1UniversalReceiverDelegateUP** is the contract called by the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function on the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract that:
+The **LSP1UniversalReceiverDelegateUP** is the contract called by the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract that:
 - Writes the keys representing **[LSP7-DigitalAsset](./lsp7-digital-asset.md)** and **[LSP8-IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** assets you receive into your account storage, and remove them on balance equal to zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.  
 
 - Writes the keys representing **[LSP9-Vault](./lsp9-vault.md)** vaults you own into your account storage, and remove them when you **transfer Ownership** to other accounts according to the **[LSP10-ReceivedVaults Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.  
