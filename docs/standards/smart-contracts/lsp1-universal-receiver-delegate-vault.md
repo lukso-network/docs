@@ -9,7 +9,9 @@ The **LSP1UniversalReceiverDelegateVault** is the contract called by the **[univ
 It writes the **[LSP7-DigitalAsset](../nft-2.0/02-LSP7-Digital-Asset.md)** and **[LSP8-IdentifiableDigitalAsset](../nft-2.0/03-LSP8-Identifiable-Digital-Asset.md)** assets a vault receives into the vault storage, and remove them on zero balance according to the **[LSP5-ReceivedAssets standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.  
 
 :::note
-**_LSP1UniversalReceiverDelegateVault contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP1UniversalReceiverDelegateVault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+
+- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
 :::
 
 ## Functions

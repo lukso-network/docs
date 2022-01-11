@@ -10,12 +10,14 @@ The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./l
 Currently the [**DELEGATECALL**](../universal-profile/04-lsp6-key-manager.md#-address-permissions) operation to execute is unavailable for the users since it have malicious impact on their accounts.
 
 :::note
-**_LSP6KeyManager contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP6KeyManager contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+
+- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
 :::
 
 ## Functions
 
-### Constructor
+### constructor
 
 ```solidity
 constructor(address account)

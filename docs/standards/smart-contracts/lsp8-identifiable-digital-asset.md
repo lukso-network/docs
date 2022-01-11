@@ -11,11 +11,13 @@ Tokens are identified with a tokenId, based on **[ERC721](https://github.com/Ope
 A **bytes32** value is used for tokenId to allow many uses of token identification including numbers, contract addresses, and hashed values (ie. serial numbers).
 
 :::note
-**_LSP8IdentifiableDigitalAsset contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP8IdentifiableDigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+
+- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
 :::
 
 ## Functions
-### Constructor
+### constructor
 
 ```solidity
   constructor(
@@ -24,7 +26,7 @@ A **bytes32** value is used for tokenId to allow many uses of token identificati
     address newOwner_
     ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
-Sets the token name and symbol and registers **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
+Sets the token name, symbol and the **initial owner** of the contract and registers **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
 
 #### Parameters:
 

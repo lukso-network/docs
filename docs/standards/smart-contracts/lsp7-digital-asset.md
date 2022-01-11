@@ -10,12 +10,14 @@ The **LSP7DigitalAsset** contract represents digital assets, for either fungible
 This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to **false** in the constructor, and serves as **Non-Fungible Token Contract** otherwise.
 
 :::note
-**_LSP7DigitalAsset contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+
+- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
 :::
 
 ## Functions
 
-### Constructor
+### constructor
 
 ```solidity
   constructor(
@@ -25,7 +27,7 @@ This contract serves as a **Fungible Token Contract** when `isNFT` bool is set t
     bool isNFT_
     ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
-Sets the token name and symbol, specify if the contract represent a fungible token or an NFT and registers **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
+Sets the token name, symbol and the **initial owner** of the contract, specify if the contract represent a fungible token or an NFT and registers **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
 
 #### Parameters:
 
