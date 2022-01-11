@@ -10,25 +10,57 @@ The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Ac
 This contract could be used as an _account system_ to be used by humans, machines, organizations, or even other smart contracts. It has all the functionalities that an _EOA_ have and even more, starting from executing functions, transferring value, deploying smart contracts via **[execute](#execute)** function, verifying signatures via **[isValidSignature](#isvalidsignature)** function, being notified of incoming calls and assets via **[universalReceiver](#universalreceiver)** function and the ability to set any information on the account via **[setData](#setdata)** function.
 
 :::note
-**_LSP0ERC725Account contract also contains the methods from [ERC173](https://eips.ethereum.org/EIPS/eip-173) and [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP0ERC725Account contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+
+- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
+
 :::
 
 ---
 
 ## Functions
 
-### Constructor
+### constructor
 
 ```solidity
   constructor(address newOwner) ERC725(newOwner)
 ```
-Sets the **owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
+Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
 
 #### Parameters:
 
 | Name       | Type    | Description                |
 | :--------- | :------ | :------------------------- |
 | `newOwner` | address | The owner of the contract. |
+
+### owner
+
+```solidity
+  function owner() public view returns (address owner)
+```
+Returns the address of the current owner.
+
+#### Return Values:
+
+| Name    | Type    | Description                        |
+| :------ | :------ | :--------------------------------- |
+| `owner` | address | The current owner of the contract. |
+
+### transferOwnership
+
+```solidity
+  function transferOwnership(address newOwner) public {
+```
+Transfers ownership of the contract to the `newOwner` address.
+
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership is transferred._
+
+#### Parameters:
+
+| Name      | Type    | Description                                   |
+| :-------- | :------ | :-------------------------------------------- |
+|`newOwner` | address | The address of the new owner of the contract. |
+
 
 ### receive
 
@@ -182,6 +214,25 @@ Returns whether the signature provided is valid for the provided data.
 | `magicValue` | bytes4 | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
 
 ## Events
+
+
+### OwnershipTransferred
+
+```solidity
+  event OwnershipTransferred(
+    address previousOwner,
+    address newOwner,
+  )
+```
+
+_**MUST** be fired when **[transferOwnership](#transferownership)** is successfully executed._
+
+#### Values:
+
+| Name             | Type    | Description                        |
+| :--------------- | :------ | :--------------------------------- |
+| `previousOwner`  | address | The previous owner of the contract.|
+| `newOwner`       | address | The new owner of the contract.     |
 
 ### ValueReceived
 

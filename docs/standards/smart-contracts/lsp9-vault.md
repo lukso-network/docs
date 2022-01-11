@@ -10,19 +10,21 @@ The **LSP9Vault** contract is an implementation for the **[LSP9-Vault Standard](
 This contract can be used as a **vault** that can **hold assets** and **interact with other smart contracts**, as it has all the functions that the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract have except **isValidSignature** function. 
 
 :::note
-**_LSP9Vault contract also contains the methods from [ERC173](https://eips.ethereum.org/EIPS/eip-173) and [ERC165](https://eips.ethereum.org/EIPS/eip-165)._**
+**_LSP9Vault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+
+- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
 :::
 
 ---
 
 ## Functions
 
-### Constructor
+### constructor
 
 ```solidity
   constructor(address newOwner) ERC725(newOwner)
 ```
-Sets the **owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)**Key in the vault storage and registers **[LSP9Vault](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
+Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)**Key in the vault storage and registers **[LSP9Vault](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
 
 If the `newOwner` represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, then the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function on the **LSP0ERC725Account** contract will be called to be informed about the **vault transfer**.
 
@@ -31,6 +33,38 @@ If the `newOwner` represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** 
 | Name       | Type    | Description                |
 | :--------- | :------ | :------------------------- |
 | `newOwner` | address | The owner of the contract. |
+
+### owner
+
+```solidity
+  function owner() public view returns (address owner)
+```
+Returns the address of the current owner.
+
+#### Return Values:
+
+| Name    | Type    | Description                        |
+| :------ | :------ | :--------------------------------- |
+| `owner` | address | The current owner of the contract. |
+
+### transferOwnership
+
+```solidity
+  function transferOwnership(address newOwner) public {
+```
+Transfers ownership of the contract to the `newOwner` address.
+
+If the current owner or the `newOwner` address represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, then the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function on the **LSP0ERC725Account** contract will be called to be informed about the **vault transfer**.
+
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership is transferred._
+
+#### Parameters:
+
+| Name      | Type    | Description                                   |
+| :-------- | :------ | :-------------------------------------------- |
+|`newOwner` | address | The address of the new owner of the contract. |
+
+
 
 ### receive
 
@@ -161,6 +195,24 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
 
 
 ## Events
+
+### OwnershipTransferred
+
+```solidity
+  event OwnershipTransferred(
+    address previousOwner,
+    address newOwner,
+  )
+```
+
+_**MUST** be fired when **[transferOwnership](#transferownership)** is successfully executed._
+
+#### Values:
+
+| Name             | Type    | Description                        |
+| :--------------- | :------ | :--------------------------------- |
+| `previousOwner`  | address | The previous owner of the contract.|
+| `newOwner`       | address | The new owner of the contract.     |
 
 ### ValueReceived
 
