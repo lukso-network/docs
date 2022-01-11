@@ -1,19 +1,18 @@
 ---
-title: LSP0 ERC725Account
-sidebar_position: 2
+title: LSP9 Vault
+sidebar_position: 8
 ---
 
-# LSP0ERC725Account
+# LSP9Vault
 
-The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/01-LSP0-Foundation.md)**, the combination of this contract with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** forms a **UniversalProfile**.
+The **LSP9Vault** contract is an implementation for the **[LSP9-Vault Standard](#)**. 
 
-This contract could be used as an _account system_ to be used by humans, machines, organizations, or even other smart contracts. It has all the functionalities that an _EOA_ have and even more, starting from executing functions, transferring value, deploying smart contracts via **[execute](#execute)** function, verifying signatures via **[isValidSignature](#isvalidsignature)** function, being notified of incoming calls and assets via **[universalReceiver](#universalreceiver)** function and the ability to set any information on the account via **[setData](#setdata)** function.
+This contract can be used as a **vault** that can **hold assets** and **interact with other smart contracts**, as it has all the functions that the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract have except **isValidSignature** function. 
 
 :::note
-**_LSP0ERC725Account contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+**_LSP9Vault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
 - **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
-
 :::
 
 ---
@@ -25,7 +24,9 @@ This contract could be used as an _account system_ to be used by humans, machine
 ```solidity
   constructor(address newOwner) ERC725(newOwner)
 ```
-Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
+Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)**Key in the vault storage and registers **[LSP9Vault](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
+
+If the `newOwner` represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, then the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function on the **LSP0ERC725Account** contract will be called to be informed about the **vault transfer**.
 
 #### Parameters:
 
@@ -53,6 +54,8 @@ Returns the address of the current owner.
 ```
 Transfers ownership of the contract to the `newOwner` address.
 
+If the current owner or the `newOwner` address represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, then the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function on the **LSP0ERC725Account** contract will be called to be informed about the **vault transfer**.
+
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership is transferred._
 
 #### Parameters:
@@ -60,6 +63,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 | Name      | Type    | Description                                   |
 | :-------- | :------ | :-------------------------------------------- |
 |`newOwner` | address | The address of the new owner of the contract. |
+
 
 
 ### receive
@@ -124,12 +128,12 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
   ) public
 ```
 
-Sets array of data as **bytes** in the account storage at multiple keys.
+Sets array of data as **bytes** in the vault storage at multiple keys.
 
 _Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
 
 :::note
-**It can only be called by the current owner of the contract.**
+**It can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.**
 :::
 
 #### Parameters:
@@ -170,9 +174,9 @@ Gets array of data at multiple given key.
   ) public returns (bytes memory result)
 ```
 
-Forwards the call to the **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**  contract if the owner of the **LSP0ERC725Account** has set the **[LSP1UniversalReceiverDelegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate)** Key to the address of the **LSP1UniversalReceiverDelegateUP** contract.
+Forwards the call to the **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**  contract if the owner of the **vault** has set the **[LSP1UniversalReceiverDelegate ](#)**Key to the address of the **LSP1UniversalReceiverDelegateVault** contract.
 
-The **LSP1UniversalReceiverDelegateUP** contract should implement **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)** using **ERC165**.
+The **LSP1UniversalReceiverDelegateVault** contract should implement **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)** using **ERC165**.
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully._
 
@@ -189,32 +193,8 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
 | :------- | :---- | :------------------------------------- |
 | `result` | bytes | Can be used to encode response values. |
 
-### isValidSignature
-
-```solidity
-  function isValidSignature(
-    bytes32 hash,
-    bytes memory signature
-  ) public view returns (bytes4 magicValue)
-```
-
-Returns whether the signature provided is valid for the provided data.
-
-#### Parameters:
-
-| Name        | Type    | Description                                           |
-| :---------- | :------ | :---------------------------------------------------- |
-| `hash`      | bytes32 | The hash of the data signed on the behalf of address. |
-| `signature` | bytes   | The Owner's signature(s) of the data.                 |
-
-#### Return Values:
-
-| Name         | Type   | Description                                                            |
-| :----------- | :----- | :--------------------------------------------------------------------- |
-| `magicValue` | bytes4 | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
 
 ## Events
-
 
 ### OwnershipTransferred
 
@@ -336,6 +316,4 @@ _**MUST** be fired when the **[universalReceiver](#universalreceiver)** function
 
 ## References
 
-- [LUKSO Standards Proposals: LSP0 - ERC725 Account (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
-- [LUKSO Standards Proposals: LSP3 - UniversalProfile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
 - [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts)
