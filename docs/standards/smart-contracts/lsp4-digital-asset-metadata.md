@@ -1,9 +1,9 @@
 ---
-title: LSP4 - DigitalAsset Metadata
+title: LSP4 Digital Asset Metadata
 sidebar_position: 5
 ---
 
-# LSP4 DigitalAsset Metadata
+# LSP4DigitalAssetMetadata
 
 The **LSP4DigitalAssetMetadata** is a contract that sets the **Token-Metadata** (name and symbol) for the **[LSP7DigitalAsset](./lsp7-digital-asset.md)** and **[LSP8IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** token contracts.
 

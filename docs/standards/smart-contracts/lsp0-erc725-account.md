@@ -1,9 +1,9 @@
 ---
-title: LSP0 - ERC725Account
+title: LSP0 ERC725Account
 sidebar_position: 2
 ---
 
-# LSP0 ERC725Account
+# LSP0ERC725Account
 
 The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/01-LSP0-Foundation.md)**, the combination of this contract with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** forms a **UniversalProfile**.
 

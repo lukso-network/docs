@@ -1,9 +1,9 @@
 ---
-title: LSP8 - Identifiable Digital Asset
+title: LSP8 Identifiable Digital Asset
 sidebar_position: 7
 ---
 
-# LSP8 Identifiable Digital Asset
+# LSP8IdentifiableDigitalAsset
 
 The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital assets, where tokens to be uniquely traded and given metadata using **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
 Tokens are identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.

@@ -1,9 +1,9 @@
 ---
-title: LSP7 - Digital Asset
+title: LSP7 Digital Asset
 sidebar_position: 6
 ---
 
-# LSP7 Digital Asset
+# LSP7DigitalAsset
 
 The **LSP7DigitalAsset** contract represents digital assets, for either fungible or non-fungible tokens where minting and transfering is specified with an amount of tokens. It have some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
 

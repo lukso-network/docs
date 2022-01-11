@@ -1,9 +1,9 @@
 ---
-title: LSP9 - Vault
+title: LSP9 Vault
 sidebar_position: 8
 ---
 
-# LSP9 Vault
+# LSP9Vault
 
 The **LSP9Vault** contract is an implementation for the **[LSP9-Vault Standard](#)**. 
 
