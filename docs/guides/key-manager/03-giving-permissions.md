@@ -141,3 +141,9 @@ setBobPermission();
 
   </TabItem>
 </Tabs>
+
+:::tip
+
+You can easily [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions`](../../../../tools/erc725js/classes/ERC725#decodepermissions) with [**erc725.js**](../../../../tools/erc725js/getting-started).
+
+:::

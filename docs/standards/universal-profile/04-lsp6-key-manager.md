@@ -113,11 +113,11 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 
 The following keys are available to set the different types of permissions.
 
-| Permission Type                                                                                                                         | Key                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------- |
-| [Address Permissions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress)    | `0x4b80742d0000000082ac0000<address>`   |
+| Permission Type                                                                                                                         | Key                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
+| [Address Permissions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress)    | `0x4b80742d0000000082ac0000<address>` |
 | [Allowed Addresses](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress) | `0x4b80742d00000000c6dd0000<address>` |
-| [Allowed Functions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) | `0x4b80742d000000008efe0000<address>`   |
+| [Allowed Functions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress) | `0x4b80742d000000008efe0000<address>` |
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
 
@@ -259,6 +259,12 @@ permissions: CHANGEPERMISSIONS + SETDATA
 </TabItem>
 
 </Tabs>
+
+:::tip
+
+You can easily [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions`](../../../../tools/erc725js/classes/ERC725#decodepermissions) with [**erc725.js**](../../../../tools/erc725js/getting-started).
+
+:::
 
 :::note
 
