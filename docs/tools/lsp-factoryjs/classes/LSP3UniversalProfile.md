@@ -4,13 +4,28 @@ sidebar_position: 1.2
 
 ## deploy
 
-**deploy**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<`Object`>
+```js
+lspFactory.LSP3UniversalProfile.deploy(
+  profileDeploymentOptions,
+  contractDeploymentOptions?);
+```
 
-Deploys a [UniversalProfile](../../../standards/universal-profile/introduction) to the blockchain and uploads LSP3 Profile data to IPFS
+Deploys and **configure** a [Universal Profile](../../../standards/universal-profile/introduction) to the blockchain. It will deploy the following contracts:
 
-Asyncronous version of `deployReactive`.
+- [LSP0 ERC725 Account](../../../standards/universal-profile/LSP0-Foundation)
+- [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate)
+- [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager)
 
-### Parameters
+Then, it will:
+
+- upload to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile) metadata.
+- attach the Universal Receiver Delegate to the LSP0 ERC725 Account.
+- set the Key Manager as the owner of the LSP0 ERC725 Account.
+- give all [permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllingAccounts`.
+
+Asynchronous version of `deployReactive`.
+
+#### Parameters
 
 1. `profileDeploymentOptions` - `Object`: The options used for deployment.
    - `controllingAccounts` - `string[]`: A list of accounts (public addresses) which will be granted [all permissions](../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions) on the newly created Universal Profile.
@@ -23,13 +38,13 @@ Asyncronous version of `deployReactive`.
      - `links?` - `{title: string, url: string}[]`
 2. `contractDeploymentOptions?` - `Object`
 
-### Returns
-
-Promise with object containing deployed contract details
+#### Returns
 
 `Promise`<`Object`\>
 
-### Example
+Promise with object containing deployed contract details
+
+#### Example
 
 ```javascript
 await lspFactory.LSP3UniversalProfile.deploy({
@@ -115,21 +130,25 @@ await lspFactory.LSP3UniversalProfile.deploy({
 
 ## deployReactive
 
-**deployReactive**(`profileDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`LSP3AccountDeploymentEvent` \| `DeploymentEventTransaction`\>
+```js
+lspFactory.LSP3UniversalProfile.deployReactive(
+  profileDeploymentOptions,
+  contractDeploymentOptions?);
+```
 
-Deploys a [UniversalProfile](../../../standards/universal-profile/introduction) and uploads LSP3 Profile data to IPFS.
+Please check the [asynchronous version](./LSP3UniversalProfile#deploy).
 
-### Parameters
+#### Parameters
 
-Same as for the [asynchronous version](./LSP3UniversalProfile#parameters).
+Same as for the [asynchronous version](./LSP3UniversalProfile#deploy).
 
-### Returns
-
-[RxJS](https://rxjs.dev/) Observable which emits events as UniversalProfile contracts are deployed.
+#### Returns
 
 `Observable`<`LSP3AccountDeploymentEvent` \| `DeploymentEventTransaction`\>
 
-### Example
+[RxJS](https://rxjs.dev/) observable which emits events as UniversalProfile contracts are deployed.
+
+#### Example
 
 ```javascript
 await lspFactory.LSP3UniversalProfile.deployReactive({
@@ -272,17 +291,22 @@ Deployment Complete
 
 ## deployBaseContracts
 
-**deployBaseContracts**(): `Promise`<`DeployedContracts`\>
+```js
+lspFactory.LSP3UniversalProfile.deployBaseContracts();
+```
 
-Deploys [UniversalProfile](../../../standards/universal-profile/introduction) base contracts.
+Deploys [Universal Profile](../../../standards/universal-profile/introduction) base contracts:
 
-### Returns
+- [LSP0 ERC725 Account](../../../standards/smart-contracts/lsp0-erc725-account)
+- [LSP1 Universal Receiver Delegate](../../../standards/smart-contracts/lsp1-universal-receiver-delegate-up)
 
-Promise with object containing base contract details.
+#### Returns
 
 `Promise`<`DeployedContracts`\>
 
-### Example
+Promise with object containing base contract details.
+
+#### Example
 
 ```javascript
 await lspFactory.LSP3UniversalProfile.deployBaseContracts();
@@ -339,23 +363,23 @@ await lspFactory.LSP3UniversalProfile.deployBaseContracts();
 
 ## getDeployedByteCode
 
-**getDeployedByteCode**(`contractAddress`): `Promise`<`string`\>
+```js
+lspFactory.LSP3UniversalProfile.getDeployedByteCode(contractAddress);
+```
 
 Fetches bytecode deployed at provided contract address.
 
-### Parameters
+#### Parameters
 
-| Name              | Type     |
-| :---------------- | :------- |
-| `contractAddress` | `string` |
+1. `contractAddress` - `string`: The address of the contract.
 
-### Returns
-
-Bytecode deployed at provided contract address
+#### Returns
 
 `Promise`<`string`\>
 
-### Example
+Bytecode deployed at provided contract address.
+
+#### Example
 
 ```javascript
 await lspFactory.LSP3UniversalProfile.getDeployedByteCode(
@@ -369,27 +393,27 @@ await lspFactory.LSP3UniversalProfile.getDeployedByteCode(
 
 ## uploadProfileData
 
-`Static` **uploadProfileData**(`profileData`, `uploadOptions?`): `Promise`<`LSP3ProfileDataForEncoding`\>
+```js
+LSP3UniversalProfile.uploadProfileData(profileData, uploadOptions?);
+```
 
 Uploads the [LSP3Profile](../../../standards/universal-profile/lsp3-universal-profile) data to the desired endpoint. This can be an `https` URL either pointing to
 a public, centralized storage endpoint or an IPFS Node / Cluster.
 
 Will upload and process passed images.
 
-### Parameters
+#### Parameters
 
-| Name             | Type                      |
-| :--------------- | :------------------------ |
-| `profileData`    | `ProfileDataBeforeUpload` |
-| `uploadOptions?` | `ProfileUploadOptions`    |
+1. `profileData` - `Object`
+2. `uploadOptions?` - `Object`
 
-### Returns
-
-Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile) Data and upload url.
+#### Returns
 
 `Promise`<`LSP3ProfileDataForEncoding`\>
 
-### Example
+Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile) data and upload URL.
+
+#### Example
 
 ```javascript
 await LSP3UniversalProfile.uploadProfileData({
