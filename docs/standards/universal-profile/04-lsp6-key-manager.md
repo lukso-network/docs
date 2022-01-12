@@ -168,7 +168,7 @@ You can find **more details about each permissions by clicking on the toggles be
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code><br/>
     </p>
-    <p>This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts). allowing state changes at the address being called.</p>
+    <p>This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts). Allowing state changes at the address being called.</p>
 </details>
 
 <details>
