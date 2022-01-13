@@ -4,20 +4,17 @@ sidebar_position: 1.3
 
 ## deployBaseContracts
 
-```js
-lspFactory.DigitalAsset.deployBaseContracts();
-```
+**deployBaseContracts**(): `Promise`<`DeployedContracts`\>
 
-Deploys [LSP7 Digital Asset](../../../standards/nft-2.0/LSP7-Digital-Asset) and [LSP8 Identifiable Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) base contracts.
+Deploys [LSP7](../../../standards/nft-2.0/LSP7-Digital-Asset) and [LSP8](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) base contracts.
 
-#### Returns
-
-`Promise`<`DeployedContracts`\>
+### Returns
 
 Promise with object containing base contract details.
 
-#### Example
+`Promise`<`DeployedContracts`\>
 
+### Example
 ```javascript
 await lspFactory.DigitalAsset.deployBaseContracts();
 
@@ -71,37 +68,31 @@ await lspFactory.DigitalAsset.deployBaseContracts();
 
 ## deployLSP7DigitalAsset
 
-```js
-lspFactory.DigitalAsset.deployLSP7DigitalAsset(
-  digitalAssetDeploymentOptions,
-  contractDeploymentOptions?);
-```
+**deployLSP7DigitalAsset**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Promise`<`DeployedContracts`\>
 
-Deploys a mintable [LSP7 Digital Asset](../../../standards/nft-2.0/LSP7-Digital-Asset).
+Deploys a mintable [LSP7 DigitalAsset](../../../standards/nft-2.0/LSP7-Digital-Asset).
 
-Asynchronous version of [`deployLSP7DigitalAssetReactive`](./DigitalAsset#deploylsp7digitalassetreactive). Returns a Promise with deployed contract details.
+Asyncronous version of [`deployLSP7DigitalAssetReactive`](./DigitalAsset#deploylsp7digitalassetreactive). Returns a Promise with deployed contract details.
 
-#### Parameters
+### Parameters
 
-1. `digitalAssetDeploymentOptions` - `Object`: The [options used for deployment](../../../../../standards/smart-contracts/lsp7-digital-asset#constructor).
-   - `name` - `string`: The name of the token.
-   - `symbol` - `string`: The symbol of the token.
-   - `ownerAddress` - `string` : The owner of the contract.
-   - `isNFT` - `boolean`: Specify if the contract represent a fungible or a non-fungible token.
-2. `contractDeploymentOptions?` - `Object`
+| Name | Type |
+| :------ | :------ |
+| `digitalAssetDeploymentOptions` | `LSP7DigitalAssetDeploymentOptions` |
+| `contractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
+### Returns
 
 `Promise`<`DeployedContracts`\>
 
-#### Example
+### Example
 
 ```javascript
 await lspFactory.DigitalAsset.deployLSP7DigitalAsset({
-  name: 'My token',
-  symbol: 'TKN',
-  ownerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
-  isNFT: true,
+ name: "My token",
+ symbol: "TKN",
+ ownerAddress: "0xb74a88C43BCf691bd7A851f6603cb1868f6fc147",
+ isNFT: true,
 });
 
 /**
@@ -130,45 +121,44 @@ await lspFactory.DigitalAsset.deployLSP7DigitalAsset({
 }
 */
 ```
-
----
+___
 
 ## deployLSP7DigitalAssetReactive
 
-```js
-lspFactory.DigitalAsset.deployLSP7DigitalAssetReactive(
-  digitalAssetDeploymentOptions,
-  contractDeploymentOptions?`);
-```
+**deployLSP7DigitalAssetReactive**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`DigitalAssetDeploymentEvent`\>
 
-Deploys a mintable [LSP7 Digital Asset](../../../standards/nft-2.0/LSP7-Digital-Asset).
+Deploys a mintable LSP7 Digital Asset.
 
-#### Parameters
+### Parameters
 
-Same as for the [asynchronous version](./DigitalAsset#deploylsp7digitalasset).
+| Name | Type |
+| :------ | :------ |
+| `digitalAssetDeploymentOptions` | `LSP7DigitalAssetDeploymentOptions` |
+| `contractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
+### Returns
+
+[RxJS](https://rxjs.dev/) Observable which emits events as LSP7 contract is deployed and initialized.
 
 `Observable`<`DigitalAssetDeploymentEvent`\>
 
-[RxJS](https://rxjs.dev/) observable which emits events as LSP7 contract is deployed and initialized.
-
-#### Example
+### Example
 
 ```javascript
 await lspFactory.DigitalAsset.deployLSP7DigitalAssetReactive({
-  name: 'My token',
-  symbol: 'TKN',
-  ownerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
+  name: "My token",
+  symbol: "TKN",
+  ownerAddress: "0xb74a88C43BCf691bd7A851f6603cb1868f6fc147",
   isNFT: true,
 }).subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);
   },
   complete: () => {
-    console.log('Deployment Complete');
+    console.log("Deployment Complete");
   },
 });
+
 
 /**
 {
@@ -209,41 +199,36 @@ Deployment Complete
 */
 ```
 
----
+___
 
 ## deployLSP8IdentifiableDigitalAsset
 
-```js
-lspFactory.DigitalAsset.deployLSP8IdentifiableDigitalAsset(
-  digitalAssetDeploymentOptions,
-  contractDeploymentOptions?);
-```
+**deployLSP8IdentifiableDigitalAsset**(`digitalAssetDeploymentOptions`, `ContractDeploymentOptions?`): `Promise`<`DeployedContracts`\>
 
-Deploys a mintable [LSP8 Identifiable Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
+Deploys a mintable LSP7 Digital Asset.
 
-Asynchronous version of [`deployLSP8IdentifiableDigitalAssetReactive`](./DigitalAsset#deploylsp8identifiabledigitalassetreactive).
+Asyncronous version of [`deployLSP8IdentifiableDigitalAssetReactive`](./DigitalAsset#deploylsp8identifiabledigitalassetreactive).
 
-#### Parameters
+### Parameters
 
-1. `digitalAssetDeploymentOptions` - `Object` The [options used for deployment](../../../../../standards/smart-contracts/lsp8-identifiable-digital-asset#constructor).
-   - `name` - `string`: The name of the token.
-   - `symbol` - `string`: The symbol of the token.
-   - `ownerAddress` - `string` : The owner of the contract.
-2. `contractDeploymentOptions?` - `Object`
+| Name | Type |
+| :------ | :------ |
+| `digitalAssetDeploymentOptions` | `DigitalAssetDeploymentOptions` |
+| `ContractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
-
-`Promise`<`DeployedContracts`\>
+### Returns
 
 Promise with deployed contract details.
 
-#### Example
+`Promise`<`DeployedContracts`\>
 
+
+### Example
 ```javascript
 await lspFactory.DigitalAsset.deployLSP8IdentifiableDigitalAsset({
-  name: 'My token',
-  symbol: 'TKN',
-  ownerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
+ name: "My token",
+ symbol: "TKN",
+ ownerAddress: "0xb74a88C43BCf691bd7A851f6603cb1868f6fc147",
 });
 
 /**
@@ -272,42 +257,40 @@ await lspFactory.DigitalAsset.deployLSP8IdentifiableDigitalAsset({
 }
 */
 ```
-
----
+___
 
 ## deployLSP8IdentifiableDigitalAssetReactive
 
-```js
-lspFactory.DigitalAsset.deployLSP8IdentifiableDigitalAssetReactive(
-  digitalAssetDeploymentOptions,
-  contractDeploymentOptions?);
-```
+**deployLSP8IdentifiableDigitalAssetReactive**(`digitalAssetDeploymentOptions`, `contractDeploymentOptions?`): `Observable`<`DigitalAssetDeploymentEvent`\>
 
 Deploys a mintable [LSP8 Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
 
-#### Parameters
+### Parameters
 
-Same as for the [asynchronous version](./DigitalAsset#deploylsp8identifiabledigitalasset).
+| Name | Type |
+| :------ | :------ |
+| `digitalAssetDeploymentOptions` | `DigitalAssetDeploymentOptions` |
+| `contractDeploymentOptions?` | `ContractDeploymentOptions` |
 
-#### Returns
+### Returns
+
+[RxJS](https://rxjs.dev/) Observable which emits events as contracts are deployed and initialized.
 
 `Observable`<`DigitalAssetDeploymentEvent`\>
 
-[RxJS](https://rxjs.dev/) observable which emits events as contracts are deployed and initialized.
-
-#### Example
+### Example
 
 ```javascript
 await lspFactory.DigitalAsset.deployLSP8IdentifiableDigitalAssetReactive({
-  name: 'My token',
-  symbol: 'TKN',
-  ownerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
+  name: "My token",
+  symbol: "TKN",
+  ownerAddress: "0xb74a88C43BCf691bd7A851f6603cb1868f6fc147",
 }).subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);
   },
   complete: () => {
-    console.log('Deployment Complete');
+    console.log("Deployment Complete");
   },
 });
 
