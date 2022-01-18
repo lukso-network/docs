@@ -100,7 +100,7 @@ const abiPayload = myUniversalProfile.methods.execute(
 ).encodeABI()) ;
 ```
 
-Sign the transaciton from one of the controller keys of your Universal Profile:
+Sign the transaction from one of the controller keys of your Universal Profile:
 
 ```typescript title="Sign the transaction"
 const message = web3.utils.soliditySha3(
