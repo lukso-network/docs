@@ -83,11 +83,10 @@ Get the nonce of the KeyManager:
 
 ```typescript
 const controllerAccount = web3.eth.accounts.privateKeyToAccount(controllerPrivateKey);
-const controllerAddress = controllerAccount.address;
 const channelId = 0 // Can be any number that you app will then use frequently.
 // Channel IDs prevent nonce conflicts, when many apps send transactions to your keyManager at the same time.
 
-const nonce = await KeyManager.methods.getNonce(controllerAddress, channelId).call()
+const nonce = await KeyManager.methods.getNonce(controllerAccount.address, channelId).call()
 ```
 
 Here we show how to transfer LYX from one UP to another, though this step will be different for different use cases.
