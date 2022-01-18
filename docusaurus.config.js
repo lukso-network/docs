@@ -124,6 +124,7 @@ module.exports = {
           routeBasePath: '/',
           editUrl: 'https://github.com/lukso-network/docs/tree/main/',
         },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
