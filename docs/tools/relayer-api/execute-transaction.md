@@ -118,11 +118,11 @@ Now you have everything you need to send your transaction to the relayer for exe
 ```typescript
 const payload = {
     keyManagerAddress,
-        transaction: {
-            abi: abiPayload,
-            signature,
-            nonce,
-    };,
+    transaction: {
+        nonce: nonce,
+        abi: abiPayload,
+        signature: signature       
+    }
 };
 
 const response = await axios.post(`https://relayer.lukso.network/api/v1/execute`, payload);
