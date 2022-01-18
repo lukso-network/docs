@@ -56,8 +56,6 @@ Once your transaction has been sent to the relayer get the status of your transa
 
 ## Example
 
-### Sending LYX
-
 This example shows how to prepare a transaction for the relayer. The same logic can be applied to any transaction.
 
 You will need the address of the UP making the transaction, and the private key of the account which controls the UP.
@@ -95,8 +93,8 @@ Encode your smart contract call through the execute function of your Universal P
 const abiPayload = myUniversalProfile.methods.execute(
     0, // The OPERATION_CALL value. 0 for a LYX transaction
     '0x...', // Recipient address
-    web3.utils.toWei(amountInLyx.toString()), // ammount of LYX to send in wei
-    '0xxxxxx...' // Call data, to be called on the recipient address
+    web3.utils.toWei('100'), // amount of LYX to send in wei
+    '0xxxxxx...' // Call data, to be called on the recipient address, or '0x'
 ).encodeABI()) ;
 ```
 
