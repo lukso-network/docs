@@ -76,6 +76,13 @@ const myUniversalProfileIPFSUrl = uploadResult.url; // 'https://ipfs.lukso.netwo
 ## Deploy your UniversalProfile
 
 ```javascript
+import { LSPFactory } from '@lukso/lsp-factory.js';
+
+const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
+  '0x...',
+  22,
+});
+
 const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
     controllingAccounts: ['0x...'],
     lsp3Profile: myUniversalProfileIPFSUrl | myUniversalProfileData // LSP3 Metadata object or IPFS URL

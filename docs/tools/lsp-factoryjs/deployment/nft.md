@@ -1,31 +1,36 @@
 ---
 sidebar_position: 1.2
-title: NFT2.0 (LSP7, LSP8) 
+title: NFT2.0 (LSP7, LSP8)
 ---
 
 # Deploying NFT 2.0
 
-
 ### LSP7 NFT
 
-[LSP7](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md) is a standard for either fungible or non-fungible tokens based on the ERC20 token standard. 
+[LSP7](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md) is a standard for either fungible or non-fungible tokens based on the ERC20 token standard.
 
-LSP7 allows one smart contract to have many indivisible NFTs, for example an NFT collection. 
+LSP7 allows one smart contract to have many indivisible NFTs, for example an NFT collection.
 
 To deploy a LSP7 NFT call `DigitalAsset.deployLSP7DigitalAsset()` and set `isNFT` to true.
 
 ```javascript
 import LSP7DigitalAsset from '@lukso/universalprofile-smart-contracts/artifacts/LSP7DigitalAsset.json';
+import { LSPFactory } from '@lukso/lsp-factory.js';
+
+const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
+  '0x...',
+  22,
+});
 
 const myDigitalAsset = await lspFactory.DigitalAsset.deployLSP7DigitalAsset({
     name: "My token",
     symbol: "TKN",
     ownerAddress: "0x..", // Account which will own the Token Contract
     isNFT: true,
-}) 
+})
 
 const myNFT = new web3.eth.Contract(
-    LSP7.abi,
+    LSP7DigitalAsset.abi,
     myDigitalAsset.LSP7DigitalAsset.address
 );
 
@@ -42,6 +47,13 @@ To deploy LSP8 NFT
 
 ```javascript
 import LSP8IdentifiableDigitalAsset from '@lukso/universalprofile-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
+import { LSPFactory } from '@lukso/lsp-factory.js';
+
+const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
+  '0x...',
+  22,
+});
+
 
 const myDigitalAsset =
   lspFactory.DigitalAsset.deployLSP8IdentifiableDigitalAsset({
@@ -51,8 +63,8 @@ const myDigitalAsset =
   })
 
 const myNFT = new web3.eth.Contract(
-    LSP8.abi,
-    LSP8Contract.LSP8IdentifiableDigitalAsset.address
+    LSP8IdentifiableDigitalAsset.abi,
+    myDigitalAsset.LSP8IdentifiableDigitalAsset.address
 );
 
 const totalSupply = myNFT.methods.totalSupply().call()
