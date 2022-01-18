@@ -79,7 +79,7 @@ const keyManagerAddress = await myUniversalProfile.methods.owner().call();
 const KeyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddress);
 ```
 
-Get the nonce of the KeyManager:
+Get the nonce from the KeyManager for the next transaction:
 
 ```typescript
 const controllerAccount = web3.eth.accounts.privateKeyToAccount(controllerPrivateKey);
@@ -89,16 +89,18 @@ const channelId = 0 // Can be any number that you app will then use frequently.
 const nonce = await KeyManager.methods.getNonce(controllerAccount.address, channelId).call()
 ```
 
-Here we show how to transfer LYX from one UP to another, though this step will be different for different use cases.
+Encode your smart contract call through the execute function of your Universal Profile, to be signed and passed to the relayer:
 
 ```typescript title="Encode transaction ABI"
 const abiPayload = myUniversalProfile.methods.execute(
     0, // The OPERATION_CALL value. 0 for a LYX transaction
     '0x...', // Recipient address
     web3.utils.toWei(amountInLyx.toString()), // ammount of LYX to send in wei
-    '0x' // Extra data to send. Here we dont have any so we set '0x' to indicate an empty value
+    '0xxxxxx...' // Call data, to be called on the recipient address
 ).encodeABI()) ;
 ```
+
+Sign the transaciton from one of the controller keys of your Universal Profile:
 
 ```typescript title="Sign the transaction"
 const message = web3.utils.soliditySha3(
@@ -129,4 +131,5 @@ const payload = {
 const response = await axios.post(`https://relayer.lukso.network/api/v1/execute`, payload);
 ```
 
-Check the status of your transaction using the returned `taskId` at `/task/{taskId}`. It will be marked as complete once it has been executed on the blockchain.
+Youn can check the status of your transaction using the returned `taskId` at `/task/{taskId}`.     
+It receive the `"status": "COMPLETE"` once it has been executed on the blockchain.
