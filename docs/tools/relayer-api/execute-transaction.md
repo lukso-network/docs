@@ -101,11 +101,12 @@ const abiPayload = myUniversalProfile.methods.execute(
 
 ```typescript title="Sign the transaction"
 const message = web3.utils.soliditySha3(
-    keyManagerAddress, nonce,
+    keyManagerAddress,
+    nonce,
     {
         t: 'bytes',
         v: abiPayload,
-    },
+    }
 );
 
 const signatureObject = controllerAccount.sign(message);
