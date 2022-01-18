@@ -16,7 +16,7 @@ It writes the **[LSP7-DigitalAsset](../nft-2.0/02-LSP7-Digital-Asset.md)** and *
 
 ## Functions
 
-### Constructor
+### constructor
 
 ```solidity
   constructor()

@@ -20,7 +20,7 @@ In order to execute the logic written above, the **LSP0ERC725Account** contract 
 
 ## Functions
 
-### Constructor
+### constructor
 
 ```solidity
   constructor()
