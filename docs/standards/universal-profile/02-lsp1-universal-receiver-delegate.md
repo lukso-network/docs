@@ -11,11 +11,11 @@ As the code of the smart contract **can't be changed**, and the reaction of a sm
 
 People wishing to understand this standard, will be **well-advised** to check the **[LSP1-UniversalReceiver Standard](../generic-standards/02-lsp1-universal-receiver.md)** as its the origin of this standard.
 
-## What this standard represent ?
+## What does this standard represent ?
+
 ### Specification
 
-
-This standard represent a delegate contract to the initial **universalReceiver** function, when an address wants to delegate its universalReceiver functionality to another smart contract. It contains a single function named **universalReceiverDelegate** that takes the same parameters as the universalReceiver function with an additional parameter:
+This standard represents a delegate contract to the initial **universalReceiver** function, when an address wants to delegate its universalReceiver functionality to another smart contract. It contains a single function named **universalReceiverDelegate** that takes the same parameters as the universalReceiver function with an additional parameter:
 
 - address **sender**: Representing the address calling the initial universalReceiver function.
 
@@ -30,6 +30,7 @@ In order to let the **universalReceiver** function forward the call to the **uni
 There is several implementations of the standard, **[LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md)** contract is one of them that is used as a delegate to the **universalReceiver** function of **UniversalProfile** contract. 
 
 At the moment this contract allows to:
+
 - receive and send tokens & vaults
 - register the keys representing them according to **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** and **[LSP10-ReceivedVaults](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-10-ReceivedVaults.md)** Standards.
 
@@ -58,11 +59,7 @@ One of the possible scenarios is a token transfer between Alice and Bob. Alice w
 **4.** The **UniversalReceiverDelegate** of **the UniversalProfile** allows the transfer and set **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** keys on both Profiles through the KeyManager.
 
 
-
 ![UniversalReceiverDelegate setting keys on profile](../../../static/img/token-transfer-4.jpg)
-
-
-
 
 
 ## References
