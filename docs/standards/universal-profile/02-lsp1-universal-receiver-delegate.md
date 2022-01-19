@@ -17,7 +17,7 @@ People wishing to understand this standard, will be **well-advised** to check th
 
 This standard represents a delegate contract to the initial **universalReceiver** function, when an address wants to delegate its universalReceiver functionality to another smart contract. It contains a single function named **universalReceiverDelegate** that takes the same parameters as the universalReceiver function with an additional parameter:
 
-- address **sender**: Representing the address calling the initial universalReceiver function.
+- address `sender`: Representing the address calling the initial universalReceiver function.
 
 ### How Delegation works
 

@@ -37,7 +37,15 @@ An **optional extension** to this standard is proposed to let contracts not just
 
 This is possible through setting the address of the **external contract** as value for the **LSP1UniversalReceiver key** below, in the **[ERC725Y key value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the contract implementing the **universalReceiver** function. 
 
-![LSP1UniversalReceiverKey](../../../static/img/lsp1-key.png)
+```json
+{
+    "name": "LSP1UniversalReceiverDelegate",
+    "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+    "keyType": "Singleton",
+    "valueType": "address",
+    "valueContent": "Address"
+}
+```
 
 Check **[LSP1-UniversalReceiverDelegate](../universal-profile/02-lsp1-universal-receiver-delegate.md)** standard for more info.
 ## References
