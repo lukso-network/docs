@@ -11,13 +11,13 @@
   max-width: 960px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
-  margin: 0 auto;
+  margin: 0 auto 5rem;
   padding: 1rem 0;
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
     max-width: 100%;
-    margin: 0 1rem;
+    margin: 0 1rem 1rem;
   }
 }
 
@@ -28,7 +28,7 @@
   flex-direction: row;
   margin-bottom: 1rem;
 
-  padding: 3.325rem 3.0125rem;
+  padding: 2rem 3rem;
   border-radius: 1.5625rem;
 
   background-color: var(--ifm-background-color);
