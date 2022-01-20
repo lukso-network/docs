@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP0 - ERC725Account'
+sidebar_label: 'LSP0 - ERC725 Account'
 sidebar_position: 2
 ---
 
-# LSP0 - ERC725Account
+# LSP0 - ERC725 Account
 
 :::caution This section is a work in progress.
 :::

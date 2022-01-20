@@ -3,7 +3,7 @@ sidebar_label: 'LSP3 - Universal Profile'
 sidebar_position: 4
 ---
 
-# Universal Profile
+# LSP3 - Universal Profile
 
 :::caution this section is a work in progress
 

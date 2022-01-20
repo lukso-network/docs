@@ -2,7 +2,7 @@
 sidebar_label: 'LSP8 - Identifiable Digital Asset'
 ---
 
-# Identifiable Digital Asset
+# LSP8 - Identifiable Digital Asset
 
 :::caution This section is a work in progress.
 :::
