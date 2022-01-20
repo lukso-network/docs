@@ -51,8 +51,7 @@ module.exports = {
         },
         {
           href: 'https://github.com/lukso-network/LIPs/tree/main/LSPs',
-          label: 'LUKSO Standards Proposals',
-          className: 'lsp-box',
+          label: 'LSPs',
           position: 'right',
           target: '_blank',
         },

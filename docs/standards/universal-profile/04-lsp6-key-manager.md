@@ -3,7 +3,13 @@ sidebar_label: 'LSP6 - Key Manager'
 sidebar_position: 5
 ---
 
-# Key Manager
+# LSP6 - Key Manager
+
+:::info Standard Document
+
+[LSP6 - Key Manager](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
+
+:::
 
 ![Key Manager flow chart](https://user-images.githubusercontent.com/31145285/129574099-9eba52d4-4f82-4f11-8ac5-8bfa18ce97d6.jpeg)
 

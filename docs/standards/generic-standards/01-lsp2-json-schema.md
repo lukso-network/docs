@@ -1,11 +1,17 @@
 ---
-sidebar_label: 'LSP2 - Storage Layout'
+sidebar_label: 'LSP2 - ERC725Y JSON Schema'
 sidebar_position: 3.3
 ---
 
-# The Storage Layout - LSP2 (JSON Schema)
+# LSP2 - ERC725Y JSON Schema
 
 :::caution This section is a work in progress.
+:::
+
+:::info Standard Document
+
+[LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md)
+
 :::
 
 :::success Useful Tip

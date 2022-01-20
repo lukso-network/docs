@@ -2,9 +2,15 @@
 sidebar_label: 'LSP8 - Identifiable Digital Asset'
 ---
 
-# Identifiable Digital Asset
+# LSP8 - Identifiable Digital Asset
 
 :::caution This section is a work in progress.
+:::
+
+:::info Standard Document
+
+[LSP8 - Identifiable Digital Asset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)
+
 :::
 
 LSP8 Identifiable Digital Asset is a standard that aims to describe _non-fungible_ assets. The term _non-fungible_ means that each asset are unique and different. They are distinguisable from each other, and therefore are not interchangeable.

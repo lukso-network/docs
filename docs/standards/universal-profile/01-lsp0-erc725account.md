@@ -1,11 +1,17 @@
 ---
-sidebar_label: 'LSP0 - ERC725Account'
+sidebar_label: 'LSP0 - ERC725 Account'
 sidebar_position: 2
 ---
 
-# The Foundation - LSP0 (ERC725Account)
+# LSP0 - ERC725 Account
 
 :::caution This section is a work in progress.
+:::
+
+:::info Standard Document
+
+[LSP0 - ERC725Account](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
+
 :::
 
 Once deployed on a network, smart contracts cannot be changed: **they are set in stone**. This means that:

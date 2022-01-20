@@ -5,14 +5,14 @@ sidebar_position: 2
 
 # LSP0ERC725Account
 
-The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/01-LSP0-Foundation.md)**, the combination of this contract with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** forms a **UniversalProfile**.
+The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/lsp0-erc725account)**, the combination of this contract with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** forms a **UniversalProfile**.
 
 This contract could be used as an _account system_ to be used by humans, machines, organizations, or even other smart contracts. It has all the functionalities that an _EOA_ have and even more, starting from executing functions, transferring value, deploying smart contracts via **[execute](#execute)** function, verifying signatures via **[isValidSignature](#isvalidsignature)** function, being notified of incoming calls and assets via **[universalReceiver](#universalreceiver)** function and the ability to set any information on the account via **[setData](#setdata)** function.
 
 :::note
 **_LSP0ERC725Account contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
+- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
 
 :::
 
@@ -25,6 +25,7 @@ This contract could be used as an _account system_ to be used by humans, machine
 ```solidity
   constructor(address newOwner) ERC725(newOwner)
 ```
+
 Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
 
 #### Parameters:
@@ -38,6 +39,7 @@ Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](.
 ```solidity
   function owner() public view returns (address owner)
 ```
+
 Returns the address of the current owner.
 
 #### Return Values:
@@ -51,16 +53,16 @@ Returns the address of the current owner.
 ```solidity
   function transferOwnership(address newOwner) public {
 ```
+
 Transfers ownership of the contract to the `newOwner` address.
 
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership is transferred._
 
 #### Parameters:
 
-| Name      | Type    | Description                                   |
-| :-------- | :------ | :-------------------------------------------- |
-|`newOwner` | address | The address of the new owner of the contract. |
-
+| Name       | Type    | Description                                   |
+| :--------- | :------ | :-------------------------------------------- |
+| `newOwner` | address | The address of the new owner of the contract. |
 
 ### receive
 
@@ -103,12 +105,13 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 
 #### Parameters:
 
-| Name            | Type    | Description                                                                                                     |
-| :-------------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
-| `operationType` | uint256 | The operation to execute.                                                                                       |
-| `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2).                   |
-| `value`         | uint256 | The desired value to transfer.                                                                                  |
-| `data`          | bytes   | The call data (ABI of the function to execute) , or the contract data to deploy.                                |
+| Name            | Type    | Description                                                                                   |
+| :-------------- | :------ | :-------------------------------------------------------------------------------------------- |
+| `operationType` | uint256 | The operation to execute.                                                                     |
+| `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2). |
+| `value`         | uint256 | The desired value to transfer.                                                                |
+| `data`          | bytes   | The call data (ABI of the function to execute) , or the contract data to deploy.              |
+
 #### Return Values:
 
 | Name     | Type  | Description                                                                                         |
@@ -170,7 +173,7 @@ Gets array of data at multiple given key.
   ) public returns (bytes memory result)
 ```
 
-Forwards the call to the **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**  contract if the owner of the **LSP0ERC725Account** has set the **[LSP1UniversalReceiverDelegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate)** Key to the address of the **LSP1UniversalReceiverDelegateUP** contract.
+Forwards the call to the **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)** contract if the owner of the **LSP0ERC725Account** has set the **[LSP1UniversalReceiverDelegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate)** Key to the address of the **LSP1UniversalReceiverDelegateUP** contract.
 
 The **LSP1UniversalReceiverDelegateUP** contract should implement **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)** using **ERC165**.
 
@@ -215,7 +218,6 @@ Returns whether the signature provided is valid for the provided data.
 
 ## Events
 
-
 ### OwnershipTransferred
 
 ```solidity
@@ -229,10 +231,10 @@ _**MUST** be fired when **[transferOwnership](#transferownership)** is successfu
 
 #### Values:
 
-| Name             | Type    | Description                        |
-| :--------------- | :------ | :--------------------------------- |
-| `previousOwner`  | address | The previous owner of the contract.|
-| `newOwner`       | address | The new owner of the contract.     |
+| Name            | Type    | Description                         |
+| :-------------- | :------ | :---------------------------------- |
+| `previousOwner` | address | The previous owner of the contract. |
+| `newOwner`      | address | The new owner of the contract.      |
 
 ### ValueReceived
 
