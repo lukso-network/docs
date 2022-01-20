@@ -13,8 +13,8 @@ LSP3 is a Metadata standard that aims to define a Universal Profile. A Universal
 
 This standard is based on ERC725Account. Therefore, a Universal Profile can:
 
-- interact with any address or contracts ([ERC725X](./01-LSP0-Foundation.md#erc725x---generic-executor)).
-- be attached any information ([ERC725Y](./LSP0-Foundation#erc725y---generic-key-value-store)).
+- interact with any address or contracts ([ERC725X](./lsp0-erc725account.md#erc725x---generic-executor)).
+- be attached any information ([ERC725Y](./lsp0-erc725account#erc725y---generic-key-value-store)).
 
 A Universal Profile contains the following main keys:
 

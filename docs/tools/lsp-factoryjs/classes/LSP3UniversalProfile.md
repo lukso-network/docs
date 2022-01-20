@@ -12,7 +12,7 @@ lspFactory.LSP3UniversalProfile.deploy(
 
 Deploys and **configures** a [Universal Profile](../../../standards/universal-profile/introduction) to the blockchain. It will deploy the following contracts:
 
-- [LSP0 ERC725 Account](../../../standards/universal-profile/LSP0-Foundation)
+- [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account)
 - [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate)
 - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager)
 
