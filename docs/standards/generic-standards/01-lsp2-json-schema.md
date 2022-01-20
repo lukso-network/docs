@@ -8,6 +8,12 @@ sidebar_position: 3.3
 :::caution This section is a work in progress.
 :::
 
+:::info Standard Document
+
+[LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md)
+
+:::
+
 :::success Useful Tip
 
 Our [JavaScript library `erc725.js`](../../tools/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema, without going through all the encoding complexity manually.

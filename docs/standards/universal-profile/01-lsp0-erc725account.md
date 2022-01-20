@@ -8,6 +8,12 @@ sidebar_position: 2
 :::caution This section is a work in progress.
 :::
 
+:::info Standard Document
+
+[LSP0 - ERC725Account](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
+
+:::
+
 Once deployed on a network, smart contracts cannot be changed: **they are set in stone**. This means that:
 
 - you cannot add or remove state variables inside the contract.

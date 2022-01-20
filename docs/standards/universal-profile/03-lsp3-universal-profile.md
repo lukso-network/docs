@@ -6,6 +6,11 @@ sidebar_position: 4
 # LSP3 - Universal Profile
 
 :::caution this section is a work in progress
+:::
+
+:::info Standard Document
+
+[LSP3 - Universal Profile Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
 
 :::
 
