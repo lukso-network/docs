@@ -35,7 +35,7 @@ With the **Ownable** design pattern, a contract can be designed with _functional
 In the context of Universal Profile, _reading data from the contract storage can be done by anyone_. But **only the owner can**:
 
 - `setData` = add, edit or remove data from the [ERC725Y](../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) storage.
-- `execute` = calling other contracts, doing LYX transfers, create other contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account.md#erc725x---generic-executor) executor)
+- `execute` = calling other contracts, doing LYX transfers, create other contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor)
 
 In this guide, our Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../standards/smart-contracts/lsp6-key-manager.md) is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
 

@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # LSP0ERC725Account
 
-The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/lsp0-erc725account.md)**, the combination of this contract with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** forms a **UniversalProfile**.
+The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/lsp0-erc725account)**, the combination of this contract with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)** forms a **UniversalProfile**.
 
 This contract could be used as an _account system_ to be used by humans, machines, organizations, or even other smart contracts. It has all the functionalities that an _EOA_ have and even more, starting from executing functions, transferring value, deploying smart contracts via **[execute](#execute)** function, verifying signatures via **[isValidSignature](#isvalidsignature)** function, being notified of incoming calls and assets via **[universalReceiver](#universalreceiver)** function and the ability to set any information on the account via **[setData](#setdata)** function.
 
