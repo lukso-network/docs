@@ -88,7 +88,9 @@ You can restrict an address to interact only with specific contracts or EOAs.
 To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>`, the key-value pair below can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d00000000c6dd0000<address>`
-- **value:** `<target-contract-address>`
+- **value(s):** `[ <target-contract-address> ]`
+
+The list (= array) of allowed `addresses` **MUST be abi-encoded** (See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::info Infos
 
@@ -105,7 +107,9 @@ You can also restrict which functions a specific address can run, by providing a
 To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d000000008efe0000<address>`
-- **value:** `0xa9059cbb`
+- **value(s):** `[ 0xa9059cbb ]`
+
+The list (= array) of allowed `bytes4` function selectors **MUST be abi-encoded** (See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::info Infos
 
@@ -113,14 +117,16 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 
 :::
 
-### Allowed Standards
+### Allowed standards
 
 It is possible to restrict which "type of contract" an address can interact with. A type of contract here refers to a contract implementing a specific interface registered and checked via the [ERC165 standard](https://eips.ethereum.org/EIPS/eip-165).
 
 As an example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d000000003efa0000<address>`
-- **value:** `0x63cb749b`
+- **value(s):** `[ 0x63cb749b ]`
+
+The list (= array) of allowed `bytes4` interface IDs **MUST be abi-encoded** (See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::info
 
@@ -135,7 +141,9 @@ If an address is allowed to SETDATA on an ERC725Account, it is possible to restr
 To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d0000000090b80000<address>`
-- **value:** `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`
+- **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
+
+The list (= array) of allowed `bytes32` keys **MUST be abi-encoded** (See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::info
 
