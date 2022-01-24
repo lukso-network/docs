@@ -113,6 +113,21 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 
 :::
 
+### Allowed ERC725Y Keys
+
+If an address is allowed to SETDATA on an ERC725Account, it is possible to restrict which keys this address can update.
+
+To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
+
+- **key:** `0x4b80742d0000000090b80000<address>`
+- **value:** `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`
+
+:::info
+
+**If no bytes32 values are set, the caller address can set values for any keys.**
+
+:::
+
 ---
 
 ## <a name="permissions-keys"></a> Permission Keys
