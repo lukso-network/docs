@@ -30,7 +30,7 @@ Since permissions are stored under the ERC725Account contract, they are not atta
 
 ---
 
-## <a name="types-of-permissions"></a> Types of permissions
+## Types of permissions
 
 There are 3 main types of permissions that can be set for addresses interacting with a Universal Profile.
 
@@ -42,7 +42,7 @@ There are 3 main types of permissions that can be set for addresses interacting 
 
 <br/>
 
-### <a name="address-permissions"></a> Address Permissions
+### Address Permissions
 
 An address can hold one (or more) permissions, enabling it to perform multiple set of actions on an ERC725Account. Such actions include **setting data**, **calling other contracts**, **transferring native tokens** and more.
 
@@ -81,7 +81,7 @@ For instance, if you try to set the permission SETDATA for an address as `0x08`,
 
 <br/>
 
-### <a name="allowed-addresses"></a> Allowed addresses
+### Allowed addresses
 
 You can restrict an address to interact only with specific contracts or EOAs.
 
@@ -98,7 +98,7 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 
 <br/>
 
-### <a name="allowed-functions"></a> Allowed functions
+### Allowed functions
 
 You can also restrict which functions a specific address can run, by providing a list of `bytes4` function selector.
 
@@ -130,7 +130,7 @@ To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5
 
 ---
 
-## <a name="permissions-keys"></a> Permission Keys
+## Permission Keys
 
 The following keys are available to set the different types of permissions.
 
@@ -144,7 +144,7 @@ The following keys are available to set the different types of permissions.
 
 ---
 
-## <a name="permission-values"></a> Permission Values
+## Permission Values
 
 The following default permissions can be set for any address. They are listed below, according to their order of importance.
 
