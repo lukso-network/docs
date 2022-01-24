@@ -113,6 +113,21 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 
 :::
 
+### Allowed Standards
+
+It is possible to restrict which "type of contract" an address can interact with. A type of contract here refers to a contract implementing a specific interface registered and checked via the [ERC165 standard](https://eips.ethereum.org/EIPS/eip-165).
+
+As an example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
+
+- **key:** `0x4b80742d000000003efa0000<address>`
+- **value:** `0x63cb749b`
+
+:::info
+
+**If no bytes4 values are set, the caller address can interact with any contract implementing any interface.**
+
+:::
+
 ### Allowed ERC725Y Keys
 
 If an address is allowed to SETDATA on an ERC725Account, it is possible to restrict which keys this address can update.
