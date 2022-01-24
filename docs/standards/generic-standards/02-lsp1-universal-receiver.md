@@ -13,22 +13,26 @@ sidebar_position: 3.2
 
 ## Introduction
 
-There is often the need to **inform other smart contracts** about the transactions they might receive. A good example would be token transfers, if a smart contract receives a token there is no way that it knows about the transfer in a generic way. This problem limitate the autonomy of the smart contracts and require a third party to evoke.
+There is often the need for smart contracts to **be aware of incoming transactions**, especially when it comes to value transfers.
 
-This problem can be solved by creating a standard **universal function** that all smart contracts implement so wallets or profiles could use to notify the user about an incoming asset, information, followers, etc ...
+A good example is ERC20 token transfers. When a smart contract receives a token, it has no generic way to be notified about it. One solution to this problem could be to monitor the receiving contract, by listening for ERC20 token transfer events.
+
+However, this requires using a trusted third party to monitor the contract. Such method limits the autonomy of smart contracts, and introduces a single point of failure.
+
+One way to solve this problem is by creating a standard **universal function**, that any smart contract can implement. Wallets or profiles could use this function to notify the user about an incoming asset, information, followers, etc ...
 
 ## What does this standard represent ?
 
 ### Specification
 
-This standard represents a single function named **universalReceiver** that could receive **any arbitrary information** and it takes two parameters:
+This standard defines a single function named `universalReceiver(...)` that could receive **any arbitrary information**. It takes two parameters:
 
 - bytes32 `typeId` : Hash or Hook of a specific standard.
 - bytes `data` : Any arbitrary data.
 
-Receiving contracts should take the **typeId** into consideration to properly **decode the data**.
+The **universalReceiver** function emits an event with the data passed to it along with some additional data. It could be customized to **revert on calls**, this way the smart contract implementing it won't be able to receive **assets, information**, etc ..
 
-The **universalReceiver** function emits an event with the data passed to it along with some additional data. It could be customized to **revert on calls**, this way the smart contract implementing it won't be able to receive **assets**, **information**, etc ..
+> Receiving contracts should take the `typeId` into consideration to properly **decode the data**.
 
 ![schema of universal receiver transaction](../../../static/img/ur-transaction.jpg)
 
