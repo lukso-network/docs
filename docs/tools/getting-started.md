@@ -153,7 +153,7 @@ console.log(data);
 }
 ```
 
-To interact directly with any smart contract through you UP, load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
+To interact directly with any smart contract through your UP, load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
 
 ```js title="Interact directly through your UP"
 import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
