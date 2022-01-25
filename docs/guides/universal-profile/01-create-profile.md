@@ -58,7 +58,7 @@ Our tool [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started
 Under the hood, lsp-factory.js performs the following:
 
 1. deploys all the necessary contracts:
-   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile.md) (UP) - core smart contract that represents a Universal Profile.
+   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile-metadata.md) (UP) - core smart contract that represents a Universal Profile.
    - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD) - contract that react on events, such as tokens received or transferred.
    - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) - contract that acts as **owner of a Universal Profile**, to enable other address to interact with the UP.
 2. link the URD with the deployed UP account + set its permissions.
