@@ -13,7 +13,7 @@ sidebar_position: 4
 
 ## Introduction
 
-The implementation of the **[LSP0-ERC725Account](#)** standard does not contain any metadata describing the account.   
+The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** standard does not contain any metadata describing the account.   
 
 **[LSP3-UniversalProfile-Metadata](#)** is a Metadata standard that aims to define specific keys that desribes an account. A Universal Profile is a combination between **LSP0-ERC725Account**, a smart contract based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys that describes the account.
 
@@ -62,3 +62,15 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 ```
 
 Universal Profiles have the capabilities to create digital assets, such as tokens and NFTs. Every token created should be registred in this array key.
+
+### LSP5ReceivedAssets
+```json
+{
+    "name": "LSP5ReceivedAssets[]",
+    "key": "0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b",
+    "keyType": "Array",
+    "valueType": "address",
+    "valueContent": "Address"
+}
+```
+If the UniversalProfile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registred in the storage. To know how many different asset you have you can query this key.
