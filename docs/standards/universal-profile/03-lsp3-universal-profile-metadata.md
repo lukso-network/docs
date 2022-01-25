@@ -15,7 +15,7 @@ sidebar_position: 4
 
 The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** standard does not contain any metadata describing the account.   
 
-**[LSP3-UniversalProfile-Metadata](#)** is a Metadata standard that aims to define specific keys that desribes an account. A Universal Profile is a combination between **LSP0-ERC725Account**, a smart contract based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys that describes the account.
+**[LSP3-UniversalProfile-Metadata](#)** is a Metadata standard that aims to define specific keys that desribes an account. A Universal Profile is a combination between **LSP0-ERC725Account**, a smart contract based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys that describe the account.
 
 ## ERC725Y Keys
 
@@ -30,7 +30,7 @@ The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** s
     "valueContent": "0xabe425d6"
 }
 ```
-This key is used to know whether the account represent a **UniversalProfile** or a normal account.
+This key is used to know whether the account represents a **UniversalProfile** or a normal account.
 
 ### LSP3Profile
 
