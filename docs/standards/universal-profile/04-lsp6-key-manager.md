@@ -134,6 +134,12 @@ The list (= array) of allowed `bytes4` interface IDs **MUST be abi-encoded** (Se
 
 :::
 
+:::caution
+
+This type of permission does not offer security over the inner workings of a contract. It should be used more as a "mistake prevention" mechanism rather than as a security measure.
+
+:::
+
 ### Allowed ERC725Y Keys
 
 If an address is allowed to `SETDATA` on an ERC725Account, it is possible to restrict which keys this address can update.
