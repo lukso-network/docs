@@ -20,6 +20,8 @@ In their current state, such assets are created as ERC721 tokens. However, they 
 
 This raises several questions around the location of where the token metadata is stored. Is a central service used to store the metadata? What about if such service goes down?
 
+![](../../../static/img/erc721-metadata-security.png)
+
 - _the only data that can be attached to an NFT is a `name` and `symbol`._
 
 Each NFT has its own characteristics and specific details. This is what makes each NFT unique. But how can we attach more informations-specific to an NFT? Or **how can we query one singular information** specific to an NFT, without having to retrieve and search through the entire metadata?
