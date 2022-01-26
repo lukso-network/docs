@@ -13,7 +13,9 @@ sidebar_position: 3
 
 ## Introduction
 
-As the code of the smart contract **can't be changed**, and the reaction of a smart contract implementing the **universalReceiver** function could change and evolve in the future, it's advised to not hardcode how the smart contract should handle and react to certain calls inside of the universalReceiver function but to delegate the response to another contract that could be customized to implement a specific logic and could be changed anytime.
+Once deployed, the code of a smart contract **can't be changed**. However, the way a smart contract implements the `universalReceiver(...)` function, and how it reacts could change and evolve in the future.
+
+Therefore, it's advised to not hardcode how the smart contract should handle and react to certain calls inside of the `universalReceiver(...)` function, but instead to delegate this functionality to another contract. Such contract could then be customized to implement a specific logic, that could be changed anytime.
 
 People wishing to understand this standard, will be **well-advised** to check the **[LSP1-UniversalReceiver Standard](../generic-standards/02-lsp1-universal-receiver.md)** as its the origin of this standard.
 
@@ -21,13 +23,15 @@ People wishing to understand this standard, will be **well-advised** to check th
 
 ### Specification
 
-This standard represents a delegate contract to the initial **universalReceiver** function, when an address wants to delegate its universalReceiver functionality to another smart contract. It contains a single function named **universalReceiverDelegate** that takes the same parameters as the universalReceiver function with an additional parameter:
+This standard represents a delegate contract to the initial `universalReceiver(...)` function, when an address wants to delegate its **universalReceiver** functionality to another smart contract.
 
-- address `sender`: Representing the address calling the initial universalReceiver function.
+It contains a single function named `universalReceiverDelegate(...)` that takes the same parameters as the `universalReceiver(...)` function with an additional parameter:
+
+- address `sender`: the address that initially called the initial `universalReceiver(...)` function.
 
 ### How Delegation works
 
-In order to let the **universalReceiver** function forward the call to the **universalReceiverDelegate** function, the **UniversalReceiverDelegate** contract address should be set in the **[ERC725Y Key value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the calling smart contract (contract implementing the universalReceiver function) as value to the pre-defined **[LSP1UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md#extension)** Key, and the UniversalReceiverDelegate contract should implement the **[LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md)** using ERC165.
+In order to let the **universalReceiver** function forward the call to the `universalReceiverDelegate(...)` function, the **UniversalReceiverDelegate** contract address should be set in the **[ERC725Y Key value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the calling smart contract (contract implementing the universalReceiver function) as value to the pre-defined **[LSP1UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md#extension)** Key, and the UniversalReceiverDelegate contract should implement the **[LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md)** using ERC165.
 ![ur-delegate-transaction](../../../static/img/ur-delegate-transaction.jpg)
 
 ## Implementations
