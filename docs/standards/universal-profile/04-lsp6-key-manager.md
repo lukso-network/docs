@@ -134,9 +134,15 @@ The list (= array) of allowed `bytes4` interface IDs **MUST be abi-encoded** (Se
 
 :::
 
+:::caution
+
+This type of permission does not offer security over the inner workings of a contract. It should be used more as a "mistake prevention" mechanism rather than as a security measure.
+
+:::
+
 ### Allowed ERC725Y Keys
 
-If an address is allowed to SETDATA on an ERC725Account, it is possible to restrict which keys this address can update.
+If an address is allowed to `SETDATA` on an ERC725Account, it is possible to restrict which keys this address can update.
 
 To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
 

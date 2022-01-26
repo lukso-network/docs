@@ -18,7 +18,7 @@ Deploys and **configures** a [Universal Profile](../../../standards/universal-pr
 
 Then, it will:
 
-- upload to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile) metadata.
+- upload to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata.
 - attach the Universal Receiver Delegate to the LSP0 ERC725 Account.
 - set the Key Manager as the owner of the LSP0 ERC725 Account.
 - give all [permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllingAccounts`.
@@ -397,7 +397,7 @@ await lspFactory.LSP3UniversalProfile.getDeployedByteCode(
 LSP3UniversalProfile.uploadProfileData(profileData, uploadOptions?);
 ```
 
-Uploads the [LSP3Profile](../../../standards/universal-profile/lsp3-universal-profile) data to the desired endpoint. This can be an `https` URL either pointing to
+Uploads the [LSP3Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) data to the desired endpoint. This can be an `https` URL either pointing to
 a public, centralized storage endpoint or an IPFS Node / Cluster.
 
 Will upload and process passed images.
@@ -411,7 +411,7 @@ Will upload and process passed images.
 
 `Promise`<`LSP3ProfileDataForEncoding`\>
 
-Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile) data and upload URL.
+Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile-metadata) data and upload URL.
 
 #### Example
 

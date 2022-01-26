@@ -4,7 +4,10 @@ sidebar_label: 'Introduction'
 
 # NFT 2.0
 
-:::caution This section is a work in progress.
+:::success Useful Tip
+
+The [Guides Section](../../guides/create-lsp7-digital-asset.md) will take you through the process of creating a NFT and deploying it on the [L14 testnet](../../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed NFTs.
+
 :::
 
 NFT2.0 is a collective name for the new token and NFT standards: [LSP7-DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md) and [LSP8-IdentifiableDigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md). These replace ERC20 and ERC721, which you would usually use on Ethereum.
