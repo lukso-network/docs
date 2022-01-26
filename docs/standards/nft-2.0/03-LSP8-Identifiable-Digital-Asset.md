@@ -17,17 +17,21 @@ sidebar_label: 'LSP8 - Identifiable Digital Asset'
 
 When it comes to Non Fungible Tokens (NFTs), one of the key characteristic that makes such assets uniques is their **metadata.**
 
-In the current state of the blockchain, such assets are created using the ERC721 Standard as their base. However, they present certain limitations:
+In their current state, such assets are created as ERC721 tokens. However, they present certain limitations:
 
 - _the Metadata attached to the NFT (represented with `tokenURI`) is **reference** to a file._
 
-This raises several questions around the location of where the token metadata is stored. Is a central service used to store the metadata? What about if such service goes down? If the Metadata is a link to a JSON file, how do we know if it has been altered?
+This raises several questions around the location of where the token metadata is stored. Is a central service used to store the metadata? What about if such service goes down?
 
 - _the only data that can be attached to a NFT is `name`, `symbol`._
 
 Each NFT has its own characteristics and specific details. This is what makes each NFT unique. But how can we attach more informations-specific to a NFT? And mostly, **how can we query one singular information** specific to the NFT?
 
-- _the Metadata for a NFT is set is stone._
+- _Metadata can be altered_
+
+If the Metadata for a NFT is a link to a JSON file, how do we know if it has been altered?
+
+- _the NFT Metadata is set is stone._
 
 How about if we want to represent NFTs as more than just a set of informations in a JSON file? How about if we want NFTs to act as _"digital liveable things"_ that can **change**, **evolve** or **be upgraded overtime**?
 
@@ -39,7 +43,11 @@ LSP8 Identifiable Digital Asset is a standard that aims to describe _non-fungibl
 
 Since every single asset is unique on its own, they are differentiated by a unique identifier: a `tokenId`. The identifier can be anything from a unique serial number, to an other [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) Smart contract that contain information and metadata specific to this `tokenId`.
 
-Under the hood, LSP8 uses the ERC725Y standard. By using a generic key-value store, it is then possible to attach an unlimited amount of information (= metadata), making the asset more customisable and more unique.
+LSP8 solves the curent problems of NFTs by using the ERC725Y standard as its base. By using a generic key-value store, a LSP8 contract comes now with the following features:
+
+- attach an unlimited amount of information (= metadata), making the asset more customisable and more unique.
+- know when the metadata has been altered, as a `DataChanged` event will be emitted in ERC725Y.
+- Metadata is now **hash reference** (= data reference), instead of URL reference.
 
 LSP8 assets are similar in nature to [ERC721](https://eips.ethereum.org/EIPS/eip-721) tokens (NFTs). What makes them different is their underlying base, making them more customisable and their metadata more upgradable overtime. This is what makes them characterised as **NFT 2.0**.
 
@@ -68,6 +76,22 @@ If each NFT is represented by its own ERC725Y contract (= metadata contract), th
 It is recommended that the `tokenId` should not change over the lifecycle of the LSP8 contract.
 
 :::
+
+An LSP8 NFT can be represented in multiple ways, depending on the type of `tokenId` used.
+
+- a **number** (`uint256`), that increments on each newly minted NFT.
+- a unique `bytes32` value (representing a _serial number_ for instance).
+- an ERC725Y contract.
+
+![](../../../static/img/lsp8-tokenid-number.jpeg)
+
+---
+
+![](../../../static/img/lsp8-tokenid-serial-number.jpeg)
+
+---
+
+![](../../../static/img/lsp8-tokenid-erc725y.jpeg)
 
 ## References
 
