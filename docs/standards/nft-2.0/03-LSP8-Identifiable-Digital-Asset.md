@@ -52,12 +52,12 @@ LSP8 assets are similar to [ERC721](https://eips.ethereum.org/EIPS/eip-721) toke
 
 ### NFT Metadata
 
-One of the key differences of LSP8 is that it allows representing each NFT as more than just a unique `tokenID` number. Each newly created `tokenId` (NFT) has its own metadata, that describes its uniqueness. Such metadata can be a reference either:
+One of the key differences of LSP8 is that it allows representing each NFT as more than just a unique `tokenId` number. Each newly created `tokenId` (NFT) has its own metadata, that describes its uniqueness. Such metadata can be a reference either:
 
 - _off-chain_ (a **JSON file URL** stored on IPFS, a public/private registry, etc...)
 - _on-chain_ (another **ERC725Y smart contract**)
 
-It is possible to know where the metadata for a specific `tokenID` is located by simply querying the LSP8 contract, giving the `tokenID` as an argument.
+It is possible to know where the metadata for a specific `tokenId` is located by simply querying the LSP8 contract, giving the `tokenId` as an argument.
 
 One benefit of using an ERC725Y metadata contract per singular `tokenId` / NFT is that the metadata related to this NFT can then be edited. This makes the metadata flexible and upgradable. It enables the representation of very unique NFTs, that can be altered over time.
 
@@ -75,11 +75,11 @@ An LSP8 NFT can be represented in multiple ways, depending on the type of `token
 - a unique `bytes32` value (representing a _serial number_ for instance).
 - an ERC725Y contract.
 
-![](../../../static/img/lsp8-tokenid-number.jpeg)
+![LSP8 tokenId = number](../../../static/img/lsp8-tokenid-number.jpeg)
 
 ---
 
-![](../../../static/img/lsp8-tokenid-serial-number.jpeg)
+![LSP8 tokenId = bytes32](../../../static/img/lsp8-tokenid-serial-number.jpeg)
 
 ### NFTs as ERC725Y contracts
 
@@ -88,7 +88,7 @@ If each NFT is represented by its own ERC725Y contract (= metadata contract), th
 - the `address` of the contract that minted this NFT.
 - the `tokenId` of this NFT.
 
-![](../../../static/img/lsp8-tokenid-erc725y.jpeg)
+![LSP8 tokenId = ERC725Y contract](../../../static/img/lsp8-tokenid-erc725y.jpeg)
 
 ## References
 
