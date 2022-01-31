@@ -7,7 +7,7 @@ sidebar_position: 2
 
 :::caution
 
-The **InterfaceId** and the **SupportedStandards:XYZ** key is not the best secure way to check for a standard, as they could be set manually.
+The **InterfaceId** and the **SupportedStandards:XYZ** key is not the most secure way to check for a standard, as they could be set manually.
 
 :::
 
