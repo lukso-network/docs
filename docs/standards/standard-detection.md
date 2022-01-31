@@ -17,7 +17,7 @@ There are 2 types of standards at **LUKSO**:
 
 - **Metadata Standards**: Where we standardize a set of ERC725Y keys. i.e: [LSP3-UniversalProfile-Metadata](./universal-profile/03-lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), [LSP10ReceivedVaults](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-10-ReceivedVaults.md), etc ..
 
-## Difference between InterfaceId Vs SupportedStandard Key
+## Difference between InterfaceId VS SupportedStandard Key
 
 
 Checking the **InterfaceId** for a contract using [ERC165 standard](https://eips.ethereum.org/EIPS/eip-165) is equal for checking if the contract is implementing a set of functions. As for checking for the **SupportedStandards:XYZ** ERC725Y key, it's equal for checking if the contract is implementing **XYZ** related ERC725Y Keys.
