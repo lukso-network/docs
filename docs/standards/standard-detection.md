@@ -20,7 +20,7 @@ There are 2 types of standards at **LUKSO**:
 ## Difference between InterfaceId Vs SupportedStandard Key
 
 
-Checking the **InterfaceId** for a contract using [ERC165 standard](https://eips.ethereum.org/EIPS/eip-165) is equal for checking if the contract is implementing a set of functions. As for checking for the **SupportedStandards:XYZ** ERC725Y key, its equal for checking if the contract is implementing **XYZ** related ERC725Y Keys.
+Checking the **InterfaceId** for a contract using [ERC165 standard](https://eips.ethereum.org/EIPS/eip-165) is equal for checking if the contract is implementing a set of functions. As for checking for the **SupportedStandards:XYZ** ERC725Y key, it's equal for checking if the contract is implementing **XYZ** related ERC725Y Keys.
 
 ### Example
 
