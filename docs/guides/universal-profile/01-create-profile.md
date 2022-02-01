@@ -112,13 +112,14 @@ const web3 = new Web3();
 
 const myEOA = web3.eth.accounts.create();
 console.log(myEOA);
-// output: {
-//     address: "0x...",
-//     privateKey: "0x...",
-//     signTransaction: function(tx){...},
-//     sign: function(data){...},
-//     encrypt: function(password){...}
-// }
+
+> {
+    address: "0x...",
+    privateKey: "0x...",
+    signTransaction: function(tx){...},
+    sign: function(data){...},
+    encrypt: function(password){...}
+}
 ```
 
 Run the script above with Node.js to generate and display your EOA private key + address.
@@ -182,13 +183,14 @@ const web3 = new Web3();
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-// {
-//     address: "0x...",
-//     privateKey: "0x...",
-//     signTransaction: function(tx){...},
-//     sign: function(data){...},
-//     encrypt: function(password){...}
-// }
+
+> {
+    address: "0x...",
+    privateKey: "0x...",
+    signTransaction: function(tx){...},
+    sign: function(data){...},
+    encrypt: function(password){...}
+}
 ```
 
 :::danger Never expose your private key!
@@ -226,20 +228,21 @@ const lspFactory = new LSPFactory(
     deployKey: PRIVATE_KEY, // or myEOA.privateKey
   },
 );
-// LSPFactory {
-//   options: {
-//     ...
-//   },
-//   DigitalAsset: DigitalAsset {
-//       ...
-//   },
-//   LSP3UniversalProfile: LSP3UniversalProfile {
-//       ...
-//   },
-//   ProxyDeployer: ProxyDeployer {
-//       ...
-//   }
-// }
+
+> LSPFactory {
+  options: {
+    ...
+  },
+  DigitalAsset: DigitalAsset {
+      ...
+  },
+  LSP3UniversalProfile: LSP3UniversalProfile {
+      ...
+  },
+  ProxyDeployer: ProxyDeployer {
+      ...
+  }
+}
 ```
 
 ### 3.3 - Deploy our Universal Profile
@@ -284,41 +287,42 @@ async function createUniversalProfile() {
 }
 
 createUniversalProfile();
-// {
-//   ERC725Account: {
-//     address: '0x...',
-//     receipt: {
-//       to: null,
-//       from: '0x...',
-//       contractAddress: '0x...',
-//       transactionIndex: 0,
-//       gasUsed: [BigNumber],
-//       logsBloom: '0x...',
-//       blockHash: '0x...',
-//       transactionHash: '0x...',
-//       logs: [],
-//       blockNumber: ...,
-//       confirmations: 1,
-//       cumulativeGasUsed: [BigNumber],
-//       status: 1,
-//       type: 0,
-//       byzantium: true,
-//       events: []
-//     }
-//   },
-//   KeyManager: {
-//     address: '0x646e989A0840CE4c3bac39d535Af736db2371107',
-//     receipt: {
-//       ...
-//     }
-//   },
-//   UniversalReceiverDelegate: {
-//     address: '0xc2f51A2891E7c78541a2CADEff9146F1E0E13E2a',
-//     receipt: {
-//       ...
-//     }
-//   }
-// }
+
+> {
+  ERC725Account: {
+    address: '0x...',
+    receipt: {
+      to: null,
+      from: '0x...',
+      contractAddress: '0x...',
+      transactionIndex: 0,
+      gasUsed: [BigNumber],
+      logsBloom: '0x...',
+      blockHash: '0x...',
+      transactionHash: '0x...',
+      logs: [],
+      blockNumber: ...,
+      confirmations: 1,
+      cumulativeGasUsed: [BigNumber],
+      status: 1,
+      type: 0,
+      byzantium: true,
+      events: []
+    }
+  },
+  KeyManager: {
+    address: '0x646e989A0840CE4c3bac39d535Af736db2371107',
+    receipt: {
+      ...
+    }
+  },
+  UniversalReceiverDelegate: {
+    address: '0xc2f51A2891E7c78541a2CADEff9146F1E0E13E2a',
+    receipt: {
+      ...
+    }
+  }
+}
 ```
 
 :::info Learn more
@@ -344,6 +348,8 @@ async function createUniversalProfile() {
 }
 
 createUniversalProfile();
+
+> my Universal Profile address: 0xFD296cCDB97C605bfdE514e9810eA05f421DEBc2
 ```
 
 We can now visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website, by adding the address of the deployed UP in the the url, after the `/` (slash), as follow:
@@ -378,13 +384,14 @@ const web3 = new Web3();
 
 const myEOA = web3.eth.accounts.create();
 console.log(myEOA);
-// output: {
-//     address: "0x...",
-//     privateKey: "0x...",
-//     signTransaction: function(tx){...},
-//     sign: function(data){...},
-//     encrypt: function(password){...}
-// }
+
+> output: {
+    address: "0x...",
+    privateKey: "0x...",
+    signTransaction: function(tx){...},
+    sign: function(data){...},
+    encrypt: function(password){...}
+}
 ```
 
 ```javascript title="main.js"
@@ -435,4 +442,6 @@ async function createUniversalProfile() {
 }
 
 createUniversalProfile();
+
+> my Universal Profile address: 0xFD296cCDB97C605bfdE514e9810eA05f421DEBc2
 ```
