@@ -41,9 +41,18 @@ Calling this function will return **TRUE** if the contract implements this speci
 
 ### Example
 
-A **UniversalProfile** is a contract based on **[LSP0 - ERC725Account](./universal-profile/01-lsp0-erc725account.md)** (LSP0). This means that the contract **SHOULD** implement the functions defined in the [LSP0 - ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet): `getData(...)`, `setData(...)`, `execute(...)`, `universalReceiver(...)`, `isValidSignature(...)` .
+A **UniversalProfile** is a contract based on **[ERC725Account](./universal-profile/01-lsp0-erc725account.md)** (LSP0). This means that the contract **SHOULD** implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 ```javascript
+const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");
+const Web3 = require("web3");
+
+// Connect to the LUKSO L14 network
+const web3 = new Web3("https://rpc.l14.lukso.network");
+
+// Create an instance of the Universal Profile
+const myUPContract = new web3.eth.Contract(UniversalProfile.abi, "<contract-address>");
+
 const ERC725AccountInterfaceId = '0x63cb749b'
 await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call()
 > TRUE or FALSE
@@ -76,6 +85,18 @@ Calling this function will return a specific `bytes4` value (defined in the Meta
 An **LSP7DigitalAsset** is a contract that contains ERC725Y keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. This means that the contract **SHOULD** have the following ERC725Y keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 
 ```javascript
+const LSP7DigitalAsset = require('@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json');
+const Web3 = require('web3');
+
+// Connect to the LUKSO L14 network
+const web3 = new Web3('https://rpc.l14.lukso.network');
+
+// Create an instance of the LSP7 Token
+const myTokenContract = new web3.eth.Contract(
+  LSP7DigitalAsset.abi,
+  '<contract-address>',
+);
+
 const SupportedStandards_LSP4DigitalAsset =
   '0xeafec4d89fa9619884b6b89135626455000000000000000000000000a4d96624';
 (await myTokenContract.methods
