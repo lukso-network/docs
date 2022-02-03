@@ -1,5 +1,6 @@
 ---
 sidebar_label: 'Introduction'
+sidebar_position: 1
 ---
 
 # NFT 2.0
