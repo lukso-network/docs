@@ -267,7 +267,7 @@ let fullSizeProfileImg;
 
 /*
  * Fetch picture information from the JSON dataset of
- * an Universal Profile
+ * a Universal Profile
  */
 async function fetchPictureData(enableDebug) {
   pictureData = await getProfile(sampleProfileAddress);
