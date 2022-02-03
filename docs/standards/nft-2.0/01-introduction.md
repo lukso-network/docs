@@ -6,7 +6,7 @@ sidebar_label: 'Introduction'
 
 :::success Useful Tip
 
-The [Guides Section](../../guides/create-lsp7-digital-asset.md) will take you through the process of creating a NFT and deploying it on the [L14 testnet](../../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed NFTs.
+The [Guides Section](../../guides/create-assets/create-lsp7-digital-asset.md) will take you through the process of creating a NFT and deploying it on the [L14 testnet](../../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed NFTs.
 
 :::
 
