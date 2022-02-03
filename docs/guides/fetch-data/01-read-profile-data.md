@@ -15,7 +15,7 @@ In this guide, we will learn how to:
 We will use:
 
 - [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting with the LUKSO network
-- [erc725.js](https://docs.lukso.tech/tools/erc725js/getting-started/) library to check the interface of an profile.
+- [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of an profile.
 - [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use fetch in plain Node code
 
 ## Table of Contents
@@ -65,13 +65,14 @@ If the function `isValidAddress` gives us back `true`, the address is valid and 
 
 To inspect the address and check if it has an ERC725 contract, we can call its interface through the `erc725.js` library. The instance of the contract will need the following information:
 
--[LSP2 - ERC725Y JSON Schema](--add link to this page: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema/) which describes contract functions
+- [LSP2 - ERC725Y JSON Schema](../../standards/generic-standards/lsp2-json-schema/) which describes contract functions
 
-- SupportedStandards will fetch the interface
-- LSP3Profile fetches the data of the profile
-- LSP1UniversalReceiverDelegate will fetch received assets
+  - SupportedStandards will fetch the interface
+  - LSP3Profile fetches the data of the profile
+  - LSP1UniversalReceiverDelegate will fetch received assets
+
 - `address`: the address of the contract
-- `provider`: a [provider](https://docs.lukso.tech/tools/erc725js/providers) object. Usually used with the RPC endpoint URL
+- `provider`: a [provider](../../tools/erc725js/providers) object. Usually used with the RPC endpoint URL
 - `config`: used to configure the IPFS gateway
 
 Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
@@ -144,7 +145,7 @@ getProfile(sampleProfileAddress).then((profileData) =>
 );
 ```
 
-If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](https://docs.lukso.tech/standards/universal-profile/lsp3-universal-profile-metadata) JSON. It should look like this:
+If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata) JSON. It should look like this:
 
 <details>
     <summary>Show JSON response</summary>
