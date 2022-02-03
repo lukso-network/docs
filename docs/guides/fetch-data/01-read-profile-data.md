@@ -69,9 +69,9 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
   - SupportedStandards will fetch the interface
   - LSP3Profile fetches the data of the profile
   - LSP1UniversalReceiverDelegate will fetch received assets
-- Provider has the RPC address of the called network
-- Address has the related blockchain address of the contract
-- Config has the base URL of the IPFS server
+- `address`: the address of the contract
+- `provider`: a [provider](https://docs.lukso.tech/tools/erc725js/providers) object. Usually used with the RPC endpoint URL
+- `config`:  used to configure the IPFS gateway
 
 Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use extended environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
 
