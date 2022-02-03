@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Giving Permissions to addresses'
+sidebar_label: 'Give Permissions to addresses'
 sidebar_position: 2.3
 ---
 
