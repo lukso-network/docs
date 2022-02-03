@@ -76,8 +76,7 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
 Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
 
 ```shell
-npm install @erc725/erc725.js
-npm install isomorphic-fetch
+npm install @erc725/erc725.js isomorphic-fetch
 ```
 
 Within the JaveScript file, we can add this code snippet right underneath. After we embed the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. As discussed above, our schema, provider, and network configuration need to be declared. While fetching, we can use the function from the previous step to handle errors that might occur.
