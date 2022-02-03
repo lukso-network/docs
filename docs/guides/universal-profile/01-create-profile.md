@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Create a Universal Profile'
-sidebar_position: 1.1
+sidebar_position: 1
 ---
 
 # Create a Universal Profile
