@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Edit a Universal Profile'
-sidebar_position: 1.2
+sidebar_position: 2
 ---
 
 # Edit a Universal Profile

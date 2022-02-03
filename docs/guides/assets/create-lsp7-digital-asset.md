@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Create a LSP7 Digital Asset (Token)'
-sidebar_position: 4.1
+sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';

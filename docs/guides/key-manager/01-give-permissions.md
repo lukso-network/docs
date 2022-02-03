@@ -1,12 +1,12 @@
 ---
-sidebar_label: 'Give Permissions to addresses'
-sidebar_position: 2.3
+sidebar_label: 'Give permissions to addresses'
+sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Giving permissions to addresses
+# Give permissions to addresses
 
 The Key Manager (KM) enables us to give permissions to other addresses, so they can edit data on our Universal Profile (UP) or interact with it on our behalf. In this section, we will see how to set up these permissions.
 
