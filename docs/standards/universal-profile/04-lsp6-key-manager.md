@@ -204,7 +204,7 @@ You can find **more details about each permissions by clicking on the toggles be
 
 ![CHANGE Permissions](./../../../static/img/standards/lsp6-change-permissions.jpeg)
 
-<p>Bear in mind that the behaviour of CHANGEPERMISSIONS slightly varies, depending on the new permissions value being set (see figure below).</p>
+<p>Bear in mind that the behaviour of <code>CHANGEPERMISSIONS</code> slightly varies, depending on the new permissions value being set (see figure below).</p>
 
 ![CHANGE Permissions](./../../../static/img/standards/lsp6-change-permissions-variants.jpeg)
 
@@ -226,7 +226,7 @@ You can find **more details about each permissions by clicking on the toggles be
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
-    Allows an address to write any form of data in the <a href="https://**github**.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked `ERC725Account` (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
+    Allows an address to write any form of data in the <a href="https://**github**.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked <code>ERC725Account</code> (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
 
 </details>
 

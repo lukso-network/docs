@@ -48,7 +48,7 @@ By introducing a schema, contract storage can be represented in the same way acr
 
 ### How does LSP2 work?
 
-LSP2 introduces new ways to encode data, depending on its type. From a single entry, to multiple entires (like arrays or maps).
+LSP2 introduces new ways to encode data, depending on its type. From a single entry, to multiple entries (like arrays or maps).
 
 A key in the contract storage can be defined as a JSON object, with properties that describes the key.
 
