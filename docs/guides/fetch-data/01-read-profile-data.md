@@ -59,7 +59,7 @@ function isAddrValid(address) {
 console.log(isAddrValid(sampleProfileAddress));
 ```
 
-If the function `isAddrValid` gives us back `true`, the address is valid and can be checked for contact data.
+If the function `isAddrValid` gives us back `true`, the address is valid and can be used.`
 
 ## Step 2 - Call the Universal Profile
 
