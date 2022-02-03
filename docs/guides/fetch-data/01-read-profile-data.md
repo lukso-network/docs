@@ -47,6 +47,7 @@ const sampleProfileAddress = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 
 /*
  * Check if @param is a valid blockchain address
+ *
  * @returns: boolean
  */
 function isAddrValid(address) {
