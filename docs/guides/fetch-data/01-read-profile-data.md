@@ -147,7 +147,7 @@ getProfile(sampleProfileAddress).then((profileData) =>
 If everything went fine, we now have the profile's dataset as a universal JSON structure that looks like this:
 
 <details>
-    <summary>Show JSON responce</summary>
+    <summary>Show JSON response</summary>
 
 ```json
 {
