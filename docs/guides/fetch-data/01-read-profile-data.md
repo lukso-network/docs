@@ -50,28 +50,29 @@ const sampleProfileAddress = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
  *
  * @returns: boolean
  */
-function isAddrValid(address) {
+function isValidAddress(address) {
   let formattedAddress = web3.utils.toChecksumAddress(address);
   return web3.utils.checkAddressChecksum(formattedAddress);
 }
 
 // Debug
-console.log(isAddrValid(sampleProfileAddress));
+console.log(isValidAddress(sampleProfileAddress));
 ```
 
-If the function `isAddrValid` gives us back `true`, the address is valid and can be used.`
+If the function `isValidAddress` gives us back `true`, the address is valid and can be used.`
 
 ## Step 2 - Call the Universal Profile
 
 To inspect the address and check if it has an ERC725 contract, we can call its interface through the `erc725.js` library. The instance of the contract will need the following information:
 
 -[LSP2 - ERC725Y JSON Schema](--add link to this page: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema/) which describes contract functions
-  - SupportedStandards will fetch the interface
-  - LSP3Profile fetches the data of the profile
-  - LSP1UniversalReceiverDelegate will fetch received assets
+
+- SupportedStandards will fetch the interface
+- LSP3Profile fetches the data of the profile
+- LSP1UniversalReceiverDelegate will fetch received assets
 - `address`: the address of the contract
 - `provider`: a [provider](https://docs.lukso.tech/tools/erc725js/providers) object. Usually used with the RPC endpoint URL
-- `config`:  used to configure the IPFS gateway
+- `config`: used to configure the IPFS gateway
 
 Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
 
@@ -79,7 +80,7 @@ Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response fr
 npm install @erc725/erc725.js isomorphic-fetch
 ```
 
-After we embed the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. While fetching, we can use the function from the previous step to handle errors that might occur.
+After we import the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. While fetching, we can use the function from the previous step to handle errors that might occur.
 
 ```javascript title="read_profile.js"
 ...
@@ -125,11 +126,11 @@ const config = {
  * @returns: string JSON or custom error
  */
 async function getProfile(address) {
-  if (isAddrValid(address)) {
+  if (isValidAddress(address)) {
     try {
       const erc725 = new ERC725(erc725schema, address, provider, config);
       return await erc725.fetchData();
-    } catch (err) {
+    } catch (error) {
       return console.log('This is not an ERC725 Contract');
     }
   } else {
@@ -199,7 +200,7 @@ With the JSON response, we can fetch all sorts of data:
 - Pictures and their properties
 - Receiver address containing asset data
 
-Just instantiate variables for the information you would like to process. All demo fetch functions provided with this guide will come with a debug parameter. You can set it to `1` to see results directly in your terminal.
+Just instantiate variables for the information you would like to process. All demo fetch functions provided with this guide will come with console logs to directly see results in your terminal.
 
 <details>
     <summary>Fetch the profile's metadata</summary>
@@ -221,7 +222,7 @@ let firstTag;
  * Fetch metadata information from the JSON dataset of
  * an Universal Profile
  */
-async function fetchProfileData(enableDebug) {
+async function fetchProfileData() {
   profileData = await getProfile(sampleProfileAddress);
   name = profileData.LSP3Profile.LSP3Profile.name;
   description = profileData.LSP3Profile.LSP3Profile.description;
@@ -233,7 +234,6 @@ async function fetchProfileData(enableDebug) {
   tags = profileData.LSP3Profile.LSP3Profile.tags;
   firstTag = tags[0];
 
-  if (enableDebug === 1) {
     console.log('Name ' + name);
     console.log('Description: ' + description + '\n');
     console.log('Links: ' + JSON.stringify(links, undefined, 2) + '\n');
@@ -241,11 +241,10 @@ async function fetchProfileData(enableDebug) {
     console.log('URL of first Link: ' + firstLinkURL + '\n');
     console.log('Tags: ' + JSON.stringify(tags, undefined, 2) + '\n');
     console.log('First tag: ' + firstTag + '\n');
-  }
 }
 
 // Debug
-fetchProfileData(1);
+fetchProfileData();
 ```
 
 </details>
@@ -268,48 +267,52 @@ let fullSizeProfileImg;
  * Fetch picture information from the JSON dataset of
  * a Universal Profile
  */
-async function fetchPictureData(enableDebug) {
+async function fetchPictureData() {
   pictureData = await getProfile(sampleProfileAddress);
   let backgroundImagesIPFS =
     pictureData.LSP3Profile.LSP3Profile.backgroundImage;
   let profileImagesIPFS = pictureData.LSP3Profile.LSP3Profile.profileImage;
 
-  for (let i in backgroundImagesIPFS) {
-    backgroundImageLinks.push([
-      i,
-      baseURL + backgroundImagesIPFS[i].url.substring(7),
-    ]);
-  }
+  try{
+    for (let i in backgroundImagesIPFS) {
+      backgroundImageLinks.push([
+        i,
+        baseURL + backgroundImagesIPFS[i].url.substring(7),
+      ]);
+    }
 
-  for (let i in profileImagesIPFS) {
-    profileImageLinks.push([
-      i,
-      baseURL + profileImagesIPFS[i].url.substring(7),
-    ]);
-  }
+    for (let i in profileImagesIPFS) {
+      profileImageLinks.push([
+        i,
+        baseURL + profileImagesIPFS[i].url.substring(7),
+      ]);
+    }
 
-  fullSizeBackgroundImg = backgroundImageLinks[0][1];
-  fullSizeProfileImg = profileImageLinks[0][1];
+    fullSizeBackgroundImg = backgroundImageLinks[0][1];
+    fullSizeProfileImg = profileImageLinks[0][1];
 
-  if (enableDebug === 1) {
-    console.log(
-      'Background Image Links: ' +
-        JSON.stringify(backgroundImageLinks, undefined, 2) +
-        '\n',
-    );
     console.log('Fullsize Background Image: ' + fullSizeBackgroundImg + '\n');
+    console.log('Fullsize Background Image: ' + fullSizeProfileImg + '\n');
 
     console.log(
-      'Background Image Links: ' +
-        JSON.stringify(profileImageLinks, undefined, 2) +
-        '\n',
+    'Background Image Links: ' +
+      JSON.stringify(backgroundImageLinks, undefined, 2) +
+      '\n',
     );
-    console.log('Fullsize Background Image: ' + fullSizeProfileImg + '\n');
+
+    console.log(
+    'Background Image Links: ' +
+      JSON.stringify(profileImageLinks, undefined, 2) +
+      '\n',
+    );
+  }
+  catch (error) {
+      return console.log('Could not fetch images');
   }
 }
 
 // Debug
-fetchPictureData(1);
+fetchPictureData();
 ```
 
 </details>
@@ -405,7 +408,7 @@ let fullSizeProfileImg;
  * Check if @param is a valid blockchain address
  * @returns: boolean
  */
-function isAddrValid(address) {
+function isValidAddress(address) {
   let formattedAddress = web3.utils.toChecksumAddress(address);
   return web3.utils.checkAddressChecksum(formattedAddress);
 }
@@ -415,11 +418,11 @@ function isAddrValid(address) {
  * @returns: string JSON or custom error
  */
 async function getProfile(address) {
-  if (isAddrValid(address)) {
+  if (isValidAddress(address)) {
     try {
       const erc725 = new ERC725(erc725schema, address, provider, config);
       return await erc725.fetchData();
-    } catch (err) {
+    } catch (error) {
       return console.log('This is not an ERC725 Contract');
     }
   } else {
@@ -431,7 +434,7 @@ async function getProfile(address) {
  * Fetch metadata information from the JSON dataset of
  * an Universal Profile
  */
-async function fetchProfileData(enableDebug) {
+async function fetchProfileData() {
   profileData = await getProfile(sampleProfileAddress);
   name = profileData.LSP3Profile.LSP3Profile.name;
   description = profileData.LSP3Profile.LSP3Profile.description;
@@ -443,58 +446,59 @@ async function fetchProfileData(enableDebug) {
   tags = profileData.LSP3Profile.LSP3Profile.tags;
   firstTag = tags[0];
 
-  if (enableDebug === 1) {
-    console.log('Name ' + name);
-    console.log('Description: ' + description + '\n');
-    console.log('Links: ' + JSON.stringify(links, undefined, 2) + '\n');
-    console.log('Title of first Link: ' + firstLinkTitle);
-    console.log('URL of first Link: ' + firstLinkURL + '\n');
-    console.log('Tags: ' + JSON.stringify(tags, undefined, 2) + '\n');
-    console.log('First tag: ' + firstTag + '\n');
-  }
+  console.log('Name ' + name);
+  console.log('Description: ' + description + '\n');
+  console.log('Links: ' + JSON.stringify(links, undefined, 2) + '\n');
+  console.log('Title of first Link: ' + firstLinkTitle);
+  console.log('URL of first Link: ' + firstLinkURL + '\n');
+  console.log('Tags: ' + JSON.stringify(tags, undefined, 2) + '\n');
+  console.log('First tag: ' + firstTag + '\n');
 }
 
 /*
  * Fetch picture information from the JSON dataset of
  * an Universal Profile
  */
-async function fetchPictureData(enableDebug) {
+async function fetchPictureData() {
   pictureData = await getProfile(sampleProfileAddress);
   let backgroundImagesIPFS =
     pictureData.LSP3Profile.LSP3Profile.backgroundImage;
   let profileImagesIPFS = pictureData.LSP3Profile.LSP3Profile.profileImage;
 
-  for (let i in backgroundImagesIPFS) {
-    backgroundImageLinks.push([
-      i,
-      baseURL + backgroundImagesIPFS[i].url.substring(7),
-    ]);
-  }
+  try {
+    for (let i in backgroundImagesIPFS) {
+      backgroundImageLinks.push([
+        i,
+        baseURL + backgroundImagesIPFS[i].url.substring(7),
+      ]);
+    }
 
-  for (let i in profileImagesIPFS) {
-    profileImageLinks.push([
-      i,
-      baseURL + profileImagesIPFS[i].url.substring(7),
-    ]);
-  }
+    for (let i in profileImagesIPFS) {
+      profileImageLinks.push([
+        i,
+        baseURL + profileImagesIPFS[i].url.substring(7),
+      ]);
+    }
 
-  fullSizeBackgroundImg = backgroundImageLinks[0][1];
-  fullSizeProfileImg = profileImageLinks[0][1];
+    fullSizeBackgroundImg = backgroundImageLinks[0][1];
+    fullSizeProfileImg = profileImageLinks[0][1];
 
-  if (enableDebug === 1) {
+    console.log('Fullsize Background Image: ' + fullSizeBackgroundImg + '\n');
+    console.log('Fullsize Background Image: ' + fullSizeProfileImg + '\n');
+
     console.log(
       'Background Image Links: ' +
         JSON.stringify(backgroundImageLinks, undefined, 2) +
         '\n',
     );
-    console.log('Fullsize Background Image: ' + fullSizeBackgroundImg + '\n');
 
     console.log(
       'Background Image Links: ' +
         JSON.stringify(profileImageLinks, undefined, 2) +
         '\n',
     );
-    console.log('Fullsize Background Image: ' + fullSizeProfileImg + '\n');
+  } catch (error) {
+    return console.log('Could not fetch images');
   }
 }
 
@@ -508,7 +512,7 @@ async function fetchReceiverData() {
 }
 
 // Debug Step 1
-console.log(isAddrValid(sampleProfileAddress));
+console.log(isValidAddress(sampleProfileAddress));
 
 // Debug Step 2
 getProfile(sampleProfileAddress).then((profileData) =>
@@ -516,7 +520,7 @@ getProfile(sampleProfileAddress).then((profileData) =>
 );
 
 // Debug Step 3
-fetchProfileData(1);
-fetchPictureData(1);
+fetchProfileData();
+fetchPictureData();
 fetchReceiverData().then((receiverAddress) => console.log(receiverAddress));
 ```
