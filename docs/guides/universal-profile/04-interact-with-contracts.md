@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Interact with other contracts'
-sidebar_position: 1.4
+sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
