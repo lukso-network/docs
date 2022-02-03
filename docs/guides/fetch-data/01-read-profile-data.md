@@ -144,7 +144,7 @@ getProfile(sampleProfileAddress).then((profileData) =>
 );
 ```
 
-If everything went fine, we now have the profile's dataset as a universal JSON structure that looks like this:
+If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](https://docs.lukso.tech/standards/universal-profile/lsp3-universal-profile-metadata) JSON. It should look like this:
 
 <details>
     <summary>Show JSON response</summary>
