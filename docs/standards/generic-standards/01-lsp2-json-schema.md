@@ -5,9 +5,6 @@ sidebar_position: 3.3
 
 # LSP2 - ERC725Y JSON Schema
 
-:::caution This section is a work in progress.
-:::
-
 :::info Standard Document
 
 [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md)
@@ -20,36 +17,73 @@ Our [JavaScript library `erc725.js`](../../tools/erc725js/getting-started.md) ma
 
 :::
 
-Smart contracts understand only two things: **bytes** and **numbers**. For a smart contract, there is no such concept as a variable. Everything is stored under the smart contract storage as bytes at specific storage slots.
+## Introduction
 
-Data in a smart contract is organised between slots. Each data is storaged at a slot number. Let's take this smart contract as an example.
+Data in the storage of a smart contract is organised in **slots**. Each piece of data is stored at a specific storage slot. These slots are numbered (as a `uint256`), starting from slot 0.
 
-```solidity
-contract Example {
+> Therefore, smart contracts understand only 2 languages: `bytes` and `uint256`.
 
-    string name;    // storage slot 1
-    uint256 age;    // storage slot 2
-    string description; // storage slot 3
+Take the following key-value pair for instance. It is not easy to infer the meaning of these keys by reading them as **bytes**.
 
+```
+(key)                                                              => (value)
+0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1 => 0x4d7920546f6b656e20322e30
+```
+
+Such low level languages is difficult for humans to understand and read. ERC725Y solves part of the problem, by offering a more flexibile contract storage, where the data is addressed via `bytes32` keys. However, with everything being read as bytes, this makes the contract storage very hard to with.
+
+Finally, everyone can store information differently on contracts like ERC725Account, depending on individual use cases and needs. There is no standard schema that defines **what is the data** and **how the data looks like**. This make it very hard for ERC725 Account to interact with each other, and for external services to interact with ERC725Accounts.
+
+## What does this standard represent?
+
+### Specification
+
+LSP2 aims to offer a better abstraction on top of a smart contract storage.
+
+This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable keys. Data in a smart contract can be stored in a more organised way. _Going back to our previoous example, it is easier to understand a key as follow:_
+
+![Universal Profile + ERC725Y JSON schema (diagram)](../../../static/img/standards/ERC725Y-JSON-Schema-explained.jpeg)
+
+By introducing a schema for a contract storage, Storage can be represented in the same way across contracts in the network. Everyone has a unified view of the data stored between smart contracts. Data can then be easily parsed, and contracts or interfaces can read or write data from / to the contract storage in the same manner. This makes smart contracts **more interroperable between each other**.
+
+### How does LSP2 work?
+
+LSP2 introduces new ways to encode data, depending on its type. From a single entry, to multiple entires (like arrays or maps).
+
+A key in the contract storage can be defined as a JSON object, with properties that describes the key.
+
+```json
+{
+  "name": "LSP4TokenName",
+  "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
+  "keyType": "Singleton",
+  "valueType": "string",
+  "valueContent": "String"
 }
 ```
 
-For humans, it is difficult to remember the slot number. The more data you attach to a smart contract, the more impractical it becomes.
-
-Finally, everyone can store information differently on an ERC725Account, depending on individual use cases and needs. There is no standardized schema of how the data looks like. This make it very hard for ERC725 Account to interact with each other, and for external services to interact with ERC725Accounts.
-
-## How does LSP2 work?
-
-LSP2 introduces a schema that enables to represent the storage of a smart contract in more understandble keys. Coming back to our previous example, it is easier to remember that your `age` is stored at the key `MyAge`, instead of at slot number 1.
-
-LSP2 enables to store information on an ERC725Account in an organized and unified way.
-
-By introducing a new storage schema for smart contracts, ERC725Accounts become interroperable between each other, as their storage is represented in the same way. Contract and interfaces can then all read and write to the storage in the same manner. Data can be easily parsed, so that any smart contract or interface can interact with them and fetch data.
-
 ## Key Types
 
-LSP2 introduces new way to encode data, depending on its type. From a single entry, to multiple entires (like arrays or maps).
-Under the hood:
+There are several **key types** defined in LSP2.
 
-- keys are represented as `bytes32`.
-- variables are stored as `bytes` with an undefined length.
+- Singleton
+- Array
+- Mapping
+- BYtes20Mapping
+- Bytes20MappingWithGrouping
+
+### Mapping
+
+Below is an example of a **Mapping** key type.
+
+```json
+{
+  "name": "SupportedStandards:LSP3UniversalProfile",
+  "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abe425d6",
+  "keyType": "Mapping",
+  "valueType": "bytes4",
+  "valueContent": "0xabe425d6"
+}
+```
+
+![LSP2 Mapping key type](../../../static/img/standards/lsp2-key-type-mapping.jpeg)
