@@ -30,9 +30,9 @@ Take the following key-value pair for instance. It is not easy to infer the mean
 0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1 => 0x4d7920546f6b656e20322e30
 ```
 
-Such low level languages is difficult for humans to understand and read. ERC725Y solves part of the problem, by offering a more flexibile contract storage, where the data is addressed via `bytes32` keys. However, with everything being read as bytes, this makes the contract storage very hard to with.
+Using **slots numbers** and **raw bytes** makes the contract storage very hard to work with. [ERC725Y](../universal-profile/01-lsp0-erc725account#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However with such low-level languages, this makes it difficult for humans to understand the data in the storage.
 
-Finally, everyone can store information differently on contracts like ERC725Account, depending on individual use cases and needs. There is no standard schema that defines **what is the data** and **how the data looks like**. This make it very hard for ERC725 Account to interact with each other, and for external services to interact with ERC725Accounts.
+Finally, everyone can store information differently on contracts like [ERC725Account](../universal-profile/01-lsp0-erc725account), depending on individual use cases and needs. There is no standard schema that defines what is the data and what the data looks like. This makes it very hard for ERC725Account to interact with each other, and for external services to interact with ERC725Accounts.
 
 ## What does this standard represent?
 
@@ -40,11 +40,11 @@ Finally, everyone can store information differently on contracts like ERC725Acco
 
 LSP2 aims to offer a better abstraction on top of a smart contract storage.
 
-This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable keys. Data in a smart contract can be stored in a more organised way. _Going back to our previoous example, it is easier to understand a key as follow:_
+This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable keys. Data in a smart contract can be stored in a more organised way.
 
 ![Universal Profile + ERC725Y JSON schema (diagram)](../../../static/img/standards/ERC725Y-JSON-Schema-explained.jpeg)
 
-By introducing a schema for a contract storage, Storage can be represented in the same way across contracts in the network. Everyone has a unified view of the data stored between smart contracts. Data can then be easily parsed, and contracts or interfaces can read or write data from / to the contract storage in the same manner. This makes smart contracts **more interroperable between each other**.
+By introducing a schema, contract storage can be represented in the same way across contracts in the network. Everyone has a unified view of the data stored between smart contracts. Data can then be easily parsed, and contracts or interfaces can read or write data from/to the contract storage in the same manner. This makes smart contracts **more interoperable with each other**.
 
 ### How does LSP2 work?
 
@@ -68,9 +68,9 @@ There are several **key types** defined in LSP2.
 
 - Singleton
 - Array
-- Mapping
-- BYtes20Mapping
-- Bytes20MappingWithGrouping
+- [Mapping](#mapping)
+- [Bytes20Mapping](#bytes20mapping)
+- [Bytes20MappingWithGrouping](#bytes20mappingwithgrouping)
 
 ### Mapping
 
