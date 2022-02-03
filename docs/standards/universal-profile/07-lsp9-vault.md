@@ -13,9 +13,9 @@ sidebar_position: 7
 
 ## Introduction
 
-Using the KeyManager with the UniversalProfile will enable third parties to execute through your profile given specific permissions, but this will not eliminate the risk of operating maliciously with your data and belongings.
+Using the Key Manager with the Universal Profile will enable third parties to execute through your profile given specific permissions, but this will not eliminate the risk of operating maliciously with your data and belongings.
 
-To avoid this risk, third parties should be restricted to talking to a specific smart contract through the UniversalProfile, that has almost the same functionalities and is controlled by the UniversalProfile.
+To avoid this risk, third parties should be restricted to talking to a specific smart contract through the Universal Profile, that has almost the same functionalities and is controlled by the Universal Profile.
 
 ## What does this standard represent ?
 
@@ -44,8 +44,8 @@ The keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](
 
 ### LSP1 - UniversalReceiver
 
-This standard enables the vault to be notified of any incoming transactions either it's a token transfer, vault transfer, information transfer, etc ..
-This is very useful for vaults where anyone could customize the way his account react to certain tokens by rejecting them or operate a specific call on each token receive.
+This standard enables the vault to be notified of any incoming transactions either it's a token transfer, vault transfer, information transfer, etc.
+This is very useful for vaults where anyone could customize the way her/his account reacts to certain tokens by rejecting them or operating a specific call on token receive.
 
 Check **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)** standard for more information.
 
@@ -56,7 +56,7 @@ Check **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver
 
 :::caution
 
-The implementation of the **UniversalReceiverDelegate** used by the UniversalProfile is different from the one used by the Vault. Check [LSP1UniversalReceiverDelegateVault](../smart-contracts/lsp1-universal-receiver-delegate-vault.md)
+The implementation of the **UniversalReceiverDelegate** used by the Universal Profile is different from the one used by the vault. Check [LSP1UniversalReceiverDelegateVault](../smart-contracts/lsp1-universal-receiver-delegate-vault.md)
 
 :::
 
