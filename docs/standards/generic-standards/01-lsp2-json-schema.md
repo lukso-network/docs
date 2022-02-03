@@ -87,3 +87,35 @@ Below is an example of a **Mapping** key type.
 ```
 
 ![LSP2 Mapping key type](../../../static/img/standards/lsp2-key-type-mapping.jpeg)
+
+### Bytes20Mapping
+
+Below is an example of **Bytes20Mapping** key type.
+
+```json
+{
+  "name": "LSP8MetadataAddress:0x20BytesTokenIdHash",
+  "key": "0x73dcc7c3c4096cdc00000000cafecafecafecafecafecafecafecafecafecafe",
+  "keyType": "Bytes20Mapping",
+  "valueType": "Mixed",
+  "valueContent": "Mixed"
+}
+```
+
+![LSP2 Bytes20Mapping key type](../../../static/img/standards/lsp2-key-type-bytes20-mapping.jpeg)
+
+### Bytes20MappingWithGrouping
+
+Below is an example of a **Bytes20MappingWithGrouping** key type.
+
+```json
+{
+  "name": "AddressPermissions:Permissions:<address>",
+  "key": "0x4b80742d0000000082ac0000<address>",
+  "keyType": "Bytes20MappingWithGrouping",
+  "valueType": "bytes32",
+  "valueContent": "BitArray"
+}
+```
+
+![LSP2 Bytes20MappingWithGrouping key type](../../../static/img/standards/lsp2-key-type-bytes20-mapping-with-grouping.jpeg)
