@@ -21,7 +21,7 @@ Our [JavaScript library `erc725.js`](../../tools/erc725js/getting-started.md) ma
 
 Data in the storage of a smart contract is organised in **slots**. Each piece of data is stored at a specific storage slot. These slots are numbered (as a `uint256`), starting from slot 0.
 
-> Therefore, smart contracts understand only 2 languages: `bytes` and `uint256`.
+> Smart contracts understand only 2 languages: `bytes` and `uint256`.
 
 Take the following key-value pair for instance. It is not easy to infer the meaning of these keys by reading them as **bytes**.
 
