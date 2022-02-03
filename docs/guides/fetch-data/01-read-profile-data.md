@@ -79,7 +79,7 @@ Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response fr
 npm install @erc725/erc725.js isomorphic-fetch
 ```
 
-Within the JaveScript file, we can add this code snippet right underneath. After we embed the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. As discussed above, our schema, provider, and network configuration need to be declared. While fetching, we can use the function from the previous step to handle errors that might occur.
+After we embed the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. While fetching, we can use the function from the previous step to handle errors that might occur.
 
 ```javascript title="read_profile.js"
 ...
