@@ -65,7 +65,7 @@ If the function `isAddrValid` gives us back `true`, the address is valid and can
 
 To inspect the address and check if it has an ERC725 contract, we can call its interface through the `erc725.js` library. The instance of the contract will need the following information:
 
-- Schema which describes contract functions
+-[LSP2 - ERC725Y JSON Schema](--add link to this page: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema/) which describes contract functions
   - SupportedStandards will fetch the interface
   - LSP3Profile fetches the data of the profile
   - LSP1UniversalReceiverDelegate will fetch received assets
