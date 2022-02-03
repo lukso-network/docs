@@ -12,9 +12,11 @@ In this guide, we will learn how to:
 
 ![Universal Profile example on universalprofile.cloud](./img/example-up.png)
 
-- We will use the [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting with the LUKSO network
-- We will use the [erc725.js](https://docs.lukso.tech/tools/erc725js/getting-started/) library to check the interface of an profile.
-- We will use the [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use fetch in plain Node code
+We will use:
+
+- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting with the LUKSO network
+- [erc725.js](https://docs.lukso.tech/tools/erc725js/getting-started/) library to check the interface of an profile.
+- [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use fetch in plain Node code
 
 ## Table of Contents
 
