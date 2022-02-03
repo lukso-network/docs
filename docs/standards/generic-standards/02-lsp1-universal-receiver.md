@@ -34,7 +34,7 @@ The **universalReceiver** function emits an event with the data passed to it alo
 
 > Receiving contracts should take the `typeId` into consideration to properly **decode the data**.
 
-![schema of universal receiver transaction](../../../static/img/ur-transaction.jpg)
+![schema of universal receiver transaction](../../../static/img/ur-transaction.jpeg)
 
 Smart contracts that are willing to implement this function are well advised **to register** the **[LSP1UniversalReceiver InterfaceId](../smart-contracts/interface-ids.md)** **using ERC165** to let other contracts know that they support this standard.
 

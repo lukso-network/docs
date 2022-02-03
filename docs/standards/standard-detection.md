@@ -13,7 +13,7 @@ The **InterfaceId** and the **SupportedStandards:XYZ** key is not the most secur
 
 There are 2 types of standards at **LUKSO**:
 
-- **Interface Standards**: Where we standardize a set of functions. i.e: [LSP0-ERC725Account](./universal-profile/01-lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/04-lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/02-LSP7-Digital-Asset.md), etc ..
+- **Interface Standards**: Where we standardize a set of functions. i.e: [LSP0-ERC725Account](./universal-profile/01-lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/04-lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/03-LSP7-Digital-Asset.md), etc ..
 
 - **Metadata Standards**: Where we standardize a set of ERC725Y keys. i.e: [LSP3-UniversalProfile-Metadata](./universal-profile/03-lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), [LSP10ReceivedVaults](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-10-ReceivedVaults.md), etc ..
 
