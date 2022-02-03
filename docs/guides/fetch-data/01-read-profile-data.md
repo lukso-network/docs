@@ -73,7 +73,7 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
 - `provider`: a [provider](https://docs.lukso.tech/tools/erc725js/providers) object. Usually used with the RPC endpoint URL
 - `config`:  used to configure the IPFS gateway
 
-Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use extended environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
+Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
 
 ```shell
 npm install @erc725/erc725.js
