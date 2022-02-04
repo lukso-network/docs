@@ -14,28 +14,30 @@ In this guide, we will learn how to:
 
 We will use:
 
-- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting with the LUKSO network
-- [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of an profile.
-- [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use fetch in plain Node code
+- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L14 network
+- [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
+- [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code
 
 ## Table of Contents
 
-1. Check for valid Blockchain Address
-2. Call the Universal Profile
-3. Read the Dataset
+1. [Check for valid Blockchain Address](#step-1---check-for-valid-blockchain-address)
+2. [Call the Universal Profile](#step-2---call-the-universal-profile)
+3. [Read the Dataset](#step-3---read-the-dataset)
    1. Fetch the profile's metadata
    2. Fetch the profile's picture properties
    3. Fetch the profile's universal receiver
 
 ## Step 1 - Check for valid Blockchain Address
 
-When receiving data from a Universal Profile within an application, it is commonly used as input. You want to make sure that the address is valid in the first place. You can do a checkup by converting the value into a checksum address from the `web3.js` library. We need to install the library first. You can do this by opening up the terminal in the project's folder of your choice.
+When receiving data from a Universal Profile within an application, it is commonly used as input. We want to make sure that the address is valid in the first place. We can do a checkup by converting the value into a checksum address using the web3.js library.
+
+First, open a terminal in the project's folder of your choice and install the web3.js library.
 
 ```shell
 npm install web3
 ```
 
-After installation, we can move on with the JavaScript file. During the process, we will always use the same file. To make the guide more understandable, we use a sample profile address. You will most likely exchange this static variable with a dynamic value from an input field or fetching process within your app.
+After installation, we can move on with the JavaScript file. During the process, we will always use the same file. To make the guide more understandable, we use a sample profile address. You will most likely change this static variable with a dynamic value from an input field or fetching process within your app.
 
 ```javascript title="read_profile.js"
 // Import and Network Setup
@@ -59,17 +61,17 @@ function isValidAddress(address) {
 console.log(isValidAddress(sampleProfileAddress));
 ```
 
-If the function `isValidAddress` gives us back `true`, the address is valid and can be used.`
+If the function `isValidAddress(...)` gives us back `true`, the address is valid and can be used.`
 
 ## Step 2 - Call the Universal Profile
 
 To inspect the address and check if it has an ERC725 contract, we can call its interface through the `erc725.js` library. The instance of the contract will need the following information:
 
-- [LSP2 - ERC725Y JSON Schema](../../standards/generic-standards/lsp2-json-schema/) which describes contract functions
+- [LSP2 - ERC725Y JSON Schema](../../standards/generic-standards/lsp2-json-schema/) describes the data in the contract storage, and which keys to use to retrieve it.
 
-  - SupportedStandards will fetch the interface
-  - LSP3Profile fetches the data of the profile
-  - LSP1UniversalReceiverDelegate will fetch received assets
+  - `SupportedStandards` will fetch the interface using a Metadata Standard with a key. In our case we use `SupportedStandards:LSP3UniversalProfile` to check if the contract is an Universal Profile.
+  - `LSP3Profile` fetches the data of the Universal Profile.
+  - `LSP1UniversalReceiverDelegate` will fetch received assets.
 
 - `address`: the address of the contract
 - `provider`: a [provider](../../tools/erc725js/providers) object. Usually used with the RPC endpoint URL
