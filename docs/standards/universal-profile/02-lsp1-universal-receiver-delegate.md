@@ -32,7 +32,7 @@ It contains a single function named `universalReceiverDelegate(...)` that takes 
 ### How Delegation works
 
 In order to let the **universalReceiver** function forward the call to the `universalReceiverDelegate(...)` function, the **UniversalReceiverDelegate** contract address should be set in the **[ERC725Y Key value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the calling smart contract (contract implementing the universalReceiver function) as value to the pre-defined **[LSP1UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md#extension)** Key, and the UniversalReceiverDelegate contract should implement the **[LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md)** using ERC165.
-![ur-delegate-transaction](../../../static/img/ur-delegate-transaction.jpg)
+![ur-delegate-transaction](../../../static/img/ur-delegate-transaction.jpeg)
 
 ## Implementations
 

@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Transfer LYX'
-sidebar_position: 1.3
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
