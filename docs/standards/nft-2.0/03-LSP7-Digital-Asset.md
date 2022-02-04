@@ -1,5 +1,6 @@
 ---
 sidebar_label: 'LSP7 - Digital Asset'
+sidebar_position: 3
 ---
 
 # LSP7 - Digital Asset

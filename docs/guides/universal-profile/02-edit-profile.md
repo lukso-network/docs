@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Edit a Universal Profile'
-sidebar_position: 1.2
+sidebar_position: 2
 ---
 
 # Edit a Universal Profile
@@ -177,19 +177,21 @@ async function uploadMetadataToIPFS() {
   const uploadResult = await LSP3UniversalProfile.uploadProfileData(
     jsonFile.LSP3Profile,
   );
-  // {
-  //   profile: {
-  //     LSP3Profile: {
-  //       name: '...',
-  //       description: '...',
-  //       links: [Array],
-  //       tags: [Array],
-  //       profileImage: [Array],
-  //       backgroundImage: [Array]
-  //     }
-  //   },
-  //   url: 'ipfs://Q...'
-  // }
+
+  > {
+    profile: {
+      LSP3Profile: {
+        name: '...',
+        description: '...',
+        links: [Array],
+        tags: [Array],
+        profileImage: [Array],
+        backgroundImage: [Array]
+      }
+    },
+    url: 'ipfs://Q...'
+  }
+
   const profileMetadataIPFSUrl = uploadResult.url;
   return profileMetadataIPFSUrl;
 }
@@ -236,14 +238,15 @@ const schema = [
 const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
   ipfsGateway: 'https://ipfs.lukso.network/ipfs/',
 });
-// ERC725 {
-//   options: {
-//     schema: [ [Object] ],
-//     address: '0x...',
-//     provider: Web3ProviderWrapper { type: 'WEB3', provider: [HttpProvider] },
-//     config: { ipfsGateway: 'https://ipfs.lukso.network/ipfs/' }
-//   }
-// }
+
+> ERC725 {
+  options: {
+    schema: [ [Object] ],
+    address: '0x...',
+    provider: Web3ProviderWrapper { type: 'WEB3', provider: [HttpProvider] },
+    config: { ipfsGateway: 'https://ipfs.lukso.network/ipfs/' }
+  }
+}
 ```
 
 ### 3.2 - Encode the LSP3Profile data
@@ -278,12 +281,13 @@ const encodedData = erc725.encodeData({
     url: profileMetadataIPFSUrl, // obtained in Step 2
   },
 });
-// {
-//   LSP3Profile: {
-//     key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'
-//     value: '0x...',
-//   }
-// }
+
+> {
+  LSP3Profile: {
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'
+    value: '0x...',
+  }
+}
 ```
 
 ## Step 4 - Edit our Universal Profile
@@ -302,13 +306,14 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-// {
-//     address: "0x...",
-//     privateKey: "0x...",
-//     signTransaction: function(tx){...},
-//     sign: function(data){...},
-//     encrypt: function(password){...}
-// }
+
+> {
+    address: "0x...",
+    privateKey: "0x...",
+    signTransaction: function(tx){...},
+    sign: function(data){...},
+    encrypt: function(password){...}
+}
 ```
 
 ### 4.2 - Create instances of our Contracts
