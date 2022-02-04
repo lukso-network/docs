@@ -30,9 +30,9 @@ Take the following key-value pair for instance. It is not easy to infer the mean
 0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1 => 0x4d7920546f6b656e20322e30
 ```
 
-Using **slots numbers** and **raw bytes** makes the contract storage very hard to work with. [ERC725Y](../universal-profile/01-lsp0-erc725account#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However with such low-level languages, this makes it difficult for humans to understand the data in the storage.
+Using **slots numbers** and **raw bytes** makes the contract storage very hard to work with. [ERC725Y](../universal-profile/01-lsp0-erc725account.md#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However with such low-level languages, this makes it difficult for humans to understand the data in the storage.
 
-Finally, everyone can store information differently on contracts like [ERC725Account](../universal-profile/01-lsp0-erc725account), depending on individual use cases and needs. There is no standard schema that defines what is the data and what the data looks like. This makes it very hard for ERC725Account to interact with each other, and for external services to interact with ERC725Accounts.
+Finally, everyone can store information differently on contracts like [ERC725Account](../universal-profile/01-lsp0-erc725account.md), depending on individual use cases and needs. There is no standard schema that defines what is the data and what the data looks like. This makes it very hard for ERC725Account to interact with each other, and for external services to interact with ERC725Accounts.
 
 ## What does this standard represent?
 
