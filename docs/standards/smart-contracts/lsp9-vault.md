@@ -5,15 +5,15 @@ sidebar_position: 8
 
 # LSP9Vault
 
-The **LSP9Vault** contract is an implementation for the **[LSP9-Vault Standard](#)**. 
+The **LSP9Vault** contract is an implementation for the **[LSP9-Vault Standard](#)**.
 
-This contract can be used as a **vault** that can **hold assets** and **interact with other smart contracts**, as it has all the functions that the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract have except **isValidSignature** function. 
+This contract can be used as a **vault** that can **hold assets** and **interact with other smart contracts**, as it has all the functions that the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract have except **isValidSignature** function.
 
 :::note
 **_LSP9Vault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
-:::
+- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
+  :::
 
 ---
 
@@ -24,6 +24,7 @@ This contract can be used as a **vault** that can **hold assets** and **interact
 ```solidity
   constructor(address newOwner) ERC725(newOwner)
 ```
+
 Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)**Key in the vault storage and registers **[LSP9Vault](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
 
 If the `newOwner` represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, then the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function on the **LSP0ERC725Account** contract will be called to be informed about the **vault transfer**.
@@ -39,6 +40,7 @@ If the `newOwner` represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** 
 ```solidity
   function owner() public view returns (address owner)
 ```
+
 Returns the address of the current owner.
 
 #### Return Values:
@@ -52,6 +54,7 @@ Returns the address of the current owner.
 ```solidity
   function transferOwnership(address newOwner) public {
 ```
+
 Transfers ownership of the contract to the `newOwner` address.
 
 If the current owner or the `newOwner` address represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, then the **[universalReceiver](./lsp0-erc725-account.md#universalreceiver)** function on the **LSP0ERC725Account** contract will be called to be informed about the **vault transfer**.
@@ -60,11 +63,9 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 
 #### Parameters:
 
-| Name      | Type    | Description                                   |
-| :-------- | :------ | :-------------------------------------------- |
-|`newOwner` | address | The address of the new owner of the contract. |
-
-
+| Name       | Type    | Description                                   |
+| :--------- | :------ | :-------------------------------------------- |
+| `newOwner` | address | The address of the new owner of the contract. |
 
 ### receive
 
@@ -107,12 +108,13 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 
 #### Parameters:
 
-| Name            | Type    | Description                                                                                                     |
-| :-------------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
-| `operationType` | uint256 | The operation to execute.                                                                                       |
-| `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2).                   |
-| `value`         | uint256 | The desired value to transfer.                                                                                  |
-| `data`          | bytes   | The call data (ABI of the function to execute) , or the contract data to deploy.                                |
+| Name            | Type    | Description                                                                                   |
+| :-------------- | :------ | :-------------------------------------------------------------------------------------------- |
+| `operationType` | uint256 | The operation to execute.                                                                     |
+| `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2). |
+| `value`         | uint256 | The desired value to transfer.                                                                |
+| `data`          | bytes   | The call data (ABI of the function to execute) , or the contract data to deploy.              |
+
 #### Return Values:
 
 | Name     | Type  | Description                                                                                         |
@@ -174,7 +176,7 @@ Gets array of data at multiple given key.
   ) public returns (bytes memory result)
 ```
 
-Forwards the call to the **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**  contract if the owner of the **vault** has set the **[LSP1UniversalReceiverDelegate ](#)**Key to the address of the **LSP1UniversalReceiverDelegateVault** contract.
+Forwards the call to the **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)** contract if the owner of the **vault** has set the **[LSP1UniversalReceiverDelegate ](#)**Key to the address of the **LSP1UniversalReceiverDelegateVault** contract.
 
 The **LSP1UniversalReceiverDelegateVault** contract should implement **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)** using **ERC165**.
 
@@ -193,7 +195,6 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
 | :------- | :---- | :------------------------------------- |
 | `result` | bytes | Can be used to encode response values. |
 
-
 ## Events
 
 ### OwnershipTransferred
@@ -209,10 +210,10 @@ _**MUST** be fired when **[transferOwnership](#transferownership)** is successfu
 
 #### Values:
 
-| Name             | Type    | Description                        |
-| :--------------- | :------ | :--------------------------------- |
-| `previousOwner`  | address | The previous owner of the contract.|
-| `newOwner`       | address | The new owner of the contract.     |
+| Name            | Type    | Description                         |
+| :-------------- | :------ | :---------------------------------- |
+| `previousOwner` | address | The previous owner of the contract. |
+| `newOwner`      | address | The new owner of the contract.      |
 
 ### ValueReceived
 

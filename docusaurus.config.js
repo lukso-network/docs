@@ -10,9 +10,7 @@ module.exports = {
   favicon: 'img/favicon.png',
   organizationName: 'lukso-network', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-  plugins: [
-    'docusaurus-plugin-sass',
-    'plugin-image-zoom'],
+  plugins: ['docusaurus-plugin-sass', 'plugin-image-zoom'],
   themeConfig: {
     navbar: {
       title: 'LUKSO',
