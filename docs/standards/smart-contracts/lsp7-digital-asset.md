@@ -12,8 +12,8 @@ This contract serves as a **Fungible Token Contract** when `isNFT` bool is set t
 :::note
 **_LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
-:::
+- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
+  :::
 
 ## Functions
 
@@ -27,6 +27,7 @@ This contract serves as a **Fungible Token Contract** when `isNFT` bool is set t
     bool isNFT_
     ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
+
 Sets the token name, symbol and the **initial owner** of the contract, specify if the contract represent a fungible token or an NFT and registers **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
 
 #### Parameters:
@@ -37,7 +38,6 @@ Sets the token name, symbol and the **initial owner** of the contract, specify i
 | `symbol_`   | string  | The symbol of the token.                                              |
 | `newOwner_` | address | The owner of the contract.                                            |
 | `isNFT_`    | bool    | Specify if the contract represent a fungible or a non-fungible token. |
-
 
 ### decimals
 
