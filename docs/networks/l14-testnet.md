@@ -6,12 +6,6 @@ sidebar_position: 4
 
 The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon deprecated POA test network, currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
 
-## Links
-
-- RPC Endpoint: <https://rpc.l14.lukso.network>
-- Explorer: <https://blockscout.com/lukso/l14>
-- Faucet: <http://faucet.l14.lukso.network>
-
 ## MetaMask
 
 To add the L14 Network to MetaMask, these are the settings:
@@ -26,24 +20,13 @@ To add the L14 Network to MetaMask, these are the settings:
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
-## Features
+## How to participate
 
-Enabled EiPs are:
+:::info Currently the L14-Testnet is running.
 
-- [eip140](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-140.md)
-- [eip145](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md)
-- [eip211](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-211.md)
-- [eip214](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-214.md)
-- [eip658](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-658.md)
-- [eip1014](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1014.md)
-- [eip1052](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1052.md)
-- [eip1283](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1283.md)
+This testnet is the lastest stable network.
 
-Not included compared to Ethereum mainnet:
-
-- [eip1234](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1234.md) (Difficulty bomb adjustment)
-
-## How to run a L14 testnet node
+:::
 
 ### Installing the node
 
@@ -63,11 +46,34 @@ The [spec.json](https://github.com/lukso-network/lukso-chain-spec/blob/l14/spec.
 
 Should the above boot-node not work, you can find the current boot-node [here](https://github.com/lukso-network/lukso-chain-spec/blob/l14/bootnodes.txt).
 
+## Links
+
+- RPC Endpoint: <https://rpc.l14.lukso.network>
+- Explorer: <https://blockscout.com/lukso/l14>
+- Faucet: <http://faucet.l14.lukso.network>
+
 ## Repositories
 
 - <https://github.com/lukso-network/l14-deploy-node-gcloud>
 - <https://github.com/lukso-network/l14-chain-spec>
 - <https://github.com/lukso-network/l14-dapps-validators>
+
+## Features
+
+Enabled EiPs are:
+
+- [eip140](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-140.md)
+- [eip145](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md)
+- [eip211](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-211.md)
+- [eip214](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-214.md)
+- [eip658](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-658.md)
+- [eip1014](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1014.md)
+- [eip1052](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1052.md)
+- [eip1283](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1283.md)
+
+Not included compared to Ethereum mainnet:
+
+- [eip1234](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1234.md) (Difficulty bomb adjustment)
 
 ## Resources
 
