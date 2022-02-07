@@ -80,6 +80,8 @@ There are several **key types** defined in LSP2.
 
 ### Singleton
 
+A **Singleton** key is useful to store a unique single value under a single key.
+
 Below is an example of a **Singleton** key type.
 
 ```json
@@ -95,6 +97,15 @@ Below is an example of a **Singleton** key type.
 ![LSP2 Singleton key type](../../../static/img/standards/lsp2-key-type-singleton.jpeg)
 
 ### Array
+
+A key of type ` **Array** can be used to store a list of elements of same data type. Elements are accessed by an _index_, that defines their position in the array.
+
+All the elements in the array are arranged systematically, in the order they are added or removed to/from the array. The key principles of the LSP2 **Array** key type are:
+
+- **ordering matters** :exclamation:
+- _duplicates are permitted_ :white_check_mark:
+
+A key type **Array** can be useful when there is the need to store a large group of similar data items under the same key. For instance, a list of tokens or NFTs that an address has received.
 
 Below is an example of an **Array** key type.
 
@@ -112,6 +123,13 @@ Below is an example of an **Array** key type.
 
 ### Mapping
 
+A key of type **Mapping** can be useful to store a collection of data items that have a shared significance (for instance, items that are derived from a common ancestor type).
+
+The **Mapping** key type is similar to the concept of lookup tables. It can be used for easily searching and querying specific elements in the collection, without the need to loop through all the elements (unlike an [Array](#array)). The key principle of the **Mapping** key type are:
+
+- _ordering does not matter_ :white_check_mark:
+- **duplicates are not permitted** :x:
+
 Below is an example of a **Mapping** key type.
 
 ```json
@@ -128,6 +146,8 @@ Below is an example of a **Mapping** key type.
 
 ### Bytes20Mapping
 
+A key of type **Bytes20Mapping** is similar to the **[Mapping](#mapping)** key type, except that it can be useful to map specific informations or data to a 20-bytes long value, like an `address` for instance.
+
 Below is an example of **Bytes20Mapping** key type.
 
 ```json
@@ -143,6 +163,12 @@ Below is an example of **Bytes20Mapping** key type.
 ![LSP2 Bytes20Mapping key type](../../../static/img/standards/lsp2-key-type-bytes20-mapping.jpeg)
 
 ### Bytes20MappingWithGrouping
+
+
+A key of type **Bytes20MappingWithGrouping** is similar to the **[Bytes20Mapping](#bytes20mapping)** key type, with the exception that sub-types can be adding to the main mapping key.
+
+It can be used for instance to differentiate various types of the main mapping keys, like different type of permissions (see [LSP6 - Key Manager](../universal-profile/04-lsp6-key-manager.md)).
+
 
 Below is an example of a **Bytes20MappingWithGrouping** key type.
 
