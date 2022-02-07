@@ -66,11 +66,49 @@ A key in the contract storage can be defined as a JSON object, with properties t
 
 There are several **key types** defined in LSP2.
 
-- Singleton
-- Array
-- [Mapping](#mapping)
-- [Bytes20Mapping](#bytes20mapping)
-- [Bytes20MappingWithGrouping](#bytes20mappingwithgrouping)
+- [LSP2 - ERC725Y JSON Schema](#lsp2---erc725y-json-schema)
+  - [Introduction](#introduction)
+  - [What does this standard represent?](#what-does-this-standard-represent)
+    - [Specification](#specification)
+    - [How does LSP2 work?](#how-does-lsp2-work)
+  - [Key Types](#key-types)
+    - [Singleton](#singleton)
+    - [Array](#array)
+    - [Mapping](#mapping)
+    - [Bytes20Mapping](#bytes20mapping)
+    - [Bytes20MappingWithGrouping](#bytes20mappingwithgrouping)
+
+### Singleton
+
+Below is an example of a **Singleton** key type.
+
+```json
+{
+  "name": "LSP4TokenName",
+  "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
+  "keyType": "Singleton",
+  "valueType": "string",
+  "valueContent": "String"
+}
+```
+
+![LSP2 Singleton key type](../../../static/img/standards/lsp2-key-type-singleton.jpeg)
+
+### Array
+
+Below is an example of an **Array** key type.
+
+```json
+{
+  "name": "LSP5ReceivedAssets[]",
+  "key": "0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b",
+  "keyType": "Array",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+![LSP2 Array key type](../../../static/img/standards/lsp2-key-type-array.jpeg)
 
 ### Mapping
 
