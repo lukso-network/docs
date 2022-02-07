@@ -6,6 +6,20 @@ sidebar_position: 3
 
 This testnet is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
 
+## MetaMask
+
+To add the L15 Network to MetaMask, these are the settings:
+
+| Setting            | Value                                      |
+| ------------------ | ------------------------------------------ |
+| Network Name       | L15                                        |
+| New RPC URL        | https://rpc.l15.lukso.network              |
+| Chain ID           | 23                                         |
+| Currency Symbol    | LYXt                                       |
+| Block Explorer URL | https://explorer.pandora.l15.lukso.network |
+
+And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
+
 ## How to participate
 
 :::warning Currently the L15-Testnet is not running.
@@ -92,20 +106,6 @@ Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the 
 
 **Step 2:**
 You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
-
-### MetaMask
-
-To add the L15 Network to MetaMask, these are the settings:
-
-| Setting            | Value                                      |
-| ------------------ | ------------------------------------------ |
-| Network Name       | L15                                        |
-| New RPC URL        | https://rpc.l15.lukso.network              |
-| Chain ID           | 23                                         |
-| Currency Symbol    | LYXt                                       |
-| Block Explorer URL | https://explorer.pandora.l15.lukso.network |
-
-And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
 ## Links
 
