@@ -6,11 +6,27 @@ sidebar_position: 4
 
 The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon deprecated POA test network, currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
 
-Network ID: `22 (0x16)`
+## Links
 
-- RPC Endpoint: <https://rpc.l14.lukso.network>, <wss://rpc.l14.lukso.network/ws>
+- RPC Endpoint: <https://rpc.l14.lukso.network>
 - Explorer: <https://blockscout.com/lukso/l14>
 - Faucet: <http://faucet.l14.lukso.network>
+
+## MetaMask
+
+To add the L14 Network to MetaMask, these are the settings:
+
+| Setting            | Value                            |
+| ------------------ | -------------------------------- |
+| Network Name       | L14                              |
+| New RPC URL        | https://rpc.l14.lukso.network    |
+| Chain ID           | 22                               |
+| Currency Symbol    | LYXt                             |
+| Block Explorer URL | https://blockscout.com/lukso/l14 |
+
+And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
+
+## Features
 
 Enabled EiPs are:
 
