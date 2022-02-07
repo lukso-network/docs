@@ -29,7 +29,7 @@ We will use:
 
 ## Step 1 - Check for valid Blockchain Address
 
-When receiving data from a Universal Profile within an application, it is commonly used as input. We want to make sure that the address is valid in the first place. We can do a checkup by converting the value into a checksum address using the web3.js library.
+When receiving data from a Universal Profile within an application, it is commonly used as input. We want to make sure that the address is valid in the first place. We can do a checkup by converting the value into a checksum address using the `web3.js` library.
 
 First, open a terminal in the project's folder of your choice and install the web3.js library.
 
