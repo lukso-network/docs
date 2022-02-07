@@ -12,8 +12,8 @@ Currently the [**DELEGATECALL**](../universal-profile/04-lsp6-key-manager.md#-ad
 :::note
 **_LSP6KeyManager contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
-:::
+- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
+  :::
 
 ## Functions
 
@@ -22,13 +22,14 @@ Currently the [**DELEGATECALL**](../universal-profile/04-lsp6-key-manager.md#-ad
 ```solidity
 constructor(address account)
 ```
+
 Initiates the account with the address of the **LSP0ERC725Account** contract and registers **[LSP6KeyManager InterfaceId](./interface-ids.md)**.
 
 #### Parameters:
 
-| Name      | Type    | Description                                                    |
-| :-------- | :------ | :------------------------------------------------------------- |
-| `account` | address | The address of the **LSP0ER725Account** contract to control.   |
+| Name      | Type    | Description                                                  |
+| :-------- | :------ | :----------------------------------------------------------- |
+| `account` | address | The address of the **LSP0ER725Account** contract to control. |
 
 ### execute
 
@@ -38,7 +39,7 @@ Initiates the account with the address of the **LSP0ERC725Account** contract and
   ) public payable returns (bytes memory result)
 ```
 
-Executes a payload on the **LSP0ERC725Account** contract. 
+Executes a payload on the **LSP0ERC725Account** contract.
 
 This payload must represent the encoded-ABI of one of the **LSP0ERC725Account** contract functions, **[setData](./lsp0-erc725-account.md#setdata)** or **[execute](./lsp0-erc725-account.md#execute)**, etc ..
 
@@ -46,15 +47,15 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 #### Parameters:
 
-| Name   | Type  | Description                   |
-| :----- | :---- | :---------------------------- |
-| `data` | bytes | The payload to be executed.   |
+| Name   | Type  | Description                 |
+| :----- | :---- | :-------------------------- |
+| `data` | bytes | The payload to be executed. |
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                                                         |
-| :------- | :---- | :------------------------------------------------------------------------------------------------------------------ |
-| `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded.                                        |
+| Name     | Type  | Description                                                                  |
+| :------- | :---- | :--------------------------------------------------------------------------- |
+| `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded. |
 
 ### getNonce
 

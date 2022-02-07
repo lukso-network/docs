@@ -13,10 +13,11 @@ A **bytes32** value is used for tokenId to allow many uses of token identificati
 :::note
 **_LSP8IdentifiableDigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view  returns (bool)**
-:::
+- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
+  :::
 
 ## Functions
+
 ### constructor
 
 ```solidity
@@ -26,6 +27,7 @@ A **bytes32** value is used for tokenId to allow many uses of token identificati
     address newOwner_
     ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
+
 Sets the token name, symbol and the **initial owner** of the contract and registers **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
 
 #### Parameters:

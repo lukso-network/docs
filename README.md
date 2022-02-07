@@ -13,6 +13,7 @@ npm run docs:tools:sync
 ```
 
 2. Commit and push generated changes
+
 ## Installation
 
 ```console
@@ -34,4 +35,3 @@ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
-

@@ -32,11 +32,11 @@ Two keys are proposed to reference received asset smart contracts.
 
 ```json
 {
-    "name": "LSP5ReceivedAssets[]",
-    "key": "0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b",
-    "keyType": "Array",
-    "valueType": "address",
-    "valueContent": "Address"
+  "name": "LSP5ReceivedAssets[]",
+  "key": "0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b",
+  "keyType": "Array",
+  "valueType": "address",
+  "valueContent": "Address"
 }
 ```
 
@@ -46,32 +46,30 @@ This key represents an array key listing all tokens and NFTs you currently own.
 
 ```json
 {
-    "name": "LSP5ReceivedAssetsMap:<address>",
-    "key": "0x812c4334633eb81600000000<address>",
-    "keyType": "Mapping",
-    "valueType": "bytes",
-    "valueContent": "Mixed"
+  "name": "LSP5ReceivedAssetsMap:<address>",
+  "key": "0x812c4334633eb81600000000<address>",
+  "keyType": "Mapping",
+  "valueType": "bytes",
+  "valueContent": "Mixed"
 }
 ```
+
 This key represents a map key holding:
-  - the index in the former array where the received asset address is stored.
-  - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each asset smart contract, without the need to query the contracts directly. 
+
+- the index in the former array where the received asset address is stored.
+- an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each asset smart contract, without the need to query the contracts directly.
 
 The `LSP5ReceivedAssetsMap` key also helps to prevent adding duplications to the array, when automatically added via smart contract (e.g. a [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
 
-### Flow 
+### Flow
 
 :::info Note
 
-The keys are also set on the **sender UniversalProfile** to remove the token contract address if all the balance is sent.   
+The keys are also set on the **sender UniversalProfile** to remove the token contract address if all the balance is sent.
 
 :::
 
 These keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract if set, when transferring tokens.
 Check [Token transfer scenario](./lsp1-universal-receiver-delegate#token-transfer-scenario).
 
- 
 ![LSP5 Received Assets Flow](../../../static/img/lsp5-received-assets.jpeg)
-
-
-

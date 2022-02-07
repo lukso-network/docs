@@ -32,11 +32,11 @@ Two keys are proposed to reference received vaults smart contracts.
 
 ```json
 {
-    "name": "LSP10Vaults[]",
-    "key": "0x55482936e01da86729a45d2b87a6b1d3bc582bea0ec00e38bdb340e3af6f9f06",
-    "keyType": "Array",
-    "valueType": "address",
-    "valueContent": "Address"
+  "name": "LSP10Vaults[]",
+  "key": "0x55482936e01da86729a45d2b87a6b1d3bc582bea0ec00e38bdb340e3af6f9f06",
+  "keyType": "Array",
+  "valueType": "address",
+  "valueContent": "Address"
 }
 ```
 
@@ -46,29 +46,29 @@ This key represents an array key listing all the vaults you currently own.
 
 ```json
 {
-    "name": "LSP10VaultsMap:<address>",
-    "key": "0x192448c3c0f88c7f00000000<address>",
-    "keyType": "Mapping",
-    "valueType": "bytes",
-    "valueContent": "Mixed"
+  "name": "LSP10VaultsMap:<address>",
+  "key": "0x192448c3c0f88c7f00000000<address>",
+  "keyType": "Mapping",
+  "valueType": "bytes",
+  "valueContent": "Mixed"
 }
 ```
+
 This key represents a map key holding:
-  - the index in the former array where the received vaults address is stored.
-  - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each vault smart contract, without the need to query the contracts directly. 
+
+- the index in the former array where the received vaults address is stored.
+- an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each vault smart contract, without the need to query the contracts directly.
 
 The key `LSP10VaultsMap` also helps to prevent adding duplications to the array, when automatically added via smart contract (e.g. a [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
 
-### Flow 
+### Flow
 
 :::info Note
 
-The keys are also set on the **sender UniversalProfile** to remove the vault contract address when it's sent to the recipient.   
+The keys are also set on the **sender UniversalProfile** to remove the vault contract address when it's sent to the recipient.
 
-::: 
+:::
 
 These keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract if set, when transferring vaults.
- 
+
 ![LSP10 Received Vaults Flow](../../../static/img/lsp10-received-vaults.jpeg)
-
-
