@@ -32,7 +32,7 @@ A set of ERC725Y keys is defined as an **ERC725Y schema**. The schema is an arra
 
 A schema enables us to know which ERC725Y keys we can set, and therefore **which information we can retrieve + edit from our Universal Profile**.
 
-![Universal Profile + ERC725Y JSON schema (diagram)](./img/ERC725Y-JSON-Schema-explained.jpeg)
+![Universal Profile + ERC725Y JSON schema (diagram)](../../../static/img/standards/ERC725Y-JSON-Schema-explained.jpeg)
 
 > For more details, see: [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#specification)
 
