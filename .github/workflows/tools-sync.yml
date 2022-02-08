@@ -1,39 +1,39 @@
 name: tools-sync
 
-on: 
+on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
-  sync-tools-docs: 
+  sync-tools-docs:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
           fetch-depth: 0
 
-    - name: Pull tools docs
-      run: npm run docs:tools:sync
+      - name: Pull tools docs
+        run: npm run docs:tools:sync
 
-    - name: Check if there are changes
-      id: changes
-      run: |- 
-        if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
-        then
-          echo '::set-output name=changed::0'
-        else
-          echo '::set-output name=changed::1'
-        fi
+      - name: Check if there are changes
+        id: changes
+        run: |-
+          if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
+          then
+            echo '::set-output name=changed::0'
+          else
+            echo '::set-output name=changed::1'
+          fi
 
-    - name: Create Pull Request
-      if: steps.changes.outputs.changed == 1
-      uses: peter-evans/create-pull-request@v3
-      with: 
-        draft: false
-        branch: tools-docs-sync
-        delete-branch: true
-        title: Update Tools Documentation
-        body: Update changes from ERC725.js and LSP-Factory repositories 
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 1
+        uses: peter-evans/create-pull-request@v3
+        with:
+          draft: false
+          branch: tools-docs-sync
+          delete-branch: true
+          title: Update Tools Documentation
+          body: Update changes from ERC725.js and LSP-Factory repositories
