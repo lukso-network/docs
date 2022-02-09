@@ -13,7 +13,7 @@ The **supportsInterface** function from **[ERC165 Standard](https://eips.ethereu
 **_Interface Ids are not the best secure way to ensure that a contract implements specific functions as its manually set and could be set by anyone to any value._**
 :::
 
-| Contract                          | InterfaceId  | Description                                                                                          |
+| Contract                          | InterfaceId  | Description                                                           |
 | :-------------------------------- | :----------- | :-------------------------------------------------------------------- |
 | **ERC725X**                       | `0x44c028fe` | General executor.                                                     |
 | **ERC725Y**                       | `0x5a988c0f` | General key-value store.                                              |
@@ -25,4 +25,3 @@ The **supportsInterface** function from **[ERC165 Standard](https://eips.ethereu
 | **LSP7DigitalAsset**              | `0xe33f65c3` | Digital Assets either fungible or non-fungible. _ERC20 A-like_        |
 | **LSP8IdentifiableDigitalAsset**  | `0x49399145` | Identifiable Digital Assets (NFT). _ERC721 A-like_                    |
 | **LSP9Vault**                     | `0x75edcee5` | Vault that could interact with other smart contracts and hold assets. |
-

@@ -27,7 +27,6 @@ This standard uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** stan
 
 This substandard enables the vault to execute a call on any other smart contracts, transfers the blockchains native token, or deploys a new smart contract. Only the owner can execute these operations below.
 
-
 The operation types available are:
 
 - `CALL`
@@ -38,7 +37,7 @@ The operation types available are:
 
 ### ERC725Y - Generic Key-Value Store
 
-This substandard enables the vault to hold arbitrary data through a generic key/value store. It gives flexibility to the contract storage, by enabling to attach any type of information to the contract, and update it easily. 
+This substandard enables the vault to hold arbitrary data through a generic key/value store. It gives flexibility to the contract storage, by enabling to attach any type of information to the contract, and update it easily.
 
 The keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../generic-standards/01-lsp2-json-schema.md)** standard.
 
@@ -53,7 +52,6 @@ Check **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver
 
 ### Interactivity
 
-
 :::caution
 
 The implementation of the **UniversalReceiverDelegate** used by the Universal Profile is different from the one used by the vault. Check [LSP1UniversalReceiverDelegateVault](../smart-contracts/lsp1-universal-receiver-delegate-vault.md)
@@ -63,7 +61,6 @@ The implementation of the **UniversalReceiverDelegate** used by the Universal Pr
 The vault can be notified of incoming assets, information, etc via the **universalReceiver** function. An extension could be added to increase the autonomy of the contract by handling and reacting to transactions that the vault receives.
 
 This can happen by setting a **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)** to your account.
-
 
 ### Flow
 

@@ -10,6 +10,7 @@ sidebar_position: 1
 The [Guides Section](../../guides/universal-profile/create-profile) will take you through the process of creating a Universal Profile and deploying it on the [L14 testnet](../../networks/l14-testnet.md), check out [universalprofile.cloud](https://universalprofile.cloud/). It lets you easily browse the deployed profiles.
 
 :::
+
 ## Introduction
 
 Building an identity on top of keys is almost impossible because at some point, they are very likely to be leaked or lost forever. Holding assets and building reputation on these keys makes it worse. A better representation of identity would be with blockchain based accounts.
@@ -18,9 +19,8 @@ Blockchain based accounts can change the way of interacting on-chain, they allow
 
 ## Universal Profiles
 
-- **[LSP0 - ERC725Account](./01-lsp0-erc725account.md)**: This standard represents the core account contract, it consists of [ERC725X](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725x) that allows you to interact with any address or smart contract on the blockchain, and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) that allows you to store unlimited key value pairs at your account. It also contains [ERC1271](https://eips.ethereum.org/EIPS/eip-1271) to verify of messages where signed by the owner of the ERC725Account, if the owner is a KeyManager supporting ERC1271 it will delegate the call to the KeyManager. And lastly it contains the [LSP1-UniversalReceiver](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md), which allows this contract to be notified of any incoming asset. Using the UniversalReceiver Delegate logic, you can delegate the universal receiver call that an asset will do to an external contract, customizing the behaviour you want towards the asset. More on that below.     
-A LSP0-ERC725Account can work standalone and doesn't require a KeyManager, or a UniversalReceiverDelegate to work, but that will limit the user experience.
-
+- **[LSP0 - ERC725Account](./01-lsp0-erc725account.md)**: This standard represents the core account contract, it consists of [ERC725X](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725x) that allows you to interact with any address or smart contract on the blockchain, and [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) that allows you to store unlimited key value pairs at your account. It also contains [ERC1271](https://eips.ethereum.org/EIPS/eip-1271) to verify of messages where signed by the owner of the ERC725Account, if the owner is a KeyManager supporting ERC1271 it will delegate the call to the KeyManager. And lastly it contains the [LSP1-UniversalReceiver](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md), which allows this contract to be notified of any incoming asset. Using the UniversalReceiver Delegate logic, you can delegate the universal receiver call that an asset will do to an external contract, customizing the behaviour you want towards the asset. More on that below.  
+  A LSP0-ERC725Account can work standalone and doesn't require a KeyManager, or a UniversalReceiverDelegate to work, but that will limit the user experience.
 
 - **[LSP6-KeyManager](./04-lsp6-key-manager.md)**: A standard representing a smart contract that can act as the owner of an [ERC725Account](./01-lsp0-erc725account.md). It reads permissions of addresses from the key value store of the ERC725Account contract, and restricts access based on these permissions.
 
