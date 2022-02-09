@@ -11,7 +11,7 @@ sidebar_position: 5
 
 :::
 
-![Key Manager flow chart](https://user-images.githubusercontent.com/31145285/129574099-9eba52d4-4f82-4f11-8ac5-8bfa18ce97d6.jpeg)
+## Introduction
 
 An [ERC725Account](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) on its own comes with limited usability. Since it is an **owned contract**, only the Account's owner can write data into it, or use it to interact with other smart contracts.
 
@@ -23,9 +23,12 @@ The idea is to give [permissions](#types-of-permissions) to any `address`, like 
 
 :white_check_mark: &nbsp; **With a Key Manager** attached to an ERC725Account, other addresses (EOAs or contracts) can use an Account on behalf of its owner.
 
+![LSP6 Key Manager overview allowed](./../../../static/img/standards/lsp6-key-manager-overview-allowed.jpeg)
+
+![LSP6 Key Manager overview not allowed](./../../../static/img/standards/lsp6-key-manager-overview-not-allowed.jpeg)
+
 Permissions for an `address` are stored inside the key-value store of the ERC725Account contract, under specific keys listed in the [**Permission Keys**](#permissions-keys) section.
 
-<br/>
 Since permissions are stored under the ERC725Account contract, they are not attached to the Key Manager itself. The Key Manager can then easily be upgraded without the need to set all the permissions again.
 
 ---
@@ -134,6 +137,8 @@ The list (= array) of allowed `bytes4` interface IDs **MUST be abi-encoded** (Se
 
 :::
 
+![Key Manager Allowed Standards flow](./../../../static/img/standards/lsp6-key-manager-allowed-standards.jpeg)
+
 :::caution
 
 This type of permission does not offer security over the inner workings of a contract. It should be used more as a "mistake prevention" mechanism rather than as a security measure.
@@ -191,19 +196,29 @@ You can find **more details about each permissions by clicking on the toggles be
 </details>
 
 <details>
-    <summary><code>CHANGEPERMISSIONS</code> - Allows changing of permissions of addresses (adding + removing)</summary>
+    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
     </p>
-    <p>This permission allows an address to <b>grant + revoke</b> permissions for any specific address (including itself).</p>
+    <p>This permission allows to <b>edit permissions</b> of any address that has already some permissions set on the ERC725Account (including itself).</p>
+
+![CHANGE Permissions](./../../../static/img/standards/lsp6-change-permissions.jpeg)
+
+<p>Bear in mind that the behaviour of <code>CHANGEPERMISSIONS</code> slightly varies, depending on the new permissions value being set (see figure below).</p>
+
+![CHANGE Permissions](./../../../static/img/standards/lsp6-change-permissions-variants.jpeg)
+
 </details>
 
 <details>
-    <summary><code>ADDPERMISSIONS</code> - Allows adding new permissions to addresses</summary>
+    <summary><code>ADDPERMISSIONS</code> - Allows giving permissions to new addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
-    <p>This permission allows an address to <b>grant <span style={{ color: "red" }}>(but not revoke)</span></b> permissions for any specific address (including itself).</p>
+    <p>This permission allows to give permissions to new addresses. Or in other words, it enables to <b>authorize new addresses</b> to interact with the ERC725Account.</p>
+
+![ADD Permissions](./../../../static/img/standards/lsp6-add-permissions.jpeg)
+
 </details>
 
 <details>
@@ -211,7 +226,7 @@ You can find **more details about each permissions by clicking on the toggles be
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
-    Allows an address to write any form of data in the <a href="https://**github**.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked `ERC725Account` (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
+    Allows an address to write any form of data in the <a href="https://**github**.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked <code>ERC725Account</code> (except permissions, that requires the permissions <code>CHANGEPERMISSIONS</code> described above).
 
 </details>
 

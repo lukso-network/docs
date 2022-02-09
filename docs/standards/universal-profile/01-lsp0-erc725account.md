@@ -39,7 +39,8 @@ The operation types available are:
 
 This substandard enables the account to hold arbitrary data through a generic key/value store. It gives flexibility to the contract storage, by enabling to attach any type of information to the contract, and update it easily.
 
-The keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../generic-standards/01-lsp2-json-schema.md)** standard.
+- **keys** are represented as `bytes32` values.
+- **values** under these keys are stored as `bytes`.
 
 ### LSP1 - UniversalReceiver
 
@@ -50,7 +51,7 @@ Check **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver
 
 ### ERC1271
 
-Externally Owned Accounts (EOA) can sign messages with their associated private keys, but currently contracts cannot. This standard defines a way for contracts to verify if a provided signature is valid when the account is a smart contract.  
+Externally Owned Accounts (EOAs) can sign messages with their associated private keys, but contracts cannot. This standard defines a way for contracts to verify if a provided signature is valid when the account is a smart contract.  
 There are and will be many contracts that want to utilize signed messages for validation of rights-to-move assets or other purposes.
 
 Check **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standard for more information.
