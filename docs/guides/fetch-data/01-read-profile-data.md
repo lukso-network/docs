@@ -18,6 +18,14 @@ We will use:
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
 - [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code
 
+## Setup
+
+Open a terminal in the project's folder of your choice and install all required libraries.
+
+```shell
+npm install web3 @erc725/erc725.js isomorphic-fetch
+```
+
 ## Table of Contents
 
 1. [Check for valid Blockchain Address](#step-1---check-for-valid-blockchain-address)
@@ -31,13 +39,7 @@ We will use:
 
 When receiving data from a Universal Profile within an application, it is commonly used as input. We want to make sure that the address is valid in the first place. We can do a checkup by converting the value into a checksum address using the `web3.js` library.
 
-First, open a terminal in the project's folder of your choice and install the web3.js library.
-
-```shell
-npm install web3
-```
-
-After installation, we can move on with the JavaScript file. During the process, we will always use the same file. To make the guide more understandable, we use a sample profile address. You will most likely change this static variable with a dynamic value from an input field or fetching process within your app.
+During the guide, we will always use the same file. To make the guide more understandable, we use a sample profile address. You will most likely change this static variable with a dynamic value from an input field or fetching process within your app.
 
 ```javascript title="read_profile.js"
 // Import and Network Setup
@@ -77,11 +79,7 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
 - `provider`: a [provider](../../tools/erc725js/providers) object. Usually used with the RPC endpoint URL
 - `config`: used to configure the IPFS gateway
 
-Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
-
-```shell
-npm install @erc725/erc725.js isomorphic-fetch
-```
+Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
 
 After we import the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. While fetching, we can use the function from the previous step to handle errors that might occur.
 

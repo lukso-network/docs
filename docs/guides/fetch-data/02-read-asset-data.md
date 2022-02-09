@@ -20,6 +20,14 @@ We will use:
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
 - [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code
 
+## Setup
+
+Open a terminal in the project's folder of your choice and install all required libraries.
+
+```shell
+npm install web3 @erc725/erc725.js isomorphic-fetch
+```
+
 ## Table of Contents
 
 1. [Get all ever received assets](#step-1---get-all-ever-received-assets)
@@ -33,15 +41,11 @@ We will use:
 
 ## Step 1 - Get all ever received assets
 
-After receiving all account-related data, we can search for the assets of the Universal Profile. In the [previous guide](./read-profile-data), we read the Universal Profile properties and gathered the address of the Universal Receiver. This smart contract keeps track of every asset that was ever received by a profile. We can trim out the asset address after we fetch all the raw values. To call the smart contracts, we will need the `web3.js` library.
+In the [previous guide](./read-profile-data), we learnt how to read the Universal Profile properties and retrieve the address of its Universal Receiver.
 
-First, open a terminal in the project's folder of your choice and install the web3.js library.
+The Universal Receiver is a smart contract that keeps track of all the assets ever received by a Universal Profile. We can use it to find all the assets owned by Universal Profile. After fetching all the raw values, We can extract the addresses of each received asset.
 
-```shell
-npm install web3
-```
-
-After installation, we can move on with the JavaScript file. During the process, we will always use the same file. To make the guide more understandable, we also use sample addresses for the receiver, profile and asset. You will most likely change these static variable with a dynamic value from an input field or fetching process within your app.
+After installation, we can move on with the JavaScript file. During the process, we will always use the same file. To make the guide more understandable, we also use sample addresses for the UniversalReceiver, UniversalProfile and asset. You will most likely change these static variable with a dynamic value from an input field or fetching process within your app.
 
 ```javascript title="read_assets.js"
 // Import and Setup
@@ -169,11 +173,14 @@ getOwnedAddresses(sampleProfileAddress).then((ownedAssets) => console.log(ownedA
 
 ## Step 3 - Check the asset's interface
 
-Now that all owned assets are in one place, we need to check which interface is behind those addresses before getting the data. The old way of storing data with the `ERC725YLagacy` only takes a single key, while the new `LSP725` interface will accept an array as input to fetch multiple properties at once. We have to assure the right interaction in order to bypass errors.
+Now that we have retrieved all the owned assets, we need to check which interface is behind these addresses, so that we know how to get the data.
 
-:::info
-The profile explorer on [universalprofile.cloud](https://universalprofile.cloud/) is using ERC725Legacy interfaces.
-:::
+UniversalProfile contracts on the _universalprofile.cloud_ website have been deployed using different `ERC725Y` interfaces. We have to know which interface to use, to assure the right interaction and bypass errors.
+
+Depending on the interface, the `getData(...)` function accepts different parameters.
+
+- in the **old (legacy)** `ERC725Y` interface, the function only takes a single key > `getData(key)`.
+- in the **new** `ERC725Y` interface, the function accepts an array of keys as input, to fetch multiple values at once > `getData(keys[])`
 
 ```javascript title="read_assets.js"
 ...
@@ -404,10 +411,6 @@ We can now decode the encoded metadata to fetch readable information. We use the
 `erc725.js` library with its decoding functionality. While using ERC725, we will have
 to declare an config and provider like we did on [reading profile data](./read-profile-data).
 
-```bash
-npm install @erc725/erc725.js
-```
-
 ```javascript title="read_assets.js"
 ...
 // Import ERC725
@@ -504,10 +507,6 @@ getMetaDataLink().then((dataURL) => console.log(dataURL));
 ## Step 7 - Get the asset data
 
 The created storage link can now be accessed trough a simple URL call. We use `isomorphic-fetch` to fetch the HTTP response from the asset URL while using `node`. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
-
-```shell
-npm install isomorphic-fetch
-```
 
 ```javascript title="read_assets.js"
 ...
