@@ -36,9 +36,9 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
 });
 
 // deploy the token contract
-await myToken
-  .deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams })
-  .send({ from: myEOA });
+await myToken.deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams }).send({ 
+    from: myEOA 
+});
 ```
 
   </TabItem>
@@ -74,9 +74,9 @@ The code snippet below shows how to mint 100 tokens with your Universal Profile 
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-await myToken.methods
-  .mint('<up-address>', 100, false, '0x')
-  .send({ from: myEOA });
+await myToken.methods.mint('<up-address>', 100, false, '0x').send({ 
+    from: myEOA 
+});
 ```
 
   </TabItem>

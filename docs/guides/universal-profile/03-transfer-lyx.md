@@ -59,8 +59,8 @@ const data = '0x';
 
 // encode the payload to transfer 3 LYX from the UP
 const transferLYXPayload = await myUP.methods
-  .execute(OPERATION_CALL, recipient, amount, data)
-  .encodeABI();
+    .execute(OPERATION_CALL, recipient, amount, data)
+    .encodeABI();
 ```
 
 ## Step 3: send the payload to the Key Manager
@@ -68,9 +68,10 @@ const transferLYXPayload = await myUP.methods
 The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize, and execute the LYX transfer.
 
 ```javascript
-await myKM
-  .execute(transferLYXPayload)
-  .send({ from: wallet.address, gasLimit: 300_000 });
+await myKM.execute(transferLYXPayload).send({ 
+    from: wallet.address, 
+    gasLimit: 300_000 
+});
 ```
 
 ## Final Code
@@ -98,7 +99,8 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 
 // 3. execute the LYX transfer via the Key Manager
-await myKM
-  .execute(transferLYXPayload)
-  .send({ from: wallet.address, gasLimit: 300_00 });
+await myKM.execute(transferLYXPayload).send({ 
+    from: wallet.address, 
+    gasLimit: 300_00 
+});
 ```

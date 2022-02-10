@@ -174,23 +174,23 @@ const { LSP3UniversalProfile } = require('@lukso/lsp-factory.js');
 const jsonFile = require('./UniversalProfileMetadata.json');
 
 async function uploadMetadataToIPFS() {
-  const uploadResult = await LSP3UniversalProfile.uploadProfileData(
-    jsonFile.LSP3Profile,
-  );
+  const uploadResult = await LSP3UniversalProfile.uploadProfileData(jsonFile.LSP3Profile);
 
-  > {
-    profile: {
-      LSP3Profile: {
-        name: '...',
-        description: '...',
-        links: [Array],
-        tags: [Array],
-        profileImage: [Array],
-        backgroundImage: [Array]
-      }
-    },
-    url: 'ipfs://Q...'
-  }
+    /*
+    uploadResult = {
+        profile: {
+            LSP3Profile: {
+                name: '...',
+                description: '...',
+                links: [Array],
+                tags: [Array],
+                profileImage: [Array],
+                backgroundImage: [Array]
+            }
+        },
+        url: 'ipfs://Q...'
+    }
+    */
 
   const profileMetadataIPFSUrl = uploadResult.url;
   return profileMetadataIPFSUrl;
@@ -240,12 +240,12 @@ const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
 });
 
 > ERC725 {
-  options: {
-    schema: [ [Object] ],
-    address: '0x...',
-    provider: Web3ProviderWrapper { type: 'WEB3', provider: [HttpProvider] },
-    config: { ipfsGateway: 'https://ipfs.lukso.network/ipfs/' }
-  }
+    options: {
+        schema: [ [Object] ],
+        address: '0x...',
+        provider: Web3ProviderWrapper { type: 'WEB3', provider: [HttpProvider] },
+        config: { ipfsGateway: 'https://ipfs.lukso.network/ipfs/' }
+    }
 }
 ```
 
@@ -439,9 +439,7 @@ const jsonFile = require('./UniversalProfileMetadata.json');
 
 async function editProfileInfos() {
   // Step 2 - Upload our JSON file to IPFS
-  const uploadResult = await LSP3UniversalProfile.uploadProfileData(
-    jsonFile.LSP3Profile,
-  );
+  const uploadResult = await LSP3UniversalProfile.uploadProfileData(jsonFile.LSP3Profile);
   const lsp3ProfileIPFSUrl = uploadResult.url;
 
   // Step 3.1 - Setup erc725.js
