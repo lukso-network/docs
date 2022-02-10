@@ -153,11 +153,11 @@ console.log(data);
 }
 ```
 
-To interact directly with any smart contract through your UP, load the ABIs from [`@lukso/universalprofile-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
+To interact directly with any smart contract through your UP, load the ABIs from [`@lukso/lsp-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
 
 ```js title="Interact directly through your UP"
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, erc725Address);
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'LSP7 - Digital Asset'
+sidebar_label: 'LSP7 - Digital Asset (Token)'
 sidebar_position: 3
 ---
 

@@ -19,7 +19,7 @@ We will use a specific implementation of LSP7, called `LSP7Mintable`. It allows 
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-import LSP7Mintable from '@lukso/universalprofile-smart-contracts/artifacts/LSP7Mintable.json';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
 const myEOA = '<address-of-up-owner>';
 const tokenParams = [
@@ -36,9 +36,9 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
 });
 
 // deploy the token contract
-await myToken
-  .deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams })
-  .send({ from: myEOA });
+await myToken.deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams }).send({ 
+    from: myEOA 
+});
 ```
 
   </TabItem>
@@ -46,7 +46,7 @@ await myToken
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-import LSP7Mintable from '@lukso/universalprofile-smart-contracts/artifacts/LSP7Mintable.json';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
 const myEOA = '<address-of-up-owner>';
 const tokenParams = [
@@ -74,9 +74,9 @@ The code snippet below shows how to mint 100 tokens with your Universal Profile 
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-await myToken.methods
-  .mint('<up-address>', 100, false, '0x')
-  .send({ from: myEOA });
+await myToken.methods.mint('<up-address>', 100, false, '0x').send({ 
+    from: myEOA 
+});
 ```
 
   </TabItem>
