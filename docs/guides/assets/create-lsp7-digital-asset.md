@@ -19,7 +19,7 @@ We will use a specific implementation of LSP7, called `LSP7Mintable`. It allows 
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-import LSP7Mintable from '@lukso/universalprofile-smart-contracts/artifacts/LSP7Mintable.json';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
 const myEOA = '<address-of-up-owner>';
 const tokenParams = [
@@ -46,7 +46,7 @@ await myToken
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-import LSP7Mintable from '@lukso/universalprofile-smart-contracts/artifacts/LSP7Mintable.json';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
 const myEOA = '<address-of-up-owner>';
 const tokenParams = [

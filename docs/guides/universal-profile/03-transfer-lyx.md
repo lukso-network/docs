@@ -36,8 +36,8 @@ We will first need to create the instance of each contract. To do so we will nee
 - address of our KeyManager
 
 ```typescript
-const UniversalProfile = require('@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json');
-const KeyManager = require('@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json');
+const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
@@ -77,8 +77,8 @@ await myKM
 
 ```javascript
 const Web3 = require('web3');
-const UniversalProfile = require('@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json');
-const KeyManager = require('@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json');
+const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
