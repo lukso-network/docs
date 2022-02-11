@@ -21,8 +21,8 @@ The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/
 
 An **ERC725Account** defines a blockchain account system that could be used by humans, machines, or other smart contracts. It is composed of multiple standards, as shown in the figure below.
 
-- **[ERC725X](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)**: a generic executor that enables to call external contracts, deploy new contracts or transfer value to any address (EOA or smart contracts).
-- **[ERC725Y](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)**: a generic key-value store that enables it to attach any information to the smart contract.
+- **[ERC725X](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725x)**: a generic executor that enables to call external contracts, deploy new contracts or transfer value to any address (EOA or smart contracts).
+- **[ERC725Y](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)**: a generic key-value store that enables it to attach any information to the smart contract.
 - **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)**: enables to be notified of incoming transactions, and add custom handling and behaviour, based on these incoming transactions.
 - **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)**: enables to verify that a signed message has a valid signature.
 - **[ERC165](https://eips.ethereum.org/EIPS/eip-165)**: enables to register + detect the standard interfaces the contract implements.
@@ -35,7 +35,7 @@ This standard also uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)**
 
 :::note Documentation
 
-See the section **["Members of address types"](https://docs.soliditylang.org/en/v0.8.11/units-and-global-variables.html?highlight=staticcall#members-of-address-types)** in the Solidity documentation for more informations about the different types of calls available.
+See the section **["Members of address types"](https://docs.soliditylang.org/en/v0.8.11/units-and-global-variables.html?highlight=staticcall#members-of-address-types)** in the Solidity documentation for more information about the different types of calls available.
 
 :::
 
@@ -53,7 +53,7 @@ The operation types available are:
 
 :::info
 
-See the section **["Layout of State Variables in Storage"](https://docs.soliditylang.org/en/v0.8.11/internals/layout_in_storage.html)** in the Solidity documentation for more informations about the structure of a smart contract storage.
+See the section **["Layout of State Variables in Storage"](https://docs.soliditylang.org/en/v0.8.11/internals/layout_in_storage.html)** in the Solidity documentation for more information about the structure of a smart contract storage.
 
 :::
 
