@@ -64,6 +64,8 @@ This substandard enables the account to hold arbitrary data through a generic ke
 
 As a result, this substandard enables to attach any type of information to the contract and update or remove it easily.
 
+![ERC725Y key-value store vs standard contract storage](../../../static/img/standards/erc725y-vs-standard-contract-storage.jpeg)
+
 Thanks to ERC725Y, contracts become more interoperable between each other, as their storage is represented in the same way. Contracts and interfaces can then read and write data from/to the storage in the same manner, via the functions [`getData(...)`](../smart-contracts/lsp0-erc725-account#getdata) and [`setData(...)`](../smart-contracts/lsp0-erc725-account#setdata).
 
 ### LSP1 - UniversalReceiver
