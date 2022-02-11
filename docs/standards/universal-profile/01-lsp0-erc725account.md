@@ -19,9 +19,17 @@ The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/
 
 ## What does this standard represent ?
 
-This standard, defines a blockchain account system to be used by humans, machines, or other smart contracts. It has the ability to attach information via **[ERC725Y](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** to itself, execute, deploy or transfer value to any other smart contract or EOA via **[ERC725X](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)**, is able to be notified of incoming transactions via the **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)**, and can verify signatures via **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)**.
+An **ERC725Account** defines a blockchain account system that could be used by humans, machines, or other smart contracts. It is composed of multiple standards, as shown in the figure below.
 
-This standard uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** standard to provide ownership functions for owning and controlling the implementation contract.
+- **[ERC725Y](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)**: a generic key-value store that enables it to attach any information to the smart contract.
+- **[ERC725X](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)**: a generic executor that enables to call external contracts, deploy new contracts or transfer value to any address (EOA or smart contracts).
+- **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)**: enables to be notified of incoming transactions, and add custom handling and behaviour, based on these incoming transactions.
+- **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)**: enables to verify that a signed message has a valid signature.
+- **[ERC165](https://eips.ethereum.org/EIPS/eip-165)**: enables to register + detect the standard interfaces the contract implements.
+
+![ERC725Account contract architecture](../../../static/img/standards/lsp0-erc725account-architecture.jpeg)
+
+This standard also uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** standard to provide ownership functions for owning and controlling the implementation contract.
 
 ### ERC725X - Generic Executor
 
@@ -37,7 +45,7 @@ The operation types available are:
 
 ### ERC725Y - Generic Key-Value Store
 
-This substandard enables the account to hold arbitrary data through a generic key/value store. It gives flexibility to the contract storage, by enabling to attach any type of information to the contract, and update it easily.
+This substandard enables the account to hold arbitrary data through a generic key-value store. It gives flexibility to the contract storage, by enabling to attach any type of information to the contract, and update it easily.
 
 - **keys** are represented as `bytes32` values.
 - **values** under these keys are stored as `bytes`.
