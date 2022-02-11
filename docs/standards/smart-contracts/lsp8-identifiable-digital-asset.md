@@ -13,8 +13,11 @@ A **bytes32** value is used for tokenId to allow many uses of token identificati
 :::note
 **_LSP8IdentifiableDigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
-  :::
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+
+:::
 
 ## Functions
 

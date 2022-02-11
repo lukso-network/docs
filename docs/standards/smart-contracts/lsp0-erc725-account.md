@@ -12,7 +12,9 @@ This contract could be used as an _account system_ to be used by humans, machine
 :::note
 **_LSP0ERC725Account contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
 
 :::
 
@@ -23,7 +25,7 @@ This contract could be used as an _account system_ to be used by humans, machine
 ### constructor
 
 ```solidity
-  constructor(address newOwner) ERC725(newOwner)
+constructor(address newOwner) ERC725(newOwner)
 ```
 
 Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
@@ -37,7 +39,7 @@ Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](.
 ### owner
 
 ```solidity
-  function owner() public view returns (address owner)
+function owner() public view returns (address owner)
 ```
 
 Returns the address of the current owner.

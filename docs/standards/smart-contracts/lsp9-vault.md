@@ -12,8 +12,11 @@ This contract can be used as a **vault** that can **hold assets** and **interact
 :::note
 **_LSP9Vault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
-  :::
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+
+:::
 
 ---
 

@@ -16,8 +16,12 @@ In order to execute the logic written above, the **LSP0ERC725Account** contract 
 :::note
 **_LSP1UniversalReceiverDelegateUP contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
-  :::
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+  
+:::
+
 
 ## Functions
 

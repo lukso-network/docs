@@ -12,8 +12,12 @@ Currently the [**DELEGATECALL**](../universal-profile/04-lsp6-key-manager.md#-ad
 :::note
 **_LSP6KeyManager contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
-  :::
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+
+:::
+
 
 ## Functions
 
