@@ -12,8 +12,12 @@ Currently the [**DELEGATECALL**](../universal-profile/04-lsp6-key-manager.md#-ad
 :::note
 **_LSP6KeyManager contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
-  :::
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+
+:::
+
 
 ## Functions
 
@@ -34,9 +38,7 @@ Initiates the account with the address of the **LSP0ERC725Account** contract and
 ### execute
 
 ```solidity
-  function execute(
-    bytes memory data
-  ) public payable returns (bytes memory result)
+function execute(bytes memory data) public payable returns (bytes memory result)
 ```
 
 Executes a payload on the **LSP0ERC725Account** contract.
@@ -60,10 +62,10 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 ### getNonce
 
 ```solidity
-  function getNonce(
+function getNonce(
     address signer,
     uint256 channel
-  ) public view returns (uint256 nonce)
+) public view returns (uint256 nonce)
 ```
 
 Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[executeRelayCall](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
@@ -86,12 +88,12 @@ _More info about **channel** can be found here: **[What are multi-channel nonces
 ### executeRelayCall
 
 ```solidity
-  function executeRelayCall(
+function executeRelayCall(
     address signedFor,
     uint256 nonce,
     bytes memory data,
     bytes memory signature
-  ) public
+) public
 ```
 
 Allows anybody to execute a payload on the **LSP0ERC725Account**, given they have a signed message from an executor.
@@ -112,10 +114,10 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 ### Executed
 
 ```solidity
-  event Executed(
+event Executed(
     uint256 value,
     bytes data
-  )
+)
 ```
 
 _**MUST** be fired when a transaction was successfully executed in **[execute](#execute)** or **[executeRelayCall](#executerelaycall)**._
