@@ -33,17 +33,29 @@ This standard also uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)**
 
 ### ERC725X - Generic Executor
 
+:::note Documentation
+
+See the section **["Members of address types"](https://docs.soliditylang.org/en/v0.8.11/units-and-global-variables.html?highlight=staticcall#members-of-address-types)** in the Solidity documentation for more informations about the different types of calls available.
+
+:::
+
 This substandard enables the account to execute a call on any other smart contracts, transfers the blockchains native token, or deploys a new smart contract. Only the owner can execute these operations below.
 
 The operation types available are:
 
 - `CALL`
 - `CREATE`
-- `CREATE2`
-- `DELEGATECALL`
-- `STATICCALL`
+- [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014)
+- [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7)
+- [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214)
 
 ### ERC725Y - Generic Key-Value Store
+
+:::info
+
+See the section **["Layout of State Variables in Storage"](https://docs.soliditylang.org/en/v0.8.11/internals/layout_in_storage.html)** in the Solidity documentation for more informations about the structure of a smart contract storage.
+
+:::
 
 This substandard enables the account to hold arbitrary data through a generic key-value store. It gives flexibility to the contract storage. With ERC725Y, data stored in the contract can be accessed via keys, instead of referencing to the storage slot where the data resides.
 
