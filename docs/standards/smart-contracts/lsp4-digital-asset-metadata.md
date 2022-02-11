@@ -25,11 +25,11 @@ function setData(bytes32[] memory keys, bytes[] memory values) public;
 ### constructor
 
 ```solidity
-  constructor(
+constructor(
     string memory name_,
     string memory symbol_,
     address newOwner_
-  ) ERC725Y(newOwner_)
+) ERC725Y(newOwner_)
 ```
 
 Sets the name, symbol of the token and **[SupportedStandards:LSP4DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset)** Key in the **[ERC725Y Key/Value store](./lsp0-erc725-account#setdata)** and sets the **initial owner** of the contract.

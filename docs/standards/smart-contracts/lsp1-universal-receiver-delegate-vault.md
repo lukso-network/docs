@@ -22,7 +22,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-  constructor()
+constructor()
 ```
 
 Registers **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
@@ -30,11 +30,11 @@ Registers **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
 ### universalReceiverDelegate
 
 ```solidity
-  function universalReceiverDelegate(
+function universalReceiverDelegate(
     address sender,
     bytes32 typeId,
     bytes memory data
-  ) public payable returns (bytes memory result)
+) public payable returns (bytes memory result)
 ```
 
 Writes the received **LSP7DigitalAsset**, **LSP8IdentifiableDigitalAsset** assets into the vault storage according to the **LSP5ReceivedAssets** Standards.

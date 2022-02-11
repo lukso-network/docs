@@ -23,12 +23,12 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-  constructor(
+constructor(
     string memory name_,
     string memory symbol_,
     address newOwner_,
     bool isNFT_
-    ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
+) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
 Sets the token name, symbol and the **initial owner** of the contract, specify if the contract represent a fungible token or an NFT and registers **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
@@ -61,7 +61,7 @@ If the contract represents a **NFT** then **0** SHOULD be used, otherwise **18**
 ### totalSupply
 
 ```solidity
-  function totalSupply() public view returns (uint256 value)
+function totalSupply() public view returns (uint256 value)
 ```
 
 Returns the number of existing tokens.
@@ -75,9 +75,7 @@ Returns the number of existing tokens.
 ### balanceOf
 
 ```solidity
-  function balanceOf(
-    address tokenOwner
-  ) public view returns (uint256 value)
+function balanceOf(address tokenOwner) public view returns (uint256 value)
 ```
 
 Returns the number of tokens owned by `tokenOwner`.
@@ -97,10 +95,10 @@ Returns the number of tokens owned by `tokenOwner`.
 ### authorizeOperator
 
 ```solidity
-  function authorizeOperator(
+function authorizeOperator(
     address operator,
     uint256 amount
-  ) public
+) public
 ```
 
 Sets `amount` as the amount of tokens `operator` address has access to from callers tokens.
@@ -126,9 +124,7 @@ _Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an addres
 ### revokeOperator
 
 ```solidity
-  function revokeOperator(
-    address operator
-  ) public
+function revokeOperator(address operator) public
 ```
 
 Removes `operator` address as an operator of callers tokens.
@@ -153,10 +149,10 @@ _Triggers the **[RevokedOperator](#revokedoperator)** event when an address get 
 ### isOperatorFor
 
 ```solidity
-  function isOperatorFor(
+function isOperatorFor(
     address tokenOwner,
     address operator
-  ) public view returns (uint256 amount)
+) public view returns (uint256 amount)
 ```
 
 Returns amount of tokens `operator` address has access to from `tokenOwner`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is their own operator.
@@ -177,13 +173,13 @@ Returns amount of tokens `operator` address has access to from `tokenOwner`. Ope
 ### transfer
 
 ```solidity
-  function transfer(
+function transfer(
     address from,
     address to,
     uint256 amount,
     bool force,
     bytes memory data
-  ) public
+) public
 ```
 
 Transfers amount of tokens from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver and revert.
@@ -214,13 +210,13 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred succ
 ### transferBatch
 
 ```solidity
-  function transferBatch(
+function transferBatch(
     address[] from,
     address[] to,
     uint256[] amount,
     bool[] force,
     bytes[] memory data
-  ) public
+) public
 ```
 
 Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
@@ -254,14 +250,14 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred succ
 ### Transfer
 
 ```solidity
-  event Transfer(
+event Transfer(
     address operator,
     address from,
     address to,
     uint256 amount,
     bool force,
     bytes data
-  )
+)
 ```
 
 _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
@@ -280,11 +276,11 @@ _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 ### AuthorizedOperator
 
 ```solidity
-  event AuthorizedOperator(
+event AuthorizedOperator(
     address operator,
     address tokenOwner,
     uint256 amount
-  )
+)
 ```
 
 _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed successfully._
@@ -300,10 +296,10 @@ _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed
 ### RevokedOperator
 
 ```solidity
-  event RevokedOperator(
+event RevokedOperator(
     address operator,
     address tokenOwner
-  )
+)
 ```
 
 _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed successfully._

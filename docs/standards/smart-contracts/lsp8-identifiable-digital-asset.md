@@ -24,11 +24,11 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-  constructor(
+constructor(
     string memory name_,
     string memory symbol_,
     address newOwner_
-    ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
+) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
 Sets the token name, symbol and the **initial owner** of the contract and registers **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
@@ -44,7 +44,7 @@ Sets the token name, symbol and the **initial owner** of the contract and regist
 ### totalSupply
 
 ```solidity
-  function totalSupply() public view returns (uint256 value)
+function totalSupply() public view returns (uint256 value)
 ```
 
 Returns the number of existing tokens.
@@ -58,9 +58,7 @@ Returns the number of existing tokens.
 ### balanceOf
 
 ```solidity
-  function balanceOf(
-    address tokenOwner
-  ) public view returns (uint256 value)
+function balanceOf(address tokenOwner) public view returns (uint256 value)
 ```
 
 Returns the number of tokens owned by `tokenOwner`.
@@ -80,9 +78,7 @@ Returns the number of tokens owned by `tokenOwner`.
 ### tokenOwnerOf
 
 ```solidity
-  function tokenOwnerOf(
-    bytes32 tokenId
-  ) public view returns (address tokenOwner)
+function tokenOwnerOf(bytes32 tokenId) public view returns (address tokenOwner)
 ```
 
 Returns the `tokenOwner` address of the `tokenId` token.
@@ -110,9 +106,7 @@ Returns the `tokenOwner` address of the `tokenId` token.
 ### tokenIdsOf
 
 ```solidity
-  function tokenIdsOf(
-    address tokenOwner
-  ) public view returns (bytes32[] memory tokensId)
+function tokenIdsOf(address tokenOwner) public view returns (bytes32[] memory tokensId)
 ```
 
 Returns the list of `tokenIds` for the `tokenOwner` address.
@@ -132,10 +126,10 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
 ### authorizeOperator
 
 ```solidity
-  function authorizeOperator(
+function authorizeOperator(
     address operator,
     bytes32 tokenId
-  ) public
+) public
 ```
 
 Makes `operator` address an operator of `tokenId`.
@@ -163,10 +157,10 @@ _Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an addres
 ### revokeOperator
 
 ```solidity
-  function revokeOperator(
+function revokeOperator(
     address operator
     bytes32 tokenId
-  ) public
+) public
 ```
 
 Removes `operator` address as an operator of `tokenId`.
@@ -194,10 +188,10 @@ _Triggers the **[RevokedOperator](#revokedoperator)** event when an address get 
 ### isOperatorFor
 
 ```solidity
-  function isOperatorFor(
+function isOperatorFor(
     address operator,
     bytes32 tokenId
-  ) public view returns (bool result)
+) public view returns (bool result)
 ```
 
 Returns whether `operator` address is an operator of `tokenId`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is their own operator.
@@ -227,9 +221,7 @@ Returns whether `operator` address is an operator of `tokenId`. Operators can se
 ### getOperatorsOf
 
 ```solidity
-  function getOperatorsOf(
-    bytes32 tokenId
-  ) public view returns (address[] memory operators)
+function getOperatorsOf(bytes32 tokenId) public view returns (address[] memory operators)
 ```
 
 Returns all `operator` addresses of `tokenId`.
@@ -257,13 +249,13 @@ Returns all `operator` addresses of `tokenId`.
 ### transfer
 
 ```solidity
-  function transfer(
+function transfer(
     address from,
     address to,
     bytes32 tokenId,
     bool force,
     bytes memory data
-  ) public
+) public
 ```
 
 Transfers `tokenId` token from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver.
@@ -294,13 +286,13 @@ _Triggers the **[Transfer](#trasnfer-2)** event when token get transferred succe
 ### transferBatch
 
 ```solidity
-  function transferBatch(
+function transferBatch(
     address[] from,
     address[] to,
     bytes32[] tokenId,
     bool[] force,
     bytes[] memory data
-  ) public
+) public
 ```
 
 Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
@@ -334,14 +326,14 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred succ
 ### Transfer
 
 ```solidity
-  event Transfer(
+event Transfer(
     address operator,
     address from,
     address to,
     bytes32 tokenId,
     bool force,
     bytes data
-  )
+)
 ```
 
 _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
@@ -360,11 +352,11 @@ _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 ### AuthorizedOperator
 
 ```solidity
-  event AuthorizedOperator(
+event AuthorizedOperator(
     address operator,
     address tokenOwner,
     bytes32 tokenId
-  )
+)
 ```
 
 _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed successfully._
@@ -380,11 +372,11 @@ _**MUST** be fired when **[authorizeOperator](#authorizeoperator)** get executed
 ### RevokedOperator
 
 ```solidity
-  event RevokedOperator(
+event RevokedOperator(
     address operator,
     address tokenOwner,
     bytes32 tokenId
-  )
+)
 ```
 
 _**MUST** be fired when **[revokeOperator](#revokeoperator)** get executed successfully._

@@ -25,7 +25,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-  constructor(address newOwner) ERC725(newOwner)
+constructor(address newOwner) ERC725(newOwner)
 ```
 
 Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)**Key in the vault storage and registers **[LSP9Vault](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
@@ -41,7 +41,7 @@ If the `newOwner` represent a **[LSP0ERC725Account](./lsp0-erc725-account.md)** 
 ### owner
 
 ```solidity
-  function owner() public view returns (address owner)
+function owner() public view returns (address owner)
 ```
 
 Returns the address of the current owner.
@@ -55,7 +55,7 @@ Returns the address of the current owner.
 ### transferOwnership
 
 ```solidity
-  function transferOwnership(address newOwner) public {
+function transferOwnership(address newOwner) public {
 ```
 
 Transfers ownership of the contract to the `newOwner` address.
@@ -73,7 +73,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 ### receive
 
 ```solidity
-  receive() external payable
+receive() external payable
 ```
 
 Executed on plain value transfers.
@@ -83,12 +83,12 @@ _Triggers the **[ValueReceived](#valuereceived)** event when a native token is r
 ### execute
 
 ```solidity
-  function execute(
+function execute(
     uint256 operationType,
     address to,
     uint256 value,
     bytes memory data
-  ) public payable returns (bytes memory result)
+) public payable returns (bytes memory result)
 ```
 
 Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
@@ -127,10 +127,10 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 ### setData
 
 ```solidity
-  function setData(
+function setData(
     bytes32[] memory keys,
     bytes[] memory values
-  ) public
+) public
 ```
 
 Sets array of data as **bytes** in the vault storage at multiple keys.
@@ -151,9 +151,7 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 ### getData
 
 ```solidity
-  function getData(
-    bytes32[] memory keys
-  ) public view returns (bytes[] memory values)
+function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
 Gets array of data at multiple given key.
@@ -173,10 +171,10 @@ Gets array of data at multiple given key.
 ### universalReceiver
 
 ```solidity
-  function universalReceiver(
+function universalReceiver(
     bytes32 typeId,
     bytes memory data
-  ) public returns (bytes memory result)
+) public returns (bytes memory result)
 ```
 
 Forwards the call to the **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)** contract if the owner of the **vault** has set the **[LSP1UniversalReceiverDelegate ](#)**Key to the address of the **LSP1UniversalReceiverDelegateVault** contract.
@@ -203,10 +201,10 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
 ### OwnershipTransferred
 
 ```solidity
-  event OwnershipTransferred(
+event OwnershipTransferred(
     address previousOwner,
     address newOwner,
-  )
+)
 ```
 
 _**MUST** be fired when **[transferOwnership](#transferownership)** is successfully executed._
@@ -221,10 +219,10 @@ _**MUST** be fired when **[transferOwnership](#transferownership)** is successfu
 ### ValueReceived
 
 ```solidity
-  event ValueReceived(
+event ValueReceived(
     address sender,
     uint256 value
-  )
+)
 ```
 
 _**MUST** be fired when **[receive](#receive)** is successfully executed._
@@ -239,12 +237,12 @@ _**MUST** be fired when **[receive](#receive)** is successfully executed._
 ### Executed
 
 ```solidity
-  event Executed(
+event Executed(
     uint256 operation,
     address to,
     uint256 value,
     bytes data
-  )
+)
 ```
 
 _**MUST** be fired when **[execute](#execute)** creates a new call using the `CALL/STATICCALL/DELEGATECALL` operations._
@@ -261,11 +259,11 @@ _**MUST** be fired when **[execute](#execute)** creates a new call using the `CA
 ### ContractCreated
 
 ```solidity
-  event ContractCreated(
+event ContractCreated(
     uint256 operation,
     address contractAddress,
     uint256 value
-  )
+)
 ```
 
 _**MUST** be fired when **[execute](#execute)** creates a new contract using the `CREATE/CREATE2` operations._
@@ -281,10 +279,10 @@ _**MUST** be fired when **[execute](#execute)** creates a new contract using the
 ### DataChanged
 
 ```solidity
-  event DataChanged(
+event DataChanged(
     bytes32 key,
     bytes value,
-  )
+)
 ```
 
 _**MUST** be fired when **[setData](#setdata)** is successfully executed._
@@ -299,12 +297,12 @@ _**MUST** be fired when **[setData](#setdata)** is successfully executed._
 ### UniversalReceiver
 
 ```solidity
-  event UniversalReceiver(
+event UniversalReceiver(
     address from,
     bytes32 typeId,
     bytes returnedValue,
     bytes receivedData
-  )
+)
 ```
 
 _**MUST** be fired when the **[universalReceiver](#universalreceiver)** function is succesfully executed._
