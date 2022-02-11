@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'LSP8 - Identifiable Digital Asset'
+sidebar_label: 'LSP8 - Identifiable Digital Asset (NFT)'
 sidebar_position: 4
 ---
 

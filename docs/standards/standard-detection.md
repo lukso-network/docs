@@ -53,8 +53,8 @@ const web3 = new Web3("https://rpc.l14.lukso.network");
 // Create an instance of the Universal Profile
 const myUPContract = new web3.eth.Contract(UniversalProfile.abi, "<contract-address>");
 
-const ERC725AccountInterfaceId = '0x63cb749b'
-await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call()
+const ERC725AccountInterfaceId = '0x63cb749b';
+await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call();
 > TRUE or FALSE
 ```
 
@@ -92,14 +92,9 @@ const Web3 = require('web3');
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
 // Create an instance of the LSP7 Token
-const myTokenContract = new web3.eth.Contract(
-  LSP7DigitalAsset.abi,
-  '<contract-address>',
-);
+const myTokenContract = new web3.eth.Contract(LSP7DigitalAsset.abi, '<contract-address>');
 
-const SupportedStandards_LSP4DigitalAsset =
-  '0xeafec4d89fa9619884b6b89135626455000000000000000000000000a4d96624';
-(await myTokenContract.methods
-  .getData([SupportedStandards_LSP4DigitalAsset])
-  .call()) > 0xa4d96624; // valid result according to LSP4
+const SupportedStandards_LSP4 = '0xeafec4d89fa9619884b6b89135626455000000000000000000000000a4d96624';
+await myTokenContract.methods.getData([SupportedStandards_LSP4DigitalAsset]).call();
+> 0xa4d96624; // valid result according to LSP4
 ```

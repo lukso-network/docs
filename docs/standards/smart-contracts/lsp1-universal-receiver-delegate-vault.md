@@ -11,15 +11,18 @@ It writes the **[LSP7-DigitalAsset](../nft-2.0/03-LSP7-Digital-Asset.md)** and *
 :::note
 **_LSP1UniversalReceiverDelegateVault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
-  :::
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+
+:::
 
 ## Functions
 
 ### constructor
 
 ```solidity
-  constructor()
+constructor()
 ```
 
 Registers **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
@@ -27,11 +30,11 @@ Registers **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
 ### universalReceiverDelegate
 
 ```solidity
-  function universalReceiverDelegate(
+function universalReceiverDelegate(
     address sender,
     bytes32 typeId,
     bytes memory data
-  ) public payable returns (bytes memory result)
+) public payable returns (bytes memory result)
 ```
 
 Writes the received **LSP7DigitalAsset**, **LSP8IdentifiableDigitalAsset** assets into the vault storage according to the **LSP5ReceivedAssets** Standards.

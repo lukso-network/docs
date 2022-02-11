@@ -16,15 +16,19 @@ In order to execute the logic written above, the **LSP0ERC725Account** contract 
 :::note
 **_LSP1UniversalReceiverDelegateUP contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
 
-- **supportsInterface (bytes4 interfaceId) public view returns (bool)**
-  :::
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+  
+:::
+
 
 ## Functions
 
 ### constructor
 
 ```solidity
-  constructor()
+constructor()
 ```
 
 Registers **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
@@ -32,11 +36,11 @@ Registers **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
 ### universalReceiverDelegate
 
 ```solidity
-  function universalReceiverDelegate(
+function universalReceiverDelegate(
     address sender,
     bytes32 typeId,
     bytes memory data
-  ) public payable returns (bytes memory result)
+) public payable returns (bytes memory result)
 ```
 
 Writes the keys of the received **LSP7DigitalAsset**, **LSP8IdentifiableDigitalAsset** assets and **LSP9Vault** vaults into the account storage according to the **LSP5ReceivedAssets** and **LSP10ReceivedVaults** Standards.

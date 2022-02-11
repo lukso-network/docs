@@ -63,11 +63,11 @@ const controllingAccountPrivateKey = '0x...';
 const myUpAddress = '0x...';
 ```
 
-Then instantiate a Web3 `Contract` object for your UP and KeyManager using the contract ABIs from the [`@lukso/universalprofile-smart-contracts`](https://github.com/lukso-network/universalprofile-smart-contracts) npm package
+Then instantiate a Web3 `Contract` object for your UP and KeyManager using the contract ABIs from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) npm package
 
 ```typescript
-import UniversalProfileContract from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManagerContract from '@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const myUniversalProfile = new web3.eth.Contract(
   UniversalProfileContract.abi,
