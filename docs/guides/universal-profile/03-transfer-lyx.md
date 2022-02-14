@@ -22,8 +22,8 @@ The parameters of the function will be as follow:
 
 - `_operation`: `0` (for `CALL`).
 - `_to`: the `address` we want to send LYX to (Externally Owned Account or contract address).
-- `_value`: the amount of LYX we want to transfer (in Wei)
-- `_data`: empty payload (`0x`)
+- `_value`: the amount of LYX we want to transfer (in Wei).
+- `_data`: empty payload (`0x`).
 
 Since we are just making a simple LYX transfer, the fourth parameter `_data` will be empty.
 
