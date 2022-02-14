@@ -12,20 +12,24 @@ As this contract uses **[ERC725Y General Key/Value Store](https://eips.ethereum.
 :::note
 **_LSP4DigitalAssetMetadata contract contains the methods from_ [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) :**
 
-- **setData (bytes32[] memory keys, bytes[] memory values) public**
-- **getData (bytes32[] memory keys) public view returns (bytes[] memory)**
-  :::
+```solidity
+function getData(bytes32[] memory keys) public view returns (bytes[] memory);
+
+function setData(bytes32[] memory keys, bytes[] memory values) public;
+```
+
+:::
 
 ## Functions
 
 ### constructor
 
 ```solidity
-  constructor(
+constructor(
     string memory name_,
     string memory symbol_,
     address newOwner_
-  ) ERC725Y(newOwner_)
+) ERC725Y(newOwner_)
 ```
 
 Sets the name, symbol of the token and **[SupportedStandards:LSP4DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset)** Key in the **[ERC725Y Key/Value store](./lsp0-erc725-account#setdata)** and sets the **initial owner** of the contract.

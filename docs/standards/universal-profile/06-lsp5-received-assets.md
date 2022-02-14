@@ -72,4 +72,6 @@ The keys are also set on the **sender UniversalProfile** to remove the token con
 These keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract if set, when transferring tokens.
 Check [Token transfer scenario](./lsp1-universal-receiver-delegate#token-transfer-scenario).
 
+![Token transfer detailed flow](../../../static/img/detailed-token-transfer.jpeg)
+
 ![LSP5 Received Assets Flow](../../../static/img/lsp5-received-assets.jpeg)

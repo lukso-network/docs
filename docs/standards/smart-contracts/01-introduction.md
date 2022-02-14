@@ -9,7 +9,7 @@ In this section, you will find the implementation of **[LUKSO Standard Proposals
 
 Developers wishing to understand the standards in terms of code and the tradeoffs within, will be well-advised to read these documents alongside the Solidity code itself.
 
-The smart contracts are public and open source. They can be found [on Github](https://github.com/lukso-network/lsp-universalprofile-smart-contracts), and in the [NPM package available here](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts).
+The smart contracts are public and open source. They can be found [on Github](https://github.com/lukso-network/lsp-smart-contracts), and in the [NPM package available here](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
 
 ---
 
@@ -43,7 +43,7 @@ These contracts are not just related to one specific section but could be used t
 ## Installation
 
 ```bash
-npm install @lukso/universalprofile-smart-contracts
+npm install @lukso/lsp-smart-contracts
 ```
 
 ## Usage
@@ -54,7 +54,7 @@ npm install @lukso/universalprofile-smart-contracts
 // MyUP.sol
 // SPDX-License-Identifier: MIT
 
-import "@lukso/universalprofile-smart-contracts/contracts/UniversalProfile.sol";
+import "@lukso/lsp-smart-contracts/contracts/UniversalProfile.sol";
 
 pragma solidity ^0.8.0;
 
@@ -72,7 +72,7 @@ contract MyUP is UniversalProfile {
 // MyToken.sol
 // SPDX-License-Identifier: MIT
 
-import "@lukso/universalprofile-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
+import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
 
 pragma solidity ^0.8.0;
 

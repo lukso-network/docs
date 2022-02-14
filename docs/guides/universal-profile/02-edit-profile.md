@@ -58,7 +58,7 @@ You can use other file storage options to store your JSON file (_e.g.: [Swarm](h
 We will use a new tool in this guide: [erc725.js].
 
 ```shell
-npm install web3 @lukso/lsp-factory.js @lukso/universalprofile-smart-contracts @erc725/erc725.js --save
+npm install web3 @lukso/lsp-factory.js @lukso/lsp-smart-contracts @erc725/erc725.js --save
 ```
 
 ## Step 1 - Create a new LSP3Profile JSON file
@@ -174,23 +174,23 @@ const { LSP3UniversalProfile } = require('@lukso/lsp-factory.js');
 const jsonFile = require('./UniversalProfileMetadata.json');
 
 async function uploadMetadataToIPFS() {
-  const uploadResult = await LSP3UniversalProfile.uploadProfileData(
-    jsonFile.LSP3Profile,
-  );
+  const uploadResult = await LSP3UniversalProfile.uploadProfileData(jsonFile.LSP3Profile);
 
-  > {
-    profile: {
-      LSP3Profile: {
-        name: '...',
-        description: '...',
-        links: [Array],
-        tags: [Array],
-        profileImage: [Array],
-        backgroundImage: [Array]
-      }
-    },
-    url: 'ipfs://Q...'
-  }
+    /*
+    uploadResult = {
+        profile: {
+            LSP3Profile: {
+                name: '...',
+                description: '...',
+                links: [Array],
+                tags: [Array],
+                profileImage: [Array],
+                backgroundImage: [Array]
+            }
+        },
+        url: 'ipfs://Q...'
+    }
+    */
 
   const profileMetadataIPFSUrl = uploadResult.url;
   return profileMetadataIPFSUrl;
@@ -240,12 +240,12 @@ const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
 });
 
 > ERC725 {
-  options: {
-    schema: [ [Object] ],
-    address: '0x...',
-    provider: Web3ProviderWrapper { type: 'WEB3', provider: [HttpProvider] },
-    config: { ipfsGateway: 'https://ipfs.lukso.network/ipfs/' }
-  }
+    options: {
+        schema: [ [Object] ],
+        address: '0x...',
+        provider: Web3ProviderWrapper { type: 'WEB3', provider: [HttpProvider] },
+        config: { ipfsGateway: 'https://ipfs.lukso.network/ipfs/' }
+    }
 }
 ```
 
@@ -320,13 +320,13 @@ const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
 The first step is to create new instances of the Universal Profile and the Key Manager. We will need:
 
-- the contracts ABIs (from our npm package [`@lukso/universalprofile-smart-contracts`](https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts)).
+- the contracts ABIs (from our npm package [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)).
 - the contracts addresses.
 
 If you haven't done it in the **Setup** section, install our npm package to obtain the smart contracts ABIs.
 
 ```shell
-npm install @lukso/universalprofile-smart-contracts --save
+npm install @lukso/lsp-smart-contracts --save
 ```
 
 If you have deployed your UP with our [lsp-factory.js](./01-create-profile.md) tool (like in our previous guide), the owner of the UP will point to the Key Manager's address.
@@ -335,8 +335,8 @@ Therefore, you can easily obtain the address of your Key Manager by calling the 
 
 ```javascript title="main.js"
 const Web3 = require('web3');
-const UniversalProfile = require('@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json');
-const KeyManager = require('@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json');
+const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
@@ -425,8 +425,8 @@ const Web3 = require('web3');
 const { ERC725 } = require('@erc725/erc725.js');
 const { LSP3UniversalProfile } = require('@lukso/lsp-factory.js');
 
-const UniversalProfile = require('@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json');
-const KeyManager = require('@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json');
+const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
+const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
@@ -439,9 +439,7 @@ const jsonFile = require('./UniversalProfileMetadata.json');
 
 async function editProfileInfos() {
   // Step 2 - Upload our JSON file to IPFS
-  const uploadResult = await LSP3UniversalProfile.uploadProfileData(
-    jsonFile.LSP3Profile,
-  );
+  const uploadResult = await LSP3UniversalProfile.uploadProfileData(jsonFile.LSP3Profile);
   const lsp3ProfileIPFSUrl = uploadResult.url;
 
   // Step 3.1 - Setup erc725.js

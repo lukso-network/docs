@@ -10,7 +10,7 @@ title: Fungible Token (LSP7)
 To create a LSP7 Fungible token use `DigitalAsset.deployLSP7DigitalAsset()` method and set `isNFT` parameter to false.
 
 ```javascript
-import LSP7 from '@lukso/universalprofile-smart-contracts/artifacts/LSP7DigitalAsset.json';
+import LSP7 from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json';
 import { LSPFactory } from '@lukso/lsp-factory.js';
 
 const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
