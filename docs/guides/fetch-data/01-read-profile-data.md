@@ -1,43 +1,43 @@
 ---
 sidebar_label: 'Read Profile Data'
-sidebar_position: 3.1
+sidebar_position: 1
 ---
 
 # Read Universal Profile Data
 
 In this guide, we will learn how to:
 
-- call a Universal Provile address
-- read data from a Universal Profile
+- check the validity of the blockchain address.
+- read data from a [Universal Profile](../../standards//universal-profile/introduction.md).
 
-![Universal Profile example on universalprofile.cloud](./img/example-up.png)
+<div style={{textAlign: 'center', color: 'grey'}}>
+  <img
+    src={require('./img/example-up.png').default}
+    alt="Universal Profile example on universalprofile.cloud"
+  />
+<br/>
+<i>A <a href="https://universalprofile.cloud/0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e">Universal Profile</a> as seen on UniversalProfile.cloud</i>
+</div>
 
 We will use:
 
-- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L14 network
+- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L14 network.
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
-- [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code
+- [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code.
 
-## Table of Contents
+## Setup
 
-1. [Check for valid Blockchain Address](#step-1---check-for-valid-blockchain-address)
-2. [Call the Universal Profile](#step-2---call-the-universal-profile)
-3. [Read the Dataset](#step-3---read-the-dataset)
-   1. Fetch the profile's metadata
-   2. Fetch the profile's picture properties
-   3. Fetch the profile's universal receiver
+Open a terminal in the project's folder of your choice and install all required libraries.
+
+```shell
+npm install web3 @erc725/erc725.js isomorphic-fetch
+```
 
 ## Step 1 - Check for valid Blockchain Address
 
-When receiving data from a Universal Profile within an application, it is commonly used as input. We want to make sure that the address is valid in the first place. We can do a checkup by converting the value into a checksum address using the web3.js library.
+Within an application, the Universal Profile address is commonly used as input. We want to make sure that the address is valid in the first place. We can do a checkup by converting the value into a checksum address using the `web3.js` library.
 
-First, open a terminal in the project's folder of your choice and install the web3.js library.
-
-```shell
-npm install web3
-```
-
-After installation, we can move on with the JavaScript file. During the process, we will always use the same file. To make the guide more understandable, we use a sample profile address. You will most likely change this static variable with a dynamic value from an input field or fetching process within your app.
+To make the guide more understandable, we use a sample profile address. You will most likely change this static variable with a dynamic value from an input field or fetching process within your app.
 
 ```javascript title="read_profile.js"
 // Import and Network Setup
@@ -45,20 +45,21 @@ const Web3 = require('web3');
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
 // Our static Universal Profile address
-const sampleProfileAddress = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
+const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 
 /*
- * Check if @param is a valid blockchain address
+ * Check if input is a valid blockchain address
  *
- * @returns: boolean
+ * @param address input
+ * @return boolean result
  */
 function isValidAddress(address) {
-  let formattedAddress = web3.utils.toChecksumAddress(address);
+  const formattedAddress = web3.utils.toChecksumAddress(address);
   return web3.utils.checkAddressChecksum(formattedAddress);
 }
 
-// Debug
-console.log(isValidAddress(sampleProfileAddress));
+console.log(isValidAddress(SAMPLE_PROFILE_ADDRESS));
+// true
 ```
 
 If the function `isValidAddress(...)` gives us back `true`, the address is valid and can be used.`
@@ -77,56 +78,65 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
 - `provider`: a [provider](../../tools/erc725js/providers) object. Usually used with the RPC endpoint URL
 - `config`: used to configure the IPFS gateway
 
-Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`. First, we have to install the libraries.
-
-```shell
-npm install @erc725/erc725.js isomorphic-fetch
-```
+Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
 
 After we import the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. While fetching, we can use the function from the previous step to handle errors that might occur.
 
+<details>
+    <summary>ERC725 JSON Schema</summary>
+
+```json title="erc725schema.json"
+[
+  {
+    "name": "SupportedStandards:ERC725Account",
+    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000afdeb5d6",
+    "keyType": "Mapping",
+    "valueContent": "0xafdeb5d6",
+    "valueType": "bytes"
+  },
+  {
+    "name": "LSP3Profile",
+    "key": "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5",
+    "keyType": "Singleton",
+    "valueContent": "JSONURL",
+    "valueType": "bytes"
+  },
+  {
+    "name": "LSP1UniversalReceiverDelegate",
+    "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+    "keyType": "Singleton",
+    "valueContent": "Address",
+    "valueType": "address"
+  }
+]
+```
+
+</details>
+
 ```javascript title="read_profile.js"
-...
+// ...
 // Import and Setup
 const { ERC725 } = require('@erc725/erc725.js');
 require('isomorphic-fetch');
 
 // Parameters for ERC725 Instance
-const erc725schema = [
-  {
-    name: 'SupportedStandards:ERC725Account',
-    key: '0xeafec4d89fa9619884b6b89135626455000000000000000000000000afdeb5d6',
-    keyType: 'Mapping',
-    valueContent: '0xafdeb5d6',
-    valueType: 'bytes',
-  },
-  {
-    name: 'LSP3Profile',
-    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
-    keyType: 'Singleton',
-    valueContent: 'JSONURL',
-    valueType: 'bytes',
-  },
-  {
-    name: 'LSP1UniversalReceiverDelegate',
-    key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
-    keyType: 'Singleton',
-    valueContent: 'Address',
-    valueType: 'address',
-  },
-];
+const erc725schema = require('./erc725schema.json');
 
-const provider = new Web3.providers.HttpProvider(
-  'https://rpc.l14.lukso.network',
-);
+const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
+
+const IPFS_GATEWAY = 'https://ipfs.lukso.network/ipfs/';
+
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 
 const config = {
-  ipfsGateway: 'https://ipfs.lukso.network/ipfs/',
+  ipfsGateway: IPFS_GATEWAY,
 };
 
 /*
  * Try fetching the @param's Universal Provile data
- * @returns: string JSON or custom error
+ *
+ * @param address of Universal Profile
+ * @return string JSON or custom error
  */
 async function getProfile(address) {
   if (isValidAddress(address)) {
@@ -142,7 +152,7 @@ async function getProfile(address) {
 }
 
 // Debug
-getProfile(sampleProfileAddress).then((profileData) =>
+getProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
   console.log(JSON.stringify(profileData, undefined, 2)),
 );
 ```
@@ -209,7 +219,7 @@ Just instantiate variables for the information you would like to process. All de
     <summary>Fetch the profile's metadata</summary>
 
 ```javascript title="read_profile.js"
-...
+// ...
 // Fetchable metadata information
 let name;
 let description;
@@ -226,7 +236,7 @@ let firstTag;
  * an Universal Profile
  */
 async function fetchProfileData() {
-  profileData = await getProfile(sampleProfileAddress);
+  profileData = await getProfile(SAMPLE_PROFILE_ADDRESS);
   name = profileData.LSP3Profile.LSP3Profile.name;
   description = profileData.LSP3Profile.LSP3Profile.description;
 
@@ -237,13 +247,13 @@ async function fetchProfileData() {
   tags = profileData.LSP3Profile.LSP3Profile.tags;
   firstTag = tags[0];
 
-    console.log('Name ' + name);
-    console.log('Description: ' + description + '\n');
-    console.log('Links: ' + JSON.stringify(links, undefined, 2) + '\n');
-    console.log('Title of first Link: ' + firstLinkTitle);
-    console.log('URL of first Link: ' + firstLinkURL + '\n');
-    console.log('Tags: ' + JSON.stringify(tags, undefined, 2) + '\n');
-    console.log('First tag: ' + firstTag + '\n');
+  console.log('Name ' + name);
+  console.log('Description: ' + description + '\n');
+  console.log('Links: ' + JSON.stringify(links, undefined, 2) + '\n');
+  console.log('Title of first Link: ' + firstLinkTitle);
+  console.log('URL of first Link: ' + firstLinkURL + '\n');
+  console.log('Tags: ' + JSON.stringify(tags, undefined, 2) + '\n');
+  console.log('First tag: ' + firstTag + '\n');
 }
 
 // Debug
@@ -256,7 +266,7 @@ fetchProfileData();
     <summary>Fetch the profile's picture properties</summary>
 
 ```javascript title="read_profile.js"
-...
+// ...
 // Fetchable picture information
 let baseURL = 'https://ipfs.lukso.network/ipfs/';
 
@@ -269,14 +279,16 @@ let fullSizeProfileImg;
 /*
  * Fetch picture information from the JSON dataset of
  * a Universal Profile
+ *
+ * @return string Error
  */
 async function fetchPictureData() {
-  pictureData = await getProfile(sampleProfileAddress);
+  pictureData = await getProfile(SAMPLE_PROFILE_ADDRESS);
   let backgroundImagesIPFS =
     pictureData.LSP3Profile.LSP3Profile.backgroundImage;
   let profileImagesIPFS = pictureData.LSP3Profile.LSP3Profile.profileImage;
 
-  try{
+  try {
     for (let i in backgroundImagesIPFS) {
       backgroundImageLinks.push([
         i,
@@ -298,23 +310,21 @@ async function fetchPictureData() {
     console.log('Fullsize Background Image: ' + fullSizeProfileImg + '\n');
 
     console.log(
-    'Background Image Links: ' +
-      JSON.stringify(backgroundImageLinks, undefined, 2) +
-      '\n',
+      'Background Image Links: ' +
+        JSON.stringify(backgroundImageLinks, undefined, 2) +
+        '\n',
     );
 
     console.log(
-    'Background Image Links: ' +
-      JSON.stringify(profileImageLinks, undefined, 2) +
-      '\n',
+      'Background Image Links: ' +
+        JSON.stringify(profileImageLinks, undefined, 2) +
+        '\n',
     );
-  }
-  catch (error) {
-      return console.log('Could not fetch images');
+  } catch (error) {
+    return console.log('Could not fetch images');
   }
 }
 
-// Debug
 fetchPictureData();
 ```
 
@@ -324,17 +334,18 @@ fetchPictureData();
     <summary>Fetch the profile's universal receiver</summary>
 
 ```javascript title="read_profile.js"
-...
+// ...
 /*
  * Fetch the address of the Universal Receiver from
  * the JSON dataset of an Universal Profile
+ *
+ * @return address of Universal Reveicer Delegate
  */
 async function fetchReceiverData() {
-  receiverData = await getProfile(sampleProfileAddress);
+  receiverData = await getProfile(SAMPLE_PROFILE_ADDRESS);
   return receiverData.LSP1UniversalReceiverDelegate;
 }
 
-// Debug
 fetchReceiverData().then((receiverAddress) => console.log(receiverAddress));
 ```
 
@@ -344,47 +355,57 @@ fetchReceiverData().then((receiverAddress) => console.log(receiverAddress));
 
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
+<details>
+    <summary>ERC725 JSON Schema</summary>
+
+```json title="erc725schema.json"
+[
+  {
+    "name": "SupportedStandards:ERC725Account",
+    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000afdeb5d6",
+    "keyType": "Mapping",
+    "valueContent": "0xafdeb5d6",
+    "valueType": "bytes"
+  },
+  {
+    "name": "LSP3Profile",
+    "key": "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5",
+    "keyType": "Singleton",
+    "valueContent": "JSONURL",
+    "valueType": "bytes"
+  },
+  {
+    "name": "LSP1UniversalReceiverDelegate",
+    "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+    "keyType": "Singleton",
+    "valueContent": "Address",
+    "valueType": "address"
+  }
+]
+```
+
+</details>
+
 ```javascript title="read_profile.js"
 // Import and Setup
 const Web3 = require('web3');
-const web3 = new Web3('https://rpc.l14.lukso.network');
 const { ERC725 } = require('@erc725/erc725.js');
 require('isomorphic-fetch');
+// Parameters for ERC725 Instance
+const erc725schema = require('./erc725schema.json');
 
 // Our static Universal Profile address
-const sampleProfileAddress = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
+const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 
-// Parameters for ERC725 Instance
-const erc725schema = [
-  {
-    name: 'SupportedStandards:ERC725Account',
-    key: '0xeafec4d89fa9619884b6b89135626455000000000000000000000000afdeb5d6',
-    keyType: 'Mapping',
-    valueContent: '0xafdeb5d6',
-    valueType: 'bytes',
-  },
-  {
-    name: 'LSP3Profile',
-    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
-    keyType: 'Singleton',
-    valueContent: 'JSONURL',
-    valueType: 'bytes',
-  },
-  {
-    name: 'LSP1UniversalReceiverDelegate',
-    key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
-    keyType: 'Singleton',
-    valueContent: 'Address',
-    valueType: 'address',
-  },
-];
+const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
 
-const provider = new Web3.providers.HttpProvider(
-  'https://rpc.l14.lukso.network',
-);
+const web3 = new Web3(RPC_ENDPOINT);
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+
+const IPFS_GATEWAY = 'https://ipfs.lukso.network/ipfs/';
 
 const config = {
-  ipfsGateway: 'https://ipfs.lukso.network/ipfs/',
+  ipfsGateway: IPFS_GATEWAY,
 };
 
 // Fetchable metadata information
@@ -399,7 +420,7 @@ let tags = [];
 let firstTag;
 
 // Fetchable picture information
-let baseURL = 'https://ipfs.lukso.network/ipfs/';
+let baseURL = IPFS_GATEWAY;
 
 let backgroundImageLinks = [];
 let fullSizeBackgroundImg;
@@ -408,8 +429,10 @@ let profileImageLinks = [];
 let fullSizeProfileImg;
 
 /*
- * Check if @param is a valid blockchain address
- * @returns: boolean
+ * Check if input is a valid blockchain address
+ *
+ * @param address input
+ * @return boolean result
  */
 function isValidAddress(address) {
   let formattedAddress = web3.utils.toChecksumAddress(address);
@@ -418,7 +441,9 @@ function isValidAddress(address) {
 
 /*
  * Try fetching the @param's Universal Provile data
- * @returns: string JSON or custom error
+ *
+ * @param address of Universal Profile
+ * @return string JSON or custom error
  */
 async function getProfile(address) {
   if (isValidAddress(address)) {
@@ -438,7 +463,7 @@ async function getProfile(address) {
  * an Universal Profile
  */
 async function fetchProfileData() {
-  profileData = await getProfile(sampleProfileAddress);
+  profileData = await getProfile(SAMPLE_PROFILE_ADDRESS);
   name = profileData.LSP3Profile.LSP3Profile.name;
   description = profileData.LSP3Profile.LSP3Profile.description;
 
@@ -460,10 +485,12 @@ async function fetchProfileData() {
 
 /*
  * Fetch picture information from the JSON dataset of
- * an Universal Profile
+ * a Universal Profile
+ *
+ * @return string Error
  */
 async function fetchPictureData() {
-  pictureData = await getProfile(sampleProfileAddress);
+  pictureData = await getProfile(SAMPLE_PROFILE_ADDRESS);
   let backgroundImagesIPFS =
     pictureData.LSP3Profile.LSP3Profile.backgroundImage;
   let profileImagesIPFS = pictureData.LSP3Profile.LSP3Profile.profileImage;
@@ -508,21 +535,23 @@ async function fetchPictureData() {
 /*
  * Fetch the address of the Universal Receiver from
  * the JSON dataset of an Universal Profile
+ *
+ * @return address of Universal Reveicer Delegate
  */
 async function fetchReceiverData() {
-  receiverData = await getProfile(sampleProfileAddress);
+  receiverData = await getProfile(SAMPLE_PROFILE_ADDRESS);
   return receiverData.LSP1UniversalReceiverDelegate;
 }
 
-// Debug Step 1
-console.log(isValidAddress(sampleProfileAddress));
+// Step 1
+console.log(isValidAddress(SAMPLE_PROFILE_ADDRESS));
 
-// Debug Step 2
-getProfile(sampleProfileAddress).then((profileData) =>
+// Step 2
+getProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
   console.log(JSON.stringify(profileData, undefined, 2)),
 );
 
-// Debug Step 3
+// Step 3
 fetchProfileData();
 fetchPictureData();
 fetchReceiverData().then((receiverAddress) => console.log(receiverAddress));

@@ -71,4 +71,6 @@ The keys are also set on the **sender UniversalProfile** to remove the vault con
 
 These keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract if set, when transferring vaults.
 
+![Vault transfer detailed flow](../../../static/img/detailed-vault-transfer.jpeg)
+
 ![LSP10 Received Vaults Flow](../../../static/img/lsp10-received-vaults.jpeg)

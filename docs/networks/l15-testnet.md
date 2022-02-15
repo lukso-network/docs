@@ -14,7 +14,7 @@ To add the L15 Network to MetaMask, these are the settings:
 | ------------------ | ------------------------------------------ |
 | Network Name       | L15                                        |
 | New RPC URL        | https://rpc.l15.lukso.network              |
-| Chain ID           | 23                                         |
+| Chain ID           | 23 (0x17)                                  |
 | Currency Symbol    | LYXt                                       |
 | Block Explorer URL | https://explorer.pandora.l15.lukso.network |
 
