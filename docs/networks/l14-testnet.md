@@ -14,7 +14,7 @@ To add the L14 Network to MetaMask, these are the settings:
 | ------------------ | -------------------------------- |
 | Network Name       | L14                              |
 | New RPC URL        | https://rpc.l14.lukso.network    |
-| Chain ID           | 22                               |
+| Chain ID           | 22 (0x16)                        |
 | Currency Symbol    | LYXt                             |
 | Block Explorer URL | https://blockscout.com/lukso/l14 |
 
