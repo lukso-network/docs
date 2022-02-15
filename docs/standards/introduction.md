@@ -5,14 +5,15 @@ sidebar_position: 1
 
 # The LUKSO Standard Proposals (LSPs)
 
-## Introduction
+:::success Implementation
 
-The current **blockchain experience** comes with a lot of limitation. Not necessarily because of the complexity but because of the broken infrastructure represented by the old underlying tools and standards that are being used to operate on the network.
+See the [Contracts Implementation](./smart-contracts/01-introduction.md) section for the Solidity implementation of these standards.
 
-In order to create a better user experience on the blockchain, change should start from the bottom, the very basic pieces then propogate to the top.
-Topics related to **identity**, **assets representation** and **smart contract interaction** should be standardized. They should be done in a flexible way that supports more potential use-cases in the future.
+:::
 
-The following documentation describes the fundamentals of the standards and technical aspects of the ecosystem. Please join the channel in LUKSO Discord server.
+The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. People, groups and organizations can use them to build blockchain-based applications that aim to maximize the user experience, allow more flexibility, interaction and open doors to hundreds of ideas.
+
+The **[default implementation](./smart-contracts/01-introduction.md)** of these standards in Solidity is available as Open Source Software under the [LUKSO GitHub repository](https://github.com/lukso-network). They can be used as a base by developers to build their applications.
 
 :::info Questions? Want to learn more?
 
@@ -22,24 +23,24 @@ The following documentation describes the fundamentals of the standards and tech
 
 </div>
 
-Feel free to join our [LUKSO **Discord server**](https://discord.com/channels/359064931246538762/620552532602912769), and ask your questions in the [#standards](https://discord.com/channels/359064931246538762/620552532602912769) channel.<br/>
-Our team and members of the community look forward to helping you understand the standards.
+Feel free to join the [LUKSO **Discord server**](https://discord.com/channels/359064931246538762/620552532602912769), and ask your questions in the [#standards](https://discord.com/channels/359064931246538762/620552532602912769) channel.<br/>
+Our team and community members look forward to helping you understand the standards.
 
 :::
 
-## What do these standards represent ?
+## Introduction
 
-The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. They can be used by people, groups and organizations to build blockchain-based applications along with the ability to maximize the user experience, allow more flexibility and interaction and open doors to hundreds of ideas that could be built on top.
+The current **blockchain experience** comes with many limitations, not necessarily because of the complexity but because of the broken infrastructure represented by the old underlying tools and standards used to operate on the network.
 
-These standards are translated into smart contracts code provided by **LUKSO**. They represent the **default implementation** knowing that in the future people could derive from these contracts and implement their custom logic.
+Change should start from the bottom to create a better user experience on the blockchain. Starting from the fundamental pieces, to then propagate to the top. Topics related to **identity**, **assets representation** and **smart contract interaction** require standardization. Such standards should be flexible enough to support and allow more potential use-cases in the future.
 
-> For the smart contract implementation of these standards, see the [Contracts Implementation](./smart-contracts/01-introduction.md) section.
+The following documentation describes the fundamentals of the standards and technical aspects of the LUKSO ecosystem.
 
 ## LSPs Foundation
 
-This section lists and describes the first ten Standards that represent the foundation of **LUKSO's ecosystem**.
+This section lists and describes the first ten Standards representing the foundation of **LUKSO's ecosystem**.
 
-They introduce new concepts like **blockchain-based accounts** (also-know-as **UniversalProfiles**), **Digital Assets and NFT 2.0**.
+They introduce new concepts like **blockchain-based accounts** (also known as **UniversalProfiles**), **Digital Assets and NFT 2.0**.
 
 :::note
 The standards are **order-independant**, they could be related with a **backward/forward** order.
