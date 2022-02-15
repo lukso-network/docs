@@ -25,15 +25,21 @@ This standard uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** stan
 
 ### ERC725X - Generic Executor
 
-This substandard enables the account to execute a call on any other smart contracts, transfers the blockchains native token, or deploys a new smart contract. Only the owner can execute these operations below.
+This substandard enables the account to execute generic calls on any other smart contracts, including transfering native tokens along the call. This is made possible via a generic [`execute(...)`](../smart-contracts/lsp0-erc725-account.md#execute) function in the smart contract. **Only the owner can execute** the operations below.
 
-The operation types available are:
+The ERC725X standard also enables to deploy new smart contracts, by passing the bytecode of the new contract to deploy as an argument to the `execute(...)` function. Contracts can be deployed using either CREATE or CREATE2.
 
-- `CALL`
-- `CREATE`
-- `CREATE2`
-- `DELEGATECALL`
-- `STATICCALL`
+The following types of calls (= operation types) are available:
+
+| Operation number | Operation type | Description |
+| :--------------: | :------------: | :---------: |
+|        0         |     `CALL`     |             |
+|        1         |    `CREATE`    |             |
+|        2         |   `CREATE2`    |             |
+|        3         | `DELEGATECALL` |             |
+|        4         |  `STATICCALL`  |             |
+
+![ERC725X operation types explained](./../../../static/img/standards/erc725x-operation-types.jpeg)
 
 ### ERC725Y - Generic Key-Value Store
 
