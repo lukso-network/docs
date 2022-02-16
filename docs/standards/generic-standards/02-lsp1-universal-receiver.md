@@ -39,7 +39,7 @@ This standard defines a single function named `universalReceiver(...)` that coul
 The `universalReceiver(...)` function emits an event with the data passed to it and some additional data. The function can then implement custom logic to make the contract behave differently based on the data received. For instance, the universalReceiver(...) function could:
 
 - revert on calls to completely disallow the smart contract from receiving assets, information, etc. :x:
-- register the received assets inside the contract storage (see LSP5 - Received Assets) :heavy_plus_sign:
+- register the received assets inside the contract storage (see [LSP5 - Received Assets](../universal-profile/06-lsp5-received-assets.md)) :heavy_plus_sign:
 
 > Receiving contracts should consider the `typeId` parameter to **decode the data correctly**.
 

@@ -13,34 +13,36 @@ sidebar_position: 3.3
 
 :::success Recommendation
 
-Our [JavaScript library `erc725.js`](../../tools/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema, without going through all the encoding complexity manually.
+Our [JavaScript library **erc725.js**](../../tools/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema without manually going through all the encoding complexity.
 
 :::
 
 ## Introduction
 
-Data in the storage of a smart contract is organised in **slots**. Each piece of data is stored at a specific storage slot. These slots are numbered (as a `uint256`), starting from slot 0.
+The storage of a smart contract consists of multiple **storage slots**. These slots are referenced by a **slot number** (as an **integer**) starting from slot 0. Each piece of data (= contract state) in a smart contract is stored as raw **bytes** under a specific storage slot.
 
-> Smart contracts understand only 2 languages: `bytes` and `uint256`.
+> In summary, smart contracts understand only two languages: bytes and uint256.
 
-Take the following key-value pair for instance. It is not easy to infer the meaning of these keys by reading them as **bytes**.
+Take the following key-value pair, for instance. It is not easy to infer the meaning of these keys by reading them as **bytes**.
 
 ```
 (key)                                                              => (value)
 0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1 => 0x4d7920546f6b656e20322e30
 ```
 
-Using **slots numbers** and **raw bytes** makes the contract storage very hard to work with. [ERC725Y](../universal-profile/01-lsp0-erc725account.md#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However with such low-level languages, this makes it difficult for humans to understand the data in the storage.
+Using **slots numbers** and **raw bytes** makes the contract storage very hard to work with. [ERC725Y](../universal-profile/01-lsp0-erc725account.md#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However, with such low-level languages, it is difficult for humans to understand the data in the storage.
 
-Finally, everyone can store information differently on contracts like [ERC725Account](../universal-profile/01-lsp0-erc725account.md), depending on individual use cases and needs. There is no standard schema that defines what is the data and what the data looks like. This makes it very hard for ERC725Account to interact with each other, and for external services to interact with ERC725Accounts.
+The main problem around smart contract storage also arises when data is stored differently, depending on individual use cases and application needs. No standard schema exist to define "what the data stored under a specific key represents".
+
+These two issues make it very hard for smart contracts to interact with each other and for external services to interact with contracts' storage.
 
 ## What does this standard represent?
 
 ### Specification
 
-LSP2 aims to offer a better abstraction on top of a smart contract storage.
+The LSP2 Standard aims to offer a better abstraction on top of the storage of a smart contract.
 
-This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable keys. Data in a smart contract can be stored in a more organised way.
+This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable keys. It makes the data stored in a smart contract more organised.
 
 ![Universal Profile + ERC725Y JSON schema (diagram)](../../../static/img/standards/ERC725Y-JSON-Schema-explained.jpeg)
 
@@ -48,9 +50,9 @@ By introducing a schema, contract storage can be represented in the same way acr
 
 ### How does LSP2 work?
 
-LSP2 introduces new ways to encode data, depending on its type. From a single entry, to multiple entries (like arrays or maps).
+LSP2 introduces new ways to encode data, depending on its type. From a single entry to multiple entries (like arrays or maps).
 
-A key in the contract storage can be defined as a JSON object, with properties that describes the key.
+A key in the contract storage can be defined as a JSON object, with properties that describe the key.
 
 ```json
 {
@@ -64,25 +66,20 @@ A key in the contract storage can be defined as a JSON object, with properties t
 
 ## Key Types
 
-There are several **key types** defined in LSP2.
+The LSP2 Standard defines several **key types**:
 
-- [LSP2 - ERC725Y JSON Schema](#lsp2---erc725y-json-schema)
-  - [Introduction](#introduction)
-  - [What does this standard represent?](#what-does-this-standard-represent)
-    - [Specification](#specification)
-    - [How does LSP2 work?](#how-does-lsp2-work)
-  - [Key Types](#key-types)
-    - [Singleton](#singleton)
-    - [Array](#array)
-    - [Mapping](#mapping)
-    - [Bytes20Mapping](#bytes20mapping)
-    - [Bytes20MappingWithGrouping](#bytes20mappingwithgrouping)
+- `keyType`:
+  - [Singleton](#singleton)
+  - [Array](#array)
+  - [Mapping](#mapping)
+  - [Bytes20Mapping](#bytes20mapping)
+  - [Bytes20MappingWithGrouping](#bytes20mappingwithgrouping)
 
 ### Singleton
 
 A **Singleton** key is useful to store a unique single value under a single key.
 
-Below is an example of a **Singleton** key type.
+Below is an example of a **Singleton** key.
 
 ```json
 {
@@ -98,16 +95,16 @@ Below is an example of a **Singleton** key type.
 
 ### Array
 
-A key of type ` **Array** can be used to store a list of elements of same data type. Elements are accessed by an _index_, that defines their position in the array.
+A key of type **Array** can be used to store a list of elements of the same data type. Array elements are accessed by an _index_, that defines their position in the **Array**.
 
-All the elements in the array are arranged systematically, in the order they are added or removed to/from the array. The key principles of the LSP2 **Array** key type are:
+The **Array** elements are arranged systematically, in the order they are added or removed to/from the **Array**. The main basics of the LSP2 **Array** key type are:
 
 - **ordering matters** :exclamation:
 - _duplicates are permitted_ :white_check_mark:
 
 A key type **Array** can be useful when there is the need to store a large group of similar data items under the same key. For instance, a list of tokens or NFTs that an address has received.
 
-Below is an example of an **Array** key type.
+Below is an example of an **Array** key.
 
 ```json
 {
@@ -123,14 +120,14 @@ Below is an example of an **Array** key type.
 
 ### Mapping
 
-A key of type **Mapping** can be useful to store a collection of data items that have a shared significance (for instance, items that are derived from a common ancestor type).
+A key of type **Mapping** can be useful to store a collection of data items that have a shared significance (for instance, items derived from a common ancestor type).
 
-The **Mapping** key type is similar to the concept of lookup tables. It can be used for easily searching and querying specific elements in the collection, without the need to loop through all the elements (unlike an [Array](#array)). The key principle of the **Mapping** key type are:
+The **Mapping** key type is similar to the concept of lookup tables. It can be used to search or query specific elements in the collection easily and efficiently. The key principle of the **Mapping** key type are:
 
 - _ordering does not matter_ :white_check_mark:
 - **duplicates are not permitted** :x:
 
-Below is an example of a **Mapping** key type.
+Below is an example of a **Mapping** key.
 
 ```json
 {
@@ -146,9 +143,9 @@ Below is an example of a **Mapping** key type.
 
 ### Bytes20Mapping
 
-A key of type **Bytes20Mapping** is similar to the **[Mapping](#mapping)** key type, except that it can be useful to map specific informations or data to a 20-bytes long value, like an `address` for instance.
+A key of type **Bytes20Mapping** is similar to the **[Mapping](#mapping)** key type, except that it can be useful to map specific data to a 20-bytes long value (eg: an `address`).
 
-Below is an example of **Bytes20Mapping** key type.
+Below is an example of **Bytes20Mapping** key.
 
 ```json
 {
@@ -164,13 +161,11 @@ Below is an example of **Bytes20Mapping** key type.
 
 ### Bytes20MappingWithGrouping
 
+A key of type **Bytes20MappingWithGrouping** is similar to the **[Bytes20Mapping](#bytes20mapping)** key type, except that sub-types can be added to the main mapping key.
 
-A key of type **Bytes20MappingWithGrouping** is similar to the **[Bytes20Mapping](#bytes20mapping)** key type, with the exception that sub-types can be adding to the main mapping key.
+For instance, it can be used to differentiate various types from the primary mapping key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/04-lsp6-key-manager.md)).
 
-It can be used for instance to differentiate various types of the main mapping keys, like different type of permissions (see [LSP6 - Key Manager](../universal-profile/04-lsp6-key-manager.md)).
-
-
-Below is an example of a **Bytes20MappingWithGrouping** key type.
+Below is an example of a **Bytes20MappingWithGrouping** key.
 
 ```json
 {
