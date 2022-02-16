@@ -11,7 +11,7 @@ The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** key is not
 
 :::
 
-There are 2 types of standards at **LUKSO**:
+There are two types of **LSP** standards:
 
 - **Interface Standards**: Where we standardize a set of functions. i.e: [LSP0-ERC725Account](./universal-profile/01-lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/04-lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/03-LSP7-Digital-Asset.md), etc ..
 
@@ -19,29 +19,27 @@ There are 2 types of standards at **LUKSO**:
 
 ![Interface and metadata standards](../../static/img/standard-detection.jpeg)
 
-These 2 types of standards are fundamental for interacting with smart contracts on the LUKSO blockchain.
+These two standards types are fundamental for interacting with smart contracts on the LUKSO blockchain.
 
-**Interface Standard** enables us to know which functions (and their parameters) can be called on a smart contract. On the other hand, **Metadata Standard** gives information about the data set by default on the contract, and which keys can be queried to retrieve such data.
+**Interface Standard** defines the functions that can be called on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which keys to query to retrieve such data.
 
 ## Interface Detection
 
 :::success Tip
 
-For a full list of `interfaceId`s, see the section **[Contracts Implementation > Interface Ids](./smart-contracts/interface-ids)**
+See the page **[Contracts Implementation > Interface Ids](./smart-contracts/interface-ids)** for a complete list of `interfaceId`s.
 
 :::
 
-> This covers how to detect if a contract implements a specific interface.
+> This section covers how to detect if a contract implements a specific interface.
 
-We can verify if a contract implements a specific set of functions (= an **interface**) using an [`interfaceId`](./smart-contracts/interface-ids).
+We can verify if a contract implements a specific set of functions (= an **interface**) using the function `supportsInterface(interfaceId)`, passing the bytes4 `interfaceId` as a parameter.
 
-This can be done using the function `supportsInterface(interfaceId)`, passing the `bytes4` `interfaceId` as a parameter.
-
-Calling this function will return **TRUE** if the contract implements this specific `interfaceId`, **FALSE** otherwise.
+Calling this function will return **TRUE** if the contract implements this specific interfaceId, **FALSE** otherwise.
 
 ### Example
 
-A **[UniversalProfile](./universal-profile/03-lsp3-universal-profile-metadata.md)** is a contract based on **[ERC725Account](./universal-profile/01-lsp0-erc725account.md)** (LSP0). This means that the contract **SHOULD** implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+A **[Universal Profile](./universal-profile/03-lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/01-lsp0-erc725account.md)** (LSP0). Therefore, the contract **SHOULD\*\* implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 ```javascript
 const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");
@@ -60,7 +58,7 @@ await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call();
 
 :::info
 
-See [ERC165 - Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165) for more infos.
+See [ERC165 - Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165) for more info.
 
 :::
 
@@ -68,21 +66,19 @@ See [ERC165 - Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-1
 
 :::success Tip
 
-All `SupportedStandards:{StandardName}` keys can be found under each ERC725Y JSON Schema on **[erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/src/schemas)**.
+The **[erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/src/schemas)** GitHub repository lists all the `SupportedStandards:{StandardName}` keys under each ERC725Y JSON Schema.
 
 :::
 
-> This covers how to detect if a contract contains a specific set of ERC725Y in its storage.
+> This section covers how to detect if a contract contains a specific set of ERC725Y in its storage.
 
-We can verify if a contract contains a certain set of ERC725 keys (= **metadata**) by checking value stored under the key `SupportedStandards:{StandardName}` in the contract storage.
+We can verify if a contract contains a specific set of ERC725 keys (= **metadata**) by checking the value stored under the key `SupportedStandards:{StandardName}` in the contract storage, via the function `getData([SupportedStandards:{StandardName}])`.
 
-This can be done by calling the function `getData([SupportedStandards:{StandardName}])`, passing as a parameter the `bytes32` key of the Metadata Standard.
-
-Calling this function will return a specific `bytes4` value (defined in the Metadata Standard) if the contract has some metadata keys set by default. Otherwise, it will return an empty value.
+Calling this function will return a specific bytes4 value (defined in the Metadata Standard) if the contract has some metadata keys set by default. Otherwise, it will return an empty value.
 
 ### Example
 
-An **[LSP7DigitalAsset](./nft-2.0/03-LSP7-Digital-Asset.md)** is a contract that contains ERC725Y keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. This means that the contract **SHOULD** have the following ERC725Y keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
+An **[LSP7DigitalAsset](./nft-2.0/03-LSP7-Digital-Asset.md)** is a contract that contains ERC725Y keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 
 ```javascript
 const LSP7DigitalAsset = require('@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json');
