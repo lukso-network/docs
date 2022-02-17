@@ -15,7 +15,7 @@ sidebar_position: 4
 
 The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
-**[LSP3-UniversalProfile-Metadata](#)** is a Metadata standard that aims to define specific keys that desribes an account. A Universal Profile is a combination between **LSP0-ERC725Account**, a smart contract based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys that describe the account.
+**LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific keys to describe a Universal Profile. A Universal Profile combines **LSP0-ERC725Account**, an interface for a smart contract-based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys to describe the profile.
 
 ## ERC725Y Keys
 
@@ -31,7 +31,7 @@ The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** s
 }
 ```
 
-This key is used to know whether the account represents a **UniversalProfile** or a normal account.
+This key is used to know if the contract represents a **UniversalProfile**.
 
 ### LSP3Profile
 
@@ -45,9 +45,9 @@ This key is used to know whether the account represents a **UniversalProfile** o
 }
 ```
 
-The value attached to this key is a JSON URL. It represents a reference to a file, stored on a centralised or decentralised storage.
+The value attached to this key is a JSONURL. It represents a reference to a file stored on a centralised or decentralised storage.
 
-Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces, so that they can download and serve the image with the dimensions that is the most suitable, instead of having to re-scale it.
+Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them.
 
 ### LSP3IssuedAssets
 
@@ -61,9 +61,15 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 }
 ```
 
-Universal Profiles have the capabilities to create digital assets, such as tokens and NFTs. Every token created should be registred in this array key.
+Universal Profiles can create digital assets, such as tokens and NFTs. Every token created should be registered in this array key.
 
 ### LSP5ReceivedAssets
+
+:::info
+
+See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page to learn more.
+
+:::
 
 ```json
 {
@@ -75,4 +81,4 @@ Universal Profiles have the capabilities to create digital assets, such as token
 }
 ```
 
-If the UniversalProfile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registred in the storage. To know how many different asset you have you can query this key.
+If the UniversalProfile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.
