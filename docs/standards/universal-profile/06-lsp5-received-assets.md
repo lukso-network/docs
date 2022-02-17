@@ -21,7 +21,7 @@ One way to solve this problem is to create generic metadata keys that would regi
 
 :::success Recommendation
 
-It is advised to check the **`LSP5ReceivedAssets[]`** key to check if a contract supports the **LSP5 - ReceivedAsset** standard.
+It is advised to query the **`LSP5ReceivedAssets[]`** key to verify if a contract supports the **LSP5 - ReceivedAsset** standard.
 
 :::
 
@@ -48,7 +48,7 @@ This key represents a map key holding:
 - the index in the [`LSP5ReceivedAssets[]`](#lsp5receivedassets-) Array where the received asset addresses are stored.
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each asset smart contract (without the need to query the asset contracts directly).
 
-The `LSP5ReceivedAssetsMap` key also helps to prevent adding duplications to the Array, when automatically added via smart contract (e.g. a [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
+The `LSP5ReceivedAssetsMap` key also helps to prevent adding duplications to the Array, when automatically added via smart contract (_e.g.:_ a [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
 
 ```json
 {

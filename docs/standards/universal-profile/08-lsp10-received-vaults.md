@@ -13,22 +13,23 @@ sidebar_position: 8
 
 ## Introduction
 
-To keep track of all the vaults that an address owns, we should avoid the same problem of token standards mentioned in [LSP5-ReceivedAssets](./06-lsp5-received-assets.md), which is not informing recipients and senders about the transfer.
+To keep track of all the vaults that an address owns, we should avoid the same problem mentioned in [LSP5-ReceivedAssets](./06-lsp5-received-assets.md), which is not informing recipients and senders about ownership transfer of [LSP9-Vaults](07-lsp9-vault.md).
 
 One way to avoid this problem is to create generic metadata keys that should be registered in the smart contract storage, representing how many different vaults you own, their type, and the address of the transferred vault contract.
 
 ## What does this standard represent ?
 
-:::success Useful Tip
+:::success Recommendation
 
-To check if a smart contract supports the **LSP10 - ReceivedVaults** standard, it's advised to check the **LSP10Vaults[ ]** key.
+It is recommended to query the **LSP10Vaults[]** key to check if a smart contract supports the **LSP10 - ReceivedVaults** standard.
 
 :::
 
-This Metadata standard describes a set of keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) smart contract.
-Two keys are proposed to reference received vaults smart contracts.
+This Metadata standard describes two keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) smart contract to keep track of received and owned [LSP9-Vaults](07-lsp9-vault.md).
 
-### LSP10Vaults[ ]
+### LSP10Vaults[]
+
+This key represents a list of all the vaults owned by the contract.
 
 ```json
 {
@@ -40,9 +41,14 @@ Two keys are proposed to reference received vaults smart contracts.
 }
 ```
 
-This key represents an array key listing all the vaults you currently own.
-
 ### LSP10VaultsMap
+
+This key represents a map key holding:
+
+- the index in the [`LSP10Vaults[]`](#lsp10vaults-) Array where the received vaults addresses are stored.
+- an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each vault smart contract (without the need to query the assets contracts directly).
+
+The key `LSP10VaultsMap` also helps to prevent adding duplications to the Array, when automatically added via smart contract (_e.g.:_ a [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
 
 ```json
 {
@@ -54,18 +60,11 @@ This key represents an array key listing all the vaults you currently own.
 }
 ```
 
-This key represents a map key holding:
-
-- the index in the former array where the received vaults address is stored.
-- an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each vault smart contract, without the need to query the contracts directly.
-
-The key `LSP10VaultsMap` also helps to prevent adding duplications to the array, when automatically added via smart contract (e.g. a [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
-
 ### Flow
 
 :::info Note
 
-The keys are also set on the **sender UniversalProfile** to remove the vault contract address when it's sent to the recipient.
+The keys are also set on the **sender Universal Profile** to remove the vault contract address when it is sent to the recipient.
 
 :::
 
