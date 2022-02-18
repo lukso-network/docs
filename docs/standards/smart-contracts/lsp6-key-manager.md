@@ -5,9 +5,13 @@ sidebar_position: 4
 
 # LSP6KeyManager
 
-The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with a set of pre-defined permissions for addresses that could range from setting data, executing, changing owner and more as written in the **[Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)** in **[LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md)**.
+The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with a set of pre-defined permissions for addresses that could range from setting data, executing, changing owner and more as written in the [Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)\*\* in [LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md).
 
-Currently the [**DELEGATECALL**](../universal-profile/04-lsp6-key-manager.md#-address-permissions) operation to execute is unavailable for the users since it have malicious impact on their accounts.
+:::warning
+
+The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/04-lsp6-key-manager.md#permissions-value)** operation on the execute function of the linked ERC725Account, because of its potential malicious impact on the account contract.
+
+:::
 
 :::note
 **_LSP6KeyManager contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
@@ -18,7 +22,6 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 
 :::
 
-
 ## Functions
 
 ### constructor
@@ -27,7 +30,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address account)
 ```
 
-Initiates the account with the address of the **LSP0ERC725Account** contract and registers **[LSP6KeyManager InterfaceId](./interface-ids.md)**.
+Link the Key Manager to the address of an **LSP0ERC725Account** contract and register **[LSP6KeyManager InterfaceId](./interface-ids.md)** on deployment.
 
 #### Parameters:
 
@@ -43,7 +46,7 @@ function execute(bytes memory data) public payable returns (bytes memory result)
 
 Executes a payload on the **LSP0ERC725Account** contract.
 
-This payload must represent the encoded-ABI of one of the **LSP0ERC725Account** contract functions, **[setData](./lsp0-erc725-account.md#setdata)** or **[execute](./lsp0-erc725-account.md#execute)**, etc ..
+This payload must represent the abi-encoded function call of one of the **LSP0ERC725Account** contract functions: **[`setData(...)`](./lsp0-erc725-account.md#setdata)**, **[`execute(...)`](./lsp0-erc725-account.md#execute)**, or **[`transferOwnership(...)`](./lsp0-erc725-account.md#transferownership)**.
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
@@ -68,7 +71,7 @@ function getNonce(
 ) public view returns (uint256 nonce)
 ```
 
-Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[executeRelayCall](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
+Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[`executeRelayCall(...)`](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
 
 _More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**_
 
