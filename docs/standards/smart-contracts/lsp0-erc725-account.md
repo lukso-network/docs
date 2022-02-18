@@ -144,10 +144,10 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 
 #### Parameters:
 
-| Name     | Type       | Description                        |
-| :------- | :--------- | :--------------------------------- |
-| `keys`   | bytes32[ ] | The keys which values to retrieve. |
-| `values` | bytes[ ]   | The array of bytes to set.         |
+| Name     | Type       | Description                       |
+| :------- | :--------- | :-------------------------------- |
+| `keys`   | bytes32[ ] | The keys for which to set value.  |
+| `values` | bytes[ ]   | The array of bytes values to set. |
 
 ### getData
 
@@ -155,19 +155,19 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
-Retrieves an array of data for multiple given key.
+Retrieve an array of values for multiple given keys.
 
 #### Parameters:
 
-| Name   | Type       | Description                        |
-| :----- | :--------- | :--------------------------------- |
-| `keys` | bytes32[ ] | The keys which values to retrieve. |
+| Name   | Type       | Description                       |
+| :----- | :--------- | :-------------------------------- |
+| `keys` | bytes32[ ] | The keys to retrieve values from. |
 
 #### Return Values:
 
-| Name     | Type     | Description                                 |
-| :------- | :------- | :------------------------------------------ |
-| `values` | bytes[ ] | Array of the values for the requested keys. |
+| Name     | Type     | Description                                    |
+| :------- | :------- | :--------------------------------------------- |
+| `values` | bytes[ ] | An array of the values for the requested keys. |
 
 ### universalReceiver
 
@@ -180,9 +180,9 @@ function universalReceiver(
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets executed successfully._
 
-If the **LSP0ERC725Account** has an address set under the **[LSP1UniversalReceiverDelegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate)** key, this function will forward the call to the universalReceiverDelegate function at this contract address (expecting this contract to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**).
+In the case where the **LSP0ERC725Account** has an address set under the **[LSP1UniversalReceiverDelegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate)** key, this function will forward the call to the `universalReceiverDelegate(...)` function at this contract address (the contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**).
 
-The **LSP1UniversalReceiverDelegateUP** contract should implement **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)** InterfaceId using ERC165.
+The **LSP1UniversalReceiverDelegateUP** contract should implement and register the **[LSP1UniversalReceiverDelegate interface id](./interface-ids.md)** using ERC165.
 
 #### Parameters:
 
@@ -232,7 +232,7 @@ event OwnershipTransferred(
 )
 ```
 
-_**MUST** be fired when **[transferOwnership](#transferownership)** is successfully executed._
+_**MUST** be fired when **[transferOwnership(...)](#transferownership)** is successfully executed._
 
 #### Values:
 
@@ -250,7 +250,7 @@ event ValueReceived(
 )
 ```
 
-_**MUST** be fired when the **[`receive(...)`](#receive)** is successfully executed._
+_**MUST** be fired when the **[`receive(...)`](#receive)** function is successfully executed._
 
 #### Values:
 
@@ -270,7 +270,7 @@ event Executed(
 )
 ```
 
-_**MUST** be fired when **[execute](#execute)** creates a new call using the `CALL/STATICCALL/DELEGATECALL` operations._
+_**MUST** be fired when **[`execute(...)`](#execute)** creates a new call using the `CALL`, `STATICCALL` or `DELEGATECALL` operation._
 
 #### Values:
 
@@ -291,7 +291,7 @@ event ContractCreated(
 )
 ```
 
-_**MUST** be fired when the **[`execute(...)`](#execute)** creates a new contract using the `CREATE/CREATE2` operations._
+_**MUST** be fired when the **[`execute(...)`](#execute)** creates a new contract using the `CREATE` or `CREATE2` operation._
 
 #### Values:
 
