@@ -182,7 +182,9 @@ function transfer(
 ) public
 ```
 
-Transfers amount of tokens from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver and revert.
+Transfers amount of tokens from `from` to `to`. The `force` parameter MUST be used when transferring tokens to Externally Owned Accounts (EOA) or contracts that do not implement the LSP1 - Universal Receiver Delegate standard.
+
+This function will notify the token sender and receiver by calling the `universalReceiver(...)` function on `from` and `to` address.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred successfully._
 
@@ -219,7 +221,7 @@ function transferBatch(
 ) public
 ```
 
-Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
+Transfers many tokens based on the `from`, `to` and `amount` arrays. If any transfer fails, the whole call will revert.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred successfully._
 
