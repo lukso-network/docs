@@ -19,7 +19,7 @@ The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** s
 
 ## ERC725Y Keys
 
-### SupportedStandards:LSP3UniversalProfile
+### `SupportedStandards:LSP3UniversalProfile`
 
 ```json
 {
@@ -33,7 +33,7 @@ The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** s
 
 This key is used to know if the contract represents a **UniversalProfile**.
 
-### LSP3Profile
+### `LSP3Profile`
 
 ```json
 {
@@ -45,11 +45,15 @@ This key is used to know if the contract represents a **UniversalProfile**.
 }
 ```
 
-The value attached to this key is a JSONURL. It represents a reference to a file stored on a centralised or decentralised storage.
+The value attached to this key is a JSONURL. It represents a reference to a JSON file that describes the **Universal Profile**. The file can be stored on a centralised or decentralised storage.
 
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them.
 
 ### LSP3IssuedAssets
+
+**Universal Profiles** can create digital assets, such as tokens and NFTs. Every assets (tokens and NFTs) created should be registered in the `LSP3IssuedAssets[]` Array.
+
+The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g: an LSP7 token or an LSP8 NFT_), by extracting the `bytes4` ERC165 interface id of the asset contract. This `bytes4` value can be extracted from the value retrieved, starting at the 8th byte (index 7).
 
 ```json
 {
@@ -61,13 +65,21 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 }
 ```
 
-Universal Profiles can create digital assets, such as tokens and NFTs. Every token created should be registered in this array key.
+```json
+{
+  "name": "LSP3IssuedAssetsMap:<address>",
+  "key": "0x83f5e77bfb14241600000000<address>",
+  "keyType": "Mapping",
+  "valueType": "bytes",
+  "valueContent": "Mixed"
+}
+```
 
 ### LSP5ReceivedAssets
 
 :::info
 
-See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page to learn more.
+See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for more information.
 
 :::
 

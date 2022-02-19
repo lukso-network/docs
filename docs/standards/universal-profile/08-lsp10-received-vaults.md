@@ -27,7 +27,7 @@ It is recommended to query the **LSP10Vaults[]** key to check if a smart contrac
 
 This Metadata standard describes two keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) smart contract to keep track of received and owned [LSP9-Vaults](07-lsp9-vault.md).
 
-### LSP10Vaults[]
+### `LSP10Vaults[]`
 
 This key represents a list of all the vaults owned by the contract.
 
@@ -41,7 +41,7 @@ This key represents a list of all the vaults owned by the contract.
 }
 ```
 
-### LSP10VaultsMap
+### `LSP10VaultsMap`
 
 This key represents a map key holding:
 

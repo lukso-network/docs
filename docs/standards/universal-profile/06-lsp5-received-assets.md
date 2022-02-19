@@ -17,7 +17,7 @@ Keeping track of all the tokens that an address owns is currently unfeasible. If
 
 One way to solve this problem is to create generic metadata keys that would register in the smart contract storage a) how many different tokens you own and b) the address of the transferred token contracts.
 
-## What does this standard represent ?
+## What does this standard represent?
 
 :::success Recommendation
 
@@ -27,7 +27,7 @@ It is advised to query the **`LSP5ReceivedAssets[]`** key to verify if a contrac
 
 This Metadata standard describes two keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) smart contract to reference and keep track of received assets.
 
-### LSP5ReceivedAssets[]
+### `LSP5ReceivedAssets[]`
 
 This key represents a list of all tokens and NFTs currently owned by the contract.
 
@@ -41,7 +41,7 @@ This key represents a list of all tokens and NFTs currently owned by the contrac
 }
 ```
 
-### LSP5ReceivedAssetsMap
+### `LSP5ReceivedAssetsMap`
 
 This key represents a map key holding:
 
