@@ -28,9 +28,17 @@ One of the main questions about NFT 2.0 is which characteristics make them the n
 
 **How different are they compared to traditional ERC20 tokens / ERC721 NFTs?**
 
+![LSP7 and LSP7 diagram](./../../../static/img/standards/lsp7-lsp8-diagram.png)
+
 ## How Tokens & NFT 2.0 are different?
 
 ### Unlimited Metadata
+
+:::info
+
+See the [LSP4 - Digital Asset Metadata standard](./02-LSP4-Digital-Asset-Metadata.md) for more information.
+
+:::
 
 The existing tokens and NFTs standards do not offer a standard way to attach information to the contracts themselves. Such information (= metadata) is crucial to make each token / NFT as descriptive and customized as possible.
 
