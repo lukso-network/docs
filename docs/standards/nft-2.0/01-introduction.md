@@ -14,7 +14,7 @@ Check also the [universalprofile.cloud](https://universalprofile.cloud/) website
 
 :::info
 
-The [_`@lukso/lsp-smart-contracts`_](https://github.com/lukso-network/lsp-smart-contracts) repository on GitHub contains [implementations of LSP7 and LSP8 that are backwards compatible with ERC20 and ERC721](<(https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts)>). But it is highly recommended to use the native ones.
+The [_`@lukso/lsp-smart-contracts`_](https://github.com/lukso-network/lsp-smart-contracts) repository on GitHub contains [implementations of LSP7 and LSP8 that are backwards compatible with ERC20 and ERC721](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts). But it is highly recommended to use the native ones.
 
 :::
 
