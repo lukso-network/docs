@@ -55,7 +55,7 @@ See the **[LSP1-UniversalReceiverDelegate](../universal-profile/02-lsp1-universa
 
 LSP1UniversalReceiverDelegate is an **optional extension** to the LSP1 Standard. As well as notifying a contract about the incoming and outgoing transactions via an event, it will delegate the `universalReceiver(...)` functionality to an external contract that can **handle and react to specific calls** with its custom logic.
 
-To enable this optional extension, the address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiver key** shown below. This key-value pair inside the **[ERC725Y key value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the contract implementing the `universalReceiver(...)` function will act as a reference, making this external contract upgradeable if required.
+To enable this optional extension, the address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate key** shown below. This key-value pair inside the **[ERC725Y key value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the contract implementing the `universalReceiver(...)` function will act as a reference, making this external contract upgradeable if required.
 
 ```json
 {
