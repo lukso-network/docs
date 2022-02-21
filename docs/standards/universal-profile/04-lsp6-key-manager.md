@@ -35,7 +35,7 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 ## Types of permissions
 
-Three main types of permissions can be set for addresses interacting with a Universal Profile.
+Five main types of permissions can be set for addresses interacting with a Universal Profile.
 
 - [**Address Permissions**](#address-permissions): defines a set of [**permission values**](#permissions-value) for an `address`.
 
