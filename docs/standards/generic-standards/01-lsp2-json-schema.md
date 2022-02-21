@@ -116,7 +116,11 @@ Below is an example of an **Array** key.
 }
 ```
 
-![LSP2 Array key type](../../../static/img/standards/lsp2-key-type-array.jpeg)
+![LSP2 Array key type (length check)](../../../static/img/standards/lsp2-key-type-array-length-check.jpeg)
+
+---
+
+![LSP2 Array key type (index access)](../../../static/img/standards/lsp2-key-type-array-index-access.jpeg)
 
 ### Mapping
 
