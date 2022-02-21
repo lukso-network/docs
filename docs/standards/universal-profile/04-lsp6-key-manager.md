@@ -43,7 +43,21 @@ Three main types of permissions can be set for addresses interacting with a Univ
 
 - [**Allowed Functions:**](#allowed-functions) defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.
 
-<br/>
+- [**Allowed Standards**](#allowed-standards) defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)).
+
+- [**Allowed ERC725Y Keys: **](#allowed-erc725y-keys) defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata) on the linked ERC725Account.
+
+:::caution
+
+**About Allowed addresses, functions, standards and ERC725Y keys.**
+
+To add or remove entries in these list (of addresses, `bytes4` function selectors, `bytes4` interface ids, or `bytes32` keys), the **whole array** should be abi-encoded again and reset. Each update **overrides the entire previous state**.
+
+This is an **expensive operation**, since the data being set is an abi-encoded array.
+
+The tool [erc725.js](../../tools/erc725js/classes/ERC725.md) can will help for [encoding the keys and values](../../tools/erc725js/classes/ERC725.md#encodedata).
+
+:::
 
 ### Address Permissions
 
