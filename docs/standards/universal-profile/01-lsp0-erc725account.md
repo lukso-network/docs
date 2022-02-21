@@ -45,13 +45,13 @@ The ERC725X standard also enables deploying new smart contracts by providing the
 
 The following types of calls (= operation types) are available:
 
-| Operation number |                     Operation type                     | Description                                                                                                  |
-| :--------------: | :----------------------------------------------------: | :----------------------------------------------------------------------------------------------------------- |
-|        0         |                         `CALL`                         | call another smart contract                                                                                  |
-|        1         |                        `CREATE`                        | create a new smart contract with the associated bytecode passed as `_data`                                   |
-|        2         |  [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014)  | create a new smart contract with a **salt **(for pre-computed contract addresses)                            |
-|        3         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | call another smart contract, running function and modifying the state in the context of the calling contract |
-|        4         | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                  |
+| Operation number |                     Operation type                     | Description                                                                                                                             |
+| :--------------: | :----------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------- |
+|        0         |                         `CALL`                         | call another smart contract                                                                                                             |
+|        1         |                        `CREATE`                        | create a new smart contract with the associated bytecode passed as `_data`                                                              |
+|        2         |  [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014)  | create a new smart contract with a **salt **(for pre-computed contract addresses)                                                       |
+|        3         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | run the function from another contract, but use and update the storage of the current contract (= persist `msg.sender` and `msg.value`) |
+|        4         | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
 
 # ![ERC725X operation type CALL](./../../../static/img/standards/erc725x-operation-type-call.jpeg)
 
