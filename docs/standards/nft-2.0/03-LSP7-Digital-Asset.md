@@ -14,7 +14,7 @@ sidebar_position: 3
 
 :::
 
-LSP7 Digital Asset is a standard that aims to describe a fungible asset. The term _fungible_ means that these assets are mutually interchangeable between each other (*eg: *one token has the same value than an other token).
+LSP7 Digital Asset is a standard that aims to describe a fungible asset. The term _fungible_ means that these assets are mutually interchangeable (*eg: *one token has the same value as another token).
 
 LSP7 Digital Assets are similar in nature to [ERC20](https://eips.ethereum.org/EIPS/eip-20) Tokens.
 
@@ -24,10 +24,11 @@ This standard was based on ERC20 and [ERC777](https://eips.ethereum.org/EIPS/eip
 
 ## Divisible _vs_ Non-Divisible
 
-When creating a LSP7 Digital Asset, it is possible to define the token as **divisible** or **non-divisible**.
-This means that token amounts can have decimals (up to 18), an it is possible to mint or transfer less than 1 token (_eg: 0.3 tokens_).
+When creating an LSP7 Digital Asset, it is possible to define the token as **divisible** or **non-divisible**.
 
-On the contrary, a LSP7 Digital Asset created as **non-divisible** means that one of such token cannot be divided in fractional parts (for instance, you cannot transfer 1/10th of a token).
+When creating a **divisible** token, the token can have decimals (up to 18). The token amounts can then be fractionals, and it is possible to mint or transfer less than one token (_e.g: 0.3 tokens_).
+
+On the contrary, an LSP7 Digital Asset created as **non-divisible** means that one of such tokens cannot be divided into fractional parts. For instance, you cannot transfer 1/10th of a token, or 0.3 tokens, but only a whole token unit.
 
 ## References
 

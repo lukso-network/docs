@@ -5,9 +5,9 @@ sidebar_position: 6
 
 # LSP7DigitalAsset
 
-The **LSP7DigitalAsset** contract represents digital assets, for either fungible or non-fungible tokens where minting and transfering is specified with an amount of tokens. It have some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
+The **LSP7DigitalAsset** contract represents digital assets for either fungible or non-fungible tokens where minting and transferring is specified with an amount of tokens. It has some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
 
-This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to **false** in the constructor, and serves as **Non-Fungible Token Contract** otherwise.
+This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to **false** in the `constructor(...)` and serves as **Non-Fungible Token Contract** otherwise.
 
 :::note
 **_LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
@@ -15,7 +15,7 @@ This contract serves as a **Fungible Token Contract** when `isNFT` bool is set t
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ```
-  
+
 :::
 
 ## Functions
@@ -31,16 +31,16 @@ constructor(
 ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
-Sets the token name, symbol and the **initial owner** of the contract, specify if the contract represent a fungible token or an NFT and registers **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
+Sets the token name, symbol and the **initial owner** of the contract, specify if the contract represents a fungible token or an NFT and registers **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
 
 #### Parameters:
 
-| Name        | Type    | Description                                                           |
-| :---------- | :------ | :-------------------------------------------------------------------- |
-| `name_`     | string  | The name of the token.                                                |
-| `symbol_`   | string  | The symbol of the token.                                              |
-| `newOwner_` | address | The owner of the contract.                                            |
-| `isNFT_`    | bool    | Specify if the contract represent a fungible or a non-fungible token. |
+| Name        | Type    | Description                                                            |
+| :---------- | :------ | :--------------------------------------------------------------------- |
+| `name_`     | string  | The name of the token.                                                 |
+| `symbol_`   | string  | The symbol of the token.                                               |
+| `newOwner_` | address | The owner of the contract.                                             |
+| `isNFT_`    | bool    | Specify if the contract represents a fungible or a non-fungible token. |
 
 ### decimals
 
@@ -155,7 +155,7 @@ function isOperatorFor(
 ) public view returns (uint256 amount)
 ```
 
-Returns amount of tokens `operator` address has access to from `tokenOwner`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is their own operator.
+Returns amount of tokens `operator` address has access to from `tokenOwner`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is its own operator.
 
 #### Parameters:
 
@@ -182,7 +182,9 @@ function transfer(
 ) public
 ```
 
-Transfers amount of tokens from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver and revert.
+Transfers amount of tokens from `from` to `to`. The `force` parameter MUST be set to TRUE when transferring tokens to Externally Owned Accounts (EOA) or contracts that do not implement the [LSP1 - Universal Receiver Delegate](../generic-standards/02-lsp1-universal-receiver.md) standard.
+
+This function will notify the token sender and receiver by calling the `universalReceiver(...)` function on `from` and `to` address.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred successfully._
 
@@ -219,7 +221,7 @@ function transferBatch(
 ) public
 ```
 
-Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
+Transfers many tokens based on the `from`, `to` and `amount` arrays. If any transfer fails, the whole call will revert.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred successfully._
 

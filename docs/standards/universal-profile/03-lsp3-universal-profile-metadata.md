@@ -15,11 +15,11 @@ sidebar_position: 4
 
 The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
-**[LSP3-UniversalProfile-Metadata](#)** is a Metadata standard that aims to define specific keys that desribes an account. A Universal Profile is a combination between **LSP0-ERC725Account**, a smart contract based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys that describe the account.
+**LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific keys to describe a Universal Profile. A Universal Profile combines **LSP0-ERC725Account**, an interface for a smart contract-based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys to describe the profile.
 
 ## ERC725Y Keys
 
-### SupportedStandards:LSP3UniversalProfile
+### `SupportedStandards:LSP3UniversalProfile`
 
 ```json
 {
@@ -31,9 +31,9 @@ The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** s
 }
 ```
 
-This key is used to know whether the account represents a **UniversalProfile** or a normal account.
+This key is used to know if the contract represents a **UniversalProfile**.
 
-### LSP3Profile
+### `LSP3Profile`
 
 ```json
 {
@@ -45,11 +45,15 @@ This key is used to know whether the account represents a **UniversalProfile** o
 }
 ```
 
-The value attached to this key is a JSON URL. It represents a reference to a file, stored on a centralised or decentralised storage.
+The value attached to this key is a JSONURL. It represents a reference to a JSON file that describes the **Universal Profile**. The file can be stored on a centralised or decentralised storage.
 
-Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces, so that they can download and serve the image with the dimensions that is the most suitable, instead of having to re-scale it.
+Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them.
 
 ### LSP3IssuedAssets
+
+**Universal Profiles** can create digital assets, such as tokens and NFTs. Every assets (tokens and NFTs) created should be registered in the `LSP3IssuedAssets[]` Array.
+
+The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g: an LSP7 token or an LSP8 NFT_), by extracting the `bytes4` ERC165 interface id of the asset contract. This `bytes4` value can be extracted from the value retrieved, starting at the 8th byte (index 7).
 
 ```json
 {
@@ -61,9 +65,23 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 }
 ```
 
-Universal Profiles have the capabilities to create digital assets, such as tokens and NFTs. Every token created should be registred in this array key.
+```json
+{
+  "name": "LSP3IssuedAssetsMap:<address>",
+  "key": "0x83f5e77bfb14241600000000<address>",
+  "keyType": "Mapping",
+  "valueType": "bytes",
+  "valueContent": "Mixed"
+}
+```
 
 ### LSP5ReceivedAssets
+
+:::info
+
+See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for more information.
+
+:::
 
 ```json
 {
@@ -75,4 +93,4 @@ Universal Profiles have the capabilities to create digital assets, such as token
 }
 ```
 
-If the UniversalProfile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registred in the storage. To know how many different asset you have you can query this key.
+If the UniversalProfile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.

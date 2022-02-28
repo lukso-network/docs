@@ -5,10 +5,10 @@ sidebar_position: 7
 
 # LSP8IdentifiableDigitalAsset
 
-The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital assets, where tokens to be uniquely traded and given metadata using **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
-Tokens are identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
+The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital assets (NFTs) that can be uniquely traded and given metadata using the **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
+Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
 
-A **bytes32** value is used for tokenId to allow many uses of token identification including numbers, contract addresses, and hashed values (ie. serial numbers).
+A **bytes32** value is used for tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (ie. serial numbers).
 
 :::note
 **_LSP8IdentifiableDigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
@@ -31,7 +31,7 @@ constructor(
 ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
-Sets the token name, symbol and the **initial owner** of the contract and registers **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
+Sets the token name, symbol and the **initial owner** of the contract and registers the **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
 
 #### Parameters:
 
@@ -194,7 +194,7 @@ function isOperatorFor(
 ) public view returns (bool result)
 ```
 
-Returns whether `operator` address is an operator of `tokenId`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is their own operator.
+Returns whether `operator` address is an operator of `tokenId`. Operators can send and burn tokens on behalf of their owners. The tokenOwner is its own operator.
 
 #### Parameters:
 
@@ -258,7 +258,7 @@ function transfer(
 ) public
 ```
 
-Transfers `tokenId` token from `from` to `to`. The `force` parameter will be used when notifying the token sender and receiver.
+Transfers `tokenId` token from `from` to `to`. The `force` parameter MUST be set to TRUE when transferring tokens to Externally Owned Accounts (EOA) or contracts that do not implement the [LSP1 - Universal Receiver Delegate](../generic-standards/02-lsp1-universal-receiver.md) standard.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when token get transferred successfully._
 
@@ -295,7 +295,7 @@ function transferBatch(
 ) public
 ```
 
-Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the call will revert.
+Transfers many tokens based on the list `from`, `to`, `amount`. If any transfer fails, the whole call will revert.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when tokens get transferred successfully._
 
