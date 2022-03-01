@@ -66,6 +66,8 @@ A key in the contract storage can be defined as a JSON object, with properties t
 
 ## Key Types
 
+A Key Type defines, HOW a 32 bytes key is constructed. Meaning how a certain key type is represented in 32 bytes. For example, `Singleton` keys are simple keccak256 hashes of the key name string. Other Key Types are constructed of slices of hashes to group different key name parts or define array element keys, for example.
+
 The LSP2 Standard defines several **key types**:
 
 - `keyType`:
