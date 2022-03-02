@@ -370,7 +370,7 @@ The figure below describes each transaction performed by the lsp-factory.js, and
 
 **You have successfully created your first Universal Profile!**
 
-:arrow_right: Go to the next tutorial to learn **[How to add a profile picture to your Universal Profile + edit your profile infos.](./02-edit-profile.md)**
+:arrow_right: Go to the next tutorial to learn **[How to add a profile picture to your Universal Profile + edit your profile infos.](./edit-profile.md)**
 
 :arrow_down: Look a the full code snippet below to help you debugging.
 

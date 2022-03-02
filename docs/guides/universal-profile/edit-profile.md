@@ -7,7 +7,7 @@ sidebar_position: 2
 
 :::success Requirements
 You will need a Universal Profile that you control to follow this guide. <br/>
-:arrow_left: If you haven't created a Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./01-create-profile.md).
+:arrow_left: If you haven't created a Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./create-profile.md).
 :::
 
 In this guide, we will learn how to **customize our Universal Profile** programmatically in JavaScript. This will include:
@@ -329,7 +329,7 @@ If you haven't done it in the **Setup** section, install our npm package to obta
 npm install @lukso/lsp-smart-contracts --save
 ```
 
-If you have deployed your UP with our [lsp-factory.js](./01-create-profile.md) tool (like in our previous guide), the owner of the UP will point to the Key Manager's address.
+If you have deployed your UP with our [lsp-factory.js](./create-profile.md) tool (like in our previous guide), the owner of the UP will point to the Key Manager's address.
 
 Therefore, you can easily obtain the address of your Key Manager by calling the `owner()` function on your Universal Profile.
 
