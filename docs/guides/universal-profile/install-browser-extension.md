@@ -36,7 +36,9 @@ You can now get started to create and interact with Universal Profile using the 
 
   <TabItem value="Firefox" label="Installation instructions for Firefox">
 
-Installation instructions for Firefox
+1. In the browser URL, type `about:debugging` and **press ENTER**
+2. In the window that appears, click on **"This Firefox"**
+3. In the new window, click on **"Temporarily Load The Add-On"**
 
   </TabItem>
 
