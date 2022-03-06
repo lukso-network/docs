@@ -39,7 +39,7 @@ Calling this function will return **TRUE** if the contract implements this speci
 
 ### Example
 
-A **[Universal Profile](./universal-profile/03-lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/01-lsp0-erc725account.md)** (LSP0). Therefore, the contract **SHOULD\*\* implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+A **[Universal Profile](./universal-profile/03-lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/01-lsp0-erc725account.md)(LSP0). Therefore, the contract SHOULD implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 ```javascript
 const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");
