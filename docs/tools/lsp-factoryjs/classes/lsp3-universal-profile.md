@@ -317,7 +317,7 @@ await lspFactory.LSP3UniversalProfile.getDeployedByteCode(
 LSP3UniversalProfile.uploadProfileData(profileData, uploadOptions?);
 ```
 
-Uploads the [LSP3Profile](../../../standards/universal-profile/lsp3-universal-profile) data to the desired endpoint. This can be an `https` URL either pointing to
+Uploads the [LSP3Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) data to the desired endpoint. This can be an `https` URL either pointing to
 a public, centralized storage endpoint or an IPFS Node / Cluster.
 
 Will upload and process passed images.
@@ -331,7 +331,7 @@ Will upload and process passed images.
 
 `Promise`<`LSP3ProfileDataForEncoding`\>
 
-Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile) data and upload URL.
+Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile-metadata) data and upload URL.
 
 #### Example
 
