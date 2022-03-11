@@ -40,7 +40,7 @@ The following documentation describes the fundamentals of the standards and tech
 
 This section lists and describes the first ten Standards representing the foundation of **LUKSO's ecosystem**.
 
-They introduce new concepts like **blockchain-based accounts** (also known as **UniversalProfiles**), **Digital Assets and NFT 2.0**.
+They introduce new concepts like **blockchain-based accounts** (also known as **Universal Profiles**), **Digital Assets and NFT 2.0**.
 
 :::note
 The standards are **order-independant**, they could be related with a **backward/forward** order.
