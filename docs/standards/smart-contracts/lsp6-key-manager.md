@@ -112,6 +112,30 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 | `data`      | bytes   | The payload to be executed.                       |
 | `signature` | bytes   | The bytes32 ethereum signature.                   |
 
+### isValidSignature
+
+```solidity
+function isValidSignature(
+    bytes32 hash,
+    bytes memory signature
+) public view returns (bytes4 magicValue)
+```
+
+Returns the **[MAGICVALUE](https://eips.ethereum.org/EIPS/eip-1271)** if the address recovered from the signature and data have at least the **[SIGN](../universal-profile/04-lsp6-key-manager.md/#permission-values)** Permission for this KeyManager, **FAILVALUE** otherwise.
+
+#### Parameters:
+
+| Name        | Type    | Description                                           |
+| :---------- | :------ | :---------------------------------------------------- |
+| `hash`      | bytes32 | The hash of the data signed on the behalf of address. |
+| `signature` | bytes   | The Owner's signature(s) of the data.                 |
+
+#### Return Values:
+
+| Name         | Type   | Description                                                            |
+| :----------- | :----- | :--------------------------------------------------------------------- |
+| `magicValue` | bytes4 | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
+
 ## Events
 
 ### Executed
