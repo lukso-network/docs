@@ -7,7 +7,7 @@ sidebar_position: 1
 
 :::success Documentation
 
-The smart contracts are public and open source. They can be found [on Github](https://github.com/lukso-network/lsp-smart-contracts), and in the [NPM package available here](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
+The smart contracts are public and open source. They can be found [on GitHub](https://github.com/lukso-network/lsp-smart-contracts), and in the [NPM package available here](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
 
 :::
 

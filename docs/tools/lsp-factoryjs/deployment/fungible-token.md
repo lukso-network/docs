@@ -7,7 +7,7 @@ title: Fungible Token (LSP7)
 
 [LSP7](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md) is a standard for either fungible or non-fungible tokens based on the ERC20 token standard.
 
-To create a LSP7 Fungible token use `DigitalAsset.deployLSP7DigitalAsset()` method and set `isNFT` parameter to false.
+To create a LSP7 Fungible token use `LSP7DigitalAsset.deploy()` method and set `isNFT` parameter to false.
 
 ```javascript
 import LSP7 from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json';
@@ -19,7 +19,7 @@ const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
 });
 
 
-const myDigitalAsset = await lspFactory.DigitalAsset.deployLSP7DigitalAsset({
+const myDigitalAsset = await lspFactory.LSP7DigitalAsset.deploy({
     name: "My token",
     symbol: "TKN",
     ownerAddress: "0x..", // Account which will own the Token Contract

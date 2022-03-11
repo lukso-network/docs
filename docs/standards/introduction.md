@@ -55,5 +55,5 @@ The standards are **order-independant**, they could be related with a **backward
 
 ## References
 
-- [LUKSO Improvement Proposals - LIPs (Github)](https://github.com/lukso-network/LIPs)
+- [LUKSO Improvement Proposals - LIPs (GitHub)](https://github.com/lukso-network/LIPs)
 - [ERC-725 Alliance website](https://erc725alliance.org/)

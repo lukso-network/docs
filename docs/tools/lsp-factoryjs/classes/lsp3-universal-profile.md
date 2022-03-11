@@ -1,52 +1,63 @@
 ---
-sidebar_position: 1.2
+sidebar_position: 1.1
+title: LSP3UniversalProfile
 ---
+
+# LSP3UniversalProfile
 
 ## deploy
 
-```js
+```javascript
 lspFactory.LSP3UniversalProfile.deploy(
   profileDeploymentOptions,
-  contractDeploymentOptions?);
+  contractDeploymentOptions?
+);
 ```
 
 Deploys and **configures** a [Universal Profile](../../../standards/universal-profile/introduction) to the blockchain. It will deploy the following contracts:
 
 - [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account)
-- [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate)
 - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager)
 
 Then, it will:
 
-- upload to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata.
+- upload metadata to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata.
 - attach the Universal Receiver Delegate to the LSP0 ERC725 Account.
 - set the Key Manager as the owner of the LSP0 ERC725 Account.
 - give all [permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllingAccounts`.
 
-Asynchronous version of `deployReactive`.
+By default a [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate) contract will not be deployed, instead the `Universal Receiver Delegate` contract specified in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) will be attached to the Universal Profile. A custom Universal Receiver Delegate can be optionally deployed by passing an address or custom bytecode inside the [ContractDeploymentOptions object](../deployment/contract-deployment-options).
 
 #### Parameters
 
 1. `profileDeploymentOptions` - `Object`: The options used for deployment.
    - `controllingAccounts` - `string[]`: A list of accounts (public addresses) which will be granted [all permissions](../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions) on the newly created Universal Profile.
    - `lsp3Profile?` - `Object`: If set, the created Universal Profile will be populated with these values.
-     - `name` - `string`: The name of the Universal Profile
-     - `description` - `string`: The description of the Universal Profile
-     - `profileImage?` - `File | ImageBuffer | LSP3ProfileImage[]`
-     - `backgroundImage?` - `File | ImageBuffer | LSP3ProfileImage[]`
+     - `name` - `string`: The name of the Universal Profile.
+     - `description` - `string`: The description of the Universal Profile.
+     - `profileImage?` - `File | ImageBuffer | ImageMetadata[]`
+     - `backgroundImage?` - `File | ImageBuffer | ImageMetadata[]`
      - `tags?` - `string[]`
      - `links?` - `{title: string, url: string}[]`
-2. `contractDeploymentOptions?` - `Object`
+2. `contractDeploymentOptions?` - `Object`: Specify contract deployment details. See [Contract Deployment Options specification](../deployment/contract-deployment-options) for more information.
+   - `version?` - `string`: Sets the global contract version to be deployed.
+   - `deployReactive?` - `boolean`: Whether to return an [RxJS Observable](https://rxjs.dev/guide/observable) of deployment events. Defaults to false.
+   - `ERC725Account?` - `Object`: Specify deployment options for ERC725Account contract. See [Contract Deployment Options specification](../deployment/contract-deployment-options#custom-universal-profile-deployment).
+   - `UniversalReceiverDelegate?` - `Object`: Specify deployment options for UniversalReceiverDelegate contract. See [Contract Deployment Options specification](../deployment/contract-deployment-options#custom-universal-profile-deployment).
+   - `KeyManager?` - `Object`: Specify deployment options for KeyManager contract. See [Contract Deployment Options specification](../deployment/contract-deployment-options#custom-universal-profile-deployment).
+   - `uploadOptions?` - `Object`: Specify how the metadata should be uploaded.
+     - `ipfsClientOptions?` - `Object`: IPFS Client Options as defined by the [ipfs-http-client library](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) used internally.
 
 #### Returns
 
-`Promise`<`Object`\>
+`Promise`<`Object`\> | `Observable`<`Object`\>
 
-Promise with object containing deployed contract details
+Returns a Promise with object containing deployed contract details.
+If `deployReactive` flag is set to `true` in the `ContractDeploymentOptions` object, returns an [RxJS Observable](https://rxjs.dev/guide/observable) of deployment events.
 
 #### Example
 
-```javascript
+```javascript title="Universal Profile Deployment"
 await lspFactory.LSP3UniversalProfile.deploy({
   controllingAccounts: ['0xb74a88C43BCf691bd7A851f6603cb1868f6fc147'],
   lsp3Profile: {
@@ -126,34 +137,15 @@ await lspFactory.LSP3UniversalProfile.deploy({
 */
 ```
 
----
-
-## deployReactive
-
-```js
-lspFactory.LSP3UniversalProfile.deployReactive(
-  profileDeploymentOptions,
-  contractDeploymentOptions?);
-```
-
-Please check the [asynchronous version](./LSP3UniversalProfile#deploy).
-
-#### Parameters
-
-Same as for the [asynchronous version](./LSP3UniversalProfile#deploy).
-
-#### Returns
-
-`Observable`<`LSP3AccountDeploymentEvent` \| `DeploymentEventTransaction`\>
-
-[RxJS](https://rxjs.dev/) observable which emits events as UniversalProfile contracts are deployed.
-
-#### Example
-
-```javascript
-await lspFactory.LSP3UniversalProfile.deployReactive({
-  controllingAccounts: ['0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db'],
-}).subscribe({
+```javascript title="Reactive Universal Profile Deployment"
+await lspFactory.LSP3UniversalProfile.deploy(
+  {
+    controllingAccounts: ['0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db'],
+  },
+  {
+    deployReactive: true,
+  }
+).subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);
   },
@@ -289,78 +281,6 @@ Deployment Complete
 
 ---
 
-## deployBaseContracts
-
-```js
-lspFactory.LSP3UniversalProfile.deployBaseContracts();
-```
-
-Deploys [Universal Profile](../../../standards/universal-profile/introduction) base contracts:
-
-- [LSP0 ERC725 Account](../../../standards/smart-contracts/lsp0-erc725-account)
-- [LSP1 Universal Receiver Delegate](../../../standards/smart-contracts/lsp1-universal-receiver-delegate-up)
-
-#### Returns
-
-`Promise`<`DeployedContracts`\>
-
-Promise with object containing base contract details.
-
-#### Example
-
-```javascript
-await lspFactory.LSP3UniversalProfile.deployBaseContracts();
-
-/**
-{
-  UniversalReceiverDelegate: {
-    address: '0xd87F7B3B115dd23e8226d8394996Ba4341D602dB',
-    receipt: {
-      to: null,
-      from: '0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db',
-      contractAddress: '0xd87F7B3B115dd23e8226d8394996Ba4341D602dB',
-      transactionIndex: 1,
-      gasUsed: [BigNumber],
-      logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-      blockHash: '0x80b0811c3d57039ca6626a195ea3610de05b13ca0d639e9eed25dda984bd82b3',
-      transactionHash: '0xadbbd68ff72846c5331475ce8b1f114a8f418e7ab0922bc3b76fed0b966f7c81',
-      logs: [],
-      blockNumber: 12028282,
-      confirmations: 1,
-      cumulativeGasUsed: [BigNumber],
-      status: 1,
-      type: 0,
-      byzantium: true,
-      events: []
-    }
-  },
-  ERC725Account: {
-    address: '0xA59C5b8Dd18063C977d8B060FC689dd637142DCf',
-    receipt: {
-      to: null,
-      from: '0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db',
-      contractAddress: '0xA59C5b8Dd18063C977d8B060FC689dd637142DCf',
-      transactionIndex: 0,
-      gasUsed: [BigNumber],
-      logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-      blockHash: '0x80b0811c3d57039ca6626a195ea3610de05b13ca0d639e9eed25dda984bd82b3',
-      transactionHash: '0xc1b6b6b71e051ed43d25c5237d873bae11149f49dc926c55cd2741279c16833a',
-      logs: [],
-      blockNumber: 12028282,
-      confirmations: 1,
-      cumulativeGasUsed: [BigNumber],
-      status: 1,
-      type: 0,
-      byzantium: true,
-      events: []
-    }
-  }
-}
-*/
-```
-
----
-
 ## getDeployedByteCode
 
 ```js
@@ -383,7 +303,7 @@ Bytecode deployed at provided contract address.
 
 ```javascript
 await lspFactory.LSP3UniversalProfile.getDeployedByteCode(
-  '0xd92C7cA9c493aFC0DF51cE480ec7bB7DC8394549',
+  '0xd92C7cA9c493aFC0DF51cE480ec7bB7DC8394549'
 );
 
 // 0x363d3d373d3d3d363d736533158b042775e2fdfef3ca1a782efdbb8eb9b15af43d82803e903d91602b57fd5bf3
