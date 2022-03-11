@@ -13,7 +13,7 @@ Other than most EVM chains, you're encouraged on LUKSO to mainly use [Universal 
 This little tutorial will show you how to deploy and interact with a UniversalProfile.
 You can:
 
-- run this tutorial in the console of <https://universalprofile.cloud>, which has all necessary contract objects available
+- run this tutorial in the console of <https://universalprofile.cloud>, which has all necessary contract objects available (under the `contracts` object)
 - clone the [`up-sample-react-app`](https://github.com/Hugoo/up-sample-react-app) repo and work in it
 - write your own JS/TS scripts
 - check the [demo app](https://hugoo.github.io/up-sample-react-app/)
@@ -54,7 +54,7 @@ if (!web3.eth.accounts.wallet.length) {
 if (!myKeyAddress) return;
 ```
 
-Next we deploy your UP smart contracts using the [lsp-factory.js NPM package](./lsp-factoryjs/introduction/getting-started):
+Next we deploy your UP smart contracts using the [`@lukso/lsp-factory.js`](./lsp-factoryjs/introduction/getting-started) NPM package:
 
 ```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
@@ -87,7 +87,7 @@ const myUPAddress = deployedContracts.ERC725Account.address;
 // 0xB46BBD556589565730C06bB4B7454B1596c9E70A
 ```
 
-We can read the UP smart contract ERC725Y keys/values with the [erc725.js NPM package](./erc725js/getting-started):
+We can read the UP smart contract ERC725Y keys/values with the [`@erc725/erc725.js`](./erc725js/getting-started) NPM package:
 
 ```js title="Read Universal Profile ERC725 keys/values with erc725.js"
 import { ERC725 } from '@erc725/erc725.js';
@@ -153,7 +153,7 @@ console.log(data);
 }
 ```
 
-To interact directly with any smart contract through your UP, load the ABIs from [`@lukso/lsp-smart-contracts NPM package`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
+To interact directly with any smart contract through your UP, load the ABIs from [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) NPM package.
 
 ```js title="Interact directly through your UP"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -204,9 +204,9 @@ myKeyManager.methods.execute(abi).send({
 
 ## 🛠 Tools
 
-- [erc725.js](./erc725js/getting-started)
-- [lsp-factory.js](./lsp-factoryjs/introduction/getting-started)
-- [universalprofile-smart-contracts](https://github.com/lukso-network/lsp-universalprofile-smart-contracts)
+- [erc725.js](./erc725js/getting-started) ([GitHub](https://github.com/ERC725Alliance/erc725.js), [NPM](https://www.npmjs.com/package/@erc725/erc725.js))
+- [lsp-factory.js](./lsp-factoryjs/introduction/getting-started) ([GitHub](https://github.com/lukso-network/tools-lsp-factory), [NPM](https://www.npmjs.com/package/@lukso/lsp-factory.js))
+- [lsp-smart-contracts](../standards/smart-contracts/01-introduction.md) ([GitHub](https://github.com/lukso-network/lsp-smart-contracts), [NPM](https://www.npmjs.com/package/@lukso/lsp-smart-contracts))
 
 ## 🔌 Services
 
