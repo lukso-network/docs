@@ -6,7 +6,7 @@ sidebar_position: 2
 # Create a Universal Profile
 
 :::note Notice
-The UP Browser Extenstion is currently in the **development alpha** version.
+The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
 :::
 
 **step 1:** Launch the extension and click **Create Profile**
