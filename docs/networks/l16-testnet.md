@@ -73,7 +73,7 @@ make reset
 
 You can see you node in the following page:
 
-1. [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network) or [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
+1. [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
 2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)
 
 ## How to become A Validator
