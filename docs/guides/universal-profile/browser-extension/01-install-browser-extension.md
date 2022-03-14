@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 # Install the UP Browser Extension
 
 :::note Notice
-The UP Browser Extenstion is currently in the **development alpha** version.
+The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
 :::
 
 In this guide, you will learn how to download + install the **Universal Profile browser extension** on Chrome, Edge, Opera or Brave.
