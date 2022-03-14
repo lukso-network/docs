@@ -1,12 +1,12 @@
 ---
-sidebar_label: 'Interact with dApp'
+sidebar_label: 'Interact with a dApp'
 sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Interact with dApp
+# Interact with a dApp
 
 :::note Notice
 The UP Browser Extenstion is currently in the **development alpha** version.
@@ -159,24 +159,7 @@ You can also add a `chainId` parameter i.e. `chaidId: '0x16'` to make sure the t
   </TabItem>
 </Tabs>
 
-### Events
-
-#### Listening for accounts changed event
-
-<Tabs>
-  <TabItem value="web3" label="web3">
-
-  ```js
-  window.ethereum.on('accountsChanged', (addresses: string[]) => {
-    const newAddress = addresses[0];
-    ...
-  }
-  ```
-
-  </TabItem>
-</Tabs>
-
-### Extra: Interacting with the extension using web3 and universal-profiles-smart-contract abi
+### Interact with your universal profile
 
 ```shell
   npm install @lukso/lsp-smart-contracts
@@ -208,6 +191,24 @@ await contract.methods
   })
 );
 ```
+
+### Events
+
+#### Listening for accounts changed event
+
+<Tabs>
+  <TabItem value="web3" label="web3">
+
+  ```js
+  window.ethereum.on('accountsChanged', (addresses: string[]) => {
+    const newAddress = addresses[0];
+    ...
+  }
+  ```
+
+  </TabItem>
+</Tabs>
+
 
 ### Sample dApp
 
