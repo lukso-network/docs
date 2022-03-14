@@ -4,9 +4,19 @@ sidebar_position: 2
 
 # L16 Public Testnet
 
-# How To Add A Validator Node In LUKSO Beta Testnet
 
-# Installing dependencies
+| Setting                       | Value                                      |
+| ----------------------------- | ------------------------------------------ |
+| Network Name                  | L16 BETA                                   |
+| New RPC URL                   | https://rpc.beta.l16.lukso.network         |
+| Chain ID                      | 19051978 (0x122B5CA)                       |
+| Currency Symbol               | LYXt                                       |
+| Execution Block Explorer URL | [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network)  or [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev) |
+| Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)  |
+
+## Running the nodes
+
+### Installing dependencies
 
 Prepare your environment. You need:
 
@@ -17,7 +27,7 @@ Prepare your environment. You need:
 5. Make
 6. [jq](https://stedolan.github.io/jq/)
 
-### Example script for installing docker on Debian:
+#### Example script for installing docker on Debian:
 
 ```bash
 # install dependencies
@@ -35,7 +45,7 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 ```
 
-# Installing the nodes
+### Installing the nodes
 
 ```bash
 mkdir lukso-l16-testnet && cd lukso-l16-testnet
@@ -44,7 +54,7 @@ curl https://raw.githubusercontent.com/lukso-network/network-configs/l16-dev/l16
 
 This will download `docker-compose.yaml`, `Makefile`, `configs` and `.env` files.
 
-# Running A Non Validating Node
+### Starting the nodes
 
 ```bash
 # Start your nodes
@@ -62,16 +72,16 @@ make stop
 make reset
 ```
 
-## Check the network status
+### Check the network status
 
 You can see you node in the following page:
 
 1. [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network) or[https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
 2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) 
 
-# How to become A Validator
+## How to become A Validator
 
-## Request some test tokens: LYXt
+### Request some test tokens: LYXt
 
 Make sure to Install [Metamask](https://metamask.io/).
 
@@ -105,7 +115,7 @@ Paste the copied address to the box and press “Request 35 LYX”
 
 Wait for 1 minute and check balance in your Metamask. You should received 35 LYX.
 
-## Create Wallet and Deposit data
+### Create Wallet and Deposit data
 
 First generate a validator mnemonic seed phrase. **This mnemonic seed generates your validator private key, store it in a safe location.**
 
@@ -131,9 +141,9 @@ make create-deposit
 
 You will find `deposit-data.json` file inside your current directory.
 
-## Submitting your deposit transaction
+### Submitting your deposit transaction
 
-### Get your address and private key from MetaMask
+#### Get your address and private key from MetaMask
 
 Open Metamask and click on the 3 dot menu on the right side and select `Account details` 
 
@@ -143,7 +153,7 @@ Click on Export Private Key and copy it into the clipboard
 
 ![Screenshot_2022-03-10_at_18.55.58.png](./static/l16/Screenshot_2022-03-10_at_18.55.58.png)
 
-### Update secrects.env and submit transactions
+#### Update secrects.env and submit transactions
 
 Update `secrects.env` using the public address and private key from Metamask
 
@@ -163,7 +173,7 @@ make submit-deposit
 
 You will need to wait for 8 hours to activate your validator
 
-## Run the validator client
+### Run the validator client
 
 Once your validator is activated you spin up a validator client. **Make sure your *consensus* and *execution* clients are running (running `make start`).**
 
