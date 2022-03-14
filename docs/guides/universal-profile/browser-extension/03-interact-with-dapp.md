@@ -175,7 +175,7 @@ const contract = new web3.eth.Contract(
   })
 ```
 
-- setData example:
+`setData` example:
 
 ```js
 await contract.methods
