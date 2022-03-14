@@ -64,7 +64,7 @@ This can happen by setting a **[LSP1-UniversalReceiverDelegate](./02-lsp1-univer
 
 ### Flow
 
-The vault could be used to hold assets but also as mentioned before, could be used to restrict third parties to only operate on the assets and metadata of the vault and not the UniversalProfile. This way the metadata and the assets owned by the UniversalProfile are completely safe if the third party tried to act maliciously.
+The vault could be used to hold assets but also as mentioned before, could be used to restrict third parties to only operate on the assets and metadata of the vault and not the Universal Profile. This way the metadata and the assets owned by the Universal Profile are completely safe if the third party tried to act maliciously.
 
 **1.** The **protocol** should be allowed to only talk to the vault A1 through [AllowedAddresses permission](./lsp6-key-manager#address-permissions).
 
