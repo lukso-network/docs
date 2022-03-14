@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Install the UP Browser Extension
 
-:::note Notice
+:::danger
 The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
 :::
 
