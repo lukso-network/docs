@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-:::
+:::warning
 The L15 Testnet was superseeded by [L16 Public Testnet](l16-testnet.md), please check these L16 docs
 :::
 
