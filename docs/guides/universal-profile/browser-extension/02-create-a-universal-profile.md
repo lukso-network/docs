@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Create a Universal Profile
 
-:::note Notice
+:::danger
 The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
 :::
 
