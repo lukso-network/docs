@@ -56,7 +56,7 @@ module.exports = {
           target: '_blank',
         },
         {
-          href: 'https://bit.ly/LUKSOWhitepaper',
+          href: 'https://lukso.network/assets/LUKSO_Whitepaper.pdf',
           label: 'Whitepaper',
           position: 'right',
         },
