@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+:::The L15 Testnet was superseeded by [L16 Public Testnet](l16-testnet.md), please check these L16 docs:::
+
 # L15 Public Testnet
 
 This testnet is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
@@ -22,11 +24,6 @@ And if you need it, [here is a tutorial on how to do it](https://metamask.zendes
 
 ## How to participate
 
-:::warning Currently the L15-Testnet is not running.
-
-We are currently working on a fix and as soon as the fix is thoroughly tested, we will start it again.
-
-:::
 
 <!-- Since we are resetting the network, please make sure to run `$ lukso reset all` and re-install the `lukso` binary:
 
