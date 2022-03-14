@@ -85,7 +85,6 @@ Please note that currently we do not attach your node to the [pandora](https://s
 
 ::: -->
 
-For all options and Windows please look at our [LUKSO CLI documentation](lukso-cli.md).
 
 <div style={{textAlign: 'center'}}>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G2DSFqYwteI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
