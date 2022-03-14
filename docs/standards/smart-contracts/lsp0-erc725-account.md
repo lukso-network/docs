@@ -206,7 +206,9 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Returns **TRUE** whether the signature provided is valid for the provided data.
+Returns the return value of the **`isValidSignature(...)`** function on the owner address if it's a contract that supports [ERC1271 InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard. If **ERC1271** is not supported, the function will return the **[FAILVALUE](https://eips.ethereum.org/EIPS/eip-1271)**.  
+If the owner is an EOA, it returns **[MAGICVALUE](https://eips.ethereum.org/EIPS/eip-1271)** if the signature provided is valid for the provided data, **FAILVALUE** otherwise.
+
 
 #### Parameters:
 

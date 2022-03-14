@@ -31,7 +31,7 @@ The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** s
 }
 ```
 
-This key is used to know if the contract represents a **UniversalProfile**.
+This key is used to know if the contract represents a **Universal Profile**.
 
 ### `LSP3Profile`
 
@@ -93,4 +93,4 @@ See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for
 }
 ```
 
-If the UniversalProfile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.
+If the Universal Profile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.

@@ -254,7 +254,7 @@ Click on the toggles below to **learn more about the features of each permission
             <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000001</code>
         </p>
         <p>The <code>CHANGEOWNER</code> permission enables to change the owner of the linked ERC725Account.</p>
-        <p>Using this permission, you can easily upgrade the <code>KeyManager</code> attached to the Account by transferring ownership to a new <code>KeyManagerV2</code>.</p>
+        <p>Using this permission, you can easily upgrade the <code>Key Manager</code> attached to the Account by transferring ownership to a new <code>Key ManagerV2</code>.</p>
 </details>
 
 <details>
