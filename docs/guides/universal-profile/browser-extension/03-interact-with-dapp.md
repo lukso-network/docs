@@ -13,7 +13,7 @@ The UP Browser Extenstion is currently in the **development alpha** version.
 :::
 
 :::danger
-metamask (or any other ethereum provider) cannot be running at the same time.
+MetaMask (or any other ethereum provider) cannot be running at the same time. You need to deactive the MetaMask extension for the UP Extension to work.
 :::
 The extension injects an 'ethereum' object into a web page as `window.ethereum`. That object is used to interact with the extension.
 
