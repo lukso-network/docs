@@ -16,7 +16,7 @@ function Index() {
           <h1>Welcome to the LUKSO Documentation</h1>
         </div>
         <div className={styles.cardContainer}>
-          <Link style={{ textDecoration: 'none' }} to="./networks/l15-testnet">
+          <Link style={{ textDecoration: 'none' }} to="./networks/l16-testnet">
             <div className={styles.card}>
               <h3>🧬 Networks</h3>
               <p>Learn how to participate in LUKSO's test networks.</p>
