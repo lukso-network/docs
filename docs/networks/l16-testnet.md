@@ -10,7 +10,7 @@ sidebar_position: 2
 | New RPC URL                  | https://rpc.beta.l16.lukso.network                                                                                                                                        |
 | Chain ID                     | 19051978 (0x122B5CA)                                                                                                                                                      |
 | Currency Symbol              | LYXt                                                                                                                                                                      |
-| Execution Block Explorer URL | [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network)<br/>[https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev) |
+| Execution Block Explorer URL | [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev) |
 | Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)                                                                          |
 
 ## Running the nodes
@@ -73,7 +73,7 @@ make reset
 
 You can see you node in the following page:
 
-1. [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network) or [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
+1. [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
 2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)
 
 ## How to become A Validator
