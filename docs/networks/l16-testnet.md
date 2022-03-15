@@ -51,6 +51,16 @@ curl https://raw.githubusercontent.com/lukso-network/network-configs/l16-dev/l16
 
 This will download `docker-compose.yaml`, `Makefile`, `configs` and `.env` files.
 
+### Change node name (Optional)
+1. open docker file using any text editor. for example vim
+```bash
+vim .env
+```
+2. Change `NODE_NAME` to your expected string
+
+# change 
+```
+
 ### Starting the nodes
 
 ```bash
@@ -92,7 +102,7 @@ To add the L16 Beta Network to [MetaMask](https://metamask.io/) you can follow t
 | New RPC URL        | [https://rpc.beta.l16.lukso.network](https://rpc.beta.l16.lukso.network)                              |
 | Chain ID           | 19051978 (0x122B5CA)                                                                                  |
 | Currency Symbol    | LYXt                                                                                                  |
-| Block Explorer URL | [http://execution.explorer.beta.l16.lukso.network](http://execution.explorer.beta.l16.lukso.network/) |
+| Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)      |
 
 Then select `L16 Beta` from the dropdown
 
