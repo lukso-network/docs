@@ -4,14 +4,14 @@ sidebar_position: 2
 
 # L16 Public Testnet
 
-| Setting                      | Value                                                                                                                                                                     |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Network Name                 | L16 Beta                                                                                                                                                                  |
-| New RPC URL                  | https://rpc.beta.l16.lukso.network                                                                                                                                        |
-| Chain ID                     | 19051978 (0x122B5CA)                                                                                                                                                      |
-| Currency Symbol              | LYXt                                                                                                                                                                      |
-| Execution Block Explorer URL | [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev) |
-| Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)                                                                          |
+| Setting                      | Value                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------------------------ |
+| Network Name                 | L16 Beta                                                                                         |
+| New RPC URL                  | https://rpc.beta.l16.lukso.network                                                               |
+| Chain ID                     | 19051978 (0x122B5CA)                                                                             |
+| Currency Symbol              | LYXt                                                                                             |
+| Execution Block Explorer URL | [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev)                             |
+| Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) |
 
 ## Running the nodes
 
@@ -51,6 +51,16 @@ curl https://raw.githubusercontent.com/lukso-network/network-configs/l16-dev/l16
 
 This will download `docker-compose.yaml`, `Makefile`, `configs` and `.env` files.
 
+### Change node name (Optional)
+
+1. open docker file using any text editor. for example vim
+
+```bash
+vim .env
+```
+
+2. Change `NODE_NAME` to your expected string
+
 ### Starting the nodes
 
 ```bash
@@ -86,13 +96,13 @@ To add the L16 Beta Network to [MetaMask](https://metamask.io/) you can follow t
 
 **Use the following parameters:**
 
-| Setting            | Value                                                                                                 |
-| ------------------ | ----------------------------------------------------------------------------------------------------- |
-| Network Name       | L16 Beta                                                                                              |
-| New RPC URL        | [https://rpc.beta.l16.lukso.network](https://rpc.beta.l16.lukso.network)                              |
-| Chain ID           | 19051978 (0x122B5CA)                                                                                  |
-| Currency Symbol    | LYXt                                                                                                  |
-| Block Explorer URL | [http://execution.explorer.beta.l16.lukso.network](http://execution.explorer.beta.l16.lukso.network/) |
+| Setting            | Value                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------ |
+| Network Name       | L16 Beta                                                                                         |
+| New RPC URL        | [https://rpc.beta.l16.lukso.network](https://rpc.beta.l16.lukso.network)                         |
+| Chain ID           | 19051978 (0x122B5CA)                                                                             |
+| Currency Symbol    | LYXt                                                                                             |
+| Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) |
 
 Then select `L16 Beta` from the dropdown
 
@@ -148,7 +158,7 @@ Click on Export Private Key and copy it into the clipboard
 
 ![Screenshot_2022-03-10_at_18.55.58.png](./static/l16/Screenshot_2022-03-10_at_18.55.58.png)
 
-#### Update secrects.env and submit transactions
+#### Update secrets.env and submit transactions
 
 Update `secrets.env` using the public address and private key from MetaMask
 
@@ -166,7 +176,7 @@ make submit-deposit
 # wait 8h till validator is activated
 ```
 
-You will need to wait for 8 hours to activate your validator
+You will need to wait for 8 hours to activate your validator.
 
 ### Run the validator client
 
@@ -180,4 +190,70 @@ make log_validator
 
 # You can stop the validator using, this will also stop all other nodes
 make stop
+```
+
+## Troubleshooting in LUKSO Beta Testnet
+
+### 1. Permission denied while spinning up the node
+
+**Context**: While running `make start` you are getting permission related issues. You can have log like this:
+
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied "docker kill" requires at least 1 argument. See 'docker kill --hel
+```
+
+**Proposed Solution:** try running make command as `super user`. For example: `sudo make start`
+
+### 2. Consensus (prysm) not syncing and Execution (geth) stops syncing after a few blocks
+
+**Context**: You found your consensus client has no peer and execution engine stops syncing after a few blocks
+**Proposed Solution:**
+
+1. Open `.env` file using any text editor. For `vim` the command will be `vim .env`
+2. Change `PRYSM_BOOTSTRAP_NODE` to this
+
+```
+PRYSM_BOOTSTRAP_NODE=enr:-MK4QACsMyCBqoH7E2xTFMyVKd0wbaOEoff6q_N1Vx_HVZuVYBk1JoB5Ava9h6eBlS5XzxM5LHFI1BG1IchMdI6JMhWGAX8tHtE1h2F0dG5ldHOIAAAAAAAAAACEZXRoMpC3QoawYgAAcf__________gmlkgnY0gmlwhCJbPjCJc2VjcDI1NmsxoQJp3RTwCXObnrJNuiJlLaM4LlhYOaWXhtj4Hz3PW9sfgYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A
+```
+
+3. Restart the node using: `sudo make stop && sudo make start`
+
+### 3. For Ubuntu 20.04 LTS you get unmarshal related issue
+
+**Context:** Check your execution log by `sudo make log_execution`. If you find this:
+
+```
+log_execution: err="peer connected on snap without compatible eth support" log_consensus: level=error msg="Could not connect to powchain endpoint: could not dial eth1 nodes: json: cannot unmarshal string into Go struct field SyncProgress.CurrentBlock of type uint64" prefix=powchain
+```
+
+**Proposed solution**:
+
+```sh
+# stop docker containser
+sudo make stop
+# reset data directory
+sudo make reset
+# remove previous images
+docker system prune --all --force --volumes
+# delete lukso testnet directory
+cd .. && rm -rf ./lukso-l16-testnet
+```
+
+Then follow the doc and re-run everything from the start.
+
+## FAQ
+
+### 1. What ports are needed for LUKSO Beta testnet?
+
+The following ports and protocols are needed to be opened for the outside world.
+
+```
+tcp:30303
+tcp:8545
+tcp:8598
+tcp:8080
+tcp:3500
+tcp:4000
+tcp:13000
+udp:12000
 ```
