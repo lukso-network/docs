@@ -51,15 +51,15 @@ curl https://raw.githubusercontent.com/lukso-network/network-configs/l16-dev/l16
 
 This will download `docker-compose.yaml`, `Makefile`, `configs` and `.env` files.
 
-### Change node name (Optional)
+### Change node name (optional)
 
-1. open docker file using any text editor. for example vim
+To update your node name, you need to edit the `NODE_NAME` variable in the `.env` file. You can edit it with vim:
 
 ```bash
 vim .env
 ```
 
-2. Change `NODE_NAME` to your expected string
+If your node is already running, you will need to restart it to apply the changes.
 
 ### Starting the nodes
 
@@ -86,7 +86,7 @@ You can see you node in the following page:
 1. [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
 2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)
 
-## How to become A Validator
+## How to become a validator
 
 ### Request some test tokens: LYXt
 
@@ -114,13 +114,13 @@ Copy address to the clipboard using the box icon
 
 Go to [https://faucet.beta.l16.lukso.network](https://faucet.beta.l16.lukso.network)
 
-Paste the copied address to the box and press “Request 35 LYX”
+Paste the copied address to the box and press "Request 35 LYX"
 
 ![Screenshot 2022-03-10 at 7.50.10 PM.png](./static/l16/Screenshot_2022-03-10_at_7.50.10_PM.png)
 
 Wait for 1 minute and check balance in your MetaMask. You should have received 35 LYX.
 
-### Create Wallet and Deposit data
+### Create wallet and deposit data
 
 First generate a validator mnemonic seed phrase. **This mnemonic seed generates your validator private key, store it in a safe location.**
 
@@ -134,9 +134,9 @@ Generate a wallet using the following command. It will ask for the number of val
 
 ```bash
 make create-wallet
-
-# a directory named keystore will be created
 ```
+
+A directory named keystore will be created.
 
 Generate a `deposit-data.json` using the following command. It will ask for the number of validators, validator mnemonic and withdrawal mnemonic.
 
@@ -150,7 +150,7 @@ You will find `deposit-data.json` file inside your current directory.
 
 #### Get your address and private key from MetaMask
 
-Open MetaMask and click on the 3 dot menu on the right side and select `Account details`
+Open MetaMask and click on the 3 dots menu on the right side and select `Account details`
 
 ![Screenshot_2022-03-10_at_18.55.45.png](./static/l16/Screenshot_2022-03-10_at_18.55.45.png)
 
