@@ -121,7 +121,7 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Returns the **[MAGICVALUE](https://eips.ethereum.org/EIPS/eip-1271)** if the address recovered from the signature and data have at least the **[SIGN](../universal-profile/04-lsp6-key-manager.md/#permission-values)** Permission for this Key Manager, **FAILVALUE** otherwise.
+Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/04-lsp6-key-manager.md/#permission-values)** Permission for this Key Manager, otherwise it will return the failure value.
 
 #### Parameters:
 

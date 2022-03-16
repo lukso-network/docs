@@ -37,9 +37,9 @@ Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](.
 
 #### Parameters:
 
-| Name       | Type    | Description                |
-| :--------- | :------ | :------------------------- |
-| `newOwner` | address | The owner of the contract. |
+| Name       | Type    | Description                                      |
+| :--------- | :------ | :----------------------------------------------- |
+| `newOwner` | address | The address to set as the owner of the contract. |
 
 ### owner
 
@@ -67,9 +67,9 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 
 #### Parameters:
 
-| Name       | Type    | Description                                   |
-| :--------- | :------ | :-------------------------------------------- |
-| `newOwner` | address | The address of the new owner of the contract. |
+| Name       | Type    | Description                                      |
+| :--------- | :------ | :----------------------------------------------- |
+| `newOwner` | address | The address to set as the owner of the contract. |
 
 ### receive
 
@@ -77,7 +77,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 receive() external payable
 ```
 
-Executed on plain value transfers.
+Executed on value transfers.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
@@ -94,7 +94,7 @@ function execute(
 
 Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
 
-The **operationType** can execute the following operations:
+The **operationType** can be the following:
 
 - `0` for `CALL`
 - `1` for `CREATE`
@@ -114,7 +114,7 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 
 | Name            | Type    | Description                                                                                                              |
 | :-------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
-| `operationType` | uint256 | The type of message call to execute.                                                                                     |
+| `operationType` | uint256 | The type of operation to execute.                                                                                        |
 | `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2).                            |
 | `value`         | uint256 | The desired value to transfer.                                                                                           |
 | `data`          | bytes   | The calldata (abi-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
@@ -134,7 +134,7 @@ function setData(
 ) public
 ```
 
-Sets an array of data as **bytes** in the account storage for multiple keys.
+Sets array of data at multiple keys in the account storage.
 
 _Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
 
@@ -146,8 +146,8 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 
 | Name     | Type       | Description                       |
 | :------- | :--------- | :-------------------------------- |
-| `keys`   | bytes32[ ] | The keys for which to set value.  |
-| `values` | bytes[ ]   | The array of bytes values to set. |
+| `keys`   | bytes32[ ] | The keys for which to set data.   |
+| `values` | bytes[ ]   | The array of data to set.         |
 
 ### getData
 
@@ -155,19 +155,19 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
-Retrieve an array of values for multiple given keys.
+Retrieve an array of data for multiple given keys.
 
 #### Parameters:
 
 | Name   | Type       | Description                       |
 | :----- | :--------- | :-------------------------------- |
-| `keys` | bytes32[ ] | The keys to retrieve values from. |
+| `keys` | bytes32[ ] | The keys to retrieve data from.   |
 
 #### Return Values:
 
 | Name     | Type     | Description                                    |
 | :------- | :------- | :--------------------------------------------- |
-| `values` | bytes[ ] | An array of the values for the requested keys. |
+| `values` | bytes[ ] | An array of the data for the requested keys. |
 
 ### universalReceiver
 
@@ -178,12 +178,10 @@ function universalReceiver(
 ) public returns (bytes memory result)
 ```
 
+Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) Key.   
+The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using ERC165.
+
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets executed successfully._
-
-In the case where the **LSP0ERC725Account** has an address set under the **[LSP1UniversalReceiverDelegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate)** key, this function will forward the call to the `universalReceiverDelegate(...)` function at this contract address (the contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**).
-
-The **LSP1UniversalReceiverDelegateUP** contract should implement and register the **[LSP1UniversalReceiverDelegate interface id](./interface-ids.md)** using ERC165.
-
 #### Parameters:
 
 | Name     | Type    | Description                    |
@@ -206,8 +204,7 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Returns the return value of the **`isValidSignature(...)`** function on the owner address if it's a contract that supports [ERC1271 InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard. If **ERC1271** is not supported, the function will return the **[FAILVALUE](https://eips.ethereum.org/EIPS/eip-1271)**.  
-If the owner is an EOA, it returns **[MAGICVALUE](https://eips.ethereum.org/EIPS/eip-1271)** if the signature provided is valid for the provided data, **FAILVALUE** otherwise.
+Checks if a signature was signed by the `owner` of the contract, according to [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, if it supports [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271), otherwise it will return the failure value.
 
 
 #### Parameters:
@@ -281,7 +278,7 @@ _**MUST** be fired when **[`execute(...)`](#execute)** creates a new call using 
 | `operation` | uint256 | The operation executed.                        |
 | `to`        | address | The smart contract or address interacted with. |
 | `value`     | uint256 | The value transferred.                         |
-| `data`      | bytes   | The Call data.                                 |
+| `data`      | bytes   | The call data.                                 |
 
 ### ContractCreated
 
@@ -318,8 +315,8 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** is successfully execu
 
 | Name    | Type    | Description                       |
 | :------ | :------ | :-------------------------------- |
-| `key`   | bytes32 | The key which value is retrieved. |
-| `value` | bytes   | The data of bytes set.            |
+| `key`   | bytes32 | The key which value is set.       |
+| `value` | bytes   | The data set.                     |
 
 ### UniversalReceiver
 
