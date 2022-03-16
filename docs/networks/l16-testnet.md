@@ -13,6 +13,24 @@ sidebar_position: 2
 | Execution Block Explorer URL | [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev)                             |
 | Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) |
 
+
+## System Requirements
+### Minimum System Requirements
+|       Settings      |      Value      |
+| ------------------- | --------------- |
+| Operating System    | Linux or Darwin |
+| Number of CPU cores | 2               |
+| RAM                 | 16 GB           |
+| SSD                 | 100 GB          |
+
+### Recommended System Requirements
+|       Settings      |      Value      |
+| ------------------- | --------------- |
+| Operating System    | Linux or Darwin |
+| Number of CPU cores | 8               |
+| RAM                 | 32 GB           |
+| SSD                 | 512 GB          |
+
 ## Running the nodes
 
 ### Installing dependencies
