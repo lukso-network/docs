@@ -169,6 +169,52 @@ Retrieve an array of data for multiple given keys.
 | :------- | :------- | :--------------------------------------------- |
 | `values` | bytes[ ] | An array of the data for the requested keys. |
 
+
+### setData
+
+```solidity
+function setData(
+    bytes32 keys,
+    bytes memory values
+) public
+```
+
+Set data as **bytes** in the vault storage for a single key.
+
+_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
+
+:::note
+**The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.**
+:::
+
+#### Parameters:
+
+| Name    | Type    | Description                       |
+| :------ | :------ | :-------------------------------- |
+| `key`   | bytes32 | The key for which to set value.   |
+| `value` | bytes   | The bytes value to set.           |
+
+### getData
+
+```solidity
+function getData(bytes32 key) public view returns (bytes memory value)
+```
+
+Retrieve the data set for the given key.
+
+#### Parameters:
+
+| Name  | Type    | Description                    |
+| :---- | :------ | :------------------------------ |
+| `key` | bytes32 | The key to retrieve value from. |
+
+#### Return Values:
+
+| Name    | Type  | Description                      |
+| :------ | :---- | :------------------------------- |
+| `value` | bytes | The value for the requested key. |
+
+
 ### universalReceiver
 
 ```solidity

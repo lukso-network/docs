@@ -16,6 +16,10 @@ As this contract uses **[ERC725Y General Key/Value Store](https://eips.ethereum.
 function getData(bytes32[] memory keys) public view returns (bytes[] memory);
 
 function setData(bytes32[] memory keys, bytes[] memory values) public;
+
+function getData(bytes32 key) public view returns (bytes memory);
+
+function setData(bytes32 key, bytes memory value) public;
 ```
 
 :::
