@@ -174,8 +174,8 @@ Retrieve an array of values for multiple given keys.
 
 ```solidity
 function setData(
-    bytes32 keys,
-    bytes values
+    bytes32 key,
+    bytes value
 ) public
 ```
 
