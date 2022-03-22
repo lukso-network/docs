@@ -8,7 +8,7 @@ sidebar_position: 3
 This testnet is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
 
 :::note
-The L15 Testnet was superseeded by [L16 Public Testnet](l16-testnet.md), please check these L16 docs
+The L15 Testnet was superseeded by [L16 Public Testnet](l16-testnet.md), please check these L16 docs.
 :::
 
 To add the L15 Network to MetaMask, these are the settings:

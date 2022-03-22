@@ -13,6 +13,24 @@ sidebar_position: 2
 | Execution Block Explorer URL | [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev)                             |
 | Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) |
 
+
+## System Requirements
+### Minimum System Requirements
+|       Settings      |      Value      |
+| ------------------- | --------------- |
+| Operating System    | Linux or Darwin |
+| Number of CPU cores | 2               |
+| RAM                 | 16 GB           |
+| SSD                 | 100 GB          |
+
+### Recommended System Requirements
+|       Settings      |      Value      |
+| ------------------- | --------------- |
+| Operating System    | Linux or Darwin |
+| Number of CPU cores | 8               |
+| RAM                 | 32 GB           |
+| SSD                 | 512 GB          |
+
 ## Running the nodes
 
 ### Installing dependencies
@@ -106,17 +124,17 @@ To add the L16 Beta Network to [MetaMask](https://metamask.io/) you can follow t
 
 Then select `L16 Beta` from the dropdown
 
-![Screenshot_2022-03-10_at_18.44.25.png](./static/l16/Screenshot_2022-03-10_at_18.44.25.png)
+![metamask_dropdown.png](./static/l16/metamask_dropdown.png)
 
 Copy address to the clipboard using the box icon
 
-![Screenshot_2022-03-10_at_18.55.26.png](./static/l16/Screenshot_2022-03-10_at_18.55.26.png)
+![account_address.png](./static/l16/account_address.png)
 
 Go to [https://faucet.beta.l16.lukso.network](https://faucet.beta.l16.lukso.network)
 
 Paste the copied address to the box and press "Request 35 LYX"
 
-![Screenshot 2022-03-10 at 7.50.10 PM.png](./static/l16/Screenshot_2022-03-10_at_7.50.10_PM.png)
+![faucet.png](./static/l16/faucet.png)
 
 Wait for 1 minute and check balance in your MetaMask. You should have received 35 LYX.
 
@@ -152,18 +170,18 @@ You will find `deposit-data.json` file inside your current directory.
 
 Open MetaMask and click on the 3 dots menu on the right side and select `Account details`
 
-![Screenshot_2022-03-10_at_18.55.45.png](./static/l16/Screenshot_2022-03-10_at_18.55.45.png)
+![account_details_selection.png](./static/l16/account_details_selection.png)
 
 Click on Export Private Key and copy it into the clipboard
 
-![Screenshot_2022-03-10_at_18.55.58.png](./static/l16/Screenshot_2022-03-10_at_18.55.58.png)
+![export_private_key.png](./static/l16/export_private_key.png)
 
 #### Update secrets.env and submit transactions
 
 Update `secrets.env` using the public address and private key from MetaMask
 
 ```bash
-ETH1_FROM_ADDR=YOUR_PUBLIC_KEY
+ETH1_FROM_ADDR=YOUR_WALLET_ADDRESS
 ETH1_FROM_PRIV=YOUR_PRIVATE_KEY
 ```
 
