@@ -34,9 +34,9 @@ If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contra
 
 #### Parameters:
 
-| Name       | Type    | Description                      |
-| :--------- | :------ | :------------------------------- |
-| `newOwner` | address | The owner of the vault contract. |
+| Name       | Type    | Description                                      |
+| :--------- | :------ | :----------------------------------------------- |
+| `newOwner` | address | The address to set as the owner of the contract. |
 
 ### owner
 
@@ -66,9 +66,9 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 
 #### Parameters:
 
-| Name       | Type    | Description                                |
-| :--------- | :------ | :----------------------------------------- |
-| `newOwner` | address | The address of the new owner of the vault. |
+| Name       | Type    | Description                                      |
+| :--------- | :------ | :----------------------------------------------- |
+| `newOwner` | address | The address to set as the owner of the contract. |
 
 ### receive
 
@@ -76,7 +76,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 receive() external payable
 ```
 
-Executed on plain value transfers.
+Executed on value transfers.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
@@ -93,7 +93,7 @@ function execute(
 
 Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
 
-The **operationType** can execute the following operations:
+The **operationType** can be the following:
 
 - `0` for `CALL`
 - `1` for `CREATE`
@@ -124,6 +124,7 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 | :------- | :---- | :-------------------------------------------------------------------------------------------------- |
 | `result` | bytes | The returned data of the called function, or the address of the contract created (operation 1 & 2). |
 
+
 ### setData
 
 ```solidity
@@ -133,7 +134,52 @@ function setData(
 ) public
 ```
 
-Set an array of data as **bytes** in the vault storage for multiple keys.
+Sets array of data at multiple keys in the account storage.
+
+_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
+
+:::note
+**The `setData(...)` function can only be called by the current owner of the contract.**
+:::
+
+#### Parameters:
+
+| Name     | Type       | Description                       |
+| :------- | :--------- | :-------------------------------- |
+| `keys`   | bytes32[ ] | The keys for which to set data.   |
+| `values` | bytes[ ]   | The array of data to set.         |
+
+### getData
+
+```solidity
+function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
+```
+
+Retrieve an array of data for multiple given keys.
+
+#### Parameters:
+
+| Name   | Type       | Description                       |
+| :----- | :--------- | :-------------------------------- |
+| `keys` | bytes32[ ] | The keys to retrieve data from.   |
+
+#### Return Values:
+
+| Name     | Type     | Description                                    |
+| :------- | :------- | :--------------------------------------------- |
+| `values` | bytes[ ] | An array of the data for the requested keys. |
+
+
+### setData
+
+```solidity
+function setData(
+    bytes32 keys,
+    bytes memory value
+) public
+```
+
+Set data as **bytes** in the vault storage for a single key.
 
 _Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
 
@@ -143,30 +189,30 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 
 #### Parameters:
 
-| Name     | Type       | Description                       |
-| :------- | :--------- | :-------------------------------- |
-| `keys`   | bytes32[ ] | The keys for which to set value.  |
-| `values` | bytes[ ]   | The array of bytes values to set. |
+| Name    | Type    | Description                       |
+| :------ | :------ | :-------------------------------- |
+| `key`   | bytes32 | The key for which to set data.    |
+| `value` | bytes   | The data to set as bytes.         |
 
 ### getData
 
 ```solidity
-function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
+function getData(bytes32 key) public view returns (bytes memory value)
 ```
 
-Retrieve an array of values for multiple given keys.
+Retrieve the data set for the given key.
 
 #### Parameters:
 
-| Name   | Type       | Description                       |
-| :----- | :--------- | :-------------------------------- |
-| `keys` | bytes32[ ] | The keys to retrieve values from. |
+| Name  | Type    | Description                    |
+| :---- | :------ | :----------------------------- |
+| `key` | bytes32 | The key to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type     | Description                                    |
-| :------- | :------- | :--------------------------------------------- |
-| `values` | bytes[ ] | An array of the values for the requested keys. |
+| Name    | Type  | Description                      |
+| :------ | :---- | :------------------------------- |
+| `value` | bytes | The data for the requested key.  |
 
 ### universalReceiver
 
@@ -177,11 +223,10 @@ function universalReceiver(
 ) public returns (bytes memory result)
 ```
 
-_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function get executed successfully._
+Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) Key.   
+The contract being called is expected to be an **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using ERC165.
 
-In the case where the **LSP9Vault** has an address set under the **`LSP1UniversalReceiverDelegate`** key, this function will forward the call to the `universalReceiverDelegate(...)` function at this contract address (the contract being called is expected to be an \***\*[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**).
-
-The **LSP1UniversalReceiverDelegateVault** contract should implement and register the **[LSP1UniversalReceiverDelegate interface id](./interface-ids.md)** using **ERC165**.
+_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets executed successfully._
 
 #### Parameters:
 
