@@ -191,8 +191,8 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 
 | Name    | Type    | Description                       |
 | :------ | :------ | :-------------------------------- |
-| `key`   | bytes32 | The key for which to set value.   |
-| `value` | bytes   | The bytes value to set.           |
+| `key`   | bytes32 | The key for which to set data.    |
+| `value` | bytes   | The data to set as bytes.         |
 
 ### getData
 
@@ -205,14 +205,14 @@ Retrieve the data set for the given key.
 #### Parameters:
 
 | Name  | Type    | Description                    |
-| :---- | :------ | :------------------------------ |
-| `key` | bytes32 | The key to retrieve value from. |
+| :---- | :------ | :----------------------------- |
+| `key` | bytes32 | The key to retrieve data from. |
 
 #### Return Values:
 
 | Name    | Type  | Description                      |
 | :------ | :---- | :------------------------------- |
-| `value` | bytes | The value for the requested key. |
+| `value` | bytes | The data for the requested key.  |
 
 
 ### universalReceiver
