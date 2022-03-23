@@ -179,12 +179,12 @@ function setData(
 ) public
 ```
 
-Set data as **bytes** in the vault storage for a single key.
+Set data as **bytes** in the account storage for a single key.
 
 _Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
 
 :::note
-**The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.**
+**The `setData(...)` function can only be called by the current owner of the contract.**
 :::
 
 #### Parameters:
