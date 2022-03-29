@@ -128,7 +128,7 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 
 ```solidity
 function setData(
-    bytes32 keys,
+    bytes32 key,
     bytes memory value
 ) public
 ```
