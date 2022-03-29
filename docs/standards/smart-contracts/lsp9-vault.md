@@ -123,53 +123,6 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 | Name     | Type  | Description                                                                                         |
 | :------- | :---- | :-------------------------------------------------------------------------------------------------- |
 | `result` | bytes | The returned data of the called function, or the address of the contract created (operation 1 & 2). |
-
-
-### setData
-
-```solidity
-function setData(
-    bytes32[] memory keys,
-    bytes[] memory values
-) public
-```
-
-Sets array of data at multiple keys in the account storage.
-
-_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
-
-:::note
-**The `setData(...)` function can only be called by the current owner of the contract.**
-:::
-
-#### Parameters:
-
-| Name     | Type       | Description                       |
-| :------- | :--------- | :-------------------------------- |
-| `keys`   | bytes32[ ] | The keys for which to set data.   |
-| `values` | bytes[ ]   | The array of data to set.         |
-
-### getData
-
-```solidity
-function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
-```
-
-Retrieve an array of data for multiple given keys.
-
-#### Parameters:
-
-| Name   | Type       | Description                       |
-| :----- | :--------- | :-------------------------------- |
-| `keys` | bytes32[ ] | The keys to retrieve data from.   |
-
-#### Return Values:
-
-| Name     | Type     | Description                                    |
-| :------- | :------- | :--------------------------------------------- |
-| `values` | bytes[ ] | An array of the data for the requested keys. |
-
-
 ### setData
 
 ```solidity
@@ -213,6 +166,50 @@ Retrieve the data set for the given key.
 | Name    | Type  | Description                      |
 | :------ | :---- | :------------------------------- |
 | `value` | bytes | The data for the requested key.  |
+
+### setData (Array)
+
+```solidity
+function setData(
+    bytes32[] memory keys,
+    bytes[] memory values
+) public
+```
+
+Sets array of data at multiple keys in the vault storage.
+
+_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
+
+:::note
+**The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.**
+:::
+
+#### Parameters:
+
+| Name     | Type       | Description                       |
+| :------- | :--------- | :-------------------------------- |
+| `keys`   | bytes32[ ] | The keys for which to set data.   |
+| `values` | bytes[ ]   | The array of data to set.         |
+
+### getData (Array)
+
+```solidity
+function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
+```
+
+Retrieve an array of data for multiple given keys.
+
+#### Parameters:
+
+| Name   | Type       | Description                       |
+| :----- | :--------- | :-------------------------------- |
+| `keys` | bytes32[ ] | The keys to retrieve data from.   |
+
+#### Return Values:
+
+| Name     | Type     | Description                                    |
+| :------- | :------- | :--------------------------------------------- |
+| `values` | bytes[ ] | An array of the data for the requested keys. |
 
 ### universalReceiver
 
