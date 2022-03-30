@@ -21,7 +21,7 @@ Deploys a mintable [LSP7 Digital Asset](../../../standards/nft-2.0/LSP7-Digital-
 1. `digitalAssetDeploymentOptions` - `Object`: The [constructor parameters](../../../../../standards/smart-contracts/lsp7-digital-asset#constructor) used when deploying.
    - `name` - `string`: The name of the token.
    - `symbol` - `string`: The symbol of the token.
-   - `ownerAddress` - `string` : The owner of the contract.
+   - `controllerAddress` - `string` : The owner of the contract.
    - `isNFT` - `boolean`: Specify if the contract represent a fungible or a non-fungible token.
    - `digitalAssetMetadata`?: `LSP4MetadataBeforeUpload | string`: [LSP4 Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) to be attached to the smart contract. Can be an encoded hex string, ipfs url or metadata object as defined in [LSP4DigitalAssetMetadata.uploadMetadata](./lsp4-digital-asset-metadata#uploadMetadata).
    - `creators?` `string[]`: Array of ERC725Account `address`es that defines the creators of the digital asset. Used to set the [LSP4Creators[]](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4creators) key on the contract.
@@ -50,7 +50,7 @@ If `deployReactive` flag is set to `true` in the `ContractDeploymentOptions` obj
 await lspFactory.LSP7DigitalAsset.deploy({
   name: 'My token',
   symbol: 'TKN',
-  ownerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
+  controllerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
   isNFT: true,
 });
 
@@ -86,7 +86,7 @@ await lspFactory.LSP7DigitalAsset.deploy(
   {
     name: 'My token',
     symbol: 'TKN',
-    ownerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
+    controllerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
     isNFT: true,
   },
   {

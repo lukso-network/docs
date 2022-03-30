@@ -22,16 +22,16 @@ Deploys and **configures** a [Universal Profile](../../../standards/universal-pr
 Then, it will:
 
 - upload metadata to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata.
-- attach the Universal Receiver Delegate to the LSP0 ERC725 Account.
+- attach the Universal Receiver Delegate to the ERC725 Account contract.
 - set the Key Manager as the owner of the LSP0 ERC725 Account.
-- give all [permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllingAccounts`.
+- give all [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllerAddresses` except `DELEGATECALL`.
 
-By default a [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate) contract will not be deployed, instead the `Universal Receiver Delegate` contract specified in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) will be attached to the Universal Profile. A custom Universal Receiver Delegate can be optionally deployed by passing an address or custom bytecode inside the [ContractDeploymentOptions object](../deployment/contract-deployment-options).
+By default the [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate) contract specified in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) will be attached to the Universal Profile. A custom Universal Receiver Delegate can be optionally deployed by passing custom bytecode inside the ContractDeploymentOptions object. [Read more](../deployment/universal-profile#configuration).
 
 #### Parameters
 
-1. `profileDeploymentOptions` - `Object`: The options used for deployment.
-   - `controllingAccounts` - `string[]`: A list of accounts (public addresses) which will be granted [all permissions](../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions) on the newly created Universal Profile.
+1. `profileDeploymentOptions` - `Object`: The options used for profile deployment.
+   - `controllerAddresses` - `string[]`: A list of accounts (public addresses) which will be granted [all permissions](../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions) on the newly created Universal Profile.
    - `lsp3Profile?` - `Object`: If set, the created Universal Profile will be populated with these values.
      - `name` - `string`: The name of the Universal Profile.
      - `description` - `string`: The description of the Universal Profile.
@@ -39,21 +39,13 @@ By default a [LSP1 Universal Receiver Delegate](../../../standards/universal-pro
      - `backgroundImage?` - `File | ImageBuffer | ImageMetadata[]`
      - `tags?` - `string[]`
      - `links?` - `{title: string, url: string}[]`
-2. `contractDeploymentOptions?` - `Object`: Specify contract deployment details. See [Contract Deployment Options specification](../deployment/contract-deployment-options) for more information.
-   - `version?` - `string`: Sets the global contract version to be deployed.
-   - `deployReactive?` - `boolean`: Whether to return an [RxJS Observable](https://rxjs.dev/guide/observable) of deployment events. Defaults to false.
-   - `ERC725Account?` - `Object`: Specify deployment options for ERC725Account contract. See [Contract Deployment Options specification](../deployment/contract-deployment-options#custom-universal-profile-deployment).
-   - `UniversalReceiverDelegate?` - `Object`: Specify deployment options for UniversalReceiverDelegate contract. See [Contract Deployment Options specification](../deployment/contract-deployment-options#custom-universal-profile-deployment).
-   - `KeyManager?` - `Object`: Specify deployment options for KeyManager contract. See [Contract Deployment Options specification](../deployment/contract-deployment-options#custom-universal-profile-deployment).
-   - `uploadOptions?` - `Object`: Specify how the metadata should be uploaded.
-     - `ipfsClientOptions?` - `Object`: IPFS Client Options as defined by the [ipfs-http-client library](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) used internally.
+2. `contractDeploymentOptions?` - `Object`: Specify contract deployment details. See [configuration specification](../deployment/universal-profile#configuration) for more information.
 
 #### Returns
 
 `Promise`<`Object`\> | `Observable`<`Object`\>
 
-Returns a Promise with object containing deployed contract details.
-If `deployReactive` flag is set to `true` in the `ContractDeploymentOptions` object, returns an [RxJS Observable](https://rxjs.dev/guide/observable) of deployment events.
+Returns a Promise with object containing deployed contract details by default. If `deployReactive` flag is set to `true` in the `ContractDeploymentOptions` object, returns an [RxJS Observable](https://rxjs.dev/guide/observable) of deployment events.
 
 #### Example
 
@@ -277,36 +269,6 @@ await lspFactory.LSP3UniversalProfile.deploy(
 }
 Deployment Complete
 */
-```
-
----
-
-## getDeployedByteCode
-
-```js
-lspFactory.LSP3UniversalProfile.getDeployedByteCode(contractAddress);
-```
-
-Fetches bytecode deployed at provided contract address.
-
-#### Parameters
-
-1. `contractAddress` - `string`: The address of the contract.
-
-#### Returns
-
-`Promise`<`string`\>
-
-Bytecode deployed at provided contract address.
-
-#### Example
-
-```javascript
-await lspFactory.LSP3UniversalProfile.getDeployedByteCode(
-  '0xd92C7cA9c493aFC0DF51cE480ec7bB7DC8394549'
-);
-
-// 0x363d3d373d3d3d363d736533158b042775e2fdfef3ca1a782efdbb8eb9b15af43d82803e903d91602b57fd5bf3
 ```
 
 ---
