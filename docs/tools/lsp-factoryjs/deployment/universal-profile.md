@@ -71,7 +71,10 @@ await lspFactory.LSP3UniversalProfile.deploy({
       name: 'My Universal Profile',
       description: 'My cool Universal Profile',
       tags: ['public-profile'],
-      links: [{ title: 'My Website', url: 'www.my-website.com' }],
+      links: [{
+        title: 'My Website',
+        url: 'www.my-website.com'
+      }],
     }
   });
 };
@@ -143,7 +146,7 @@ await lspFactory.LSP3UniversalProfile.deploy({
 Javascript offers a `File` object for easy handling of files inside a browser. These can be passed to `profileImage` and `backgroundImage` fields to allow easy drag and drop of images from a user interface.
 
 :::caution
-Javascript's `File` object is only available client-side. If using LSPFactory in a Node environment Images should be uploaded as an [ImageBuffer](./universal-profile#using-image-buffer)
+Javascript's `File` object is only available when using javascript in the browser. If using LSPFactory in a Node environment Images should be uploaded as an [ImageBuffer](./universal-profile#using-image-buffer)
 :::
 
 ```javascript
@@ -438,4 +441,4 @@ universalProfileDeploymentObservable.subscribe({
 
 The function defined in `next` will be called whenever a new deployment event is created. The function defined in `complete` will be called once after deployment is finished.
 
-Reactive Deployment may be useful for certain front end behaviours to give better feedback to users when they trigger a UP deployment from a user interface. For example you may want to implement a loading bar to tell users how deployment is progressing, or display details and addresses of the contracts as they are deployed
+Reactive Deployment may be useful for certain front end behaviours to give better feedback to users when they trigger a Universal Profile deployment from a user interface. For example you may want to implement a loading bar to tell users how deployment is progressing, or display details and addresses of the contracts as they are deployed
