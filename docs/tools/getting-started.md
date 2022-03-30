@@ -54,7 +54,7 @@ if (!web3.eth.accounts.wallet.length) {
 if (!myKeyAddress) return;
 ```
 
-Next we deploy your UP smart contracts using the [`@lukso/lsp-factory.js`](./lsp-factoryjs/introduction/getting-started) NPM package:
+Next we deploy your UP smart contracts using the [`@lukso/lsp-factory.js`](./lsp-factoryjs/getting-started) NPM package:
 
 ```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
@@ -205,7 +205,7 @@ myKeyManager.methods.execute(abi).send({
 ## 🛠 Tools
 
 - [erc725.js](./erc725js/getting-started) ([GitHub](https://github.com/ERC725Alliance/erc725.js), [NPM](https://www.npmjs.com/package/@erc725/erc725.js))
-- [lsp-factory.js](./lsp-factoryjs/introduction/getting-started) ([GitHub](https://github.com/lukso-network/tools-lsp-factory), [NPM](https://www.npmjs.com/package/@lukso/lsp-factory.js))
+- [lsp-factory.js](./lsp-factoryjs/getting-started) ([GitHub](https://github.com/lukso-network/tools-lsp-factory), [NPM](https://www.npmjs.com/package/@lukso/lsp-factory.js))
 - [lsp-smart-contracts](../standards/smart-contracts/01-introduction.md) ([GitHub](https://github.com/lukso-network/lsp-smart-contracts), [NPM](https://www.npmjs.com/package/@lukso/lsp-smart-contracts))
 
 ## 🔌 Services

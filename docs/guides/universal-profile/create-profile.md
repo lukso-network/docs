@@ -53,7 +53,7 @@ For more details, see [LSP6 - Key Manager Standard](../../standards/universal-pr
 
 ![Universal Profile: overview of deployed contracts](./img/universal-profile-overview.jpeg)
 
-Our tool [lsp-factory.js](../../tools/lsp-factoryjs/introduction/getting-started.md) will help us to deploy + setup easily a Universal Profile, with just few lines of code.
+Our tool [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) will help us to deploy + setup easily a Universal Profile, with just few lines of code.
 
 Under the hood, lsp-factory.js performs the following:
 
@@ -64,7 +64,7 @@ Under the hood, lsp-factory.js performs the following:
 2. link the URD with the deployed UP account + set its permissions.
 3. set all the permissions for an EOA address, so that it can acts as the UP admin.
 
-> :arrow_right: &nbsp; [See our lsp-factory.js docs for more details](../../tools/lsp-factoryjs/introduction/getting-started)
+> :arrow_right: &nbsp; [See our lsp-factory.js docs for more details](../../tools/lsp-factoryjs/getting-started)
 
 :::info Learn More
 The figure above is our default setup for Universal Profile. However, _using a Key Manager as an owner is optional_.<br/>
