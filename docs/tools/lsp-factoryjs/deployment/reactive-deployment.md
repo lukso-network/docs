@@ -16,16 +16,16 @@ Use the `deployReactive` flag and use `subscribe()` to listen for deployment eve
 ```typescript
 let deploymentEvents = [];
 
-lspFactory.LSP3UniversalProfile.deploy({...}, {
-  deployReactive: true
-}).subscribe({
-  next: (deploymentEvent) => {
-    deploymentEvents.push(deploymentEvent);
-  },
-  complete: () => {
-    console.log(deploymentEvents);
-  },
-});
+lspFactory.LSP3UniversalProfile
+  .deploy({...}, { deployReactive: true })
+  .subscribe({
+    next: (deploymentEvent) => {
+      deploymentEvents.push(deploymentEvent);
+    },
+    complete: () => {
+      console.log(deploymentEvents);
+    },
+  });
 ```
 
 The function defined in `next` will be called whenever a new deployment event is created. In this case we are simply pushing every deployment event into a `deploymentEvents` array.
@@ -63,16 +63,16 @@ For reactive deployment of LSP7 and LSP8 Digital Assets pass the `deployReactive
 // Reactive deplyoyment of LSP7
 let deploymentEvents = [];
 
-lspFactory.LSP7DigitalAsset.deploy({...}, {
-  deployReactive: true
-}).subscribe({
-  next: (deploymentEvent) => {
-    deploymentEvents.push(deploymentEvent);
-  },
-  complete: () => {
-    console.log(deploymentEvents);
-  },
-});
+lspFactory.LSP7DigitalAsset
+  .deploy({...}, { deployReactive: true })
+  .subscribe({
+    next: (deploymentEvent) => {
+      deploymentEvents.push(deploymentEvent);
+    },
+    complete: () => {
+      console.log(deploymentEvents);
+    },
+  });
 ```
 
 or
@@ -80,16 +80,16 @@ or
 ```typescript title="LSP8 Deployment"
 let deploymentEvents = [];
 
-lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
-  deployReactive: true
-}).subscribe({
-  next: (deploymentEvent) => {
-    deploymentEvents.push(deploymentEvent);
-  },
-  complete: () => {
-    console.log(deploymentEvents);
-  },
-});
+lspFactory.LSP8IdentifiableDigitalAsset
+  .deploy({...}, { deployReactive: true })
+  .subscribe({
+    next: (deploymentEvent) => {
+      deploymentEvents.push(deploymentEvent);
+    },
+    complete: () => {
+      console.log(deploymentEvents);
+    },
+  });
 ```
 
 ```typescript title="LSP7 Deployment Events"

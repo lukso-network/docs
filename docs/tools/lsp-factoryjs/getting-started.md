@@ -69,17 +69,21 @@ const myUniversalProfileData = {
     },
   ],
   tags: ['Fashion', 'Design'],
-  links: [{ title: 'My Website', url: 'www.my-website.com' }],
+  links: [
+    {
+      title: 'My Website',
+      url: 'www.my-website.com',
+    },
+  ],
 };
 ```
 
-When deploying your UP your LSP3 data will be automatically uploaded to IPFS.
+When deploying your Universal Profile your LSP3 data will be automatically uploaded to IPFS.
 
 If you already have LSP3 data uploaded then simply pass an IPFS URL:
 
 ```javascript
-const myUniversalProfileData =
-  'ipfs://QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy';
+const myUniversalProfileData = 'ipfs://QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy';
 ```
 
 To create a 'faceless' Universal Profile, omit the `lsp3Profile` value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP.
