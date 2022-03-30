@@ -105,7 +105,7 @@ module.exports = {
           items: [
             { label: 'LUKSO', href: 'https://lukso.network/' },
             { label: 'Team', href: 'https://lukso.network/about' },
-            { label: 'Careers', href: 'https://lukso.network/jobs' },
+            { label: 'Careers', href: 'https://jobs.lukso.network/jobs' },
             {
               label: 'Privacy Policy',
               href: 'https://lukso.network/privacy',
