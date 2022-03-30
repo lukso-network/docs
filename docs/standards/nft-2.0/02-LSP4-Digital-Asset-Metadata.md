@@ -78,7 +78,7 @@ The value attached to this key represents the symbol of the digital asset.
 }
 ```
 
-The value attached to this key is a JSONURL. It represents a reference to a JSON file describing the **Digital Asset**. The file can be stored on a centralised or decentralised storage.
+The value attached to this key is a [`JSONURL`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#jsonurl). It represents a reference to a [JSON file describing the **Digital Asset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata). The file can be stored on a centralised or decentralised storage.
 
 ### LSP4Creators
 
