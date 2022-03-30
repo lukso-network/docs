@@ -59,7 +59,7 @@ await lspFactory.LSP3UniversalProfile.deploy({
 ```
 
 :::info Info
-Profile Metadata can be passed as either an object containing the matadata you want to upload, or an IPFS url of your previously uploaded metadata.
+Profile Metadata can be passed as either an object containing the metadata you want to upload, or an IPFS url of your previously uploaded metadata.
 :::
 
 If an object is passed, LSPFactory will process and upload your metadata to IPFS. See [UploadOptions](././universal-profile#uploadoptions-1) for details on how to specify a custom IPFS gateway.
@@ -219,7 +219,7 @@ To upload using a custom IPFS gateway pass the `uploadOptions` object. This is t
 
 ```javascript title="calling uploadProfileData on LSPFactory instance"
 const uploadResult = await myLSPFactory.LSP3UniversalProfile.uploadProfileData(
-  myUniversalProfileData
+  myUniversalProfileData,
 );
 
 const myUniversalProfileMetadataJSON = uploadResult.profile;
@@ -238,7 +238,7 @@ const myUniversalProfileMetadataUrl = uploadResult.url;
 
 ```javascript title="static uploadProfileData call"
 const uploadResult = await LSP3UniversalProfile.uploadProfileData(
-  myUniversalProfileData
+  myUniversalProfileData,
 );
 
 const myUniversalProfileMetadataJSON = uploadResult.profile;
@@ -264,7 +264,7 @@ lspFactory.LSP3UniversalProfile.deploy({...}, {
     ERC725Account: {
         version: '0.4.1',
     },
-    UniversalRecieverDelegate: {
+    UniversalReceiverDelegate: {
         baseContract: '0x...'
     },
     KeyManager: {
@@ -301,11 +301,11 @@ When using proxy deployment, LSPFactory will check that there is bytecode deploy
 
 #### Universal Receiver Delegate proxy deployment
 
-The `UniversalReceiverDelegate` is a logic contract which writes to the Universal Profile when it recieves some asset. This is not specific to any particular Universal Profile so the same `UniversalReceiverDelegate` contract can be used for multiple different Universal Profile deployments.
+The `UniversalReceiverDelegate` is a logic contract which writes to the Universal Profile when it receives some asset. This is not specific to any particular Universal Profile so the same `UniversalReceiverDelegate` contract can be used for multiple different Universal Profile deployments.
 
 By default LSPFactory will use the latest available version of `UniversalReceiverDelegate` version stored in the [version file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json). This address is used directly on the Universal Profile and is given the `SETDATA` LSP6 permission. This means that no `UniversalReceiverDelegate` contract needs to be deployed when deploying a Universal Profile which further saves on the gas cost of Universal Profile deployment.
 
-To specify that your Universal Profile should use proxy deployment when deplying the `UniversalReceiverDelegate` contract, set `deployProxy` to `true`.
+To specify that your Universal Profile should use proxy deployment when deploying the `UniversalReceiverDelegate` contract, set `deployProxy` to `true`.
 
 ```javascript
 lspFactory.LSP3UniversalProfile.deploy({...}, {
