@@ -62,7 +62,7 @@ await lspFactory.LSP3UniversalProfile.deploy({
 Profile Metadata can be passed as either an object containing the metadata you want to upload, or an IPFS url of your previously uploaded metadata.
 :::
 
-If an object is passed, LSPFactory will process and upload your metadata to IPFS. See [UploadOptions](././universal-profile#uploadoptions-1) for details on how to specify a custom IPFS gateway.
+If an object is passed, LSPFactory will process and upload your metadata to IPFS. See [Upload Options](././universal-profile#ipfs-upload-options) for details on how to specify a custom IPFS gateway.
 
 ```javascript title='Setting LSP3 metadata to be uploaded'
 await lspFactory.LSP3UniversalProfile.deploy({
@@ -205,7 +205,7 @@ await lspFactory.LSP3UniversalProfile.deploy({
 
 ### Uploading LSP3 metadata to IPFS
 
-You can upload your LSP3 metadata before deploying a Universal Profile by using the `uploadProfileData` method. This uses the same `lsp3Profile` object schema defined [above](./universal-profile#adding-lsp3-metadata) when deploying a Universal Profile.
+You can upload your LSP3 metadata before deploying a Universal Profile by using the `uploadProfileData` method. This uses the same [`lsp3Profile` object schema](./universal-profile#adding-lsp3-metadata) defined above when deploying a Universal Profile.
 
 Returns an object containing the IPFS upload location of your metadata, and your lsp3metdata as a javascript object.
 
@@ -216,7 +216,7 @@ myLSPFactory.LSP3UniversalProfile.uploadProfileData(
 );
 ```
 
-To upload using a custom IPFS gateway pass the `uploadOptions` object. This is the same `uploadOptions` object used when deploying a Universal Profile. Read more [here](./universal-profile#uploadoptions).
+To upload using a custom IPFS gateway pass the `uploadOptions` object. This is the same `uploadOptions` object used when deploying a Universal Profile. [Read more](./universal-profile#ipfs-upload-options).
 
 `uploadProfileData` is available as both a static or non-static method so can be called without instantiating an LSPFactory object.
 
