@@ -45,7 +45,7 @@ This key is used to know if the contract represents a **Universal Profile**.
 }
 ```
 
-The value attached to this key is a JSONURL. It represents a reference to a JSON file that describes the **Universal Profile**. The file can be stored on a centralised or decentralised storage.
+The value attached to this key is a [JSONURL encoded value](../../standards/generic-standards/01-lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Universal Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile). The file can be stored on a centralised or decentralised storage.
 
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them.
 
