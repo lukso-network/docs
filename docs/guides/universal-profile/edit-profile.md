@@ -176,7 +176,7 @@ const jsonFile = require('./UniversalProfileMetadata.json');
 async function uploadMetadataToIPFS() {
   const uploadResult = await LSP3UniversalProfile.uploadProfileData(jsonFile.LSP3Profile);
 
-    /*
+  /*
     uploadResult = {
         profile: {
             LSP3Profile: {
@@ -355,6 +355,8 @@ const myKM = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
 The final step is to edit our `LSP3Profile` key on our Universal Profile with the new value obtained in **Step 3.2**. We can easily access both the key and value from the encoded data obtained with erc725.js.
 
 Since our Universal Profile is owned by a Key Manager, the call will have to go through the Key Manager first. We then need to **encoded the setData payload** and pass it to our Universal Profile to perform this last step.
+
+<!-- @todo to be modified if we introduce setData(bytes32,bytes) as a 4th selector in the KeyManager -->
 
 ```javascript title="main.js"
 // encode the setData payload

@@ -172,13 +172,15 @@ Now that we have retrieved all the owned assets, we need to check which interfac
 
 UniversalProfile contracts on the _universalprofile.cloud_ website of the LUKSO L14 Network have been deployed using different `ERC725Y` interfaces. We have to know which interface to use, to assure the right interaction and bypass errors.
 
+<!-- @todo find a way to describe the different type of interfaces here -->
+
 <Tabs>
   
   <TabItem value="Current Standads" label="Current Standards">
 
 :::info
 
-The `ERC725Y` interface function `getData(...)` accepts an array of keys: `getData(keys[])` to fetch multiple values at once.
+The `ERC725Y` interface function `getData(...)` accepts either one key an array of keys: `getData(keys[])` to fetch multiple values at once.
 
 :::
 
