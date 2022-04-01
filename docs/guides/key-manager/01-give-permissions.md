@@ -73,20 +73,18 @@ let bobPermissions = PERMISSIONS.SETDATA;
 
 // give the permission SETDATA to Bob
 async function setBobPermission() {
-  let payload = await universalProfile.methods
-    .setData(
-      [
-        ADDRESSES.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
-        PERMISSIONS_ARRAY, // length of AddressPermissions[]
-        PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of permissions
-      ],
-      [
-        bobPermissions,
-        3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
-        bobAddress,
-      ],
-    )
-    .encodeABI();
+  let payload = await universalProfile.methods['setData(bytes32[],bytes[])'](
+    [
+      ADDRESSES.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
+      PERMISSIONS_ARRAY, // length of AddressPermissions[]
+      PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of permissions
+    ],
+    [
+      bobPermissions,
+      3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
+      bobAddress,
+    ],
+  ).encodeABI();
 
   keyManager
     .execute(payload)
@@ -120,18 +118,21 @@ let bobPermissions = ethers.utils.hexZeroPad(PERMISSIONS.SETDATA, 32);
 
 // give the permission SETDATA to Bob
 async function setBobPermission() {
-  let payload = universalProfile.interface.encodeFunctionData('setData', [
+  let payload = universalProfile.interface.encodeFunctionData(
+    'setData(bytes32[],bytes[])',
     [
-      ADDRESSES.PERMISSIONS + bobAddress.substr(2),
-      PERMISSIONS_ARRAY, // length of AddressPermissions[]
-      PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of
+      [
+        ADDRESSES.PERMISSIONS + bobAddress.substr(2),
+        PERMISSIONS_ARRAY, // length of AddressPermissions[]
+        PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of
+      ],
+      [
+        bobPermissions,
+        3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
+        bobAddress,
+      ],
     ],
-    [
-      bobPermissions,
-      3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
-      bobAddress,
-    ],
-  ]);
+  );
 
   await keyManager.connect(myEOA).execute(payload);
 }
