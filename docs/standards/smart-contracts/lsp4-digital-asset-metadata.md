@@ -13,13 +13,14 @@ As this contract uses **[ERC725Y General Key/Value Store](https://eips.ethereum.
 **_LSP4DigitalAssetMetadata contract contains the methods from_ [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) :**
 
 ```solidity
-function getData(bytes32[] memory keys) public view returns (bytes[] memory);
-
-function setData(bytes32[] memory keys, bytes[] memory values) public;
+function setData(bytes32 key, bytes memory value) public;
 
 function getData(bytes32 key) public view returns (bytes memory);
 
-function setData(bytes32 key, bytes memory value) public;
+function setData(bytes32[] memory keys, bytes[] memory values) public;
+
+function getData(bytes32[] memory keys) public view returns (bytes[] memory);
+
 ```
 
 :::
