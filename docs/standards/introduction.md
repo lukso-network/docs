@@ -50,8 +50,9 @@ The standards are **order-independant**, they could be related with a **backward
 
 ## Read on
 
-- [The New Standard for Blockchain Accounts and NFT 2.0](https://www.youtube.com/watch?v=7u0WGAS1k_Q)
-- [Tech Time with Fabian Ep.1 - LUKSO NFT's 2.0 Explained](https://www.youtube.com/watch?v=Nx5D9QWNIhI)
+- [The New Standard for Blockchain Accounts and NFT 2.0 (YouTube)](https://www.youtube.com/watch?v=7u0WGAS1k_Q)
+- [Tech Time with Fabian Ep.1 - LUKSO NFT's 2.0 Explained (YouTube)](https://www.youtube.com/watch?v=Nx5D9QWNIhI)
+- [Fabian Vogelsteller talks at BLOCKCHANCE 2021 about LUKSO (YouTube)](https://www.youtube.com/watch?v=aoZE_0Ey1SQ)
 
 ## References
 
