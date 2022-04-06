@@ -172,15 +172,16 @@ Now that we have retrieved all the owned assets, we need to check which interfac
 
 UniversalProfile contracts on the _universalprofile.cloud_ website of the LUKSO L14 Network have been deployed using different `ERC725Y` interfaces. We have to know which interface to use, to assure the right interaction and bypass errors.
 
-<!-- @todo find a way to describe the different type of interfaces here -->
-
 <Tabs>
   
   <TabItem value="Current Standads" label="Current Standards">
 
 :::info
 
-The `ERC725Y` interface function `getData(...)` accepts either one key an array of keys: `getData(keys[])` to fetch multiple values at once.
+Thanks to [function overloading], the `ERC725Y` interface function `getData(...)` can accept:
+
+- either one key: `getData(key)`.
+- or an array of keys: `getData(keys[])` to fetch multiple values at once.
 
 :::
 
@@ -229,7 +230,7 @@ async function checkErc725YInterfaceId(address) {
   // Create instance of the contract which has to be queried
   const Contract = new web3.eth.Contract(AssetInterface, address);
 
-  const ERC725Y_INTERFACE_ID = '0x5a988c0f';
+  const ERC725Y_INTERFACE_ID = '0x714df77c';
 
   let interfaceCheck = false;
 
@@ -260,9 +261,11 @@ checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
 :::info Depending on the interface, the function accepts different parameters.
 
 - in the **legacy** `ERC725Y` interface, `getData(...)` only takes a single key: `getData(key)`.
-- in the **current** `ERC725Y` interface, `getData(...)` accepts an array of keys as input: `getData(keys[])`
+- in the **current** `ERC725Y` interface, `getData(...)` can accept:
+  - either one key: `getData(key)`
+  - or an array of keys: `getData(keys[])`
 
-The current standard therefore allows to fetch multiple values at once.
+The current standard therefore allows to fetch multiple values at once, via [function overloading].
 
 :::
 
@@ -314,7 +317,7 @@ async function checkErc725YInterfaceId(address) {
 
   const interfaceIds = {
     erc725Legacy: '0x2bd57b73',
-    erc725: '0x5a988c0f',
+    erc725: '0x714df77c',
   };
 
   let interfaceChecks = {
@@ -437,11 +440,8 @@ async function getAssetData(key) {
         SAMPLE_ASSET_ADDRESS,
       );
 
-      // Key for the metadata
-      let keyArray = [key];
-
       // Fetch the encoded contract data
-      return await digitalAsset.methods.getData(keyArray).call();
+      return await digitalAsset.methods['getData(bytes32)'](key).call();
     }
   } catch (error) {
     return console.log('Data of assets address could not be loaded');
@@ -576,11 +576,8 @@ async function getAssetData(key) {
         SAMPLE_ASSET_ADDRESS,
       );
 
-      // Key for the metadata
-      let keyArray = [key];
-
       // Fetch the encoded contract data
-      return await digitalAsset.methods.getData(keyArray).call();
+      return await digitalAsset.methods['getData(bytes32)'](key).call();
     }
   } catch (error) {
     return console.log('Data of assets address could not be loaded');
@@ -815,7 +812,7 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 
 <Tabs>
   
-  <TabItem value="Current Standads" label="Current Standards">
+  <TabItem value="Current Standards" label="Current Standards">
 
 <details>
     <summary>LSP1 Minimal JSON Interface</summary>
@@ -1030,7 +1027,7 @@ async function checkErc725YInterfaceId(address) {
   // Create instance of the contract which has to be queried
   const Contract = new web3.eth.Contract(AssetInterface, address);
 
-  const ERC725Y_INTERFACE_ID = '0x5a988c0f';
+  const ERC725Y_INTERFACE_ID = '0x714df77c';
 
   let interfaceCheck = false;
 
@@ -1065,11 +1062,8 @@ async function getAssetData(key) {
         SAMPLE_ASSET_ADDRESS,
       );
 
-      // Key for the metadata
-      let keyArray = [key];
-
       // Fetch the encoded contract data
-      return await digitalAsset.methods.getData(keyArray).call();
+      return await digitalAsset.methods['getData(bytes32)'](key).call();
     }
   } catch (error) {
     return console.log('Data of assets address could not be loaded');
@@ -1189,7 +1183,7 @@ getAssetProperties();
 
   </TabItem>
 
-  <TabItem value="Current & Legacy Standads" label="Current & Legacy Standards">
+  <TabItem value="Current & Legacy Standards" label="Current & Legacy Standards">
 
 <details>
     <summary>LSP1 Minimal JSON Interface</summary>
@@ -1436,7 +1430,7 @@ async function checkErc725YInterfaceId(address) {
 
   const interfaceIds = {
     erc725Legacy: '0x2bd57b73',
-    erc725: '0x5a988c0f',
+    erc725: '0x714df77c',
   };
 
   let interfaceChecks = {
@@ -1500,11 +1494,8 @@ async function getAssetData(key) {
         SAMPLE_ASSET_ADDRESS,
       );
 
-      // Key for the metadata
-      let keyArray = [key];
-
       // Fetch the encoded contract data
-      return await digitalAsset.methods.getData(keyArray).call();
+      return await digitalAsset.methods["getData(bytes32)"](key).call();
     }
   } catch (error) {
     return console.log('Data of assets address could not be loaded');
@@ -1632,3 +1623,7 @@ getAssetProperties();
   </TabItem>
 
 </Tabs>
+
+<!-- Links and References -->
+
+[function overloading]: https://docs.soliditylang.org/en/v0.8.13/contracts.html?highlight=function%20overloading#function-overloading
