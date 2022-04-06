@@ -67,6 +67,16 @@ See the section **[Permissions Values](#permission-values)** to know **what each
 
 :::
 
+:::danger
+
+**Granting permissions to the linked ERC725Account itself is dangerous! **
+
+A caller can craft a payload via `ERC725X.execute(...)` to be sent back to the KeyManager, leading to re-entrancy.
+
+Such transaction flow can lead an initial caller to use more permissions than it is originally allowed, by using the permissions granted to the linked ERC725Account's address for itself.
+
+:::
+
 An address can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data** on the ERC725Account, **calling other contracts**, **transferring native tokens** and more.
 
 To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage.
