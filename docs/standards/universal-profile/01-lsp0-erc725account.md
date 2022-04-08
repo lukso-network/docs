@@ -17,6 +17,8 @@ Once deployed on a network, smart contracts cannot be changed. Their storage and
 
 The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** proposed in 2017 describes a generic key-value store and generic execution function that could be used as the basis for an account. A blockchain-based account can then be created by combining ERC725 with the interactivity and signature verification mechanism from the **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)** and **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standards.
 
+![LSP0 ERC725 Account overview](./../../../static/img/standards/lsp0-erc725account-overview.jpeg)
+
 ## What does this standard represent ?
 
 An **ERC725Account** defines a blockchain account system that could be used by humans, machines, or other smart contracts. It is composed of multiple standards, as shown in the figure below.
