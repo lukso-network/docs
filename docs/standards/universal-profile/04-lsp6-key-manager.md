@@ -23,9 +23,9 @@ The idea is to give [permissions](#types-of-permissions) to any `address`, like 
 
 :white_check_mark: &nbsp; **With a Key Manager** attached to an ERC725Account, other addresses (EOAs or contracts) can use an Account on behalf of its owner.
 
-![LSP6 Key Manager overview allowed](./../../../static/img/standards/lsp6-key-manager-overview-allowed.jpeg)
+![LSP6 Key Manager overview allowed](/img/standards/lsp6-key-manager-overview-allowed.jpeg)
 
-![LSP6 Key Manager overview not allowed](./../../../static/img/standards/lsp6-key-manager-overview-not-allowed.jpeg)
+![LSP6 Key Manager overview not allowed](/img/standards/lsp6-key-manager-overview-not-allowed.jpeg)
 
 Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the key-value store of the ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without having to reset all the permissions again.
 
@@ -200,7 +200,7 @@ This type of permission does not offer security over the inner workings of a con
 
 It is possible to restrict an address to interact only with **contracts that implement specific interface standards**. These contracts MUST implement the [ERC165 standard](https://eips.ethereum.org/EIPS/eip-165) to be able to detect their interfaces.
 
-![Key Manager Allowed Standards flow](./../../../static/img/standards/lsp6-key-manager-allowed-standards.jpeg)
+![Key Manager Allowed Standards flow](/img/standards/lsp6-key-manager-allowed-standards.jpeg)
 
 As an example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
 
@@ -274,11 +274,11 @@ Click on the toggles below to **learn more about the features of each permission
     </p>
     <p>This permission allows to <b>edit permissions</b> of any address that has already some permissions set on the ERC725Account (including itself).</p>
 
-![CHANGE Permissions](./../../../static/img/standards/lsp6-change-permissions.jpeg)
+![CHANGE Permissions](/img/standards/lsp6-change-permissions.jpeg)
 
 <p>Bear in mind that the behaviour of <code>CHANGEPERMISSIONS</code> slightly varies, depending on the new permissions value being set (see figure below).</p>
 
-![CHANGE Permissions](./../../../static/img/standards/lsp6-change-permissions-variants.jpeg)
+![CHANGE Permissions](/img/standards/lsp6-change-permissions-variants.jpeg)
 
 </details>
 
@@ -289,7 +289,7 @@ Click on the toggles below to **learn more about the features of each permission
     </p>
     <p>This permission allows to give permissions to new addresses. Or in other words, it enables to <b>authorize new addresses</b> to interact with the ERC725Account.</p>
 
-![ADD Permissions](./../../../static/img/standards/lsp6-add-permissions.jpeg)
+![ADD Permissions](/img/standards/lsp6-add-permissions.jpeg)
 
 </details>
 

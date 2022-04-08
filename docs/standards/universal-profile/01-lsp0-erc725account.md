@@ -17,7 +17,7 @@ Once deployed on a network, smart contracts cannot be changed. Their storage and
 
 The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** proposed in 2017 describes a generic key-value store and generic execution function that could be used as the basis for an account. A blockchain-based account can then be created by combining ERC725 with the interactivity and signature verification mechanism from the **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)** and **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standards.
 
-![LSP0 ERC725 Account overview](./../../../static/img/standards/lsp0-erc725account-overview.jpeg)
+![LSP0 ERC725 Account overview](/img/standards/lsp0-erc725account-overview.jpeg)
 
 ## What does this standard represent ?
 
@@ -29,7 +29,7 @@ An **ERC725Account** defines a blockchain account system that could be used by h
 - **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)**: enables to verify that a signed message has a valid signature.
 - **[ERC165](https://eips.ethereum.org/EIPS/eip-165)**: enables to register and detect the standard interfaces the contract implements.
 
-![ERC725Account contract architecture](../../../static/img/standards/lsp0-erc725account-architecture.jpeg)
+![ERC725Account contract architecture](/img/standards/lsp0-erc725account-architecture.jpeg)
 
 This standard also uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** standard to provide ownership functions for owning and controlling the implementation contract.
 
@@ -55,15 +55,15 @@ The following types of calls (= operation types) are available:
 |        3         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | run the function from another contract, but use and update the storage of the current contract (= persist `msg.sender` and `msg.value`) |
 |        4         | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
 
-# ![ERC725X operation type CALL](./../../../static/img/standards/erc725x-operation-type-call.jpeg)
+# ![ERC725X operation type CALL](/img/standards/erc725x-operation-type-call.jpeg)
 
-# ![ERC725X operation type CREATE](./../../../static/img/standards/erc725x-operation-type-create.jpeg)
+# ![ERC725X operation type CREATE](/img/standards/erc725x-operation-type-create.jpeg)
 
-# ![ERC725X operation type CREATE2](./../../../static/img/standards/erc725x-operation-type-create2.jpeg)
+# ![ERC725X operation type CREATE2](/img/standards/erc725x-operation-type-create2.jpeg)
 
-# ![ERC725X operation type DELEGATECALL](./../../../static/img/standards/erc725x-operation-type-delegatecall.jpeg)
+# ![ERC725X operation type DELEGATECALL](/img/standards/erc725x-operation-type-delegatecall.jpeg)
 
-# ![ERC725X operation type STATICCALL](./../../../static/img/standards/erc725x-operation-type-staticcall.jpeg)
+# ![ERC725X operation type STATICCALL](/img/standards/erc725x-operation-type-staticcall.jpeg)
 
 ### ERC725Y - Generic Key-Value Store
 
@@ -80,7 +80,7 @@ This substandard enables the account to hold arbitrary data through a generic ke
 
 As a result, this substandard enables to attach any type of information to the contract and update or remove it easily.
 
-![ERC725Y key-value store vs standard contract storage](../../../static/img/standards/erc725y-vs-standard-contract-storage.jpeg)
+![ERC725Y key-value store vs standard contract storage](/img/standards/erc725y-vs-standard-contract-storage.jpeg)
 
 Thanks to ERC725Y, contracts become more interoperable between each other, as their storage is represented in the same way. Contracts and interfaces can then read and write data from/to the storage in the same manner, via the functions [`getData(...)`](../smart-contracts/lsp0-erc725-account#getdata) and [`setData(...)`](../smart-contracts/lsp0-erc725-account#setdata).
 
