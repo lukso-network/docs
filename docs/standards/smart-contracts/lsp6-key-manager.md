@@ -38,6 +38,26 @@ Link the Key Manager to the address of an **LSP0ERC725Account** contract and reg
 | :-------- | :------ | :----------------------------------------------------------- |
 | `account` | address | The address of the **LSP0ER725Account** contract to control. |
 
+### account
+
+```solidity
+function account() external view returns (address)
+```
+
+Returns the address of the account linked to this KeyManager
+
+This can be a contract that implements:
+
+- [ERC725X](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725x) only.
+- [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) only.
+- any ERC725 based contract (implementing both ERC725X and ERC725Y), like a [ERC725Account](../smart-contracts/lsp0-erc725-account.md).
+
+#### Returns
+
+| Name      | Type      | Description                       |
+| --------- | --------- | --------------------------------- |
+| `account` | `address` | the address of the linked account |
+
 ### execute
 
 ```solidity
