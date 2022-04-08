@@ -23,6 +23,7 @@ documentation](https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-2-ERC7
 The most common schemas of [LUKSO Standard Proposals](https://github.com/lukso-network/LIPs/tree/main/LSPs) are available under the [`schemas/`](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas) folder.
 
 Current provided LSPs are:
+
 ```
 LSP1UniversalReceiverDelegate.json
 LSP3UniversalProfileMetadata.json
@@ -40,5 +41,5 @@ import LSP5 from '@erc725/erc725.js/schemas/LSP5ReceivedAssets.json';
 // ...
 
 // Later use them on instantiation
-const myErc725Contract = new ERC725js(LSP3, address, web3.currentProvider)
+const myErc725Contract = new ERC725js(LSP3, address, web3.currentProvider);
 ```
