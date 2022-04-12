@@ -12,7 +12,7 @@ This Testnet will soon go live again. Get updates on our [Discord](https://disco
 
 :::
 
-# Metamask
+# MetaMask
 
 | Setting                      | Value                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------------------------ |
@@ -45,7 +45,9 @@ And if you need it, [here is a tutorial on how to do it](https://metamask.zendes
 | RAM                 | 32 GB          |
 | SSD                 | 512 GB         |
 
-Apple's new M1 chips are not supported natively. However, you can follow <br></br> [this guide](https://medium.com/@luki3k5/running-lukso-node-on-m1-mac-acf92d433a38) to run it by using Rosetta, Apple's built-in emulation software.
+:::info
+Apple's new M1 chips are not supported natively by our node client. However, you can follow [this guide](https://medium.com/@luki3k5/running-lukso-node-on-m1-mac-acf92d433a38) to run it by using Rosetta, Apple's built-in emulation software.
+:::
 
 ## Running a Node
 
@@ -125,9 +127,9 @@ You can see your node on the following page:
 1. [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
 2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)
 
-## How to become a Validator
+## Become a Validator
 
-### Request some LYXt Tokens:
+### Request LYXt Tokens:
 
 1. Make sure to install [MetaMask](https://metamask.io/).
 
@@ -137,7 +139,7 @@ You can see your node on the following page:
 5. Visit the [L16 Faucet](https://faucet.beta.l16.lukso.network), paste the copied address and request your test tokens.
 6. Wait for the transaction to go through and check the balance in your MetaMask. You should have received 35 LYX.
 
-### Create a Wallet and deposit Data
+### Create a Wallet
 
 First, generate a validator mnemonic seed phrase. **This mnemonic seed phrase generates your validator's private key. Store it in a safe location.**
 
@@ -155,6 +157,8 @@ make create-wallet
 
 This command will create a directory named `keystore`.
 
+### Deposit the Validator Data
+
 Generate a `deposit-data.json` using the following command. It will ask for the number of validators, validator mnemonic, and withdrawal mnemonic.
 
 ```bash
@@ -163,7 +167,7 @@ make create-deposit
 
 You will find the `deposit-data.json` file inside your current directory.
 
-### Submitting your Deposit Transaction
+### Submit the Deposit Transaction
 
 #### Get your Address and Private Key from MetaMask
 
@@ -179,7 +183,7 @@ ETH1_FROM_ADDR=YOUR_WALLET_ADDRESS
 ETH1_FROM_PRIV=YOUR_PRIVATE_KEY
 ```
 
-Submit the transaction.
+#### Send the transaction.
 
 ```bash
 # submit deposit
@@ -190,9 +194,11 @@ make submit-deposit
 
 You will need to wait for eight hours to activate your validator.
 
-### Run the validator client
+### Run the Validator Client
 
-Once your validator is activated, you spin up a validator client. <br></br>**Make sure your _consensus_ and _execution_ clients are running (by typing `make start`).**
+Once your validator is activated, you spin up a validator client.
+
+**Make sure your _consensus_ and _execution_ clients are running (by typing `make start`).**
 
 ```bash
 make start-validator

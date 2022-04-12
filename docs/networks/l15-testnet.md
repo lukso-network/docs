@@ -10,7 +10,7 @@ This network is ephemeral, meaning it is not meant to be fully stable and usable
 The L15 Testnet was superseeded by [L16 Public Testnet](l16-testnet.md), please check these L16 docs.
 :::
 
-# Metamask
+# MetaMask
 
 To add the L15 Network to MetaMask, these are the settings:
 
