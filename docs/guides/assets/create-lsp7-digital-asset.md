@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create a LSP7 Digital Asset (Token)
 
-In this guide, we will learn how to create our own token (known as [LSP7 Digital Asset](../../standards/nft-2.0/lsp7-digital-asset)) and transfer it between Universal Profiles (UP).
+This guide will teach you how to create our token ([LSP7 Digital Asset](../../standards/nft-2.0/lsp7-digital-asset)) and transfer it between Universal Profiles (UP).
 
 ## Deploy a LSP7 Digital Asset contract
 
@@ -36,9 +36,11 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
 });
 
 // deploy the token contract
-await myToken.deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams }).send({ 
-    from: myEOA 
-});
+await myToken
+  .deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams })
+  .send({
+    from: myEOA,
+  });
 ```
 
   </TabItem>
@@ -74,8 +76,8 @@ The code snippet below shows how to mint 100 tokens with your Universal Profile 
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-await myToken.methods.mint('<up-address>', 100, false, '0x').send({ 
-    from: myEOA 
+await myToken.methods.mint('<up-address>', 100, false, '0x').send({
+  from: myEOA,
 });
 ```
 
@@ -93,7 +95,7 @@ await myToken.connect(myEOA).mint('<up-address>', 100, false, '0x');
 
 ## Transfer tokens to an other Universal Profile
 
-The following code snippet show how to transfer 15 tokens from your UP to another UP called `bobUP`.
+The following code snippet shows how to transfer 15 tokens from your UP to another UP called `bobUP`.
 
 <Tabs>
   
