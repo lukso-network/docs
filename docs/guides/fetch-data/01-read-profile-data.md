@@ -35,9 +35,13 @@ npm install web3 @erc725/erc725.js isomorphic-fetch
 
 ## Step 1 - Check for valid Blockchain Address
 
+:::success Recommendation
+Complete "ready to use" JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
+:::
+
 Within an application, the Universal Profile address is commonly used as input. We want to make sure that the address is valid in the first place. We can do a checkup by converting the value into a checksum address using the `web3.js` library.
 
-To make the guide more understandable, we use a sample profile address. You will most likely change this static variable with a dynamic value from an input field or fetching process within your app.
+To make the guide more understandable, we use a sample profile address. You will most likely change this static variable with a dynamic value from your app's input field or fetching process.
 
 ```javascript title="read_profile.js"
 // Import and Network Setup
@@ -80,7 +84,7 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
 
 Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
 
-After we import the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. While fetching, we can use the function from the previous step to handle errors that might occur.
+After importing the ERC725 object and the fetch functionality, we can declare all data needed to instantiate the ERC725 contract instance. While fetching, we can use the function from the previous step to handle errors that might occur.
 
 <details>
     <summary>ERC725 JSON Schema</summary>
@@ -157,7 +161,7 @@ getProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
 );
 ```
 
-If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata) JSON. It should look like this:
+If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata) JSON. It should look like this JSON file:
 
 <details>
     <summary>Show JSON response</summary>

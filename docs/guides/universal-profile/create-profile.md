@@ -18,51 +18,51 @@ We will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/unive
 
 ### Owned Contracts
 
-A Universal Profile is an **owned** smart contract. This means it is a contract that has an **owner**.
+A Universal Profile is an **owned** smart contract. Ownership means that such a contract has a separate **owner**.
 
 The Contract's owner is a blockchain `address` that can represent anything, such as:
 
-- an Externally Owned Account (EOA), or many EOAs.
-- a multi-sig wallet.
+- one or multiple Externally Owned Accounts (EOAs),
+- a multi-sig wallet, or
 - an other smart contract that can represent anything (a DAO, a DEX, etc...).
 
 ![Universal Profile smart contract: ownership diagram](./img/universal-profile-ownership.jpeg)
 
 > For more details, see [EIP-173: Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173)
 
-With the **Ownable** design pattern, a contract can be designed with _functionalities that can only be performed by the owner_. This gives the contract owner more control and privileges.
+With the **Ownable** design pattern, a contract can be designed with _functionalities that only the owner can perform_. The design pattern gives the contract owner more control and privileges.
 
 In the context of Universal Profile, _reading data from the contract storage can be done by anyone_. But **only the owner can**:
 
-- `setData` = add, edit or remove data from the [ERC725Y](../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) storage.
-- `execute` = calling other contracts, doing LYX transfers, create other contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor)
+- `setData` = Add, edit or remove data from the [ERC725Y](../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) storage.
+- `execute` = Call other contracts, do LYX transfers, or create other contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor).
 
-In this guide, our Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../standards/smart-contracts/lsp6-key-manager.md) is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
+Our Universal Profile's owner will be a contract called a **Key Manager** in this guide. The [Key Manager](../../standards/smart-contracts/lsp6-key-manager.md) is a smart contract that enables specific permissions (_e.g., _ transferring LYX on behalf of the Universal Profile) to `addresses` so that they can interact on the Universal Profile.
 
 :::info Learn More
-You can implement any complex ownership structure (and fine-grained control) on top of Universal Profiles. This includes having a UP owned and controlled by:
+You can implement any complex ownership structure (and fine-grained control) on top of Universal Profiles. The structure includes having a UP owned and controlled by:
 
-- one or multiple EOAs
-- one or multiple smart contracts
-- a mixture of both
+- one or multiple EOAs,
+- one or multiple other smart contracts, or
+- a mixture of both.
 
-For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/04-lsp6-key-manager.md)
+For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/04-lsp6-key-manager.md).
 :::
 
 ### Contracts Overview
 
 ![Universal Profile: overview of deployed contracts](./img/universal-profile-overview.jpeg)
 
-Our tool [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) will help us to deploy + setup easily a Universal Profile, with just few lines of code.
+Our tool [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) will help us quickly deploy and set up a Universal Profile with just a few lines of code.
 
 Under the hood, lsp-factory.js performs the following:
 
-1. deploys all the necessary contracts:
-   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile-metadata.md) (UP) - core smart contract that represents a Universal Profile.
-   - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD) - contract that react on events, such as tokens received or transferred.
-   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) - contract that acts as **owner of a Universal Profile**, to enable other address to interact with the UP.
-2. link the URD with the deployed UP account + set its permissions.
-3. set all the permissions for an EOA address, so that it can acts as the UP admin.
+1. Deploying all the necessary contracts:
+   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile-metadata.md) (UP) is the core smart contract representing a Universal Profile.
+   - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD) is the contract that reacts to events, such as tokens received or transferred.
+   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br></br> to enable other addresses to interact with the UP.
+2. Linking the URD with the deployed UP account and setting its permissions.
+3. Setting all the permissions for an EOA address so that it can act as the UP admin.
 
 > :arrow_right: &nbsp; [See our lsp-factory.js docs for more details](../../tools/lsp-factoryjs/getting-started)
 
@@ -73,17 +73,15 @@ You can create a Universal Profile without a Key Manager (or a Universal Receive
 
 ## Setup
 
-Before to get started, we are going to create a new project folder. This is where we will write all the Javascript code of this tutorial.
-
-Open a terminal, create a new project folder, and go inside it.
+Before getting started, we will create a new project folder to write all the JavaScript code for this tutorial. <br/>
+Open a terminal, then create and open a new project folder.
 
 ```shell
 mkdir myUP
 cd myUP
 ```
 
-We then have to install all the tools and libraries that we will need for this tutorial.
-
+Afterward, we have to install all the tools and libraries we need for this tutorial. <br/>
 Copy and paste the command below in your terminal to install these as npm dependencies.
 
 ```shell
@@ -93,17 +91,21 @@ npm install web3 @lukso/lsp-factory.js --save
 ## Step 1 - Create an EOA
 
 :::note Notice
-This step should be done in a **temporary file**.
+You should do this step in a **temporary file**.
 :::
 
 As described in the introduction, our first step is to create an EOA that will be used to control our Universal Profile.
+
+:::success Recommendation
+Complete "ready to use" JS files are available at the end in the [**Final Code**](#final-code) section.
+:::
 
 We can easily create an EOA using the [`web3.eth.accounts.create()`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#create) method from web3.js.
 
 **Instructions:** **create a temporary file** and add the code snippet below. It will generate an object that contains:
 
-- a private key (32 bytes / 64 characters long).
-- an address (20 bytes / 40 characters long).
+- a private key (32 bytes / 64 characters long),
+- an address (20 bytes / 40 characters long), and
 - some singing methods like `sign`
 
 ```javascript title="create-eoa.js (temporary file)"
@@ -122,7 +124,7 @@ console.log(myEOA);
 }
 ```
 
-Run the script above with Node.js to generate and display your EOA private key + address.
+Run the script above with Node.js to generate and display your EOA private key and address.
 
 ```bash
 node create-eoa.js
@@ -131,7 +133,7 @@ node create-eoa.js
 > See the [Web3.js docs](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#) for more infos on creating an EOA
 
 :::note How to load an EOA?
-We can easily load our EOA with the private key previously displayed via `console.log` (this is what we will do in Step 3).
+We can quickly load our EOA with the private key previously displayed via `console.log` (this is what we will do in Step 3).
 
 ```javascript
 const Web3 = require('web3');
@@ -145,37 +147,35 @@ const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
 ## Step 2 - Get some LYX
 
-After we have created an EOA that will control our Universal Profile in **Step 1**, we will need to fund our address with some test LYX (the native cryptocurrency of the LUKSO blockchain). You can obtain easily some free test LYX via the **[L14 Faucet](http://faucet.l14.lukso.network/)**.
+After creating an EOA that will control our Universal Profile in **Step 1**, we will need to fund our address with some test LYX (the native cryptocurrency of the LUKSO blockchain). You can obtain some free test LYX via the **[L14 Faucet](http://faucet.l14.lukso.network/)**.
 
-**Instructions:** simply visit the faucet website, paste your generated address above in the field and click on **"REQUEST 5 LYX"**.
+**Instructions:** visit the faucet website, paste your above-generated address into the input field and _request 5 LYX_.
 
 :arrow_right: **[LUKSO L14 Faucet Website](http://faucet.l14.lukso.network/)**
 
 ![L14 Faucet screenshot](./img/L14-faucet.png)
 
-We will look-up our address' balance in the **[LUKSO L14 Block Explorer](https://blockscout.com/lukso/l14)** to ensure we have received our test LYX.
+We will look up our address balance in the **[LUKSO L14 Block Explorer](https://blockscout.com/lukso/l14)** to ensure we have received our test LYX.
 
-**Instructions:** go to the LUKSO L14 Block explorer, and paste your address in the top right field _"Search by address..."_. You should see 5 LYX next to the field _"Balance"_.
-
-:arrow_right: **[LUSKO L14 Block Explorer](https://blockscout.com/lukso/l14)**
+**Instructions:** go to the LUKSO L14 Block Explorer, and search your pasted address at the top right corner.<br/> You should see 5 LYX next to the _Balance_ field.
 
 ![LUKSO L14 Network Block Explorer (screenshot)](./img/l14-explorer.png)
 
 ## Step 3 - Create our Universal Profile
 
 :::note Notice
-The rest of this tutorial should be done in a **new file (`main.js`)**.
+You should do the rest of this tutorial in a **new file (`main.js`)**.
 :::
 
 Now that we have created our EOA, we are ready to create our first Universal Profile.
 
-**Instructions:** create a **new file**: `main.js` (it will contain all the main runtime script to create our Universal Profile).
+**Instructions:** create a **new file**: `main.js` (it will contain the main runtime script to create our Universal Profile).
 
 ### 3.1 - Load our EOA
 
-We will start by loading our EOA in our main JS file, so that we can use it to deploy our Universal Profile.
+We will start by loading our EOA in our main JS file so that we can use it to deploy our Universal Profile.
 
-**Instructions:** import the private key previously created in **step 1**.
+**Instructions:** import the private key that you previously created in **step 1**.
 
 ```javascript title="main.js"
 const Web3 = require('web3');
@@ -194,19 +194,19 @@ const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 ```
 
 :::danger Never expose your private key!
-Your private key is what enables you to control your EOA. Therefore, it should NEVER be exposed.
+Your private key is what enables you to control your EOA. Therefore, it should **NEVER** be exposed.
 
-For simplicity in this tutorial, we load the EOA by using a hardcoded private key (as a literal string).
+For simplicity in this tutorial, we load the EOA using a hardcoded private key (as a literal string).<br/>
 However, your private key should never be hardcoded in your code.
 
-:warning: **ALWAYS make sure that your private key is stored securely**, and never exposed.
+:warning: **ALWAYS ensure that your private key is stored securely** and never exposed.
 :::
 
 ### 3.2 - Setup the lsp-factory.js
 
-The next step is to import + setup our lsp-factory.js tool. It will give us access to a `.deploy(...)` method that we will use to create our Universal Profile.
+The next step is to import and set up our lsp-factory.js tool. It will give us access to a `.deploy(...)` method that we will use to create our Universal Profile.
 
-**Instructions:** use the code snippet below to setup the lsp-factory.js.
+**Instructions:** use the code snippet below to set up the lsp-factory.js.
 
 ```javascript title="main.js"
 const { LSPFactory } = require('@lukso/lsp-factory.js');
@@ -247,9 +247,9 @@ const lspFactory = new LSPFactory(
 
 ### 3.3 - Deploy our Universal Profile
 
-The final step is to deploy our UP via `LSP3UniversalProfile.deploy(...)`. This method from the lsp-factory.js will deploy the 3 main contracts shown in the [architecture diagram](#contracts-overview) above (see **[Contracts Overview](#contracts-overview)**).
+The final step is to deploy our UP via `LSP3UniversalProfile.deploy(...)`. This method from the lsp-factory.js will deploy the three main contracts shown in the [architecture diagram](#contracts-overview) above (see **[Contracts Overview](#contracts-overview)**).
 
-This `.deploy(...)` function takes an object as argument, that must contain 2 elements:
+This `.deploy(...)` function takes an object as an argument that must contain two elements:
 
 - `controllingAccounts`: the EOA address(es) that we will use to control our UP.
 - `lsp3Profile`: an object that represents your `LSP3Profile` Metadata.
@@ -326,12 +326,12 @@ createUniversalProfile();
 ```
 
 :::info Learn more
-**Adding more details** to our Universal Profile (_e.g.: links, profile images, background images..._) will be **our next tutorial!** :art:
+**Adding more details** to our Universal Profile (_e.g., links, profile images, background images_) will be **our next tutorial!** :art:
 :::
 
 ## Visualize our new Universal Profile
 
-If the deployment was successful, the address of our newly created Universal Profile can be accessed from the returned value.
+If the deployment is successful, we can access the address of our newly created Universal Profile from the returned value.
 
 ```javascript title="main.js"
 async function createUniversalProfile() {
@@ -352,17 +352,17 @@ createUniversalProfile();
 > my Universal Profile address: 0xFD296cCDB97C605bfdE514e9810eA05f421DEBc2
 ```
 
-We can now visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website, by adding the address of the deployed UP in the the url, after the `/` (slash), as follow:
+We can now visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
 
 *https://universalprofile.cloud/{your-up-address}*
 
 ![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
-You can also see on the LUKSO L14 Block explorer the contracts that have been created by the lsp-factory.js:
+You can also see the contracts created by the lsp-factory.js library on the LUKSO L14 Block explorer:
 
 *https://blockscout.com/lukso/l14/address/{your-eoa-address}/transactions*
 
-The figure below describes each transaction performed by the lsp-factory.js, and map them to the architecture diagram shown at the beginning of this guide, in the **[Contracts Overview](#contracts-overview)** section.
+The figure below describes each transaction performed by the lsp-factory.js. It also shows how transactions <br/> are mapped to the **[Contracts Overview](#contracts-overview)** diagram introduced at the beginning of this guide.
 
 ![lsp-factory.js: contract deployed on L14 and transactions flow](img/lsp-factory-deployments-explained.jpeg)
 
@@ -370,9 +370,9 @@ The figure below describes each transaction performed by the lsp-factory.js, and
 
 **You have successfully created your first Universal Profile!**
 
-:arrow_right: Go to the next tutorial to learn **[How to add a profile picture to your Universal Profile + edit your profile infos.](./edit-profile.md)**
+:arrow_right: Continue with the following tutorial to learn **[How to edit your Universal Profile](./edit-profile.md)**.
 
-:arrow_down: Look a the full code snippet below to help you debugging.
+:arrow_down: Look a the code snippet below to help you debug.
 
 ## Final Code
 

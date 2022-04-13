@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 The Key Manager (KM) enables us to give permissions to other addresses, so they can edit data on our Universal Profile (UP) or interact with it on our behalf. In this section, we will see how to set up these permissions.
 
 Below is a list of ERC725Y Permission Keys related to the Key Manager.
-We will store these values in a file `constants.js`, and reuse them through the next code snippets.
+We will store these values in a file `constants.js` and reuse them through the following code snippets.
 
 ```javascript title="constants.js"
 // keccak256('AddressPermissions[]')
@@ -46,7 +46,7 @@ module.exports = {
 };
 ```
 
-The code snippets below show how to set permissions for **Bob** on a Universal Profile owned by `myEOA`.
+The code snippets below show how to set permissions for _Bob_ on a Universal Profile owned by `myEOA`.
 It assumes that the profile has been deployed with our [lsp-factory.js](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started.md) tool.
 
 <Tabs>
@@ -144,6 +144,6 @@ setBobPermission();
 
 :::tip
 
-You can easily [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions`](../../../../tools/erc725js/classes/ERC725#decodepermissions) with [**erc725.js**](../../../../tools/erc725js/getting-started).
+You can easily [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions`](../../../../tools/erc725js/classes/ERC725#decodepermissions) using the [**erc725.js**](../../../../tools/erc725js/getting-started) library.
 
 :::
