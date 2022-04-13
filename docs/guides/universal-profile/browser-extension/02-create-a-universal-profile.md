@@ -11,15 +11,15 @@ The UP Browser Extenstion is currently in the **development alpha** version. DO 
 
 #### 1. Launch the extension and create your profile.
 
-![Step 1 - Firefox: Open Extension](../../../../static/img/extension/01-create-profile.png)
+![Step 1 - Firefox: Open Extension](/img/extension/01-create-profile.png)
 
 #### 2. Select your identicon, password, and an optional backup email.
 
-![Step 2 - Firefox: Set Up Extension](../../../../static/img/extension/02-create-profile.png)
+![Step 2 - Firefox: Set Up Extension](/img/extension/02-create-profile.png)
 
 #### 3. Choose between an anonymous or public profile.
 
-![Step 3 - Firefox: Profile Type Extension](../../../../static/img/extension/03-create-profile.png)
+![Step 3 - Firefox: Profile Type Extension](/img/extension/03-create-profile.png)
 
 :::note
 It may take a while until your profile is created. You don't need to keep the popup open.
@@ -27,4 +27,4 @@ It may take a while until your profile is created. You don't need to keep the po
 
 #### Step 4. Your Universal Profile has been created!
 
-![Step 4 - Firefox: Success Extension](../../../../static/img/extension/04-create-profile.png)
+![Step 4 - Firefox: Success Extension](/img/extension/04-create-profile.png)

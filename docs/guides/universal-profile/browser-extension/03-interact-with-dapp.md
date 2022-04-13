@@ -13,7 +13,7 @@ The UP Browser Extenstion is currently in the **development alpha** version. DO 
 :::
 
 :::note
-MetaMask (or any other ethereum provider) cannot be running simultaneously. It would be best to deactivate the MetaMask extension for the UP Extension to work.
+MetaMask (or any other ethereum provider) cannot be running simultaneously. It is recommended to deactivate the MetaMask extension for the UP Extension to work.
 :::
 
 ## Setup
@@ -87,7 +87,7 @@ const accounts: string[] = await window.ethereum.request({
 Each operation will open an extension popup window for a user to confirm the transaction or sign the message.
 
 :::note
-If you don't have funds at your EOA address, the application will use the relayer <br/> service by default to pay the gas fees (thus ignoring gas properties).
+If you don't have funds on your EOA, the application will use the relayer service by default to pay the gas fees (thus ignoring gas properties).
 :::
 
 ### Send a transaction
