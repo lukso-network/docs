@@ -2,14 +2,15 @@
 sidebar_position: 3
 ---
 
-
 # L15 Public Testnet
 
-This testnet is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before mainnet (Not yet running).
+This network is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](l16-testnet.md) is meant as a more stable persistent testnet before the mainnet (Not yet running).
 
 :::note
 The L15 Testnet was superseeded by [L16 Public Testnet](l16-testnet.md), please check these L16 docs.
 :::
+
+# MetaMask
 
 To add the L15 Network to MetaMask, these are the settings:
 
@@ -23,8 +24,7 @@ To add the L15 Network to MetaMask, these are the settings:
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
-## How to participate
-
+## Running a Node
 
 <!-- Since we are resetting the network, please make sure to run `$ lukso reset all` and re-install the `lukso` binary:
 
@@ -56,7 +56,7 @@ This is a one-time operation and it's nescessary to be able to join the fun. -->
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### How to run an archive node
+### Start an Archive Node
 
 <Tabs groupId="operating-systems">
 <TabItem value="linux" label="Linux">
@@ -77,7 +77,7 @@ $ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 </TabItem>
 </Tabs>
 
-This starts your node as an archive node.
+The command starts your node as an archive node.
 
 <!-- :::info
 
@@ -85,24 +85,20 @@ Please note that currently we do not attach your node to the [pandora](https://s
 
 ::: -->
 
-
 <div style={{textAlign: 'center'}}>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G2DSFqYwteI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-### How to become a validator
+### Become a Validator
 
 :::caution
 
-In case you are currently running a node, please run `lukso stop` (`sudo lukso stop` for MacOS) before continuing.
+If you are currently running a node, please run `lukso stop` (`sudo lukso stop` for MacOS) before continuing.
 
 :::
 
-**Step 1:**
-Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
-
-**Step 2:**
-You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
+1. Go to the [LUKSO Launchpad](https://launchpad.l15.lukso.network) and follow the steps to become a validator.
+2. You can check your validator status in the [Vanguard Block Explorer](https://explorer.vanguard.l15.lukso.network). You can find your validator via its public key.
 
 ## Links
 
@@ -111,14 +107,14 @@ You can check your validator status in the [Vanguard Block Explorer](https://exp
 
 ---
 
-- https://stats.vanguard.l15.lukso.network Statistic page for the vanguard consensus chain
-- https://explorer.vanguard.l15.lukso.network Block Explorer page for the vanguard consensus chain
+- https://stats.vanguard.l15.lukso.network Statistic page for the Vanguard consensus blockchain
+- https://explorer.vanguard.l15.lukso.network Block Explorer page for the Vanguard consensus blockchain
 
 ---
 
-- https://stats.pandora.l15.lukso.network Statistic page for the pandora shard chain
-- https://explorer.pandora.l15.lukso.network Block Explorer page for the pandora shard chain
-- https://rpc.l15.lukso.network Public RPC endpoint for the pandora shard chain
+- https://stats.pandora.l15.lukso.network Statistic page for the Pandora shard blockchain
+- https://explorer.pandora.l15.lukso.network Block Explorer page for the Pandora shard blockchain
+- https://rpc.l15.lukso.network Public RPC endpoint for the Pandora shard blockchain
 
 ## Repositories
 
