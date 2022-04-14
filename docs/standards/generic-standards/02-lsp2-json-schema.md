@@ -170,7 +170,7 @@ Below is an example of Bytes20Mapping key:
 
 A key of type Bytes20MappingWithGrouping is similar to the **[Bytes20Mapping](#bytes20mapping)** key type, except that sub-types can be added to the main mapping key.
 
-For instance, it can be used to differentiate various types from the primary mapping key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/05-lsp6-key-manager.md)).
+For instance, it can be used to differentiate various types from the primary mapping key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/06-lsp6-key-manager.md)).
 
 Below is an example of a Bytes20MappingWithGrouping key:
 
