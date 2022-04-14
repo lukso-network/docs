@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 In this guide, we will learn how to:
 
-- read data from the [Universal Receiver](../../standards/generic-standards/02-lsp1-universal-receiver.md).
+- read data from the [Universal Receiver](../../standards/generic-standards/01-lsp1-universal-receiver.md).
 - get all assets ever received by a profile.
 - fetch the data of all owned assets.
 

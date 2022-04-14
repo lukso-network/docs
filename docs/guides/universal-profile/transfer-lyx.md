@@ -12,11 +12,11 @@ In this tutorial, we will learn how to transfer LYX from one Universal Profile (
 
 ## Introduction
 
-To interact with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow / disallow execution after checking the [permissions](../../standards/universal-profile/04-lsp6-key-manager.md#permission-values) of the calling address.
+To interact with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow / disallow execution after checking the [permissions](../../standards/universal-profile/05-lsp6-key-manager.md#permission-values) of the calling address.
 
-Therefore to interact with our UP, we will need to encode the function call of our UP and pass the **payload** to the [`execute(payload)`](../../standards/smart-contracts/lsp6-key-manager.md#execute) function on the KM.
+Therefore to interact with our UP, we will need to encode the function call of our UP and pass the **payload** to the [`execute(payload)`](../../standards/smart-contracts/05-lsp6-key-manager.md#execute) function on the KM.
 
-Transferring LYX from a UP is as simple as making a standard [`CALL`](../../standards/universal-profile/04-lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call. You can transfer LYX from a UP via the [`execute(...)`](../../standards/smart-contracts/lsp0-erc725-account.md) function in the UP contract.
+Transferring LYX from a UP is as simple as making a standard [`CALL`](../../standards/universal-profile/05-lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call. You can transfer LYX from a UP via the [`execute(...)`](../../standards/smart-contracts/02-lsp0-erc725-account.md) function in the UP contract.
 
 The parameters of the function will be as follow:
 
@@ -59,8 +59,8 @@ const data = '0x';
 
 // encode the payload to transfer 3 LYX from the UP
 const transferLYXPayload = await myUP.methods
-    .execute(OPERATION_CALL, recipient, amount, data)
-    .encodeABI();
+  .execute(OPERATION_CALL, recipient, amount, data)
+  .encodeABI();
 ```
 
 ## Step 3: send the payload to the Key Manager
@@ -68,9 +68,9 @@ const transferLYXPayload = await myUP.methods
 The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize, and execute the LYX transfer.
 
 ```javascript
-await myKM.execute(transferLYXPayload).send({ 
-    from: wallet.address, 
-    gasLimit: 300_000 
+await myKM.execute(transferLYXPayload).send({
+  from: wallet.address,
+  gasLimit: 300_000,
 });
 ```
 
@@ -99,8 +99,8 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 
 // 3. execute the LYX transfer via the Key Manager
-await myKM.execute(transferLYXPayload).send({ 
-    from: wallet.address, 
-    gasLimit: 300_00 
+await myKM.execute(transferLYXPayload).send({
+  from: wallet.address,
+  gasLimit: 300_00,
 });
 ```

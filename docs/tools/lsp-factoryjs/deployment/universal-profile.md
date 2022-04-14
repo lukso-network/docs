@@ -5,7 +5,7 @@ title: Universal Profile
 
 # Deploying a Universal Profile
 
-LSPFactory allows you to easy deploy and configure a Universal Profile consisting of a [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and - [LSP1-UniversalReceiver](../../../standards/generic-standards/02-lsp1-universal-receiver.md) smart contract:
+LSPFactory allows you to easy deploy and configure a Universal Profile consisting of an [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and - [LSP1-UniversalReceiver](../../../standards/generic-standards/01-lsp1-universal-receiver.md) smart contract:
 
 ```javascript
 await lspFactory.UniversalProfile.deploy(profileProperties [, options]);
@@ -15,7 +15,7 @@ This will deploy the following contracts:
 
 - [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account)
 - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager)
-- And link to a pre-deployed [LSP1-UniversalReceiver](../../../standards/generic-standards/02-lsp1-universal-receiver.md)
+- And link to a pre-deployed [LSP1-UniversalReceiver](../../../standards/generic-standards/01-lsp1-universal-receiver.md)
 
 Then, it will:
 
@@ -41,8 +41,8 @@ await lspFactory.UniversalProfile.deploy({
   controllerAddresses: [
     '0x7Ab53a0C861fb955050A8DA109eEeA5E61fd8Aa4',
     '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
-  ]
-})
+  ],
+});
 ```
 
 ### Adding LSP3 Metadata
@@ -78,7 +78,9 @@ await lspFactory.UniversalProfile.deploy({
   });
 };
 ```
+
 The following two will download the JSON file before, to hash it and generate the proper [JSONURL value](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL).
+
 ```javascript title='Providing an already uploaded LSP3 metadata IPFS url'
 await lspFactory.UniversalProfile.deploy({
     controllerAddresses: ['0x...'],
@@ -96,6 +98,7 @@ await lspFactory.UniversalProfile.deploy({
 ```
 
 You can also provide the JSON file yourself to generate the hash value:
+
 ```javascript title='Providing an already uploaded LSP3 metadata  url and JSON file itself'
 await lspFactory.UniversalProfile.deploy({
     controllerAddresses: ['0x...'],
@@ -107,7 +110,8 @@ await lspFactory.UniversalProfile.deploy({
 };
 ```
 
-Or provide the hash value and then uploaded file  URL:
+Or provide the hash value and then uploaded file URL:
+
 ```javascript title='Providing an already uploaded LSP3 metadata  url and hash values'
 await lspFactory.UniversalProfile.deploy({
     controllerAddresses: ['0x...'],
@@ -269,7 +273,7 @@ await UniversalProfile.uploadMetaData(myLSP3MetaData);
 
 ## Deployment Configuration
 
-A Universal Profile is composed of three smart contracts. [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and [LSP1-UniversalReceiver](../../../standards/generic-standards/02-lsp1-universal-receiver.md). You can configure how these contracts should be deployed inside the `contractDeploymentOptions` object when deploying a Universal Profile. Each contract can be configured separately, the available options are the same for all contracts.
+A Universal Profile is composed of three smart contracts. [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and [LSP1-UniversalReceiver](../../../standards/generic-standards/01-lsp1-universal-receiver.md). You can configure how these contracts should be deployed inside the `contractDeploymentOptions` object when deploying a Universal Profile. Each contract can be configured separately, the available options are the same for all contracts.
 
 ```javascript
 await lspFactory.UniversalProfile.deploy({...}, {
@@ -402,6 +406,7 @@ lspFactory.UniversalProfile.deploy({...}, {
 ```
 
 If `options` object is provided it will override the `options` object passed at the instantiation of the LSPFactory.
+
 ### Reactive Deployment
 
 LSPFactory uses [RxJS](https://rxjs.dev/) to deploy contracts. This can be leveraged to achieve reactive deployment of Universal Profiles.

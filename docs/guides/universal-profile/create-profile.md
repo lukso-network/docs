@@ -37,7 +37,7 @@ In the context of Universal Profile, _reading data from the contract storage can
 - `setData` = add, edit or remove data from the [ERC725Y](../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) storage.
 - `execute` = calling other contracts, doing LYX transfers, create other contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor)
 
-In this guide, our Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../standards/smart-contracts/lsp6-key-manager.md) is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
+In this guide, our Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../standards/smart-contracts/05-lsp6-key-manager.md) is a smart contract that enables to give specific permissions (_eg: _ transferring LYX on behalf of the Universal Profile) to `address`es, so that they can interact on the Universal Profile.
 
 :::info Learn More
 You can implement any complex ownership structure (and fine-grained control) on top of Universal Profiles. This includes having a UP owned and controlled by:
@@ -46,7 +46,7 @@ You can implement any complex ownership structure (and fine-grained control) on 
 - one or multiple smart contracts
 - a mixture of both
 
-For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/04-lsp6-key-manager.md)
+For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/05-lsp6-key-manager.md)
 :::
 
 ### Contracts Overview
@@ -58,9 +58,9 @@ Our tool [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) will hel
 Under the hood, lsp-factory.js performs the following:
 
 1. deploys all the necessary contracts:
-   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile-metadata.md) (UP) - core smart contract that represents a Universal Profile.
-   - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD) - contract that react on events, such as tokens received or transferred.
-   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) - contract that acts as **owner of a Universal Profile**, to enable other address to interact with the UP.
+   - [Universal Profile](../../standards/universal-profile/04-lsp3-universal-profile-metadata.md) (UP) - core smart contract that represents a Universal Profile.
+   - [Universal Receiver Delegate](../../standards/universal-profile/03-lsp1-universal-receiver-delegate.md) (URD) - contract that react on events, such as tokens received or transferred.
+   - [Key Manager](../../standards/universal-profile/05-lsp6-key-manager.md) (KM) - contract that acts as **owner of a Universal Profile**, to enable other address to interact with the UP.
 2. link the URD with the deployed UP account + set its permissions.
 3. set all the permissions for an EOA address, so that it can acts as the UP admin.
 

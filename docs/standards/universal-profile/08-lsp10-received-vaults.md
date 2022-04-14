@@ -13,9 +13,9 @@ sidebar_position: 8
 
 ## Introduction
 
-To keep track of all the vaults that an address owns, we should avoid the same problem mentioned in [LSP5-ReceivedAssets](./06-lsp5-received-assets.md), which is not informing recipients and senders about ownership transfer of [LSP9-Vaults](07-lsp9-vault.md).
+To keep track of all the vaults that an address owns, we should avoid the same problem mentioned in [LSP5-ReceivedAssets](./05-lsp5-received-assets.md), which is not informing recipients and senders about the ownership transfer of [LSP9-Vaults](07-lsp9-vault.md).
 
-One way to avoid this problem is to create generic metadata keys that should be registered in the smart contract storage, representing how many different vaults you own, their type, and the address of the transferred vault contract.
+One way to avoid this problem is to create generic metadata keys that developers should register in the smart contract storage, representing how many different vaults you own, their type, and the address of the transferred vault contract.
 
 ## What does this standard represent ?
 
@@ -43,12 +43,12 @@ This key represents a list of all the vaults owned by the contract.
 
 ### `LSP10VaultsMap`
 
-This key represents a map key holding:
+This key represents a map key holding both:
 
-- the index in the [`LSP10Vaults[]`](#lsp10vaults-) Array where the received vaults addresses are stored.
-- an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to easily identify the standard used by each vault smart contract (without the need to query the assets contracts directly).
+- the index in the [`LSP10Vaults[]`](#lsp10vaults-) array where the received vaults addresses are stored, and
+- an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each vault's smart contract (without the need to query the assets contracts directly).
 
-The key `LSP10VaultsMap` also helps to prevent adding duplications to the Array, when automatically added via smart contract (_e.g.:_ a [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
+The `LSP10VaultsMap` key also helps prevent adding duplications to the array when automatically added via smart contract (_e.g.,_ an [LSP1-UniversalReceiverDelegate](./03-lsp1-universal-receiver-delegate.md)).
 
 ```json
 {
@@ -64,12 +64,12 @@ The key `LSP10VaultsMap` also helps to prevent adding duplications to the Array,
 
 :::info Note
 
-The keys are also set on the **sender Universal Profile** to remove the vault contract address when it is sent to the recipient.
+The keys are also set on the **sender's Universal Profile** to remove the vault contract address when sent to the recipient.
 
 :::
 
-These keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract if set, when transferring vaults.
+If set when transferring vaults, these keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/03-lsp1-universal-receiver-delegate-up.md) contract.
 
-![Vault transfer detailed flow](../../../static/img/detailed-vault-transfer.jpeg)
+![Vault transfer detailed flow](/img/detailed-vault-transfer.jpeg)
 
-![LSP10 Received Vaults Flow](../../../static/img/lsp10-received-vaults.jpeg)
+![LSP10 Received Vaults Flow](/img/lsp10-received-vaults.jpeg)

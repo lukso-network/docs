@@ -26,7 +26,7 @@ To achieve this goal, we will perform the following steps:
 
 ## Introduction
 
-A Universal Profile is a smart contract that uses a generic key-value store (ERC725Y) as a storage design. This makes it possible to attach any informations to our Universal Profile, by setting any specific **value** to any specific **key**.
+A Universal Profile is a smart contract that uses a generic key-value store (ERC725Y) as a storage design. This makes it possible to attach any information to our Universal Profile, by setting any specific **value** to any specific **key**.
 
 A set of ERC725Y keys is defined as an **ERC725Y schema**. The schema is an array of keys, where each key is represented by an object. Each key object describes the key `name`, the `keyType` (_e.g.: singleton, array, mapping..._), and the type of the data it contains (`valueType`).
 
@@ -40,7 +40,7 @@ One of main ERC725Y key of the Universal Profile is the [`LSP3Profile`](https://
 
 In this guide, we will store our Universal Profile metadata on [IPFS], a distributed file storage.
 
-We can add (or edit) any informations related to our UP by:
+We can add (or edit) any information related to our UP by:
 
 1. creating a new JSON file, with new / updated infos.
 2. uploading this file to IPFS.
@@ -174,9 +174,11 @@ const { LSP3UniversalProfile } = require('@lukso/lsp-factory.js');
 const jsonFile = require('./UniversalProfileMetadata.json');
 
 async function uploadMetadataToIPFS() {
-  const uploadResult = await LSP3UniversalProfile.uploadProfileData(jsonFile.LSP3Profile);
+  const uploadResult = await LSP3UniversalProfile.uploadProfileData(
+    jsonFile.LSP3Profile,
+  );
 
-    /*
+  /*
     uploadResult = {
         profile: {
             LSP3Profile: {
@@ -439,7 +441,9 @@ const jsonFile = require('./UniversalProfileMetadata.json');
 
 async function editProfileInfos() {
   // Step 2 - Upload our JSON file to IPFS
-  const uploadResult = await LSP3UniversalProfile.uploadProfileData(jsonFile.LSP3Profile);
+  const uploadResult = await LSP3UniversalProfile.uploadProfileData(
+    jsonFile.LSP3Profile,
+  );
   const lsp3ProfileIPFSUrl = uploadResult.url;
 
   // Step 3.1 - Setup erc725.js

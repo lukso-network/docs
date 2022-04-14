@@ -1,16 +1,16 @@
 ---
-sidebar_label: 'Create a LSP7 Digital Asset (Token)'
+sidebar_label: 'Create an LSP7 Digital Asset (Token)'
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create a LSP7 Digital Asset (Token)
+# Create an LSP7 Digital Asset (Token)
 
 In this guide, we will learn how to create our own token (known as [LSP7 Digital Asset](../../standards/nft-2.0/lsp7-digital-asset)) and transfer it between Universal Profiles (UP).
 
-## Deploy a LSP7 Digital Asset contract
+## Deploy an LSP7 Digital Asset contract
 
 We will use a specific implementation of LSP7, called `LSP7Mintable`. It allows the contract deployer to mint new tokens.
 
@@ -36,9 +36,11 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
 });
 
 // deploy the token contract
-await myToken.deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams }).send({ 
-    from: myEOA 
-});
+await myToken
+  .deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams })
+  .send({
+    from: myEOA,
+  });
 ```
 
   </TabItem>
@@ -74,8 +76,8 @@ The code snippet below shows how to mint 100 tokens with your Universal Profile 
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-await myToken.methods.mint('<up-address>', 100, false, '0x').send({ 
-    from: myEOA 
+await myToken.methods.mint('<up-address>', 100, false, '0x').send({
+  from: myEOA,
 });
 ```
 
