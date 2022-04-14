@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Digital Asset (Token)
 
-In this guide, we will learn how to create our own token (known as [LSP7 Digital Asset](../../standards/nft-2.0/lsp7-digital-asset)) and transfer it between Universal Profiles (UP).
+This guide will teach you how to create our token ([LSP7 Digital Asset](../../standards/nft-2.0/lsp7-digital-asset)) and transfer it between Universal Profiles (UP).
 
 ## Deploy an LSP7 Digital Asset contract
 
@@ -95,7 +95,7 @@ await myToken.connect(myEOA).mint('<up-address>', 100, false, '0x');
 
 ## Transfer tokens to an other Universal Profile
 
-The following code snippet show how to transfer 15 tokens from your UP to another UP called `bobUP`.
+The following code snippet shows how to transfer 15 tokens from your UP to another UP called `bobUP`.
 
 <Tabs>
   
