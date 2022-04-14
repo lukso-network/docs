@@ -8,11 +8,11 @@ import TabItem from '@theme/TabItem';
 
 # Transfer LYX
 
-In this tutorial, we will learn how to transfer LYX from one Universal Profile (UP) to another Universal Profile, or any other `address`.
+This tutorial will teach you how to transfer LYX from one Universal Profile (UP) to another Universal Profile or any other address.
 
 ## Introduction
 
-To interact with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow / disallow execution after checking the [permissions](../../standards/universal-profile/06-lsp6-key-manager.md#permission-values) of the calling address.
+While interacting with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow/disallow execution after checking the [permissions](../../standards/universal-profile/06-lsp6-key-manager.md#permission-values) of the calling address.
 
 Therefore to interact with our UP, we will need to encode the function call of our UP and pass the **payload** to the [`execute(payload)`](../../standards/smart-contracts/05-lsp6-key-manager.md#execute) function on the KM.
 
@@ -27,13 +27,13 @@ The parameters of the function will be as follow:
 
 Since we are just making a simple LYX transfer, the fourth parameter `_data` will be empty.
 
-## Step 1: create the contract instances
+## Step 1: Create the contract instances
 
-We will first need to create the instance of each contract. To do so we will need:
+We will first need to create the instance of each contract. To do so, we will need:
 
-- contracts abis
-- address of our Universal Profile
-- address of our KeyManager
+- the contract's ABIs,
+- the address of our Universal Profile, and
+- the address of it's KeyManager contract
 
 ```typescript
 const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
@@ -45,7 +45,7 @@ const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
 
 ## Step 2: Encode the payload to transfer LYX
 
-The next step is to encode the action that we will perform on our Universal Profile. In our case, we want to transfer 3 LYX to an address, using the `execute(...)` function on the UP.
+The next step is to encode the action that we will perform on our Universal Profile. In our case, we want to transfer 3 LYX to an address using the `execute(...)` function on the UP.
 
 ```typescript
 const Web3 = require('web3');
@@ -63,9 +63,9 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 ```
 
-## Step 3: send the payload to the Key Manager
+## Step 3: Send the payload to the Key Manager
 
-The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize, and execute the LYX transfer.
+The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize and execute the LYX transfer.
 
 ```javascript
 await myKM.execute(transferLYXPayload).send({
