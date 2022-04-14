@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.1
+sidebar_position: 1
 title: LSP3UniversalProfile
 ---
 
@@ -136,7 +136,7 @@ await lspFactory.LSP3UniversalProfile.deploy(
   },
   {
     deployReactive: true,
-  }
+  },
 ).subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);

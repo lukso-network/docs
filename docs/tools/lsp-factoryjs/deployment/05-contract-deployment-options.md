@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.4
+sidebar_position: 5
 title: Contract Deployment Options
 ---
 
@@ -14,7 +14,7 @@ The `deploy` function takes an object `contractDeploymentOptions` as its second 
 - `deployProxy?` - `boolean`: Whether the contract should be deployed using a proxy contract implementation (eg: [EIP1167](https://eips.ethereum.org/EIPS/eip-1167)). Defaults to true.
 - `libAddress?` - `string`: The Address of a Base Contract to be used in deployment as implementation behind a proxy contract (eg: [EIP1167](https://eips.ethereum.org/EIPS/eip-1167)).
 - `uploadOptions?` - `Object`: Specify how the metadata should be uploaded.
-    - `ipfsClientOptions?` - `Object`: IPFS Client Options as defined by the [ipfs-http-client library](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) used internally.
+  - `ipfsClientOptions?` - `Object`: IPFS Client Options as defined by the [ipfs-http-client library](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) used internally.
 
 This is an optional parameter and so may be omitted. If no contract deployment options are specified, `LSPFactory` will deploy a **minimal proxy contract** based on the [EIP1167](https://eips.ethereum.org/EIPS/eip-1167. The proxy contract will reference the address of a base contract implementation already deployed on the network.
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.4
+sidebar_position: 4
 title: LSP8IdentifiableDigitalAsset
 ---
 
@@ -83,7 +83,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy(
     symbol: 'TKN',
     controllerAddress: '0xb74a88C43BCf691bd7A851f6603cb1868f6fc147',
   },
-  { deployReactive: true }
+  { deployReactive: true },
 ).subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);

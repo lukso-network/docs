@@ -1,6 +1,6 @@
 ---
 sidebar_label: Writing Data
-sidebar_position: 1.4
+sidebar_position: 4
 ---
 
 # How to write data to the key-value store of an ERC725Account

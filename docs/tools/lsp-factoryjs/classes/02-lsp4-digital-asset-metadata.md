@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.2
+sidebar_position: 2
 title: LSP4DigitalAssetMetadata
 ---
 
@@ -79,7 +79,7 @@ await LSP4DigitalAssetMetadata.uploadMetadata(
       port: 5001,
       protocol: 'https',
     },
-  }
+  },
 );
 /**
 {

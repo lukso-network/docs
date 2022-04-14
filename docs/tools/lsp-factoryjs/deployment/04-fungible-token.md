@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.3
+sidebar_position: 4
 title: Fungible Token (LSP7)
 ---
 

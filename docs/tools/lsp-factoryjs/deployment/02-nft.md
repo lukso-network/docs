@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.2
+sidebar_position: 2
 title: NFT2.0 (LSP7, LSP8)
 ---
 

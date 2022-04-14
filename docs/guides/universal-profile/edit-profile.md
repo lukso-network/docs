@@ -497,6 +497,6 @@ async function editProfileInfos() {
 editProfileInfos();
 ```
 
-[lsp-factory.js]: (../../tools/lsp-factoryjs/deployment/universal-profile.md#uploading-lsp3-metadata-to-ipfs)
-[erc725.js]: (../../tools/erc725js/writing-data.md#example)
+[lsp-factory.js]: (../../tools/lsp-factoryjs/deployment/01-universal-profile.md#uploading-lsp3-metadata-to-ipfs)
+[erc725.js]: (../../tools/erc725js/04-writing-data.md#example)
 [ipfs]: https://ipfs.io/

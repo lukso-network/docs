@@ -12,7 +12,7 @@ In this guide, we will learn how to:
 
 ![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
-We will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) to create a Universal Profile in **less than 50 lines of code!**
+We will use our tool [lsp-factory.js](../../tools/lsp-factoryjs/deployment/01-universal-profile.md) to create a Universal Profile in **less than 50 lines of code!**
 
 ## Introduction
 
@@ -53,7 +53,7 @@ For more details, see [LSP6 - Key Manager Standard](../../standards/universal-pr
 
 ![Universal Profile: overview of deployed contracts](./img/universal-profile-overview.jpeg)
 
-Our tool [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) will help us quickly deploy and set up a Universal Profile with just a few lines of code.
+Our tool [lsp-factory.js](../../tools/lsp-factoryjs/01-getting-started.md) will help us quickly deploy and set up a Universal Profile with just a few lines of code.
 
 Under the hood, lsp-factory.js performs the following:
 
