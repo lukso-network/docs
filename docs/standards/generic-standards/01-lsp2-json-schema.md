@@ -13,7 +13,7 @@ sidebar_position: 3.3
 
 :::success Recommendation
 
-Our [JavaScript library **erc725.js**](../../tools/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema without manually going through all the encoding complexity.
+Our [JavaScript library **erc725.js**](../../tools/erc725js/01-getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema without manually going through all the encoding complexity.
 
 :::
 

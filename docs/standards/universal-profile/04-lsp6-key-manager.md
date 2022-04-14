@@ -55,7 +55,7 @@ To add or remove entries in these list (of addresses, `bytes4` function selector
 
 This is an **expensive operation**, since the data being set is an abi-encoded array.
 
-The [erc725.js](../../tools/erc725js/getting-started) package can help for [encoding the keys and values](../../tools/erc725js/classes/ERC725.md#encodedata).
+The [erc725.js](../../tools/erc725js/getting-started) package can help for [encoding the keys and values](../../tools/erc725js/classes/01-ERC725.md#encodedata).
 
 :::
 
