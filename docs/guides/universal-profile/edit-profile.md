@@ -356,14 +356,13 @@ The final step is to edit our `LSP3Profile` key on our Universal Profile with th
 
 Since our Universal Profile is owned by a Key Manager, the call will have to go through the Key Manager first. We then need to **encoded the setData payload** and pass it to our Universal Profile to perform this last step.
 
-<!-- @todo to be modified if we introduce setData(bytes32,bytes) as a 4th selector in the KeyManager -->
-
 ```javascript title="main.js"
 // encode the setData payload
 // (`encodedData` is the value obtain from Step 3.2)
-const abiPayload = await myUP.methods
-  .setData([encodedData.LSP3Profile.key], [encodedData.LSP3Profile.value])
-  .encodeABI();
+const abiPayload = await myUP.methods['setData(bytes32[],bytes[])'](
+  [encodedData.LSP3Profile.key],
+  [encodedData.LSP3Profile.value],
+).encodeABI();
 
 // execute via the KeyManager, passing the UP payload
 await myKM.methods
@@ -481,9 +480,10 @@ async function editProfileInfos() {
   // Step 4.3 - Set data (updated LSP3Profile metadata) on our Universal Profile
 
   // encode the setData payload
-  const abiPayload = await myUP.methods
-    .setData([encodedData.LSP3Profile.key], [encodedData.LSP3Profile.value])
-    .encodeABI();
+  const abiPayload = await myUP.methods['setData(bytes32[],bytes[])'](
+    [encodedData.LSP3Profile.key],
+    [encodedData.LSP3Profile.value],
+  ).encodeABI();
 
   // execute via the KeyManager, passing the UP payload
   await myKM.methods
