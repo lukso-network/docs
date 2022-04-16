@@ -25,7 +25,7 @@ const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
 const myDigitalAsset = await lspFactory.LSP7DigitalAsset.deploy({
     name: "My token",
     symbol: "TKN",
-    controllerAddress: "0x..",
+    ownerAddress: "0x..", // Account which will own the Token Contract
     isNFT: true,
 })
 
@@ -59,7 +59,7 @@ const myDigitalAsset =
   lspFactory.LSP8IdentifiableDigitalAsset.deploy({
     name: "My token",
     symbol: "TKN",
-    controllerAddress: "0x...",
+    ownerAddress: "0x...", // Account which will own the Token Contract
   })
 
 const myNFT = new web3.eth.Contract(
