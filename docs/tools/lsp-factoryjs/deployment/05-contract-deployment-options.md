@@ -3,32 +3,43 @@ sidebar_position: 5
 title: Contract Deployment Options
 ---
 
-When using `LSPFactory` you have the ability to specify custom deployment parameters to be applied to your contracts.
+Using the LSP Factory, you can specify custom deployment parameters for your contracts.
 
-The `deploy` function takes an object `contractDeploymentOptions` as its second parameter where the contract `version`, `byteCode` and `libAddress` can be specified:
+The `deploy` function takes an object `contractDeploymentOptions` as its second parameter where the contract `version`, `byteCode`, and `libAddress` can be specified:
 
-> `contractDeploymentOptions?` - `Object`:
+## Deployment Properties
 
-- `version?` - `string`: The Contract version you want to deploy. Defaults to latest version of [lsp-smart-contracts](https://github.com/lukso-network/lsp-smart-contracts) library.
-- `byteCode?` - `string`: Custom bytecode to be deployed.
-- `deployProxy?` - `boolean`: Whether the contract should be deployed using a proxy contract implementation (eg: [EIP1167](https://eips.ethereum.org/EIPS/eip-1167)). Defaults to true.
-- `libAddress?` - `string`: The Address of a Base Contract to be used in deployment as implementation behind a proxy contract (eg: [EIP1167](https://eips.ethereum.org/EIPS/eip-1167)).
-- `uploadOptions?` - `Object`: Specify how the metadata should be uploaded.
-  - `ipfsClientOptions?` - `Object`: IPFS Client Options as defined by the [ipfs-http-client library](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) used internally.
+The `contractDeploymentOptions?` is an `Object` with the following properties:
 
-This is an optional parameter and so may be omitted. If no contract deployment options are specified, `LSPFactory` will deploy a **minimal proxy contract** based on the [EIP1167](https://eips.ethereum.org/EIPS/eip-1167. The proxy contract will reference the address of a base contract implementation already deployed on the network.
+- `version?`: The contract's version you want to deploy as `string`. <br/>
+- `byteCode?`: The custom bytecode to be deployed as `string`.
+- `deployProxy?`: Indicator `boolean` if the contract will be deployed using a proxy contract (e.g., [EIP1167](https://eips.ethereum.org/EIPS/eip-1167)).
+- `libAddress?`: The address of a base contract for proxy deployment as `string` (e.g., [EIP1167](https://eips.ethereum.org/EIPS/eip-1167)).
+- `uploadOptions?`: Specification `Object` how the metadata should be uploaded.
+- `ipfsClientOptions?`: Optional IPFS Client Options as `Object` defined by the [IPFS-HTTP Client](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) library used internally.
 
-If you do not want your contract to use proxy deployment you can set `deployProxy` to `false`. This will deploy a 'full' contract with a constructor rather than using a proxy deployment with initializer.
+### Default Values
+
+- `version?`: defaults to the latest version of the [lsp-smart-contracts](https://github.com/lukso-network/lsp-smart-contracts) library.
+- `deployProxy?`: defaults to `true`.
+
+### IPFS Client Options
+
+The property `ipfsClientOptions` is an optional parameter and so may be omitted. If no contract deployment options are specified, `LSPFactory` will deploy a **minimal proxy contract** based on the [EIP1167](https://eips.ethereum.org/EIPS/eip-1167. The proxy contract will reference the address of a base contract implementation already deployed on the network.
+
+### Proxy Deployment
+
+If you do not want your contract to use proxy deployment, you can set the `deployProxy` property to `false`, which will deploy a standalone contract with a constructor rather than a proxy deployment with an initializer.
 
 :::info Info
-LSPFactory stores base contract addresses for different versions [internally](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) and uses the latest available version if no version is specified.
+LSPFactory stores the base contract addresses for different versions [internally](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) and uses the latest available version if no one is specified.
 :::
 
-#### Custom Bytecode
+## Custom Bytecode
 
-You can specify the bytecode you want your contract to use by providing the `byteCode` parameter. This will deploy a full contract from your custom bytecode without using a proxy.
+You can specify the bytecode you want your contract to use by providing the `byteCode` parameter. This will deploy a standalone contract from your custom bytecode without using a proxy.
 
-For example, you could deploy a Universal Profile with a Key Manager which uses your custom bytecode:
+For example, you could deploy a Universal Profile with a Key Manager that uses your custom bytecode:
 
 ```javascript title="Deploying a Universal Profile with a custom Key Manager base contract"
 lspFactory.LSP3UniversalProfile.deploy({...}, {
@@ -49,11 +60,7 @@ lspFactory.LSP3UniversalProfile.deploy({...}, {
 })
 ```
 
-<!-- :::info Infos -->
-
-**LSPFactory also allows contracts to be individually customisable. You can set the version per contract which will take precedence over the global version:**
-
-<!-- ::: -->
+LSPFactory also allows contracts to be **individually customisable** by allowing you to set the version per contract. Individual versioning will take precedence over the global version.
 
 ```javascript title="Deploying a Universal Profile at version 0.4.1 with ERC725Account contract at version 0.3.9"
 lspFactory.LSP3UniversalProfile.deploy({...}, {
@@ -64,7 +71,7 @@ lspFactory.LSP3UniversalProfile.deploy({...}, {
 })
 ```
 
-Or use a combination of `libAddress`, `bytecode` and `version`:
+You can also use a combination of the properties `libAddress`, `bytecode` and `version`.
 
 ```javascript title="Deploying a Universal Profile with specific contract deployment options"
 lspFactory.LSP3UniversalProfile.deploy({...}, {
@@ -82,7 +89,7 @@ lspFactory.LSP3UniversalProfile.deploy({...}, {
 
 ### Custom Digital Asset Deployment
 
-Deploying a [`LSP7DigitalAsset`](../classes/lsp7-digital-asset) or [`LSP8IdentifiableDigitalAsset`](../classes/lsp8-identifiable-digital-asset) involves deploying only one contract so these standards share the same `contractDeploymentOptions` object structure:
+Because deploying an [`LSP7DigitalAsset`](../classes/lsp7-digital-asset) or an [`LSP8IdentifiableDigitalAsset`](../classes/lsp8-identifiable-digital-asset) involves the deployment of one single contract, the standards share the same `contractDeploymentOptions` object structure
 
 ```javascript title="Deploying an LSP7 Digital Asset with a specified base contract address"
 lspFactory.LSP7DigitalAsset.deploy({...}, {

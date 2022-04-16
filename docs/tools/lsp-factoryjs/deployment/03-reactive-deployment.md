@@ -5,13 +5,13 @@ title: Reactive Deployment
 
 ## Reactive Deployment
 
-`lsp-factory.js` uses [RxJS](https://github.com/ReactiveX/rxjs) to deploy contracts. This can be leveraged to achieve reactive deployment of Universal Profiles and Digital Assets.
+The `lsp-factory.js` uses the [RxJS](https://github.com/ReactiveX/rxjs) library to deploy contracts. Developers can leverage this to achieve reactive deployment of Universal Profiles and Digital Assets.
 
-When deploying a Universal Profile or Digital Asset pass the `deployReactive` flag inside the [ContractDeploymentOptions](../deployment/05-contract-deployment-options.md) object to receive an RxJS Observable which will emit events as your contract is deployed.
+When deploying a Universal Profile or Digital Asset, pass the `deployReactive` flag inside the [ContractDeploymentOptions](../deployment/05-contract-deployment-options.md) object to receive an RxJS Observable, which will emit events as your contract is deployed.
 
 ### Universal Profiles
 
-Use the `deployReactive` flag and use `subscribe()` to listen for deployment events.
+Use the `deployReactive` flag and the `subscribe()` function to listen for deployment events.
 
 ```typescript
 let deploymentEvents = [];
@@ -28,11 +28,11 @@ lspFactory.LSP3UniversalProfile
   });
 ```
 
-The function defined in `next` will be called whenever a new deployment event is created. In this case we are simply pushing every deployment event into a `deploymentEvents` array.
+The function defined in `next` will be called whenever a new deployment event is created. We are simply pushing every deployment event into a `deploymentEvents` array.
 
-The function defined in `complete` will be called once after deployment is finished. Here we log the `deploymentEvents` array.
+The function defined in `complete` will be called once after the deployment is finished. The following code snippet describes, how we can log the `deploymentEvents` array.
 
-```typescript title="console.log(deploymentEvents) output"
+```typescript title="Output from calling the console.log(deploymentEvents) function"
 [
   {
     type: 'PROXY',
@@ -134,9 +134,11 @@ The function defined in `complete` will be called once after deployment is finis
 
 ### Digtial Assets
 
-For reactive deployment of LSP7 and LSP8 Digital Assets pass the `deployReactive` flag to `LSP7DigitalAsset.deploy` or `LSP8IdentifiableDigitalAsset.deploy` functions respectively
+For reactive deployment of LSP7 and LSP8 Digital Assets, pass the `deployReactive` flag to `LSP7DigitalAsset.deploy` or `LSP8IdentifiableDigitalAsset.deploy` functions.
 
-```typescript title="LSP7 Deployment"
+#### Example LSP7 Deployment
+
+```typescript title="Deploying an LSP7 contract"
 // Reactive deplyoyment of LSP7
 let deploymentEvents = [];
 
@@ -152,9 +154,9 @@ lspFactory.LSP7DigitalAsset
   });
 ```
 
-or
+#### Example LSP8 Deployment
 
-```typescript title="LSP8 Deployment"
+```typescript title="Deploying as LSP8 Contract"
 let deploymentEvents = [];
 
 lspFactory.LSP8IdentifiableDigitalAsset
@@ -169,7 +171,9 @@ lspFactory.LSP8IdentifiableDigitalAsset
   });
 ```
 
-```typescript title="LSP7 Deployment Events"
+#### LSP7 Deployment Events
+
+```typescript
 [
   {
     type: 'PROXY',
@@ -200,7 +204,9 @@ lspFactory.LSP8IdentifiableDigitalAsset
 ];
 ```
 
-```typescript title="LSP8    Deployment Events"
+#### LSP8 Deployment Events
+
+```typescript
 [
   {
     type: 'PROXY',
@@ -231,6 +237,6 @@ lspFactory.LSP8IdentifiableDigitalAsset
 ];
 ```
 
-## Use cases
+## Use Cases
 
-Reactive Deployment may be useful for certain front end behaviours to give better feedback to users when they trigger a UP deployment from a user interface. For example you may want to implement a loading bar to tell users how deployment is progressing, or display details and addresses of the contracts as they are deployed.
+Reactive deployment may be helpful in certain front-end behaviors to give better feedback to users when they trigger a UP deployment from a user interface. For example, you may want to implement a loading bar to tell users how deployment is progressing or display details and addresses of the contracts as they are deployed.

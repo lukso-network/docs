@@ -13,29 +13,39 @@ lspFactory.LSP8IdentifiableDigitalAsset.deploy(
   contractDeploymentOptions?);
 ```
 
-Deploys a mintable [LSP8 Identifiable Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
+The function deploys a mintable [LSP8 Identifiable Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
 
 #### Parameters
 
-1. `digitalAssetDeploymentOptions` - `Object`: The [options used for deployment](../../../../../standards/smart-contracts/lsp8-identifiable-digital-asset#constructor).
-   - `name` - `string`: The name of the token.
-   - `symbol` - `string`: The symbol of the token.
-   - `controllerAddress` - `string` : The owner of the contract.
-   - `digitalAssetMetadata`?: `LSP4MetadataBeforeUpload | string`: [LSP4 Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) to be attached to the smart contract. Can be an encoded hex string, ipfs url or metadata object as defined in (LSP4DigitalAssetMetadata.uploadMetadata)[./lsp4-digital-asset-metadata#uploadMetadata].
-   - `creators?` `string[]`: Array of ERC725Account `address`es that defines the creators of the digital asset. Used to set the [LSP4Creators[]](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4creators) key on the contract.
-2. `contractDeploymentOptions?` - `Object`: Same as for [LSP7DigitalAsset deployment](./lsp7-digital-asset)
+| Name                            | Type   | Description                                          |
+| :------------------------------ | :----- | :--------------------------------------------------- |
+| `digitalAssetDeploymentOptions` | Object | The [constructor parameters] used when deploying.    |
+| `contractDeploymentOptions?`    | Object | The Specification for [Contract Deployment Options]. |
+
+#### Parameters of `digitalAssetDeploymentOptions`
+
+| Name                    | Type                               | Description                                               |
+| :---------------------- | :--------------------------------- | :-------------------------------------------------------- |
+| `name`                  | string                             | The name of the token.                                    |
+| `symbol`                | string                             | The symbol of the token.                                  |
+| `controllerAddress`     | string                             | The owner of the contract.                                |
+| `digitalAssetMetadata?` | LSP4MetadataBeforeUpload or string | The [LSP4] metadata to be attached to the smart contract. |
+| `creators?`             | string[&nbsp;]                     | The [LSP4] metadata to be attached to the smart contract. |
 
 #### Returns
 
-`Promise`<`DeployedLSP8IdentifiableDigitalAsset`\> | `Observable`<`DigitalAssetDeploymentEvent`\>
+| Name         | Type                                                                 | Description                                                |
+| :----------- | :------------------------------------------------------------------- | :--------------------------------------------------------- |
+| `Promise`    | &ltDeployedLSP8DigitalAsset&gt, or &ltDigitalAssetDeploymentEvent&gt | An object containing deployed contract details.            |
+| `Observable` | RxJS &ltObject&gt                                                    | An [RxJS Observable], if `deployReactive` is set to `true` |
 
-Promise with deployed contract details.
+:::info
+The `deployReactive` flag can be set in the `ContractDeploymentOptions` object, and returns an [RxJS Observable] of deployment events.
+:::
 
-If `deployReactive` flag is set to `true` in the `ContractDeploymentOptions` object, returns an [RxJS Observable](https://rxjs.dev/guide/observable) of deployment events.
+#### Deployment of LSP8 Identifiable Digital Asset Example
 
-#### Example
-
-```javascript
+```javascript title="Deploying an LSP8 Identifiable Digital Asset"
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
   name: 'My token',
   symbol: 'TKN',
@@ -76,7 +86,9 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 */
 ```
 
-```javascript title="Reactive LSP8 Identifiable Digital Asset deployment"
+#### Deployment of Reactive LSP8 Identifiable Digital Asset Example
+
+```javascript title="Deploying a Reactive LSP8 Identifiable Digital Asset"
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy(
   {
     name: 'My token',
@@ -130,3 +142,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy(
 }
 */
 ```
+
+[lsp4]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md
+[contract deployment options]: ../deployment/contract-deployment-options
+[rxjs observable]: https://rxjs.dev/guide/observable

@@ -11,28 +11,40 @@ title: LSP4DigitalAssetMetadata
 LSP4DigitalAssetMetadata.uploadMetadata(lsp4Metadata, uploadOptions?);
 ```
 
-Upload and processes passed images and assets and uploads the [LSP4 Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) to IPFS.
+The function uploads and processes passed assets and images, and uploads the [LSP4 Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) to IPFS.
 
-Available as a static or non-static function callable on an instance of `LSPFactory`. If used on an `LSPFactory` instance the `uploadOptions` passed to LSPFactory on instantiation will used if `uploadOptions` are not specified in the function call.
+The `uploadMetadata` function is available as a static or non-static function callable on the `LSPFactory` library instance. <br/> If `uploadOptions` are not specified in the function call, and the function is used on an `LSPFactory` instance, <br/> the specified options in `uploadOptions` that were passed to the LSPFactory will be used.
 
 #### Parameters
 
-1. `metaData` - `Object`: The Metadata to be uploaded.
-   - `description` - `string`: A description of the digital asset.
-   - `links?` - `{title: string, url: string}[]`
-   - `icon?` - `File | ImageBuffer | ImageMetadata[]`
-   - `images?` - `File | ImageBuffer | ImageMetadata[]`
-   - `assets?` - `File | AssetBuffer | AssetMetadata[]`
-2. `uploadOptions?` - `Object`: Specify how the metadata should be uploaded.
-   - `ipfsClientOptions?` - `Object`: IPFS Client Options as defined by the [ipfs-http-client library](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) used internally.
+| Name             | Type   | Description                                            |
+| :--------------- | :----- | :----------------------------------------------------- |
+| `metaData`       | Object | The metadata to be uploaded.                           |
+| `uploadOptions?` | Object | The specification how the metadata should be uploaded. |
+
+#### Parameters of `metaData`
+
+| Name          | Type                                             | Description                         |
+| :------------ | :----------------------------------------------- | :---------------------------------- |
+| `description` | string                                           | A description of the digital asset. |
+| `links?`      | {&nbsp;title: string, url: string&nbsp;}[&nbsp;] | The links of the digital asset.     |
+| `icon?`       | File, AssetBuffer, or AssetMetadata[&nbsp;]      | The icon of the digital asset.      |
+| `images?`     | File, AssetBuffer, or AssetMetadata[&nbsp;]      | The images of the digital asset.    |
+| `assets?`     | File, AssetBuffer, or AssetMetadata[&nbsp;]      | The assets of the digital asset.    |
+
+#### Parameters of `uploadOptions?`
+
+| Name                 | Type   | Description                                                                       |
+| :------------------- | :----- | :-------------------------------------------------------------------------------- |
+| `ipfsClientOptions?` | Object | IPFS Client Options as defined by the [ipfs-http-client library] used internally. |
 
 #### Returns
 
-`Promise`<`LSP4MetadataForEncoding`\>
+| Name      | Type                          | Description                               |
+| :-------- | :---------------------------- | :---------------------------------------- |
+| `Promise` | &ltLSP4MetadataForEncoding&gt | The processed [LSP4] data and upload URL. |
 
-Processed [LSP4](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) data and upload URL.
-
-#### Example
+#### Upload LSP4 Metadata Example
 
 ```javascript title="Uploading LSP4Metadata"
 const image = new File();
@@ -63,6 +75,8 @@ await LSP4DigitalAssetMetadata.uploadMetadata(
 }
 */
 ```
+
+#### Upload Custom LSP4 Metadata Example
 
 ```javascript title="Uploading LSP4Metadata using custom uploadOptions"
 await LSP4DigitalAssetMetadata.uploadMetadata(
@@ -96,6 +110,8 @@ await LSP4DigitalAssetMetadata.uploadMetadata(
 }
 */
 ```
+
+#### Upload Custom LSP4 Metadata with LSP Factory Example
 
 ```javascript title="Uploading LSP4Metadata using uploadOptions passed when instantiating LSPFactory"
 const lspFactory = new LSPFactory(provider, {
@@ -132,3 +148,6 @@ await lspFactory.LSP4DigitalAssetMetadata.uploadMetadata({
 }
 */
 ```
+
+[ipfs-http-client library]: https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions
+[lsp4]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md

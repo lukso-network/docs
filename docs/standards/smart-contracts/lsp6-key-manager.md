@@ -54,9 +54,9 @@ This can be a contract that implements:
 
 #### Returns
 
-| Name      | Type      | Description                       |
-| --------- | --------- | --------------------------------- |
-| `account` | `address` | the address of the linked account |
+| Name      | Type    | Description                       |
+| --------- | ------- | --------------------------------- |
+| `account` | address | the address of the linked account |
 
 ### execute
 

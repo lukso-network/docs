@@ -119,9 +119,9 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
 
 #### Return Values:
 
-| Name       | Type       | Description                  |
-| :--------- | :--------- | :--------------------------- |
-| `tokensId` | bytes32[ ] | The list of owned token ids. |
+| Name       | Type            | Description                  |
+| :--------- | :-------------- | :--------------------------- |
+| `tokensId` | bytes32[&nbsp;] | The list of owned token ids. |
 
 ### authorizeOperator
 
@@ -234,9 +234,9 @@ Returns all `operator` addresses of `tokenId`.
 
 #### Return Values:
 
-| Name        | Type       | Description            |
-| :---------- | :--------- | :--------------------- |
-| `operators` | address[ ] | The list of operators. |
+| Name        | Type            | Description            |
+| :---------- | :-------------- | :--------------------- |
+| `operators` | address[&nbsp;] | The list of operators. |
 
 :::note
 
@@ -340,14 +340,14 @@ _**MUST** be fired when **[transfer](#transfer)** get executed successfuly._
 
 #### Values:
 
-| Name       | Type    | Description                                                                                                                           |
-| :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `operator` | address | The address of operator sending tokens.                                                                                               |
-| `from`     | address | The address which tokens are sent.                                                                                                    |
-| `to`       | address | The receiving address.                                                                                                                |
-| `tokenId`  | bytes32 | The token to transfer.                                                                                                                |
-| `force`    | bool    | When set to TRUE, to may be any address; when set to FALSE to must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.                       |
+| Name       | Type    | Description                                                                                                     |
+| :--------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
+| `operator` | address | The address of operator sending tokens.                                                                         |
+| `from`     | address | The address which tokens are sent.                                                                              |
+| `to`       | address | The receiving address.                                                                                          |
+| `tokenId`  | bytes32 | The token to transfer.                                                                                          |
+| `force`    | bool    | When TRUE, may be any address; When FALSE, address must be a contract supporting LSP1 and not revert.           |
+| `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses. |
 
 ### AuthorizedOperator
 

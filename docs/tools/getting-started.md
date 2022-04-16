@@ -4,21 +4,29 @@ title: Getting Started
 sidebar_position: 1
 ---
 
-Here you will find tutorials and tools that help you building on LUKSO. As LUKSO is an EVM based Blockchain, all tools tutorials for Ethereum work well for LUKSO to, if you need EVM and Smart Contract knowledge we advise you look at [these great resources from the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/).
+Here you will find tutorials and tools that help you build on LUKSO. As LUKSO is an EVM-based Blockchain, all tools tutorials for Ethereum work well for LUKSO. If you need EVM and Smart Contract knowledge, we advise you to look at [these great resources from the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/).
 
-Other than most EVM chains, you're encouraged on LUKSO to mainly use [Universal Profiles](../standards/universal-profile/introduction.md) as the main account of your dApps and as a gateway for your users to the LUKSO Blockchain. It is discouraged to use simple EOAs as accounts, as they are insecure, inflexible and don't track incoming assets.
+Other than most EVM chains, you're encouraged on LUKSO to mainly use [Universal Profiles](../standards/universal-profile/introduction.md) as the account solution for dApps and as a gateway for your users to the LUKSO Blockchain. It is discouraged to use simple EOAs as accounts, as they are insecure, inflexible and don't track incoming assets. If you need a more general understanding of why we build our accounts on the smart contract level, we advise you to read about the [LUKSO Ecosystem](https://medium.com/lukso/lukso-ecosystem-part-1-4c3f5d67b081) concept.
 
 ## UP in 1-2-3
 
 This little tutorial will show you how to deploy and interact with a UniversalProfile.
-You can:
+To maximize your learning curve, you can:
 
-- run this tutorial in the console of <https://universalprofile.cloud>, which has all necessary contract objects available (under the `contracts` object)
-- clone the [`up-sample-react-app`](https://github.com/Hugoo/up-sample-react-app) repo and work in it
-- write your own JS/TS scripts
-- check the [demo app](https://hugoo.github.io/up-sample-react-app/)
+- run this tutorial in the console of the [profile explorer](https://universalprofile.cloud),
+- clone the [`up-sample-react-app`](https://github.com/Hugoo/up-sample-react-app) repo and work in it,
+- write your own JavaScript or TypeScript code snippets on top, and
+- check the [demo app](https://hugoo.github.io/up-sample-react-app/) for some first impressions.
 
-First, generate a key that will control your UP and fund it via the [L14 Faucet](http://faucet.l14.lukso.network):
+:::info
+The [profile explorer](https://universalprofile.cloud) has all necessary entities under the `contracts` object. Take a look at different profiles and assets you want to experiment with within your code.
+:::
+
+:::note
+We will use the [`@erc725/erc725.js`](./erc725js/getting-started) NPM package in order to get quick accsess to reading keys, values and ABIs.
+:::
+
+#### Generate a key that will control your Universal Profile.
 
 ```js title="Load web3"
 import Web3 from 'web3';
@@ -54,7 +62,9 @@ if (!web3.eth.accounts.wallet.length) {
 if (!myKeyAddress) return;
 ```
 
-Next we deploy your UP smart contracts using the [`@lukso/lsp-factory.js`](./lsp-factoryjs/getting-started) NPM package:
+#### Fund the Universal Profile by using the [L14 Faucet](http://faucet.l14.lukso.network).
+
+#### Deploy your UP smart contracts using [`@lukso/lsp-factory.js`](./lsp-factoryjs/getting-started).
 
 ```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
@@ -87,7 +97,7 @@ const myUPAddress = deployedContracts.ERC725Account.address;
 // 0xB46BBD556589565730C06bB4B7454B1596c9E70A
 ```
 
-We can read the UP smart contract ERC725Y keys/values with the [`@erc725/erc725.js`](./erc725js/getting-started) NPM package:
+#### Read the UP smart contract ERC725Y keys and values with [`@erc725/erc725.js`](./erc725js/getting-started).
 
 ```js title="Read Universal Profile ERC725 keys/values with erc725.js"
 import { ERC725 } from '@erc725/erc725.js';
@@ -153,7 +163,7 @@ console.log(data);
 }
 ```
 
-To interact directly with any smart contract through your UP, load the ABIs from [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) NPM package.
+#### Interact directly with any smart contract through your UP, by loading the ABIs from [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
 
 ```js title="Interact directly through your UP"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';

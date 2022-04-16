@@ -25,10 +25,14 @@ Once your transaction has been sent to the relayer get the status of your transa
 }
 ```
 
-- `keyManagerAddress`: the address of the [`KeyManager`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md) contract which controls the Universal Profile
-- `abi`: the encoded abi of the transaction
-- `signature`: the transaction signature
-- `nonce`: nonce of the KeyManager contract
+#### Properties
+
+| Name                | Description                                                                      |
+| :------------------ | :------------------------------------------------------------------------------- |
+| `keyManagerAddress` | The address of the [`KeyManager`] contract which controls the Universal Profile. |
+| `abi`               | The encoded ABI of the transaction.                                              |
+| `signature`         | The transaction signature.                                                       |
+| `nonce`             | The nonce of the KeyManager contract.                                            |
 
 ### Response
 
@@ -45,25 +49,29 @@ Once your transaction has been sent to the relayer get the status of your transa
 }
 ```
 
-- `success`: whether the transaction was successful
-- `taskId`: task id used to identify the transaction using the `/task/{taskId}` endpoint
-- `keyManagerAddress`: the address of the [`KeyManager`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md) contract which controls the Universal Profile
-- `abi`: the encoded abi of the transaction you sent
-- `signature`: the transaction signature you sent
-- `nonce`: nonce of the KeyManager contract you sent
+#### Properties
+
+| Name                | Description                                                                      |
+| :------------------ | :------------------------------------------------------------------------------- |
+| `success`           | whether the transaction was successful                                           |
+| `taskId`            | task id used to identify the transaction using the `/task/{taskId}` endpoint     |
+| `keyManagerAddress` | The address of the [`KeyManager`] contract which controls the Universal Profile. |
+| `abi`               | The encoded ABI of the transaction you sent.                                     |
+| `signature`         | The transaction signature you sent.                                              |
+| `nonce`             | The nonce of the KeyManager contract you sent.                                   |
 
 ## Example
 
-This example shows how to prepare a transaction for the relayer. The same logic can be applied to any transaction.
-
-You will need the address of the UP making the transaction, and the private key of the account which controls the UP.
+This example shows how to prepare a transaction for the relayer. We can apply the same logic to any transaction. <br/>
+You will need the address of the UP making the transaction and the private key of the account which controls the UP.
 
 ```typescript
 const controllingAccountPrivateKey = '0x...';
 const myUpAddress = '0x...';
 ```
 
-Then instantiate a Web3 `Contract` object for your UP and KeyManager using the contract ABIs from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) npm package
+Then, instantiate a Web3 `Contract` object for your UP and KeyManager using the <br/>
+contract ABIs from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) NPM package.
 
 ```typescript
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -81,7 +89,7 @@ const KeyManager = new web3.eth.Contract(
 );
 ```
 
-Get the nonce from the KeyManager for the next transaction:
+Now we can get the nonce from the KeyManager for the next transaction.
 
 ```typescript
 const controllerAccount =
@@ -94,7 +102,7 @@ const nonce = await KeyManager.methods
   .call();
 ```
 
-Encode your smart contract call through the execute function of your Universal Profile, to be signed and passed to the relayer:
+We need to encode the smart contract call through the execute function of your Universal Profile to be signed and passed to the relayer.
 
 ```typescript title="Encode transaction ABI"
 const abiPayload = myUniversalProfile.methods.execute(
@@ -105,7 +113,7 @@ const abiPayload = myUniversalProfile.methods.execute(
 ).encodeABI()) ;
 ```
 
-Sign the transaction from one of the controller keys of your Universal Profile:
+Afterward, we sign the transaction from one of the controller keys of your Universal Profile.
 
 ```typescript title="Sign the transaction"
 const message = web3.utils.soliditySha3(keyManagerAddress, nonce, {
@@ -117,7 +125,7 @@ const signatureObject = controllerAccount.sign(message);
 const signature = signatureObject.signature;
 ```
 
-Now you have everything you need to send your transaction to the relayer for execution:
+Now you have everything you need to send your transaction to the relayer for execution.
 
 ```typescript
 const payload = {
@@ -135,5 +143,8 @@ const response = await axios.post(
 );
 ```
 
-Youn can check the status of your transaction using the returned `taskId` at `/task/{taskId}`.  
-It receive the `"status": "COMPLETE"` once it has been executed on the blockchain.
+Youn can check the status of your transaction using the returned `taskId` at `/task/{ taskId }`.
+
+The transaction will receive the `status:` `COMPLETE` once it has been executed on the blockchain.
+
+[`keymanager`]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md
