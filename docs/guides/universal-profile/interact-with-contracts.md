@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Interact with other contracts'
+sidebar_label: 'Interact with Contracts'
 sidebar_position: 4
 ---
 
@@ -14,18 +14,19 @@ In this guide, we will learn how to use our Universal Profile to interact with a
 
 We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../standards/smart-contracts/lsp0-erc725-account.md#execute) function.
 
-This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from our UP. The `_data` parameter is especially useful when the `_to` recipient is a smart contract.
+This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from our UP. The `_data` parameter is handy when the `_to` recipient is a smart contract.
 
-To make our UP call a function on a specific contract deployed on the network, the parameters of the `execute(...)` function will be as follow:
+If you want to call a specific smart contract that was deployed on the network by the Universal Profile, the parameters of the `execute(...)` function will be as follow:
 
 - `_operation`: `0` (for `CALL`).
 - `_to`: the `address` of the smart contract we want to interact with.
 - `_value_`: empty (0).
-- `_data`: the abi-encoded function name + arguments, to to be run at the `_to` contract address.
-- Let's imagine a smart contract `targetContract` deployed on the network. We want our UP to call the function `myCoolFunction` on this contract. We will have to:
+- `_data`: the ABI-encoded function name and arguments, to be run at the `_to` contract address.
 
-1. [abi-encode](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-encodeabi) the function call with the parameters we want to pass.
-2. pass this payload as the fourth argument `_data` of the `execute(...)` function.
+Suppose a smart contract `targetContract` was deployed on the network and we want our UP to call the function `myCoolFunction` on this contract. We will have to:
+
+1. [ABI-encode](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-encodeabi) the function call with the parameters we want to pass.
+2. Pass the encoded payload as argument `_data` of the `execute(...)` function.
 
 <Tabs>
   

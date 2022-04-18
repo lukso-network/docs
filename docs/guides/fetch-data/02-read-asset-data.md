@@ -40,11 +40,15 @@ npm install web3 @erc725/erc725.js isomorphic-fetch @lukso/lsp-smart-contracts
 
 ## Step 1 - Get all assets ever received
 
-In the [previous guide](./read-profile-data), we learnt how to read the Universal Profile properties and retrieve the address of its Universal Receiver.
+In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and retrieve the address of its Universal Receiver.
 
-The [Universal Receiver is a smart contract](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver) that keeps track of all the assets ever received by a Universal Profile. We can use it to find all the assets owned by Universal Profile. After fetching all the raw values, We can extract the addresses of each received asset.
+The [Universal Receiver is a smart contract](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver) that keeps track of all the assets ever received by a Universal Profile. We use sample addresses for the Universal Receiver, Universal Profile, and Identifiable Digital Asset to make the guide more understandable.
 
-To make the guide more understandable, we use a sample addresses for the Universal Receiver, Universal Profile and Identifiable Digital Asset. You will most likely change these static variable with a dynamic value from an input field or fetching process within your app.
+:::success Recommendation
+Complete "ready to use" JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
+:::
+
+To make the guide more understandable, we use sample addresses for the Universal Receiver, Universal Profile and Identifiable Digital Asset. You will most likely change these static variables with a dynamic values from your app's input field or fetching processes.
 
 <details>
     <summary>LSP1 Minimal JSON Interface</summary>
@@ -116,7 +120,7 @@ getAssetAddressses().then((digitalAssets) => console.log(digitalAssets));
 
 ## Step 2 - Check ownership of assets
 
-After trimming out the asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the balance is greater than zero, the asset is still owned.
+After trimming out the asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the balance is greater than zero, the asset is still owned by the address.
 
 :::info Difference between Token Ownership
 
@@ -168,9 +172,9 @@ getOwnedAddresses(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
 
 ## Step 3 - Check the type of an asset
 
-Now that we have retrieved all the owned assets, we need to check which interface is behind these smart contract addresses, so that we know how to get the data.
+Now that we have retrieved all the owned assets, we need to check which interface is behind these smart contract addresses, to get the data.
 
-UniversalProfile contracts on the _universalprofile.cloud_ website of the LUKSO L14 Network have been deployed using different `ERC725Y` interfaces. We have to know which interface to use, to assure the right interaction and bypass errors.
+UniversalProfile contracts on the [profile explorer](https://universalprofile.cloud/) on the LUKSO L14 test network have been deployed using different `ERC725Y` interfaces. We have to know which interface to use, to assure the right interaction and bypass errors.
 
 <Tabs>
   
@@ -355,6 +359,7 @@ checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
 </Tabs>
 
 ## Step 4 - Receive the encoded asset data
+
 
 Now we can safely call the data of the address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) data is saved in a ERC725Y key-value store, and we need to input the right key to fetch the associated value. There are multiple keys for different properties. To give a showcase, we will use the metadata key to receive the associated data.
 
@@ -596,7 +601,7 @@ getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
 
 We can now decode the encoded metadata to fetch readable information. We use
 `decodeData()` from the `erc725.js` library. While using ERC725, we will have
-to declare an config and provider like we did on [reading profile data](./read-profile-data).
+to declare a config and provider as we did while [reading profile data](./read-profile-data).
 
 ```javascript title="read_assets.js"
 // ...
@@ -671,10 +676,10 @@ The [LSP4 Digital Asset Metadata](../../standards/nft-2.0/LSP4-Digital-Asset-Met
 
 ## Step 6 - Create the storage link
 
-To fetch the data for the previously decoded metadata, we can access the JSON file and change the URL to access its properties. If you use browser environments like `ReactJS` or `VueJS`, you may not need this library.
+To fetch the data for the previously decoded metadata, we can access the JSON file and change the URL to access its properties. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
 
 :::info
-Profiles created on [universalprofile.cloud](https://universalprofile.cloud/) are currently using [IPFS](https://ipfs.io/). Therefore, we will use a static IPFS link for the guide. You can change it or even make distinctions, if there are several storage solutions.
+Profiles created on the [profile explorer](https://universalprofile.cloud/) currently use IPFS. Therefore, we will use a static IPFS link for the guide. If there are several storage solutions, you can change them or make distinctions.
 :::
 
 ```javascript title="read_assets.js"
@@ -702,7 +707,11 @@ getMetaDataLink().then((dataURL) => console.log(dataURL));
 
 ## Step 7 - Get the asset data
 
-The created storage link can now be accessed trough a simple URL call. We use `isomorphic-fetch` to fetch the HTTP response from the asset URL while using `node`. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
+We can now access the created storage link through a simple URL call and are using `isomorphic-fetch` to read the HTTP response from the asset URL in our `node` environment.
+
+:::note
+You may not need the `isomorphic-fetch` library if you use browser environments like `ReactJS` or `VueJS`.
+:::
 
 ```javascript title="read_assets.js"
 // ...
