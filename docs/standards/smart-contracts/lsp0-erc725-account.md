@@ -124,6 +124,7 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 | Name     | Type  | Description                                                                                                                  |
 | :------- | :---- | :--------------------------------------------------------------------------------------------------------------------------- |
 | `result` | bytes | The data returned by the function called on the external contract, or the address of the contract created (operation 1 & 2). |
+
 ### setData
 
 ```solidity
@@ -143,10 +144,10 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 
 #### Parameters:
 
-| Name    | Type    | Description                       |
-| :------ | :------ | :-------------------------------- |
-| `key`   | bytes32 | The key for which to set data.    |
-| `value` | bytes   | The data to set as bytes.         |
+| Name    | Type    | Description                    |
+| :------ | :------ | :----------------------------- |
+| `key`   | bytes32 | The key for which to set data. |
+| `value` | bytes   | The data to set as bytes.      |
 
 ### getData
 
@@ -164,9 +165,9 @@ Retrieve the data set for the given key.
 
 #### Return Values:
 
-| Name    | Type  | Description                      |
-| :------ | :---- | :------------------------------- |
-| `value` | bytes | The data for the requested key.  |
+| Name    | Type  | Description                     |
+| :------ | :---- | :------------------------------ |
+| `value` | bytes | The data for the requested key. |
 
 ### setData (Array)
 
@@ -187,10 +188,10 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 
 #### Parameters:
 
-| Name     | Type       | Description                       |
-| :------- | :--------- | :-------------------------------- |
-| `keys`   | bytes32[ ] | The keys for which to set data.   |
-| `values` | bytes[ ]   | The array of data to set.         |
+| Name     | Type       | Description                     |
+| :------- | :--------- | :------------------------------ |
+| `keys`   | bytes32[ ] | The keys for which to set data. |
+| `values` | bytes[ ]   | The array of data to set.       |
 
 ### getData (Array)
 
@@ -202,14 +203,14 @@ Retrieve an array of data for multiple given keys.
 
 #### Parameters:
 
-| Name   | Type       | Description                       |
-| :----- | :--------- | :-------------------------------- |
-| `keys` | bytes32[ ] | The keys to retrieve data from.   |
+| Name   | Type       | Description                     |
+| :----- | :--------- | :------------------------------ |
+| `keys` | bytes32[ ] | The keys to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type     | Description                                    |
-| :------- | :------- | :--------------------------------------------- |
+| Name     | Type     | Description                                  |
+| :------- | :------- | :------------------------------------------- |
 | `values` | bytes[ ] | An array of the data for the requested keys. |
 
 ### universalReceiver
@@ -221,10 +222,11 @@ function universalReceiver(
 ) public returns (bytes memory result)
 ```
 
-Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) Key.   
+Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) Key.  
 The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets executed successfully._
+
 #### Parameters:
 
 | Name     | Type    | Description                    |
@@ -248,7 +250,6 @@ function isValidSignature(
 ```
 
 Checks if a signature was signed by the `owner` of the contract, according to [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, if it supports [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271), otherwise it will return the failure value.
-
 
 #### Parameters:
 
@@ -308,7 +309,7 @@ event Executed(
     uint256 operation,
     address to,
     uint256 value,
-    bytes data
+    bytes4 selector
 )
 ```
 
@@ -316,12 +317,12 @@ _**MUST** be fired when **[`execute(...)`](#execute)** creates a new call using 
 
 #### Values:
 
-| Name        | Type    | Description                                    |
-| :---------- | :------ | :--------------------------------------------- |
-| `operation` | uint256 | The operation executed.                        |
-| `to`        | address | The smart contract or address interacted with. |
-| `value`     | uint256 | The value transferred.                         |
-| `data`      | bytes   | The call data.                                 |
+| Name        | Type    | Description                                                      |
+| :---------- | :------ | :--------------------------------------------------------------- |
+| `operation` | uint256 | The operation executed.                                          |
+| `to`        | address | The smart contract or address interacted with.                   |
+| `value`     | uint256 | The value transferred.                                           |
+| `selector`  | bytes4  | The bytes4 selector of the function executed at the `to` address |
 
 ### ContractCreated
 
@@ -356,10 +357,10 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** is successfully execu
 
 #### Values:
 
-| Name    | Type    | Description                       |
-| :------ | :------ | :-------------------------------- |
-| `key`   | bytes32 | The key which value is set.       |
-| `value` | bytes   | The data set.                     |
+| Name    | Type    | Description                 |
+| :------ | :------ | :-------------------------- |
+| `key`   | bytes32 | The key which value is set. |
+| `value` | bytes   | The data set.               |
 
 ### UniversalReceiver
 

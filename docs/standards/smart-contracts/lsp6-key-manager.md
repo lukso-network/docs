@@ -163,7 +163,7 @@ Checks if a signature was signed by an address having at least the **[SIGN](../u
 ```solidity
 event Executed(
     uint256 value,
-    bytes data
+    bytes4 selector
 )
 ```
 
@@ -171,10 +171,10 @@ _**MUST** be fired when a transaction was successfully executed in **[execute](#
 
 #### Values:
 
-| Name    | Type    | Description                             |
-| :------ | :------ | :-------------------------------------- |
-| `value` | uint256 | The amount to be sent with the payload. |
-| `data`  | bytes   | The payload to be executed.             |
+| Name       | Type    | Description                                                                         |
+| :--------- | :------ | :---------------------------------------------------------------------------------- |
+| `value`    | uint256 | The amount to be sent with the payload.                                             |
+| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`account()`](#account). |
 
 ## References
 
