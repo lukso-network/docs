@@ -5,6 +5,12 @@ sidebar_position: 6
 
 # LSP7DigitalAsset
 
+:::info Solidity contract
+
+[`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+
+:::
+
 The **LSP7DigitalAsset** contract represents digital assets for either fungible or non-fungible tokens where minting and transferring is specified with an amount of tokens. It has some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
 
 This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to **false** in the `constructor(...)` and serves as **Non-Fungible Token Contract** otherwise.

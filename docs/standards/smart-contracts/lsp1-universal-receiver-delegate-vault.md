@@ -5,6 +5,12 @@ sidebar_position: 9
 
 # LSP1UniversalReceiverDelegateVault
 
+:::info Solidity contract
+
+[`LSP1UniversalReceiverDelegateVault.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+
+:::
+
 The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract. It writes the **[LSP7-DigitalAsset](../nft-2.0/03-LSP7-Digital-Asset.md)** and **[LSP8-IdentifiableDigitalAsset](../nft-2.0/04-LSP8-Identifiable-Digital-Asset.md)** assets a vault receives into the vault storage, and remove them when the balance is zero according to the **[LSP5-ReceivedAssets standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
 :::note
