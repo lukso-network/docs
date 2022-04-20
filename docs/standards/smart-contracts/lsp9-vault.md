@@ -5,6 +5,12 @@ sidebar_position: 8
 
 # LSP9Vault
 
+:::info Solidity contract
+
+[`LSP9Vault.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP9Vault/LSP9Vault.sol)
+
+:::
+
 The **LSP9Vault** contract is an implementation of the **[LSP9-Vault Standard](#)**.
 
 This contract can be used as a **vault** that can **hold assets** and **interact with other smart contracts**, as it has all the functions of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, except for the **`isValidSignature(...)`** function.

@@ -5,6 +5,12 @@ sidebar_position: 4
 
 # LSP6KeyManager
 
+:::info Solidity contract
+
+[`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP6KeyManager/LSP6KeyManager.sol)
+
+:::
+
 The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with a set of pre-defined permissions for addresses that could range from setting data, executing, changing owner and more as written in the [Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)\*\* in [LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md).
 
 :::warning
