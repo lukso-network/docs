@@ -7,15 +7,23 @@ sidebar_position: 1
 
 :::success Documentation
 
-The smart contracts are public and open source. They can be found [on GitHub](https://github.com/lukso-network/lsp-smart-contracts), and in the [NPM package available here](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
+The smart contracts are public and open source. They can be found [on GitHub](https://github.com/lukso-network/lsp-smart-contracts), or in the [`@lukso/lsp-smart-contracts` NPM package](https://www.npmjs.com/package/@lukso/lsp-smart-contracts).
 
 :::
 
-In this section, you will find the implementation of **[LUKSO Standard Proposals](../introduction.md)**. Some of the standards do not have a contract implementation as they represent **Metadata-Standards** to be used in the implementation contracts.
+This section contains the reference contract implementations of **[LUKSO Standard Proposals](../introduction.md)**.
+
+Some of the standards do not have a contract implementation as they represent **Metadata-Standards** to be used in the implementation contracts.
 
 Developers wishing to understand the standards in terms of code and the tradeoffs within are well-advised to read these documents alongside the Solidity code itself.
 
 ---
+
+## Installation
+
+```bash
+npm install @lukso/lsp-smart-contracts
+```
 
 ## Overview
 
@@ -43,12 +51,6 @@ These contracts are not just related to one specific section and could be used w
 
 - **[LSP9Vault](./lsp9-vault.md)**: a contract representing a **Vault** able to execute and hold assets, could be owned by an LSP0ERC725Account contract.
 - **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**: a contract that allows the vault to react to the calls it receives (Normal transaction, Token transfer, etc.).
-
-## Installation
-
-```bash
-npm install @lukso/lsp-smart-contracts
-```
 
 ## Usage
 
