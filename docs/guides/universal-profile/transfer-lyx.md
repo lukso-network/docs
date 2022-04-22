@@ -46,7 +46,7 @@ If everything went successfully, you should see that the _"Balance"_ field of yo
 
 ![LUKSO L14 Network Block Explorer (screenshot)](./img/l14-explorer.png)
 
-## Step 1 - Create the contract instances
+## Step 2 - Create the contracts instances
 
 We will first need to create the instance of each contract. To do so, we will need:
 
@@ -62,7 +62,7 @@ const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
 ```
 
-## Step 2 - Encode the payload to transfer LYX
+## Step 3 - Encode the payload to transfer LYX
 
 The next step is to encode the action that we will perform on our Universal Profile. In our case, we want to transfer 3 LYX to an address using the `execute(...)` function on the UP.
 
@@ -82,7 +82,7 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 ```
 
-## Step 3 - Send the payload to the Key Manager
+## Step 4 - Send the payload to the Key Manager
 
 The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize and execute the LYX transfer.
 
