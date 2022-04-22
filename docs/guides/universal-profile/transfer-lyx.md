@@ -8,7 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Transfer LYX
 
-This tutorial will teach you how to transfer LYX from one Universal Profile (UP) to another Universal Profile or any other address.
+In this tutorial, you will learn **how to transfer LYX** from your Universal Profile (UP) to any `address` (including another :up: ).
+
+![Guide - How to send LYX from a Universal Profile](./img/guide-LYX-transfer.jpeg)
 
 ## Introduction
 
@@ -27,7 +29,24 @@ The parameters of the function will be as follow:
 
 Since we are just making a simple LYX transfer, the fourth parameter `_data` will be empty.
 
-## Step 1: Create the contract instances
+## Step 1 - Get some LYX
+
+In order to send LYX from our Universal Profile, we will first request some free test LYX for our Universal Profile via the **[L14 Faucet](http://faucet.l14.lukso.network/)**.
+
+1. Visit the :arrow_right: **[LUKSO L14 Faucet Website](http://faucet.l14.lukso.network/)**.
+2. Paste the address of your Universal Profile in the input field :arrow\*down: and click in the _"request 5 LYX"_ button.
+
+![L14 Faucet screenshot](./img/L14-faucet.png)
+
+3. Check the balance of your Universal Profile on the **[LUKSO L14 Block Explorer](https://blockscout.com/lukso/l14)** :arrow_down:
+
+You can paste the address of your Universal Profile on the top right corner.
+
+If everything went successfully, you should see that the _"Balance"_ field of your Universal Profile has been updated!
+
+![LUKSO L14 Network Block Explorer (screenshot)](./img/l14-explorer.png)
+
+## Step 2 - Create the contracts instances
 
 We will first need to create the instance of each contract. To do so, we will need:
 
@@ -43,7 +62,7 @@ const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
 ```
 
-## Step 2: Encode the payload to transfer LYX
+## Step 3 - Encode the payload to transfer LYX
 
 The next step is to encode the action that we will perform on our Universal Profile. In our case, we want to transfer 3 LYX to an address using the `execute(...)` function on the UP.
 
@@ -63,7 +82,7 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 ```
 
-## Step 3: Send the payload to the Key Manager
+## Step 4 - Send the payload to the Key Manager
 
 The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize and execute the LYX transfer.
 
