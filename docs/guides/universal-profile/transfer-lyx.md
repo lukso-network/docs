@@ -8,7 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Transfer LYX
 
-This tutorial will teach you how to transfer LYX from one Universal Profile (UP) to another Universal Profile or any other address.
+In this tutorial, you will learn **how to transfer LYX** from your Universal Profile (UP) to any `address` (including another :up: ).
+
+![Guide - How to send LYX from a Universal Profile](./img/guide-LYX-transfer.jpeg)
 
 ## Introduction
 
