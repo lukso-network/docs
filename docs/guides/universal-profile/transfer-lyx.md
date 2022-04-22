@@ -29,18 +29,22 @@ Since we are just making a simple LYX transfer, the fourth parameter `_data` wil
 
 ## Step 1: Create the contract instances
 
-We will first need to create the instance of each contract. To do so, we will need:
+We will first need to create an instance of each contract. To do so, we will need:
 
 - the contract's ABIs,
-- the address of our Universal Profile, and
-- the address of it's KeyManager contract
+- the address of our Universal Profile
 
 ```typescript
 const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
 const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
-const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
+
+// the KeyManager is the owner of the Universal Profile
+// so get the address of the KeyManager by calling the owner() function
+const owner = myUP.methods.owner().call();
+
+const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 ```
 
 ## Step 2: Encode the payload to transfer LYX
@@ -85,7 +89,12 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 
 // 1. instantiate your contracts
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
-const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
+
+// the KeyManager is the owner of the Universal Profile
+// so get the address of the KeyManager by calling the owner() function
+const owner = myUP.methods.owner().call();
+
+const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 
 const OPERATION_CALL = 0;
 const recipient = '0x...'; // address the recipient (any address, including an other UP)
