@@ -29,6 +29,17 @@ The parameters of the function will be as follow:
 
 Since we are just making a simple LYX transfer, the fourth parameter `_data` will be empty.
 
+## Setup
+
+To complete this mini-guide, we will need two things:
+
+- the ABIs of the `UniversalProfile` and `KeyManager` contracts.
+- the address of our Universal Profile we want to send LYX from.
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
+```
+
 ## Step 1 - Get some LYX
 
 In order to send LYX from our Universal Profile, we will first request some free test LYX for our Universal Profile via the **[L14 Faucet](http://faucet.l14.lukso.network/)**.
@@ -48,18 +59,22 @@ If everything went successfully, you should see that the _"Balance"_ field of yo
 
 ## Step 2 - Create the contracts instances
 
-We will first need to create the instance of each contract. To do so, we will need:
+The first step is to create a contract instance of both our Universal Profile and Key Manager.
 
-- the contract's ABIs,
-- the address of our Universal Profile, and
-- the address of it's KeyManager contract
+1. we will first use the Universal Profile to retrieve the `address` of the KeyManager via the [`owner()`](../../standards/smart-contracts/lsp0-erc725-account.md#owner) function.
+2. we will then use the Key Manager to interact with our Universal Profile and send 1 LYX.
 
 ```typescript
 const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
 const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
-const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
+
+// the KeyManager is the owner of the Universal Profile
+// so get the address of the KeyManager by calling the owner() function
+const owner = myUP.methods.owner().call();
+
+const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 ```
 
 ## Step 3 - Encode the payload to transfer LYX
@@ -104,7 +119,12 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 
 // 1. instantiate your contracts
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
-const myKM = new web3.eth.Contract(KeyManager.abi, myURDAddress);
+
+// the KeyManager is the owner of the Universal Profile
+// so get the address of the KeyManager by calling the owner() function
+const owner = myUP.methods.owner().call();
+
+const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 
 const OPERATION_CALL = 0;
 const recipient = '0x...'; // address the recipient (any address, including an other UP)
