@@ -37,7 +37,7 @@ To complete this mini-guide, we will need two things:
 - the address of our Universal Profile we want to send LYX from.
 
 ```shell
-npm install web3 @lukso/lsp-smart-contracts --save
+npm install web3 @lukso/lsp-smart-contracts
 ```
 
 ## Step 1 - Get some LYX
