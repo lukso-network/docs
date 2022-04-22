@@ -27,12 +27,23 @@ The parameters of the function will be as follow:
 
 Since we are just making a simple LYX transfer, the fourth parameter `_data` will be empty.
 
+## Setup
+
+To complete this mini-guide, we will need two things:
+
+- the ABIs of the `UniversalProfile` and `KeyManager` contracts.
+- the address of our Universal Profile we want to send LYX from.
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts --save
+```
+
 ## Step 1: Create the contract instances
 
-We will first need to create an instance of each contract. To do so, we will need:
+The first step is to create a contract instance of both our Universal Profile and Key Manager.
 
-- the contract's ABIs,
-- the address of our Universal Profile
+1. we will first use the Universal Profile to retrieve the `address` of the KeyManager via the [`owner()`](../../standards/smart-contracts/lsp0-erc725-account.md#owner) function.
+2. we will then use the Key Manager to interact with our Universal Profile and send 1 LYX.
 
 ```typescript
 const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
