@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP4 - Digital Asset Metadata'
+sidebar_label: 'LSP4 Digital Asset Metadata'
 sidebar_position: 2
 ---
 
-# LSP4 - Digital Asset Metadata
+# LSP4 Digital Asset Metadata
 
 :::info Standard Document
 
@@ -18,7 +18,7 @@ sidebar_position: 2
 In ERC20 and ERC721, the token `name` and `symbol` are stored as `public` state variables.
 In **LSP4 - Digital Asset Metadata**, such information is held under the keys `LSP4TokenName` and `LSP4TokenSymbol` under the (ERC725Y) storage of the token / NFT contract.
 
-Both [LSP7](./03-LSP7-Digital-Asset.md) and [LSP8](./04-LSP8-Identifiable-Digital-Asset.md) standards are derived from the [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), which defines the default metadata keys to represent a digital asset on the blockchain.
+Both [LSP7](./03-LSP7-Digital-Asset.md) and [LSP8](./04-LSP8-Identifiable-Digital-Asset.md) standards are derived from the [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), which defines the default metadata keys representing a digital asset on the blockchain.
 
 ![LSP4 Digital Asset Metadata diagram](../../../static/img/standards/lsp4-digital-asset-metadata-diagram.png)
 
@@ -78,7 +78,7 @@ The value attached to this key represents the symbol of the digital asset.
 }
 ```
 
-The value attached to this key is a [`JSONURL`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#jsonurl). It represents a reference to a [JSON file describing the **Digital Asset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata). The file can be stored on a centralised or decentralised storage.
+The value attached to this key is a [`JSONURL`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#jsonurl). It represents a reference to a [JSON file describing the **Digital Asset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata). The file can be stored on centralized or decentralized storage.
 
 ### LSP4Creators
 

@@ -8,7 +8,7 @@ sidebar_position: 1
 In this guide, we will learn how to:
 
 - check the validity of the blockchain address.
-- read data from a [Universal Profile](../../standards//universal-profile/introduction.md).
+- read data from a [Universal Profile](../../standards/universal-profile/introduction.md).
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img

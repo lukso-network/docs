@@ -1,16 +1,16 @@
 ---
-sidebar_label: 'Create a LSP7 Digital Asset (Token)'
+sidebar_label: 'Create an LSP7 Digital Asset (Token)'
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create a LSP7 Digital Asset (Token)
+# Create an LSP7 Digital Asset (Token)
 
 This guide will teach you how to create our token ([LSP7 Digital Asset](../../standards/nft-2.0/lsp7-digital-asset)) and transfer it between Universal Profiles (UP).
 
-## Deploy a LSP7 Digital Asset contract
+## Deploy an LSP7 Digital Asset contract
 
 We will use a specific implementation of LSP7, called `LSP7Mintable`. It allows the contract deployer to mint new tokens.
 

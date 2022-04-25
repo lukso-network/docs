@@ -3,7 +3,7 @@ title: LSP1 Universal Receiver Delegate Vault
 sidebar_position: 9
 ---
 
-# LSP1UniversalReceiverDelegateVault
+# LSP1 Universal Receiver Delegate Vault
 
 :::info Solidity contract
 
@@ -11,10 +11,10 @@ sidebar_position: 9
 
 :::
 
-The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract. It writes the **[LSP7-DigitalAsset](../nft-2.0/03-LSP7-Digital-Asset.md)** and **[LSP8-IdentifiableDigitalAsset](../nft-2.0/04-LSP8-Identifiable-Digital-Asset.md)** assets a vault receives into the vault storage, and remove them when the balance is zero according to the **[LSP5-ReceivedAssets standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract. It writes the **[LSP7-DigitalAsset](../nft-2.0/03-LSP7-Digital-Asset.md)** and **[LSP8-IdentifiableDigitalAsset](../nft-2.0/04-LSP8-Identifiable-Digital-Asset.md)** assets a vault receives into the vault storage and removes them when the balance is zero according to the **[LSP5-ReceivedAssets standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
 :::note
-**_LSP1UniversalReceiverDelegateVault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+_LSP1UniversalReceiverDelegateVault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -30,7 +30,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor()
 ```
 
-Registers the **[LSP1UniversalReceiverDelegate interface id](./interface-ids.md)**.
+The function registers the **[LSP1UniversalReceiverDelegate interface id](./interface-ids.md)**.
 
 ### universalReceiverDelegate
 
@@ -42,9 +42,11 @@ function universalReceiverDelegate(
 ) public payable returns (bytes memory result)
 ```
 
-Writes the received **LSP7-DigitalAsset**, **LSP8-IdentifiableDigitalAsset** assets into the vault storage according to the **LSP5-ReceivedAssets** Standard.
+The function writes the received **LSP7-DigitalAsset** or **LSP8-IdentifiableDigitalAsset** assets into the vault storage according to the **LSP5-ReceivedAssets** standard.
 
+:::note
 The key representing an **asset** is cleared when the asset is not owned by the vault anymore.
+:::
 
 #### Parameters:
 

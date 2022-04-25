@@ -1,9 +1,9 @@
 ---
-title: LSP0 ERC725Account
+title: LSP0 ERC725 Account
 sidebar_position: 2
 ---
 
-# LSP0ERC725Account
+# LSP0 ERC725 Account
 
 :::info Solidity contract
 
@@ -13,15 +13,15 @@ sidebar_position: 2
 
 The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/lsp0-erc725account)**. This contract forms a **Universal Profile** when combined with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)**.
 
-This contract could be used as a _blockchain-based account_ by humans, machines, organizations, or even other smart contracts. It has all the basic functionalities of an _Externally Owned Account_ (EOA), as well as the following functions that gives the contract additional features:
+This contract could be used as a _blockchain-based account_ by humans, machines, organizations, or even other smart contracts. It has all the basic functionalities of an _Externally Owned Account_ (EOA), as well as the following functions that give the contract additional features:
 
-- [`execute(...)`](#execute) : enable to execute functions on other contract, transfer value, or deploy new contracts.
-- [`isValidSignature(...)`](#isvalidsignature): verify signatures and signed messages from EOA.
-- [`universalReceiver(...)`](#universalreceiver): be notified of incoming calls and assets.
-- [`setData(...)`](#setdata): set any information in the account storage.
+- [`execute(...)`](#execute) : enables the execution of functions on other contracts, to transfer value, or to deploy new contracts.
+- [`isValidSignature(...)`](#isvalidsignature): delivers verification of signatures and signed messages from EOAs.
+- [`universalReceiver(...)`](#universalreceiver): brings notification of incoming calls and assets.
+- [`setData(...)`](#setdata): offers to set information in the account storage.
 
 :::note
-**_LSP0ERC725Account contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+LSP0 - ERC725Account contract also contains the method from [ERC165](https://eips.ethereum.org/EIPS/eip-165):
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -39,7 +39,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address newOwner) ERC725(newOwner)
 ```
 
-Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)** and **[LSP1UniversalReceiver InterfaceIds](./interface-ids.md)**.
+The function sets the **initial owner** of the contract and registers the **LSP0 ERC725Account**, **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)**, and **[LSP1 UniversalReceiver InterfaceIds](./interface-ids.md)**.
 
 #### Parameters:
 
@@ -53,7 +53,7 @@ Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](.
 function owner() public view returns (address owner)
 ```
 
-Returns the address of the current owner.
+The function returns the address of the current owner of the smart contract.
 
 #### Return Values:
 
@@ -67,9 +67,9 @@ Returns the address of the current owner.
 function transferOwnership(address newOwner) public {
 ```
 
-Transfers ownership of the contract to the `newOwner` address.
+The function transfers the ownership of the contract to the `newOwner` address.
 
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership is transferred._
+_It triggers the **[OwnershipTransferred](#ownershiptransferred)** event when ownership is transferred._
 
 #### Parameters:
 
@@ -83,9 +83,9 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 receive() external payable
 ```
 
-Executed on value transfers.
+The function is executed on value transfers to the contract.
 
-_Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
+_It triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
 ### execute
 
@@ -98,9 +98,9 @@ function execute(
 ) public payable returns (bytes memory result)
 ```
 
-Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
+The function executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
 
-The **operationType** can be the following:
+The `operationType` can be the following:
 
 - `0` for `CALL`
 - `1` for `CREATE`
@@ -108,28 +108,28 @@ The **operationType** can be the following:
 - `3` for `STATICCALL`
 - `4` for `DELEGATECALL`
 
-_Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
+_It triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
 
-_Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
+_It triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
 
 :::note
-**The `execute(...)` function can only be called by the current owner of the contract.**
+The `execute(...)` function can only be called by the current owner of the contract.
 :::
 
 #### Parameters:
 
 | Name            | Type    | Description                                                                                                              |
 | :-------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
-| `operationType` | uint256 | The type of operation to execute.                                                                                        |
-| `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2).                            |
-| `value`         | uint256 | The desired value to transfer.                                                                                           |
-| `data`          | bytes   | The calldata (abi-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
+| `operationType` | uint256 | The type of operation that needs to be executed.                                                                         |
+| `to`            | address | The address you want to interact with. The field `to` will be unused if a contract is created (operations 1 & 2).        |
+| `value`         | uint256 | The desired value to transfer with the transaction.                                                                      |
+| `data`          | bytes   | The calldata (ABI-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                                                                  |
-| :------- | :---- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `result` | bytes | The data returned by the function called on the external contract, or the address of the contract created (operation 1 & 2). |
+| Name     | Type  | Description                                                                                                                            |
+| :------- | :---- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| `result` | bytes | The data that was returned by the function called on the external contract, or the address of the contract created (operations 1 & 2). |
 
 ### setData
 
@@ -140,20 +140,20 @@ function setData(
 ) public
 ```
 
-Set data as **bytes** in the account storage for a single key.
+The function sets data in the account storage for a particular key as **bytes**.
 
-_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
+_It triggers the **[DataChanged](#datachanged)** event when successfully setting the data ._
 
 :::note
-**The `setData(...)` function can only be called by the current owner of the contract.**
+The `setData(...)` function can only be called by the current owner of the contract.
 :::
 
 #### Parameters:
 
-| Name    | Type    | Description                    |
-| :------ | :------ | :----------------------------- |
-| `key`   | bytes32 | The key for which to set data. |
-| `value` | bytes   | The data to set as bytes.      |
+| Name    | Type    | Description                             |
+| :------ | :------ | :-------------------------------------- |
+| `key`   | bytes32 | The key for which you want to set data. |
+| `value` | bytes   | The data you want to set as bytes.      |
 
 ### getData
 
@@ -161,7 +161,7 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 function getData(bytes32 key) public view returns (bytes memory value)
 ```
 
-Retrieve the data set for the given key.
+The function is called to retrieve the data set for the given key.
 
 #### Parameters:
 
@@ -184,12 +184,12 @@ function setData(
 ) public
 ```
 
-Sets array of data at multiple keys in the account storage.
+The function sets an array of data at multiple keys in the account storage.
 
-_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
+_It triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
 :::note
-**The `setData(...)` function can only be called by the current owner of the contract.**
+The `setData(...)` function can only be called by the current owner of the contract.
 :::
 
 #### Parameters:
@@ -205,7 +205,7 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
-Retrieve an array of data for multiple given keys.
+A function to retrieve an array of data for multiple given keys.
 
 #### Parameters:
 
@@ -228,10 +228,10 @@ function universalReceiver(
 ) public returns (bytes memory result)
 ```
 
-Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) Key.  
-The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
+The function forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) key.  
+The called contract is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md), and using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
 
-_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets executed successfully._
+_It triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
 
 #### Parameters:
 
@@ -255,7 +255,7 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Checks if a signature was signed by the `owner` of the contract, according to [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, if it supports [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271), otherwise it will return the failure value.
+The function checks if a signature was signed by the `owner` of the contract, according to [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, if it supports [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). Otherwise it will return the failure value.
 
 #### Parameters:
 
@@ -281,7 +281,7 @@ event OwnershipTransferred(
 )
 ```
 
-_**MUST** be fired when **[transferOwnership(...)](#transferownership)** is successfully executed._
+_The event **MUST** be fired when **[transferOwnership(...)](#transferownership)** function is successfully executed._
 
 #### Values:
 
@@ -299,7 +299,7 @@ event ValueReceived(
 )
 ```
 
-_**MUST** be fired when the **[`receive(...)`](#receive)** function is successfully executed._
+_The event **MUST** be fired when the **[`receive(...)`](#receive)** function is successfully executed._
 
 #### Values:
 
@@ -319,7 +319,7 @@ event Executed(
 )
 ```
 
-_**MUST** be fired when **[`execute(...)`](#execute)** creates a new call using the `CALL`, `STATICCALL` or `DELEGATECALL` operation._
+_The event **MUST** be fired when **[`execute(...)`](#execute)** function creates a new call using the `CALL`, `STATICCALL`, or `DELEGATECALL` operation._
 
 #### Values:
 
@@ -340,7 +340,7 @@ event ContractCreated(
 )
 ```
 
-_**MUST** be fired when the **[`execute(...)`](#execute)** creates a new contract using the `CREATE` or `CREATE2` operation._
+_The event **MUST** be fired when the **[`execute(...)`](#execute)** function creates a new contract using the `CREATE` or `CREATE2` operation._
 
 #### Values:
 
@@ -359,7 +359,7 @@ event DataChanged(
 )
 ```
 
-_**MUST** be fired when the **[`setData(...)`](#setdata)** is successfully executed._
+_The event **MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
 
 #### Values:
 
@@ -379,7 +379,7 @@ event UniversalReceiver(
 )
 ```
 
-_**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** function is succesfully executed._
+_The event **MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** function is successfully executed._
 
 #### Values:
 
