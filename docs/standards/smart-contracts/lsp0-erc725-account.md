@@ -15,7 +15,7 @@ The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Ac
 
 This contract could be used as a _blockchain-based account_ by humans, machines, organizations, or even other smart contracts. It has all the basic functionalities of an _Externally Owned Account_ (EOA), as well as the following functions that give the contract additional features:
 
-- [`execute(...)`](#execute) : enables the execution of functions on other contracts, to transfer value, or to deploy new contracts.
+- [`execute(...)`](#execute) : enables to execute functions on other contracts, transfer value, or deploy new contracts.
 - [`isValidSignature(...)`](#isvalidsignature): delivers verification of signatures and signed messages from EOAs.
 - [`universalReceiver(...)`](#universalreceiver): brings notification of incoming calls and assets.
 - [`setData(...)`](#setdata): offers to set information in the account storage.

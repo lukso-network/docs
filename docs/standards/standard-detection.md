@@ -25,7 +25,7 @@ There are two types of **LSP** standards:
 
 These two standards types are fundamental for interacting with smart contracts on the LUKSO blockchain.
 
-**Interface Standard** defines the functions that developers can call on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which keys to query to retrieve such data.
+The **Interface Standard** defines the functions that can be called on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which keys to query to retrieve such data.
 
 ## Interface Detection
 

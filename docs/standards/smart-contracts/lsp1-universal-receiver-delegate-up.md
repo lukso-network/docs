@@ -57,7 +57,7 @@ The keys representing an asset/vault are cleared when the asset/vault is no long
 | Name     | Type    | Description                                                                  |
 | :------- | :------ | :--------------------------------------------------------------------------- |
 | `sender` | address | The token's or vault's smart contract address.                               |
-| `typeId` | bytes32 | The token's hooks that are connected the the contract.                       |
+| `typeId` | bytes32 | The token hooks of the contract.                                             |
 | `data`   | bytes   | The data that is associated with the asset or vault transfer (concatenated). |
 
 #### Return Values:

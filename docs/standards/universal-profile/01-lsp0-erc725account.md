@@ -13,9 +13,9 @@ sidebar_position: 2
 
 ## Introduction
 
-Once deployed on a network, developers cannot change smart contracts. Their storage and logic **are set in stone**. If a smart contract is deployed with specific state variables and functions, these data and functionalities are there forever and cannot be altered.
+Once deployed on a network, smart contracts cannot be changed. Their storage and logic **are set in stone**. If a smart contract is deployed with specific state variables and functions, these data and functionalities are there forever and cannot be altered.
 
-The **[ERC725 standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** proposed in 2017 describes a generic key-value store and generic execution function that could be used as the basis for an account. Developers can create a blockchain-based account by combining ERC725 with the interactivity and signature verification mechanism from the **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)** and **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standards.
+The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** proposed in 2017 describes a generic key-value store and generic execution function that could be used as the basis for an account. A blockchain-based account can then be created by combining ERC725 with the interactivity and signature verification mechanism from the **[LSP1-UniversalReceiver Standard](../generic-standards/02-lsp1-universal-receiver.md)** and **[ERC1271 Standard](https://eips.ethereum.org/EIPS/eip-1271)**.
 
 ![LSP0 ERC725 Account overview](/img/standards/lsp0-erc725account-overview.jpeg)
 
@@ -73,7 +73,7 @@ See the section **["Layout of State Variables in Storage"](https://docs.solidity
 
 :::
 
-This substandard enables the account to hold arbitrary data through a generic key-value store. It gives flexibility to the contract storage. developers can access data stored in the contract via keys instead of referencing the storage slot where the data resides.
+This substandard enables the account to hold arbitrary data through a generic key-value store. It gives flexibility to the contract storage. Developers can access the data stored in the contract via keys instead of referencing the storage slot where the data resides.
 
 - **Keys** are represented as `bytes32` values.
 - **Values** under these keys are stored as `bytes`.
