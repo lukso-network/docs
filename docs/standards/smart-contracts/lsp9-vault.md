@@ -1,9 +1,9 @@
 ---
-title: LSP9 Vault
+title: LSP9Vault
 sidebar_position: 8
 ---
 
-# LSP9 Vault
+# LSP9Vault
 
 :::info Solidity contract
 
@@ -16,7 +16,7 @@ The **LSP9Vault** contract is an implementation of the **[LSP9-Vault Standard](#
 This contract can be used as a **vault** that can **hold assets** and **interact with other smart contracts**, as it has all the functions of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, except for the **`isValidSignature(...)`** function.
 
 :::note
-_LSP9Vault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165):
+_LSP9Vault contract also contains the methods from_ the [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) standard:
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -34,7 +34,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address newOwner) ERC725(newOwner)
 ```
 
-The function sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** key in the vault storage, and registers the **[LSP9Vault and LSP1UniversalReceiver interface IDs](./interface-ids.md)**.
+Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** key in the vault storage, and registers the **[LSP9Vault and LSP1UniversalReceiver interface IDs](./interface-ids.md)**.
 
 If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account about the **newly owned vault**.
 
@@ -50,7 +50,7 @@ If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contra
 function owner() public view returns (address owner)
 ```
 
-The function returns the address of the current vault owner.
+Returns the address of the current vault owner.
 
 #### Return Values:
 
@@ -64,11 +64,11 @@ The function returns the address of the current vault owner.
 function transferOwnership(address newOwner) public {
 ```
 
-The function transfers ownership of the contract to the `newOwner` address.
+Transfers ownership of the contract to the `newOwner` address.
 
 If the current owner or the `newOwner` address is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account(s) about the **vault ownership transfer**.
 
-_It triggers the **[OwnershipTransferred](#ownershiptransferred)** event when the ownership is transferred._
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when the ownership is transferred._
 
 #### Parameters:
 
@@ -82,9 +82,9 @@ _It triggers the **[OwnershipTransferred](#ownershiptransferred)** event when th
 receive() external payable
 ```
 
-The function executes on value transfers to the contract.
+Executes on value transfers to the contract.
 
-_It triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
+_Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
 ### execute
 
@@ -97,7 +97,7 @@ function execute(
 ) public payable returns (bytes memory result)
 ```
 
-The function executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
+Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
 
 The **operationType** can be the following:
 
@@ -107,9 +107,9 @@ The **operationType** can be the following:
 - `3` for `STATICCALL`
 - `4` for `DELEGATECALL`
 
-_It triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
+_Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
 
-_It triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
+_Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
 
 :::note
 The `execute(...)` function can only be called by the current owner of the vault.
@@ -139,9 +139,9 @@ function setData(
 ) public
 ```
 
-The function sets the data of a single `key` as **bytes** to the vault's storage.
+Sets the data of a single `key` as **bytes** to the vault's storage.
 
-_It triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
 :::note
 The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.
@@ -160,7 +160,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 function getData(bytes32 key) public view returns (bytes memory value)
 ```
 
-The function retrieves the data that was set for a particular `key`.
+Retrieves the data that was set for a particular `key`.
 
 #### Parameters:
 
@@ -183,9 +183,9 @@ function setData(
 ) public
 ```
 
-The function sets an array of data at multiple keys in the vault storage.
+Sets an array of data at multiple keys in the vault storage.
 
-_It triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
 :::note
 The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.
@@ -204,7 +204,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
-The function retrieves an array of data for multiple given keys.
+Retrieves an array of data for multiple given keys.
 
 #### Parameters:
 
@@ -227,10 +227,10 @@ function universalReceiver(
 ) public returns (bytes memory result)
 ```
 
-The function forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) key.  
+Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) key.  
 The contract being called is expected to be an **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
 
-_It triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
+_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
 
 #### Parameters:
 
@@ -256,7 +256,7 @@ event OwnershipTransferred(
 )
 ```
 
-_The event **MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** function is successfully executed._
+_**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** function is successfully executed._
 
 #### Values:
 
@@ -274,7 +274,7 @@ event ValueReceived(
 )
 ```
 
-_The event **MUST** be fired when the **[`receive(...)`](#receive)** function is successfully executed._
+_**MUST** be fired when the **[`receive(...)`](#receive)** function is successfully executed._
 
 #### Values:
 
@@ -294,7 +294,7 @@ event Executed(
 )
 ```
 
-_The event **MUST** be fired when the **[`execute(...)`](#execute)** function creates a new call using the `CALL`, `STATICCALL`, or `DELEGATECALL` operation._
+_**MUST** be fired when the **[`execute(...)`](#execute)** function creates a new call using the `CALL`, `STATICCALL`, or `DELEGATECALL` operation._
 
 #### Values:
 
@@ -315,7 +315,7 @@ event ContractCreated(
 )
 ```
 
-_The event **MUST** be fired when the **[`execute(...)`](#execute)** function creates a new contract using the `CREATE` or `CREATE2` operation._
+_**MUST** be fired when the **[`execute(...)`](#execute)** function creates a new contract using the `CREATE` or `CREATE2` operation._
 
 #### Values:
 
@@ -334,7 +334,7 @@ event DataChanged(
 )
 ```
 
-_The event **MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
+_**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
 
 #### Values:
 
@@ -354,7 +354,7 @@ event UniversalReceiver(
 )
 ```
 
-_The event **MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** function is successfully executed._
+_**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** function is successfully executed._
 
 #### Values:
 

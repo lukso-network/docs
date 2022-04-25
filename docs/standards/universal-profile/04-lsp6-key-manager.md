@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'LSP6 Key Manager'
+sidebar_label: 'LSP6 - Key Manager'
 sidebar_position: 6
 ---
 
@@ -43,7 +43,7 @@ Developers can set five main permissions for addresses interacting with a Univer
 
 - [**Allowed Functions:**](#allowed-functions) defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.
 
-- [**Allowed Standards**](#allowed-standards) defines a list of interfaces standards an `address` is allowed to interact with when calling contracts <br/> (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)).
+- [**Allowed Standards**](#allowed-standards) defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)).
 
 - [**Allowed ERC725Y Keys: **](#allowed-erc725y-keys) defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata) on the linked ERC725Account.
 
@@ -122,8 +122,6 @@ For instance, if you try to set the permission SETDATA for an address as `0x08`,
 
 :::
 
-<br/>
-
 ---
 
 ### Allowed addresses
@@ -146,8 +144,6 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
   "valueContent": "Address"
 }
 ```
-
-<br/>
 
 :::caution
 

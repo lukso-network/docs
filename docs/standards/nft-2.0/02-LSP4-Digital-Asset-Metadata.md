@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP4 Digital Asset Metadata'
+sidebar_label: 'LSP4 - Digital Asset Metadata'
 sidebar_position: 2
 ---
 
-# LSP4 Digital Asset Metadata
+# LSP4 - Digital Asset Metadata
 
 :::info Standard Document
 

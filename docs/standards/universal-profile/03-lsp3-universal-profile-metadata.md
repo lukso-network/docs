@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP3 Universal Profile Metadata'
+sidebar_label: 'LSP3 - Universal Profile Metadata'
 sidebar_position: 4
 ---
 
-# LSP3 Universal Profile Metadata
+# LSP3 - Universal Profile Metadata
 
 :::info Standard Document
 

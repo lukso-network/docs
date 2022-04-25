@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP9 Vault'
+sidebar_label: 'LSP9 - Vault'
 sidebar_position: 7
 ---
 
-# LSP9 Vault
+# LSP9 - Vault
 
 :::info Standard Document
 

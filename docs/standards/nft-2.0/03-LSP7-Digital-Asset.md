@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP7 Digital Asset (Token)'
+sidebar_label: 'LSP7 - Digital Asset (Token)'
 sidebar_position: 3
 ---
 
-# LSP7 Digital Asset
+# LSP7 - Digital Asset
 
 :::caution This section is a work in progress.
 :::

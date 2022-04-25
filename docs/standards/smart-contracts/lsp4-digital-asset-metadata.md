@@ -1,9 +1,9 @@
 ---
-title: LSP4 Digital Asset Metadata
+title: LSP4DigitalAssetMetadata
 sidebar_position: 4
 ---
 
-# LSP4 Digital Asset Metadata
+# LSP4DigitalAssetMetadata
 
 :::info Solidity contract
 
@@ -16,7 +16,7 @@ The **LSP4DigitalAssetMetadata** is a contract that sets the **Token-Metadata** 
 As this contract uses **[ERC725Y General Key/Value Store](https://eips.ethereum.org/EIPS/eip-725)** to set the metadata, any information could be added, such as the **list of creators, JSON files**, etc.
 
 :::note
-_LSP4DigitalAssetMetadata contract contains the methods from [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y): _
+_The LSP4DigitalAssetMetadata contract contains the methods from [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y): _
 
 ```solidity
 function setData(bytes32 key, bytes memory value) public;
@@ -43,7 +43,7 @@ constructor(
 ) ERC725Y(newOwner_)
 ```
 
-The function sets the token's name, its symbol, and **[SupportedStandards:LSP4DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset)** key on the **[ERC725Y Key/Value store](./lsp0-erc725-account#setdata)**. It also sets the **initial owner** of the contract.
+Sets the token's name, its symbol, and the **[SupportedStandards:LSP4DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset)** key on the **[ERC725Y Key-Value Store](./lsp0-erc725-account#setdata)**. It also sets the **initial owner** of the contract.
 
 #### Parameters:
 

@@ -23,7 +23,8 @@ The **[default implementation](./smart-contracts/01-introduction.md)** of these 
 
 </div>
 
-Feel free to join the [LUKSO **Discord server**](https://discord.com/channels/359064931246538762/620552532602912769), and ask your questions in the [#standards](https://discord.com/channels/359064931246538762/620552532602912769) channel.<br/>
+Feel free to join the [LUKSO **Discord server**](https://discord.com/channels/359064931246538762/620552532602912769), and ask your questions in the [#standards](https://discord.com/channels/359064931246538762/620552532602912769) channel.
+
 Our team and community members look forward to helping you understand the standards.
 
 :::

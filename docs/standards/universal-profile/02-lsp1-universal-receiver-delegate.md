@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP1 Universal Receiver Delegate'
+sidebar_label: 'LSP1 - Universal Receiver Delegate'
 sidebar_position: 3
 ---
 
-# LSP1 Universal Receiver Delegate
+# LSP1 - Universal Receiver Delegate
 
 :::info Standard Document
 

@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP1 Universal Receiver'
+sidebar_label: 'LSP1 - Universal Receiver'
 sidebar_position: 1
 ---
 
-# LSP1 Universal Receiver
+# LSP1 - Universal Receiver
 
 :::info Standard Document
 

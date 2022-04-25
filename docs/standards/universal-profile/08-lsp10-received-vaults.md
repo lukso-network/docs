@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP10 Received Vaults'
+sidebar_label: 'LSP10 - Received Vaults'
 sidebar_position: 8
 ---
 
-# LSP10 Received Vaults
+# LSP10 - Received Vaults
 
 :::info Standard Document
 

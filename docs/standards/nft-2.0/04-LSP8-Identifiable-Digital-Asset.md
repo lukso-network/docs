@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP8 Identifiable Digital Asset (NFT)'
+sidebar_label: 'LSP8 - Identifiable Digital Asset (NFT)'
 sidebar_position: 4
 ---
 
-# LSP8 Identifiable Digital Asset
+# LSP8 - Identifiable Digital Asset
 
 :::info Standard Document
 
@@ -21,7 +21,7 @@ In their current state, such assets are created as ERC721 tokens. However, their
 
 The reference raises several questions around where the token's metadata is stored. Is a central service used to store the metadata? What about if such a service goes down?
 
-![](../../../static/img/erc721-metadata-security.png)
+![ERC721 Metadata Security](/img/erc721-metadata-security.png)
 
 #### 2. The only data that can be attached to an NFT is a `name` and `symbol`.
 
@@ -76,11 +76,11 @@ An LSP8 NFT can be represented in multiple ways, depending on the type of `token
 - a unique `bytes32` value (representing a _serial number_, for instance), or
 - an ERC725Y contract.
 
-![LSP8 tokenId = number](../../../static/img/lsp8-tokenid-number.jpeg)
+![LSP8 tokenId = number](/img/lsp8-tokenid-number.jpeg)
 
 ---
 
-![LSP8 tokenId = bytes32](../../../static/img/lsp8-tokenid-serial-number.jpeg)
+![LSP8 tokenId = bytes32](/img/lsp8-tokenid-serial-number.jpeg)
 
 ### NFTs as ERC725Y Contract
 
@@ -89,7 +89,7 @@ If each NFT is represented by its own ERC725Y contract (= metadata contract), th
 - the `address` of the contract that minted this NFT or
 - the `tokenId` of this NFT.
 
-![LSP8 tokenId = ERC725Y contract](../../../static/img/lsp8-tokenid-erc725y.jpeg)
+![LSP8 tokenId = ERC725Y contract](/img/lsp8-tokenid-erc725y.jpeg)
 
 ## References
 

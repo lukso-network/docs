@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP5 Received Assets'
+sidebar_label: 'LSP5 - Received Assets'
 sidebar_position: 5
 ---
 
-# LSP5 Received Assets
+# LSP5 - Received Assets
 
 :::info Standard Document
 

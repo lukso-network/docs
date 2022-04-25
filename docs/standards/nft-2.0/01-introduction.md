@@ -7,14 +7,15 @@ sidebar_position: 1
 
 :::success Useful Tip
 
-The [guide section](../../guides/assets/create-lsp7-digital-asset.md) will walk you through creating and deploying an LSP7 token or an LSP8 NFT on the [L14 test network](../../networks/l14-testnet.md). <br/>
+The [guide section](../../guides/assets/create-lsp7-digital-asset.md) will walk you through creating and deploying an LSP7 token or an LSP8 NFT on the [L14 test network](../../networks/l14-testnet.md).
+
 Check the [profile explorer](https://universalprofile.cloud/) to browse the deployed digital assets.
 
 :::
 
 :::info
 
-The [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) repository on GitHub contains implementations of LSP7 and LSP8 that are [backward compatible](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts) with ERC20 and ERC721. But it is highly recommended to use the native ones.
+The [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) repository on GitHub contains implementations of LSP7 and LSP8 that are [backward compatible with ERC20 and ERC721](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts). But it is highly recommended to use the native ones.
 
 :::
 

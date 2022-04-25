@@ -1,9 +1,9 @@
 ---
-title: LSP7 Digital Asset
+title: LSP7DigitalAsset
 sidebar_position: 6
 ---
 
-# LSP7 Digital Asset
+# LSP7DigitalAsset
 
 :::info Solidity contract
 
@@ -16,7 +16,7 @@ The **LSP7DigitalAsset** contract represents digital assets for either fungible 
 This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to **false** in the `constructor(...)` and otherwise serves as a **Non-Fungible Token Contract**.
 
 :::note
-_LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :
+_The LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -37,7 +37,7 @@ constructor(
 ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
-The function sets the token's name, its symbol, as well as the **initial owner** of the contract, specifies if the contract represents a fungible token or an NFT, and registers the **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
+Sets the token's name, its symbol, as well as the **initial owner** of the contract, specifies if the contract represents a fungible token or an NFT, and registers the **[LSP7DigitalAsset InterfaceId](./interface-ids.md)**.
 
 #### Parameters:
 
@@ -54,7 +54,7 @@ The function sets the token's name, its symbol, as well as the **initial owner**
   function decimals() public view returns (uint256 value)
 ```
 
-The function returns the number of decimals used to get its user representation.
+Returns the number of decimals used to get its user representation.
 
 :::note
 If the contract represents a **NFT** then **0** SHOULD be used, otherwise **18** is the common value.
@@ -72,7 +72,7 @@ If the contract represents a **NFT** then **0** SHOULD be used, otherwise **18**
 function totalSupply() public view returns (uint256 value)
 ```
 
-The function returns the number of existing tokens of this contract.
+Returns the number of existing tokens of this contract.
 
 #### Return Values:
 
@@ -86,7 +86,7 @@ The function returns the number of existing tokens of this contract.
 function balanceOf(address tokenOwner) public view returns (uint256 value)
 ```
 
-The function returns the number of existing tokens of the contract owned by the `tokenOwner` address.
+Returns the number of existing tokens of the contract owned by the `tokenOwner` address.
 
 #### Parameters:
 
@@ -109,9 +109,9 @@ function authorizeOperator(
 ) public
 ```
 
-The function sets the `amount` of tokens to which the `operator` has access from the caller's tokens.
+Sets the `amount` of tokens to which the `operator` has access from the caller's tokens.
 
-_It triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator._
+_Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator._
 
 #### Parameters:
 
@@ -135,9 +135,9 @@ _It triggers the **[AuthorizedOperator](#authorizedoperator)** event when an add
 function revokeOperator(address operator) public
 ```
 
-The function removes the `operator` address as an operator of caller's tokens.
+Removes the `operator` address as an operator of caller's tokens.
 
-_It triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator._
+_Triggers the **[RevokedOperator](#revokedoperator)** event when an address get revoked as an operator._
 
 #### Parameters:
 
@@ -163,7 +163,7 @@ function isOperatorFor(
 ) public view returns (uint256 amount)
 ```
 
-The function returns the amount of tokens to which the `operator` address has access from the `tokenOwner` contract. Operators can send and burn tokens on behalf of their owners.
+Returns the amount of tokens to which the `operator` address has access from the `tokenOwner` contract. Operators can send and burn tokens on behalf of their owners.
 
 :::note
 The tokenOwner is its own operator.
@@ -194,11 +194,11 @@ function transfer(
 ) public
 ```
 
-The function transfers an `amount` of tokens from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or if contracts do not implement the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md) standard.
+Transfers an `amount` of tokens from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or if contracts do not implement the [LSP1-UniversalReceiverDelegate Standard](../generic-standards/02-lsp1-universal-receiver.md).
 
-This function will notify the token sender and receiver by calling the `universalReceiver(...)` function on the `from` and `to` address.
+Will notify the token sender and receiver by calling the `universalReceiver(...)` function on the `from` and `to` address.
 
-_It triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -233,9 +233,9 @@ function transferBatch(
 ) public
 ```
 
-The function transfers multiple tokens based on the `from`, `to`, and `amount` arrays. If any transfer fails, the whole call will revert.
+Transfers multiple tokens based on the `from`, `to`, and `amount` arrays. If any transfer fails, the whole call will revert.
 
-_It triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -274,7 +274,7 @@ event Transfer(
 )
 ```
 
-_The event **MUST** be fired when the **[transfer](#transfer)** function gets executed successfuly._
+_**MUST** be fired when the **[transfer](#transfer)** function gets executed successfuly._
 
 #### Values:
 
@@ -297,7 +297,7 @@ event AuthorizedOperator(
 )
 ```
 
-_The event **MUST** be fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
+_**MUST** be fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
 
 #### Values:
 
@@ -316,7 +316,7 @@ event RevokedOperator(
 )
 ```
 
-_The event **MUST** be fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
+_**MUST** be fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
 
 #### Values:
 

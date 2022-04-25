@@ -7,7 +7,7 @@ sidebar_position: 10
 
 **Interfaces IDs** help check if a contract supports a specific interface, e.g., its meta-interface. The call is helpful if we want to interact with a contract but don't know if it supports an interface such as **[ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**, **[LSP1UniversalReceiver](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md)**, etc.
 
-The **supportsInterface** function from **[ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165)** returns `true` if the standard is supported, `false` otherwise.
+The **supportsInterface** function from the **[ERC165](https://eips.ethereum.org/EIPS/eip-165)** standard returns `true` if the standard is supported, `false` otherwise.
 
 :::note
 _Interface IDs are not the best secure way to ensure that a contract implements specific functions as it's manually set and could be set by anyone to any value._

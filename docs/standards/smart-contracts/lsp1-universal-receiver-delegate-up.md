@@ -1,9 +1,9 @@
 ---
-title: LSP1 Universal Receiver Delegate UP
+title: LSP1UniversalReceiverDelegateUP
 sidebar_position: 3
 ---
 
-# LSP1 Universal Receiver Delegate UP
+# LSP1UniversalReceiverDelegateUP
 
 :::info Solidity contract
 
@@ -11,11 +11,11 @@ sidebar_position: 3
 
 :::
 
-The **LSP1 Universal Receiver Delegate UP** is a contract called by the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract that:
+The **LSP1UniversalReceiverDelegateUP** is a contract called by the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract that:
 
-- Writes the keys representing **[LSP7-DigitalAsset](./lsp7-digital-asset.md)** and **[LSP8-IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** assets received into the account storage and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+- Writes the keys representing the assets received from the **[LSP7-DigitalAsset Standard](./lsp7-digital-asset.md)** and **[LSP8-IdentifiableDigitalAsset Standard](./lsp8-identifiable-digital-asset.md)** into the account storage and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
-- Writes the keys representing **[LSP9-Vault](./lsp9-vault.md)** vaults owned into your account storage, and remove them when **transferring ownership** to other accounts according to the **[LSP10-ReceivedVaults Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+- Writes the keys representing the vaults owned from the **[LSP9-Vault Standard](./lsp9-vault.md)** into your account storage, and removes them when **transferring ownership** to other accounts according to the **[LSP10-ReceivedVaults Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
 The following requirements are required to execute the logic above correctly. First, the owner of the **LSP0ERC725Account** contract should be an **[LSP6KeyManager](./lsp6-key-manager.md)** contract. Additionally, the **[LSP6KeyManager](./lsp6-key-manager.md)** contract should be granted **permission to [`SETDATA`](../universal-profile/04-lsp6-key-manager.md#permission-values)** on the account (otherwise, the transaction will pass but will not write any keys to the storage).
 
@@ -36,7 +36,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor()
 ```
 
-The function registers the **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
+Registers the **[LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md)**.
 
 ### universalReceiverDelegate
 
@@ -48,7 +48,7 @@ function universalReceiverDelegate(
 ) public payable returns (bytes memory result)
 ```
 
-The function writes the keys of the received **LSP7DigitalAsset**, **LSP8IdentifiableDigitalAsset**, and **LSP9Vault** contract addresses into the account storage according to the **LSP5ReceivedAssets** and **LSP10ReceivedVaults** Standard.
+Writes the keys of the received **LSP7DigitalAsset**, **LSP8IdentifiableDigitalAsset**, and **LSP9Vault** contract addresses into the account storage according to the **LSP5ReceivedAssets** and **LSP10-ReceivedVaults** Standard.
 
 The keys representing an asset/vault are cleared when the asset/vault is no longer owned by the account.
 

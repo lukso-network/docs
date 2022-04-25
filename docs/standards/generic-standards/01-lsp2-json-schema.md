@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'LSP2 ERC725Y JSON Schema'
+sidebar_label: 'LSP2 - ERC725Y JSON Schema'
 sidebar_position: 2
 ---
 
-# LSP2 ERC725Y JSON Schema
+# LSP2 - ERC725Y JSON Schema
 
 :::info Standard Document
 
@@ -31,7 +31,7 @@ The storage of a smart contract consists of multiple **storage slots**. These sl
 
 Using **slot numbers** and **raw bytes** makes the contract storage very hard to handle. [ERC725Y](../universal-profile/01-lsp0-erc725account.md#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However, with such low-level languages, it is difficult for humans to understand the data in the storage.
 
-The main problem around smart contract storage also arises when data is stored differently, depending on individual use cases and application needs. No standard schema defines "what the data stored under a specific key represents."
+The main problem around smart contract storage also arises when data is stored differently, depending on individual use cases and application needs. No standard schema defines "what the data stored under a specific key represents".
 
 These two issues make it very hard for smart contracts to interact with each other and for external services to interact with contracts' storage.
 
@@ -67,7 +67,7 @@ A key in the contract storage can be defined as a JSON object with properties th
 
 A Key Type defines **HOW** a 32 bytes key is constructed, representing how a particular key type is described in 32 bytes. For example, `Singleton` keys are simple keccak256 hashes of the key name string. Other Key Types are constructed of slices of hashes to group different key name parts or define array element keys.
 
-The LSP2 Standard defines several `keyTypes`:
+The LSP2 Standard defines several **key types**:
 
 - [Singleton](#singleton)
 - [Array](#array)
@@ -147,7 +147,7 @@ Below is an example of a Mapping key:
 
 ![LSP2 Mapping key type](/img/standards/lsp2-key-type-mapping.jpeg)
 
-#### Bytes20Mapping
+### Bytes20Mapping
 
 A key of type **Bytes20Mapping** is similar to the **[Mapping](#mapping)** key type, except that it can be useful to map specific data to a 20-bytes long value (eg: an `address`).
 
@@ -165,7 +165,7 @@ Below is an example of Bytes20Mapping key:
 
 ![LSP2 Bytes20Mapping key type](/img/standards/lsp2-key-type-bytes20-mapping.jpeg)
 
-#### Bytes20MappingWithGrouping
+### Bytes20MappingWithGrouping
 
 A key of type **Bytes20MappingWithGrouping** is similar to the **[Bytes20Mapping](#bytes20mapping)** key type, except that sub-types can be added to the main mapping key.
 
