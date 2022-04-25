@@ -12,7 +12,7 @@ module.exports = {
   projectName: 'docs', // Usually your repo name.
   plugins: ['docusaurus-plugin-sass', 'plugin-image-zoom'],
   themeConfig: {
-    image: 'img/logo.png',
+    image: 'img/lukso-docs.jpg',
     navbar: {
       title: 'LUKSO',
       logo: {
