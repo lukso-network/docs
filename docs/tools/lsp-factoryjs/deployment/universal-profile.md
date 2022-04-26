@@ -5,7 +5,7 @@ title: Universal Profile
 
 # Deploying a Universal Profile
 
-LSPFactory allows you to easy deploy and configure a Universal Profile consisting of a [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and - [LSP1-UniversalReceiver](../../../standards/generic-standards/02-lsp1-universal-receiver.md) smart contract:
+LSPFactory allows you to easy deploy and configure a Universal Profile consisting of a [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and - [LSP1-UniversalReceiver](../../../standards/generic-standards/lsp1-universal-receiver.md) smart contract:
 
 ```javascript
 await lspFactory.UniversalProfile.deploy(profileProperties [, options]);
@@ -15,7 +15,7 @@ This will deploy the following contracts:
 
 - [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account)
 - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager)
-- And link to a pre-deployed [LSP1-UniversalReceiver](../../../standards/generic-standards/02-lsp1-universal-receiver.md)
+- And link to a pre-deployed [LSP1-UniversalReceiver](../../../standards/generic-standards/lsp1-universal-receiver.md)
 
 Then, it will:
 
@@ -273,7 +273,7 @@ await UniversalProfile.uploadMetaData(myLSP3MetaData);
 
 ## Deployment Configuration
 
-A Universal Profile is composed of three smart contracts. [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and [LSP1-UniversalReceiver](../../../standards/generic-standards/02-lsp1-universal-receiver.md). You can configure how these contracts should be deployed inside the `contractDeploymentOptions` object when deploying a Universal Profile. Each contract can be configured separately, the available options are the same for all contracts.
+A Universal Profile is composed of three smart contracts. [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager) and [LSP1-UniversalReceiver](../../../standards/generic-standards/lsp1-universal-receiver.md). You can configure how these contracts should be deployed inside the `contractDeploymentOptions` object when deploying a Universal Profile. Each contract can be configured separately, the available options are the same for all contracts.
 
 ```javascript
 await lspFactory.UniversalProfile.deploy({...}, {

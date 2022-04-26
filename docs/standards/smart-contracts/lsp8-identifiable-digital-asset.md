@@ -272,7 +272,7 @@ function transfer(
 ) public
 ```
 
-Transfers the token with a particular `tokenId` from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or contracts that do not implement the [LSP1 - Universal Receiver Delegate](../generic-standards/02-lsp1-universal-receiver.md) standard.
+Transfers the token with a particular `tokenId` from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or contracts that do not implement the [LSP1 - Universal Receiver Delegate](../generic-standards/lsp1-universal-receiver.md) standard.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when the token gets successfully transferred._
 

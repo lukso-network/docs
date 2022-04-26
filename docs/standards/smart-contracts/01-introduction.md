@@ -39,7 +39,7 @@ The **Universal Profile** contracts allow a better representation of the identit
 
 ### Digital Assets
 
-The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](../universal-profile/01-lsp0-erc725account.md) and [Universal Receivers](../generic-standards/02-lsp1-universal-receiver.md).
+The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](../universal-profile/01-lsp0-erc725account.md) and [Universal Receivers](../generic-standards/lsp1-universal-receiver.md).
 
 - **[LSP4DigitalAssetMetadata](./lsp4-digital-asset-metadata)**: a contract that sets the **metadata** of the **Digital Asset**.
 - **[LSP7DigitalAsset](./lsp7-digital-asset.md)**: a contract that either represents a fungible or non-fungible token (NFT).

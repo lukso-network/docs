@@ -200,7 +200,7 @@ function transfer(
 ) public
 ```
 
-Transfers an `amount` of tokens from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or if contracts do not implement the [LSP1-UniversalReceiverDelegate Standard](../generic-standards/02-lsp1-universal-receiver.md).
+Transfers an `amount` of tokens from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or if contracts do not implement the [LSP1-UniversalReceiverDelegate Standard](../generic-standards/lsp1-universal-receiver.md).
 
 Will notify the token sender and receiver by calling the `universalReceiver(...)` function on the `from` and `to` address.
 
