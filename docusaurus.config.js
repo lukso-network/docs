@@ -177,5 +177,4 @@ module.exports = {
       },
     ],
   ],
-  themes: ['@saucelabs/theme-github-codeblock'],
 };
