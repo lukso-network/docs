@@ -193,10 +193,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name     | Type       | Description                     |
-| :------- | :--------- | :------------------------------ |
-| `keys`   | bytes32[ ] | The keys for which to set data. |
-| `values` | bytes[ ]   | The array of data to set.       |
+| Name     | Type            | Description                     |
+| :------- | :-------------- | :------------------------------ |
+| `keys`   | bytes32[&nbsp;] | The keys for which to set data. |
+| `values` | bytes[&nbsp;]   | The array of data to set.       |
 
 ### getData (Array)
 
@@ -208,15 +208,15 @@ Retrieves an array of data for multiple given keys.
 
 #### Parameters:
 
-| Name   | Type       | Description                     |
-| :----- | :--------- | :------------------------------ |
-| `keys` | bytes32[ ] | The keys to retrieve data from. |
+| Name   | Type            | Description                     |
+| :----- | :-------------- | :------------------------------ |
+| `keys` | bytes32[&nbsp;] | The keys to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type     | Description                                  |
-| :------- | :------- | :------------------------------------------- |
-| `values` | bytes[ ] | An array of the data for the requested keys. |
+| Name     | Type          | Description                                  |
+| :------- | :------------ | :------------------------------------------- |
+| `values` | bytes[&nbsp;] | An array of the data for the requested keys. |
 
 ### universalReceiver
 

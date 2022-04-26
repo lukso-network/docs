@@ -125,9 +125,9 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
 
 #### Return Values:
 
-| Name       | Type       | Description                  |
-| :--------- | :--------- | :--------------------------- |
-| `tokensId` | bytes32[ ] | The list of owned token ids. |
+| Name       | Type            | Description                  |
+| :--------- | :-------------- | :--------------------------- |
+| `tokensId` | bytes32[&nbsp;] | The list of owned token ids. |
 
 ### authorizeOperator
 
@@ -244,9 +244,9 @@ Returns all `operator` addresses of a particular `tokenId`.
 
 #### Return Values:
 
-| Name        | Type       | Description            |
-| :---------- | :--------- | :--------------------- |
-| `operators` | address[ ] | The list of operators. |
+| Name        | Type            | Description            |
+| :---------- | :-------------- | :--------------------- |
+| `operators` | address[&nbsp;] | The list of operators. |
 
 :::note
 
