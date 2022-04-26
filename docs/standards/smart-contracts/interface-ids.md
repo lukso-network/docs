@@ -10,7 +10,7 @@ sidebar_position: 10
 The **supportsInterface** function from the **[ERC165](https://eips.ethereum.org/EIPS/eip-165)** standard returns `true` if the standard is supported, `false` otherwise.
 
 :::note
-_Interface IDs are not the best secure way to ensure that a contract implements specific functions as it's manually set and could be set by anyone to any value._
+_Interface IDs are not the most secure way to ensure that a contract implements a specific set of functions, as they are manually set and can be set to any value._
 :::
 
 | Contract                          | InterfaceId  | Description                                                           |

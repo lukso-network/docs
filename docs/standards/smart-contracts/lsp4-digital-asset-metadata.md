@@ -43,7 +43,11 @@ constructor(
 ) ERC725Y(newOwner_)
 ```
 
-Sets the token's name, its symbol, and the **[SupportedStandards:LSP4DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset)** key on the **[ERC725Y Key-Value Store](./lsp0-erc725-account#setdata)**. It also sets the **initial owner** of the contract.
+Sets the **initial owner** of the contract and the following data keys on the **[ERC725Y Key-Value Store](./lsp0-erc725-account#setdata)**:
+
+- `name_`: token's name.
+- `symbol_`: token's symbol.
+- [**SupportedStandards:LSP4DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset) data key.
 
 #### Parameters:
 

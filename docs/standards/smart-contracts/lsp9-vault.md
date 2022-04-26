@@ -82,7 +82,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when the o
 receive() external payable
 ```
 
-Executes on value transfers to the contract.
+Executed when value is transferred to the contract.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 

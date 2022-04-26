@@ -37,7 +37,11 @@ constructor(
 ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
-Sets the token's name, its symbol, as well as the **initial owner** of the contract and registers the **[LSP8IdentifiableDigitalAsset InterfaceId](./interface-ids.md)**.
+Sets the **initial owner** of the token, registers the [**LSP8IdentifiableDigitalAsset** `InterfaceId`](./interface-ids.md), and sets the following data keys on the [**ERC725Y Key-Value Store**](./lsp0-erc725-account#setdata):
+
+- name: token's name.
+- symbol: token's symbol.
+- [**SupportedStandards:LSP4DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset) data key.
 
 #### Parameters:
 

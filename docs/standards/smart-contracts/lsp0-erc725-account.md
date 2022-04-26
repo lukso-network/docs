@@ -39,7 +39,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address newOwner) ERC725(newOwner)
 ```
 
-Sets the **initial owner** of the contract and registers **LSP0ERC725Account**, **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)**, and **[LSP1UniversalReceiver Interface IDs](./interface-ids.md)**.
+Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)**, and **[LSP1UniversalReceiver Interface IDs](./interface-ids.md)**.
 
 #### Parameters:
 
@@ -83,7 +83,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when owner
 receive() external payable
 ```
 
-Is executed on value transfers to the contract.
+Executed when value is transferred to the contract.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
@@ -121,7 +121,7 @@ The `execute(...)` function can only be called by the current owner of the contr
 | Name            | Type    | Description                                                                                                              |
 | :-------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
 | `operationType` | uint256 | The type of operation that needs to be executed.                                                                         |
-| `to`            | address | The address you want to interact with. The field `to` will be unused if a contract is created (operations 1 & 2).        |
+| `to`            | address | The address to interact with. The address `to` will be unused if a contract is created (operations 1 & 2).               |
 | `value`         | uint256 | The desired value to transfer with the transaction.                                                                      |
 | `data`          | bytes   | The calldata (ABI-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
 
@@ -152,7 +152,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 | Name    | Type    | Description                             |
 | :------ | :------ | :-------------------------------------- |
-| `key`   | bytes32 | The key for which you want to set data. |
+| `key`   | bytes32 | The key for which the data will be set. |
 | `value` | bytes   | The data you want to set as bytes.      |
 
 ### getData
@@ -161,7 +161,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 function getData(bytes32 key) public view returns (bytes memory value)
 ```
 
-Is called to retrieve the data set for the given key.
+Retrieves the data set for the given key.
 
 #### Parameters:
 
