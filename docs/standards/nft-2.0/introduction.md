@@ -37,7 +37,7 @@ One of the main questions about NFT 2.0 is which characteristics make them the n
 
 :::info
 
-See the [LSP4 - Digital Asset Metadata standard](./02-LSP4-Digital-Asset-Metadata.md) for more information.
+See the [LSP4 - Digital Asset Metadata standard](./LSP4-Digital-Asset-Metadata.md) for more information.
 
 :::
 

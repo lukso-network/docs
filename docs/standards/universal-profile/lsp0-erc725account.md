@@ -110,10 +110,10 @@ Unlike Externally Owned Accounts (EOAs), smart contracts cannot sign messages si
 
 Developers can extend the account ownership by setting a smart contract as an owner with different permissions granted to users in the smart contract. Expandable role-management allows multiple interactions through your account based on the permissions set for the calling address.
 
-**[LSP6-KeyManager](./04-lsp6-key-manager.md)** is a standard that defines a smart contract that acts as a controller for this account.
+**[LSP6-KeyManager](./lsp6-key-manager.md)** is a standard that defines a smart contract that acts as a controller for this account.
 
 ### Interactivity
 
 Events can notify the account of incoming assets or information via the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) function. Developers could add an extension to increase the autonomy of the contract by handling and reacting to transactions that the account receives.
 
-Builders can introduce additional functionality by linking an external contract to your account that would handle these functionalities: an **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**.
+Builders can introduce additional functionality by linking an external contract to your account that would handle these functionalities: an **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)**.

@@ -48,7 +48,7 @@ This key represents a map key, both holding:
 - the index in the [`LSP5ReceivedAssets[]`](#lsp5receivedassets-) Array where the received asset addresses are stored, and
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each asset smart contract (without the need to query the asset contracts directly).
 
-The `LSP5ReceivedAssetsMap` key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
+The `LSP5ReceivedAssetsMap` key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)).
 
 ```json
 {

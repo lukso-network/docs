@@ -13,7 +13,7 @@ sidebar_position: 4
 
 ## Introduction
 
-The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** standard does not contain any metadata describing the account.
+The implementation of the **[LSP0-ERC725Account](./lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
 **LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific keys to describe a Universal Profile. A Universal Profile combines **LSP0-ERC725Account**, an interface for a smart contract-based account, with the **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys to describe the profile.
 
@@ -128,7 +128,7 @@ The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.
 
 :::info
 
-See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for more information.
+See the [LSP5 - Received Assets](./lsp5-received-assets.md) standard page for more information.
 
 :::
 
@@ -142,4 +142,4 @@ See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for
 }
 ```
 
-If the Universal Profile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.
+If the Universal Profile is used with the **[LSP6-KeyManager](./lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.

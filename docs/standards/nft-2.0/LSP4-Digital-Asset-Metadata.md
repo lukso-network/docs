@@ -18,7 +18,7 @@ sidebar_position: 2
 In ERC20 and ERC721, the token `name` and `symbol` are stored as `public` state variables.
 In **LSP4 - Digital Asset Metadata**, such information is held under the keys `LSP4TokenName` and `LSP4TokenSymbol` under the (ERC725Y) storage of the token / NFT contract.
 
-Both [LSP7](./03-LSP7-Digital-Asset.md) and [LSP8](./04-LSP8-Identifiable-Digital-Asset.md) standards are derived from the [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), which defines the default metadata keys representing a digital asset on the blockchain.
+Both [LSP7](./LSP7-Digital-Asset.md) and [LSP8](./LSP8-Identifiable-Digital-Asset.md) standards are derived from the [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), which defines the default metadata keys representing a digital asset on the blockchain.
 
 ![LSP4 Digital Asset Metadata diagram](../../../static/img/standards/lsp4-digital-asset-metadata-diagram.png)
 

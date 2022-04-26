@@ -63,7 +63,7 @@ The implementation of the **UniversalReceiverDelegate** used by the Universal Pr
 
 Developers can notify the vault of incoming assets, information, etc., via the **universalReceiver** function. Builders could add an extension to increase the autonomy of the contract by handling and reacting to transactions that the vault receives.
 
-Such functionality can be attached by setting an **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)** to your account.
+Such functionality can be attached by setting an **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)** to your account.
 
 ### Flow
 
