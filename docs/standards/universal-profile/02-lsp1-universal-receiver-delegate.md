@@ -13,33 +13,33 @@ sidebar_position: 3
 
 :::success Recommendation
 
-For a better understanding of this standard, it is **well-advised** to check first the origin standard **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)**.
+To better understand this standard, it is well-advised first to check the origin standard **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)**.
 
 :::
 
 ## Introduction
 
-Once deployed, the code of a smart contract **can not be changed**. However, the way a smart contract implements the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) function and how it reacts could change and evolve in the future.
+Once deployed, the code of a smart contract **can not be changed**. However, builders can decide how their smart contracts implement the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) function. This standard allows any external smart contract to change relations from the main contract to change function behavior.
 
-Therefore, it is advised not to hardcode how the smart contract should handle and react to certain calls inside the `universalReceiver(...)` function, but instead to delegate this functionality to another external contract. Such contract could then be customized to implement a specific logic that could be changed anytime **via an upgrade**.
+Therefore, it is advised not to hardcode how the smart contract should handle and react to specific calls inside the `universalReceiver(...)` function. Instead, it should delegate this functionality to another external contract. Developers could then customize such contracts to implement a specific logic that is **changeable anytime via an upgrade**.
 
 ## What does this standard represent ?
 
 ### Specification
 
-This standard represents a smart contract that is delegated the initial `universalReceiver(...)` function.
+This standard represents a smart contract delegated to the initial `universalReceiver(...)` function.
 
-It contains a single function named `universalReceiverDelegate(...)` that takes the same parameters as the `universalReceiver(...)` function with an additional parameter:
+It contains a single function named `universalReceiverDelegate(...)` that takes the same parameters as the `universalReceiver(...)` function with an additional one:
 
 - address `sender`: the address that initially called the `universalReceiver(...)` function.
 
 ### How Delegation works
 
-In order to let the `universalReceiver(...)` function forward the call to the `universalReceiverDelegate(...)` function, the address of the **UniversalReceiverDelegate** contract should be set as a value for the key `LSP1UniversalReceiver`, inside the [ERC725Y key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y) of the implementation contract (contract implementing the `universalReceiver(...)` function).
+The address of the **UniversalReceiverDelegate** contract should be set as a value for the key `LSP1UniversalReceiver`, inside the [ERC725Y key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y) of the implementation contract (contract implementing the `universalReceiver(...)` function). With such an implementation, the `universalReceiver(...)` function can forward the call to its similar one called `universalReceiverDelegate(...)`.
 
 This external contract will then implement the `universalReceiverDelegate(...)` function. It is also recommended that this contract registers the **[LSP1UniversalReceiverDelegate interfaceId](../smart-contracts/interface-ids.md)** using ERC165.
 
-![ur-delegate-transaction](../../../static/img/ur-delegate-transaction.jpeg)
+![ur-delegate-transaction](/img/ur-delegate-transaction.jpeg)
 
 ## Implementations
 
@@ -56,19 +56,19 @@ One of the possible scenarios is a token transfer between Alice and Bob. Alice w
 
 **1.** It calls the **`transfer(...)`** function on the token contract through the KeyManager.
 
-![executing transfer function](../../../static/img/token-transfer-1.jpg)
+![executing transfer function](/img/token-transfer-1.jpg)
 
 **2.** The `transfer(...)` function on the token contract will directly **trigger a hook** that will call the `universalReceiver(...)` function on both sender and recipient Universal Profiles.
 
-![token contract hooks calling universalReceiver function](../../../static/img/token-transfer-2.jpg)
+![token contract hooks calling universalReceiver function](/img/token-transfer-2.jpg)
 
 **3.** 3. If the **UniversalReceiverDelegate** contract is set, it will be called by the `universalReceiver(...)` function and will execute its custom logic.
 
-![universalReceiver function calling UniversalReceiverDelegate contract](../../../static/img/token-transfer-3.jpg)
+![universalReceiver function calling UniversalReceiverDelegate contract](/img/token-transfer-3.jpg)
 
 **4.** The **UniversalReceiverDelegate** of **Universal Profile** allows the transfer and set **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** keys on both Profiles through the KeyManager.
 
-![UniversalReceiverDelegate setting keys on profile](../../../static/img/token-transfer-4.jpg)
+![UniversalReceiverDelegate setting keys on profile](/img/token-transfer-4.jpg)
 
 ## References
 

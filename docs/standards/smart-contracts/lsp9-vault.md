@@ -1,5 +1,5 @@
 ---
-title: LSP9 Vault
+title: LSP9Vault
 sidebar_position: 8
 ---
 
@@ -16,7 +16,7 @@ The **LSP9Vault** contract is an implementation of the **[LSP9-Vault Standard](#
 This contract can be used as a **vault** that can **hold assets** and **interact with other smart contracts**, as it has all the functions of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, except for the **`isValidSignature(...)`** function.
 
 :::note
-**_LSP9Vault contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+_LSP9Vault contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -34,7 +34,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address newOwner) ERC725(newOwner)
 ```
 
-Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)**key in the vault storage and registers the **[LSP9Vault and LSP1UniversalReceiver interface ids](./interface-ids.md)**.
+Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** key in the vault storage, and registers the **[LSP9Vault and LSP1UniversalReceiver interface IDs](./interface-ids.md)**.
 
 If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account about the **newly owned vault**.
 
@@ -68,7 +68,7 @@ Transfers ownership of the contract to the `newOwner` address.
 
 If the current owner or the `newOwner` address is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account(s) about the **vault ownership transfer**.
 
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership is transferred._
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when the ownership is transferred._
 
 #### Parameters:
 
@@ -82,7 +82,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event ownership 
 receive() external payable
 ```
 
-Executed on value transfers.
+Executed when value is transferred to the contract.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
@@ -112,7 +112,7 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 _Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
 
 :::note
-**The `execute(...)` function can only be called by the current owner of the vault.**
+The `execute(...)` function can only be called by the current owner of the vault.
 :::
 
 #### Parameters:
@@ -139,12 +139,12 @@ function setData(
 ) public
 ```
 
-Set data as **bytes** in the vault storage for a single key.
+Sets the data of a single `key` as **bytes** to the vault's storage.
 
-_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
 :::note
-**The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.**
+The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.
 :::
 
 #### Parameters:
@@ -160,7 +160,7 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 function getData(bytes32 key) public view returns (bytes memory value)
 ```
 
-Retrieve the data set for the given key.
+Retrieves the data that was set for a particular `key`.
 
 #### Parameters:
 
@@ -183,20 +183,20 @@ function setData(
 ) public
 ```
 
-Sets array of data at multiple keys in the vault storage.
+Sets an array of data at multiple keys in the vault storage.
 
-_Triggers the **[DataChanged](#datachanged)** event when setting data successfully._
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
 :::note
-**The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.**
+The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.
 :::
 
 #### Parameters:
 
-| Name     | Type       | Description                     |
-| :------- | :--------- | :------------------------------ |
-| `keys`   | bytes32[ ] | The keys for which to set data. |
-| `values` | bytes[ ]   | The array of data to set.       |
+| Name     | Type            | Description                     |
+| :------- | :-------------- | :------------------------------ |
+| `keys`   | bytes32[&nbsp;] | The keys for which to set data. |
+| `values` | bytes[&nbsp;]   | The array of data to set.       |
 
 ### getData (Array)
 
@@ -204,19 +204,19 @@ _Triggers the **[DataChanged](#datachanged)** event when setting data successful
 function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
-Retrieve an array of data for multiple given keys.
+Retrieves an array of data for multiple given keys.
 
 #### Parameters:
 
-| Name   | Type       | Description                     |
-| :----- | :--------- | :------------------------------ |
-| `keys` | bytes32[ ] | The keys to retrieve data from. |
+| Name   | Type            | Description                     |
+| :----- | :-------------- | :------------------------------ |
+| `keys` | bytes32[&nbsp;] | The keys to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type     | Description                                  |
-| :------- | :------- | :------------------------------------------- |
-| `values` | bytes[ ] | An array of the data for the requested keys. |
+| Name     | Type          | Description                                  |
+| :------- | :------------ | :------------------------------------------- |
+| `values` | bytes[&nbsp;] | An array of the data for the requested keys. |
 
 ### universalReceiver
 
@@ -230,7 +230,7 @@ function universalReceiver(
 Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/02-lsp1-universal-receiver.md#extension) Key.
 The contract being called is expected to be an **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using ERC165.
 
-_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets executed successfully._
+_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
 
 #### Parameters:
 
@@ -256,7 +256,7 @@ event OwnershipTransferred(
 )
 ```
 
-_**MUST** be fired when **[`transferOwnership(...)`](#transferownership)** is successfully executed._
+_**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** function is successfully executed._
 
 #### Values:
 
@@ -294,7 +294,7 @@ event Executed(
 )
 ```
 
-_**MUST** be fired when **[`execute(...)`](#execute)** creates a new call using the `CALL`, `STATICCALL` or `DELEGATECALL` operation._
+_**MUST** be fired when the **[`execute(...)`](#execute)** function creates a new call using the `CALL`, `STATICCALL`, or `DELEGATECALL` operation._
 
 #### Values:
 
@@ -315,7 +315,7 @@ event ContractCreated(
 )
 ```
 
-_**MUST** be fired when **[`execute(...)`](#execute)** creates a new contract using the `CREATE` or `CREATE2` operation._
+_**MUST** be fired when the **[`execute(...)`](#execute)** function creates a new contract using the `CREATE` or `CREATE2` operation._
 
 #### Values:
 
@@ -334,7 +334,7 @@ event DataChanged(
 )
 ```
 
-_**MUST** be fired when **[`setData(...)`](#setdata)** is successfully executed._
+_**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
 
 #### Values:
 
@@ -354,7 +354,7 @@ event UniversalReceiver(
 )
 ```
 
-_**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** function is succesfully executed._
+_**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** function is successfully executed._
 
 #### Values:
 

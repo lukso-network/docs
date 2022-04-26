@@ -3,7 +3,7 @@ title: 'Standards Detection'
 sidebar_position: 2
 ---
 
-# Standards Detection
+# Standard Detection
 
 :::caution
 
@@ -13,21 +13,25 @@ The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** key is not
 
 There are two types of **LSP** standards:
 
-- **Interface Standards**: Where we standardize a set of functions. i.e: [LSP0-ERC725Account](./universal-profile/01-lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/04-lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/03-LSP7-Digital-Asset.md), etc ..
+- **Interface Standards**: Where we standardize a set of functions. i.e:
 
-- **Metadata Standards**: Where we standardize a set of ERC725Y keys. i.e: [LSP3-UniversalProfile-Metadata](./universal-profile/03-lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](./nft-2.0/02-LSP4-Digital-Asset-Metadata.md), [LSP10ReceivedVaults](./universal-profile/08-lsp10-received-vaults.md), etc.
+  [LSP0-ERC725Account](./universal-profile/01-lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/04-lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/03-LSP7-Digital-Asset.md), etc.
 
-![Interface and metadata standards](../../static/img/standard-detection.jpeg)
+- **Metadata Standards**: Where we standardize a set of ERC725Y keys. i.e:
+
+  [LSP3-UniversalProfile-Metadata](./universal-profile/03-lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](./nft-2.0/02-LSP4-Digital-Asset-Metadata.md), [LSP10ReceivedVaults](./universal-profile/08-lsp10-received-vaults.md), etc.
+
+![Interface and metadata standards](/img/standard-detection.jpeg)
 
 These two standards types are fundamental for interacting with smart contracts on the LUKSO blockchain.
 
-**Interface Standard** defines the functions that can be called on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which keys to query to retrieve such data.
+The **Interface Standard** defines the functions that can be called on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which keys to query to retrieve such data.
 
 ## Interface Detection
 
 :::success Tip
 
-See the page **[Contracts Implementation > Interface Ids](./smart-contracts/interface-ids)** for a complete list of `interfaceId`s.
+See the page **[Contracts Implementation > Interface IDs](./smart-contracts/interface-ids)** for a complete list of current `interfaceId` fields.
 
 :::
 
@@ -37,7 +41,7 @@ We can verify if a contract implements a specific set of functions (= an **inter
 
 Calling this function will return **TRUE** if the contract implements this specific interfaceId, **FALSE** otherwise.
 
-### Example
+### Interface Example
 
 A **[Universal Profile](./universal-profile/03-lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/01-lsp0-erc725account.md)(LSP0). Therefore, the contract SHOULD implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
@@ -58,7 +62,7 @@ await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call();
 
 :::info
 
-See [ERC165 - Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165) for more info.
+See [ERC165 - Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165) for more details.
 
 :::
 
@@ -76,7 +80,7 @@ We can verify if a contract contains a specific set of ERC725 keys (= **metadata
 
 Calling this function will return a specific bytes4 value (defined in the Metadata Standard) if the contract has some metadata keys set by default. Otherwise, it will return an empty value.
 
-### Example
+### Metadata Example
 
 An **[LSP7DigitalAsset](./nft-2.0/03-LSP7-Digital-Asset.md)** is a contract that contains ERC725Y keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 

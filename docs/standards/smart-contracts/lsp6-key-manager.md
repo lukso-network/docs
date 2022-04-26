@@ -1,6 +1,6 @@
 ---
-title: LSP6 Key Manager
-sidebar_position: 4
+title: LSP6KeyManager
+sidebar_position: 5
 ---
 
 # LSP6KeyManager
@@ -11,16 +11,16 @@ sidebar_position: 4
 
 :::
 
-The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with a set of pre-defined permissions for addresses that could range from setting data, executing, changing owner and more as written in the [Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)\*\* in [LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md).
+The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with pre-defined permissions for addresses that could range from setting data, executing, changing owner, etc., as written in the [Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)\*\* of the [LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md).
 
 :::warning
 
-The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/04-lsp6-key-manager.md#permissions-value)** operation on the execute function of the linked ERC725Account, because of its potential malicious impact on the account contract.
+The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/04-lsp6-key-manager.md#permissions-value)** operation on the `execute(...)` function of the linked ERC725Account, because of its potential malicious impact on the account contract.
 
 :::
 
 :::note
-**_LSP6KeyManager contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+_LSP6KeyManager contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -36,7 +36,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address account)
 ```
 
-Link the Key Manager to the address of an **LSP0ERC725Account** contract and register **[LSP6KeyManager InterfaceId](./interface-ids.md)** on deployment.
+Links the KeyManager to the address of an **LSP0ERC725Account** contract and registers the **[LSP6KeyManager InterfaceId](./interface-ids.md)** on deployment.
 
 #### Parameters:
 
@@ -50,7 +50,7 @@ Link the Key Manager to the address of an **LSP0ERC725Account** contract and reg
 function account() external view returns (address)
 ```
 
-Returns the address of the account linked to this KeyManager
+Returns the address of the account linked to this KeyManager.
 
 This can be a contract that implements:
 
@@ -99,7 +99,9 @@ function getNonce(
 
 Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[`executeRelayCall(...)`](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
 
-_More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**_
+:::note
+More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**\_
+:::
 
 #### Parameters:
 
@@ -125,7 +127,7 @@ function executeRelayCall(
 ) public
 ```
 
-Allows anybody to execute a payload on the **LSP0ERC725Account**, given they have a signed message from an executor.
+Allows anybody to execute a payload on the **LSP0ERC725Account** contract, if they have a signed message from an executor.
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
@@ -147,7 +149,7 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/04-lsp6-key-manager.md/#permission-values)** Permission for this Key Manager, otherwise it will return the failure value.
+Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/04-lsp6-key-manager.md/#permission-values)** permission for this KeyManager, otherwise it will return the failure value.
 
 #### Parameters:
 
@@ -173,7 +175,7 @@ event Executed(
 )
 ```
 
-_**MUST** be fired when a transaction was successfully executed in **[execute](#execute)** or **[executeRelayCall](#executerelaycall)**._
+_**MUST** be fired when a transaction was successfully executed from the **[execute](#execute)** or **[executeRelayCall](#executerelaycall)** function._
 
 #### Values:
 
