@@ -350,14 +350,14 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 
 #### Values:
 
-| Name       | Type    | Description                                                                                                                           |
-| :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `operator` | address | The address of operator sending tokens.                                                                                               |
-| `from`     | address | The address which tokens are sent.                                                                                                    |
-| `to`       | address | The receiving address.                                                                                                                |
-| `tokenId`  | bytes32 | The token to transfer.                                                                                                                |
-| `force`    | bool    | When set to TRUE, to may be any address; when set to FALSE to must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.                       |
+| Name       | Type    | Description                                                                                                             |
+| :--------- | :------ | :---------------------------------------------------------------------------------------------------------------------- |
+| `operator` | address | The address of operator sending tokens.                                                                                 |
+| `from`     | address | The address which tokens are sent.                                                                                      |
+| `to`       | address | The receiving address.                                                                                                  |
+| `tokenId`  | bytes32 | The token to transfer.                                                                                                  |
+| `force`    | bool    | When set to `true`, may be any address; When set to `false`, address must be a contract supporting LSP1 and not revert. |
+| `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.         |
 
 ### AuthorizedOperator
 
