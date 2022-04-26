@@ -20,7 +20,7 @@ The current implementation of the Key Manager disallows the **[DELEGATECALL](../
 :::
 
 :::note
-_LSP6KeyManager contract also contains the methods from_ the [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) standard:
+_LSP6KeyManager contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)

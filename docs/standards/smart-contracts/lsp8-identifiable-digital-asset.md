@@ -17,7 +17,7 @@ Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/Op
 A **bytes32** value is used for tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (i.e., serial numbers).
 
 :::note
-_LSP8IdentifiableDigitalAsset contract also contains the methods from_ the [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) standard:
+_LSP8IdentifiableDigitalAsset contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)

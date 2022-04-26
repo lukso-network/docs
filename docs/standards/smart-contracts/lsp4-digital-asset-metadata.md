@@ -16,7 +16,7 @@ The **LSP4DigitalAssetMetadata** is a contract that sets the **Token-Metadata** 
 As this contract uses **[ERC725Y General Key/Value Store](https://eips.ethereum.org/EIPS/eip-725)** to set the metadata, any information could be added, such as the **list of creators, JSON files**, etc.
 
 :::note
-_The LSP4DigitalAssetMetadata contract contains the methods from [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y): _
+_The LSP4DigitalAssetMetadata contract contains the methods from the [ERC725Y Standard](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y):_
 
 ```solidity
 function setData(bytes32 key, bytes memory value) public;

@@ -20,7 +20,7 @@ The **LSP1UniversalReceiverDelegateUP** is a contract called by the **[`universa
 The following requirements are required to execute the logic above correctly. First, the owner of the **LSP0ERC725Account** contract should be an **[LSP6KeyManager](./lsp6-key-manager.md)** contract. Additionally, the **[LSP6KeyManager](./lsp6-key-manager.md)** contract should be granted **permission to [`SETDATA`](../universal-profile/04-lsp6-key-manager.md#permission-values)** on the account (otherwise, the transaction will pass but will not write any keys to the storage).
 
 :::note
-_LSP1UniversalReceiverDelegateUP contract also contains the methods from [ERC165](https://eips.ethereum.org/EIPS/eip-165): _
+_LSP1UniversalReceiverDelegateUP contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
