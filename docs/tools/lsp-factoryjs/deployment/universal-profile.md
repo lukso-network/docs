@@ -32,7 +32,7 @@ Inside the `profileProperties` object you can set profile configuration options 
 
 ### Controller Addresses
 
-By passing `controllerAddresses` you can set the addresses which should be able to control your Universal Profile initially. Addresses passed here will be given all LSP6 KeyManager permissions except `DELEGATECALL` to prevent accidental misuse [prevent accidental misuse](https://solidity-by-example.org/hacks/delegatecall/). If your controller keys require `DELEGATECALL`, you can [change the permission after deployment](../../../guides/key-manager/01-give-permissions.md).
+By passing `controllerAddresses` you can set the addresses which should be able to control your Universal Profile initially. Addresses passed here will be given all LSP6 KeyManager permissions except `DELEGATECALL` to prevent accidental misuse [prevent accidental misuse](https://solidity-by-example.org/hacks/delegatecall/). If your controller keys require `DELEGATECALL`, you can [change the permission after deployment](../../../guides/key-manager/give-permissions.md).
 
 `controllerAddresses` can be addresses of externally owned accounts (EOAs) or another smart contract that can call the `execute(calldata)` function on the KeyManager.
 
@@ -41,8 +41,8 @@ await lspFactory.UniversalProfile.deploy({
   controllerAddresses: [
     '0x7Ab53a0C861fb955050A8DA109eEeA5E61fd8Aa4',
     '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
-  ]
-})
+  ],
+});
 ```
 
 ### Adding LSP3 Metadata
@@ -78,7 +78,9 @@ await lspFactory.UniversalProfile.deploy({
   });
 };
 ```
+
 The following two will download the JSON file before, to hash it and generate the proper [JSONURL value](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL).
+
 ```javascript title='Providing an already uploaded LSP3 metadata IPFS url'
 await lspFactory.UniversalProfile.deploy({
     controllerAddresses: ['0x...'],
@@ -96,6 +98,7 @@ await lspFactory.UniversalProfile.deploy({
 ```
 
 You can also provide the JSON file yourself to generate the hash value:
+
 ```javascript title='Providing an already uploaded LSP3 metadata  url and JSON file itself'
 await lspFactory.UniversalProfile.deploy({
     controllerAddresses: ['0x...'],
@@ -107,7 +110,8 @@ await lspFactory.UniversalProfile.deploy({
 };
 ```
 
-Or provide the hash value and then uploaded file  URL:
+Or provide the hash value and then uploaded file URL:
+
 ```javascript title='Providing an already uploaded LSP3 metadata  url and hash values'
 await lspFactory.UniversalProfile.deploy({
     controllerAddresses: ['0x...'],
@@ -402,6 +406,7 @@ lspFactory.UniversalProfile.deploy({...}, {
 ```
 
 If `options` object is provided it will override the `options` object passed at the instantiation of the LSPFactory.
+
 ### Reactive Deployment
 
 LSPFactory uses [RxJS](https://rxjs.dev/) to deploy contracts. This can be leveraged to achieve reactive deployment of Universal Profiles.
