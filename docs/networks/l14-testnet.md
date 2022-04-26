@@ -4,13 +4,11 @@ sidebar_position: 4
 
 # L14 Public Testnet
 
-The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon deprecated POA test network, currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
-
-:::note L14-Testnet is running.
-
+:::success L14-Testnet is running.
 This testnet is the lastest stable network.
-
 :::
+
+The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon deprecated POA test network, currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
 
 ## MetaMask
 
