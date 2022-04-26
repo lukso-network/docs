@@ -11,7 +11,7 @@ sidebar_position: 9
 
 :::
 
-The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract. It writes the assets of the **[LSP7-DigitalAsset Standard](../nft-2.0/03-LSP7-Digital-Asset.md)** and **[LSP8-IdentifiableDigitalAsset Standard](../nft-2.0/04-LSP8-Identifiable-Digital-Asset.md)** that a vault receives into the vault storage and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract. It writes the assets of the **[LSP7-DigitalAsset Standard](../nft-2.0/LSP7-Digital-Asset.md)** and **[LSP8-IdentifiableDigitalAsset Standard](../nft-2.0/LSP8-Identifiable-Digital-Asset.md)** that a vault receives into the vault storage and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
 :::note
 _LSP1UniversalReceiverDelegateVault contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
