@@ -15,11 +15,11 @@ There are two types of **LSP** standards:
 
 - **Interface Standards**: Where we standardize a set of functions. i.e:
 
-  [LSP0-ERC725Account](./universal-profile/01-lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/04-lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md), etc.
+  [LSP0-ERC725Account](./universal-profile/lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md), etc.
 
 - **Metadata Standards**: Where we standardize a set of ERC725Y keys. i.e:
 
-  [LSP3-UniversalProfile-Metadata](./universal-profile/03-lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md), [LSP10ReceivedVaults](./universal-profile/08-lsp10-received-vaults.md), etc.
+  [LSP3-UniversalProfile-Metadata](./universal-profile/lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md), [LSP10ReceivedVaults](./universal-profile/lsp10-received-vaults.md), etc.
 
 ![Interface and metadata standards](/img/standard-detection.jpeg)
 
@@ -43,7 +43,7 @@ Calling this function will return **TRUE** if the contract implements this speci
 
 ### Interface Example
 
-A **[Universal Profile](./universal-profile/03-lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/01-lsp0-erc725account.md)(LSP0). Therefore, the contract SHOULD implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+A **[Universal Profile](./universal-profile/lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/lsp0-erc725account.md)(LSP0). Therefore, the contract SHOULD implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 ```javascript
 const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");

@@ -11,11 +11,11 @@ sidebar_position: 5
 
 :::
 
-The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with pre-defined permissions for addresses that could range from setting data, executing, changing owner, etc., as written in the [Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)\*\* of the [LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md).
+The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with pre-defined permissions for addresses that could range from setting data, executing, changing owner, etc., as written in the [Permissions Section](../universal-profile/lsp6-key-manager.md#-types-of-permissions)\*\* of the [LSP6-KeyManager Standard](../universal-profile/lsp6-key-manager.md).
 
 :::warning
 
-The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/04-lsp6-key-manager.md#permissions-value)** operation on the `execute(...)` function of the linked ERC725Account, because of its potential malicious impact on the account contract.
+The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/lsp6-key-manager.md#permissions-value)** operation on the `execute(...)` function of the linked ERC725Account, because of its potential malicious impact on the account contract.
 
 :::
 
@@ -149,7 +149,7 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/04-lsp6-key-manager.md/#permission-values)** permission for this KeyManager, otherwise it will return the failure value.
+Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/lsp6-key-manager.md/#permission-values)** permission for this KeyManager, otherwise it will return the failure value.
 
 #### Parameters:
 

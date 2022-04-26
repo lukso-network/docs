@@ -11,7 +11,7 @@ sidebar_position: 2
 When you create a Universal Profile from [UniversalProfile.cloud](https://universalprofile.cloud) or [The Dematerialised](https://thedematerialised.com/), a wallet is made in your browser's `localStorage`. A login link containing an encrypted private key is emailed to you.
 The email backup is a temporary method to manage your keys while the LUKSO team is working on custom tools to manage your Universal Profile account. These websites do not support MetaMask or hardware wallets yet.
 
-If you are a Dapp developer, you can connect your Dapp to MetaMask and sign/send transactions from the EOA provided by MetaMask. You will need to connect MetaMask to the [L14 Testnet](../networks/l14-testnet.md) and probably send the transaction through the [Key Manager](../standards/universal-profile/04-lsp6-key-manager.md) that owns the Universal Profile. You will also need to know with which Universal Profile smart contract address the EOA provided by MetaMask can interact.
+If you are a Dapp developer, you can connect your Dapp to MetaMask and sign/send transactions from the EOA provided by MetaMask. You will need to connect MetaMask to the [L14 Testnet](../networks/l14-testnet.md) and probably send the transaction through the [Key Manager](../standards/universal-profile/lsp6-key-manager.md) that owns the Universal Profile. You will also need to know with which Universal Profile smart contract address the EOA provided by MetaMask can interact.
 
 ## Can I send ethereum ETH/Token/NFTs to my Universal Profile address?
 
