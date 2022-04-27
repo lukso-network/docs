@@ -1,5 +1,5 @@
 ---
-title: 'Standards Detection'
+title: 'Standard Detection'
 sidebar_position: 2
 ---
 

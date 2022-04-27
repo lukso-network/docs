@@ -58,7 +58,7 @@ You can use other file storage options to store your JSON file (_e.g., [Swarm](h
 We will use a new tool in this guide: [erc725.js].
 
 ```shell
-npm install web3 @lukso/lsp-factory.js @lukso/lsp-smart-contracts @erc725/erc725.js --save
+npm install web3 @lukso/lsp-factory.js @lukso/lsp-smart-contracts @erc725/erc725.js
 ```
 
 ## Step 1 - Create a new LSP3Profile JSON file
@@ -330,7 +330,7 @@ The first step is to create new instances of the Universal Profile and the Key M
 If you haven't done it in the [setup](#setup), install our npm package to obtain the smart contracts ABIs.
 
 ```shell
-npm install @lukso/lsp-smart-contracts --save
+npm install @lukso/lsp-smart-contracts
 ```
 
 If you have deployed your Universal Profile with our [lsp-factory.js](./create-profile.md) tool (like in our previous guide), the UP owner will point to the address of the Key Manager.
