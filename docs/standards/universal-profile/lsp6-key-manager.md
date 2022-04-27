@@ -35,17 +35,15 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 ## Types of permissions
 
-Developers can set five main permissions for addresses interacting with a Universal Profile.
+| Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [**Address Permissions**](#address-permissions)   | defines a set of [**permission values**](#permissions-value) for an `address`.                                                                                                                                            | `0x4b80742d0000000082ac0000<address>` |
+| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742d00000000c6dd0000<address>` |
+| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742d000000008efe0000<address>` |
+| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742d000000003efa0000<address>` |
+| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata) on the linked ERC725Account.                                  | `0x4b80742d0000000090b80000<address>` |
 
-- [**Address Permissions**](#address-permissions): defines a set of [**permission values**](#permissions-value) for an `address`.
-
-- [**Allowed Addresses:**](#allowed-addresses) defines which EOA or contract addresses an `address` is _allowed to_ interact with them.
-
-- [**Allowed Functions:**](#allowed-functions) defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.
-
-- [**Allowed Standards**](#allowed-standards) defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)).
-
-- [**Allowed ERC725Y Keys: **](#allowed-erc725y-keys) defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata) on the linked ERC725Account.
+> [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
 
 :::caution
 
@@ -229,22 +227,6 @@ The list (= array) of allowed `bytes32` keys **MUST be ABI-encoded** (See the se
 **If no bytes32 values are set, the caller address can set values for any keys.**
 
 :::
-
----
-
-## Permission Keys
-
-The following keys are available to set the different types of permissions.
-
-| Permission Type                                                                                                                             | Key                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
-| [Address Permissions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress)        | `0x4b80742d0000000082ac0000<address>` |
-| [Allowed Addresses](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedaddressesaddress)     | `0x4b80742d00000000c6dd0000<address>` |
-| [Allowed Functions](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedfunctionsaddress)     | `0x4b80742d000000008efe0000<address>` |
-| [Allowed Standards](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowedstandardsaddress)     | `0x4b80742d000000003efa0000<address>` |
-| [Allowed ERC725YKeys](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionsallowederc725ykeysaddress) | `0x4b80742d0000000090b80000<address>` |
-
-> [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
 
 ---
 
