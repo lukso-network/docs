@@ -13,7 +13,7 @@ sidebar_position: 4
 
 ## Introduction
 
-The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** standard does not contain any metadata describing the account.
+The implementation of the **[LSP0-ERC725Account](./lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
 **LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific keys to describe a Universal Profile. A Universal Profile combines **LSP0-ERC725Account**, an interface for a smart contract-based account, with the **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys to describe the profile.
 
@@ -45,7 +45,7 @@ This key is used to know if the contract represents a **Universal Profile**.
 }
 ```
 
-The value attached to this key is a [JSONURL-encoded value](../../standards/generic-standards/01-lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Universal Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
+The value attached to this key is a [JSONURL-encoded value](../../standards/generic-standards/lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Universal Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
 
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, defining an image with different dimensions, `width` and `height`. Picture scaling is helpful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them afterward.
 
@@ -128,7 +128,7 @@ The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.
 
 :::info
 
-See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for more information.
+See the [LSP5 - Received Assets](./lsp5-received-assets.md) standard page for more information.
 
 :::
 
@@ -142,4 +142,4 @@ See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for
 }
 ```
 
-If the Universal Profile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.
+If the Universal Profile is used with the **[LSP6-KeyManager](./lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.

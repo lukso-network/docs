@@ -216,7 +216,7 @@ myKeyManager.methods.execute(abi).send({
 
 - [erc725.js](./erc725js/getting-started) ([GitHub](https://github.com/ERC725Alliance/erc725.js), [NPM](https://www.npmjs.com/package/@erc725/erc725.js))
 - [lsp-factory.js](./lsp-factoryjs/getting-started) ([GitHub](https://github.com/lukso-network/tools-lsp-factory), [NPM](https://www.npmjs.com/package/@lukso/lsp-factory.js))
-- [lsp-smart-contracts](../standards/smart-contracts/01-introduction.md) ([GitHub](https://github.com/lukso-network/lsp-smart-contracts), [NPM](https://www.npmjs.com/package/@lukso/lsp-smart-contracts))
+- [lsp-smart-contracts](../standards/smart-contracts/introduction.md) ([GitHub](https://github.com/lukso-network/lsp-smart-contracts), [NPM](https://www.npmjs.com/package/@lukso/lsp-smart-contracts))
 
 ## 🔌 Services
 

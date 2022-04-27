@@ -13,7 +13,7 @@ sidebar_position: 8
 
 ## Introduction
 
-To keep track of all the vaults that an address owns, we should avoid the same problem mentioned in [LSP5-ReceivedAssets](./06-lsp5-received-assets.md), which is not informing recipients and senders about the ownership transfer of [LSP9-Vaults](07-lsp9-vault.md).
+To keep track of all the vaults that an address owns, we should avoid the same problem mentioned in [LSP5-ReceivedAssets](./lsp5-received-assets.md), which is not informing recipients and senders about the ownership transfer of [LSP9-Vaults](./lsp9-vault.md).
 
 One way to avoid this problem is to create generic metadata keys that developers should register in the smart contract storage, representing how many different vaults you own, their type, and the address of the transferred vault contract.
 
@@ -25,7 +25,7 @@ It is recommended to query the **LSP10Vaults[]** key to check if a smart contrac
 
 :::
 
-This Metadata standard describes two keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) smart contract to keep track of received and owned [LSP9-Vaults](07-lsp9-vault.md).
+This Metadata standard describes two keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) smart contract to keep track of received and owned [LSP9-Vaults](./lsp9-vault.md).
 
 ### `LSP10Vaults[]`
 
@@ -48,7 +48,7 @@ This key represents a map key holding both:
 - the index in the [`LSP10Vaults[]`](#lsp10vaults-) array where the received vaults addresses are stored, and
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each vault's smart contract (without the need to query the assets contracts directly).
 
-The `LSP10VaultsMap` key also helps prevent adding duplications to the array when automatically added via smart contract (_e.g.,_ an [LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)).
+The `LSP10VaultsMap` key also helps prevent adding duplications to the array when automatically added via smart contract (_e.g.,_ an [LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)).
 
 ```json
 {

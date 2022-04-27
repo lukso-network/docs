@@ -15,7 +15,7 @@ sidebar_position: 2
 
 Once deployed on a network, smart contracts cannot be changed. Their storage and logic **are set in stone**. If a smart contract is deployed with specific state variables and functions, these data and functionalities are there forever and cannot be altered.
 
-The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** proposed in 2017 describes a generic key-value store and generic execution function that could be used as the basis for an account. A blockchain-based account can then be created by combining ERC725 with the interactivity and signature verification mechanism from the **[LSP1-UniversalReceiver Standard](../generic-standards/02-lsp1-universal-receiver.md)** and **[ERC1271 Standard](https://eips.ethereum.org/EIPS/eip-1271)**.
+The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** proposed in 2017 describes a generic key-value store and generic execution function that could be used as the basis for an account. A blockchain-based account can then be created by combining ERC725 with the interactivity and signature verification mechanism from the **[LSP1-UniversalReceiver Standard](../generic-standards/lsp1-universal-receiver.md)** and **[ERC1271 Standard](https://eips.ethereum.org/EIPS/eip-1271)**.
 
 ![LSP0 ERC725 Account overview](/img/standards/lsp0-erc725account-overview.jpeg)
 
@@ -25,7 +25,7 @@ An **ERC725Account** defines a blockchain account system that could be used by h
 
 - **[ERC725X](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725x)** is a generic executor that enables calling external contracts, deploying new contracts, or transferring value to any `address` (EOA or smart contracts).
 - **[ERC725Y](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** is a generic key-value store that enables it to attach any information to the smart contract.
-- **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)** enables notifications about incoming or outgoing transactions and adds custom handling and behavior based on these transactions.
+- **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** enables notifications about incoming or outgoing transactions and adds custom handling and behavior based on these transactions.
 - **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** helps to verify that a signed message has a valid signature.
 - **[ERC165](https://eips.ethereum.org/EIPS/eip-165)** allows to register and detect the standard interfaces the contract implements.
 
@@ -88,7 +88,7 @@ Thanks to ERC725Y, contracts become more interoperable, as their storage is repr
 
 :::info
 
-See the **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)** standard for more information.
+See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
 
 :::
 
@@ -110,10 +110,10 @@ Unlike Externally Owned Accounts (EOAs), smart contracts cannot sign messages si
 
 Developers can extend the account ownership by setting a smart contract as an owner with different permissions granted to users in the smart contract. Expandable role-management allows multiple interactions through your account based on the permissions set for the calling address.
 
-**[LSP6-KeyManager](./04-lsp6-key-manager.md)** is a standard that defines a smart contract that acts as a controller for this account.
+**[LSP6-KeyManager](./lsp6-key-manager.md)** is a standard that defines a smart contract that acts as a controller for this account.
 
 ### Interactivity
 
 Events can notify the account of incoming assets or information via the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) function. Developers could add an extension to increase the autonomy of the contract by handling and reacting to transactions that the account receives.
 
-Builders can introduce additional functionality by linking an external contract to your account that would handle these functionalities: an **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**.
+Builders can introduce additional functionality by linking an external contract to your account that would handle these functionalities: an **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)**.

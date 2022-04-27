@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 In this guide, we will learn how to:
 
-- read data from the [Universal Receiver](../../standards/generic-standards/02-lsp1-universal-receiver.md).
+- read data from the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md).
 - get all assets ever received by a profile.
 - fetch the data of all owned assets.
 
@@ -124,8 +124,8 @@ After trimming out the asset addresses, we can check which assets are owned by t
 
 :::info Difference between Token Ownership
 
-- For [LSP7](../../standards/nft-2.0/03-LSP7-Digital-Asset.md), you will get back the amount of tokens you own.
-- For [LSP8](../../standards/nft-2.0/04-LSP8-Identifiable-Digital-Asset.md), you will get back the number of NFTs you own (without knowing which specific tokenId you own).
+- For [LSP7](../../standards/nft-2.0/LSP7-Digital-Asset.md), you will get back the amount of tokens you own.
+- For [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset.md), you will get back the number of NFTs you own (without knowing which specific tokenId you own).
 
 :::
 

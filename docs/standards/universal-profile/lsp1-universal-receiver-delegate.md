@@ -13,7 +13,7 @@ sidebar_position: 3
 
 :::success Recommendation
 
-To better understand this standard, it is well-advised first to check the origin standard **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)**.
+To better understand this standard, it is well-advised first to check the origin standard **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)**.
 
 :::
 

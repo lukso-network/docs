@@ -40,7 +40,7 @@ The operation types available are:
 This substandard enables the vault to hold arbitrary data through a generic key/value store. It gives flexibility to the contract storage by allowing to attach any information to the contract and update it easily.
 
 :::info
-The keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../generic-standards/01-lsp2-json-schema.md)** standard.
+The keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** standard.
 :::
 
 ### LSP1 - UniversalReceiver
@@ -48,7 +48,7 @@ The keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](
 This standard enables the vault to be notified of any incoming transactions, whether token transfer, vault transfer, information transfer, etc. Notification is handy for vaults. Within them, anyone could customize how their account reacts to certain tokens by rejecting them or operating a specific call on token receive.
 
 :::note
-Check **[LSP1-UniversalReceiver](../generic-standards/02-lsp1-universal-receiver.md)** standard for more information.
+Check **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
 :::
 
 ## Extension
@@ -63,7 +63,7 @@ The implementation of the **UniversalReceiverDelegate** used by the Universal Pr
 
 Developers can notify the vault of incoming assets, information, etc., via the **universalReceiver** function. Builders could add an extension to increase the autonomy of the contract by handling and reacting to transactions that the vault receives.
 
-Such functionality can be attached by setting an **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)** to your account.
+Such functionality can be attached by setting an **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)** to your account.
 
 ### Flow
 

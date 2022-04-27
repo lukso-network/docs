@@ -46,7 +46,7 @@ You can implement any complex ownership structure (and fine-grained control) on 
 - one or multiple other smart contracts, or
 - a mixture of both.
 
-For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/04-lsp6-key-manager.md).
+For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/lsp6-key-manager.md).
 :::
 
 ### Contracts Overview
@@ -58,9 +58,9 @@ Our tool [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) will hel
 Under the hood, lsp-factory.js performs the following:
 
 1. Deploying all the necessary contracts:
-   - [Universal Profile](../../standards/universal-profile/03-lsp3-universal-profile-metadata.md) (UP) is the core smart contract representing a Universal Profile.
-   - [Universal Receiver Delegate](../../standards/universal-profile/02-lsp1-universal-receiver-delegate.md) (URD) is the contract that reacts to events, such as tokens received or transferred.
-   - [Key Manager](../../standards/universal-profile/04-lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br/> to enable other addresses to interact with the UP.
+   - [Universal Profile](../../standards/universal-profile/lsp3-universal-profile-metadata.md) (UP) is the core smart contract representing a Universal Profile.
+   - [Universal Receiver Delegate](../../standards/universal-profile/lsp1-universal-receiver-delegate.md) (URD) is the contract that reacts to events, such as tokens received or transferred.
+   - [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br/> to enable other addresses to interact with the UP.
 2. Linking the URD with the deployed UP account and setting its permissions.
 3. Setting all the permissions for an EOA address so that it can act as the UP admin.
 

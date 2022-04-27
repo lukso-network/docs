@@ -14,11 +14,11 @@ In this tutorial, you will learn **how to transfer LYX** from your Universal Pro
 
 ## Introduction
 
-While interacting with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow/disallow execution after checking the [permissions](../../standards/universal-profile/04-lsp6-key-manager.md#permission-values) of the calling address.
+While interacting with a Universal Profile (UP), all interactions should go through the Key Manager (KM). The KM will allow/disallow execution after checking the [permissions](../../standards/universal-profile/lsp6-key-manager.md#permission-values) of the calling address.
 
 Therefore to interact with our UP, we will need to encode the function call of our UP and pass the **payload** to the [`execute(payload)`](../../standards/smart-contracts/lsp6-key-manager.md#execute) function on the KM.
 
-Transferring LYX from a UP is as simple as making a standard [`CALL`](../../standards/universal-profile/04-lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call. You can transfer LYX from a UP via the [`execute(...)`](../../standards/smart-contracts/lsp0-erc725-account.md) function in the UP contract.
+Transferring LYX from a UP is as simple as making a standard [`CALL`](../../standards/universal-profile/lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call. You can transfer LYX from a UP via the [`execute(...)`](../../standards/smart-contracts/lsp0-erc725-account.md) function in the UP contract.
 
 The parameters of the function will be as follow:
 

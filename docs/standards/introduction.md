@@ -7,13 +7,13 @@ sidebar_position: 1
 
 :::success Implementation
 
-See the [Contracts Implementation](./smart-contracts/01-introduction.md) section for the Solidity implementation of these standards.
+See the [Contracts Implementation](./smart-contracts/introduction.md) section for the Solidity implementation of these standards.
 
 :::
 
 The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. People, groups, and organizations can use them to build blockchain-based applications that aim to maximize the user experience, allow more flexibility and interaction, and open doors to hundreds of ideas.
 
-The **[default implementation](./smart-contracts/01-introduction.md)** of these standards in Solidity is available as Open Source Software under the [LUKSO GitHub repository](https://github.com/lukso-network). They can be used as a base by developers to build their applications.
+The **[default implementation](./smart-contracts/introduction.md)** of these standards in Solidity is available as Open Source Software under the [LUKSO GitHub repository](https://github.com/lukso-network). They can be used as a base by developers to build their applications.
 
 :::info Questions? Want to learn more?
 

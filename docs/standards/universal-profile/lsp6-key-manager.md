@@ -13,7 +13,7 @@ sidebar_position: 6
 
 ## Introduction
 
-An [ERC725Account](./01-lsp0-erc725account.md) on its own comes with limited usability. Since it is an **owned contract**, only the Account's owner can write data into it or use it to interact with other smart contracts.
+An [ERC725Account](./lsp0-erc725account.md) on its own comes with limited usability. Since it is an **owned contract**, only the Account's owner can write data into it or use it to interact with other smart contracts.
 
 Here comes the Key Manager. A smart contract that controls an ERC725Account, acting as its new owner. It then functions as a gateway for an ERC725Account.
 
