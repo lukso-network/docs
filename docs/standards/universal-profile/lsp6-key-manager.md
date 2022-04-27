@@ -43,19 +43,7 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-keys)
 
-:::caution
-
-**Addition about allowed addresses, functions, standards, and ERC725Y keys.**
-
-The **whole array** should be ABI-encoded again and reset to add or remove entries in this list (of addresses, `bytes4` function selectors, `bytes4` interface ids, or `bytes32` keys). Each update **overrides the entire previous state**.
-
-The process is expensive since the data being set is an ABI-encoded array.
-
-The [erc725.js](../../tools/erc725js/getting-started) package can help in [encoding the keys and values](../../tools/erc725js/classes/ERC725.md#encodedata).
-
-:::
-
-## Permissions List
+## Permissions
 
 Click on the toggles below to **learn more about the features enabled by each permission**.
 
@@ -165,14 +153,21 @@ This permission allows executing code and functions from other contracts in the 
     Developers can use the <code>SIGN</code> permission for keys to sign login messages. It is primarily for web2.0 apps to know which key SHOULD sign.
 </details>
 
-## Combining Permissions
+:::note
 
-Permissions can be combined if an address needs to hold more than one permission. Calculate the sum of their decimal value, and convert the result into hexadecimal.
-Simply calculate the sum of their decimal value, and convert the result back into hexadecimal. For instance:
+When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
 
-### Example
+:::
 
-> [See LSP6 Specs for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#permission-values-in-addresspermissionspermissionsaddress)
+### Combining Permissions
+
+Permissions can be combined if an `address` needs to hold more than one permission. To do so:
+
+1. calculate the sum of the decimal value of each permission.
+2. convert the result back into hexadecimal.
+
+<details>
+    <summary>Example</summary>
 
 <Tabs>
 <TabItem value="example1" label="Example 1" default>
@@ -202,37 +197,29 @@ permissions: CHANGEPERMISSIONS + SETDATA
 
 </Tabs>
 
+</details>
+
 :::tip
 
-You can easily [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions`](../../../../tools/erc725js/classes/ERC725#decodepermissions) with [**erc725.js**](../../../../tools/erc725js/getting-started).
-
-:::
-
-:::note
-
-When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
+You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [**erc725.js**](../../../../tools/erc725js/getting-started) tool to easily combine and decode LSP6 permissions.
 
 :::
 
 ---
 
+## Details about permission types
+
+:::caution
+
+To **add / remove entries in the list of allowed addresses, functions, standards or ERC725Y keys**, the **whole array** should be ABI-encoded again and reset. Each update **overrides the entire previous state**.
+
+Note that this process is expensive since the data being set is an ABI-encoded array.
+
+The [erc725.js](../../tools/erc725js/getting-started) tool can help in [encoding the data keys and values](../../tools/erc725js/classes/ERC725.md#encodedata).
+
+:::
+
 ### Address Permissions
-
-:::info
-
-See the section **[Permissions Values](#permission-values)** to know **what each permission enables** and **how to combine them**.
-
-:::
-
-:::danger
-
-**Granting permissions to the linked ERC725Account itself is dangerous! **
-
-A caller can craft a payload via `ERC725X.execute(...)` to be sent back to the KeyManager, leading to potential re-entrancy attacks.
-
-Such transaction flow can lead an initial caller to use more permissions than allowed initially by using the permissions granted to the linked ERC725Account's address.
-
-:::
 
 An address can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data** on the ERC725Account, **calling other contracts**, **transferring native tokens**, etc.
 
@@ -265,6 +252,16 @@ See the table below for each permission and their corresponding `bytes32` value.
 | [DEPLOY](#permission-values)            | `0x0000000000000000000000000000000000000000000000000000000000000080` |
 | [TRANSFERVALUE](#permission-values)     | `0x0000000000000000000000000000000000000000000000000000000000000100` |
 | [SIGN](#permission-values)              | `0x0000000000000000000000000000000000000000000000000000000000000200` |
+
+:::danger
+
+**Granting permissions to the linked ERC725Account itself is dangerous! **
+
+A caller can craft a payload via `ERC725X.execute(...)` to be sent back to the KeyManager, leading to potential re-entrancy attacks.
+
+Such transaction flow can lead an initial caller to use more permissions than allowed initially by using the permissions granted to the linked ERC725Account's address.
+
+:::
 
 :::caution
 
@@ -369,6 +366,8 @@ The allowed standards MUST be an **ABI-encoded array** of `bytes4[]` ERC165 inte
 See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::
+
+---
 
 ### Allowed ERC725Y Keys
 
