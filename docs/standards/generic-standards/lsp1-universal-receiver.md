@@ -12,7 +12,6 @@ sidebar_position: 1
 :::
 
 ## Introduction
-
 There is often the need for smart contracts to **be aware of incoming transactions**, especially when it comes to value transfers.
 
 A good example is ERC20 token transfers. When a smart contract receives a token, it has no generic way to be notified about it. One solution to this problem could be to monitor the receiving contract by listening for ERC20 token transfer events.
@@ -55,7 +54,7 @@ See the **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-r
 
 LSP1-UniversalReceiverDelegate is an **optional extension** to the LSP1-UniversalReceiver Standard. As well as notifying a contract about the incoming and outgoing transactions via an event, it will delegate the `universalReceiver(...)` functionality to an external contract that can **handle and react to specific calls** with its custom logic.
 
-The address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate key** shown below to enable the optional extension. This key-value pair inside the **[ERC725Y key value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the contract implementing the `universalReceiver(...)` function will act as a reference, making this external contract upgradeable if required.
+The address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate data key** shown below to enable the optional extension. This key-value pair inside the **[ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the contract implementing the `universalReceiver(...)` function will act as a reference, making this external contract upgradeable if required.
 
 ```json
 {
