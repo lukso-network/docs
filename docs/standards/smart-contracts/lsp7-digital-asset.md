@@ -37,7 +37,7 @@ constructor(
 ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
-Sets the **initial owner** of the token, registers the [**LSP7DigitalAsset** `InterfaceId`](./interface-ids.md), and sets the following data keys on the [**ERC725Y Key-Value Store**](./lsp0-erc725-account#setdata):
+Sets the **initial owner** of the token, registers the [**LSP7DigitalAsset** `InterfaceId`](./interface-ids.md), and sets the following data keys on the [**ERC725Y Data Key-Value Store**](./lsp0-erc725-account#setdata):
 
 - name: token's name.
 - symbol: token's symbol.
