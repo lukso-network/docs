@@ -43,7 +43,7 @@ LSP8 Identifiable Digital Asset is a standard that aims to describe _non-fungibl
 
 Since every single asset is unique on its own, they are differentiated by a unique identifier: a `tokenId`. The identifier can be anything from a unique serial number to another [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) smart contract that contains information and metadata specific to this `tokenId`.
 
-LSP8 solves the current problems of NFTs by using the ERC725Y standard as its base. By using a generic key-value store, an LSP8 contract now comes with the following features:
+LSP8 solves the current problems of NFTs by using the ERC725Y standard as its base. By using a generic data key-value store, an LSP8 contract now comes with the following features:
 
 - attaching an unlimited amount of information (= metadata), making the asset more customizable and unique.
 - knowing when the metadata has been altered, as a `DataChanged` event will be emitted in ERC725Y.

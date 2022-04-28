@@ -13,16 +13,16 @@ sidebar_position: 2
 
 ## Introduction
 
-**LSP4-DigitalAsset-Metadata** is a Metadata standard that defines a set of keys to describe a **Digital Asset**.
+**LSP4-DigitalAsset-Metadata** is a Metadata standard that defines a set of data keys to describe a **Digital Asset**.
 
 In ERC20 and ERC721, the token `name` and `symbol` are stored as `public` state variables.
-In **LSP4 - Digital Asset Metadata**, such information is held under the keys `LSP4TokenName` and `LSP4TokenSymbol` under the (ERC725Y) storage of the token / NFT contract.
+In **LSP4 - Digital Asset Metadata**, such information is held under the data keys `LSP4TokenName` and `LSP4TokenSymbol` under the (ERC725Y) storage of the token / NFT contract.
 
 Both [LSP7](./LSP7-Digital-Asset.md) and [LSP8](./LSP8-Identifiable-Digital-Asset.md) standards are derived from the [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), which defines the default metadata keys representing a digital asset on the blockchain.
 
 ![LSP4 Digital Asset Metadata diagram](../../../static/img/standards/lsp4-digital-asset-metadata-diagram.png)
 
-## ERC725Y Keys
+## ERC725Y Data Keys
 
 ### `SupportedStandards:LSP4DigitalAsset`
 
@@ -50,7 +50,7 @@ This key is used to know if the contract represents a **Digital Asset**.
 }
 ```
 
-The value attached to this key represents the name of the digital asset.
+The value attached to this data key represents the name of the digital asset.
 
 ### `LSP4TokenSymbol`
 
@@ -64,7 +64,7 @@ The value attached to this key represents the name of the digital asset.
 }
 ```
 
-The value attached to this key represents the symbol of the digital asset.
+The value attached to this data key represents the symbol of the digital asset.
 
 ### `LSP4Metadata`
 
@@ -78,11 +78,11 @@ The value attached to this key represents the symbol of the digital asset.
 }
 ```
 
-The value attached to this key is a [`JSONURL`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#jsonurl). It represents a reference to a [JSON file describing the **Digital Asset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata). The file can be stored on centralized or decentralized storage.
+The value attached to this data key is a [`JSONURL`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#jsonurl). It represents a reference to a [JSON file describing the **Digital Asset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata). The file can be stored on centralized or decentralized storage.
 
 ### LSP4Creators
 
-This key refers to the `address`(es) of the creator(s) for the digital asset.
+This data key refers to the `address`(es) of the creator(s) for the digital asset.
 
 ```json
 {

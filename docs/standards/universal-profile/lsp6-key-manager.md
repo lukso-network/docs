@@ -27,7 +27,7 @@ The idea is to give [permissions](#types-of-permissions) to any `address`, like 
 
 ![LSP6 Key Manager overview not allowed](/img/standards/lsp6-key-manager-overview-not-allowed.jpeg)
 
-Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the key-value store of the ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
+Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the data key-value store of the ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
 
 > You can look at the **[Permission Keys](#permissions-keys)** section to find on which keys these permissions are stored.
 
@@ -45,17 +45,17 @@ Developers can set five main permissions for addresses interacting with a Univer
 
 - [**Allowed Standards**](#allowed-standards) defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)).
 
-- [**Allowed ERC725Y Keys: **](#allowed-erc725y-keys) defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata) on the linked ERC725Account.
+- [**Allowed ERC725Y Keys: **](#allowed-erc725y-keys) defines a list of `bytes32` ERC725Y Data keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata) on the linked ERC725Account.
 
 :::caution
 
 **Addition about allowed addresses, functions, standards, and ERC725Y keys.**
 
-The **whole array** should be ABI-encoded again and reset to add or remove entries in this list (of addresses, `bytes4` function selectors, `bytes4` interface ids, or `bytes32` keys). Each update **overrides the entire previous state**.
+The **whole array** should be ABI-encoded again and reset to add or remove entries in this list (of addresses, `bytes4` function selectors, `bytes4` interface ids, or `bytes32`data keys). Each update **overrides the entire previous state**.
 
 The process is expensive since the data being set is an ABI-encoded array.
 
-The [erc725.js](../../tools/erc725js/getting-started) package can help in [encoding the keys and values](../../tools/erc725js/classes/ERC725.md#encodedata).
+The [erc725.js](../../tools/erc725js/getting-started) package can help in [encoding the data keys and values](../../tools/erc725js/classes/ERC725.md#encodedata).
 
 :::
 
@@ -79,7 +79,7 @@ Such transaction flow can lead an initial caller to use more permissions than al
 
 An address can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data** on the ERC725Account, **calling other contracts**, **transferring native tokens**, etc.
 
-To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage.
+To grant permission(s) to an `<address>`, set the following data key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage.
 
 - **key:** `0x4b80742d0000000082ac0000<address>`
 - **value:** one of the available options below.
@@ -128,7 +128,7 @@ For instance, if you try to set the permission SETDATA for an address as `0x08`,
 
 You can restrict an address to interact only with specific contracts or EOAs.
 
-To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>` (or additional addresses), the key-value pair below can be set in the ERC725Y contract storage.
+To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>` (or additional addresses), the data key-value pair below can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d00000000c6dd0000<address>`
 - **possible values:**
@@ -167,7 +167,7 @@ See the section [_Contract ABI Specification > Strict Encoding Mode_](https://do
 
 You can also restrict which functions a specific address can run by providing a list of `bytes4` function selectors.
 
-To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
+To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following data key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d000000008efe0000<address>`
 - **possible values:**
@@ -198,7 +198,7 @@ It is possible to restrict an address to interact only with **contracts that imp
 
 ![Key Manager Allowed Standards flow](/img/standards/lsp6-key-manager-allowed-standards.jpeg)
 
-For example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
+For example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following data key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d000000003efa0000<address>`
 - **possible values:**
@@ -215,18 +215,18 @@ See the section [_Contract ABI Specification > Strict Encoding Mode_](https://do
 
 ### Allowed ERC725Y Keys
 
-If an address is allowed to `SETDATA` on an ERC725Account, it is possible to restrict which keys this address can update.
+If an address is allowed to `SETDATA` on an ERC725Account, it is possible to restrict which data keys this address can update.
 
-To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
+To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following data key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742d0000000090b80000<address>`
 - **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
 
-The list (= array) of allowed `bytes32` keys **MUST be ABI-encoded** (See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
+The list (= array) of allowed `bytes32` data keys **MUST be ABI-encoded** (See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::info
 
-**If no bytes32 values are set, the caller address can set values for any keys.**
+**If no bytes32 values are set, the caller address can set values for any data keys.**
 
 :::
 
@@ -234,7 +234,7 @@ The list (= array) of allowed `bytes32` keys **MUST be ABI-encoded** (See the se
 
 ## Permission Keys
 
-The following keys are available to set the different types of permissions.
+The following data keys are available to set the different types of permissions.
 
 | Permission Type                                                                                                                             | Key                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
@@ -294,7 +294,7 @@ Click on the toggles below to **learn more about the features of each permission
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
-    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked <code>ERC725Account</code> (except permissions, which require the permissions <code>CHANGEPERMISSIONS</code> described above).
+    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> data key-value store of the linked <code>ERC725Account</code> (except permissions, which require the permissions <code>CHANGEPERMISSIONS</code> described above).
 
 </details>
 
