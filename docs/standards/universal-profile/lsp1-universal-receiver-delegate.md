@@ -35,7 +35,7 @@ It contains a single function named `universalReceiverDelegate(...)` that takes 
 
 ### How Delegation works
 
-The address of the **UniversalReceiverDelegate** contract should be set as a value for the key `LSP1UniversalReceiver`, inside the [ERC725Y key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y) of the implementation contract (contract implementing the `universalReceiver(...)` function). With such an implementation, the `universalReceiver(...)` function can forward the call to its similar one called `universalReceiverDelegate(...)`.
+The address of the **UniversalReceiverDelegate** contract should be set as a value for the data key `LSP1UniversalReceiver`, inside the [ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y) of the implementation contract (contract implementing the `universalReceiver(...)` function). With such an implementation, the `universalReceiver(...)` function can forward the call to its similar one called `universalReceiverDelegate(...)`.
 
 This external contract will then implement the `universalReceiverDelegate(...)` function. It is also recommended that this contract registers the **[LSP1UniversalReceiverDelegate interfaceId](../smart-contracts/interface-ids.md)** using ERC165.
 
@@ -48,7 +48,7 @@ There are several implementations of the standard. The **[LSP1UniversalReceiverD
 At the moment, this contract allows to:
 
 - receive and send tokens & vaults
-- register the keys representing them according to **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** and **[LSP10-ReceivedVaults](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-10-ReceivedVaults.md)** Standards.
+- register the data keys representing them according to **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** and **[LSP10-ReceivedVaults](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-10-ReceivedVaults.md)** Standards.
 
 ### Token transfer scenario
 
@@ -66,9 +66,9 @@ One of the possible scenarios is a token transfer between Alice and Bob. Alice w
 
 ![universalReceiver function calling UniversalReceiverDelegate contract](/img/token-transfer-3.jpg)
 
-**4.** The **UniversalReceiverDelegate** of **Universal Profile** allows the transfer and set **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** keys on both Profiles through the KeyManager.
+**4.** The **UniversalReceiverDelegate** of **Universal Profile** allows the transfer and set **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** data keys on both Profiles through the KeyManager.
 
-![UniversalReceiverDelegate setting keys on profile](/img/token-transfer-4.jpg)
+![UniversalReceiverDelegate setting data keys on profile](/img/token-transfer-4.jpg)
 
 ## References
 
