@@ -140,7 +140,7 @@ function setData(
 ) public
 ```
 
-Sets data in the account storage for a particular key as **bytes**.
+Sets data in the account storage for a particular data key as **bytes**.
 
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data ._
 
@@ -150,10 +150,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name    | Type    | Description                             |
-| :------ | :------ | :-------------------------------------- |
-| `key`   | bytes32 | The key for which the data will be set. |
-| `value` | bytes   | The data you want to set as bytes.      |
+| Name    | Type    | Description                                  |
+| :------ | :------ | :------------------------------------------- |
+| `key`   | bytes32 | The data key for which the data will be set. |
+| `value` | bytes   | The data you want to set as bytes.           |
 
 ### getData
 
@@ -161,19 +161,19 @@ The `setData(...)` function can only be called by the current owner of the contr
 function getData(bytes32 key) public view returns (bytes memory value)
 ```
 
-Retrieves the data set for the given key.
+Retrieves the data set for the given data key.
 
 #### Parameters:
 
-| Name  | Type    | Description                    |
-| :---- | :------ | :----------------------------- |
-| `key` | bytes32 | The key to retrieve data from. |
+| Name  | Type    | Description                         |
+| :---- | :------ | :---------------------------------- |
+| `key` | bytes32 | The data key to retrieve data from. |
 
 #### Return Values:
 
-| Name    | Type  | Description                     |
-| :------ | :---- | :------------------------------ |
-| `value` | bytes | The data for the requested key. |
+| Name    | Type  | Description                          |
+| :------ | :---- | :----------------------------------- |
+| `value` | bytes | The data for the requested data key. |
 
 ### setData (Array)
 
@@ -184,7 +184,7 @@ function setData(
 ) public
 ```
 
-Sets an array of data at multiple keys in the account storage.
+Sets an array of data at multiple data keys in the account storage.
 
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
@@ -194,10 +194,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name     | Type            | Description                     |
-| :------- | :-------------- | :------------------------------ |
-| `keys`   | bytes32[&nbsp;] | The keys for which to set data. |
-| `values` | bytes[&nbsp;]   | The array of data to set.       |
+| Name     | Type            | Description                          |
+| :------- | :-------------- | :----------------------------------- |
+| `keys`   | bytes32[&nbsp;] | The data keys for which to set data. |
+| `values` | bytes[&nbsp;]   | The array of data to set.            |
 
 ### getData (Array)
 
@@ -205,19 +205,19 @@ The `setData(...)` function can only be called by the current owner of the contr
 function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
-Retrieves an array of data for multiple given keys.
+Retrieves an array of data for multiple given data keys.
 
 #### Parameters:
 
-| Name   | Type            | Description                     |
-| :----- | :-------------- | :------------------------------ |
-| `keys` | bytes32[&nbsp;] | The keys to retrieve data from. |
+| Name   | Type            | Description                          |
+| :----- | :-------------- | :----------------------------------- |
+| `keys` | bytes32[&nbsp;] | The data keys to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type          | Description                                  |
-| :------- | :------------ | :------------------------------------------- |
-| `values` | bytes[&nbsp;] | An array of the data for the requested keys. |
+| Name     | Type          | Description                                       |
+| :------- | :------------ | :------------------------------------------------ |
+| `values` | bytes[&nbsp;] | An array of the data for the requested data keys. |
 
 ### universalReceiver
 
@@ -228,7 +228,7 @@ function universalReceiver(
 ) public returns (bytes memory result)
 ```
 
-Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) Key. The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
+Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key. The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
 
@@ -362,10 +362,10 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfu
 
 #### Values:
 
-| Name    | Type    | Description                 |
-| :------ | :------ | :-------------------------- |
-| `key`   | bytes32 | The key which value is set. |
-| `value` | bytes   | The data set.               |
+| Name    | Type    | Description                      |
+| :------ | :------ | :------------------------------- |
+| `key`   | bytes32 | The data key which value is set. |
+| `value` | bytes   | The data set.                    |
 
 ### UniversalReceiver
 

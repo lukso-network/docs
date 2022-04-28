@@ -34,7 +34,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address newOwner) ERC725(newOwner)
 ```
 
-Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** key in the vault storage, and registers the **[LSP9Vault and LSP1UniversalReceiver interface IDs](./interface-ids.md)**.
+Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** data key in the vault storage, and registers the **[LSP9Vault and LSP1UniversalReceiver interface IDs](./interface-ids.md)**.
 
 If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account about the **newly owned vault**.
 
@@ -139,7 +139,7 @@ function setData(
 ) public
 ```
 
-Sets the data of a single `key` as **bytes** to the vault's storage.
+Sets the data of a single data `key` as **bytes** to the vault's storage.
 
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
@@ -149,10 +149,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name    | Type    | Description                    |
-| :------ | :------ | :----------------------------- |
-| `key`   | bytes32 | The key for which to set data. |
-| `value` | bytes   | The data to set as bytes.      |
+| Name    | Type    | Description                         |
+| :------ | :------ | :---------------------------------- |
+| `key`   | bytes32 | The data key for which to set data. |
+| `value` | bytes   | The data to set as bytes.           |
 
 ### getData
 
@@ -160,19 +160,19 @@ The `setData(...)` function can only be called by the current owner of the contr
 function getData(bytes32 key) public view returns (bytes memory value)
 ```
 
-Retrieves the data that was set for a particular `key`.
+Retrieves the data that was set for a particular data `key`.
 
 #### Parameters:
 
-| Name  | Type    | Description                    |
-| :---- | :------ | :----------------------------- |
-| `key` | bytes32 | The key to retrieve data from. |
+| Name  | Type    | Description                         |
+| :---- | :------ | :---------------------------------- |
+| `key` | bytes32 | The data key to retrieve data from. |
 
 #### Return Values:
 
-| Name    | Type  | Description                     |
-| :------ | :---- | :------------------------------ |
-| `value` | bytes | The data for the requested key. |
+| Name    | Type  | Description                          |
+| :------ | :---- | :----------------------------------- |
+| `value` | bytes | The data for the requested data key. |
 
 ### setData (Array)
 
@@ -183,7 +183,7 @@ function setData(
 ) public
 ```
 
-Sets an array of data at multiple keys in the vault storage.
+Sets an array of data at multiple data keys in the vault storage.
 
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
@@ -193,10 +193,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name     | Type            | Description                     |
-| :------- | :-------------- | :------------------------------ |
-| `keys`   | bytes32[&nbsp;] | The keys for which to set data. |
-| `values` | bytes[&nbsp;]   | The array of data to set.       |
+| Name     | Type            | Description                          |
+| :------- | :-------------- | :----------------------------------- |
+| `keys`   | bytes32[&nbsp;] | The data keys for which to set data. |
+| `values` | bytes[&nbsp;]   | The array of data to set.            |
 
 ### getData (Array)
 
@@ -204,19 +204,19 @@ The `setData(...)` function can only be called by the current owner of the contr
 function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
-Retrieves an array of data for multiple given keys.
+Retrieves an array of data for multiple given data keys.
 
 #### Parameters:
 
-| Name   | Type            | Description                     |
-| :----- | :-------------- | :------------------------------ |
-| `keys` | bytes32[&nbsp;] | The keys to retrieve data from. |
+| Name   | Type            | Description                          |
+| :----- | :-------------- | :----------------------------------- |
+| `keys` | bytes32[&nbsp;] | The data keys to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type          | Description                                  |
-| :------- | :------------ | :------------------------------------------- |
-| `values` | bytes[&nbsp;] | An array of the data for the requested keys. |
+| Name     | Type          | Description                                       |
+| :------- | :------------ | :------------------------------------------------ |
+| `values` | bytes[&nbsp;] | An array of the data for the requested data keys. |
 
 ### universalReceiver
 
@@ -227,7 +227,7 @@ function universalReceiver(
 ) public returns (bytes memory result)
 ```
 
-Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) Key.
+Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key.
 The contract being called is expected to be an **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using ERC165.
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
@@ -338,10 +338,10 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfu
 
 #### Values:
 
-| Name    | Type    | Description                       |
-| :------ | :------ | :-------------------------------- |
-| `key`   | bytes32 | The key which value is retrieved. |
-| `value` | bytes   | The data of bytes set.            |
+| Name    | Type    | Description                            |
+| :------ | :------ | :------------------------------------- |
+| `key`   | bytes32 | The data key which value is retrieved. |
+| `value` | bytes   | The data of bytes set.                 |
 
 ### UniversalReceiver
 
