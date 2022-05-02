@@ -133,27 +133,7 @@ You can see your node on the following page:
 
 ### Create a Wallet
 
-First, generate a validator mnemonic seed phrase. **This mnemonic seed phrase generates your validator's private key. Store it in a safe location.**
-
-You will need this mnemonic to create your validator address and deposit data. If you want to generate a separate withdrawal mnemonic. Generate another mnemonic using the same command and copy both of the mnemonics in a safe place.
-
-NOTE: The directory keystore must be empty.
-
-```bash
-./lukso network validator setup
-``` 
-
-This command will create a directory named `keystore`.
-
-### Deposit the Validator Data
-
-Generate a `deposit-data.json` using the following command. It will ask for the number of validators, validator mnemonic, and withdrawal mnemonic.
-
-```bash
-make create-deposit
-```
-
-You will find the `deposit-data.json` file inside your current directory.
+THIS SECTION IS BEING RE DONE 
 
 ### Submit the Deposit Transaction
 
@@ -164,18 +144,13 @@ You will find the `deposit-data.json` file inside your current directory.
 
 #### Update Secrets and submit Transaction
 
-Update `secrets.env` using the public address and private key from MetaMask.
-
-```bash
-ETH1_FROM_ADDR=YOUR_WALLET_ADDRESS
-ETH1_FROM_PRIV=YOUR_PRIVATE_KEY
-```
+THIS SECTION IS BEING RE DONE 
 
 #### Send the transaction.
 
 ```bash
 # submit deposit
-make submit-deposit
+./lukso network validator deposit
 
 # wait 8h till validator is activated
 ```
@@ -199,19 +174,7 @@ Once your validator is activated, you spin up a validator client.
 ```
 
 ## Troubleshooting L16 Beta Testnet
-
-### Denied Permission
-
-:::info Context
-While running `./lukso network start` you are getting permission-related issues. You can have a log like this:
-
-```
-Permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied "docker kill" requires at least 1 argument. See `docker kill --help`
-```
-
-:::
-
-**Proposed Solution:** Try running the `make` command as super user by using `sudo make start`.
+ 
 
 ### Stalled Synchronization
 
@@ -221,19 +184,19 @@ You found your consensus (prysm) client has no peer and the execution engine (ge
 
 **Proposed Solution:**
 
-1. Open `.env` file using any text editor. For `vim` the command will be `vim .env`
-2. Change `PRYSM_BOOTSTRAP_NODE` to this
+1. Open `node_config.yaml` file using any text editor. For `vim` the command will be `vim node_config.yaml`
+2. Change `bootnode` in the `consensus` section to
 
 ```
-PRYSM_BOOTSTRAP_NODE=enr:-MK4QACsMyCBqoH7E2xTFMyVKd0wbaOEoff6q_N1Vx_HVZuVYBk1JoB5Ava9h6eBlS5XzxM5LHFI1BG1IchMdI6JMhWGAX8tHtE1h2F0dG5ldHOIAAAAAAAAAACEZXRoMpC3QoawYgAAcf__________gmlkgnY0gmlwhCJbPjCJc2VjcDI1NmsxoQJp3RTwCXObnrJNuiJlLaM4LlhYOaWXhtj4Hz3PW9sfgYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A
+enr:-MK4QOoOAELWWC0dZ7hwZzDY3NhxbGJWB9JFBGsIswzF383NRPNh7vfI_K4gt5KMCFt6-NrMbUdizURmcKE5xjfRhBaGAYBwAjI7h2F0dG5ldHOIAAAAAAAAAACEZXRoMpAMEg0LYQAAcAMAAAAAAAAAgmlkgnY0gmlwhCPMBSuJc2VjcDI1NmsxoQO4XSsbls7lyhfqvcsgS8jmjFmBpC3dekXssvAEXkHtJYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A
 ```
 
-3. Restart the node by typing: `sudo make stop && sudo make start`
+3. Restart the node by typing: `./lukso stop && ./lukso start`
 
 ### Unmarshalling Error
 
 :::info Context
-Check your execution log by `sudo make log_execution`. For Ubuntu 20.04 LTS you may get an unmarshal-related issue like:
+Check your execution log by `./lukso network log execution`. For Ubuntu 20.04 LTS you may get an unmarshal-related issue like:
 
 ```
 log_execution: err="peer connected on snap without compatible eth support" log_consensus: level=error msg="Could not connect to powchain endpoint: could not dial eth1 nodes: json: cannot unmarshal string into Go struct field SyncProgress.CurrentBlock of type uint64" prefix=powchain
