@@ -221,7 +221,7 @@ Note that this process is expensive since the data being set is an ABI-encoded a
 
 An address can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data** on the ERC725Account, **calling other contracts**, **transferring native tokens**, etc.
 
-To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage.
+To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage (**NB:** remember to remove the `0x` prefix in the `<address>` field below).
 
 - **key:** `0x4b80742d0000000082ac0000<address>`
 - **value:** one of the available options below.
