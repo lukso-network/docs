@@ -3,10 +3,7 @@ sidebar_position: 2
 ---
 
 # L16 Public Testnet
-
-:::caution L16-Testnet Beta has ended.
-This testnet will soon go live again. Get updates on our [Discord](https://discord.gg/lukso) server.
-:::
+ 
 
 The L16 Public Testnet will be the last stable test network before the mainnet launch and will likely stay online in parallel for experimental purposes.
 
