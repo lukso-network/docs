@@ -35,12 +35,12 @@ The operation types available are:
 - `DELEGATECALL`
 - `STATICCALL`
 
-### ERC725Y - Generic Key-Value Store
+### ERC725Y - Generic Data Key-Value Store
 
-This substandard enables the vault to hold arbitrary data through a generic key/value store. It gives flexibility to the contract storage by allowing to attach any information to the contract and update it easily.
+This substandard enables the vault to hold arbitrary data through a generic data key/value store. It gives flexibility to the contract storage by allowing to attach any information to the contract and update it easily.
 
 :::info
-The keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** standard.
+The data keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** standard.
 :::
 
 ### LSP1 - UniversalReceiver

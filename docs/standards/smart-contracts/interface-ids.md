@@ -16,7 +16,7 @@ _Interface IDs are not the most secure way to ensure that a contract implements 
 | Contract                          | InterfaceId  | Description                                                           |
 | :-------------------------------- | :----------- | :-------------------------------------------------------------------- |
 | **ERC725X**                       | `0x44c028fe` | General executor.                                                     |
-| **ERC725Y**                       | `0x714df77c` | General key-value store.                                              |
+| **ERC725Y**                       | `0x714df77c` | General Data key-value store.                                         |
 | **LSP1UniversalReceiver**         | `0x6bb56a14` | Universal Receiver entry function.                                    |
 | **ERC1271**                       | `0x1626ba7e` | Standard Signature Validation Method for Contracts.                   |
 | **LSP0ERC725Account**             | `0x481e0fe8` | Account that represent an identity on-chain                           |

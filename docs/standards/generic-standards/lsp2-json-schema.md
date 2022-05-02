@@ -22,7 +22,7 @@ Our [JavaScript library **erc725.js**](../../tools/erc725js/getting-started.md) 
 The storage of a smart contract consists of multiple **storage slots**. These slots are referenced by a **slot number** (as an **integer**) starting from slot 0. Each piece of data (= contract state) in a smart contract is stored as raw **bytes** under a specific storage slot.
 
 > In summary, smart contracts understand only two languages: bytes and uint256.
-> Take the following key-value pair, for instance. It is not easy to infer the meaning of these keys by reading them as **bytes**.
+> Take the following key-value pair, for instance. It is not easy to infer the meaning of these data keys by reading them as **bytes**.
 
 ```
 (key)                                                              => (value)
@@ -31,7 +31,7 @@ The storage of a smart contract consists of multiple **storage slots**. These sl
 
 Using **slot numbers** and **raw bytes** makes the contract storage very hard to handle. [ERC725Y](../universal-profile/lsp0-erc725account.md#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However, with such low-level languages, it is difficult for humans to understand the data in the storage.
 
-The main problem around smart contract storage also arises when data is stored differently, depending on individual use cases and application needs. No standard schema defines "what the data stored under a specific key represents".
+The main problem around smart contract storage also arises when data is stored differently, depending on individual use cases and application needs. No standard schema defines "what the data stored under a specific data key represents".
 
 These two issues make it very hard for smart contracts to interact with each other and for external services to interact with contracts' storage.
 
@@ -41,7 +41,7 @@ These two issues make it very hard for smart contracts to interact with each oth
 
 The LSP2 Standard aims to offer a better abstraction on top of the storage of a smart contract.
 
-This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable keys. It makes the data stored in a smart contract more organized.
+This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable data keys. It makes the data stored in a smart contract more organized.
 
 ![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/ERC725Y-JSON-Schema-explained.jpeg)
 
@@ -51,7 +51,7 @@ By introducing a schema, we can represent contract storage in the same way acros
 
 LSP2 introduces new ways to encode data, depending on its type. From a single entry to multiple entries (like arrays or maps).
 
-A key in the contract storage can be defined as a JSON object with properties that describe the key.
+A data key in the contract storage can be defined as a JSON object with properties that describe the key.
 
 ```json
 {
@@ -63,11 +63,11 @@ A key in the contract storage can be defined as a JSON object with properties th
 }
 ```
 
-## Key Types
+## Data Key Types
 
-A Key Type defines **HOW** a 32 bytes key is constructed, representing how a particular key type is described in 32 bytes. For example, `Singleton` keys are simple keccak256 hashes of the key name string. Other Key Types are constructed of slices of hashes to group different key name parts or define array element keys.
+A Data Key Type defines **HOW** a 32 bytes data key is constructed, representing how a particular data key type is described in 32 bytes. For example, `Singleton` data keys are simple keccak256 hashes of the key name string. Other Data Key Types are constructed of slices of hashes to group different key name parts or define array element keys.
 
-The LSP2 Standard defines several **key types**:
+The LSP2 Standard defines several **data key types**:
 
 - [Singleton](#singleton)
 - [Array](#array)
@@ -77,9 +77,9 @@ The LSP2 Standard defines several **key types**:
 
 ### Singleton
 
-A **Singleton** key is helpful to store a unique single value under a single key.
+A **Singleton** data key is helpful to store a unique single value under a single data key.
 
-Below is an example of a **Singleton** key.
+Below is an example of a **Singleton** data key.
 
 ```json
 {
@@ -95,16 +95,16 @@ Below is an example of a **Singleton** key.
 
 ### Array
 
-Developers can use a key of the type Array to store a list of elements of the same data type. They are accessed by an _index_ that defines their position within it.
+Developers can use a data key of the type Array to store a list of elements of the same data type. They are accessed by an _index_ that defines their position within it.
 
 The Array elements are arranged systematically, in the order they are added or removed to or from it.
 
-The **main properties** of the LSP2 Array key type are:
+The **main properties** of the LSP2 Array data key type are:
 
 - _ordering matters_ :exclamation:
 - _duplicates are permitted_ :white_check_mark:
 
-A key type Array can be useful when there is the need to store a large group of similar data items under the same key. For instance, a list of tokens or NFTs that an address has received. Below is an example of an Array key:
+A data key type Array can be useful when there is the need to store a large group of similar data items under the same data key. For instance, a list of tokens or NFTs that an address has received. Below is an example of an Array data key:
 
 ```json
 {
@@ -124,16 +124,16 @@ A key type Array can be useful when there is the need to store a large group of 
 
 ### Mapping
 
-A key of type Mapping can be helpful to store a collection of data items that have a shared significance (for instance, items derived from a common ancestor type).
+A data key of type Mapping can be helpful to store a collection of data items that have a shared significance (for instance, items derived from a common ancestor type).
 
-The Mapping key type is similar to the concept of lookup tables. Developers can use it to efficiently search or query specific elements in the collection.
+The Mapping data key type is similar to the concept of lookup tables. Developers can use it to efficiently search or query specific elements in the collection.
 
-The **main properties** of the LSP2 Mapping key type are:
+The **main properties** of the LSP2 Mapping data key type are:
 
 - _ordering does not matter_ :white_check_mark:
 - _duplicates are not permitted_ :x:
 
-Below is an example of a Mapping key:
+Below is an example of a Mapping data key:
 
 ```json
 {
@@ -149,7 +149,7 @@ Below is an example of a Mapping key:
 
 ### Bytes20Mapping
 
-A key of type **Bytes20Mapping** is similar to the **[Mapping](#mapping)** key type, except that it can be useful to map specific data to a 20-bytes long value (eg: an `address`).
+A data key of type **Bytes20Mapping** is similar to the **[Mapping](#mapping)** data key type, except that it can be useful to map specific data to a 20-bytes long value (eg: an `address`).
 
 Below is an example of Bytes20Mapping key:
 
@@ -167,11 +167,11 @@ Below is an example of Bytes20Mapping key:
 
 ### Bytes20MappingWithGrouping
 
-A key of type **Bytes20MappingWithGrouping** is similar to the **[Bytes20Mapping](#bytes20mapping)** key type, except that sub-types can be added to the main mapping key.
+A data key of type **Bytes20MappingWithGrouping** is similar to the **[Bytes20Mapping](#bytes20mapping)** data key type, except that sub-types can be added to the main mapping data key.
 
-For instance, it can be used to differentiate various types from the primary mapping key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/lsp6-key-manager.md)).
+For instance, it can be used to differentiate various types from the primary mapping data key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/lsp6-key-manager.md)).
 
-Below is an example of a Bytes20MappingWithGrouping key:
+Below is an example of a Bytes20MappingWithGrouping data key:
 
 ```json
 {

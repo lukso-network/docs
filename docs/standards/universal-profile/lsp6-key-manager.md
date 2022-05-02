@@ -27,7 +27,7 @@ The idea is to give [permissions](#permissions) to any `address`, like Externall
 
 ![LSP6 Key Manager overview not allowed](/img/standards/lsp6-key-manager-overview-not-allowed.jpeg)
 
-Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the key-value store of the ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
+Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the data key-value store of the ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
 
 ---
 
@@ -87,7 +87,7 @@ Click on the toggles below to **learn more about the features enabled by each pe
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
-    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> key-value store of the linked <code>ERC725Account</code> (except permissions, which require the permissions <code>CHANGEPERMISSIONS</code> described above).
+    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> data key-value store of the linked <code>ERC725Account</code> (except permissions, which require the permissions <code>CHANGEPERMISSIONS</code> described above).
 
 </details>
 

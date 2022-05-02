@@ -21,15 +21,15 @@ One way to solve this problem is to create generic metadata keys that would regi
 
 :::success Recommendation
 
-It is advised to query the **`LSP5ReceivedAssets[]`** key to verify if a contract supports the **LSP5 - ReceivedAsset** standard.
+It is advised to query the **`LSP5ReceivedAssets[]`** data key to verify if a contract supports the **LSP5 - ReceivedAsset** standard.
 
 :::
 
-This Metadata standard describes two keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) smart contract to reference and keep track of received assets.
+This Metadata standard describes two data keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) smart contract to reference and keep track of received assets.
 
 ### `LSP5ReceivedAssets[]`
 
-This key represents a list of all tokens and NFTs currently owned by the contract.
+This data key represents a list of all tokens and NFTs currently owned by the contract.
 
 ```json
 {
@@ -43,12 +43,12 @@ This key represents a list of all tokens and NFTs currently owned by the contrac
 
 ### `LSP5ReceivedAssetsMap`
 
-This key represents a map key, both holding:
+This data key represents a map key, both holding:
 
 - the index in the [`LSP5ReceivedAssets[]`](#lsp5receivedassets-) Array where the received asset addresses are stored, and
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each asset smart contract (without the need to query the asset contracts directly).
 
-The `LSP5ReceivedAssetsMap` key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)).
+The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)).
 
 ```json
 {
@@ -64,11 +64,11 @@ The `LSP5ReceivedAssetsMap` key also helps to prevent adding duplications to the
 
 :::info Note
 
-The keys are also set on the **sender Universal Profile** to remove the token contract address if all the balance is sent.
+The data keys are also set on the **sender Universal Profile** to remove the token contract address if all the balance is sent.
 
 :::
 
-If set when transferring tokens, these keys are automatically updated in the Universal Profile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract.
+If set when transferring tokens, these data keys are automatically updated in the Universal Profile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract.
 
 :::note
 Check the [token transfer scenario](./lsp1-universal-receiver-delegate#token-transfer-scenario) for more details.

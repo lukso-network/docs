@@ -73,7 +73,7 @@ See the section **["Layout of State Variables in Storage"](https://docs.solidity
 
 :::
 
-This substandard enables the account to hold arbitrary data through a generic key-value store. It gives flexibility to the contract storage. Developers can access the data stored in the contract via keys instead of referencing the storage slot where the data resides.
+This substandard enables the account to hold arbitrary data through a generic data key-value store. It gives flexibility to the contract storage. Developers can access the data stored in the contract via data keys instead of referencing the storage slot where the data resides.
 
 - **Keys** are represented as `bytes32` values.
 - **Values** under these keys are stored as `bytes`.

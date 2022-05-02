@@ -7,7 +7,7 @@ sidebar_position: 2
 
 :::caution
 
-The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** key is not the most secure way to check for a standard, as they could be set manually.
+The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** data key is not the most secure way to check for a standard, as they could be set manually.
 
 :::
 
@@ -17,7 +17,7 @@ There are two types of **LSP** standards:
 
   [LSP0-ERC725Account](./universal-profile/lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md), etc.
 
-- **Metadata Standards**: Where we standardize a set of ERC725Y keys. i.e:
+- **Metadata Standards**: Where we standardize a set of ERC725Y Data keys. i.e:
 
   [LSP3-UniversalProfile-Metadata](./universal-profile/lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md), [LSP10ReceivedVaults](./universal-profile/lsp10-received-vaults.md), etc.
 
@@ -25,7 +25,7 @@ There are two types of **LSP** standards:
 
 These two standards types are fundamental for interacting with smart contracts on the LUKSO blockchain.
 
-The **Interface Standard** defines the functions that can be called on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which keys to query to retrieve such data.
+The **Interface Standard** defines the functions that can be called on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which data keys to query to retrieve such data.
 
 ## Interface Detection
 
@@ -70,19 +70,19 @@ See [ERC165 - Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-1
 
 :::success Tip
 
-The **[erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/src/schemas)** GitHub repository lists all the `SupportedStandards:{StandardName}` keys under each ERC725Y JSON Schema.
+The **[erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/src/schemas)** GitHub repository lists all the `SupportedStandards:{StandardName}` data keys under each ERC725Y JSON Schema.
 
 :::
 
 > This section covers how to detect if a contract contains a specific set of ERC725Y in its storage.
 
-We can verify if a contract contains a specific set of ERC725 keys (= **metadata**) by checking the value stored under the key `SupportedStandards:{StandardName}` in the contract storage, via the function `getData([SupportedStandards:{StandardName}])`.
+We can verify if a contract contains a specific set of ERC725 Data keys (= **metadata**) by checking the value stored under the data key `SupportedStandards:{StandardName}` in the contract storage, via the function `getData([SupportedStandards:{StandardName}])`.
 
 Calling this function will return a specific bytes4 value (defined in the Metadata Standard) if the contract has some metadata keys set by default. Otherwise, it will return an empty value.
 
 ### Metadata Example
 
-An **[LSP7DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
+An **[LSP7DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y Data keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y Data keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 
 ```javascript
 const LSP7DigitalAsset = require('@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json');

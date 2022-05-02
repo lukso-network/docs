@@ -45,7 +45,7 @@ function universalReceiverDelegate(
 Writes the received **LSP7-DigitalAsset** or **LSP8-IdentifiableDigitalAsset** assets into the vault storage according to the **LSP5-ReceivedAssets** standard.
 
 :::note
-The key representing an **asset** is cleared when the asset is not owned by the vault anymore.
+The data key representing an **asset** is cleared when the asset is not owned by the vault anymore.
 :::
 
 #### Parameters:
