@@ -16,9 +16,9 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | ---------------------------- | ------------------------------------------------------------------------------------------------ |
 | Network Name                 | L16 Beta                                                                                         |
 | New RPC URL                  | https://rpc.beta.l16.lukso.network                                                               |
-| Chain ID                     | 19051978 (0x122B5CA)                                                                             |
+| Chain ID                     | 83748374 (0x4FDE616)                                                                             |
 | Currency Symbol              | LYXt                                                                                             |
-| Execution Block Explorer URL | [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev)                             |
+| Execution Block Explorer URL | [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network) |
 | Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) |
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
@@ -55,15 +55,12 @@ Prepare your environment. You need:
 
 1. [Docker](https://docs.docker.com/get-docker/)
 2. [Docker Compose](https://docs.docker.com/compose/)
-3. [curl](https://macappstore.org/curl/)
-4. wget (linux users only)
-5. Make
-6. [jq](https://stedolan.github.io/jq/)
+3. [curl](https://macappstore.org/curl/) 
 
 ```bash title="Example script for installing docker"
 # install dependencies
 sudo apt-get -y update
-sudo apt-get -y install make curl wget jq
+sudo apt-get -y install curl
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -80,19 +77,18 @@ docker-compose --version
 
 ```bash
 mkdir lukso-l16-testnet && cd lukso-l16-testnet
-curl https://raw.githubusercontent.com/lukso-network/network-configs/l16-dev/l16/network_setup_kit/install.sh | bash
+curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/cli_downloader.sh | bash
 ```
 
-The script will download the following files:
-
-- `docker-compose.yaml`
-- `Makefile`
-- `config`
-- `.env`
+The script will download the LUKSO cli into the folder. You can put into your PATH var or execute it directly. Initialise the the network with
+ 
+```bash
+./lukso network init
+```
 
 ### Naming the Node
 
-**Optional:** If you want change your node's name, you need to edit the `NODE_NAME` variable in the `.env` file to update your node name. You can edit it with vim:
+**Optional:** If you want change your node's name, you need to edit the `name` variable in the `node_config.yaml` file to update your node name. You can find it under the top level key `node` and you can edit it with vim:
 
 ```bash
 vim .env
@@ -104,25 +100,26 @@ If your node is already running, you will need to restart it to apply the change
 
 ```bash
 # Start your nodes
-make start
+./lukso network init
 
 # You can check logs with
-make log_execution
-make log_consensus
+./lukso network logs consensus
+./lukso network logs execution
 
 # Stop your nodes
-make stop
+./lukso network stop
 
 # If your nodes are stopped, you could reset them using
 # Reset clears the database, which forces your node to sync again on start
-make reset
+./lukso network clear
 ```
 
 ### Check the Network Status
 
 You can see your node on the following page:
 
-1. [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
+
+1. [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network)
 2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)
 
 ## Become a Validator
@@ -143,15 +140,11 @@ First, generate a validator mnemonic seed phrase. **This mnemonic seed phrase ge
 
 You will need this mnemonic to create your validator address and deposit data. If you want to generate a separate withdrawal mnemonic. Generate another mnemonic using the same command and copy both of the mnemonics in a safe place.
 
-```bash
-make mnemonic
-```
-
-Generate a wallet using the following command. It will ask for the number of validators, validator-mnemonic (generated using the above command), and a `Keystore` password.
+NOTE: The directory keystore must be empty.
 
 ```bash
-make create-wallet
-```
+./lukso network validator setup
+``` 
 
 This command will create a directory named `keystore`.
 
@@ -196,16 +189,16 @@ You will need to wait for eight hours to activate your validator.
 
 Once your validator is activated, you spin up a validator client.
 
-**Make sure your _consensus_ and _execution_ clients are running (by typing `make start`).**
+**Make sure your _consensus_ and _execution_ clients are running (by typing `./lukso network start`).**
 
 ```bash
-make start-validator
+./lukso network start validator
 
 # You can check logs with
-make log_validator
+./lukso network logs validator
 
 # You can stop the validator using, this will also stop all other nodes
-make stop
+./lukso network stop
 ```
 
 ## Troubleshooting L16 Beta Testnet
@@ -213,7 +206,7 @@ make stop
 ### Denied Permission
 
 :::info Context
-While running `make start` you are getting permission-related issues. You can have a log like this:
+While running `./lukso network start` you are getting permission-related issues. You can have a log like this:
 
 ```
 Permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied "docker kill" requires at least 1 argument. See `docker kill --help`
@@ -255,9 +248,9 @@ log_execution: err="peer connected on snap without compatible eth support" log_c
 
 ```sh
 # stop docker containser
-sudo make stop
+./lukso network stop
 # reset data directory
-sudo make reset
+./lukso network clear
 # remove previous images
 docker system prune --all --force --volumes
 # delete lukso testnet directory
@@ -281,4 +274,5 @@ tcp:3500
 tcp:4000
 tcp:13000
 udp:12000
+udo:30303
 ```
