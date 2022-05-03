@@ -15,8 +15,18 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | New RPC URL                  | https://rpc.beta.l16.lukso.network                                                               |
 | Chain ID                     | 83748374 (0x4FDE616)                                                                             |
 | Currency Symbol              | LYXt                                                                                             |
-| Execution Block Explorer URL | [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network) |
-| Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) |
+| Execution Block Explorer URL | [http://execution.stats.beta.l16.lukso.network](http://execution.stats.beta.l16.lukso.network) |
+| Consensus Block Explorer URL | [http://consensus.stats.beta.l16.lukso.network](http://consensus.stats.beta.l16.lukso.network) |
+
+
+# Bootnodes
+
+| Node                      | Client                                                                                            | Value |
+| ---------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ | 
+| Bootnode 1 | Beacon | enr:-MK4QDjZAzD165YMiCM6WrCdRN3EGDViJqP_v1fyOE-YuOYAQ102NnF8GjTJG_-yUUMwWKuEzRMJMIoObbgDB3jtZA6GAYCJeizfh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbpv2Jc2VjcDI1NmsxoQOGOP29TdRKCr40kT-ZgsvrMYIs6EIwuYGEq11txAj_VohzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A |
+| Bootnode 1 | Geth | enode://c2bb19ce658cfdf1fecb45da599ee6c7bf36e5292efb3fb61303a0b2cd07f96c20ac9b376a464d687ac456675a2e4a44aec39a0509bcb4b6d8221eedec25aca2@34.91.166.253:30303 |
+| Bootnode 2 | Beacon | enr:-MK4QMAx93vdciWge1Od_GwaXafBh2I3Sct-VWUsuiQufP6nCEbJTzctfADuhQ8QHzC5ytSTPAfB7v-y6eT3YqxlRJSGAYCJeizYh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbMxaJc2VjcDI1NmsxoQOoiAXiE-kUiL8Qw8R820U4Ce1laLWDk5hQ6UGy_jO4yYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A |
+| Bootnode 2 | Geth | enode://c2bb19ce658cfdf1fecb45da599ee6c7bf36e5292efb3fb61303a0b2cd07f96c20ac9b376a464d687ac456675a2e4a44aec39a0509bcb4b6d8221eedec25aca2@34.91.51.22:30303 |
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
