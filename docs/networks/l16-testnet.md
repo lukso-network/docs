@@ -195,13 +195,10 @@ You found your consensus (prysm) client has no peer and the execution engine (ge
 **Proposed Solution:**
 
 1. Open `node_config.yaml` file using any text editor. For `vim` the command will be `vim node_config.yaml`
-2. Change `bootnode` in the `consensus` section to
+2. Change `bootnode` in the `consensus` section to a bootnode in the table on the top.
+ 
 
-```
-enr:-MK4QOoOAELWWC0dZ7hwZzDY3NhxbGJWB9JFBGsIswzF383NRPNh7vfI_K4gt5KMCFt6-NrMbUdizURmcKE5xjfRhBaGAYBwAjI7h2F0dG5ldHOIAAAAAAAAAACEZXRoMpAMEg0LYQAAcAMAAAAAAAAAgmlkgnY0gmlwhCPMBSuJc2VjcDI1NmsxoQO4XSsbls7lyhfqvcsgS8jmjFmBpC3dekXssvAEXkHtJYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A
-```
-
-3. Restart the node by typing: `./lukso stop && ./lukso start`
+3. Restart the node by typing: `./lukso network stop && ./lukso network start`
 
 ### Unmarshalling Error
 
