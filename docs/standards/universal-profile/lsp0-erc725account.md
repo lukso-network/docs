@@ -49,8 +49,8 @@ The following types of calls (= operation types) are available:
 
 | Operation number |                     Operation type                     | Description                                                                                                                             |
 | :--------------: | :----------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------- |
-|        0         |                         `CALL`                         | call another smart contract                                                                                                             |
-|        1         |                        `CREATE`                        | create a new smart contract with the associated bytecode passed as `_data`                                                              |
+|        0         |          [`CALL`](https://www.ethervm.io/#F1)          | call another smart contract                                                                                                             |
+|        1         |         [`CREATE`](https://www.ethervm.io/#F0)         | create a new smart contract with the associated bytecode passed as `_data`                                                              |
 |        2         |  [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014)  | create a new smart contract with a **salt **(for pre-computed contract addresses)                                                       |
 |        3         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | run the function from another contract, but use and update the storage of the current contract (= persist `msg.sender` and `msg.value`) |
 |        4         | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
@@ -82,7 +82,7 @@ As a result, this substandard enables attaching any information to the contract 
 
 ![ERC725Y key-value store vs standard contract storage](/img/standards/erc725y-vs-standard-contract-storage.jpeg)
 
-Thanks to ERC725Y, contracts become more interoperable, as their storage is represented in the same way. Contracts and interfaces can then read and write data from or to the storage in the same manner via the functions [`getData(...)`](../smart-contracts/lsp0-erc725-account.md) and [`setData(...)`](../smart-contracts/lsp0-erc725-account.md).
+Thanks to ERC725Y, contracts become more interoperable, as their storage is represented in the same way. Contracts and interfaces can then read and write data from or to the storage in the same manner via the functions [`getData(...)`](../smart-contracts/lsp0-erc725-account.md#getdata) and [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata).
 
 ### LSP1 - UniversalReceiver
 
