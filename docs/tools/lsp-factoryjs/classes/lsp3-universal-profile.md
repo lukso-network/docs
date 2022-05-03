@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.1
+sidebar_position: 1
 title: LSP3UniversalProfile
 ---
 
@@ -19,37 +19,58 @@ Deploys and **configures** a [Universal Profile](../../../standards/universal-pr
 - [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account)
 - [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager)
 
-Then, it will:
+After, it will:
 
-- upload metadata to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata.
-- attach the Universal Receiver Delegate to the ERC725 Account contract.
-- set the Key Manager as the owner of the LSP0 ERC725 Account.
-- give all [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllerAddresses` except `DELEGATECALL`.
+- upload metadata to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata,
+- attach the Universal Receiver Delegate to the ERC725 Account contract,
+- set the Key Manager as the owner of the LSP0 ERC725 Account, and
+- set all [LSP6 Permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllerAddresses` except `DELEGATECALL`.
 
-By default the [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate) contract specified in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) will be attached to the Universal Profile. A custom Universal Receiver Delegate can be optionally deployed by passing custom bytecode inside the ContractDeploymentOptions object. [Read more](../deployment/universal-profile#configuration).
+By default the [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate) contract that is specified in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) will be attached to the Universal Profile. A custom Universal Receiver Delegate can be optionally deployed, by passing custom bytecode to the ContractDeploymentOptions object. You can read more about it in the[Universal Profile Configuration](../deployment/universal-profile#configuration).
 
 #### Parameters
 
-1. `profileDeploymentOptions` - `Object`: The options used for profile deployment.
-   - `controllerAddresses` - `string[]`: A list of accounts (public addresses) which will be granted [all permissions](../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions) on the newly created Universal Profile.
-   - `lsp3Profile?` - `Object`: If set, the created Universal Profile will be populated with these values.
-     - `name` - `string`: The name of the Universal Profile.
-     - `description` - `string`: The description of the Universal Profile.
-     - `profileImage?` - `File | ImageBuffer | ImageMetadata[]`
-     - `backgroundImage?` - `File | ImageBuffer | ImageMetadata[]`
-     - `tags?` - `string[]`
-     - `links?` - `{title: string, url: string}[]`
-2. `contractDeploymentOptions?` - `Object`: Specify contract deployment details. See [configuration specification](../deployment/universal-profile#configuration) for more information.
+| Name                         | Type   | Description                              |
+| :--------------------------- | :----- | :--------------------------------------- |
+| `profileDeploymentOptions`   | Object | The options used for profile deployment. |
+| `contractDeploymentOptions?` | Object | Specifies contract deployment details.   |
+
+#### Properties of `profileDeploymentOptions`
+
+| Name                  | Type           | Description                                                                  |
+| :-------------------- | :------------- | :--------------------------------------------------------------------------- |
+| `controllerAddresses` | string[&nbsp;] | A list of accounts (public addresses) with [all permissions] on UP creation. |
+| `lsp3Profile?`        | Object         | If set, the created Universal Profile will be populated with these values.   |
+
+#### Properties of `lsp3Profile?`
+
+| Name               | Type                                             | Description                                    |
+| :----------------- | :----------------------------------------------- | :--------------------------------------------- |
+| `name`             | string                                           | The name of the Universal Profile.             |
+| `description`      | string                                           | The description of the Universal Profile.      |
+| `profileImage?`    | File, ImageBuffer, or ImageMetadata[&nbsp;]      | The profile image of the Universal Profile.    |
+| `backgroundImage?` | File, ImageBuffer, or ImageMetadata[&nbsp;]      | The background image of the Universal Profile. |
+| `tags?`            | string[&nbsp;]                                   | The tags of the Universal Profile.             |
+| `links?`           | {&nbsp;title: string, url: string&nbsp;}[&nbsp;] | The links related to the Universal Profile.    |
+
+:::info Contract Deployment Details
+See the [configuration specification](../deployment/universal-profile#configuration) for more information about the `contractDeploymentOptions?` property.
+:::
 
 #### Returns
 
-`Promise`<`Object`\> | `Observable`<`Object`\>
+| Name         | Type           | Description                                                                                                       |
+| :----------- | :------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `Promise`    | <Object/>      | An object containing deployed contract details by default.                                                        |
+| `Observable` | RxJS <Object/> | An [RxJS Observable] object, if `deployReactive` flag is set to `true` in the `contractDeploymentOptions?` object |
 
-Returns a Promise with object containing deployed contract details by default. If `deployReactive` flag is set to `true` in the `ContractDeploymentOptions` object, returns an [RxJS Observable](https://rxjs.dev/guide/observable) of deployment events.
+:::note
+The Observable is an object containing deployment events.
+:::
 
-#### Example
+#### Universal Profile Deployment Example
 
-```javascript title="Universal Profile Deployment"
+```javascript title="Deploying a Universal Profile"
 await lspFactory.LSP3UniversalProfile.deploy({
   controllingAccounts: ['0xb74a88C43BCf691bd7A851f6603cb1868f6fc147'],
   lsp3Profile: {
@@ -129,7 +150,9 @@ await lspFactory.LSP3UniversalProfile.deploy({
 */
 ```
 
-```javascript title="Reactive Universal Profile Deployment"
+#### Reactive Universal Profile Deployment Example
+
+```javascript title="Deploying a reactive Universal Profile"
 await lspFactory.LSP3UniversalProfile.deploy(
   {
     controllingAccounts: ['0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db'],
@@ -279,25 +302,26 @@ Deployment Complete
 LSP3UniversalProfile.uploadProfileData(profileData, uploadOptions?);
 ```
 
-Uploads the [LSP3Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) data to the desired endpoint. This can be an `https` URL either pointing to
-a public, centralized storage endpoint or an IPFS Node / Cluster.
+Uploads the [LSP3Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) data to the desired endpoint. The endpoint can be a `HTTPS` URL pointing to a public or private storage solution, an IPFS node, or a cluster.
 
 Will upload and process passed images.
 
 #### Parameters
 
-1. `profileData` - `Object`
-2. `uploadOptions?` - `Object`
+| Name             | Type   | Description                                                           |
+| :--------------- | :----- | :-------------------------------------------------------------------- |
+| `profileData`    | Object | An object containing the profile data to upload.                      |
+| `uploadOptions?` | Object | An object containing special options used for uploading profile data. |
 
 #### Returns
 
-`Promise`<`LSP3ProfileDataForEncoding`\>
+| Name      | Type                          | Description                           |
+| :-------- | :---------------------------- | :------------------------------------ |
+| `Promise` | <LSP3ProfileDataForEncoding\> | Processed [LSP3] data and upload URL. |
 
-Processed [LSP3](../../../standards/universal-profile/lsp3-universal-profile-metadata) data and upload URL.
+#### Uploading Profile Data Example
 
-#### Example
-
-```javascript
+```javascript title="Uploading profile data"
 await LSP3UniversalProfile.uploadProfileData({
   name: 'My Universal Profile',
   description: 'My cool Universal Profile',
@@ -339,3 +363,7 @@ await LSP3UniversalProfile.uploadProfileData({
 }
 */
 ```
+
+[all permissions]: ../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions
+[rxjs observable]: https://rxjs.dev/guide/observable
+[lsp3]: ../../../standards/universal-profile/lsp3-universal-profile-metadata
