@@ -15,7 +15,10 @@ sidebar_position: 4
 
 The implementation of the **[LSP0-ERC725Account](./lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
-**LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific data keys to describe a Universal Profile. A Universal Profile combines **LSP0-ERC725Account**, an interface for a smart contract-based account, with the **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y Data keys to describe the profile.
+**LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific data keys to describe a Universal Profile. A Universal Profile combines the following two standards.
+
+- **[LSP0-ERC725Account](./lsp0-erc725account.md)**: an interface for a smart contract-based account.
+- **LSP3-UniversalProfile-Metadata**: a set of predefined [ERC725Y](lsp0-erc725account.md#erc725y---generic-key-value-store) Data keys to describe the profile.
 
 ## ERC725Y Data Keys
 
@@ -100,9 +103,9 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 
 ### LSP3IssuedAssets
 
-**Universal Profiles** can create digital assets, such as tokens and NFTs. All assets (tokens and NFTs) created should be registered in the `LSP3IssuedAssets[]` Array.
+**Universal Profiles** can create digital assets, such as [tokens and NFTs](../nft-2.0/introduction.md). All assets (tokens and NFTs) created should be registered in the `LSP3IssuedAssets[]` Array.
 
-The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g., an LSP7 token or an LSP8 NFT_) by extracting the `bytes4` ERC165 interface id of the asset contract. Developers can extract this `bytes4` value from the value retrieved, starting at the 8th byte (_index 7_).
+The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g., an [LSP7 token](../nft-2.0/LSP7-Digital-Asset.md) or an [LSP8 NFT](../nft-2.0/LSP8-Identifiable-Digital-Asset.md)_) by extracting the `bytes4` ERC165 interface id of the asset contract. Developers can extract this `bytes4` value from the value retrieved, starting at the 8th byte (_index 7_).
 
 ```json
 {

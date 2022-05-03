@@ -21,7 +21,7 @@ One way to avoid this problem is to create generic metadata keys that developers
 
 :::success Recommendation
 
-It is recommended to query the **LSP10Vaults[]** data key to check if a smart contract supports the **LSP10 - ReceivedVaults** standard.
+It is recommended to query the **`LSP10Vaults[]`** data key to check if a smart contract supports the **[LSP10 - ReceivedVaults](./lsp10-received-vaults.md)** standard.
 
 :::
 
