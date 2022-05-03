@@ -53,11 +53,13 @@ Prepare your environment. You need:
 1. [Docker](https://docs.docker.com/get-docker/)
 2. [Docker Compose](https://docs.docker.com/compose/)
 3. [curl](https://macappstore.org/curl/) 
+4. nano
+5. bash
 
 ```bash title="Example script for installing docker"
 # install dependencies
 sudo apt-get -y update
-sudo apt-get -y install curl
+sudo apt-get -y install curl bash nano
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -77,18 +79,29 @@ mkdir lukso-l16-testnet && cd lukso-l16-testnet
 curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/cli_downloader.sh | bash
 ```
 
-The script will download the LUKSO cli into the folder. You can put into your PATH var or execute it directly. Initialise the the network with
- 
+The script will download the LUKSO cli into the folder. You can put into your PATH var with:
+
+Linux:
+```
+sudo mv ~/lukso /usr/local/bin
+```
+
+Mac:
+```
+sudo mv /usr/local/bin usr/local/bin.old
+```
+ Or execute it directly with
+
 ```bash
-./lukso network init
+sudo lukso network init
 ```
 
 ### Naming the Node
 
-**Optional:** If you want change your node's name, you need to edit the `name` variable in the `node_config.yaml` file to update your node name. You can find it under the top level key `node` and you can edit it with vim:
+**Optional:** If you want change your node's name, you need to edit the `name` variable in the `node_config.yaml` file to update your node name. You can find it under the top level key `node` and you can edit it with nano:
 
 ```bash
-vim .env
+nano .env
 ```
 
 If your node is already running, you will need to restart it to apply the changes.
@@ -97,18 +110,20 @@ If your node is already running, you will need to restart it to apply the change
 
 ```bash
 # Start your nodes
-./lukso network init
+sudo lukso network init
 
 # You can check logs with
-./lukso network logs consensus
-./lukso network logs execution
+sudo lukso network log consensus -f
+sudo lukso network log execution -f
+
+close your logs with control+c
 
 # Stop your nodes
-./lukso network stop
+sudo lukso network stop
 
 # If your nodes are stopped, you could reset them using
 # Reset clears the database, which forces your node to sync again on start
-./lukso network clear
+sudo lukso network clear
 ```
 
 ### Check the Network Status
@@ -150,7 +165,7 @@ THIS SECTION IS BEING RE DONE
 
 ```bash
 # submit deposit
-./lukso network validator deposit
+sudo lukso network validator deposit
 
 # wait 8h till validator is activated
 ```
@@ -161,16 +176,18 @@ You will need to wait for eight hours to activate your validator.
 
 Once your validator is activated, you spin up a validator client.
 
-**Make sure your _consensus_ and _execution_ clients are running (by typing `./lukso network start`).**
+**Make sure your _consensus_ and _execution_ clients are running (by typing `sudo lukso network start`).**
 
 ```bash
-./lukso network start validator
+sudo lukso network start validator
 
 # You can check logs with
-./lukso network logs validator
+sudo lukso network log validator -f
+
+close your logs with control+c
 
 # You can stop the validator using, this will also stop all other nodes
-./lukso network stop
+sudo lukso network stop
 ```
 
 ## Troubleshooting L16 Beta Testnet
@@ -184,19 +201,19 @@ You found your consensus (prysm) client has no peer and the execution engine (ge
 
 **Proposed Solution:**
 
-1. Open `node_config.yaml` file using any text editor. For `vim` the command will be `vim node_config.yaml`
+1. Open `node_config.yaml` file using any text editor. For `nano` the command will be `nano node_config.yaml`
 2. Change `bootnode` in the `consensus` section to
 
 ```
 enr:-MK4QOoOAELWWC0dZ7hwZzDY3NhxbGJWB9JFBGsIswzF383NRPNh7vfI_K4gt5KMCFt6-NrMbUdizURmcKE5xjfRhBaGAYBwAjI7h2F0dG5ldHOIAAAAAAAAAACEZXRoMpAMEg0LYQAAcAMAAAAAAAAAgmlkgnY0gmlwhCPMBSuJc2VjcDI1NmsxoQO4XSsbls7lyhfqvcsgS8jmjFmBpC3dekXssvAEXkHtJYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A
 ```
 
-3. Restart the node by typing: `./lukso stop && ./lukso start`
+3. Restart the node by typing: `sudo lukso network stop && lukso network start`
 
 ### Unmarshalling Error
 
 :::info Context
-Check your execution log by `./lukso network log execution`. For Ubuntu 20.04 LTS you may get an unmarshal-related issue like:
+Check your execution log by `sudo lukso network log execution -f`. For Ubuntu 20.04 LTS you may get an unmarshal-related issue like:
 
 ```
 log_execution: err="peer connected on snap without compatible eth support" log_consensus: level=error msg="Could not connect to powchain endpoint: could not dial eth1 nodes: json: cannot unmarshal string into Go struct field SyncProgress.CurrentBlock of type uint64" prefix=powchain
@@ -208,13 +225,13 @@ log_execution: err="peer connected on snap without compatible eth support" log_c
 
 ```sh
 # stop docker containser
-./lukso network stop
+sudo lukso network stop
 # reset data directory
-./lukso network clear
+sudo lukso network clear
 # remove previous images
 docker system prune --all --force --volumes
 # delete lukso testnet directory
-cd .. && rm -rf ./lukso-l16-testnet
+cd .. && rm -rf lukso-l16-testnet
 ```
 
 After trying out the proposed solution, re-run your node setup from the start.
