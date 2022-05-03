@@ -35,7 +35,9 @@ It contains a single function named `universalReceiverDelegate(...)` that takes 
 
 ### How Delegation works
 
-The address of the **UniversalReceiverDelegate** contract should be set as a value for the data key `LSP1UniversalReceiver`, inside the [ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y) of the implementation contract (contract implementing the `universalReceiver(...)` function). With such an implementation, the `universalReceiver(...)` function can forward the call to its similar one called `universalReceiverDelegate(...)`.
+The address of the **[UniversalReceiverDelegate](../smart-contracts/lsp1-universal-receiver-delegate-up.md)** contract should be set as a value for the data key [`LSP1UniversalReceiverDelegate`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate), inside the [ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y) of the implementation contract (contract implementing the `universalReceiver(...)` function).
+
+With such an implementation, the `universalReceiver(...)` function can forward the call to its similar one called `universalReceiverDelegate(...)`.
 
 This external contract will then implement the `universalReceiverDelegate(...)` function. It is also recommended that this contract registers the **[LSP1UniversalReceiverDelegate interfaceId](../smart-contracts/interface-ids.md)** using ERC165.
 
@@ -54,7 +56,7 @@ At the moment, this contract allows to:
 
 One of the possible scenarios is a token transfer between Alice and Bob. Alice wants to transfer a token owned by her Universal Profile to the Universal Profile of her friend Bob.
 
-**1.** It calls the **`transfer(...)`** function on the token contract through the KeyManager.
+**1.** It calls the **`transfer(...)`** function on the token contract through the [KeyManager](../smart-contracts/lsp6-key-manager.md).
 
 ![executing transfer function](/img/token-transfer-1.jpg)
 
