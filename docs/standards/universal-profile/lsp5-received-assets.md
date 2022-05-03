@@ -21,7 +21,7 @@ One way to solve this problem is to create generic metadata keys that would regi
 
 :::success Recommendation
 
-It is advised to query the **`LSP5ReceivedAssets[]`** data key to verify if a contract supports the **LSP5 - ReceivedAsset** standard.
+It is advised to query the **`LSP5ReceivedAssets[]`** data key to verify if a contract supports the **[LSP5 - ReceivedAsset](./lsp5-received-assets.md)** standard.
 
 :::
 
