@@ -44,10 +44,10 @@ Links the KeyManager to the address of an **LSP0ERC725Account** contract and reg
 | :-------- | :------ | :----------------------------------------------------------- |
 | `account` | address | The address of the **LSP0ER725Account** contract to control. |
 
-### account
+### target
 
 ```solidity
-function account() external view returns (address)
+function target() external view returns (address)
 ```
 
 Returns the address of the account linked to this KeyManager.
@@ -60,9 +60,9 @@ This can be a contract that implements:
 
 #### Returns
 
-| Name      | Type    | Description                       |
-| --------- | ------- | --------------------------------- |
-| `account` | address | the address of the linked account |
+| Name     | Type    | Description                       |
+| -------- | ------- | --------------------------------- |
+| `target` | address | the address of the linked account |
 
 ### execute
 
@@ -179,10 +179,10 @@ _**MUST** be fired when a transaction was successfully executed from the **[exec
 
 #### Values:
 
-| Name       | Type    | Description                                                                         |
-| :--------- | :------ | :---------------------------------------------------------------------------------- |
-| `value`    | uint256 | The amount to be sent with the payload.                                             |
-| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`account()`](#account). |
+| Name       | Type    | Description                                                                       |
+| :--------- | :------ | :-------------------------------------------------------------------------------- |
+| `value`    | uint256 | The amount to be sent with the payload.                                           |
+| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
 
 ## References
 
