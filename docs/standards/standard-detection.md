@@ -95,6 +95,6 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 const myTokenContract = new web3.eth.Contract(LSP7DigitalAsset.abi, '<contract-address>');
 
 const SupportedStandards_LSP4 = '0xeafec4d89fa9619884b6b89135626455000000000000000000000000a4d96624';
-await myTokenContract.methods.getData([SupportedStandards_LSP4DigitalAsset]).call();
+await myTokenContract.methods["getData(bytes32[])"]([SupportedStandards_LSP4DigitalAsset]).call();
 > 0xa4d96624; // valid result according to LSP4
 ```
