@@ -15,8 +15,8 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | New RPC URL                  | https://rpc.beta.l16.lukso.network                                                               |
 | Chain ID                     | 83748374 (0x4FDE616)                                                                             |
 | Currency Symbol              | LYXt                                                                                             |
-| Execution Block Explorer URL | [http://execution.stats.beta.l16.lukso.network](http://execution.stats.beta.l16.lukso.network) |
-| Consensus Block Explorer URL | [http://consensus.stats.beta.l16.lukso.network](http://consensus.stats.beta.l16.lukso.network) |
+| Execution Block Explorer URL | [https://stats.execution.beta.l16.lukso.network](https://stats.execution.beta.l16.lukso.network) |
+| Consensus Block Explorer URL | [https://stats.consensus.beta.l16.lukso.network](https://stats.consensus.beta.l16.lukso.network) |
 
 
 # Bootnodes
@@ -126,8 +126,8 @@ If your node is already running, you will need to restart it to apply the change
 You can see your node on the following page:
 
 
-1. [https://execution.stats.beta.l16.lukso.network](https://execution.stats.beta.l16.lukso.network)
-2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)
+1. [https://stats.execution.beta.l16.lukso.network](https://stats.execution.beta.l16.lukso.network)
+2. [https://stats.consensus.beta.l16.lukso.network](https://stats.consensus.beta.l16.lukso.network)
 
 ## Become a Validator
 
