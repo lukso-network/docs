@@ -443,7 +443,7 @@ async function getAssetData(key) {
       let keyArray = [key];
 
       // Fetch the encoded contract data
-      return await digitalAsset.methods.getData(keyArray).call();
+      return await digitalAsset.methods["getData(bytes32[])"](keyArray).call();
     }
   } catch (error) {
     return console.log('Data of assets address could not be loaded');
@@ -1075,7 +1075,7 @@ async function getAssetData(key) {
       let keyArray = [key];
 
       // Fetch the encoded contract data
-      return await digitalAsset.methods.getData(keyArray).call();
+      return await digitalAsset.methods["getData(bytes32[])"](keyArray).call();
     }
   } catch (error) {
     return console.log('Data of assets address could not be loaded');
