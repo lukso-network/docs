@@ -23,10 +23,13 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 
 | Bootnode                      | Client                                                                                            | Value |
 | ---------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ | 
-|  1 | Beacon | ```enr:-MK4QIIZnP-2EoMlc0awvP25WpqM93pNmMDHtpq0YT8ij9XvfewG-ah5yDk0cQp0B_ciX4cUqHzFg6oeeXTxfBjffAOGAYCf7Vo1h2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQJQ4cligENHgDkL_wAM8fqfb-2u-pPp7llnsAymo-RWlYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
+|  0 | Beacon | ```enr:-MK4QIIZnP-2EoMlc0awvP25WpqM93pNmMDHtpq0YT8ij9XvfewG-ah5yDk0cQp0B_ciX4cUqHzFg6oeeXTxfBjffAOGAYCf7Vo1h2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQJQ4cligENHgDkL_wAM8fqfb-2u-pPp7llnsAymo-RWlYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
 |   | Geth | ```enode://d8ad5ff1f0465c95f763905e718231216a76f11bed41b5ea0bfde1fb7de63ae770f4dedd232b36a87fc1169242bd2ec62a28dbf2685ff70fc5cc53067316d002@34.90.85.198:30303``` |
-|  2 | Beacon |```enr:-MK4QCAX3SN_ynPEyhlbBXldrbG_gdifng16SO9oIfCDJlW2HHGDz-pmuLXOBx3ZEddjwnno_FQozav_v0e4cLBQ_pmGAYCYtldLh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbpv2Jc2VjcDI1NmsxoQJFeOlcwF2uFCPGug2xiiSq5qTSbU_JsjV6lrgJJbRBrYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A```|
-|  | Geth | ```enode://c2bb19ce658cfdf1fecb45da599ee6c7bf36e5292efb3fb61303a0b2cd07f96c20ac9b376a464d687ac456675a2e4a44aec39a0509bcb4b6d8221eedec25aca2@34.91.166.253:30303```|
+|  1 | Beacon |```enr:-MK4QJNG7HrFhqNTLZOOjNS_O4X2c6B4xjMG921TjtLsdHGfOLPaJBh-TKQCM-h_s6K3XEIdB_PEFDAHrriLxSDja92GAYCyCocIh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbpv2Jc2VjcDI1NmsxoQIxYwcPw9L7_25e53hmJssY53fAyr48vZCxzdgD5CgNqIhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A```|
+|  | Geth | ```enode://e4dd2a73cd9d2c46d429e8205537f168c3a890e3b9ad073c45c40deb062bc738a5248c654d72c6a3115a9fa68b9140842de1dc6a8a269ece118fb954626ab104@34.91.166.253:30303```|
+|  2 | Beacon |```enr:-MK4QA8oipAbBXt0pL5YMsO3FkA37-OvRRKVUGO1MZi_Mi7cIsx01YKrJdPLb18_g28sRUjfN9rk9UDKqRFxSwMbsi2GAYCx_vN7h2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbMxaJc2VjcDI1NmsxoQOVtgTKHmGrAlnIEWcuNu1Wk2atA3YYzyroXzjNUaVbx4hzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A```|
+|  | Geth | ```enode://5f894de652134f2cf4be259b6bb8d74352913e3854cd5b5efb326474f94b4c6366a402e9493e26922e5ffc53a7f6ff6e34e76e99161c2999c9e3e1eaa34751e6@34.91.51.22:30303```|
+
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
