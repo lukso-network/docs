@@ -120,7 +120,6 @@ More info about **channel** can be found here: **[What are multi-channel nonces]
 
 ```solidity
 function executeRelayCall(
-    address signedFor,
     uint256 nonce,
     bytes memory data,
     bytes memory signature
@@ -135,7 +134,6 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 | Name        | Type    | Description                                       |
 | :---------- | :------ | :------------------------------------------------ |
-| `signedFor` | address | The KeyManager contract address.                  |
 | `nonce`     | uint256 | The nonce of the address that signed the message. |
 | `data`      | bytes   | The payload to be executed.                       |
 | `signature` | bytes   | The bytes32 ethereum signature.                   |
