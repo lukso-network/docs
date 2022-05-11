@@ -67,7 +67,7 @@ This can be a contract that implements:
 ### execute
 
 ```solidity
-function execute(bytes memory data) public payable returns (bytes memory result)
+function execute(bytes memory _calldata) public payable returns (bytes memory result)
 ```
 
 Executes a payload on the **LSP0ERC725Account** contract.
@@ -78,9 +78,9 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 #### Parameters:
 
-| Name   | Type  | Description                 |
-| :----- | :---- | :-------------------------- |
-| `data` | bytes | The payload to be executed. |
+| Name        | Type  | Description                 |
+| :---------- | :---- | :-------------------------- |
+| `_calldata` | bytes | The payload to be executed. |
 
 #### Return Values:
 
@@ -120,9 +120,9 @@ More info about **channel** can be found here: **[What are multi-channel nonces]
 
 ```solidity
 function executeRelayCall(
+    bytes memory signature,
     uint256 nonce,
-    bytes memory data,
-    bytes memory signature
+    bytes memory _calldata
 ) public
 ```
 
@@ -134,9 +134,9 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 | Name        | Type    | Description                                       |
 | :---------- | :------ | :------------------------------------------------ |
+| `signature` | bytes   | The bytes65 ethereum signature.                   |
 | `nonce`     | uint256 | The nonce of the address that signed the message. |
-| `data`      | bytes   | The payload to be executed.                       |
-| `signature` | bytes   | The bytes32 ethereum signature.                   |
+| `_calldata` | bytes   | The payload to be executed.                       |
 
 ### isValidSignature
 
