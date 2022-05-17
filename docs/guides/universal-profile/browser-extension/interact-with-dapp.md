@@ -193,7 +193,7 @@ const contract = new web3.eth.Contract(
 
 ```js
 await contract.methods
-  .setData([key], [value])
+  ["setData(bytes32,bytes)"](key, value)
   .send({
       from: UP_ADDRESS,
   })
