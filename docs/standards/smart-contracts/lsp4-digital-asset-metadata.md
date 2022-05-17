@@ -1,16 +1,22 @@
 ---
-title: LSP4 Digital Asset Metadata
-sidebar_position: 5
+title: LSP4DigitalAssetMetadata
+sidebar_position: 4
 ---
 
 # LSP4DigitalAssetMetadata
 
+:::info Solidity contract
+
+[`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+
+:::
+
 The **LSP4DigitalAssetMetadata** is a contract that sets the **Token-Metadata** (name and symbol) for the **[LSP7DigitalAsset](./lsp7-digital-asset.md)** and **[LSP8IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** token contracts.
 
-As this contract uses **[ERC725Y General Key/Value Store](https://eips.ethereum.org/EIPS/eip-725)** to set the metadata, any information could be added such as the **list of creators**, **JSON files**, etc ...
+As this contract uses **[ERC725Y General Data Key/Value Store](https://eips.ethereum.org/EIPS/eip-725)** to set the metadata, any information could be added, such as the **list of creators, JSON files**, etc.
 
 :::note
-**_LSP4DigitalAssetMetadata contract contains the methods from_ [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) :**
+_The LSP4DigitalAssetMetadata contract contains the methods from the [ERC725Y Standard](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y):_
 
 ```solidity
 function setData(bytes32 key, bytes memory value) public;
@@ -37,7 +43,11 @@ constructor(
 ) ERC725Y(newOwner_)
 ```
 
-Sets the name, symbol of the token and **[SupportedStandards:LSP4DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset)** Key in the **[ERC725Y Key/Value store](./lsp0-erc725-account#setdata)** and sets the **initial owner** of the contract.
+Sets the **initial owner** of the contract and the following data keys on the **[ERC725Y Data Key-Value Store](./lsp0-erc725-account#setdata)**:
+
+- `name_`: token's name.
+- `symbol_`: token's symbol.
+- [**SupportedStandards:LSP4DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset) data key.
 
 #### Parameters:
 

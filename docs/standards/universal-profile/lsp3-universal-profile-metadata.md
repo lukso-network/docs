@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'LSP3 - Universal Profile - Metadata'
+sidebar_label: 'LSP3 - Universal Profile Metadata'
 sidebar_position: 4
 ---
 
@@ -13,11 +13,14 @@ sidebar_position: 4
 
 ## Introduction
 
-The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** standard does not contain any metadata describing the account.
+The implementation of the **[LSP0-ERC725Account](./lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
-**LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific keys to describe a Universal Profile. A Universal Profile combines **LSP0-ERC725Account**, an interface for a smart contract-based account, and **LSP3-UniversalProfile-Metadata**, a set of predefined ERC725Y keys to describe the profile.
+**LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific data keys to describe a Universal Profile. A Universal Profile combines the following two standards.
 
-## ERC725Y Keys
+- **[LSP0-ERC725Account](./lsp0-erc725account.md)**: an interface for a smart contract-based account.
+- **LSP3-UniversalProfile-Metadata**: a set of predefined [ERC725Y](lsp0-erc725account.md#erc725y---generic-key-value-store) Data keys to describe the profile.
+
+## ERC725Y Data Keys
 
 ### `SupportedStandards:LSP3UniversalProfile`
 
@@ -31,7 +34,7 @@ The implementation of the **[LSP0-ERC725Account](./01-lsp0-erc725account.md)** s
 }
 ```
 
-This key is used to know if the contract represents a **Universal Profile**.
+This data key is used to know if the contract represents a **Universal Profile**.
 
 ### `LSP3Profile`
 
@@ -45,12 +48,12 @@ This key is used to know if the contract represents a **Universal Profile**.
 }
 ```
 
-The value attached to this key is a [JSONURL encoded value](../../standards/generic-standards/01-lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Universal Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile). The file can be stored on a centralised or decentralised storage.
+The value attached to this data key is a [JSONURL-encoded value](../../standards/generic-standards/lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Universal Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
 
-Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, each defining an image with different dimensions (width + height). This is useful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them.
+Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, defining an image with different dimensions, `width` and `height`. Picture scaling is helpful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them afterward.
 
 <details>
-    <summary>Example of JSON File linked to <code>LSP3Profile</code> key</summary>
+    <summary>Example of JSON File linked to <code>LSP3Profile</code>data key </summary>
 
 ```json
 {
@@ -100,9 +103,9 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 
 ### LSP3IssuedAssets
 
-**Universal Profiles** can create digital assets, such as tokens and NFTs. Every assets (tokens and NFTs) created should be registered in the `LSP3IssuedAssets[]` Array.
+**Universal Profiles** can create digital assets, such as [tokens and NFTs](../nft-2.0/introduction.md). All assets (tokens and NFTs) created should be registered in the `LSP3IssuedAssets[]` Array.
 
-The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g: an LSP7 token or an LSP8 NFT_), by extracting the `bytes4` ERC165 interface id of the asset contract. This `bytes4` value can be extracted from the value retrieved, starting at the 8th byte (index 7).
+The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g., an [LSP7 token](../nft-2.0/LSP7-Digital-Asset.md) or an [LSP8 NFT](../nft-2.0/LSP8-Identifiable-Digital-Asset.md)_) by extracting the `bytes4` ERC165 interface id of the asset contract. Developers can extract this `bytes4` value from the value retrieved, starting at the 8th byte (_index 7_).
 
 ```json
 {
@@ -128,7 +131,7 @@ The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.
 
 :::info
 
-See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for more information.
+See the [LSP5 - Received Assets](./lsp5-received-assets.md) standard page for more information.
 
 :::
 
@@ -142,4 +145,4 @@ See the [LSP5 - Received Assets](./06-lsp5-received-assets.md) standard page for
 }
 ```
 
-If the Universal Profile is used with the **[LSP6-KeyManager](./04-lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./02-lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this key.
+If the Universal Profile is used with the **[LSP6-KeyManager](./lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this data key.

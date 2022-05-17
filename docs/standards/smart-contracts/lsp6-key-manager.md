@@ -1,20 +1,26 @@
 ---
-title: LSP6 Key Manager
-sidebar_position: 4
+title: LSP6KeyManager
+sidebar_position: 5
 ---
 
 # LSP6KeyManager
 
-The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with a set of pre-defined permissions for addresses that could range from setting data, executing, changing owner and more as written in the [Permissions Section](../universal-profile/04-lsp6-key-manager.md#-types-of-permissions)\*\* in [LSP6-KeyManager Standard](../universal-profile/04-lsp6-key-manager.md).
+:::info Solidity contract
+
+[`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP6KeyManager/LSP6KeyManager.sol)
+
+:::
+
+The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with pre-defined permissions for addresses that could range from setting data, executing, changing owner, etc., as written in the [Permissions Section](../universal-profile/lsp6-key-manager.md#-types-of-permissions)\*\* of the [LSP6-KeyManager Standard](../universal-profile/lsp6-key-manager.md).
 
 :::warning
 
-The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/04-lsp6-key-manager.md#permissions-value)** operation on the execute function of the linked ERC725Account, because of its potential malicious impact on the account contract.
+The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/lsp6-key-manager.md#permissions-value)** operation on the `execute(...)` function of the linked ERC725Account, because of its potential malicious impact on the account contract.
 
 :::
 
 :::note
-**_LSP6KeyManager contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :**
+_LSP6KeyManager contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -30,7 +36,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address account)
 ```
 
-Link the Key Manager to the address of an **LSP0ERC725Account** contract and register **[LSP6KeyManager InterfaceId](./interface-ids.md)** on deployment.
+Links the KeyManager to the address of an **LSP0ERC725Account** contract and registers the **[LSP6KeyManager InterfaceId](./interface-ids.md)** on deployment.
 
 #### Parameters:
 
@@ -38,13 +44,13 @@ Link the Key Manager to the address of an **LSP0ERC725Account** contract and reg
 | :-------- | :------ | :----------------------------------------------------------- |
 | `account` | address | The address of the **LSP0ER725Account** contract to control. |
 
-### account
+### target
 
 ```solidity
-function account() external view returns (address)
+function target() external view returns (address)
 ```
 
-Returns the address of the account linked to this KeyManager
+Returns the address of the account linked to this KeyManager.
 
 This can be a contract that implements:
 
@@ -54,14 +60,14 @@ This can be a contract that implements:
 
 #### Returns
 
-| Name      | Type      | Description                       |
-| --------- | --------- | --------------------------------- |
-| `account` | `address` | the address of the linked account |
+| Name     | Type    | Description                       |
+| -------- | ------- | --------------------------------- |
+| `target` | address | the address of the linked account |
 
 ### execute
 
 ```solidity
-function execute(bytes memory data) public payable returns (bytes memory result)
+function execute(bytes memory _calldata) public payable returns (bytes memory result)
 ```
 
 Executes a payload on the **LSP0ERC725Account** contract.
@@ -72,9 +78,9 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 #### Parameters:
 
-| Name   | Type  | Description                 |
-| :----- | :---- | :-------------------------- |
-| `data` | bytes | The payload to be executed. |
+| Name        | Type  | Description                 |
+| :---------- | :---- | :-------------------------- |
+| `_calldata` | bytes | The payload to be executed. |
 
 #### Return Values:
 
@@ -93,7 +99,9 @@ function getNonce(
 
 Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[`executeRelayCall(...)`](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
 
-_More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**_
+:::note
+More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**\_
+:::
 
 #### Parameters:
 
@@ -112,14 +120,13 @@ _More info about **channel** can be found here: **[What are multi-channel nonces
 
 ```solidity
 function executeRelayCall(
-    address signedFor,
+    bytes memory signature,
     uint256 nonce,
-    bytes memory data,
-    bytes memory signature
+    bytes memory _calldata
 ) public
 ```
 
-Allows anybody to execute a payload on the **LSP0ERC725Account**, given they have a signed message from an executor.
+Allows anybody to execute a payload on the **LSP0ERC725Account** contract, if they have a signed message from an executor.
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
@@ -127,10 +134,9 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 | Name        | Type    | Description                                       |
 | :---------- | :------ | :------------------------------------------------ |
-| `signedFor` | address | The KeyManager contract address.                  |
+| `signature` | bytes   | The bytes65 ethereum signature.                   |
 | `nonce`     | uint256 | The nonce of the address that signed the message. |
-| `data`      | bytes   | The payload to be executed.                       |
-| `signature` | bytes   | The bytes32 ethereum signature.                   |
+| `_calldata` | bytes   | The payload to be executed.                       |
 
 ### isValidSignature
 
@@ -141,7 +147,7 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/04-lsp6-key-manager.md/#permission-values)** Permission for this Key Manager, otherwise it will return the failure value.
+Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/lsp6-key-manager.md/#permission-values)** permission for this KeyManager, otherwise it will return the failure value.
 
 #### Parameters:
 
@@ -163,18 +169,18 @@ Checks if a signature was signed by an address having at least the **[SIGN](../u
 ```solidity
 event Executed(
     uint256 value,
-    bytes data
+    bytes4 selector
 )
 ```
 
-_**MUST** be fired when a transaction was successfully executed in **[execute](#execute)** or **[executeRelayCall](#executerelaycall)**._
+_**MUST** be fired when a transaction was successfully executed from the **[execute](#execute)** or **[executeRelayCall](#executerelaycall)** function._
 
 #### Values:
 
-| Name    | Type    | Description                             |
-| :------ | :------ | :-------------------------------------- |
-| `value` | uint256 | The amount to be sent with the payload. |
-| `data`  | bytes   | The payload to be executed.             |
+| Name       | Type    | Description                                                                       |
+| :--------- | :------ | :-------------------------------------------------------------------------------- |
+| `value`    | uint256 | The amount to be sent with the payload.                                           |
+| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
 
 ## References
 

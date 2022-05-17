@@ -15,8 +15,7 @@ We will store these values in a file `constants.js` and reuse them through the f
 
 ```javascript title="constants.js"
 // keccak256('AddressPermissions[]')
-const PERMISSIONS_ARRAY =
-  '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3';
+const PERMISSIONS_ARRAY = '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3';
 
 // prettier-ignore
 const ADDRESSES = {
@@ -59,36 +58,33 @@ const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require('./constants');
 const UniversalProfile = require('@lukso/lsp-smart-contracts/build/artifacts/UniversalProfile.json');
 const KeyManager = require('@lukso/lsp-smart-contracts/build/artifacts/KeyManager.json');
 
-const universalProfile = new web3.eth.Contract(
-  UniversalProfile.abi,
-  '<my-UniversalProfile-address>',
-);
-const keyManager = new web3.eth.Contract(
-  KeyManager.abi,
-  '<my-KeyManager-Address>',
-);
+const universalProfile = new web3.eth.Contract(UniversalProfile.abi, '<my-UniversalProfile-address>');
+const keyManager = new web3.eth.Contract(KeyManager.abi, '<my-KeyManager-Address>');
 
 let bobAddress = '0xcafecafecafecafecafecafecafecafecafecafe';
 let bobPermissions = PERMISSIONS.SETDATA;
 
 // give the permission SETDATA to Bob
 async function setBobPermission() {
-  let payload = await universalProfile.methods['setData(bytes32[],bytes[])'](
-    [
-      ADDRESSES.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
-      PERMISSIONS_ARRAY, // length of AddressPermissions[]
-      PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of permissions
-    ],
-    [
-      bobPermissions,
-      3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
-      bobAddress,
-    ],
-  ).encodeABI();
+  let payload = await universalProfile.methods["setData(bytes32[],bytes[])"]
+    (
+      [
+        ADDRESSES.PERMISSIONS + bobAddress.substr(2), // allow Bob to setData on your UP
+        PERMISSIONS_ARRAY, // length of AddressPermissions[]
+        PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of permissions
+      ],
+      [
+        bobPermissions,
+        3, // 3 because UP owner + Universal Receiver Delegate permission have already been set by lsp-factory
+        bobAddress,
+      ],
+    )
+    .encodeABI();
 
-  keyManager
-    .execute(payload)
-    .send({ from: '<my-eoa-address>', gasLimit: 300_000 });
+  keyManager.execute(payload).send({
+    from: '<my-eoa-address>',
+    gasLimit: 300_000
+  });
 }
 
 setBobPermission();
@@ -104,22 +100,20 @@ const { ADDRESSES, PERMISSIONS, PERMISSIONS_ARRAY } = require('./constants');
 const UniversalProfile = require('@lukso/lsp-smart-contracts/build/artifacts/UniversalProfile.json');
 const KeyManager = require('@lukso/lsp-smart-contracts/build/artifacts/KeyManager.json');
 
-const universalProfile = new ethers.Contract(
-  '<my-UniversalProfile-address>',
-  UniversalProfile.abi,
-);
-const keyManager = new ethers.Contract(
-  '<my-KeyManager-Address>',
-  KeyManager.abi,
-);
+const universalProfile = new ethers.Contract('<my-UniversalProfile-address>', UniversalProfile.abi);
+const keyManager = new ethers.Contract('<my-KeyManager-Address>', KeyManager.abi);
 
 let bobAddress = '0xcafecafecafecafecafecafecafecafecafecafe';
 let bobPermissions = ethers.utils.hexZeroPad(PERMISSIONS.SETDATA, 32);
 
 // give the permission SETDATA to Bob
 async function setBobPermission() {
-  let payload = universalProfile.interface.encodeFunctionData(
-    'setData(bytes32[],bytes[])',
+  let payload = universalProfile.interface.encodeFunctionData("setData(bytes32[],bytes[])", [
+    [
+      ADDRESSES.PERMISSIONS + bobAddress.substr(2),
+      PERMISSIONS_ARRAY, // length of AddressPermissions[]
+      PERMISSIONS_ARRAY.slice(0, 34) + '00000000000000000000000000000001', // add Bob's address into the list of
+    ],
     [
       [
         ADDRESSES.PERMISSIONS + bobAddress.substr(2),
