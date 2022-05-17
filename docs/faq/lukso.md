@@ -12,7 +12,7 @@ sidebar_position: 1
 
 ## How to stay up to date about LUKSO?
 
-You can follow us on [Twitter](https://twitter.com/lukso), read our [Medium articles](https://medium.com/lukso) and follow the announcements on our [Discord](https://discord.gg/lukso) server.
+You can follow us on [Twitter](https://twitter.com/lukso_io), read our [Medium articles](https://medium.com/lukso) and follow the announcements on our [Discord](https://discord.gg/lukso) server.
 
 ## Where can I download the Whitepaper?
 
