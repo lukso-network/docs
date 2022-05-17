@@ -114,6 +114,8 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 
 :::note
 The `execute(...)` function can only be called by the current owner of the contract.
+
+The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to transfer value.
 :::
 
 #### Parameters:
@@ -122,7 +124,7 @@ The `execute(...)` function can only be called by the current owner of the contr
 | :-------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
 | `operationType` | uint256 | The type of operation that needs to be executed.                                                                         |
 | `to`            | address | The address to interact with. The address `to` will be unused if a contract is created (operations 1 & 2).               |
-| `value`         | uint256 | The desired value to transfer with the transaction.                                                                      |
+| `value`         | uint256 | The amount of native tokens to transfer with the transaction (in Wei).                                                                      |
 | `data`          | bytes   | The calldata (ABI-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
 
 #### Return Values:
