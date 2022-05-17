@@ -52,8 +52,8 @@ The following types of calls (= operation types) are available:
 |        0         |          [`CALL`](https://www.evm.codes/#f1)          | call another smart contract                                                                                                             |
 |        1         |         [`CREATE`](https://www.evm.codes/#f0)         | create a new smart contract with the associated bytecode passed as `_data`                                                              |
 |        2         |  [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014)  | create a new smart contract with a **salt **(for pre-computed contract addresses)                                                       |
-|        3         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | run the function from another contract, but use and update the storage of the current contract (= persist `msg.sender` and `msg.value`) |
-|        4         | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
+|        3        | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
+|        4         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | run the function from another contract, but use and update the storage of the current contract (= persist `msg.sender` and `msg.value`) |
 
 # ![ERC725X operation type CALL](/img/standards/erc725x-operation-type-call.jpeg)
 
