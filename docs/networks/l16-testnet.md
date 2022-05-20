@@ -18,20 +18,14 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | Execution Block Explorer URL | [https://stats.execution.beta.l16.lukso.network](https://stats.execution.beta.l16.lukso.network) |
 | Consensus Block Explorer URL | [https://stats.consensus.beta.l16.lukso.network](https://stats.consensus.beta.l16.lukso.network) |
 
+And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
 # Bootnodes
 
 | Bootnode                      | Client                                                                                            | Value |
 | ---------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ | 
-|  0 | Beacon | ```enr:-MK4QD8FkG2sIP1TGscBlgHyscwDySAN8EoT4m5IKBFNY04nQOTZMvGpAqYhXrtT0wqhngnpkS2E1C_qO54JbdSajsSGAYC4KBLkh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQO_eYR-N9Z-Ad_ki-PLYAyUMQ-s1od8zUo59osUBEOwmIhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
-|   | Geth | ```enode://8f2d010f18233b205609c8f2e78c56a1911e04f9113aa2dce5ccb61cfbb09956c7dbce47a93ca9c35b82f2493398447fdbae1db097bd26476220454b7cea392d@34.90.85.198:30303``` |
-|  1 | Beacon |```enr:-MK4QJNG7HrFhqNTLZOOjNS_O4X2c6B4xjMG921TjtLsdHGfOLPaJBh-TKQCM-h_s6K3XEIdB_PEFDAHrriLxSDja92GAYCyCocIh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbpv2Jc2VjcDI1NmsxoQIxYwcPw9L7_25e53hmJssY53fAyr48vZCxzdgD5CgNqIhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A```|
-|  | Geth | ```enode://e4dd2a73cd9d2c46d429e8205537f168c3a890e3b9ad073c45c40deb062bc738a5248c654d72c6a3115a9fa68b9140842de1dc6a8a269ece118fb954626ab104@34.91.166.253:30303```|
-|  2 | Beacon |```enr:-MK4QP2gSGuSB1YtRLhNRdx9PT3ttKih6TtXPuKUILE79jN4Ti1-FT54KcHH3MrvF7KTfgzN0BG062RCKmlk9xkVa7WGAYC4I9iVh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbMxaJc2VjcDI1NmsxoQNiwNrzDkDeTLxEF36JAwE5icN5FCK0WrgFEitt1mBDmIhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A```|
-|  | Geth | ```enode://5f894de652134f2cf4be259b6bb8d74352913e3854cd5b5efb326474f94b4c6366a402e9493e26922e5ffc53a7f6ff6e34e76e99161c2999c9e3e1eaa34751e6@34.91.51.22:30303```|
-
-
-And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
+|  0 | Beacon | ```enr:-MK4QHUjdytTpQtXvt52BBe1tK-EzURE2RQNVJGQ5iCAS--gFVJdUZU6NGr1RKYrIcj68RQbl_eThpPCSJwAQWBtCfmGAYDMWtDEh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQM1pj4H27XIBC_t-mq5x9GfwLq257XwacAnlu5bbUWKkYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
+|   | Geth | ```enode://0ee99dfebb1257b5e703c7d21a40d6b2558cc117e3a16e1ac4eaecf27e6474cf3757817bd65affe2de0ff3223eb2368775f9f1380f3cb915d1633638b7b37ec1@34.90.85.198:30303``` |
 
 ## System Requirements
 
@@ -217,7 +211,7 @@ log_execution: err="peer connected on snap without compatible eth support" log_c
 **Proposed Solution:**
 
 ```sh
-# stop docker containser
+# stop docker container
 ./lukso network stop
 # reset data directory
 ./lukso network clear
