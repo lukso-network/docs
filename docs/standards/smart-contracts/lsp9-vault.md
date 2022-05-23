@@ -44,19 +44,37 @@ If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contra
 | :--------- | :------ | :----------------------------------------------- |
 | `newOwner` | address | The address to set as the owner of the contract. |
 
+
 ### owner
 
 ```solidity
 function owner() public view returns (address owner)
 ```
 
-Returns the address of the current vault owner.
+Returns the address of the current owner of the smart contract.
 
 #### Return Values:
 
-| Name    | Type    | Description                     |
-| :------ | :------ | :------------------------------ |
-| `owner` | address | The current owner of the vault. |
+| Name    | Type    | Description                        |
+| :------ | :------ | :--------------------------------- |
+| `owner` | address | The current owner of the contract. |
+
+
+### pendingOwner
+
+```solidity
+function pendingOwner() external view returns (address)
+```
+
+Return the `address` of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
+
+> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `0x0000000000000000000000000000000000000000`.
+
+#### Return Values:
+
+| Name           | Type    | Description |
+|:---------------|:--------|:------------|
+| `pendingOwner` | address | undefined   |
 
 ### transferOwnership
 
@@ -64,17 +82,25 @@ Returns the address of the current vault owner.
 function transferOwnership(address newOwner) public {
 ```
 
-Transfers ownership of the contract to the `newOwner` address.
-
-If the current owner or the `newOwner` address is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account(s) about the **vault ownership transfer**.
-
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when the ownership is transferred._
+Initiate an ownership transfer, setting the `pendingOwner` as the `newOwner`.
 
 #### Parameters:
 
 | Name       | Type    | Description                                      |
 | :--------- | :------ | :----------------------------------------------- |
 | `newOwner` | address | The address to set as the owner of the contract. |
+
+
+### claimOwnership
+
+```solidity
+function claimOwnership() public {
+```
+
+Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
+
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
+
 
 ### receive
 
