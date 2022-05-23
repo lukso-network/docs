@@ -104,6 +104,27 @@ See the **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standard for more
 
 Unlike Externally Owned Accounts (EOAs), smart contracts cannot sign messages since they do not have private keys. This standard defines a way for contracts to verify if a signature provided by an EOA is valid. There will be many contracts that want to utilize signed messages to validate rights-to-move assets or other purposes.
 
+
+
+### ClaimOwnership
+
+**ClaimOwnership** is a modified version of EIP173 that uses a safer mechanism for transferring ownership of a contract. 
+
+Like EIP173, it allows a contract to be owned by an `owner()`, and to restrict some of the contract functionalities to the owner only.
+
+In EIP173, ownership is transferred to a new ownership directly via the `transferOwnership()` function. With **ClaimOwnership**, transfer of ownership works in 2 steps:
+
+1. The previous owner transfer ownership to a new owner via the `transferOwnership()` function.
+2. The new owner claim ownership of the contract by calling the `claimOwnership()` function.
+
+Once the new owner has claimed ownership, control of the contract is fully transferred to the new owner.
+
+This prevents control of the contract from potentially being lost, for instance if the owner call `transferOwnership()` and:
+- the new owner is an EOA that lost its private key.
+- the new owner is an address entered incorrectly.
+
+By making the new owner to accept ownership explicitly, **ClaimOwnership** ensures that the new owner has access to his address.
+
 ## Extension
 
 ### Ownership
