@@ -22,13 +22,13 @@ const ERC725X_ID = INTERFACE_IDS.ERC725X
 
 | Contract                          | InterfaceId  | Description                                                           |
 | :-------------------------------- | :----------- | :-------------------------------------------------------------------- |
+| **ERC1271**                       | `0x1626ba7e` | Standard Signature Validation Method for Contracts.    
 | **ERC725X**                       | `0x44c028fe` | General executor.                                                     |
 | **ERC725Y**                       | `0x714df77c` | General Data key-value store.                                         |
-| **LSP1UniversalReceiver**         | `0x6bb56a14` | Universal Receiver entry function.                                    |
-| **ERC1271**                       | `0x1626ba7e` | Standard Signature Validation Method for Contracts.                   |
 | **LSP0ERC725Account**             | `0x9a3bfe88` | Account that represent an identity on-chain                           |
-| **LSP6KeyManager**                | `0xc403d48f` | Controller for the ERC725Account.                                     |
+| **LSP1UniversalReceiver**         | `0x6bb56a14` | Universal Receiver entry function.                                    |               |
 | **LSP1UniversalReceiverDelegate** | `0xc2d7bcc1` | Universal Receiver delegated to an other smart contract.              |
+| **LSP6KeyManager**                | `0xc403d48f` | Controller for the ERC725Account.                                     |
 | **LSP7DigitalAsset**              | `0xe33f65c3` | Digital Assets either fungible or non-fungible. _ERC20 A-like_        |
 | **LSP8IdentifiableDigitalAsset**  | `0x49399145` | Identifiable Digital Assets (NFT). _ERC721 A-like_                    |
 | **LSP9Vault**                     | `0x8c1d44f6` | Vault that could interact with other smart contracts and hold assets. |
