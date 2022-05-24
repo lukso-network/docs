@@ -1,6 +1,6 @@
 ---
 title: LSP0ERC725Account
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # LSP0ERC725Account

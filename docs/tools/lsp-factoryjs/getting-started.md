@@ -110,6 +110,44 @@ You can now continue using your UP address within the dApp:
 const myUPAddress = myContracts.ERC725Account.address;
 ```
 
+## Options
+
+When instantiating LSPFactory options can be passed to specify parameters such as `chainId` and `ipfsGateway`.
+
+```javascript title="Instantiating LSPFactory with custom options set"
+const lspFactory = new LSPFactory(provider, {
+  deployKey: '0x...',
+  chainId: 22,
+  ipfsGateway: 'https://ipfs.infura.io:5001',
+});
+```
+
+#### Deploy Key
+
+`deployKey` is the private key which should sign the transactions sent by LSPFactory. This account must have enough gas to carry out the transactions.
+
+If no value is set here, LSPFactory will attempt to sign transactions via a browser extension.
+
+#### Chain Id
+
+`chainId` is used to specify the network that LSPFactory is interacting with. This is used in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) to reference base contracts deployed on the network used for [proxy deployment](./getting-started.md#proxy-deployment). Defaults to 22.
+
+#### IPFS Gateway
+
+`ipfsGateway` is used to specify the IPFS node which should be interacted with for uploading and retrieving metadata. `ipfsGateway` can be either a URL string or an object as defined by the [IPFS-HTTP Client](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) library which is used internally to interact with the IPFS node.
+
+```javascript title="Instantiating LSPFactory with custom ipfsGateway options set"
+const lspFactory = new LSPFactory(provider, {
+  deployKey: '0x...',
+  chainId: 22,
+  ipfsGateway: {
+    host: 'ipfs.infura.io',
+    port: 5001,
+    protocol: 'https',
+  },
+});
+```
+
 ## Proxy Deployment
 
 LSPFactory uses proxy deployment of smart contracts to maximise gas efficiency. This can be configured inside the `options` object when deploying [Universal Profiles](./deployment/universal-profile.md) or [Digital Assets](./deployment/digital-asset.md).
@@ -132,6 +170,10 @@ The LSPFactory uses [RxJS](https://rxjs.dev/) library to deploy contracts. This 
 
 When deploying, pass the `deployReactive` flag inside the `options` object when deploying an LSP smart contract to receive an [RxJS](https://rxjs.dev/) `Observable`, which will emit events as your contract is deployed.
 
+:::info
+When deployment is completed, an event containing the final contract addresses will be emitted.
+
+:::
 
 ```typescript title="Reactive deployment of a Universal Profile"
 const observable = await lspFactory.UniversalProfile.deploy({...}, {
@@ -141,6 +183,9 @@ const observable = await lspFactory.UniversalProfile.deploy({...}, {
 observable.subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);
+  },
+  error: (error) => {
+    console.error(error);
   },
   complete: () => {
     console.log('Universal Profile deployment completed');
@@ -156,6 +201,9 @@ const observable = await lspFactory.LSP7DigitalAsset.deploy({...}, {
 observable.subscribe({
   next: (deploymentEvent) => {
     console.log(deploymentEvent);
+  },
+  error: (error) => {
+    console.error(error);
   },
   complete: () => {
     console.log('Digital Asset deployment completed');

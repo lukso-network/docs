@@ -26,7 +26,7 @@ After, it will:
 
 These smart contracts linked with some [LSP3 Universal Profile Metadata](../../../standards/universal-profile/lsp3-universal-profile-metadata) form a Universal Profile. The metadata is the 'face' of your profile and contains information such as your name, description, and profile image.
 
-## Profile Options
+## Profile Properties
 
 Inside the `profileProperties` object, you can set profile configuration options such as the controller addresses and LSP3 metadata.
 
@@ -418,12 +418,26 @@ lspFactory.UniversalProfile.deploy({...}, {
 You can specify how you want your profile metadata to be uploaded while passing the options object. Here you can set the IPFS gateway where you want the profile's metadata to be uploaded.
 
 :::note
-The procedure takes an `ipfsClientOptions` object as defined by the [IPFS-HTTP Client](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) library which is used internally to interact with the specified IPFS node.
+The procedure takes a URL string or an object as defined by the [IPFS-HTTP Client](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) library which is used internally to interact with the specified IPFS node.
 :::
 
-```javascript
+If a URL is passed and no port is specified, the standard 5001 port will be used.
+
+```javascript title="Passing ipfsGateway URL"
 lspFactory.UniversalProfile.deploy({...}, {
-  ipfsClientOptions: {
+  ipfsGateway: 'https://ipfs.infura.io:5001'
+})
+```
+
+```javascript title="Passing ipfsGateway URL string with port set"
+lspFactory.UniversalProfile.deploy({...}, {
+  ipfsGateway: 'https://ipfs.infura.io' // No port set. Port 5001 will be used
+})
+```
+
+```javascript title="Passing ipfsGateway options as an object"
+lspFactory.UniversalProfile.deploy({...}, {
+  ipfsGateway: {
     host: 'ipfs.infura.io',
     port: 5001,
     protocol: 'https',
@@ -431,7 +445,7 @@ lspFactory.UniversalProfile.deploy({...}, {
 })
 ```
 
-If the `ipfsClientOptions` object is provided, it will override the `ipfsClientOptions` object passed during the instantiation of the LSPFactory.
+If the `ipfsGateway` parameter is provided, it will override the `ipfsGateway` object passed during the instantiation of the LSPFactory for this function call only.
 
 ### Reactive Deployment
 
@@ -450,21 +464,124 @@ observable.subscribe();
 The following events will be emitted:
 
 ```typescript
-  { type: 'PROXY', contractName: 'ERC725Account', status: 'PENDING',  transaction: {} },
-  { type: "PROXY", contractName: 'ERC725Account', status: 'PENDING',  receipt:     {} },
-  { type: "PROXY", contractName: 'ERC725Account', functionName: 'initialize', status: 'PENDING',  transaction: {} },
-  { type: "PROXY", contractName: 'ERC725Account', functionName: 'initialize', status: 'COMPLETE', receipt:     {} },
-
-  { type: 'CONTRACT', contractName: 'KeyManager',           status: 'PENDING',  transaction:  {} },
-  { type: "PROXY",    contractName: 'UniversalReceiver...', status: 'PENDING',  transaction:  {} },
-  { type: 'CONTRACT', contractName: 'KeyManager',           status: 'COMPLETE', receipt:      {} },
-  { type: "PROXY",    contractName: 'UniversalReceiver...', status: 'PENDING',  receipt:      {} },
-  { type: "PROXY",    contractName: 'UniversalReceiver...', functionName: 'initialize', status: 'PENDING',  transaction: {}},
-  { type: "PROXY",    contractName: 'UniversalReceiver...', functionName: 'initialize', status: 'COMPLETE', receipt: {}},
-
-  { type: 'TRANSACTION',  contractName: 'ERC725Account', functionName: 'setData', status: 'PENDING',  transaction: {}},
-  { type: 'TRANSACTION',  contractName: 'ERC725Account', functionName: 'setData', status: 'COMPLETE', receipt: {}},
-
-  { type: 'TRANSACTION',  contractName: 'ERC725Account', functionName: 'transferOwnership', status: 'PENDING', transaction: {}},
-  { type: 'TRANSACTION',  contractName: 'ERC725Account', functionName: 'transferOwnership', status: 'COMPLETE', receipt: {}},
+  {
+  type: 'PROXY_DEPLOYMENT',
+  contractName: 'ERC725Account',
+  status: 'PENDING',
+  transaction: {
+    ...
+  }
+}
+{
+  type: 'PROXY_DEPLOYMENT',
+  contractName: 'ERC725Account',
+  status: 'COMPLETE',
+  contractAddress: '0xa7b2ab323cD2504689637A0b503262A337ab87d6',
+  receipt: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  contractName: 'ERC725Account',
+  functionName: 'initialize(address)',
+  status: 'PENDING',
+  transaction: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  contractName: 'ERC725Account',
+  functionName: 'initialize(address)',
+  status: 'COMPLETE',
+  receipt: {
+    ...
+  }
+}
+{
+  type: 'PROXY_DEPLOYMENT',
+  contractName: 'KeyManager',
+  status: 'PENDING',
+  transaction: {
+    ...
+  }
+}
+{
+  type: 'PROXY_DEPLOYMENT',
+  contractName: 'KeyManager',
+  status: 'COMPLETE',
+  contractAddress: '0x8fE3f0fd1bc2aCDA6cf3712Cd9C7858B8195DC8E',
+  receipt: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  contractName: 'KeyManager',
+  functionName: 'initialize(address)',
+  status: 'PENDING',
+  transaction: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  contractName: 'KeyManager',
+  functionName: 'initialize(address)',
+  status: 'COMPLETE',
+  receipt: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  contractName: 'ERC725Account',
+  functionName: 'setData(bytes32[],bytes[])',
+  status: 'PENDING',
+  transaction: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  contractName: 'ERC725Account',
+  functionName: 'setData(bytes32[],bytes[])',
+  status: 'COMPLETE',
+  receipt: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  status: 'PENDING',
+  contractName: 'ERC725Account',
+  functionName: 'transferOwnership(address)',
+  transaction: {
+    ...
+  }
+}
+{
+  type: 'TRANSACTION',
+  contractName: 'ERC725Account',
+  functionName: 'transferOwnership(address)',
+  status: 'COMPLETE',
+  receipt: {
+    ...
+  }
+}
+{
+  ERC725Account: {
+    address: '0xa7b2ab323cD2504689637A0b503262A337ab87d6',
+    receipt: {
+      ...
+    }
+  },
+  KeyManager: {
+    address: '0x8fE3f0fd1bc2aCDA6cf3712Cd9C7858B8195DC8E',
+    receipt: {
+      ...
+    }
+  }
+}
 ```
