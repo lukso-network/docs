@@ -51,19 +51,19 @@ If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contra
 function owner() public view returns (address owner)
 ```
 
-Returns the address of the current owner of the smart contract.
+Returns the address of the current vault owner.
 
 #### Return Values:
 
-| Name    | Type    | Description                        |
-| :------ | :------ | :--------------------------------- |
-| `owner` | address | The current owner of the contract. |
+| Name    | Type    | Description                     |
+| :------ | :------ | :-------------------------------|
+| `owner` | address | The current owner of the vault. |
 
 
 ### pendingOwner
 
 ```solidity
-function pendingOwner() external view returns (address)
+function pendingOwner() public view returns (address)
 ```
 
 Return the `address` of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 

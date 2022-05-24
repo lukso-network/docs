@@ -65,7 +65,7 @@ Returns the address of the current owner of the smart contract.
 ### pendingOwner
 
 ```solidity
-function pendingOwner() external view returns (address)
+function pendingOwner() public view returns (address)
 ```
 
 Return the `address` of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
