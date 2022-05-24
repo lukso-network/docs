@@ -49,10 +49,10 @@ The following types of calls (= operation types) are available:
 
 | Operation number |                     Operation type                     | Description                                                                                                                             |
 | :--------------: | :----------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------- |
-|        0         |          [`CALL`](https://www.evm.codes/#f1)          | call another smart contract                                                                                                             |
-|        1         |         [`CREATE`](https://www.evm.codes/#f0)         | create a new smart contract with the associated bytecode passed as `_data`                                                              |
+|        0         |          [`CALL`](https://www.evm.codes/#f1)           | call another smart contract                                                                                                             |
+|        1         |         [`CREATE`](https://www.evm.codes/#f0)          | create a new smart contract with the associated bytecode passed as `_data`                                                              |
 |        2         |  [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014)  | create a new smart contract with a **salt **(for pre-computed contract addresses)                                                       |
-|        3        | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
+|        3         | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
 |        4         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | run the function from another contract, but use and update the storage of the current contract (= persist `msg.sender` and `msg.value`) |
 
 # ![ERC725X operation type CALL](/img/standards/erc725x-operation-type-call.jpeg)
@@ -104,23 +104,26 @@ See the **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standard for more
 
 Unlike Externally Owned Accounts (EOAs), smart contracts cannot sign messages since they do not have private keys. This standard defines a way for contracts to verify if a signature provided by an EOA is valid. There will be many contracts that want to utilize signed messages to validate rights-to-move assets or other purposes.
 
-
-
 ### ClaimOwnership
 
 **ClaimOwnership** is a modified version of [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173), that uses a safer mechanism for transferring ownership.
 
 In EIP713, ownership of a contract is transferred directly to a new owner, potentially leading to blocking access to the contract. For instance, if the owner call `transferOwnership()` and the new owner:
+
 - is an EOA that lost its private key.
 - is an `address` entered incorrectly.
 
-With **ClaimOwnership**, control of the contract is fully transferred *once the new owner has claimed the new ownership*. The transfer of ownership works in 2 steps:
+With **ClaimOwnership**, control of the contract is fully transferred _once the new owner has claimed the new ownership_. The transfer of ownership works in 2 steps:
 
 1. The previous owner transfer ownership to a new owner via the [`transferOwnership()`](./../smart-contracts/lsp0-erc725-account.md#transferownership) function.
+
+![Claim Ownership step 1](/img/standards/claim-ownership-1.jpeg)
+
 2. The new owner claims ownership of the contract by calling the [`claimOwnership()](./../smart-contracts/lsp0-erc725-account.md#claimownership)` function.
 
-By making the new owner accept ownership explicitly, ClaimOwnership ensures that the new owner has access to his address.
+![Claim Ownership step 2](/img/standards/claim-ownership-2.jpeg)
 
+By making the new owner accept ownership explicitly, ClaimOwnership ensures that the new owner has access to his address.
 
 ## Extension
 
