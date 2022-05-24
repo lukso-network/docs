@@ -1,6 +1,6 @@
 ---
 title: LSP9Vault
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # LSP9Vault
