@@ -1,6 +1,6 @@
 ---
 title: LSP6KeyManager
-sidebar_position: 5
+sidebar_position: 7
 ---
 
 # LSP6KeyManager
@@ -44,10 +44,10 @@ Links the KeyManager to the address of an **LSP0ERC725Account** contract and reg
 | :-------- | :------ | :----------------------------------------------------------- |
 | `account` | address | The address of the **LSP0ER725Account** contract to control. |
 
-### account
+### target
 
 ```solidity
-function account() external view returns (address)
+function target() external view returns (address)
 ```
 
 Returns the address of the account linked to this KeyManager.
@@ -60,14 +60,14 @@ This can be a contract that implements:
 
 #### Returns
 
-| Name      | Type    | Description                       |
-| --------- | ------- | --------------------------------- |
-| `account` | address | the address of the linked account |
+| Name     | Type    | Description                       |
+| -------- | ------- | --------------------------------- |
+| `target` | address | the address of the linked account |
 
 ### execute
 
 ```solidity
-function execute(bytes memory data) public payable returns (bytes memory result)
+function execute(bytes memory _calldata) public payable returns (bytes memory result)
 ```
 
 Executes a payload on the **LSP0ERC725Account** contract.
@@ -78,9 +78,9 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 #### Parameters:
 
-| Name   | Type  | Description                 |
-| :----- | :---- | :-------------------------- |
-| `data` | bytes | The payload to be executed. |
+| Name        | Type  | Description                 |
+| :---------- | :---- | :-------------------------- |
+| `_calldata` | bytes | The payload to be executed. |
 
 #### Return Values:
 
@@ -120,10 +120,9 @@ More info about **channel** can be found here: **[What are multi-channel nonces]
 
 ```solidity
 function executeRelayCall(
-    address signedFor,
+    bytes memory signature,
     uint256 nonce,
-    bytes memory data,
-    bytes memory signature
+    bytes memory _calldata
 ) public
 ```
 
@@ -135,10 +134,9 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 | Name        | Type    | Description                                       |
 | :---------- | :------ | :------------------------------------------------ |
-| `signedFor` | address | The KeyManager contract address.                  |
+| `signature` | bytes   | The bytes65 ethereum signature.                   |
 | `nonce`     | uint256 | The nonce of the address that signed the message. |
-| `data`      | bytes   | The payload to be executed.                       |
-| `signature` | bytes   | The bytes32 ethereum signature.                   |
+| `_calldata` | bytes   | The payload to be executed.                       |
 
 ### isValidSignature
 
@@ -179,10 +177,10 @@ _**MUST** be fired when a transaction was successfully executed from the **[exec
 
 #### Values:
 
-| Name       | Type    | Description                                                                         |
-| :--------- | :------ | :---------------------------------------------------------------------------------- |
-| `value`    | uint256 | The amount to be sent with the payload.                                             |
-| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`account()`](#account). |
+| Name       | Type    | Description                                                                       |
+| :--------- | :------ | :-------------------------------------------------------------------------------- |
+| `value`    | uint256 | The amount to be sent with the payload.                                           |
+| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
 
 ## References
 

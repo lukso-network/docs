@@ -76,7 +76,7 @@ The **[erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/src/s
 
 > This section covers how to detect if a contract contains a specific set of ERC725Y in its storage.
 
-We can verify if a contract contains a specific set of ERC725 Data keys (= **metadata**) by checking the value stored under the data key `SupportedStandards:{StandardName}` in the contract storage, via the function `getData([SupportedStandards:{StandardName}])`.
+We can verify if a contract contains a specific set of ERC725 keys (= **metadata**) by checking the value stored under the key `SupportedStandards:{StandardName}` in the contract storage, via the function `getData(SupportedStandards:{StandardName})`.
 
 Calling this function will return a specific bytes4 value (defined in the Metadata Standard) if the contract has some metadata keys set by default. Otherwise, it will return an empty value.
 
@@ -95,6 +95,6 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 const myTokenContract = new web3.eth.Contract(LSP7DigitalAsset.abi, '<contract-address>');
 
 const SupportedStandards_LSP4 = '0xeafec4d89fa9619884b6b89135626455000000000000000000000000a4d96624';
-await myTokenContract.methods.getData([SupportedStandards_LSP4DigitalAsset]).call();
+await myTokenContract.methods["getData(bytes32[])"]([SupportedStandards_LSP4DigitalAsset]).call();
 > 0xa4d96624; // valid result according to LSP4
 ```

@@ -4,10 +4,10 @@ sidebar_position: 1.1
 
 # Getting Started
 
-The `@lukso/lsp-factory.js` package allows simple deployments of [ERC725-UniversalProfiles](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md), [LSP7-DigitalAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md) and [LSP8-IdentifiableDigitalAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md).
+The `@lukso/lsp-factory.js` package allows simple deployments of [ERC725-UniversalProfiles](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md), [LSP7-DigitalAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md), and [LSP8-IdentifiableDigitalAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md).
 
-- GitHub repo: https://github.com/lukso-network/tools-lsp-factory
-- NPM: https://www.npmjs.com/package/@lukso/lsp-factory.js
+- [GitHub Repository](https://github.com/lukso-network/tools-lsp-factory)
+- [NPM Package](https://www.npmjs.com/package/@lukso/lsp-factory.js)
 
 ## Installation
 
@@ -28,9 +28,9 @@ const lspFactory = new LSPFactory(provider, {
 });
 ```
 
-## Using LSPFactory in a Dapp
+## Using LSPFactory in a dApp
 
-If being used in the browser in a Dapp, pass the `ethereum` object as the provider parameter to connect to a browser extension like the UniversalProfile Browser extension or MetaMask. This will then prompt users to sign the transactions the LSPFactory deploys smart contracts.
+If used in the browser on a dApp's page, pass the ethereum object as the provider parameter to connect to a browser extension like the UniversalProfile browser extension or MetaMask. The browser extension will prompt users to sign the transactions as the **LSPFactory** deploys the smart contracts.
 
 ```javascript
 await ethereum.request({ method: 'eth_requestAccounts', params: [] });
@@ -50,7 +50,7 @@ const myContracts = await lspFactory.UniversalProfile.deploy({
 };
 ```
 
-`lsp3Profile` contains the [LSP3 Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL) of your Universal Profile. This is the 'face' of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
+The key `lsp3Profile` contains the [LSP3 Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL) of your Universal Profile. This is the "face" of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
 
 ```javascript
 const myLSP3MetaData = {
@@ -87,18 +87,132 @@ const myLSP3MetaData = {
 };
 ```
 
-When deploying your Universal Profile your LSP3 data will be automatically uploaded to IPFS.
+When deploying your Universal Profile, your LSP3 data will be automatically uploaded to IPFS.
 
-If you already have LSP3 data uploaded then simply pass an IPFS URL:
+:::note
+If you already have LSP3 data uploaded, then you can pass an IPFS URL:
 
 ```javascript
 const myLSP3MetaData = 'ipfs://QmPzUfdKhY6vfcTNDnitwKnnpm5GqjYSmw9todNVmi4bqy';
 ```
 
-To create a 'faceless' Universal Profile, omit the `lsp3Profile` value. This can be useful if you wish to create the LSP3 metadata later or create an anonymous UP.
+:::
 
-You can now continue using your UP address:
+To create a anonymous Universal Profile, omit the `lsp3Profile` value.
+
+:::info
+Anonymous profiles can also be useful if you wish to create the LSP3 metadata later.
+:::
+
+You can now continue using your UP address within the dApp:
 
 ```javascript
 const myUPAddress = myContracts.ERC725Account.address;
 ```
+
+## Options
+
+When instantiating LSPFactory options can be passed to specify parameters such as `chainId` and `ipfsGateway`.
+
+```javascript title="Instantiating LSPFactory with custom options set"
+const lspFactory = new LSPFactory(provider, {
+  deployKey: '0x...',
+  chainId: 22,
+  ipfsGateway: 'https://ipfs.infura.io:5001',
+});
+```
+
+#### Deploy Key
+
+`deployKey` is the private key which should sign the transactions sent by LSPFactory. This account must have enough gas to carry out the transactions.
+
+If no value is set here, LSPFactory will attempt to sign transactions via a browser extension.
+
+#### Chain Id
+
+`chainId` is used to specify the network that LSPFactory is interacting with. This is used in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) to reference base contracts deployed on the network used for [proxy deployment](./getting-started.md#proxy-deployment). Defaults to 22.
+
+#### IPFS Gateway
+
+`ipfsGateway` is used to specify the IPFS node which should be interacted with for uploading and retrieving metadata. `ipfsGateway` can be either a URL string or an object as defined by the [IPFS-HTTP Client](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) library which is used internally to interact with the IPFS node.
+
+```javascript title="Instantiating LSPFactory with custom ipfsGateway options set"
+const lspFactory = new LSPFactory(provider, {
+  deployKey: '0x...',
+  chainId: 22,
+  ipfsGateway: {
+    host: 'ipfs.infura.io',
+    port: 5001,
+    protocol: 'https',
+  },
+});
+```
+
+## Proxy Deployment
+
+LSPFactory uses proxy deployment of smart contracts to maximise gas efficiency. This can be configured inside the `options` object when deploying [Universal Profiles](./deployment/universal-profile.md) or [Digital Assets](./deployment/digital-asset.md).
+
+When using proxy deployment contracts will be deployed as a **minimal proxy contract** based on [EIP1167](https://eips.ethereum.org/EIPS/eip-1167). This is a lightweight contract that inherits its logic by referencing the address of a contract already deployed on the blockchain. Inheriting allows cheaper deployment of Universal Profiles and Digital Assets because only the proxy contract needs to be deployed.
+
+Base contract addresses for different networks are stored internally in the [version file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) to allow a specific version of an LSP smart contract to be used. If no version is specified, the most recent base contract version will be referenced by the proxy contract.
+
+:::info
+A specific contract version can be used by passing the `version` parameter in the `options` object when deploying. If no version is specified the latest base contract address will be used.
+:::
+
+LSPFactory will check that there is some bytecode deployed at the base contract address before deploying. If none is found, a new base contract will be deployed and referenced in the proxy contract. This process is helpful when using LSPFactory on a local development network like Hardhat where there will be no pre-deployed base contracts.
+
+When using proxy deployment you can specify the base contract address by passing the `version` parameter inside the `options` object. This allows you to deploy a specific contract implementation by using a custom base contract you have deployed.
+
+## Reactive deployment
+
+The LSPFactory uses [RxJS](https://rxjs.dev/) library to deploy contracts. This can be leveraged for certain front-end behaviors to give better feedback to users when they trigger a deployment from a user interface. For example, you may want to implement a loading bar to tell users how deployment is progressing or display details and addresses of the contracts as they are deployed.
+
+When deploying, pass the `deployReactive` flag inside the `options` object when deploying an LSP smart contract to receive an [RxJS](https://rxjs.dev/) `Observable`, which will emit events as your contract is deployed.
+
+:::info
+When deployment is completed, an event containing the final contract addresses will be emitted.
+
+:::
+
+```typescript title="Reactive deployment of a Universal Profile"
+const observable = await lspFactory.UniversalProfile.deploy({...}, {
+  deployReactive: true
+});
+
+observable.subscribe({
+  next: (deploymentEvent) => {
+    console.log(deploymentEvent);
+  },
+  error: (error) => {
+    console.error(error);
+  },
+  complete: () => {
+    console.log('Universal Profile deployment completed');
+  },
+});
+```
+
+```typescript title="Reactive deployment of an LSP7 Digital Asset"
+const observable = await lspFactory.LSP7DigitalAsset.deploy({...}, {
+  deployReactive: true
+});
+
+observable.subscribe({
+  next: (deploymentEvent) => {
+    console.log(deploymentEvent);
+  },
+  error: (error) => {
+    console.error(error);
+  },
+  complete: () => {
+    console.log('Digital Asset deployment completed');
+  },
+});
+```
+
+:::note
+The function defined in `next` will be called whenever a new deployment event is created. The function defined in `complete` will be called once after deployment is finished.
+:::
+
+Read further specification on the deployment events emitted when deploying [Universal Profiles](./deployment/universal-profile.md#reactive-deployment) and [Digital Assets](./deployment/digital-asset.md#reactive-deployment).

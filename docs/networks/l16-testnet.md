@@ -3,10 +3,7 @@ sidebar_position: 2
 ---
 
 # L16 Public Testnet
-
-:::caution L16-Testnet Beta has ended.
-This testnet will soon go live again. Get updates on our [Discord](https://discord.gg/lukso) server.
-:::
+ 
 
 The L16 Public Testnet will be the last stable test network before the mainnet launch and will likely stay online in parallel for experimental purposes.
 
@@ -16,12 +13,19 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | ---------------------------- | ------------------------------------------------------------------------------------------------ |
 | Network Name                 | L16 Beta                                                                                         |
 | New RPC URL                  | https://rpc.beta.l16.lukso.network                                                               |
-| Chain ID                     | 19051978 (0x122B5CA)                                                                             |
+| Chain ID                     | 83748374 (0x4FDE616)                                                                             |
 | Currency Symbol              | LYXt                                                                                             |
-| Execution Block Explorer URL | [https://ethstats.l16.d.lukso.dev](https://ethstats.l16.d.lukso.dev)                             |
-| Consensus Block Explorer URL | [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network) |
+| Execution Block Explorer URL | [https://stats.execution.beta.l16.lukso.network](https://stats.execution.beta.l16.lukso.network) |
+| Consensus Block Explorer URL | [https://stats.consensus.beta.l16.lukso.network](https://stats.consensus.beta.l16.lukso.network) |
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
+
+# Bootnodes
+
+| Bootnode                      | Client                                                                                            | Value |
+| ---------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ | 
+|  0 | Beacon | ```enr:-MK4QJ170_c4shhTN7NYc0ZiumYUrME_YUcWw_d8W6KKPHtHYVTVogsTqsQZDY_R3VlWnpKW-tIMJeB2JOIvo0D3Gi6GAYDxIN1yh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQI6qePHCvwjkh8CMvuUaSWTNiYkFzZpZh3j-DgNjBLvo4hzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
+|   | Geth | ```enode://c2bb19ce658cfdf1fecb45da599ee6c7bf36e5292efb3fb61303a0b2cd07f96c20ac9b376a464d687ac456675a2e4a44aec39a0509bcb4b6d8221eedec25aca2@34.90.85.198:30303``` |
 
 ## System Requirements
 
@@ -55,15 +59,12 @@ Prepare your environment. You need:
 
 1. [Docker](https://docs.docker.com/get-docker/)
 2. [Docker Compose](https://docs.docker.com/compose/)
-3. [curl](https://macappstore.org/curl/)
-4. wget (linux users only)
-5. Make
-6. [jq](https://stedolan.github.io/jq/)
+3. [curl](https://macappstore.org/curl/) 
 
 ```bash title="Example script for installing docker"
 # install dependencies
 sudo apt-get -y update
-sudo apt-get -y install make curl wget jq
+sudo apt-get -y install curl
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -80,19 +81,18 @@ docker-compose --version
 
 ```bash
 mkdir lukso-l16-testnet && cd lukso-l16-testnet
-curl https://raw.githubusercontent.com/lukso-network/network-configs/l16-dev/l16/network_setup_kit/install.sh | bash
+curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/cli_downloader.sh | bash
 ```
 
-The script will download the following files:
-
-- `docker-compose.yaml`
-- `Makefile`
-- `config`
-- `.env`
+The script will download the LUKSO cli into the folder. You can put into your PATH var or execute it directly. Initialise the the network with
+ 
+```bash
+./lukso network init
+```
 
 ### Naming the Node
 
-**Optional:** If you want change your node's name, you need to edit the `NODE_NAME` variable in the `.env` file to update your node name. You can edit it with vim:
+**Optional:** If you want change your node's name, you need to edit the `name` variable in the `node_config.yaml` file to update your node name. You can find it under the top level key `node` and you can edit it with vim:
 
 ```bash
 vim .env
@@ -104,26 +104,27 @@ If your node is already running, you will need to restart it to apply the change
 
 ```bash
 # Start your nodes
-make start
+./lukso network init
 
 # You can check logs with
-make log_execution
-make log_consensus
+./lukso network logs consensus
+./lukso network logs execution
 
 # Stop your nodes
-make stop
+./lukso network stop
 
 # If your nodes are stopped, you could reset them using
 # Reset clears the database, which forces your node to sync again on start
-make reset
+./lukso network clear
 ```
 
 ### Check the Network Status
 
 You can see your node on the following page:
 
-1. [https://ethstats.l16.d.lukso.dev/](https://ethstats.l16.d.lukso.dev/)
-2. [https://consensus.stats.beta.l16.lukso.network](https://consensus.stats.beta.l16.lukso.network)
+
+1. [https://stats.execution.beta.l16.lukso.network](https://stats.execution.beta.l16.lukso.network)
+2. [https://stats.consensus.beta.l16.lukso.network](https://stats.consensus.beta.l16.lukso.network)
 
 ## Become a Validator
 
@@ -139,31 +140,7 @@ You can see your node on the following page:
 
 ### Create a Wallet
 
-First, generate a validator mnemonic seed phrase. **This mnemonic seed phrase generates your validator's private key. Store it in a safe location.**
-
-You will need this mnemonic to create your validator address and deposit data. If you want to generate a separate withdrawal mnemonic. Generate another mnemonic using the same command and copy both of the mnemonics in a safe place.
-
-```bash
-make mnemonic
-```
-
-Generate a wallet using the following command. It will ask for the number of validators, validator-mnemonic (generated using the above command), and a `Keystore` password.
-
-```bash
-make create-wallet
-```
-
-This command will create a directory named `keystore`.
-
-### Deposit the Validator Data
-
-Generate a `deposit-data.json` using the following command. It will ask for the number of validators, validator mnemonic, and withdrawal mnemonic.
-
-```bash
-make create-deposit
-```
-
-You will find the `deposit-data.json` file inside your current directory.
+THIS SECTION IS BEING RE DONE 
 
 ### Submit the Deposit Transaction
 
@@ -174,18 +151,13 @@ You will find the `deposit-data.json` file inside your current directory.
 
 #### Update Secrets and submit Transaction
 
-Update `secrets.env` using the public address and private key from MetaMask.
-
-```bash
-ETH1_FROM_ADDR=YOUR_WALLET_ADDRESS
-ETH1_FROM_PRIV=YOUR_PRIVATE_KEY
-```
+THIS SECTION IS BEING RE DONE 
 
 #### Send the transaction.
 
 ```bash
 # submit deposit
-make submit-deposit
+./lukso network validator deposit
 
 # wait 8h till validator is activated
 ```
@@ -196,32 +168,20 @@ You will need to wait for eight hours to activate your validator.
 
 Once your validator is activated, you spin up a validator client.
 
-**Make sure your _consensus_ and _execution_ clients are running (by typing `make start`).**
+**Make sure your _consensus_ and _execution_ clients are running (by typing `./lukso network start`).**
 
 ```bash
-make start-validator
+./lukso network start validator
 
 # You can check logs with
-make log_validator
+./lukso network logs validator
 
 # You can stop the validator using, this will also stop all other nodes
-make stop
+./lukso network stop
 ```
 
 ## Troubleshooting L16 Beta Testnet
-
-### Denied Permission
-
-:::info Context
-While running `make start` you are getting permission-related issues. You can have a log like this:
-
-```
-Permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied "docker kill" requires at least 1 argument. See `docker kill --help`
-```
-
-:::
-
-**Proposed Solution:** Try running the `make` command as super user by using `sudo make start`.
+ 
 
 ### Stalled Synchronization
 
@@ -231,19 +191,16 @@ You found your consensus (prysm) client has no peer and the execution engine (ge
 
 **Proposed Solution:**
 
-1. Open `.env` file using any text editor. For `vim` the command will be `vim .env`
-2. Change `PRYSM_BOOTSTRAP_NODE` to this
+1. Open `node_config.yaml` file using any text editor. For `vim` the command will be `vim node_config.yaml`
+2. Change `bootnode` in the `consensus` section to a bootnode in the table on the top.
+ 
 
-```
-PRYSM_BOOTSTRAP_NODE=enr:-MK4QACsMyCBqoH7E2xTFMyVKd0wbaOEoff6q_N1Vx_HVZuVYBk1JoB5Ava9h6eBlS5XzxM5LHFI1BG1IchMdI6JMhWGAX8tHtE1h2F0dG5ldHOIAAAAAAAAAACEZXRoMpC3QoawYgAAcf__________gmlkgnY0gmlwhCJbPjCJc2VjcDI1NmsxoQJp3RTwCXObnrJNuiJlLaM4LlhYOaWXhtj4Hz3PW9sfgYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A
-```
-
-3. Restart the node by typing: `sudo make stop && sudo make start`
+3. Restart the node by typing: `./lukso network stop && ./lukso network start`
 
 ### Unmarshalling Error
 
 :::info Context
-Check your execution log by `sudo make log_execution`. For Ubuntu 20.04 LTS you may get an unmarshal-related issue like:
+Check your execution log by `./lukso network log execution`. For Ubuntu 20.04 LTS you may get an unmarshal-related issue like:
 
 ```
 log_execution: err="peer connected on snap without compatible eth support" log_consensus: level=error msg="Could not connect to powchain endpoint: could not dial eth1 nodes: json: cannot unmarshal string into Go struct field SyncProgress.CurrentBlock of type uint64" prefix=powchain
@@ -254,10 +211,10 @@ log_execution: err="peer connected on snap without compatible eth support" log_c
 **Proposed Solution:**
 
 ```sh
-# stop docker containser
-sudo make stop
+# stop docker container
+./lukso network stop
 # reset data directory
-sudo make reset
+./lukso network clear
 # remove previous images
 docker system prune --all --force --volumes
 # delete lukso testnet directory
@@ -281,4 +238,5 @@ tcp:3500
 tcp:4000
 tcp:13000
 udp:12000
+udp:30303
 ```
