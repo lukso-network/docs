@@ -1,6 +1,6 @@
 ---
 title: LSP8IdentifiableDigitalAsset
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # LSP8IdentifiableDigitalAsset

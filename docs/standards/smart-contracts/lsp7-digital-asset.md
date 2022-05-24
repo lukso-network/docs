@@ -1,6 +1,6 @@
 ---
 title: LSP7DigitalAsset
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # LSP7DigitalAsset

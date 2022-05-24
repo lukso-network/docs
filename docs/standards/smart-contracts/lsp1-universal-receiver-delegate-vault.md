@@ -1,6 +1,6 @@
 ---
 title: LSP1UniversalReceiverDelegateVault
-sidebar_position: 10
+sidebar_position: 5
 ---
 
 # LSP1UniversalReceiverDelegateVault
