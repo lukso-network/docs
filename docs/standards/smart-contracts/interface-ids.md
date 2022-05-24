@@ -11,9 +11,9 @@ The **supportsInterface** function from the **[ERC165](https://eips.ethereum.org
 
 Interface IDs can be easily accessed in your code using the [LSP smart contract implementations](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) as follows:
 ```js
-import { INTERFACE_IDS } from "@lukso/lsp-smart-contracts/constants.ts"
+import { INTERFACE_IDS } from "@lukso/lsp-smart-contracts/constants.js"
 
-const myId = INTERFACE_IDS.ERC725X
+const ERC725X_ID = INTERFACE_IDS.ERC725X
 ```
 
 :::note
