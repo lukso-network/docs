@@ -87,7 +87,10 @@ Click on the toggles below to **learn more about the features enabled by each pe
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
-    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> data key-value store of the linked <code>ERC725Account</code> (except permissions, which require the permissions <code>CHANGEPERMISSIONS</code> described above).
+
+Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
+
+> **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y keys](#allowed-erc725y-keys)**
 
 </details>
 
@@ -158,6 +161,60 @@ This permission allows executing code and functions from other contracts in the 
 When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
 
 :::
+
+### SUPER Permissions
+
+The super permissions below enable the same the feature as the ones aboves, with the benefits of not restricting on specific data keys (`SUPER_SETDATA`) or specific `addresses`, standards or functions.
+
+<details>
+    <summary><code>SUPER_SETDATA</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
+    </p>
+
+Same as `SETDATA`, but allowing to set any ERC725Y data keys.
+
+</details>
+
+<details>
+    <summary><code>SUPER_TRANSFERVALUE</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
+    </p>
+
+Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
+
+</details>
+
+<details>
+    <summary><code>SUPER_CALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
+    </p>
+
+Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+
+</details>
+
+<details>
+    <summary><code>SUPER_STATICCALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000002000</code>
+    </p>
+
+Same as `STATICCALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+
+</details>
+
+<details>
+    <summary><code>SUPER_DELEGATECALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
+    </p>
+
+Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+
+</details>
 
 ### Combining Permissions
 
