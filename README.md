@@ -1,8 +1,19 @@
 # LUKSO Public Documentation Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+It is the official Technical Documentation Website of LUKSO.
 
 Live URL: <https://docs.lukso.tech/>
+
+## Tool documentations
+
+**When the docs pages are built, documentation of the following repositories will be pulled in from the respective repos and updated automatically:**
+
+- [lsp-factory.js](https://github.com/lukso-network/tools-lsp-factory/tree/develop/docs)
+- [erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/docs)
+
+**NOTE:**
+Make sure to edit these tools in their respective repos, otherwise changes in the docs here will be overwritten.
 
 ## Installation
 
