@@ -181,7 +181,9 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 ### SUPER Permissions
 
-The super permissions below enable the same feature as those above, with the benefits of not restricting specific data keys (`SUPER_SETDATA`) or specific `addresses`, standards, or functions.
+The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are *skipped*. This allows for cheaper transactions where, these restrictions aren't set anyway.
+
+*Use with caution, as even if restrictions to certain `addresses`, `standards`, or `functions` are set for an controller address, they will be ignored.*
 
 <details>
     <summary><code>SUPER_SETDATA</code></summary>
