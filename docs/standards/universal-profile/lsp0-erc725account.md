@@ -106,16 +106,16 @@ Unlike Externally Owned Accounts (EOAs), smart contracts cannot sign messages si
 
 ### ClaimOwnership
 
-**ClaimOwnership** is a modified version of [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173), that uses a safer mechanism for transferring ownership.
+**ClaimOwnership** is a modified version of [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) that uses a safer mechanism for transferring ownership.
 
-In EIP713, ownership of a contract is transferred directly to a new owner, potentially leading to blocking access to the contract. For instance, if the owner call `transferOwnership()` and the new owner:
+In EIP713, ownership of a contract is transferred directly to a new owner, potentially leading to blocking access to the contract. For instance, if the owner calls `transferOwnership()` and the new owner:
 
 - is an EOA that lost its private key.
 - is an `address` entered incorrectly.
 
 With **ClaimOwnership**, control of the contract is fully transferred _once the new owner has claimed the new ownership_. The transfer of ownership works in 2 steps:
 
-1. The previous owner transfer ownership to a new owner via the [`transferOwnership()`](./../smart-contracts/lsp0-erc725-account.md#transferownership) function.
+1. The previous owner transfers ownership to a new owner via the [`transferOwnership()`](./../smart-contracts/lsp0-erc725-account.md#transferownership) function.
 
 ![Claim Ownership step 1](/img/standards/claim-ownership-1.jpeg)
 
