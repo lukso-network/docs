@@ -1,6 +1,6 @@
 ---
 title: LSP4DigitalAssetMetadata
-sidebar_position: 4
+sidebar_position: 6
 ---
 
 # LSP4DigitalAssetMetadata

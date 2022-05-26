@@ -24,8 +24,8 @@ And if you need it, [here is a tutorial on how to do it](https://metamask.zendes
 
 | Bootnode                      | Client                                                                                            | Value |
 | ---------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ | 
-|  0 | Beacon | ```enr:-MK4QHUjdytTpQtXvt52BBe1tK-EzURE2RQNVJGQ5iCAS--gFVJdUZU6NGr1RKYrIcj68RQbl_eThpPCSJwAQWBtCfmGAYDMWtDEh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQM1pj4H27XIBC_t-mq5x9GfwLq257XwacAnlu5bbUWKkYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
-|   | Geth | ```enode://0ee99dfebb1257b5e703c7d21a40d6b2558cc117e3a16e1ac4eaecf27e6474cf3757817bd65affe2de0ff3223eb2368775f9f1380f3cb915d1633638b7b37ec1@34.90.85.198:30303``` |
+|  0 | Beacon | ```enr:-MK4QJ170_c4shhTN7NYc0ZiumYUrME_YUcWw_d8W6KKPHtHYVTVogsTqsQZDY_R3VlWnpKW-tIMJeB2JOIvo0D3Gi6GAYDxIN1yh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQI6qePHCvwjkh8CMvuUaSWTNiYkFzZpZh3j-DgNjBLvo4hzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
+|   | Geth | ```enode://c2bb19ce658cfdf1fecb45da599ee6c7bf36e5292efb3fb61303a0b2cd07f96c20ac9b376a464d687ac456675a2e4a44aec39a0509bcb4b6d8221eedec25aca2@34.90.85.198:30303``` |
 
 ## System Requirements
 
