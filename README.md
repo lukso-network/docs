@@ -5,15 +5,16 @@ It is the official Technical Documentation Website of LUKSO.
 
 Live URL: <https://docs.lukso.tech/>
 
-## External Sources
+## External Documentation
 
-When the webpage is built, it pulls the documentation of the following other repositories, that
-show up within the Tools section:
+**When the docs pages are built, documentation of the following repositories will be pulled in from the respective repos and updated automatically:**
 
 - [lsp-factory.js](https://github.com/lukso-network/tools-lsp-factory/tree/develop/docs)
 - [erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/docs)
 
-> If you want to improve our documentation, make shure to open an PR on the right repository, otherwise, changes might get overwritten.
+::: note
+Make sure to edit these tools in their respective repos, otherwise changes in the docs here will be overwritten.
+:::
 
 ## Installation
 
