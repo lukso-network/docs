@@ -381,20 +381,16 @@ _**MUST** be fired when the **[`execute(...)`](#execute)** function creates a ne
 ### DataChanged
 
 ```solidity
-event DataChanged(
-    bytes32 key,
-    bytes value,
-)
+event DataChanged(bytes32 dataKey)
 ```
 
 _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
 
 #### Values:
 
-| Name    | Type    | Description                      |
-| :------ | :------ | :------------------------------- |
-| `key`   | bytes32 | The data key which value is set. |
-| `value` | bytes   | The data set.                    |
+| Name        | Type    | Description                      |
+| :---------- | :------ | :------------------------------- |
+| `dataKey`   | bytes32 | The data key which value is set. |
 
 ### UniversalReceiver
 

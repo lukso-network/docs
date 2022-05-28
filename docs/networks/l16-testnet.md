@@ -15,8 +15,8 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | New RPC URL                  | https://rpc.beta.l16.lukso.network                                                               |
 | Chain ID                     | 83748374 (0x4FDE616)                                                                             |
 | Currency Symbol              | LYXt                                                                                             |
-| Execution Block Explorer URL | [https://stats.execution.beta.l16.lukso.network](https://stats.execution.beta.l16.lukso.network) |
-| Consensus Block Explorer URL | [https://stats.consensus.beta.l16.lukso.network](https://stats.consensus.beta.l16.lukso.network) |
+| Execution Block Explorer URL | [https://explorer.execution.beta.l16.lukso.network/](https://explorer.execution.beta.l16.lukso.network/) |
+
 
 And if you need it, [here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
@@ -52,6 +52,20 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 :::
 
 ## Running a Node
+ 
+### Ports
+
+
+| Port                      | Protocol           | Client | Ingress |  Comment |
+| ---------------------------- | ---------------------------- | ---------------------------------- | ---------------------------------- | 
+|  30303 | TCP | geth syncing | port must be open | ... |
+|  30303 | UDP | geth discovery| port must be open | ... |
+|  13000 | TCP | beacon syncing| port must be open | ... |
+|  12000 | UDP | beacon discovery| port must be open | ... |
+|  8545 | TCP | geth api| port should be closed | valuable information are provided but for a validator it is recommended to not open the port |
+|  8080 | UDP | beacon metrics| port should be closed | ... |
+|  3500 | UDP | beacon api| port should be closed | valuable information are provided but for a validator it is recommended to not open the port |
+|  4000 | UDP | beacon rpc| port should be closed | ... |
 
 ### Installing Dependencies
 
@@ -81,41 +95,32 @@ docker-compose --version
 
 ```bash
 mkdir lukso-l16-testnet && cd lukso-l16-testnet
-curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/cli_downloader.sh | bash
+curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
 ```
 
-The script will download the LUKSO cli into the folder. You can put into your PATH var or execute it directly. Initialise the the network with
+The script will download the LUKSO cli into the folder. 
  
 ```bash
-./lukso network init
+lukso network init --nodeName [NAME_HOW_IT_APPEARS_IN_THE_STATS]
 ```
-
-### Naming the Node
-
-**Optional:** If you want change your node's name, you need to edit the `name` variable in the `node_config.yaml` file to update your node name. You can find it under the top level key `node` and you can edit it with vim:
-
-```bash
-vim .env
-```
-
-If your node is already running, you will need to restart it to apply the changes.
+ 
 
 ### Starting the Node
 
 ```bash
 # Start your nodes
-./lukso network init
+lukso network init
 
 # You can check logs with
-./lukso network logs consensus
-./lukso network logs execution
+lukso network logs consensus
+lukso network logs execution
 
 # Stop your nodes
-./lukso network stop
+lukso network stop
 
-# If your nodes are stopped, you could reset them using
-# Reset clears the database, which forces your node to sync again on start
-./lukso network clear
+# If you selected a wrong chain, you could reset the setup. This will delete all related data except the keystores.
+# NOTE: the network must be stopped
+lukso network clear
 ```
 
 ### Check the Network Status
@@ -138,26 +143,27 @@ You can see your node on the following page:
 5. Visit the [L16 Faucet](https://faucet.beta.l16.lukso.network), paste the copied address and request your test tokens.
 6. Wait for the transaction to go through and check the balance in your MetaMask. You should have received 35 LYX.
 
-### Create a Wallet
+### Setup Validator
 
-THIS SECTION IS BEING RE DONE 
+```
+lukso network validator setup
+```
 
-### Submit the Deposit Transaction
+This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit
+transaction. You can check if the wallet has enough funds by calling
 
-#### Get your Address and Private Key from MetaMask
+```
+lukso network validator describe
+```
 
-1. Open MetaMask and click on the three dots menu on the right side and select `Account details.`
-2. Click on Export Private Key and copy it into the clipboard.
-
-#### Update Secrets and submit Transaction
-
-THIS SECTION IS BEING RE DONE 
+Transfer enough funds to the transaction wallet public address from MetaMask.
+ 
 
 #### Send the transaction.
 
 ```bash
 # submit deposit
-./lukso network validator deposit
+lukso network validator deposit_legacy
 
 # wait 8h till validator is activated
 ```
@@ -171,13 +177,13 @@ Once your validator is activated, you spin up a validator client.
 **Make sure your _consensus_ and _execution_ clients are running (by typing `./lukso network start`).**
 
 ```bash
-./lukso network start validator
+lukso network validator start
 
 # You can check logs with
-./lukso network logs validator
+lukso network logs validator
 
 # You can stop the validator using, this will also stop all other nodes
-./lukso network stop
+lukso network validator stop
 ```
 
 ## Troubleshooting L16 Beta Testnet
@@ -223,20 +229,4 @@ cd .. && rm -rf ./lukso-l16-testnet
 
 After trying out the proposed solution, re-run your node setup from the start.
 
-## FAQ
-
-### What ports must be open on a node?
-
-It would be best if you opened the following ports and protocols in the network to run your node correctly.
-
-```
-tcp:30303
-tcp:8545
-tcp:8598
-tcp:8080
-tcp:3500
-tcp:4000
-tcp:13000
-udp:12000
-udp:30303
-```
+ 
