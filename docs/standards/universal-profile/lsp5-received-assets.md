@@ -53,7 +53,7 @@ The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications t
 ```json
 {
   "name": "LSP5ReceivedAssetsMap:<address>",
-  "key": "0x812c4334633eb81600000000<address>",
+  "key": "0x812c4334633eb816c80d0000<address>",
   "keyType": "Mapping",
   "valueType": "bytes",
   "valueContent": "Mixed"
