@@ -53,7 +53,7 @@ The `LSP10VaultsMap` data key also helps prevent adding duplications to the arra
 ```json
 {
   "name": "LSP10VaultsMap:<address>",
-  "key": "0x192448c3c0f88c7f00000000<address>",
+  "key": "0x192448c3c0f88c7f238c0000<address>",
   "keyType": "Mapping",
   "valueType": "bytes",
   "valueContent": "Mixed"
