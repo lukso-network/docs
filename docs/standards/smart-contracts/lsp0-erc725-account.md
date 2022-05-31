@@ -61,21 +61,48 @@ Returns the address of the current owner of the smart contract.
 | :------ | :------ | :--------------------------------- |
 | `owner` | address | The current owner of the contract. |
 
+
+### pendingOwner
+
+```solidity
+function pendingOwner() public view returns (address)
+```
+
+Return the `address` of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
+
+> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `0x0000000000000000000000000000000000000000`.
+
+#### Return Values:
+
+| Name           | Type    | Description |
+|:---------------|:--------|:------------|
+| `pendingOwner` | address | undefined   |
+
 ### transferOwnership
 
 ```solidity
 function transferOwnership(address newOwner) public {
 ```
 
-Transfers the ownership of the contract to the `newOwner` address.
-
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when ownership is transferred._
+Initiate an ownership transfer, setting the `pendingOwner` as the `newOwner`.
 
 #### Parameters:
 
 | Name       | Type    | Description                                      |
 | :--------- | :------ | :----------------------------------------------- |
 | `newOwner` | address | The address to set as the owner of the contract. |
+
+
+### claimOwnership
+
+```solidity
+function claimOwnership() public {
+```
+
+Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
+
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
+
 
 ### receive
 
