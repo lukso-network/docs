@@ -24,8 +24,12 @@ And if you need it, [here is a tutorial on how to do it](https://metamask.zendes
 
 | Bootnode                      | Client                                                                                            | Value |
 | ---------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ | 
-|  0 | Beacon | ```enr:-MK4QJ170_c4shhTN7NYc0ZiumYUrME_YUcWw_d8W6KKPHtHYVTVogsTqsQZDY_R3VlWnpKW-tIMJeB2JOIvo0D3Gi6GAYDxIN1yh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQI6qePHCvwjkh8CMvuUaSWTNiYkFzZpZh3j-DgNjBLvo4hzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
+|  0 | Beacon | ```enr:-MK4QB9Pb2N51TJu-TedIB39P0grbfuwfys5QW0kF9FQckJFOpKPjh6ZMvDhcveCUvTUyJo69nna5_5Tvj3UBBz1aP2GAYEfjuRyh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJaVcaJc2VjcDI1NmsxoQP_B8QAGQYUE54VXvW8FgDQsMAywUaN_5prNKaCsyKy0YhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
 |   | Geth | ```enode://c2bb19ce658cfdf1fecb45da599ee6c7bf36e5292efb3fb61303a0b2cd07f96c20ac9b376a464d687ac456675a2e4a44aec39a0509bcb4b6d8221eedec25aca2@34.90.85.198:30303``` |
+|  1 | Beacon | ```enr:-MK4QJo42M9Bz7N1E1qs7qHoV9b-Njrlb4BFf1qhWb5UbXLbJ7wbP0Mnt4O3mPE5KL-fCvrIlquNX-gP1-Con9xzAHSGAYEfluVHh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbpv2Jc2VjcDI1NmsxoQIxp1iQzAfZwgbNFZIEbn5LaH6GiNXakLRt4dt-5QrE8YhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
+|   | Geth | ```enode://88bbdfe4810bb1f6b9f6b9ed211c04a79ffcdc254ac408b3413188b914dbc4859bb635276453a1fe78c615492067433a63ccd71679e7bd43aa3b93c6fc6ac404@34.91.166.253:30303``` |
+|  2 | Beacon | ```enr:-MK4QO-ukWyyudI388FtDcYvnV-MmD96-8j6AikYsvzGzXu3cs0n4tKivxDZv9LvMTSLqccGTRkNuSAGvUsTUkyEO-mGAYEfqfFoh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCBQMXLYgAAcf__________gmlkgnY0gmlwhCJbMxaJc2VjcDI1NmsxoQP_S-793irD3QNuW8_UMwiFfj0Bu_TLAhk3UfqBJ2ZecYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A``` |
+|   | Geth | ```enode://c2bb19ce658cfdf1fecb45da599ee6c7bf36e5292efb3fb61303a0b2cd07f96c20ac9b376a464d687ac456675a2e4a44aec39a0509bcb4b6d8221eedec25aca2@34.91.51.22:30303``` |
 
 ## System Requirements
 
