@@ -60,8 +60,8 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 ### Ports
 
 
-| Port                      | Protocol           | Client | Ingress |  Comment |
-| ---------------------------- | ---------------------------- | ---------------------------------- | ---------------------------------- | 
+| Port                         | Protocol                      | Client                            | Ingress                           |  Comment |
+| ---------------------------- | ---------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | 
 |  30303 | TCP | geth syncing | port must be open | ... |
 |  30303 | UDP | geth discovery| port must be open | ... |
 |  13000 | TCP | beacon syncing| port must be open | ... |
@@ -137,16 +137,6 @@ You can see your node on the following page:
 
 ## Become a Validator
 
-### Request LYXt Tokens:
-
-1. Make sure to install [MetaMask](https://metamask.io/).
-
-2. Add the L16 Beta Testnet to [MetaMask](https://metamask.io/), by following [this tutorial](https://blog.suhailkakar.com/add-custom-networks-to-metamask).
-3. Use the MetaMask parameters from above and select `L16 Beta` from the dropdown.
-4. Copy your MetaMask address to the clipboard using the box icon.
-5. Visit the [L16 Faucet](https://faucet.beta.l16.lukso.network), paste the copied address and request your test tokens.
-6. Wait for the transaction to go through and check the balance in your MetaMask. You should have received 35 LYX.
-
 ### Setup Validator
 
 ```
@@ -160,23 +150,22 @@ transaction. You can check if the wallet has enough funds by calling
 lukso network validator describe
 ```
 
-Transfer enough funds to the transaction wallet public address from MetaMask.
+Visit the [Faucet](https://faucet.beta.l16.lukso.network) and paste the transaction wallet public key into the input field.
+Transfer **enough** (#validators x staking_amount + fees) funds to the transaction wallet public's address.
  
 
-#### Send the transaction.
+#### Submit the transaction.
 
 ```bash
 # submit deposit
-lukso network validator deposit_legacy
-
-# wait 8h till validator is activated
+lukso network validator deposit
 ```
 
 You will need to wait for eight hours to activate your validator.
 
 ### Run the Validator Client
 
-Once your validator is activated, you spin up a validator client.
+You can already start your validator.
 
 **Make sure your _consensus_ and _execution_ clients are running (by typing `./lukso network start`).**
 
@@ -189,6 +178,14 @@ lukso network logs validator
 # You can stop the validator using, this will also stop all other nodes
 lukso network validator stop
 ```
+
+Occasionally check the status of your validator by either typing
+
+```bash
+lukso network validator describe
+```
+
+or by visiting the [Explorer](https://explorer.consensus.beta.l16.lukso.network)
 
 ## Troubleshooting L16 Beta Testnet
  
