@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# L16 BETA Public Testnet
+# L16 Public Testnet
  
 
 The L16 Public Testnet will be the last stable test network before the mainnet launch and will likely stay online in parallel for experimental purposes.
@@ -135,7 +135,7 @@ The script will download the LUKSO cli into the folder.
  
 #### Setting up your node and node name
 ```bash
-lukso network init --nodeName [NAME_HOW_IT_APPEARS_IN_THE_STATS]
+lukso network init --nodeName [NAME_HOW_IT_APPEARS_IN_THE_STATS] --chain l16
 ```
  
 
@@ -185,9 +185,9 @@ lukso network validator deposit
 ```
 
 
-You will need to wait for eight hours to activate your validator, but you can already start your validator in the meantime.
+It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
 
-### Run the Validator Client
+### Start the Validator Client
 
 ```bash
 # Make sure your _consensus_ and _execution_ clients are running
