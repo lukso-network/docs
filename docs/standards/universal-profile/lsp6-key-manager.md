@@ -35,11 +35,11 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 | Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [**Address Permissions**](#address-permissions)   | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742d0000000082ac0000<address>` |
-| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742d00000000c6dd0000<address>` |
-| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742d000000008efe0000<address>` |
-| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742d000000003efa0000<address>` |
-| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                            | `0x4b80742d0000000090b80000<address>` |
+| [**Address Permissions**](#address-permissions)   | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
+| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742de2bfc6dd6b3c0000<address>` |
+| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742de2bf8efea1e80000<address>` |
+| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742de2bf3efa94a30000<address>` |
+| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                            | `0x4b80742de2bf90b8b4850000<address>` |
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
 
@@ -303,14 +303,14 @@ An address can hold one (or more) permissions, enabling it to perform multiple _
 
 To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage (**NB:** remember to remove the `0x` prefix in the `<address>` field below).
 
-- **key:** `0x4b80742d0000000082ac0000<address>`
+- **key:** `0x4b80742de2bf82acb3630000<address>`
 - **value:** one of the available options below.
 
 ```json
 {
   "name": "AddressPermissions:Permissions:<address>",
-  "key": "0x4b80742d0000000082ac0000<address>",
-  "keyType": "Bytes20MappingWithGrouping",
+  "key": "0x4b80742de2bf82acb3630000<address>",
+  "keyType": "MappingWithGrouping",
   "valueType": "bytes32",
   "valueContent": "BitArray"
 }
@@ -347,7 +347,7 @@ You can restrict an address to interact only with specific contracts or EOAs.
 
 To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>` (or additional addresses), the key-value pair below can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d00000000c6dd0000<address>`
+- **key:** `0x4b80742de2bfc6dd6b3c0000<address>`
 - **possible values:**
   - `[ <target-contract-address>, 0x.... ]`: an **ABI-encoded** array of `address[]` defining the allowed addresses.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any address (**= all addresses are whitelisted**).
@@ -355,8 +355,8 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 ```json
 {
   "name": "AddressPermissions:AllowedAddresses:<address>",
-  "key": "0x4b80742d00000000c6dd0000<address>",
-  "keyType": "Bytes20MappingWithGrouping",
+  "key": "0x4b80742de2bfc6dd6b3c0000<address>",
+  "keyType": "MappingWithGrouping",
   "valueType": "address[]",
   "valueContent": "Address"
 }
@@ -378,7 +378,7 @@ You can also restrict which functions a specific address can run by providing a 
 
 To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d000000008efe0000<address>`
+- **key:** `0x4b80742de2bf8efea1e80000<address>`
 - **possible values:**
   - `[ 0xa9059cbb, 0x... ]`: an **ABI-encoded** array of `bytes4[]` values, definiting the function selectors allowed.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to execute any function (**= all `bytes4` function selectors are whitelisted**).
@@ -386,8 +386,8 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 ```json
 {
   "name": "AddressPermissions:AllowedFunctions:<address>",
-  "key": "0x4b80742d000000008efe0000<address>",
-  "keyType": "Bytes20MappingWithGrouping",
+  "key": "0x4b80742de2bf8efea1e80000<address>",
+  "keyType": "0MappingWithGrouping",
   "valueType": "bytes4[]",
   "valueContent": "Bytes4"
 }
@@ -411,7 +411,7 @@ It is possible to restrict an address to interact only with **contracts that imp
 
 For example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d000000003efa0000<address>`
+- **key:** `0x4b80742de2bf3efa94a30000<address>`
 - **possible values:**
   - `[ 0x63cb749b, 0x... ]`: an **ABI-encoded** array of `bytes4[]` ERC165 interface ids.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any contracts, whether they implement a specific standard interface or not.
@@ -438,7 +438,7 @@ If an address is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is
 
 To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d0000000090b80000<address>`
+- **key:** `0x4b80742de2bf90b8b4850000<address>`
 - **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
 
 :::info

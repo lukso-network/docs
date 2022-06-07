@@ -72,8 +72,7 @@ The LSP2 Standard defines several **data key types**:
 - [Singleton](#singleton)
 - [Array](#array)
 - [Mapping](#mapping)
-- [Bytes20Mapping](#bytes20mapping)
-- [Bytes20MappingWithGrouping](#bytes20mappingwithgrouping)
+- [MappingWithGrouping](#mappingwithgrouping)
 
 ### Singleton
 
@@ -124,16 +123,25 @@ A data key type Array can be useful when there is the need to store a large grou
 
 ### Mapping
 
-A data key of type Mapping can be helpful to store a collection of data items that have a shared significance (for instance, items derived from a common ancestor type).
-
-The Mapping data key type is similar to the concept of lookup tables. Developers can use it to efficiently search or query specific elements in the collection.
+The Mapping data key type is similar to the concept of lookup tables. It can be used to map data that have a shared significance (such as items derived from a common ancestor), and search or query specific elements efficiently.
 
 The **main properties** of the LSP2 Mapping data key type are:
 
 - _ordering does not matter_ :white_check_mark:
 - _duplicates are not permitted_ :x:
 
-Below is an example of a Mapping data key:
+The data being mapped can be words that have a specific meaning for the protocol or application implementation, or underlying data types (= `<mixed type>`) like `address`, `bytesN`, `uintN`, etc. For `<mixed type>`, all the data types are left padded. If the type is larger than 20 bytes, the second part of the key is:
+
+- left-cut for `uint<M>`, `int<M>` and `bool`
+- right cut for `bytes<M>` and `address`
+
+Below are some examples of the **Mapping** key type.
+
+- mapping to **words:** `SupportedStandards:LSP3UniversalProfile`, `SupportedStandards:LSP4DigitalAsset`, `SupportedStandards:LSP{N}{StandardName}`, etc...
+- mapping to **`<mixed type>`**, like an `address`: `LSP5ReceivedAssetsMap:<address>`
+- mapping to **`<mixed type>`**, like a `bytes32`: `LSP8MetadataAddress:<bytes32>`
+
+#### Example 1: Mapping as `FirstWord:SecondWord`
 
 ```json
 {
@@ -145,42 +153,58 @@ Below is an example of a Mapping data key:
 }
 ```
 
-![LSP2 Mapping key type](/img/standards/lsp2-key-type-mapping.jpeg)
+![LSP2 Mapping key type to word](/img/standards/lsp2/lsp2-key-type-mapping-to-word.jpeg)
 
-### Bytes20Mapping
+#### Example 2: Mapping as `FirstWord:<address>` (`<mixed type>`)
 
-A data key of type **Bytes20Mapping** is similar to the **[Mapping](#mapping)** data key type, except that it can be useful to map specific data to a 20-bytes long value (eg: an `address`).
-
-Below is an example of Bytes20Mapping key:
+`address` value = `0xcafecafecafecafecafecafecafecafecafecafe`
 
 ```json
 {
-  "name": "LSP8MetadataAddress:0x20BytesTokenIdHash",
-  "key": "0x73dcc7c3c4096cdc00000000cafecafecafecafecafecafecafecafecafecafe",
-  "keyType": "Bytes20Mapping",
+  "name": "LSP5ReceivedAssetsMap:<address>",
+  "key": "0x812c4334633eb816c80d0000cafecafecafecafecafecafecafecafecafecafe",
+  "keyType": "Mapping",
   "valueType": "Mixed",
   "valueContent": "Mixed"
 }
 ```
 
-![LSP2 Bytes20Mapping key type](/img/standards/lsp2-key-type-bytes20-mapping.jpeg)
+![LSP2 Mapping key type to address](/img/standards/lsp2/lsp2-key-type-mapping-to-address.jpeg)
 
-### Bytes20MappingWithGrouping
+#### Example 3: Mapping as `FirstWord:<bytes32>` (`<mixed type>`)
 
-A data key of type **Bytes20MappingWithGrouping** is similar to the **[Bytes20Mapping](#bytes20mapping)** data key type, except that sub-types can be added to the main mapping data key.
+`bytes32` value = `0xaaaabbbbccccddddeeeeffff111122223333444455556666777788889999aaaa`.
 
-For instance, it can be used to differentiate various types from the primary mapping data key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/lsp6-key-manager.md)).
-
-Below is an example of a Bytes20MappingWithGrouping data key:
+The `bytes32` value is **right-cut**.
 
 ```json
 {
-  "name": "AddressPermissions:Permissions:<address>",
-  "key": "0x4b80742d0000000082ac0000<address>",
-  "keyType": "Bytes20MappingWithGrouping",
-  "valueType": "bytes32",
-  "valueContent": "BitArray"
+  "name": "LSP8MetadataAddress:<bytes32>",
+  "key": "0x73dcc7c3c4096cdc7f8a0000aaaabbbbccccddddeeeeffff1111222233334444",
+  "keyType": "Mapping",
+  "valueType": "Mixed",
+  "valueContent": "Mixed"
 }
 ```
 
-![LSP2 Bytes20MappingWithGrouping key type](/img/standards/lsp2-key-type-bytes20-mapping-with-grouping.jpeg)
+![LSP2 Mapping key type to bytes32](/img/standards/lsp2/lsp2-key-type-mapping-to-bytes32.jpeg)
+
+### MappingWithGrouping
+
+A data key of type **MappingWithGrouping** is similar to the **[Mapping](#mapping)** data key type, except that sub-types can be added to the main mapping data key.
+
+For instance, it can be used to differentiate various types from the primary mapping data key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/lsp6-key-manager.md)).
+
+Below is an example of a MappingWithGrouping data key:
+
+```json
+{
+    "name": "AddressPermissions:Permissions:<address>",
+    "key": "0x4b80742de2bf82acb3630000<address>",
+    "keyType": "MappingWithGrouping",
+    "valueType": "bytes32",
+    "valueContent": "BitArray"
+},
+```
+
+![LSP2 mappingWithGrouping key type](/img/standards/lsp2/lsp2-key-type-mapping-with-grouping.jpeg)
