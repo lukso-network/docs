@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# L16 Public Testnet
+# L16 BETA Public Testnet
  
 
 The L16 Public Testnet will be the last stable test network before the mainnet launch and will likely stay online in parallel for experimental purposes.
@@ -156,10 +156,21 @@ Transfer **enough** (#validators x staking_amount + fees) funds to the transacti
 
 #### Submit the transaction.
 
+Make a dry run first
+
 ```bash
-# submit deposit
+lukso network validator deposit --dry
+```
+
+This will give you the possibility to peek in what is going to happen without executiing a transactions.
+
+If you are sure you hit
+
+
+```bash
 lukso network validator deposit
 ```
+
 
 You will need to wait for eight hours to activate your validator.
 
@@ -188,6 +199,17 @@ lukso network validator describe
 or by visiting the [Explorer](https://explorer.consensus.beta.l16.lukso.network)
 
 ## Troubleshooting L16 Beta Testnet
+
+### Bootnodes
+
+You can update Bootnodes with
+
+
+```bash
+lukso network update
+```
+
+You need to restart the chain to make the changes effective.
  
 
 ### Stalled Synchronization
