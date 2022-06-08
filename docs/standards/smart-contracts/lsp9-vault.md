@@ -252,7 +252,7 @@ Retrieves an array of data for multiple given data keys.
 function universalReceiver(
     bytes32 typeId,
     bytes memory data
-) public returns (bytes memory result)
+) public payable returns (bytes memory result)
 ```
 
 Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key.
@@ -372,6 +372,7 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfu
 ```solidity
 event UniversalReceiver(
     address from,
+    uint256 value,
     bytes32 typeId,
     bytes returnedValue,
     bytes receivedData
@@ -382,12 +383,13 @@ _**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** f
 
 #### Values:
 
-| Name            | Type    | Description                                                  |
-| :-------------- | :------ | :----------------------------------------------------------- |
-| `from`          | address | The address calling the **universalReceiver** function.      |
-| `typeId`        | bytes32 | The hash of a specific standard or a hook.                   |
-| `returnedValue` | bytes   | The return value of **universalReceiver** function.          |
-| `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function. |
+| Name            | Type    | Description                                                     |
+| :-------------- | :------ | :-------------------------------------------------------------- |
+| `from`          | address | The address calling the **universalReceiver** function.         |
+| `value`         | uint256 | The amount of value sent to the **universalReceiver** function. |
+| `typeId`        | bytes32 | The hash of a specific standard or a hook.                      |
+| `returnedValue` | bytes   | The return value of **universalReceiver** function.             |
+| `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function.    |
 
 ## References
 
