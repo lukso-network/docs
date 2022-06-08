@@ -58,7 +58,7 @@ The data keys representing an asset/vault are cleared when the asset/vault is no
 | Name     | Type    | Description                                                                  |
 | :------- | :------ | :--------------------------------------------------------------------------- |
 | `caller` | address | The token's or vault's smart contract address.                               |
-| `value`  | uint256 | The amount of value sent to the universalReceiver function. |
+| `value`  | uint256 | The amount of value sent to the universalReceiver function.                  |
 | `typeId` | bytes32 | The token hooks of the contract.                                             |
 | `data`   | bytes   | The data that is associated with the asset or vault transfer (concatenated). |
 
