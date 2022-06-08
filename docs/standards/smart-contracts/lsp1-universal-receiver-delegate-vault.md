@@ -36,7 +36,8 @@ Registers the **[LSP1UniversalReceiverDelegate interface id](./interface-ids.md)
 
 ```solidity
 function universalReceiverDelegate(
-    address sender,
+    address caller,
+    uint256 value,
     bytes32 typeId,
     bytes memory data
 ) public payable returns (bytes memory result)
@@ -52,7 +53,8 @@ The data key representing an **asset** is cleared when the asset is not owned by
 
 | Name     | Type    | Description                                                 |
 | :------- | :------ | :---------------------------------------------------------- |
-| `sender` | address | The token smart contract address.                           |
+| `caller` | address | The token smart contract address.                           |
+| `value`  | uint256 | The amount of value sent to the universalReceiver function. |
 | `typeId` | bytes32 | The token hooks.                                            |
 | `data`   | bytes   | The data associated with the asset transfer (concatenated). |
 
