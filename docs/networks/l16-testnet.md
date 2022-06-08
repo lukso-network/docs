@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# L16 Public Testnet
+# L16 BETA Testnet
  
 
 The L16 Public Testnet will be the last stable test network before the mainnet launch and will likely stay online in parallel for experimental purposes.
@@ -135,7 +135,7 @@ The script will download the LUKSO cli into the folder.
  
 #### Setting up your node and node name
 ```bash
-lukso network init --nodeName [NAME_HOW_IT_APPEARS_IN_THE_STATS] --chain l16
+lukso network init --nodeName [NAME_HOW_IT_APPEARS_IN_THE_STATS] 
 ```
  
 
