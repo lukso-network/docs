@@ -60,6 +60,11 @@ sudo ufw allow 30303/udp
 sudo ufw allow 13000/tcp
 sudo ufw allow 12000/udp
 ```
+```
+sudo ufw enable
+```
+The firewall will be active after restarting your system.
+
 **MAC**
 
 ```
