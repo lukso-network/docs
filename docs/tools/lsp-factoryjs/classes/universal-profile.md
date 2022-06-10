@@ -1,14 +1,14 @@
 ---
 sidebar_position: 1
-title: LSP3UniversalProfile
+title: UniversalProfile
 ---
 
-# LSP3UniversalProfile
+# UniversalProfile
 
 ## deploy
 
 ```javascript
-lspFactory.LSP3UniversalProfile.deploy(profileProperties [, options]);
+lspFactory.UniversalProfile.deploy(profileProperties [, options]);
 ```
 
 Deploys and **configures** a [Universal Profile](../../../standards/universal-profile/introduction) to the blockchain. It will deploy the following contracts:
@@ -24,6 +24,13 @@ After, it will:
 - set all [LSP6 Permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllerAddresses` except `DELEGATECALL`.
 
 By default the [LSP1 Universal Receiver Delegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate) contract that is specified in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) will be attached to the Universal Profile. A custom Universal Receiver Delegate can be optionally deployed, by passing custom bytecode to the [`options`](../deployment/universal-profile#deployment-configuration) object.
+
+:::caution
+The deployment key passed to LSPFactory will be given `CHANGEOWNER` and `CHANGEPERMISSIONS` [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) in order to carry out the Universal Profile deployment.
+
+These permisisons are revoked as the final step of deployment. It is important this step is completed correctly to avoid security risks.
+
+:::
 
 :::info
 Read more about configuring Universal Profile smart contracts deployment [here](../deployment/universal-profile#deployment-configuration).
@@ -45,42 +52,42 @@ Object containing profile properties set during Universal Profile deployment.
 
 Object which specifies how the [UniversalProfile](../../../standards/universal-profile/lsp0-erc725account.md), [KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) and [UniversalReceiverDelegate](../../../standards/universal-profile/lsp1-universal-receiver-delegate.md) smart contracts will be deployed.
 
-| Name                                                                               | Type             | Description                                                                                                                                                                                     |
-| :--------------------------------------------------------------------------------- | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ERC725Account` (optional)                                                         | Object           | Generic contract configuration object. Specify [`version`](../deployment/universal-profile#contract-versions) and [`deployProxy`](../deployment/universal-profile#proxy-deployment) parameters. |
-| `KeyManager` (optional)                                                            | Object           | Generic contract configuration object. Specify [`version`](../deployment/universal-profile#contract-versions) and [`deployProxy`](../deployment/universal-profile#proxy-deployment) parameters. |
-| `UniversalReceiverDelegate` (optional)                                             | Object           | Generic contract configuration object. Specify [`version`](../deployment/universal-profile#contract-versions) and [`deployProxy`](../deployment/universal-profile#proxy-deployment) parameters. |
-| [`version`](../deployment/universal-profile#contract-versions) (optional)          | String           | Sets the global contract version. All contracts will be deployed with this version if set.                                                                                                      |
-| [`deployReactive`](../deployment/universal-profile#reactive-deployment) (optional) | Boolean          | Specify whether a Promise or Observable should be returned.                                                                                                                                     |
-| [`ipfsGateway`](../deployment/universal-profile#ipfs-upload-options) (optional)    | String \| Object | IPFS gateway url or an object containing IPFS gateway options.                                                                                                                                  |
+| Name                                                                               | Type             | Description                                                                                                                                                                                                   |
+| :--------------------------------------------------------------------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`LSP0ERC725Account`](../deployment/options.md) (optional)                         | Object           | Generic contract configuration object. Takes [`version`](../deployment/options.md#version) and [`deployProxy`](../deployment/options.md#deploy-proxy) parameters.                                             |
+| [`ERC725Account`](../deployment/options.md) (optional)                             | Object           | Generic contract configuration object. Can be used instead of `LSP0ERC725Account`. Takes [`version`](../deployment/options.md#version) and [`deployProxy`](../deployment/options.md#deploy-proxy) parameters. |
+| [`LSP6Keymanager`](../deployment/options.md) (optional)                            | Object           | Generic contract configuration object. Takes [`version`](../deployment/options.md#version) and [`deployProxy`](../deployment/options.md#deploy-proxy) parameters.                                             |
+| [`LSP1UniversalReceiverDelegate`](../deployment/options.md) (optional)             | Object           | Generic contract configuration object. Takes [`version`](../deployment/options.md#version) and [`deployProxy`](../deployment/options.md#deploy-proxy) parameters.                                             |
+| [`version`](../deployment/universal-profile#contract-versions) (optional)          | String           | Sets the global contract version. All contracts will be deployed with this version if set.                                                                                                                    |
+| [`onDeployEvents`](../deployment/universal-profile#reactive-deployment) (optional) | Object           | Pass `next`, `complete` and `error` callback handlers to be executed as deployment events are fired. See [`Reactive Deployment`](../deployment/universal-profile#reactive-deployment)                         |
+| [`ipfsGateway`](../deployment/universal-profile#ipfs-upload-options) (optional)    | String \| Object | IPFS gateway url or an object containing IPFS gateway options.                                                                                                                                                |
 
 :::info Contract Deployment Details
-See the [configuration specification](../deployment/universal-profile#configuration) for more information about the `options` property.
+See the [configuration specification](../deployment/universal-profile#deployment-configuration) for more information about the `options` property.
 :::
 
 ### Returns
 
-| Type                                              | Description                                                                                                                              |
-| :------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| `Promise`                                         | Resolves to an object containing deployed contract details. Default return value.                                                        |
-| [`Observable`](https://rxjs.dev/guide/observable) | An [RxJS Observable] object which emits events as contracts are deployed. Retutned if `deployProxy` is set to `true` in `options` object |
+| Type      | Description                                                 |
+| :-------- | :---------------------------------------------------------- |
+| `Promise` | Resolves to an object containing deployed contract details. |
 
 ### Example
 
 ```javascript title="Deploying a Universal Profile"
-await lspFactory.LSP3UniversalProfile.deploy({
+await lspFactory.UniversalProfile.deploy({
   controllingAccounts: ['0xb74a88C43BCf691bd7A851f6603cb1868f6fc147'],
   lsp3Profile: {
     name: 'My Universal Profile',
     description: 'My cool Universal Profile',
     tags: ['Fashion', 'Design'],
-    links: [{ title: 'My Website', url: 'www.my-website.com' }],
+    links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
   },
 });
 
 /**
 {
-  ERC725Account: {
+  LSP0ERC725Account: {
     address: '0xaEc61B848954e4d69B1283810df8A7fB9bA23BF2',
     receipt: {
       to: null,
@@ -101,7 +108,7 @@ await lspFactory.LSP3UniversalProfile.deploy({
       events: []
     }
   },
-  UniversalReceiverDelegate: {
+  LSP1UniversalReceiverDelegate: {
     address: '0xd92C7cA9c493aFC0DF51cE480ec7bB7DC8394549',
     receipt: {
       to: null,
@@ -122,7 +129,7 @@ await lspFactory.LSP3UniversalProfile.deploy({
       events: []
     }
   },
-  KeyManager: {
+  LSP6KeyManager: {
     address: '0xdbD3297B9bD80cA20cA75a644b1Fa903B05A2Fc3',
     receipt: {
       to: null,
@@ -149,56 +156,57 @@ await lspFactory.LSP3UniversalProfile.deploy({
 
 #### Reactive Universal Profile Deployment Example
 
-```javascript title="Deploying a reactive Universal Profile"
-await lspFactory.LSP3UniversalProfile.deploy(
+```javascript title="Reactive Universal Profile Deployment"
+await lspFactory.UniversalProfile.deploy(
   {
     controllingAccounts: ['0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db'],
   },
   {
-    deployReactive: true,
+    onDeployEvents: {
+      next: (deploymentEvent) => {
+        console.log(deploymentEvent);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: (contracts) => {
+        console.log('Deployment Complete');
+        console.log(contracts);
+      },
+    },
   }
-).subscribe({
-  next: (deploymentEvent) => {
-    console.log(deploymentEvent);
-  },
-  error: (error) => {
-    console.error(error);
-  },
-  complete: () => {
-    console.log('Deployment Complete');
-  },
-});
+);
 
 /**
 {
   type: 'PROXY_DEPLOYMENT',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   status: 'PENDING',
   transaction: {
     ...
   }
-}
+},
 {
   type: 'PROXY_DEPLOYMENT',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   status: 'COMPLETE',
   contractAddress: '0x805761959e7B94090fedD51776C63AB474a76A95',
   receipt: {
    ...
   }
-}
+},
 {
   type: 'TRANSACTION',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   functionName: 'initialize(address)',
   status: 'PENDING',
   transaction: {
    ...
   }
-}
+},
 {
   type: 'TRANSACTION',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   functionName: 'initialize(address)',
   status: 'COMPLETE',
   receipt: {
@@ -207,90 +215,90 @@ await lspFactory.LSP3UniversalProfile.deploy(
 }
 {
   type: 'PROXY_DEPLOYMENT',
-  contractName: 'KeyManager',
+  contractName: 'LSP6KeyManager',
   status: 'PENDING',
   transaction: {
     ...
   }
-}
+},
 {
   type: 'PROXY_DEPLOYMENT',
-  contractName: 'KeyManager',
+  contractName: 'LSP6KeyManager',
   status: 'COMPLETE',
   contractAddress: '0x04952ED68B5386Ff0a9891A10E2B1F204f98e209',
   receipt: {
     ...
   }
-}
+},
 {
   type: 'TRANSACTION',
-  contractName: 'KeyManager',
+  contractName: 'LSP6KeyManager',
   functionName: 'initialize(address)',
   status: 'PENDING',
   transaction: {
     ...
   }
-}
+},
 {
   type: 'TRANSACTION',
-  contractName: 'KeyManager',
+  contractName: 'LSP6KeyManager',
   functionName: 'initialize(address)',
   status: 'COMPLETE',
   receipt: {
     ...
   }
-}
+},
 {
   type: 'TRANSACTION',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   functionName: 'setData(bytes32[],bytes[])',
   status: 'PENDING',
   transaction: {
    ...
   }
-}
+},
 {
   type: 'TRANSACTION',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   functionName: 'setData(bytes32[],bytes[])',
   status: 'COMPLETE',
   receipt: {
    ...
   }
-}
+},
 {
   type: 'TRANSACTION',
   status: 'PENDING',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   functionName: 'transferOwnership(address)',
   transaction: {
     ...
   }
-}
+},
 {
   type: 'TRANSACTION',
-  contractName: 'ERC725Account',
+  contractName: 'LSP0ERC725Account',
   functionName: 'transferOwnership(address)',
   status: 'COMPLETE',
   receipt: {
     ...
   }
-}
+},
+Deployment Complete
 {
-  ERC725Account: {
+  LSP0ERC725Account: {
     address: '0x805761959e7B94090fedD51776C63AB474a76A95',
     receipt: {
      ...
     },
   },
-  KeyManager: {
+  LSP6KeyManager: {
     address: '0x04952ED68B5386Ff0a9891A10E2B1F204f98e209',
     receipt: {
       ...
     },
   }
 }
-Deployment Complete
 */
 ```
 
@@ -299,7 +307,7 @@ Deployment Complete
 ## uploadProfileData
 
 ```javascript
-lspFactory.LSP3UniversalProfile.uploadProfileData(profileData [, options]);
+lspFactory.UniversalProfile.uploadProfileData(profileData [, options]);
 ```
 
 Processes and uploads the [LSP3Profile Metadata](../../../standards/universal-profile/lsp3-universal-profile-metadata) to IPFS. The IPFS gateway can be set inside the `options` object.
@@ -319,14 +327,21 @@ Object containing the [LSP3 Metadata](../../../standards/universal-profile/lsp3-
 
 :::
 
-| Name              | Type          | Description                                                                                |
-| :---------------- | :------------ | :----------------------------------------------------------------------------------------- |
-| `name`            | String        | The name of the Universal Profile                                                          |
-| `description`     | String        | The description of the Universal Profile                                                   |
-| `profileImage`    | File \| Array | Javascript File object or an array of image metadata for different sizes of the same image |
-| `backgroundImage` | File \| Array | Javascript File object or an Array of image metadata for different sizes of the same image |
-| `links`           | Array         | An Array of Objects containing `title` and `url` parameters.                               |
-| `tags`            | Object        | An object containing the profile data to upload.                                           |
+| Name              | Type          | Description                                                                                                            |
+| :---------------- | :------------ | :--------------------------------------------------------------------------------------------------------------------- |
+| `name`            | String        | The name of the Universal Profile                                                                                      |
+| `description`     | String        | The description of the Universal Profile                                                                               |
+| `profileImage`    | File \| Array | Javascript File object or an array of image metadata for different sizes of the same image                             |
+| `backgroundImage` | File \| Array | Javascript File object or an Array of image metadata for different sizes of the same image                             |
+| `links`           | Array         | An Array of Objects containing `title` and `url` parameters.                                                           |
+| `tags`            | Object        | An object containing the profile data to upload.                                                                       |
+| `avatar`          | Array         | Array of different file formats of the same avatar asset passed as Javascript File object or an asset metadata object. |
+
+OR
+
+| Name          | Type   | Description                                                                                                              |
+| :------------ | :----- | :----------------------------------------------------------------------------------------------------------------------- |
+| `LSP3Profile` | Object | Object containing `name`, `description`, `profileImage`, `backgroundImage`, `links`, `tags`, `avatar` as described above |
 
 #### 2. `options` - Object (optional)
 
@@ -345,41 +360,137 @@ Object containing configuration details of how the metadata should be uploaded.
 ### Examples
 
 ```javascript title="Uploading profile data"
-await LSP3UniversalProfile.uploadProfileData({
-  name: 'My Universal Profile',
-  description: 'My cool Universal Profile',
-  tags: ['Fashion', 'Design'],
-  links: [{ title: 'My Website', url: 'www.my-website.com' }],
-  profileImage: [
-    {
-      width: 500,
-      height: 500,
-      hashFunction: 'keccak256(bytes)',
-      hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
-      url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
-    },
-  ],
-  backgroundImage: [
-    {
-      width: 500,
-      height: 500,
-      hashFunction: 'keccak256(bytes)',
-      hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
-      url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
-    },
-  ],
+
+const myLocalImage = new File();
+const myLocalAvatar = new File();
+
+<script>
+  await UniversalProfile.uploadProfileData({
+    name: 'My Universal Profile',
+    description: 'My cool Universal Profile',
+    tags: ['Fashion', 'Design'],
+    links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
+    profileImage: myLocalImage,
+    backgroundImage: myLocalImage,
+    avatar: [myLocalAvatar],
+  });
+<script/>
+
+/**
+{
+  json: {
+    LSP3Profile: {
+      name: 'My Universal Profile',
+      description: 'My cool Universal Profile',
+      tags: ['Fashion', 'Design'],
+      links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
+      profileImage: [
+        {
+          "width": 1800,
+          "height": 1800,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0x5c6125b5a553337b5ad55610c47114bf58d33c7a21aef14b0ed4c214203c9ca7",
+          "url": "ipfs://QmPCQwamReJshNiqSSzf4zMVffNiDx44ykTf1zY95vG6rv"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0xc4d1d37a8545012be38a8f33f9a53daceab955a17310bcfffe00f34811506938",
+          "url": "ipfs://Qme8tedX78TaxVwtvacJyS7bcSwe69F4aNnknUzL3gYdFY"
+        },
+        {
+          "width": 640,
+          "height": 640,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0xa63ebb82e8c428c9a02f1c0a040199748844dccf62e75fcd85454bce4acd4afd",
+          "url": "ipfs://QmdQRdeeGGmWCPs1iCtxiNzHMZemFpvcsdvweCdnufHdqr"
+        },
+        {
+          "width": 320,
+          "height": 320,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0x2ab638bb61f4cb686c3ca5ca09285e4507ad2328c0b5f6e10378425ed7c75cd9",
+          "url": "ipfs://QmfYYafv6ucuKSm3EbcJxho9Cr2g5Pa3yhv7TaANbP8jbg"
+        },
+        {
+          "width": 180,
+          "height": 180,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0xefb0b36b3bba2338c18b2b55a0cbc52f04eda03e9b58ca8d04a92fc9b1387853",
+          "url": "ipfs://QmU5XJfL1V5tBLfm7xYMGYEi7VLiwDCfsCc8KswRgXNQSr"
+        }
+      ],
+      backgroundImage: [
+        {
+          "width": 1800,
+          "height": 1800,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0x5c6125b5a553337b5ad55610c47114bf58d33c7a21aef14b0ed4c214203c9ca7",
+          "url": "ipfs://QmPCQwamReJshNiqSSzf4zMVffNiDx44ykTf1zY95vG6rv"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0xc4d1d37a8545012be38a8f33f9a53daceab955a17310bcfffe00f34811506938",
+          "url": "ipfs://Qme8tedX78TaxVwtvacJyS7bcSwe69F4aNnknUzL3gYdFY"
+        },
+        {
+          "width": 640,
+          "height": 640,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0xa63ebb82e8c428c9a02f1c0a040199748844dccf62e75fcd85454bce4acd4afd",
+          "url": "ipfs://QmdQRdeeGGmWCPs1iCtxiNzHMZemFpvcsdvweCdnufHdqr"
+        },
+        {
+          "width": 320,
+          "height": 320,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0x2ab638bb61f4cb686c3ca5ca09285e4507ad2328c0b5f6e10378425ed7c75cd9",
+          "url": "ipfs://QmfYYafv6ucuKSm3EbcJxho9Cr2g5Pa3yhv7TaANbP8jbg"
+        },
+        {
+          "width": 180,
+          "height": 180,
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0xefb0b36b3bba2338c18b2b55a0cbc52f04eda03e9b58ca8d04a92fc9b1387853",
+          "url": "ipfs://QmU5XJfL1V5tBLfm7xYMGYEi7VLiwDCfsCc8KswRgXNQSr"
+        }
+      ],
+      avatar: [
+        {
+          "hashFunction": "keccak256(bytes)",
+          "hash": "0x5f3dbd89cde4dde36241c501203b67a93b89908063f5516535136bc25f712e11",
+          "url": "ipfs://QmWkAki4mLq2cshpbKs4HFCaZdpUX1jLKKfb5y8YMATkwk",
+          "fileType": "image/jpeg"
+        }
+      ]
+    }
+  },
+  url: 'ipfs://QmS7NCnoXub7ju13HZuDzJpWqWq15Nev4CC18821qBNbkx'
+}
+*/
+```
+
+```javascript title="Uploading profile data"
+await UniversalProfile.uploadProfileData({
+  LSP3Profile: {
+    name: 'My Universal Profile',
+    description: 'My cool Universal Profile',
+    tags: ['Fashion', 'Design'],
+    links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
+  },
 });
 
 /**
 {
-  profile: {
+  json: {
     LSP3Profile: {
       name: 'My Universal Profile',
       description: 'My cool Universal Profile',
-      tags: [Array],
-      links: [Array],
-      profileImage: [Array],
-      backgroundImage: [Array]
+      tags: ['Fashion', 'Design'],
+      links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
     }
   },
   url: 'ipfs://QmS7NCnoXub7ju13HZuDzJpWqWq15Nev4CC18821qBNbkx'
@@ -388,30 +499,12 @@ await LSP3UniversalProfile.uploadProfileData({
 ```
 
 ```javascript title="Uploading profile data using a custom IPFS gateway"
-await LSP3UniversalProfile.uploadProfileData(
+await UniversalProfile.uploadProfileData(
   {
     name: 'My Universal Profile',
     description: 'My cool Universal Profile',
     tags: ['Fashion', 'Design'],
-    links: [{ title: 'My Website', url: 'www.my-website.com' }],
-    profileImage: [
-      {
-        width: 500,
-        height: 500,
-        hashFunction: 'keccak256(bytes)',
-        hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
-        url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
-      },
-    ],
-    backgroundImage: [
-      {
-        width: 500,
-        height: 500,
-        hashFunction: 'keccak256(bytes)',
-        hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
-        url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
-      },
-    ],
+    links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
   },
   {
     ipfsGateway: 'https://ipfs.infura.io',
@@ -420,14 +513,12 @@ await LSP3UniversalProfile.uploadProfileData(
 
 /**
 {
-  profile: {
+  json: {
     LSP3Profile: {
       name: 'My Universal Profile',
       description: 'My cool Universal Profile',
-      tags: [Array],
-      links: [Array],
-      profileImage: [Array],
-      backgroundImage: [Array]
+      tags: ['Fashion', 'Design'],
+      links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
     }
   },
   url: 'ipfs://QmS7NCnoXub7ju13HZuDzJpWqWq15Nev4CC18821qBNbkx'
@@ -436,12 +527,12 @@ await LSP3UniversalProfile.uploadProfileData(
 ```
 
 ```javascript title="Uploading profile data using a custom IPFS options"
-await LSP3UniversalProfile.uploadProfileData(
+await UniversalProfile.uploadProfileData(
   {
     name: 'My Universal Profile',
     description: 'My cool Universal Profile',
     tags: ['Fashion', 'Design'],
-    links: [{ title: 'My Website', url: 'www.my-website.com' }],
+    links: [{ title: 'My Website', url: 'https://www.my-website.com' }],
   },
   {
     ipfsGateway: {
@@ -454,14 +545,12 @@ await LSP3UniversalProfile.uploadProfileData(
 
 /**
 {
-  profile: {
+  json: {
     LSP3Profile: {
       name: 'My Universal Profile',
       description: 'My cool Universal Profile',
-      tags: [Array],
-      links: [Array],
-      profileImage: [Array],
-      backgroundImage: [Array]
+      tags: ['Fashion', 'Design'],
+      links: [{ title: 'My Website', url: 'https://www.my-website.com' }],,
     }
   },
   url: 'ipfs://QmS7NCnoXub7ju13HZuDzJpWqWq15Nev4CC18821qBNbkx'

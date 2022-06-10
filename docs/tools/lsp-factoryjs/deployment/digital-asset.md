@@ -115,12 +115,9 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
     controllerAddress: '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
     name: 'MYTOKEN'
     symbol: 'DEMO',
-    creators: [
-      '0x7Ab53a0C861fb955050A8DA109eEeA5E61fd8Aa4',
-      '0x6c1F3Ed2F99054C88897e2f32187ef15c62dC560'
-    ],
+    creators: ['0x7Ab53a0C861fb955050A8DA109eEeA5E61fd8Aa4', '0x6c1F3Ed2F99054C88897e2f32187ef15c62dC560'],
     digitalAssetMetadata: {
-      'description': 'My NFT 2.0'
+      description: 'My NFT 2.0'
       ...
     }
 });
@@ -158,6 +155,23 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
       url: "https://docs.lukso.tech"
     }],
   },
+  ...
+});
+```
+
+LSP4 Metadata can also be passed with the `LSP4Metadata` key:
+
+```javascript title="Passing LSP4Metadata key"
+await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
+  digitalAssetMetadata: {
+    LSP4Metadata: {
+      description: "My Digital Asset",
+      links: [{
+        title: "LUKSO Docs",
+        url: "https://docs.lukso.tech"
+      }],
+    },
+  }
   ...
 });
 ```
@@ -244,13 +258,13 @@ An icon can also be passed for the Digital Asset. This should be multiple image 
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
   digitalAssetMetadata: {
     icon: [
-        {
-          width: 256,
-          height: 256,
-          hashFunction: 'keccak256(bytes)',
-          hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
-          url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
-        }
+      {
+        width: 256,
+        height: 256,
+        hashFunction: 'keccak256(bytes)',
+        hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+        url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
+      }
       ... // Multiple sizes of the icon image should be included
     ]
   },
@@ -318,69 +332,40 @@ LSPFactory will create five resized versions of any passed images, with max size
 
 ## Deployment Configuration
 
-Developers can select a unique deployment configuration for their Digital Asset contract using the `options` parameter. This allows easy deployment of a specific version or implementation of a Digital Asset smart contract.
+Developers can select a unique deployment configuration for their Digital Asset contract using the `options` parameter. This allows easy deployment of a specific version or implementation of a Digital Asset smart contract by passing the [`version`](./options.md#version) parameter.
+
+Under the [version](./options.md#version) parameter developers can pass a [version number](./options.md#version), [custom bytecode](./options.md#deploying-custom-bytecode) or a [base contract address](./options.md#custom-base-contract-address) to be used during deployment. By setting the [`deployProxy`](./options.md#deploy-proxy) parameter developers can specify whether the contract should be deployed using proxy deployment.
+
+:::info
+Read more about configuring proxy deployment and contract versioning [here](../deployment/options.md).
+
+:::
+
+```js title="Passing LSP7DigitalAsset contract options"
+await lspFactory.LSP7DigitalAsset.deploy({...}, {
+    LSP7DigitalAsset: {
+        version: '0x...', // Custom bytecode
+        deployProxy: false
+    },
+})
+```
+
+```js title="Passing LSP8IdentifiableDigitalAsset contract options"
+await lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
+    LSP8IdentifiableDigitalAsset: {
+        version: '0x87cd003F9Ac7d6eBcd811f7b427c7dBF6f6ba132', // Custom base contract address
+        deployProxy: true
+    },
+})
+```
 
 ### Proxy Deployment
 
-By passing the `deployProxy` parameter developers can determine whether their digital asset smart contract should be deployed as a **minimal proxy contract** based on [EIP1167](https://eips.ethereum.org/EIPS/eip-1167) or an entire contract with a constructor.
+By passing the [`deployProxy`](./options.md#deploy-proxy) parameter developers can determine whether their digital asset smart contract should be deployed as a **minimal proxy contract** based on [EIP1167](https://eips.ethereum.org/EIPS/eip-1167) or an entire contract with a constructor.
 
 :::info
 `deployProxy` defaults to `true` for both LSP7 and LSP8. If `deployProxy` is set to false, a full contract with a constructor will be deployed at the latest version.
 :::
-
-Read more about how proxy deployment is used in the LSPFactory [here](../getting-started.md#proxy-deployment).
-
-### Version
-
-Under the `version` parameter developers can pass a [version number](./digital-asset.md#contract-versions), [custom bytecode](./digital-asset.md#deploying-custom-bytecode) or a [base contract address](./digital-asset.md#custom-base-contract-address) to be used during deployment.
-
-```javascript title="Deploying an LSP7 Digital Asset at version 0.4.1"
-await lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
-  version: '0.4.1',
-  deployProxy: true
-});
-```
-
-#### Custom Base Contract Address
-
-When using proxy deployment you can specify the base contract address by passing an address to the `version` parameter. This allows you to specify the contract implementation by using a custom base contract you have deployed. LSPFactory will then deploy a proxy contract which inherits its logic from the specified base contract address.
-
-Any base contract address that developers pass here must adhere to the relevant LSP contract standard it is being used for.
-
-Read more about proxy deployment [here](../getting-started.md#proxy-deployment).
-
-```javascript title="Deploying an LSP7 Digital Asset with a specific base contract address"
-await lspFactory.LSP7DigitalAsset.deploy({...}, {
-  version: '0x00b1d454Eb5d917253FD6cb4D5560dEC30b0960c',
-  deployProxy: true
-});
-```
-
-#### Contract Versions
-
-LSPFactory stores the addresses of different base contract versions [internally](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json). By specifying a `version` number, developers can specify which base contract implementation should be used during deployment.
-
-```javascript
-await lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
-  version: '0.5.0',
-});
-```
-
-#### Deploying Custom Bytecode
-
-When deploying a Digital Asset, you can use your custom contract implementation by passing the compiled creation bytecode of a contract you have written as the `version` parameter.
-
-The passed bytecode can be the instantiation bytecode of a custom contract implementation you have written according to your use case. The implementation must meet the relevant LSP standard requirements.
-
-:::note
-Contracts deployed from custom bytecode will not use any proxy contract deployment.
-:::
-
-```javascript title="Deploying an LSP8 digital Asset from custom bytecode"
-await lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
-  version: '0x...', // Creation bytecode to be deployed
-});
-```
 
 ### IPFS Upload Options
 
@@ -418,23 +403,40 @@ If the `ipfsGateway` parameter is provided, it will override the `ipfsGateway` o
 
 ### Reactive Deployment
 
-LSPFactory uses [RxJS](https://rxjs.dev/) to deploy smart contracts. This can be leveraged for reactive deployment of Digital Assets. [Read more here](../getting-started.md#reactive-deployment).
+LSPFactory emits events for each step of the deployment process. These events can be hooked into by passing the `onDeployEvents` object inside of the `options` object.
 
-When `deployReactive` is set to `true`, an [RxJS Observable](https://rxjs.dev/guide/observable) will be returned which will emit events as the deployment progresses.
+The `onDeployEvents` object takes three callback handler parameters:
 
-```javascript title="Reactive deployment of an LSP7 Digital Asset"
-const observable = lspFactory.LSP7DigitalAsset.deploy({...}, {
-  deployReactive: true
-});
+- `next` will be called once for every deployment event that is fired.
+- `complete` will be called once after deployment is finished with the completed contract deployment details.
+- `error` will be called once if an error is thrown during deployment.
 
-observable.subscribe();
-```
+This enables LSPFactory to be used for certain reactive behaviors. For example, to give better feedback to users during deployment from a user interface such as a loading bar, or display live updates with the details and addresses of contracts as they are deployed.
 
-The following events will be emitted:
+:::info
+The `complete` callback will be called with the same contracts object which is returned when the `deploy` function is resolved.
+
+:::
 
 #### LSP7 Deployment Events
 
-```typescript title="LSP7 Deployment Events"
+```javascript title="Reactive deployment of an LSP7 Digital Asset"
+const contracts = lspFactory.LSP7DigitalAsset.deploy({...}, {
+  onDeployEvents: {
+    next: (deploymentEvent) => {
+      console.log(deploymentEvent);
+    },
+    error: (error) => {
+      console.error(error);
+    },
+    complete: (contracts) => {
+      console.log('Digital Asset deployment completed');
+      console.log(contracts.LSP7DigitalAsset);
+    },
+  }
+});
+
+/**
 {
   type: 'PROXY_DEPLOYMENT',
   contractName: 'LSP7DigitalAsset',
@@ -506,19 +508,35 @@ The following events will be emitted:
     ...
   }
 }
+Digital Asset deployment completed
 {
-  LSP7DigitalAsset: {
-    address: '0x97053C386eaa49d6eAD7477220ca04EFcD857dde',
-    receipt: {
-      ...
-    },
-  }
+  address: '0x97053C386eaa49d6eAD7477220ca04EFcD857dde',
+  receipt: {
+    ...
+  },
 }
+*/
 ```
 
 #### LSP8 Deployment Events
 
-```typescript title="LSP8 Deployment Events"
+```typescript title="Reactive deployment of an LSP8 Identifiable Digital Asset"
+const contracts = lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
+  onDeployEvents: {
+    next: (deploymentEvent) => {
+      console.log(deploymentEvent);
+    },
+    error: (error) => {
+      console.error(error);
+    },
+    complete: (contracts) => {
+      console.log('Digital Asset deployment completed');
+      console.log(contracts.LSP8IdentifiableDigitalAsset);
+    },
+  }
+});
+
+/**
 {
   type: 'PROXY_DEPLOYMENT',
   contractName: 'LSP8IdentifiableDigitalAsset',
@@ -590,14 +608,15 @@ The following events will be emitted:
     ...
   }
 }
+Digital Asset deployment completed
 {
-  LSP8IdentifiableDigitalAsset: {
-    address: '0x2cA038832c15E61b83d47414Eb53818a45e0E142',
-    receipt: {
-      ...
-    },
-  }
+  address: '0x2cA038832c15E61b83d47414Eb53818a45e0E142',
+  receipt: {
+    ...
+  },
 }
+*/
+
 ```
 
 [lsp7]: ../../../standards/nft-2.0/LSP7-Digital-Asset

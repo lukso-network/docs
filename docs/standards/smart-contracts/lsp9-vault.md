@@ -103,13 +103,13 @@ Transfers ownership of the contract to the `pendingOwner` address. Can only be c
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
 
 
-### receive
+### fallback
 
 ```solidity
-receive() external payable
+fallback() external payable
 ```
 
-Executed when value is transferred to the contract.
+Executed when value is transferred to the contract or when function identifier doesn't match any of the available functions.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
@@ -303,7 +303,7 @@ event ValueReceived(
 )
 ```
 
-_**MUST** be fired when the **[`receive(...)`](#receive)** function is successfully executed._
+_**MUST** be fired when when a native token is received via **[`fallback(...)`](#fallback)** function._
 
 #### Values:
 
