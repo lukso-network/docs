@@ -36,16 +36,16 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-constructor(address newOwner) ERC725(newOwner)
+constructor(address initialOwner)
 ```
 
-Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](./interface-ids.md)**, **[ERC1271](./interface-ids.md)**, and **[LSP1UniversalReceiver Interface IDs](./interface-ids.md)**.
+Sets the **initial owner** of the contract.
 
 #### Parameters:
 
-| Name       | Type    | Description                                      |
-| :--------- | :------ | :----------------------------------------------- |
-| `newOwner` | address | The address to set as the owner of the contract. |
+| Name           | Type    | Description                                      |
+| :------------- | :------ | :----------------------------------------------- |
+| `initialOwner` | address | The address to set as the owner of the contract. |
 
 ### owner
 
@@ -53,7 +53,7 @@ Sets the **initial owner** of the contract and registers **[LSP0ERC725Account](.
 function owner() public view returns (address owner)
 ```
 
-Returns the address of the current owner of the smart contract.
+Returns the address of the current owner of the contract.
 
 #### Return Values:
 
@@ -68,15 +68,15 @@ Returns the address of the current owner of the smart contract.
 function pendingOwner() public view returns (address)
 ```
 
-Return the `address` of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
+Return the address of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
 
-> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `0x0000000000000000000000000000000000000000`.
+> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `address(0)`.
 
 #### Return Values:
 
-| Name           | Type    | Description |
-|:---------------|:--------|:------------|
-| `pendingOwner` | address | undefined   |
+| Name           | Type    | Description                        |
+|:---------------|:--------|:---------------------------------- |
+| `pendingOwner` | address | The address of the pending owner   |
 
 ### transferOwnership
 
@@ -84,13 +84,13 @@ Return the `address` of the pending owner that was initiated by [`transferOwners
 function transferOwnership(address newOwner) public {
 ```
 
-Initiate an ownership transfer, setting the `pendingOwner` as the `newOwner`.
+Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
 #### Parameters:
 
-| Name       | Type    | Description                                      |
-| :--------- | :------ | :----------------------------------------------- |
-| `newOwner` | address | The address to set as the owner of the contract. |
+| Name       | Type    | Description                           |
+| :--------- | :------ | :------------------------------------ |
+| `newOwner` | address | The address to set as `pendingOwner`. |
 
 
 ### claimOwnership
@@ -164,56 +164,12 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 
 ```solidity
 function setData(
-    bytes32 key,
-    bytes memory value
+    bytes32 dataKey,
+    bytes memory dataValue
 ) public
 ```
 
-Sets data in the account storage for a particular data key as **bytes**.
-
-_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data ._
-
-:::note
-The `setData(...)` function can only be called by the current owner of the contract.
-:::
-
-#### Parameters:
-
-| Name    | Type    | Description                                  |
-| :------ | :------ | :------------------------------------------- |
-| `key`   | bytes32 | The data key for which the data will be set. |
-| `value` | bytes   | The data you want to set as bytes.           |
-
-### getData
-
-```solidity
-function getData(bytes32 key) public view returns (bytes memory value)
-```
-
-Retrieves the data set for the given data key.
-
-#### Parameters:
-
-| Name  | Type    | Description                         |
-| :---- | :------ | :---------------------------------- |
-| `key` | bytes32 | The data key to retrieve data from. |
-
-#### Return Values:
-
-| Name    | Type  | Description                          |
-| :------ | :---- | :----------------------------------- |
-| `value` | bytes | The data for the requested data key. |
-
-### setData (Array)
-
-```solidity
-function setData(
-    bytes32[] memory keys,
-    bytes[] memory values
-) public
-```
-
-Sets an array of data at multiple data keys in the account storage.
+Sets data in the account storage for a particular data key.
 
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
@@ -223,30 +179,74 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name     | Type            | Description                          |
-| :------- | :-------------- | :----------------------------------- |
-| `keys`   | bytes32[&nbsp;] | The data keys for which to set data. |
-| `values` | bytes[&nbsp;]   | The array of data to set.            |
+| Name        | Type    | Description                                  |
+| :---------- | :------ | :------------------------------------------- |
+| `dataKey`   | bytes32 | The data key for which the data will be set. |
+| `dataValue` | bytes   | The data to be set.                          |
+
+### getData
+
+```solidity
+function getData(bytes32 dataKey) public view returns (bytes memory dataValue)
+```
+
+Retrieves the data set for the given data key.
+
+#### Parameters:
+
+| Name      | Type    | Description                         |
+| :-------- | :------ | :---------------------------------- |
+| `dataKey` | bytes32 | The data key to retrieve data from. |
+
+#### Return Values:
+
+| Name        | Type  | Description                          |
+| :---------- | :---- | :----------------------------------- |
+| `dataValue` | bytes | The data for the requested data key. |
+
+### setData (Array)
+
+```solidity
+function setData(
+    bytes32[] memory dataKeys,
+    bytes[] memory dataValues
+) public
+```
+
+Sets an array of data at multiple data keys in the account storage.
+
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value pair._
+
+:::note
+The `setData(...)` function can only be called by the current owner of the contract.
+:::
+
+#### Parameters:
+
+| Name         | Type            | Description                          |
+| :----------- | :-------------- | :----------------------------------- |
+| `dataKeys`   | bytes32[&nbsp;] | The data keys for which to set data. |
+| `dataValues` | bytes[&nbsp;]   | The array of data to set.            |
 
 ### getData (Array)
 
 ```solidity
-function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
+function getData(bytes32[] memory dataKeys) public view returns (bytes[] memory dataValues)
 ```
 
 Retrieves an array of data for multiple given data keys.
 
 #### Parameters:
 
-| Name   | Type            | Description                          |
-| :----- | :-------------- | :----------------------------------- |
-| `keys` | bytes32[&nbsp;] | The data keys to retrieve data from. |
+| Name       | Type            | Description                          |
+| :--------- | :-------------- | :----------------------------------- |
+| `dataKeys` | bytes32[&nbsp;] | The data keys to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type          | Description                                       |
-| :------- | :------------ | :------------------------------------------------ |
-| `values` | bytes[&nbsp;] | An array of the data for the requested data keys. |
+| Name         | Type          | Description                                       |
+| :----------- | :------------ | :------------------------------------------------ |
+| `dataValues` | bytes[&nbsp;] | An array of the data for the requested data keys. |
 
 ### universalReceiver
 
