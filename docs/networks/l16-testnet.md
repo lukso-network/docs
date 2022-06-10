@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # L16 BETA Testnet
 
-:::note L16 BETA -TESTNET is not L116 TESTNET!
+:::info L16 BETA -TESTNET is not L16 TESTNET!
 The current running L16 BETA testnet is a pre-network before the official L16 testnet.
 :::
 
-:::note Network values DO NOT represent the final mainnet values
+:::info Network values DO NOT represent the final mainnet values
 Values and configuration parameters for this network, as well as suggested hardware specs, DO NOT represent the final values for the LUKSO mainnet. Those will be announced shortly before mainnet launch.
 :::
 
