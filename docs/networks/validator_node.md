@@ -31,9 +31,9 @@ version (Teku, Lighthouse, Prysm,...). The keystore has a fixed number of keys. 
 the number of keys you **must** create a new keystore. There is always **one** **Validator Keystore** for
 one **Validator Node**
 
-### Validator Keystore
+### Validator Key
 
-The **Validator Key** is one private key that can have an active balance and is used to sign attestations
+The **Validator Key** is a private key that can have an active balance and is used to sign attestations
 and proposed blocks. The key can have an arbitrary amount of staked LYX but it **won't** change the reward.
 It is possible to deposit LYX multiple time for this key and that is important for the case the **Validator Key** missed
 duties and lost balance.
@@ -88,9 +88,9 @@ e.g. have the following setup:
 **Node A** has a keystore with keys from position *0* to position *29*
 **Node B** has a keystore with keys from position *30* to position *45*
 
-Now lets we want to rearrange by having an equal amount of keys on both nodes.
+Now let's assume we want to rearrange the **Validator Keys**'s by having an equal amount of keys on both nodes.
 
-We could:
+We should:
   1. Stop the validator nodes
   2. Delete the keystores
   3. Recreate the keystores with the same mnemonic **m**
