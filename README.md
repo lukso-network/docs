@@ -13,7 +13,7 @@ show up within the Tools section:
 - [lsp-factory.js](https://github.com/lukso-network/tools-lsp-factory/tree/develop/docs)
 - [erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/docs)
 
-> If you want to improve our documentation, make shure to open an PR on the right repository, otherwise, changes might get overwritten.
+> If you want to improve our documentation, make sure to open an PR on the right repository, otherwise, changes might get overwritten.
 
 ## Installation
 
