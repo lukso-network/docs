@@ -4,7 +4,7 @@ We made it simple and straight forward to recover a node with its validators whe
 
 ## The keystore
 
-The keystore consists the following 4 values:
+ the keystore is a derivative of these 4 values:
 
 * **ValidatorMnemonic** - the seed for your validator keys
 * **WithdrawalMnemonic** - which is needed to withdraw your stakes
@@ -23,15 +23,14 @@ First we explain the backup command:
 ```bash
 lukso network validator backup
 ```
+This will produce a recovery file **"node_recovery.json with"** exactly these four values.
 
-This will produce a file named: **"node_recovery.json"** with the 4 values of the keystore. Make a backup of your validator keystore with this command after you have succesfully setup your node and validators on your machine. Store this file somewhere safe and offline.
+Use this backup command after you have succesfully setup your node and validators on your machine. Store this file somewhere safe and offline.
 
 ## Start up your new node
 
-You always start on your new machine with installing the CLI and initializing the network before you can recover your old validators:
-```bash
-sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
-```
+You always start on your new machine with installing the LUKSO CLI after that you need to initialize the network before you can recover your old validators:
+
 ```bash
 lukso network init --chain l16
 ```
@@ -41,7 +40,7 @@ lukso network init --chain l16
 echo CONTENT_OF_RECOVERY_JSON_FILE > node_recovery.json
 ```
 ```bash
-lukso network validator recover --recoveryFile ./node_recovery.json
+lukso network validator recover --path ./node_recovery.json
 ```
 **OR**
 
@@ -49,7 +48,7 @@ Tranfer **node_recovery.json** from the place where you stored it to your machin
 
 Example:
 ```
-lukso network validator recover --recoveryFile /home/USER/lukso-node/node_recovery.json
+lukso network validator recover --path /home/USER/lukso-node/node_recovery.json
 ```
 Change **USER** to the username of your account.
 
