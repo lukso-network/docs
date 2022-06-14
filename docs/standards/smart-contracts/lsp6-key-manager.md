@@ -33,16 +33,16 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-constructor(address account)
+constructor(address target)
 ```
 
-Links the KeyManager to the address of an **LSP0ERC725Account** contract and registers the **[LSP6KeyManager InterfaceId](./interface-ids.md)** on deployment.
+Links the KeyManager to the address of an **ERC725** contract.
 
 #### Parameters:
 
-| Name      | Type    | Description                                                  |
-| :-------- | :------ | :----------------------------------------------------------- |
-| `account` | address | The address of the **LSP0ER725Account** contract to control. |
+| Name     | Type    | Description                                        |
+| :------- | :------ | :------------------------------------------------- |
+| `target` | address | The address of the **ERC725** contract to control. |
 
 ### target
 

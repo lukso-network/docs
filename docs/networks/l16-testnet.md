@@ -3,9 +3,34 @@ sidebar_position: 2
 ---
 
 # L16 BETA Testnet
- 
+
+:::info L16 BETA -TESTNET is not L16 TESTNET!
+The current running L16 BETA testnet is a pre-network before the official L16 testnet.
+:::
+
+:::info Network values DO NOT represent the final mainnet values
+Values and configuration parameters for this network, as well as suggested hardware specs, DO NOT represent the final values for the LUKSO mainnet. Those will be announced shortly before mainnet launch.
+:::
 
 The L16 Public Testnet will be the last stable test network before the mainnet launch and will likely stay online in parallel for experimental purposes.
+
+## Network Parameters
+
+| Setting                      | Value                                                 |
+| ---------------------------- | ----------------------------------------------------- |
+| Network Name                 | L16 BETA                                              |
+| New RPC URL                  | <https://rpc.beta.l16.lukso.network>                  |
+| Chain ID  / Network ID       | 83748374 (0x4FDE616)                                  |
+| Currency Symbol              | LYXt                                                  |
+| Execution Block Explorer     | <https://explorer.execution.beta.l16.lukso.network>   |
+| Execution Node list          | <https://stats.execution.beta.l16.lukso.network>      |
+| Consensus Block Explorer     | <https://explorer.consensus.beta.l16.lukso.network>   |
+| Consensus Node list          | <https://stats.consensus.beta.l16.lukso.network>      |
+| Faucet                       | <https://faucet.beta.l16.lukso.network>               |
+
+:::info
+You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/)
+:::
 
 ## System Requirements
 
@@ -118,13 +143,13 @@ You do not have to install Docker Compose separately
 
 ## Setting up Metamask
 
-| Setting                      | Value                                                                                            |
-| ---------------------------- | ------------------------------------------------------------------------------------------------ |
-| Network Name                 | L16 Beta                                                                                         |
-| New RPC URL                  | https://rpc.beta.l16.lukso.network                                                               |
-| Chain ID                     | 83748374 (0x4FDE616)                                                                             |
-| Currency Symbol              | LYXt                                                                                             |
-| Execution Block Explorer URL | [https://explorer.execution.beta.l16.lukso.network/](https://explorer.execution.beta.l16.lukso.network/) |
+| Setting                      | Value                                                |
+| ---------------------------- | ---------------------------------------------------- |
+| Network Name                 | L16 BETA                                             |
+| New RPC URL                  | https://rpc.beta.l16.lukso.network                   |
+| Chain ID                     | 83748374 (0x4FDE616)                                 |
+| Currency Symbol              | LYXt                                                 |
+| Execution Block Explorer URL | <https://explorer.execution.beta.l16.lukso.network>  |
 
 
 **[here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
@@ -290,23 +315,6 @@ cd .. && rm -rf ./lukso-l16-testnet
 ```
 
 After trying out the proposed solution, re-run your node setup from the start.
-
-## All L16 Beta links
-
-**Request LYXt**
-[Faucet](https://faucet.beta.l16.lukso.network)
-
-**Execution info**
-[Execution explorer](https://explorer.execution.beta.l16.lukso.network)
-[Execution stats](https://stats.execution.beta.l16.lukso.network)
-
-**Validator info**
-[Consensus explorer](https://explorer.consensus.beta.l16.lukso.network)
-[Consensus stats](https://stats.consensus.beta.l16.lukso.network)
-
-:::info
-You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/)
-:::
 
  
 ## FAQ

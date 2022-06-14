@@ -11,7 +11,11 @@ sidebar_position: 5
 
 :::
 
-The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract. It writes the assets of the **[LSP7-DigitalAsset Standard](../nft-2.0/LSP7-Digital-Asset.md)** and **[LSP8-IdentifiableDigitalAsset Standard](../nft-2.0/LSP8-Identifiable-Digital-Asset.md)** that a vault receives into the vault storage and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract that:
+
+- Writes the data keys representing assets received from type **[LSP7-DigitalAsset](./lsp7-digital-asset.md)** and **[LSP8-IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** into the account storage, and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+
+The requirements stated in the **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)** contract doesn't apply in this contract to execute the logic above correctly, as the address registred under the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md/#extension) data key has write access to the storage.
 
 :::note
 _LSP1UniversalReceiverDelegateVault contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
@@ -23,14 +27,6 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 :::
 
 ## Functions
-
-### constructor
-
-```solidity
-constructor()
-```
-
-Registers the **[LSP1UniversalReceiverDelegate interface id](./interface-ids.md)**.
 
 ### universalReceiverDelegate
 

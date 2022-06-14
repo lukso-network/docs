@@ -31,18 +31,18 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-constructor(address newOwner) ERC725(newOwner)
+constructor(address initialOwner) 
 ```
 
-Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** data key in the vault storage, and registers the **[LSP9Vault and LSP1UniversalReceiver interface IDs](./interface-ids.md)**.
+Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** data key in the vault storage.
 
-If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account about the **newly owned vault**.
+If the `initialOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account about the **newly owned vault**.
 
 #### Parameters:
 
-| Name       | Type    | Description                                      |
-| :--------- | :------ | :----------------------------------------------- |
-| `newOwner` | address | The address to set as the owner of the contract. |
+| Name           | Type    | Description                                      |
+| :------------- | :------ | :----------------------------------------------- |
+| `initialOwner` | address | The address to set as the owner of the contract. |
 
 
 ### owner
@@ -66,15 +66,15 @@ Returns the address of the current vault owner.
 function pendingOwner() public view returns (address)
 ```
 
-Return the `address` of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
+Return the address of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
 
-> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `0x0000000000000000000000000000000000000000`.
+> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `address(0)`.
 
 #### Return Values:
 
-| Name           | Type    | Description |
-|:---------------|:--------|:------------|
-| `pendingOwner` | address | undefined   |
+| Name           | Type    | Description                        |
+|:---------------|:--------|:---------------------------------- |
+| `pendingOwner` | address | The address of the pending owner   |
 
 ### transferOwnership
 
@@ -82,13 +82,14 @@ Return the `address` of the pending owner that was initiated by [`transferOwners
 function transferOwnership(address newOwner) public {
 ```
 
-Initiate an ownership transfer, setting the `pendingOwner` as the `newOwner`.
+Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
 #### Parameters:
 
-| Name       | Type    | Description                                      |
-| :--------- | :------ | :----------------------------------------------- |
-| `newOwner` | address | The address to set as the owner of the contract. |
+
+| Name       | Type    | Description                           |
+| :--------- | :------ | :------------------------------------ |
+| `newOwner` | address | The address to set as `pendingOwner`. |
 
 
 ### claimOwnership
