@@ -29,7 +29,7 @@ One of the main questions about NFT 2.0 is which characteristics make them the n
 
 **How different are they compared to traditional ERC20 tokens / ERC721 NFTs?**
 
-![LSP7 and LSP7 diagram](./../../../static/img/standards/lsp7-lsp8-diagram.png)
+![LSP7 and LSP7 diagram](/img/standards/lsp7-lsp8-diagram.png)
 
 ## How Tokens & NFT 2.0 are different?
 
@@ -58,9 +58,9 @@ Examples:
 
 In the LUKSO ecosystem, the `force` parameter restricts transfer to Externally Owned Accounts (EOA) or contracts that do not implement the [LSP1 - Universal Receiver](../generic-standards/lsp1-universal-receiver.md) standard. The reason behind it is that contracts not implementing the [`universalReceiver(...)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver) functionality might not be able to register or transfer these assets after receiving them.
 
-![Digital asset transfer force = FALSE](../../../static/img/standards/asset-transfer-force-false.jpeg)
+![Digital asset transfer force = FALSE](/img/standards/asset-transfer-force-false.jpeg)
 
-![Digital asset transfer force = TRUE](../../../static/img/standards/asset-transfer-force-true.jpeg)
+![Digital asset transfer force = TRUE](/img/standards/asset-transfer-force-true.jpeg)
 
 ## References
 

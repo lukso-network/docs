@@ -38,7 +38,7 @@ Nonces are represented as `uint256` from the concatenation of two `uint128` : th
 - left most 128 bits : `channelId`
 - right most 128 bits: `nonceId`
 
-![multi-channel-nonce](../../../static/img/multi-channel-nonce.jpg)
+![multi-channel-nonce](/img/multi-channel-nonce.jpg)
 
 <p align="center">
 <i>Example of multi channel nonce, where channelId == 5 and nonceId == 1</i>
