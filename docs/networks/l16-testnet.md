@@ -2,11 +2,8 @@
 sidebar_position: 2
 ---
 
-# L16 BETA Testnet
-
-:::info L16 BETA -TESTNET is not L16 TESTNET!
-The current running L16 BETA testnet is a pre-network before the official L16 testnet.
-:::
+# L16 Testnet
+ 
 
 :::info Network values DO NOT represent the final mainnet values
 Values and configuration parameters for this network, as well as suggested hardware specs, DO NOT represent the final values for the LUKSO mainnet. Those will be announced shortly before mainnet launch.
@@ -18,15 +15,15 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 
 | Setting                      | Value                                                 |
 | ---------------------------- | ----------------------------------------------------- |
-| Network Name                 | L16 BETA                                              |
-| New RPC URL                  | <https://rpc.beta.l16.lukso.network>                  |
-| Chain ID  / Network ID       | 83748374 (0x4FDE616)                                  |
+| Network Name                 | L16                                              |
+| New RPC URL                  | <https://rpc.l16.lukso.network>                  |
+| Chain ID  / Network ID       | 2828 (0x0B0C)                                  |
 | Currency Symbol              | LYXt                                                  |
-| Execution Block Explorer     | <https://explorer.execution.beta.l16.lukso.network>   |
-| Execution Node list          | <https://stats.execution.beta.l16.lukso.network>      |
-| Consensus Block Explorer     | <https://explorer.consensus.beta.l16.lukso.network>   |
-| Consensus Node list          | <https://stats.consensus.beta.l16.lukso.network>      |
-| Faucet                       | <https://faucet.beta.l16.lukso.network>               |
+| Execution Block Explorer     | <https://explorer.execution.l16.lukso.network>   |
+| Execution Node list          | <https://stats.execution.l16.lukso.network>      |
+| Consensus Block Explorer     | <https://explorer.consensus.l16.lukso.network>   |
+| Consensus Node list          | <https://stats.consensus.l16.lukso.network>      |
+| Faucet                       | <https://faucet.l16.lukso.network>               |
 
 :::info
 You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/)
@@ -145,11 +142,11 @@ You do not have to install Docker Compose separately
 
 | Setting                      | Value                                                |
 | ---------------------------- | ---------------------------------------------------- |
-| Network Name                 | L16 BETA                                             |
-| New RPC URL                  | https://rpc.beta.l16.lukso.network                   |
-| Chain ID                     | 83748374 (0x4FDE616)                                 |
+| Network Name                 | L16                                             |
+| New RPC URL                  | https://rpc.l16.lukso.network                   |
+| Chain ID                     | 2828 (0x0B0C)                                 |
 | Currency Symbol              | LYXt                                                 |
-| Execution Block Explorer URL | <https://explorer.execution.beta.l16.lukso.network>  |
+| Execution Block Explorer URL | <https://explorer.execution.l16.lukso.network>  |
 
 
 **[here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
@@ -165,7 +162,7 @@ The script will download the LUKSO cli into the folder.
  
 #### Setting up your node and node name
 ```bash
-lukso network init --nodeName [NAME_HOW_IT_APPEARS_IN_THE_STATS] 
+lukso network init --chain l16
 ```
  
 
@@ -191,7 +188,7 @@ transaction. You can check if the wallet has enough funds by calling
 lukso network validator describe
 ```
 
-Visit the [Faucet](https://faucet.beta.l16.lukso.network) and paste the transaction wallet public key into the input field.
+Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public key into the input field.
 
 Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
 
@@ -214,8 +211,15 @@ If you are sure that everything is correct you run the command
 lukso network validator deposit
 ```
 
-
 It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
+
+Once you deposited LYXt make sure to create a backup.
+
+```bash
+lukso network validator backup
+```
+
+Store the file **node_recovery.json** somewhere safe.
 
 ### Start the Validator Client
 
@@ -238,7 +242,7 @@ Occasionally check the status of your validator by either typing
 lukso network validator describe
 ```
 
-Or by visiting the [Explorer](https://explorer.consensus.beta.l16.lukso.network)
+Or by visiting the [Explorer](https://explorer.consensus.l16.lukso.network)
 
 ## Check your logs
 ```
@@ -264,12 +268,12 @@ lukso network clear
 
 You can see your node on the following pages:
 
-1. [https://stats.execution.beta.l16.lukso.network](https://stats.execution.beta.l16.lukso.network)
-2. [https://stats.consensus.beta.l16.lukso.network](https://stats.consensus.beta.l16.lukso.network)
+1. [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
+2. [https://stats.consensus.l16.lukso.network](https://stats.consensus.l16.lukso.network)
 
 
 
-## Troubleshooting L16 Beta Testnet
+## Troubleshooting L16 Testnet
 
 ### Permission denied
 
