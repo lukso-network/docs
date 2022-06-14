@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# L16 Testnet
+# L16 Public Testnet
  
 
 :::info Network values DO NOT represent the final mainnet values
@@ -155,7 +155,7 @@ You do not have to install Docker Compose separately
 
 ```bash
 mkdir lukso-l16-testnet && cd lukso-l16-testnet
-curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
 ```
 
 The script will download the LUKSO cli into the folder. 
