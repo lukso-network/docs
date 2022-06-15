@@ -164,8 +164,8 @@ Below are some examples of the **Mapping** key type.
   "name": "LSP5ReceivedAssetsMap:<address>",
   "key": "0x812c4334633eb816c80d0000cafecafecafecafecafecafecafecafecafecafe",
   "keyType": "Mapping",
-  "valueType": "Mixed",
-  "valueContent": "Mixed"
+  "valueType": "(bytes4,bytes8)",
+  "valueContent": "(Bytes4,Number)"
 }
 ```
 

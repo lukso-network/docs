@@ -55,8 +55,8 @@ The `LSP10VaultsMap` data key also helps prevent adding duplications to the arra
   "name": "LSP10VaultsMap:<address>",
   "key": "0x192448c3c0f88c7f238c0000<address>",
   "keyType": "Mapping",
-  "valueType": "bytes",
-  "valueContent": "Mixed"
+  "valueType": "(bytes4,bytes8)",
+  "valueContent": "(Bytes4,Number)"
 }
 ```
 
