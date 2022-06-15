@@ -1,46 +1,63 @@
-# How To Backup And Recover Your Node
+# Backup And Recover Your validator
 
-It is pretty straight forward to setup a node when your old node when your old setup doesn't work anymore. You can simply
-run
+We made it simple and straight forward to recover a node with its validators when your old node doesn't work anymore or you want to transfer everything to a new machine.
 
-```bash
-lukso network init --chain l16
-```
+## The keystore
 
-in another instance and the setup is done in no time.
-
-The problem starts with the keystore. How do you copy and move the keystore to another instance.
-
-The keystore is determinstic derivative of 4 values
+ the keystore is a derivative of these 4 values:
 
 * **ValidatorMnemonic** - the seed for your validator keys
 * **WithdrawalMnemonic** - which is needed to withdraw your stakes
 * **KeystoreIndexFrom** and **KeyStoreIndexTo** - the key positions that you chose to create a keystore with x amount of validator keys.
 
-If you now these 4 values you can recover your validator setup.
+If you backup those 4 values and store them safely you can always recover your validator setup.
 
-The LUKSO CLI offers 2 commands to deal with the recovery.
+## Keystore backup
+
+First we explain how to backup and transfer the keystore files to another machine.
+
+The LUKSO CLI offers 2 commands to make a backup and recover this backup on a new machine.
+
+First we explain the backup command:
 
 ```bash
 lukso network validator backup
 ```
+This will produce a recovery file **"node_recovery.json with"** exactly these four values.
 
-This will produce a recovery file **node_recovery.json** with exactly these four values. Copy the content once you have setup a node and store it somewhere
-safe.
+Use this backup command after you have succesfully setup your node and validators on your machine. Store this file somewhere safe and offline.
 
-If you want to recover the node you can simply do
+## Start up your new node
 
+You always start on your new machine with installing the LUKSO CLI after that you need to initialize the network before you can recover your old validators:
 
 ```bash
 lukso network init --chain l16
-echo CONTENT_OF_RECOVERY_JSON_FILE > node_recovery.json
-lukso network validator recover --path ./node_recovery.json
 ```
 
-This will recreate your setup and recover your node.
+## Recover you validators with the backup file
+```bash
+echo CONTENT_OF_RECOVERY_JSON_FILE > node_recovery.json
+```
+```bash
+lukso network validator recover --path ./node_recovery.json
+```
+**OR**
 
+Tranfer **node_recovery.json** from the place where you stored it to your machine and add it to your path in the `lukso network validator recover` command:
+
+Example:
+```
+lukso network validator recover --path /home/USER/lukso-node/node_recovery.json
+```
+Change **USER** to the username of your account.
+
+This will recreate your setup and recover your validator.
+
+
+:::danger
 NOTE
 
-* The recovery can only work if no validator setup was executed. It should happen immed. after you initilialsied the node.
-* NEVER run the 2 nodes at the same time - you will be prone to slashing. Make sure that one node is not running before you recover.
-
+* The recovery command will only work if you did **not** used the `lukso network validator setup` command before. So it should happen immediatelly after you initialized the node with `lukso network init --chain l16`.
+* **NEVER** run the 2 nodes at the same time - you will get slashed. Make sure that you **stopped** your existing node before you install and recover your new node. Make also sure that your old Docker containers and images are deleted.
+:::
