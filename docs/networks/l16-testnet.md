@@ -323,6 +323,5 @@ After trying out the proposed solution, re-run your node setup from the start.
  
 ## FAQ
 
-```
-Will be added soon.
-```
+You can find the FAQ about the L16 testnet [here](http://docs.lukso.tech/faq/network/).
+
