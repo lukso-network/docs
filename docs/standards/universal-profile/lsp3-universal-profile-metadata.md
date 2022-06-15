@@ -122,8 +122,8 @@ The `LSP12IssuedAssetsMap:<address>` can then be used to know the asset type (_e
   "name": "LSP12IssuedAssetsMap:<address>",
   "key": "0x74ac2555c10b9349e78f0000<address>",
   "keyType": "Mapping",
-  "valueType": "bytes",
-  "valueContent": "Mixed"
+  "valueType": "(bytes4,bytes8)",
+  "valueContent": "(Bytes4,Number)"
 }
 ```
 
