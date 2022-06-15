@@ -172,7 +172,7 @@ If everything went fine, we now have the profile's [LSP3 - Universal Profile Met
 
 </details>
 
-## Step 2 - Get the specific Profile Information
+## Step 2 - Get Specific Information
 
 With the JSON response, we can fetch all sorts of data including:
 
