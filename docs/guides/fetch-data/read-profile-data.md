@@ -189,7 +189,7 @@ To only get one specific part of information from the Universal Profile, you can
 In our case, to only read the profile's information, we can use `fetchData('LSP3Profile')`. Otherwise, you could just search trough the full JSON array from step before to extract the desired element.
 
 ```javascript title="read_profile.js"
-//...
+// ...
 
 /*
  * Specifically try fetching the @param's 
@@ -221,7 +221,7 @@ You can instantiate variables for the information you would like to process. All
     <summary>Fetch the profile's metadata</summary>
 
 ```javascript title="read_profile.js"
-//...
+// ...
 
 // Fetchable metadata information
 let name;
