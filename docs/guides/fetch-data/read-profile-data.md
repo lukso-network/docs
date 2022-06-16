@@ -38,7 +38,7 @@ Complete "ready to use" JSON and JS files are available at the end in the [**Fin
 
 To inspect the address and check if it has an ERC725 contract, we can call its interface through the `erc725.js` library. The instance of the contract will need the following information:
 
-- [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata) describes the data in the Universal Profile contract storage, and which keys to use to retrieve it. We can import the schema directly from the [erc725.js](../../tools/erc725js/getting-started/) library.
+- [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata) describes the data in the Universal Profile contract storage, and which keys to use to retrieve it. We can import the schema directly from the [erc725.js](../../tools/erc725js/schemas#standard-lsp-schemas) library.
 
   - `SupportedStandards` shows the interface using a Metadata Standard with a key. In our case we use `SupportedStandards:LSP3UniversalProfile` from to check if the contract is an Universal Profile.
   - `LSP3Profile` shows the data of the Universal Profile.
@@ -71,7 +71,7 @@ require('isomorphic-fetch');
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
 
 // Parameters for ERC725 Instance
 const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');
@@ -79,12 +79,12 @@ const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 /*
- * Try fetching the @param's Universal Provile data
+ * Try fetching the @param's Universal Provile
  *
  * @param address of Universal Profile
  * @return string JSON or custom error
  */
-async function getProfile(address) {
+async function fetchProfile(address) {
   try {
     const profile = new ERC725(erc725schema, address, provider, config);
     return await profile.fetchData();
@@ -94,7 +94,7 @@ async function getProfile(address) {
 }
 
 // Debug
-getProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+fetchProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
   console.log(JSON.stringify(profileData, undefined, 2)),
 );
 ```
@@ -192,13 +192,13 @@ In our case, to only read the profile's information, we can use `fetchData('LSP3
 // ...
 
 /*
- * Specifically try fetching the @param's 
- * Universal Profile Metadata
+ * Fetch the @param's Universal Profile's 
+ * LSP3 data
  *
  * @param address of Universal Profile
  * @return string JSON or custom error
  */
-async function getProfileData(address) {
+async function fetchProfileData(address) {
   try {
     const profile = new ERC725(erc725schema, address, provider, config);
     return await profile.fetchData('LSP3Profile');
@@ -208,134 +208,10 @@ async function getProfileData(address) {
 }
 
 // Debug
-getProfileData(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+fetchProfileData(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
   console.log(JSON.stringify(profileData, undefined, 2)),
 );
 ```
-
-## Step 3 - Read the Dataset
-
-You can instantiate variables for the information you would like to process. All demo functions provided with this guide will come with console logs to directly see results in your terminal.
-
-<details>
-    <summary>Fetch the profile's metadata</summary>
-
-```javascript title="read_profile.js"
-// ...
-
-// Fetchable metadata information
-let name;
-let description;
-let links = [];
-let firstLinkTitle;
-let firstLinkURL;
-let tags = [];
-let firstTag;
-
-/*
- * Fetch the Universal Profile and extract the
- * metadata information from its JSON dataset
- */
-async function fetchProfileMetadata() {
-  try{
-    profileMetadata = await getProfileData(SAMPLE_PROFILE_ADDRESS);
-    
-    name = profileMetadata.value.LSP3Profile.name;
-    
-    description = profileMetadata.value.LSP3Profile.description;
-  
-    links = profileMetadata.value.LSP3Profile.links;
-    firstLinkTitle = links[0].title;
-    firstLinkURL = links[0].url;
-  
-    tags = profileMetadata.value.LSP3Profile.tags;
-    firstTag = tags[0];
-  
-    console.log('Name: ' + name + '\n');
-    console.log('Description: ' + description + '\n');
-    console.log('Links: ' + JSON.stringify(links, undefined, 2) + '\n');
-    console.log('Title of first Link: ' + firstLinkTitle);
-    console.log('URL of first Link: ' + firstLinkURL + '\n');
-    console.log('Tags: ' + JSON.stringify(tags, undefined, 2) + '\n');
-    console.log('First tag: ' + firstTag + '\n');
-    
-  } catch(e){
-    console.log('Error reading profile');
-  }
-}
-
-// Debug
-fetchProfileMetadata();
-```
-
-</details>
-
-<details>
-    <summary>Fetch the profile's picture properties</summary>
-
-```javascript title="read_profile.js"
-// ...
-
-// Fetchable picture information
-let backgroundImageLinks = [];
-let profileImageLinks = [];
-let fullSizeBackgroundImg;
-let fullSizeProfileImg;
-
-/*
- * Fetch the Universal Profile and extract the 
- * picture information from its JSON dataset
- *
- * @return string Error
- */
-async function fetchProfilePictures() {
-  pictureData = await getProfileData(SAMPLE_PROFILE_ADDRESS);
-  let backgroundImagesIPFS =
-    pictureData.value.LSP3Profile.backgroundImage;
-  let profileImagesIPFS = pictureData.value.LSP3Profile.profileImage;
-
-  try {
-    for (let i in backgroundImagesIPFS) {
-      backgroundImageLinks.push([
-        i,
-        IPFS_GATEWAY + backgroundImagesIPFS[i].url.substring(7),
-      ]);
-    }
-
-    for (let i in profileImagesIPFS) {
-      profileImageLinks.push([
-        i,
-        IPFS_GATEWAY + profileImagesIPFS[i].url.substring(7),
-      ]);
-    }
-
-    fullSizeBackgroundImg = backgroundImageLinks[0][1];
-    fullSizeProfileImg = profileImageLinks[0][1];
-
-    console.log('Fullsize Background Image: ' + fullSizeBackgroundImg + '\n');
-    console.log('Fullsize Background Image: ' + fullSizeProfileImg + '\n');
-
-    console.log(
-      'Background Image Links: ' +
-        JSON.stringify(backgroundImageLinks, undefined, 2) +
-        '\n',
-    );
-
-    console.log(
-      'Background Image Links: ' +
-        JSON.stringify(profileImageLinks, undefined, 2) +
-        '\n',
-    );
-  } catch (error) {
-    return console.log('Could not fetch images');
-  }
-}
-
-// Debug
-fetchProfilePictures();
-```
-
-</details>
 
 ## Final Code
 
@@ -350,27 +226,12 @@ require('isomorphic-fetch');
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
 
 // Parameters for ERC725 Instance
 const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
-
-// Fetchable metadata information
-let name;
-let description;
-let links = [];
-let firstLinkTitle;
-let firstLinkURL;
-let tags = [];
-let firstTag;
-
-// Fetchable picture information
-let backgroundImageLinks = [];
-let profileImageLinks = [];
-let fullSizeBackgroundImg;
-let fullSizeProfileImg;
 
 /*
  * Try fetching the @param's Universal Provile data
@@ -378,7 +239,7 @@ let fullSizeProfileImg;
  * @param address of Universal Profile
  * @return string JSON or custom error
  */
-async function getProfile(address) {
+async function fetchProfile(address) {
   try {
     const profile = new ERC725(erc725schema, address, provider, config);
     return await profile.fetchData();
@@ -388,13 +249,13 @@ async function getProfile(address) {
 }
 
 /*
- * Specifically try fetching the @param's 
- * Universal Profile Metadata
+ * Fetch the @param's Universal Profile's 
+ * LSP3 data
  *
  * @param address of Universal Profile
  * @return string JSON or custom error
  */
-async function getProfileData(address) {
+async function fetchProfileData(address) {
   try {
     const profile = new ERC725(erc725schema, address, provider, config);
     return await profile.fetchData('LSP3Profile');
@@ -403,100 +264,14 @@ async function getProfileData(address) {
   }
 }
 
-/*
- * Fetch the Universal Profile and extract metadata 
- * information from it's JSON dataset
- */
-async function fetchProfileMetadata() {
-  try{
-    profileMetadata = await getProfileData(SAMPLE_PROFILE_ADDRESS);
-    
-    name = profileMetadata.value.LSP3Profile.name;
-    
-    description = profileMetadata.value.LSP3Profile.description;
-  
-    links = profileMetadata.value.LSP3Profile.links;
-    firstLinkTitle = links[0].title;
-    firstLinkURL = links[0].url;
-  
-    tags = profileMetadata.value.LSP3Profile.tags;
-    firstTag = tags[0];
-  
-    console.log('Name: ' + name + '\n');
-    console.log('Description: ' + description + '\n');
-    console.log('Links: ' + JSON.stringify(links, undefined, 2) + '\n');
-    console.log('Title of first Link: ' + firstLinkTitle);
-    console.log('URL of first Link: ' + firstLinkURL + '\n');
-    console.log('Tags: ' + JSON.stringify(tags, undefined, 2) + '\n');
-    console.log('First tag: ' + firstTag + '\n');
-    
-  } catch(e){
-    console.log('Error reading profile');
-  }
-}
-
-/*
- * Fetch the Universal Profile and extract the 
- * picture information from its JSON dataset
- *
- * @return string Error
- */
-async function fetchProfilePictures() {
-  pictureData = await getProfileData(SAMPLE_PROFILE_ADDRESS);
-  let backgroundImagesIPFS =
-    pictureData.value.LSP3Profile.backgroundImage;
-  let profileImagesIPFS = pictureData.value.LSP3Profile.profileImage;
-
-  try {
-    for (let i in backgroundImagesIPFS) {
-      backgroundImageLinks.push([
-        i,
-        IPFS_GATEWAY + backgroundImagesIPFS[i].url.substring(7),
-      ]);
-    }
-
-    for (let i in profileImagesIPFS) {
-      profileImageLinks.push([
-        i,
-        IPFS_GATEWAY + profileImagesIPFS[i].url.substring(7),
-      ]);
-    }
-
-    fullSizeBackgroundImg = backgroundImageLinks[0][1];
-    fullSizeProfileImg = profileImageLinks[0][1];
-
-    console.log('Fullsize Background Image: ' + fullSizeBackgroundImg + '\n');
-    console.log('Fullsize Background Image: ' + fullSizeProfileImg + '\n');
-
-    console.log(
-      'Background Image Links: ' +
-        JSON.stringify(backgroundImageLinks, undefined, 2) +
-        '\n',
-    );
-
-    console.log(
-      'Background Image Links: ' +
-        JSON.stringify(profileImageLinks, undefined, 2) +
-        '\n',
-    );
-  } catch (error) {
-    return console.log('Could not fetch images');
-  }
-}
-
-
-
 // Step 1
-getProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+fetchProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
   console.log(JSON.stringify(profileData, undefined, 2)),
 );
 
 // Step 2
-getProfileData(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+fetchProfileData(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
   console.log(JSON.stringify(profileData, undefined, 2)),
 );
 
-// Step 3
-fetchProfileMetadata();
-fetchProfilePictures();
 ```
