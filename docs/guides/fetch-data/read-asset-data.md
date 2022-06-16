@@ -10,8 +10,8 @@ import TabItem from '@theme/TabItem';
 
 In this guide, we will learn how to:
 
-- read data from the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md).
 - get all assets ever received by a profile.
+- get all assets ever issued by a profile.
 - fetch the data of all owned assets.
 
 <div style={{textAlign: 'center', color: 'grey'}}>
@@ -37,23 +37,107 @@ Open a terminal in the project's folder of your choice and install all required 
 ```shell
 npm install web3 @erc725/erc725.js isomorphic-fetch @lukso/lsp-smart-contracts
 ```
-
-## Step 1 - Get all assets ever received
-
-In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and retrieve the address of its Universal Receiver.
-
-The [Universal Receiver is a smart contract](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver) that keeps track of all the assets ever received by a Universal Profile. We use sample addresses for the Universal Receiver, Universal Profile, and Identifiable Digital Asset to make the guide more understandable.
-
 :::success Recommendation
 Complete "ready to use" JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
 :::
 
-To make the guide more understandable, we use sample addresses for the Universal Receiver, Universal Profile and Identifiable Digital Asset. You will most likely change these static variables with a dynamic values from your app's input field or fetching processes.
+## Step 1 - Get all assets ever received
+
+<Tabs>
+  <TabItem value="Current Standard" label="Current Standard">
+
+In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and use the key names within the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library.  In the same way, we can now fetch all ever received assets using `fetchData('LSP5ReceivedAssets[]')`.
+
+```javascript title="read_assets.js"
+// Import and Network Setup
+const Web3 = require("web3");
+const { ERC725 } = require("@erc725/erc725.js");
+require("isomorphic-fetch");
+
+// Our static variables
+const SAMPLE_PROFILE_ADDRESS = "0x0Ac71c67Fa5E4c9d4af4f99d7Ad6132936C2d6A3";
+const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
+
+// Parameters for ERC725 Instance
+const erc725schema = require("@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json");
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+const config = { ipfsGateway: IPFS_GATEWAY };
+/*
+ * Fetch the @param's Universal Profile's
+ * LSP5 data
+ *
+ * @param address of Universal Profile
+ * @return string JSON or custom error
+ */
+async function fetchReceivedAssets(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    return await (
+      await profile.fetchData("LSP5ReceivedAssets[]")
+    ).value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+// Debug
+fetchReceivedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+  console.log(JSON.stringify(profileData, undefined, 2))
+);
+```
+
+  </TabItem>
+
+  <TabItem value="Legacy Standard" label="Legacy Standard">
+
+In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and use the key names within the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch the address of the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver/) by using `fetchData("LSP1UniversalReceiverDelegate")`.
+
+```javascript title="read_assets.js"
+// Import and Network Setup
+const Web3 = require("web3");
+const { ERC725 } = require("@erc725/erc725.js");
+require("isomorphic-fetch");
+
+// Our static variables
+const SAMPLE_PROFILE_ADDRESS = "0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e";
+const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
+
+// Parameters for ERC725 Instance
+const erc725schema = require("@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json");
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+const config = { ipfsGateway: IPFS_GATEWAY };
+/*
+ * Fetch the @param's Universal Profile's
+ * LSP5 data
+ *
+ * @param address of Universal Profile
+ * @return Universal Receiver address or custom error
+ */
+async function fetchUniversalReceiver(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    return await (
+      await profile.fetchData("LSP1UniversalReceiverDelegate")
+    ).value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+// Debug
+fetchUniversalReceiver(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+  console.log(JSON.stringify(profileData, undefined, 2))
+);
+```
+
+After we got the Universal Receiver address, we can now receive an array of assets from it by calling the `getAllRawValues()` function.
 
 <details>
     <summary>LSP1 Minimal JSON Interface</summary>
 
-```json title="lsp1_minimal_interface.json"
+```json title="legacy_lsp1_interface.min.json"
 [
   {
     "inputs": [],
@@ -74,15 +158,12 @@ To make the guide more understandable, we use sample addresses for the Universal
 </details>
 
 ```javascript title="read_assets.js"
-// Import and Setup
-const Web3 = require('web3');
-const web3 = new Web3('https://rpc.l14.lukso.network');
-
-// Our static Universal Receiver address
-const SAMPLE_UNIVERSAL_RECEIVER = '0x50a02ef693ff6961a7f9178d1e53cc8bbe1dad68';
+// ...
 
 // ABI for the Universal Receiver
-const LSP1MinimalInterface = require('./lsp1_minimal_interface.json');
+const LSP1MinimalInterface = require("./lsp1_minimal_interface.json");
+const web3 = new Web3("https://rpc.l14.lukso.network");
+
 /*
  * Return array of blockchain addresses of
  * assets, that were received by the
@@ -90,37 +171,39 @@ const LSP1MinimalInterface = require('./lsp1_minimal_interface.json');
  *
  * @return address[] of assets
  */
-async function getAssetAddressses() {
-  const AddressStore = new web3.eth.Contract(
+async function fetchReceivedAssets() {
+  const receiverAddress = new web3.eth.Contract(
     LSP1MinimalInterface,
-    SAMPLE_UNIVERSAL_RECEIVER,
+    await fetchUniversalReceiver(SAMPLE_PROFILE_ADDRESS)
   );
 
   let rawValues = [];
 
   try {
     // Fetch all raw values
-    rawValues = await AddressStore.methods.getAllRawValues().call();
+    rawValues = await receiverAddress.methods.getAllRawValues().call();
   } catch (error) {
-    return console.log('Data from universal receiver could not be loaded');
+    return console.log("Data from universal receiver could not be loaded");
   }
 
-  let digitalAssets = [];
+  const receivedAssets = [];
 
   // Retrieve addresses
   for (let i = 0; i < rawValues.length; i++) {
-    digitalAssets[i] = web3.utils.toChecksumAddress(rawValues[i].substr(26));
+    receivedAssets[i] = web3.utils.toChecksumAddress(rawValues[i].substr(26));
   }
-  return digitalAssets;
+  return receivedAssets;
 }
 
 // Debug
-getAssetAddressses().then((digitalAssets) => console.log(digitalAssets));
+fetchReceivedAssets().then((receivedAssets) => console.log(receivedAssets));
 ```
+  </TabItem>
+</Tabs>
 
 ## Step 2 - Check ownership of assets
 
-After trimming out the asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the balance is greater than zero, the asset is still owned by the address.
+After trimming out the asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the `balance` is greater than zero, the asset is still owned by the address.
 
 :::info Difference between Token Ownership
 
@@ -129,14 +212,15 @@ After trimming out the asset addresses, we can check which assets are owned by t
 
 :::
 
+<Tabs>
+  <TabItem value="Current Standard" label="Current Standard">
+
 ```javascript title="read_assets.js"
 // ...
 
 // ABI for the asset
-const LSP8 = require('@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json');
-
-// Our static Universal Profile address
-const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
+const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
+const web3 = new Web3("https://rpc.l14.lukso.network");
 
 /*
  * Return array of blockchain addresses
@@ -146,17 +230,15 @@ const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
  * @param owner Universal Profile address
  * @return address[] of owned assets
  */
-async function getOwnedAddresses(owner) {
-  let digitalAssets = await getAssetAddressses();
-  let ownedAssets = [];
+async function fetchOwnedAssets(owner) {
+  const digitalAssets = await fetchReceivedAssets(SAMPLE_PROFILE_ADDRESS);
+  const ownedAssets = [];
 
   for (let i = 0; i < digitalAssets.length; i++) {
-    let isCurrentOwner;
-
     // Create instance of the asset to check owner balance
     const LSP8Contract = new web3.eth.Contract(LSP8.abi, digitalAssets[i]);
 
-    isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
+    const isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
     if (isCurrentOwner > 0) {
       ownedAssets[ownedAssets.length] = digitalAssets[i];
     }
@@ -165,26 +247,68 @@ async function getOwnedAddresses(owner) {
 }
 
 // Debug
-getOwnedAddresses(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
-  console.log(ownedAssets),
+fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
+  console.log(ownedAssets)
 );
 ```
 
+</TabItem>
+<TabItem value="Legacy Standard" label="Legacy Standard">
+
+```javascript title="read_assets.js"
+// ...
+
+// ABI for the asset
+const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
+
+/*
+ * Return array of blockchain addresses
+ * of assets that are owned by the
+ * Univeral Profile.
+ *
+ * @param owner Universal Profile address
+ * @return address[] of owned assets
+ */
+async function fetchOwnedAssets(owner) {
+  const digitalAssets = await fetchReceivedAssets(SAMPLE_PROFILE_ADDRESS);
+  const ownedAssets = [];
+
+  for (let i = 0; i < digitalAssets.length; i++) {
+    // Create instance of the asset to check owner balance
+    const LSP8Contract = new web3.eth.Contract(LSP8.abi, digitalAssets[i]);
+
+    const isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
+    if (isCurrentOwner > 0) {
+      ownedAssets[ownedAssets.length] = digitalAssets[i];
+    }
+  }
+  return ownedAssets;
+}
+
+// Debug
+fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
+  console.log(ownedAssets)
+);
+```
+
+</TabItem>
+</Tabs>
+
 ## Step 3 - Check the type of an asset
 
-Now that we have retrieved all the owned assets, we need to check which interface is behind these smart contract addresses, to get the data.
+Now that we have retrieved all the owned assets, we need to check which interface is behind these smart contract addresses, to get their data.
 
 UniversalProfile contracts on the [profile explorer](https://universalprofile.cloud/) on the LUKSO L14 test network have been deployed using different `ERC725Y` interfaces. We have to know which interface to use, to assure the right interaction and bypass errors.
 
 <Tabs>
   
-  <TabItem value="Current Standads" label="Current Standards">
+  <TabItem value="Current Standards" label="Current Standards">
 
 :::info
 
-Thanks to [function overloading], the `ERC725Y` interface function `getData(...)` can accept:
+By using [function overloading], the `ERC725Y` interface function `getData(...)` can accept:
 
-- either one key: `getData(key)`.
+- either one key: `getData(key)` to fetch a single value.
 - or an array of keys: `getData(keys[])` to fetch multiple values at once.
 
 :::
@@ -265,11 +389,9 @@ checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
 :::info Depending on the interface, the function accepts different parameters.
 
 - in the **legacy** `ERC725Y` interface, `getData(...)` only takes a single key: `getData(key)`.
-- in the **current** `ERC725Y` interface, `getData(...)` can accept:
-  - either one key: `getData(key)`
-  - or an array of keys: `getData(keys[])`
-
-The current standard therefore allows to fetch multiple values at once, via [function overloading].
+- in the **current** `ERC725Y` interface, `getData(...)` uses [function overloading] and can accept:
+  - either one key: `getData(key)` to fetch a single value,
+  - or an array of keys: `getData(keys[])` to fetch multiple values at once.
 
 :::
 
