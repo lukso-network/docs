@@ -62,7 +62,7 @@ Under the hood, lsp-factory.js performs the following:
    - [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md) (UP) is the core smart contract representing a Universal Profile.
    - [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br/> to enable other addresses to interact with the UP.
 2. Link a previously deployed [Universal Receiver Delegate](../../standards/universal-profile/lsp1-universal-receiver-delegate.md) (URD) smart contract with the deployed UP. The URD reacts to events, such as tokens received or transferred.
-3. Set all the permissions for provided EOA addresses so that they can act as UP admins.
+3. Set all the permissions for provided EOA addresses so that they can act on the UP.
 
 > :arrow_right: &nbsp; [See our lsp-factory.js docs for more details](../../tools/lsp-factoryjs/getting-started)
 
@@ -207,10 +207,10 @@ const PRIVATE_KEY = '0x...'; // add the private key of your EOA here (created in
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
 // initialize the LSPFactory with the L14 chain RPC endpoint, chainId and your EOA's private key which will deploy the UP smart contracts
-const lspFactory = new LSPFactory(
-  'https://rpc.l14.lukso.network',
+const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
   deployKey: PRIVATE_KEY,
-);
+  chainId: 22,
+});
 ```
 
 ### 3.3 - Deploy our Universal Profile
