@@ -19,9 +19,9 @@ const PERMISSIONS_ARRAY = '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe
 
 // prettier-ignore
 const ADDRESSES = {
-  PERMISSIONS:      "0x4b80742d0000000082ac0000", // AddressPermissions:Permissions:<address> --> bytes32
-  ALLOWEDADDRESSES: "0x4b80742d00000000c6dd0000", // AddressPermissions:AllowedAddresses:<address> --> address[]
-  ALLOWEDFUNCTIONS: "0x4b80742d000000008efe0000", // AddressPermissions:AllowedFunctions:<address> --> bytes4[]
+  PERMISSIONS:      "0x4b80742de2bf82acb3630000", // AddressPermissions:Permissions:<address> --> bytes32
+  ALLOWEDADDRESSES: "0x4b80742de2bfc6dd6b3c0000", // AddressPermissions:AllowedAddresses:<address> --> address[]
+  ALLOWEDFUNCTIONS: "0x4b80742de2bf8efea1e80000", // AddressPermissions:AllowedFunctions:<address> --> bytes4[]
 }
 
 // prettier-ignore

@@ -20,7 +20,7 @@ In **LSP4 - Digital Asset Metadata**, such information is held under the data ke
 
 Both [LSP7](./LSP7-Digital-Asset.md) and [LSP8](./LSP8-Identifiable-Digital-Asset.md) standards are derived from the [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), which defines the default metadata keys representing a digital asset on the blockchain.
 
-![LSP4 Digital Asset Metadata diagram](../../../static/img/standards/lsp4-digital-asset-metadata-diagram.png)
+![LSP4 Digital Asset Metadata diagram](/img/standards/lsp4-digital-asset-metadata-diagram.png)
 
 ## ERC725Y Data Keys
 
@@ -29,7 +29,7 @@ Both [LSP7](./LSP7-Digital-Asset.md) and [LSP8](./LSP8-Identifiable-Digital-Asse
 ```json
 {
   "name": "SupportedStandards:LSP4DigitalAsset",
-  "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000a4d96624",
+  "key": "0xeafec4d89fa9619884b60000a4d96624a38f7ac2d8d9a604ecf07c12c77e480c",
   "keyType": "Mapping",
   "valueType": "bytes4",
   "valueContent": "0xa4d96624"
@@ -97,10 +97,10 @@ This data key refers to the `address`(es) of the creator(s) for the digital asse
 ```json
 {
   "name": "LSP4CreatorsMap:<address>",
-  "key": "0x6de85eaf5d982b4e00000000<address>",
+  "key": "0x6de85eaf5d982b4e5da00000<address>",
   "keyType": "Mapping",
-  "valueType": "bytes",
-  "valueContent": "Mixed"
+  "valueType": "(bytes4,bytes8)",
+  "valueContent": "(Bytes4,Number)"
 }
 ```
 

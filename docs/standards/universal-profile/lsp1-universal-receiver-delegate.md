@@ -29,9 +29,11 @@ Therefore, it is advised not to hardcode how the smart contract should handle an
 
 This standard represents a smart contract delegated to the initial `universalReceiver(...)` function.
 
-It contains a single function named `universalReceiverDelegate(...)` that takes the same parameters as the `universalReceiver(...)` function with an additional one:
+It contains a single function named `universalReceiverDelegate(...)` that takes the same parameters as the `universalReceiver(...)` function with two additional params:
 
-- address `sender`: the address that initially called the `universalReceiver(...)` function.
+- address `caller`: the address that initially called the `universalReceiver(...)` function.
+
+- uint256 `value`: the amount of value sent to the `universalReceiver(...)` function.
 
 ### How Delegation works
 

@@ -18,7 +18,7 @@ This guide will teach you how to download and install the Universal Profile brow
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.0.0-develop.189)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-1.0.0-develop.189-2022-05-17.zip)**
+### :inbox_tray: **[Download link (v1.0.0-develop.223)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-1.0.0-develop.223.zip)**
 
 ## Unpack the Archive
 
@@ -93,7 +93,7 @@ Open the extension by clicking its icon from the menu bar.
 Type `edge://extensions` into the searchbar to open the extension page.
 
   </TabItem>
-</Tabs>`
+</Tabs>
 
 #### 2. Enable the browser's developer mode.
 
@@ -135,7 +135,7 @@ Press and hold `cmd+shift+e` or `ctrl+shift+e` on your keyboard.
 Type `opera://extensions` into the searchbar to open the extension page.
 
   </TabItem>
-</Tabs>`
+</Tabs>
 
 #### 2. Enable the browser's developer mode.
 
@@ -181,7 +181,7 @@ Open the extension by clicking its icon from the menu bar.
 Type `brave://extensions` into the searchbar to open the extension page.
 
   </TabItem>
-</Tabs>`
+</Tabs>
 
 #### 2. Enable the browser's developer mode.
 
@@ -205,6 +205,56 @@ Pin the extension through the extension icon.
 Open the extension by clicking its icon from the menu bar.
 
 ![Step 5 - Brave: Open Extension](/img/extension/brave6.png)
+
+  </TabItem>
+   <TabItem value="firefox" label="Firefox">
+
+:::note
+This installation process is for **Firefox Developer Edition** (or **Firefox Nightly**) only, as the standard Firefox only allows the installation of temporary developer add-ons.
+:::
+
+#### 1. Disable requiring xpi signature
+
+Type `about://config` into the searchbar to open the configuration page.
+
+![Step 1a - Firefox: about:config](/img/extension/firefox1.png)  
+
+Click _Accept Risk and Continue_ when promped with _Proceed with Caution_ warning.
+
+Next, set the `xpinstall.signatures.required` to false.
+
+![Step 1b - Firefox: about:config](/img/extension/firefox2.png)
+
+#### 2. Open the addons section
+
+<Tabs>
+  <TabItem value="firefox-menu" label="Using Menu Bar">
+
+![Step 2 - Firefox: Menu Bar](/img/extension/firefox3.png)
+
+  </TabItem>
+  <TabItem value="firefox-url" label="Using URL">
+
+Type `about://addons` into the searchbar to open the extension page.
+
+  </TabItem>
+</Tabs>
+
+#### 3. Load the extension from the zip file
+
+Click on the settings wheel and then click on _Install Add-on From File_ pointing to the ZIP archive of the extension.<br/>
+
+![Step 3a - Firefox: Load Extension](/img/extension/firefox4.png)
+
+Click _Add_ when prompted with a question to add the unverified extension.
+
+![Step 3b - Firefox: Accept Extension](/img/extension/firefox5.png)
+
+#### 4. Launch the extension
+
+Open the extension by clicking its icon from the menu bar.
+
+![Step 4 - Firefox: Open Extension](/img/extension/firefox6.png)
 
   </TabItem>
 </Tabs>

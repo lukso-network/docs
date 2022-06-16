@@ -31,18 +31,19 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 ### constructor
 
 ```solidity
-constructor(address newOwner) ERC725(newOwner)
+constructor(address initialOwner) 
 ```
 
-Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** data key in the vault storage, and registers the **[LSP9Vault and LSP1UniversalReceiver interface IDs](./interface-ids.md)**.
+Sets the **initial owner** of the contract, the **[SupportedStandards:LSP9Vault ](#)** data key in the vault storage.
 
-If the `newOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account about the **newly owned vault**.
+If the `initialOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account about the **newly owned vault**.
 
 #### Parameters:
 
-| Name       | Type    | Description                                      |
-| :--------- | :------ | :----------------------------------------------- |
-| `newOwner` | address | The address to set as the owner of the contract. |
+| Name           | Type    | Description                                      |
+| :------------- | :------ | :----------------------------------------------- |
+| `initialOwner` | address | The address to set as the owner of the contract. |
+
 
 ### owner
 
@@ -55,8 +56,25 @@ Returns the address of the current vault owner.
 #### Return Values:
 
 | Name    | Type    | Description                     |
-| :------ | :------ | :------------------------------ |
+| :------ | :------ | :-------------------------------|
 | `owner` | address | The current owner of the vault. |
+
+
+### pendingOwner
+
+```solidity
+function pendingOwner() public view returns (address)
+```
+
+Return the address of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
+
+> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `address(0)`.
+
+#### Return Values:
+
+| Name           | Type    | Description                        |
+|:---------------|:--------|:---------------------------------- |
+| `pendingOwner` | address | The address of the pending owner   |
 
 ### transferOwnership
 
@@ -64,25 +82,34 @@ Returns the address of the current vault owner.
 function transferOwnership(address newOwner) public {
 ```
 
-Transfers ownership of the contract to the `newOwner` address.
-
-If the current owner or the `newOwner` address is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract, the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function will be called on the **LSP0ERC725Account** contract to inform the account(s) about the **vault ownership transfer**.
-
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when the ownership is transferred._
+Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
 #### Parameters:
 
-| Name       | Type    | Description                                      |
-| :--------- | :------ | :----------------------------------------------- |
-| `newOwner` | address | The address to set as the owner of the contract. |
 
-### receive
+| Name       | Type    | Description                           |
+| :--------- | :------ | :------------------------------------ |
+| `newOwner` | address | The address to set as `pendingOwner`. |
+
+
+### claimOwnership
 
 ```solidity
-receive() external payable
+function claimOwnership() public {
 ```
 
-Executed when value is transferred to the contract.
+Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
+
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
+
+
+### fallback
+
+```solidity
+fallback() external payable
+```
+
+Executed when value is transferred to the contract or when function identifier doesn't match any of the available functions.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
 
@@ -226,7 +253,7 @@ Retrieves an array of data for multiple given data keys.
 function universalReceiver(
     bytes32 typeId,
     bytes memory data
-) public returns (bytes memory result)
+) public payable returns (bytes memory result)
 ```
 
 Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key.
@@ -276,7 +303,7 @@ event ValueReceived(
 )
 ```
 
-_**MUST** be fired when the **[`receive(...)`](#receive)** function is successfully executed._
+_**MUST** be fired when when a native token is received via **[`fallback(...)`](#fallback)** function._
 
 #### Values:
 
@@ -330,26 +357,23 @@ _**MUST** be fired when the **[`execute(...)`](#execute)** function creates a ne
 ### DataChanged
 
 ```solidity
-event DataChanged(
-    bytes32 key,
-    bytes value,
-)
+event DataChanged(bytes32 dataKey)
 ```
 
 _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
 
 #### Values:
 
-| Name    | Type    | Description                            |
-| :------ | :------ | :------------------------------------- |
-| `key`   | bytes32 | The data key which value is retrieved. |
-| `value` | bytes   | The data of bytes set.                 |
+| Name        | Type    | Description                      |
+| :---------- | :------ | :------------------------------- |
+| `dataKey`   | bytes32 | The data key which value is set. |
 
 ### UniversalReceiver
 
 ```solidity
 event UniversalReceiver(
     address from,
+    uint256 value,
     bytes32 typeId,
     bytes returnedValue,
     bytes receivedData
@@ -360,12 +384,13 @@ _**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** f
 
 #### Values:
 
-| Name            | Type    | Description                                                  |
-| :-------------- | :------ | :----------------------------------------------------------- |
-| `from`          | address | The address calling the **universalReceiver** function.      |
-| `typeId`        | bytes32 | The hash of a specific standard or a hook.                   |
-| `returnedValue` | bytes   | The return value of **universalReceiver** function.          |
-| `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function. |
+| Name            | Type    | Description                                                     |
+| :-------------- | :------ | :-------------------------------------------------------------- |
+| `from`          | address | The address calling the **universalReceiver** function.         |
+| `value`         | uint256 | The amount of value sent to the **universalReceiver** function. |
+| `typeId`        | bytes32 | The hash of a specific standard or a hook.                      |
+| `returnedValue` | bytes   | The return value of **universalReceiver** function.             |
+| `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function.    |
 
 ## References
 

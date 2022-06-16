@@ -236,7 +236,7 @@ const { LSPFactory } = require('@lukso/lsp-factory.js');
 // Step 3.3 - Deploy our Universal Profile
 async function createUniversalProfile() {
   const deployedContracts = await lspFactory.UniversalProfile.deploy({
-    controllingAccounts: [PRIVATE_KEY], // our EOA that will be controlling the UP
+    controllingAccounts: [myEOA.address], // our EOA that will be controlling the UP
     lsp3Profile: {
       name: 'My Universal Profile',
       description: 'My Cool Universal Profile',
@@ -373,7 +373,7 @@ const lspFactory = new LSPFactory(
 // Step 3.3 - Deploy our Universal Profile
 async function createUniversalProfile() {
   const deployedContracts = await lspFactory.UniversalProfile.deploy({
-    controllingAccounts: [PRIVATE_KEY], // our EOA that will be controlling the UP
+    controllingAccounts: [myEOA.address], // our EOA that will be controlling the UP
     lsp3Profile: {
       name: 'My Universal Profile',
       description: 'My Cool Universal Profile',

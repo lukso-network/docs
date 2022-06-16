@@ -35,11 +35,11 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 | Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [**Address Permissions**](#address-permissions)   | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742d0000000082ac0000<address>` |
-| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742d00000000c6dd0000<address>` |
-| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742d000000008efe0000<address>` |
-| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742d000000003efa0000<address>` |
-| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                            | `0x4b80742d0000000090b80000<address>` |
+| [**Address Permissions**](#address-permissions)   | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
+| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742de2bfc6dd6b3c0000<address>` |
+| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742de2bf8efea1e80000<address>` |
+| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742de2bf3efa94a30000<address>` |
+| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                            | `0x4b80742de2bf90b8b4850000<address>` |
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
 
@@ -52,8 +52,10 @@ Click on the toggles below to **learn more about the features enabled by each pe
         <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
             <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000001</code>
         </p>
-        <p>The <code>CHANGEOWNER</code> permission enables the change of the owner of the linked ERC725Account.</p>
-        <p>Using this permission, you can easily upgrade the <code>Key Manager</code> attached to the Account by transferring ownership to a new <code>Key ManagerV2</code>.</p>
+
+The `CHANGEOWNER` permission enables the change of the owner of the linked ERC725Account.
+Using this permission, you can easily upgrade the [`LSP6KeyManager`](../smart-contracts/lsp6-key-manager.md) attached to the Account by transferring ownership to a new Key Manager.
+
 </details>
 
 <details>
@@ -61,11 +63,12 @@ Click on the toggles below to **learn more about the features enabled by each pe
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
     </p>
-    <p>This permission allows for <b>editing permissions</b> of any address that already has some permissions set on the ERC725Account (including itself).</p>
+
+This permission allows for **editing permissions** of any address that already has some permissions set on the ERC725Account (including itself).
 
 ![CHANGE Permissions](/img/standards/lsp6-change-permissions.jpeg)
 
-<p>Bear in mind that the behavior of <code>CHANGEPERMISSIONS</code> slightly varies depending on the new permissions value being set (see figure below).</p>
+Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending on the new permissions value being set (see figure below).
 
 ![CHANGE Permissions](/img/standards/lsp6-change-permissions-variants.jpeg)
 
@@ -76,7 +79,8 @@ Click on the toggles below to **learn more about the features enabled by each pe
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
-    <p>This permission allows giving permissions to new addresses. This role-management enables the <b>authorization of new addresses</b> to interact with the ERC725Account.</p>
+
+This permission allows giving permissions to new addresses. This role-management enables the **authorization of new addresses** to interact with the ERC725Account.
 
 ![ADD Permissions](/img/standards/lsp6-add-permissions.jpeg)
 
@@ -87,7 +91,10 @@ Click on the toggles below to **learn more about the features enabled by each pe
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
-    Allows an address to write any form of data in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y">ERC725Y</a> data key-value store of the linked <code>ERC725Account</code> (except permissions, which require the permissions <code>CHANGEPERMISSIONS</code> described above).
+
+Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
+
+> **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y keys](#allowed-erc725y-keys)**
 
 </details>
 
@@ -96,7 +103,9 @@ Click on the toggles below to **learn more about the features enabled by each pe
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code><br/>
     </p>
-    <p>This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts). Allowing state changes at the address being called.</p>
+
+This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts). Allowing state changes at the address being called.
+
 </details>
 
 <details>
@@ -104,9 +113,12 @@ Click on the toggles below to **learn more about the features enabled by each pe
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code><br/>
     </p>
-    <p>This permission enables the ERC725Account linked to Key Manager to make external calls to contracts while disallowing state changes at the address being called.</p>
-    <p>It uses the <a href="https://eips.ethereum.org/EIPS/eip-214"><code>STATICCALL</code></a> opcode when performing the external call.</p>
-    <blockquote>If any state is changed at a target contract through a <code>STATICCALL</code>, the call will revert.</blockquote>
+
+This permission enables the ERC725Account linked to Key Manager to make external calls to contracts while disallowing state changes at the address being called.
+It uses the [STATICCALL](https://eips.ethereum.org/EIPS/eip-214) opcode when performing the external call.
+
+> **NB:** If any state is changed at a target contract through a `STATICCALL`, the call will **revert silently**.
+
 </details>
 
 <details>
@@ -130,8 +142,11 @@ This permission allows executing code and functions from other contracts in the 
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
     </p>
-    <p>Enables the caller to deploy a smart contract, using the linked ERC725Account as a deployer. Developers should provide the contract's bytecode to be deployed in the payload (ABI-encoded) passed to the Key Manager.</p>
-    <blockquote>Both the <code>CREATE</code> or <a href="https://eips.ethereum.org/EIPS/eip-1014"><code>CREATE2</code></a> opcode can be used to deploy the contract.</blockquote>
+
+Enables the caller to deploy a smart contract, using the linked ERC725Account as a deployer. Developers should provide the contract's bytecode to be deployed in the payload (ABI-encoded) passed to the Key Manager.
+
+> Both the `CREATE` or [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014) opcodes can be used to deploy a contract.
+
 </details>
 
 <details>
@@ -139,10 +154,13 @@ This permission allows executing code and functions from other contracts in the 
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
     </p>
-    Enables sending native currency from the linked ERC725Account to any address.<br/>
-    <blockquote>
-        Note: For a simple native token transfer, no data (<code>""</code>) should be passed to the fourth parameter of the <code>execute</code> function of the Account contract. For instance: <code>account.execute(operationCall, recipient, amount, "")</code>
-    </blockquote>
+
+Enables sending native tokens from the linked ERC725Account to any address.<br/>
+
+> **Note:** For a simple native token transfer, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
+>
+> The caller will need the permission `CALL` to send any data along the LYX transfer.
+
 </details>
 
 <details>
@@ -150,7 +168,9 @@ This permission allows executing code and functions from other contracts in the 
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
     </p>
-    Developers can use the <code>SIGN</code> permission for keys to sign login messages. It is primarily for web2.0 apps to know which key SHOULD sign.
+
+Developers can use the `SIGN` permission for keys to sign login messages. It is primarily for web2.0 apps to know which key SHOULD sign.
+
 </details>
 
 :::note
@@ -158,6 +178,66 @@ This permission allows executing code and functions from other contracts in the 
 When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started/), the Universal Profile owner will have all the permissions above set by default.
 
 :::
+
+### SUPER Permissions
+
+The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are *skipped*. This allows for cheaper transactions where, these restrictions aren't set anyway.
+
+:::caution
+
+Use with caution, as even if restrictions to certain `addresses`, `standards`, or `functions` are set for an controller address, they will be ignored.
+
+:::
+
+<details>
+    <summary><code>SUPER_SETDATA</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
+    </p>
+
+Same as `SETDATA`, but allowing to set any ERC725Y data keys.
+
+</details>
+
+<details>
+    <summary><code>SUPER_TRANSFERVALUE</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
+    </p>
+
+Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
+
+</details>
+
+<details>
+    <summary><code>SUPER_CALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
+    </p>
+
+Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+
+</details>
+
+<details>
+    <summary><code>SUPER_STATICCALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000002000</code>
+    </p>
+
+Same as `STATICCALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+
+</details>
+
+<details>
+    <summary><code>SUPER_DELEGATECALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
+    </p>
+
+Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+
+</details>
 
 ### Combining Permissions
 
@@ -223,14 +303,14 @@ An address can hold one (or more) permissions, enabling it to perform multiple _
 
 To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage (**NB:** remember to remove the `0x` prefix in the `<address>` field below).
 
-- **key:** `0x4b80742d0000000082ac0000<address>`
+- **key:** `0x4b80742de2bf82acb3630000<address>`
 - **value:** one of the available options below.
 
 ```json
 {
   "name": "AddressPermissions:Permissions:<address>",
-  "key": "0x4b80742d0000000082ac0000<address>",
-  "keyType": "Bytes20MappingWithGrouping",
+  "key": "0x4b80742de2bf82acb3630000<address>",
+  "keyType": "MappingWithGrouping",
   "valueType": "bytes32",
   "valueContent": "BitArray"
 }
@@ -267,7 +347,7 @@ You can restrict an address to interact only with specific contracts or EOAs.
 
 To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>` (or additional addresses), the key-value pair below can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d00000000c6dd0000<address>`
+- **key:** `0x4b80742de2bfc6dd6b3c0000<address>`
 - **possible values:**
   - `[ <target-contract-address>, 0x.... ]`: an **ABI-encoded** array of `address[]` defining the allowed addresses.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any address (**= all addresses are whitelisted**).
@@ -275,8 +355,8 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 ```json
 {
   "name": "AddressPermissions:AllowedAddresses:<address>",
-  "key": "0x4b80742d00000000c6dd0000<address>",
-  "keyType": "Bytes20MappingWithGrouping",
+  "key": "0x4b80742de2bfc6dd6b3c0000<address>",
+  "keyType": "MappingWithGrouping",
   "valueType": "address[]",
   "valueContent": "Address"
 }
@@ -298,7 +378,7 @@ You can also restrict which functions a specific address can run by providing a 
 
 To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d000000008efe0000<address>`
+- **key:** `0x4b80742de2bf8efea1e80000<address>`
 - **possible values:**
   - `[ 0xa9059cbb, 0x... ]`: an **ABI-encoded** array of `bytes4[]` values, definiting the function selectors allowed.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to execute any function (**= all `bytes4` function selectors are whitelisted**).
@@ -306,8 +386,8 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 ```json
 {
   "name": "AddressPermissions:AllowedFunctions:<address>",
-  "key": "0x4b80742d000000008efe0000<address>",
-  "keyType": "Bytes20MappingWithGrouping",
+  "key": "0x4b80742de2bf8efea1e80000<address>",
+  "keyType": "0MappingWithGrouping",
   "valueType": "bytes4[]",
   "valueContent": "Bytes4"
 }
@@ -331,7 +411,7 @@ It is possible to restrict an address to interact only with **contracts that imp
 
 For example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d000000003efa0000<address>`
+- **key:** `0x4b80742de2bf3efa94a30000<address>`
 - **possible values:**
   - `[ 0x63cb749b, 0x... ]`: an **ABI-encoded** array of `bytes4[]` ERC165 interface ids.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any contracts, whether they implement a specific standard interface or not.
@@ -358,7 +438,7 @@ If an address is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is
 
 To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742d0000000090b80000<address>`
+- **key:** `0x4b80742de2bf90b8b4850000<address>`
 - **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
 
 :::info

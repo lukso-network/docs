@@ -27,7 +27,7 @@ The implementation of the **[LSP0-ERC725Account](./lsp0-erc725account.md)** stan
 ```json
 {
   "name": "SupportedStandards:LSP3UniversalProfile",
-  "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abe425d6",
+  "key": "0xeafec4d89fa9619884b60000abe425d64acd861a49b8ddf5c0b6962110481f38",
   "keyType": "Mapping",
   "valueType": "bytes4",
   "valueContent": "0xabe425d6"
@@ -101,16 +101,16 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 
 </details>
 
-### LSP3IssuedAssets
+### LSP12IssuedAssets
 
-**Universal Profiles** can create digital assets, such as [tokens and NFTs](../nft-2.0/introduction.md). All assets (tokens and NFTs) created should be registered in the `LSP3IssuedAssets[]` Array.
+**Universal Profiles** can create digital assets, such as [tokens and NFTs](../nft-2.0/introduction.md). All assets (tokens and NFTs) created should be registered in the `LSP12IssuedAssets[]` Array.
 
-The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g., an [LSP7 token](../nft-2.0/LSP7-Digital-Asset.md) or an [LSP8 NFT](../nft-2.0/LSP8-Identifiable-Digital-Asset.md)_) by extracting the `bytes4` ERC165 interface id of the asset contract. Developers can extract this `bytes4` value from the value retrieved, starting at the 8th byte (_index 7_).
+The `LSP12IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g., an [LSP7 token](../nft-2.0/LSP7-Digital-Asset.md) or an [LSP8 NFT](../nft-2.0/LSP8-Identifiable-Digital-Asset.md)_) by extracting the `bytes4` ERC165 interface id of the asset contract. Developers can extract this `bytes4` value from the value retrieved, first 4bytes.
 
 ```json
 {
-  "name": "LSP3IssuedAssets[]",
-  "key": "0x3a47ab5bd3a594c3a8995f8fa58d0876c96819ca4516bd76100c92462f2f9dc0",
+  "name": "LSP12IssuedAssets[]",
+  "key": "0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd",
   "keyType": "Array",
   "valueContent": "Address",
   "valueType": "address"
@@ -119,11 +119,11 @@ The `LSP3IssuedAssetsMap:<address>` can then be used to know the asset type (_e.
 
 ```json
 {
-  "name": "LSP3IssuedAssetsMap:<address>",
-  "key": "0x83f5e77bfb14241600000000<address>",
+  "name": "LSP12IssuedAssetsMap:<address>",
+  "key": "0x74ac2555c10b9349e78f0000<address>",
   "keyType": "Mapping",
-  "valueType": "bytes",
-  "valueContent": "Mixed"
+  "valueType": "(bytes4,bytes8)",
+  "valueContent": "(Bytes4,Number)"
 }
 ```
 

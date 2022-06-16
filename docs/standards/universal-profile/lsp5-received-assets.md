@@ -45,18 +45,18 @@ This data key represents a list of all tokens and NFTs currently owned by the co
 
 This data key represents a map key, both holding:
 
-- the index in the [`LSP5ReceivedAssets[]`](#lsp5receivedassets-) Array where the received asset addresses are stored, and
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each asset smart contract (without the need to query the asset contracts directly).
+- the index in the [`LSP5ReceivedAssets[]`](#lsp5receivedassets-) Array where the received asset addresses are stored.
 
 The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)).
 
 ```json
 {
   "name": "LSP5ReceivedAssetsMap:<address>",
-  "key": "0x812c4334633eb81600000000<address>",
+  "key": "0x812c4334633eb816c80d0000<address>",
   "keyType": "Mapping",
-  "valueType": "bytes",
-  "valueContent": "Mixed"
+  "valueType": "(bytes4,bytes8)",
+  "valueContent": "(Bytes4,Number)"
 }
 ```
 

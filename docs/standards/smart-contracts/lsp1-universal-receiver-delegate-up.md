@@ -17,7 +17,10 @@ The **LSP1UniversalReceiverDelegateUP** is a contract called by the **[`universa
 
 - Writes the data keys representing the owned vaults from type **[LSP9-Vault](./lsp9-vault.md)** into your account storage, and removes them when **transferring ownership** to other accounts according to the **[LSP10-ReceivedVaults Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
-The following requirements are required to execute the logic above correctly. First, the owner of the **LSP0ERC725Account** contract should be an **[LSP6KeyManager](./lsp6-key-manager.md)** contract. Additionally, the **[LSP6KeyManager](./lsp6-key-manager.md)** contract should be granted **permission to [`SETDATA`](../universal-profile/lsp6-key-manager.md#permission-values)** on the account (otherwise, the transaction will pass but will not write any data keys to the storage).
+The following two requirements are required to execute the logic above correctly: 
+
+1. The owner of the **LSP0ERC725Account** contract should be an **[LSP6KeyManager](./lsp6-key-manager.md)** contract.
+2. The **LSP1UniversalReceiverDelegateUP** contract should be granted **permission to [`SETDATA`](../universal-profile/lsp6-key-manager.md#permission-values)** on the account (otherwise, the transaction will pass but will not write any data keys to the storage).
 
 :::note
 _LSP1UniversalReceiverDelegateUP contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
@@ -30,19 +33,12 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 
 ## Functions
 
-### constructor
-
-```solidity
-constructor()
-```
-
-Registers the [**LSP1UniversalReceiverDelegate** `InterfaceId`](./interface-ids.md).
-
 ### universalReceiverDelegate
 
 ```solidity
 function universalReceiverDelegate(
-    address sender,
+    address caller,
+    uint256 value,
     bytes32 typeId,
     bytes memory data
 ) public payable returns (bytes memory result)
@@ -56,7 +52,8 @@ The data keys representing an asset/vault are cleared when the asset/vault is no
 
 | Name     | Type    | Description                                                                  |
 | :------- | :------ | :--------------------------------------------------------------------------- |
-| `sender` | address | The token's or vault's smart contract address.                               |
+| `caller` | address | The token's or vault's smart contract address.                               |
+| `value`  | uint256 | The amount of value sent to the universalReceiver function.                  |
 | `typeId` | bytes32 | The token hooks of the contract.                                             |
 | `data`   | bytes   | The data that is associated with the asset or vault transfer (concatenated). |
 

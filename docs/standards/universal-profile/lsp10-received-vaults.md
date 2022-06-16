@@ -45,18 +45,18 @@ This data key represents a list of all the vaults owned by the contract.
 
 This data key represents a map key holding both:
 
-- the index in the [`LSP10Vaults[]`](#lsp10vaults-) array where the received vaults addresses are stored, and
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each vault's smart contract (without the need to query the assets contracts directly).
+- the index in the [`LSP10Vaults[]`](#lsp10vaults-) array where the received vaults addresses are stored.
 
 The `LSP10VaultsMap` data key also helps prevent adding duplications to the array when automatically added via smart contract (_e.g.,_ an [LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)).
 
 ```json
 {
   "name": "LSP10VaultsMap:<address>",
-  "key": "0x192448c3c0f88c7f00000000<address>",
+  "key": "0x192448c3c0f88c7f238c0000<address>",
   "keyType": "Mapping",
-  "valueType": "bytes",
-  "valueContent": "Mixed"
+  "valueType": "(bytes4,bytes8)",
+  "valueContent": "(Bytes4,Number)"
 }
 ```
 
