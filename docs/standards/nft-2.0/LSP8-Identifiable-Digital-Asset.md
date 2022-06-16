@@ -74,7 +74,7 @@ An LSP8 NFT can be represented in multiple ways, depending on the type of `token
 
 - a **number** (`uint256`) that increments on each newly minted NFT,
 - a unique `bytes32` value (representing a _serial number_, for instance), or
-- an ERC725Y contract.
+- an ERC725Y contract address.
 
 ![LSP8 tokenId = number](/img/lsp8-tokenid-number.jpeg)
 
