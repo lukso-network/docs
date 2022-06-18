@@ -1,6 +1,6 @@
 ---
 title: LSP1UniversalReceiverDelegateUP
-sidebar_position: 4
+sidebar_position: 6
 ---
 
 # LSP1UniversalReceiverDelegateUP

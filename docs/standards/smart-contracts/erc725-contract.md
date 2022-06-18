@@ -1,27 +1,24 @@
 ---
-title: LSP0ERC725Account
-sidebar_position: 4
+title: ERC725
+sidebar_position: 3
 ---
 
-# LSP0ERC725Account
+# ERC725
 
 :::info Solidity contract
 
-[`LSP0ERC725Account.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol)
+[`ERC725.sol`](https://github.com/ERC725Alliance/ERC725/blob/develop/implementations/contracts/ERC725.sol)
 
 :::
 
-The **LSP0ERC725Account** contract is an implementation for the **[LSP0-ERC725Account Standard](../universal-profile/lsp0-erc725account)**. This contract forms a **Universal Profile** when combined with **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)**.
+The **ERC725** is the contract combining:
 
-This contract could be used as a _blockchain-based account_ by humans, machines, organizations, or even other smart contracts. It has all the basic functionalities of an _Externally Owned Account_ (EOA), as well as the following functions that give the contract additional features:
+- **ERC725X**: contract that allow a generic execution using different types of operations.
 
-- [`execute(...)`](#execute) : enables to execute functions on other contracts, transfer value, or deploy new contracts.
-- [`isValidSignature(...)`](#isvalidsignature): delivers verification of signatures and signed messages from EOAs.
-- [`universalReceiver(...)`](#universalreceiver): brings notification of incoming calls and assets.
-- [`setData(...)`](#setdata): offers to set information in the account storage.
+- **ERC725Y**: contract that allow for a generic data storage in a smart contract.
 
 :::note
-LSP0ERC725Account contract also contains the method from [ERC165](https://eips.ethereum.org/EIPS/eip-165):
+ERC725 contract also contains the method from [ERC165](https://eips.ethereum.org/EIPS/eip-165):
 
 ```solidity
 function supportsInterface(bytes4 interfaceId) public view returns (bool)
@@ -53,7 +50,7 @@ Sets the **initial owner** of the contract.
 function owner() public view returns (address owner)
 ```
 
-Returns the address of the current owner of the contract.
+Returns the address of the current owner of the smart contract.
 
 #### Return Values:
 
@@ -61,60 +58,24 @@ Returns the address of the current owner of the contract.
 | :------ | :------ | :--------------------------------- |
 | `owner` | address | The current owner of the contract. |
 
-
-### pendingOwner
-
-```solidity
-function pendingOwner() public view returns (address)
-```
-
-Return the address of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
-
-> **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `address(0)`.
-
-#### Return Values:
-
-| Name           | Type    | Description                        |
-|:---------------|:--------|:---------------------------------- |
-| `pendingOwner` | address | The address of the pending owner   |
-
 ### transferOwnership
 
 ```solidity
 function transferOwnership(address newOwner) public {
 ```
 
-Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
+Transfers the ownership of the contract to the `newOwner` address.
+
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when ownership is transferred._
 
 #### Parameters:
 
-| Name       | Type    | Description                           |
-| :--------- | :------ | :------------------------------------ |
-| `newOwner` | address | The address to set as `pendingOwner`. |
+| Name       | Type    | Description                                      |
+| :--------- | :------ | :----------------------------------------------- |
+| `newOwner` | address | The address to set as the owner of the contract. |
 
 
-### claimOwnership
-
-```solidity
-function claimOwnership() public {
-```
-
-Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
-
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
-
-
-### fallback
-
-```solidity
-fallback() external payable
-```
-
-Executed when value is transferred to the contract or when function identifier doesn't match any of the available functions.
-
-_Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
-
-### execute
+### execute - ERC725X
 
 ```solidity
 function execute(
@@ -160,7 +121,7 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :------- | :---- | :------------------------------------------------------------------------------------------------------------------------------------- |
 | `result` | bytes | The data that was returned by the function called on the external contract, or the address of the contract created (operations 1 & 2). |
 
-### setData
+### setData - ERC725Y 
 
 ```solidity
 function setData(
@@ -184,7 +145,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 | `dataKey`   | bytes32 | The data key for which the data will be set. |
 | `dataValue` | bytes   | The data to be set.                          |
 
-### getData
+### getData - ERC725Y 
 
 ```solidity
 function getData(bytes32 dataKey) public view returns (bytes memory dataValue)
@@ -204,7 +165,7 @@ Retrieves the data set for the given data key.
 | :---------- | :---- | :----------------------------------- |
 | `dataValue` | bytes | The data for the requested data key. |
 
-### setData (Array)
+### setData (Array) - ERC725Y 
 
 ```solidity
 function setData(
@@ -228,7 +189,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 | `dataKeys`   | bytes32[&nbsp;] | The data keys for which to set data. |
 | `dataValues` | bytes[&nbsp;]   | The array of data to set.            |
 
-### getData (Array)
+### getData (Array) - ERC725Y 
 
 ```solidity
 function getData(bytes32[] memory dataKeys) public view returns (bytes[] memory dataValues)
@@ -248,55 +209,6 @@ Retrieves an array of data for multiple given data keys.
 | :----------- | :------------ | :------------------------------------------------ |
 | `dataValues` | bytes[&nbsp;] | An array of the data for the requested data keys. |
 
-### universalReceiver
-
-```solidity
-function universalReceiver(
-    bytes32 typeId,
-    bytes memory data
-) public payable returns (bytes memory result)
-```
-
-Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key. The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
-
-_Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
-
-#### Parameters:
-
-| Name     | Type    | Description                    |
-| :------- | :------ | :----------------------------- |
-| `typeId` | bytes32 | The type of transfer received. |
-| `data`   | bytes   | The data received.             |
-
-#### Return Values:
-
-| Name     | Type  | Description                            |
-| :------- | :---- | :------------------------------------- |
-| `result` | bytes | Can be used to encode response values. |
-
-### isValidSignature
-
-```solidity
-function isValidSignature(
-    bytes32 hash,
-    bytes memory signature
-) public view returns (bytes4 magicValue)
-```
-
-Checks if a signature was signed by the `owner` of the contract, according to [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, if it supports [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). Otherwise it will return the failure value.
-
-#### Parameters:
-
-| Name        | Type    | Description                                           |
-| :---------- | :------ | :---------------------------------------------------- |
-| `hash`      | bytes32 | The hash of the data signed on the behalf of address. |
-| `signature` | bytes   | The Owner's signature(s) of the data.                 |
-
-#### Return Values:
-
-| Name         | Type   | Description                                                            |
-| :----------- | :----- | :--------------------------------------------------------------------- |
-| `magicValue` | bytes4 | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
 
 ## Events
 
@@ -318,23 +230,6 @@ _**MUST** be fired when **[transferOwnership(...)](#transferownership)** functio
 | `previousOwner` | address | The previous owner of the contract. |
 | `newOwner`      | address | The new owner of the contract.      |
 
-### ValueReceived
-
-```solidity
-event ValueReceived(
-    address sender,
-    uint256 value
-)
-```
-
-_**MUST** be fired when when a native token is received via **[`fallback(...)`](#fallback)** function._
-
-#### Values:
-
-| Name     | Type    | Description                |
-| :------- | :------ | :------------------------- |
-| `sender` | address | The address of the sender. |
-| `value`  | uint256 | The amount sent.           |
 
 ### Executed
 
@@ -392,32 +287,8 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfu
 | :---------- | :------ | :------------------------------- |
 | `dataKey`   | bytes32 | The data key which value is set. |
 
-### UniversalReceiver
-
-```solidity
-event UniversalReceiver(
-    address from,
-    uint256 value,
-    bytes32 typeId,
-    bytes returnedValue,
-    bytes receivedData
-)
-```
-
-_**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** function is successfully executed._
-
-#### Values:
-
-| Name            | Type    | Description                                                     |
-| :-------------- | :------ | :-------------------------------------------------------------- |
-| `from`          | address | The address calling the **universalReceiver** function.         |
-| `value`         | uint256 | The amount of value sent to the **universalReceiver** function. |
-| `typeId`        | bytes32 | The hash of a specific standard or a hook.                      |
-| `returnedValue` | bytes   | The return value of **universalReceiver** function.             |
-| `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function.    |
 
 ## References
 
-- [LUKSO Standards Proposals: LSP0 - ERC725 Account (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
-- [LUKSO Standards Proposals: LSP3 - UniversalProfile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
-- [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts)
+- [ERC725 (Standard Specification, GitHub)](https://github.com/ERC725Alliance/ERC725/blob/develop/docs/ERC-725.md)
+- [Solidity implementations (GitHub)](https://github.com/ERC725Alliance/ERC725/tree/develop/implementations)
