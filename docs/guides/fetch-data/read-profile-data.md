@@ -79,7 +79,7 @@ const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 /*
- * Try fetching the @param's Universal Provile
+ * Try fetching the @param's Universal Profile
  *
  * @param address of Universal Profile
  * @return string JSON or custom error
@@ -234,7 +234,7 @@ const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 /*
- * Try fetching the @param's Universal Provile data
+ * Try fetching the @param's Universal Profile
  *
  * @param address of Universal Profile
  * @return string JSON or custom error
