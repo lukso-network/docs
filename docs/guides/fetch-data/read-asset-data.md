@@ -332,7 +332,6 @@ const {
 } = require("@erc725/erc725.js/build/main/src/lib/constants");
 
 /*
- * Step 3
  * Check the ERC725Y interface of an asset's smart contract
  *
  * @param assetAddress address of digital asset smart contract
@@ -463,16 +462,15 @@ const MetaDataKey = LSP4schema[3].key;
 const CreatorsKey = LSP4schema[4].key;
 
 /*
- * Step 4
  * Fetch the dataset of an asset
  *
  * @param key of asset property
  * @return string of encoded data
  */
-async function getAssetData(key) {
+async function getAssetData(key, address) {
   try {
     // Instantiate Digital Asset smart contract
-    const digitalAsset = new web3.eth.Contract(LSP4.abi, SAMPLE_ASSET_ADDRESS);
+    const digitalAsset = new web3.eth.Contract(LSP4.abi, address);
 
     // Fetch the encoded contract data
     return await digitalAsset.methods["getData(bytes32)"](key).call();
@@ -539,9 +537,9 @@ const CreatorsKey = LSP4schema[4].key;
  * @param key of asset property
  * @return string of encoded data
  */
-async function getAssetData(key) {
+async function getAssetData(key, address) {
   // Check if asset is ERC725Legacy or ERC725
-  let assetInterfaceID = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
+  let assetInterfaceID = await checkErc725YInterfaceId(address);
 
   try {
     // Legacy interface
@@ -549,7 +547,7 @@ async function getAssetData(key) {
       // Instanciate ERC725Legacy smart contract
       const digitalAsset = new web3.eth.Contract(
         ERC725LegacyInterface,
-        SAMPLE_ASSET_ADDRESS
+        address
       );
 
       // Fetch the encoded contract data
@@ -563,7 +561,9 @@ async function getAssetData(key) {
 }
 
 // Debug
-getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));```
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
+  console.log(encodedData)
+);
 ```
 
   </TabItem>
@@ -577,27 +577,8 @@ We can now decode the encoded metadata to fetch readable information. We use
 to declare a config and provider as we did while [reading profile data](./read-profile-data).
 
 ```javascript title="read_assets.js"
+
 // ...
-// Import ERC725
-const { ERC725 } = require('@erc725/erc725.js');
-
-// Link to storage
-const IPFS_GATEWAY_URL = 'https://ipfs.lukso.network/ipfs/';
-
-// ERC725 Properties
-const provider = new Web3.providers.HttpProvider(
-  'https://rpc.l14.lukso.network',
-);
-
-const config = {
-  ipfsGateway: IPFS_GATEWAY_URL,
-};
-
-// Content Phrases
-const decodeNamePhrase = LSP4schema[1].name;
-const decodeTokenPhrase = LSP4schema[2].name;
-const decodeMetaPhrase = LSP4schema[3].name;
-const decodeCreatorPhrase = LSP4schema[4].name;
 
 /*
  * Decode value from ERC725Y storage
@@ -607,27 +588,32 @@ const decodeCreatorPhrase = LSP4schema[4].name;
  * @param decodePhrase string of fetchable content
  * @return string of decoded data
  */
-async function decodeData(key, decodePhrase) {
+async function decodeAssetData(keyName, encodedData) {
   try {
-    let encodedData = await getAssetData(key);
-    // Instance of the LSP4 with ERC725.js
-    const erc725 = new ERC725(
+    // instance for the digital asset with erc725.js
+    const digitalAsset = new ERC725(
       LSP4schema,
       SAMPLE_ASSET_ADDRESS,
       provider,
-      config,
+      config
     );
+
     // Decode the assets data
-    return erc725.decodeData({ [decodePhrase]: encodedData });
+    return digitalAsset.decodeData({
+      keyName: keyName,
+      value: encodedData,
+    });
   } catch (error) {
-    console.log('Data of an asset could not be decoded');
+    console.log("Data of an asset could not be decoded");
   }
 }
 
 // Debug
-decodeData(MetaDataKey, decodeMetaPhrase).then((decodedData) =>
-  console.log(decodedData),
-);
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) =>
+    console.log(decodedData)
+  );
+});
 ```
 
 The [LSP4 Digital Asset Metadata](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) will resolve in a following JSON structure:
