@@ -181,7 +181,7 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 ### SUPER Permissions
 
-The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are *skipped*. This allows for cheaper transactions where, these restrictions aren't set anyway.
+The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions where, these restrictions aren't set anyway.
 
 :::caution
 
@@ -361,6 +361,8 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
   "valueContent": "Address"
 }
 ```
+
+![LSP6 Allowed Addresses explained](../../../static/img/standards/lsp6/lsp6-allowed-addresses.jpeg)
 
 :::caution
 
