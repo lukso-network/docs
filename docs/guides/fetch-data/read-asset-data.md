@@ -674,6 +674,7 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
     getMetaDataLink(decodedData).then((dataURL) => console.log(dataURL));
   });
 });
+```
 
 ## Step 8 - Get the asset data
 
@@ -685,25 +686,29 @@ You may not need the `isomorphic-fetch` library if you use browser environments 
 
 ```javascript title="read_assets.js"
 // ...
-// Import
-require('isomorphic-fetch');
 
 /*
- * Fetch the asset data from a link
+ * Fetch the asset data from storage
  *
  * @return string with asset data as JSON
  */
-async function fetchAssetData() {
-  let dataURL = await getMetaDataLink();
+async function fetchAssetData(dataURL) {
   try {
     const response = await fetch(dataURL);
     return await response.json();
   } catch (error) {
-    console.log('JSON data of IPFS link could not be fetched');
+    console.log("JSON data of IPFS link could not be fetched");
   }
 }
+
 // Debug
-fetchAssetData().then((assetJSON) => console.log(assetJSON));
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => {
+      fetchAssetData(dataURL).then((assetJSON) => console.log(assetJSON));
+    });
+  });
+});
 ```
 
 For fetching metadata, the JSON file will have the following structure:
@@ -715,7 +720,9 @@ For fetching metadata, the JSON file will have the following structure:
 {
   "LSP4Metadata": {
     "description": "...",
-    "links": [],
+    "links": [
+      ...
+    ],
     "images": [
       [
         {
@@ -741,49 +748,6 @@ For fetching metadata, the JSON file will have the following structure:
 ```
 
 </details>
-
-## Step 9 - Fetch the asset's properties
-
-After receiving the asset data, we can fetch the JSON for its properties in the following way:
-
-```javascript title="read_assets.js"
-// ...
-
-let assetImageLinks = [];
-let fullSizeAssetImage;
-let assetDescription;
-
-/*
- * Read properties of an asset
- */
-async function getAssetProperties() {
-  let assetJSON = await fetchAssetData();
-  let assetImageData = [];
-
-  try {
-    assetImageData = assetJSON.LSP4Metadata.images;
-    for (let i in assetImageData[0]) {
-      assetImageLinks.push([i, IPFS_GATEWAY_URL + assetImageData[0][i].url]);
-    }
-    fullSizeAssetImage = assetImageLinks[0][1];
-
-    assetDescription = assetJSON.LSP4Metadata.description;
-
-    console.log('Asset Description ' + assetDescription);
-    console.log('Full Size Asset Image Link: ' + fullSizeAssetImage + '\n');
-    console.log(
-      'Asset Image Links: ' +
-        JSON.stringify(assetImageLinks, undefined, 2) +
-        '\n',
-    );
-  } catch (error) {
-    console.log('Could not fetch all asset properties');
-  }
-}
-
-// Debug
-getAssetProperties();
-```
 
 ## Final Code
 
