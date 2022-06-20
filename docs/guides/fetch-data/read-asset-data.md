@@ -442,7 +442,14 @@ checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isLegacy) =>
 ## Step 5 - Receive the encoded asset data
 
 
-Now we can safely call the data of the address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) data is saved in a ERC725Y key-value store, and we need to input the right key to fetch the associated value. There are multiple [LSP4 keys](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) for different properties. To give a showcase, we will use the metadata key to receive the associated data.
+Now we can safely call the data of the address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) data is saved in a ERC725Y key-value store, and we need to input the right key to fetch the associated value. There are multiple [LSP4 keys](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) for different properties. 
+
+- `LSP4TokenName`
+- `LSP4TokenSymbol`
+- `LSP4Metadata`
+- `LSP4Creators[]`
+
+To give a showcase, we will use the `LSP4Metadata` key to receive the associated data.
 
 <Tabs>
 
@@ -573,8 +580,8 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
 ## Step 6 - Decode the asset data
 
 We can now decode the encoded metadata to fetch readable information. We use
-`decodeData()` from the `erc725.js` library. While using ERC725, we will have
-to declare a config and provider as we did while [reading profile data](./read-profile-data).
+the `decodeData()` function from the [`erc725.js`](../../tools/erc725js/getting-started/) library. We will continue the step before and showcase decoding the `LSP4Metadata` key.
+
 
 ```javascript title="read_assets.js"
 
@@ -619,14 +626,16 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
 The [LSP4 Digital Asset Metadata](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) will resolve in a following JSON structure:
 
 <details>
-    <summary>Show JSON response</summary>
+    <summary>Show Metadata JSON response</summary>
 
 ```json
 {
-  "LSP4Metadata": {
-    "hashFunction": "keccak256(utf8)",
-    "hash": "0x...",
-    "url": "..."
+  key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
+  name: 'LSP4Metadata',
+  value: {
+    hashFunction: 'keccak256(utf8)',
+    hash: '0x...',
+    url: 'ipfs:...'
   }
 }
 ```
