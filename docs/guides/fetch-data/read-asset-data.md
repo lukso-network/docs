@@ -49,6 +49,7 @@ Complete "ready to use" JSON and JS files are available at the end in the [**Fin
 In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and use the key names within the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library.  In the same way, we can now fetch all ever received assets using `fetchData('LSP5ReceivedAssets[]')`.
 
 ```javascript title="read_assets.js"
+
 // Import and Network Setup
 const Web3 = require("web3");
 const { ERC725 } = require("@erc725/erc725.js");
@@ -65,7 +66,7 @@ const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 /*
  * Fetch the @param's Universal Profile's
- * LSP5 data
+ * LSP5 data for received assets
  *
  * @param address of Universal Profile
  * @return string JSON or custom error
@@ -110,7 +111,7 @@ const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 /*
  * Fetch the @param's Universal Profile's
- * LSP5 data
+ * LSP1 data for the Universal Receiver
  *
  * @param address of Universal Profile
  * @return Universal Receiver address or custom error
@@ -201,9 +202,46 @@ fetchReceivedAssets().then((receivedAssets) => console.log(receivedAssets));
   </TabItem>
 </Tabs>
 
-## Step 2 - Check ownership of assets
+## Step 2 - Get all assets ever issued
 
-After trimming out the asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the `balance` is greater than zero, the asset is still owned by the address.
+<Tabs>
+  <TabItem value="Current Standard" label="Current Standard">
+
+The same way, we fetched received assets, we can fetch all ever received assets with the current `fetchData('LSP12IssuedAssets[]')` function from the [erc725.js](../../tools/erc725js/getting-started/) library.
+
+```javascript title="read_assets.js"
+// ...
+
+/*
+ * Fetch the @param's Universal Profile's
+ * issued assets
+ *
+ * @param address of Universal Profile
+ * @return string JSON or custom error
+ */
+async function fetchIssuedAssets(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    return await (
+      await profile.fetchData("LSP12IssuedAssets[]")
+    ).value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+// Debug
+fetchIssuedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+  console.log(JSON.stringify(profileData, undefined, 2))
+);
+```
+
+  </TabItem>
+</Tabs>
+
+## Step 3 - Check ownership of assets
+
+After receiving a list of asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the `balance` is greater than zero, the asset is still owned by the address.
 
 :::info Difference between Token Ownership
 
@@ -249,7 +287,7 @@ fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
 );
 ```
 
-## Step 3 - Check the type of an asset
+## Step 4 - Check the type of an asset
 
 Now that we have retrieved all the owned assets, we need to check which interface is behind these smart contract addresses, to get their data.
 
@@ -435,7 +473,7 @@ checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
   </TabItem>
 </Tabs>
 
-## Step 4 - Receive the encoded asset data
+## Step 5 - Receive the encoded asset data
 
 
 Now we can safely call the data of the address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) data is saved in a ERC725Y key-value store, and we need to input the right key to fetch the associated value. There are multiple keys for different properties. To give a showcase, we will use the metadata key to receive the associated data.
@@ -674,7 +712,7 @@ getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
 
 </Tabs>
 
-## Step 5 - Decode the asset data
+## Step 6 - Decode the asset data
 
 We can now decode the encoded metadata to fetch readable information. We use
 `decodeData()` from the `erc725.js` library. While using ERC725, we will have
@@ -751,7 +789,7 @@ The [LSP4 Digital Asset Metadata](../../standards/nft-2.0/LSP4-Digital-Asset-Met
 
 </details>
 
-## Step 6 - Create the storage link
+## Step 7 - Create the storage link
 
 To fetch the data for the previously decoded metadata, we can access the JSON file and change the URL to access its properties. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
 
@@ -782,7 +820,7 @@ async function getMetaDataLink() {
 getMetaDataLink().then((dataURL) => console.log(dataURL));
 ```
 
-## Step 7 - Get the asset data
+## Step 8 - Get the asset data
 
 We can now access the created storage link through a simple URL call and are using `isomorphic-fetch` to read the HTTP response from the asset URL in our `node` environment.
 
@@ -849,7 +887,7 @@ For fetching metadata, the JSON file will have the following structure:
 
 </details>
 
-## Step 8 - Fetch the asset's properties
+## Step 9 - Fetch the asset's properties
 
 After receiving the asset data, we can fetch the JSON for its properties in the following way:
 
