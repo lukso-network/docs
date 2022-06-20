@@ -58,7 +58,7 @@ require("isomorphic-fetch");
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = "0x0Ac71c67Fa5E4c9d4af4f99d7Ad6132936C2d6A3";
 const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
-const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
+const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
 
 // Parameters for ERC725 Instance
 const erc725schema = require("@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json");
@@ -834,7 +834,7 @@ const SAMPLE_ASSET_ADDRESS = "0xfE85568Fea15A7ED3c56F7ca6544F2b96Aeb1774";
 
 // Network & Storage
 const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
-const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
+const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
 
 // Parameters for ERC725 Instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
