@@ -212,9 +212,6 @@ After trimming out the asset addresses, we can check which assets are owned by t
 
 :::
 
-<Tabs>
-  <TabItem value="Current Standard" label="Current Standard">
-
 ```javascript title="read_assets.js"
 // ...
 
@@ -251,48 +248,6 @@ fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
   console.log(ownedAssets)
 );
 ```
-
-</TabItem>
-<TabItem value="Legacy Standard" label="Legacy Standard">
-
-```javascript title="read_assets.js"
-// ...
-
-// ABI for the asset
-const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
-
-/*
- * Return array of blockchain addresses
- * of assets that are owned by the
- * Univeral Profile.
- *
- * @param owner Universal Profile address
- * @return address[] of owned assets
- */
-async function fetchOwnedAssets(owner) {
-  const digitalAssets = await fetchReceivedAssets(SAMPLE_PROFILE_ADDRESS);
-  const ownedAssets = [];
-
-  for (let i = 0; i < digitalAssets.length; i++) {
-    // Create instance of the asset to check owner balance
-    const LSP8Contract = new web3.eth.Contract(LSP8.abi, digitalAssets[i]);
-
-    const isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
-    if (isCurrentOwner > 0) {
-      ownedAssets[ownedAssets.length] = digitalAssets[i];
-    }
-  }
-  return ownedAssets;
-}
-
-// Debug
-fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
-  console.log(ownedAssets)
-);
-```
-
-</TabItem>
-</Tabs>
 
 ## Step 3 - Check the type of an asset
 
