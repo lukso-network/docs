@@ -443,64 +443,18 @@ checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isLegacy) =>
 ## Step 5 - Receive the encoded asset data
 
 
-Now we can safely call the data of the address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) data is saved in a ERC725Y key-value store, and we need to input the right key to fetch the associated value. There are multiple keys for different properties. To give a showcase, we will use the metadata key to receive the associated data.
+Now we can safely call the data of the address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) data is saved in a ERC725Y key-value store, and we need to input the right key to fetch the associated value. There are multiple [LSP4 keys](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) for different properties. To give a showcase, we will use the metadata key to receive the associated data.
 
 <Tabs>
 
   <TabItem value="Current Standards" label="Current Standards">
 
-<details>
-    <summary>LSP4 JSON Schema</summary>
-
-```json title="lsp4_schema.json"
-[
-  {
-    "name": "SupportedStandards:LSP4DigitalCertificate",
-    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abf0613c",
-    "keyType": "Mapping",
-    "valueContent": "0xabf0613c",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4TokenName",
-    "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4TokenSymbol",
-    "key": "0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4Metadata",
-    "key": "0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e",
-    "keyType": "Singleton",
-    "valueContent": "JSONURL",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4Creators[]",
-    "key": "0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7",
-    "keyType": "Array",
-    "valueContent": "Number",
-    "valueType": "uint256",
-    "elementValueContent": "Address",
-    "elementValueType": "address"
-  }
-]
-```
-
-</details>
-
 ```javascript title="read_assets.js"
 // ...
+
 // ABI's
 const ERC725ABI = require('@erc725/smart-contracts/artifacts/ERC725.json');
-const LSP4schema = require('./lsp4_schema.json');
+const LSP4schema = require('@erc725/erc725.js/schemas/LSP4DigitalAsset.json');
 
 // Keys for properties
 const TokenNameKey = LSP4schema[1].key;
@@ -509,29 +463,21 @@ const MetaDataKey = LSP4schema[3].key;
 const CreatorsKey = LSP4schema[4].key;
 
 /*
+ * Step 4
  * Fetch the dataset of an asset
- * from the Universal Profile
  *
  * @param key of asset property
  * @return string of encoded data
  */
 async function getAssetData(key) {
-  // Check if asset is ERC725Legacy or ERC725
-  let assetInterfaceID = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
-
   try {
-    if (assetInterfaceID === true) {
-      // Instanciate ERC725 smart contract
-      const digitalAsset = new web3.eth.Contract(
-        ERC725ABI,
-        SAMPLE_ASSET_ADDRESS,
-      );
+    // Instantiate Digital Asset smart contract
+    const digitalAsset = new web3.eth.Contract(LSP4.abi, SAMPLE_ASSET_ADDRESS);
 
-      // Fetch the encoded contract data
-      return await digitalAsset.methods['getData(bytes32)'](key).call();
-    }
+    // Fetch the encoded contract data
+    return await digitalAsset.methods["getData(bytes32)"](key).call();
   } catch (error) {
-    return console.log('Data of assets address could not be loaded');
+    return console.error("Data of assets address could not be loaded");
   }
 }
 
@@ -541,12 +487,12 @@ getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
 
   </TabItem>
   
-  <TabItem value="Current & Legacy Standards" label="Current & Legacy Standards">
+  <TabItem value="Legacy Standards" label="Legacy Standards">
 
 <details>
     <summary>ERC725 Legacy JSON Interface</summary>
 
-```json title="erc725_legacy_interface.json"
+```json title="erc725_legacy_minimal_interface.json"
 [
   {
     "inputs": [
@@ -572,59 +518,13 @@ getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
 
 </details>
 
-<details>
-    <summary>LSP4 JSON Schema</summary>
-
-```json title="lsp4_schema.json"
-[
-  {
-    "name": "SupportedStandards:LSP4DigitalCertificate",
-    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abf0613c",
-    "keyType": "Mapping",
-    "valueContent": "0xabf0613c",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4TokenName",
-    "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4TokenSymbol",
-    "key": "0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4Metadata",
-    "key": "0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e",
-    "keyType": "Singleton",
-    "valueContent": "JSONURL",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4Creators[]",
-    "key": "0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7",
-    "keyType": "Array",
-    "valueContent": "Number",
-    "valueType": "uint256",
-    "elementValueContent": "Address",
-    "elementValueType": "address"
-  }
-]
-```
-
-</details>
-
 ```javascript title="read_assets.js"
 // ...
+
 // ABI's
-const ERC725LegacyInterface = require('./erc725_legacy_interface.json');
-const ERC725ABI = require('@erc725/smart-contracts/artifacts/ERC725.json');
-const LSP4schema = require('./lsp4_schema.json');
+const ERC725LegacyInterface = require("./erc725_legacy_minimal_interface.json");
+const ERC725ABI = require("@erc725/smart-contracts/artifacts/ERC725.json");
+const LSP4schema = require("@erc725/erc725.js/schemas/LSP4DigitalAsset.json");
 
 // Keys for properties
 const TokenNameKey = LSP4schema[1].key;
@@ -641,39 +541,29 @@ const CreatorsKey = LSP4schema[4].key;
  */
 async function getAssetData(key) {
   // Check if asset is ERC725Legacy or ERC725
-  let assetInterfaceIDs = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
+  let assetInterfaceID = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
 
   try {
     // Legacy interface
-    if (assetInterfaceIDs.isERC725Legacy === true) {
+    if (assetInterfaceID === true) {
       // Instanciate ERC725Legacy smart contract
       const digitalAsset = new web3.eth.Contract(
         ERC725LegacyInterface,
-        SAMPLE_ASSET_ADDRESS,
+        SAMPLE_ASSET_ADDRESS
       );
 
       // Fetch the encoded contract data
       return await digitalAsset.methods.getData(key).call();
-    }
-    // Current interface
-    if (assetInterfaceIDs.isERC725 === true) {
-      // Instanciate ERC725 smart contract
-      const digitalAsset = new web3.eth.Contract(
-        ERC725ABI,
-        SAMPLE_ASSET_ADDRESS,
-      );
-
-      // Fetch the encoded contract data
-      return await digitalAsset.methods['getData(bytes32)'](key).call();
+    } else {
+      return console.log("Address does not have an ERC725 interface");
     }
   } catch (error) {
-    return console.log('Data of assets address could not be loaded');
+    return console.log("Data of assets address could not be loaded");
   }
 }
 
 // Debug
-getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
-```
+getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));```
 
   </TabItem>
 
