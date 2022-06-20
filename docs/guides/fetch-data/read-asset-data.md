@@ -207,7 +207,7 @@ fetchReceivedAssets().then((receivedAssets) => console.log(receivedAssets));
 <Tabs>
   <TabItem value="Current Standard" label="Current Standard">
 
-The same way, we fetched received assets, we can fetch all ever received assets with the current `fetchData('LSP12IssuedAssets[]')` function from the [erc725.js](../../tools/erc725js/getting-started/) library.
+The same way, we fetched received assets, we can fetch all ever received assets with the `fetchData('LSP12IssuedAssets[]')` function from the [erc725.js](../../tools/erc725js/getting-started/) library.
 
 ```javascript title="read_assets.js"
 // ...
@@ -235,6 +235,15 @@ fetchIssuedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
   console.log(JSON.stringify(profileData, undefined, 2))
 );
 ```
+
+  </TabItem>
+  <TabItem value="Legacy Standard" label="Legacy Standard">
+
+:::warning
+
+Work in progress.
+    
+:::
 
   </TabItem>
 </Tabs>
