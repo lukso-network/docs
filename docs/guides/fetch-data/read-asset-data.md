@@ -259,11 +259,17 @@ After receiving a list of asset addresses, we can check which assets are owned b
 
 :::
 
+:::info Web3 Instance
+If you are following the legacy standards, `const web3` has to be removed, as it was already declared in the legacy code snippets before.
+:::
+
 ```javascript title="read_assets.js"
 // ...
 
 // ABI for the asset
 const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
+
+// New Web3 instance for LUKSO L14
 const web3 = new Web3("https://rpc.l14.lukso.network");
 
 /*
@@ -315,92 +321,62 @@ By using [function overloading], the `ERC725Y` interface function `getData(...)`
 
 :::
 
-<details>
-  <summary>Asset JSON Interface</summary>
-
-```json title="asset_interface.json"
-[
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
-      {
-        "type": "bool",
-        "name": "",
-        "internalType": "bool"
-      }
-    ],
-    "name": "supportsInterface",
-    "inputs": [
-      {
-        "type": "bytes4",
-        "name": "interfaceId",
-        "internalType": "bytes4"
-      }
-    ]
-  }
-]
-```
-
-</details>
-
 ```javascript title="read_assets.js"
-// ...
-const SAMPLE_ASSET_ADDRESS = '0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78';
 
-const AssetInterface = require('./asset_interface.json');
+// ...
+
+const SAMPLE_ASSET_ADDRESS = "0xfE85568Fea15A7ED3c56F7ca6544F2b96Aeb1774";
+const LSP4 = require("@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json");
+const {
+  ERC725Y_INTERFACE_IDS,
+} = require("@erc725/erc725.js/build/main/src/lib/constants");
 
 /*
- * Check the interface of an asset's smart contract
+ * Step 3
+ * Check the ERC725Y interface of an asset's smart contract
  *
- * @param address of asset
- * @return boolean - if the address supports ERC725Y or false if it doesn't
+ * @param assetAddress address of digital asset smart contract
+ * @return boolean - true if the address supports ERC725Y, false if it doesn't
  */
-async function checkErc725YInterfaceId(address) {
-  // Create instance of the contract which has to be queried
-  const Contract = new web3.eth.Contract(AssetInterface, address);
-
-  const ERC725Y_INTERFACE_ID = '0x714df77c';
+async function checkErc725YInterfaceId(assetAddress) {
+  // Create instance of the digital asset contract
+  const Contract = new web3.eth.Contract(LSP4.abi, assetAddress);
 
   let interfaceCheck = false;
 
   // Check if the contract has a key-value store
   try {
-    interfaceChecks.isERC725 = await Contract.methods
-      .supportsInterface(ERC725Y_INTERFACE_ID)
+    interfaceCheck = await Contract.methods
+      .supportsInterface(ERC725Y_INTERFACE_IDS["3.0"])
       .call();
   } catch (error) {
     console.log(error.message);
-    console.log('Address could not be checked for ERC725 interface');
-    return;
+    console.log("Address could not be checked for ERC725 interface");
   }
 
   return interfaceCheck;
 }
 
 // Debug
-checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
-  console.log(standard),
+checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isERC725Y) =>
+  console.log(isERC725Y)
 );
 ```
 
   </TabItem>
 
-  <TabItem value="Current & Legacy Standards" label="Current & Legacy Standards">
+  <TabItem value="Legacy Standards" label="Legacy Standards">
 
-:::info Depending on the interface, the function accepts different parameters.
+:::info
 
-- in the **legacy** `ERC725Y` interface, `getData(...)` only takes a single key: `getData(key)`.
-- in the **current** `ERC725Y` interface, `getData(...)` uses [function overloading] and can accept:
-  - either one key: `getData(key)` to fetch a single value,
-  - or an array of keys: `getData(keys[])` to fetch multiple values at once.
+While using the **legacy** `ERC725Y` interface, `getData(...)` only takes one single key: `getData(key)`.
 
 :::
 
 <details>
   <summary>Asset JSON Interface</summary>
 
-```json title="asset_interface.json"
+```json title="lsp4_legacy_minimal_interface.json"
 [
   {
     "type": "function",
@@ -428,9 +404,8 @@ checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
 
 ```javascript title="read_assets.js"
 // ...
-const SAMPLE_ASSET_ADDRESS = '0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78';
-
-const AssetInterface = require('./asset_interface.json');
+const SAMPLE_ASSET_ADDRESS = "0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78";
+const AssetInterface = require("./lsp4_legacy_minimal_interface.json");
 
 /*
  * Check the interface of an
@@ -441,41 +416,24 @@ const AssetInterface = require('./asset_interface.json');
  */
 async function checkErc725YInterfaceId(address) {
   // Create instance of the contract which has to be queried
-  const Contract = new web3.eth.Contract(AssetInterface, address);
+  const asset = new web3.eth.Contract(AssetInterface, address);
 
-  const interfaceIds = {
-    erc725Legacy: '0x2bd57b73',
-    erc725: '0x714df77c',
-  };
-
-  let interfaceChecks = {
-    isERC725Legacy: false,
-    isERC725: false,
-  };
+  const erc725YLegacyInterfaceId = "0x2bd57b73";
 
   // Check if the contract is a legacy key-value store interface
   try {
-    interfaceChecks.isERC725Legacy = await Contract.methods
-      .supportsInterface(interfaceIds.erc725Legacy)
+    let isERC725YLegacy = false;
+    isERC725YLegacy = await asset.methods
+      .supportsInterface(erc725YLegacyInterfaceId)
       .call();
+    return isERC725YLegacy;
   } catch (error) {
-    return console.log('Address could not be checked for legacy interface');
+    return error; //console.log("Address could not be checked for legacy interface");
   }
-
-  // Check if the contract is a current key-value store interface
-  try {
-    interfaceChecks.isERC725 = await Contract.methods
-      .supportsInterface(interfaceIds.erc725)
-      .call();
-  } catch (error) {
-    return console.log('Address could not be checked for interface');
-  }
-
-  return interfaceChecks;
 }
 
-checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
-  console.log(standard),
+checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isLegacy) =>
+  console.log(isLegacy)
 );
 ```
 
