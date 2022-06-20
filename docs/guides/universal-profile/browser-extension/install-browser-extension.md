@@ -18,7 +18,7 @@ This guide will teach you how to download and install the Universal Profile brow
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.0.0-develop.223)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-1.0.0-develop.223.zip)**
+### :inbox_tray: **[Download link (v1.0.0-develop.245-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.0.0-develop.245-MV3.zip)**
 
 ## Unpack the Archive
 
