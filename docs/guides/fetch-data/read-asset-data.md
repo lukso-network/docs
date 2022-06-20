@@ -647,7 +647,7 @@ The [LSP4 Digital Asset Metadata](../../standards/nft-2.0/LSP4-Digital-Asset-Met
 To fetch the data for the previously decoded metadata, we can access the JSON file and change the URL to access its properties. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
 
 :::info
-Profiles created on the [profile explorer](https://universalprofile.cloud/) currently use IPFS. Therefore, we will use a static IPFS link for the guide. If there are several storage solutions, you can change them or make distinctions.
+Profiles created on the [Profile Explorer](https://universalprofile.cloud/) currently use IPFS. Therefore, we will use a static IPFS link for the guide. If there are several storage solutions, you can change them or make distinctions.
 :::
 
 ```javascript title="read_assets.js"
@@ -659,19 +659,21 @@ Profiles created on the [profile explorer](https://universalprofile.cloud/) curr
  *
  * @return string of asset data URL
  */
-async function getMetaDataLink() {
+async function getMetaDataLink(decodedAssetMetadata) {
   try {
-    let decodedData = await decodeData(MetaDataKey, decodeMetaPhrase);
     // Generate IPFS link from decoded metadata
-    return IPFS_GATEWAY_URL + decodedData.LSP4Metadata.url.substring(7);
+    return IPFS_GATEWAY + decodedAssetMetadata.value.url.substring(7);
   } catch (error) {
-    console.log('URL could not be fetched');
+    console.log("URL could not be fetched");
   }
 }
 
 // Debug
-getMetaDataLink().then((dataURL) => console.log(dataURL));
-```
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => console.log(dataURL));
+  });
+});
 
 ## Step 8 - Get the asset data
 
