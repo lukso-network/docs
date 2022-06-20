@@ -564,6 +564,7 @@ async function getAssetData(key) {
 
 // Debug
 getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));```
+```
 
   </TabItem>
 
