@@ -459,6 +459,28 @@ To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5
 - **key:** `0x4b80742de2bf90b8b4850000<address>`
 - **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
 
+```json
+{
+  "name": "AddressPermissions:AllowedERC725YKeys:<address>",
+  "key": "0x4b80742de2bf90b8b4850000<address>",
+  "keyType": "MappingWithGrouping",
+  "valueType": "bytes32[]",
+  "valueContent": "Bytes32"
+}
+```
+
+Below is an example use case. An ERC725Account can allow some applications to add/edit informations on its storage via `setData(...)`. The account can restrict such Dapps and protocols to edit the data keys that are only relevant to the logic of their applications.
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-overview.jpeg)
+
+As a result, this provide context for the Dapp on which data they can operate on the account, while preventing them to edit other information, such as the account metadata, or data relevant to other dapps.
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-allowed.jpeg)
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-1.jpeg)
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-2.jpeg)
+
 :::info
 
 **If no bytes32 values are set, the caller address can set values for any keys.**
