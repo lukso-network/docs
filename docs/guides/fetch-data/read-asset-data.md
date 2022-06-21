@@ -137,9 +137,9 @@ fetchUniversalReceiver(SAMPLE_PROFILE_ADDRESS).then((receiverAddress) =>
 After we got the Universal Receiver address, we can now receive an array of assets from it by calling the `getAllRawValues()` function.
 
 <details>
-    <summary>LSP1 Minimal JSON Interface</summary>
+    <summary>LSP1 Legacy ABI</summary>
 
-```json title="lsp1_legacy_minimal_interface.json"
+```json title="lsp1_legacy_minimal_abi.json"
 [
   {
     "inputs": [],
@@ -164,7 +164,7 @@ After we got the Universal Receiver address, we can now receive an array of asse
 // ...
 
 // ABI for the Universal Receiver
-const LSP1MinimalInterface = require("./lsp1_minimal_interface.json");
+const LSP1MinimalABI = require("./lsp1_minimal_interface.json");
 const web3 = new Web3("https://rpc.l14.lukso.network");
 
 /*
@@ -176,7 +176,7 @@ const web3 = new Web3("https://rpc.l14.lukso.network");
  */
 async function fetchReceivedAssets(receiverAddress) {
   const universalReceiver = new web3.eth.Contract(
-    LSP1MinimalInterface,
+    LSP1MinimalABI,
     receiverAddress
   );
 
@@ -426,9 +426,9 @@ While using the **legacy** `ERC725Y` interface, `getData(...)` only takes one si
 :::
 
 <details>
-  <summary>Asset JSON Interface</summary>
+  <summary>LSP4 Legacy ABI</summary>
 
-```json title="lsp4_legacy_minimal_interface.json"
+```json title="lsp4_legacy_minimal_abi.json"
 [
   {
     "type": "function",
@@ -459,7 +459,7 @@ While using the **legacy** `ERC725Y` interface, `getData(...)` only takes one si
 // ...
 
 const SAMPLE_ASSET_ADDRESS = "0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78";
-const AssetInterface = require("./lsp4_legacy_minimal_interface.json");
+const LSP4MinimalABI = require("./lsp4_legacy_minimal_abi.json");
 
 /*
  * Check the interface of an
@@ -470,7 +470,7 @@ const AssetInterface = require("./lsp4_legacy_minimal_interface.json");
  */
 async function checkErc725YInterfaceId(address) {
   // Create instance of the contract which has to be queried
-  const asset = new web3.eth.Contract(AssetInterface, address);
+  const asset = new web3.eth.Contract(LSP4MinimalABI, address);
 
   const erc725YLegacyInterfaceId = "0x2bd57b73";
 
@@ -552,9 +552,9 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
   <TabItem value="Legacy Standards" label="Legacy Standards">
 
 <details>
-    <summary>ERC725 JSON Interface</summary>
+    <summary>ERC725 Legacy ABI</summary>
 
-```json title="erc725_legacy_minimal_interface.json"
+```json title="erc725_legacy_minimal_abi.json"
 [
   {
     "inputs": [
@@ -585,7 +585,7 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
 // ...
 
 // ABI's
-const ERC725LegacyInterface = require("./erc725_legacy_minimal_interface.json");
+const ERC725MinimalABI = require("./erc725_legacy_minimal_abi.json");
 const LSP4schema = require("@erc725/erc725.js/schemas/LSP4DigitalAsset.json");
 
 // Keys for asset properties
@@ -610,7 +610,7 @@ async function getAssetData(key, address) {
     if (assetInterfaceID === true) {
       // Instanciate ERC725Legacy smart contract
       const digitalAsset = new web3.eth.Contract(
-        ERC725LegacyInterface,
+        ERC725MinimalABI,
         address
       );
 
@@ -1065,9 +1065,9 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
   <TabItem value="Legacy Standards" label="Legacy Standards">
 
 <details>
-    <summary>LSP1 Minimal JSON Interface</summary>
+    <summary>LSP1 Legacy ABI</summary>
 
-```json title="lsp1_legacy_minimal_interface.json"
+```json title="lsp1_legacy_minimal_abi.json"
 [
   {
     "inputs": [],
@@ -1088,9 +1088,9 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
 </details>
 
 <details>
-  <summary>Asset JSON Interface</summary>
+  <summary>LSP4 Legacy ABI</summary>
 
-```json title="lsp4_legacy_minimal_interface.json"
+```json title="lsp4_legacy_minimal_abi.json"
 [
   {
     "type": "function",
@@ -1117,9 +1117,9 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
 </details>
 
 <details>
-    <summary>ERC725 JSON Interface</summary>
+    <summary>ERC725 Legacy ABI</summary>
 
-```json title="erc725_legacy_minimal_interface.json"
+```json title="erc725_legacy_minimal_abi.json"
 [
   {
     "inputs": [
@@ -1162,10 +1162,10 @@ const SAMPLE_PROFILE_ADDRESS = "0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e";
 const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
 const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
 
-// Legacy Schemas
-const LSP1MinimalInterface = require("./lsp1_legacy_minimal_interface.json");
-const AssetInterface = require("./lsp4_legacy_minimal_interface.json");
-const ERC725LegacyInterface = require("./erc725_legacy_minimal_interface.json");
+// Legacy ABIs and Schemas
+const LSP1MinimalABI = require("./lsp1_legacy_minimal_abi.json");
+const LSP4MinimalABI = require("./lsp4_legacy_minimal_abi.json");
+const ERC725MinimalABI = require("./erc725_legacy_minimal_abi.json");
 
 // Parameters for ERC725 Instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -1207,7 +1207,7 @@ async function fetchUniversalReceiver(address) {
  */
 async function fetchReceivedAssets(receiverAddress) {
   const universalReceiver = new web3.eth.Contract(
-    LSP1MinimalInterface,
+    LSP1MinimalABI,
     receiverAddress
   );
 
@@ -1263,7 +1263,7 @@ async function fetchOwnedAssets(owner) {
  */
 async function checkErc725YInterfaceId(address) {
   // Create instance of the contract which has to be queried
-  const asset = new web3.eth.Contract(AssetInterface, address);
+  const asset = new web3.eth.Contract(LSP4MinimalABI, address);
 
   const erc725YLegacyInterfaceId = "0x2bd57b73";
 
@@ -1295,7 +1295,7 @@ async function getAssetData(key, address) {
     if (assetInterfaceID === true) {
       // Instanciate ERC725Legacy smart contract
       const digitalAsset = new web3.eth.Contract(
-        ERC725LegacyInterface,
+        ERC725MinimalABI,
         address
       );
 
