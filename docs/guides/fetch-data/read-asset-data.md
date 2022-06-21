@@ -228,7 +228,7 @@ The same way, we fetched received assets, we can fetch all ever received assets 
  * the Universal Profile
  *
  * @param address of the Universal Profile
- * @return string JSON or custom error
+ * @return address[] of the issued assets or custom error
  */
 async function fetchIssuedAssets(address) {
   try {
@@ -278,7 +278,7 @@ const ERC725LegacySchema = require("./erc725_legacy_minimal_schema.json");
  * the Universal Profile
  *
  * @param address of the Universal Profile
- * @return string JSON or custom error
+ * @return address[] of the received assets or custom error
 */
 async function fetchIssuedAssets(address) {
   try {
@@ -691,7 +691,7 @@ the `decodeData()` function from the [`erc725.js`](../../tools/erc725js/getting-
  *
  * @param key of the asset property
  * @param encodedData as string
- * @return string of the decoded data
+ * @return JSON of the decoded data
  */
 async function decodeAssetData(keyName, encodedData) {
   try {
@@ -793,7 +793,7 @@ You may not need the `isomorphic-fetch` library if you use browser environments 
  * storage link
  *
  * @param dataURL as string
- * @return string with asset data as JSON
+ * @return JSON of asset data
  */
 async function fetchAssetData(dataURL) {
   try {
@@ -918,7 +918,7 @@ async function fetchReceivedAssets(address) {
 * the Universal Profile
 *
 * @param address of the Universal Profile
-* @return string JSON or custom error
+ * @return address[] of the issued assets or custom error
 */
 async function fetchIssuedAssets(address) {
   try {
@@ -1005,7 +1005,7 @@ async function getAssetData(key, address) {
  *
  * @param key of the asset property
  * @param encodedData as string
- * @return string of the decoded data
+ * @return JSON of the decoded data
  */
 async function decodeAssetData(keyName, encodedData) {
   try {
@@ -1305,7 +1305,7 @@ async function fetchReceivedAssets(receiverAddress) {
  * the Universal Profile
  *
  * @param address of the Universal Profile
- * @return string JSON or custom error
+ * @return address[] of the issued assets or custom error
  */
 async function fetchIssuedAssets(address) {
   try {
@@ -1399,7 +1399,7 @@ async function getAssetData(key, address) {
  *
  * @param key of the asset property
  * @param encodedData as string
- * @return string of the decoded data
+ * @return JSON of the decoded data
  */
 async function decodeAssetData(keyName, encodedData) {
   try {
