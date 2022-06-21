@@ -287,7 +287,6 @@ async function fetchIssuedAssets(address) {
       await profile.getData("LSP3IssuedAssets[]")
     ).value;
   } catch (error) {
-    console.log(error);
     return console.log("Issued assets could not be fetched");
   }
 }
@@ -436,25 +435,23 @@ const {
  * Check the ERC725Y interface of an asset
  *
  * @param assetAddress of the smart contract
- * @return boolean does it support ERC725Y?
+ * @return boolean isERC725Y
  */
 async function checkErc725YInterfaceId(assetAddress) {
   // Create an instance of the asset
   const asset = new web3.eth.Contract(LSP4.abi, assetAddress);
 
-  let interfaceCheck = false;
+  let isERC725Y = false;
 
   // Check if the contract has a key-value store
   try {
-    interfaceCheck = await asset.methods
+    isERC725Y = await asset.methods
       .supportsInterface(ERC725Y_INTERFACE_IDS["3.0"])
       .call();
   } catch (error) {
-    console.log(error.message);
-    console.log("Address could not be checked for ERC725 interface");
+    console.log("Address could not be checked for ERC725Y interface");
   }
-
-  return interfaceCheck;
+  return isERC725Y;
 }
 
 // Debug
@@ -513,24 +510,26 @@ const LSP4MinimalABI = require("./lsp4_legacy_minimal_abi.json");
  * Check the ERC725Y interface of an asset
  *
  * @param assetAddress of the smart contract
- * @return boolean does it support ERC725Y?
+ * @return boolean isERC725YLegacy
  */
+
 async function checkErc725YInterfaceId(address) {
   // Create an instance of the asset
   const asset = new web3.eth.Contract(LSP4MinimalABI, address);
 
   const erc725YLegacyInterfaceId = "0x2bd57b73";
+  let isERC725YLegacy = false;
 
-  // Check if the contract is a legacy key-value store
+  // Check if the contract is a legacy key-value store interface
   try {
-    let isERC725YLegacy = false;
     isERC725YLegacy = await asset.methods
       .supportsInterface(erc725YLegacyInterfaceId)
       .call();
     return isERC725YLegacy;
   } catch (error) {
-    return console.log("Address could not be checked for legacy interface");
+    console.log("Address could not be checked for ERC725YLegacy interface");
   }
+  return isERC725YLegacy;
 }
 
 // Debug
@@ -959,25 +958,24 @@ async function fetchOwnedAssets(owner) {
  * Check the ERC725Y interface of an asset
  *
  * @param assetAddress of the smart contract
- * @return boolean does it support ERC725Y?
+ * @return boolean isERC725Y
  */
 async function checkErc725YInterfaceId(assetAddress) {
-  // Create an instance of the asset 
+  // Create an instance of the asset
   const asset = new web3.eth.Contract(LSP4.abi, assetAddress);
 
-  let interfaceCheck = false;
+  let isERC725Y = false;
 
   // Check if the contract has a key-value store
   try {
-    interfaceCheck = await asset.methods
+    isERC725Y = await asset.methods
       .supportsInterface(ERC725Y_INTERFACE_IDS["3.0"])
       .call();
   } catch (error) {
-    console.log(error.message);
-    console.log("Address could not be checked for ERC725 interface");
+    console.log("Address could not be checked for ERC725Y interface");
   }
 
-  return interfaceCheck;
+  return isERC725Y;
 }
 
 /*
@@ -1314,7 +1312,6 @@ async function fetchIssuedAssets(address) {
       await profile.getData("LSP3IssuedAssets[]")
     ).value;
   } catch (error) {
-    console.log(error);
     return console.log("Issued assets could not be fetched");
   }
 }
@@ -1349,7 +1346,7 @@ async function fetchOwnedAssets(owner) {
  * Check the ERC725Y interface of an asset
  *
  * @param assetAddress of the smart contract
- * @return boolean does it support ERC725Y?
+ * @return boolean isERC725YLegacy
  */
 
 async function checkErc725YInterfaceId(address) {
@@ -1357,17 +1354,18 @@ async function checkErc725YInterfaceId(address) {
   const asset = new web3.eth.Contract(LSP4MinimalABI, address);
 
   const erc725YLegacyInterfaceId = "0x2bd57b73";
+  let isERC725YLegacy = false;
 
   // Check if the contract is a legacy key-value store interface
   try {
-    let isERC725YLegacy = false;
     isERC725YLegacy = await asset.methods
       .supportsInterface(erc725YLegacyInterfaceId)
       .call();
     return isERC725YLegacy;
   } catch (error) {
-    return error; //console.log("Address could not be checked for legacy interface");
+    console.log("Address could not be checked for ERC725YLegacy interface");
   }
+  return isERC725YLegacy;
 }
 
  /*
