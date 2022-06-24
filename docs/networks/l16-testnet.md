@@ -53,7 +53,7 @@ You can find a community guide about how to setup your Grafana dashboard on Linu
 Apple's new M1 chips are not supported natively by our node client. However, you can follow [this guide](https://medium.com/@luki3k5/running-lukso-node-on-m1-mac-acf92d433a38) to run it by using Rosetta, Apple's built-in emulation software.
 :::
  
-### Ports
+## Ports
 
 
 | Port                         | Protocol                      | Client                            | Ingress                           |  Comment |
@@ -97,46 +97,59 @@ This section is in the works
 NOTE: Make sure you also forward those ports in your router.
 :::
 
-### Installing Dependencies
+## Installing Dependencies
 
-Prepare your **Linux** environment. You need:
+### Linux Environment 
 
-1. [Docker](https://docs.docker.com/get-docker/)
-2. [Docker Compose](https://docs.docker.com/compose/)
-3. [curl](https://macappstore.org/curl/) 
+For a Linux environment you need
+1. [curl](https://macappstore.org/curl/) 
+2. [Docker](https://docs.docker.com/get-docker/)
+3. [Docker Compose](https://docs.docker.com/compose/)
 
-```bash title="Example script for installing docker"
-# Install dependencies
+
+#### Install Curl
+```bash
 sudo apt-get -y update
 sudo apt-get -y install curl
+```
 
-# Install Docker
+#### Install Docker
+```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
+```
 
-# Install Docker Compose
+#### Install Docker Compose
+```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 ```
 
-To prepare your **Mac** environment. You need:
+### Mac Environment
+
+For a Mac environment you need
 1. [Homebrew package manager](https://brew.sh)
-2. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
-3. [curl](https://macappstore.org/curl/)
+2. [curl](https://macappstore.org/curl/)
+3. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
 
-```bash title="Example script for installing docker"
-# Install Homebrew 
+
+#### Install Homebrew
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
-# Install Curl
+#### Install Curl
+```bash
 sudo brew install curl
+```
 
-# Install Docker Desktop for Mac
+#### Install Docker Desktop for Mac
+
 Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
 You do not have to install Docker Compose separately
-```
+
 
 ## Setting up Metamask
 
@@ -151,62 +164,64 @@ You do not have to install Docker Compose separately
 
 **[here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
 
-### Installing the Node
+## Installing the Node
 
+#### Create a folder for the LUKSO CLI 
 ```bash
 mkdir lukso-l16-testnet && cd lukso-l16-testnet
-sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
 ```
 
-The script will download the LUKSO cli into the folder. 
- 
-#### Setting up your node and node name
+#### Download the CLI
+```
+sudo curl https://install.l16.lukso.network | sudo bash
+```
+
+#### Setup and name node
 ```bash
 lukso network init --chain l16
 ```
- 
 
-## Starting the Node
-
+#### Start the node
 ```bash
-# Start your nodes
 lukso network start
 ```
 
-## Become a Validator
+## Becoming a Validator
 
 ### Setup Validator
 
+#### This will create a key store and a transaction wallet.
 ```
 lukso network validator setup
 ```
 
-This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit
-transaction. You can check if the wallet has enough funds by calling
+### Fund the transaction wallet
 
+The purpose of the transaction wallet is to call and pay for the deposit
+transaction.
+
+#### You can find the public key and balance of the transaction wallet and by calling
 ```
 lukso network validator describe
 ```
 
-Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public key into the input field.
+#### Visit the [Faucet](https://faucet.l16.lukso.network)
+Paste the transaction wallet public key into the input field.
 
 Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
 
  
 
-#### Submit the transaction.
+### Submitting the deposit
 
-Make a dry run first
-
+#### Make a dry run first
+This will give you the possibility to peek in what is going to happen without executing a transaction.
 ```bash
 lukso network validator deposit --dry
 ```
 
-This will give you the possibility to peek in what is going to happen without executing a transaction.
-
-If you are sure that everything is correct you run the command
-
-
+If you are sure that everything is correct 
+#### Execute the deposit transaction
 ```bash
 lukso network validator deposit
 ```
@@ -223,21 +238,25 @@ Store the file **node_recovery.json** somewhere safe.
 
 ### Start the Validator Client
 
-```bash
-# Make sure your _consensus_ and _execution_ clients are running
+
+#### Make sure your _consensus_ and _execution_ clients are running
+````
 lukso network validator start
+````
 
-# You can check logs with
-lukso network log validator -f
+#### You can check logs with
+````
+sudo lukso network log validator -f
+````
 
-You can close your logs by pressing ctrl+c
+You can close your logs by pressing `ctrl+c`
 
-# You can stop the validator using, this will also stop all other nodes
+#### You can stop the validator using, this will also stop all other nodes
+```
 lukso network validator stop
 ```
 
-Occasionally check the status of your validator by either typing
-
+#### Occasionally check the status of your validator by either typing
 ```bash
 lukso network validator describe
 ```
