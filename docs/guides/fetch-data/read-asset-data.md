@@ -8,10 +8,14 @@ import TabItem from '@theme/TabItem';
 
 # Read Asset Data
 
+:::success Recommendation
+Complete "ready to use" JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
+:::
+
 In this guide, we will learn how to:
 
-- read data from the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md).
 - get all assets ever received by a profile.
+- get all assets ever issued by a profile.
 - fetch the data of all owned assets.
 
 <div style={{textAlign: 'center', color: 'grey'}}>
@@ -40,20 +44,103 @@ npm install web3 @erc725/erc725.js isomorphic-fetch @lukso/lsp-smart-contracts
 
 ## Step 1 - Get all assets ever received
 
-In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and retrieve the address of its Universal Receiver.
+<Tabs>
+  <TabItem value="Current Standard" label="Current Standard">
 
-The [Universal Receiver is a smart contract](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver) that keeps track of all the assets ever received by a Universal Profile. We use sample addresses for the Universal Receiver, Universal Profile, and Identifiable Digital Asset to make the guide more understandable.
+In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library.  In the same way, we can now fetch all ever received assets using `fetchData('LSP5ReceivedAssets[]')`.
 
-:::success Recommendation
-Complete "ready to use" JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
-:::
+```javascript title="read_assets.js"
 
-To make the guide more understandable, we use sample addresses for the Universal Receiver, Universal Profile and Identifiable Digital Asset. You will most likely change these static variables with a dynamic values from your app's input field or fetching processes.
+// Import and network setup
+const Web3 = require("web3");
+const { ERC725 } = require("@erc725/erc725.js");
+require("isomorphic-fetch");
+
+// Static variables
+const SAMPLE_PROFILE_ADDRESS = "0x0Ac71c67Fa5E4c9d4af4f99d7Ad6132936C2d6A3";
+const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
+
+// Parameters for the ERC725 instance
+const erc725schema = require("@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json");
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+const config = { ipfsGateway: IPFS_GATEWAY };
+
+/*
+ * Fetch the LSP5 data of the Universal Profile
+ * to get its ever received assets
+ *
+ * @param address of the Universal Profile
+ * @return address[] of received assets or custom error
+ */
+async function fetchReceivedAssets(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    const result = await profile.fetchData("LSP5ReceivedAssets[]")
+    return result.value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+// Debug
+fetchReceivedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+  console.log(JSON.stringify(profileData, undefined, 2))
+);
+```
+
+  </TabItem>
+
+  <TabItem value="Legacy Standard" label="Legacy Standard">
+
+In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch the address of the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver/) by using `fetchData("LSP1UniversalReceiverDelegate")`.
+
+```javascript title="read_assets.js"
+
+// Import and network setup
+const Web3 = require("web3");
+const { ERC725 } = require("@erc725/erc725.js");
+require("isomorphic-fetch");
+
+// Static variables
+const SAMPLE_PROFILE_ADDRESS = "0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e";
+const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
+
+// Parameters for the ERC725 instance
+const erc725schema = require("@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json");
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+const config = { ipfsGateway: IPFS_GATEWAY };
+
+ /*
+ * Fetch the LSP1 data of the Universal Profile
+ * to get its Universal Receiver
+ *
+ * @param address of the Universal Profile
+ * @return address of Universal Receiver or custom error
+ */
+async function fetchUniversalReceiverAddress(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    const result = await profile.fetchData("LSP1UniversalReceiverDelegate")
+    return result.value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+// Debug
+fetchUniversalReceiverAddress(SAMPLE_PROFILE_ADDRESS).then((receiverAddress) =>
+  console.log(receiverAddress)
+);
+```
+
+Using the Universal Receiver address, we can now call the `getAllRawValues()` function on this contract to retrieve an array of received assets.
 
 <details>
-    <summary>LSP1 Minimal JSON Interface</summary>
+    <summary>LSP1 Legacy ABI</summary>
 
-```json title="lsp1_minimal_interface.json"
+```json title="lsp1_legacy_minimal_abi.json"
 [
   {
     "inputs": [],
@@ -74,53 +161,144 @@ To make the guide more understandable, we use sample addresses for the Universal
 </details>
 
 ```javascript title="read_assets.js"
-// Import and Setup
-const Web3 = require('web3');
-const web3 = new Web3('https://rpc.l14.lukso.network');
 
-// Our static Universal Receiver address
-const SAMPLE_UNIVERSAL_RECEIVER = '0x50a02ef693ff6961a7f9178d1e53cc8bbe1dad68';
+// ...
 
 // ABI for the Universal Receiver
-const LSP1MinimalInterface = require('./lsp1_minimal_interface.json');
+const LSP1MinimalABI = require("./lsp1_legacy_minimal_abi.json");
+const web3 = new Web3("https://rpc.l14.lukso.network");
+
 /*
- * Return array of blockchain addresses of
- * assets, that were received by the
- * Univeral Profile holder.
- *
- * @return address[] of assets
+ * Get all received assets from the 
+ * Universal Receiver of the 
+ * Universal Profile.
+ * 
+ * @param address of the Universal Receiver
+ * @return address[] of the received assets
  */
-async function getAssetAddressses() {
-  const AddressStore = new web3.eth.Contract(
-    LSP1MinimalInterface,
-    SAMPLE_UNIVERSAL_RECEIVER,
+async function fetchReceivedAssets(receiverAddress) {
+  const universalReceiver = new web3.eth.Contract(
+    LSP1MinimalABI,
+    receiverAddress
   );
 
   let rawValues = [];
 
   try {
+
     // Fetch all raw values
-    rawValues = await AddressStore.methods.getAllRawValues().call();
+    rawValues = await universalReceiver.methods.getAllRawValues().call();
   } catch (error) {
-    return console.log('Data from universal receiver could not be loaded');
+    return console.log("Data from universal receiver could not be loaded");
   }
 
-  let digitalAssets = [];
+  const receivedAssets = [];
 
   // Retrieve addresses
   for (let i = 0; i < rawValues.length; i++) {
-    digitalAssets[i] = web3.utils.toChecksumAddress(rawValues[i].substr(26));
+    receivedAssets[i] = web3.utils.toChecksumAddress(rawValues[i].substr(26));
   }
-  return digitalAssets;
+  return receivedAssets;
 }
 
 // Debug
-getAssetAddressses().then((digitalAssets) => console.log(digitalAssets));
+fetchUniversalReceiverAddress(SAMPLE_PROFILE_ADDRESS).then((receiverAddress) => {
+  fetchReceivedAssets(receiverAddress).then((receivedAssets) =>
+    console.log(receivedAssets)
+  );
+});
+```
+  </TabItem>
+</Tabs>
+
+## Step 2 - Get all assets ever issued
+
+<Tabs>
+  <TabItem value="Current Standard" label="Current Standard">
+
+The same way, we fetched received assets, we can fetch all ever issued assets with the `fetchData('LSP12IssuedAssets[]')` function from the [erc725.js](../../tools/erc725js/getting-started/) library.
+
+```javascript title="read_assets.js"
+
+// ...
+
+/*
+ * Fetch the ever issued assets from 
+ * the Universal Profile
+ *
+ * @param address of the Universal Profile
+ * @return address[] of the issued assets or custom error
+ */
+async function fetchIssuedAssets(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    const result = await profile.fetchData("LSP12IssuedAssets[]");
+    return result.value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+// Debug
+fetchIssuedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+  console.log(JSON.stringify(profileData, undefined, 2))
+);
 ```
 
-## Step 2 - Check ownership of assets
+  </TabItem>
+  <TabItem value="Legacy Standard" label="Legacy Standard">
 
-After trimming out the asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the balance is greater than zero, the asset is still owned by the address.
+<details>
+<summary>ERC725 Legacy Schema</summary>
+
+```json title="erc725_legacy_minimal_schema.json"
+[
+    {
+       "name":"LSP3IssuedAssets[]",
+       "key":"0x3a47ab5bd3a594c3a8995f8fa58d0876c96819ca4516bd76100c92462f2f9dc0",
+       "keyType":"Array",
+       "valueContent":"Address",
+       "valueType":"address"
+    }
+]
+```
+
+</details>
+
+```javascript title="read_assets.js"
+
+// ...
+
+const ERC725LegacySchema = require("./erc725_legacy_minimal_schema.json");
+
+/*
+ * Fetch the ever issued assets from
+ * the Universal Profile
+ *
+ * @param address of the Universal Profile
+ * @return address[] of the received assets or custom error
+*/
+async function fetchIssuedAssets(address) {
+  try {
+    const profile = new ERC725(ERC725LegacySchema, address, provider, config);
+    const result = await profile.getData("LSP3IssuedAssets[]");
+    return result.value;
+  } catch (error) {
+    return console.log("Issued assets could not be fetched");
+  }
+}
+
+fetchIssuedAssets(SAMPLE_PROFILE_ADDRESS).then((issuedAssets) =>
+  console.log(issuedAssets)
+);
+```
+
+  </TabItem>
+</Tabs>
+
+## Step 3 - Check ownership of assets
+
+After receiving a list of asset addresses, we can check which assets are owned by the Universal Profile. We can do this by comparing the balances of the assets within the receiver contract. If the `balance` is greater than zero, the asset is still owned by the address.
 
 :::info Difference between Token Ownership
 
@@ -129,34 +307,38 @@ After trimming out the asset addresses, we can check which assets are owned by t
 
 :::
 
+<Tabs>
+
+<TabItem value="Current Standard" label="Current Standard">
+
 ```javascript title="read_assets.js"
+
 // ...
 
 // ABI for the asset
-const LSP8 = require('@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json');
+const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
 
-// Our static Universal Profile address
-const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
+// New Web3 instance for LUKSO L14
+const web3 = new Web3("https://rpc.l14.lukso.network");
 
 /*
- * Return array of blockchain addresses
- * of assets that are owned by the
- * Univeral Profile.
+ * Return an array of assets  
+ * that are owned by the
+ * Universal Profile.
  *
- * @param owner Universal Profile address
+ * @param owner of the Universal Profile
  * @return address[] of owned assets
  */
-async function getOwnedAddresses(owner) {
-  let digitalAssets = await getAssetAddressses();
-  let ownedAssets = [];
+async function fetchOwnedAssets(owner) {
+  const digitalAssets = await fetchReceivedAssets(owner);
+  const ownedAssets = [];
 
   for (let i = 0; i < digitalAssets.length; i++) {
-    let isCurrentOwner;
-
+    
     // Create instance of the asset to check owner balance
     const LSP8Contract = new web3.eth.Contract(LSP8.abi, digitalAssets[i]);
 
-    isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
+    const isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
     if (isCurrentOwner > 0) {
       ownedAssets[ownedAssets.length] = digitalAssets[i];
     }
@@ -165,118 +347,130 @@ async function getOwnedAddresses(owner) {
 }
 
 // Debug
-getOwnedAddresses(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
-  console.log(ownedAssets),
+fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
+  console.log(ownedAssets)
 );
 ```
 
-## Step 3 - Check the type of an asset
+</TabItem>
+<TabItem value="Legacy Standard" label="Legacy Standard">
 
-Now that we have retrieved all the owned assets, we need to check which interface is behind these smart contract addresses, to get the data.
+```javascript title="read_assets.js"
+
+// ...
+
+// ABI for the asset
+const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
+
+/*
+ * Return an array of assets  
+ * that are owned by the
+ * Universal Profile.
+ *
+ * @param owner of the Universal Profile
+ * @return address[] of owned assets
+ */
+async function fetchOwnedAssets(owner) {
+  const receiverAddress = await fetchUniversalReceiverAddress(owner);
+  const digitalAssets = await fetchReceivedAssets(receiverAddress);
+  const ownedAssets = [];
+
+  for (let i = 0; i < digitalAssets.length; i++) {
+    
+    // Create instance of the asset to check owner balance
+    const LSP8Contract = new web3.eth.Contract(LSP8.abi, digitalAssets[i]);
+
+    const isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
+    if (isCurrentOwner > 0) {
+      ownedAssets[ownedAssets.length] = digitalAssets[i];
+    }
+  }
+  return ownedAssets;
+}
+
+// Debug
+fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
+  console.log(ownedAssets)
+);
+```
+
+</TabItem>
+
+</Tabs>
+
+
+## Step 4 - Check the type of an asset
+
+Now that we have retrieved all the owned assets, we need to check which interface is behind these smart contract addresses, to get their data.
 
 UniversalProfile contracts on the [profile explorer](https://universalprofile.cloud/) on the LUKSO L14 test network have been deployed using different `ERC725Y` interfaces. We have to know which interface to use, to assure the right interaction and bypass errors.
 
 <Tabs>
   
-  <TabItem value="Current Standads" label="Current Standards">
+  <TabItem value="Current Standards" label="Current Standards">
 
 :::info
 
-Thanks to [function overloading], the `ERC725Y` interface function `getData(...)` can accept:
+By using [function overloading], the `ERC725Y` interface function `getData(...)` can accept:
 
-- either one key: `getData(key)`.
-- or an array of keys: `getData(keys[])` to fetch multiple values at once.
+- either one data key: `getData(key)` to fetch a single value.
+- or an array of data keys: `getData(keys[])` to fetch multiple values at once.
 
 :::
 
-<details>
-  <summary>Asset JSON Interface</summary>
-
-```json title="asset_interface.json"
-[
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
-      {
-        "type": "bool",
-        "name": "",
-        "internalType": "bool"
-      }
-    ],
-    "name": "supportsInterface",
-    "inputs": [
-      {
-        "type": "bytes4",
-        "name": "interfaceId",
-        "internalType": "bytes4"
-      }
-    ]
-  }
-]
-```
-
-</details>
-
 ```javascript title="read_assets.js"
-// ...
-const SAMPLE_ASSET_ADDRESS = '0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78';
 
-const AssetInterface = require('./asset_interface.json');
+// ...
+
+const SAMPLE_ASSET_ADDRESS = "0xfE85568Fea15A7ED3c56F7ca6544F2b96Aeb1774";
+const LSP4 = require("@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json");
+const {
+  ERC725Y_INTERFACE_IDS,
+} = require("@erc725/erc725.js/build/main/src/lib/constants");
 
 /*
- * Check the interface of an asset's smart contract
+ * Check the ERC725Y interface of an asset
  *
- * @param address of asset
- * @return boolean - if the address supports ERC725Y or false if it doesn't
+ * @param assetAddress of the smart contract
+ * @return boolean isERC725Y
  */
-async function checkErc725YInterfaceId(address) {
-  // Create instance of the contract which has to be queried
-  const Contract = new web3.eth.Contract(AssetInterface, address);
+async function checkErc725YInterfaceId(assetAddress) {
+  // Create an instance of the asset
+  const asset = new web3.eth.Contract(LSP4.abi, assetAddress);
 
-  const ERC725Y_INTERFACE_ID = '0x714df77c';
-
-  let interfaceCheck = false;
+  let isERC725Y = false;
 
   // Check if the contract has a key-value store
   try {
-    interfaceChecks.isERC725 = await Contract.methods
-      .supportsInterface(ERC725Y_INTERFACE_ID)
+    isERC725Y = await asset.methods
+      .supportsInterface(ERC725Y_INTERFACE_IDS["3.0"])
       .call();
   } catch (error) {
-    console.log(error.message);
-    console.log('Address could not be checked for ERC725 interface');
-    return;
+    console.log("Address could not be checked for ERC725Y interface");
   }
-
-  return interfaceCheck;
+  return isERC725Y;
 }
 
 // Debug
-checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
-  console.log(standard),
+checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isERC725Y) =>
+  console.log(isERC725Y)
 );
 ```
 
   </TabItem>
 
-  <TabItem value="Current & Legacy Standards" label="Current & Legacy Standards">
+  <TabItem value="Legacy Standards" label="Legacy Standards">
 
-:::info Depending on the interface, the function accepts different parameters.
+:::info
 
-- in the **legacy** `ERC725Y` interface, `getData(...)` only takes a single key: `getData(key)`.
-- in the **current** `ERC725Y` interface, `getData(...)` can accept:
-  - either one key: `getData(key)`
-  - or an array of keys: `getData(keys[])`
-
-The current standard therefore allows to fetch multiple values at once, via [function overloading].
+While using the **legacy** `ERC725Y` interface, `getData(...)` only takes one data single key: `getData(key)`.
 
 :::
 
 <details>
-  <summary>Asset JSON Interface</summary>
+  <summary>LSP4 Legacy ABI</summary>
 
-```json title="asset_interface.json"
+```json title="lsp4_legacy_minimal_abi.json"
 [
   {
     "type": "function",
@@ -303,168 +497,108 @@ The current standard therefore allows to fetch multiple values at once, via [fun
 </details>
 
 ```javascript title="read_assets.js"
-// ...
-const SAMPLE_ASSET_ADDRESS = '0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78';
 
-const AssetInterface = require('./asset_interface.json');
+// ...
+
+const SAMPLE_ASSET_ADDRESS = "0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78";
+const LSP4MinimalABI = require("./lsp4_legacy_minimal_abi.json");
 
 /*
- * Check the interface of an
- * asset's smart contract
+ * Check the ERC725Y interface of an asset
  *
- * @param address of asset
- * @return object of interface types
+ * @param assetAddress of the smart contract
+ * @return boolean isERC725YLegacy
  */
+
 async function checkErc725YInterfaceId(address) {
-  // Create instance of the contract which has to be queried
-  const Contract = new web3.eth.Contract(AssetInterface, address);
+  // Create an instance of the asset
+  const asset = new web3.eth.Contract(LSP4MinimalABI, address);
 
-  const interfaceIds = {
-    erc725Legacy: '0x2bd57b73',
-    erc725: '0x714df77c',
-  };
-
-  let interfaceChecks = {
-    isERC725Legacy: false,
-    isERC725: false,
-  };
+  const erc725YLegacyInterfaceId = "0x2bd57b73";
+  let isERC725YLegacy = false;
 
   // Check if the contract is a legacy key-value store interface
   try {
-    interfaceChecks.isERC725Legacy = await Contract.methods
-      .supportsInterface(interfaceIds.erc725Legacy)
+    isERC725YLegacy = await asset.methods
+      .supportsInterface(erc725YLegacyInterfaceId)
       .call();
+    return isERC725YLegacy;
   } catch (error) {
-    return console.log('Address could not be checked for legacy interface');
+    console.log("Address could not be checked for ERC725YLegacy interface");
   }
-
-  // Check if the contract is a current key-value store interface
-  try {
-    interfaceChecks.isERC725 = await Contract.methods
-      .supportsInterface(interfaceIds.erc725)
-      .call();
-  } catch (error) {
-    return console.log('Address could not be checked for interface');
-  }
-
-  return interfaceChecks;
+  return isERC725YLegacy;
 }
 
-checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
-  console.log(standard),
+// Debug
+checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isLegacy) =>
+  console.log(isLegacy)
 );
 ```
 
   </TabItem>
 </Tabs>
 
-## Step 4 - Receive the encoded asset data
+## Step 5 - Receive the encoded asset data
 
+Now we can safely retrieve the metadata for the asset address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) metadata is saved under the ERC725Y key-value store of the digital asset. We need to input the correct data key to fetch the associated value. There are multiple [LSP4 keys](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) for different properties.
 
-Now we can safely call the data of the address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) data is saved in a ERC725Y key-value store, and we need to input the right key to fetch the associated value. There are multiple keys for different properties. To give a showcase, we will use the metadata key to receive the associated data.
+- `LSP4TokenName`
+- `LSP4TokenSymbol`
+- `LSP4Metadata`
+- `LSP4Creators[]`
+
+In this guide, we will use the `LSP4Metadata` key to read the asset metadata.
 
 <Tabs>
 
   <TabItem value="Current Standards" label="Current Standards">
 
-<details>
-    <summary>LSP4 JSON Schema</summary>
-
-```json title="lsp4_schema.json"
-[
-  {
-    "name": "SupportedStandards:LSP4DigitalCertificate",
-    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abf0613c",
-    "keyType": "Mapping",
-    "valueContent": "0xabf0613c",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4TokenName",
-    "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4TokenSymbol",
-    "key": "0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4Metadata",
-    "key": "0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e",
-    "keyType": "Singleton",
-    "valueContent": "JSONURL",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4Creators[]",
-    "key": "0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7",
-    "keyType": "Array",
-    "valueContent": "Number",
-    "valueType": "uint256",
-    "elementValueContent": "Address",
-    "elementValueType": "address"
-  }
-]
-```
-
-</details>
-
 ```javascript title="read_assets.js"
-// ...
-// ABI's
-const ERC725ABI = require('@erc725/smart-contracts/artifacts/ERC725.json');
-const LSP4schema = require('./lsp4_schema.json');
 
-// Keys for properties
+// ...
+
+// ABIs
+const LSP4schema = require('@erc725/erc725.js/schemas/LSP4DigitalAsset.json');
+
+// Data keys for asset properties
 const TokenNameKey = LSP4schema[1].key;
 const TokenSymbolKey = LSP4schema[2].key;
 const MetaDataKey = LSP4schema[3].key;
 const CreatorsKey = LSP4schema[4].key;
 
 /*
- * Fetch the dataset of an asset
- * from the Universal Profile
+ * Get the dataset of an asset
  *
- * @param key of asset property
- * @return string of encoded data
+ * @param data key of the property to fetch
+ * @return string of the encoded data
  */
-async function getAssetData(key) {
-  // Check if asset is ERC725Legacy or ERC725
-  let assetInterfaceID = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
-
+async function getAssetData(key, address) {
   try {
-    if (assetInterfaceID === true) {
-      // Instanciate ERC725 smart contract
-      const digitalAsset = new web3.eth.Contract(
-        ERC725ABI,
-        SAMPLE_ASSET_ADDRESS,
-      );
 
-      // Fetch the encoded contract data
-      return await digitalAsset.methods['getData(bytes32)'](key).call();
-    }
+    // Instantiate the asset
+    const digitalAsset = new web3.eth.Contract(LSP4.abi, address);
+
+    // Get the encoded data
+    return await digitalAsset.methods["getData(bytes32)"](key).call();
   } catch (error) {
-    return console.log('Data of assets address could not be loaded');
+    return console.error("Data of assets address could not be loaded");
   }
 }
 
 // Debug
-getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
+  console.log(encodedData)
+);
 ```
 
   </TabItem>
   
-  <TabItem value="Current & Legacy Standards" label="Current & Legacy Standards">
+  <TabItem value="Legacy Standards" label="Legacy Standards">
 
 <details>
-    <summary>ERC725 Legacy JSON Interface</summary>
+    <summary>ERC725 Legacy ABI</summary>
 
-```json title="erc725_legacy_interface.json"
+```json title="erc725_legacy_minimal_abi.json"
 [
   {
     "inputs": [
@@ -490,222 +624,155 @@ getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
 
 </details>
 
-<details>
-    <summary>LSP4 JSON Schema</summary>
-
-```json title="lsp4_schema.json"
-[
-  {
-    "name": "SupportedStandards:LSP4DigitalCertificate",
-    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abf0613c",
-    "keyType": "Mapping",
-    "valueContent": "0xabf0613c",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4TokenName",
-    "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4TokenSymbol",
-    "key": "0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4Metadata",
-    "key": "0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e",
-    "keyType": "Singleton",
-    "valueContent": "JSONURL",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4Creators[]",
-    "key": "0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7",
-    "keyType": "Array",
-    "valueContent": "Number",
-    "valueType": "uint256",
-    "elementValueContent": "Address",
-    "elementValueType": "address"
-  }
-]
-```
-
-</details>
-
 ```javascript title="read_assets.js"
-// ...
-// ABI's
-const ERC725LegacyInterface = require('./erc725_legacy_interface.json');
-const ERC725ABI = require('@erc725/smart-contracts/artifacts/ERC725.json');
-const LSP4schema = require('./lsp4_schema.json');
 
-// Keys for properties
+// ...
+
+// ABIs
+const ERC725MinimalABI = require("./erc725_legacy_minimal_abi.json");
+const LSP4schema = require("@erc725/erc725.js/schemas/LSP4DigitalAsset.json");
+
+// Data keys for asset properties
 const TokenNameKey = LSP4schema[1].key;
 const TokenSymbolKey = LSP4schema[2].key;
 const MetaDataKey = LSP4schema[3].key;
 const CreatorsKey = LSP4schema[4].key;
 
 /*
- * Fetch the dataset of an asset
- * from the Universal Profile
+ * Get the dataset of an asset
  *
- * @param key of asset property
- * @return string of encoded data
+ * @param data key of the property to fetch
+ * @return string of the encoded data
  */
-async function getAssetData(key) {
-  // Check if asset is ERC725Legacy or ERC725
-  let assetInterfaceIDs = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
-
+async function getAssetData(key, address) {
+  
   try {
-    // Legacy interface
-    if (assetInterfaceIDs.isERC725Legacy === true) {
-      // Instanciate ERC725Legacy smart contract
+
+      // Instanciate asset
       const digitalAsset = new web3.eth.Contract(
-        ERC725LegacyInterface,
-        SAMPLE_ASSET_ADDRESS,
+        ERC725MinimalABI,
+        address
       );
 
-      // Fetch the encoded contract data
+      // Fetch the encoded data
       return await digitalAsset.methods.getData(key).call();
-    }
-    // Current interface
-    if (assetInterfaceIDs.isERC725 === true) {
-      // Instanciate ERC725 smart contract
-      const digitalAsset = new web3.eth.Contract(
-        ERC725ABI,
-        SAMPLE_ASSET_ADDRESS,
-      );
-
-      // Fetch the encoded contract data
-      return await digitalAsset.methods['getData(bytes32)'](key).call();
-    }
   } catch (error) {
-    return console.log('Data of assets address could not be loaded');
+    return console.log("Data of assets address could not be loaded");
   }
 }
 
 // Debug
-getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
+  console.log(encodedData)
+);
 ```
 
   </TabItem>
 
 </Tabs>
 
-## Step 5 - Decode the asset data
+## Step 6 - Decode the asset data
 
 We can now decode the encoded metadata to fetch readable information. We use
-`decodeData()` from the `erc725.js` library. While using ERC725, we will have
-to declare a config and provider as we did while [reading profile data](./read-profile-data).
+the `decodeData()` function from the [`erc725.js`](../../tools/erc725js/classes/ERC725#decodedata) library. We will continue the step before and showcase decoding the `LSP4Metadata` key.
+
 
 ```javascript title="read_assets.js"
+
 // ...
-// Import ERC725
-const { ERC725 } = require('@erc725/erc725.js');
-
-// Link to storage
-const IPFS_GATEWAY_URL = 'https://ipfs.lukso.network/ipfs/';
-
-// ERC725 Properties
-const provider = new Web3.providers.HttpProvider(
-  'https://rpc.l14.lukso.network',
-);
-
-const config = {
-  ipfsGateway: IPFS_GATEWAY_URL,
-};
-
-// Content Phrases
-const decodeNamePhrase = LSP4schema[1].name;
-const decodeTokenPhrase = LSP4schema[2].name;
-const decodeMetaPhrase = LSP4schema[3].name;
-const decodeCreatorPhrase = LSP4schema[4].name;
 
 /*
- * Decode value from ERC725Y storage
- * based on it's key and phrase
+ * Decode the value from ERC725Y storage
+ * based on its data key and phrase
  *
- * @param key of asset property
- * @param decodePhrase string of fetchable content
- * @return string of decoded data
+ * @param data key of the asset property to fetch
+ * @param encodedData as string
+ * @return JSON of the decoded data
  */
-async function decodeData(key, decodePhrase) {
+async function decodeAssetData(keyName, encodedData) {
   try {
-    let encodedData = await getAssetData(key);
-    // Instance of the LSP4 with ERC725.js
-    const erc725 = new ERC725(
+
+    // Instance the asset
+    const digitalAsset = new ERC725(
       LSP4schema,
       SAMPLE_ASSET_ADDRESS,
       provider,
-      config,
+      config
     );
+
     // Decode the assets data
-    return erc725.decodeData({ [decodePhrase]: encodedData });
+    return digitalAsset.decodeData({
+      keyName: keyName,
+      value: encodedData,
+    });
   } catch (error) {
-    console.log('Data of an asset could not be decoded');
+    console.log("Data of an asset could not be decoded");
   }
 }
 
 // Debug
-decodeData(MetaDataKey, decodeMetaPhrase).then((decodedData) =>
-  console.log(decodedData),
-);
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) =>
+    console.log(decodedData)
+  );
+});
 ```
 
 The [LSP4 Digital Asset Metadata](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) will resolve in a following JSON structure:
 
 <details>
-    <summary>Show JSON response</summary>
+    <summary>Show Metadata JSON response</summary>
 
 ```json
 {
-  "LSP4Metadata": {
-    "hashFunction": "keccak256(utf8)",
-    "hash": "0x...",
-    "url": "..."
+  key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
+  name: 'LSP4Metadata',
+  value: {
+    hashFunction: 'keccak256(utf8)',
+    hash: '0x...',
+    url: 'ipfs:...'
   }
 }
 ```
 
 </details>
 
-## Step 6 - Create the storage link
+## Step 7 - Create the storage link
 
 To fetch the data for the previously decoded metadata, we can access the JSON file and change the URL to access its properties. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
 
 :::info
-Profiles created on the [profile explorer](https://universalprofile.cloud/) currently use IPFS. Therefore, we will use a static IPFS link for the guide. If there are several storage solutions, you can change them or make distinctions.
+Profiles created on the [Profile Explorer](https://universalprofile.cloud/) currently use IPFS. Therefore, we will use a static IPFS link for the guide. If there are several storage solutions, you can change them or make distinctions.
 :::
 
 ```javascript title="read_assets.js"
 // ...
 
 /*
- * Create a fetchable link for the asset data
- * that was embeded into the JSON metadata
+ * Create a fetchable storage link that 
+ * was embeded into the decoded asset data
  *
+ * @param decodedAssetMetadata as JSON
  * @return string of asset data URL
  */
-async function getMetaDataLink() {
+async function getMetaDataLink(decodedAssetMetadata) {
   try {
-    let decodedData = await decodeData(MetaDataKey, decodeMetaPhrase);
     // Generate IPFS link from decoded metadata
-    return IPFS_GATEWAY_URL + decodedData.LSP4Metadata.url.substring(7);
+    return decodedAssetMetadata.value.url.replace('ipfs://', IPFS_GATEWAY);
   } catch (error) {
-    console.log('URL could not be fetched');
+    console.log("URL could not be fetched");
   }
 }
 
 // Debug
-getMetaDataLink().then((dataURL) => console.log(dataURL));
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => console.log(dataURL));
+  });
+});
 ```
 
-## Step 7 - Get the asset data
+## Step 8 - Get the asset data
 
 We can now access the created storage link through a simple URL call and are using `isomorphic-fetch` to read the HTTP response from the asset URL in our `node` environment.
 
@@ -714,29 +781,36 @@ You may not need the `isomorphic-fetch` library if you use browser environments 
 :::
 
 ```javascript title="read_assets.js"
+
 // ...
-// Import
-require('isomorphic-fetch');
 
 /*
- * Fetch the asset data from a link
+ * Fetch the asset data from the provided 
+ * storage link
  *
- * @return string with asset data as JSON
+ * @param dataURL as string
+ * @return JSON of asset data
  */
-async function fetchAssetData() {
-  let dataURL = await getMetaDataLink();
+async function fetchAssetData(dataURL) {
   try {
     const response = await fetch(dataURL);
     return await response.json();
   } catch (error) {
-    console.log('JSON data of IPFS link could not be fetched');
+    console.log("JSON data of IPFS link could not be fetched");
   }
 }
+
 // Debug
-fetchAssetData().then((assetJSON) => console.log(assetJSON));
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => {
+      fetchAssetData(dataURL).then((assetJSON) => console.log(assetJSON));
+    });
+  });
+});
 ```
 
-For fetching metadata, the JSON file will have the following structure:
+For fetching `LSP4Metadata`, the JSON file will have the following structure:
 
 <details>
     <summary>Show JSON response</summary>
@@ -745,7 +819,9 @@ For fetching metadata, the JSON file will have the following structure:
 {
   "LSP4Metadata": {
     "description": "...",
-    "links": [],
+    "links": [
+      ...
+    ],
     "images": [
       [
         {
@@ -772,49 +848,6 @@ For fetching metadata, the JSON file will have the following structure:
 
 </details>
 
-## Step 8 - Fetch the asset's properties
-
-After receiving the asset data, we can fetch the JSON for its properties in the following way:
-
-```javascript title="read_assets.js"
-// ...
-
-let assetImageLinks = [];
-let fullSizeAssetImage;
-let assetDescription;
-
-/*
- * Read properties of an asset
- */
-async function getAssetProperties() {
-  let assetJSON = await fetchAssetData();
-  let assetImageData = [];
-
-  try {
-    assetImageData = assetJSON.LSP4Metadata.images;
-    for (let i in assetImageData[0]) {
-      assetImageLinks.push([i, IPFS_GATEWAY_URL + assetImageData[0][i].url]);
-    }
-    fullSizeAssetImage = assetImageLinks[0][1];
-
-    assetDescription = assetJSON.LSP4Metadata.description;
-
-    console.log('Asset Description ' + assetDescription);
-    console.log('Full Size Asset Image Link: ' + fullSizeAssetImage + '\n');
-    console.log(
-      'Asset Image Links: ' +
-        JSON.stringify(assetImageLinks, undefined, 2) +
-        '\n',
-    );
-  } catch (error) {
-    console.log('Could not fetch all asset properties');
-  }
-}
-
-// Debug
-getAssetProperties();
-```
-
 ## Final Code
 
 Below is the complete code snippet of this guide, with all the steps compiled together.
@@ -823,201 +856,92 @@ Below is the complete code snippet of this guide, with all the steps compiled to
   
   <TabItem value="Current Standards" label="Current Standards">
 
-<details>
-    <summary>LSP1 Minimal JSON Interface</summary>
-
-```json title="lsp1_minimal_interface.json"
-[
-  {
-    "inputs": [],
-    "name": "getAllRawValues",
-    "outputs": [
-      {
-        "internalType": "bytes32[]",
-        "name": "",
-        "type": "bytes32[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  }
-]
-```
-
-</details>
-
-<details>
-    <summary>Asset JSON Interface</summary>
-
-```json title="asset_interface.json"
-[
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
-      {
-        "type": "bool",
-        "name": "",
-        "internalType": "bool"
-      }
-    ],
-    "name": "supportsInterface",
-    "inputs": [
-      {
-        "type": "bytes4",
-        "name": "interfaceId",
-        "internalType": "bytes4"
-      }
-    ]
-  }
-]
-```
-
-</details>
-
-<details>
-    <summary>LSP4 JSON Schema</summary>
-
-```json title="lsp4_schema.json"
-[
-  {
-    "name": "SupportedStandards:LSP4DigitalCertificate",
-    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abf0613c",
-    "keyType": "Mapping",
-    "valueContent": "0xabf0613c",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4TokenName",
-    "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4TokenSymbol",
-    "key": "0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4Metadata",
-    "key": "0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e",
-    "keyType": "Singleton",
-    "valueContent": "JSONURL",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4Creators[]",
-    "key": "0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7",
-    "keyType": "Array",
-    "valueContent": "Number",
-    "valueType": "uint256",
-    "elementValueContent": "Address",
-    "elementValueType": "address"
-  }
-]
-```
-
-</details>
-
 ```javascript title="read_assets.js"
-// Import and Setup
-const Web3 = require('web3');
-const web3 = new Web3('https://rpc.l14.lukso.network');
-const { ERC725 } = require('@erc725/erc725.js');
-require('isomorphic-fetch');
 
-// Our static sample addresses
-const SAMPLE_UNIVERSAL_RECEIVER = '0x50a02ef693ff6961a7f9178d1e53cc8bbe1dad68';
-const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const SAMPLE_ASSET_ADDRESS = '0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78';
-const IPFS_GATEWAY_URL = 'https://ipfs.lukso.network/ipfs/';
+// Imports
+const Web3 = require("web3");
+const { ERC725 } = require("@erc725/erc725.js");
+require("isomorphic-fetch");
+const erc725schema = require("@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json");
+const LSP4schema = require("@erc725/erc725.js/schemas/LSP4DigitalAsset.json");
+const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
+const LSP4 = require("@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json");
+const {
+  ERC725Y_INTERFACE_IDS,
+} = require("@erc725/erc725.js/build/main/src/lib/constants");
 
-// ABIs
-const ERC725ABI = require('@erc725/smart-contracts/artifacts/ERC725.json');
-const LSP8 = require('@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json');
+// Sample addresses
+const SAMPLE_PROFILE_ADDRESS = "0x0Ac71c67Fa5E4c9d4af4f99d7Ad6132936C2d6A3";
+const SAMPLE_ASSET_ADDRESS = "0xfE85568Fea15A7ED3c56F7ca6544F2b96Aeb1774";
 
-const LSP1MinimalInterface = require('./lsp1_minimal_interface.json');
-const LSP4schema = require('./lsp4_schema.json');
-const AssetInterface = require('./asset_interface.json');
+// Network and storage
+const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
 
-// Keys for properties
+// Parameters for the ERC725 instance
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+const config = { ipfsGateway: IPFS_GATEWAY };
+
+// Setup Web3
+const web3 = new Web3("https://rpc.l14.lukso.network");
+
+// Data keys for asset properties
 const TokenNameKey = LSP4schema[1].key;
 const TokenSymbolKey = LSP4schema[2].key;
 const MetaDataKey = LSP4schema[3].key;
 const CreatorsKey = LSP4schema[4].key;
 
-// Content Phrases
-const decodeNamePhrase = LSP4schema[1].name;
-const decodeTokenPhrase = LSP4schema[2].name;
-const decodeMetaPhrase = LSP4schema[3].name;
-const decodeCreatorPhrase = LSP4schema[4].name;
-
-// ERC725 Properties
-const provider = new Web3.providers.HttpProvider(
-  'https://rpc.l14.lukso.network',
-);
-
-const config = {
-  ipfsGateway: IPFS_GATEWAY_URL,
-};
-
-let assetImageLinks = [];
-let fullSizeAssetImage;
-let assetDescription;
-
 /*
- * Return array of blockchain addresses of
- * assets, that were received by the
- * Univeral Profile holder.
+ * Fetch the LSP5 data of the Universal Profile
+ * to get its ever received assets
  *
- * @return address[] of assets
+ * @param address of the Universal Profile
+ * @return address[] of received assets or custom error
  */
-async function getAssetAddressses() {
-  const AddressStore = new web3.eth.Contract(
-    LSP1MinimalInterface,
-    SAMPLE_UNIVERSAL_RECEIVER,
-  );
-
-  let rawValues = [];
-
+async function fetchReceivedAssets(address) {
   try {
-    // Fetch all raw values
-    rawValues = await AddressStore.methods.getAllRawValues().call();
+    const profile = new ERC725(erc725schema, address, provider, config);
+    const result = await profile.fetchData("LSP5ReceivedAssets[]")
+    return result.value;
   } catch (error) {
-    return console.log('Data from universal receiver could not be loaded');
+    return console.log("This is not an ERC725 Contract");
   }
-
-  let digitalAssets = [];
-
-  // Retrieve addresses
-  for (let i = 0; i < rawValues.length; i++) {
-    digitalAssets[i] = web3.utils.toChecksumAddress(rawValues[i].substr(26));
-  }
-  return digitalAssets;
 }
 
 /*
- * Return array of blockchain addresses
- * of assets that are owned by the
- * Univeral Profile.
+* Fetch the ever issued assets from
+* the Universal Profile
+*
+* @param address of the Universal Profile
+ * @return address[] of the issued assets or custom error
+*/
+async function fetchIssuedAssets(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    const result = await profile.fetchData("LSP12IssuedAssets[]");
+    return result.value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+/*
+ * Return an array of assets
+ * that are owned by the
+ * Universal Profile.
  *
- * @param owner Universal Profile address
+ * @param owner of the Universal Profile
  * @return address[] of owned assets
  */
-async function getOwnedAddresses(owner) {
-  let digitalAssets = await getAssetAddressses();
-  let ownedAssets = [];
+async function fetchOwnedAssets(owner) {
+  const digitalAssets = await fetchReceivedAssets(owner);
+  const ownedAssets = [];
 
   for (let i = 0; i < digitalAssets.length; i++) {
-    let isCurrentOwner;
-
     // Create instance of the asset to check owner balance
     const LSP8Contract = new web3.eth.Contract(LSP8.abi, digitalAssets[i]);
 
-    isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
+    const isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
     if (isCurrentOwner > 0) {
       ownedAssets[ownedAssets.length] = digitalAssets[i];
     }
@@ -1026,178 +950,167 @@ async function getOwnedAddresses(owner) {
 }
 
 /*
- * Check the interface of an
- * asset's smart contract
+ * Check the ERC725Y interface of an asset
  *
- * @param address of asset
- * @return object of interface types
+ * @param assetAddress of the smart contract
+ * @return boolean isERC725Y
  */
-async function checkErc725YInterfaceId(address) {
-  // Create instance of the contract which has to be queried
-  const Contract = new web3.eth.Contract(AssetInterface, address);
+async function checkErc725YInterfaceId(assetAddress) {
+  // Create an instance of the asset
+  const asset = new web3.eth.Contract(LSP4.abi, assetAddress);
 
-  const ERC725Y_INTERFACE_ID = '0x714df77c';
-
-  let interfaceCheck = false;
+  let isERC725Y = false;
 
   // Check if the contract has a key-value store
   try {
-    interfaceChecks.isERC725 = await Contract.methods
-      .supportsInterface(ERC725Y_INTERFACE_ID)
+    isERC725Y = await asset.methods
+      .supportsInterface(ERC725Y_INTERFACE_IDS["3.0"])
       .call();
   } catch (error) {
-    return console.log('Address could not be checked for interface');
+    console.log("Address could not be checked for ERC725Y interface");
   }
 
-  return interfaceCheck;
+  return isERC725Y;
 }
 
 /*
- * Fetch the dataset of an asset
- * from the Universal Profile
+ * Get the dataset of an asset
  *
- * @param key of asset property
- * @return string of encoded data
+ * @param data key of the property to fetch
+ * @return string of the encoded data
  */
-async function getAssetData(key) {
-  // Check if asset is ERC725Legacy or ERC725
-  let assetInterfaceID = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
-
+async function getAssetData(key, address) {
   try {
-    if (assetInterfaceID === true) {
-      // Instanciate ERC725 smart contract
-      const digitalAsset = new web3.eth.Contract(
-        ERC725ABI,
-        SAMPLE_ASSET_ADDRESS,
-      );
 
-      // Fetch the encoded contract data
-      return await digitalAsset.methods['getData(bytes32)'](key).call();
-    }
+    // Instantiate the asset
+    const digitalAsset = new web3.eth.Contract(LSP4.abi, address);
+
+    // Get the encoded data
+    return await digitalAsset.methods["getData(bytes32)"](key).call();
   } catch (error) {
-    return console.log('Data of assets address could not be loaded');
+    return console.error("Data of assets address could not be loaded");
   }
 }
 
-/*
- * Decode value from ERC725Y storage
- * based on it's key and phrase
+ /*
+ * Decode the value from ERC725Y storage
+ * based on its data key and phrase
  *
- * @param key of asset property
- * @param decodePhrase string of fetchable content
- * @return string of decoded data
+ * @param data key of the asset property to fetch
+ * @param encodedData as string
+ * @return JSON of the decoded data
  */
-async function decodeData(key, decodePhrase) {
+async function decodeAssetData(keyName, encodedData) {
   try {
-    let encodedData = await getAssetData(key);
-    // Instance of the LSP4 with ERC725.js
-    const erc725 = new ERC725(
+    // Instanciate the asset
+    const digitalAsset = new ERC725(
       LSP4schema,
       SAMPLE_ASSET_ADDRESS,
       provider,
-      config,
+      config
     );
+
     // Decode the assets data
-    return erc725.decodeData({ [decodePhrase]: encodedData });
+    return digitalAsset.decodeData({
+      keyName: keyName,
+      value: encodedData,
+    });
   } catch (error) {
-    console.log('Data of an asset could not be decoded');
+    console.log("Data of an asset could not be decoded");
   }
 }
 
 /*
- * Create a fetchable link for the asset data
- * that was embeded into the JSON metadata
+ * Create a fetchable storage link that
+ * was embeded into the decoded asset data
  *
+ * @param decodedAssetMetadata as JSON
  * @return string of asset data URL
  */
-async function getMetaDataLink() {
-  let decodedData = await decodeData(MetaDataKey, decodeMetaPhrase);
-  // Generate IPFS link from decoded metadata
-  return IPFS_GATEWAY_URL + decodedData.LSP4Metadata.url.substring(7);
+async function getMetaDataLink(decodedAssetMetadata) {
+  try {
+    // Generate IPFS link from decoded metadata
+    return decodedAssetMetadata.value.url.replace('ipfs://', IPFS_GATEWAY);
+  } catch (error) {
+    console.log("URL could not be fetched");
+  }
 }
 
 /*
- * Fetch the asset data from a link
+ * Fetch the asset data from the provided
+ * storage link
  *
+ * @param dataURL as string
  * @return string with asset data as JSON
  */
-async function fetchAssetData() {
-  let dataURL = await getMetaDataLink();
+async function fetchAssetData(dataURL) {
   try {
     const response = await fetch(dataURL);
     return await response.json();
   } catch (error) {
-    console.log('JSON data of IPFS link could not be fetched');
+    console.log("JSON data of IPFS link could not be fetched");
   }
 }
 
-/*
- * Read properties of an asset
- */
-async function getAssetProperties() {
-  let assetJSON = await fetchAssetData();
-  let assetImageData = [];
-
-  try {
-    assetImageData = assetJSON.LSP4Metadata.images;
-    for (let i in assetImageData[0]) {
-      assetImageLinks.push([i, IPFS_GATEWAY_URL + assetImageData[0][i].url]);
-    }
-    fullSizeAssetImage = assetImageLinks[0][1];
-
-    assetDescription = assetJSON.LSP4Metadata.description;
-
-    console.log('Asset Description ' + assetDescription);
-    console.log('Full Size Asset Image Link: ' + fullSizeAssetImage + '\n');
-    console.log(
-      'Asset Image Links: ' +
-        JSON.stringify(assetImageLinks, undefined, 2) +
-        '\n',
-    );
-  } catch (error) {
-    console.log('Could not fetch all asset properties');
-  }
-}
-
-// Debug Step 1
-getAssetAddressses().then((digitalAssets) => console.log(digitalAssets));
-
-// Debug Step 2
-getOwnedAddresses(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
-  console.log(ownedAssets),
+// Step 1
+fetchReceivedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+  console.log(JSON.stringify(profileData, undefined, 2))
 );
 
-// Debug Step 3
-getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
-
-// Debug Step 4
-checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
-  console.log(standard),
+// Step 2
+fetchIssuedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
+  console.log(JSON.stringify(profileData, undefined, 2))
 );
 
-// Debug Step 5
-decodeData(MetaDataKey, decodeMetaPhrase).then((decodedData) =>
-  console.log(decodedData),
+// Step 3
+fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
+  console.log(ownedAssets)
 );
 
-// Debug Step 6
-getMetaDataLink().then((dataURL) => console.log(dataURL));
+// Step 4
+checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isERC725Y) =>
+  console.log(isERC725Y)
+);
 
-// Debug Step 7
-fetchAssetData().then((assetJSON) => console.log(assetJSON));
+// Step 5
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
+  console.log(encodedData)
+);
 
-// Debug Step 8
-getAssetProperties();
+// Step 6
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) =>
+    console.log(decodedData)
+  );
+});
+
+// Step 7
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => console.log(dataURL));
+  });
+});
+
+// Step 8
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => {
+      fetchAssetData(dataURL).then((assetJSON) => console.log(assetJSON));
+    });
+  });
+});
+
+
 ```
 
   </TabItem>
 
-  <TabItem value="Current & Legacy Standards" label="Current & Legacy Standards">
+  <TabItem value="Legacy Standards" label="Legacy Standards">
 
 <details>
-    <summary>LSP1 Minimal JSON Interface</summary>
+    <summary>LSP1 Legacy ABI</summary>
 
-```json title="lsp1_minimal_interface.json"
+```json title="lsp1_legacy_minimal_abi.json"
 [
   {
     "inputs": [],
@@ -1218,9 +1131,26 @@ getAssetProperties();
 </details>
 
 <details>
-    <summary>Asset JSON Interface</summary>
+<summary>ERC725 Legacy Schema</summary>
 
-```json title="asset_interface.json"
+```json title="erc725_legacy_minimal_schema.json"
+[
+    {
+       "name":"LSP3IssuedAssets[]",
+       "key":"0x3a47ab5bd3a594c3a8995f8fa58d0876c96819ca4516bd76100c92462f2f9dc0",
+       "keyType":"Array",
+       "valueContent":"Address",
+       "valueType":"address"
+    }
+]
+```
+
+</details>
+
+<details>
+  <summary>LSP4 Legacy ABI</summary>
+
+```json title="lsp4_legacy_minimal_abi.json"
 [
   {
     "type": "function",
@@ -1247,56 +1177,9 @@ getAssetProperties();
 </details>
 
 <details>
-    <summary>LSP4 JSON Schema</summary>
+    <summary>ERC725 Legacy ABI</summary>
 
-```json title="lsp4_schema.json"
-[
-  {
-    "name": "SupportedStandards:LSP4DigitalCertificate",
-    "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abf0613c",
-    "keyType": "Mapping",
-    "valueContent": "0xabf0613c",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4TokenName",
-    "key": "0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4TokenSymbol",
-    "key": "0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756",
-    "keyType": "Singleton",
-    "valueContent": "String",
-    "valueType": "string"
-  },
-  {
-    "name": "LSP4Metadata",
-    "key": "0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e",
-    "keyType": "Singleton",
-    "valueContent": "JSONURL",
-    "valueType": "bytes"
-  },
-  {
-    "name": "LSP4Creators[]",
-    "key": "0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7",
-    "keyType": "Array",
-    "valueContent": "Number",
-    "valueType": "uint256",
-    "elementValueContent": "Address",
-    "elementValueType": "address"
-  }
-]
-```
-
-</details>
-
-<details>
-    <summary>ERC725 Legacy JSON Interface</summary>
-
-```json title="erc725_legacy_interface.json"
+```json title="erc725_legacy_minimal_abi.json"
 [
   {
     "inputs": [
@@ -1323,102 +1206,128 @@ getAssetProperties();
 </details>
 
 ```javascript title="read_assets.js"
-// Import and Setup
-const Web3 = require('web3');
-const web3 = new Web3('https://rpc.l14.lukso.network');
-const { ERC725 } = require('@erc725/erc725.js');
-require('isomorphic-fetch');
 
-// ABIs
-const LSP8 = require('@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json');
-const ERC725ABI = require('@erc725/smart-contracts/artifacts/ERC725.json');
+// Imports
+const Web3 = require("web3");
+const { ERC725 } = require("@erc725/erc725.js");
+require("isomorphic-fetch");
+const erc725schema = require("@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json");
+const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
+const LSP4schema = require("@erc725/erc725.js/schemas/LSP4DigitalAsset.json");
 
-const ERC725LegacyInterface = require('./erc725_legacy_interface.json');
-const LSP1MinimalInterface = require('./lsp1_minimal_interface.json');
-const LSP4schema = require('./lsp4_schema.json');
-const AssetInterface = require('./asset_interface.json');
+// Sample addresses
+const SAMPLE_ASSET_ADDRESS = "0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78";
+const SAMPLE_PROFILE_ADDRESS = "0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e";
 
-// Our static sample addresses
-const SAMPLE_UNIVERSAL_RECEIVER = '0x50a02ef693ff6961a7f9178d1e53cc8bbe1dad68';
-const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const SAMPLE_ASSET_ADDRESS = '0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78';
-const IPFS_GATEWAY_URL = 'https://ipfs.lukso.network/ipfs/';
+// Network and storage
+const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
 
-// Keys for properties
+// Legacy ABIs and schemas
+const LSP1MinimalABI = require("./lsp1_legacy_minimal_abi.json");
+const LSP4MinimalABI = require("./lsp4_legacy_minimal_abi.json");
+const ERC725MinimalABI = require("./erc725_legacy_minimal_abi.json");
+const ERC725LegacySchema = require("./erc725_legacy_minimal_schema.json");
+
+// Parameters for the ERC725 instance
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+const config = { ipfsGateway: IPFS_GATEWAY };
+
+// Setup Web3
+const web3 = new Web3("https://rpc.l14.lukso.network");
+
+// Data keys for asset properties
 const TokenNameKey = LSP4schema[1].key;
 const TokenSymbolKey = LSP4schema[2].key;
 const MetaDataKey = LSP4schema[3].key;
 const CreatorsKey = LSP4schema[4].key;
 
-// Content Phrases
-const decodeNamePhrase = LSP4schema[1].name;
-const decodeTokenPhrase = LSP4schema[2].name;
-const decodeMetaPhrase = LSP4schema[3].name;
-const decodeCreatorPhrase = LSP4schema[4].name;
-
-// ERC725 Properties
-const provider = new Web3.providers.HttpProvider(
-  'https://rpc.l14.lukso.network',
-);
-
-const config = {
-  ipfsGateway: IPFS_GATEWAY_URL,
-};
-
-let assetImageLinks = [];
-let fullSizeAssetImage;
-let assetDescription;
-
 /*
- * Return array of blockchain addresses of
- * assets, that were received by the
- * Univeral Profile holder.
+ * Fetch the LSP5 data of the Universal Profile
+ * to get its ever received assets
  *
- * @return address[] of assets
+ * @param address of the Universal Profile
+ * @return address[] of received assets or custom error
  */
-async function getAssetAddressses() {
-  const AddressStore = new web3.eth.Contract(
-    LSP1MinimalInterface,
-    SAMPLE_UNIVERSAL_RECEIVER,
+async function fetchUniversalReceiverAddress(address) {
+  try {
+    const profile = new ERC725(erc725schema, address, provider, config);
+    const result = await profile.fetchData("LSP1UniversalReceiverDelegate")
+    return result.value;
+  } catch (error) {
+    return console.log("This is not an ERC725 Contract");
+  }
+}
+
+ /*
+  * Get all received assets from the
+  * Universal Receiver of the
+  * Universal Profile.
+  *
+  * @param address of the Universal Receiver
+  * @return address[] of the received assets
+  */
+async function fetchReceivedAssets(receiverAddress) {
+  const universalReceiver = new web3.eth.Contract(
+    LSP1MinimalABI,
+    receiverAddress
   );
 
   let rawValues = [];
 
   try {
+
     // Fetch all raw values
-    rawValues = await AddressStore.methods.getAllRawValues().call();
+    rawValues = await universalReceiver.methods.getAllRawValues().call();
   } catch (error) {
-    return console.log('Data from universal receiver could not be loaded');
+    return console.log("Data from universal receiver could not be loaded");
   }
 
-  let digitalAssets = [];
+  const receivedAssets = [];
 
   // Retrieve addresses
   for (let i = 0; i < rawValues.length; i++) {
-    digitalAssets[i] = web3.utils.toChecksumAddress(rawValues[i].substr(26));
+    receivedAssets[i] = web3.utils.toChecksumAddress(rawValues[i].substr(26));
   }
-  return digitalAssets;
+  return receivedAssets;
 }
 
 /*
- * Return array of blockchain addresses
- * of assets that are owned by the
- * Univeral Profile.
+ * Fetch the ever issued assets from
+ * the Universal Profile
  *
- * @param owner Universal Profile address
+ * @param address of the Universal Profile
+ * @return address[] of the issued assets or custom error
+ */
+async function fetchIssuedAssets(address) {
+  try {
+    const profile = new ERC725(ERC725LegacySchema, address, provider, config);
+    const result = await profile.getData("LSP3IssuedAssets[]");
+    return result.value;
+  } catch (error) {
+    return console.log("Issued assets could not be fetched");
+  }
+}
+
+/*
+ * Return an array of assets
+ * that are owned by the
+ * Universal Profile.
+ *
+ * @param owner of the Universal Profile
  * @return address[] of owned assets
  */
-async function getOwnedAddresses(owner) {
-  let digitalAssets = await getAssetAddressses();
-  let ownedAssets = [];
+async function fetchOwnedAssets(owner) {
+  const receiverAddress = await fetchUniversalReceiverAddress(owner);
+  const digitalAssets = await fetchReceivedAssets(receiverAddress);
+  const ownedAssets = [];
 
   for (let i = 0; i < digitalAssets.length; i++) {
-    let isCurrentOwner;
-
+    
     // Create instance of the asset to check owner balance
     const LSP8Contract = new web3.eth.Contract(LSP8.abi, digitalAssets[i]);
 
-    isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
+    const isCurrentOwner = await LSP8Contract.methods.balanceOf(owner).call();
     if (isCurrentOwner > 0) {
       ownedAssets[ownedAssets.length] = digitalAssets[i];
     }
@@ -1427,206 +1336,169 @@ async function getOwnedAddresses(owner) {
 }
 
 /*
- * Check the interface of an
- * asset's smart contract
+ * Check the ERC725Y interface of an asset
  *
- * @param address of asset
- * @return object of interface types
+ * @param assetAddress of the smart contract
+ * @return boolean isERC725YLegacy
  */
+
 async function checkErc725YInterfaceId(address) {
-  // Create instance of the contract which has to be queried
-  const Contract = new web3.eth.Contract(AssetInterface, address);
+  // Create an instance of the asset
+  const asset = new web3.eth.Contract(LSP4MinimalABI, address);
 
-  const interfaceIds = {
-    erc725Legacy: '0x2bd57b73',
-    erc725: '0x714df77c',
-  };
-
-  let interfaceChecks = {
-    isERC725Legacy: false,
-    isERC725: false,
-  };
+  const erc725YLegacyInterfaceId = "0x2bd57b73";
+  let isERC725YLegacy = false;
 
   // Check if the contract is a legacy key-value store interface
   try {
-    interfaceChecks.isERC725Legacy = await Contract.methods
-      .supportsInterface(interfaceIds.erc725Legacy)
+    isERC725YLegacy = await asset.methods
+      .supportsInterface(erc725YLegacyInterfaceId)
       .call();
+    return isERC725YLegacy;
   } catch (error) {
-    console.log('Address could not be checked for legacy ERC725Y interface');
-    console.log(error.message);
-    return;
+    console.log("Address could not be checked for ERC725YLegacy interface");
   }
-
-  // Check if the contract is a current key-value store interface
-  try {..
-    interfaceChecks.isERC725 = await Contract.methods
-      .supportsInterface(interfaceIds.erc725)
-      .call();
-  } catch (error) {
-    console.log('Address could not be checked for ERC725 interface');
-    console.log(error.message);
-    return;
-  }
-
-  return interfaceChecks;
+  return isERC725YLegacy;
 }
 
-/*
- * Fetch the dataset of an asset
- * from the Universal Profile
+ /*
+ * Get the dataset of an asset
  *
- * @param key of asset property
- * @return string of encoded data
+ * @param data key of the property to fetch
+ * @return string of the encoded data
  */
-async function getAssetData(key) {
-  // Check if asset is ERC725Legacy or ERC725
-  let assetInterfaceIDs = await checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS);
-
+async function getAssetData(key, address) {
+  
   try {
-    // Legacy interface
-    if (assetInterfaceIDs.isERC725Legacy === true) {
-      // Instanciate ERC725Legacy smart contract
+
+      // Instanciate asset
       const digitalAsset = new web3.eth.Contract(
-        ERC725LegacyInterface,
-        SAMPLE_ASSET_ADDRESS,
+        ERC725MinimalABI,
+        address
       );
 
-      // Fetch the encoded contract data
+      // Fetch the encoded data
       return await digitalAsset.methods.getData(key).call();
-    }
-    // Current interface
-    if (assetInterfaceIDs.isERC725 === true) {
-      // Instanciate ERC725 smart contract
-      const digitalAsset = new web3.eth.Contract(
-        ERC725ABI,
-        SAMPLE_ASSET_ADDRESS,
-      );
-
-      // Fetch the encoded contract data
-      return await digitalAsset.methods["getData(bytes32)"](key).call();
-    }
   } catch (error) {
-    return console.log('Data of assets address could not be loaded');
+    return console.log("Data of assets address could not be loaded");
   }
 }
 
 /*
- * Decode value from ERC725Y storage
- * based on it's key and phrase
+ * Decode the value from ERC725Y storage
+ * based on its data key and phrase
  *
- * @param key of asset property
- * @param decodePhrase string of fetchable content
- * @return string of decoded data
+ * @param data key of the asset property to fetch
+ * @param encodedData as string
+ * @return JSON of the decoded data
  */
-async function decodeData(key, decodePhrase) {
+async function decodeAssetData(keyName, encodedData) {
   try {
-    let encodedData = await getAssetData(key);
-    // Instance of the LSP4 with ERC725.js
-    const erc725 = new ERC725(
+
+    // Instanciate the asset
+    const digitalAsset = new ERC725(
       LSP4schema,
       SAMPLE_ASSET_ADDRESS,
       provider,
-      config,
+      config
     );
+
     // Decode the assets data
-    return erc725.decodeData({ [decodePhrase]: encodedData });
+    return digitalAsset.decodeData({
+      keyName: keyName,
+      value: encodedData,
+    });
   } catch (error) {
-    console.log('Data of an asset could not be decoded');
+    console.log("Data of an asset could not be decoded");
   }
 }
 
 /*
- * Create a fetchable link for the asset data
- * that was embeded into the JSON metadata
+ * Create a fetchable storage link that
+ * was embeded into the decoded asset data
  *
+ * @param decodedAssetMetadata as JSON
  * @return string of asset data URL
  */
-async function getMetaDataLink() {
+async function getMetaDataLink(decodedAssetMetadata) {
   try {
-    let decodedData = await decodeData(MetaDataKey, decodeMetaPhrase);
     // Generate IPFS link from decoded metadata
-    return IPFS_GATEWAY_URL + decodedData.LSP4Metadata.url.substring(7);
+    return decodedAssetMetadata.value.url.replace('ipfs://', IPFS_GATEWAY);
   } catch (error) {
-    console.log('URL could not be fetched');
+    console.log("URL could not be fetched");
   }
 }
 
-/*
- * Fetch the asset data from a link
+ /*
+ * Fetch the asset data from the provided
+ * storage link
  *
+ * @param dataURL as string
  * @return string with asset data as JSON
  */
-async function fetchAssetData() {
-  let dataURL = await getMetaDataLink();
+async function fetchAssetData(dataURL) {
   try {
     const response = await fetch(dataURL);
     return await response.json();
   } catch (error) {
-    console.log('JSON data of IPFS link could not be fetched');
+    console.log("JSON data of IPFS link could not be fetched");
   }
 }
 
-/*
- * Read properties of an asset
- */
-async function getAssetProperties() {
-  let assetJSON = await fetchAssetData();
-  let assetImageData = [];
+// Step 1.1
+fetchUniversalReceiverAddress(SAMPLE_PROFILE_ADDRESS).then((receiverAddress) =>
+  console.log(receiverAddress)
+);
 
-  try {
-    assetImageData = assetJSON.LSP4Metadata.images;
-    for (let i in assetImageData[0]) {
-      assetImageLinks.push([i, IPFS_GATEWAY_URL + assetImageData[0][i].url]);
-    }
-    fullSizeAssetImage = assetImageLinks[0][1];
-
-    assetDescription = assetJSON.LSP4Metadata.description;
-
-    console.log('Asset Description ' + assetDescription);
-    console.log('Full Size Asset Image Link: ' + fullSizeAssetImage + '\n');
-    console.log(
-      'Asset Image Links: ' +
-        JSON.stringify(assetImageLinks, undefined, 2) +
-        '\n',
-    );
-  } catch (error) {
-    console.log('Could not fetch all asset properties');
-  }
-}
-
-// Step 1
-getAssetAddressses().then((digitalAssets) => console.log(digitalAssets));
+// Step 1.2
+fetchUniversalReceiverAddress(SAMPLE_PROFILE_ADDRESS).then((receiverAddress) => {
+  fetchReceivedAssets(receiverAddress).then((receivedAssets) =>
+    console.log(receivedAssets)
+  );
+});
 
 // Step 2
-getOwnedAddresses(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
-  console.log(
-    `Addresses of assets owned by: ${SAMPLE_ASSET_ADDRESS}:`,
-    ownedAssets,
-  ),
+fetchIssuedAssets(SAMPLE_PROFILE_ADDRESS).then((issuedAssets) =>
+  console.log(issuedAssets)
 );
 
 // Step 3
-getAssetData(MetaDataKey).then((encodedData) => console.log(encodedData));
+fetchOwnedAssets(SAMPLE_PROFILE_ADDRESS).then((ownedAssets) =>
+  console.log(ownedAssets)
+);
 
 // Step 4
-checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((standard) =>
-  console.log(standard),
+checkErc725YInterfaceId(SAMPLE_ASSET_ADDRESS).then((isLegacy) =>
+  console.log(isLegacy)
 );
 
 // Step 5
-decodeData(MetaDataKey, decodeMetaPhrase).then((decodedData) =>
-  console.log(decodedData),
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) =>
+  console.log(encodedData)
 );
 
 // Step 6
-getMetaDataLink().then((dataURL) => console.log(dataURL));
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) =>
+    console.log(decodedData)
+  );
+});
 
 // Step 7
-fetchAssetData().then((assetJSON) => console.log(assetJSON));
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => console.log(dataURL));
+  });
+});
 
 // Step 8
-getAssetProperties();
+getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
+  decodeAssetData(MetaDataKey, encodedData).then((decodedData) => {
+    getMetaDataLink(decodedData).then((dataURL) => {
+      fetchAssetData(dataURL).then((assetJSON) => console.log(assetJSON));
+    });
+  });
+});
 ```
 
   </TabItem>
