@@ -108,19 +108,19 @@ For a Linux environment you need
 
 
 #### Install Curl
-```bash
+```
 sudo apt-get -y update
 sudo apt-get -y install curl
 ```
 
 #### Install Docker
-```bash
+```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
 #### Install Docker Compose
-```bash
+```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
@@ -136,12 +136,12 @@ For a Mac environment you need
 
 
 #### Install Homebrew
-```bash
+```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 #### Install Curl
-```bash
+```
 sudo brew install curl
 ```
 
@@ -164,10 +164,12 @@ You do not have to install Docker Compose separately
 
 **[here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
 
-## Installing the Node
+## Operating a Node
+
+### Installing the node
 
 #### Create a folder for the LUKSO CLI 
-```bash
+```
 mkdir lukso-l16-testnet && cd lukso-l16-testnet
 ```
 
@@ -176,21 +178,33 @@ mkdir lukso-l16-testnet && cd lukso-l16-testnet
 sudo curl https://install.l16.lukso.network | sudo bash
 ```
 
-#### Setup and name node
-```bash
+### Setup and name node
+
+#### Initializes and name the node.
+```
 lukso network init --chain l16
 ```
 
-#### Start the node
-```bash
+### Running a Node
+
+#### Start the node client
+```
 lukso network start
 ```
 
-## Becoming a Validator
+#### Node Status
+You can view the status of your node on the [Execution Stats](https://stats.execution.l16.lukso.network) page.
+
+
+## Operating a Validator
 
 ### Setup Validator
 
-#### This will create a key store and a transaction wallet.
+#### This will create a key store and a transaction wallet. //explain 1 & 3
+In this step you will to
+1. Choose a keystore password
+2. Input the number of validators you will run (1 validator = 220 LYXt)
+3. Decide if you want a seperate withdrawal mnemonic
 ```
 lukso network validator setup
 ```
@@ -200,68 +214,78 @@ lukso network validator setup
 The purpose of the transaction wallet is to call and pay for the deposit
 transaction.
 
-#### You can find the public key and balance of the transaction wallet and by calling
+#### Find the public key and balance of the transaction wallet and by calling
 ```
 lukso network validator describe
 ```
 
-#### Visit the [Faucet](https://faucet.l16.lukso.network)
+#### Send LYXt to the transaction wallet
+Visit the [Faucet](https://faucet.l16.lukso.network)
 Paste the transaction wallet public key into the input field.
 
-Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
+Transfer **enough** to cover gas fees
+(number of validators x 220 LYXt **+ extra LYXt to pay deposit fees**)
 
  
 
 ### Submitting the deposit
 
-#### Make a dry run first
+#### Make a dry run first //need to explain what to look for
 This will give you the possibility to peek in what is going to happen without executing a transaction.
-```bash
+```
 lukso network validator deposit --dry
 ```
 
-If you are sure that everything is correct 
+If you are sure that everything is correct, move to the next step. //how can you be sure?
+
 #### Execute the deposit transaction
-```bash
+```
 lukso network validator deposit
 ```
 
-It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
+#### Create a backup
 
-Once you deposited LYXt make sure to create a backup.
-
-```bash
+```
 lukso network validator backup
 ```
 
 Store the file **node_recovery.json** somewhere safe.
 
-### Start the Validator Client
+### Running the Validator Client
 
+After depositing, it can take up to eight hours before your validator becomes active, but you can start your validator in the meantime.
 
-#### Make sure your _consensus_ and _execution_ clients are running
+Make sure your _consensus_ and _execution_ clients are running //command?
+
+#### Start the client
 ````
 lukso network validator start
 ````
+#### Validator stats
+You can view the status of your validator on the [Validator Stats](https://explorer.consensus.l16.lukso.network) page.
 
-#### You can check logs with
+### Validator Info
+
+#### Check validator status
+```
+lukso network validator describe
+```
+
+#### View validator logs
+You can view validator logs with this command:
 ````
 sudo lukso network log validator -f
 ````
+Press `ctrl+c` to close the logs.
 
-You can close your logs by pressing `ctrl+c`
-
-#### You can stop the validator using, this will also stop all other nodes
+#### Stop validator client
 ```
 lukso network validator stop
 ```
 
-#### Occasionally check the status of your validator by either typing
-```bash
-lukso network validator describe
-```
 
-Or by visiting the [Explorer](https://explorer.consensus.l16.lukso.network)
+
+
 
 ## Check your logs
 ```
@@ -283,15 +307,6 @@ lukso network stop
 lukso network clear
 ```
 
-### Check the Network Status
-
-You can see your node on the following pages:
-
-1. [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
-2. [https://stats.consensus.l16.lukso.network](https://stats.consensus.l16.lukso.network)
-
-
-
 ## Troubleshooting L16 Testnet
 
 ### Permission denied
@@ -303,7 +318,7 @@ If you get an error that the permission is denied use `sudo` in front of your co
 You can update Bootnodes with
 
 
-```bash
+```
 lukso network update
 ```
 
