@@ -21,6 +21,12 @@ The existing tokens and NFTs standards do not offer a standard way to attach inf
 
 ## ERC725Y Data Keys
 
+:::success Recommendation
+
+Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
+
+:::
+
 ### `SupportedStandards:LSP4DigitalAsset`
 
 ```json
