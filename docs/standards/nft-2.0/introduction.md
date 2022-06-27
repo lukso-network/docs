@@ -13,15 +13,27 @@ Check the [profile explorer](https://universalprofile.cloud/) to browse the depl
 
 :::
 
-:::info
+## Introduction  
 
-The [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) repository on GitHub contains implementations of LSP7 and LSP8 that are [backward compatible with ERC20 and ERC721](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/main/contracts). But it is highly recommended to use the native ones.
+The current standards representing fungible and non-fungible tokens (NFTs) are limiting the NFTs and token industry as they lack standardization and many powering features.
 
-:::
+The lack of standardization can be seen by having each NFT or token standard implementing function names differently, which leads to have contracts supporting hundred of non-interoperable functions.
 
-**Tokens & NFT 2.0** is a collective name for the new token and NFT standards [LSP7-DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md) and [LSP8-IdentifiableDigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md). These replace ERC20 and ERC721, which you would usually use on Ethereum.
+As for features, these standards are just representing **incremental tokenIds** without proper metadata, asset representation, standard interaction between sender and receivers, and no security measurements to ensure safe asset transfers.
 
->
+**Tokens & NFT 2.0** is a collective name for the new token and NFT standards **[LSP7-DigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)** and **[LSP8-IdentifiableDigitalAsset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)**. These replace ERC20 and ERC721, which you would usually use on other networks.
+
+
+## Tokens & NFT 2.0
+
+
+| Standard                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **[   LSP4 - DigitalAssetMetadata    ](./LSP4-Digital-Asset-Metadata.md)**                                    | The standard used by both **LSP7** & **LSP8** to provide proper **metadata** to the asset with standard ERC725Y Data Keys.  |
+| **[LSP7-DigitalAsset](./LSP7-Digital-Asset.md)**                                | Similar to ERC20 Standard, LSP7 represents **fungible tokens** standard with proper metadata, more secure transfers and more interactive transfer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **[LSP8-IdentifiableDigitalAsset](./LSP8-Identifiable-Digital-Asset.md)** | Similar to ERC721 and ERC1155 Standard, LSP8 represents **non-fungible tokens (NFTs)** standard with proper metadata, more secure transfers, more asset representation and more interactive transfer.                                                                                                                                                                                                                                                                                                                                                      |
+
+<!-- >
 
 The interfaces used to interact with these standards are inspired by [EIP1155](https://eips.ethereum.org/EIPS/eip-1155), a Multi-Token standard for multiple token types (fungible, non-fungible, or other configurations).
 
@@ -60,7 +72,7 @@ In the LUKSO ecosystem, the `force` parameter restricts transfer to Externally O
 
 ![Digital asset transfer force = FALSE](/img/standards/asset-transfer-force-false.jpeg)
 
-![Digital asset transfer force = TRUE](/img/standards/asset-transfer-force-true.jpeg)
+![Digital asset transfer force = TRUE](/img/standards/asset-transfer-force-true.jpeg) -->
 
 ## References
 

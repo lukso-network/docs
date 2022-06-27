@@ -5,9 +5,6 @@ sidebar_position: 3
 
 # LSP7 - Digital Asset
 
-:::caution This section is a work in progress.
-:::
-
 :::info Standard Document
 
 [LSP7 - Digital Asset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)

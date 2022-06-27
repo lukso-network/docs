@@ -13,12 +13,9 @@ sidebar_position: 2
 
 ## Introduction
 
-**LSP4-DigitalAsset-Metadata** is a Metadata standard that defines a set of data keys to describe a **Digital Asset**.
+The existing tokens and NFTs standards do not offer a standard way to attach information to the contracts themselves. Such information is crucial to make each token or NFT descriptive and customized. Consider the current ERC20 and ERC721 standards as an example. These standards only define a **name**, **symbol**, and **tokenURI** making it unpossible to attach more specific data to the asset (_e.g., icon, asset creator(s), token utility or motive, community behind it_).
 
-In ERC20 and ERC721, the token `name` and `symbol` are stored as `public` state variables.
-In **LSP4 - Digital Asset Metadata**, such information is held under the data keys `LSP4TokenName` and `LSP4TokenSymbol` under the (ERC725Y) storage of the token / NFT contract.
-
-Both [LSP7](./LSP7-Digital-Asset.md) and [LSP8](./LSP8-Identifiable-Digital-Asset.md) standards are derived from the [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md), which defines the default metadata keys representing a digital asset on the blockchain.
+**LSP4-DigitalAsset-Metadata** solve this problem by defining a set of data keys to describe a **Digital Asset** using [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) as a backbone. ERC725Y enables smart contracts to have very flexible and extensible storage. With ERC725Y, any information or metadata can be attached to the token or NFT.
 
 ![LSP4 Digital Asset Metadata diagram](/img/standards/lsp4-digital-asset-metadata-diagram.png)
 
@@ -82,7 +79,7 @@ The value attached to this data key is a [`JSONURL`](https://github.com/lukso-ne
 
 ### LSP4Creators
 
-This data key refers to the `address`(es) of the creator(s) for the digital asset.
+This data key refers to the **addresses** of the **creators** for the digital asset. Can help checking **asset authenticity** when combined with **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
 
 ```json
 {
