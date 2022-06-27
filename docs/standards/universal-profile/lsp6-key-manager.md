@@ -19,6 +19,8 @@ Here comes the Key Manager. A smart contract that controls an LSP0ERC725Account,
 
 The idea is to give [permissions](#permissions) to any `address`, like Externally Owned Accounts (EOA) or smart contracts. These can then interact with the LSP0ERC725Account **through the Key Manager**. The Key Manager will allow or restrict access based on the permissions set for the calling `address`.
 
+Permissioned addresses can interact directly with the Key Manager or can sign a message to be executed by any other parties (users, relay services).
+
 :x: &nbsp; **Without a Key Manager**, only the LSP0ERC725Account's owner can use its Account.
 
 :white_check_mark: &nbsp; **With a Key Manager** attached to an LSP0ERC725Account, other addresses (EOAs or contracts) can use an Account on behalf of its owner.
@@ -31,6 +33,33 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 ---
 
+
+## Relay Execution
+
+Relay execution minimize onboarding & **UX friction** for dapps. In this way users can interact on the blockchain **without needing Native tokens** for transaction fees. This will allow users without prior crypto experience to be comfortable using the blockchain without the need to worry about gas or any complex steps needed to operate on blockchains (KYC, seedphrases, gas).
+
+Dapps can leverage the relay execuyion feature to build their own business model on top that can function in different ways including building their own **relay service** or building smart contracts solution on top of the Key Manager to pay with their tokens.
+
+Others can build relay services and agree with the users on payment methods including subscriptions, ads, etc ..
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-relay-execution.jpeg)
+
+
+## Out of order execution
+
+Since the Key Manager offers **relay execution** via signed message, it's important to provide security measurements to ensure that the signed message can't be repeated once executed. **[Nonces](https://www.techtarget.com/searchsecurity/definition/nonce#:~:text=A%20nonce%20is%20a%20random,to%20as%20a%20cryptographic%20nonce.)** existed to solve this problem, but with the following drawback:
+
+- Signed messages with sequentiel nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
+
+Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
+
+Signed messages should be executed sequentielially if signed on the same channel and should be executed independently if signed on different channel.
+
+- Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
+
+Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
 ## Types of permissions
 
 | Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
@@ -181,7 +210,7 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 ### SUPER Permissions
 
-The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are *skipped*. This allows for cheaper transactions where, these restrictions aren't set anyway.
+The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions where, these restrictions aren't set anyway.
 
 :::caution
 
@@ -362,6 +391,8 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 }
 ```
 
+![LSP6 Allowed Addresses explained](/img/standards/lsp6/lsp6-allowed-addresses.jpeg)
+
 :::caution
 
 The allowed addresses MUST be an **ABI-encoded array** of `address[]` to ensure the correct behavior of this functionality.
@@ -393,6 +424,12 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 }
 ```
 
+:::info
+
+The `receive()` and `fallback()` functions can always be called on a target contract if no calldata is passed, even if you restrict an `<address>` to call a certain set of functions.
+
+:::
+
 :::caution
 
 The allowed functions MUST be an **ABI-encoded array** of `bytes4[]` function selectors to ensure the correct behaviour of this functionality.
@@ -407,14 +444,30 @@ See the section [_Contract ABI Specification > Strict Encoding Mode_](https://do
 
 It is possible to restrict an address to interact only with **contracts that implement specific interface standards**. These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard to be able to detect their interfaces.
 
-![Key Manager Allowed Standards flow](/img/standards/lsp6-key-manager-allowed-standards.jpeg)
-
 For example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742de2bf3efa94a30000<address>`
 - **possible values:**
   - `[ 0x63cb749b, 0x... ]`: an **ABI-encoded** array of `bytes4[]` ERC165 interface ids.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any contracts, whether they implement a specific standard interface or not.
+
+```json
+{
+  "name": "AddressPermissions:AllowedStandards:<address>",
+  "key": "0x4b80742de2bf3efa94a30000<address>",
+  "keyType": "MappingWithGrouping",
+  "valueType": "bytes4[]",
+  "valueContent": "Bytes4"
+}
+```
+
+![Key Manager Allowed Standards flow](/img/standards/lsp6-key-manager-allowed-standards.jpeg)
+
+Below is an example use case. With this permission key, an `<address>` can be allowed to use the linked ERC725Account to interact with [**LSP7 contracts**](../nft-2.0/LSP7-Digital-Asset.md) **(= token contracts only :white_check_mark:)**, but not with [**LSP8 contracts**](../nft-2.0/LSP8-Identifiable-Digital-Asset.md) **(= NFT contracts :x:)**.
+
+![Key Manager Allowed Standards allowed example](/img/standards/lsp6/lsp6-allowed-standard-accepted.jpeg)
+
+![Key Manager Allowed Standards denied example](/img/standards/lsp6/lsp6-allowed-standards-denied.jpeg)
 
 :::warning
 
@@ -440,6 +493,28 @@ To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5
 
 - **key:** `0x4b80742de2bf90b8b4850000<address>`
 - **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
+
+```json
+{
+  "name": "AddressPermissions:AllowedERC725YKeys:<address>",
+  "key": "0x4b80742de2bf90b8b4850000<address>",
+  "keyType": "MappingWithGrouping",
+  "valueType": "bytes32[]",
+  "valueContent": "Bytes32"
+}
+```
+
+Below is an example use case. An ERC725Account can allow some applications to add/edit informations on its storage via `setData(...)`. The account can restrict such Dapps and protocols to edit the data keys that are only relevant to the logic of their applications.
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-overview.jpeg)
+
+As a result, this provide context for the Dapp on which data they can operate on the account, while preventing them to edit other information, such as the account metadata, or data relevant to other dapps.
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-allowed.jpeg)
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-1.jpeg)
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-2.jpeg)
 
 :::info
 
