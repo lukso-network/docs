@@ -3,7 +3,7 @@ sidebar_position: 4
 title: LSP8IdentifiableDigitalAsset
 ---
 
-# LSP8IdentifiableDigtialAsset
+# LSP8IdentifiableDigitalAsset
 
 ## deploy
 
@@ -12,6 +12,11 @@ lspFactory.LSP8IdentifiableDigitalAsset.deploy(digitalAssetProperties [, options
 ```
 
 Deploys a mintable [LSP8 Identifiable Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
+
+:::info
+By default LSPFactory deploys the [`Mintable`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol) implementation of LSP8 digital assets. To call the `mint` function import the `LSP8Mintable` abi from the [lsp-smart-contracts library](https://github.com/lukso-network/lsp-smart-contracts).
+
+:::
 
 ### Parameters
 
