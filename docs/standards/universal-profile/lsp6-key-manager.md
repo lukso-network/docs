@@ -391,6 +391,8 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 }
 ```
 
+![LSP6 Allowed Addresses explained](/img/standards/lsp6/lsp6-allowed-addresses.jpeg)
+
 :::caution
 
 The allowed addresses MUST be an **ABI-encoded array** of `address[]` to ensure the correct behavior of this functionality.
@@ -442,14 +444,30 @@ See the section [_Contract ABI Specification > Strict Encoding Mode_](https://do
 
 It is possible to restrict an address to interact only with **contracts that implement specific interface standards**. These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard to be able to detect their interfaces.
 
-![Key Manager Allowed Standards flow](/img/standards/lsp6-key-manager-allowed-standards.jpeg)
-
 For example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742de2bf3efa94a30000<address>`
 - **possible values:**
   - `[ 0x63cb749b, 0x... ]`: an **ABI-encoded** array of `bytes4[]` ERC165 interface ids.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any contracts, whether they implement a specific standard interface or not.
+
+```json
+{
+  "name": "AddressPermissions:AllowedStandards:<address>",
+  "key": "0x4b80742de2bf3efa94a30000<address>",
+  "keyType": "MappingWithGrouping",
+  "valueType": "bytes4[]",
+  "valueContent": "Bytes4"
+}
+```
+
+![Key Manager Allowed Standards flow](/img/standards/lsp6-key-manager-allowed-standards.jpeg)
+
+Below is an example use case. With this permission key, an `<address>` can be allowed to use the linked ERC725Account to interact with [**LSP7 contracts**](../nft-2.0/LSP7-Digital-Asset.md) **(= token contracts only :white_check_mark:)**, but not with [**LSP8 contracts**](../nft-2.0/LSP8-Identifiable-Digital-Asset.md) **(= NFT contracts :x:)**.
+
+![Key Manager Allowed Standards allowed example](/img/standards/lsp6/lsp6-allowed-standard-accepted.jpeg)
+
+![Key Manager Allowed Standards denied example](/img/standards/lsp6/lsp6-allowed-standards-denied.jpeg)
 
 :::warning
 
@@ -475,6 +493,28 @@ To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5
 
 - **key:** `0x4b80742de2bf90b8b4850000<address>`
 - **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
+
+```json
+{
+  "name": "AddressPermissions:AllowedERC725YKeys:<address>",
+  "key": "0x4b80742de2bf90b8b4850000<address>",
+  "keyType": "MappingWithGrouping",
+  "valueType": "bytes32[]",
+  "valueContent": "Bytes32"
+}
+```
+
+Below is an example use case. An ERC725Account can allow some applications to add/edit informations on its storage via `setData(...)`. The account can restrict such Dapps and protocols to edit the data keys that are only relevant to the logic of their applications.
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-overview.jpeg)
+
+As a result, this provide context for the Dapp on which data they can operate on the account, while preventing them to edit other information, such as the account metadata, or data relevant to other dapps.
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-allowed.jpeg)
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-1.jpeg)
+
+![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-2.jpeg)
 
 :::info
 
