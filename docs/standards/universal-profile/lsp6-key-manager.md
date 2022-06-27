@@ -210,7 +210,7 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 ### SUPER Permissions
 
-The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are *skipped*. This allows for cheaper transactions where, these restrictions aren't set anyway.
+The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions where, these restrictions aren't set anyway.
 
 :::caution
 
@@ -421,6 +421,12 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
   "valueContent": "Bytes4"
 }
 ```
+
+:::info
+
+The `receive()` and `fallback()` functions can always be called on a target contract if no calldata is passed, even if you restrict an `<address>` to call a certain set of functions.
+
+:::
 
 :::caution
 
