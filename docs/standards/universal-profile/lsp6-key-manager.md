@@ -59,7 +59,7 @@ Signed messages should be executed sequentielially if signed on the same channel
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
 
-Learn more about **[Multi-channel nonces](../faq//channel-nonce.md)** usecases and its internal construction.
+Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
 ## Types of permissions
 
 | Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
