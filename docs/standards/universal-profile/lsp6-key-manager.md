@@ -19,6 +19,8 @@ Here comes the Key Manager. A smart contract that controls an LSP0ERC725Account,
 
 The idea is to give [permissions](#permissions) to any `address`, like Externally Owned Accounts (EOA) or smart contracts. These can then interact with the LSP0ERC725Account **through the Key Manager**. The Key Manager will allow or restrict access based on the permissions set for the calling `address`.
 
+Permissioned addresses can interact directly with the Key Manager or can sign a message to be executed by any other parties (users, relay services).
+
 :x: &nbsp; **Without a Key Manager**, only the LSP0ERC725Account's owner can use its Account.
 
 :white_check_mark: &nbsp; **With a Key Manager** attached to an LSP0ERC725Account, other addresses (EOAs or contracts) can use an Account on behalf of its owner.
@@ -31,6 +33,33 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 ---
 
+
+## Relay Execution
+
+Relay execution minimize onboarding & **UX friction** for dapps. In this way users can interact on the blockchain **without needing Native tokens** for transaction fees. This will allow users without prior crypto experience to be comfortable using the blockchain without the need to worry about gas or any complex steps needed to operate on blockchains (KYC, seedphrases, gas).
+
+Dapps can leverage the relay execuyion feature to build their own business model on top that can function in different ways including building their own **relay service** or building smart contracts solution on top of the Key Manager to pay with their tokens.
+
+Others can build relay services and agree with the users on payment methods including subscriptions, ads, etc ..
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-relay-execution.jpeg)
+
+
+## Out of order execution
+
+Since the Key Manager offers **relay execution** via signed message, it's important to provide security measurements to ensure that the signed message can't be repeated once executed. **[Nonces](https://www.techtarget.com/searchsecurity/definition/nonce#:~:text=A%20nonce%20is%20a%20random,to%20as%20a%20cryptographic%20nonce.)** existed to solve this problem, but with the following drawback:
+
+- Signed messages with sequentiel nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
+
+Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
+
+Signed messages should be executed sequentielially if signed on the same channel and should be executed independently if signed on different channel.
+
+- Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
+
+Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
 ## Types of permissions
 
 | Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
