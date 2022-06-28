@@ -1,13 +1,11 @@
 ---
-sidebar_label: 'L16 validator node'
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # L16 Public Testnet
- 
 
 :::info Network values DO NOT represent the final mainnet values
-Values and configuration parameters for this network, as well as suggested hardware specs, DO NOT represent the final values for the LUKSO mainnet. Those will be announced shortly before mainnet launch.
+Values and configuration parameters for this network and suggested hardware specs DO NOT represent the final values for the LUKSO mainnet. Expect announcements shortly before mainnet launch.
 :::
 
 The L16 Public Testnet will be the last stable test network before the mainnet launch and will likely stay online in parallel for experimental purposes.
@@ -27,7 +25,7 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | Faucet                       | <https://faucet.l16.lukso.network>               |
 
 :::info
-You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/)
+You can find a community guide for setting up a Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/)
 :::
 
 ## System Requirements
@@ -54,90 +52,6 @@ You can find a community guide about how to setup your Grafana dashboard on Linu
 Apple's new M1 chips are not supported natively by our node client. However, you can follow [this guide](https://medium.com/@luki3k5/running-lukso-node-on-m1-mac-acf92d433a38) to run it by using Rosetta, Apple's built-in emulation software.
 :::
  
-### Ports
-
-
-| Port                         | Protocol                      | Client                            | Ingress                           |  Comment |
-| ---------------------------- | ---------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | 
-|  30303 | TCP | geth syncing | port must be open | ... |
-|  30303 | UDP | geth discovery| port must be open | ... |
-|  13000 | TCP | beacon syncing| port must be open | ... |
-|  12000 | UDP | beacon discovery| port must be open | ... |
-|  8545 | TCP | geth api| port should be closed | valuable information are provided but for a validator it is recommended to not open the port |
-|  8080 | UDP | beacon metrics| port should be closed | ... |
-|  3500 | UDP | beacon api| port should be closed | valuable information are provided but for a validator it is recommended to not open the port |
-|  4000 | UDP | beacon rpc| port should be closed | ... |
-
-### Configure your firewall
-**LINUX**
-
-Using the lukso-cli will open the ports for you automatically.  If you have a firewall configured, please allow traffic for the above mentioned ports, you can use the following commands to configure your firewall correctly:
-
-```
-sudo ufw default deny incoming
-sudo ufw default allow outgoing 
-```
-```
-sudo ufw allow 30303/tcp
-sudo ufw allow 30303/udp
-sudo ufw allow 13000/tcp
-sudo ufw allow 12000/udp
-```
-```
-sudo ufw enable
-```
-The firewall will be active after restarting your system.
-
-**MAC**
-
-```
-This section is in the works
-```
-
-:::info
-NOTE: Make sure you also forward those ports in your router.
-:::
-
-### Installing Dependencies
-
-Prepare your **Linux** environment. You need:
-
-1. [Docker](https://docs.docker.com/get-docker/)
-2. [Docker Compose](https://docs.docker.com/compose/)
-3. [curl](https://macappstore.org/curl/) 
-
-```bash title="Example script for installing docker"
-# Install dependencies
-sudo apt-get -y update
-sudo apt-get -y install curl
-
-# Install Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-
-# Install Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-docker-compose --version
-```
-
-To prepare your **Mac** environment. You need:
-1. [Homebrew package manager](https://brew.sh)
-2. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
-3. [curl](https://macappstore.org/curl/)
-
-```bash title="Example script for installing docker"
-# Install Homebrew 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install Curl
-sudo brew install curl
-
-# Install Docker Desktop for Mac
-Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
-You do not have to install Docker Compose separately
-```
 
 ## Setting up Metamask
 
@@ -150,127 +64,269 @@ You do not have to install Docker Compose separately
 | Execution Block Explorer URL | <https://explorer.execution.l16.lukso.network>  |
 
 
-**[here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
+**[Here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
 
-### Installing the Node
+## Ports
 
-```bash
-mkdir lukso-l16-testnet && cd lukso-l16-testnet
-sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
+| Port                         | Protocol                      | Client                            | Ingress                           |  Comment |
+| ---------------------------- | ---------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | 
+|  30303 | TCP | geth syncing | port must be open | ... |
+|  30303 | UDP | geth discovery| port must be open | ... |
+|  13000 | TCP | beacon syncing| port must be open | ... |
+|  12000 | UDP | beacon discovery| port must be open | ... |
+|  8545 | TCP | geth api| port should be closed | provides valuable information but should not be open on a validator node |
+|  8080 | UDP | beacon metrics| port should be closed | ... |
+|  3500 | UDP | beacon api| port should be closed | provides valuable information but should not be open on a validator node |
+|  4000 | UDP | beacon rpc| port should be closed | ... |
+
+## LINUX System Setup
+*For instructions on setting up a Mac, proceed to the [Mac System Setup](#mac-system-setup) section.*
+
+### Configure Firewall
+Deny all incoming traffic by default
+```
+sudo ufw default deny incoming
+sudo ufw default allow outgoing 
+```
+Allow traffic for the ports listed above.
+```
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 13000/tcp
+sudo ufw allow 12000/udp
 ```
 
-The script will download the LUKSO cli into the folder. 
- 
-#### Setting up your node and node name
-```bash
+
+Enable firewall
+```
+sudo ufw enable
+```
+:::info
+NOTE: Make sure also to configure your router to forward these ports.
+:::
+You may follow this community-authored [Port Forwarding](https://github.com/KEEZ-RobG/node-guide/blob/main/PortForward.md) guide.
+
+
+
+### Install Dependencies
+
+1. [curl](https://macappstore.org/curl/) 
+2. [Docker](https://docs.docker.com/get-docker/)
+3. [Docker Compose](https://docs.docker.com/compose/)
+
+#### Install Curl
+```
+sudo apt-get -y update
+sudo apt-get -y install curl
+```
+
+#### Install Docker
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+#### Install Docker Compose
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+```
+
+## Mac System Setup
+*If setting up a LINUX system, proceed to the [Running A Node](#running-a-node) section.*
+### Configure Firewall
+This section is in the works
+
+
+:::info
+NOTE: Make sure also to configure your router to forward these ports.  
+:::
+You may follow this community-authored [Port Forwarding](https://github.com/KEEZ-RobG/node-guide/blob/main/PortForward.md) guide.
+
+### Installing Dependencies
+
+1. [Homebrew package manager](https://brew.sh)
+2. [curl](https://macappstore.org/curl/)
+3. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
+
+
+#### Install Homebrew
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install Curl
+```
+sudo brew install curl
+```
+
+#### Install Docker Desktop for Mac
+
+Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
+You do not have to install Docker Compose separately.
+
+
+## Running a Node
+
+### Install CLI
+
+ Create a folder for the LUKSO CLI.
+```
+mkdir lukso-l16-testnet && cd lukso-l16-testnet
+```
+
+Download the CLI.
+```
+sudo curl https://install.l16.lukso.network | sudo bash
+```
+
+### Setup Node
+
+Initialize and name the node.
+```
 lukso network init --chain l16
 ```
- 
 
-## Starting the Node
+### Start Node
 
-```bash
-# Start your nodes
+Start the node client.
+```
 lukso network start
 ```
 
-## Become a Validator
+You can view the status of your node on the [Execution Stats](https://stats.execution.l16.lukso.network) page.
 
-### Setup Validator
+### Common Node Commands
+#### Start and Stop
+Spin up consensus, execution and eth2-stats docker container
+```
+lukso network start
+```
 
+Stops running docker containers
+````
+lukso network stop
+````
+Restart all running docker containers. (Same as start and stop)
+````
+lukso network restart
+````
+#### Update
+Updates the node with the latest params
+````
+lukso network update
+````
+#### Logs
+Consensus Logs
+```
+lukso network log consensus -f
+````
+Execution Logs
+````
+lukso network log execution -f
+````
+
+Press `ctrl+c` to exit log
+
+
+## Running a Validator
+
+### Validator Setup
+
+This command will create a key store and a transaction wallet. In this step, you will be prompted to
+1. Choose a keystore password
+2. Input the number of validators you will run (1 validator = 220 LYXt)
+3. Decide if you want a separate withdrawal mnemonic
 ```
 lukso network validator setup
 ```
 
-This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit
-transaction. You can check if the wallet has enough funds by calling
+### Fund Transaction Wallet
 
+The purpose of the transaction wallet is to call and pay for the deposit
+transaction.
+
+Find the public key and balance of the transaction wallet.
 ```
 lukso network validator describe
 ```
+::::warning
+Be sure to copy the address of the **transaction wallet**, not the contract address.
+::::
 
-Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public key into the input field.
+### Create Backup
+Create a **node_recovery.json** file in your node directory.
+```
+lukso network validator backup
+```
+Store the file **node_recovery.json** somewhere safe.
 
-Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
+### Send LYXt to the Transaction Wallet
+Visit the [Faucet](https://faucet.l16.lukso.network)
+Paste the transaction wallet public key into the input field.
+
+Transfer **enough** to cover gas fees  
+(Number of Validators **X** 220 LYXt) + **Extra** LYXt to Pay Deposit Fees
 
  
 
-#### Submit the transaction.
+### Submit Deposit
 
-Make a dry run first
-
-```bash
+Make a dry run first. It allows you to preview what will happen without executing a transaction.
+```
 lukso network validator deposit --dry
 ```
 
-This will give you the possibility to peek in what is going to happen without executing a transaction.
-
-If you are sure that everything is correct you run the command
-
-
-```bash
+If you are **sure** everything is correct, execute the deposit transaction.
+```
 lukso network validator deposit
 ```
 
-It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
 
-Once you deposited LYXt make sure to create a backup.
 
-```bash
-lukso network validator backup
-```
+### Start Validator Client
 
-Store the file **node_recovery.json** somewhere safe.
+After depositing, it can take up to eight hours before your validator becomes active, but you can start your validator in the meantime.
 
-### Start the Validator Client
-
-```bash
-# Make sure your _consensus_ and _execution_ clients are running
+Start the validator client
+````
 lukso network validator start
+````
 
-# You can check logs with
-lukso network log validator -f
+You can view the status of your validator on the [Validator Stats](https://explorer.consensus.l16.lukso.network) page.
 
-You can close your logs by pressing ctrl+c
+### Common Validator Commands
 
-# You can stop the validator using, this will also stop all other nodes
+#### Start and Stop
+Start the validator client
+````
+lukso network validator start
+````
+Stop the validator client
+```
 lukso network validator stop
 ```
 
-Occasionally check the status of your validator by either typing
-
-```bash
+#### Validator Status
+Show detailed status of the validators
+```
 lukso network validator describe
 ```
 
-Or by visiting the [Explorer](https://explorer.consensus.l16.lukso.network)
-
-## Check your logs
-```
-lukso network log consensus -f
-lukso network log execution -f
-```
-
-You can close your logs by pressing ctrl+c
-
-## Stop your node
-```
-lukso network stop
-```
+#### Logs
+Validator Logs
+````
+sudo lukso network log validator -f
+````
+Press `ctrl+c` to close the logs.
 
 
-##### If you selected a wrong chain, you could reset the setup. This will delete all related data except the keystores.
-##### NOTE: the network must be stopped
-```
-lukso network clear
-```
 
-### Check the Network Status
 
-You can see your node on the following pages:
 
-1. [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
-2. [https://stats.consensus.l16.lukso.network](https://stats.consensus.l16.lukso.network)
+
 
 
 
@@ -278,14 +334,14 @@ You can see your node on the following pages:
 
 ### Permission denied
 
-If you get an error that the permission is denied use `sudo` in front of your command.
+If you get an error that the permission is denied, use `sudo` in front of your command.
 
 ### Bootnodes
 
 You can update Bootnodes with
 
 
-```bash
+```
 lukso network update
 ```
 
@@ -308,14 +364,22 @@ log_execution: err="peer connected on snap without compatible eth support" log_c
 
 **Proposed Solution:**
 
-```sh
-# stop docker container
+stop docker container
+```
 lukso network stop
-# reset data directory
+```
+
+Reset data directory
+```
 lukso network clear
-# remove previous images
+```
+
+Remove previous images
+```
 docker system prune --all --force --volumes
-# delete lukso testnet directory
+```
+Delete lukso testnet directory
+```
 cd .. && rm -rf ./lukso-l16-testnet
 ```
 
