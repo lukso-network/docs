@@ -1,0 +1,286 @@
+---
+sidebar_label: 'L16 non-validator node'
+sidebar_position: 2
+---
+
+# SETTING UP A L16 NODE AS NON-GENESIS VALIDATOR
+
+## What is the benefit to run a node as non-genesis validator?
+
+You can't become a validator at the moment if you are not in the "genesis-validator group", but you can stil learn how to setup everything and see if everything is working correctly.
+
+- All steps before setting up you validator are the same so you can already prepare your system and node to add validators later.
+- You can practice how to set up your node and fix issues now instead of discovering those issues later.
+
+## Prepare your system
+
+### Network info
+
+| Setting                      | Value                                                 |
+| ---------------------------- | ----------------------------------------------------- |
+| Network Name                 | L16                                              |
+| New RPC URL                  | <https://rpc.l16.lukso.network>                  |
+| Chain ID  / Network ID       | 2828 (0x0B0C)                                  |
+| Currency Symbol              | LYXt                                                  |
+| Execution Block Explorer     | <https://explorer.execution.l16.lukso.network>   |
+| Execution Node list          | <https://stats.execution.l16.lukso.network>      |
+| Consensus Block Explorer     | <https://explorer.consensus.l16.lukso.network>   |
+| Consensus Node list          | <https://stats.consensus.l16.lukso.network>      |
+| Faucet                       | <https://faucet.l16.lukso.network>               |
+
+:::info
+You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/)
+:::
+
+### Hardware or server requirements
+
+#### Minimum System Requirements
+
+| Settings            | Value          |
+| ------------------- | -------------- |
+| Operating System    | Linux or MacOS |
+| Number of CPU cores | 2              |
+| RAM                 | 16 GB          |
+| SSD                 | 100 GB         |
+
+#### Recommended System Requirements
+
+| Settings            | Value          |
+| ------------------- | -------------- |
+| Operating System    | Linux or MacOS |
+| Number of CPU cores | 8              |
+| RAM                 | 32 GB          |
+| SSD                 | 512 GB         |
+
+:::info
+Apple's new M1 chips are not supported natively by the LUKSO node client. However, you can follow [this guide](https://medium.com/@luki3k5/running-lukso-node-on-m1-mac-acf92d433a38) to run it by using Rosetta, Apple's built-in emulation software.
+:::
+
+:::warning
+We recommend to use Linux to run your node, we will release a guide today how to install Linux on your Mac
+:::
+ 
+### Ports
+
+
+| Port                         | Protocol                      | Client                            | Ingress                          
+| ---------------------------- | ---------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | 
+|  30303 | TCP | geth syncing | port must be open
+|  30303 | UDP | geth discovery| port must be open
+|  13000 | TCP | beacon syncing| port must be open
+|  12000 | UDP | beacon discovery| port must be open
+
+### Configure your firewall
+**LINUX**
+
+Using the lukso-cli will open the ports for you automatically.  If you have a firewall configured, please allow traffic for the above mentioned ports, you can use the following commands to configure your firewall correctly:
+
+```
+sudo ufw default deny incoming
+sudo ufw default allow outgoing 
+```
+```
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 13000/tcp
+sudo ufw allow 12000/udp
+```
+```
+sudo ufw enable
+```
+The firewall will be active after restarting your system.
+
+:::info
+Restart your system before you go to the next step
+:::
+
+**MAC**
+
+```
+This section is in the works
+```
+
+:::danger
+NOTE: Make sure you also forward those ports in your router. Restart your router after doing this.
+:::
+
+### Installing Dependencies
+
+Prepare your **Linux** environment. You need:
+
+1. [Docker](https://docs.docker.com/get-docker/)
+2. [Docker Compose](https://docs.docker.com/compose/)
+3. [curl](https://macappstore.org/curl/) 
+
+
+#### Update your system
+```bash
+sudo apt-get -y update
+sudo apt-get -y install curl
+```
+
+#### Install Docker
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+#### Install Docker Compose
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+```
+
+
+To prepare your **Mac** environment. You need:
+1. [Homebrew package manager](https://brew.sh)
+2. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
+3. [curl](https://macappstore.org/curl/)
+
+#### Install Homebrew 
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install Curl
+```bash
+sudo brew install curl
+```
+
+#### Install Docker Desktop for Mac
+
+Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
+You do not have to install Docker Compose separately
+
+### Setting up Metamask
+
+This is not needed for now but you can already prepare it to become a validator later.
+
+
+| Setting                      | Value                                                |
+| ---------------------------- | ---------------------------------------------------- |
+| Network Name                 | L16                                             |
+| New RPC URL                  | https://rpc.l16.lukso.network                   |
+| Chain ID                     | 2828 (0x0B0C)                                 |
+| Currency Symbol              | LYXt                                                 |
+| Execution Block Explorer URL | <https://explorer.execution.l16.lukso.network>  |
+
+
+**[here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
+
+## Setting up the L16 node
+
+### Create a directory
+
+```bash
+mkdir lukso-l16-testnet 
+```
+### navigate to it in your terminal by using the `cd` command
+```bash
+cd lukso-l16-testnet
+```
+
+### Install the LUKSO Command Line Interface (CLI)
+```bash
+sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
+```
+
+The script will download the LUKSO CLI into the directory.
+
+### Check your LUKSO CLI version
+
+```bash
+lukso -v
+```
+
+The output has to be v.0.4.0 or higher
+
+### Initialize the network
+
+```bash
+lukso network init --chain l16
+```
+
+The CLI will ask you to setup your node name
+
+**Suggestion:** L16-Luksoverse-YOUR DISCORD/TELEGRAM USERNAME
+
+Example: L16-Luksoverse-JordyDutch
+
+GV stands for Genesis-Validator, only use it if you are in the Genesis-Validators group on Discord.
+
+#### Change your node name
+
+If you want to change your node name you can do this in the file `node_config.yaml`
+
+```bash
+sudo nano node_config.yaml
+```
+
+Change your node name close it with `ctrl+X` and save it.
+
+## Start your node
+
+You can start your node with
+
+```bash
+lukso network start
+```
+
+## Setup your validators
+```bash
+This section will be added when LUKSO decides to let everyone become a validator
+```
+
+### Check your node
+
+Wait 10 minutes and check if your node is syncing on this stats page:
+
+- [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
+
+You can also check your logs:
+
+### Logs
+
+#### Check your execution logs
+
+```bash
+sudo lukso network log execution -f
+```
+You can close the logs by pressing `ctrl+c`
+
+#### Check your consensus logs
+```bash
+sudo lukso network log consensus -f
+```
+
+## Troubleshoot
+
+### Permission denied
+
+If you get an error that the permission is denied use `sudo` in front of your command.
+
+ ### Bootnodes
+
+ You can update Bootnodes with
+ ```bash
+ lukso network update
+ ```
+After update you need to use the `restart` command after to make the changes active.
+
+```bash
+lukso network restart
+```
+
+
+## FAQ
+
+You can find the FAQ about the L16 testnet [here](https://luksoverse.io/2022/06/lukso-l16-faq/).
+
+## Need help?
+
+Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/u7cmyUyw8F)
+
+

@@ -1,6 +1,8 @@
 ---
+sidebar_label: 'L15 Testnet'
 sidebar_position: 3
 ---
+
 
 # L15 Public Testnet
 
