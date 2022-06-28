@@ -67,7 +67,6 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 **[Here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
 
 ## Ports
-// Is it necessary to include closed ports? The guide closes everything by default.
 
 | Port                         | Protocol                      | Client                            | Ingress                           |  Comment |
 | ---------------------------- | ---------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | 
@@ -296,9 +295,7 @@ lukso network validator deposit
 
 After depositing, it can take up to eight hours before your validator becomes active, but you can start your validator in the meantime.
 
-Make sure your *consensus* and *execution* clients are running
-
-Start the client
+Start the validator client
 ````
 lukso network validator start
 ````
@@ -372,14 +369,22 @@ log_execution: err="peer connected on snap without compatible eth support" log_c
 
 **Proposed Solution:**
 
-```sh
-# stop docker container
+stop docker container
+```
 lukso network stop
-# reset data directory
+```
+
+Reset data directory
+```
 lukso network clear
-# remove previous images
+```
+
+Remove previous images
+```
 docker system prune --all --force --volumes
-# delete lukso testnet directory
+```
+Delete lukso testnet directory
+```
 cd .. && rm -rf ./lukso-l16-testnet
 ```
 
