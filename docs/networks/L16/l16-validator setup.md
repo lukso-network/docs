@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+ sidebar_label: 'L16 validator node'
+ sidebar_position: 1
 ---
 
 # L16 Public Testnet
