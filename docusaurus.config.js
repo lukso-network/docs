@@ -129,6 +129,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
+          showLastUpdateTime: true,
           editUrl: 'https://github.com/lukso-network/docs/tree/main/',
         },
         blog: false,
