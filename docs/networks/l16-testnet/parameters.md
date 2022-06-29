@@ -32,8 +32,6 @@ You can find a community guide about how to setup your Grafana dashboard on Linu
 
 ## System Requirements
 
-### Minimum System Requirements
-
 | Settings            | Value          |
 | ------------------- | -------------- |
 | Operating System    | Linux or MacOS |
@@ -45,7 +43,7 @@ You can find a community guide about how to setup your Grafana dashboard on Linu
 Apple's new M1 chips are not supported natively by our node client. However, you can follow [this guide](https://medium.com/@luki3k5/running-lukso-node-on-m1-mac-acf92d433a38) to run it by using Rosetta, Apple's built-in emulation software.
 :::
  
-### Ports
+## Ports
 
 
 | Port                         | Protocol                      | Client                            | Ingress                           |  Comment |
@@ -100,25 +98,25 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 
 
 
-### Install Dependencies
+## install Dependencies
 
 1. [curl](https://macappstore.org/curl/) 
 2. [Docker](https://docs.docker.com/get-docker/)
 3. [Docker Compose](https://docs.docker.com/compose/)
 
-#### Install Curl
+### Install Curl
 ```
 sudo apt-get -y update
 sudo apt-get -y install curl
 ```
 
-#### Install Docker
+## Install Docker
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-#### Install Docker Compose
+### Install Docker Compose
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
@@ -141,22 +139,17 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 2. [curl](https://macappstore.org/curl/)
 3. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
 
-#### Install Homebrew
+### Install Homebrew
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-#### Install Curl
+## Install Curl
 ```
 sudo brew install curl
 ```
 
-#### Install Docker Desktop for Mac
+## Install Docker Desktop for Mac
 
 Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
 You do not have to install Docker Compose separately.
-
-## FAQ
-
-You can find the FAQ about the L16 testnet [here](http://docs.lukso.tech/faq/network/).
-
