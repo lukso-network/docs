@@ -1,3 +1,8 @@
+---
+title: Backup and recovery
+sidebar_position: 3
+---
+
 # Backup And Recover Your validator
 
 We made it simple and straight forward to recover a node with its validators when your old node doesn't work anymore or you want to transfer everything to a new machine.

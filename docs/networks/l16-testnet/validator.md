@@ -1,4 +1,134 @@
-# Validating at LUKSO
+---
+sidebar_position: 2
+---
+
+# Become a validator
+
+### Installing the Node
+
+```bash
+mkdir lukso-l16-testnet && cd lukso-l16-testnet
+sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
+```
+
+The script will download the LUKSO cli into the folder. 
+ 
+#### Setting up your node and node name
+```bash
+lukso network init --chain l16
+```
+ 
+
+## Starting the Node
+
+```bash
+# Start your nodes
+lukso network start
+```
+
+### Setup Validator
+
+```
+lukso network validator setup
+```
+
+This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit
+transaction. You can check if the wallet has enough funds by calling
+
+```
+lukso network validator describe
+```
+
+Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public key into the input field.
+
+Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
+
+ 
+
+#### Submit the transaction.
+
+Make a dry run first
+
+```bash
+lukso network validator deposit --dry
+```
+
+This will give you the possibility to peek in what is going to happen without executing a transaction.
+
+If you are sure that everything is correct you run the command
+
+
+```bash
+lukso network validator deposit
+```
+
+It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
+
+Once you deposited LYXt make sure to create a backup.
+
+```bash
+lukso network validator backup
+```
+
+Store the file **node_recovery.json** somewhere safe.
+
+### Start the Validator Client
+
+```bash
+# Make sure your _consensus_ and _execution_ clients are running
+lukso network validator start
+
+# You can check logs with
+lukso network log validator -f
+
+You can close your logs by pressing ctrl+c
+
+# You can stop the validator using, this will also stop all other nodes
+lukso network validator stop
+```
+
+Occasionally check the status of your validator by either typing
+
+```bash
+lukso network validator describe
+```
+
+Or by visiting the [Explorer](https://explorer.consensus.l16.lukso.network)
+
+## Check the Network Status
+
+You can see your node on the following pages:
+
+1. [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
+2. [https://stats.consensus.l16.lukso.network](https://stats.consensus.l16.lukso.network)
+
+
+## Check your logs
+```
+lukso network log consensus -f
+lukso network log execution -f
+```
+
+You can close your logs by pressing ctrl+c
+
+## Stop your node
+```
+lukso network stop
+```
+
+
+##### If you selected a wrong chain, you could reset the setup. This will delete all related data except the keystores.
+##### NOTE: the network must be stopped
+```
+lukso network clear
+```
+
+### Check the Network Status
+
+You can see your node on the following pages:
+
+1. [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
+2. [https://stats.consensus.l16.lukso.network](https://stats.consensus.l16.lukso.network)
 
 ## Terminology
 
@@ -49,7 +179,7 @@ NOT_DEPOSITED. (NOTE: If the keystore was recreated the state my differ for some
 | PENDING              | A deposit with *min staking amount* was made | There is a proven stake deposited in the Deposit Contract        |
 | ACTIVE              | The deposit was observed by the consensus network |  The validator is eligible to be selected to propose and attest in the upcoming epochs       |
 
-## How **Validator Keys** are created
+## How Validator Keys are created
 
 A **Validator Key** is always part of a **Validator Keystore** - as a single key or a combination of many. The keys
 are being derived by a [Mnemonic](https://wolovim.medium.com/ethereum-201-mnemonics-bb01a9108c38).

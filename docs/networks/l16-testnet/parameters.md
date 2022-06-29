@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+title: "Network parameters"
+sidebar_position: 1
 ---
 
 # L16 Public Testnet
@@ -39,15 +40,6 @@ You can find a community guide about how to setup your Grafana dashboard on Linu
 | Number of CPU cores | 2              |
 | RAM                 | 16 GB          |
 | SSD                 | 100 GB         |
-
-### Recommended System Requirements
-
-| Settings            | Value          |
-| ------------------- | -------------- |
-| Operating System    | Linux or MacOS |
-| Number of CPU cores | 8              |
-| RAM                 | 32 GB          |
-| SSD                 | 512 GB         |
 
 :::info
 Apple's new M1 chips are not supported natively by our node client. However, you can follow [this guide](https://medium.com/@luki3k5/running-lukso-node-on-m1-mac-acf92d433a38) to run it by using Rosetta, Apple's built-in emulation software.
@@ -138,7 +130,7 @@ Go to https://docs.docker.com/desktop/mac/install/ and install the application.
 You do not have to install Docker Compose separately
 ```
 
-## Setting up Metamask
+## Setting up MetaMask
 
 | Setting                      | Value                                           |
 | ---------------------------- | ----------------------------------------------- |
@@ -149,177 +141,7 @@ You do not have to install Docker Compose separately
 | Execution Block Explorer URL | <https://explorer.execution.l16.lukso.network>  |
 
 
-**[here is a tutorial on how to add a network to Metamask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
-
-### Installing the Node
-
-```bash
-mkdir lukso-l16-testnet && cd lukso-l16-testnet
-sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
-```
-
-The script will download the LUKSO cli into the folder. 
- 
-#### Setting up your node and node name
-```bash
-lukso network init --chain l16
-```
- 
-
-## Starting the Node
-
-```bash
-# Start your nodes
-lukso network start
-```
-
-## Become a Validator
-
-### Setup Validator
-
-```
-lukso network validator setup
-```
-
-This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit
-transaction. You can check if the wallet has enough funds by calling
-
-```
-lukso network validator describe
-```
-
-Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public key into the input field.
-
-Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
-
- 
-
-#### Submit the transaction.
-
-Make a dry run first
-
-```bash
-lukso network validator deposit --dry
-```
-
-This will give you the possibility to peek in what is going to happen without executing a transaction.
-
-If you are sure that everything is correct you run the command
-
-
-```bash
-lukso network validator deposit
-```
-
-It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
-
-Once you deposited LYXt make sure to create a backup.
-
-```bash
-lukso network validator backup
-```
-
-Store the file **node_recovery.json** somewhere safe.
-
-### Start the Validator Client
-
-```bash
-# Make sure your _consensus_ and _execution_ clients are running
-lukso network validator start
-
-# You can check logs with
-lukso network log validator -f
-
-You can close your logs by pressing ctrl+c
-
-# You can stop the validator using, this will also stop all other nodes
-lukso network validator stop
-```
-
-Occasionally check the status of your validator by either typing
-
-```bash
-lukso network validator describe
-```
-
-Or by visiting the [Explorer](https://explorer.consensus.l16.lukso.network)
-
-## Check your logs
-```
-lukso network log consensus -f
-lukso network log execution -f
-```
-
-You can close your logs by pressing ctrl+c
-
-## Stop your node
-```
-lukso network stop
-```
-
-
-##### If you selected a wrong chain, you could reset the setup. This will delete all related data except the keystores.
-##### NOTE: the network must be stopped
-```
-lukso network clear
-```
-
-### Check the Network Status
-
-You can see your node on the following pages:
-
-1. [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
-2. [https://stats.consensus.l16.lukso.network](https://stats.consensus.l16.lukso.network)
-
-
-
-## Troubleshooting L16 Testnet
-
-### Permission denied
-
-If you get an error that the permission is denied use `sudo` in front of your command.
-
-### Bootnodes
-
-You can update Bootnodes with
-
-
-```bash
-lukso network update
-```
-
-You need to restart the chain to make the changes effective
-
-```
-lukso network restart
-```
- 
-### Unmarshalling Error
-
-:::info Context
-Check your execution log by `lukso network log execution`. For Ubuntu 20.04 LTS you may get an unmarshal-related issue like:
-
-```
-log_execution: err="peer connected on snap without compatible eth support" log_consensus: level=error msg="Could not connect to powchain endpoint: could not dial eth1 nodes: json: cannot unmarshal string into Go struct field SyncProgress.CurrentBlock of type uint64" prefix=powchain
-```
-
-:::
-
-**Proposed Solution:**
-
-```sh
-# stop docker container
-lukso network stop
-# reset data directory
-lukso network clear
-# remove previous images
-docker system prune --all --force --volumes
-# delete lukso testnet directory
-cd .. && rm -rf ./lukso-l16-testnet
-```
-
-After trying out the proposed solution, re-run your node setup from the start.
-
+**[here is a tutorial on how to add a network to MetaMask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
  
 ## FAQ
 

@@ -173,6 +173,10 @@ module.exports = {
             from: '/contracts/interface-ids',
             to: '/standards/smart-contracts/interface-ids',
           },
+          {
+            from: '/networks/l16-testnet',
+            to: '/networks/l16-testnet/parameters',
+          },
         ],
       },
     ],

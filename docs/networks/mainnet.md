@@ -5,7 +5,7 @@ sidebar_position: 1
 # Mainnet
 
 :::note
-The Mainnet of LUKSO has no started yet. Please follow the progress at [L16 Public Testnet](l16-testnet.md).
+The Mainnet of LUKSO has no started yet. Please follow the progress at [L16 Public Testnet](./l16-testnet/parameters).
 :::
 
 ## Architecture
