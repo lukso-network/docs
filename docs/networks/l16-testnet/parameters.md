@@ -59,78 +59,7 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 |  3500 | UDP | beacon api| port should be closed | valuable information are provided but for a validator it is recommended to not open the port |
 |  4000 | UDP | beacon rpc| port should be closed | ... |
 
-### Configure your firewall
-**LINUX**
-
-Using the lukso-cli will open the ports for you automatically.  If you have a firewall configured, please allow traffic for the above mentioned ports, you can use the following commands to configure your firewall correctly:
-
-```
-sudo ufw default deny incoming
-sudo ufw default allow outgoing 
-```
-```
-sudo ufw allow 30303/tcp
-sudo ufw allow 30303/udp
-sudo ufw allow 13000/tcp
-sudo ufw allow 12000/udp
-```
-```
-sudo ufw enable
-```
-The firewall will be active after restarting your system.
-
-**MAC**
-
-```
-This section is in the works
-```
-
-:::info
-NOTE: Make sure you also forward those ports in your router.
-:::
-
-### Installing Dependencies
-
-Prepare your **Linux** environment. You need:
-
-1. [Docker](https://docs.docker.com/get-docker/)
-2. [Docker Compose](https://docs.docker.com/compose/)
-3. [curl](https://macappstore.org/curl/) 
-
-```bash title="Example script for installing docker"
-# Install dependencies
-sudo apt-get -y update
-sudo apt-get -y install curl
-
-# Install Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-
-# Install Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-docker-compose --version
-```
-
-To prepare your **Mac** environment. You need:
-1. [Homebrew package manager](https://brew.sh)
-2. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
-3. [curl](https://macappstore.org/curl/)
-
-```bash title="Example script for installing docker"
-# Install Homebrew 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install Curl
-sudo brew install curl
-
-# Install Docker Desktop for Mac
-Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
-You do not have to install Docker Compose separately
-```
-
-## Setting up MetaMask
+## MetaMask Setup
 
 | Setting                      | Value                                           |
 | ---------------------------- | ----------------------------------------------- |
@@ -140,9 +69,93 @@ You do not have to install Docker Compose separately
 | Currency Symbol              | LYXt                                            |
 | Execution Block Explorer URL | <https://explorer.execution.l16.lukso.network>  |
 
-
 **[here is a tutorial on how to add a network to MetaMask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
- 
+
+## LINUX System Setup
+*For instructions on setting up a Mac, proceed to the [Mac System Setup](#mac-system-setup) section.*
+
+### Configure Firewall
+Deny all incoming traffic by default
+```
+sudo ufw default deny incoming
+sudo ufw default allow outgoing 
+```
+Allow traffic for the ports listed above.
+```
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 13000/tcp
+sudo ufw allow 12000/udp
+```
+
+
+Enable firewall
+```
+sudo ufw enable
+```
+:::info
+NOTE: Make sure also to configure your router to forward these ports.
+:::
+You may follow this community-authored [Port Forwarding](https://github.com/KEEZ-RobG/node-guide/blob/main/PortForward.md) guide.
+
+
+
+### Install Dependencies
+
+1. [curl](https://macappstore.org/curl/) 
+2. [Docker](https://docs.docker.com/get-docker/)
+3. [Docker Compose](https://docs.docker.com/compose/)
+
+#### Install Curl
+```
+sudo apt-get -y update
+sudo apt-get -y install curl
+```
+
+#### Install Docker
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+#### Install Docker Compose
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+```
+
+## Mac System Setup
+### Configure Firewall
+This section is in the works
+
+:::info
+NOTE: Make sure also to configure your router to forward these ports.  
+:::
+You may follow this community-authored [Port Forwarding](https://github.com/KEEZ-RobG/node-guide/blob/main/PortForward.md) guide.
+
+### Installing Dependencies
+
+1. [Homebrew package manager](https://brew.sh)
+2. [curl](https://macappstore.org/curl/)
+3. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
+
+#### Install Homebrew
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install Curl
+```
+sudo brew install curl
+```
+
+#### Install Docker Desktop for Mac
+
+Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
+You do not have to install Docker Compose separately.
+
 ## FAQ
 
 You can find the FAQ about the L16 testnet [here](http://docs.lukso.tech/faq/network/).
