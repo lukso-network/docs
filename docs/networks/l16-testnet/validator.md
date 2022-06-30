@@ -71,7 +71,7 @@ Check the status of your validator, it can take up to 8 hours before your valida
  lukso network validator describe
  ```
 
-Make sure everything is working correclty by checking the stats pages
+Make sure everything is working correctly by checking the stats pages:
  
 [Execution stats](https://stats.execution.l16.lukso.network)
 [Consensus stats](https://stats.execution.l16.lukso.network)
