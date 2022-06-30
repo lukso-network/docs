@@ -100,7 +100,7 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 
 ## Install Dependencies
 
-1. [curl](https://macappstore.org/curl/) 
+1. [curl](https://curl.se/) 
 2. [Docker](https://docs.docker.com/get-docker/)
 3. [Docker Compose](https://docs.docker.com/compose/)
 
