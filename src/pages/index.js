@@ -15,6 +15,14 @@ function Index() {
         >
           <h1>Welcome to the LUKSO Documentation</h1>
         </div>
+        <div className={styles.ctaContainer}>
+          <a
+            className={styles.ctaButton}
+            href="./guides/universal-profile/browser-extension/install-browser-extension"
+          >
+            <strong>Try the LUKSO browser extension 🔥</strong>
+          </a>
+        </div>
         <div className={styles.cardContainer}>
           <Link
             style={{ textDecoration: 'none' }}
