@@ -27,7 +27,7 @@ sidebar_position: 2
  lukso -v
  ```
 
- The output has to be v.0.4.0 or higher
+ The output has to be v.0.4.0 or higher.
 
  ## Initialize the network
 
