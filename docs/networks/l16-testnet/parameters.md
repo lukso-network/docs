@@ -98,7 +98,7 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 
 
 
-## install Dependencies
+## Install Dependencies
 
 1. [curl](https://macappstore.org/curl/) 
 2. [Docker](https://docs.docker.com/get-docker/)
