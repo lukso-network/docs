@@ -11,53 +11,53 @@ lukso network stop
 
 ## Setup Validator
 
- ```
- lukso network validator setup
- ```
+```
+lukso network validator setup
+```
 
- This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit transaction. 
+This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit transaction. 
 
 Check if the wallet has enough funds
 
- ```
- lukso network validator describe
- ```
+```
+lukso network validator describe
+```
 
- Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public address into the field and choose the amount of LYXt you wany yo receive.
+Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public address into the field and choose the amount of LYXt you wany yo receive.
 
- Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
+Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
 
- ## Submit the transaction.
+## Submit the transaction.
 
- ### Make a dry run first
+### Make a dry run first
 
- ```
- lukso network validator deposit --dry
- ```
+```
+lukso network validator deposit --dry
+```
 
- This will give you the possibility to peek in what is going to happen without executing a transaction.
+This will give you the possibility to peek in what is going to happen without executing a transaction.
 
 ### Deposit your validators
 
- :::danger
+:::danger
 If you are 100% sure that everything is correct you can deposit your LYXt, you will lose all your LYXt if you made a mistake
- :::
+:::
 
- ```
- lukso network validator deposit
- ```
+```
+lukso network validator deposit
+```
 
- It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
+It can take up to eight hours before your validator becomes active, but you can already start your validator in the meantime.
 
- Once you deposited LYXt make sure to create a backup.
+Once you deposited LYXt make sure to create a backup.
 
- ```
- lukso network validator backup
- ```
+```
+lukso network validator backup
+```
 
- Store the file **node_recovery.json** somewhere safe and offline.
+Store the file **node_recovery.json** somewhere safe and offline.
 
- ## Start your validator node
+## Start your validator node
 
 ```
 lukso network start
@@ -181,5 +181,5 @@ The setup could be
 
 ## Need help?
 
- Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/u7cmyUyw8F).
+Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/u7cmyUyw8F).
 

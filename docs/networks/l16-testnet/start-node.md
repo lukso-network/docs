@@ -1,4 +1,5 @@
 ---
+title: Install node
 sidebar_position: 2
 ---
 
@@ -6,11 +7,11 @@ sidebar_position: 2
 
 ## Create a directory
 
- ```
- mkdir lukso-l16-testnet 
- ```
+```
+mkdir lukso-l16-testnet 
+```
  
-### navigate to it in your terminal by using the `cd` command
+navigate to it in your terminal by using the `cd` command
 
 ```bash
 cd lukso-l16-testnet
@@ -22,7 +23,7 @@ cd lukso-l16-testnet
 sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
 ```
 
-The script will download the LUKSO CLI into the directory.
+The script will download the [LUKSO CLI](https://github.com/lukso-network/lukso-cli) into the directory.
 
 ### Check your LUKSO CLI version
 

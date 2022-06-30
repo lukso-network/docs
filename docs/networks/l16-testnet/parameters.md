@@ -27,7 +27,7 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | Faucet                       | <https://faucet.l16.lukso.network>               |
 
 :::info
-You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/)
+You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/).
 :::
 
 ## System Requirements
@@ -69,7 +69,7 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 
 **[here is a tutorial on how to add a network to MetaMask.](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC)**
 
-## LINUX System Setup
+## Linux System Setup
 *For instructions on setting up a Mac, proceed to the [Mac System Setup](#mac-system-setup) section.*
 
 ### Configure Firewall
@@ -98,26 +98,29 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 
 
 
-## Install Dependencies
+### Install Dependencies
 
 1. [curl](https://curl.se/) 
 2. [Docker](https://docs.docker.com/get-docker/)
 3. [Docker Compose](https://docs.docker.com/compose/)
 
-### Install curl
-```
+#### Install curl
+
+```sh
 sudo apt-get -y update
 sudo apt-get -y install curl
 ```
 
-## Install Docker
-```
+#### Install Docker
+
+```sh
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-### Install Docker Compose
-```
+#### Install Docker Compose
+
+```sh
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
@@ -125,6 +128,7 @@ docker-compose --version
 ```
 
 ## Mac System Setup
+
 ### Configure Firewall
 This section is in the works
 
@@ -133,23 +137,23 @@ NOTE: Make sure also to configure your router to forward these ports.
 :::
 You may follow this community-authored [Port Forwarding](https://github.com/KEEZ-RobG/node-guide/blob/main/PortForward.md) guide.
 
-### Installing Dependencies
+### Install Dependencies
 
 1. [Homebrew package manager](https://brew.sh)
 2. [curl](https://macappstore.org/curl/)
 3. [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
 
-### Install Homebrew
+#### Install Homebrew
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-## Install Curl
+#### Install Curl
 ```
 sudo brew install curl
 ```
 
-## Install Docker Desktop for Mac
+#### Install Docker Desktop for Mac
 
 Go to https://docs.docker.com/desktop/mac/install/ and install the application. 
 You do not have to install Docker Compose separately.
