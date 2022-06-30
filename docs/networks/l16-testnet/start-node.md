@@ -35,7 +35,7 @@ sidebar_position: 2
  lukso network init --chain l16
  ```
 
- The CLI will ask you to setup your node name
+ The CLI will ask you to setup your node name.
 
  ### Change your node name
 
