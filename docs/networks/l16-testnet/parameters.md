@@ -104,7 +104,7 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 2. [Docker](https://docs.docker.com/get-docker/)
 3. [Docker Compose](https://docs.docker.com/compose/)
 
-### Install Curl
+### Install curl
 ```
 sudo apt-get -y update
 sudo apt-get -y install curl
