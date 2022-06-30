@@ -181,5 +181,5 @@ The setup could be
 
 ## Need help?
 
- Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/u7cmyUyw8F)
+ Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/u7cmyUyw8F).
 
