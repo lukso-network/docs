@@ -1,6 +1,6 @@
 ---
 title: Backup and recovery
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Backup And Recover Your validator
