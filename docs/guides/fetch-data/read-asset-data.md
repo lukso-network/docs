@@ -29,7 +29,7 @@ In this guide, we will learn how to:
 
 We will use:
 
-- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L14 network.
+- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L14 or L16 network.
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
 - [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code.
 - [lsp-smart-contracts](https://github.com/lukso-network/lsp-smart-contracts) to integrate the ABIs for the LUKSO Standards.
@@ -57,8 +57,8 @@ const { ERC725 } = require("@erc725/erc725.js");
 require("isomorphic-fetch");
 
 // Static variables
-const SAMPLE_PROFILE_ADDRESS = "0x0Ac71c67Fa5E4c9d4af4f99d7Ad6132936C2d6A3";
-const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const SAMPLE_PROFILE_ADDRESS = "0xa907c1904c22DFd37FF56c1f3c3d795682539196";
+const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
 const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
 
 // Parameters for the ERC725 instance
@@ -318,8 +318,8 @@ After receiving a list of asset addresses, we can check which assets are owned b
 // ABI for the asset
 const LSP8 = require("@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json");
 
-// New Web3 instance for LUKSO L14
-const web3 = new Web3("https://rpc.l14.lukso.network");
+// New Web3 instance for LUKSO L16
+const web3 = new Web3("https://rpc.l16.lukso.network");
 
 /*
  * Return an array of assets  
@@ -422,7 +422,7 @@ By using [function overloading], the `ERC725Y` interface function `getData(...)`
 
 // ...
 
-const SAMPLE_ASSET_ADDRESS = "0xfE85568Fea15A7ED3c56F7ca6544F2b96Aeb1774";
+const SAMPLE_ASSET_ADDRESS = "0x923F49Bac508E4Ec063ac097E00b4a3cAc68a353";
 const LSP4 = require("@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json");
 const {
   ERC725Y_INTERFACE_IDS,
@@ -871,11 +871,11 @@ const {
 } = require("@erc725/erc725.js/build/main/src/lib/constants");
 
 // Sample addresses
-const SAMPLE_PROFILE_ADDRESS = "0x0Ac71c67Fa5E4c9d4af4f99d7Ad6132936C2d6A3";
-const SAMPLE_ASSET_ADDRESS = "0xfE85568Fea15A7ED3c56F7ca6544F2b96Aeb1774";
+const SAMPLE_PROFILE_ADDRESS = "0xa907c1904c22DFd37FF56c1f3c3d795682539196";
+const SAMPLE_ASSET_ADDRESS = "0x923F49Bac508E4Ec063ac097E00b4a3cAc68a353";
 
 // Network and storage
-const RPC_ENDPOINT = "https://rpc.l14.lukso.network";
+const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
 const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
 
 // Parameters for the ERC725 instance
@@ -883,7 +883,7 @@ const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Setup Web3
-const web3 = new Web3("https://rpc.l14.lukso.network");
+const web3 = new Web3("https://rpc.l16.lukso.network");
 
 // Data keys for asset properties
 const TokenNameKey = LSP4schema[1].key;
