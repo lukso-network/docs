@@ -61,7 +61,7 @@ sidebar_position: 2
 
  - [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
 
- You can also check your [logs](./l16-logs.md)
+ You can also check your [logs](./l16-logs.md).
 
  ## Need help?
 
