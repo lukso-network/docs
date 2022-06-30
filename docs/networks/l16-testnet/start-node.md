@@ -2,67 +2,70 @@
 sidebar_position: 2
 ---
 
-# Start your L16 node
+# Install your L16 node
 
 ## Create a directory
 
  ```
  mkdir lukso-l16-testnet 
  ```
- ### navigate to it in your terminal by using the `cd` command
- ```bash
- cd lukso-l16-testnet
- ```
+ 
+### navigate to it in your terminal by using the `cd` command
 
- ## Install the LUKSO Command Line Interface (CLI)
- ```
- sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
- ```
+```bash
+cd lukso-l16-testnet
+```
 
- The script will download the LUKSO CLI into the directory.
+## Install the LUKSO Command Line Interface (CLI)
+ 
+```sh
+sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
+```
 
- ### Check your LUKSO CLI version
+The script will download the LUKSO CLI into the directory.
 
- ```
- lukso -v
- ```
+### Check your LUKSO CLI version
 
- The output has to be v.0.4.0 or higher.
+```
+lukso -v
+```
 
- ## Initialize the network
+The output has to be v.0.4.0 or higher.
 
- ```
- lukso network init --chain l16
- ```
+## Initialize the network
 
- The CLI will ask you to setup your node name.
+```sh
+lukso network init --chain l16
+```
 
- ### Change your node name
+The CLI will ask you to setup your node name.
 
- If you want to change your node name you can do this in the file `node_config.yaml`
+### Change your node name
 
- ```
- sudo nano node_config.yaml
- ```
+If you want to change your node name you can do this in the file `node_config.yaml`
 
- Change your node name close it with `ctrl+X` and save it.
+```sh
+sudo nano node_config.yaml
+```
 
- ## Start your node
+Change your node name close it with `ctrl+X` and save it.
 
- You can start your node with
+## Start your node
 
- ```
- lukso network start
- ```
+You can start your node with
 
- ### Check your node
+```sh
+lukso network start
+```
 
- Wait 10 minutes and check if your node is syncing on this stats page:
+### Check your node
 
- - [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
+Wait 10 minutes and check if your node is syncing on this stats page:
 
- You can also check your [logs](./l16-logs.md).
+- [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
 
- ## Need help?
+You can also check your [logs](./l16-logs.md).
 
- Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/u7cmyUyw8F).
+## Need help?
+
+Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/u7cmyUyw8F).
