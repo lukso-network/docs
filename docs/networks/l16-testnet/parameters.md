@@ -25,10 +25,6 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | Consensus Node list      | <https://stats.consensus.l16.lukso.network>    |
 | Faucet                   | <https://faucet.l16.lukso.network>             |
 
-:::info
-You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/).
-:::
-
 ## MetaMask
 
 :::tip

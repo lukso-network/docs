@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Logs & Stats
+# Logs, Stats and Monitoring
 
 ## Execution logs
 
@@ -20,7 +20,7 @@ sudo lukso network log consensus -f
 
 You can close the logs by pressing `ctrl+c`
 
-## Stats pages
+## Stats
 
 - [Execution stats](https://stats.execution.l16.lukso.network)
 - [Consensus stats](https://stats.consensus.l16.lukso.network)
@@ -29,3 +29,7 @@ You can close the logs by pressing `ctrl+c`
 
 - [Execution explorer](https://explorer.execution.l16.lukso.network)
 - [Consensus explorer](https://explorer.consensus.l16.lukso.network)
+
+## Monitoring
+
+You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://luksoverse.io/2022/06/system-and-monitor-setup-guide-by-volodymyr-lykhonis/).
