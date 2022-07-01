@@ -20,17 +20,12 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 
 ## Ports
 
-| Port  | Protocol | Client           | Ingress               | Comment                                                                                       |
+| Port  | Protocol | Client           | Ingress               
 | ----- | -------- | ---------------- | --------------------- | --------------------------------------------------------------------------------------------- |
 | 30303 | TCP      | geth syncing     | port must be open     | -                                                                                             |
 | 30303 | UDP      | geth discovery   | port must be open     | -                                                                                             |
 | 13000 | TCP      | beacon syncing   | port must be open     | -                                                                                             |
-| 12000 | UDP      | beacon discovery | port must be open     | -                                                                                             |
-| 8545  | TCP      | geth api         | port should be closed | Valuable information are provided but for a validator it is recommended to not open the port. |
-| 8080  | UDP      | beacon metrics   | port should be closed | -                                                                                             |
-| 3500  | UDP      | beacon api       | port should be closed | Valuable information are provided but for a validator it is recommended to not open the port. |
-| 4000  | UDP      | beacon rpc       | port should be closed | -                                                                                             |
-
+| 12000 | UDP      | beacon discovery | port must be open                                                 
 ## Linux System Setup
 
 _For instructions on setting up a Mac, proceed to the [MacOS System Setup](#macos-system-setup) section._
