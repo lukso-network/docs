@@ -9,7 +9,7 @@ sidebar_position: 2
 
 As mentioned in the [LSPs Foundation](./introduction.md#lsps-foundation) section, the LSPs are not order dependant meaning a standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](#)** uses **[LSP1 - UniversalReceiver](#)**, **[LSP2 - ERC725YJSONSchema](#)** and could use **[LSP3 - UniversalProfileMetadata](#)**, etc.
 
-## LSPs Roamdap
+## LSPs Roadmap
 
 In order to understand the LSPs properly, they should be studied in the following order:
 
