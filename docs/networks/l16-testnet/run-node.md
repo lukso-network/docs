@@ -166,7 +166,7 @@ The CLI will ask you to setup your node name.
 You can start your node with:
 
 ```sh
-lukso network start
+sudo lukso network start
 ```
 
 #### Check your node
@@ -180,7 +180,7 @@ Immediately after starting your node you can check the syncing process in your [
 ## Stop your node
 
 ```sh
-lukso network stop
+sudo lukso network stop
 ```
 
 :::tip Want to run a validator node?
