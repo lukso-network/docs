@@ -95,9 +95,8 @@ docker-compose --version
 This section is in the works
 
 :::info
-NOTE: Make sure also to configure your router to forward these ports.  
+This section is in the works 
 :::
-You may follow this community-authored [Port Forwarding](https://github.com/KEEZ-RobG/node-guide/blob/main/PortForward.md) guide.
 
 ### Install Dependencies
 
@@ -114,13 +113,17 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 #### Install Curl
 
 ```
-sudo brew install curl
+brew install curl
 ```
 
 #### Install Docker Desktop for Mac
 
 Go to https://docs.docker.com/desktop/mac/install/ and install the application.
 You do not have to install Docker Compose separately.
+
+:::info
+Open the Docker Desktop application after installing from the applications folder on your Mac
+:::
 
 ## Install the LUKSO Command Line Interface (CLI)
 
@@ -148,7 +151,7 @@ sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install
 lukso -v
 ```
 
-The output has to be v.0.4.0 or higher.
+The output has to be v.0.4.3 or higher.
 
 ## Initialize the network
 
@@ -157,16 +160,6 @@ lukso network init --chain l16
 ```
 
 The CLI will ask you to setup your node name.
-
-#### Change your node name
-
-If you want to change your node name you can do this in the file `node_config.yaml`
-
-```sh
-sudo nano node_config.yaml
-```
-
-Change your node name close it with `ctrl+X` and save it.
 
 ## Start your node
 
