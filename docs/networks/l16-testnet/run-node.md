@@ -171,11 +171,11 @@ lukso network start
 
 #### Check your node
 
-Wait 10 minutes and check if your node is syncing on this stats page:
+Wait 1 hour and check if your node has synced on this stats page:
 
 - [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
 
-You can also check your [logs](./l16-logs.md).
+Immediately after starting your node you can check the syncing process in your [logs](./l16-logs.md).
 
 ## Stop your node
 
