@@ -13,9 +13,36 @@ Before running validators on your node, make sure your node is running and worki
 ```sh
 lukso network validator setup
 ```
-
 This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit transaction.
 
+:::info
+Fill in a password and save it somewhere.
+:::
+
+:::danger
+Never delete the following files if you have deposited your validators: keystore, transaction_wallet and deposit_data.json.
+:::
+
+## Amount of validators
+
+Make a choice how many validators you want to run, for every validator you need to have 220 LYXt
+
+## Mnemonic
+
+If this is the first time you set up your validators, choose to not use an existing Mnemonic.
+
+Choose to create a separate withdraw Mnemonic.
+
+The Mnemonics will appear in your `node_config.yaml` file.
+
+Open your `node_config.yaml`
+```
+nano node_config.yaml
+```
+
+Copy your Mnemonics and store them somewhere safe and offline.
+
+## Check your balance
 Check if the wallet has enough funds:
 
 ```sh
@@ -24,7 +51,10 @@ lukso network validator describe
 
 Visit the [Faucet](https://faucet.l16.lukso.network) and paste the transaction wallet public address into the field and choose the amount of LYXt you wany yo receive.
 
+:::info
 Transfer **enough** (#validators x staking_amount **+ extra LYXt to pay deposit fees**) funds to the transaction wallet public's address.
+:::
+
 
 ## Submit the transaction
 
