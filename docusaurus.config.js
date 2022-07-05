@@ -57,7 +57,7 @@ module.exports = {
           target: '_blank',
         },
         {
-          href: 'https://lukso.network/assets/LUKSO_Whitepaper.pdf',
+          href: 'https://uploads-ssl.webflow.com/629f44560745074760731ba4/62b200bfe0af12186845519a_LUKSO_Whitepaper_V1-1.pdf',
           label: 'Whitepaper',
           position: 'right',
         },
