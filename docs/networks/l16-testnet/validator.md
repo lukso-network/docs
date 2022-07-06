@@ -11,6 +11,7 @@ Before running validators on your node, make sure your node is running and worki
 ## Setup Validator
 
 ```sh
+cd lukso-l16-testnet
 lukso network validator setup
 ```
 This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit transaction.
@@ -89,11 +90,11 @@ Store the file **node_recovery.json** somewhere safe and offline.
 ## Start your validator node
 
 ```
-lukso network start
+sudo lukso network start
 ```
 
 ```
-lukso network validator start
+sudo lukso network validator start
 ```
 
 Check the status of your validator, it can take up to 8 hours before your validators become active
