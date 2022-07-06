@@ -156,7 +156,7 @@ The output has to be v.0.4.3 or higher.
 ## Initialize the network
 
 ```sh
-lukso network init --chain l16
+sudo lukso network init --chain l16
 ```
 
 The CLI will ask you to setup your node name.
