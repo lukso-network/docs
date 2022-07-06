@@ -27,7 +27,7 @@ Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-backgroun
 
 :::
 
-### `SupportedStandards:LSP4DigitalAsset`
+### SupportedStandards:LSP4DigitalAsset
 
 ```json
 {
@@ -41,7 +41,7 @@ Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-backgroun
 
 This key is used to know if the contract represents a **Digital Asset**.
 
-### `LSP4TokenName`
+### LSP4TokenName
 
 ```json
 {
@@ -55,7 +55,7 @@ This key is used to know if the contract represents a **Digital Asset**.
 
 The value attached to this data key represents the name of the digital asset.
 
-### `LSP4TokenSymbol`
+### LSP4TokenSymbol
 
 ```json
 {
@@ -69,7 +69,7 @@ The value attached to this data key represents the name of the digital asset.
 
 The value attached to this data key represents the symbol of the digital asset.
 
-### `LSP4Metadata`
+### LSP4Metadata
 
 ```json
 {
