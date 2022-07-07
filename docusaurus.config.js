@@ -10,6 +10,7 @@ module.exports = {
   favicon: 'img/favicon.png',
   organizationName: 'lukso-network', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
+  trailingSlash: false,
   plugins: ['docusaurus-plugin-sass', 'plugin-image-zoom'],
   themeConfig: {
     image: 'img/lukso-docs.jpg',
@@ -130,7 +131,6 @@ module.exports = {
       darkTheme: require('prism-react-renderer/themes/dracula'),
     },
   },
-
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -148,6 +148,13 @@ module.exports = {
         gtag: {
           trackingID: 'G-2XGVSVVVD4',
           anonymizeIP: true,
+        },
+
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/networks/l16-testnet/'],
+          filename: 'sitemap.xml',
         },
       },
     ],
