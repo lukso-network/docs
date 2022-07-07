@@ -73,7 +73,7 @@ The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId*
 
 ### Force Boolean
 
-It's estimated that more than **Hundreds of Millions of Dollars** worth of tokens were **sent to the wrong addresses** because of lacks of transfer validation checks.
+It's estimated that more than **Hundreds of Millions of Dollars** worth of tokens were **sent to uncontrolled addresses** because of lacks of transfer validation checks.
 
 It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
 
