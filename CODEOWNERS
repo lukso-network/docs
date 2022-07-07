@@ -1,0 +1,17 @@
+# This is a comment.
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence, @Hugoo will be requested for
+# review when someone opens a pull request.
+*   @Hugoo
+
+/docs/networks/ @andocodes @NandoTheessen
+
+/docs/standards/    @CJ42 @YamenMerhi
+
+/docs/tools/lsp-factoryjs/    @CallumGrindle
+
+/docs/guides/    @fhildeb
+
+/docs/guides/universal-profile/browser-extension/    @Esanim @dzbo

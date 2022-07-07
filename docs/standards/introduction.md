@@ -33,7 +33,7 @@ Our team and community members look forward to helping you understand the standa
 
 The current **blockchain experience** comes with many limitations, not necessarily because of the complexity but because of the broken infrastructure represented by the old underlying tools and standards used to operate on the network.
 
-Change should start from the bottom to create a better user experience on the blockchain, starting from the fundamental pieces to propagating to the top. Topics related to **identity**, **assets representation**, and **smart contract interaction** require standardization. Such standards should be flexible enough to support and allow more potential use-cases in the future.
+Change should start from the bottom to create a better user experience on the blockchain, starting from the fundamental pieces to propagating to the top. Topics related to **identity**, **assets representation**, **relay execution** and **smart contract interaction** require standardization. Such standards should be flexible enough to support and allow more potential use-cases in the future.
 
 The following documentation describes the fundamentals of the standards and technical aspects of the LUKSO ecosystem.
 

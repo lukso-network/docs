@@ -9,22 +9,26 @@ import TabItem from '@theme/TabItem';
 # Install the UP Browser Extension
 
 :::danger
+
 The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
+
 :::
 
 This guide will teach you how to download and install the Universal Profile browser extension on Chrome, Edge, Opera, or Brave.
 
-## Download the Extension
+## Download the extension
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.0.0-develop.243-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.0.0-develop.243-mv2.zip)**
+### :inbox_tray: **[Download link (v1.0.0-develop.260-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-1.0.0-develop.260.zip)**
 
-## Unpack the Archive
+### :inbox_tray: **[Download link (v1.0.0-develop.260-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-1.0.0-develop.260.zip) (Firefox)**
+
+## Unpack the archive
 
 Open your download folder and unpack the ZIP archive by opening the file.
 
-## Install the Extension
+## Install the extension
 
 <Tabs>
   <TabItem value="chrome" label="Chrome">
@@ -70,7 +74,7 @@ Pin the extension to the extension bar and click on the icon to open it up.
 
 Open the extension by clicking its icon from the menu bar.
 
-![Step 5 - Chrome: Open Extension](/img/extension/chrome6.png)
+![Step 5 - Chrome: Open Extension](/img/extension/chrome-launch-extension.webp)
 
   </TabItem>
   <TabItem value="edge" label="Edge">
@@ -217,7 +221,7 @@ This installation process is for **Firefox Developer Edition** (or **Firefox Nig
 
 Type `about://config` into the searchbar to open the configuration page.
 
-![Step 1a - Firefox: about:config](/img/extension/firefox1.png)  
+![Step 1a - Firefox: about:config](/img/extension/firefox1.png)
 
 Click _Accept Risk and Continue_ when promped with _Proceed with Caution_ warning.
 
