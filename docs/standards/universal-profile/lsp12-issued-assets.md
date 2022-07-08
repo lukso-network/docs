@@ -19,7 +19,7 @@ One way to solve this problem is to create generic metadata keys that would regi
 
 ## What does this standard represent ?
 
-:::success Recommendation
+:::tip Recommendation
 
 Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 

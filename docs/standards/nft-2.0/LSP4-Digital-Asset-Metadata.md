@@ -13,7 +13,7 @@ sidebar_position: 2
 
 ## Introduction
 
-The existing tokens and NFTs standards do not offer a standard way to attach information to the contracts themselves. Such information is crucial to make each token or NFT descriptive and customized. Consider the current ERC20 and ERC721 standards as an example. These standards only define a **name**, **symbol**, and **tokenURI** making it unpossible to attach more specific data to the asset (_e.g., icon, asset creator(s), token utility or motive, community behind it_).
+The existing tokens and NFTs standards do not offer a standard way to attach information to the contracts themselves. Such information is crucial to make each token or NFT descriptive and customized. Consider the current ERC20 and ERC721 standards as an example. These standards only define a **name**, **symbol**, and **tokenURI** making it impossible to attach more specific data to the asset (_e.g., icon, asset creator(s), token utility or motive, community behind it_).
 
 **LSP4-DigitalAsset-Metadata** solve this problem by defining a set of data keys to describe a **Digital Asset** using [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) as a backbone. ERC725Y enables smart contracts to have very flexible and extensible storage. With ERC725Y, any information or metadata can be attached to the token or NFT.
 
@@ -21,7 +21,7 @@ The existing tokens and NFTs standards do not offer a standard way to attach inf
 
 ## ERC725Y Data Keys
 
-:::success Recommendation
+:::tip Recommendation
 
 Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 

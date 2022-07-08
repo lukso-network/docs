@@ -19,7 +19,7 @@ One way to avoid this problem is to create generic metadata keys that developers
 
 ## What does this standard represent ?
 
-:::success Recommendation
+:::tip Recommendation
 
 Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 
@@ -43,7 +43,7 @@ This data key represents a list of all the vaults owned by the contract.
 ```
 
 
-:::success Recommendation
+:::tip Recommendation
 
 It is recommended to query the **`LSP10Vaults[]`** data key to check if a smart contract supports the **[LSP10 - ReceivedVaults](./lsp10-received-vaults.md)** standard.
 

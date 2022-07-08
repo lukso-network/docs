@@ -19,7 +19,7 @@ One way to solve this problem is to create generic metadata keys that would regi
 
 ## What does this standard represent?
 
-:::success Recommendation
+:::tip Recommendation
 
 Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 
@@ -42,7 +42,7 @@ This data key represents a list of all tokens and NFTs currently owned by the co
 }
 ```
 
-:::success Recommendation
+:::tip Recommendation
 
 It is advised to query the **`LSP5ReceivedAssets[]`** data key to verify if a contract supports the **[LSP5 - ReceivedAsset](./lsp5-received-assets.md)** standard.
 
