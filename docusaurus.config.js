@@ -13,6 +13,14 @@ module.exports = {
   plugins: ['docusaurus-plugin-sass', 'plugin-image-zoom'],
   themeConfig: {
     image: 'img/lukso-docs.jpg',
+    announcementBar: {
+      id: 'hackathon',
+      content:
+        '🚀 &nbsp; We are excited to announce our first hackathon with Gitcoin - the <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/hackathon?utm_source=docs&utm_medium=docs&utm_campaign=banner">LUKSO Build UP! #1</a> - with $500k in prizes &nbsp;👾',
+      backgroundColor: '#ecf0f3',
+      textColor: '#4467bb',
+      isCloseable: false,
+    },
     navbar: {
       title: 'LUKSO',
       logo: {
@@ -57,7 +65,7 @@ module.exports = {
           target: '_blank',
         },
         {
-          href: 'https://lukso.network/assets/LUKSO_Whitepaper.pdf',
+          href: 'https://uploads-ssl.webflow.com/629f44560745074760731ba4/62b200bfe0af12186845519a_LUKSO_Whitepaper_V1-1.pdf',
           label: 'Whitepaper',
           position: 'right',
         },
@@ -129,6 +137,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
+          showLastUpdateTime: true,
           editUrl: 'https://github.com/lukso-network/docs/tree/main/',
         },
         blog: false,
@@ -138,6 +147,13 @@ module.exports = {
         gtag: {
           trackingID: 'G-2XGVSVVVD4',
           anonymizeIP: true,
+        },
+
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/networks/l16-testnet/'],
+          filename: 'sitemap.xml',
         },
       },
     ],
@@ -172,6 +188,10 @@ module.exports = {
           {
             from: '/contracts/interface-ids',
             to: '/standards/smart-contracts/interface-ids',
+          },
+          {
+            from: '/networks/l16-testnet',
+            to: '/networks/l16-testnet/parameters',
           },
         ],
       },

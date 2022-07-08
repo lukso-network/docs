@@ -18,7 +18,7 @@ In this guide, we will learn how to read data from a [Universal Profile](../../s
 
 We will use:
 
-- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L14 network.
+- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L16 network.
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
 - [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code.
 
@@ -69,9 +69,9 @@ const { ERC725 } = require('@erc725/erc725.js');
 require('isomorphic-fetch');
 
 // Our static variables
-const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
+const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for ERC725 Instance
 const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');
@@ -225,8 +225,8 @@ require('isomorphic-fetch');
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for ERC725 Instance
 const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');

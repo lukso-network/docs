@@ -7,17 +7,22 @@ title: Digital Asset
 
 LSPFactory enables developers to easily deploy [LSP7] and [LSP8] Digital Asset smart contracts for their [fungible token](./digital-asset.md#fungible-token) or [NFT 2.0](./digital-asset.md#deploying-nft-20) use cases.
 
-To deploy an [LSP7] Digital Asset:
+To deploy a mintable [LSP7] Digital Asset:
 
 ```javascript
 await lspFactory.LSP7DigitalAsset.deploy(digitalAssetProperties [, options]);
 ```
 
-To deploy an LSP8 Identifiable Digital Asset:
+To deploy a mintable LSP8 Identifiable Digital Asset:
 
 ```javascript
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy(digitalAssetProperties [, options]);
 ```
+
+:::info
+By default LSPFactory deploys the [`Mintable`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol) implementation of LSP7 and LSP8 digital assets. To call the `mint` function import the `LSP7Mintable` or `LSP8Mintable` abi from the [lsp-smart-contracts library](https://github.com/lukso-network/lsp-smart-contracts).
+
+:::
 
 ## Deploying an NFT 2.0
 
