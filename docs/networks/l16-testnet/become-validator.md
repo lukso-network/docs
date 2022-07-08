@@ -108,7 +108,7 @@ Make sure everything is working correctly by checking the stats pages:
 - [Execution stats](https://stats.execution.l16.lukso.network)
 - [Consensus stats](https://stats.consensus.l16.lukso.network)
 
-You can also check your [logs](./l16-logs.md).
+You can also check your [logs](./logs-stats-monitoring.md).
 
 ## Terminology
 

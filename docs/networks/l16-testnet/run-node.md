@@ -181,7 +181,7 @@ Wait 1 hour and check if your node has synced on this stats page:
 
 - [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
 
-Immediately after starting your node you can check the syncing process in your [logs](./l16-logs.md).
+Immediately after starting your node you can check the syncing process in your [logs](./logs-stats-monitoring.md).
 
 ## Stop your node
 
@@ -190,7 +190,7 @@ sudo lukso network stop
 ```
 
 :::tip Want to run a validator node?
-If you want, you are now ready to run validators on your node. Check the tutorial on the [validator](./validator) page.
+If you want, you are now ready to run validators on your node. Check the tutorial on the [validator](./become-validator.md) page.
 :::
 
 ## Need help?
