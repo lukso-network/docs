@@ -48,6 +48,12 @@ sudo ufw allow 13000/tcp
 sudo ufw allow 12000/udp
 ```
 
+You can forward extra ports, by using the following command:
+```
+sudo ufw allow [replace_with_your_ssh_port]/tcp/udp
+```
+This can be useful for setting up you ssh connection or monitoring.
+
 Enable firewall
 
 ```
@@ -142,7 +148,7 @@ cd lukso-l16-testnet
 Then, install the [LUKSO CLI](https://github.com/lukso-network/lukso-cli) using the install script:
 
 ```sh
-sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
+sudo curl https://install.l16.lukso.network | sudo bash
 ```
 
 #### Check your LUKSO CLI version
