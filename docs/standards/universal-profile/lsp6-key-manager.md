@@ -315,6 +315,16 @@ You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ER
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
 
+The values set under these permission keys **MUST be of the following format** to ensure correct behavior of these functionalities.
+
+- **Address Permissions**: a `bytes32` value.
+- **Allowed Addresses**: an ABI-encoded array of `address[]`.
+- **Allowed Functions**: an ABI-encoded array of `bytes4[]`.
+- **Allowed Standards**: an ABI-encoded array of `bytes4[]`.
+- **Allowed ERC725Y Keys**: an ABI-encoded array of `bytes32[]`.
+
+> See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
+
 :::caution
 
 To **add / remove entries in the list of allowed addresses, functions, standards or ERC725Y keys**, the **whole array** should be ABI-encoded again and reset. Each update **overrides the entire previous state**.
@@ -354,12 +364,10 @@ Such transaction flow can lead an initial caller to use more permissions than al
 
 :::caution
 
-Each permission MUST be:
+Each permission MUST be **exactly 32 bytes long** and **zero left-padded**:
 
-- **exactly 32 bytes long**
-- zero left-padded
-  - `0x0000000000000000000000000000000000000000000000000000000000000008` ✅
-  - `0x0800000000000000000000000000000000000000000000000000000000000000` ❌
+- `0x0000000000000000000000000000000000000000000000000000000000000008` ✅
+- `0x0800000000000000000000000000000000000000000000000000000000000000` ❌
 
 For instance, if you try to set the permission SETDATA for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
 
@@ -390,14 +398,6 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 
 ![LSP6 Allowed Addresses explained](/img/standards/lsp6/lsp6-allowed-addresses.jpeg)
 
-:::caution
-
-The allowed addresses MUST be an **ABI-encoded array** of `address[]` to ensure the correct behavior of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
-
-:::
-
 ---
 
 ### Allowed functions
@@ -424,14 +424,6 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 :::info
 
 The `receive()` and `fallback()` functions can always be called on a target contract if no calldata is passed, even if you restrict an `<address>` to call a certain set of functions.
-
-:::
-
-:::caution
-
-The allowed functions MUST be an **ABI-encoded array** of `bytes4[]` function selectors to ensure the correct behaviour of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::
 
@@ -472,14 +464,6 @@ This type of permission does not offer security over the inner workings or the c
 
 :::
 
-:::caution
-
-The allowed standards MUST be an **ABI-encoded array** of `bytes4[]` ERC165 interface ids to ensure the correct behavior of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
-
-:::
-
 ---
 
 ### Allowed ERC725Y Keys
@@ -516,14 +500,6 @@ As a result, this provide context for the Dapp on which data they can operate on
 :::info
 
 **If no bytes32 values are set, the caller address can set values for any keys.**
-
-:::
-
-:::caution
-
-The list of allowed ERC725Y data keys **MUST be an ABI-encoded** array of `bytes32[]` values to ensure the correc behaviour of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::
 
