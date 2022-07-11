@@ -33,32 +33,6 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 ---
 
-## Relay Execution
-
-Relay execution minimize onboarding & **UX friction** for dapps. In this way users can interact on the blockchain **without needing Native tokens** for transaction fees. This will allow users without prior crypto experience to be comfortable using the blockchain without the need to worry about gas or any complex steps needed to operate on blockchains (KYC, seedphrases, gas).
-
-Dapps can leverage the relay execuyion feature to build their own business model on top that can function in different ways including building their own **relay service** or building smart contracts solution on top of the Key Manager to pay with their tokens.
-
-Others can build relay services and agree with the users on payment methods including subscriptions, ads, etc ..
-
-![LSP6 Key Manager Relay Service](/img/standards/lsp6-relay-execution.jpeg)
-
-## Out of order execution
-
-Since the Key Manager offers **relay execution** via signed message, it's important to provide security measurements to ensure that the signed message can't be repeated once executed. **[Nonces](https://www.techtarget.com/searchsecurity/definition/nonce#:~:text=A%20nonce%20is%20a%20random,to%20as%20a%20cryptographic%20nonce.)** existed to solve this problem, but with the following drawback:
-
-- Signed messages with sequentiel nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
-
-Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
-
-Signed messages should be executed sequentielially if signed on the same channel and should be executed independently if signed on different channel.
-
-- Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
-
-![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
-
-Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
-
 ## Permissions
 
 :::tip
@@ -390,6 +364,8 @@ To grant permission(s) to an `<address>`, set the following key-value pair below
 }
 ```
 
+![Address Permissions range](/img/standards/lsp6/lsp6-address-permissions.jpeg)
+
 :::danger
 
 **Granting permissions to the linked ERC725Account itself is dangerous! **
@@ -542,6 +518,43 @@ As a result, this provide context for the Dapp on which data they can operate on
 :::
 
 ---
+
+## Types of Execution
+
+There are 2 ways to interact with the ERC725Account linked with the Key Manager.
+
+- **direct execution**, where the caller `address` directly sends a **payload** to the Key Manager (= abi-encoded function call on the linked ERC725Account) to the KeyManager via `execute(...)`.
+- **relay execution**, where a signer `address` **A** signs a payload and an executor `address` **B** (_e.g. a relay service_) executes the payload on behalf of the signer via `executeRelayCall(...)`.
+
+The main difference between direct _vs_ relay execution is that with direct execution, the caller `address` is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer `address` can interact with the ERC725Account without having to pay for gas fee.
+
+![Direct vs Relay Execution](/img/standards/lsp6/lsp6-direct-vs-relay-execution.jpeg)
+
+### Relay Execution
+
+Relay execution enables users to interact with smart contracts on the blockchain **without needing native tokens** to pay for transaction fees. This allows a better onboarding experience for users new to cryptocurrencies and blockchain.
+
+Relay execution minimizes **UX friction** for dapps, including removing the need for users to worry about gas fee, or any complex steps needed to operate on blockchains (KYC, seedphrases, gas).
+
+Dapps can then leverage the relay execution features to create their own business model around building their own **relay service**, smart contracts solution on top of the Key Manager to pay with their tokens, or agree with users on payment methods including subscriptions, ads, etc ..
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-relay-execution.jpeg)
+
+### Out of order execution
+
+Since the Key Manager offers **relay execution** via signed message, it's important to provide security measurements to ensure that the signed message can't be repeated once executed. **[Nonces](https://www.techtarget.com/searchsecurity/definition/nonce#:~:text=A%20nonce%20is%20a%20random,to%20as%20a%20cryptographic%20nonce.)** existed to solve this problem, but with the following drawback:
+
+- Signed messages with sequentiel nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
+
+Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
+
+Signed messages should be executed sequentielially if signed on the same channel and should be executed independently if signed on different channel.
+
+- Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
+
+Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
 
 ## References
 
