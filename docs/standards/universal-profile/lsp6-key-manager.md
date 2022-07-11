@@ -297,11 +297,39 @@ permissions: CHANGEPERMISSIONS + SETDATA
 
 :::tip
 
-You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [**erc725.js**](../../../../tools/erc725js/getting-started) tool to easily combine and decode LSP6 permissions.
+You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [_erc725.js_](../../../../tools/erc725js/getting-started) tool to easily combine and decode LSP6 permissions.
 
 :::
 
 ---
+
+### Retrieving addresses with permissions
+
+You can obtain the list of `address` that have some permissions set on the linked ERC725Account by querying the `AddressPermission[]` data key, on the ERC725Y storage via [`getData(...)`](../smart-contracts/erc725-contract.md#getdata---erc725y).
+
+- **key:** `0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3`
+- **value return:** the total number of address that have some permissions set (= array length)
+
+Each `address` can be retrieved by accessing each index in the array (see [LSP2 > Array docs](../generic-standards/lsp2-json-schema.md#array) and [LSP2 > Array Standard specs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#array) for more detailed instructions).
+
+```json
+{
+  "name": "AddressPermissions[]",
+  "key": "0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3",
+  "keyType": "Array",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+_example:_
+
+_if the `AddressPermission[]` array data key returns `0x0000000000000000000000000000000000000000000000000000000000000004` (array length = 4), each `address` can be obtained by querying the following data keys:_
+
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000000`: 1st `address`(array index 0 = `AddressPermissions[0]`)_
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000001`: 2nd `address` (array index 1 = `AddressPermissions[1]`)_
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000002`: 3rd `address` (array index 2 = `AddressPermissions[2]`)_
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000003`: 4th `address` (array index 3 = `AddressPermissions[3]`)_
 
 ## Types of permissions
 
@@ -337,10 +365,12 @@ Note that this process is expensive since the data being set is an ABI-encoded a
 
 An address can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data** on the ERC725Account, **calling other contracts**, **transferring native tokens**, etc.
 
-To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage (**NB:** remember to remove the `0x` prefix in the `<address>` field below).
+To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
 
 - **key:** `0x4b80742de2bf82acb3630000<address>`
-- **value:** one of the available options below.
+- **value:** one of the available permission below. To give multiple permission, see the Combining permissions section.
+
+> **NB:** remember to remove the `0x` prefix in the `<address>` field above.
 
 ```json
 {
