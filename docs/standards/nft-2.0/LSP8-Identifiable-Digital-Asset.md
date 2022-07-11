@@ -40,21 +40,23 @@ The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-
 
 **[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as **bytes32**. The choice of **bytes32 tokenIds** allows a wide variety of applications including numbers, contract addresses, and hashed values (ie. serial numbers). 
 
-The **bytes32 tokenId** can be interpreted as a <u>**Number**</u>: 
+The **bytes32 tokenId** can be interpreted as a:
+
+- <u><b>Number:</b></u>   
 
 ![LSP8 Number TokenIds Representation](/img/standards/lsp8-tokenId-number.jpeg)
 
 
-The **bytes32 tokenId** can be interpreted as a <u>**Hashed Value**</u>: 
+- <u><b>Hashed Value:</b></u>:
 
 ![LSP8 Hashed Value TokenIds Representation](/img/standards/lsp8-tokenId-hashed.jpeg)
 
 
-The **bytes32 tokenId** can be interpreted as a <u>**Contract Address**</u>: 
+- <u><b>Contract Address:</b></u> 
 
 ![LSP8 Address TokenIds Representation](/img/standards/lsp8-tokenId-address.jpeg)
 
-TokenIds represented as **contract address** will allow the creation of more  **complex NFTs**, such as **Nested NFTs**, where each tokenId could be a contract that has its own storage using **[ERC725Y](../lsp-background//erc725.md#erc725y---generic-data-keyvalue-store)**, and the tokenId can **evolve** by changing metadata depending on **game rules**.  
+TokenIds represented as **smart contract address** allow the creation of more  **complex NFTs**. When each tokenId is a contract that have its own **[ERC725Y](../lsp-background//erc725.md#erc725y---generic-data-keyvalue-store)** storage. For instance in a video game, by changing the features and metadata of the tokenId based on the **game rules**.
 
 ![LSP8 Game Nested NFTs TokenIds Representation](/img/standards/lsp8-game.jpeg)
 ### Unlimited Metadata

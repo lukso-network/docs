@@ -60,7 +60,7 @@ To ensure a flexible and generic asset representation, the token contract should
 
 ### Force Boolean
 
-It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
+It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts](../universal-profile/lsp0-erc725account.md)** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens, but they will be used mainly to control these accounts and not to hold them.
 
 To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts/lsp7-digital-asset.md#transfer) and mint functions:
 
