@@ -328,6 +328,8 @@ Each `address` can be retrieved by accessing each index in the array (see [LSP2 
 }
 ```
 
+![AddressPermissions array - list of addresses with permissions](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
+
 _example:_
 
 _if the `AddressPermission[]` array data key returns `0x0000000000000000000000000000000000000000000000000000000000000004` (array length = 4), each `address` can be obtained by querying the following data keys:_
