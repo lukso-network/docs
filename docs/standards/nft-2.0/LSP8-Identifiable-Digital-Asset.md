@@ -13,83 +13,107 @@ sidebar_position: 4
 
 ## Introduction
 
-When it comes to Non Fungible Tokens (NFTs), one of the key characteristics that make them unique is their **metadata.**
+Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** tokens have a lot of limitations in terms of metadata, secure transfers, asset representation, and asset interaction. This causes problems for users seeking, **full control** over which assets they accept or not, **more complex NFT functionality**, and a **simple user experience** while creating, buying, and exchanging assets.
 
-In their current state, such assets are created as ERC721 tokens. However, their limitations are following:
+**[LSP8-IdentifiableDigitalAsset](#)** is the standard that aims to solve all problems mentioned above by:
+- Allowing more secure transfers via **force boolean parameter**.
+- More asset metadata **via [LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)**.
+- More asset representation **via bytes32 tokenIds**.
+- More interaction between the asset contract and the asset *sender/recipient* **via token hooks**.
 
-#### 1. The metadata attached to the NFT (represented with `tokenURI`) refers to a file.
-
-The reference raises several questions around where the token's metadata is stored. Is a central service used to store the metadata? What about if such a service goes down?
-
-![ERC721 Metadata Security](/img/erc721-metadata-security.png)
-
-#### 2. The only data that can be attached to an NFT is a `name` and `symbol`.
-
-Each NFT has its own characteristics and specific details. The singularity is what makes each NFT unique. But how can we attach more information specific to an NFT? Or **how can we query one precise information** specific to an NFT without having to retrieve and search through the entire metadata?
-
-#### 3. The metadata file can be altered.
-
-Suppose the metadata for an NFT is linked to a JSON file. How do we know if it has been altered? The uncertainty presents a significant problem. If the rules and logic of an application were based on the metadata related to an NFT, any unexpected change to the data could affect the whole application.
-
-#### 4. The NFT metadata is set in stone.
-
-How about if we want to represent NFTs as more than just a set of information in a JSON file? If we wish NFTs to act as "digital liveable things" that can **change**, **evolve** or **be upgraded over time**?
-
-A good example where all these problems could have effects is a video game. Game services could use an NFT to represent a unique item like a weapon. We might want the player to have the ability to upgrade the weapon features over time so that it becomes more powerful.
+![LSP8IdentifiableDigitalAsset features Introduction](/img/standards/lsp8-intro.jpeg)
 
 ## What does this Standard represent?
 
-LSP8 Identifiable Digital Asset is a standard that aims to describe _non-fungible_ assets. _Non-fungible_ means that each asset is unique and different. They are distinguishable from each other and therefore not interchangeable.
+### Specification
 
-Since every single asset is unique on its own, they are differentiated by a unique identifier: a `tokenId`. The identifier can be anything from a unique serial number to another [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) smart contract that contains information and metadata specific to this `tokenId`.
+**[LSP8-IdentifiableDigitalAsset](#)** is a standard that aims to describe _non-fungible_ assets. The term _Non-fungible_ means that each asset is **unique and different**. They are distinguishable from each other and therefore **not interchangeable**.
 
-LSP8 solves the current problems of NFTs by using the ERC725Y standard as its base. By using a generic data key-value store, an LSP8 contract now comes with the following features:
+This standard was based on **[ERC721](https://eips.ethereum.org/EIPS/eip-20)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-777)** with additional features mentioned below:
 
-- attaching an unlimited amount of information (= metadata), making the asset more customizable and unique.
-- knowing when the metadata has been altered, as a `DataChanged` event will be emitted in ERC725Y.
-- having metadata as a **hash reference** (= data reference), instead of a URL reference.
 
-LSP8 assets are similar to [ERC721](https://eips.ethereum.org/EIPS/eip-721) tokens (NFTs). Their underlying base makes them different in terms of more customization and upgradability of their metadata over time. Such a feature set lets them become part of a new generation of unique assets known as **NFT 2.0**.
+### Bytes32 TokenId
 
-### NFT Metadata
+The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** **lack asset representation** as they define the tokenIds **as Numbers** `(uint256)`. Each token from the NFT collection will be defined and queried based on this tokenId, which is normally incremental.
 
-One of the critical differences of LSP8 is that it allows representing each NFT as more than just a unique `tokenId` number. Each newly created `tokenId` (NFT) has its own metadata, that describes its uniqueness. Such metadata can refer to either:
+![ERC721 TokenIds Representation](/img/standards/erc721-tokenIds.jpeg)
 
-- _off-chain metadata_ (a **JSON file URL** stored on IPFS, a public registry, or even permissioned or private servers) or
-- _on-chain metadata_ (within another **ERC725Y smart contract**).
+**[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as **bytes32**. The choice of **bytes32 tokenIds** allows a wide variety of applications including numbers, contract addresses, and hashed values (ie. serial numbers). 
 
-It is possible to know where the metadata for a specific `tokenId` is located by simply querying the LSP8 contract, giving the `tokenId` as an argument.
+The **bytes32 tokenId** can be interpreted as a:
 
-One benefit of using an ERC725Y metadata contract per singular `tokenId` or NFT is that users can edit the metadata related to this NFT. Changeability makes the metadata flexible and upgradable. It enables the representation of unique NFTs that can be altered over time.
+- <u><b>Number:</b></u>   
 
-## Types of `tokenId`
+![LSP8 Number TokenIds Representation](/img/standards/lsp8-tokenId-number.jpeg)
 
-:::caution
 
-It is recommended that the `tokenId` should not change over the lifecycle of the LSP8 contract.
+- <u><b>Hashed Value:</b></u>:
+
+![LSP8 Hashed Value TokenIds Representation](/img/standards/lsp8-tokenId-hashed.jpeg)
+
+
+- <u><b>Contract Address:</b></u> 
+
+![LSP8 Address TokenIds Representation](/img/standards/lsp8-tokenId-address.jpeg)
+
+TokenIds represented as **smart contract address** allow the creation of more  **complex NFTs**. When each tokenId is a contract that have its own **[ERC725Y](../lsp-background//erc725.md#erc725y---generic-data-keyvalue-store)** storage. For instance in a video game, by changing the features and metadata of the tokenId based on the **game rules**.
+
+![LSP8 Game Nested NFTs TokenIds Representation](/img/standards/lsp8-game.jpeg)
+### Unlimited Metadata
+
+:::tip Recommendation
+
+To mark the **asset authenticity**, it's advised to use a combination between **[LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)** and **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
 
 :::
 
-An LSP8 NFT can be represented in multiple ways, depending on the type of `tokenId` used as:
+The current token standards don't enable attaching metadata to the contract in a generic and flexible way, they set the **name**, **symbol**, and **tokenURI**. This is limiting for a digital asset that may want to list the creators, the community behind it, and to have the ability to update the metadata of the token and the tokenIds over time depending on a certain logic (Evolving tokens).  
 
-- a **number** (`uint256`) that increments on each newly minted NFT,
-- a unique `bytes32` value (representing a _serial number_, for instance), or
-- an ERC725Y contract address.
+To ensure a flexible and generic asset representation, the token contract should use the **[LSP4-DigitalAsset-Metadata](./LSP4-Digital-Asset-Metadata.md)**. In this way, any information could be attached to the token contract.
 
-![LSP8 tokenId = number](/img/lsp8-tokenid-number.jpeg)
+:::note Notice
 
----
+The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId**, not just for the whole NFT collection. Check **[LSP8 ERC725Y Data Keys](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#erc725y-data-keys)** in the LSP8 Standard Document.
 
-![LSP8 tokenId = bytes32](/img/lsp8-tokenid-serial-number.jpeg)
+:::
 
-### NFTs as ERC725Y Contract
+### Force Boolean
 
-If each NFT is represented by its own ERC725Y contract (= metadata contract), this contract contains information like:
+It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
 
-- the `address` of the contract that minted this NFT or
-- the `tokenId` of this NFT.
+To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts//lsp8-identifiable-digital-asset.md#transfer) and mint functions: 
 
-![LSP8 tokenId = ERC725Y contract](/img/lsp8-tokenid-erc725y.jpeg)
+- If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
+
+![Token Force Boolean False](/img/standards/tokens-force-false.jpeg)
+
+:::note
+
+It's advised to set the **force** bool as **False** when transferring or minting tokens to avoid sending them to the wrong address.
+
+:::
+
+- If set to **True**, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
+
+![Token Force Boolean True](/img/standards/tokens-force-true.jpeg)
+
+Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
+
+
+### Token Hooks
+
+The current NFTs standards act as **registry contracts** that keep track of the ownership of each tokenId. They do not implement functionalities to **notify the recipient** that it has received some tokens or to **notify the sender** that it has sent some tokens.
+
+
+During an **ERC721 token transfer**, the ownership of the tokenId is changed from the sender address to the recipient address without further interaction. 
+
+![ERC721 Transfer](/img/standards/erc721-transfer.jpeg)
+
+During an **LSP8 token transfer**, as well as updating the tokenId owenrship, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
+
+![LSP8 Transfer](/img/standards/lsp8-transfer.jpeg)
+
+In this way, users are **informed** about the NFT transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)**.
 
 ## References
 
