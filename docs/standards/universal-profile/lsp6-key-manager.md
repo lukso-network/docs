@@ -61,6 +61,12 @@ Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases an
 
 ## Permissions
 
+:::tip
+
+You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [_erc725.js_](../../../../tools/erc725js/getting-started) tool to **create, combine** or **decode permission values**.
+
+:::
+
 Click on the toggles below to **learn more about the features enabled by each permission**.
 
 <details id="changeowner">
@@ -199,12 +205,6 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions where, these restrictions aren't set anyway.
 
-:::caution
-
-Use with caution, as even if restrictions to certain `addresses`, `standards`, or `functions` are set for an controller address, they will be ignored.
-
-:::
-
 <details>
     <summary><code>SUPER_SETDATA</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
@@ -255,6 +255,12 @@ Same as `DELEGATECALL`, but allowing to interact with any contract. This will no
 
 </details>
 
+:::caution
+
+Use with caution, as even if restrictions to certain `addresses`, `standards`, or `functions` are set for an controller address, they will be ignored.
+
+:::
+
 ### Combining Permissions
 
 Permissions can be combined if an `address` needs to hold more than one permission. To do so:
@@ -295,15 +301,15 @@ permissions: CHANGEPERMISSIONS + SETDATA
 
 </details>
 
-:::tip
-
-You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [_erc725.js_](../../../../tools/erc725js/getting-started) tool to easily combine and decode LSP6 permissions.
-
-:::
-
 ---
 
 ### Retrieving addresses with permissions
+
+:::tip
+
+The convenience function [`getData(...)`](../../tools/erc725js/classes/ERC725.md#getdata) from [_erc725.js_](../../../../tools/erc725js/getting-started) will return you the whole list of addresses with permissions, when providing the `AddressPermission[]` array key as a parameter.
+
+:::
 
 You can obtain the list of `address` that have some permissions set on the linked ERC725Account by querying the `AddressPermission[]` data key, on the ERC725Y storage via [`getData(...)`](../smart-contracts/erc725-contract.md#getdata---erc725y).
 
