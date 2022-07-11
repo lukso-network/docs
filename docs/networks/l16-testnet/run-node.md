@@ -48,6 +48,12 @@ sudo ufw allow 13000/tcp
 sudo ufw allow 12000/udp
 ```
 
+You can forward extra ports, by using the following command:
+```
+sudo ufw allow [replace_with_your_ssh_port]/tcp/udp
+```
+This can be useful for setting up you ssh connection or monitoring.
+
 Enable firewall
 
 ```
@@ -142,7 +148,7 @@ cd lukso-l16-testnet
 Then, install the [LUKSO CLI](https://github.com/lukso-network/lukso-cli) using the install script:
 
 ```sh
-sudo curl https://raw.githubusercontent.com/lukso-network/lukso-cli/main/install.sh | sudo bash
+sudo curl https://install.l16.lukso.network | sudo bash
 ```
 
 #### Check your LUKSO CLI version
@@ -175,7 +181,7 @@ Wait 1 hour and check if your node has synced on this stats page:
 
 - [https://stats.execution.l16.lukso.network](https://stats.execution.l16.lukso.network)
 
-Immediately after starting your node you can check the syncing process in your [logs](./l16-logs.md).
+Immediately after starting your node you can check the syncing process in your [logs](./logs-stats-monitoring.md).
 
 ## Stop your node
 
@@ -184,7 +190,7 @@ sudo lukso network stop
 ```
 
 :::tip Want to run a validator node?
-If you want, you are now ready to run validators on your node. Check the tutorial on the [validator](./validator) page.
+If you want, you are now ready to run validators on your node. Check the tutorial on the [validator](./become-validator.md) page.
 :::
 
 ## Need help?
