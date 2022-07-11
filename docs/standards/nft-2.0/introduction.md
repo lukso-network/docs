@@ -17,7 +17,7 @@ Check the [profile explorer](https://universalprofile.cloud/) to browse the depl
 
 The current standards representing fungible and non-fungible tokens (NFTs) are limiting the NFTs and token industry as they lack standardization and many powering features.
 
-The lack of standardization can be seen by having each NFT or token standard implementing function names differently, which leads to have contracts supporting hundred of non-interoperable functions.
+The lack of standardization can be seen through each NFT or token standard implementing its own interface with its own function names. This leads to having multiple token contracts deployed on networks, implementing different interfaces, and being non-interoperable between each other.
 
 As for features, these standards are just representing **incremental tokenIds** without proper metadata, asset representation, standard interaction between sender and receivers, and no security measurements to ensure safe asset transfers.
 

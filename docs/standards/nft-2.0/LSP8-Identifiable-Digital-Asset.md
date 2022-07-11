@@ -13,10 +13,10 @@ sidebar_position: 4
 
 ## Introduction
 
-Non-Fungible assets represented mainly by **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** have a lot of limitations in terms of metadata, secure transfers, asset representation, and asset interaction. This causes problems for users seeking, **full control** over which assets they accept or not, **more complex NFT functionality**, and a **simple user experience** while creating, buying, and exchanging assets.
+Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** tokens have a lot of limitations in terms of metadata, secure transfers, asset representation, and asset interaction. This causes problems for users seeking, **full control** over which assets they accept or not, **more complex NFT functionality**, and a **simple user experience** while creating, buying, and exchanging assets.
 
 **[LSP8-IdentifiableDigitalAsset](#)** is the standard that aims to solve all problems mentioned above by:
-- Allowing, more secure transfers via **force boolean parameter**.
+- Allowing more secure transfers via **force boolean parameter**.
 - More asset metadata **via [LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)**.
 - More asset representation **via bytes32 tokenIds**.
 - More interaction between the asset contract and the asset *sender/recipient* **via token hooks**.
@@ -79,36 +79,39 @@ The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId*
 
 It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
 
-To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts//lsp8-identifiable-digital-asset.md#transfer) and mint functions where this parameter if set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
+To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts//lsp8-identifiable-digital-asset.md#transfer) and mint functions: 
+
+- If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
 
 ![Token Force Boolean False](/img/standards/tokens-force-false.jpeg)
 
 :::note
 
-Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 It's advised to set the **force** bool as **False** when transferring or minting tokens to avoid sending them to the wrong address.
 
 :::
 
-If set to **True**, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
+- If set to **True**, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
 
 ![Token Force Boolean True](/img/standards/tokens-force-true.jpeg)
+
+Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 
 
 ### Token Hooks
 
-The current NFTs standards do not allow **informing the sender** or **the recipient** about the transfer because the token contract acts like a **registry contract** that just tracks the ownership of each tokenId. This is causing a big problem where people will receive tokens and not know about it.
+The current NFTs standards act as **registry contracts** that keep track of the ownership of each tokenId. They do not implement functionalities to **notify the recipient** that it has received some tokens or to **notify the sender** that it has sent some tokens.
+
 
 During an **ERC721 token transfer**, the ownership of the tokenId is changed from the sender address to the recipient address without further interaction. 
 
 ![ERC721 Transfer](/img/standards/erc721-transfer.jpeg)
 
-On the opposite side, and during an **LSP8 token transfer**, the same mechanism is applied of changing the ownership of the tokenId from the sender address to the recipient address, with an additional action, which is **informing** the sender and the recipient by calling the   **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
+During an **LSP8 token transfer**, as well as updating the tokenId owenrship, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
 
 ![LSP8 Transfer](/img/standards/lsp8-transfer.jpeg)
 
-In this way, users will be **informed** about the NFT transfers and they will have full control to **react on the transfer** either by accepting the tranfser or rejecting it or implementing a custom logic to run on each transfer with the help of 
-**[LSP1-UnviersalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)**.
+In this way, users are **informed** about the NFT transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)**.
 
 ## References
 

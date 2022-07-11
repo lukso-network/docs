@@ -107,7 +107,7 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 
 </details>
 
-### LSP12IssuedAssets
+### `LSP12IssuedAssets`
 
 **Universal Profiles** can create digital assets, such as [tokens and NFTs](../nft-2.0/introduction.md). All assets (tokens and NFTs) created should be registered in the `LSP12IssuedAssets[]` Array.
 
@@ -133,7 +133,7 @@ The `LSP12IssuedAssetsMap:<address>` can then be used to know the asset type (_e
 }
 ```
 
-### LSP5ReceivedAssets
+### `LSP5ReceivedAssets`
 
 :::info
 

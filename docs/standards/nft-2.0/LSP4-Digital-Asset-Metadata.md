@@ -13,9 +13,9 @@ sidebar_position: 2
 
 ## Introduction
 
-The existing tokens and NFTs standards do not offer a standard way to attach information to the contracts themselves. Such information is crucial to make each token or NFT descriptive and customized. Consider the current ERC20 and ERC721 standards as an example. These standards only define a **name**, **symbol**, and **tokenURI** making it impossible to attach more specific data to the asset (_e.g., icon, asset creator(s), token utility or motive, community behind it_).
+The existing tokens and NFTs standards offer limited functionalities to attach information to the contracts themselves. As an example, the ERC20 and ERC721 standards only define a **`name()`**, **`symbol()`**, and **`tokenURI()`** functions. This makes it difficult to add information more specific to the asset (_e.g., an icon, the asset creator(s) , the utility or motive of the token, the community behind it, etc...). Such information is crucial to make each token or NFT descriptive and customised.
 
-**LSP4-DigitalAsset-Metadata** solve this problem by defining a set of data keys to describe a **Digital Asset** using [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) as a backbone. ERC725Y enables smart contracts to have very flexible and extensible storage. With ERC725Y, any information or metadata can be attached to the token or NFT.
+**LSP4-DigitalAsset-Metadata** solves this problem by defining a set of data keys to describe a **Digital Asset** using [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) as a backbone. ERC725Y enables smart contracts to have very flexible and extensible storage. With ERC725Y, any information or metadata can be attached to the token or NFT.
 
 ![LSP4 Digital Asset Metadata diagram](/img/standards/lsp4-digital-asset-metadata-diagram.png)
 
@@ -27,7 +27,7 @@ Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-backgroun
 
 :::
 
-### SupportedStandards:LSP4DigitalAsset
+### `SupportedStandards:LSP4DigitalAsset`
 
 ```json
 {
@@ -41,7 +41,7 @@ Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-backgroun
 
 This key is used to know if the contract represents a **Digital Asset**.
 
-### LSP4TokenName
+### `LSP4TokenName`
 
 ```json
 {
@@ -55,7 +55,7 @@ This key is used to know if the contract represents a **Digital Asset**.
 
 The value attached to this data key represents the name of the digital asset.
 
-### LSP4TokenSymbol
+### `LSP4TokenSymbol`
 
 ```json
 {
@@ -69,7 +69,7 @@ The value attached to this data key represents the name of the digital asset.
 
 The value attached to this data key represents the symbol of the digital asset.
 
-### LSP4Metadata
+### `LSP4Metadata`
 
 ```json
 {
@@ -83,9 +83,9 @@ The value attached to this data key represents the symbol of the digital asset.
 
 The value attached to this data key is a [`JSONURL`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#jsonurl). It represents a reference to a [JSON file describing the **Digital Asset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata). The file can be stored on centralized or decentralized storage.
 
-### LSP4Creators
+### `LSP4Creators`
 
-This data key refers to the **addresses** of the **creators** for the digital asset. Can help checking **asset authenticity** when combined with **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
+This data key refers to the **address(es)** of the **creator(s)** of the digital asset. It can help to check the **asset authenticity** when combined with **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
 
 ```json
 {
