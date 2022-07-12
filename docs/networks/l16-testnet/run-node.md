@@ -130,7 +130,7 @@ Go to https://docs.docker.com/desktop/mac/install/ and install the application.
 You do not have to install Docker Compose separately.
 
 :::info
-$ Open the Docker Desktop application after installing from the applications folder on your Mac
+Open the Docker Desktop application after installing from the applications folder on your Mac
 :::
 
 ## Install the LUKSO Command Line Interface (CLI)
