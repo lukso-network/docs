@@ -20,7 +20,7 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 
 ## Ports
 
-| Port  | Protocol | Client           | Ingress               
+| Port  | Protocol | Client           | Description               
 | ----- | -------- | ---------------- | --------------------- |
 | 30303 | TCP      | geth syncing     | port must be open     |                                                                                             |
 | 30303 | UDP      | geth discovery   | port must be open     |                                                                                             |
