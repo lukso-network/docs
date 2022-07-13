@@ -8,24 +8,26 @@ import TabItem from '@theme/TabItem';
 
 # Grant Permissions to 3rd party addresses
 
-:::info
+:::info Requirements
 
-You will need a Universal Profile deployed and setup with a Key Manager as an owner. If you haven't, head back to our [**"Create a Universal Profile"** guide](../universal-profile/create-profile.md) or look at the [_lsp-factory.js_](../../tools/lsp-factoryjs/deployment/universal-profile.md) docs.
+You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
+If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](./create-profile.md) or look at the [_lsp-factory.js_](../../tools/lsp-factoryjs/deployment/universal-profile.md) docs.
 
 :::
 
-In this guide, you will learn how to grant permission to 3rd party addresses, so that they can interact on your behalf on your Universal Profile.
+In this guide, we will learn how to grant permissions to third-party addresses to enable them to interact with our Universal Profile. 
 
-_image here_
+By the end of this guide, you will know:
 
-We will use [_erc725.js_](../../../../tools/erc725js/getting-started) library to create the permissions of the 3rd party address.
+- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../../tools/erc725js/getting-started).
+- How to set permissions for a third party `address` on your Universal Profile.
 
+![Give permissions to 3rd parties overview](/img/guides/grant-permissions-to-3rd-parties-overview.jpeg)
 
 ## Introduction
 
 The Key Manager (KM) enables us to give permissions to other 3rd party addresses to perform certain actions on our Universal Profile (UP), such as editing our profile details, or any other profile metadata.
 
-The JSON schema for the permissions is available in erc725.js
 ## Setup
 
 ```shell
