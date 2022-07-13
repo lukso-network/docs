@@ -33,46 +33,13 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 ---
 
-
-## Relay Execution
-
-Relay execution minimize onboarding & **UX friction** for dapps. In this way users can interact on the blockchain **without needing Native tokens** for transaction fees. This will allow users without prior crypto experience to be comfortable using the blockchain without the need to worry about gas or any complex steps needed to operate on blockchains (KYC, seedphrases, gas).
-
-Dapps can leverage the relay execuyion feature to build their own business model on top that can function in different ways including building their own **relay service** or building smart contracts solution on top of the Key Manager to pay with their tokens.
-
-Others can build relay services and agree with the users on payment methods including subscriptions, ads, etc ..
-
-![LSP6 Key Manager Relay Service](/img/standards/lsp6-relay-execution.jpeg)
-
-
-## Out of order execution
-
-Since the Key Manager offers **relay execution** via signed message, it's important to provide security measurements to ensure that the signed message can't be repeated once executed. **[Nonces](https://www.techtarget.com/searchsecurity/definition/nonce#:~:text=A%20nonce%20is%20a%20random,to%20as%20a%20cryptographic%20nonce.)** existed to solve this problem, but with the following drawback:
-
-- Signed messages with sequentiel nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
-
-Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
-
-Signed messages should be executed sequentielially if signed on the same channel and should be executed independently if signed on different channel.
-
-- Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
-
-![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
-
-Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
-## Types of permissions
-
-| Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [**Address Permissions**](#address-permissions)   | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
-| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742de2bfc6dd6b3c0000<address>` |
-| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742de2bf8efea1e80000<address>` |
-| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742de2bf3efa94a30000<address>` |
-| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                            | `0x4b80742de2bf90b8b4850000<address>` |
-
-> [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
-
 ## Permissions
+
+:::tip
+
+You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [_erc725.js_](../../../../tools/erc725js/getting-started) tool to **create, combine** or **decode permission values**.
+
+:::
 
 Click on the toggles below to **learn more about the features enabled by each permission**.
 
@@ -212,12 +179,6 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 The super permissions granting the same permissions as they non-super counter parts, with the difference that checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions where, these restrictions aren't set anyway.
 
-:::caution
-
-Use with caution, as even if restrictions to certain `addresses`, `standards`, or `functions` are set for an controller address, they will be ignored.
-
-:::
-
 <details>
     <summary><code>SUPER_SETDATA</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
@@ -268,6 +229,12 @@ Same as `DELEGATECALL`, but allowing to interact with any contract. This will no
 
 </details>
 
+:::caution
+
+Use with caution, as even if restrictions to certain `addresses`, `standards`, or `functions` are set for an controller address, they will be ignored.
+
+:::
+
 ### Combining Permissions
 
 Permissions can be combined if an `address` needs to hold more than one permission. To do so:
@@ -308,15 +275,65 @@ permissions: CHANGEPERMISSIONS + SETDATA
 
 </details>
 
+---
+
+### Retrieving addresses with permissions
+
 :::tip
 
-You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [**erc725.js**](../../../../tools/erc725js/getting-started) tool to easily combine and decode LSP6 permissions.
+The convenience function [`getData(...)`](../../tools/erc725js/classes/ERC725.md#getdata) from [_erc725.js_](../../../../tools/erc725js/getting-started) will return you the whole list of addresses with permissions, when providing the `AddressPermission[]` array key as a parameter.
 
 :::
 
----
+You can obtain the list of `address` that have some permissions set on the linked ERC725Account by querying the `AddressPermission[]` data key, on the ERC725Y storage via [`getData(...)`](../smart-contracts/erc725-contract.md#getdata---erc725y).
 
-## Details about permission types
+- **key:** `0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3`
+- **value return:** the total number of address that have some permissions set (= array length)
+
+Each `address` can be retrieved by accessing each index in the array (see [LSP2 > Array docs](../generic-standards/lsp2-json-schema.md#array) and [LSP2 > Array Standard specs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#array) for more detailed instructions).
+
+```json
+{
+  "name": "AddressPermissions[]",
+  "key": "0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3",
+  "keyType": "Array",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+![AddressPermissions array - list of addresses with permissions](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
+
+_example:_
+
+_if the `AddressPermission[]` array data key returns `0x0000000000000000000000000000000000000000000000000000000000000004` (array length = 4), each `address` can be obtained by querying the following data keys:_
+
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000000`: 1st `address`(array index 0 = `AddressPermissions[0]`)_
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000001`: 2nd `address` (array index 1 = `AddressPermissions[1]`)_
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000002`: 3rd `address` (array index 2 = `AddressPermissions[2]`)_
+- _`0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000003`: 4th `address` (array index 3 = `AddressPermissions[3]`)_
+
+## Types of permissions
+
+| Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [**Address Permissions**](#address-permissions)   | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
+| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742de2bfc6dd6b3c0000<address>` |
+| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742de2bf8efea1e80000<address>` |
+| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742de2bf3efa94a30000<address>` |
+| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                            | `0x4b80742de2bf90b8b4850000<address>` |
+
+> [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
+
+The values set under these permission keys **MUST be of the following format** to ensure correct behavior of these functionalities.
+
+- **Address Permissions**: a `bytes32` value.
+- **Allowed Addresses**: an ABI-encoded array of `address[]`.
+- **Allowed Functions**: an ABI-encoded array of `bytes4[]`.
+- **Allowed Standards**: an ABI-encoded array of `bytes4[]`.
+- **Allowed ERC725Y Keys**: an ABI-encoded array of `bytes32[]`.
+
+> See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::caution
 
@@ -330,10 +347,12 @@ Note that this process is expensive since the data being set is an ABI-encoded a
 
 An address can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data** on the ERC725Account, **calling other contracts**, **transferring native tokens**, etc.
 
-To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) contract storage (**NB:** remember to remove the `0x` prefix in the `<address>` field below).
+To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
 
 - **key:** `0x4b80742de2bf82acb3630000<address>`
-- **value:** one of the available options below.
+- **value:** one of the available permission below. To give multiple permission, see the Combining permissions section.
+
+> **NB:** remember to remove the `0x` prefix in the `<address>` field above.
 
 ```json
 {
@@ -344,6 +363,8 @@ To grant permission(s) to an `<address>`, set the following key-value pair below
   "valueContent": "BitArray"
 }
 ```
+
+![Address Permissions range](/img/standards/lsp6/lsp6-address-permissions.jpeg)
 
 :::danger
 
@@ -357,12 +378,10 @@ Such transaction flow can lead an initial caller to use more permissions than al
 
 :::caution
 
-Each permission MUST be:
+Each permission MUST be **exactly 32 bytes long** and **zero left-padded**:
 
-- **exactly 32 bytes long**
-- zero left-padded
-  - `0x0000000000000000000000000000000000000000000000000000000000000008` ✅
-  - `0x0800000000000000000000000000000000000000000000000000000000000000` ❌
+- `0x0000000000000000000000000000000000000000000000000000000000000008` ✅
+- `0x0800000000000000000000000000000000000000000000000000000000000000` ❌
 
 For instance, if you try to set the permission SETDATA for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
 
@@ -393,14 +412,6 @@ To restrict an `<address>` to only talk to a specific contract at address `<targ
 
 ![LSP6 Allowed Addresses explained](/img/standards/lsp6/lsp6-allowed-addresses.jpeg)
 
-:::caution
-
-The allowed addresses MUST be an **ABI-encoded array** of `address[]` to ensure the correct behavior of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
-
-:::
-
 ---
 
 ### Allowed functions
@@ -427,14 +438,6 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 :::info
 
 The `receive()` and `fallback()` functions can always be called on a target contract if no calldata is passed, even if you restrict an `<address>` to call a certain set of functions.
-
-:::
-
-:::caution
-
-The allowed functions MUST be an **ABI-encoded array** of `bytes4[]` function selectors to ensure the correct behaviour of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::
 
@@ -472,14 +475,6 @@ Below is an example use case. With this permission key, an `<address>` can be al
 :::warning
 
 This type of permission does not offer security over the inner workings or the correctness of a smart contract. It should be used more as a "mistake prevention" mechanism than a security measure.
-
-:::
-
-:::caution
-
-The allowed standards MUST be an **ABI-encoded array** of `bytes4[]` ERC165 interface ids to ensure the correct behavior of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::
 
@@ -522,15 +517,44 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 :::
 
-:::caution
-
-The list of allowed ERC725Y data keys **MUST be an ABI-encoded** array of `bytes32[]` values to ensure the correc behaviour of this functionality.
-
-See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode)) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
-
-:::
-
 ---
+
+## Types of Execution
+
+There are 2 ways to interact with the ERC725Account linked with the Key Manager.
+
+- **direct execution**, where the caller `address` directly sends a **payload** to the Key Manager (= abi-encoded function call on the linked ERC725Account) to the KeyManager via `execute(...)`.
+- **relay execution**, where a signer `address` **A** signs a payload and an executor `address` **B** (_e.g. a relay service_) executes the payload on behalf of the signer via `executeRelayCall(...)`.
+
+The main difference between direct _vs_ relay execution is that with direct execution, the caller `address` is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer `address` can interact with the ERC725Account without having to pay for gas fee.
+
+![Direct vs Relay Execution](/img/standards/lsp6/lsp6-direct-vs-relay-execution.jpeg)
+
+### Relay Execution
+
+Relay execution enables users to interact with smart contracts on the blockchain **without needing native tokens** to pay for transaction fees. This allows a better onboarding experience for users new to cryptocurrencies and blockchain.
+
+Relay execution minimizes **UX friction** for dapps, including removing the need for users to worry about gas fee, or any complex steps needed to operate on blockchains (KYC, seedphrases, gas).
+
+Dapps can then leverage the relay execution features to create their own business model around building their own **relay service**, smart contracts solution on top of the Key Manager to pay with their tokens, or agree with users on payment methods including subscriptions, ads, etc ..
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-relay-execution.jpeg)
+
+### Out of order execution
+
+Since the Key Manager offers **relay execution** via signed message, it's important to provide security measurements to ensure that the signed message can't be repeated once executed. **[Nonces](https://www.techtarget.com/searchsecurity/definition/nonce#:~:text=A%20nonce%20is%20a%20random,to%20as%20a%20cryptographic%20nonce.)** existed to solve this problem, but with the following drawback:
+
+- Signed messages with sequentiel nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
+
+Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
+
+Signed messages should be executed sequentielially if signed on the same channel and should be executed independently if signed on different channel.
+
+- Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
+
+![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
+
+Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
 
 ## References
 
