@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 # Read Asset Data
 
 :::success Recommendation
-Complete "ready to use" JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
+Complete _"ready to use"_ JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
 :::
 
 In this guide, we will learn how to:

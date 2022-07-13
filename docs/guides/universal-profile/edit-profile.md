@@ -467,7 +467,7 @@ async function editProfileInfo() {
 editProfileInfo();
 ```
 
-## Visualize the updated Universal Profile
+## Visualize our updated Universal Profile
 
 You can now check your UP on the [profile explorer](https://universalprofile.cloud/) website by pasting the returned address after the slash of the base URL:
 
