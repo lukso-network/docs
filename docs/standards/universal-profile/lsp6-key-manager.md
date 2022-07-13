@@ -41,6 +41,8 @@ You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ER
 
 :::
 
+![LSP6 permissions](/img/standards/lsp6/lsp6-permissions.jpeg)
+
 Click on the toggles below to **learn more about the features enabled by each permission**.
 
 <details id="changeowner">
