@@ -19,6 +19,12 @@ One way to solve this problem is to create generic metadata keys that would regi
 
 ## What does this standard represent ?
 
+:::tip Recommendation
+
+Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
+
+:::
+
 This Metadata standard describes two data keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) smart contract to keep track of issued assets.
 
 ### `LSP12IssuedAssets[]`
