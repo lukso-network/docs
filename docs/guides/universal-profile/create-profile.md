@@ -148,7 +148,7 @@ We will look up our address balance in the **[LUKSO L14 Block Explorer](https://
 
 **Instructions:** go to the LUKSO L14 Block Explorer, and search your pasted address at the top right corner.<br/> You should see 5 LYX next to the _Balance_ field.
 
-![LUKSO L14 Network Block Explorer (screenshot)](./img/l14-explorer.png)
+![LUKSO L14 Network Block Explorer (screenshot)](./img/explorer-balance.png)
 
 ## Step 3 - Create our Universal Profile
 
