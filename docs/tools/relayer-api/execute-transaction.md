@@ -6,11 +6,11 @@ sidebar_position: 1
 
 To execute a transaction on behalf of a Universal Profile:
 
-![post](https://img.shields.io/badge/-POST-green) `https://relayer.lukso.network/api/v1/execute`
+![post](https://img.shields.io/badge/-POST-green) `https://relayer.l16.staging.lukso.dev/api/v1/execute`
 
 Once your transaction has been sent to the relayer get the status of your transaction using:
 
-![get](https://img.shields.io/badge/-GET-blue) `https://relayer.lukso.network/api/v1/task/{taskId}`
+![get](https://img.shields.io/badge/-GET-blue) `https://relayer.l16.staging.lukso.dev/api/v1/task/{taskId}`
 
 ### Payload
 
@@ -96,7 +96,7 @@ Now we can get the nonce from the KeyManager for the next transaction.
 ```typescript
 const controllerAccount =
   web3.eth.accounts.privateKeyToAccount(controllerPrivateKey);
-const channelId = 0; // Can be any number that you app will then use frequently.
+const channelId = 0; // Can be any number that your app will use frequently.
 // Channel IDs prevent nonce conflicts, when many apps send transactions to your keyManager at the same time.
 
 const nonce = await KeyManager.methods
@@ -117,8 +117,12 @@ const abiPayload = myUniversalProfile.methods.execute(
 
 Afterward, we sign the transaction from one of the controller keys of your Universal Profile.
 
+The message is constructed by signing the `chainId`, `keyManagerAddress`, signer `nonce` and `abiPayload`
+
 ```typescript title="Sign the transaction"
-const message = web3.utils.soliditySha3(keyManagerAddress, nonce, {
+const chainId = await web3.eth.getChainId(); // will be 2828 on l16
+
+const message = web3.utils.soliditySha3(chainId, keyManagerAddress, nonce, {
   t: 'bytes',
   v: abiPayload,
 });
@@ -147,6 +151,6 @@ const response = await axios.post(
 
 Youn can check the status of your transaction using the returned `taskId` at `/task/{ taskId }`.
 
-The transaction will receive the `status:` `COMPLETE` once it has been executed on the blockchain.
+The transaction will receive the `status:` `COMPLETE` once it has been sent to the blockchain.
 
 [`keymanager`]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md
