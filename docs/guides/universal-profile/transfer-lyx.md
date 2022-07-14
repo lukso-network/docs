@@ -31,9 +31,9 @@ Since we are just making a simple LYX transfer, the fourth parameter `_data` wil
 
 ## Setup
 
-To complete this mini-guide, we will need two things:
+To complete this mini-guide, we will need:
 
-- the ABIs of the `UniversalProfile` and `KeyManager` contracts.
+- the `UniversalProfile` and `KeyManager` contracts ABIS from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
 - the address of our Universal Profile we want to send LYX from.
 
 ```shell
