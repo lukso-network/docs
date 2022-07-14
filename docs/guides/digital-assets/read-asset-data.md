@@ -47,7 +47,7 @@ npm install web3 @erc725/erc725.js isomorphic-fetch @lukso/lsp-smart-contracts
 <Tabs>
   <TabItem value="Current Standard" label="Current Standard">
 
-In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library.  In the same way, we can now fetch all ever received assets using `fetchData('LSP5ReceivedAssets[]')`.
+In the [**Read Profile Data** guide](../universal-profile/read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library.  In the same way, we can now fetch all ever received assets using `fetchData('LSP5ReceivedAssets[]')`.
 
 ```javascript title="read_assets.js"
 
@@ -93,7 +93,7 @@ fetchReceivedAssets(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
 
   <TabItem value="Legacy Standard" label="Legacy Standard">
 
-In the [previous guide](./read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch the address of the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver/) by using `fetchData("LSP1UniversalReceiverDelegate")`.
+In the [previous guide](../universal-profile/read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch the address of the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver/) by using `fetchData("LSP1UniversalReceiverDelegate")`.
 
 ```javascript title="read_assets.js"
 
