@@ -5,9 +5,11 @@ sidebar_position: 2
 
 # Edit a Universal Profile
 
-:::success Requirements
-You will need a Universal Profile that you control to follow this guide. <br/>
-:arrow_left: If you haven't created a Universal Profile yet, you can follow our previous guide: [**Create a Universal Profile**](./create-profile.md).
+:::info Requirements
+
+You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
+:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](./create-profile.md).
+
 :::
 
 This guide will teach you how to **customize our Universal Profile** programmatically in JavaScript and includes:
@@ -467,7 +469,7 @@ async function editProfileInfo() {
 editProfileInfo();
 ```
 
-## Visualize the updated Universal Profile
+## Visualize our updated Universal Profile
 
 You can now check your UP on the [profile explorer](https://universalprofile.cloud/) website by pasting the returned address after the slash of the base URL:
 
