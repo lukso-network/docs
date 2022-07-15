@@ -71,9 +71,7 @@ const controllingAccountPrivateKey = '0x...';
 const myUpAddress = '0x...';
 ```
 
-Then, instantiate a Web3 `Contract` object for your UP and KeyManager using the
-
-**Contract ABIs** from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) NPM package.
+Then, instantiate a Web3 `Contract` object for your UP and KeyManager using the **Contract ABIs** from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) NPM package.
 
 ```typescript
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
