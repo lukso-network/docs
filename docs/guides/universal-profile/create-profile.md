@@ -5,6 +5,10 @@ sidebar_position: 1
 
 # Create a Universal Profile
 
+:::success Recommendation
+A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section.
+:::
+
 In this guide, we will learn how to:
 
 - create a Universal Profile.
@@ -95,10 +99,6 @@ You should do this step in a **temporary file**.
 :::
 
 As described in the introduction, our first step is to create an EOA that will be used to control our Universal Profile.
-
-:::success Recommendation
-Complete "ready to use" JS files are available at the end in the [**Final Code**](#final-code) section.
-:::
 
 We can easily create an EOA using the [`web3.eth.accounts.create()`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#create) method from web3.js.
 
