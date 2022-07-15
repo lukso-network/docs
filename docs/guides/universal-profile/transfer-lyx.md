@@ -44,17 +44,17 @@ Most of the functions on the UP contract, such as [`setData(...)`](../../standar
 
 ![](/img/guides/transfer-lyx-interaction-via-key-manager.jpeg)
 
-In order to transfer LYX from our UP, we need to perform the following steps:
+To transfer LYX from our UP, we need to perform the following steps:
 
-1. abi-encode the [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) function call of our UP.
-2. pass the abi-encoded **payload** to the [`execute(payload)`](../../standards/smart-contracts/lsp6-key-manager.md#execute) function on the KM.
+1. ABI encode the [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) function call of our UP.
+2. pass the ABI encoded **payload** to the [`execute(payload)`](../../standards/smart-contracts/lsp6-key-manager.md#execute) function on the KM.
 
 :::info
 
 Make sure to understand the difference between both `execute(...)` functions!
 
 - [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) from the Universal Profile = generic executor function used to call and interact with EOAs or contracts + deploy new contracts from the UP.
-- `execute(payload)` from the Key Manager = used to run functions on the Universal Profile linked to the Key Manager (by forwarding abi-encoded payload), while verifying if the caller has the right permissions to do so.
+- `execute(payload)` from the Key Manager = used to run functions on the Universal Profile linked to the Key Manager (by forwarding  ABI encoded payload), while verifying if the caller has the right permissions to do so.
 
 :::
 
@@ -62,7 +62,7 @@ Make sure to understand the difference between both `execute(...)` functions!
 
 To complete this mini-guide, we will need:
 
-- the `UniversalProfile` and `KeyManager` contracts ABIS from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
+- the `UniversalProfile` and `KeyManager` contracts ABIs from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
 - the address of our Universal Profile we want to send LYX from.
 
 ```shell
@@ -110,7 +110,7 @@ const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 ## Step 3 - Encode the payload to transfer LYX
 
 With our contract instances ready, we now want to transfer some LYX from the UP using the `execute(...)` function.
-The next step is to abi-encode this function call with the correct parameters, as explained in the introduction.
+The next step is to ABI encode this function call with the correct parameters, as explained in the introduction.
 
 We can use the [`encodeABI()`](https://web3js.readthedocs.io/en/v1.7.4/web3-eth-contract.html#methods-mymethod-encodeabi) method from web3.js
 
