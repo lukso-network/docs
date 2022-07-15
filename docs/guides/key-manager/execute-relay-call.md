@@ -5,30 +5,34 @@ sidebar_position: 2
 
 # Execute Relay Call
 
-The [LSP6 KeyManager standard](../../standards/universal-profile/lsp6-key-manager.md) enables anybody to execute a transation on behalf of a Universal Profile, given they have a valid transaction which has been signed by a key which controls the Universal Profile.
+The [LSP6 KeyManager](../../standards/universal-profile/lsp6-key-manager.md) standard enables anybody to execute a transaction on behalf of a Universal Profile, given they have a valid transaction which has been signed by a key that controls the Universal Profile.
 
-This enables use cases such as Transaction Relayer Services to be possible where users can send their transaction details to a third party to be executed, moving the gas cost burden away from the user who owns the Universal Profile.
+Relayed execution enables use cases such as Transaction Relayer Services to be possible where users can send their transaction details to a third party to be executed, moving the gas cost burden away from the user who owns the Universal Profile.
 
-For example, Alice who owns a Universal Profile can send an encoded transaction which updates her [LSP3Profile](../../standards/universal-profile/lsp3-universal-profile-metadata.md) picture to a second user Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
+For example, Alice can send an encoded transaction which updates the [LSP3Profile](../../standards/universal-profile/lsp3-universal-profile-metadata.md) picture on her Universal Profile to a second user, Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
 
-For this, Bob needs to know the encoded transaction ABI to be executed, the signature and the nonce of the key which signed the transaction.
+To execute the transaction, Bob needs to know:
+
+- the encoded ABI of the transaction that will get executed,
+- the transaction signature,
+- the nonce of the key that signed the transaction.
 
 The transaction is then executed via the [LSP6KeyManager](../../standards/universal-profile/lsp6-key-manager.md) function `executeRelayCall`.
 
 ## Generate the Signed Transaction Payload
 
 :::info
-This example shows how to prepare a transaction to be executed by a third party. This logic can be implemented client side and then sent to a third party application or service such as a Transaction Relay service to be executed.
+This example shows how to prepare a transaction to be executed by a third party. This logic can be implemented client-side and then sent to a third-party application or service such as a Transaction Relay service to be executed.
 :::
 
-To encode a transaction we need the address of the Universal Profile smart contract and the private key of a controller key which has sufficient [LSP6 permissions](../../standards/universal-profile/lsp6-key-manager.md#permissions) to execute the transaction.
+To encode a transaction, we need the address of the Universal Profile smart contract and the private key of a controller key with sufficient [LSP6 permissions](../../standards/universal-profile/lsp6-key-manager.md#permissions) to execute the transaction.
 
 ```typescript
 const controllingAccountPrivateKey = '0x...';
 const myUpAddress = '0x...';
 ```
 
-Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager Contract instance and calling `getNonce`.
+Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the `getNonce` function.
 
 The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
 
@@ -56,7 +60,7 @@ const nonce = await KeyManager.methods
   .call();
 ```
 
-Encode the ABI of the transaction you want to be executed. In this case a LYX transfer to a recipient address.
+Encode the ABI of the transaction you want to be executed. In this case, an LYX transfer to a recipient address.
 
 ```typescript title="Encode transaction ABI"
 const abiPayload = myUniversalProfile.methods.execute(
@@ -91,10 +95,10 @@ Now the `signature`, `abiPayload`, `nonce` and `keyManagerAddress` can be sent t
 This example shows how a third party can execute a transaction on behalf of another user.
 :::
 
-To execute a signed transaction ABI payload requires the **KeyManager contract address**, the **transaction abi payload**, **signed transaction payload** and **nonce** of the controller key which signed the transaction.
+To execute a signed transaction ABI payload requires the **KeyManager contract address**, the **transaction ABI payload**, **signed transaction payload** and **nonce** of the controller key which signed the transaction.
 
 :::note
-To get the KeyManager address from the UniversalProfile address call the `owner` function on the Universal Profile contract.
+To get the KeyManager address from the UniversalProfile address, call the `owner` function on the Universal Profile contract.
 :::
 
 ```javascript
