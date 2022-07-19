@@ -19,7 +19,9 @@ To execute the transaction, Bob needs to know:
 
 The transaction is then executed via the [LSP6KeyManager](../../standards/universal-profile/lsp6-key-manager.md) function `executeRelayCall`.
 
-## Generate the Signed Transaction Payload
+You will need the [`@lukso/lsp-smart-contracts`](../../standards/smart-contracts/introduction) package.
+
+## Generate the signed transaction payload
 
 :::info
 This example shows how to prepare a transaction to be executed by a third party. This logic can be implemented client-side and then sent to a third-party application or service such as a Transaction Relay service to be executed.
@@ -60,23 +62,29 @@ const nonce = await KeyManager.methods
   .call();
 ```
 
-Encode the ABI of the transaction you want to be executed. In this case, an LYX transfer to a recipient address.
+Encode the ABI of the transaction you want to be executed. In this case, a LYX transfer to a recipient address.
 
 ```typescript title="Encode transaction ABI"
 const abiPayload = myUniversalProfile.methods.execute(
-    0,
+    0, // Operation type: CALL
     '0x...', // Recipient address
-    web3.utils.toWei('1'),
-    '0x'
+    web3.utils.toWei('1'), // Value
+    '0x' // Data
 ).encodeABI()) ;
 ```
+
+:::tip ERC725X execute
+
+You can find more information about the [ERC725X `execute` call here](../../standards/smart-contracts/erc725-contract#execute---erc725x).
+
+:::
 
 Afterward, sign the transaction message from the controller key of the Universal Profile.
 
 The message is constructed by signing the `chainId`, `keyManagerAddress`, signer `nonce` and `abiPayload`.
 
 ```typescript title="Sign the transaction"
-const chainId = await web3.eth.getChainId(); // will be 2828 on l16
+const chainId = await web3.eth.getChainId(); // will be 2828 on L16
 
 const message = web3.utils.soliditySha3(chainId, keyManagerAddress, nonce, {
   t: 'bytes',
@@ -87,7 +95,7 @@ const signatureObject = controllerAccount.sign(message);
 const signature = signatureObject.signature;
 ```
 
-Now the `signature`, `abiPayload`, `nonce` and `keyManagerAddress` can be sent to a third party to execute the transaction using `executeRelayCall`.
+Now the `signature`, `abiPayload`, `nonce` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
 
 ## Execute via `executeRelayCall`
 
@@ -95,13 +103,18 @@ Now the `signature`, `abiPayload`, `nonce` and `keyManagerAddress` can be sent t
 This example shows how a third party can execute a transaction on behalf of another user.
 :::
 
-To execute a signed transaction ABI payload requires the **KeyManager contract address**, the **transaction ABI payload**, **signed transaction payload** and **nonce** of the controller key which signed the transaction.
+To execute a signed transaction ABI payload requires:
+
+- the **KeyManager contract address**
+- the **transaction ABI payload**
+- **signed transaction payload**
+- **nonce** of the controller key which signed the transaction.
 
 :::note
 To get the KeyManager address from the UniversalProfile address, call the `owner` function on the Universal Profile contract.
 :::
 
-```javascript
+```javascript title='Send the transaction'
 import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const KeyManager = new web3.eth.Contract(
@@ -110,6 +123,12 @@ const KeyManager = new web3.eth.Contract(
 );
 
 const executeRelayCallTransaction = await keyManager.methods
-  .executeRelayCall(signature, signerNonce, transactionPayloadAbi)
+  .executeRelayCall(signature, nonce, abiPayload)
   .send();
 ```
+
+:::tip LSP6KeyManager executeRelayCall
+
+You can find more information about the [LSP6KeyManager `executeRelayCall` here](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
+
+:::
