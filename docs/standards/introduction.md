@@ -55,6 +55,7 @@ The standards are **order-independent** and could be related to a **backward or 
 - [Tech Time with Fabian Ep.1 - LUKSO NFT's 2.0 Explained (YouTube)](https://www.youtube.com/watch?v=Nx5D9QWNIhI)
 - [Fabian Vogelsteller talks at BLOCKCHANCE 2021 about LUKSO (YouTube)](https://www.youtube.com/watch?v=aoZE_0Ey1SQ)
 - [Developer DAO - Dev & Tell | Yamen - LUKSO Network (YouTube)](https://www.youtube.com/watch?v=1OeBpJIstSQ)
+- [Lukso Build 🆙 #1 Hackathon (YouTube)](https://www.youtube.com/watch?v=veHqhpgGDr4)
 
 ## References
 
