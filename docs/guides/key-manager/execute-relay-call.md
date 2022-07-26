@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'Execute Relay Call'
-sidebar_position: 2
+sidebar_label: 'Execute Relay Transactions'
+sidebar_position: 3
 ---
 
-# Execute Relay Call
+# Execute Relay Transactions
 
 The [LSP6 KeyManager](../../standards/universal-profile/lsp6-key-manager.md) standard enables anybody to execute a transaction on behalf of a Universal Profile, given they have a valid transaction which has been signed by a key that controls the Universal Profile.
 
