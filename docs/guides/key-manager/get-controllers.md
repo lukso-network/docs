@@ -25,9 +25,9 @@ npm install erc725.js
 The first step is to setup both and _web3.js_ and _erc725.js_, connected to the LUKSO L14 network. We will also need the address of the Universal Profile that we want to get the controller addresses from.
 
 ```js
-const { ERC725 } = require('@erc725/erc725.js');
-const LSP6Schema = require('@erc725/erc725.js/schemas/LSP6KeyManager.json');
-const Web3 = require('web3');
+import { ERC725 } from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+import Web3 from 'web3';
 
 // setup
 const myUniversalProfileAddress = '0xC26508178c4D7d3Ad43Dcb9F9bb1fab9ceeD58B5';
@@ -131,10 +131,9 @@ console.log(
 ## Final Code
 
 ```js
-const { ERC725 } = require('@erc725/erc725.js');
-const LSP6Schema = require('@erc725/erc725.js/schemas/LSP6KeyManager.json');
-
-const Web3 = require('web3');
+import { ERC725 } from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+import Web3 from 'web3';
 
 // setup
 const myUniversalProfileAddress = '0xC26508178c4D7d3Ad43Dcb9F9bb1fab9ceeD58B5';
