@@ -20,11 +20,11 @@ npm install @lukso/lsp-factory.js
 ```javascript
 import { LSPFactory } from '@lukso/lsp-factory.js';
 
-const provider = 'https://rpc.l14.lukso.network'; // RPC provider url
+const provider = 'https://rpc.l16.lukso.network';
 
 const lspFactory = new LSPFactory(provider, {
-  deployKey: '0x...', // Private key of the account which will deploy any smart contract,
-  chainId: 22, // Chain Id of the network you want to deploy to
+  deployKey: '0x...', // Private key of the account which will deploy smart contracts
+  chainId: 2828,
 });
 ```
 
@@ -35,7 +35,9 @@ If used in the browser on a dApp's page, pass the ethereum object as the provide
 ```javascript
 await ethereum.request({ method: 'eth_requestAccounts', params: [] });
 
-const lspFactory = new LSPFactory(ethereum);
+const lspFactory = new LSPFactory(ethereum, {
+  chainId: 2828,
+});
 ```
 
 ## Usage
@@ -44,10 +46,9 @@ Deploying a Universal Profile is as simple as running:
 
 ```javascript
 const myContracts = await lspFactory.UniversalProfile.deploy({
-    controllingAccounts: ['0x...'], // Account addresses which will control the UP
-    lsp3Profile: myLSP3MetaData
-  });
-};
+  controllerAddresses: ['0x...'], // Account addresses which will control the UP
+  lsp3Profile: myLSP3MetaData,
+});
 ```
 
 The key `lsp3Profile` contains the [LSP3 Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL) of your Universal Profile. This is the "face" of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
@@ -115,9 +116,9 @@ const myUPAddress = myContracts.LSP0ERC725Account.address;
 When instantiating LSPFactory options can be passed to specify parameters such as `chainId` and `ipfsGateway`.
 
 ```javascript title="Instantiating LSPFactory with custom options set"
-const lspFactory = new LSPFactory(provider, {
+const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
   deployKey: '0x...',
-  chainId: 22,
+  chainId: 2828,
   ipfsGateway: 'https://ipfs.infura.io:5001',
 });
 ```
@@ -130,16 +131,16 @@ If no value is set here, LSPFactory will attempt to sign transactions via a brow
 
 #### Chain Id
 
-`chainId` is used to specify the network that LSPFactory is interacting with. This is used in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) to reference base contracts deployed on the network used for [proxy deployment](./getting-started.md#proxy-deployment). Defaults to 22.
+`chainId` is used to specify the network that LSPFactory is interacting with. The provided `chainId` will be used to determine which base contracts to use when using [proxy deployment](./deployment/options.md#deploy-proxy). Previously deployed base contract addresses are stored in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) and accessed using the provided chainId. Defaults to 22 (l14 testnet).
 
 #### IPFS Gateway
 
 `ipfsGateway` is used to specify the IPFS node which should be interacted with for uploading and retrieving metadata. `ipfsGateway` can be either a URL string or an object as defined by the [IPFS-HTTP Client](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) library which is used internally to interact with the IPFS node.
 
 ```javascript title="Instantiating LSPFactory with custom ipfsGateway options set"
-const lspFactory = new LSPFactory(provider, {
+const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
   deployKey: '0x...',
-  chainId: 22,
+  chainId: 2828,
   ipfsGateway: {
     host: 'ipfs.infura.io',
     port: 5001,
