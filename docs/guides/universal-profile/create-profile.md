@@ -5,6 +5,10 @@ sidebar_position: 1
 
 # Create a Universal Profile
 
+:::success Recommendation
+A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section.
+:::
+
 In this guide, we will learn how to:
 
 - create a Universal Profile.
@@ -96,10 +100,6 @@ You should do this step in a **temporary file**.
 
 As described in the introduction, our first step is to create an EOA that will be used to control our Universal Profile.
 
-:::success Recommendation
-Complete "ready to use" JS files are available at the end in the [**Final Code**](#final-code) section.
-:::
-
 We can easily create an EOA using the [`web3.eth.accounts.create()`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth-accounts.html#create) method from web3.js.
 
 **Instructions:** **create a temporary file** and add the code snippet below. It will generate an object that contains:
@@ -148,7 +148,7 @@ We will look up our address balance in the **[LUKSO L14 Block Explorer](https://
 
 **Instructions:** go to the LUKSO L14 Block Explorer, and search your pasted address at the top right corner.<br/> You should see 5 LYX next to the _Balance_ field.
 
-![LUKSO L14 Network Block Explorer (screenshot)](./img/l14-explorer.png)
+![LUKSO L14 Network Block Explorer (screenshot)](./img/explorer-balance.png)
 
 ## Step 3 - Create our Universal Profile
 

@@ -18,7 +18,7 @@ function Index() {
         <div className={styles.ctaContainer}>
           <a
             className={styles.ctaButton}
-            href="./guides/universal-profile/browser-extension/install-browser-extension"
+            href="./guides/browser-extension/install-browser-extension"
           >
             <strong>Try the LUKSO browser extension 🔥</strong>
           </a>
