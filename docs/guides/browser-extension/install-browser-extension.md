@@ -108,7 +108,6 @@ On the left side, turn the _Developer mode_ slider to the right side.
 #### 3. Load the extension from the folder.
 
 Click _Load unpacked_ pointing to the extracted ZIP archive of the extension.<br/>
-Alternatively, drag and drop the zip file onto the extensions page.
 
 ![Step 3 - Edge: Load Extension](/img/extension/edge3.png)
 
