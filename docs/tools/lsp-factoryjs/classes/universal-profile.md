@@ -76,7 +76,7 @@ See the [configuration specification](../deployment/universal-profile#deployment
 
 ```javascript title="Deploying a Universal Profile"
 await lspFactory.UniversalProfile.deploy({
-  controllingAccounts: ['0xb74a88C43BCf691bd7A851f6603cb1868f6fc147'],
+  controllerAddresses: ['0xb74a88C43BCf691bd7A851f6603cb1868f6fc147'],
   lsp3Profile: {
     name: 'My Universal Profile',
     description: 'My cool Universal Profile',
@@ -159,7 +159,7 @@ await lspFactory.UniversalProfile.deploy({
 ```javascript title="Reactive Universal Profile Deployment"
 await lspFactory.UniversalProfile.deploy(
   {
-    controllingAccounts: ['0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db'],
+    controllerAddresses: ['0x9Fba07e245B415cC9580BD6c890a9fd7D22e20db'],
   },
   {
     onDeployEvents: {
@@ -559,5 +559,4 @@ await UniversalProfile.uploadProfileData(
 ```
 
 [all permissions]: ../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions
-[rxjs observable]: https://rxjs.dev/guide/observable
 [lsp3]: ../../../standards/universal-profile/lsp3-universal-profile-metadata

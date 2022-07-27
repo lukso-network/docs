@@ -195,7 +195,7 @@ const myUniversalProfileData = {
 };
 
 await lspFactory.UniversalProfile.deploy({
-    controllingAccounts: ['0x...'],
+    controllerAddresses: ['0x...'],
     lsp3Profile: myUniversalProfileData
   });
 };
@@ -232,7 +232,7 @@ Avatar files passed as a metadata objects will be set directly on the [LSP3 Prof
   };
 
   await lspFactory.UniversalProfile.deploy({
-    controllingAccounts: ['0x...'],
+    controllerAddresses: ['0x...'],
     lsp3Profile: myUniversalProfileData
   });
 
@@ -266,7 +266,7 @@ Javascript's `File` object is only available when using javascript in the browse
     };
 
     await lspFactory.UniversalProfile.deploy({
-      controllingAccounts: ['0x...'],
+      controllerAddresses: ['0x...'],
       lsp3Profile: myUniversalProfileData
     });
 };
@@ -305,7 +305,7 @@ const myUniversalProfileData = {
 };
 
 await lspFactory.UniversalProfile.deploy({
-  controllingAccounts: ['0x...'],
+  controllerAddresses: ['0x...'],
   lsp3Profile: myUniversalProfileData,
 });
 ``` -->

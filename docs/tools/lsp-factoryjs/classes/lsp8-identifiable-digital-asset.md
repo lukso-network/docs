@@ -50,12 +50,7 @@ You can read more about the `options` object specification on [its official page
 
 | Type         | Description                                                                                  |
 | :----------- | :------------------------------------------------------------------------------------------- |
-| `Promise`    | Resolves to an object containing deployed contract details. Default return value.            |
-| `Observable` | An [RxJS Observable]. Returned if `deployReactive` is set to `true` inside `options` object. |
-
-:::info
-The `deployReactive` flag can be set in the `options` object to return an [RxJS Observable] of deployment events.
-:::
+| `Promise`    | Resolves to an object containing deployed contract details.                                  |
 
 ### Example
 
@@ -207,12 +202,10 @@ Deployment Complete
 ```
 
 [contract deployment options]: ../deployment/digital-asset/#deployment-configuration
-[rxjs observable]: https://rxjs.dev/guide/observable
 [constructor parameters]: ../../../../../standards/smart-contracts/lsp7-digital-asset#constructor
 [contract deployment options]: ../deployment/digital-asset.md
 [lsp4]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md
 [uploading lsp4 digital asset metadata]: ./lsp4-digital-asset-metadata#uploadMetadata
 [lsp-smart-contracts]: https://github.com/lukso-network/lsp-smart-contracts
 [eip1167]: https://eips.ethereum.org/EIPS/eip-1167
-[rxjs observable]: https://rxjs.dev/guide/observable
 [ipfs-http-client]: https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions
