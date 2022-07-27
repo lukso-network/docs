@@ -29,10 +29,10 @@ We previously saw how to use `setData(...)` to update data in our UP contract's 
 
 The [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) function from [ERC725X](../../standards/lsp-background/erc725.md#erc725x---generic-executor) enable us to use our UP to interact with other addresses, such as transferring LYX or calling other smart contracts. This function takes four arguments (see [ERC725 API docs](../../standards/smart-contracts/erc725-contract.md#execute---erc725x)).
 
-
 We can use this function to transfer LYX from our UP to any address (including another UP). Transferring LYX from our UP is as simple as making a standard [`CALL`](../../standards/universal-profile/lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call.
 
 For a regular LYX transfer, the parameters will be:
+
 - `_operation`: `0` (for `CALL`).
 - `_to`: the `address` we want to send LYX to (Externally Owned Account or contract address).
 - `_value`: the amount of LYX we want to transfer (in Wei).
@@ -54,7 +54,7 @@ To transfer LYX from our UP, we need to perform the following steps:
 Make sure to understand the difference between both `execute(...)` functions!
 
 - [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) from the Universal Profile = generic executor function used to call and interact with EOAs or contracts + deploy new contracts from the UP.
-- `execute(payload)` from the Key Manager = used to run functions on the Universal Profile linked to the Key Manager (by forwarding  ABI encoded payload), while verifying if the caller has the right permissions to do so.
+- `execute(payload)` from the Key Manager = used to run functions on the Universal Profile linked to the Key Manager (by forwarding ABI encoded payload), while verifying if the caller has the right permissions to do so.
 
 :::
 
@@ -190,7 +190,7 @@ const transferLYXPayload = await myUP.methods
 
 // 3. execute the LYX transfer via the Key Manager
 await myKM.execute(transferLYXPayload).send({
-  from: wallet.address,
+  from: myEOA.address,
   gasLimit: 300_00,
 });
 ```
