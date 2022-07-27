@@ -22,7 +22,7 @@ npm install erc725.js
 
 ## Step 1 - setup web3.js and erc725.js
 
-The first step is to setup both and _web3.js_ and _erc725.js_, connected to the LUKSO L14 network. We will also need the address of the Universal Profile that we want to get the controller addresses from.
+The first step is to set up both and _web3.js_ and _erc725.js_, and connect to the LUKSO L16 network. We will also need the address of the Universal Profile that we want to get the controller addresses from.
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -44,14 +44,14 @@ const erc725 = new ERC725(
 
 ## Step 2 - Get the list of controller addresses
 
-The next step is to retrieve the list of controller addresses. In other words, addresses that have some permissions set and are allowed to interact with the Universal Profile.
+The next step is to retrieve the list of controller addresses. In other words, addresses with some permissions can interact with the Universal Profile.
 
-All the controller addresses are listed under the data key `AddressPermissions[]`. We can therefore obtain this list of addresses by:
+All the controller addresses are listed under the data key `AddressPermissions[]`. We can retrieve them by:
 
-1. querying the `AddressPermissions[]` to get the array length, and know **how many controller addresses** have some permissions on the UP.
+1. querying the `AddressPermissions[]` to get the array length and know **how many controller addresses** have some permissions on the UP.
 2. querying each index of the `AddressPermissions[index]` array to retrieve each address individually.
 
-Thanks to _erc725.js_, we can do that very easily. The library will do both steps for us and will return the full list of controller addresses.
+Thanks to _erc725.js_, we can do that very easily. The library will do both steps for us and will returns the full list of controller addresses.
 
 ```js
 // step 2 - get the list of addresses that have permissions on the Universal Profile
@@ -70,7 +70,7 @@ console.log(result);
 
 ## Step 3 - Get permissions of each controllers
 
-Getting the addresses of each controller is not enough. We need to retrieve the permissions of each of these controller addresses, so to know what they are allowed to do in our Universal Profile.
+Getting the addresses of each controller is not enough. We need to retrieve the permissions of each of these controller address, so to know what they are allowed to do in our Universal Profile.
 
 We can do this easily again with the [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) and [`decodePermissions(...)`](../../tools/erc725js/classes/ERC725#decodepermissions) functions from _erc725.js_.
 
