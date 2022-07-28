@@ -31,3 +31,9 @@ Once the [LUKSO mainnet](../networks/mainnet.md) starts, there will be a migrati
 If you are a developer and want to use the future LUKSO Blockchain, you can already start building using our [L14 Public Testnet](../networks/l14-testnet.md) and read our [developer's guides](../guides/universal-profile/create-profile).
 
 Please join our [Discord](https://discord.gg/lukso) and get in touch if you have terrific ideas for the new digital lifestyle economy!
+
+## Why LSPs are not proposed as ERCs?
+
+The LSPs are part of a larger set of core standards that are all interoperable and cohesive together. Nonetheless, they do function equally for any EVM chain, the ability to make these standards understood requires a less noisy and neutral place, than the current ERC space.
+
+Therefore, we deem a separate repo **[(LIPs/LSPs)](https://github.com/lukso-network/LIPs)** as necessary for the success and transparency of these new sets of standards, many of which use ERCs (ERC165, ERC173, ERC725) as a core basis.
