@@ -60,7 +60,7 @@ Type `chrome://extensions` into the searchbar to open the extension page.
 #### 3. Load the extension from the folder.
 
 Click _Load unpacked_ pointing to the extracted ZIP archive of the extension.<br/>
-Alternatively, drag and drop the zip file onto the extensions page.
+
 
 ![Step 3 - Chrome: Load Extension](/img/extension/chrome4.png)
 
@@ -147,7 +147,6 @@ Type `opera://extensions` into the searchbar to open the extension page.
 #### 3. Load the extension from the folder.
 
 Click _Load unpacked_ pointing to the extracted ZIP archive of the extension.<br/>
-Alternatively, drag and drop the zip file onto the extensions page.
 
 ![Step 3 - Opera: Load Extension](/img/extension/opera3.png)
 
@@ -193,7 +192,6 @@ Type `brave://extensions` into the searchbar to open the extension page.
 #### 3. Load the extension from the folder.
 
 Click _Load unpacked_ pointing to the extracted ZIP archive of the extension.<br/>
-Alternatively, drag and drop the zip file onto the extensions page.
 
 ![Step 3 - Brave: Load Extension](/img/extension/brave4.png)
 
