@@ -181,9 +181,9 @@ Create a new file, `main.js`.
 Our [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) tool provides convenience to upload our profile Metadata to IPFS.
 
 ```javascript title="main.js"
-const { LSPFactory } = require("@lukso/lsp-factory.js");
+import { LSPFactory } from "@lukso/lsp-factory.js";
 // reference to the previously created JSON file (LSP3Profile metadata)
-const jsonFile = require('./UniversalProfileMetadata.json');
+import jsonFile from './UniversalProfileMetadata.json';
 
 const provider = "https://rpc.l14.lukso.network"; // RPC provider url
 
@@ -227,9 +227,9 @@ To do so, we use the [`encodeData()`](../../tools/erc725js/classes/ERC725.md#enc
 In the **same file**, `main.js`, set up the erc725.js library.
 
 ```javascript title="main.js"
-const Web3 = require("web3");
+import Web3 from "web3";
 // import ERC725
-const { ERC725 } = require("@erc725/erc725.js");
+import { ERC725 } from "@erc725/erc725.js";
 // ...
 
 const web3 = new Web3("https://rpc.l14.lukso.network");
@@ -286,7 +286,7 @@ We will need to interact with the smart contracts from an externally owned accou
 The first step is to load our EOA using our private key from [previous steps](./create-profile#step-1---create-an-eoa).
 
 ```javascript title="Load account from a private key"
-const Web3 = require('web3');
+import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
@@ -306,9 +306,9 @@ If you have deployed your Universal Profile with our [lsp-factory.js](./create-p
 Therefore, you can quickly obtain the address of your Key Manager by calling the [`owner()`](../../standards/smart-contracts/lsp0-erc725-account.md#owner) function on your Universal Profile's smart contract.
 
 ```javascript title="Create contracts instances and get the Key Manager address"
-const Web3 = require('web3');
-const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
-const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
+import Web3 from 'web3';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
@@ -386,12 +386,14 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 </details>
 
 ```javascript title="main.js"
-const Web3 = require("web3");
-const { ERC725 } = require("@erc725/erc725.js");
-const { LSPFactory } = require("@lukso/lsp-factory.js");
+import Web3 from "web3";
+import { ERC725 } from "@erc725/erc725.js";
+import { LSPFactory } from "@lukso/lsp-factory.js";
 
-const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");
-const KeyManager = require("@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json");
+import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
+import KeyManager from "@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json";
+
+import jsonFile from "./UniversalProfileMetadata.json";
 
 const web3 = new Web3("https://rpc.l14.lukso.network");
 
@@ -400,7 +402,6 @@ const PRIVATE_KEY = "0x...";
 const profileAddress = "0x...";
 
 // Step 1 - Create a new LSP3Profile JSON file
-const jsonFile = require("./UniversalProfileMetadata.json");
 
 const provider = "https://rpc.l14.lukso.network"; // RPC provider url
 

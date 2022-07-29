@@ -64,17 +64,17 @@ We will use the convenient `fetchData()` function since we only need one command
 
 ```javascript title="read_profile.js"
 // Import and Network Setup
-const Web3 = require('web3');
-const { ERC725 } = require('@erc725/erc725.js');
-require('isomorphic-fetch');
+import Web3 from 'web3';
+import { ERC725 } from '@erc725/erc725.js';
+import 'isomorphic-fetch';
+import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
 
 // Parameters for ERC725 Instance
-const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
@@ -219,17 +219,17 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 
 ```javascript title="read_profile.js"
 // Import and Network Setup
-const Web3 = require('web3');
-const { ERC725 } = require('@erc725/erc725.js');
-require('isomorphic-fetch');
+import Web3 from 'web3';
+import { ERC725 } from '@erc725/erc725.js';
+import from 'isomorphic-fetch';
+import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
 
 // Parameters for ERC725 Instance
-const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 

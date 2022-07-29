@@ -39,8 +39,8 @@ npm install erc725.js @lukso/lsp-smart-contracts
 The first step is to initialize the erc725.js library with a JSON schema specific to the LSP6 Key Manager. This will enable the library to know how to create and encode the permissions.
 
 ```js
-const { ERC725 } = require("@erc725/erc725.js");
-const LSP6Schema = require("@erc725/erc725.js/schemas/LSP6KeyManager.json");
+import { ERC725 } from "@erc725/erc725.js";
+import LSP6Schema from "@erc725/erc725.js/schemas/LSP6KeyManager.json";
 
 // step 1 -initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
 const erc725 = new ERC725(LSP6Schema);
@@ -106,7 +106,7 @@ The private key can be obtained depending on how you created your Universal Prof
 
 
 ```javascript title="Load account from a private key"
-const Web3 = require('web3');
+import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
@@ -121,10 +121,9 @@ The next steps is to create the web3 instance of our smart contracts to interact
 You will need the address of your Universal Profile deployed on L16.
 
 ```js
-const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");
-const KeyManager = require("@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json");
-
-const Web3 = require("web3");
+import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
+import KeyManager from "@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json";
+import Web3 from "web3";
 
 const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
 const web3 = new Web3(RPC_ENDPOINT);
@@ -165,12 +164,11 @@ const payload = myUniversalProfile.methods["setData(bytes32,bytes)"](data.keys[0
 ## Final code
 
 ```js
-const { ERC725 } = require("@erc725/erc725.js");
-const LSP6Schema = require("@erc725/erc725.js/schemas/LSP6KeyManager.json");
-const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");
-const KeyManager = require("@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json");
-
-const Web3 = require("web3");
+import { ERC725 } from "@erc725/erc725.js";
+import LSP6Schema from "@erc725/erc725.js/schemas/LSP6KeyManager.json";
+import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
+import KeyManager from "@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json";
+import Web3 from "web3";
 
 // setup
 const myUniversalProfileAddress = "0x..."; // the address of your Universal Profile on L16
