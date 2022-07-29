@@ -20,13 +20,12 @@ Apple's new M1 chips are not supported natively by our node client. However, you
 
 ## Ports
 
-| Port  | Protocol | Client           | Description               
-| ----- | -------- | ---------------- | --------------------- |
-| 30303 | TCP      | geth syncing     | port must be open     |                                                                                             |
-| 30303 | UDP      | geth discovery   | port must be open     |                                                                                             |
-| 13000 | TCP      | beacon syncing   | port must be open     |                                                                                             |
-| 12000 | UDP      | beacon discovery | port must be open     | 
-
+| Port  | Protocol | Client           | Description       |
+| ----- | -------- | ---------------- | ----------------- |
+| 30303 | TCP      | geth syncing     | port must be open |
+| 30303 | UDP      | geth discovery   | port must be open |
+| 13000 | TCP      | beacon syncing   | port must be open |
+| 12000 | UDP      | beacon discovery | port must be open |
 
 ## Linux System Setup
 
@@ -36,35 +35,40 @@ _For instructions on setting up a Mac, proceed to the [MacOS System Setup](#maco
 
 Deny all incoming traffic by default
 
-```
-$ sudo ufw default deny incoming
-$ sudo ufw default allow outgoing
+```sh
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
 ```
 
 Allow traffic for the ports listed above.
 
-```
-$ sudo ufw allow 30303/tcp
-$ sudo ufw allow 30303/udp
-$ sudo ufw allow 13000/tcp
-$ sudo ufw allow 12000/udp
+```sh
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 13000/tcp
+sudo ufw allow 12000/udp
 ```
 
 You can forward extra ports, by using the following command:
+
+```sh
+sudo ufw allow [replace_with_your_ssh_port]/tcp/udp
 ```
-$ sudo ufw allow [replace_with_your_ssh_port]/tcp/udp
-```
+
 This can be useful for setting up you ssh connection or monitoring.
 
 Enable firewall
 
-```
-$ sudo ufw enable
+```sh
+sudo ufw enable
 ```
 
 :::info
+
 NOTE: Make sure also to configure your router to forward these ports.
+
 :::
+
 You may follow this community-authored [Port Forwarding](https://github.com/KEEZ-RobG/node-guide/blob/main/PortForward.md) guide.
 
 ### Install Dependencies
@@ -76,24 +80,24 @@ You may follow this community-authored [Port Forwarding](https://github.com/KEEZ
 #### Install curl
 
 ```sh
-$ sudo apt-get -y update
-$ sudo apt-get -y install curl
+sudo apt-get -y update
+sudo apt-get -y install curl
 ```
 
 #### Install Docker
 
 ```sh
-$ curl -fsSL https://get.docker.com -o get-docker.sh
-$ sudo sh get-docker.sh
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 ```
 
 #### Install Docker Compose
 
 ```sh
-$ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-$ sudo chmod +x /usr/local/bin/docker-compose
-$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-$ docker-compose --version
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
 ```
 
 ## MacOS System Setup
@@ -103,7 +107,9 @@ $ docker-compose --version
 This section is in the works
 
 :::info
-This section is in the works 
+
+This section is in the works
+
 :::
 
 ### Install Dependencies
@@ -114,14 +120,14 @@ This section is in the works
 
 #### Install Homebrew
 
-```
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 #### Install Curl
 
-```
-$ brew install curl
+```sh
+brew install curl
 ```
 
 #### Install Docker Desktop for Mac
@@ -137,26 +143,26 @@ Open the Docker Desktop application after installing from the applications folde
 
 Create a directory:
 
-```
-$ mkdir lukso-l16-testnet
+```sh
+mkdir lukso-l16-testnet
 ```
 
 and navigate to it in your terminal by using the `cd` command
 
-```bash
-$ cd lukso-l16-testnet
+```sh
+cd lukso-l16-testnet
 ```
 
 Then, install the [LUKSO CLI](https://github.com/lukso-network/lukso-cli) using the install script:
 
 ```sh
-$ sudo curl https://install.l16.lukso.network | sudo bash
+sudo curl https://install.l16.lukso.network | sudo bash
 ```
 
 #### Check your LUKSO CLI version
 
-```
-$ lukso -v
+```sh
+lukso -v
 ```
 
 The output has to be v.0.4.3 or higher.
@@ -164,7 +170,7 @@ The output has to be v.0.4.3 or higher.
 ## Initialize the network
 
 ```sh
-$ sudo lukso network init --chain l16
+sudo lukso network init --chain l16
 ```
 
 The CLI will ask you to setup your node name.
@@ -174,7 +180,7 @@ The CLI will ask you to setup your node name.
 You can start your node with:
 
 ```sh
-$ sudo lukso network start
+sudo lukso network start
 ```
 
 #### Check your node
@@ -188,11 +194,13 @@ Immediately after starting your node you can check the syncing process in your [
 ## Stop your node
 
 ```sh
-$ sudo lukso network stop
+sudo lukso network stop
 ```
 
 :::tip Want to run a validator node?
+
 If you want, you are now ready to run validators on your node. Check the tutorial on the [validator](./become-validator.md) page.
+
 :::
 
 ## Need help?
