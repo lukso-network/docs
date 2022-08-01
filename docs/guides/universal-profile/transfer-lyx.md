@@ -95,8 +95,8 @@ The first step is to create instances of our Universal Profile and Key Manager c
 - 2.2 - Then, we will use the Key Manager to interact with our Universal Profile and send some LYX.
 
 ```typescript
-const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
-const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 
@@ -115,7 +115,7 @@ The next step is to ABI encode this function call with the correct parameters, a
 We can use the [`encodeABI()`](https://web3js.readthedocs.io/en/v1.7.4/web3-eth-contract.html#methods-mymethod-encodeabi) method from web3.js
 
 ```javascript
-const Web3 = require('web3');
+import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
 const OPERATION_CALL = 0;
@@ -137,7 +137,7 @@ const transferLYXPayload = await myUP.methods
 Like in other guides, the first step is to load our EOA that act as the main controller for our Universal Profile.
 
 ```javascript title="Load EOA from a private key"
-const Web3 = require('web3');
+import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (main controller address)
@@ -159,9 +159,9 @@ await myKM.execute(transferLYXPayload).send({
 ## Final Code
 
 ```javascript
-const Web3 = require('web3');
-const UniversalProfile = require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json');
-const KeyManager = require('@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json');
+import Web3 from 'web3';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 

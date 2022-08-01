@@ -46,8 +46,8 @@ Calling this function will return **TRUE** if the contract implements this speci
 A **[Universal Profile](./universal-profile/lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/lsp0-erc725account.md)(LSP0). Therefore, the contract SHOULD implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 ```javascript
-const UniversalProfile = require("@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json");
-const Web3 = require("web3");
+import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
+import Web3 from "web3";
 
 // Connect to the LUKSO L14 network
 const web3 = new Web3("https://rpc.l14.lukso.network");
@@ -85,8 +85,8 @@ Calling this function will return a specific bytes4 value (defined in the Metada
 An **[LSP7DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y Data keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y Data keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 
 ```javascript
-const LSP7DigitalAsset = require('@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json');
-const Web3 = require('web3');
+import LSP7DigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json';
+import Web3 from 'web3';
 
 // Connect to the LUKSO L14 network
 const web3 = new Web3('https://rpc.l14.lukso.network');
@@ -95,6 +95,6 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 const myTokenContract = new web3.eth.Contract(LSP7DigitalAsset.abi, '<contract-address>');
 
 const SupportedStandards_LSP4 = '0xeafec4d89fa9619884b60000a4d96624a38f7ac2d8d9a604ecf07c12c77e480c';
-await myTokenContract.methods["getData(bytes32[])"]([SupportedStandards_LSP4DigitalAsset]).call();
+await myTokenContract.methods["getData(bytes32[])"]([SupportedStandards_LSP4]).call();
 > 0xa4d96624; // valid result according to LSP4
 ```

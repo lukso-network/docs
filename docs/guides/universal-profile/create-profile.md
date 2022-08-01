@@ -109,7 +109,7 @@ We can easily create an EOA using the [`web3.eth.accounts.create()`](https://web
 - some singing methods like `sign`
 
 ```javascript title="create-eoa.js (temporary file)"
-const Web3 = require('web3');
+import Web3 from 'web3';
 const web3 = new Web3();
 
 const myEOA = web3.eth.accounts.create();
@@ -167,7 +167,7 @@ We will start by loading our EOA in our main JS file so that we can use it to de
 **Instructions:** import the private key that you created in **step 1**.
 
 ```javascript title="main.js"
-const Web3 = require('web3');
+import Web3 from 'web3';
 const web3 = new Web3();
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (created in step 1)
@@ -200,7 +200,7 @@ The next step is to import and set up our lsp-factory.js tool. It will give us a
 **Instructions:** use the code snippet below to set up the lsp-factory.js.
 
 ```javascript title="main.js"
-const { LSPFactory } = require('@lukso/lsp-factory.js');
+import { LSPFactory } from '@lukso/lsp-factory.js';
 
 // Step 3.1 - Load our EOA
 const PRIVATE_KEY = '0x...'; // add the private key of your EOA here (created in Step 1)
@@ -225,7 +225,7 @@ The `deploy` function takes an object as an argument that contains two elements:
 > We keep our `LSP3Profile` metadata simple in this tutorial. But you can easily add more details about your UP in this object such as `profileImage`, `backgroundImage` and `avatar`. Read how to do this with lsp-factory [here](../../tools/lsp-factoryjs/deployment/universal-profile.md#setting-images-in-lsp3metadata)
 
 ```javascript title="main.js"
-const { LSPFactory } = require('@lukso/lsp-factory.js');
+import { LSPFactory } from '@lukso/lsp-factory.js';
 
 // Step 3.1 - Load our EOA
 // ...
@@ -336,7 +336,7 @@ The figure below describes each transaction performed by the lsp-factory.js. It 
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
 ```javascript title="create-eoa.js"
-const Web3 = require('web3');
+import Web3 from 'web3';
 const web3 = new Web3();
 
 const myEOA = web3.eth.accounts.create();
@@ -354,8 +354,8 @@ console.log(myEOA);
 ```
 
 ```javascript title="main.js"
-const Web3 = require('web3');
-const { LSPFactory } = require('@lukso/lsp-factory.js');
+import Web3 from 'web3';
+import { LSPFactory } from '@lukso/lsp-factory.js';
 
 const web3 = new Web3();
 

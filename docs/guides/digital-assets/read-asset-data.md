@@ -14,8 +14,8 @@ Complete _"ready to use"_ JSON and JS files are available at the end in the [**F
 
 In this guide, we will learn how to:
 
-- get all assets owned by a Universal Profile.
-- fetch the metadata of all owned assets.
+- Get all assets owned by a Universal Profile.
+- Fetch the metadata of all owned assets.
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
@@ -45,7 +45,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 <Tabs>
   <TabItem value="Current Standard" label="Current Standard">
 
-In the [**Read Profile Data** guide](../universal-profile/read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch all the assets owned by the Universal Profile by fetching the `LSP5ReceivedAssets[]` metadata.
+In the [**Read Profile Data** guide](../universal-profile/read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch all the assets owned by the Universal Profile by fetching using the `LSP5ReceivedAssets[]` key.
 
 :::info
 This same method can also be used to fetch all assets a Universal Profile has ever issued by using the `LSP12IssuedAssets[]` key.
@@ -66,7 +66,7 @@ import Web3 from 'web3';
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -101,7 +101,7 @@ import Web3 from 'web3';
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -213,16 +213,14 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 
 ```javascript title="read_assets.js"
 // Imports
-const Web3 = require('web3');
-const { ERC725 } = require('@erc725/erc725.js');
-require('isomorphic-fetch');
-const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');
-const LSP4schema = require('@erc725/erc725.js/schemas/LSP4DigitalAsset.json');
-const LSP8 = require('@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json');
-const LSP4 = require('@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json');
-const {
-  ERC725Y_INTERFACE_IDS,
-} = require('@erc725/erc725.js/build/main/src/lib/constants');
+import Web3 from "web3";
+import { ERC725 } from "@erc725/erc725.js";
+import "isomorphic-fetch";
+import erc725schema from "@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json";
+import LSP4schema from "@erc725/erc725.js/schemas/LSP4DigitalAsset.json";
+import LSP8 from "@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json";
+import LSP4 from "@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json";
+import { ERC725Y_INTERFACE_IDS } from "@erc725/erc725.js/build/main/src/lib/constants";
 
 // Sample addresses
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
@@ -230,7 +228,7 @@ const SAMPLE_ASSET_ADDRESS = '0x923F49Bac508E4Ec063ac097E00b4a3cAc68a353';
 
 // Network and storage
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -558,12 +556,18 @@ getAssetData(MetaDataKey, SAMPLE_ASSET_ADDRESS).then((encodedData) => {
 
 ```javascript title="read_assets.js"
 // Imports
-const Web3 = require('web3');
-const { ERC725 } = require('@erc725/erc725.js');
-require('isomorphic-fetch');
-const erc725schema = require('@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json');
-const LSP8 = require('@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json');
-const LSP4schema = require('@erc725/erc725.js/schemas/LSP4DigitalAsset.json');
+import Web3 from "web3";
+import { ERC725 } from "@erc725/erc725.js";
+import "isomorphic-fetch";
+import erc725schema from "@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json";
+import LSP8 from "@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json";
+import LSP4schema from "@erc725/erc725.js/schemas/LSP4DigitalAsset.json";
+
+// Legacy ABIs and schemas
+import LSP1MinimalABI from "./lsp1_legacy_minimal_abi.json";
+import LSP4MinimalABI from "./lsp4_legacy_minimal_abi.json";
+import ERC725MinimalABI from "./erc725_legacy_minimal_abi.json";
+import ERC725LegacySchema from "./erc725_legacy_minimal_schema.json";
 
 // Sample addresses
 const SAMPLE_ASSET_ADDRESS = '0xc444009d38d3046bb0cF81Fa2Cd295ce46A67C78';
@@ -571,13 +575,8 @@ const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 
 // Network and storage
 const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
-// Legacy ABIs and schemas
-const LSP1MinimalABI = require('./lsp1_legacy_minimal_abi.json');
-const LSP4MinimalABI = require('./lsp4_legacy_minimal_abi.json');
-const ERC725MinimalABI = require('./erc725_legacy_minimal_abi.json');
-const ERC725LegacySchema = require('./erc725_legacy_minimal_schema.json');
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
