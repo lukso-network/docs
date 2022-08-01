@@ -60,7 +60,7 @@ import erc725schema from "@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = "0xa907c1904c22DFd37FF56c1f3c3d795682539196";
 const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
-const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
+const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -868,7 +868,7 @@ const SAMPLE_ASSET_ADDRESS = "0x923F49Bac508E4Ec063ac097E00b4a3cAc68a353";
 
 // Network and storage
 const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
-const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs/";
+const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);

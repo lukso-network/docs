@@ -22,7 +22,6 @@ We will use:
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
 - [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code.
 
-
 ## Setup
 
 Open a terminal in the project's folder of your choice and install all required libraries.
@@ -30,6 +29,7 @@ Open a terminal in the project's folder of your choice and install all required 
 ```shell
 npm install web3 @erc725/erc725.js isomorphic-fetch
 ```
+
 ## Step 1 - Call the Universal Profile
 
 :::success Recommendation
@@ -56,8 +56,9 @@ After importing the ERC725 object, we can declare all data needed to instantiate
 
 :::info
 After initializing the ERC725 profile, we can choose between calling the `getData()` or `fetchData()` function on it.
+
 - `getData()` will give the basic profile information with keys, names, and the values, including its hash and URL.
-- `fetchData()` will also fetch the linked data from the storage URLs and include it within the response. 
+- `fetchData()` will also fetch the linked data from the storage URLs and include it within the response.
 
 We will use the convenient `fetchData()` function since we only need one command to return the complete profile information list without separately grazing the storage files afterward.  
 :::
@@ -72,7 +73,7 @@ import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs//';
 
 // Parameters for ERC725 Instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -89,7 +90,7 @@ async function fetchProfile(address) {
     const profile = new ERC725(erc725schema, address, provider, config);
     return await profile.fetchData();
   } catch (error) {
-      return console.log('This is not an ERC725 Contract');
+    return console.log('This is not an ERC725 Contract');
   }
 }
 
@@ -183,7 +184,7 @@ With the JSON response, we can fetch all sorts of data including:
 - `LSP1UniversalReceiverDelegate`: The Universal Receiver that belongs to the Universal Profile
 
 :::info
-To only get one specific part of information from the Universal Profile, you can define a specific name within the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. 
+To only get one specific part of information from the Universal Profile, you can define a specific name within the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library.
 :::
 
 In our case, to only read the profile's information, we can use `fetchData('LSP3Profile')`. Otherwise, you could just search trough the full JSON array from step before to extract the desired element.
@@ -192,7 +193,7 @@ In our case, to only read the profile's information, we can use `fetchData('LSP3
 // ...
 
 /*
- * Fetch the @param's Universal Profile's 
+ * Fetch the @param's Universal Profile's
  * LSP3 data
  *
  * @param address of Universal Profile
@@ -203,7 +204,7 @@ async function fetchProfileData(address) {
     const profile = new ERC725(erc725schema, address, provider, config);
     return await profile.fetchData('LSP3Profile');
   } catch (error) {
-      return console.log('This is not an ERC725 Contract');
+    return console.log('This is not an ERC725 Contract');
   }
 }
 
@@ -227,7 +228,7 @@ import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://cloudflare-ipfs.com/ipfs/';
+const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for ERC725 Instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -249,7 +250,7 @@ async function fetchProfile(address) {
 }
 
 /*
- * Fetch the @param's Universal Profile's 
+ * Fetch the @param's Universal Profile's
  * LSP3 data
  *
  * @param address of Universal Profile
