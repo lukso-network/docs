@@ -309,7 +309,7 @@ function transferBatch(
 ) public
 ```
 
-Transfers multiple tokens based on the `from`, `to`, and `amount` arrays. If any transfer fails, the whole call will revert.
+Transfers multiple tokens based on the `from`, `to`, and `tokenId` arrays. If any transfer fails, the whole call will revert.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when the tokens get successfully transferred._
 
@@ -319,7 +319,7 @@ _Triggers the **[Transfer](#trasnfer-2)** event when the tokens get successfully
 | :-------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | `from`    | address[] | The list of sending addresses.                                                                                                            |
 | `to`      | address[] | The list of receiving addresses.                                                                                                          |
-| `tokenId` | bytes32[] | The amount of tokens to transfer.                                                                                                         |
+| `tokenId` | bytes32[] | The list of tokenIds to transfer.                                                                                                         |
 | `force`   | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`    | bytes[]   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
