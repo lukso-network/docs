@@ -116,7 +116,7 @@ We can use the [`encodeABI()`](https://web3js.readthedocs.io/en/v1.7.4/web3-eth-
 
 ```javascript
 import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const OPERATION_CALL = 0;
 const recipient = '0x...'; // address the recipient (any address, including an other UP)
@@ -189,7 +189,7 @@ const transferLYXPayload = await myUP.methods
   .encodeABI();
 
 // 3. execute the LYX transfer via the Key Manager
-await myKM.execute(transferLYXPayload).send({
+await myKM.methods.execute(transferLYXPayload).send({
   from: myEOA.address,
   gasLimit: 300_00,
 });
