@@ -431,7 +431,7 @@ To restrict an `<address>` to only execute the function `transfer(address,uint25
 {
   "name": "AddressPermissions:AllowedFunctions:<address>",
   "key": "0x4b80742de2bf8efea1e80000<address>",
-  "keyType": "0MappingWithGrouping",
+  "keyType": "MappingWithGrouping",
   "valueType": "bytes4[]",
   "valueContent": "Bytes4"
 }
