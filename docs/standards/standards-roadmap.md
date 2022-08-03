@@ -37,7 +37,7 @@ In order to understand the LSPs properly, they should be studied in the followin
 
 - **[LSP10 - ReceivedVaults](./universal-profile/lsp10-received-vaults.md)**
 
-- **[LSP12 - IssuedAssets](#)**
+- **[LSP12 - IssuedAssets](./universal-profile/lsp12-issued-assets.md)**
 
 ## Further Information
 
