@@ -6,7 +6,7 @@ sidebar_position: 2
 # Create a Universal Profile
 
 :::danger
-The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
+The UP Browser Extension is currently in the **development alpha** version. DO NOT use this in production!
 :::
 
 #### 1. Launch the extension and create your profile.
