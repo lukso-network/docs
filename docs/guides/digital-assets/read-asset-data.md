@@ -222,7 +222,7 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
 import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
-import LSP4schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
+import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import Web3 from 'web3';
 
 // Static variables
@@ -287,7 +287,7 @@ console.log(ownedAssetsMetadata);
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
 import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
-import LSP4schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
+import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import Web3 from 'web3';
 import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';
 
