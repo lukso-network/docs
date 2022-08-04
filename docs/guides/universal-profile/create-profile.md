@@ -16,7 +16,7 @@ In this guide, we will learn how to:
 
 ![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
-We will use the [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) library to create a Universal Profile in **less than 50 lines of code!**
+We will use the [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) library to create a Universal Profile in **fewer than 50 lines of code!**
 
 ## Introduction
 
@@ -28,7 +28,7 @@ The Contract's owner is a blockchain `address` that can represent anything, such
 
 - one or multiple Externally Owned Accounts (EOAs),
 - a multi-sig wallet, or
-- an other smart contract that can represent anything (a DAO, a DEX, etc...).
+- another smart contract that can represent anything (a DAO, a DEX, etc...).
 
 ![Universal Profile smart contract: ownership diagram](./img/universal-profile-ownership.jpeg)
 
@@ -36,10 +36,10 @@ The Contract's owner is a blockchain `address` that can represent anything, such
 
 With the **Ownable** design pattern, a contract can be designed with _functionalities that only the owner can perform_. The design pattern gives the contract owner more control and privileges.
 
-In the context of Universal Profile, _reading data from the contract storage can be done by anyone_. But **only the owner can**:
+In the context of Universal Profile, _reading data from the contract storage can be done by anyone_, but **only the owner can**:
 
 - `setData(...)` = add, edit or remove data from the [ERC725Y](../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) storage.
-- `execute(...)` = transferring LYX to addresses, calling other contracts, or create and deploy new contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor)
+- `execute(...)` = transfer LYX to addresses, call other contracts, or create and deploy new contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor)
 - `transferOwnership(...)` = make an address be the new owner of the Universal Profile.
 
 In this guide, our Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../standards/smart-contracts/lsp6-key-manager.md) is a smart contract that enables granting specific permissions to `addresses`, so that they can interact with the Universal Profile. For example, transferring LYX on behalf of the Universal Profile.
@@ -106,7 +106,7 @@ We can easily create an EOA using the [`web3.eth.accounts.create()`](https://web
 
 - a private key (32 bytes / 64 characters long),
 - an address (20 bytes / 40 characters long), and
-- some singing methods like `sign`
+- some signing methods like `sign`
 
 ```javascript title="create-eoa.js (temporary file)"
 import Web3 from 'web3';
@@ -136,19 +136,20 @@ node create-eoa.js
 
 ## Step 2 - Get some LYX
 
-After creating an EOA that will control our Universal Profile in **Step 1**, we will need to fund our address with some test LYX (the native cryptocurrency of the LUKSO blockchain). You can obtain some free test LYX via the **[L14 Faucet](http://faucet.l14.lukso.network/)**.
+After creating an EOA that will control our Universal Profile in **Step 1**, we will need to fund our address with some test LYX (the native cryptocurrency of the LUKSO blockchain). You can obtain some free test LYX via the **[L16 Faucet](http://faucet.l16.lukso.network/)**.
 
-**Instructions:** visit the faucet website, paste your above-generated address into the input field and _request 5 LYX_.
+**Instructions:** visit the faucet website, and follow the instructions to _request LYX_.
 
-:arrow_right: **[LUKSO L14 Faucet Website](http://faucet.l14.lukso.network/)**
+:arrow_right: **[LUKSO L16 Faucet Website](http://faucet.l16.lukso.network/)**
 
-![L14 Faucet screenshot](./img/L14-faucet.png)
+![L16 Faucet screenshot](https://user-images.githubusercontent.com/58372066/182743024-6866a180-29d2-4e07-93fc-862400547a15.png)
 
-We will look up our address balance in the **[LUKSO L14 Block Explorer](https://blockscout.com/lukso/l14)** to ensure we have received our test LYX.
+We will look up our address balance in the **[LUKSO L16 Block Explorer](https://explorer.execution.l16.lukso.network/)** to ensure we have received our test LYX.
 
-**Instructions:** go to the LUKSO L14 Block Explorer, and search your pasted address at the top right corner.<br/> You should see 5 LYX next to the _Balance_ field.
+**Instructions:** go to the LUKSO L16 Block Explorer, and search your pasted address at the top right corner.<br/> You should see the requested LYX amount next to the _Balance_ field.
 
-![LUKSO L14 Network Block Explorer (screenshot)](./img/explorer-balance.png)
+![L16 Block Explorer screenshot](https://user-images.githubusercontent.com/58372066/182744109-0dfa37e4-3713-49cb-bd36-37f953e654e8.png)
+
 
 ## Step 3 - Create our Universal Profile
 
@@ -206,10 +207,10 @@ import { LSPFactory } from '@lukso/lsp-factory.js';
 const PRIVATE_KEY = '0x...'; // add the private key of your EOA here (created in Step 1)
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
-// initialize the LSPFactory with the L14 chain RPC endpoint, chainId and your EOA's private key which will deploy the UP smart contracts
-const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
+// initialize the LSPFactory with the L16 chain RPC endpoint, chainId and your EOA's private key which will deploy the UP smart contracts
+const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
   deployKey: PRIVATE_KEY,
-  chainId: 22,
+  chainId: 2828,
 });
 ```
 
@@ -273,7 +274,7 @@ createUniversalProfile().then((deployedContracts) => {
     }
   },
   LSP6KeyManager: {
-    address: '0x646e989A0840CE4c3bac39d535Af736db2371107',
+    address: '0x...',
     receipt: {
       ...
     }
@@ -306,22 +307,24 @@ async function createUniversalProfile() {
 
 createUniversalProfile();
 
-// my Universal Profile address: 0xFD296cCDB97C605bfdE514e9810eA05f421DEBc2
+// my Universal Profile address: 0xEde1198b046d8ED64B71adeA5d3B7370cc84A7FB
 ```
 
-We can now visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
+In the future, we can also visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
 
 *https://universalprofile.cloud/{your-up-address}*
 
+Currently, universalprofile.cloud includes profiles deployed on L14. The example in this document uses L16, so our recently deployed profile will not show up on universalprofile.cloud.
+
 ![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
-You can also see the contracts created by the lsp-factory.js library on the LUKSO L14 Block explorer:
+You can also see the contracts created by the lsp-factory.js library on the LUKSO L16 Block explorer:
 
-*https://blockscout.com/lukso/l14/address/{your-eoa-address}/transactions*
+*https://explorer.execution.l16.lukso.network/address/{your-eoa-address}/transactions*
 
 The figure below describes each transaction performed by the lsp-factory.js. It also shows how transactions <br/> are mapped to the **[Contracts Overview](#contracts-overview)** diagram introduced at the beginning of this guide.
 
-![lsp-factory.js: contract deployed on L14 and transactions flow](img/lsp-factory-deployments-explained.jpeg)
+![lsp-factory.js: contract deployed on L16 and transactions flow](img/lsp-factory-deployments-explained.jpeg)
 
 ## Congratulations 🥳
 
@@ -364,10 +367,10 @@ const PRIVATE_KEY = '0x...'; // add the private key of your EOA here (created in
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
 // Step 3.2
-// Initialize the LSPFactory with the L14 RPC endpoint and your EOA's private key, which will deploy the UP smart contracts
-const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
+// Initialize the LSPFactory with the L16 RPC endpoint and your EOA's private key, which will deploy the UP smart contracts
+const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
   deployKey: PRIVATE_KEY,
-  chainId: 22,
+  chainId: 2828,
 });
 
 // Step 3.3 - Deploy our Universal Profile
@@ -395,5 +398,5 @@ async function createUniversalProfile() {
 
 createUniversalProfile();
 
-// my Universal Profile address: 0xFD296cCDB97C605bfdE514e9810eA05f421DEBc2
+// my Universal Profile address: 0xEde1198b046d8ED64B71adeA5d3B7370cc84A7FB
 ```
