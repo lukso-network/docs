@@ -314,7 +314,7 @@ In the future, we can also visualize our UP on the [universalprofile.cloud](http
 
 *https://universalprofile.cloud/{your-up-address}*
 
-Currently, universalprofile.cloud includes profiles deployed on L14. The example in this document uses L16, so our recently deployed profile will not show up on universalprofile.cloud.
+Currently, universalprofile.cloud includes profiles deployed on L14, so this example, which was deployed on L16, will not show up on universalprofile.cloud.
 
 ![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
