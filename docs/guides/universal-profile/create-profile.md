@@ -12,7 +12,7 @@ A complete _"ready to use"_ JS file is available at the end in the [**Final Code
 In this guide, we will learn how to:
 
 - create a Universal Profile.
-- see our new Universal Profile on [universalprofile.cloud](https://universalprofile.cloud).
+- see our new Universal Profile on [l16.universalprofile.cloud](https://l16.universalprofile.cloud).
 
 ![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
@@ -310,11 +310,9 @@ createUniversalProfile();
 // my Universal Profile address: 0xEde1198b046d8ED64B71adeA5d3B7370cc84A7FB
 ```
 
-In the future, we can also visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
+We can also visualize our UP on the [l16.universalprofile.cloud](https://l16.universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
 
-*https://universalprofile.cloud/{your-up-address}*
-
-Currently, universalprofile.cloud includes profiles deployed on L14, so this example, which was deployed on L16, will not show up on universalprofile.cloud.
+*https://l16.universalprofile.cloud/{your-up-address}*
 
 ![Universal Profile example on universalprofile.cloud](./img/my-up.png)
 
