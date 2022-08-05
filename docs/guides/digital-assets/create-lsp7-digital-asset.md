@@ -21,14 +21,6 @@ We will use a specific implementation of LSP7, called `LSP7Mintable`. It allows 
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
-const myEOA = '<address-of-up-owner>';
-const tokenParams = [
-  'My LSP7 Token', // token name
-  'LSP7', // token symbol
-  myEOA, // new owner
-  false, // isNFT (make your token divisible or not)
-];
-
 // create an instance
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
   gas: 5_000_000,
@@ -37,7 +29,15 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
 
 // deploy the token contract
 await myToken
-  .deploy({ data: LSP7Mintable.bytecode, arguments: tokenParams })
+  .deploy({
+    data: LSP7Mintable.bytecode,
+    arguments: [
+      'My LSP7 Token', // token name
+      'LSP7', // token symbol
+      myEOA, // new owner, who will mint later
+      false, // isNFT = TRUE, means NOT divisble, decimals = 0)
+    ]
+  })
   .send({
     from: myEOA,
   });
@@ -50,17 +50,15 @@ await myToken
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
-const myEOA = '<address-of-up-owner>';
-const tokenParams = [
-  'My LSP7 Token', // token name
-  'LSP7', // token symbol
-  myEOA, // new owner
-  false, // isNFT (make your token divisible or not)
-];
-
 // deploy + create an instance of the token contract
 const lsp7Factory = await ethers.getContractFactory('LSP7Mintable');
-const myToken = await lsp7Factory.deploy(tokenParams);
+    
+const myToken = await lsp7Factory.deploy([
+  'My LSP7 Token', // token name
+  'LSP7', // token symbol
+  myEOA, // new owner, who will mint later
+  false, // isNFT = TRUE, means NOT divisble, decimals = 0)
+]);
 ```
 
   </TabItem>
@@ -102,17 +100,19 @@ The following code snippet shows how to transfer 15 tokens from your UP to anoth
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-const bobUP = '<bob-up-address>';
-const amount = 15;
-
 // 1. generate the payload to transfer tokens
 const tokenPayload = myToken.methods
-  .transfer('<up-address>', bobUP, amount, false, '0x')
+  .transfer('<up-address>', '<bob-up-address>', 15, false, '0x')
   .encodeABI();
 
 // 2. generate payload for Universal Profile to execute the token transfer on the token contract
 const upPayload = myUniversalProfile.methods
-  .execute(0, myToken._address, 0, tokenPayload)
+  .execute(
+    0, // operation 0 CALL
+    myToken._address,
+    0, // 0  LYX sent
+    tokenPayload
+    )
   .encodeABI();
 
 // 3. execute via the KeyManager
@@ -128,23 +128,20 @@ await myKeyManager.methods.execute(upPayload).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-const bobUP = '<bob-up-address>';
-const amount = 15;
-
 // 1. generate the payload to transfer tokens
 const tokenPayload = myToken.interface.encodeFunctionData('transfer', [
   '<up-address>',
-  bobUP,
-  amount,
+  '<bob-up-address>',
+  15,
   false,
   '0x',
 ]);
 
 // 2. generate payload for Universal Profile to execute the token transfer on the token contract
 const upPayload = myUniversalProfile.interface.encodeFunctionData('execute', [
-  0,
+  0, // operation 0 CALL
   myToken._address,
-  0,
+  0, // 0  LYX sent
   tokenPayload,
 ]);
 
