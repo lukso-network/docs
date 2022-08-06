@@ -50,7 +50,7 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    image: 'img/lukso-docs.jpg',
+    image: 'img/lukso-docs-opengraph.jpg',
     announcementBar: {
       id: 'hackathon',
       content:
