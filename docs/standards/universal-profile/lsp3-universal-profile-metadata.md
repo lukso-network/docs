@@ -118,8 +118,8 @@ The `LSP12IssuedAssetsMap:<address>` can then be used to know the asset type (_e
   "name": "LSP12IssuedAssets[]",
   "key": "0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd",
   "keyType": "Array",
-  "valueContent": "Address",
-  "valueType": "address"
+  "valueType": "address",
+  "valueContent": "Address"
 }
 ```
 
