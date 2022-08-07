@@ -102,7 +102,7 @@ const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 
 // the KeyManager is the owner of the Universal Profile
 // so we can call the owner() function to obtain the KeyManager's address
-const owner = myUP.methods.owner().call();
+const owner = await myUP.methods.owner().call();
 
 const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 ```
@@ -150,7 +150,7 @@ const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize and execute the LYX transfer.
 
 ```javascript
-await myKM.execute(transferLYXPayload).send({
+await myKM.methods.execute(transferLYXPayload).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
@@ -173,7 +173,7 @@ const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 
 // the KeyManager is the owner of the Universal Profile
 // so we can call the owner() function to obtain the KeyManager's address
-const owner = myUP.methods.owner().call();
+const owner = await myUP.methods.owner().call();
 
 const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 
