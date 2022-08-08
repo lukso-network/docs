@@ -197,6 +197,6 @@ const transferLYXPayload = await myUP.methods
 // 3. execute the LYX transfer via the Key Manager
 await myKM.methods.execute(transferLYXPayload).send({
   from: myEOA.address,
-  gasLimit: 300_00,
+  gasLimit: 300_000,
 });
 ```
