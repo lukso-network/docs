@@ -71,10 +71,16 @@ npm install web3 @lukso/lsp-smart-contracts
 
 ## Step 1 - Get some LYX
 
+:::caution
+
+You need to have LYX both in your EOA (which will pay for the transaction fees) and in your Universal Profile (where the LYX will be transferred from).
+
+:::
+
 In order to send LYX from our Universal Profile, we will first request some free test LYX for our UP via the **[L16 Faucet](https://faucet.l16.lukso.network/)**.
 
 1. Visit the :arrow_right: **[LUKSO L16 Faucet Website](https://faucet.l16.lukso.network/)**.
-2. Paste the address of your Universal Profile in the input field :arrow\*down: and click in the _"Give me LYX"_ button.
+2. Paste the address of your Universal Profile in the input field and click in the _"Give me LYX"_ button.
 
 ![L16 Faucet screenshot](./img/L16-faucet.png)
 
@@ -191,6 +197,6 @@ const transferLYXPayload = await myUP.methods
 // 3. execute the LYX transfer via the Key Manager
 await myKM.methods.execute(transferLYXPayload).send({
   from: myEOA.address,
-  gasLimit: 300_00,
+  gasLimit: 300_000,
 });
 ```
