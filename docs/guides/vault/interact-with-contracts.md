@@ -5,11 +5,11 @@ sidebar_position: 3
 
 # Interact With Contracts
 
-Similar to our **[previous guide](./edit-vault-data.md)** on setting data on the Vault, in this guide we will be learning how to **interact with other contracts** through the execute function on the Vault.
+Similar to our **[previous guide](./edit-vault-data.md)** on setting data on the Vault, in this guide we will be learning how to **interact with other contracts** through the Vault's execute function.
 
 ## Interact with contracts
 
-Check the **previous guide** to know how to get the needed variables.
+Check the **[edit Vault data guide](./edit-vault-data.md)** to know how to get the needed variables (myVault, myUP, myVaultAddress).
 
 ```typescript title="Interacting with other contracts through the vault"
 // encode the payload of the function we want to call 

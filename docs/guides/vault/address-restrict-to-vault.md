@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # Restrict Addresses to Vaults
 
-As mentioned previously, the **Vault** can be used to restrict different addresses (protocols, other devices, etc..) to execute and set Data on it instead of setting and executing directly on the Universal Profile. 
+As mentioned in the [first Vault guide](./create-a-vault.md), the **Vault** can be used to restrict different addresses (protocols, other devices, etc..) to execute and set data on it instead of setting and executing directly on the Universal Profile. 
 
 In this way, when **granting a third party permissions** to execute through your profile, this third party will only be able to interact with the Vault and all the other assets will be safe.
 

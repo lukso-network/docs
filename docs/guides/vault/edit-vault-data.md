@@ -5,11 +5,11 @@ sidebar_position: 2
 
 # Edit Vault Data
 
-This guide will teach you how to setData to an **[LSP9Vault](../../standards/smart-contracts/lsp9-vault.md)** contract. Any data can be attached to the vault and since it supports **[LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver.md)** standard, we will be setting the [**Universal Receiver Delegate**](../../standards/smart-contracts/lsp1-universal-receiver-delegate-vault.md) address inside the storage.
+This guide will teach you how to set data to an **[LSP9Vault](../../standards/smart-contracts/lsp9-vault.md)** contract. Any data can be attached to the vault and since it supports **[LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver.md)** standard, we will be setting the [**Universal Receiver Delegate**](../../standards/smart-contracts/lsp1-universal-receiver-delegate-vault.md) address inside the storage.
 
 ## Setting Data (Universal Receiver Delegate)
 
-The default implementation of the **Universal Receiver Delegate** of the Vault, that we are going to deploy will register the assets received to the storage and removes them on a balance equal 0.
+The default implementation of the **Universal Receiver Delegate** of the Vault, that we are going to deploy will register the assets received to the storage and and will remove them when their balance equals 0.
 
 ### Deploying Universal Receiver Delegate (URD)
 
@@ -87,6 +87,6 @@ await myKM.methods.execute(executePayload).send({
 
 ## Reading Data
 
-The **LSP9Vault** contract is an **ERC725** alike contract, it shares the same way to read data with Universal Profiles and other types of ERC725 contracts through **[erc725.js](../../tools/erc725js/getting-started.md)**.
+The **LSP9Vault** contract is an **ERC725** contract, so shares the same way to read data as Universal Profiles and other types of ERC725 contracts by using **[erc725.js](../../tools/erc725js/getting-started.md)**.
 
-You can refer to this **[previous guide](../universal-profile/read-profile-data.md)** to learn how to **fetch data** (received assets, issued assets, etc ..), you will need to replace the address of the **Universal Profile** with the address of the **Vault**.
+You can refer to this **[previous guide](../universal-profile/read-profile-data.md)** to learn how to **fetch data** (received assets, issued assets, etc ..), you will need to replace the address of the **Universal Profile** with the **Vault's** address.
