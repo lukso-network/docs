@@ -80,7 +80,7 @@ You need to have LYX both in your EOA (which will pay for the transaction fees) 
 In order to send LYX from our Universal Profile, we will first request some free test LYX for our UP via the **[L16 Faucet](https://faucet.l16.lukso.network/)**.
 
 1. Visit the :arrow_right: **[LUKSO L16 Faucet Website](https://faucet.l16.lukso.network/)**.
-2. Paste the address of your Universal Profile in the input field :arrow\*down: and click in the _"Give me LYX"_ button.
+2. Paste the address of your Universal Profile in the input field and click in the _"Give me LYX"_ button.
 
 ![L16 Faucet screenshot](./img/L16-faucet.png)
 
