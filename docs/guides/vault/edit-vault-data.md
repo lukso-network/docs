@@ -18,7 +18,6 @@ The default implementation of the **Universal Receiver Delegate** of the Vault, 
 The **Universal Profile** and the **Vault** don't use the same implementation of the Universal Receiver Delegate.
 :::
 
-
 ```typescript title="Deploying the universal receiver delegate of the vault"
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 
@@ -37,7 +36,6 @@ await myURDVault
     from: myEOA.address,
   });
 ```
-
 
 ### Setting the URD address in the storage
 

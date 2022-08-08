@@ -11,7 +11,6 @@ In this way, when **granting a third party permissions** to execute through your
 
 ![Guide - Restrict addresses to an LSP9Vault](../../../static/img/guides/restrict-protocol-to-vault.jpeg)
 
-
 ## Granting Permission to 3rd Parties
 
 :::note
@@ -19,7 +18,6 @@ In this way, when **granting a third party permissions** to execute through your
 Make sure to not grant the 3rd party address the **SUPER Permissions**, otherwise the **AllowedAddresses restriction** will not work.
 
 :::
-
 
 Check the guide of **[granting permissions to 3rd Parties](../key-manager/give-permissions.md)**, and make sure to grant the 3rd party address the **CALL Permission**.
 
