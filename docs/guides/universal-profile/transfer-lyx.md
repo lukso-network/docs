@@ -71,6 +71,12 @@ npm install web3 @lukso/lsp-smart-contracts
 
 ## Step 1 - Get some LYX
 
+:::caution
+
+You need to have LYX both in your EOA (which will pay for the transaction fees) and in your Universal Profile (where the LYX will be transferred from).
+
+:::
+
 In order to send LYX from our Universal Profile, we will first request some free test LYX for our UP via the **[L16 Faucet](https://faucet.l16.lukso.network/)**.
 
 1. Visit the :arrow_right: **[LUKSO L16 Faucet Website](https://faucet.l16.lukso.network/)**.
