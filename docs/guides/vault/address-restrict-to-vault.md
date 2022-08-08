@@ -26,6 +26,8 @@ Check the guide of **[granting permissions to 3rd Parties](../key-manager/give-p
 In this step, after granting the 3rd party the permission **CALL**, we will need to **restrict the address of the 3rd party** to only interact with the **Vault address**. We will be using the [AllowedAddresses permission](../../standards/universal-profile/lsp6-key-manager.md#allowed-addresses) from the Key Manager.
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
+import constants from "@lukso/lsp-smart-contracts/constants.js";
+
 const myVaultAddress = "0x.." // address of the Vault
 const thirdPartyAddress = '0x..' // address of the third party you want to restrict
 
