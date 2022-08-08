@@ -9,7 +9,7 @@ As mentioned in the [first Vault guide](./create-a-vault.md), the **Vault** can 
 
 In this way, when **granting a third party permissions** to execute through your profile, this third party will only be able to interact with the Vault and all the other assets will be safe.
 
-![Guide - Restrict addresses to an LSP9Vault](../../../static/img/guides/restrict-protocol-to-vault.jpeg)
+![Guide - Restrict addresses to an LSP9Vault](/img/guides/restrict-protocol-to-vault.jpeg)
 
 ## Granting Permission to 3rd Parties
 
@@ -26,10 +26,22 @@ Check the guide of **[granting permissions to 3rd Parties](../key-manager/give-p
 In this step, after granting the 3rd party the permission **CALL**, we will need to **restrict the address of the 3rd party** to only interact with the **Vault address**. We will be using the [AllowedAddresses permission](../../standards/universal-profile/lsp6-key-manager.md#allowed-addresses) from the Key Manager.
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
+import Web3 from 'web3';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import constants from "@lukso/lsp-smart-contracts/constants.js";
 
+const web3 = new Web3('https://rpc.l16.lukso.network');
+
+const PRIVATE_KEY = '0x...'; // your EOA private key
+const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+
+const myUniversalProfileAddress = "0x.." // address of the UP
 const myVaultAddress = "0x.." // address of the Vault
 const thirdPartyAddress = '0x..' // address of the third party you want to restrict
+
+// create an instance of the UP
+const myUP = new web3.eth.Contract(UniversalProfile.abi, myUniversalProfileAddress);
 
 const allowedAddressesDataKey = // constructing the data key of allowed addresses 
   constants.ERC725YKeys.LSP6["AddressPermissions:AllowedAddresses"] + 
