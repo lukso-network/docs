@@ -4,7 +4,7 @@ title: Execute Transaction
 sidebar_position: 1
 ---
 
-:::warn
+:::danger
 This API is experimental for internal use, and is not the official Relayer API!
 The current draft of the standardised Relayer API can be found [in Notion](https://lukso.notion.site/lukso/Transaction-Relay-Service-API-Standard-2bda58f4f47f4497bb3381654acda8c3)
 
