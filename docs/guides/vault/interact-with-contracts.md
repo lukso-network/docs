@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # Interact With Contracts
 
-Similar to our **[previous guide](./edit-vault-data.md)** on setting data on the Vault, in this guide we will be learning how to **interact with other contracts** through the Vault's execute function.
+Similar to our **[previous guide](./edit-vault-data.md)** on setting data on the Vault, in this guide, we will be learning how to **interact with other contracts** through the Vault's execute function.
 
 ## Interact with contracts
 

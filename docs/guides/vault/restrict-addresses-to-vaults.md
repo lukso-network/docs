@@ -5,9 +5,9 @@ sidebar_position: 4
 
 # Restrict Addresses to Vaults
 
-As mentioned in the [first Vault guide](./create-a-vault.md), the **Vault** can be used to restrict different addresses (protocols, other devices, etc..) to execute and set data on it instead of setting and executing directly on the Universal Profile. 
+As mentioned in the [first Vault guide](./create-a-vault.md), the **Vault** can be used to restrict different addresses (protocols, other devices, etc..) to execute and set data on it instead of doing it directly on the Universal Profile. 
 
-In this way, when **granting a third party permissions** to execute through your profile, this third party will only be able to interact with the Vault and all the other assets will be safe.
+This way, when **granting a third party permissions** to execute through your profile, this third party will only be able to interact with the Vault, and all the other assets will be safe.
 
 ![Guide - Restrict addresses to an LSP9Vault](/img/guides/restrict-protocol-to-vault.jpeg)
 
@@ -15,7 +15,7 @@ In this way, when **granting a third party permissions** to execute through your
 
 :::note
 
-Make sure to not grant the 3rd party address the **SUPER Permissions**, otherwise the **AllowedAddresses restriction** will not work.
+Make sure not to grant the 3rd party address the **SUPER Permissions**. Otherwise, the **AllowedAddresses restriction** will not work.
 
 :::
 
