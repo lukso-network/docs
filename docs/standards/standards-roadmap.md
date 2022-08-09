@@ -17,9 +17,9 @@ In order to understand the LSPs properly, they should be studied in the followin
 
 - **[LSP2 - ERC725YJSONSchema](./generic-standards/lsp2-json-schema.md)**
 
-- **[LSP1 - UniversalReceiver](./generic-standards/lsp1-universal-receiver.md)**
-
 - **[LSP0 - ERC725Account](./universal-profile/lsp0-erc725account.md)**
+
+- **[LSP1 - UniversalReceiver](./generic-standards/lsp1-universal-receiver.md)**
 
 - **[LSP6 - KeyManager](./universal-profile/lsp6-key-manager.md)**
 
@@ -33,12 +33,13 @@ In order to understand the LSPs properly, they should be studied in the followin
 
 - **[LSP5 - ReceivedAssets](./universal-profile/lsp5-received-assets.md)**
 
+- **[LSP12 - IssuedAssets](./universal-profile/lsp12-issued-assets.md)**
+
 - **[LSP9 - Vault](./universal-profile/lsp9-vault.md)**
 
 - **[LSP10 - ReceivedVaults](./universal-profile/lsp10-received-vaults.md)**
 
-- **[LSP12 - IssuedAssets](./universal-profile/lsp12-issued-assets.md)**
 
 ## Further Information
 
-- [Fabian Vogelsteller talks at BLOCKCHANCE 2021 about LUKSO (YouTube)](https://www.youtube.com/watch?v=aoZE_0Ey1SQ)
+- [Fabian Vogelsteller talks at NFT.NYC 2021 about tyhe new Standards (YouTube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)
