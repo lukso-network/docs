@@ -56,7 +56,7 @@ function Index() {
           </Link>
           <Link
             style={{ textDecoration: 'none' }}
-            to="./guides/universal-profile/create-profile"
+            to="./guides/getting-started"
           >
             <div className={styles.card}>
               <h3>📄 Guides</h3>
