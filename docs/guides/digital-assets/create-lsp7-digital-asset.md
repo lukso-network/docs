@@ -35,7 +35,7 @@ await myToken
       'My LSP7 Token', // token name
       'LSP7', // token symbol
       myEOA, // new owner, who will mint later
-      false, // isNonDivivsible = TRUE, means NOT divisble, decimals = 0)
+      false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
     ]
   })
   .send({
@@ -57,7 +57,7 @@ const myToken = await lsp7Factory.deploy([
   'My LSP7 Token', // token name
   'LSP7', // token symbol
   myEOA, // new owner, who will mint later
-  false, // isNonDivivsible = TRUE, means NOT divisble, decimals = 0)
+  false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
 ]);
 ```
 
