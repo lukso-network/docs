@@ -86,7 +86,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'guides/universal-profile/create-profile',
+          docId: 'guides/getting-started',
           position: 'left',
           label: 'Guides',
         },
@@ -123,6 +123,10 @@ module.exports = {
             {
               label: 'GitHub',
               href: 'https://github.com/lukso-network',
+            },
+            {
+              label: 'Playground',
+              href: 'https://github.com/lukso-network/lukso-playground',
             },
           ],
         },

@@ -13,7 +13,7 @@ sidebar_position: 8
 
 The **LSP7DigitalAsset** contract represents digital assets for either fungible or non-fungible tokens where minting and transferring are specified with an amount of tokens. It has some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
 
-This contract serves as a **Fungible Token Contract** when `isNFT` bool is set to **false** in the `constructor(...)` and otherwise serves as a **Non-Fungible Token Contract**.
+This contract serves as a **Fungible Token Contract** when `isNonDivisible` bool is set to **false** in the `constructor(...)` and otherwise serves as a **Non-Fungible Token Contract**.
 
 :::note
 _The LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :
@@ -33,7 +33,7 @@ constructor(
     string memory name_,
     string memory symbol_,
     address newOwner_,
-    bool isNFT_
+    bool isNonDivisible_
 ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_)
 ```
 
@@ -43,7 +43,7 @@ Sets the **initial owner** of the token, and sets the following data keys on the
 - symbol: token's symbol.
 - [**SupportedStandards:LSP4DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#supportedstandardslsp4digitalasset) data key.
 
-The the `isNFT` parameter specifies if the contract represents a fungible token or an NFT.
+The the `isNonDivisible` parameter specifies if the contract represents a fungible token or an NFT.
 
 #### Parameters:
 
@@ -52,7 +52,7 @@ The the `isNFT` parameter specifies if the contract represents a fungible token 
 | `name_`     | string  | The name of the token.                                                 |
 | `symbol_`   | string  | The symbol of the token.                                               |
 | `newOwner_` | address | The owner of the contract.                                             |
-| `isNFT_`    | bool    | Specify if the contract represents a fungible or a non-fungible token. |
+| `isNonDivisible_`    | bool    | Specify if the contract represents a fungible or a non-fungible token. |
 
 ### decimals
 
