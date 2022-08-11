@@ -107,7 +107,7 @@ The private key can be obtained depending on how you created your Universal Prof
 
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 
