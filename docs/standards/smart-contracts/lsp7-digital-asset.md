@@ -268,13 +268,13 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 ## Internal Functions
 
 :::info Warning
-By deploying the smart contracts directly the methods _burn and _mint will lack implementantion.
+By deploying an LSP7DigitalAsset contract, there will be no public mint or burn function.
 In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
 :::
 
 ### _mint
 
-```
+```solidity
 function _mint(
     address to,
     uint256 amount,
@@ -306,7 +306,7 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 
 ### _transfer
 
-```
+```solidity
 function _transfer(
     address from,
     address to,
@@ -343,7 +343,7 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 
 ### _burn
 
-```
+```solidity
 function _burn(
     address from,
     uint256 amount,
@@ -351,7 +351,7 @@ function _burn(
 ) internal virtual
 ```
 
-Destroys `amount` tokens.
+Burns `amount` tokens.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
 
@@ -375,7 +375,7 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 
 ### _beforeTokenTransfer
 
-```
+```solidity
 function _beforeTokenTransfer(
     address from,
     address to,
@@ -405,7 +405,7 @@ Hook that is called before any token transfer. This includes minting and burning
 
 ### _notifyTokenSender
 
-```
+```solidity
 function _notifyTokenSender(
     address from,
     address to,
@@ -425,17 +425,9 @@ An attempt is made to notify the token sender about the `amount` tokens changing
 | `amount` | uint256  | The amount of token to transfer. |
 | `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
 
-:::note
-
-#### Requirements:
-
--
-
-:::
-
 ### _notifyTokenReceiver
 
-```
+```solidity
 function _notifyTokenReceiver(
     address from,
     address to,
@@ -446,6 +438,7 @@ function _notifyTokenReceiver(
 ```
 
 An attempt is made to notify the token receiver about the `amount` tokens changing owners using LSP1 interface. When force is FALSE the token receiver MUST support LSP1.
+The receiver may revert when the token being sent is not wanted.
 
 #### Parameters:
 
@@ -457,11 +450,33 @@ An attempt is made to notify the token receiver about the `amount` tokens changi
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
 
+### _updateOperator
+
+```
+function _updateOperator(
+    address tokenOwner,
+    address operator,
+    uint256 amount
+) internal virtual
+```
+
+Changes token `amount` the `operator` has access to from `tokenOwner` tokens. If the amount is zero then the operator is being revoked, otherwise the operator amount is being modified.
+
+_Triggers the **[AuthorizedOperator](#authorizedoperator)** event if an address get authorized as an operator or **[RevokedOperator](#revokedoperator)** event if an address get revoked as an operator._
+
+#### Parameters
+
+|     Name     |   Type   | Description |
+| :----------- | :------- | :---------- |
+| `tokenOwner` | address | The address that is the owner of tokens. |
+| `operator`   | address | The address to authorize as an operator. |
+| `amount`     | uint256 | The amount of tokens operator has access to. |
+
 :::note
 
-#### Requirements:
+#### Requirements
 
-- The receiver may revert when the token being sent is not wanted.
+- `operator` cannot be the zero address.
 
 :::
 

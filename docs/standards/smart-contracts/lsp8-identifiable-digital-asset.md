@@ -338,13 +338,13 @@ _Triggers the **[Transfer](#trasnfer-2)** event when the tokens get successfully
 ## Internal Functions
 
 :::info Warning
-By deploying the smart contracts directly the methods _burn and _mint will lack implementantion.
+By deploying an LSP8IdentifiableDigitalAsset contract, there will be no public mint or burn function.
 In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
 :::
 
 ### _mint
 
-```
+```solidity
 function _mint(
     address to,
     bytes32 tokenId,
@@ -377,7 +377,7 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 
 ### _transfer
 
-```
+```solidity
 function _transfer(
     address from,
     address to,
@@ -412,7 +412,7 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 
 ### _burn
 
-```
+```solidity
 function _burn(
     address from,
     bytes32 tokenId,
@@ -420,7 +420,7 @@ function _burn(
 ) internal virtual
 ```
 
-Destroys `tokenId`, clearing authorized operators.
+Burns `tokenId`, clearing authorized operators.
 
 _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
 
@@ -443,7 +443,7 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 
 ### _beforeTokenTransfer
 
-```
+```solidity
 function _beforeTokenTransfer(
     address from,
     address to,
@@ -473,7 +473,7 @@ Hook that is called before any token transfer. This includes minting and burning
 
 ### _notifyTokenSender
 
-```
+```solidity
 function _notifyTokenSender(
     address from,
     address to,
@@ -493,17 +493,9 @@ An attempt is made to notify the token sender about the `tokenId` changing owner
 | `tokenId` | bytes32  | The token to transfer. |
 | `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
 
-:::note
-
-#### Requirements:
-
--
-
-:::
-
 ### _notifyTokenReceiver
 
-```
+```solidity
 function _notifyTokenReceiver(
     address from,
     address to,
@@ -525,13 +517,41 @@ An attempt is made to notify the token receiver about the `tokenId` changing own
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
 
-:::note
+### _revokeOperator
 
-#### Requirements:
+```solidity
+function _revokeOperator(
+    address operator,
+    address tokenOwner,
+    bytes32 tokenId
+) internal virtual
+```
 
-- The receiver may revert when the token being sent is not wanted.
+An attempt is made to notify the token receiver about the `tokenId` changing owners using LSP1 interface. When force is FALSE the token receiver MUST support LSP1.
 
-:::
+#### Parameters:
+
+|     Name     |   Type   | Description |
+| :----------- | :------- | :---------- |
+| `operator`   | address | The address to revoke as an operator.     |
+| `tokenOwner` | address | The address that is the owner of tokenId. |
+| `tokenId`    | bytes32 | The token to disable operator status to.  |
+
+### _clearOperators
+
+```
+function clearOperators(
+    address tokenOwner,
+    bytes32 tokenId
+) internal virtual
+```
+
+#### Parameters
+
+|     Name     |   Type   | Description |
+| :----------- | :------- | :---------- |
+| `tokenOwner` | address | The address that is the owner of tokenId. |
+| `tokenId`    | bytes32 | The token to disable operator status to.  |
 
 ## Events
 
