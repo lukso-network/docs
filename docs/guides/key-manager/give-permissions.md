@@ -31,7 +31,7 @@ The Key Manager (KM) enables us to give permissions to other 3rd party addresses
 ## Setup
 
 ```shell
-npm install erc725.js @lukso/lsp-smart-contracts
+npm install @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
 
 ## Step 1 - Initialize erc725.js
