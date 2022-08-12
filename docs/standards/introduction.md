@@ -5,6 +5,10 @@ sidebar_position: 1
 
 # The LUKSO Standard Proposals (LSPs)
 
+<div class="video-container">
+<iframe src="https://www.youtube.com/embed/skA4Y-vvt5s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 :::success Implementation
 
 See the [Contracts Implementation](./smart-contracts/introduction.md) section for the Solidity implementation of these standards.
