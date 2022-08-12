@@ -10,7 +10,8 @@ import TabItem from '@theme/TabItem';
 
 :::danger
 
-The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
+The UP Browser Extenstion is a **ALPHA DEVELOPER PREVIEW**. This is not intended to be used by non developers. And DO NOT use this in production!     
+The current UP Browser Extenstion deploys profiles on the [L16 Testnet](http://docs.lukso.tech/networks/l16-testnet/parameters).
 
 :::
 
