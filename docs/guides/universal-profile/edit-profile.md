@@ -407,7 +407,7 @@ const provider = "https://rpc.l16.lukso.network"; // RPC provider url
 
 const lspFactory = new LSPFactory(provider, {
   deployKey: PRIVATE_KEY,
-  chainId: 22, // Chain Id of the network you want to deploy to
+  chainId: 2828, // Chain Id of the network you want to deploy to
 });
 
 async function editProfileInfo() {
@@ -439,7 +439,7 @@ async function editProfileInfo() {
     value: {
       hashFunction: "keccak256(utf8)",
       // hash our LSP3 metadata JSON file
-      hash: web3.utils.keccak256(JSON.stringify(jsonFile)),
+      hash: web3.utils.keccak256(JSON.stringify(uploadResult.json)),
       url: lsp3ProfileIPFSUrl,
     },
   });
