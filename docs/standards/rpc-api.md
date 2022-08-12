@@ -1,9 +1,9 @@
 ---
-title: RPC API
+title: 🆙 RPC API
 sidebar_position: 9
 ---
 
-# RPC API
+# 🆙 RPC API
 
 :::danger Work in progress
 
