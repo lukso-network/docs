@@ -24,7 +24,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 
 :::
 
-## Functions
+## Public Functions
 
 ### constructor
 
@@ -262,6 +262,206 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 - No values in `to` can be the zero address.
 - Each `amount` tokens must be owned by `from`.
 - If the caller is not `from`, it must be an operator for `from` with access to at least `amount` tokens.
+
+:::
+
+## Internal Functions
+
+:::info Warning
+By deploying the smart contracts directly the methods _burn and _mint will lack implementantion.
+In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
+:::
+
+### _mint
+
+```
+function _mint(
+    address to,
+    uint256 amount,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+Mints `amount` tokens and transfers it to `to`.
+
+_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `to`     | address  | The receiving address. |
+| `amount` | uint256  | The amount of token to mint. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address. |
+
+:::note
+
+#### Requirements:
+
+- `to` cannot be the zero address.
+
+:::
+
+### _transfer
+
+```
+function _transfer(
+    address from,
+    address to,
+    uint256 amount,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+Transfers `amount` tokens from `from` to `to`.
+
+_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sending address. |
+| `to`     | address  | The receiving address. |
+| `amount` | uint256  | The amount of token to transfer. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+:::note
+
+#### Requirements:
+
+- `to` cannot be the zero address.
+- `from` cannot be the zero address.
+- `from` must have at least `amount` tokens.
+- If the caller is not `from`, it must be an operator for `from` with access to at least `amount` tokens.
+
+:::
+
+### _burn
+
+```
+function _burn(
+    address from,
+    uint256 amount,
+    bytes memory data
+) internal virtual
+```
+
+Destroys `amount` tokens.
+
+_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sending address. |
+| `amount` | uint256  | The amount of token to burn. |
+| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `from` address. |
+
+:::note
+
+#### Requirements:
+
+- `from` cannot be the zero address.
+- `from` must have at least `amount` tokens.
+- If the caller is not `from`, it must be an operator for `from` with access to at least `amount` tokens.
+
+:::
+
+### _beforeTokenTransfer
+
+```
+function _beforeTokenTransfer(
+    address from,
+    address to,
+    uint256 amount
+) internal virtual
+```
+
+Hook that is called before any token transfer. This includes minting and burning.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sending address. |
+| `to`     | address  | The receiving address. |
+| `amount` | uint256  | The amount of token to transfer. |
+
+:::note
+
+#### Requirements:
+
+- When `from` and `to` are both non-zero, ``from``'s `amount` tokens will betransferred to `to`.
+- When `from` is zero, `amount` tokens will be minted for `to`.
+- When `to` is zero, ``from``'s `amount` tokens will be burned.
+
+:::
+
+### _notifyTokenSender
+
+```
+function _notifyTokenSender(
+    address from,
+    address to,
+    uint256 amount,
+    bytes memory data
+) internal virtual
+```
+
+An attempt is made to notify the token sender about the `amount` tokens changing owners using LSP1 interface.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sending address. |
+| `to`     | address  | The receiving address. |
+| `amount` | uint256  | The amount of token to transfer. |
+| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+:::note
+
+#### Requirements:
+
+-
+
+:::
+
+### _notifyTokenReceiver
+
+```
+function _notifyTokenReceiver(
+    address from,
+    address to,
+    uint256 amount,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+An attempt is made to notify the token receiver about the `amount` tokens changing owners using LSP1 interface. When force is FALSE the token receiver MUST support LSP1.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sending address. |
+| `to`     | address  | The receiving address. |
+| `amount` | uint256  | The amount of token to transfer. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+:::note
+
+#### Requirements:
+
+- The receiver may revert when the token being sent is not wanted.
 
 :::
 
