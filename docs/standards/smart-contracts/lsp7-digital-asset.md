@@ -204,7 +204,7 @@ Transfers an `amount` of tokens from the `from` address to the `to` address. The
 
 Will notify the token sender and receiver by calling the `universalReceiver(...)` function on the `from` and `to` address.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -241,7 +241,7 @@ function transferBatch(
 
 Transfers multiple tokens based on the `from`, `to`, and `amount` arrays. If any transfer fails, the whole call will revert.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -285,7 +285,7 @@ function _mint(
 
 Mints `amount` tokens and transfers it to `to`.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -318,7 +318,7 @@ function _transfer(
 
 Transfers `amount` tokens from `from` to `to`.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -353,7 +353,7 @@ function _burn(
 
 Burns `amount` tokens.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -414,7 +414,7 @@ function _notifyTokenSender(
 ) internal virtual
 ```
 
-An attempt is made to notify the token sender about the `amount` tokens changing owners using LSP1 interface.
+An attempt is made to notify the token sender about the `amount` tokens being sent by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the sender address if it exist.
 
 #### Parameters:
 
@@ -437,8 +437,7 @@ function _notifyTokenReceiver(
 ) internal virtual
 ```
 
-An attempt is made to notify the token receiver about the `amount` tokens changing owners using LSP1 interface. When force is FALSE the token receiver MUST support LSP1.
-The receiver may revert when the token being sent is not wanted.
+An attempt is made to notify the token receiver about the `amount` tokens being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
 
 #### Parameters:
 

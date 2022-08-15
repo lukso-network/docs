@@ -274,7 +274,7 @@ function transfer(
 
 Transfers the token with a particular `tokenId` from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or contracts that do not implement the [LSP1 - Universal Receiver Delegate](../generic-standards/lsp1-universal-receiver.md) standard.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when the token gets successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when the token gets successfully transferred._
 
 #### Parameters:
 
@@ -311,7 +311,7 @@ function transferBatch(
 
 Transfers multiple tokens based on the `from`, `to`, and `tokenId` arrays. If any transfer fails, the whole call will revert.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when the tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when the tokens get successfully transferred._
 
 #### Parameters:
 
@@ -355,7 +355,7 @@ function _mint(
 
 Mints `tokenId` and transfers it to `to`.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -389,7 +389,7 @@ function _transfer(
 
 Transfers `tokenId` from `from` to `to`.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -422,7 +422,7 @@ function _burn(
 
 Burns `tokenId`, clearing authorized operators.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
@@ -482,7 +482,7 @@ function _notifyTokenSender(
 ) internal virtual
 ```
 
-An attempt is made to notify the token sender about the `tokenId` changing owners using LSP1 interface.
+An attempt is made to notify the token receiver about the `tokenId` token being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
 
 #### Parameters:
 
@@ -505,7 +505,7 @@ function _notifyTokenReceiver(
 ) internal virtual
 ```
 
-An attempt is made to notify the token receiver about the `tokenId` changing owners using LSP1 interface. When force is FALSE the token receiver MUST support LSP1.
+An attempt is made to notify the token receiver about the `tokenId` token being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
 
 #### Parameters:
 
@@ -527,7 +527,7 @@ function _revokeOperator(
 ) internal virtual
 ```
 
-An attempt is made to notify the token receiver about the `tokenId` changing owners using LSP1 interface. When force is FALSE the token receiver MUST support LSP1.
+Revoke the `operator` of the `tokenId` token which belongs to `tokenOwner`.
 
 #### Parameters:
 
@@ -539,12 +539,14 @@ An attempt is made to notify the token receiver about the `tokenId` changing own
 
 ### _clearOperators
 
-```
+```solidity
 function clearOperators(
     address tokenOwner,
     bytes32 tokenId
 ) internal virtual
 ```
+
+Revoke the all current operators of the `tokenId` token which belongs to `tokenOwner`.
 
 #### Parameters
 
