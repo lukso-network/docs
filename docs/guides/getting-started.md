@@ -10,20 +10,20 @@ Other than most EVM chains, you're encouraged on LUKSO to mainly use [Universal 
 
 ## UP in 1-2-3
 
-This little tutorial will show you how to deploy and interact with a UniversalProfile.
+This little tutorial will show you how to deploy and interact with a Universal Profile.
 To maximize your learning, you can:
 
-- run this tutorial in the console of the [profile explorer](https://universalprofile.cloud),
+- run this tutorial in the console of the [profile explorer](https://l16.universalprofile.cloud),
 - clone the [`up-sample-react-app`](https://github.com/Hugoo/up-sample-react-app) repo and work in it,
 - write your own JavaScript or TypeScript code snippets on top, and
 - check the [demo app](https://hugoo.github.io/up-sample-react-app/) for some first impressions.
 
 :::info
-The [profile explorer](https://universalprofile.cloud) has all necessary entities under the `contracts` object. Take a look at different profiles and assets you want to experiment with within your code.
+The [profile explorer](https://l16.universalprofile.cloud) has all necessary entities under the `contracts` object. Take a look at different profiles and assets you want to experiment with within your code.
 :::
 
 :::note
-We will use the [`@erc725/erc725.js`](../tools/erc725js/getting-started) NPM package in order to get quick accsess to reading keys, values and ABIs.
+We will use the [`@erc725/erc725.js`](../tools/erc725js/getting-started) NPM package in order to get quick access to reading keys, values and ABIs.
 :::
 
 #### Generate a key that will control your Universal Profile.
@@ -31,7 +31,7 @@ We will use the [`@erc725/erc725.js`](../tools/erc725js/getting-started) NPM pac
 ```js title="Load web3"
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const myDummyPassword = 'mypassword';
 
@@ -43,7 +43,7 @@ if (!web3.eth.accounts.wallet.length) {
   web3.eth.accounts.wallet.create(1);
   web3.eth.accounts.wallet.save(myDummyPassword);
 
-  // Then we log the address and send test LYX from the L14 faucet here: http://faucet.l14.lukso.network
+  // Then we log the address and send test LYX from the L16 faucet here: http://faucet.l16.lukso.network
   console.log('My new key address ', web3.eth.accounts.wallet[0].address);
 
   // If we already have a key created we display it, with its current balance
@@ -62,16 +62,16 @@ if (!web3.eth.accounts.wallet.length) {
 if (!myKeyAddress) return;
 ```
 
-#### Fund the Universal Profile by using the [L14 Faucet](http://faucet.l14.lukso.network).
+#### Fund the Universal Profile by using the [L16 Faucet](http://faucet.l16.lukso.network).
 
 #### Deploy your UP smart contracts using [`@lukso/lsp-factory.js`](../tools/lsp-factoryjs/getting-started).
 
 ```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
 
-// We initialize the LSPFactory with the right chain RPC endpoint and a privatekey from which we will deploy the UPs
-const lspFactory = new LSPFactory('https://rpc.l14.lukso.network', {
-  chainId: 22, // L14s chain Id
+// We initialize the LSPFactory with the right chain RPC endpoint and a private key from which we will deploy the UPs
+const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
+  chainId: 2828, // L16s chain Id
   deployKey: web3.eth.accounts.wallet[0].privateKey,
 });
 
@@ -129,7 +129,7 @@ const schema = [
 ];
 
 const provider = new Web3.providers.HttpProvider(
-  'https://rpc.l14.lukso.network',
+  'https://rpc.l16.lukso.network',
 );
 
 const erc725 = new ERC725(schema, myUPAddress, provider);
