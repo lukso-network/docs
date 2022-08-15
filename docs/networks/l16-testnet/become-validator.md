@@ -12,7 +12,7 @@ Before running validators on your node, make sure your node is running and worki
 
 ```sh
 cd lukso-l16-testnet
-lukso network validator setup
+sudo lukso network validator setup
 ```
 This will create a key store and a transaction wallet. The purpose of the transaction wallet is to call and pay for the deposit transaction.
 
