@@ -280,8 +280,8 @@ _Triggers the **[Transfer](#transfer-2)** event when the token gets successfully
 
 | Name      | Type    | Description                                                                                                                               |
 | :-------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address | The sending address.                                                                                                                      |
-| `to`      | address | The receiving address.                                                                                                                    |
+| `from`    | address | The sender address.                                                                                                                      |
+| `to`      | address | The recipient address.                                                                                                                    |
 | `tokenId` | bytes32 | The token to transfer.                                                                                                                    |
 | `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`    | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
@@ -317,8 +317,8 @@ _Triggers the **[Transfer](#transfer-2)** event when the tokens get successfully
 
 | Name      | Type      | Description                                                                                                                               |
 | :-------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address[] | The list of sending addresses.                                                                                                            |
-| `to`      | address[] | The list of receiving addresses.                                                                                                          |
+| `from`    | address[] | The list of sender addresses.                                                                                                            |
+| `to`      | address[] | The list of recipient addresses.                                                                                                          |
 | `tokenId` | bytes32[] | The list of tokenIds to transfer.                                                                                                         |
 | `force`   | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`    | bytes[]   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
@@ -336,6 +336,8 @@ _Triggers the **[Transfer](#transfer-2)** event when the tokens get successfully
 :::
 
 ## Internal Functions
+
+These internal functions can be extended via `override` to add some custom logic.
 
 :::info Warning
 By deploying an LSP8IdentifiableDigitalAsset contract, there will be no public mint or burn function.
@@ -361,7 +363,7 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `to`     | address  | The receiving address. |
+| `to`     | address  | The recipient address. |
 | `tokenId`| bytes32  | The token to transfer. |
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address. |
@@ -395,8 +397,8 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `tokenId`| bytes32  | The token to transfer. |
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
@@ -420,7 +422,7 @@ function _burn(
 ) internal virtual
 ```
 
-Burns `tokenId`, clearing authorized operators.
+Burns `tokenId` and clear the operators authorized for the `tokenId`.
 
 _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
@@ -428,7 +430,7 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
+| `from`   | address  | The sender address. |
 | `tokenId` | bytes32  | The token to burn. |
 | `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `from` address. |
 
@@ -457,13 +459,13 @@ Hook that is called before any token transfer. This includes minting and burning
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `tokenId` | bytes32  | The token to transfer. |
 
 :::note
 
-#### Requirements:
+#### Notice:
 
 - When `from` and `to` are both non-zero, ``from``'s `tokenId` will be transferred to `to`.
 - When `from` is zero, `tokenId` will be minted for `to`.
@@ -488,8 +490,8 @@ An attempt is made to notify the token receiver about the `tokenId` token being 
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `tokenId` | bytes32  | The token to transfer. |
 | `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
 
@@ -511,8 +513,8 @@ An attempt is made to notify the token receiver about the `tokenId` token being 
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `tokenId` | bytes32  | The token to transfer. |
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
@@ -533,7 +535,7 @@ Revoke the `operator` of the `tokenId` token which belongs to `tokenOwner`.
 
 |     Name     |   Type   | Description |
 | :----------- | :------- | :---------- |
-| `operator`   | address | The address to revoke as an operator.     |
+| `operator`   | address | The address of the operator to revoke.    |
 | `tokenOwner` | address | The address that is the owner of tokenId. |
 | `tokenId`    | bytes32 | The token to disable operator status to.  |
 
@@ -576,9 +578,9 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 
 | Name       | Type    | Description                                                                                                             |
 | :--------- | :------ | :---------------------------------------------------------------------------------------------------------------------- |
-| `operator` | address | The address of operator sending tokens.                                                                                 |
+| `operator` | address | The address of operator sender tokens.                                                                                 |
 | `from`     | address | The address which tokens are sent.                                                                                      |
-| `to`       | address | The receiving address.                                                                                                  |
+| `to`       | address | The recipient address.                                                                                                  |
 | `tokenId`  | bytes32 | The token to transfer.                                                                                                  |
 | `force`    | bool    | When set to `true`, may be any address; When set to `false`, address must be a contract supporting LSP1 and not revert. |
 | `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.         |

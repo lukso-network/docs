@@ -210,8 +210,8 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 | Name     | Type    | Description                                                                                                                               |
 | :------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | address | The sending address.                                                                                                                      |
-| `to`     | address | The receiving address.                                                                                                                    |
+| `from`   | address | The sender address.                                                                                                                      |
+| `to`     | address | The recipient address.                                                                                                                    |
 | `amount` | uint256 | The amount of token to transfer.                                                                                                          |
 | `force`  | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`   | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
@@ -247,8 +247,8 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 | Name     | Type      | Description                                                                                                                               |
 | :------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | address[] | The list of sending addresses.                                                                                                            |
-| `to`     | address[] | The list of receiving addresses.                                                                                                          |
+| `from`   | address[] | The list of sender addresses.                                                                                                            |
+| `to`     | address[] | The list of recipient addresses.                                                                                                          |
 | `amount` | uint256[] | The amount of tokens to transfer.                                                                                                         |
 | `force`  | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`   | bytes[]   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
@@ -266,6 +266,8 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 :::
 
 ## Internal Functions
+
+These internal functions can be extended via `override` to add some custom logic.
 
 :::info Warning
 By deploying an LSP7DigitalAsset contract, there will be no public mint or burn function.
@@ -291,7 +293,7 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `to`     | address  | The receiving address. |
+| `to`     | address  | The recipient address. |
 | `amount` | uint256  | The amount of token to mint. |
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address. |
@@ -324,8 +326,8 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `amount` | uint256  | The amount of token to transfer. |
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
@@ -359,7 +361,7 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
+| `from`   | address  | The sender address. |
 | `amount` | uint256  | The amount of token to burn. |
 | `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `from` address. |
 
@@ -389,8 +391,8 @@ Hook that is called before any token transfer. This includes minting and burning
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `amount` | uint256  | The amount of token to transfer. |
 
 :::note
@@ -414,14 +416,14 @@ function _notifyTokenSender(
 ) internal virtual
 ```
 
-An attempt is made to notify the token sender about the `amount` tokens being sent by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the sender address if it exist.
+An attempt is made to notify the token sender about the `amount` of tokens being sent by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the sender address if it exists.
 
 #### Parameters:
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `amount` | uint256  | The amount of token to transfer. |
 | `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
 
@@ -437,14 +439,14 @@ function _notifyTokenReceiver(
 ) internal virtual
 ```
 
-An attempt is made to notify the token receiver about the `amount` tokens being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
+An attempt is made to notify the token receiver about the `amount` of tokens being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
 
 #### Parameters:
 
 |   Name   |   Type   | Description |
 | :------- | :------- | :---------- |
-| `from`   | address  | The sending address. |
-| `to`     | address  | The receiving address. |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
 | `amount` | uint256  | The amount of token to transfer. |
 | `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
@@ -459,9 +461,9 @@ function _updateOperator(
 ) internal virtual
 ```
 
-Changes token `amount` the `operator` has access to from `tokenOwner` tokens. If the amount is zero then the operator is being revoked, otherwise the operator amount is being modified.
+Changes token `amount` the `operator` has access to from `tokenOwner` tokens. Setting the `amount` to zero is equivalent to revoking the operator.
 
-_Triggers the **[AuthorizedOperator](#authorizedoperator)** event if an address get authorized as an operator or **[RevokedOperator](#revokedoperator)** event if an address get revoked as an operator._
+_Triggers the **[AuthorizedOperator](#authorizedoperator)** event if an address gets authorized as an operator or **[RevokedOperator](#revokedoperator)** event if an address gets revoked as an operator._
 
 #### Parameters
 
@@ -500,9 +502,9 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 
 | Name       | Type    | Description                                                                                                                           |
 | :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `operator` | address | The address of operator sending tokens.                                                                                               |
+| `operator` | address | The address of operator sender tokens.                                                                                               |
 | `from`     | address | The address which tokens are sent.                                                                                                    |
-| `to`       | address | The receiving address.                                                                                                                |
+| `to`       | address | The recipient address.                                                                                                                |
 | `amount`   | uint256 | The amount of tokens transferred.                                                                                                     |
 | `force`    | bool    | When set to TRUE, to may be any address; when set to FALSE to must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.                       |
