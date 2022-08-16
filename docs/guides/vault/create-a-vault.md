@@ -20,7 +20,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key
-const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 // create an instance
 let myVault = new web3.eth.Contract(LSP9Vault.abi);

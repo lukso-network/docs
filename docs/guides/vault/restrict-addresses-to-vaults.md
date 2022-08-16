@@ -34,7 +34,7 @@ import constants from "@lukso/lsp-smart-contracts/constants.js";
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key
-const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 const myUniversalProfileAddress = "0x.." // address of the UP
 const myVaultAddress = "0x.." // address of the Vault

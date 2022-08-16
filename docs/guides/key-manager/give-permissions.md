@@ -31,7 +31,7 @@ The Key Manager (KM) enables us to give permissions to other 3rd party addresses
 ## Setup
 
 ```shell
-npm install erc725.js @lukso/lsp-smart-contracts
+npm install @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
 
 ## Step 1 - Initialize erc725.js
@@ -57,7 +57,7 @@ More permissions are available in erc725.js. See the API docs for [`encodePermis
 
 We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions).
 
-### 2.1 - create the permission
+### 2.1 - Create the permission
 
 
 Let's consider in our example that we want to grant the permission `SETDATA` to a `beneficiaryAddress`, so that it can edit our Universal Profile details on our behalf.
@@ -71,7 +71,7 @@ const beneficiaryPermissions = erc725.encodePermissions({
 });
 ```
 
-### 2.2 - encode the permission for the 3rd party address
+### 2.2 - Encode the permission for the 3rd party address
 
 Now that we have created the permission value `SETDATA`, we need to assign it to the `beneficiaryAddress`.
 
@@ -107,7 +107,7 @@ The private key can be obtained depending on how you created your Universal Prof
 
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 

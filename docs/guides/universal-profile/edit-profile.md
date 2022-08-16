@@ -181,11 +181,11 @@ Create a new file, `main.js`.
 Our [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) tool provides convenience to upload our profile Metadata to IPFS.
 
 ```javascript title="main.js"
-import { LSPFactory } from "@lukso/lsp-factory.js";
+import { LSPFactory } from '@lukso/lsp-factory.js';
 // reference to the previously created JSON file (LSP3Profile metadata)
 import jsonFile from './UniversalProfileMetadata.json';
 
-const provider = "https://rpc.l16.lukso.network"; // RPC provider url
+const provider = 'https://rpc.l16.lukso.network'; // RPC provider url
 
 const lspFactory = new LSPFactory(provider, {
   deployKey: PRIVATE_KEY,
@@ -195,7 +195,7 @@ const lspFactory = new LSPFactory(provider, {
 async function editProfileInfo() {
   // Step 2 - Upload our JSON file to IPFS
   const uploadResult = await lspFactory.UniversalProfile.uploadProfileData(
-    jsonFile.LSP3Profile
+    jsonFile.LSP3Profile,
   );
   const lsp3ProfileIPFSUrl = uploadResult.url;
   // ipfs://Qm...
@@ -227,12 +227,12 @@ To do so, we use the [`encodeData()`](../../tools/erc725js/classes/ERC725.md#enc
 In the **same file**, `main.js`, set up the erc725.js library.
 
 ```javascript title="main.js"
-import Web3 from "web3";
+import Web3 from 'web3';
 // import ERC725
-import { ERC725 } from "@erc725/erc725.js";
+import { ERC725 } from '@erc725/erc725.js';
 // ...
 
-const web3 = new Web3("https://rpc.l16.lukso.network");
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 // Step 1 - Create a new LSP3Profile JSON file
 // ...
@@ -244,25 +244,25 @@ async function editProfileInfo() {
   // Step 3.1 - Setup erc725.js
   const schema = [
     {
-      name: "LSP3Profile",
-      key: "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5",
-      keyType: "Singleton",
-      valueContent: "JSONURL",
-      valueType: "bytes",
+      name: 'LSP3Profile',
+      key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+      keyType: 'Singleton',
+      valueContent: 'JSONURL',
+      valueType: 'bytes',
     },
   ];
 
   const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
-    ipfsGateway: "https://cloudflare-ipfs.com/ipfs/",
+    ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
   });
 
   // Step 3.2 - Encode the LSP3Profile data
   const encodedData = erc725.encodeData({
-    keyName: "LSP3Profile",
+    keyName: 'LSP3Profile',
     value: {
-      hashFunction: "keccak256(utf8)",
+      hashFunction: 'keccak256(utf8)',
       // hash our LSP3 metadata JSON file
-      hash: web3.utils.keccak256(JSON.stringify(jsonFile)),
+      hash: web3.utils.keccak256(JSON.stringify(uploadResult.json)),
       url: lsp3ProfileIPFSUrl,
     },
   });
@@ -313,13 +313,19 @@ import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 // create an instance of your Universal Profile
-const universalProfileContract = new web3.eth.Contract(UniversalProfile.abi, profileAddress);
+const universalProfileContract = new web3.eth.Contract(
+  UniversalProfile.abi,
+  profileAddress,
+);
 
 // if deployed with lsp-factory.js,
 // the Key Manager is the owner of the UP,
 // so retrieve your Key Manager address via `owner()` (= getter function)
 const keyManagerAddress = await universalProfileContract.methods.owner().call();
-const keyManagerContract = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
+const keyManagerContract = new web3.eth.Contract(
+  KeyManager.abi,
+  keyManagerAddress,
+);
 ```
 
 ### 4.3 - Set data on the Universal Profile
@@ -331,10 +337,9 @@ Since a Key Manager owns our Universal Profile, the call will first check permis
 ```javascript title="Preparing and executing the setData transaction"
 // encode the setData payload
 // (`encodedData` is the value obtain from Step 3.2)
-const abiPayload = await universalProfileContract.methods['setData(bytes32[],bytes[])'](
-  encodedData.keys,
-  encodedData.values,
-).encodeABI();
+const abiPayload = await universalProfileContract.methods[
+  'setData(bytes32[],bytes[])'
+](encodedData.keys, encodedData.values).encodeABI();
 
 // execute via the KeyManager, passing the UP payload
 await keyManagerContract.methods
@@ -386,34 +391,34 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 </details>
 
 ```javascript title="main.js"
-import Web3 from "web3";
-import { ERC725 } from "@erc725/erc725.js";
-import { LSPFactory } from "@lukso/lsp-factory.js";
+import Web3 from 'web3';
+import { ERC725 } from '@erc725/erc725.js';
+import { LSPFactory } from '@lukso/lsp-factory.js';
 
-import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
-import KeyManager from "@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json";
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
-import jsonFile from "./UniversalProfileMetadata.json";
+import jsonFile from './UniversalProfileMetadata.json';
 
-const web3 = new Web3("https://rpc.l16.lukso.network");
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 // constants
-const PRIVATE_KEY = "0x...";
-const profileAddress = "0x...";
+const PRIVATE_KEY = '0x...';
+const profileAddress = '0x...';
 
 // Step 1 - Create a new LSP3Profile JSON file
 
-const provider = "https://rpc.l16.lukso.network"; // RPC provider url
+const provider = 'https://rpc.l16.lukso.network'; // RPC provider url
 
 const lspFactory = new LSPFactory(provider, {
   deployKey: PRIVATE_KEY,
-  chainId: 22, // Chain Id of the network you want to deploy to
+  chainId: 2828, // Chain Id of the network you want to deploy to
 });
 
 async function editProfileInfo() {
   // Step 2 - Upload our JSON file to IPFS
   const uploadResult = await lspFactory.UniversalProfile.uploadProfileData(
-    jsonFile.LSP3Profile
+    jsonFile.LSP3Profile,
   );
   const lsp3ProfileIPFSUrl = uploadResult.url;
   // 'ipfs://QmYCQTe5r5ZeVTbtpZMZXSQP2NxXdgJFVZb61Dk3gFP5VX'
@@ -421,25 +426,25 @@ async function editProfileInfo() {
   // Step 3.1 - Setup erc725.js
   const schema = [
     {
-      name: "LSP3Profile",
-      key: "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5",
-      keyType: "Singleton",
-      valueContent: "JSONURL",
-      valueType: "bytes",
+      name: 'LSP3Profile',
+      key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+      keyType: 'Singleton',
+      valueContent: 'JSONURL',
+      valueType: 'bytes',
     },
   ];
 
   const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
-    ipfsGateway: "https://cloudflare-ipfs.com/ipfs/",
+    ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
   });
 
   // Step 3.2 - Encode the LSP3Profile data (to be written on our UP)
   const encodedData = erc725.encodeData({
-    keyName: "LSP3Profile",
+    keyName: 'LSP3Profile',
     value: {
-      hashFunction: "keccak256(utf8)",
+      hashFunction: 'keccak256(utf8)',
       // hash our LSP3 metadata JSON file
-      hash: web3.utils.keccak256(JSON.stringify(jsonFile)),
+      hash: web3.utils.keccak256(JSON.stringify(uploadResult.json)),
       url: lsp3ProfileIPFSUrl,
     },
   });
@@ -449,18 +454,25 @@ async function editProfileInfo() {
   console.log('EOA:', myEOA.address);
 
   // Step 4.2 - Create instances of our Contracts
-  const universalProfileContract = new web3.eth.Contract(UniversalProfile.abi, profileAddress);
+  const universalProfileContract = new web3.eth.Contract(
+    UniversalProfile.abi,
+    profileAddress,
+  );
 
-  const keyManagerAddress = await universalProfileContract.methods.owner().call();
-  const keyManagerContract = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
+  const keyManagerAddress = await universalProfileContract.methods
+    .owner()
+    .call();
+  const keyManagerContract = new web3.eth.Contract(
+    KeyManager.abi,
+    keyManagerAddress,
+  );
 
   // Step 4.3 - Set data (updated LSP3Profile metadata) on our Universal Profile
 
   // encode the setData payload
-  const abiPayload = await universalProfileContract.methods["setData(bytes32[],bytes[])"](
-    encodedData.keys,
-    encodedData.values
-  ).encodeABI();
+  const abiPayload = await universalProfileContract.methods[
+    'setData(bytes32[],bytes[])'
+  ](encodedData.keys, encodedData.values).encodeABI();
 
   // execute via the KeyManager, passing the UP payload
   await keyManagerContract.methods
@@ -474,10 +486,9 @@ editProfileInfo();
 
 You can now check your UP on the [profile explorer](https://l16.universalprofile.cloud/) website by pasting the returned address after the slash of the base URL:
 
-`https://universalprofile.cloud/[UP ADDRESS]`
+`https://l16.universalprofile.cloud/[UP ADDRESS]`
 
-![Universal Profile with pictures and infos on universalprofile.cloud](./img/edit-profile.png)
-
+![Universal Profile with pictures and infos on l16.universalprofile.cloud](./img/edit-profile.png)
 
 [erc725.js]: ../../tools/erc725js/getting-started
 [ipfs]: https://ipfs.io/
