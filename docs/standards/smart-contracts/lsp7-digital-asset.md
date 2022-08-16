@@ -502,7 +502,7 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 
 | Name       | Type    | Description                                                                                                                           |
 | :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `operator` | address | The address of operator sender tokens.                                                                                               |
+| `operator` | address | The address of operator sending tokens.                                                                                               |
 | `from`     | address | The address which tokens are sent.                                                                                                    |
 | `to`       | address | The recipient address.                                                                                                                |
 | `amount`   | uint256 | The amount of tokens transferred.                                                                                                     |

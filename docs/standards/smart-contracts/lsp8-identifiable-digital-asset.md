@@ -578,7 +578,7 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 
 | Name       | Type    | Description                                                                                                             |
 | :--------- | :------ | :---------------------------------------------------------------------------------------------------------------------- |
-| `operator` | address | The address of operator sender tokens.                                                                                 |
+| `operator` | address | The address of operator sending tokens.                                                                                 |
 | `from`     | address | The address which tokens are sent.                                                                                      |
 | `to`       | address | The recipient address.                                                                                                  |
 | `tokenId`  | bytes32 | The token to transfer.                                                                                                  |
