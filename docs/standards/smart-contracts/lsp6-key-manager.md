@@ -128,6 +128,54 @@ function executeRelayCall(
 
 Allows anybody to execute a payload on the **LSP0ERC725Account** contract, if they have a signed message from an executor.
 
+To obtain a valid signature you must do the following:
+
+1. Gather 4 things:
+
+```solidity
+bytes memory payload = abi.encodeWithSignature(
+    "<Signature of the method that will be executed, e.g. 'setData(bytes32[],bytes[])'>",
+    ...[<A comma-separated list of parameters that will be passed to the methods>]
+);
+
+// The chain id of the blockchain where the `payload` will be executed
+uint256 chainId = uint256 chainId = block.chainid; // or <The chain id of the blockchain where you will interact with the key manager>
+
+// The address of the key manager (the smart contract where the `payload` will be executed)
+address keyManagerAddress = '0x...';
+
+uint256 nonce = ILSP6KeyManager(keyManagerAddress).getNonce(...);
+```
+
+2. Once you have gathered these 4 informations, you must encode them using `abi.encodePacked(...)`:
+
+```solidity
+bytes memory encodedMessage = abi.encodePacked(
+    chainId,
+    keyManagerAddress,
+    nonce,
+    payload
+);
+```
+
+3. Then you must get the hash of the `encodedMessage`:
+
+```solidity
+bytes32 encodedMessageHash = keccak256(encodedMessage);
+```
+
+4. After that you can sign the encodedMessageHash and voila, you have the signature ready.
+
+5. To execute the `payload` you would have to do the following:
+
+```solidity
+ILSP6KeyManager(keyManagerAddress).executeRelayCall(
+    <The signature that you got from step 4.>,
+    nonce, // We got it in step 1.
+    payload //We got it in step 1.
+);
+```
+
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
 #### Parameters:
