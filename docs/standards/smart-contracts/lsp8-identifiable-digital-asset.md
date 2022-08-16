@@ -25,7 +25,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 
 :::
 
-## Functions
+## Public Functions
 
 ### constructor
 
@@ -274,15 +274,15 @@ function transfer(
 
 Transfers the token with a particular `tokenId` from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or contracts that do not implement the [LSP1 - Universal Receiver Delegate](../generic-standards/lsp1-universal-receiver.md) standard.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when the token gets successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when the token gets successfully transferred._
 
 #### Parameters:
 
 | Name      | Type    | Description                                                                                                                               |
 | :-------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address | The sending address.                                                                                                                      |
-| `to`      | address | The receiving address.                                                                                                                    |
-| `tokenId` | uint256 | The token to transfer.                                                                                                                    |
+| `from`    | address | The sender address.                                                                                                                      |
+| `to`      | address | The recipient address.                                                                                                                    |
+| `tokenId` | bytes32 | The token to transfer.                                                                                                                    |
 | `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`    | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
@@ -311,14 +311,14 @@ function transferBatch(
 
 Transfers multiple tokens based on the `from`, `to`, and `tokenId` arrays. If any transfer fails, the whole call will revert.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when the tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when the tokens get successfully transferred._
 
 #### Parameters:
 
 | Name      | Type      | Description                                                                                                                               |
 | :-------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address[] | The list of sending addresses.                                                                                                            |
-| `to`      | address[] | The list of receiving addresses.                                                                                                          |
+| `from`    | address[] | The list of sender addresses.                                                                                                            |
+| `to`      | address[] | The list of recipient addresses.                                                                                                          |
 | `tokenId` | bytes32[] | The list of tokenIds to transfer.                                                                                                         |
 | `force`   | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`    | bytes[]   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
@@ -334,6 +334,228 @@ _Triggers the **[Transfer](#trasnfer-2)** event when the tokens get successfully
 - If the caller is not `from`, it must be an operator of each `tokenId`.
 
 :::
+
+## Internal Functions
+
+These internal functions can be extended via `override` to add some custom logic.
+
+:::info Warning
+By deploying an LSP8IdentifiableDigitalAsset contract, there will be no public mint or burn function.
+In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
+:::
+
+### _mint
+
+```solidity
+function _mint(
+    address to,
+    bytes32 tokenId,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+Mints `tokenId` and transfers it to `to`.
+
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `to`     | address  | The recipient address. |
+| `tokenId`| bytes32  | The token to transfer. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address. |
+
+:::note
+
+#### Requirements:
+
+- `tokenId` must not exist.
+- `to` cannot be the zero address.
+
+:::
+
+### _transfer
+
+```solidity
+function _transfer(
+    address from,
+    address to,
+    bytes32 tokenId,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+Transfers `tokenId` from `from` to `to`.
+
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `tokenId`| bytes32  | The token to transfer. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+:::note
+
+#### Requirements:
+
+- `to` cannot be the zero address.
+- `tokenId` token must be owned by `from`.
+
+:::
+
+### _burn
+
+```solidity
+function _burn(
+    address from,
+    bytes32 tokenId,
+    bytes memory data
+) internal virtual
+```
+
+Burns `tokenId` and clear the operators authorized for the `tokenId`.
+
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `tokenId` | bytes32  | The token to burn. |
+| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `from` address. |
+
+:::note
+
+#### Requirements:
+
+- `from` cannot be the zero address.
+- `tokenId` must exist.
+
+:::
+
+### _beforeTokenTransfer
+
+```solidity
+function _beforeTokenTransfer(
+    address from,
+    address to,
+    bytes32 tokenId
+) internal virtual
+```
+
+Hook that is called before any token transfer. This includes minting and burning.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `tokenId` | bytes32  | The token to transfer. |
+
+:::note
+
+#### Notice:
+
+- When `from` and `to` are both non-zero, ``from``'s `tokenId` will be transferred to `to`.
+- When `from` is zero, `tokenId` will be minted for `to`.
+- When `to` is zero, ``from``'s `tokenId` will be burned.
+
+:::
+
+### _notifyTokenSender
+
+```solidity
+function _notifyTokenSender(
+    address from,
+    address to,
+    bytes32 tokenId,
+    bytes memory data
+) internal virtual
+```
+
+An attempt is made to notify the token receiver about the `tokenId` token being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `tokenId` | bytes32  | The token to transfer. |
+| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+### _notifyTokenReceiver
+
+```solidity
+function _notifyTokenReceiver(
+    address from,
+    address to,
+    bytes32 tokenId,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+An attempt is made to notify the token receiver about the `tokenId` token being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `tokenId` | bytes32  | The token to transfer. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+### _revokeOperator
+
+```solidity
+function _revokeOperator(
+    address operator,
+    address tokenOwner,
+    bytes32 tokenId
+) internal virtual
+```
+
+Revoke the `operator` of the `tokenId` token which belongs to `tokenOwner`.
+
+#### Parameters:
+
+|     Name     |   Type   | Description |
+| :----------- | :------- | :---------- |
+| `operator`   | address | The address of the operator to revoke.    |
+| `tokenOwner` | address | The address that is the owner of tokenId. |
+| `tokenId`    | bytes32 | The token to disable operator status to.  |
+
+### _clearOperators
+
+```solidity
+function clearOperators(
+    address tokenOwner,
+    bytes32 tokenId
+) internal virtual
+```
+
+Revoke the all current operators of the `tokenId` token which belongs to `tokenOwner`.
+
+#### Parameters
+
+|     Name     |   Type   | Description |
+| :----------- | :------- | :---------- |
+| `tokenOwner` | address | The address that is the owner of tokenId. |
+| `tokenId`    | bytes32 | The token to disable operator status to.  |
 
 ## Events
 
@@ -358,7 +580,7 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 | :--------- | :------ | :---------------------------------------------------------------------------------------------------------------------- |
 | `operator` | address | The address of operator sending tokens.                                                                                 |
 | `from`     | address | The address which tokens are sent.                                                                                      |
-| `to`       | address | The receiving address.                                                                                                  |
+| `to`       | address | The recipient address.                                                                                                  |
 | `tokenId`  | bytes32 | The token to transfer.                                                                                                  |
 | `force`    | bool    | When set to `true`, may be any address; When set to `false`, address must be a contract supporting LSP1 and not revert. |
 | `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.         |
