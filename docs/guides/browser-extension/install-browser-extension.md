@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 :::danger
 
-The UP Browser Extenstion is a **ALPHA DEVELOPER PREVIEW**. This is not intended to be used by non developers. And DO NOT use this in production!     
+The UP Browser Extenstion is a **ALPHA DEVELOPER PREVIEW**. This is not intended to be used by non developers. And DO NOT use this in production!
 The current UP Browser Extenstion deploys profiles on the [L16 Testnet](http://docs.lukso.tech/networks/l16-testnet/parameters).
 
 :::
@@ -21,9 +21,9 @@ This guide will teach you how to download and install the Universal Profile brow
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.0.0-develop.260-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-1.0.0-develop.260.zip) (All browsers)**
+### :inbox_tray: **[Download link (v1.0.0-develop.298-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-1.0.0-develop.298.zip) (All browsers)**
 
-### :inbox_tray: **[Download link (v1.0.0-develop.260-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-1.0.0-develop.260.zip) (experimental)**
+### :inbox_tray: **[Download link (v1.0.0-develop.298-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-1.0.0-develop.298.zip) (experimental)**
 
 ## Unpack the archive
 
