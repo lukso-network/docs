@@ -54,7 +54,7 @@ const KeyManager = new web3.eth.Contract(
 );
 
 const controllerAccount =
-  web3.eth.accounts.privateKeyToAccount(controllerPrivateKey);
+  web3.eth.accounts.wallet.add(controllerPrivateKey);
 const channelId = 0;
 
 const nonce = await KeyManager.methods
@@ -115,16 +115,9 @@ To get the KeyManager address from the UniversalProfile address, call the `owner
 :::
 
 ```javascript title='Send the transaction'
-import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
-
-const KeyManager = new web3.eth.Contract(
-  KeyManagerContract.abi,
-  keyManagerAddress,
-);
-
-const executeRelayCallTransaction = await keyManager.methods
+const executeRelayCallTransaction = await KeyManager.methods
   .executeRelayCall(signature, nonce, abiPayload)
-  .send();
+  .send({from: controllerAccount.address, gasLimit: 300_000});
 ```
 
 :::tip LSP6KeyManager executeRelayCall
