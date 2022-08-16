@@ -48,7 +48,7 @@ let abiPayload = await myUp.methods
   .encodeABI();
 
 // 3. execute via the KeyManager, passing the UP payload
-await myKeyManager.execute(abiPayload, {
+await myKeyManager.methods.execute(abiPayload).send({
   from: '<address-of-up-owner>',
   gasLimit: 300_000,
 });
