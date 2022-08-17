@@ -550,7 +550,7 @@ Since the Key Manager offers **relay execution** via signed message, it's import
 
 Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
 
-Signed messages should be executed sequentielially if signed on the same channel and should be executed independently if signed on different channel.
+Signed messages should be executed sequentially if signed on the same channel and should be executed independently if signed on different channel.
 
 - Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
 
