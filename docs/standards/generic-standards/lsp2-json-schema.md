@@ -191,6 +191,35 @@ The `bytes32` value is **right-cut**.
 
 ### MappingWithGrouping
 
+:::warning
+
+Whenever you want to generate a data key of `keyType` Mapping With Grouping:
+
+```solidity
+bytes32 dataKey = bytes.concat(
+  bytes6(keccak256(bytes(firstWord))),
+  bytes4(keccak256(bytes(secondWord))),
+  bytes2(0),
+  bytes20(keccak256(bytes(thirdWord)))
+);
+```
+
+[//]: # (Please choose between the above or below option, for me the second one is more intuitive. We can keep both aswell.)
+
+```solidity
+bytes6 firstWordHash = bytes6(keccak256(firstWord));
+
+bytes4 secondWordHash = bytes4(keccak256(secondWord));
+
+bytes20 thirdWordHash = bytes20(keccak256(thirdWord));
+```
+
+`<firstWordHash>:<secondWordHash>:<bytes2(0)>:<thirdWordHash>`
+
+You must take into consideration the fact that if you choose the same value for `firstWord` and `thirdWord` there is a 0.0000000233% chance that two random values for the `secondWord` will result ins the same data key.
+
+:::
+
 A data key of type **MappingWithGrouping** is similar to the **[Mapping](#mapping)** data key type, except that sub-types can be added to the main mapping data key.
 
 For instance, it can be used to differentiate various types from the primary mapping data key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/lsp6-key-manager.md)).
