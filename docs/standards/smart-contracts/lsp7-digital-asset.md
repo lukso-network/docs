@@ -24,7 +24,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 
 :::
 
-## Functions
+## Public Functions
 
 ### constructor
 
@@ -204,14 +204,14 @@ Transfers an `amount` of tokens from the `from` address to the `to` address. The
 
 Will notify the token sender and receiver by calling the `universalReceiver(...)` function on the `from` and `to` address.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
 | Name     | Type    | Description                                                                                                                               |
 | :------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | address | The sending address.                                                                                                                      |
-| `to`     | address | The receiving address.                                                                                                                    |
+| `from`   | address | The sender address.                                                                                                                      |
+| `to`     | address | The recipient address.                                                                                                                    |
 | `amount` | uint256 | The amount of token to transfer.                                                                                                          |
 | `force`  | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`   | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
@@ -241,14 +241,14 @@ function transferBatch(
 
 Transfers multiple tokens based on the `from`, `to`, and `amount` arrays. If any transfer fails, the whole call will revert.
 
-_Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully transferred._
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
 
 #### Parameters:
 
 | Name     | Type      | Description                                                                                                                               |
 | :------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | address[] | The list of sending addresses.                                                                                                            |
-| `to`     | address[] | The list of receiving addresses.                                                                                                          |
+| `from`   | address[] | The list of sender addresses.                                                                                                            |
+| `to`     | address[] | The list of recipient addresses.                                                                                                          |
 | `amount` | uint256[] | The amount of tokens to transfer.                                                                                                         |
 | `force`  | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`   | bytes[]   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
@@ -262,6 +262,222 @@ _Triggers the **[Transfer](#trasnfer-2)** event when tokens get successfully tra
 - No values in `to` can be the zero address.
 - Each `amount` tokens must be owned by `from`.
 - If the caller is not `from`, it must be an operator for `from` with access to at least `amount` tokens.
+
+:::
+
+## Internal Functions
+
+These internal functions can be extended via `override` to add some custom logic.
+
+:::info Warning
+By deploying an LSP7DigitalAsset contract, there will be no public mint or burn function.
+In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
+:::
+
+### _mint
+
+```solidity
+function _mint(
+    address to,
+    uint256 amount,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+Mints `amount` tokens and transfers it to `to`.
+
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `to`     | address  | The recipient address. |
+| `amount` | uint256  | The amount of token to mint. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address. |
+
+:::note
+
+#### Requirements:
+
+- `to` cannot be the zero address.
+
+:::
+
+### _transfer
+
+```solidity
+function _transfer(
+    address from,
+    address to,
+    uint256 amount,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+Transfers `amount` tokens from `from` to `to`.
+
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `amount` | uint256  | The amount of token to transfer. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+:::note
+
+#### Requirements:
+
+- `to` cannot be the zero address.
+- `from` cannot be the zero address.
+- `from` must have at least `amount` tokens.
+- If the caller is not `from`, it must be an operator for `from` with access to at least `amount` tokens.
+
+:::
+
+### _burn
+
+```solidity
+function _burn(
+    address from,
+    uint256 amount,
+    bytes memory data
+) internal virtual
+```
+
+Burns `amount` tokens.
+
+_Triggers the **[Transfer](#transfer-2)** event when tokens get successfully transferred._
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `amount` | uint256  | The amount of token to burn. |
+| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `from` address. |
+
+:::note
+
+#### Requirements:
+
+- `from` cannot be the zero address.
+- `from` must have at least `amount` tokens.
+- If the caller is not `from`, it must be an operator for `from` with access to at least `amount` tokens.
+
+:::
+
+### _beforeTokenTransfer
+
+```solidity
+function _beforeTokenTransfer(
+    address from,
+    address to,
+    uint256 amount
+) internal virtual
+```
+
+Hook that is called before any token transfer. This includes minting and burning.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `amount` | uint256  | The amount of token to transfer. |
+
+:::note
+
+#### Requirements:
+
+- When `from` and `to` are both non-zero, ``from``'s `amount` tokens will betransferred to `to`.
+- When `from` is zero, `amount` tokens will be minted for `to`.
+- When `to` is zero, ``from``'s `amount` tokens will be burned.
+
+:::
+
+### _notifyTokenSender
+
+```solidity
+function _notifyTokenSender(
+    address from,
+    address to,
+    uint256 amount,
+    bytes memory data
+) internal virtual
+```
+
+An attempt is made to notify the token sender about the `amount` of tokens being sent by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the sender address if it exists.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `amount` | uint256  | The amount of token to transfer. |
+| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+### _notifyTokenReceiver
+
+```solidity
+function _notifyTokenReceiver(
+    address from,
+    address to,
+    uint256 amount,
+    bool force,
+    bytes memory data
+) internal virtual
+```
+
+An attempt is made to notify the token receiver about the `amount` of tokens being received by calling the **[universalReceiver(...)](./lsp0-erc725-account.md#universalreceiver)** function on the receiver address if it exists.
+
+#### Parameters:
+
+|   Name   |   Type   | Description |
+| :------- | :------- | :---------- |
+| `from`   | address  | The sender address. |
+| `to`     | address  | The recipient address. |
+| `amount` | uint256  | The amount of token to transfer. |
+| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+
+### _updateOperator
+
+```
+function _updateOperator(
+    address tokenOwner,
+    address operator,
+    uint256 amount
+) internal virtual
+```
+
+Changes token `amount` the `operator` has access to from `tokenOwner` tokens. Setting the `amount` to zero is equivalent to revoking the operator.
+
+_Triggers the **[AuthorizedOperator](#authorizedoperator)** event if an address gets authorized as an operator or **[RevokedOperator](#revokedoperator)** event if an address gets revoked as an operator._
+
+#### Parameters
+
+|     Name     |   Type   | Description |
+| :----------- | :------- | :---------- |
+| `tokenOwner` | address | The address that is the owner of tokens. |
+| `operator`   | address | The address to authorize as an operator. |
+| `amount`     | uint256 | The amount of tokens operator has access to. |
+
+:::note
+
+#### Requirements
+
+- `operator` cannot be the zero address.
 
 :::
 
@@ -288,7 +504,7 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 | :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
 | `operator` | address | The address of operator sending tokens.                                                                                               |
 | `from`     | address | The address which tokens are sent.                                                                                                    |
-| `to`       | address | The receiving address.                                                                                                                |
+| `to`       | address | The recipient address.                                                                                                                |
 | `amount`   | uint256 | The amount of tokens transferred.                                                                                                     |
 | `force`    | bool    | When set to TRUE, to may be any address; when set to FALSE to must be a contract that supports LSP1 UniversalReceiver and not revert. |
 | `data`     | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.                       |
