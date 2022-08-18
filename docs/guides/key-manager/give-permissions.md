@@ -57,7 +57,7 @@ More permissions are available in erc725.js. See the API docs for [`encodePermis
 
 We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions).
 
-### 2.1 - create the permission
+### 2.1 - Create the permission
 
 
 Let's consider in our example that we want to grant the permission `SETDATA` to a `beneficiaryAddress`, so that it can edit our Universal Profile details on our behalf.
@@ -71,7 +71,7 @@ const beneficiaryPermissions = erc725.encodePermissions({
 });
 ```
 
-### 2.2 - encode the permission for the 3rd party address
+### 2.2 - Encode the permission for the 3rd party address
 
 Now that we have created the permission value `SETDATA`, we need to assign it to the `beneficiaryAddress`.
 
