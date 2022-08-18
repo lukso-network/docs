@@ -17,7 +17,7 @@ We will use the [_erc725.js_](../../tools/erc725js/getting-started.md) library t
 ## Setup
 
 ```bash
-npm install erc725.js
+npm install @erc725/erc725.js
 ```
 
 ## Step 1 - setup web3.js and erc725.js
