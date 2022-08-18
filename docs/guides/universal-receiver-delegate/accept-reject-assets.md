@@ -11,7 +11,7 @@ Creating **custom Universal Receiver Delegate** contracts is expected. Each user
 
 ## Rejecting all Assets
 
-In order to **reject all the assets** that are being sent to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../standards//smart-contracts/lsp0-erc725-account.md#universalreceiver) is the parameter that will give us more context on the call being made.
+In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../standards//smart-contracts/lsp0-erc725-account.md#universalreceiver) is the parameter that will give us more context on the call being made.
 
 
 *e.g.*
@@ -45,7 +45,7 @@ import {_TYPEID_LSP8_TOKENSRECIPIENT} from "https://github.com/lukso-network/lsp
 contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
     /**
-    * @param asset The address of the asset being sent to the UniversalProfile.
+    * @param asset The address of the asset being transferred to the UniversalProfile.
     * @param asset The address disallowing receiving assets.
     */
     error ReceivingAssetsNotAllowed(address asset, address recipient);
@@ -200,9 +200,9 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
         bytes32 typeId,
         bytes memory data
     ) public override returns (bytes memory result){
-        // checking if the asset being sent is allowed or not.
+        // checking if the asset being transferred is allowed or not.
         if(typeId == _TYPEID_LSP8_TOKENSRECIPIENT || typeId == _TYPEID_LSP7_TOKENSRECIPIENT){
-            require(allowedAssets[caller], "Asset being sent is not allowed to be received");
+            require(allowedAssets[caller], "Asset being transferred is not allowed to be received");
         }
         // using the default implementation code to register the address of assets received
         result = super.universalReceiverDelegate(caller, value, typeId, data);
