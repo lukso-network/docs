@@ -16,7 +16,7 @@ You can follow us on [Twitter](https://twitter.com/lukso_io), read our [Medium a
 
 ## Where can I download the Whitepaper?
 
-Here you can find the download link for the [LUKSO Whitepaper](https://lukso.network/assets/LUKSO_Whitepaper.pdf), and the [Technical Lightpaper](https://lukso.network/assets/LUKSO_Technical_Lightpaper.pdf).
+Here you can find the download link for the [LUKSO Whitepaper](https://uploads-ssl.webflow.com/629f44560745074760731ba4/62b200bfe0af12186845519a_LUKSO_Whitepaper_V1-1.pdf), and the [Technical Lightpaper](https://lukso.network/assets/LUKSO_Technical_Lightpaper.pdf).
 
 ## What is LYXe and LYX?
 
