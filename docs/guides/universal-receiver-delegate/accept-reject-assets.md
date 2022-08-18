@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Accept & Reject Assets
 
-Creating **custom Universal Receiver Delegate** contracts is expected. Each user can create a contract that hold the logic that he wants to be executed once the **[`universalReceiver(..)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver)** function on his profile is called. 
+Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver)** function on his profile is called. 
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/UniversalReceiverDelegate-Guide.jpeg)
 
@@ -15,9 +15,9 @@ In order to **reject all the assets** that are being transferred to the profile,
 
 
 *e.g.*
-- If typeId is **[`0xdbe2c314e1aee2970c72666f2ebe8933a8575263ea71e5ff6a9178e95d47a26f`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
+- If typeId is **[`0xdbe2c314e1aee2970c72666f2ebe8933a8575263ea71e5ff6a9178e95d47a26f` _TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
 
-- If typeId is **[`0xc7a120a42b6057a0cbed111fbbfbd52fcd96748c04394f77fc2c3adbe0391e01`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
+- If typeId is **[`0xc7a120a42b6057a0cbed111fbbfbd52fcd96748c04394f77fc2c3adbe0391e01` _TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
 
 
 
@@ -29,7 +29,7 @@ The first step is to navigate to **[Remix's website](https://remix.ethereum.org/
 
 After creating the **UniversalReceiverDelegate.sol** file, copy the code snippet below inside the file created. This code snippet will be responsible for rejecting all LSP7 & LSP8 assets being transferred to your profile.
 
-```js title="Solidity Code snippet of the URD that reject all assets"
+```js title="UniversalReceiverDelegate.sol - Solidity Code snippet of the URD that reject all assets"
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
@@ -52,18 +52,18 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
     /**
     * @dev Reverts when the typeId is relative to token receiving (LSP7 & LSP8) 
-    * @param caller The address of the asset informing the universalReceiver function on he UniversalProfile.
-    * @param value The amount of native tokens sent by the caller to the universalReceiver function on he UniversalProfile.
-    * @param typeId The typeId representing the context of the call to the universalReceiver function on he UniversalProfile.
-    * @param typeId The data sent to the universalReceiver function on he UniversalProfile.
+    * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
+    * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.
+    * @param typeId The typeId representing the context of the call to the universalReceiver function on the UniversalProfile.
+    * @param typeId The data sent to the universalReceiver function on the UniversalProfile.
     */
     function universalReceiverDelegate(
         address caller,
         uint256 value,
         bytes32 typeId,
         bytes memory data
-    ) public override returns (bytes memory result){
-        if(typeId == _TYPEID_LSP7_TOKENSRECIPIENT || typeId == _TYPEID_LSP8_TOKENSRECIPIENT){
+    ) public override returns (bytes memory result) {
+        if (typeId == _TYPEID_LSP7_TOKENSRECIPIENT || typeId == _TYPEID_LSP8_TOKENSRECIPIENT){
             revert ReceivingAssetsNotAllowed(caller, msg.sender);
         }
     }
@@ -102,7 +102,7 @@ You should be connected to L16 in Metamask and Remix and have enough LYXt in the
 
 ![Connect to LUKSO L16 in Remix](/img/guides/remox-connect-l16.jpeg)
 
-After choosing the **CustomUniversalReceiverDelegate** contract in the *CONTRACT* section and deploying, you'll confirm the transaction and wait a few minutes till the contract is deployed on the network. Once deployed you can copy the contract address to be used later when setting the address inside the storage.
+After choosing the **CustomUniversalReceiverDelegate** contract in the *CONTRACT* section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed you can copy the contract address to be used later when setting the address inside the storage.
 
 ![Deploy and Copy the address in Remix](/img/guides/remix-deploy-copy-address.jpeg)
 
@@ -149,7 +149,7 @@ await myKM.methods.execute(executePayload).send({
 
 ## Accepting specific Assets
 
-In order to accept specific assets, you should differentiate between the different assets that are being transferred to you. One way to do it is to have a mapping inside the URD contract, that states if the asset being transferred **is allowed to be received or not** and only the owner is allowed to add these assets addresses.
+In order to accept specific assets, you should differentiate between the different assets that are being transferred to you. One way to do it is to have a mapping inside the URD contract that states if the asset being transferred **is allowed to be received or not**. Only the owner should be allowed to add these asset addresses. For simplicity, the owner could be the EOA address deploying the contract.
 
 Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)** section, just replace the solidity code with the one written below. 
 
@@ -168,7 +168,7 @@ import {_TYPEID_LSP8_TOKENSRECIPIENT} from "https://github.com/lukso-network/lsp
 
 contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
-    address public owner;
+    address immutable public owner;
     mapping (address => bool) public allowedAssets;
 
     constructor(address _owner){
@@ -176,7 +176,7 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
     }
 
     modifier onlyOwner(){
-        require(msg.sender == owner, "Caller is not the owner");
+        require(msg.sender == owner, "CustomUniversalReceiverDelegate : Caller is not the owner");
         _;
     }
 
@@ -189,10 +189,10 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
     * will be registered inside the storage, and removed when balance of the asset equal 0, according to
     * the LSP5-ReceivedAssers standard.
     *
-    * @param caller The address of the asset informing the universalReceiver function on he UniversalProfile.
-    * @param value The amount of native tokens sent by the caller to the universalReceiver function on he UniversalProfile.
-    * @param typeId The typeId representing the context of the call to the universalReceiver function on he UniversalProfile.
-    * @param typeId The data sent to the universalReceiver function on he UniversalProfile.
+    * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
+    * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.
+    * @param typeId The typeId representing the context of the call to the universalReceiver function on the UniversalProfile.
+    * @param typeId The data sent to the universalReceiver function on the UniversalProfile.
     */
     function universalReceiverDelegate(
         address caller,
@@ -210,4 +210,4 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 }
 ```
 
-The code above will register the address of the assets allowed and remove them on a balance equal to 0 and will reject the assets that are not allowed. Since this code will need **SETDATA Permission**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./set-default-implementation.md#set-the-address-of-the-urd-in-the-storage)** section.
+The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **SETDATA Permission**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./set-default-implementation.md#set-the-address-of-the-urd-in-the-storage)** section.

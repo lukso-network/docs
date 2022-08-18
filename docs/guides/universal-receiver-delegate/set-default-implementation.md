@@ -11,7 +11,7 @@ Users deploying their Universal Profiles using the guides that utilize **[lsp-fa
 
 :::
 
-This guide will teach you how to deploy and set the default implementation of the **[Universal Receiver Delegate](../../standards/smart-contracts/lsp1-universal-receiver-delegate-up.md)** (URD) used by the Universal Profile. This contract will register the addresses of the **received assets and vaults** and will remove them on a balance equal to 0. This contract requires the [SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#permissions) to interact with the profile through the KeyManager.
+This guide will teach you how to deploy and set the default implementation of the **[Universal Receiver Delegate](../../standards/smart-contracts/lsp1-universal-receiver-delegate-up.md)** (URD) used by the Universal Profile. This contract will register the addresses of the **[received assets](../../standards/universal-profile/lsp5-received-assets.md)** and **[vaults](../../standards/universal-profile/lsp10-received-vaults.md)** and will remove them on a balance equal to 0. This contract requires the [SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#permissions) to interact with the profile through the KeyManager.
 
 ![UniversalReceiverDelegate setting data keys on profile](/img/token-transfer-4.jpg)
 
