@@ -292,6 +292,7 @@ _Triggers the **[Transfer](#transfer-2)** event when the token gets successfully
 
 - `from` cannot be the zero address.
 - `to` cannot be the zero address.
+- `from` and `to` cannot be the same address.
 - `tokenId` token must be owned by from.
 - If the caller is not `from`, it must be an operator of `tokenId`.
 
@@ -330,6 +331,7 @@ _Triggers the **[Transfer](#transfer-2)** event when the tokens get successfully
 - `from`, `to`, `tokenId` lists are the same length.
 - No values in `from` can be the zero address.
 - No values in `to` can be the zero address.
+- `from` and `to` cannot be the same address at the same index of each lists.
 - Each `tokenId` token must be owned by `from`.
 - If the caller is not `from`, it must be an operator of each `tokenId`.
 
