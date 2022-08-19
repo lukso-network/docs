@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'Set the default Implementation'
+sidebar_label: 'Set the default implementation'
 sidebar_position: 1
 ---
 
-# Set the default Implementation
+# Set the default implementation
 
 :::note
 
@@ -43,7 +43,7 @@ await myURD
 
 ### Set the address of the URD in the storage
 
-After deploying the contract, we will need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** and grant it the SETDATA permission.
+After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** and grant it the **[SETDATA](../../standards/universal-profile/lsp6-key-manager.md#permissions)** permission.
 
 ```typescript title="Setting address of the URD in the storage"
 import Web3 from 'web3';
