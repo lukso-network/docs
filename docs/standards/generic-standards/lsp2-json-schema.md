@@ -146,7 +146,7 @@ Below are some examples of the **Mapping** key type.
 ```json
 {
   "name": "SupportedStandards:LSP3UniversalProfile",
-  "key": "0xeafec4d89fa9619884b6b89135626455000000000000000000000000abe425d6",
+  "key": "0xeafec4d89fa9619884b60000abe425d64acd861a49b8ddf5c0b6962110481f38",
   "keyType": "Mapping",
   "valueType": "bytes4",
   "valueContent": "0xabe425d6"
