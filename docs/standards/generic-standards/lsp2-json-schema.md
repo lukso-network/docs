@@ -193,30 +193,9 @@ The `bytes32` value is **right-cut**.
 
 :::warning
 
-Whenever you want to generate a data key of `keyType` Mapping With Grouping:
-
-```solidity
-bytes32 dataKey = bytes.concat(
-  bytes6(keccak256(bytes(firstWord))),
-  bytes4(keccak256(bytes(secondWord))),
-  bytes2(0),
-  bytes20(keccak256(bytes(thirdWord)))
-);
-```
-
-[//]: # (Please choose between the above or below option, for me the second one is more intuitive. We can keep both aswell.)
-
-```solidity
-bytes6 firstWordHash = bytes6(keccak256(firstWord));
-
-bytes4 secondWordHash = bytes4(keccak256(secondWord));
-
-bytes20 thirdWordHash = bytes20(keccak256(thirdWord));
-```
-
 `<firstWordHash>:<secondWordHash>:<bytes2(0)>:<thirdWordHash>`
 
-You must take into consideration the fact that if you choose the same value for `firstWord` and `thirdWord` there is a 0.0000000233% chance that two random values for the `secondWord` will result ins the same data key.
+You must take into consideration the fact that if you choose the same value to hash for `firstWord` and `thirdWord` there is a 0.0000000233% chance that two random values for the `secondWord` will result in the same data key.
 
 :::
 
@@ -237,3 +216,21 @@ Below is an example of a MappingWithGrouping data key:
 ```
 
 ![LSP2 mappingWithGrouping key type](/img/standards/lsp2/lsp2-key-type-mapping-with-grouping.jpeg)
+
+<details>
+    <summary>Solidity Example</summary>
+
+Whenever you want to generate a data key of `keyType` **MappingWithGrouping**:
+
+```solidity
+bytes32 dataKey = bytes32(
+    bytes.concat(
+        bytes6(keccak256(bytes(firstWord))),
+        bytes4(keccak256(bytes(secondWord))),
+        bytes2(0),
+        bytes20(keccak256(bytes(thirdWord)))
+    )
+);
+```
+
+</details>
