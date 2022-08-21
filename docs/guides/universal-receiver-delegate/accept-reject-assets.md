@@ -7,7 +7,7 @@ sidebar_position: 2
 
 Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver)** function on his profile is called. 
 
-![LSP1UniversalReceiverDelegate-Guide](/img/guides/UniversalReceiverDelegate-Guide.jpeg)
+![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
 
 ## Rejecting all Assets
 
@@ -25,7 +25,7 @@ In order to **reject all the assets** that are being transferred to the profile,
 
 The first step is to navigate to **[Remix's website](https://remix.ethereum.org/)** and create a new solidity file under the **contracts** folder.
 
-![Creating Universal Receiver Delegate in Remix](/img/guides/remix-creating-file.jpeg)
+![Creating Universal Receiver Delegate in Remix](/img/guides/lsp1/remix-creating-file.jpeg)
 
 After creating the **UniversalReceiverDelegate.sol** file, copy the code snippet below inside the file created. This code snippet will be responsible for rejecting all LSP7 & LSP8 assets being transferred to your profile.
 
@@ -89,22 +89,22 @@ if(typeId == _TYPEID_LSP9_VAULTRECIPIENT || typeId == _TYPEID_LSP7_TOKENSRECIPIE
 :::note
 
 Please make sure to unlock MetaMask and disable Browser Extension while doing this step.
-![Turning off Browser extension to use Remix Injected Provider](/img/guides/turn-off-browser-extension.jpeg)
+![Turning off Browser extension to use Remix Injected Provider](/img/guides/lsp1/turn-off-browser-extension.jpeg)
 
 :::
 
 After copying the code, navigate to the **Solidity Compiler** tab and press the Compile UniversalReceiverDelegate.sol button. Then navigate to the **Deploy & Run Transactions** tab and choose _Injected Provider_ as the environment.
 
 
-![Compiling contract in Remix](/img/guides/remix-compiling-contract.jpeg)
+![Compiling contract in Remix](/img/guides/lsp1/remix-compiling-contract.jpeg)
 
 You should be connected to L16 in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
 
-![Connect to LUKSO L16 in Remix](/img/guides/remox-connect-l16.jpeg)
+![Connect to LUKSO L16 in Remix](/img/guides/lsp1/remix-connect-l16.jpeg)
 
 After choosing the **CustomUniversalReceiverDelegate** contract in the *CONTRACT* section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed, you can copy the contract address to be used later when setting the address inside the storage.
 
-![Deploy and Copy the address in Remix](/img/guides/remix-deploy-copy-address.jpeg)
+![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
 
 
 ### Step2 - Set the address of the URD in the storage

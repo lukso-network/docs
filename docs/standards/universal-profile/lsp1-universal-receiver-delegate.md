@@ -43,7 +43,7 @@ With such an implementation, the `universalReceiver(...)` function can forward t
 
 This external contract will then implement the `universalReceiverDelegate(...)` function. It is also recommended that this contract registers the **[LSP1UniversalReceiverDelegate interfaceId](../smart-contracts/interface-ids.md)** using ERC165.
 
-![ur-delegate-transaction](/img/ur-delegate-transaction.jpeg)
+![ur-delegate-transaction](/img/standards/lsp1delegate/ur-delegate-transaction.jpeg)
 
 ## Implementations
 
@@ -60,19 +60,19 @@ One of the possible scenarios is a token transfer between Alice and Bob. Alice w
 
 **1.** It calls the **`transfer(...)`** function on the token contract through the [KeyManager](../smart-contracts/lsp6-key-manager.md).
 
-![executing transfer function](/img/token-transfer-1.jpg)
+![executing transfer function](/img/standards/lsp1delegate/token-transfer-1.jpg)
 
 **2.** The `transfer(...)` function on the token contract will directly **trigger a hook** that will call the `universalReceiver(...)` function on both sender and recipient Universal Profiles.
 
-![token contract hooks calling universalReceiver function](/img/token-transfer-2.jpg)
+![token contract hooks calling universalReceiver function](/img/standards/lsp1delegate/token-transfer-2.jpg)
 
 **3.** 3. If the **UniversalReceiverDelegate** contract is set, it will be called by the `universalReceiver(...)` function and will execute its custom logic.
 
-![universalReceiver function calling UniversalReceiverDelegate contract](/img/token-transfer-3.jpg)
+![universalReceiver function calling UniversalReceiverDelegate contract](/img/standards/lsp1delegate/token-transfer-3.jpg)
 
 **4.** The **UniversalReceiverDelegate** of **Universal Profile** allows the transfer and set **[LSP5-ReceivedAssets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)** data keys on both Profiles through the KeyManager.
 
-![UniversalReceiverDelegate setting data keys on profile](/img/token-transfer-4.jpg)
+![UniversalReceiverDelegate setting data keys on profile](/img/standards/lsp1delegate/token-transfer-4.jpg)
 
 ## References
 

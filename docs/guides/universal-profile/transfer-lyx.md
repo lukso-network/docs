@@ -42,7 +42,7 @@ For a regular LYX transfer, the parameters will be:
 
 Most of the functions on the UP contract, such as [`setData(...)`](../../standards/smart-contracts/erc725-contract.md#setdata---erc725y) and [`execute(...)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) can only be called by the [`owner`](../../standards/smart-contracts/erc725-contract.md#owner). Therefore if we want to use our UP to do meaningful things, **all interactions should go through the KM**.
 
-![](/img/guides/transfer-lyx-interaction-via-key-manager.jpeg)
+![](/img/guides/lsp6/transfer-lyx-interaction-via-key-manager.jpeg)
 
 To transfer LYX from our UP, we need to perform the following steps:
 

@@ -22,7 +22,7 @@ By the end of this guide, you will know:
 - How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../../tools/erc725js/getting-started).
 - How to set permissions for a third party `address` on your Universal Profile.
 
-![Give permissions to 3rd parties overview](/img/guides/grant-permissions-to-3rd-parties-overview.jpeg)
+![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpeg)
 
 ## Introduction
 

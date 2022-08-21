@@ -21,7 +21,7 @@ There are two types of **LSP** standards:
 
   [LSP3-UniversalProfile-Metadata](./universal-profile/lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md), [LSP10ReceivedVaults](./universal-profile/lsp10-received-vaults.md), etc.
 
-![Interface and metadata standards](/img/standard-detection.jpeg)
+![Interface and metadata standards](/img/standards/standard-detection/standard-detection.jpeg)
 
 These two standards types are fundamental for interacting with smart contracts on the LUKSO blockchain.
 

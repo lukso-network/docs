@@ -71,8 +71,8 @@ Developers could use the vault to hold assets and, as mentioned before, could be
 
 **1.** The **protocol** should be allowed to only talk to the vault A1 through [AllowedAddresses permission](./lsp6-key-manager#address-permissions).
 
-![LSP9 vault allowed in profile](/img/vault-flow.jpeg)
+![LSP9 vault allowed in profile](/img/standards/lsp9/vault-flow.jpeg)
 
 **2.** All the **protocol** transactions should be routed through the vault. Otherwise, the transaction will **revert**.
 
-![LSP9 vault with third parties flow](/img/lsp9-vault-flow.jpeg)
+![LSP9 vault with third parties flow](/img/standards/lsp9/lsp9-vault-flow.jpeg)

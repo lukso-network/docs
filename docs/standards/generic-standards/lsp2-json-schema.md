@@ -43,7 +43,7 @@ The LSP2 Standard aims to offer a better abstraction on top of the storage of a 
 
 This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable data keys. It makes the data stored in a smart contract more organized.
 
-![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/ERC725Y-JSON-Schema-explained.jpeg)
+![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/lsp2/ERC725Y-JSON-Schema-explained.jpeg)
 
 By introducing a schema, we can represent contract storage in the same way across contracts in the network. Everyone has a unified view of the data stored between smart contracts. Developers can quickly parse data, and contracts or interfaces can read or write data from or to the contract storage in the same manner. The standardization makes smart contracts **more interoperable with each other**.
 
@@ -90,7 +90,7 @@ Below is an example of a **Singleton** data key.
 }
 ```
 
-![LSP2 Singleton key type](/img/standards/lsp2-key-type-singleton.jpeg)
+![LSP2 Singleton key type](/img/standards/lsp2/lsp2-key-type-singleton.jpeg)
 
 ### Array
 
@@ -115,11 +115,11 @@ A data key type Array can be useful when there is the need to store a large grou
 }
 ```
 
-![LSP2 Array key type (length check)](/img/standards/lsp2-key-type-array-length-check.jpeg)
+![LSP2 Array key type (length check)](/img/standards/lsp2/lsp2-key-type-array-length-check.jpeg)
 
 ---
 
-![LSP2 Array key type (index access)](/img/standards/lsp2-key-type-array-index-access.jpeg)
+![LSP2 Array key type (index access)](/img/standards/lsp2/lsp2-key-type-array-index-access.jpeg)
 
 ### Mapping
 

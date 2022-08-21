@@ -21,7 +21,7 @@ Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)**
 - More asset representation **via bytes32 tokenIds**.
 - More interaction between the asset contract and the asset *sender/recipient* **via token hooks**.
 
-![LSP8IdentifiableDigitalAsset features Introduction](/img/standards/lsp8-intro.jpeg)
+![LSP8IdentifiableDigitalAsset features Introduction](/img/standards/lsp8/lsp8-intro.jpeg)
 
 ## What does this Standard represent?
 
@@ -36,7 +36,7 @@ This standard was based on **[ERC721](https://eips.ethereum.org/EIPS/eip-20)** a
 
 The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** **lack asset representation** as they define the tokenIds **as Numbers** `(uint256)`. Each token from the NFT collection will be defined and queried based on this tokenId, which is normally incremental.
 
-![ERC721 TokenIds Representation](/img/standards/erc721-tokenIds.jpeg)
+![ERC721 TokenIds Representation](/img/standards/lsp8/erc721-tokenIds.jpeg)
 
 **[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as **bytes32**. The choice of **bytes32 tokenIds** allows a wide variety of applications including numbers, contract addresses, and hashed values (ie. serial numbers). 
 
@@ -44,21 +44,21 @@ The **bytes32 tokenId** can be interpreted as a:
 
 - <u><b>Number:</b></u>   
 
-![LSP8 Number TokenIds Representation](/img/standards/lsp8-tokenId-number.jpeg)
+![LSP8 Number TokenIds Representation](/img/standards/lsp8/lsp8-tokenId-number.jpeg)
 
 
 - <u><b>Hashed Value:</b></u>:
 
-![LSP8 Hashed Value TokenIds Representation](/img/standards/lsp8-tokenId-hashed.jpeg)
+![LSP8 Hashed Value TokenIds Representation](/img/standards/lsp8/lsp8-tokenId-hashed.jpeg)
 
 
 - <u><b>Contract Address:</b></u> 
 
-![LSP8 Address TokenIds Representation](/img/standards/lsp8-tokenId-address.jpeg)
+![LSP8 Address TokenIds Representation](/img/standards/lsp8/lsp8-tokenId-address.jpeg)
 
 TokenIds represented as **smart contract address** allow the creation of more  **complex NFTs**. When each tokenId is a contract that have its own **[ERC725Y](../lsp-background//erc725.md#erc725y---generic-data-keyvalue-store)** storage. For instance in a video game, by changing the features and metadata of the tokenId based on the **game rules**.
 
-![LSP8 Game Nested NFTs TokenIds Representation](/img/standards/lsp8-game.jpeg)
+![LSP8 Game Nested NFTs TokenIds Representation](/img/standards/lsp8/lsp8-game.jpeg)
 ### Unlimited Metadata
 
 :::tip Recommendation
@@ -85,7 +85,7 @@ To ensure a **safe asset transfer**, an additional boolean parameter was added t
 
 - If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
 
-![Token Force Boolean False](/img/standards/tokens-force-false.jpeg)
+![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
 
 :::note
 
@@ -95,7 +95,7 @@ It's advised to set the **force** bool as **False** when transferring or minting
 
 - If set to **True**, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
 
-![Token Force Boolean True](/img/standards/tokens-force-true.jpeg)
+![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
 
 Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 
@@ -107,11 +107,11 @@ The current NFTs standards act as **registry contracts** that keep track of the 
 
 During an **ERC721 token transfer**, the ownership of the tokenId is changed from the sender address to the recipient address without further interaction. 
 
-![ERC721 Transfer](/img/standards/erc721-transfer.jpeg)
+![ERC721 Transfer](/img/standards/lsp8/erc721-transfer.jpeg)
 
 During an **LSP8 token transfer**, as well as updating the tokenId owenrship, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
 
-![LSP8 Transfer](/img/standards/lsp8-transfer.jpeg)
+![LSP8 Transfer](/img/standards/lsp8/lsp8-transfer.jpeg)
 
 In this way, users are **informed** about the NFT transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)**.
 
