@@ -9,7 +9,7 @@ As mentioned in the [first Vault guide](./create-a-vault.md), the **Vault** can 
 
 This way, when **granting a third party permissions** to execute through your profile, this third party will only be able to interact with the Vault, and all the other assets will be safe.
 
-![Guide - Restrict addresses to an LSP9Vault](/img/guides/restrict-protocol-to-vault.jpeg)
+![Guide - Restrict addresses to an LSP9Vault](/img/guides/lsp9/restrict-protocol-to-vault.jpeg)
 
 ## Granting Permission to 3rd Parties
 

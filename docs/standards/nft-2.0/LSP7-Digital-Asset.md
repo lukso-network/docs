@@ -22,7 +22,7 @@ Fungible assets such as **[ERC20](https://eips.ethereum.org/EIPS/eip-20)**, **[E
 - More asset metadata **via [LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)**.
 - More interaction between the asset contract and the asset *sender/recipient* **via token hooks**.
 
-![LSP7DigitalAsset features Introduction](/img/standards/lsp7-intro.jpeg)
+![LSP7DigitalAsset features Introduction](/img/standards/lsp7/lsp7-intro.jpeg)
 
 ## What does this Standard represent?
 
@@ -44,7 +44,7 @@ When creating assets compliant with **LSP7-DigitalAsset** standard, it is possib
 **Tickets created as tokens** are a great example of a use case of **LSP7-DigitalAsset**. All tickets look the same, are **interchangeable** and have the same utility. Moreover, such tickets can be made as **non-divisible** as it is only possible to sell or give away a whole ticket. 
 
 
-![LSP7DigitalAsset Non Divisible Assets](/img/standards/lsp7-non-divisible.jpeg)
+![LSP7DigitalAsset Non Divisible Assets](/img/standards/lsp7/lsp7-non-divisible.jpeg)
 
 ### Unlimited Metadata
 
@@ -67,7 +67,7 @@ To ensure a **safe asset transfer**, an additional boolean parameter was added t
 - If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
 
 
-![Token Force Boolean False](/img/standards/tokens-force-false.jpeg)
+![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
 
 :::note
 
@@ -77,7 +77,7 @@ It's advised to set the **force** bool as **False** when transferring or minting
 
 - If set to **TRUE**, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
 
-![Token Force Boolean True](/img/standards/tokens-force-true.jpeg)
+![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
 
 Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 
@@ -87,11 +87,11 @@ The current token standards act as **registry contracts** that keep track of eac
 
 During an **ERC20 token transfer**, the sender's balance is decreased, and the recipient's balance is increased without further interaction. 
 
-![ERC20 Transfer](/img/standards/erc20-transfer.jpeg)
+![ERC20 Transfer](/img/standards/lsp7/erc20-transfer.jpeg)
 
 During an **LSP7 token transfer**, as well as updating the balances, both the sender and recipient are informed of the transfer by calling the   **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
 
-![LSP7DigitalAsset Transfer](/img/standards/lsp7-transfer.jpeg)
+![LSP7DigitalAsset Transfer](/img/standards/lsp7/lsp7-transfer.jpeg)
 
 In this way, users are **informed** about the token transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)**.
 

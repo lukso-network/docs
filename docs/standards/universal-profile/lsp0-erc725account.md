@@ -17,7 +17,7 @@ Once deployed on a network, smart contracts cannot be changed. Their storage and
 
 The **[ERC725 Standard](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md)** proposed in 2017 describes a generic key-value store and generic execution function that could be used as the basis for an account. A blockchain-based account can then be created by combining ERC725 with the interactivity and signature verification mechanism from the **[LSP1-UniversalReceiver Standard](../generic-standards/lsp1-universal-receiver.md)** and **[ERC1271 Standard](https://eips.ethereum.org/EIPS/eip-1271)**.
 
-![LSP0 ERC725 Account overview](/img/standards/lsp0-erc725account-overview.jpeg)
+![LSP0 ERC725 Account overview](/img/standards/lsp0/lsp0-erc725account-overview.jpeg)
 
 ## What does this standard represent ?
 
@@ -29,7 +29,7 @@ An **ERC725Account** defines a blockchain account system that could be used by h
 - **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** helps to verify that a signed message has a valid signature.
 - **[ERC165](https://eips.ethereum.org/EIPS/eip-165)** allows to register and detect the standard interfaces the contract implements.
 
-![ERC725Account contract architecture](/img/standards/lsp0-erc725account-architecture.jpeg)
+![ERC725Account contract architecture](/img/standards/lsp0/lsp0-erc725account-architecture.jpeg)
 
 This standard also uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** standard to provide ownership functions for owning and controlling the implementation contract.
 
@@ -55,15 +55,15 @@ The following types of calls (= operation types) are available:
 |        3         | [`STATICCALL`](https://eips.ethereum.org/EIPS/eip-214) | call another smart contract while disallowing any modification to the state during the call                                             |
 |        4         | [`DELEGATECALL`](https://eips.ethereum.org/EIPS/eip-7) | run the function from another contract, but use and update the storage of the current contract (= persist `msg.sender` and `msg.value`) |
 
-# ![ERC725X operation type CALL](/img/standards/erc725x-operation-type-call.jpeg)
+# ![ERC725X operation type CALL](/img/standards/lsp0/erc725x-operation-type-call.jpeg)
 
-# ![ERC725X operation type CREATE](/img/standards/erc725x-operation-type-create.jpeg)
+# ![ERC725X operation type CREATE](/img/standards/lsp0/erc725x-operation-type-create.jpeg)
 
-# ![ERC725X operation type CREATE2](/img/standards/erc725x-operation-type-create2.jpeg)
+# ![ERC725X operation type CREATE2](/img/standards/lsp0/erc725x-operation-type-create2.jpeg)
 
-# ![ERC725X operation type DELEGATECALL](/img/standards/erc725x-operation-type-delegatecall.jpeg)
+# ![ERC725X operation type DELEGATECALL](/img/standards/lsp0/erc725x-operation-type-delegatecall.jpeg)
 
-# ![ERC725X operation type STATICCALL](/img/standards/erc725x-operation-type-staticcall.jpeg)
+# ![ERC725X operation type STATICCALL](/img/standards/lsp0/erc725x-operation-type-staticcall.jpeg)
 
 ### ERC725Y - Generic Key-Value Store
 
@@ -80,7 +80,7 @@ This substandard enables the account to hold arbitrary data through a generic da
 
 As a result, this substandard enables attaching any information to the contract and updating or removing it quickly.
 
-![ERC725Y key-value store vs standard contract storage](/img/standards/erc725y-vs-standard-contract-storage.jpeg)
+![ERC725Y key-value store vs standard contract storage](/img/standards/lsp0/erc725y-vs-standard-contract-storage.jpeg)
 
 Thanks to ERC725Y, contracts become more interoperable, as their storage is represented in the same way. Contracts and interfaces can then read and write data from or to the storage in the same manner via the functions [`getData(...)`](../smart-contracts/lsp0-erc725-account.md#getdata) and [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata).
 
@@ -117,11 +117,11 @@ With **ClaimOwnership**, control of the contract is fully transferred _once the 
 
 1. The previous owner transfers ownership to a new owner via the [`transferOwnership()`](./../smart-contracts/lsp0-erc725-account.md#transferownership) function.
 
-![Claim Ownership step 1](/img/standards/claim-ownership-1.jpeg)
+![Claim Ownership step 1](/img/standards/lsp0/claim-ownership-1.jpeg)
 
 2. The new owner claims ownership of the contract by calling the [`claimOwnership()](./../smart-contracts/lsp0-erc725-account.md#claimownership)` function.
 
-![Claim Ownership step 2](/img/standards/claim-ownership-2.jpeg)
+![Claim Ownership step 2](/img/standards/lsp0/claim-ownership-2.jpeg)
 
 By making the new owner accept ownership explicitly, ClaimOwnership ensures that the new owner has access to his address.
 

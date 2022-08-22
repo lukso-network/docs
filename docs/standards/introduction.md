@@ -51,7 +51,7 @@ They introduce new concepts like **blockchain-based accounts** (also known as **
 The standards are **order-independent** and could be related to a **backward or forward** order.
 :::
 
-![lsp-roadmap](/img/lsp-roadmap.jpg)
+![lsp-roadmap](/img/standards/introduction/lsp-roadmap.jpg)
 
 ## Further Information
 

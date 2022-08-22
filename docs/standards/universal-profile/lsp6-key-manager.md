@@ -25,9 +25,9 @@ Permissioned addresses can interact directly with the Key Manager or can sign a 
 
 :white_check_mark: &nbsp; **With a Key Manager** attached to an LSP0ERC725Account, other addresses (EOAs or contracts) can use an Account on behalf of its owner.
 
-![LSP6 Key Manager overview allowed](/img/standards/lsp6-key-manager-overview-allowed.jpeg)
+![LSP6 Key Manager overview allowed](/img/standards/lsp6/lsp6-key-manager-overview-allowed.jpeg)
 
-![LSP6 Key Manager overview not allowed](/img/standards/lsp6-key-manager-overview-not-allowed.jpeg)
+![LSP6 Key Manager overview not allowed](/img/standards/lsp6/lsp6-key-manager-overview-not-allowed.jpeg)
 
 Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the data key-value store of the LSP0ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
 
@@ -64,11 +64,11 @@ Using this permission, you can easily upgrade the [`LSP6KeyManager`](../smart-co
 
 This permission allows for **editing permissions** of any address that already has some permissions set on the ERC725Account (including itself).
 
-![CHANGE Permissions](/img/standards/lsp6-change-permissions.jpeg)
+![CHANGE Permissions](/img/standards/lsp6/lsp6-change-permissions.jpeg)
 
 Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending on the new permissions value being set (see figure below).
 
-![CHANGE Permissions](/img/standards/lsp6-change-permissions-variants.jpeg)
+![CHANGE Permissions](/img/standards/lsp6/lsp6-change-permissions-variants.jpeg)
 
 </details>
 
@@ -80,7 +80,7 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 
 This permission allows giving permissions to new addresses. This role-management enables the **authorization of new addresses** to interact with the ERC725Account.
 
-![ADD Permissions](/img/standards/lsp6-add-permissions.jpeg)
+![ADD Permissions](/img/standards/lsp6/lsp6-add-permissions.jpeg)
 
 </details>
 
@@ -466,7 +466,7 @@ For example, to restrict an `<address>` to only be allowed to interact with ERC7
 }
 ```
 
-![Key Manager Allowed Standards flow](/img/standards/lsp6-key-manager-allowed-standards.jpeg)
+![Key Manager Allowed Standards flow](/img/standards/lsp6/lsp6-key-manager-allowed-standards.jpeg)
 
 Below is an example use case. With this permission key, an `<address>` can be allowed to use the linked ERC725Account to interact with [**LSP7 contracts**](../nft-2.0/LSP7-Digital-Asset.md) **(= token contracts only :white_check_mark:)**, but not with [**LSP8 contracts**](../nft-2.0/LSP8-Identifiable-Digital-Asset.md) **(= NFT contracts :x:)**.
 
@@ -540,7 +540,7 @@ Relay execution minimizes **UX friction** for dapps, including removing the need
 
 Dapps can then leverage the relay execution features to create their own business model around building their own **relay service**, smart contracts solution on top of the Key Manager to pay with their tokens, or agree with users on payment methods including subscriptions, ads, etc ..
 
-![LSP6 Key Manager Relay Service](/img/standards/lsp6-relay-execution.jpeg)
+![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-relay-execution.jpeg)
 
 ### Out of order execution
 
@@ -554,7 +554,7 @@ Signed messages should be executed sequentially if signed on the same channel an
 
 - Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
 
-![LSP6 Key Manager Relay Service](/img/standards/lsp6-multi-channel-nonce.jpeg)
+![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-multi-channel-nonce.jpeg)
 
 Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
 

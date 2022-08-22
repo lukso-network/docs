@@ -42,7 +42,7 @@ The `universalReceiver(...)` function emits an event with the data passed to it 
 
 > Receiving contracts should consider the `typeId` parameter to **decode the data correctly**.
 
-![schema of universal receiver transaction](/img/ur-transaction.jpeg)
+![schema of universal receiver transaction](/img/standards/lsp1/ur-transaction.jpeg)
 
 ## Extension
 

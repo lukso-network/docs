@@ -17,7 +17,7 @@ The existing tokens and NFTs standards offer limited functionalities to attach i
 
 **LSP4-DigitalAsset-Metadata** solves this problem by defining a set of data keys to describe a **Digital Asset** using [ERC725Y](https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#erc725y) as a backbone. ERC725Y enables smart contracts to have very flexible and extensible storage. With ERC725Y, any information or metadata can be attached to the token or NFT.
 
-![LSP4 Digital Asset Metadata diagram](/img/standards/lsp4-digital-asset-metadata-diagram.png)
+![LSP4 Digital Asset Metadata diagram](/img/standards/lsp4/lsp4-digital-asset-metadata-diagram.png)
 
 ## ERC725Y Data Keys
 

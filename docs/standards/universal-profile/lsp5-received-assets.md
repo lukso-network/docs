@@ -81,6 +81,6 @@ If set when transferring tokens, these data keys are automatically updated in th
 Check the [token transfer scenario](./lsp1-universal-receiver-delegate#token-transfer-scenario) for more details.
 :::
 
-![Token transfer detailed flow](/img/detailed-token-transfer.jpeg)
+![Token transfer detailed flow](/img/standards/lsp5/detailed-token-transfer.jpeg)
 
-![LSP5 Received Assets Flow](/img/lsp5-received-assets.jpeg)
+![LSP5 Received Assets Flow](/img/standards/lsp5/lsp5-received-assets.jpeg)

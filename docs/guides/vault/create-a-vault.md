@@ -7,7 +7,7 @@ sidebar_position: 1
 
 This guide will teach you how to deploy an **[LSP9Vault](../../standards/smart-contracts/lsp9-vault.md)** contract. This contract can be used to **hold assets** such as tokens and NFTs. Also can be used with a [UniversalProfile](../../standards/universal-profile/introduction.md) and a [KeyManager](../../standards/universal-profile/lsp6-key-manager.md) to **restrict some addresses** (protocols, friends, etc..) to execute and setData on it, instead of setting or executing directly on the profile.
 
-![Guide - How to create an LSP9Vault](/img/guides/LSP9VaultGuide.jpeg)
+![Guide - How to create an LSP9Vault](/img/guides/lsp9/LSP9VaultGuide.jpeg)
 
 ## Deploy an LSP9Vault contract
 
