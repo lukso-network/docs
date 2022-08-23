@@ -117,6 +117,9 @@ function authorizeOperator(
 
 Sets the `amount` of tokens to which the `operator` has access from the caller's tokens.
 
+To increase or decrease the authorized amount of an operator, it's advised to call [`revokeOperator(..)`](#revokeoperator) function first, and then re-call [`authorizeOperator(..)`](#authorizeoperator) with the new amount to authorize, to avoid front-running and Allowance Double-Spend Exploit.
+Check more information in this [document](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/).
+
 _Triggers the **[AuthorizedOperator](#authorizedoperator)** event when an address get authorized as an operator._
 
 #### Parameters:
