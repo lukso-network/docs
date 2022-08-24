@@ -29,6 +29,6 @@ const ERC725X_ID = INTERFACE_IDS.ERC725X
 | **LSP1UniversalReceiver**         | `0x6bb56a14` | Universal Receiver entry function.                                    |               |
 | **LSP1UniversalReceiverDelegate** | `0xa245bbda` | Universal Receiver delegated to an other smart contract.              |
 | **LSP6KeyManager**                | `0xc403d48f` | Controller for the ERC725Account.                                     |
-| **LSP7DigitalAsset**              | `0xe33f65c3` | Digital Assets either fungible or non-fungible. _ERC20 A-like_        |
+| **LSP7DigitalAsset**              | `0x5fcaac27` | Digital Assets either fungible or non-fungible. _ERC20 A-like_        |
 | **LSP8IdentifiableDigitalAsset**  | `0x49399145` | Identifiable Digital Assets (NFT). _ERC721 A-like_                    |
 | **LSP9Vault**                     | `0x8c1d44f6` | Vault that could interact with other smart contracts and hold assets. |

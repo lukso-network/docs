@@ -163,10 +163,10 @@ _Triggers the **[RevokedOperator](#revokedoperator)** event when an address get 
 
 :::
 
-### isOperatorFor
+### authorizedAmountFor
 
 ```solidity
-function isOperatorFor(
+function authorizedAmountFor(
     address tokenOwner,
     address operator
 ) public view returns (uint256 amount)
