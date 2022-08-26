@@ -139,7 +139,7 @@ bytes memory payload = abi.encodeWithSignature(
 );
 
 // The chain id of the blockchain where the `payload` will be executed
-uint256 chainId = uint256 chainId = block.chainid; // or <The chain id of the blockchain where you will interact with the key manager>
+uint256 chainId = block.chainid; // or <The chain id of the blockchain where you will interact with the key manager>
 
 // The address of the key manager (the smart contract where the `payload` will be executed)
 address keyManagerAddress = '0x...';
