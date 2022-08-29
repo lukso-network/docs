@@ -16,10 +16,11 @@ sidebar_position: 4
 Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** tokens have a lot of limitations in terms of metadata, secure transfers, asset representation, and asset interaction. This causes problems for users seeking, **full control** over which assets they accept or not, **more complex NFT functionality**, and a **simple user experience** while creating, buying, and exchanging assets.
 
 **[LSP8-IdentifiableDigitalAsset](#)** is the standard that aims to solve all problems mentioned above by:
+
 - Allowing more secure transfers via **force boolean parameter**.
 - More asset metadata **via [LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)**.
 - More asset representation **via bytes32 tokenIds**.
-- More interaction between the asset contract and the asset *sender/recipient* **via token hooks**.
+- More interaction between the asset contract and the asset _sender/recipient_ **via token hooks**.
 
 ![LSP8IdentifiableDigitalAsset features Introduction](/img/standards/lsp8/lsp8-intro.jpeg)
 
@@ -31,34 +32,32 @@ Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)**
 
 This standard was based on **[ERC721](https://eips.ethereum.org/EIPS/eip-20)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-777)** with additional features mentioned below:
 
-
 ### Bytes32 TokenId
 
 The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** **lack asset representation** as they define the tokenIds **as Numbers** `(uint256)`. Each token from the NFT collection will be defined and queried based on this tokenId, which is normally incremental.
 
 ![ERC721 TokenIds Representation](/img/standards/lsp8/erc721-tokenIds.jpeg)
 
-**[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as **bytes32**. The choice of **bytes32 tokenIds** allows a wide variety of applications including numbers, contract addresses, and hashed values (ie. serial numbers). 
+**[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as **bytes32**. The choice of **bytes32 tokenIds** allows a wide variety of applications including numbers, contract addresses, and hashed values (ie. serial numbers).
 
 The **bytes32 tokenId** can be interpreted as a:
 
-- <u><b>Number:</b></u>   
+- <u><b>Number:</b></u>
 
 ![LSP8 Number TokenIds Representation](/img/standards/lsp8/lsp8-tokenId-number.jpeg)
-
 
 - <u><b>Hashed Value:</b></u>:
 
 ![LSP8 Hashed Value TokenIds Representation](/img/standards/lsp8/lsp8-tokenId-hashed.jpeg)
 
-
-- <u><b>Contract Address:</b></u> 
+- <u><b>Contract Address:</b></u>
 
 ![LSP8 Address TokenIds Representation](/img/standards/lsp8/lsp8-tokenId-address.jpeg)
 
-TokenIds represented as **smart contract address** allow the creation of more  **complex NFTs**. When each tokenId is a contract that have its own **[ERC725Y](../lsp-background//erc725.md#erc725y---generic-data-keyvalue-store)** storage. For instance in a video game, by changing the features and metadata of the tokenId based on the **game rules**.
+TokenIds represented as **smart contract address** allow the creation of more **complex NFTs**. When each tokenId is a contract that have its own **[ERC725Y](../lsp-background//erc725.md#erc725y---generic-data-keyvalue-store)** storage. For instance in a video game, by changing the features and metadata of the tokenId based on the **game rules**.
 
 ![LSP8 Game Nested NFTs TokenIds Representation](/img/standards/lsp8/lsp8-game.jpeg)
+
 ### Unlimited Metadata
 
 :::tip Recommendation
@@ -67,7 +66,7 @@ To mark the **asset authenticity**, it's advised to use a combination between **
 
 :::
 
-The current token standards don't enable attaching metadata to the contract in a generic and flexible way, they set the **name**, **symbol**, and **tokenURI**. This is limiting for a digital asset that may want to list the creators, the community behind it, and to have the ability to update the metadata of the token and the tokenIds over time depending on a certain logic (Evolving tokens).  
+The current token standards don't enable attaching metadata to the contract in a generic and flexible way, they set the **name**, **symbol**, and **tokenURI**. This is limiting for a digital asset that may want to list the creators, the community behind it, and to have the ability to update the metadata of the token and the tokenIds over time depending on a certain logic (Evolving tokens).
 
 To ensure a flexible and generic asset representation, the token contract should use the **[LSP4-DigitalAsset-Metadata](./LSP4-Digital-Asset-Metadata.md)**. In this way, any information could be attached to the token contract.
 
@@ -81,7 +80,7 @@ The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId*
 
 It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
 
-To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts//lsp8-identifiable-digital-asset.md#transfer) and mint functions: 
+To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts//lsp8-identifiable-digital-asset.md#transfer) and mint functions:
 
 - If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
 
@@ -99,13 +98,21 @@ It's advised to set the **force** bool as **False** when transferring or minting
 
 Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 
-
 ### Token Hooks
+
+:::caution
+
+When LSP8 assets are transfered, the LSP8 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../smart-contracts/lsp8-identifiable-digital-asset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../smart-contracts/lsp8-identifiable-digital-asset.md#_notifytokenreceiver).
+
+**These methods will make external calls** to the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) functions of both the sender and recipient.
+
+This function could perform more complex logic, like delegating the call to the `LSP1UniversalReceiverDelegate` contract. This contract can contain custom logic for each user. For instance, a user could decide to re-transfer the tokens to another address once they are transferred to his UP.
+
+:::
 
 The current NFTs standards act as **registry contracts** that keep track of the ownership of each tokenId. They do not implement functionalities to **notify the recipient** that it has received some tokens or to **notify the sender** that it has sent some tokens.
 
-
-During an **ERC721 token transfer**, the ownership of the tokenId is changed from the sender address to the recipient address without further interaction. 
+During an **ERC721 token transfer**, the ownership of the tokenId is changed from the sender address to the recipient address without further interaction.
 
 ![ERC721 Transfer](/img/standards/lsp8/erc721-transfer.jpeg)
 
