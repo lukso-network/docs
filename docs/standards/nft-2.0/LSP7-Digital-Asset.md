@@ -11,7 +11,6 @@ sidebar_position: 3
 
 :::
 
-
 ## Introduction
 
 Fungible assets such as **[ERC20](https://eips.ethereum.org/EIPS/eip-20)**, **[ERC223](https://eips.ethereum.org/EIPS/eip-223)** or **[ERC777](https://eips.ethereum.org/EIPS/eip-777)** tokens have a lot of limitations in terms of metadata, secure transfers, and asset interaction. This causes problems for users seeking, **full control** over which assets they accept or not, and a **simple user experience** while creating, buying, and exchanging assets.
@@ -20,7 +19,7 @@ Fungible assets such as **[ERC20](https://eips.ethereum.org/EIPS/eip-20)**, **[E
 
 - Allowing more secure transfers via **force boolean parameter**.
 - More asset metadata **via [LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)**.
-- More interaction between the asset contract and the asset *sender/recipient* **via token hooks**.
+- More interaction between the asset contract and the asset _sender/recipient_ **via token hooks**.
 
 ![LSP7DigitalAsset features Introduction](/img/standards/lsp7/lsp7-intro.jpeg)
 
@@ -36,13 +35,12 @@ This standard was based on **[ERC20](https://eips.ethereum.org/EIPS/eip-20)** an
 
 ### Divisible _vs_ Non-Divisible
 
-When creating assets compliant with **LSP7-DigitalAsset** standard, it is possible to define the token as **divisible** or **non-divisible** in the constructor. 
+When creating assets compliant with **LSP7-DigitalAsset** standard, it is possible to define the token as **divisible** or **non-divisible** in the constructor.
 
 - **Divisible** asset can have decimals (up to 18) and token amounts can be fractional. For instance, it is possible to mint or transfer less than one token (_e.g., 0.3 tokens_).
 - **Non-divisible** asset means that a token cannot be divided into fractional parts. For instance, you cannot transfer **1/10th** of a token, or 0.3 tokens, but only a whole token unit.
 
-**Tickets created as tokens** are a great example of a use case of **LSP7-DigitalAsset**. All tickets look the same, are **interchangeable** and have the same utility. Moreover, such tickets can be made as **non-divisible** as it is only possible to sell or give away a whole ticket. 
-
+**Tickets created as tokens** are a great example of a use case of **LSP7-DigitalAsset**. All tickets look the same, are **interchangeable** and have the same utility. Moreover, such tickets can be made as **non-divisible** as it is only possible to sell or give away a whole ticket.
 
 ![LSP7DigitalAsset Non Divisible Assets](/img/standards/lsp7/lsp7-non-divisible.jpeg)
 
@@ -54,9 +52,9 @@ To mark the **asset authenticity**, it's advised to use a combination between **
 
 :::
 
-The current token standards don't enable attaching metadata to the contract in a generic and flexible way, they set the **name**, **symbol**, and **tokenURI**. This is limiting for a digital asset that may want to list the creators, the community behind it, and to have the ability to update the metadata of the token and the tokenIds over time depending on a certain logic (Evolving tokens).  
+The current token standards don't enable attaching metadata to the contract in a generic and flexible way, they set the **name**, **symbol**, and **tokenURI**. This is limiting for a digital asset that may want to list the creators, the community behind it, and to have the ability to update the metadata of the token and the tokenIds over time depending on a certain logic (Evolving tokens).
 
-To ensure a flexible and generic asset representation, the token contract should use the **[LSP4-DigitalAsset-Metadata](./LSP4-Digital-Asset-Metadata.md)**. In this way, any information could be attached to the token contract. 
+To ensure a flexible and generic asset representation, the token contract should use the **[LSP4-DigitalAsset-Metadata](./LSP4-Digital-Asset-Metadata.md)**. In this way, any information could be attached to the token contract.
 
 ### Force Boolean
 
@@ -65,7 +63,6 @@ It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts]
 To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts/lsp7-digital-asset.md#transfer) and mint functions:
 
 - If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
-
 
 ![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
 
@@ -83,18 +80,25 @@ Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-
 
 ### Token Hooks
 
+:::caution
+
+When LSP7 assets are transfered, the LSP7 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../smart-contracts/lsp7-digital-asset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../smart-contracts/lsp7-digital-asset.md#_notifytokenreceiver).
+
+**These methods will make external calls** to the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) functions of both the sender and recipient.
+
+:::
+
 The current token standards act as **registry contracts** that keep track of each address's balance. They do not implement functionalities to **notify the recipient** that it has received some tokens or to **notify the sender** that it has sent some tokens.
 
-During an **ERC20 token transfer**, the sender's balance is decreased, and the recipient's balance is increased without further interaction. 
+During an **ERC20 token transfer**, the sender's balance is decreased, and the recipient's balance is increased without further interaction.
 
 ![ERC20 Transfer](/img/standards/lsp7/erc20-transfer.jpeg)
 
-During an **LSP7 token transfer**, as well as updating the balances, both the sender and recipient are informed of the transfer by calling the   **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
+During an **LSP7 token transfer**, as well as updating the balances, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
 
 ![LSP7DigitalAsset Transfer](/img/standards/lsp7/lsp7-transfer.jpeg)
 
 In this way, users are **informed** about the token transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)**.
-
 
 ## References
 
