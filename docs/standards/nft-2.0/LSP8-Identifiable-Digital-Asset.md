@@ -106,6 +106,8 @@ When LSP8 assets are transfered, the LSP8 contract will notify the token sender 
 
 **These methods will make external calls** to the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) functions of both the sender and recipient.
 
+This function could perform more complex logic, like delegating the call to the `LSP1UniversalReceiverDelegate` contract. This contract can contain custom logic for each user. For instance, a user could decide to re-transfer the tokens to another address once they are transferred to his UP.
+
 :::
 
 The current NFTs standards act as **registry contracts** that keep track of the ownership of each tokenId. They do not implement functionalities to **notify the recipient** that it has received some tokens or to **notify the sender** that it has sent some tokens.
