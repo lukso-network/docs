@@ -84,8 +84,9 @@ function transferOwnership(address newOwner) public
 
 Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
-Requirments:
-- `pendingOwner` cannot be `address(this)`.
+Requirements:
+- Can only be called by the current owner.
+- The `newOwner` to be set as the `pendingOwner` cannot be `address(this)`.
 
 #### Parameters:
 

@@ -86,8 +86,9 @@ function transferOwnership(address newOwner) public
 
 Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
-Requirments:
-- `pendingOwner` cannot be `address(this)`.
+Requirements:
+- Can only be called by the current owner.
+- The `newOwner` to be set as the `pendingOwner` cannot be `address(this)`.
 
 #### Parameters:
 
@@ -118,10 +119,13 @@ First phase of this process will save the current `block.number` in `_lastBlock`
 
 _Triggers the **[RenounceOwnershipInitiated](#renounceownershipinitiated)** event once the first phase of `renounceOwnership()` is complete._
 
-Second phase of this process will renounce ownership of the contract only if the current `block. number` is bigger than `_lastBlock + 100` and smaller than `_lastBlock + 200` 
+Second phase of this process will renounce ownership of the contract only if the current `block.number` is past the delay (100 blocks after `renounceOwnership()` was called the first time) and before the end (200 blocks after `renounceOwnership()` was called the first time).
 
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the econd step of `renouneOwnership()` is complete._
 
+:::note
+Renouncing ownership will leave the contract without a owner, mening that any method marked as `onlyOwner` will be unavailable.
+:::
 
 ### fallback
 
