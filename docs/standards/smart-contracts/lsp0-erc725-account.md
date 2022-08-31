@@ -124,7 +124,7 @@ Second phase of this process will renounce ownership of the contract only if the
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the econd step of `renouneOwnership()` is complete._
 
 :::note
-Renouncing ownership will leave the contract without a owner, mening that any method marked as `onlyOwner` will be unavailable.
+Renouncing ownership will leave the contract without a owner, meaning that any method marked as `onlyOwner` will be unavailable.
 :::
 
 ### fallback
