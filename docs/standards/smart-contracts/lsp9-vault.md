@@ -79,10 +79,13 @@ Return the address of the pending owner that was initiated by [`transferOwnershi
 ### transferOwnership
 
 ```solidity
-function transferOwnership(address newOwner) public {
+function transferOwnership(address newOwner) public
 ```
 
 Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
+
+Requirments:
+- `pendingOwner` cannot be `address(this)`.
 
 #### Parameters:
 
@@ -95,13 +98,28 @@ Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 ### claimOwnership
 
 ```solidity
-function claimOwnership() public {
+function claimOwnership() public
 ```
 
 Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
 
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
 
+### renounceOwnership
+
+```solidity
+function renounceOwnership() public
+```
+
+Renounces ownership of the contract in 2 steps. Can only be called by the owner.
+
+First phase of this process will save the current `block.number` in `_lastBlock`.
+
+_Triggers the **[RenounceOwnershipInitiated](#renounceownershipinitiated)** event once the first phase of `renounceOwnership()` is complete._
+
+Second phase of this process will renounce ownership of the contract only if the current `block. number` is bigger than `_lastBlock + 100` and smaller than `_lastBlock + 200` 
+
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the econd step of `renouneOwnership()` is complete._
 
 ### fallback
 
@@ -293,6 +311,14 @@ _**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** f
 | :-------------- | :------ | :---------------------------------- |
 | `previousOwner` | address | The previous owner of the contract. |
 | `newOwner`      | address | The new owner of the contract.      |
+
+### RenounceOwnershipInitiated
+
+```solidity
+event RenounceOwnershipInitiated()
+```
+
+_**MUST** be fired when the **[`renounceOwnership()`](#renounceownership)** function's first phase is complete._
 
 ### ValueReceived
 
