@@ -112,7 +112,7 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the n
 function renounceOwnership() public
 ```
 
-Since renouncing ownership a sensitive operation, it is done as a two step process by calling  `renounceOwnership(..)` twice. First to initiate the process, second as a confirmation.
+Since renouncing ownership is a sensitive operation, it is done as a two step process by calling  `renounceOwnership(..)` twice. First to initiate the process, second as a confirmation.
 
 The current block number is saved as a part of initiation because the following behaviour is wanted:
 - The first 100 blocks after the saved block is the pending period, if you call `renounceOwnership(..)` during this period, the transaction will be reverted.
