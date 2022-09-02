@@ -113,18 +113,20 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the n
 function renounceOwnership() public
 ```
 
-Renounces ownership of the contract in 2 steps. Can only be called by the owner.
+Since renouncing ownership a sensitive operation, it is done as a two step process by calling  `renounceOwnership(..)` twice. First to initiate the process, second as a confirmation.
 
-First phase of this process will save the current `block.number` in `_lastBlock`.
+First step will initiate the process of renouncing ownership of the Universal Profile by saving the current `block.number` in `_lastBlock`.
 
-_Triggers the **[RenounceOwnershipInitiated](#renounceownershipinitiated)** event once the first phase of `renounceOwnership()` is complete._
+The `block.number` is saved as a part of initiation because the following behaviour is wanted:
+- The first 100 blocks after `_lastBlock` is the pending period, if you call `renounceOwnership(..)` during this period, the transaction will be reverted.
+- the following 100 blocks is the period when you can confirm the renouncement of the contract by calling `renounceOwnership(..)` the second time.
 
-Second phase of this process will renounce ownership of the contract only if the current `block.number` is past the delay (100 blocks after `renounceOwnership()` was called the first time) and before the end (200 blocks after `renounceOwnership()` was called the first time).
+_Triggers the **[RenounceOwnershipInitiated](#renounceownershipinitiated)** event in the first call._
 
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the econd step of `renouneOwnership()` is complete._
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event after successfully renouncing ownership._
 
-:::note
-Renouncing ownership will leave the contract without a owner, meaning that any method marked as `onlyOwner` will be unavailable.
+:::warning
+Leaves the contract without an owner. Once ownership of the contract is renounced, it won't be possible to call the functions restricted to the owner only.
 :::
 
 ### fallback
