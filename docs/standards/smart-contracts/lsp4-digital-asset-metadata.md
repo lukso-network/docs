@@ -57,6 +57,27 @@ Sets the **initial owner** of the contract and the following data keys on the **
 | `symbol_`   | string  | The symbol of the token.   |
 | `newOwner_` | address | The owner of the contract. |
 
+## Events
+
+### DataChanged
+
+```solidity
+event DataChanged(bytes32 dataKey, bytes dataValue)
+```
+
+_**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
+
+#### Values:
+
+| Name        | Type    | Description                           |
+| :---------- | :------ | :------------------------------------ |
+| `dataKey`   | bytes32 | The data key which data value is set. |
+| `dataValue` | bytes   | The data value to set.                |
+
+:::info
+The `DataChanged` event will emit only the first 256 bytes of `dataValue` (for large values set in the ERC725Y storage).
+:::
+
 ## References
 
 - [LUKSO Standards Proposals: LSP4 - DigitalAsset-Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)
