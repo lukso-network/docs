@@ -84,8 +84,9 @@ function transferOwnership(address newOwner) public
 
 Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
-Requirments:
-- `pendingOwner` cannot be `address(this)`.
+Requirements:
+- Can only be called by the current owner.
+- The `newOwner` to be set as the `pendingOwner` cannot be `address(this)`.
 
 #### Parameters:
 
@@ -111,15 +112,19 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the n
 function renounceOwnership() public
 ```
 
-Renounces ownership of the contract in 2 steps. Can only be called by the owner.
+Since renouncing ownership is a sensitive operation, it is done as a two step process by calling  `renounceOwnership(..)` twice. First to initiate the process, second as a confirmation.
 
-First phase of this process will save the current `block.number` in `_lastBlock`.
+The current block number is saved as a part of initiation because the following behaviour is wanted:
+- The first 100 blocks after the saved block is the pending period, if you call `renounceOwnership(..)` during this period, the transaction will be reverted.
+- the following 100 blocks is the period when you can confirm the renouncement of the contract by calling `renounceOwnership(..)` the second time.
 
-_Triggers the **[RenounceOwnershipInitiated](#renounceownershipinitiated)** event once the first phase of `renounceOwnership()` is complete._
+_Triggers the **[RenounceOwnershipInitiated](#renounceownershipinitiated)** event in the first call._
 
-Second phase of this process will renounce ownership of the contract only if the current `block. number` is bigger than `_lastBlock + 100` and smaller than `_lastBlock + 200` 
+_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event after successfully renouncing ownership._
 
-_Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the econd step of `renouneOwnership()` is complete._
+:::warning
+Leaves the contract without an owner. Once ownership of the contract is renounced, it won't be possible to call the functions restricted to the owner only.
+:::
 
 ### fallback
 
