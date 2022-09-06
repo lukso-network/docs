@@ -387,16 +387,23 @@ _**MUST** be fired when the **[`execute(...)`](#execute)** function creates a ne
 ### DataChanged
 
 ```solidity
-event DataChanged(bytes32 dataKey)
+event DataChanged(bytes32 dataKey, bytes dataValue)
 ```
 
 _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfully executed._
 
 #### Values:
 
-| Name        | Type    | Description                      |
-| :---------- | :------ | :------------------------------- |
-| `dataKey`   | bytes32 | The data key which value is set. |
+| Name        | Type    | Description                           |
+| :---------- | :------ | :------------------------------------ |
+| `dataKey`   | bytes32 | The data key which data value is set. |
+| `dataValue` | bytes   | The data value to set.                |
+
+:::info
+The `DataChanged` event will emit only the first 256 bytes of `dataValue` (for large values set in the ERC725Y storage).
+:::
+
+
 
 ### UniversalReceiver
 
