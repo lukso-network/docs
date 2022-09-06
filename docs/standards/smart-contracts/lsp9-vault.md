@@ -149,22 +149,21 @@ function execute(
 
 Executes a call on any other smart contracts, transfers value, or deploys a new smart contract.
 
-The **operationType** can be the following:
+The following `operationType` MUST exist:
 
 - `0` for `CALL`
 - `1` for `CREATE`
 - `2` for `CREATE2`
 - `3` for `STATICCALL`
-- `4` for `DELEGATECALL`
 
-_Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
+_Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL` operations._
 
 _Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
 
 :::note
 The `execute(...)` function can only be called by the current owner of the vault.
 
-The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to transfer value.
+The operation types `staticcall` (`3`) do not allow to transfer value.
 :::
 
 #### Parameters:
@@ -354,7 +353,7 @@ event Executed(
 )
 ```
 
-_**MUST** be fired when the **[`execute(...)`](#execute)** function creates a new call using the `CALL`, `STATICCALL`, or `DELEGATECALL` operation._
+_**MUST** be fired when the **[`execute(...)`](#execute)** function creates a new call using the `CALL` or `STATICCALL` operation._
 
 #### Values:
 

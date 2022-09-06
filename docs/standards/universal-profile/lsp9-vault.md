@@ -27,13 +27,16 @@ This standard uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** stan
 
 This substandard enables the vault to execute a call on any other smart contracts, transfer the blockchain's native token, or deploy a new smart contract. Only the owner can perform these operations below.
 
-The operation types available are:
+The following `operationType` MUST exist:
 
-- `CALL`
-- `CREATE`
-- `CREATE2`
-- `DELEGATECALL`
-- `STATICCALL`
+- `0` for `CALL`
+- `1` for `CREATE`
+- `2` for `CREATE2`
+- `3` for `STATICCALL`
+
+The following `operationType` COULD exist:
+
+- `4` for `DELEGATECALL` - **NOTE** This is a potentially dangerous operation
 
 ### ERC725Y - Generic Data Key-Value Store
 
