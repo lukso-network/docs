@@ -163,7 +163,7 @@ _Triggers the **[ContractCreated](#contractcreated)** event when a smart contrac
 :::note
 The `execute(...)` function can only be called by the current owner of the vault.
 
-The operation types `staticcall` (`3`) do not allow to transfer value.
+The operation type `staticcall` (`3`) does not allow to transfer value.
 :::
 
 #### Parameters:
