@@ -13,6 +13,10 @@ In this guide, we will learn how to:
 - Get all assets owned by a Universal Profile.
 - Fetch the metadata of all owned assets.
 
+:::tip
+A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
+:::
+
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('./img/example-asset.png').default}

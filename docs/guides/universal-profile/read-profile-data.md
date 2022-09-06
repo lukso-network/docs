@@ -1,11 +1,15 @@
 ---
 sidebar_label: 'Read Profile Data'
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Read Universal Profile Data
 
 In this guide, we will learn how to read data from a [Universal Profile](../../standards/universal-profile/introduction.md).
+
+:::tip
+A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
+:::
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img

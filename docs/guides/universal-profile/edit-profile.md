@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Edit a Universal Profile'
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Edit a Universal Profile
@@ -23,6 +23,10 @@ To achieve this goal, we will perform the following steps:
 1. Create a JSON file that contains our profile details (`LSP3Profile` metadata).
 2. Upload this JSON file to [IPFS] using our [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) tool.
 3. Encode + set our new [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) metadata key in our profile with our [erc725.js] library and web3.js.
+
+:::tip
+A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
+:::
 
 ![Universal Profile with pictures and infos on universalprofile.cloud](./img/edit-profile.png)
 

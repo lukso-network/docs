@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Transfer LYX'
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,6 +14,10 @@ In this guide, we will learn **how to transfer LYX** from our Universal Profile 
 - how to use this function to transfer LYX from our UP.
 
 ![Guide - How to send LYX from a Universal Profile](./img/guide-LYX-transfer.jpeg)
+
+:::tip
+A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page. Remember that you will have to provide a controller key (EOA) of your Universal Profile in order to transfer funds.
+:::
 
 ## Introduction
 
