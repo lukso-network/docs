@@ -5,8 +5,8 @@ sidebar_position: 1
 
 # Create a Universal Profile
 
-:::success Recommendation
-A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section.
+:::tip
+A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
 :::
 
 In this guide, we will learn how to:

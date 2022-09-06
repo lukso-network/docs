@@ -8,6 +8,10 @@ Here you will find tutorials and tools that help you build on LUKSO. As LUKSO is
 
 Other than most EVM chains, you're encouraged on LUKSO to mainly use [Universal Profiles](../standards/universal-profile/introduction.md) as the account solution for dApps and as a gateway for your users to the LUKSO Blockchain. It is discouraged to use simple EOAs as accounts, as they are insecure, inflexible and don't track incoming assets. If you need a more general understanding of why we build our accounts on the smart contract level, we advise you to read about the [LUKSO Ecosystem](https://medium.com/lukso/lukso-ecosystem-part-1-4c3f5d67b081) concept.
 
+:::tip
+All guides in this section feature code snippets that can be seen at [`lukso-playground`](https://github.com/lukso-network/lukso-playground) to give you a headstart. You can run the code as standalone JavaScript files within the terminal or the browser using the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
+:::
+
 ## UP in 1-2-3
 
 This little tutorial will show you how to deploy and interact with a Universal Profile.
