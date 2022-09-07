@@ -51,14 +51,6 @@ module.exports = {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    announcementBar: {
-      id: 'hackathon',
-      content:
-        '🚀 &nbsp; We are excited to announce our first hackathon with Gitcoin - the <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/hackathon?utm_source=docs&utm_medium=docs&utm_campaign=banner">LUKSO Build UP! #1</a> - with $500k in prizes &nbsp;👾',
-      backgroundColor: '#ecf0f3',
-      textColor: '#4467bb',
-      isCloseable: false,
-    },
     navbar: {
       title: 'LUKSO',
       logo: {
