@@ -42,7 +42,7 @@ A call to `requestAccounts` will open an extension popup to authorize an account
 
 ```js
 const accountsRequest: string[] = await web3.eth.requestAccounts();
-const accounts: string[] = await web3.eth.getAccounts(); //should also yield the same address
+const accounts: string[] = await web3.eth.getAccounts(); //should also return the same addresses
 ```
 
   </TabItem>
