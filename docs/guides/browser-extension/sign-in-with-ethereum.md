@@ -8,7 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Sign-in with Ethereum
 
-This guide will teach you how to sign a message using the [Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361) standard to be able to sign human-readable messages and get their signature verified on the Universal Profile.
+This guide will teach you how to:
+1. sign a message using the [Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361) standard to be able to sign human-readable messages.
+2. use a Universal Profile to verify if the signature is valid.
 
 ## Sign a mesage
 
