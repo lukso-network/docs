@@ -98,4 +98,4 @@ const signature = await signer.signMessage(message);
 
 ## Verify the signature on the Universal Profile
 
-Because the UP is a smart contract, and the messages are usually signed by a controller account (EOA), Universal Profile has the [`isValidSignature`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L111-#L130) function implemented to check if the signature was signed by an EOA that has the sign permission over the Universal Profile.
+Because the UP is a smart contract, and the messages are usually signed by a controller account (EOA), Universal Profile has the [`isValidSignature(...)`](https://docs.lukso.tech/standards/smart-contracts/lsp0-erc725-account#isvalidsignature) function implemented to check if the signature was signed by an EOA that has the sign permission over the Universal Profile.
