@@ -8,14 +8,20 @@ import TabItem from '@theme/TabItem';
 
 # Sign-in with Ethereum
 
+:::caution
+
+This guide is a Work-In-Progress.
+
+:::
+
 This guide will teach you how to:
 
-1. sign a message using the [Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361) standard to be able to sign human-readable messages.
-2. use a Universal Profile to verify if the signature is valid.
+1. sign a message using the [Sign-In with Ethereum (EIP-4361)](https://eips.ethereum.org/EIPS/eip-4361) standard to be able to sign human-readable messages.
+2. verify the signature by using [EIP-1271](../../standards/smart-contracts/lsp6-key-manager#isvalidsignature) `.isValidSignature()`.
 
 ## Sign a mesage
 
-### 1. Initialize a blockchain provider.
+### 1. Initialize a blockchain provider
 
 <Tabs>
   <TabItem value="web3" label="web3">
@@ -40,7 +46,7 @@ const etherProvider = new ethers.providers.Web3Provider(window.ethereum);
   </TabItem>
 </Tabs>
 
-### 2. Get access to the UP address in use.
+### 2. Get access to the profile address in use
 
 A call to `requestAccounts` will open an extension popup to authorize an account.
 
@@ -81,7 +87,7 @@ const accounts: string[] = await window.ethereum.request({
   </TabItem>
 </Tabs>
 
-### 3. Sign message.
+### 3. Sign message
 
 <Tabs>
   <TabItem value="web3" label="web3">
@@ -150,3 +156,5 @@ const isValidSignature = myUniversalProfile.isValidSignature(
 
   </TabItem>
 </Tabs>
+
+If `isValidSignature` returns the magic value: `0x1626ba7e`, then, the message was signed by an EOA which has a `SIGN` permission for this Universal Profile.
