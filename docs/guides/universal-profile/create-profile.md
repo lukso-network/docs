@@ -150,7 +150,6 @@ We will look up our address balance in the **[LUKSO L16 Block Explorer](https://
 
 ![L16 Block Explorer screenshot](https://user-images.githubusercontent.com/58372066/182744109-0dfa37e4-3713-49cb-bd36-37f953e654e8.png)
 
-
 ## Step 3 - Create our Universal Profile
 
 :::note Notice
@@ -186,12 +185,14 @@ const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 ```
 
 :::danger Never expose your private key!
+
 Your private key is what enables you to control your EOA. Therefore, it should **NEVER** be exposed.
 
 For simplicity in this tutorial, we load the EOA using a hardcoded private key (as a literal string).<br/>
 However, your private key should never be hardcoded in your code.
 
 :warning: **ALWAYS ensure that your private key is stored securely** and never exposed.
+
 :::
 
 ### 3.2 - Setup the lsp-factory.js
