@@ -171,6 +171,26 @@ Developers can use the `SIGN` permission for keys to sign login messages. It is 
 
 </details>
 
+<details>
+    <summary><code>ENCRYPT</code>: Allows encrypting data or messages on behalf of the controlled account</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
+    </p>
+
+Developers can use the `ENCRYPT` permission to encrypt data or messages, for instance for private messaging.
+
+</details>
+
+<details>
+    <summary><code>DECRYPT</code>: Allows decrypting data or messages on behalf of the controlled account</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
+    </p>
+
+Developers can use the `DECRYPT` permission to decrypt data or messages, for instance for private messaging.
+
+</details>
+
 :::note
 
 When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started), the Universal Profile owner will have all the permissions above set by default.
@@ -184,7 +204,7 @@ The super permissions grants the same permissions as their non-super counter par
 <details>
     <summary><code>SUPER_SETDATA</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
+        <b>value = </b><code>0x0800000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
 Same as `SETDATA`, but allowing to set any ERC725Y data keys.
@@ -194,7 +214,7 @@ Same as `SETDATA`, but allowing to set any ERC725Y data keys.
 <details>
     <summary><code>SUPER_TRANSFERVALUE</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
+        <b>value = </b><code>0x1000000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
 Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
@@ -204,7 +224,7 @@ Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EO
 <details>
     <summary><code>SUPER_CALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
+        <b>value = </b><code>0x2000000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
 Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
@@ -214,7 +234,7 @@ Same as `CALL`, but allowing to interact with any contract. This will not check 
 <details>
     <summary><code>SUPER_STATICCALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000002000</code>
+        <b>value = </b><code>0x4000000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
 Same as `STATICCALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
@@ -224,7 +244,7 @@ Same as `STATICCALL`, but allowing to interact with any contract. This will not 
 <details>
     <summary><code>SUPER_DELEGATECALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
+        <b>value = </b><code>0x8000000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
 Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
