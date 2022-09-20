@@ -201,6 +201,10 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 The super permissions grants the same permissions as their non-super counter parts, with the difference being that the checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions whether these restrictions are set or not.
 
+The super permissions are located on left side of the permissions bits range (see picture below).
+
+![LSP6 SUPER Permissions](/img/standards/lsp6/lsp6-super-permissions.jpeg)
+
 <details>
     <summary><code>SUPER_SETDATA</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
