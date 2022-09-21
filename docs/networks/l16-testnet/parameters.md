@@ -17,6 +17,7 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 | ------------------------ | ---------------------------------------------- |
 | Network Name             | L16                                            |
 | New RPC URL              | <https://rpc.l16.lukso.network>                |
+| Websocket URL            | <wss://ws.rpc.l16.lukso.network>               |
 | Chain ID / Network ID    | 2828 (0xB0C)                                   |
 | Currency Symbol          | LYXt                                           |
 | Execution Block Explorer | <https://explorer.execution.l16.lukso.network> |
