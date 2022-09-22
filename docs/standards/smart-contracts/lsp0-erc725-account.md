@@ -435,8 +435,8 @@ event UniversalReceiver(
     address from,
     uint256 value,
     bytes32 typeId,
-    bytes returnedValue,
     bytes receivedData
+    bytes returnedValue,
 )
 ```
 
@@ -449,8 +449,8 @@ _**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** f
 | `from`          | address | The address calling the **universalReceiver** function.         |
 | `value`         | uint256 | The amount of value sent to the **universalReceiver** function. |
 | `typeId`        | bytes32 | The hash of a specific standard or a hook.                      |
-| `returnedValue` | bytes   | The return value of **universalReceiver** function.             |
 | `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function.    |
+| `returnedValue` | bytes   | The value returned by the **universalReceiver** function.             |
 
 ## References
 
