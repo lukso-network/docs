@@ -47,9 +47,9 @@ Click on the toggles below to **learn more about the features enabled by each pe
 
 <details id="changeowner">
     <summary><code>CHANGEOWNER</code> - Allows changing the owner of the controlled contract</summary>
-        <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-            <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000001</code>
-        </p>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000001</code>
+    </p>
 
 The `CHANGEOWNER` permission enables the change of the owner of the linked ERC725Account.
 Using this permission, you can easily upgrade the [`LSP6KeyManager`](../smart-contracts/lsp6-key-manager.md) attached to the Account by transferring ownership to a new Key Manager.
@@ -57,9 +57,21 @@ Using this permission, you can easily upgrade the [`LSP6KeyManager`](../smart-co
 </details>
 
 <details>
-    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses</summary>
+    <summary><code>ADDPERMISSIONS</code> - Allows giving permissions to new addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
+    </p>
+
+This permission allows giving permissions to new addresses. This role-management enables the **authorization of new addresses** to interact with the ERC725Account.
+
+![ADD Permissions](/img/standards/lsp6/lsp6-add-permissions.jpeg)
+
+</details>
+
+<details>
+    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
 
 This permission allows for **editing permissions** of any address that already has some permissions set on the ERC725Account (including itself).
@@ -73,26 +85,16 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 </details>
 
 <details>
-    <summary><code>ADDPERMISSIONS</code> - Allows giving permissions to new addresses.</summary>
-    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
-    </p>
-
-This permission allows giving permissions to new addresses. This role-management enables the **authorization of new addresses** to interact with the ERC725Account.
-
-![ADD Permissions](/img/standards/lsp6/lsp6-add-permissions.jpeg)
-
-</details>
-
-<details>
-    <summary><code>SETDATA</code> - Allows setting data on the controlled contract</summary>
+    <summary><code>TRANSFERVALUE</code> - Allows transfering value to other contracts from the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
 
-Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
+Enables sending native tokens from the linked ERC725Account to any address.<br/>
 
-> **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y keys](#allowed-erc725y-keys)**
+> **Note:** For a simple native token transfer, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
+>
+> The caller will need the permission `CALL` to send any data along the LYX transfer.
 
 </details>
 
@@ -148,33 +150,21 @@ Enables the caller to deploy a smart contract, using the linked ERC725Account as
 </details>
 
 <details>
-    <summary><code>TRANSFERVALUE</code> - Allows transfering value to other contracts from the controlled contract</summary>
+    <summary><code>SETDATA</code> - Allows setting data on the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
     </p>
 
-Enables sending native tokens from the linked ERC725Account to any address.<br/>
+Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
 
-> **Note:** For a simple native token transfer, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
->
-> The caller will need the permission `CALL` to send any data along the LYX transfer.
-
-</details>
-
-<details>
-    <summary><code>SIGN</code>: Allows signing on behalf of the controlled account, for example for login purposes</summary>
-    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
-    </p>
-
-Developers can use the `SIGN` permission for keys to sign login messages. It is primarily for web2.0 apps to know which key SHOULD sign.
+> **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y keys](#allowed-erc725y-keys)**
 
 </details>
 
 <details>
     <summary><code>ENCRYPT</code>: Allows encrypting data or messages on behalf of the controlled account</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
     </p>
 
 Developers can use the `ENCRYPT` permission to encrypt data or messages, for instance for private messaging.
@@ -184,10 +174,20 @@ Developers can use the `ENCRYPT` permission to encrypt data or messages, for ins
 <details>
     <summary><code>DECRYPT</code>: Allows decrypting data or messages on behalf of the controlled account</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
     </p>
 
 Developers can use the `DECRYPT` permission to decrypt data or messages, for instance for private messaging.
+
+</details>
+
+<details>
+    <summary><code>SIGN</code>: Allows signing on behalf of the controlled account, for example for login purposes</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
+    </p>
+
+Developers can use the `SIGN` permission for keys to sign login messages. It is primarily for web2.0 apps to know which key SHOULD sign.
 
 </details>
 
@@ -216,29 +216,19 @@ Same as `SETDATA`, but allowing to set any ERC725Y data keys.
 </details>
 
 <details>
-    <summary><code>SUPER_TRANSFERVALUE</code></summary>
+    <summary><code>SUPER_DELEGATECALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x1000000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
-Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
-
-</details>
-
-<details>
-    <summary><code>SUPER_CALL</code></summary>
-     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x2000000000000000000000000000000000000000000000000000000000000000</code>
-    </p>
-
-Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
 
 </details>
 
 <details>
     <summary><code>SUPER_STATICCALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x4000000000000000000000000000000000000000000000000000000000000000</code>
+        <b>value = </b><code>0x2000000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
 Same as `STATICCALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
@@ -246,12 +236,22 @@ Same as `STATICCALL`, but allowing to interact with any contract. This will not 
 </details>
 
 <details>
-    <summary><code>SUPER_DELEGATECALL</code></summary>
+    <summary><code>SUPER_CALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x4000000000000000000000000000000000000000000000000000000000000000</code>
+    </p>
+
+Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+
+</details>
+
+<details>
+    <summary><code>SUPER_TRANSFERVALUE</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x8000000000000000000000000000000000000000000000000000000000000000</code>
     </p>
 
-Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
 
 </details>
 
