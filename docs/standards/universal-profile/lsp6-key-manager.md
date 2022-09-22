@@ -205,7 +205,7 @@ The super permissions are located on left side of the permissions bits range (se
 
 ![LSP6 SUPER Permissions](/img/standards/lsp6/lsp6-super-permissions.jpeg)
 
-<details>
+<details id="super-set-data">
     <summary><code>SUPER_SETDATA</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0800000000000000000000000000000000000000000000000000000000000000</code>
@@ -278,9 +278,9 @@ Permissions can be combined if an `address` needs to hold more than one permissi
 permissions: CALL + TRANSFERVALUE
 
   0x0000000000000000000000000000000000000000000000000000000000000010 (16 in decimal)
-+ 0x0000000000000000000000000000000000000000000000000000000000000100 (256)
++ 0x0000000000000000000000000000000000000000000000000000000000000080 (128)
 ---------------------------------------------------------------------
-= 0x0000000000000000000000000000000000000000000000000000000000000110 (= 272)
+= 0x0000000000000000000000000000000000000000000000000000000000000090 (= 272)
 ```
 
 </TabItem>
@@ -289,10 +289,10 @@ permissions: CALL + TRANSFERVALUE
 ```solidity
 permissions: CHANGEPERMISSIONS + SETDATA
 
-  0x0000000000000000000000000000000000000000000000000000000000000002 (2 in decimal)
-+ 0x0000000000000000000000000000000000000000000000000000000000000008 (8)
+  0x0000000000000000000000000000000000000000000000000000000000000004 (4 in decimal)
++ 0x0000000000000000000000000000000000000000000000000000000000000100 (256)
 ---------------------------------------------------------------------
-= 0x000000000000000000000000000000000000000000000000000000000000000a (= 10)
+= 0x0000000000000000000000000000000000000000000000000000000000000104 (= 260)
 ```
 
 </TabItem>
@@ -404,12 +404,14 @@ Such transaction flow can lead an initial caller to use more permissions than al
 
 :::caution
 
-Each permission MUST be **exactly 32 bytes long** and **zero left-padded**:
+Each permission MUST be **exactly 32 bytes long** and **zero left-padded** (except for the SUPER permissions, that are zero right-padded):
 
 - `0x0000000000000000000000000000000000000000000000000000000000000008` ✅
 - `0x0800000000000000000000000000000000000000000000000000000000000000` ❌
 
-For instance, if you try to set the permission SETDATA for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000`, and will cause incorrect behaviour with odd revert messages.
+For instance, if you try to set the permission TRANSFERVALUE for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000` (equivalent to the setting the permission [`SUPER_SETDATA`](#super-permissions).
+
+Ensure the `bytes32` value set under the permissions are correct according to these rules, to prevent incorrect or unexpected behaviour and errors.
 
 :::
 
