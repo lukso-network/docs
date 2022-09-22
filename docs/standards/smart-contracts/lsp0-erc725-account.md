@@ -450,7 +450,7 @@ _**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** f
 | `value`         | uint256 | The amount of value sent to the **universalReceiver** function. |
 | `typeId`        | bytes32 | The hash of a specific standard or a hook.                      |
 | `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function.    |
-| `returnedValue` | bytes   | The return value of **universalReceiver** function.             |
+| `returnedValue` | bytes   | The value returned by the **universalReceiver** function.             |
 
 ## References
 
