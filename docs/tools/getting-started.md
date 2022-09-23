@@ -22,4 +22,9 @@ sidebar_position: 1
     <td style={{textAlign: 'center'}}><a href="https://www.npmjs.com/package/@lukso/lsp-factory.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badgen badge" src="https://img.shields.io/npm/v/@lukso/lsp-factory.js.svg?style=flat&label=%40lukso%2Flsp-factory.js"/></a></td>
     <td><a href="https://github.com/lukso-network/tools-lsp-factory">lukso-network/tools-lsp-factory</a></td>
   </tr>
+  <tr>
+    <td><a href="./lsp6-signerjs/getting-started">lsp6-signer.js</a></td>
+    <td style={{textAlign: 'center'}}><a href="https://www.npmjs.com/package/@lukso/lsp6-signer.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badgen badge" src="https://img.shields.io/npm/v/@lukso/lsp6-signer.js.svg?style=flat&label=%40lukso%2Flsp6-signer.js"/></a></td>
+    <td><a href="https://github.com/lukso-network/tools-lsp6-signer">lukso-network/tools-lsp6-signer</a></td>
+  </tr>
 </table>
