@@ -18,5 +18,15 @@ git clone --depth 1 --branch main https://github.com/lukso-network/tools-lsp-fac
 # Copy Docs
 rsync -av --progress tools-lsp-factory/docs/. ../docs/tools/lsp-factoryjs --exclude=technical-reference
 
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Pull lsp6-signer repo
+
+git clone --depth 1 --branch develop https://github.com/lukso-network/tools-lsp6-signer
+
+# Copy Docs
+rsync -av --progress tools-lsp6-signer/docs/. ../docs/tools/lsp6-signerjs
+
+
 cd ..
 rm -rf tmpDocsSync
