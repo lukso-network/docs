@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Sign-in With Ethereum'
+sidebar_label: 'Sign arbitrary messages'
 sidebar_position: 4
 ---
 
