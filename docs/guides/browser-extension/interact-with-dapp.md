@@ -12,11 +12,12 @@ import TabItem from '@theme/TabItem';
 The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
 :::
 
-:::info
+:::note
 If you have MetaMask installed, **right click on both** MetaMask and UP Extension and select "This Can Read and Change Site Data > When you Click the Extension". This was you can select per tab, which extension can read your site. By closing the tab you can reset this.
 
-<img width="400" alt="Enabel site data reading Example" src="https://user-images.githubusercontent.com/232662/192822200-392b19f1-321b-4a59-928a-f71876bec6f3.png">
+<img width="400" src="https://user-images.githubusercontent.com/232662/192822200-392b19f1-321b-4a59-928a-f71876bec6f3.png" />
 :::
+
 
 
 ## Setup
