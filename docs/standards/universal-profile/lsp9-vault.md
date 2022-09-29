@@ -54,6 +54,20 @@ This standard enables the vault to be notified of any incoming transactions, whe
 Check **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
 :::
 
+### LSP14 - Ownable2Step
+
+:::info
+
+See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)** standard for more information.
+
+:::
+
+This standard allows for the **LSP9 - Vault** contract's ownership to be controlled by an EOA or by another contract, by implementing **3 essential methods**:
+
+- [`transferOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#transferownership)
+- [`acceptOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#acceptownership)
+- [`renounceOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#renounceownership)
+
 ## Extension
 
 ### Interactivity
