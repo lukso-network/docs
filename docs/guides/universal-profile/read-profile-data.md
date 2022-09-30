@@ -64,7 +64,7 @@ After initializing the ERC725 profile, we can choose between calling the `getDat
 - `getData()` will give the basic profile information with keys, names, and the values, including its hash and URL.
 - `fetchData()` will also fetch the linked data from the storage URLs and include it within the response.
 
-We will use the convenient `fetchData()` function since we only need one command to return the complete profile information list without separately grazing the storage files afterward.  
+We will use the convenient `fetchData()` function since we only need one command to return the complete profile information list without separately grazing the storage files afterward.
 :::
 
 ```javascript title="read_profile.js"
@@ -76,11 +76,10 @@ import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_URL = 'https://rpc.l16.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for ERC725 Instance
-const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 /*
@@ -91,7 +90,7 @@ const config = { ipfsGateway: IPFS_GATEWAY };
  */
 async function fetchProfile(address) {
   try {
-    const profile = new ERC725(erc725schema, address, provider, config);
+    const profile = new ERC725(erc725schema, address, RPC_URL, config);
     return await profile.fetchData();
   } catch (error) {
     return console.log('This is not an ERC725 Contract');
@@ -231,11 +230,10 @@ import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_URL = 'https://rpc.l16.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for ERC725 Instance
-const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 /*
@@ -246,7 +244,7 @@ const config = { ipfsGateway: IPFS_GATEWAY };
  */
 async function fetchProfile(address) {
   try {
-    const profile = new ERC725(erc725schema, address, provider, config);
+    const profile = new ERC725(erc725schema, address, RPC_URL, config);
     return await profile.fetchData();
   } catch (error) {
       return console.log('This is not an ERC725 Contract');

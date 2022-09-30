@@ -15,7 +15,7 @@ If you don't have a Universal Profile yet, follow our previous guide [**Create a
 
 :::
 
-In this guide, we will learn how to grant permissions to third-party addresses to enable them to interact with our Universal Profile. 
+In this guide, we will learn how to grant permissions to third-party addresses to enable them to interact with our Universal Profile.
 
 By the end of this guide, you will know:
 
@@ -39,17 +39,16 @@ npm install @erc725/erc725.js @lukso/lsp-smart-contracts
 The first step is to initialize the erc725.js library with a JSON schema specific to the LSP6 Key Manager. This will enable the library to know how to create and encode the permissions.
 
 ```js
-import { ERC725 } from "@erc725/erc725.js";
-import LSP6Schema from "@erc725/erc725.js/schemas/LSP6KeyManager.json";
+import { ERC725 } from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
 // step 1 -initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
 const erc725 = new ERC725(LSP6Schema);
 ```
 
-
 ## Step 2 - Encode the permissions
 
-:::info 
+:::info
 
 More permissions are available in erc725.js. See the API docs for [`encodePermissions(...)`](../../tools/erc725js/classes/ERC725.md#encodepermissions) function for a complete list.
 
@@ -59,7 +58,6 @@ We can now use erc725.js to create the permissions for a specific 3rd party `add
 
 ### 2.1 - Create the permission
 
-
 Let's consider in our example that we want to grant the permission `SETDATA` to a `beneficiaryAddress`, so that it can edit our Universal Profile details on our behalf.
 
 We can do this very easily with erc725.js, using the `encodePermissions(...)` function.
@@ -67,7 +65,7 @@ We can do this very easily with erc725.js, using the `encodePermissions(...)` fu
 ```js
 // step 2.1 - create the permissions of the beneficiary address
 const beneficiaryPermissions = erc725.encodePermissions({
-    SETDATA: true,
+  SETDATA: true,
 });
 ```
 
@@ -79,14 +77,13 @@ To do so, we need to assign the permission value created in step 2.1 to the `ben
 
 ```js
 // step 2.2 - encode the data key-value pairs of the permissions to be set for the beneficiary address
-const beneficiaryAddress = "0xcafecafecafecafecafecafecafecafecafecafe"; // EOA address of an exemplary person
+const beneficiaryAddress = '0xcafecafecafecafecafecafecafecafecafecafe'; // EOA address of an exemplary person
 const permissionData = erc725.encodeData({
-    keyName: "AddressPermissions:Permissions:<address>",
-    dynamicKeyParts: beneficiaryAddress,
-    value: beneficiaryPermissions,
-  });
+  keyName: 'AddressPermissions:Permissions:<address>',
+  dynamicKeyParts: beneficiaryAddress,
+  value: beneficiaryPermissions,
+});
 ```
-
 
 ## Step 3 - Add the permissions on your UP
 
@@ -104,7 +101,6 @@ The private key can be obtained depending on how you created your Universal Prof
 - UP created with the _lsp-factory.js_: this is the private key given in the `controllerAddresses` field in the method [`lspFactory.UniversalProfile.deploy(...)`](../../tools/lsp-factoryjs/classes/universal-profile#deploy)
 - UP created via the Browser extension: click on the _Settings_ icon (top right) > and _Export Private Key_
 
-
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l16.lukso.network');
@@ -121,17 +117,19 @@ The next steps is to create the web3 instance of our smart contracts to interact
 You will need the address of your Universal Profile deployed on L16.
 
 ```js
-import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
-import KeyManager from "@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json";
-import Web3 from "web3";
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import Web3 from 'web3';
 
-const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
-const web3 = new Web3(RPC_ENDPOINT);
-
+const RPC_URL = 'https://rpc.l16.lukso.network';
+const web3 = new Web3(RPC_URL);
 
 // step 1 - create instance of UniversalProfile and KeyManager contracts
-const myUniversalProfileAddress = "0x4F81bFDD12c73c94222C7879C91c1B837b8adb62";
-const myUniversalProfile = new web3.eth.Contract(UniversalProfile.abi, myUniversalProfileAddress);
+const myUniversalProfileAddress = '0x4F81bFDD12c73c94222C7879C91c1B837b8adb62';
+const myUniversalProfile = new web3.eth.Contract(
+  UniversalProfile.abi,
+  myUniversalProfileAddress,
+);
 ```
 
 Since the KeyManager is the owner of the Universal Profile, its address can be obtained easily by querying the `owner()` of the Universal Profile.
@@ -140,7 +138,6 @@ Since the KeyManager is the owner of the Universal Profile, its address can be o
 const keyManagerAddress = await myUniversalProfile.methods.owner().call();
 const myKeyManager = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
 ```
-
 
 ### 3.3 - Set the permission on the Universal Profile
 
@@ -152,51 +149,57 @@ We will then encode this permission data keys in a `setData(...)` payload and in
 
 ```js
 // step 3.3 - encode the payload to set permissions and send the transaction via the Key Manager
-const payload = myUniversalProfile.methods["setData(bytes32,bytes)"](data.keys[0], data.values[0]).encodeABI();
+const payload = myUniversalProfile.methods['setData(bytes32,bytes)'](
+  data.keys[0],
+  data.values[0],
+).encodeABI();
 
-  // step 4 - send the transaction via the Key Manager contract
-  await myKeyManager.methods.execute(payload).send({
-    from: myEOA.address,
-    gasLimit: 300_000,
-  });
+// step 4 - send the transaction via the Key Manager contract
+await myKeyManager.methods.execute(payload).send({
+  from: myEOA.address,
+  gasLimit: 300_000,
+});
 ```
 
 ## Final code
 
 ```js
-import { ERC725 } from "@erc725/erc725.js";
-import LSP6Schema from "@erc725/erc725.js/schemas/LSP6KeyManager.json";
-import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
-import KeyManager from "@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json";
-import Web3 from "web3";
+import { ERC725 } from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import Web3 from 'web3';
 
 // setup
-const myUniversalProfileAddress = "0x..."; // the address of your Universal Profile on L16
-const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
+const myUniversalProfileAddress = '0x...'; // the address of your Universal Profile on L16
+const RPC_URL = 'https://rpc.l16.lukso.network';
 
-const web3 = new Web3(RPC_ENDPOINT);
+const web3 = new Web3(RPC_URL);
 const erc725 = new ERC725(LSP6Schema);
 
-const PRIVATE_KEY = "0x..."; // private key of your main controller address
+const PRIVATE_KEY = '0x...'; // private key of your main controller address
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 async function grantPermissions() {
   // step 1 - create instance of UniversalProfile and KeyManager contracts
-  const myUniversalProfile = new web3.eth.Contract(UniversalProfile.abi, myUniversalProfileAddress);
+  const myUniversalProfile = new web3.eth.Contract(
+    UniversalProfile.abi,
+    myUniversalProfileAddress,
+  );
 
   const keyManagerAddress = await myUniversalProfile.methods.owner().call();
   const myKeyManager = new web3.eth.Contract(KeyManager.abi, keyManagerAddress);
-  console.log("keyManagerAddress", keyManagerAddress);
+  console.log('keyManagerAddress', keyManagerAddress);
 
   // step 2 - setup the permissions of the beneficiary address
-  const beneficiaryAddress = "0xcafecafecafecafecafecafecafecafecafecafe"; // EOA address of an exemplary person
+  const beneficiaryAddress = '0xcafecafecafecafecafecafecafecafecafecafe'; // EOA address of an exemplary person
   const beneficiaryPermissions = erc725.encodePermissions({
     SETDATA: true,
   });
 
   // step 3.1 - encode the data key-value pairs of the permissions to be set
   const data = erc725.encodeData({
-    keyName: "AddressPermissions:Permissions:<address>",
+    keyName: 'AddressPermissions:Permissions:<address>',
     dynamicKeyParts: beneficiaryAddress,
     value: beneficiaryPermissions,
   });
@@ -204,7 +207,10 @@ async function grantPermissions() {
   console.log(data);
 
   //   step 3.2 - encode the payload to be sent to the Key Manager contract
-  const payload = myUniversalProfile.methods["setData(bytes32,bytes)"](data.keys[0], data.values[0]).encodeABI();
+  const payload = myUniversalProfile.methods['setData(bytes32,bytes)'](
+    data.keys[0],
+    data.values[0],
+  ).encodeABI();
 
   // step 4 - send the transaction via the Key Manager contract
   await myKeyManager.methods.execute(payload).send({
@@ -212,16 +218,17 @@ async function grantPermissions() {
     gasLimit: 300_000,
   });
 
-  const result = await myUniversalProfile.methods["getData(bytes32)"](data.keys[0]).call();
+  const result = await myUniversalProfile.methods['getData(bytes32)'](
+    data.keys[0],
+  ).call();
   console.log(
     `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
-    erc725.decodePermissions(result)
+    erc725.decodePermissions(result),
   );
 }
 
 grantPermissions();
 ```
-
 
 ## Testing the permissions
 
@@ -230,16 +237,15 @@ We can now check that the permissions have been correctly set by querying the `A
 If everything went well, the code snippet below should return you back an object with the permission `SETDATA` set to `true`.
 
 ```js
-const result = await myUniversalProfile.methods["getData(bytes32)"](data.keys[0]).call();
-  console.log(
-    `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
-    erc725.decodePermissions(result)
-  );
+const result = await myUniversalProfile.methods['getData(bytes32)'](
+  data.keys[0],
+).call();
+console.log(
+  `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
+  erc725.decodePermissions(result),
+);
 ```
 
 Finally, to test the actual permissions, you can do this guide using a `beneficiaryAddress` that you have control over (created manually via web3.js).
 
 You can then try to do again the **Edit our Universal Profile** guide, using this new 3rd party address that you have control over to test if it can successfull edit the profile details. This will give you guarantee that this `beneficiaryAddress` has the `SETDATA` permission working.
-
-
-

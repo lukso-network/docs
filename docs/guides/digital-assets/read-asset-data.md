@@ -65,18 +65,17 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_URL = 'https://rpc.l16.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
-const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP5 data of the Universal Profile to get its owned assets
 const profile = new ERC725(
   UniversalProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
-  provider,
+  RPC_URL,
   config,
 );
 
@@ -105,18 +104,17 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
+const RPC_URL = 'https://rpc.l14.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
-const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP1 data of the Universal Profile to get its Universal Receiver
 const profile = new ERC725(
   UniversalProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
-  provider,
+  RPC_URL,
   config,
 );
 
@@ -211,7 +209,6 @@ const ownedAssetsMetadata = await ownedAssets.map(async (ownedAsset) => {
 
   return await digitalAsset.fetchData('LSP4Metadata');
 });
-
 ```
 
 ## Final Code
@@ -219,7 +216,7 @@ const ownedAssetsMetadata = await ownedAssets.map(async (ownedAsset) => {
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
 <Tabs>
-  
+
   <TabItem value="Current Standards" label="Current Standards">
 
 ```javascript title="read_assets.js"
@@ -231,18 +228,17 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_URL = 'https://rpc.l16.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
-const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP5 data of the Universal Profile to get its owned assets
 const profile = new ERC725(
   UniversalProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
-  provider,
+  RPC_URL,
   config,
 );
 
@@ -297,25 +293,24 @@ import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
+const RPC_URL = 'https://rpc.l14.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
-const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP1 data of the Universal Profile to get its Universal Receiver
 const profile = new ERC725(
   UniversalProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
-  provider,
+  RPC_URL,
   config,
 );
 
 const result = await profile.fetchData('LSP1UniversalReceiverDelegate');
 const universalReceiverAddress = result.value;
 
-const web3 = new Web3(RPC_ENDPOINT);
+const web3 = new Web3(RPC_URL);
 
 // Get all received assets from the Universal Receiver of the Universal Profile.
 const universalReceiver = new web3.eth.Contract(
