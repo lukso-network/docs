@@ -31,15 +31,10 @@ import Web3 from 'web3';
 
 // setup
 const myUniversalProfileAddress = '0xC26508178c4D7d3Ad43Dcb9F9bb1fab9ceeD58B5';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_URL = 'https://rpc.l16.lukso.network';
 
 // step 1 - setup erc725.js
-const web3 = new Web3(RPC_ENDPOINT);
-const erc725 = new ERC725(
-  LSP6Schema,
-  myUniversalProfileAddress,
-  web3.currentProvider,
-);
+const erc725 = new ERC725(LSP6Schema, myUniversalProfileAddress, RPC_URL);
 ```
 
 ## Step 2 - Get the list of controller addresses
@@ -137,16 +132,10 @@ import Web3 from 'web3';
 
 // setup
 const myUniversalProfileAddress = '0xC26508178c4D7d3Ad43Dcb9F9bb1fab9ceeD58B5';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-
-const web3 = new Web3(RPC_ENDPOINT);
+const RPC_URL = 'https://rpc.l16.lukso.network';
 
 // step 1 - setup erc725.js
-const erc725 = new ERC725(
-  LSP6Schema,
-  myUniversalProfileAddress,
-  web3.currentProvider,
-);
+const erc725 = new ERC725(LSP6Schema, myUniversalProfileAddress, RPC_URL);
 
 async function getPermissionedAddresses() {
   // step 2 - get the list of addresses that have permissions on the Universal Profile
