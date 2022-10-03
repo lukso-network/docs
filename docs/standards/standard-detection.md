@@ -11,21 +11,14 @@ The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** data key i
 
 :::
 
-There are two types of **LSP** standards:
+There are two types of **LSP** standards used to interact with smart contracts on the LUKSO blockchain.
 
-- **Interface Standards**: Where we standardize a set of functions. i.e:
-
-  [LSP0-ERC725Account](./universal-profile/lsp0-erc725account.md), [LSP6-KeyManager](./universal-profile/lsp6-key-manager.md), [LSP7-DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md), etc.
-
-- **Metadata Standards**: Where we standardize a set of ERC725Y Data keys. i.e:
-
-  [LSP3-UniversalProfile-Metadata](./universal-profile/lsp3-universal-profile-metadata.md), [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md), [LSP10ReceivedVaults](./universal-profile/lsp10-received-vaults.md), etc.
+| Standard Type           | Description                                                                                                                                                | Examples                                                                                                                                                                                                                                        |
+| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Interface Standards** | **Standardize a set of functions**. <br/> Defines the functions that can be called on a smart contract and their expected parameters                       | [LSP0-ERC725Account](./universal-profile/lsp0-erc725account.md) <br/> [LSP6-KeyManager](./universal-profile/lsp6-key-manager.md) <br/> [LSP7-DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)                                                     |
+| **Metadata Standards**  | **Standardize a set of ERC725Y data keys**. <br/> Informs about the data set by default on the contract and which data keys to query to retrieve such data | [LSP3-UniversalProfile-Metadata](./universal-profile/lsp3-universal-profile-metadata.md) <br/> [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md) <br/> [LSP10ReceivedVaults](./universal-profile/lsp10-received-vaults.md) |
 
 ![Interface and metadata standards](/img/standards/standard-detection/standard-detection.jpeg)
-
-These two standards types are fundamental for interacting with smart contracts on the LUKSO blockchain.
-
-The **Interface Standard** defines the functions that can be called on a smart contract and their expected parameters. On the other hand, **Metadata Standard** informs about the data set by default on the contract and which data keys to query to retrieve such data.
 
 ## Interface Detection
 
