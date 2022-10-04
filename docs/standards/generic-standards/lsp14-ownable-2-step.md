@@ -13,36 +13,32 @@ sidebar_position: 3
 
 ## Introduction
 
-The **[LSP14 Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-14-Ownable2Step.md)** describes an extended version of **[EIP173](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-173.md)** that uses a 2-step process to transfer or renounce ownership of a contract, instead of instant execution.
+In the current [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) standard (EIP173), ownership of a contract is transferred directly in one transaction via `transferOwnership(...)`. This presents some risks. For instance if the new owner:
 
-In addition, this standard defines hooks that call the **[universalReceiver(...)](../smart-contracts/lsp0-erc725-account.md#universalreceiver)** function of the current owner and new owner, if these addresses are contracts that implement LSP1. This aims to:
+- is an EOA that lost its private key.
+- is an `address` entered incorrectly.
 
-- notify when the new owner of the contract should accept ownership.
+Renouncing ownership of the contract in [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) is also done in one transaction. If the owner accidentally calls `renounceOwnership()`, this leads to losing access to the contract.
 
-![Transfer Ownership Notification](/img/standards/lsp14/transfer-ownership-notification.jpeg)
-
-- notify the previous and new owner when ownership of the contract has been fully transferred.
-
-![Accept Ownership Notification](/img/standards/lsp14/accept-ownership-notification.jpeg)
+**LSP14 - Ownable2Step** tackles these two problems using a safer mechanism for managing contract ownership. Transferring and renouncing ownership now works as a 2-step process.
 
 ## What does this standard represent ?
 
 **LSP14 - Ownable2Step** is a modified version of [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) that uses a safer mechanism for transferring and renouncing ownership.
 
-In EIP173, ownership of a contract is transferred directly to a new owner, potentially leading to blocking access to the contract. For instance, if the owner calls `transferOwnership()` and the new owner:
+**LSP14 - Ownable2Step** modifies the processes of _tranferring and renouncing ownership_ in the following way:
 
-- is an EOA that lost its private key.
-- is an `address` entered incorrectly.
+1. For _transferring ownership_ the method `transferOwnership(...)` is modified in a way so the **address** passed as parameter will not be the owner directly but a pending owner. A new method is introduced, `acceptOwnership()`, which should be called by the **pending owner** in order for the process of _transferring ownership_ to be complete.
 
-The same thing happens with renouncing ownership of the contract, it is done in a single transaction. This can lead to renouncing ownership of the contract by accident and potentially losing access to the contract.
+2. For _renouncing ownership_ the method `renounceOwnership()` is modified in the following way. The **owner** of the contract need to firstly initiate the process of _renouncing ownership_ which starts a countdown of **200 blocks** which are broken into two _distinct periods_. The **first 100 blocks** are meant to be waited, a period when one can reflect upon the desire of renouncing ownership of the contract. The **second 100 blocks** are meant for confirming the ownership renouncement process. After a total of **200 blocks** pass from the initiation, the process is restarted.
 
-With **LSP14 - Ownable2Step**, those two problem are tackled by making the processes of transferring and renouncing ownership a 2-step process.
+In addition, this standard defines hooks that call the **[universalReceiver(...)](../smart-contracts/lsp0-erc725-account.md#universalreceiver)** function of the current owner and new owner, if these addresses are contracts that implement LSP1.
 
 ### Transferring the contract ownership
 
 The control of the contract is fully transferred _once the new owner has accepted the new ownership_. The 2 steps of ownership transfer are described below:
 
-1. The previous owner transfers ownership to a new owner via the [`transferOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#transferownership) function.
+1. The previous owner transfers ownership to a new owner via the [`transferOwnership(...)`](../smart-contracts/lsp14-ownable-2-step.md#transferownership) function.
 
 ![Transfer Ownership](/img/standards/lsp14/transfer-ownership.jpeg)
 
@@ -52,9 +48,26 @@ The control of the contract is fully transferred _once the new owner has accepte
 
 By making the new owner accept ownership explicitly, **LSP14 - Ownable2Step** ensures that the new owner has access to his address.
 
+#### Transfer Ownership Hook
+
+This hook is designed to _notify the new owner_ of the contract that he should accept ownership.
+The hook is executed whenever the owner _initiates the process of transferring ownership_ and only if the new owner is a contract that **implements LSP1**.
+
+![Transfer Ownership Notification](/img/standards/lsp14/transfer-ownership-notification.jpeg)
+
+#### Accept Ownership Hooks
+
+These hooks are designed to _notify the previous and new owner_ when ownership of the contract has been fully transferred. One hook notifies the previous owner and the second one notifies the new owner.
+Each hook is executed whenever the _new owner confirms the process of tranferring ownership_.
+
+- The hook that notifies the previous owner is only executed if the previous owner is a contract that **implements LSP1**.
+- The hook that notifies the new owner is only executed if the new owner is a contract that **implements LSP1**.
+
+![Accept Ownership Notification](/img/standards/lsp14/accept-ownership-notification.jpeg)
+
 ### Renouncing the contract ownership
 
-The control of the contract is refully renounced _once the owner of the cntract confirmes the ownership renouncement_. The 2 steps of ownership renouncement are described below:
+The control of the contract is refully renounced _once the owner of the contract confirmes the ownership renouncement_. The 2 steps of ownership renouncement are described below:
 
 1. The owner initiates the process of ownerhsip renouncement via the ['renounceOwnership()'](../smart-contracts/lsp14-ownable-2-step.md#renounceownership) function.
 
