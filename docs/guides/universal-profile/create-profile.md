@@ -65,7 +65,7 @@ Under the hood, lsp-factory.js performs the following:
 1. Deploy the Universal Profile contracts:
    - [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md) (UP) is the core smart contract representing a Universal Profile.
    - [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br/> to enable other addresses to interact with the UP.
-2. Link a previously deployed [Universal Receiver Delegate](../../standards/universal-profile/lsp1-universal-receiver-delegate.md) (URD) smart contract with the deployed UP. The URD reacts to events, such as tokens received or transferred.
+2. Link a previously deployed [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) (URD) smart contract with the deployed UP. The URD reacts to events, such as tokens received or transferred.
 3. Set all the permissions for provided EOA addresses so that they can act on the UP.
 
 > :arrow_right: &nbsp; [See our lsp-factory.js docs for more details](../../tools/lsp-factoryjs/getting-started)

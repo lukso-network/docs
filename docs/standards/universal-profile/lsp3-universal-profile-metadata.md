@@ -151,4 +151,4 @@ See the [LSP5 - Received Assets](./lsp5-received-assets.md) standard page for mo
 }
 ```
 
-If the Universal Profile is used with the **[LSP6-KeyManager](./lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this data key.
+If the Universal Profile is used with the **[LSP6-KeyManager](./lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this data key.

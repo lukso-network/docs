@@ -73,13 +73,13 @@ Also, the function can then implement **custom logic** to make the contract beha
 
 :::info
 
-See the **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)** standard for more details.
+See the **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)** standard for more details.
 
 :::
 
 Customizing the `universalReceiver(..)` function is an option that users have to allow the function to **behave differently on different actions**. However, it's not advised to hardcode the logic of reacting on specific actions inside the function, as **this logic may need to change in the future** depending on several factors (eg. the vault where the tokens are forwarded get hacked, new staking contract is deployed, decided to revert on specific tokens later). 
 
-**[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)** is an **optional extension** to the **[LSP1-UniversalReceiver](#)** standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
+**[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)** is an **optional extension** to the **[LSP1-UniversalReceiver](#)** standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
 
 ![Universal Receiver Delegate contract](/img/standards/lsp1/universal-receiver-delegate.jpeg)
 

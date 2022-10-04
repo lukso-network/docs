@@ -100,7 +100,7 @@ During an **LSP7 token transfer**, as well as updating the balances, both the se
 
 ![LSP7DigitalAsset Transfer](/img/standards/lsp7/lsp7-transfer.jpeg)
 
-In this way, users are **informed** about the token transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-receiver-delegate.md)**.
+In this way, users are **informed** about the token transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
 
 ## References
 
