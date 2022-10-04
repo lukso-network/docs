@@ -12,13 +12,13 @@ sidebar_position: 1
 :::
 
 ## Introduction
-There is often the need for smart contracts to **be aware of incoming transactions**, especially when it comes to value transfers.
+There is often the need for smart contracts to **be aware of incoming transactions**, especially when it comes to token transfers.
 
 A good example is ERC20 token transfers. When a smart contract receives a token, it has no generic way to be notified about it. One solution to this problem could be to monitor the receiving contract by listening for ERC20 token transfer events.
 
 However, this requires using a trusted third party to monitor the contract. Such a method limits smart contracts' autonomy and introduces a single point of failure.
 
-One way to solve this problem is by creating a standard function that any smart contract can implement. Wallets or profiles could use this function to notify the user about an incoming asset, information, followers, etc.
+One way to solve this problem is by creating a standard function that any smart contract can implement. DEXs, Wallets or profiles could use this function to be notified about an incoming asset, information, followers, etc.
 
 ## What does this standard represent?
 
@@ -35,12 +35,14 @@ This standard defines a single function named `universalReceiver(...)` that coul
 - bytes32 `typeId`: Hash or Hook of a specific standard.
 - bytes `data`: Any arbitrary data.
 
-The `universalReceiver(...)` function emits an event with the data passed to it and some additional data. The function can then implement custom logic to make the contract behave differently based on the data received. For instance, the universalReceiver(...) function offers the following possibilities:
+> Receiving contracts should consider the `typeId` parameter to **decode the data correctly**.
+
+The `universalReceiver(...)` function **emits an event with the data passed to it and some additional data**. The function can then implement custom logic to make the contract behave differently based on the data received. For instance, the universalReceiver(...) function, if customized, can do the following:
 
 - Reverting on calls to completely disallow the smart contract from receiving assets, information, etc. :x:
 - Registering the received assets inside the contract storage (see [LSP5 - Received Assets](../universal-profile/lsp5-received-assets.md)). :heavy_plus_sign:
+- Forwarding all the received assets to an external vault or a staking contract.
 
-> Receiving contracts should consider the `typeId` parameter to **decode the data correctly**.
 
 ![schema of universal receiver transaction](/img/standards/lsp1/ur-transaction.jpeg)
 
@@ -52,9 +54,11 @@ See the **[LSP1-UniversalReceiverDelegate](../universal-profile/lsp1-universal-r
 
 :::
 
-LSP1-UniversalReceiverDelegate is an **optional extension** to the LSP1-UniversalReceiver Standard. As well as notifying a contract about the incoming and outgoing transactions via an event, it will delegate the `universalReceiver(...)` functionality to an external contract that can **handle and react to specific calls** with its custom logic.
+LSP1-UniversalReceiverDelegate is an **optional extension** to the LSP1-UniversalReceiver Standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
 
-The address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate data key** shown below to enable the optional extension. This key-value pair inside the **[ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)** of the contract implementing the `universalReceiver(...)` function will act as a reference, making this external contract upgradeable if required.
+The address of the **external contract** can be a variable that change in the contract storage by a setter function. In this way users can customize such contracts to implement a specific logic that is changeable anytime via an upgrade.
+
+If the contract implementing the `universalReceiver(..)` supports **[ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)**, the address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate data key** shown below to enable the optional extension. This key-value pair will act as a reference, making this external contract upgradeable if required.
 
 ```json
 {
@@ -65,6 +69,7 @@ The address of the **external contract** MUST be set as a value for the **LSP1Un
   "valueContent": "Address"
 }
 ```
+Check [LSP2-ERC725YJSONSchema](./lsp2-json-schema.md) for more information about the Json schema.
 
 ## References
 
