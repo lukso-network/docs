@@ -27,9 +27,13 @@ Therefore, it is advised not to hardcode how the smart contract should handle an
 
 ### Specification
 
-This standard represents a smart contract delegated to the initial `universalReceiver(...)` function.
+:::success recommendation
 
-It contains a single function named `universalReceiverDelegate(...)` that takes the same parameters as the `universalReceiver(...)` function with two additional params:
+Smart contracts implementing the `universalReceiverDelegate(...)` function SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
+
+:::
+
+This standard defines a contract called **UniversalReceiverDelegate** containing a single function named `universalReceiverDelegate(...)` that should be called by the `universalReceiver(..)` function with the `typeId` and `data` passed to it, as well as two other parameters:
 
 - address `caller`: the address that initially called the `universalReceiver(...)` function.
 
@@ -37,13 +41,20 @@ It contains a single function named `universalReceiverDelegate(...)` that takes 
 
 ### How Delegation works
 
-The address of the **[UniversalReceiverDelegate](../smart-contracts/lsp1-universal-receiver-delegate-up.md)** contract should be set as a value for the data key [`LSP1UniversalReceiverDelegate`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp1universalreceiverdelegate), inside the [ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y) of the implementation contract (contract implementing the `universalReceiver(...)` function).
+The address of the **[UniversalReceiverDelegate](../smart-contracts/lsp1-universal-receiver-delegate-up.md)** contract can be a variable inside the storage, to allow future upgrade of the **UniversalReceiverDelegate** simply by changing the address to another UniversalReceiverDelegate containing a new logic.
 
-With such an implementation, the `universalReceiver(...)` function can forward the call to its similar one called `universalReceiverDelegate(...)`.
+If the contract implementing the `universalReceiver(..)` supports **[ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)**, the address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate data key** shown below to enable the optional extension. This key-value pair will act as a reference, making this external contract upgradeable if required.
 
-This external contract will then implement the `universalReceiverDelegate(...)` function. It is also recommended that this contract registers the **[LSP1UniversalReceiverDelegate interfaceId](../smart-contracts/interface-ids.md)** using ERC165.
-
-![ur-delegate-transaction](/img/standards/lsp1delegate/ur-delegate-transaction.jpeg)
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate",
+  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+  "keyType": "Singleton",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+Check **[LSP2-ERC725YJSONSchema](./lsp2-json-schema.md)** for more information about the JSON schema.
 
 ## Implementations
 
