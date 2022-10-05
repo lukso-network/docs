@@ -15,15 +15,22 @@ The current UP Browser Extenstion deploys profiles on the [L16 Testnet](http://d
 
 :::
 
+:::note
+If you have **MetaMask** installed, *right click on both* MetaMask and UP Extension and select *"This Can Read and Change Site Data > When you Click the Extension"*. Then you you can select for every website which extension you use. By closing the tab you can reset this selection.
+
+<img width="400" src="https://user-images.githubusercontent.com/232662/192822200-392b19f1-321b-4a59-928a-f71876bec6f3.png" />
+:::
+
+
 This guide will teach you how to download and install the Universal Profile browser extension on Chrome, Edge, Opera, or Brave.
 
 ## Download the extension
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.0.0-develop.335-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-1.0.0-develop.335.zip) (All browsers)**
+### :inbox_tray: **[Download link (v1.0.0-develop.338-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-v1.0.0-develop.338.zip) (All other browsers)**
 
-### :inbox_tray: **[Download link (v1.0.0-develop.335-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-1.0.0-develop.335.zip) (experimental)**
+### :inbox_tray: **[Download link (v1.0.0-develop.338-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-v1.0.0-develop.338.zip) (Chrome)**
 
 ## Unpack the archive
 

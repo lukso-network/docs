@@ -1,25 +1,12 @@
 ---
-sidebar_label: 'Sign-in With Ethereum'
+sidebar_label: 'Sign arbitrary messages'
 sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Sign-in with Ethereum
-
-:::caution
-
-This guide is a Work-In-Progress.
-
-:::
-
-This guide will teach you how to:
-
-1. sign a message using the [Sign-In with Ethereum (EIP-4361)](https://eips.ethereum.org/EIPS/eip-4361) standard to be able to sign human-readable messages.
-2. verify the signature by using [EIP-1271](../../standards/smart-contracts/lsp6-key-manager#isvalidsignature) `.isValidSignature()`.
-
-## Sign a mesage
+# Sign arbitrary messages
 
 ### 1. Initialize a blockchain provider
 
