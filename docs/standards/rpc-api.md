@@ -15,7 +15,7 @@ The [LUKSO Extension](../guides/browser-extension/install-browser-extension) use
 
 ## Methods
 
-### up_addRelayService
+### up_addTransactionRelayer
 
 Add a custom relayer.
 
