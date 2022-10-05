@@ -45,6 +45,10 @@ module.exports = {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
             to: '/guides/browser-extension/install-browser-extension',
           },
+          {
+            from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
+            to: '/standards/generic-standards/lsp1-universal-receiver-delegate',
+          },
         ],
       },
     ],
