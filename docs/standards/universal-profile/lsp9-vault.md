@@ -54,6 +54,12 @@ See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.
 
 :::
 
+:::caution
+
+The implementation of the **UniversalReceiverDelegate** used by the Universal Profile is different from the one used by the vault. Check [LSP1UniversalReceiverDelegateVault](../smart-contracts/lsp1-universal-receiver-delegate-vault.md)
+
+:::
+
 This standard enables the vault to be notified of incoming transactions such as token transfer, followers, information transfer, etc. Notifications are handy for situations where users want to customize how their account contract reacts to certain tokens by either rejecting them or operating a specific call on each token received.
 
 The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
@@ -85,6 +91,20 @@ The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
 ```
 
 > <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function. 
+
+### LSP14 - Ownable2Step
+
+:::info
+
+See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)** standard for more information.
+
+:::
+
+This standard allows for the **LSP9 - Vault** contract's ownership to be controlled by an EOA or by another contract, by implementing **3 essential methods**:
+
+- [`transferOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#transferownership)
+- [`acceptOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#acceptownership)
+- [`renounceOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#renounceownership)
 
 ### Flow
 

@@ -136,26 +136,19 @@ See the **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standard for more
 
 Unlike Externally Owned Accounts (EOAs), smart contracts cannot sign messages since they do not have private keys. This standard defines a way for contracts to verify if a signature provided by an EOA is valid. There will be many contracts that want to utilize signed messages to validate rights-to-move assets or other purposes.
 
-### ClaimOwnership
+### LSP14 - Ownable2Step
 
-**ClaimOwnership** is a modified version of [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) that uses a safer mechanism for transferring ownership.
+:::info
 
-In EIP173, ownership of a contract is transferred directly to a new owner, potentially leading to blocking access to the contract. For instance, if the owner calls `transferOwnership()` and the new owner:
+See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)** standard for more information.
 
-- is an EOA that lost its private key.
-- is an `address` entered incorrectly.
+:::
 
-With **ClaimOwnership**, control of the contract is fully transferred _once the new owner has claimed the new ownership_. The transfer of ownership works in 2 steps:
+This standard allows for the **LSP0 - ERC725Account** contract's ownership to be controlled by an EOA or by another contract, by implementing **3 essential methods**:
 
-1. The previous owner transfers ownership to a new owner via the [`transferOwnership()`](./../smart-contracts/lsp0-erc725-account.md#transferownership) function.
-
-![Claim Ownership step 1](/img/standards/lsp0/claim-ownership-1.jpeg)
-
-2. The new owner claims ownership of the contract by calling the [`claimOwnership()](./../smart-contracts/lsp0-erc725-account.md#claimownership)` function.
-
-![Claim Ownership step 2](/img/standards/lsp0/claim-ownership-2.jpeg)
-
-By making the new owner accept ownership explicitly, ClaimOwnership ensures that the new owner has access to his address.
+- [`transferOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#transferownership)
+- [`acceptOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#acceptownership)
+- [`renounceOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#renounceownership)
 
 ## Extension
 
