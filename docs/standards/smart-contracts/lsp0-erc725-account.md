@@ -61,22 +61,21 @@ Returns the address of the current owner of the contract.
 | :------ | :------ | :--------------------------------- |
 | `owner` | address | The current owner of the contract. |
 
-
 ### pendingOwner
 
 ```solidity
 function pendingOwner() public view returns (address)
 ```
 
-Return the address of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership). 
+Return the address of the pending owner that was initiated by [`transferOwnership(address)`](#transferownership).
 
 > **NB:** if no ownership transfer is in progress, the `pendingOwner` MUST be `address(0)`.
 
 #### Return Values:
 
-| Name           | Type    | Description                        |
-|:---------------|:--------|:---------------------------------- |
-| `pendingOwner` | address | The address of the pending owner   |
+| Name           | Type    | Description                      |
+| :------------- | :------ | :------------------------------- |
+| `pendingOwner` | address | The address of the pending owner |
 
 ### transferOwnership
 
@@ -87,6 +86,7 @@ function transferOwnership(address newOwner) public
 Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
 Requirements:
+
 - Can only be called by the current owner.
 - The `newOwner` to be set as the `pendingOwner` cannot be `address(this)`.
 
@@ -96,11 +96,10 @@ Requirements:
 | :--------- | :------ | :------------------------------------ |
 | `newOwner` | address | The address to set as `pendingOwner`. |
 
-
-### claimOwnership
+### acceptOwnership
 
 ```solidity
-function claimOwnership() public
+function acceptOwnership() public
 ```
 
 Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
@@ -113,9 +112,10 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the n
 function renounceOwnership() public
 ```
 
-Since renouncing ownership is a sensitive operation, it is done as a two-step process by calling  `renounceOwnership(..)` twice. First to initiate the process, second as a confirmation.
+Since renouncing ownership is a sensitive operation, it is done as a two-step process by calling `renounceOwnership(..)` twice. First to initiate the process, second as a confirmation.
 
 The current block number is saved as a part of initiation because the following behaviour is wanted:
+
 - The first 100 blocks after the saved block is the pending period, if you call `renounceOwnership(..)` during this period, the transaction will be reverted.
 - the following 100 blocks is the period when you can confirm the renouncement of the contract by calling `renounceOwnership(..)` the second time.
 
@@ -174,7 +174,7 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :-------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
 | `operationType` | uint256 | The type of operation that needs to be executed.                                                                         |
 | `to`            | address | The address to interact with. The address `to` will be unused if a contract is created (operations 1 & 2).               |
-| `value`         | uint256 | The amount of native tokens to transfer with the transaction (in Wei).                                                                      |
+| `value`         | uint256 | The amount of native tokens to transfer with the transaction (in Wei).                                                   |
 | `data`          | bytes   | The calldata (ABI-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
 
 #### Return Values:
@@ -323,16 +323,34 @@ Checks if a signature was signed by the `owner` of the contract, according to [E
 
 ## Events
 
+### OwnershipTransferStarted
+
+```solidity
+event OwnershipTransferred(
+    address indexed currentOwner,
+    address indexed newOwner,
+)
+```
+
+_**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** function is successfully initiated._
+
+#### Values:
+
+| Name           | Type    | Description                              |
+| :------------- | :------ | :--------------------------------------- |
+| `currentOwner` | address | The current owner of the contract.       |
+| `newOwner`     | address | The potential new owner of the contract. |
+
 ### OwnershipTransferred
 
 ```solidity
 event OwnershipTransferred(
-    address previousOwner,
-    address newOwner,
+    address indexed previousOwner,
+    address indexed newOwner,
 )
 ```
 
-_**MUST** be fired when **[transferOwnership(...)](#transferownership)** function is successfully executed._
+_**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** function is successfully executed._
 
 #### Values:
 
@@ -341,13 +359,21 @@ _**MUST** be fired when **[transferOwnership(...)](#transferownership)** functio
 | `previousOwner` | address | The previous owner of the contract. |
 | `newOwner`      | address | The new owner of the contract.      |
 
-### RenounceOwnershipInitiated
+### RenounceOwnershipStarted
 
 ```solidity
-event RenounceOwnershipInitiated()
+event RenounceOwnershipStarted()
 ```
 
-_**MUST** be fired when the **[`renounceOwnership()`](#renounceownership)** function's first phase is complete._
+_**MUST** be fired when the **[`renounceOwnership()`](#renounceownership)** process is initiated._
+
+### OwnershipRenounced
+
+```solidity
+event OwnershipRenounced()
+```
+
+_**MUST** be fired when the **[`renounceOwnership()`](#renounceownership)** process is confirmed._
 
 ### ValueReceived
 
@@ -450,7 +476,7 @@ _**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** f
 | `value`         | uint256 | The amount of value sent to the **universalReceiver** function. |
 | `typeId`        | bytes32 | The hash of a specific standard or a hook.                      |
 | `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function.    |
-| `returnedValue` | bytes   | The value returned by the **universalReceiver** function.             |
+| `returnedValue` | bytes   | The value returned by the **universalReceiver** function.       |
 
 ## References
 
