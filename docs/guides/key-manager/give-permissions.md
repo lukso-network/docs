@@ -91,7 +91,6 @@ We also need to add the `beneficiaryAddress` inside the `AddressPermissions[]` A
 
 ```js
 // step 2.2 - encode the data key-value pairs of the permissions to be set for the beneficiary address
-
 const beneficiaryAddress = '0xcafecafecafecafecafecafecafecafecafecafe'; // EOA address of an exemplary person
 
 const addressPermissionsArray = await erc725.getData('AddressPermissions[]');
@@ -204,6 +203,7 @@ const myUniversalProfileAddress = '0x...'; // the address of your Universal Prof
 const RPC_URL = 'https://rpc.l16.lukso.network';
 
 const web3 = new Web3(RPC_URL);
+
 const erc725 = new ERC725(LSP6Schema, myUniversalProfileAddress, RPC_URL);
 
 const PRIVATE_KEY = '0x...'; // private key of your main controller address
@@ -227,6 +227,7 @@ async function grantPermissions() {
   });
 
   // step 3.1 - encode the data key-value pairs of the permissions to be set
+
   const addressPermissionsArray = await erc725.getData('AddressPermissions[]');
   const controllers = addressPermissionsArray.value;
 

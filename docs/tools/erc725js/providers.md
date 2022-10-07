@@ -20,12 +20,11 @@ const RPC_URL = 'https://rpc.l16.lukso.network';
 const erc725 = new ERC725([], '0x...', RPC_URL);
 ```
 
-## Ethereum (MetaMask)
+## Web3
 
 :::caution Warning
 
-Ethereum providers are being deprecated. Please provide an RPC URL instead.
-
+Web3 providers are being deprecated. Please provide an RPC URL instead.
 :::
 
 The following code snippet will use the web3 provider available at web3.providers from the corresponding `web3` library.
