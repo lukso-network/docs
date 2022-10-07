@@ -44,5 +44,5 @@ import LSP5 from '@erc725/erc725.js/schemas/LSP5ReceivedAssets.json';
 // ...
 
 // Later use them on instantiation
-const myErc725Contract = new ERC725js(LSP3, address, web3.currentProvider);
+const myErc725Contract = new ERC725js(LSP3, address, RPC_URL);
 ```

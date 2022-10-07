@@ -256,7 +256,7 @@ async function editProfileInfo() {
     },
   ];
 
-  const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
+  const erc725 = new ERC725(schema, profileAddress, RPC_URL, {
     ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
   });
 
@@ -438,7 +438,7 @@ async function editProfileInfo() {
     },
   ];
 
-  const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
+  const erc725 = new ERC725(schema, profileAddress, RPC_URL, {
     ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
   });
 

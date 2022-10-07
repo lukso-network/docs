@@ -50,12 +50,10 @@ The first step is to initialize the erc725.js library with a JSON schema specifi
 import { ERC725 } from '@erc725/erc725.js';
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
+RPC_URL = 'https://rpc.l16.lukso.network';
+
 // step 1 -initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
-const erc725 = new ERC725(
-  LSP6Schema,
-  myUniversalProfileAddress,
-  web3.currentProvider,
-);
+const erc725 = new ERC725(LSP6Schema, myUniversalProfileAddress, RPC_URL);
 ```
 
 ## Step 2 - Encode the permissions
