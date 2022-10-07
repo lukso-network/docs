@@ -23,8 +23,8 @@ Hashes the given message. The message will be enveloped as follows: `'\x19LSP6 E
 ### Example
 
 ```javascript
-lsp6Signer.hash('Hello World');
-// '0x90379a0a840499a5e18db4ff7b4d9a56cd009f014a66e3ca86001da3442b7d2c';
+lsp6Signer.hashMessage('Hello World');
+// '0x267dbe91dc4e45f9ab588be314b8f954513a4bcd55015a9380bea074b76dc91f';
 ```
 
 ## sign
@@ -103,11 +103,9 @@ Recovers the address which was used to sign the given message.
 
 ```javascript
 lsp6Signer.recover(
-  message: 'hello',
-  signature:'0x1eab2de0103b8e82650f9706b17cf2adce55a335e7041bad5a94ab49c56a9c12662e80a369ffa2a6a77fbeaad1f32653cbd74860c8fbc999b1fc47b8d1cb7d931c',
-  isMessagePrefixed:false
-)
-// '0x2b389f8EB52D16A105e02165a2AC1450461A237b';
+  'hello',
+  '0x1eab2de0103b8e82650f9706b17cf2adce55a335e7041bad5a94ab49c56a9c12662e80a369ffa2a6a77fbeaad1f32653cbd74860c8fbc999b1fc47b8d1cb7d931c',
+  false,
+);
+// 0xe66Df2466ed6d92AC8c261b98ddAFbec65C6dCC8;
 ```
-
-###

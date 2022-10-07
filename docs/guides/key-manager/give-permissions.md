@@ -28,6 +28,14 @@ By the end of this guide, you will know:
 
 The Key Manager (KM) enables us to give permissions to other 3rd party addresses to perform certain actions on our Universal Profile (UP), such as editing our profile details, or any other profile metadata.
 
+When granting permissions to a new address, we need to update three data keys in the [ERC725Y](../../standards/lsp-background/erc725.md#erc725y) storage of our Universal Profile:
+
+| :file_cabinet: ERC725Y data key                                                                                                     | :page_with_curl: Description                                   | :dart: **Objective**                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`AddressPermissions[]`](../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions)               | holds the number of addresses that have permissions on our UP. | We need to **increment it by +1**.                                                 |
+| [`AddressPermissions[index]`](../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions)          | holds a controller address at a specific index.                | We need to **add the beneficiary address at the new index**.                       |
+| [`AddressPermissions:Permissions:<beneficiary-address>`](../../standards/universal-profile/lsp6-key-manager.md#address-permissions) | this data key holds the permissions of a controller address.   | We need to **add the permissions of the beneficiary address** under this data key. |
+
 ## Setup
 
 ```shell
@@ -43,7 +51,11 @@ import { ERC725 } from '@erc725/erc725.js';
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
 // step 1 -initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
-const erc725 = new ERC725(LSP6Schema);
+const erc725 = new ERC725(
+  LSP6Schema,
+  myUniversalProfileAddress,
+  web3.currentProvider,
+);
 ```
 
 ## Step 2 - Encode the permissions
@@ -73,16 +85,32 @@ const beneficiaryPermissions = erc725.encodePermissions({
 
 Now that we have created the permission value `SETDATA`, we need to assign it to the `beneficiaryAddress`.
 
-To do so, we need to assign the permission value created in step 2.1 to the `beneficiaryAddress`, using the `AddressPermissions:Permissions:<address>`, where `<address>` will be the address of the beneficiary
+To do so, we need to assign the permission value created in step 2.1 to the `beneficiaryAddress`, using the `AddressPermissions:Permissions:<address>`, where `<address>` will be the address of the beneficiary.
+
+We also need to add the `beneficiaryAddress` inside the `AddressPermissions[]` Array, and increment the `AddressPermissions[]` array length (+1).
 
 ```js
 // step 2.2 - encode the data key-value pairs of the permissions to be set for the beneficiary address
+
 const beneficiaryAddress = '0xcafecafecafecafecafecafecafecafecafecafe'; // EOA address of an exemplary person
-const permissionData = erc725.encodeData({
-  keyName: 'AddressPermissions:Permissions:<address>',
-  dynamicKeyParts: beneficiaryAddress,
-  value: beneficiaryPermissions,
-});
+
+const addressPermissionsArray = await erc725.getData('AddressPermissions[]');
+const controllers = addressPermissionsArray.value;
+
+const permissionData = erc725.encodeData([
+  // the permission of the beneficiary address
+  {
+    keyName: 'AddressPermissions:Permissions:<address>',
+    dynamicKeyParts: beneficiaryAddress,
+    value: beneficiaryPermissions,
+  },
+  // the new list controllers addresses (= addresses with permissions set on the UP)
+  // + the incremented `AddressPermissions[]` array length
+  {
+    keyName: 'AddressPermissions[]',
+    value: [...controllers, beneficiaryAddress],
+  },
+]);
 ```
 
 ## Step 3 - Add the permissions on your UP
@@ -149,9 +177,10 @@ We will then encode this permission data keys in a `setData(...)` payload and in
 
 ```js
 // step 3.3 - encode the payload to set permissions and send the transaction via the Key Manager
-const payload = myUniversalProfile.methods['setData(bytes32,bytes)'](
-  data.keys[0],
-  data.values[0],
+
+const payload = myUniversalProfile.methods['setData(bytes32[],bytes[])'](
+  data.keys,
+  data.values,
 ).encodeABI();
 
 // step 4 - send the transaction via the Key Manager contract
@@ -175,7 +204,7 @@ const myUniversalProfileAddress = '0x...'; // the address of your Universal Prof
 const RPC_URL = 'https://rpc.l16.lukso.network';
 
 const web3 = new Web3(RPC_URL);
-const erc725 = new ERC725(LSP6Schema);
+const erc725 = new ERC725(LSP6Schema, myUniversalProfileAddress, RPC_URL);
 
 const PRIVATE_KEY = '0x...'; // private key of your main controller address
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
@@ -198,18 +227,28 @@ async function grantPermissions() {
   });
 
   // step 3.1 - encode the data key-value pairs of the permissions to be set
-  const data = erc725.encodeData({
-    keyName: 'AddressPermissions:Permissions:<address>',
-    dynamicKeyParts: beneficiaryAddress,
-    value: beneficiaryPermissions,
-  });
+  const addressPermissionsArray = await erc725.getData('AddressPermissions[]');
+  const controllers = addressPermissionsArray.value;
 
-  console.log(data);
+  const data = erc725.encodeData([
+    // the permission of the beneficiary address
+    {
+      keyName: 'AddressPermissions:Permissions:<address>',
+      dynamicKeyParts: beneficiaryAddress,
+      value: beneficiaryPermissions,
+    },
+    // the new list controllers addresses (= addresses with permissions set on the UP)
+    // + the incremented `AddressPermissions[]` array length
+    {
+      keyName: 'AddressPermissions[]',
+      value: [...controllers, beneficiaryAddress],
+    },
+  ]);
 
   //   step 3.2 - encode the payload to be sent to the Key Manager contract
-  const payload = myUniversalProfile.methods['setData(bytes32,bytes)'](
-    data.keys[0],
-    data.values[0],
+  const payload = myUniversalProfile.methods['setData(bytes32[],bytes[])'](
+    data.keys,
+    data.values,
   ).encodeABI();
 
   // step 4 - send the transaction via the Key Manager contract
