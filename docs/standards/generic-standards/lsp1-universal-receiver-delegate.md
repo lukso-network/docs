@@ -29,19 +29,26 @@ Therefore, it is advised not to hardcode how the smart contract should handle an
 
 :::success recommendation
 
-Smart contracts implementing the `universalReceiverDelegate(...)` function SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
+Smart contracts implementing the [LSP1-UniversalReceiverDelegate](#) standard SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
 
 :::
 
-This standard defines a contract called **UniversalReceiverDelegate** containing a single function named `universalReceiverDelegate(...)` that should be called by the `universalReceiver(..)` function with the `typeId` and `data` passed to it, as well as two other parameters:
+This standard defines a contract called **UniversalReceiverDelegate** containing a single function named `universalReceiverDelegate(...)` that should be called by the `universalReceiver(..)` function with:
 
 - address `caller`: the address that initially called the `universalReceiver(...)` function.
 
 - uint256 `value`: the amount of value sent to the `universalReceiver(...)` function.
 
+- bytes32 `typeId`: the typeId passed to the `universalReceiver(...)` function.
+
+- bytes `data`: the data passed to the `universalReceiver(...)` function.
+
+
+
+
 ### How Delegation works
 
-The address of the **[UniversalReceiverDelegate](../smart-contracts/lsp1-universal-receiver-delegate-up.md)** contract can be a variable inside the storage, to allow future upgrade of the **UniversalReceiverDelegate** simply by changing the address to another UniversalReceiverDelegate containing a new logic.
+The address of the **[UniversalReceiverDelegate](../smart-contracts/lsp1-universal-receiver-delegate-up.md)** contract can be stored inside the storage of the contract delegating its `universalReceiver(...)` functionality. This allows the upgrade of the **UniversalReceiverDelegate** simply by changing the address (in storage) to another UniversalReceiverDelegate containing a new logic.
 
 If the contract implementing the `universalReceiver(..)` supports **[ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)**, the address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate data key** shown below to enable the optional extension. This key-value pair will act as a reference, making this external contract upgradeable if required.
 
