@@ -1,77 +1,68 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 
 import styles from './index.module.scss';
+
+import Box from "../components/Box";
+import CallToActionButton from "../components/CallToActionButton";
+import Headline from "../components/Headline"
+
+import NetworksIcon from "../../static/img/icons/icon-networks-gradient.png"
+import StandardsIcon from "../../static/img/icons/icon-standards-gradient.png"
+import ToolsIcon from "../../static/img/icons/icon-tools-gradient.png"
+import GuidesIcon from "../../static/img/icons/icon-guides-gradient.png"
+import FAQIcon from "../../static/img/icons/icon-faq-gradient.png"
 
 function Index() {
   return (
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
-        <div
-          style={{
-            padding: '4rem 1rem',
-          }}
-        >
-          <h1>Welcome to the LUKSO Documentation</h1>
-        </div>
-        <div className={styles.ctaContainer}>
-          <a
-            className={styles.ctaButton}
-            href="./guides/browser-extension/install-browser-extension"
-          >
-            <strong>Try the LUKSO browser extension 🔥</strong>
-          </a>
+        <Headline />
+        <CallToActionButton 
+          bgColor="#6270A4"
+          color="#ffffff"
+          link="./guides/browser-extension/install-browser-extension"
+          text="DOWNLOAD THE BROWSER EXTENSION"
+        />
+        <CallToActionButton 
+          bgColor="#FFCCCC"
+          color="#383838"
+          link="./networks"
+          text="PARTICIPATE IN NETWORKS"
+        />
+        <div className={styles.cardContainer}>
+          <Box 
+            icon={NetworksIcon}
+            link="./networks/l16-testnet/parameters"  
+            title="NETWORKS"
+            content="Learn how to participate in LUKSO's test networks."
+          />
+          <Box 
+            icon={StandardsIcon}
+            link="./standards/introduction"  
+            title="STANDARDS"
+            content="Learn about the new smart contract standards that will change the way we interact with Blockchain."
+          />
+          <Box 
+            icon={ToolsIcon}
+            link="./tools/getting-started"  
+            title="TOOLS"
+            content="Discover tools that help you to interact with Universal Profiles and NFT2.0."
+          />
         </div>
         <div className={styles.cardContainer}>
-          <Link
-            style={{ textDecoration: 'none' }}
-            to="./networks/l16-testnet/parameters"
-          >
-            <div className={styles.card}>
-              <h3>🧬 Networks</h3>
-              <p>Learn how to participate in LUKSO's test networks.</p>
-            </div>
-          </Link>
-          <Link
-            style={{ textDecoration: 'none' }}
-            to="./standards/introduction"
-          >
-            <div className={styles.card}>
-              <h3>📜 Standards</h3>
-              <p>
-                Learn about the new smart contract standards that will change
-                the way we interact with Blockchain.
-              </p>
-            </div>
-          </Link>
-          <Link style={{ textDecoration: 'none' }} to="./tools/getting-started">
-            <div className={styles.card}>
-              <h3>🛠 Tools</h3>
-              <p>
-                Discover tools that help you to interact with Universal Profiles
-                and NFT2.0.
-              </p>
-            </div>
-          </Link>
-          <Link
-            style={{ textDecoration: 'none' }}
-            to="./guides/getting-started"
-          >
-            <div className={styles.card}>
-              <h3>📄 Guides</h3>
-              <p>
-                Guides and tutorials to help you get started with the LUKSO
-                ecosystem.
-              </p>
-            </div>
-          </Link>
-          <Link style={{ textDecoration: 'none' }} to="./faq/lukso">
-            <div className={styles.card}>
-              <h3>❓ FAQ</h3>
-              <p>Frequently Asked Questions</p>
-            </div>
-          </Link>
+          <Box 
+            icon={GuidesIcon}
+            link="./guides/getting-started"  
+            title="GUIDES"
+            content="Guides and tutorials to help you get started with the LUKSO ecosystem."
+          />
+          <Box 
+            icon={FAQIcon}
+            link="./faq/lukso"  
+            title="FAQ"
+            content="Frequently Asked Questions."
+          />
         </div>
       </div>
     </Layout>
