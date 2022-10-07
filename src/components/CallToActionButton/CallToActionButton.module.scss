@@ -1,28 +1,27 @@
 .ctaContainer {
-    height: 50px;
+  height: 50px;
+}
+
+.ctaButton {
+  // background-color: var(--color-cta-background);
+  background-color: var(--color-cta-background-blue);
+  border-radius: 40px;
+  padding: 10px 20px;
+
+  display: block;
+
+  transition: all 200ms ease-out 10ms;
+
+  &:hover {
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    border: #8d9da9 solid 1px;
+    text-decoration: none;
   }
-  
-  .ctaButton {
-    // background-color: var(--color-cta-background);
-    background-color: var(--color-cta-background-blue);
-    border-radius: 40px;
-    padding: 10px 20px;
-    
-    
-    display: block;
-  
-    transition: all 200ms ease-out 10ms;
-  
-    &:hover {
-      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1);
-      transform: scale(1.05);
-      border: #8d9da9 solid 1px;
-      text-decoration: none;
-    }
-  
-    color: white;
-  
-    a:hover {
-      color: white !important;
-    }
+
+  color: white;
+
+  a:hover {
+    color: white !important;
   }
+}

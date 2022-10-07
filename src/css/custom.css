@@ -16,7 +16,7 @@
   --ifm-color-primary-lightest: #7c95cf;
   --ifm-code-font-size: 95%;
   --color-cta-background: #ecf0f3;
-  --color-cta-background-blue: #6270A4;
+  --color-cta-background-blue: #6270a4;
 }
 
 html[data-theme='dark'] {
