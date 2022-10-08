@@ -48,11 +48,49 @@ The data keys and values are constructed according to the **[LSP2-ERC725YJSONSch
 
 ### LSP1 - UniversalReceiver
 
-This standard enables the vault to be notified of any incoming transactions, whether token transfer, vault transfer, information transfer, etc. Notification is handy for vaults. Within them, anyone could customize how their account reacts to certain tokens by rejecting them or operating a specific call on token receive.
+:::info
 
-:::note
-Check **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
+See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
+
 :::
+
+:::caution
+
+The implementation of the **UniversalReceiverDelegate** used by the Universal Profile is different from the one used by the vault. Check [LSP1UniversalReceiverDelegateVault](../smart-contracts/lsp1-universal-receiver-delegate-vault.md)
+
+:::
+
+This standard enables the vault to be notified of incoming transactions such as token transfers, information transfers, etc. Notifications are handy when users want to customize how their account contract reacts to certain tokens by either rejecting them or operating a specific call on each received token.
+
+The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
+
+- Emits an event with the typeId and data passed to it, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
+
+- Forwards the call to the **UniversalReceiverDelegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md).
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate",
+  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+  "keyType": "Singleton",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+- Forwards the call to the **typeId delegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md).
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate:<bytes32>",
+  "key": "0x0cfc51aec37c55a4d0b10000<bytes32>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+> <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function. 
 
 ### LSP14 - Ownable2Step
 
@@ -67,20 +105,6 @@ This standard allows for the **LSP9 - Vault** contract's ownership to be control
 - [`transferOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#transferownership)
 - [`acceptOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#acceptownership)
 - [`renounceOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#renounceownership)
-
-## Extension
-
-### Interactivity
-
-:::caution
-
-The implementation of the **UniversalReceiverDelegate** used by the Universal Profile is different from the one used by the vault. Check [LSP1UniversalReceiverDelegateVault](../smart-contracts/lsp1-universal-receiver-delegate-vault.md)
-
-:::
-
-Developers can notify the vault of incoming assets, information, etc., via the **universalReceiver** function. Builders could add an extension to increase the autonomy of the contract by handling and reacting to transactions that the vault receives.
-
-Such functionality can be attached by setting an **[LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)** to your account.
 
 ### Flow
 

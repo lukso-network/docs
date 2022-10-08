@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP2 - ERC725Y JSON Schema'
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # LSP2 - ERC725Y JSON Schema

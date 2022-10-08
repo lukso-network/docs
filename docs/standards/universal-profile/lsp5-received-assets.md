@@ -55,7 +55,7 @@ This data key represents a map key, both holding:
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each asset smart contract (without the need to query the asset contracts directly).
 - the index in the [`LSP5ReceivedAssets[]`](#lsp5receivedassets-) Array where the received asset addresses are stored.
 
-The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](./lsp1-universal-receiver-delegate.md)).
+The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)).
 
 ```json
 {
@@ -78,7 +78,7 @@ The data keys are also set on the **sender Universal Profile** to remove the tok
 If set when transferring tokens, these data keys are automatically updated in the Universal Profile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract.
 
 :::note
-Check the [token transfer scenario](./lsp1-universal-receiver-delegate#token-transfer-scenario) for more details.
+Check the [token transfer scenario](../generic-standards/lsp1-universal-receiver-delegate#token-transfer-scenario) for more details.
 :::
 
 ![Token transfer detailed flow](/img/standards/lsp5/detailed-token-transfer.jpeg)
