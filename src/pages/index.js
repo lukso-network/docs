@@ -27,7 +27,7 @@ function Index() {
         <CallToActionButton
           bgColor="#FFCCCC"
           color="#383838"
-          link="./networks"
+          link="./networks/l16-testnet/parameters"
           text="PARTICIPATE IN NETWORKS"
         />
         <div className={styles.cardContainer}>
