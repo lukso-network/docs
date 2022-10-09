@@ -24,6 +24,7 @@ function Index() {
           link="./guides/browser-extension/install-browser-extension"
           text="DOWNLOAD THE BROWSER EXTENSION"
         />
+        <br />
         <CallToActionButton
           bgColor="#FFCCCC"
           color="#383838"
