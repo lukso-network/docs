@@ -25,4 +25,8 @@
   img {
     max-width: 300px;
   }
+
+  &:last-child {
+    margin-bottom: 80px;
+  }
 }
