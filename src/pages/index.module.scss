@@ -12,12 +12,6 @@
   justify-content: center;
   grid-gap: 16px;
 
-  @media (max-width: 960px) {
-    grid-template-columns: 1fr;
-    max-width: 300px;
-    margin: 0 1rem 1rem;
-  }
-
   a {
     max-width: 300px;
   }
@@ -28,5 +22,19 @@
 
   &:last-child {
     margin-bottom: 80px;
+  }
+
+  @media (max-width: 960px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 300px;
+    margin: 0 1rem 1rem;
+  }
+
+  @media (max-width: 670px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 1rem 1rem;
   }
 }
