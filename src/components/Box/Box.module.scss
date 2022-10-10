@@ -12,10 +12,6 @@
 
   transition: all 200ms ease-out 10ms;
 
-  &:hover {
-    transform: scale(1.05);
-  }
-
   p {
     margin-bottom: 0;
     line-height: 1.25rem;
@@ -25,7 +21,19 @@
     max-width: 100%;
   }
 
-  img {
-    padding-left: 25px;
+  h3 {
+    margin-top: -40px;
   }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.img {
+  width: 100%;
+  padding-bottom: 100%;
+  margin-left: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
