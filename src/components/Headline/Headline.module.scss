@@ -1,0 +1,28 @@
+.headline {
+  background-image: url('../../../static/img/icons/ellipse_top_gradient.png');
+  background-repeat: no-repeat;
+  background-position: center;
+
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+  text-align: center;
+
+  h1 {
+    font-size: 66px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 960px) {
+    h1 {
+      font-size: 50px;
+    }
+  }
+
+  @media (max-width: 670px) {
+    background-size: cover;
+
+    h1 {
+      font-size: 40px;
+    }
+  }
+}
