@@ -65,6 +65,30 @@ html[data-theme='dark'] .header-github-link:before {
     no-repeat;
 }
 
+html[data-theme='dark'] .headline {
+  background-image: url('../../static/img/icons/ellipse-top-gradient-dark.png');
+}
+
+html[data-theme='dark'] .networks .img {
+  background-image: url('../../static/img/icons/icon-networks-gradient-dark.png') !important;
+}
+
+html[data-theme='dark'] .standards .img {
+  background-image: url('../../static/img/icons/icon-guides-dark.png') !important;
+}
+
+html[data-theme='dark'] .tools .img {
+  background-image: url('../../static/img/icons/icon-tools-gradient-dark.png') !important;
+}
+
+html[data-theme='dark'] .guides .img {
+  background-image: url('../../static/img/icons/icon-guides-gradient-dark.png') !important;
+}
+
+html[data-theme='dark'] .faq .img {
+  background-image: url('../../static/img/icons/icon-faq-gradient-dark.png') !important;
+}
+
 .discord-logo {
   float: left;
 }
