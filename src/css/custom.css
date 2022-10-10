@@ -17,6 +17,7 @@
   --ifm-code-font-size: 95%;
   --color-cta-background: #ecf0f3;
   --color-cta-background-blue: #6270a4;
+  --ifm-font-family-base: Apax, sans-serif;
 }
 
 html[data-theme='dark'] {
@@ -113,4 +114,32 @@ html[data-theme='dark'] .faq .img {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+@font-face {
+  font-family: 'Apax';
+  src: url('/static/fonts/Apax-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Apax';
+  src: url('/static/fonts/Apax-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Apax';
+  src: url('/static/fonts/Apax-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Apax';
+  src: url('/static/fonts/Apax-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
 }
