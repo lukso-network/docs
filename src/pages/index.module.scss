@@ -7,9 +7,8 @@
 }
 
 .cardContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
   grid-gap: 16px;
 
   a {
@@ -27,7 +26,6 @@
   @media (max-width: 960px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: 300px;
     margin: 0 1rem 1rem;
   }
 
