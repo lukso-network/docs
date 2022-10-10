@@ -45,6 +45,10 @@ module.exports = {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
             to: '/guides/browser-extension/install-browser-extension',
           },
+          {
+            from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
+            to: '/standards/generic-standards/lsp1-universal-receiver-delegate',
+          },
         ],
       },
     ],
@@ -60,15 +64,9 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'networks/mainnet',
+          docId: 'guides/getting-started',
           position: 'left',
-          label: 'Networks',
-        },
-        {
-          type: 'doc',
-          docId: 'standards/introduction',
-          position: 'left',
-          label: 'Standards',
+          label: 'Guides',
         },
         {
           type: 'doc',
@@ -78,9 +76,15 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'guides/getting-started',
+          docId: 'standards/introduction',
           position: 'left',
-          label: 'Guides',
+          label: 'Standards',
+        },
+        {
+          type: 'doc',
+          docId: 'networks/mainnet',
+          position: 'left',
+          label: 'Networks',
         },
         {
           type: 'doc',
