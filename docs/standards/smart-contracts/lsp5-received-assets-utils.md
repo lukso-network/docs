@@ -7,7 +7,7 @@ sidebar_position: 13
 
 :::info
 
-[`LSP5Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP5ReceivedAsstes/LSP5Utils.sol)
+[`LSP5Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP5ReceivedAssets/LSP5Utils.sol)
 
 :::
 
