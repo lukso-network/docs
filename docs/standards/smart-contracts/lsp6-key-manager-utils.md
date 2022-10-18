@@ -24,14 +24,14 @@ function getPermissionsFor(
 ) internal view returns (bytes32);
 ```
 
-Returns the permissions of the `caller` for the ERC725Y `target`.
+Read the permissions of a `caller` on an ERC725Y `target` contract.
 
 #### Parameters:
 
-| Name   | Type     | Description                   |
-| :----- | :------- | :---------------------------- |
-| target | IERC725Y | A valid `IERC725Y` interface. |
-| caller | address  | The controller address.       |
+| Name   | Type     | Description                                           |
+| :----- | :------- | :---------------------------------------------------- |
+| target | IERC725Y | An `IERC725Y` contract where to read the permissions. |
+| caller | address  | The controller address to read the permissions from.  |
 
 #### Return Value
 
@@ -46,14 +46,14 @@ function getAllowedAddressesFor(
 ) internal view returns (bytes memory);
 ```
 
-Returns the allowed addresses of the `caller` for the ERC725Y `target`.
+Read the allowed addresses of a `caller` on an ERC725Y `target` contract.
 
 #### Parameters:
 
-| Name   | Type     | Description                   |
-| :----- | :------- | :---------------------------- |
-| target | IERC725Y | A valid `IERC725Y` interface. |
-| caller | address  | The controller address.       |
+| Name   | Type     | Description                                           |
+| :----- | :------- | :---------------------------------------------------- |
+| target | IERC725Y | An `IERC725Y` contract where to read the permissions. |
+| caller | address  | The controller address to read the permissions from.  |
 
 #### Return Value
 
@@ -68,14 +68,14 @@ function getAllowedFunctionsFor(
 ) internal view returns (bytes memory);
 ```
 
-Returns the allowed functions of the `caller` for the ERC725Y `target`.
+Read the allowed functions of a `caller` on an ERC725Y `target` contract.
 
 #### Parameters:
 
-| Name   | Type     | Description                   |
-| :----- | :------- | :---------------------------- |
-| target | IERC725Y | A valid `IERC725Y` interface. |
-| caller | address  | The controller address.       |
+| Name   | Type     | Description                                           |
+| :----- | :------- | :---------------------------------------------------- |
+| target | IERC725Y | An `IERC725Y` contract where to read the permissions. |
+| caller | address  | The controller address to read the permissions from.  |
 
 #### Return Value
 
@@ -90,14 +90,14 @@ function getAllowedStandardsFor(
 ) internal view returns (bytes memory);
 ```
 
-Returns the allowed standards of the `caller` for the ERC725Y `target`.
+Read the allowed standards of a `caller` on an ERC725Y `target` contract.
 
 #### Parameters:
 
-| Name   | Type     | Description                   |
-| :----- | :------- | :---------------------------- |
-| target | IERC725Y | A valid `IERC725Y` interface. |
-| caller | address  | The controller address.       |
+| Name   | Type     | Description                                           |
+| :----- | :------- | :---------------------------------------------------- |
+| target | IERC725Y | An `IERC725Y` contract where to read the permissions. |
+| caller | address  | The controller address to read the permissions from.  |
 
 #### Return Value
 
@@ -112,14 +112,14 @@ function getAllowedERC725YKeysFor(
 ) internal view returns (bytes memory);
 ```
 
-Returns the allowed ERC725Y keys of the `caller` for the ERC725Y `target`.
+Read the allowed ERC725Y keys of a `caller` on an ERC725Y `target` contract.
 
 #### Parameters:
 
-| Name   | Type     | Description                   |
-| :----- | :------- | :---------------------------- |
-| target | IERC725Y | A valid `IERC725Y` interface. |
-| caller | address  | The controller address.       |
+| Name   | Type     | Description                                           |
+| :----- | :------- | :---------------------------------------------------- |
+| target | IERC725Y | An `IERC725Y` contract where to read the permissions. |
+| caller | address  | The controller address to read the permissions from.  |
 
 #### Return Value
 
