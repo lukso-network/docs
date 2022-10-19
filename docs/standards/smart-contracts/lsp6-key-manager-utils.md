@@ -57,7 +57,7 @@ Read the allowed addresses of a `caller` on an ERC725Y `target` contract.
 
 #### Return Value
 
-Returns an encoded `bytes` value which contains an array of allowed addresses (to interact with) for the controller address.
+Returns an abi-encoded array of addresses that the controller address is allowed to interact with.
 
 ### getAllowedFunctionsFor
 
@@ -79,7 +79,7 @@ Read the allowed functions of a `caller` on an ERC725Y `target` contract.
 
 #### Return Value
 
-Returns an encoded `bytes` value which contains an array of allowed function signatures (to interact with) for the controller address.
+Returns an abi-encoded array of functions selectors that the controller address is allowed to interact with.
 
 ### getAllowedStandardsFor
 
@@ -101,7 +101,7 @@ Read the allowed standards of a `caller` on an ERC725Y `target` contract.
 
 #### Return Value
 
-Returns an encoded `bytes` value which contains an array of allowed standards/interfaceIds (to interact with) for the controller address.
+Returns an abi-encoded array of allowed interface ids that the controller address is allowed to interact with.
 
 ### getAllowedERC725YKeysFor
 
@@ -123,7 +123,7 @@ Read the allowed ERC725Y keys of a `caller` on an ERC725Y `target` contract.
 
 #### Return Value
 
-Returns an encoded `bytes` value which contains an array of allowed ERC725 keys (to interact with) for the controller address.
+Returns an abi-encoded array of allowed ERC725 keys that the controller address is allowed to interact with.
 
 ### hasPermission
 
