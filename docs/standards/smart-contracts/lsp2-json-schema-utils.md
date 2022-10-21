@@ -11,16 +11,14 @@ sidebar_position: 12
 
 :::
 
-This library should be used to generate ERC725Y keys described in the JSON Schema.
+This library can be used to generate ERC725Y keys according to the JSON schemas defined in the LSP2 standard.
 
 ## Functions
 
 ### generateSingletonKey
 
 ```solidity
-function generateSingletonKey(
-    string memory keyName
-) internal pure returns (bytes32);
+function generateSingletonKey(string memory keyName) internal pure returns (bytes32);
 ```
 
 Generates a data key of `keyType` Singleton.
@@ -40,9 +38,7 @@ Generates a data key of `keyType` Singleton.
 ### generateArrayKey
 
 ```solidity
-function generateArrayKey(
-    string memory keyName
-) internal pure returns (bytes32);
+function generateArrayKey(string memory keyName) internal pure returns (bytes32);
 ```
 
 Generates a data key of `keyType` Array by hashing `keyName`.
@@ -64,7 +60,8 @@ Generates a data key of `keyType` Array by hashing `keyName`.
 #### Requirements:
 
 - The last two characters should be `[]`.
-  E.g.:
+
+E.g.:
 
 ```solidity
 string memory keyName = "ArrayName[]";
@@ -81,7 +78,7 @@ function generateArrayElementKeyAtIndex(
 ) internal pure returns (bytes32);
 ```
 
-Generates an Array index data key by concatenating the first 16 bytes of `arrayKey` and `index` transformed from uint256 to bytes16 (uint256 -> uint128 -> bytes16)
+Generates an Array index data key by concatenating the first 16 bytes of `arrayKey` with an `index`.
 
 #### Parameters:
 
@@ -105,8 +102,7 @@ function generateMappingKey(
 ) internal pure returns (bytes32);
 ```
 
-Generates a data key of `keyType` Mapping by hashing two strings:
-`<bytes10(keccak256(firstWord))>:<bytes2(0)>:<bytes20(keccak256(firstWord))>`
+Generates a data key of `keyType` Mapping by concatenating the hash of the `firstWord` with the hash of the `secondWord`.
 
 #### Parameters:
 
@@ -130,8 +126,7 @@ function generateMappingKey(
 ) internal pure returns (bytes32);
 ```
 
-Generates a data key of `keyType` Mapping by hashing a string and concatenating it with an address:
-`<bytes10(keccak256(firstWord))>:<bytes2(0)>:<bytes20(addr)>`
+Generates a data key of `keyType` Mapping by hashing a string and concatenating it with an address.
 
 #### Parameters:
 
@@ -155,8 +150,7 @@ function generateMappingKey(
 ) internal pure returns (bytes32);
 ```
 
-Generate a data key of `keyType` Mapping:
-`<keyPrefix>:<bytes2(0)>:<bytes20Value>`
+Generate a data key of `keyType` Mapping by concatenating `keyPrefix` with `bytes20Value`.
 
 #### Parameters:
 
@@ -181,8 +175,7 @@ function generateMappingWithGroupingKey(
 ) internal pure returns (bytes32);
 ```
 
-Generate a data key of `keyType` MappingWithGrouping by using two strings and an address:
-`<bytes6(keccak256(firstWord))>:<bytes4(keccak256(secondWord))>:<bytes2(0)>:<bytes20(addr)>`
+Generate a data key of `keyType` MappingWithGrouping by concatenating the hash of the `firstWord`, the hash of the `secondWord` and an address.
 
 #### Parameters:
 
@@ -207,8 +200,7 @@ function generateMappingWithGroupingKey(
 ) internal pure returns (bytes32);
 ```
 
-Generate a data key of `keyType` MappingWithGrouping:
-`<keyPrefix>:<bytes2(0)>:<bytes20Value>`
+Generate a data key of `keyType` MappingWithGrouping by concatenating `keyPrefix` with `bytes20Value`.
 
 #### Parameters:
 
