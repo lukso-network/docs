@@ -49,9 +49,9 @@ Generates a data key of `keyType` Array by hashing `keyName`.
 
 #### Parameters:
 
-| Name      | Type   | Description                                                             |
-| :-------- | :----- | :---------------------------------------------------------------------- |
-| `keyName` | string | The string that will be used to generate an data key of `keyType` Array |
+| Name      | Type   | Description                                                            |
+| :-------- | :----- | :--------------------------------------------------------------------- |
+| `keyName` | string | The string that will be used to generate a data key of `keyType` Array |
 
 #### Return Values:
 
@@ -81,7 +81,7 @@ function generateArrayElementKeyAtIndex(
 ) internal pure returns (bytes32);
 ```
 
-Generates a Array index data key by concatenating the first 16 bytes of `arrayKey` and `index` transformed from uint256 to bytes16 (uint256 -> uint128 -> bytes16)
+Generates an Array index data key by concatenating the first 16 bytes of `arrayKey` and `index` transformed from uint256 to bytes16 (uint256 -> uint128 -> bytes16)
 
 #### Parameters:
 
