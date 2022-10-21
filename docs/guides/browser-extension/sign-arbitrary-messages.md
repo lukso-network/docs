@@ -14,7 +14,7 @@ If you want to authenticate a user, please refer to the [Sign-In with Ethereum](
 
 :::
 
-The browser extension has a custom Sign screen. The article
+This article explains how to request a signature from the [LUKSO browser extension](../browser-extension/install-browser-extension.md).
 
 <div style={{textAlign: 'center'}}>
 <img
@@ -24,6 +24,8 @@ The browser extension has a custom Sign screen. The article
 </div>
 
 ## 1. Initialize a blockchain provider
+
+The browser extension injects a global API into the website that is visited. This API is available under `window.ethereum`. You can use this object to initialise your [web3.js](https://web3js.readthedocs.io/en/v1.8.0/) or [Ethers.js](https://docs.ethers.io/v5/) library.
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
@@ -35,7 +37,7 @@ const etherProvider = new ethers.providers.Web3Provider(window.ethereum);
 ```
 
   </TabItem>
-  <TabItem value="web3" label="Web3.js">
+  <TabItem value="web3" label="web3.js">
 
 ```js
 import Web3 from 'web3';
@@ -48,7 +50,7 @@ const web3 = new Web3(window.ethereum);
 
 ## 2. Get the Universal Profile address
 
-A call to `requestAccounts` will open an extension popup to authorize an account.
+A call to `requestAccounts` will open the extension popup and prompt the user to select her or his Universal Profile to interact with your Dapp. The LUKSO browser extension will send back the Universal Profile address back to your Dapp (which is the address of the [`LSP0 - ERC725 Account`](../../standards/universal-profile/lsp0-erc725account.md) smart contract).
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
@@ -57,16 +59,17 @@ A call to `requestAccounts` will open an extension popup to authorize an account
 const accountsRequest = await etherProvider.send('eth_requestAccounts', []);
 const signer = etherProvider.getSigner();
 const upAddress = await signer.getAddress();
+// 0x3E39275Ed3B370E074534edeE13a166512AD32aB
 ```
 
   </TabItem>
-  <TabItem value="web3" label="Web3.js">
+  <TabItem value="web3" label="web3.js">
 
 ```js
 const accountsRequest = await web3.eth.requestAccounts();
 const accounts = await web3.eth.getAccounts();
-
 const upAddress = accounts[0];
+// 0x3E39275Ed3B370E074534edeE13a166512AD32aB
 ```
 
   </TabItem>
@@ -90,21 +93,36 @@ const upAddress = accounts[0];
 
 ## 3. Sign the message
 
+Once you have access to the Universal Profile address, you can request a signature. The browser extension will sign the message with the controller key used by the extension (a smart contract can't sign).
+
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
 
+:::caution
+
+When calling Ethers.js [`signer.signMessage( message )`](https://docs.ethers.io/v5/api/signer/#Signer-signMessage), it uses `personal_sign` RPC call under the hood. However, our extension only supports the latest version of [`eth_sign`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sign). Therefore, you need to use `provider.send("eth_sign", [upAddress, message])` instead.
+
+You can get more information [here](https://github.com/MetaMask/metamask-extension/issues/15857) and [here](https://github.com/ethers-io/ethers.js/issues/1544).
+
+:::
+
+<!-- prettier-ignore-start -->
+
 ```js
 const message = 'Please sign this message 😊';
-const signature = await signer.signMessage(message);
+const signature = await etherProvider.send('eth_sign', [upAddress, message]);
+// 0x38c53...
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
-  <TabItem value="web3" label="Web3.js">
+  <TabItem value="web3" label="web3.js">
 
 ```js
 const message = 'Please sign this message 😊';
-const address = web3.currentProvider.selectedAddress;
 const signature = await web3.eth.sign(message, upAddress);
+// 0x38c53...
 ```
 
   </TabItem>
@@ -112,6 +130,6 @@ const signature = await web3.eth.sign(message, upAddress);
 
 ## 4. Verify the signature
 
-Your Dapp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the `SIGN` permission for this UP.
+Your Dapp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the `SIGN` permission for this Universal Profile.
 
-The verification process is the same as for [Sign-In with Ethereum](./sign-in-with-ethereum.md#4-verify-the-signature).
+The verification process is the same as for [Sign-In with Ethereum](./sign-in-with-ethereum.md#4-verify-the-signature), you can check how it is done there.
