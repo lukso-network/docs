@@ -3,7 +3,7 @@ title: LSP6KeyManagerUtils
 sidebar_position: 15
 ---
 
-# LSP6KeyManagerUtils
+# LSP10Utils
 
 :::info
 
@@ -15,7 +15,7 @@ This library should be used to generate ERC725Y data keys and values for transfe
 
 ## Functions
 
-### getPermissionsFor
+### generateReceivedVaultKeys
 
 ```solidity
 function generateReceivedVaultKeys(

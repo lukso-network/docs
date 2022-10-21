@@ -59,6 +59,19 @@ Generates a data key of `keyType` Array by hashing `keyName`.
 | :------- | :------ | :--------------------------- |
 | `result` | bytes32 | Data key of `keyType` Array. |
 
+:::note
+
+#### Requirements:
+
+- The last two characters should be `[]`.
+  E.g.:
+
+```solidity
+string memory keyName = "ArrayName[]";
+```
+
+:::
+
 ### generateArrayElementKeyAtIndex
 
 ```solidity
