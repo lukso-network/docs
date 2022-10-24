@@ -33,10 +33,11 @@ const etherProvider = new ethers.providers.Web3Provider(window.ethereum);
 const accountsRequest = await etherProvider.send('eth_requestAccounts', []);
 const signer = etherProvider.getSigner();
 const upAddress = await signer.getAddress();
+// 0x3E39275Ed3B370E074534edeE13a166512AD32aB
 ```
 
   </TabItem>
-  <TabItem value="web3" label="Web3.js">
+  <TabItem value="web3" label="web3.js">
 
 ```js
 import Web3 from 'web3';
@@ -46,6 +47,7 @@ const web3 = new Web3(window.ethereum);
 const accountsRequest = await web3.eth.requestAccounts();
 const accounts = await web3.eth.getAccounts();
 const upAddress = accounts[0];
+// 0x3E39275Ed3B370E074534edeE13a166512AD32aB
 ```
 
   </TabItem>
@@ -85,7 +87,7 @@ Resources:
 
 </details>
 
-In JavaScript, you can use the [`siwe`](https://www.npmjs.com/package/siwe) package.
+In JavaScript, you can use the [`siwe`](https://www.npmjs.com/package/siwe) library.
 
 <Tabs>
   <TabItem value="siwe" label="With siwe library">
@@ -98,10 +100,11 @@ import { SiweMessage } from 'siwe';
 const message = new SiweMessage({
   domain: window.location.host,
   address: upAddress,
-  statement: 'Hello SIWE :)',
+  statement: 'By logging in you agree to the terms and conditions.',
   uri: window.location.origin,
   version: '1',
   chainId: '2828', // For LUKSO L16
+  resources: ['https://terms.website.com'],
 });
 
 const siweMessage = message.prepareMessage();
@@ -126,7 +129,7 @@ const siweMessage = `${domain} wants you to sign in with your Ethereum account:
 
 ${upAddress}
 
-Hello SIWE :)
+By logging in you agree to the terms and conditions.
 
 URI: ${origin}
 Version: 1
@@ -134,7 +137,7 @@ Chain ID: ${LUKSO_L16_CHAIN_ID}
 Nonce: ${nonce}
 Issued At: ${issuedAt}
 Resources:
-- http://some-resource1.com`;
+- https://terms.website.com`;
 ```
 <!-- prettier-ignore-end -->
 
@@ -143,21 +146,33 @@ Resources:
 
 ## 3. Sign the message
 
+Once you have access to the Universal Profile address, you can request a signature. The browser extension will sign the message with the controller key used by the extension (a smart contract can't sign).
+
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
 
-```js
-const signature = await signer.signMessage(siweMessage);
+:::caution
 
+When calling Ethers.js [`signer.signMessage( message )`](https://docs.ethers.io/v5/api/signer/#Signer-signMessage), it uses `personal_sign` RPC call under the hood. However, our extension only supports the latest version of [`eth_sign`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sign). Therefore, you need to use `provider.send("eth_sign", [upAddress, message])` instead.
+
+You can get more information [here](https://github.com/MetaMask/metamask-extension/issues/15857) and [here](https://github.com/ethers-io/ethers.js/issues/1544).
+
+:::
+
+<!-- prettier-ignore-start -->
+
+```js
+const signature = await etherProvider.send('eth_sign', [upAddress, siweMessage]);
 // 0x38c53...
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
-   <TabItem value="web3" label="Web3.js">
+   <TabItem value="web3" label="web3.js">
 
 ```js
 const signature = await web3.eth.sign(siweMessage, upAddress);
-
 // 0x38c53...
 ```
 
@@ -175,69 +190,59 @@ To do so, you can use the [`isValidSignature(...)`](../../standards/smart-contra
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
 
+<!-- prettier-ignore-start -->
+
 ```js
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // ...
 
-const myUniversalProfileContract = new ethers.Contract(
-  upAddress,
-  UniversalProfileContract.abi,
-  signer,
-);
+const myUniversalProfileContract = new ethers.Contract(upAddress, UniversalProfileContract.abi, signer);
 
-const hashedMessage = ethers.utils.keccak256(
-  ethers.utils.toUtf8Bytes(siweMessage),
-);
+const hashedMessage = ethers.utils.hashMessage(siweMessage);
 
-const isValidSignature = await myUniversalProfileContract.isValidSignature(
-  hashedMessage,
-  signature,
-);
+const isValidSignature = await myUniversalProfileContract.isValidSignature(hashedMessage, signature);
 
 const MAGIC_VALUE = '0x1626ba7e'; // https://eips.ethereum.org/EIPS/eip-1271
 
 if (isValidSignature === MAGIC_VALUE) {
   console.log('🎉 Sign-In successful!');
 } else {
-  console.log(
-    '😡 The EOA which signed the message has no SIGN permission over this UP.',
-  );
+  // The EOA which signed the message has no SIGN permission over this UP.
+  console.log('😭 Log In failed');
 }
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
-  <TabItem value="web3" label="Web3.js">
+  <TabItem value="web3" label="web3.js">
+
+<!-- prettier-ignore-start -->
 
 ```js
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // ...
 
-const myUniversalProfileContract = new web3.eth.Contract(
-  UniversalProfileContract.abi,
-  upAddress,
-);
+const myUniversalProfileContract = new web3.eth.Contract(UniversalProfileContract.abi, upAddress);
 
-const hashedMessage = web3.utils.keccak256(siweMessage);
+const hashedMessage = web3.eth.accounts.hashMessage(siweMessage);
 
 const MAGIC_VALUE = '0x1626ba7e'; // https://eips.ethereum.org/EIPS/eip-1271
 
 // if the signature is valid it should return the magic value 0x1626ba7e
-const isValidSignature =
-  await myUniversalProfileContract.methods.isValidSignature(
-    hashedMessage,
-    signature,
-  );
+const isValidSignature = await myUniversalProfileContract.methods.isValidSignature(hashedMessage, signature).call();
 
 if (isValidSignature === MAGIC_VALUE) {
-  console.log('🎉 Sign-In successful!');
+  console.log('🎉 Log In successful!');
 } else {
-  console.log(
-    '😡 The EOA which signed the message has no SIGN permission over this UP.',
-  );
+  // The EOA which signed the message has no SIGN permission over this UP.
+  console.log('😭 Log In failed');
 }
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 </Tabs>
