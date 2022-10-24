@@ -50,7 +50,7 @@ const web3 = new Web3(window.ethereum);
 
 ## 2. Get the Universal Profile address
 
-A call to `requestAccounts` will open the extension popup and prompt the user to select her or his Universal Profile to interact with your Dapp. The LUKSO browser extension will send back the Universal Profile address back to your Dapp (which is the address of the [`LSP0 - ERC725 Account`](../../standards/universal-profile/lsp0-erc725account.md) smart contract).
+A call to `requestAccounts` will open the extension popup and prompt the user to select her or his Universal Profile to interact with your Dapp. The LUKSO browser extension will send the Universal Profile address back to your Dapp (which is the address of the [`LSP0 - ERC725 Account`](../../standards/universal-profile/lsp0-erc725account.md) smart contract).
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
