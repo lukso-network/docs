@@ -20,12 +20,12 @@ rsync -av --progress tools-lsp-factory/docs/. ../docs/tools/lsp-factoryjs --excl
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Pull lsp6-signer repo
+# Pull eip191-signer repo
 
-git clone --depth 1 --branch develop https://github.com/lukso-network/tools-lsp6-signer
+git clone --depth 1 --branch develop https://github.com/lukso-network/tools-eip191-signer
 
 # Copy Docs
-rsync -av --progress tools-lsp6-signer/docs/. ../docs/tools/lsp6-signerjs
+rsync -av --progress tools-eip191-signer/docs/. ../docs/tools/eip191-signerjs
 
 
 cd ..
