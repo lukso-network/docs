@@ -36,4 +36,4 @@ jobs:
           branch: tools-docs-sync
           delete-branch: true
           title: Update Tools Documentation
-          body: Update changes from erc725.js, tools-lsp-factory and tools-lsp6-signer repositories
+          body: Update changes from erc725.js, tools-lsp-factory and tools-eip191-signer repositories

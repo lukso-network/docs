@@ -23,8 +23,8 @@ sidebar_position: 1
     <td><a href="https://github.com/lukso-network/tools-lsp-factory">lukso-network/tools-lsp-factory</a></td>
   </tr>
   <tr>
-    <td><a href="./lsp6-signerjs/getting-started">lsp6-signer.js</a></td>
-    <td style={{textAlign: 'center'}}><a href="https://www.npmjs.com/package/@lukso/lsp6-signer.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badgen badge" src="https://img.shields.io/npm/v/@lukso/lsp6-signer.js.svg?style=flat&label=%40lukso%2Flsp6-signer.js"/></a></td>
-    <td><a href="https://github.com/lukso-network/tools-lsp6-signer">lukso-network/tools-lsp6-signer</a></td>
+    <td><a href="./eip191-signerjs/getting-started">eip191-signer.js</a></td>
+    <td style={{textAlign: 'center'}}><a href="https://www.npmjs.com/package/@lukso/eip191-signer.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badgen badge" src="https://img.shields.io/npm/v/@lukso/eip191-signer.js.svg?style=flat&label=%40lukso%2Feip191-signer.js"/></a></td>
+    <td><a href="https://github.com/lukso-network/tools-eip191-signer">lukso-network/tools-eip191-signer</a></td>
   </tr>
 </table>
