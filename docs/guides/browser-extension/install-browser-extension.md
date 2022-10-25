@@ -24,6 +24,11 @@ If you have **MetaMask** installed, *right click on both* MetaMask and UP Extens
 
 This guide will teach you how to download and install the Universal Profile browser extension on Chrome, Edge, Opera, or Brave.
 
+You can test the browser extension with the following example dApps (Or any other dApp, that runs on the [L16 Testnet](http://docs.lukso.tech/networks/l16-testnet/parameters)):
+
+- [up-test-dapp.lukso.tech](https://up-test-dapp.lukso.tech)
+- [examples.lukso.tech](https://examples.lukso.tech)
+
 ## Download the extension
 
 Click on link below to download the extension, based on the browser to which you want to install it.

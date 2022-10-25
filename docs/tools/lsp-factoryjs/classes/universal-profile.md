@@ -50,7 +50,7 @@ Object containing profile properties set during Universal Profile deployment.
 
 #### 2. `options` - Object (optional)
 
-Object which specifies how the [UniversalProfile](../../../standards/universal-profile/lsp0-erc725account.md), [KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) and [UniversalReceiverDelegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate) smart contracts will be deployed.
+Object which specifies how the [UniversalProfile](../../../standards/universal-profile/lsp0-erc725account.md), [KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) and [UniversalReceiverDelegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) smart contracts will be deployed.
 
 | Name                                                                               | Type             | Description                                                                                                                                                                                                   |
 | :--------------------------------------------------------------------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
