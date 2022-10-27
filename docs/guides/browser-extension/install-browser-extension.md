@@ -33,9 +33,9 @@ You can test the browser extension with the following example dApps (Or any othe
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.0.0-develop.344-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-1.0.0-develop.344.zip) (All other browsers)**
+### :inbox_tray: **[Download link (v1.0.0-develop.359-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-1.0.0-develop.359.zip) (All other browsers)**
 
-### :inbox_tray: **[Download link (v1.0.0-develop.344-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-1.0.0-develop.344.zip) (Chrome)**
+### :inbox_tray: **[Download link (v1.0.0-develop.359-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-1.0.0-develop.359.zip) (Chrome)**
 
 ## Unpack the archive
 
