@@ -16,11 +16,10 @@ The current UP Browser Extenstion deploys profiles on the [L16 Testnet](http://d
 :::
 
 :::note
-If you have **MetaMask** installed, *right click on both* MetaMask and UP Extension and select *"This Can Read and Change Site Data > When you Click the Extension"*. Then you you can select for every website which extension you use. By closing the tab you can reset this selection.
+If you have **MetaMask** installed, _right click on both_ MetaMask and UP Extension and select _"This Can Read and Change Site Data > When you Click the Extension"_. Then you you can select for every website which extension you use. By closing the tab you can reset this selection.
 
 <img width="400" src="https://user-images.githubusercontent.com/232662/192822200-392b19f1-321b-4a59-928a-f71876bec6f3.png" />
 :::
-
 
 This guide will teach you how to download and install the Universal Profile browser extension on Chrome, Edge, Opera, or Brave.
 
@@ -28,6 +27,14 @@ You can test the browser extension with the following example dApps (Or any othe
 
 - [up-test-dapp.lukso.tech](https://up-test-dapp.lukso.tech)
 - [examples.lukso.tech](https://examples.lukso.tech)
+
+Projects built by the LUKSO community:
+
+- [lookso.io](https://lookso.io/) - A decentralized social feed geared towards Universal Profiles and the LUKSO blockchain
+- [universal.page](https://universal.page/) - Create a customizable website to showcase and sell digital assets on
+  LUKSO.
+- [relayer-frontend.vercel.app](https://relayer-frontend.vercel.app/) - A relayer that lets you used your staking rewards to pay for your transaction fees.
+- [marble.cool](https://www.marble.cool/) - A LUKSO-native wallet.
 
 ## Download the extension
 
