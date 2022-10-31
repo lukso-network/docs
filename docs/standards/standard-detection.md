@@ -38,20 +38,24 @@ Calling this function will return **TRUE** if the contract implements this speci
 
 A **[Universal Profile](./universal-profile/lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/lsp0-erc725account.md)(LSP0). Therefore, the contract SHOULD implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
+<!-- prettier-ignore-start -->
+
 ```javascript
-import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
-import Web3 from "web3";
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import Web3 from 'web3';
 
 // Connect to the LUKSO L14 network
-const web3 = new Web3("https://rpc.l14.lukso.network");
+const web3 = new Web3('https://rpc.l14.lukso.network');
 
 // Create an instance of the Universal Profile
-const myUPContract = new web3.eth.Contract(UniversalProfile.abi, "<contract-address>");
+const myUPContract = new web3.eth.Contract(UniversalProfile.abi, '<contract-address>');
 
 const ERC725AccountInterfaceId = '0x63cb749b';
 await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call();
-> TRUE or FALSE
+// true or false
 ```
+
+<!-- prettier-ignore-end -->
 
 :::info
 
@@ -77,6 +81,8 @@ Calling this function will return a specific bytes4 value (defined in the Metada
 
 An **[LSP7DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y Data keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y Data keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 
+<!-- prettier-ignore-start -->
+
 ```javascript
 import LSP7DigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json';
 import Web3 from 'web3';
@@ -87,7 +93,14 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 // Create an instance of the LSP7 Token
 const myTokenContract = new web3.eth.Contract(LSP7DigitalAsset.abi, '<contract-address>');
 
-const SupportedStandards_LSP4 = '0xeafec4d89fa9619884b60000a4d96624a38f7ac2d8d9a604ecf07c12c77e480c';
-await myTokenContract.methods["getData(bytes32[])"]([SupportedStandards_LSP4]).call();
-> 0xa4d96624; // valid result according to LSP4
+const SupportedStandards_LSP4 =
+  '0xeafec4d89fa9619884b60000a4d96624a38f7ac2d8d9a604ecf07c12c77e480c';
+await myTokenContract.methods['getData(bytes32[])']([SupportedStandards_LSP4,]).call();
+// 0xa4d96624 -> valid result according to LSP4
 ```
+
+<!-- prettier-ignore-end -->
+
+## Further information
+
+- [How to check if an address is a Universal Profile? - (LUKSO Docs)](../guides/universal-profile/check-if-address-is-universal-profile.md)
