@@ -13,6 +13,11 @@ sidebar_position: 1
     <th>Repository</th>
   </tr>
   <tr>
+    <td><a href="./lsp-smart-contracts/getting-started">lsp-smart-contracts</a></td>
+    <td style={{textAlign: 'center'}}><a href="https://www.npmjs.com/package/@lukso/lsp-smart-contracts" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badgen badge" src="https://img.shields.io/npm/v/@lukso/lsp-smart-contracts.svg?style=flat&label=%40lukso%2Flsp-smart-contracts"/></a></td>
+    <td><a href="https://github.com/lukso-network/lsp-smart-contracts">lukso-network/lsp-smart-contracts</a></td>
+  </tr>
+  <tr>
     <td><a href="./erc725js/getting-started">erc725.js</a></td>
     <td style={{textAlign: 'center'}}><a href="https://www.npmjs.com/package/@erc725/erc725.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badgen badge" src="https://img.shields.io/npm/v/@erc725/erc725.js.svg?style=flat&label=%40erc725%2Ferc725.js"/></a></td>
     <td><a href="https://github.com/ERC725Alliance/erc725.js">ERC725Alliance/erc725.js</a></td>
