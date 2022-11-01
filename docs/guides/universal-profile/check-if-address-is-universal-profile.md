@@ -24,7 +24,7 @@ if (!isAddress(address)) {
 }
 ```
 
-## 2) Check EIP-165 `LSP0ERC725Account` interface
+## 2) Check the contract supports the `LSP0ERC725Account` interface using ERC165
 
 This is next check that makes sure we deal with a smart contract that supports the `LSP0ERC725Account` interface ([EIP-165](https://eips.ethereum.org/EIPS/eip-165)). For this we need to set `Contract` instance and call `supportsInterface` method.
 
