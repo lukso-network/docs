@@ -96,5 +96,6 @@ contract MyToken is LSP7DigitalAsset {
 
 ## Further Information
 
-- **[UniversalProfile & Identity Section](https://youtu.be/SbTo_e3l_Lk?t=1727)**
-- **[NFT 2.0 Section](https://youtu.be/hg1Ow6u9QVk)**
+- [@lukso/lsp-smart-contracts NPM package](../../tools/lsp-smart-contracts/getting-started.md)
+- [UniversalProfile & Identity Section](https://youtu.be/SbTo_e3l_Lk?t=1727)
+- [NFT 2.0 Section](https://youtu.be/hg1Ow6u9QVk)
