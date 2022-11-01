@@ -7,7 +7,7 @@ sidebar_position: 1
 - [GitHub: `lukso-network/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts)
 - [NPM: `@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)
 
-This library gives you an easy access to all LUKSO smart contracts, ABI, constants, etc.
+This library gives you an easy access to all LUKSO smart contracts in Solidity, JSON ABIs, constants, etc.
 
 ## Install
 
