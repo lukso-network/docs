@@ -4,8 +4,8 @@ sidebar_position: 1
 
 # Getting Started
 
-- [GitHub Repository](https://github.com/lukso-network/tools-eip191-signer)
-- [NPM Package](https://www.npmjs.com/package/@lukso/eip191-signer.js)
+- [GitHub Repository](https://github.com/lukso-network/tools-lsp6-signer)
+- [NPM Package](https://www.npmjs.com/package/@lukso/lsp6-signer.js)
 
 The `@lukso/eip191-signer.js` package is used to sign any EIP191 data.
 
