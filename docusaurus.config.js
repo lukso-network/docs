@@ -49,6 +49,10 @@ module.exports = {
             from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
             to: '/standards/generic-standards/lsp1-universal-receiver-delegate',
           },
+          {
+            from: '/tools/relayer-api/execute-transaction',
+            to: '/standards/relayer-api',
+          },
         ],
       },
     ],
