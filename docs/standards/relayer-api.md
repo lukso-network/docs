@@ -36,7 +36,9 @@ Executes a signed transaction on behalf of a Universal Profile using [`executeRe
 
 Returns the available quota left for a registered Universal Profile.
 
-- `signature` is the message value signed by a controller key with the [`SIGN` permission](./universal-profile/lsp6-key-manager#permissions) of the Universal Profile. The hash to sign should be calculated as [EIP-712](https://eips.ethereum.org/EIPS/eip-712) hash where the message is `keccack256(address, timestamp)`. Make sure that no matter the language or platform timestamp is of type `int`, `int256`, `uint` or `uint256`. To calculate **the message** to verify the signature in the backed code, we use the [soliditysha3()](https://web3js.readthedocs.io/en/v1.7.4/web3-utils.html#soliditysha3). The hash from that message is calculated automatically in the [web3.eth.accounts.sign](https://web3js.readthedocs.io/en/v1.8.0/web3-eth-accounts.html?#sign). To get hash manually use [hashMessage()](https://web3js.readthedocs.io/en/v1.8.0/web3-eth-accounts.html?#hashmessage).
+- `signature` is the message value signed by a controller key with the [`SIGN` permission](./universal-profile/lsp6-key-manager#permissions) of the Universal Profile. The hash to sign should be calculated as [EIP-712](https://eips.ethereum.org/EIPS/eip-712) hash where the message is `keccack256(address, timestamp)`. Make sure that no matter the language or platform timestamp is of type `int`, `int256`, `uint` or `uint256`. In the backend the message is reconstructed using [soliditysha3()](https://web3js.readthedocs.io/en/v1.7.4/web3-utils.html#soliditysha3) to verify the signature.
+
+[Web3.js](https://web3js.readthedocs.io/en/v1.8.0/web3-eth-accounts.html?#sign) and [ethers.js](https://docs.ethers.io/v5/api/signer/#Signer-signMessage) both automatically hash when using their native sign functions. This may need to be done manually if using a different library.
 - `timestamp` in **seconds**. Must be now +/- 5 seconds.
 
 <details>
