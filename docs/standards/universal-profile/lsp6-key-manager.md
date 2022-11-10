@@ -187,7 +187,7 @@ Developers can use the `DECRYPT` permission to decrypt data or messages, for ins
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
     </p>
 
-The permission `SIGN` enables an address to authenticate on behalf of the UP. It can be used primarily in web2.0 apps to sign login messages.
+The permission `SIGN` enables an address to authenticate on behalf of the UP. It can be used primarily in web2.0 apps to [sign login messages](../../guides/browser-extension/sign-in-with-ethereum).
 
 </details>
 
