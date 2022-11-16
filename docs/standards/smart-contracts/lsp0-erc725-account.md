@@ -227,7 +227,7 @@ Retrieves the data set for the given data key.
 | :---------- | :---- | :----------------------------------- |
 | `dataValue` | bytes | The data for the requested data key. |
 
-### execute (Array) - ERC725X
+### execute (Array)
 
 ```solidity
 function execute(

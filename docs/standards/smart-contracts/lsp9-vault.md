@@ -223,7 +223,7 @@ Retrieves the data that was set for a particular data `key`.
 | :------ | :---- | :----------------------------------- |
 | `value` | bytes | The data for the requested data key. |
 
-### execute (Array) - ERC725X
+### execute (Array)
 
 ```solidity
 function execute(
