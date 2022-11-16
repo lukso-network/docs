@@ -165,6 +165,53 @@ Retrieves the data set for the given data key.
 | :---------- | :---- | :----------------------------------- |
 | `dataValue` | bytes | The data for the requested data key. |
 
+### execute (Array) - ERC725X
+
+```solidity
+function execute(
+    uint256[] memory operationsType,
+    address[] memory targets,
+    uint256[] memory values,
+    bytes[] memory memory datas
+) public payable returns (bytes memory result)
+```
+
+Same as [`execute(uint256,address,uint256,bytes)`](#execute---erc725x) but executes a batch of calls on any other smart contracts, transferring values, or deploying new smart contracts.
+
+The values in the list of `operationsType` can be one of the following:
+
+- `0` for `CALL`
+- `1` for `CREATE`
+- `2` for `CREATE2`
+- `3` for `STATICCALL`
+- `4` for `DELEGATECALL`
+
+_Triggers the **[Executed](#executed)** event on every successful call that used operation type `CALL`, `STATICCALL` or `DELEGATECALL`._
+
+_Triggers the **[ContractCreated](#contractcreated)** event on every newly created smart contract that used operation `CREATE` or `CREATE2`._
+
+:::note
+The `execute(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner of the contract.
+
+The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to transfer value.
+:::
+
+#### Parameters:
+
+| Name             | Type        | Description                                                                                                                  |
+| :--------------- | :-----------| :--------------------------------------------------------------------------------------------------------------------------- |
+| `operationsType` | `uint256[]` | The type of operations that need to be executed.                                                                             |
+| `targets`        | `address[]` | The addresses to interact with. Unused if a contract is created (operations 1 & 2).                                          |
+| `values`         | `uint256[]` | The amount of native tokens to transfer with the transaction (in Wei).                                                       |
+| `datas`          | `bytes[]`   | The calldatas (ABI-encoded payloads of functions to run on other contracts), or the bytecodes of the contracts to deploy. |
+
+#### Return Values:
+
+| Name     | Type  | Description                                                                                                                                        |
+| :------- | :---- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `results` | `bytes[]` | The datas that were returned by the functions called on the external contracts, or the addresses of the contracts created (operations 1 & 2). |
+
+
 ### setData (Array) - ERC725Y 
 
 ```solidity
