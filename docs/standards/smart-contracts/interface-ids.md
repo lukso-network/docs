@@ -20,15 +20,20 @@ import { INTERFACE_IDS } from "@lukso/lsp-smart-contracts/constants.js"
 const ERC725X_ID = INTERFACE_IDS.ERC725X
 ```
 
-| Contract                          | InterfaceId  | Description                                                           |
+| Contract                          | InterfaceId   Description                                                            |
 | :-------------------------------- | :----------- | :-------------------------------------------------------------------- |
-| **ERC1271**                       | `0x1626ba7e` | Standard Signature Validation Method for Contracts.    
-| **ERC725X**                       | `0x44c028fe` | General executor.                                                     |
+| **ERC165**                        | `0x01ffc9a7` | Standard Interface Detection                                          |
+| **ERC1271**                       | `0x1626ba7e` | Standard Signature Validation Method for Contracts.                   |
+| **ERC725X**                       | `0x570ef073` | General executor.                                                     |
 | **ERC725Y**                       | `0x714df77c` | General Data key-value store.                                         |
-| **LSP0ERC725Account**             | `0xeb6be62e` | Account that represent an identity on-chain                           |
-| **LSP1UniversalReceiver**         | `0x6bb56a14` | Universal Receiver entry function.                                    |               |
+| **LSP0ERC725Account**             | `0xcf6e8efc` | Account that represent an identity on-chain                           |
+| **LSP1UniversalReceiver**         | `0x6bb56a14` | Universal Receiver entry function.                                    |
 | **LSP1UniversalReceiverDelegate** | `0xa245bbda` | Universal Receiver delegated to an other smart contract.              |
-| **LSP6KeyManager**                | `0xc403d48f` | Controller for the ERC725Account.                                     |
-| **LSP7DigitalAsset**              | `0x5fcaac27` | Digital Assets either fungible or non-fungible. _ERC20 A-like_        |
-| **LSP8IdentifiableDigitalAsset**  | `0x49399145` | Identifiable Digital Assets (NFT). _ERC721 A-like_                    |
-| **LSP9Vault**                     | `0xfd4d5c50` | Vault that could interact with other smart contracts and hold assets. |
+| **LSP6KeyManager**                | `0xf9150d55` | Controller for the ERC725Account.                                     |
+| **LSP7DigitalAsset**              | `0xda1f85e4` | Digital Assets either fungible or non-fungible. _ERC20 A-like_        |
+| **LSP8IdentifiableDigitalAsset**  | `0x622e7a01` | Identifiable Digital Assets (NFT). _ERC721 A-like_                    |
+| **LSP9Vault**                     | `0xd9483482` | Vault that can interact with other smart contracts and hold assets.   |
+| **LSP14Ownable2Steps**            | `0x94be5999` | Extended version of [EIP173] (Ownable) with a 2-step process to transfer or renounce ownership. |
+
+
+[EIP173]: https://eips.ethereum.org/EIPS/eip-173
