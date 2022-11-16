@@ -67,12 +67,18 @@ This can be a contract that implements:
 ### execute
 
 ```solidity
-function execute(bytes memory _calldata) public payable returns (bytes memory result)
+function execute(bytes memory payload) public payable returns (bytes memory result)
 ```
 
-Executes a payload on the **LSP0ERC725Account** contract.
+Executes a payload on the linked **LSP0ERC725Account**.
 
-This payload must represent the abi-encoded function call of one of the **LSP0ERC725Account** contract functions: **[`setData(...)`](./lsp0-erc725-account.md#setdata)**, **[`execute(...)`](./lsp0-erc725-account.md#execute)**, or **[`transferOwnership(...)`](./lsp0-erc725-account.md#transferownership)**.
+This payload must represent the abi-encoded function call of one of the functions on the linked **LSP0ERC725Account**: 
+
+- **[`setData(bytes32,bytes)`](./lsp0-erc725-account.md#setdata)**.
+- **[`setData(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdata-array)**.
+- **[`execute(uint256,address,uint256,bytes)`](./lsp0-erc725-account.md#execute)**.
+- **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
+- **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
@@ -80,13 +86,43 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 | Name        | Type  | Description                 |
 | :---------- | :---- | :-------------------------- |
-| `_calldata` | bytes | The payload to be executed. |
+| `payload` | bytes | The payload to be executed. |
 
 #### Return Values:
 
 | Name     | Type  | Description                                                                  |
 | :------- | :---- | :--------------------------------------------------------------------------- |
 | `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded. |
+
+### execute (Array)
+
+```solidity
+function execute(bytes[] calldata payloads) public payable returns (bytes memory result)
+```
+
+Same than `execute(bytes)` but executes a batch of payloads on the linked **LSP0ERC725Account**.
+
+The payloads must represent the abi-encoded function calls of one of the **LSP0ERC725Account** contract functions: 
+
+- **[`setData(bytes32,bytes)`](./lsp0-erc725-account.md#setdata)**.
+- **[`setData(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdata-array)**.
+- **[`execute(uint256,address,uint256,bytes)`](./lsp0-erc725-account.md#execute)**.
+- **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
+- **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
+
+_Triggers the **[Executed](#executed)** event when a call is successfully executed._
+
+#### Parameters:
+
+| Name        | Type  | Description                 |
+| :---------- | :---- | :-------------------------- |
+| `payloads` | `bytes[]` | The payloads to be executed. |
+
+#### Return Values:
+
+| Name     | Type  | Description                                                                  |
+| :------- | :---- | :--------------------------------------------------------------------------- |
+| `results` | `bytes[]` | The returned datas as ABI-encoded bytes[] if the calls on the account succeeded. |
 
 ### getNonce
 
@@ -126,7 +162,7 @@ function executeRelayCall(
 ) public
 ```
 
-Allows anybody to execute a payload on the **LSP0ERC725Account** contract, if they have a signed message from an executor.
+Allows anybody to execute a payload on the linked **LSP0ERC725Account**, if they have a signed message from an address with some permissions.
 
 To obtain a valid signature you must do the following:
 
@@ -182,9 +218,41 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 | Name        | Type    | Description                                       |
 | :---------- | :------ | :------------------------------------------------ |
-| `signature` | bytes   | The bytes65 ethereum signature.                   |
+| `signature` | bytes   | The bytes65 EIP191 signature.                   |
 | `nonce`     | uint256 | The nonce of the address that signed the message. |
 | `_calldata` | bytes   | The payload to be executed.                       |
+
+#### Return Value:
+
+| Name    | Type    | Description        |
+| :------ | :------ | :----------------- |
+| `result` | `bytes` | If the payload on the linked **LSP0ERC725Account** was `ERC725X.execute(...)`, the data returned by the external made by the UP. |
+### executeRelayCall (Array)
+
+```solidity
+function executeRelayCall(
+    bytes[] calldata signatures,
+    uint256[] calldata nonces,
+    bytes[] calldata payloads
+) public
+```
+
+Same as [`executeRelayCall(bytes,uint256,bytes)`](#executerelaycall), but allows anybody to execute a **batch of payloads** on the linked **LSP0ERC725Account** on behalf of other addresses, as long as the addresses that signed the `payloads` have some permissions.
+
+#### Parameters:
+
+| Name        | Type    | Description                                       |
+| :---------- | :------ | :------------------------------------------------ |
+| `signatures` | `bytes[]`   | An array of bytes65 EIP191 signatures.                   |
+| `nonces`     | `uint256[]` | An array of nonces of the addresses that signed the messages. |
+| `payloads` | `bytes[]`  | An array of payloads to be executed.                       |
+
+
+#### Return Values:
+
+| Name    | Type    | Description        |
+| :------ | :------ | :----------------- |
+| `results` | `bytes[]` | For each payload on the linked **LSP0ERC725Account** that was `ERC725X.execute(...)`, the data returned by the external made by the UP. |
 
 ### isValidSignature
 
