@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
 /* stylelint-disable docusaurus/copyright-header */
 /**
  * Any CSS included here will be global. The classic template
@@ -17,7 +19,8 @@
   --ifm-code-font-size: 95%;
   --color-cta-background: #ecf0f3;
   --color-cta-background-blue: #6270a4;
-  --ifm-font-family-base: Apax, sans-serif;
+  --ifm-heading-font-family: Apax, sans-serif;
+  --ifm-font-family-base: Inter, sans-serif;
 }
 
 html[data-theme='dark'] {
