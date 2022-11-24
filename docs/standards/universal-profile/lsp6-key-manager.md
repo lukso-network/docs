@@ -85,9 +85,26 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 </details>
 
 <details>
+    <summary><code>REENTRANCY</code> - Allows reentering during an execution</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
+    </p>
+
+Given a contract has this permission, it enables that contract to be able to execute a payload during the execution of another payload.
+
+E.g. One of the best uses for this permission is the following scenario:
+1. Make en external call to a contract A .
+2. During the call the contract A will check the received data, will make some internal updates.
+3. After that the contract A will call back your Universal Profile with another payload that will update your data storage.
+
+In order for that interaction to happen the contract A must have the REENTRANCY permission.
+
+</details>
+
+<details>
     <summary><code>TRANSFERVALUE</code> - Allows transfering value to other contracts from the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
     </p>
 
 Enables sending native tokens from the linked ERC725Account to any address.<br/>
@@ -101,7 +118,7 @@ Enables sending native tokens from the linked ERC725Account to any address.<br/>
 <details>
     <summary><code>CALL</code> - Allows calling other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code><br/>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code><br/>
     </p>
 
 This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts). Allowing state changes at the address being called.
@@ -111,7 +128,7 @@ This permission enables anyone to use the ERC725Account linked to Key Manager to
 <details>
     <summary><code>STATICCALL</code> - Allows calling other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code><br/>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000002000</code><br/>
     </p>
 
 This permission enables the ERC725Account linked to Key Manager to make external calls to contracts while disallowing state changes at the address being called.
@@ -124,7 +141,7 @@ It uses the [STATICCALL](https://eips.ethereum.org/EIPS/eip-214) opcode when per
 <details>
     <summary><code>DELEGATECALL</code> - Allows delegate calling other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000008000</code>
     </p>
 
 This permission allows executing code and functions from other contracts in the UP context.
@@ -140,7 +157,7 @@ This permission allows executing code and functions from other contracts in the 
 <details>
     <summary><code>DEPLOY</code> - Allows deploying other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000010000</code>
     </p>
 
 Enables the caller to deploy a smart contract, using the linked ERC725Account as a deployer. Developers should provide the contract's bytecode to be deployed in the payload (ABI-encoded) passed to the Key Manager.
@@ -152,7 +169,7 @@ Enables the caller to deploy a smart contract, using the linked ERC725Account as
 <details>
     <summary><code>SETDATA</code> - Allows setting data on the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000040000</code>
     </p>
 
 Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
@@ -164,7 +181,7 @@ Allows an address to write any form of data in the [ERC725Y](https://github.com/
 <details>
     <summary><code>ENCRYPT</code>: Allows encrypting data or messages on behalf of the controlled account</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000080000</code>
     </p>
 
 Developers can use the `ENCRYPT` permission to encrypt data or messages, for instance for private messaging.
@@ -174,7 +191,7 @@ Developers can use the `ENCRYPT` permission to encrypt data or messages, for ins
 <details>
     <summary><code>DECRYPT</code>: Allows decrypting data or messages on behalf of the controlled account</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000100000</code>
     </p>
 
 Developers can use the `DECRYPT` permission to decrypt data or messages, for instance for private messaging.
@@ -184,7 +201,7 @@ Developers can use the `DECRYPT` permission to decrypt data or messages, for ins
 <details>
     <summary><code>SIGN</code>: Allows signing on behalf of the controlled account, for example for login purposes</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000200000</code>
     </p>
 
 The permission `SIGN` enables an address to authenticate on behalf of the UP. It can be used primarily in web2.0 apps to [sign login messages](../../guides/browser-extension/sign-in-with-ethereum).
@@ -201,14 +218,10 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 The super permissions grants the same permissions as their non-super counter parts, with the difference being that the checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions whether these restrictions are set or not.
 
-The super permissions are located on left side of the permissions bits range (see picture below).
-
-![LSP6 SUPER Permissions](/img/standards/lsp6/lsp6-super-permissions.jpeg)
-
 <details id="super-set-data">
     <summary><code>SUPER_SETDATA</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0800000000000000000000000000000000000000000000000000000000000000</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000020000</code>
     </p>
 
 Same as `SETDATA`, but allowing to set any ERC725Y data keys.
@@ -218,7 +231,7 @@ Same as `SETDATA`, but allowing to set any ERC725Y data keys.
 <details>
     <summary><code>SUPER_DELEGATECALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x1000000000000000000000000000000000000000000000000000000000000000</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
     </p>
 
 Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
@@ -228,7 +241,7 @@ Same as `DELEGATECALL`, but allowing to interact with any contract. This will no
 <details>
     <summary><code>SUPER_STATICCALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x2000000000000000000000000000000000000000000000000000000000000000</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
     </p>
 
 Same as `STATICCALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
@@ -238,7 +251,7 @@ Same as `STATICCALL`, but allowing to interact with any contract. This will not 
 <details>
     <summary><code>SUPER_CALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x4000000000000000000000000000000000000000000000000000000000000000</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
     </p>
 
 Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
@@ -248,7 +261,7 @@ Same as `CALL`, but allowing to interact with any contract. This will not check 
 <details>
     <summary><code>SUPER_TRANSFERVALUE</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x8000000000000000000000000000000000000000000000000000000000000000</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
     </p>
 
 Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
@@ -277,10 +290,10 @@ Permissions can be combined if an `address` needs to hold more than one permissi
 ```solidity
 permissions: CALL + TRANSFERVALUE
 
-  0x0000000000000000000000000000000000000000000000000000000000000010 (16 in decimal)
-+ 0x0000000000000000000000000000000000000000000000000000000000000080 (128)
+  0x0000000000000000000000000000000000000000000000000000000000000800 (2048 in decimal)
++ 0x0000000000000000000000000000000000000000000000000000000000000200 (512)
 ---------------------------------------------------------------------
-= 0x0000000000000000000000000000000000000000000000000000000000000090 (= 272)
+= 0x0000000000000000000000000000000000000000000000000000000000000a00 (= 2560)
 ```
 
 </TabItem>
@@ -290,9 +303,9 @@ permissions: CALL + TRANSFERVALUE
 permissions: CHANGEPERMISSIONS + SETDATA
 
   0x0000000000000000000000000000000000000000000000000000000000000004 (4 in decimal)
-+ 0x0000000000000000000000000000000000000000000000000000000000000100 (256)
++ 0x0000000000000000000000000000000000000000000000000000000000040000 (262144)
 ---------------------------------------------------------------------
-= 0x0000000000000000000000000000000000000000000000000000000000000104 (= 260)
+= 0x0000000000000000000000000000000000000000000000000000000000040004 (= 262148)
 ```
 
 </TabItem>
@@ -404,12 +417,12 @@ Such transaction flow can lead an initial caller to use more permissions than al
 
 :::caution
 
-Each permission MUST be **exactly 32 bytes long** and **zero left-padded** (except for the SUPER permissions, that are zero right-padded):
+Each permission MUST be **exactly 32 bytes long** and **zero left-padded**:
 
 - `0x0000000000000000000000000000000000000000000000000000000000000008` ✅
 - `0x0800000000000000000000000000000000000000000000000000000000000000` ❌
 
-For instance, if you try to set the permission TRANSFERVALUE for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000` (equivalent to the setting the permission [`SUPER_SETDATA`](#super-permissions).
+For instance, if you try to set the permission TRANSFERVALUE for an address as `0x08`, this will be stored internally as `0x0800000000000000000000000000000000000000000000000000000000000000`.
 
 Ensure the `bytes32` value set under the permissions are correct according to these rules, to prevent incorrect or unexpected behaviour and errors.
 
