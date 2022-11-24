@@ -69,7 +69,7 @@ This permission allows giving permissions to new addresses. This role-management
 </details>
 
 <details>
-    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses</summary>
+    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
@@ -85,6 +85,55 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 </details>
 
 <details>
+    <summary><code>ADDEXTENSIONS</code> - Allows adding new extension contracts on the linked ERC725Account.</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
+    </p>
+
+The `ADDEXTENSIONS` permission enables to add new extension contracts via the `fallback` function of the linked ERC725Account.
+
+</details>
+
+<details>
+    <summary><code>CHANGEEXTENSIONS</code> - Allows editing the address for an extension contract on the linked ERC725Account.</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code>
+    </p>
+
+The `CHANGEEXTENSIONS` permission enables to edit the extension contract address for a specific bytes4 function selector sent to the `fallback` function of the linked ERC725Account.
+
+</details>
+
+<details>
+    <summary><code>ADDUNIVERSALRECEIVERDELEGATE</code> - Allows adding new LSP1UniversalReceiverDelegate contracts addresses.</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
+    </p>
+
+The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific Type IDs, when no contracts extension was initially setup for a specific Type ID.
+
+See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
+
+> **NB** this permission also enables to set the address of the default LSP1UniversalReceiverDelegate contract under the `LSP1UniversalReceiverDelegate` data key if no address was set in the first place.
+
+</details>
+
+<details>
+    <summary><code>CHANGEUNIVERSALRECEIVERDELEGATE</code> - Allows editing LSP1UniversalReceiverDelegate contracts addresses.</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
+    </p>
+
+The `CHANGEUNIVERSALRECEIVERDELEGATE` permission enables two things:
+
+1. edit the address of the default LSP1UniversalReceiverDelegate contract (linked under the `LSP1UniversalReceiverDelegate` data key).
+2. edit the addresses of the LSP1UniversalReceiverDelegate extension contracts linked to specific Type IDs.
+
+See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
+
+</details>
+
+<details>
     <summary><code>REENTRANCY</code> - Allows reentering during an execution</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
@@ -93,6 +142,7 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 Given a contract or EOA has this permission, it enables it to be able to execute a payload during the execution of another payload. A contract would reenter by using `execute(..)` and an EOA would do that through `executeRelayCall(..)`.
 
 E.g. One of the best uses for this permission is the following scenario:
+
 1. The ERC725Acccount linked to the Key Manager makes an external call to a _contract A_.
 2. _Contract A_ will make some internal updates using the received data.
 3. The _contract A_ will then call back the ERC725Account **(via the Key Manager)** with another payload that will update the account storage.
@@ -105,26 +155,38 @@ In order for that interaction to happen the contract A must have the REENTRANCY 
 </details>
 
 <details>
-    <summary><code>TRANSFERVALUE</code> - Allows transfering value to other contracts from the controlled contract</summary>
+    <summary><code>TRANSFERVALUE</code> - Allows to transfer the native tokens of the linked ERC725Account <strong>with restrictions</strong>.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
     </p>
 
-Enables sending native tokens from the linked ERC725Account to any address.<br/>
+The `TRANSFERVALUE` permission enables to transfer the native tokens of the linked ERC725Account **with restrictions**.
 
-> **Note:** For a simple native token transfer, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
+1. to specific addresses (EOAs or contracts).
+2. to contracts implementing specific type of _interfaces standards_, that can be detected using ERC165 interfaces IDs.
+
+Such restrictions can be applied using the LSP6 data `AddressPermissions:AllowedCalls:<address>`, where `<address>` is the address of the controller that has the `TRANSFERVALUE` permission.
+
+<br/>
+
+> **Note:** For simple native token transfers, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
 >
 > The caller will need the permission `CALL` to send any data along the LYX transfer.
 
 </details>
 
 <details>
-    <summary><code>CALL</code> - Allows calling other contracts through the controlled contract</summary>
+    <summary><code>CALL</code> - Allows to use the linked ERC725Account to interact with contracts <strong>with restrictions</strong>.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code><br/>
     </p>
 
-This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts). Allowing state changes at the address being called.
+The `CALL` permission enables to use the linked ERC725Account to call functions on contracts deployed on the network **with restrictions**.
+
+1. to specific contract addresses (contracts).
+2. to contracts implementing specific type of _interfaces standards_, that can be detected using ERC165 interfaces IDs.
+
+It uses the underlying opcode `CALL` which allows to change states on the called contract.
 
 </details>
 
@@ -232,12 +294,32 @@ Same as `SETDATA`, but allowing to set any ERC725Y data keys.
 </details>
 
 <details>
-    <summary><code>SUPER_DELEGATECALL</code></summary>
-     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
+    <summary><code>SUPER_TRANSFERVALUE</code> - Allows to transfer the native tokens of the linked ERC725Account <strong>without restriction</strong>.</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
     </p>
 
-Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+The `SUPER_TRANSFERVALUE` permission enables to transfer the native tokens of the linked ERC725Account to **any address without restrictions** (EOAs or contracts).
+
+It does not check if there are any contracts' standards, addresses or functions restricted under `AddressPermissions:AllowedCalls:<address>`.
+
+<br/>
+
+> **Note:** For a simple native token transfers, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
+>
+> The caller will need the permission `SUPER_CALL` to be able to send data alongside LYX transfers to any addresses.
+
+</details>
+
+<details>
+    <summary><code>SUPER_CALL</code> - Allows to use the linked ERC725Account to interact with contracts <strong>without restrictions</strong>.</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code><br/>
+    </p>
+
+The `SUPER_CALL` permission behaves like the `CALL` permission but **without restrictions**.
+
+It enables to use the linked ERC725Account to call **any functions** on **any contract** deployed on the network. It does not check for allowed `address`, standard or functions if the caller has any of these restrictions set under `AddressPermissions:AllowedCalls:<address>`.
 
 </details>
 
@@ -247,27 +329,19 @@ Same as `DELEGATECALL`, but allowing to interact with any contract. This will no
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
     </p>
 
+The `SUPER_STATICCALL` permission behaves like the `STATICCALL` permission but **without restrictions**.
+
 Same as `STATICCALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
 
 </details>
 
 <details>
-    <summary><code>SUPER_CALL</code></summary>
+    <summary><code>SUPER_DELEGATECALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
     </p>
 
-Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
-
-</details>
-
-<details>
-    <summary><code>SUPER_TRANSFERVALUE</code></summary>
-     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
-    </p>
-
-Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
+Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
 
 </details>
 
