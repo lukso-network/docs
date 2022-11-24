@@ -97,6 +97,9 @@ E.g. One of the best uses for this permission is the following scenario:
 2. During the call the contract A will check the received data, will make some internal updates.
 3. After that the contract A will call back your Universal Profile with another payload that will update your data storage.
 
+![REENTRANCY Permission 1](/img/standards/lsp6/lsp6-reentrancy-example-1.jpeg)
+![REENTRANCY Permission 2](/img/standards/lsp6/lsp6-reentrancy-example-2.jpeg)
+
 In order for that interaction to happen the contract A must have the REENTRANCY permission.
 
 </details>
