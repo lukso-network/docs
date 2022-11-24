@@ -90,12 +90,12 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
     </p>
 
-Given a contract has this permission, it enables that contract to be able to execute a payload during the execution of another payload.
+Given a contract or EOA has this permission, it enables it to be able to execute a payload during the execution of another payload. A contract would reenter by using `execute(..)` and an EOA would do that through `executeRelayCall(..)`.
 
 E.g. One of the best uses for this permission is the following scenario:
-1. Make en external call to a contract A .
-2. During the call the contract A will check the received data, will make some internal updates.
-3. After that the contract A will call back your Universal Profile with another payload that will update your data storage.
+1. The ERC725Acccount linked to the Key Manager makes an external call to a _contract A_.
+2. _Contract A_ will make some internal updates using the received data.
+3. The _contract A_ will then call back the ERC725Account **(via the Key Manager)** with another payload that will update the account storage.
 
 ![REENTRANCY Permission 1](/img/standards/lsp6/lsp6-reentrancy-example-1.jpeg)
 ![REENTRANCY Permission 2](/img/standards/lsp6/lsp6-reentrancy-example-2.jpeg)
