@@ -73,7 +73,7 @@ await lspFactory.LSP7DigitalAsset.deploy(digitalAssetProperties [, options]);
 await lspFactory.LSP7DigitalAsset.deploy({
     isNFT: false,
     controllerAddress: '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
-    name: 'MYTOKEN'
+    name: 'MYTOKEN',
     symbol: 'DEMO',
 });
 ```
