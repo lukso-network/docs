@@ -104,6 +104,13 @@ function acceptOwnership() public
 
 Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
 
+Once ownership of the contract has been transfered, this function will clear the address stored under the `pendingOwner`.
+
+Requirements:
+
+- MUST be called by the `pendingOwner` only.
+- The `acceptOwnership` function cannot be called in the same transaction as [`transferOwnership`](#transferownership). It MUST be called in a separate transaction.
+
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
 
 ### renounceOwnership
@@ -118,6 +125,8 @@ The current block number is saved as a part of initiation because the following 
 
 - The first 100 blocks after the saved block is the pending period, if you call `renounceOwnership(..)` during this period, the transaction will be reverted.
 - the following 100 blocks is the period when you can confirm the renouncement of the contract by calling `renounceOwnership(..)` the second time.
+
+Calling the `renounceOwnership` function at the initiation stage will also clear any address previously set as `pendingOwner`.
 
 _Triggers the **[RenounceOwnershipInitiated](#renounceownershipinitiated)** event in the first call._
 
@@ -135,7 +144,7 @@ fallback() external payable
 
 Executed when value is transferred to the contract or when function identifier doesn't match any of the available functions.
 
-_Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
+_Triggers the **[ValueReceived](#valuereceived)** event when receiving native tokens._
 
 ### execute
 
@@ -161,6 +170,8 @@ The `operationType` can be the following:
 _Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
 
 _Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
+
+_Triggers the **[ValueReceived](#valuereceived)** event when sending native tokens while calling the function._
 
 :::note
 The `execute(...)` function can only be called by the current owner of the contract.
@@ -252,6 +263,8 @@ _Triggers the **[Executed](#executed)** event on every successful call that used
 
 _Triggers the **[ContractCreated](#contractcreated)** event on every newly created smart contract that used operation `CREATE` or `CREATE2`._
 
+_Triggers the **[ValueReceived](#valuereceived)** event when sending native tokens while calling the function._
+
 :::note
 The `execute(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner of the contract.
 
@@ -260,19 +273,18 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 
 #### Parameters:
 
-| Name             | Type        | Description                                                                                                                  |
-| :--------------- | :-----------| :--------------------------------------------------------------------------------------------------------------------------- |
-| `operationsType` | `uint256[]` | The type of operations that need to be executed.                                                                             |
-| `targets`        | `address[]` | The addresses to interact with. Unused if a contract is created (operations 1 & 2).                                          |
-| `values`         | `uint256[]` | The amount of native tokens to transfer with the transaction (in Wei).                                                       |
+| Name             | Type        | Description                                                                                                               |
+| :--------------- | :---------- | :------------------------------------------------------------------------------------------------------------------------ |
+| `operationsType` | `uint256[]` | The type of operations that need to be executed.                                                                          |
+| `targets`        | `address[]` | The addresses to interact with. Unused if a contract is created (operations 1 & 2).                                       |
+| `values`         | `uint256[]` | The amount of native tokens to transfer with the transaction (in Wei).                                                    |
 | `datas`          | `bytes[]`   | The calldatas (ABI-encoded payloads of functions to run on other contracts), or the bytecodes of the contracts to deploy. |
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                                                                                        |
-| :------- | :---- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name      | Type      | Description                                                                                                                                   |
+| :-------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `results` | `bytes[]` | The datas that were returned by the functions called on the external contracts, or the addresses of the contracts created (operations 1 & 2). |
-
 
 ### setData (Array)
 
@@ -330,6 +342,8 @@ function universalReceiver(
 Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key. The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
+
+_Triggers the **[ValueReceived](#valuereceived)** event when sending native tokens while calling the function._
 
 #### Parameters:
 
