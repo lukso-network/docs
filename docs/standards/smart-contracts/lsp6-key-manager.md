@@ -130,7 +130,7 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 ```solidity
 function getNonce(
     address signer,
-    uint256 channel
+    uint128 channel
 ) public view returns (uint256 nonce)
 ```
 
@@ -145,7 +145,7 @@ More info about **channel** can be found here: **[What are multi-channel nonces]
 | Name      | Type    | Description                                                              |
 | :-------- | :------ | :----------------------------------------------------------------------- |
 | `signer`  | address | The address of the signer of the transaction.                            |
-| `channel` | uint256 | The channel which the signer wants to use for executing the transaction. |
+| `channel` | uint128 | The channel which the signer wants to use for executing the transaction. |
 
 #### Return Values:
 
@@ -214,6 +214,19 @@ ILSP6KeyManager(keyManagerAddress).executeRelayCall(
 ```
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
+
+:::caution
+
+If the `payload` related to the `signature` fails when being executed, `executeRelayCall(...)` will revert the whole transaction and bubble up the error. **The nonce of the signer will not be incremented!**
+
+This might potentially block any future transactions/payloads signed with an incremented nonce in the same channel. If you want to have non-blocking transactions independant from each others, consider signing payloads across multiple channels using **multi channel nonces**.
+
+For more details, see:
+
+- [**LSP6 - Key Manager > Out of order execution**](../universal-profile/lsp6-key-manager.md#out-of-order-execution)
+- [**FAQ > What are multi-channel nonces?**](../faq/channel-nonce.md)
+
+:::
 
 #### Parameters:
 
@@ -287,8 +300,8 @@ Checks if a signature was signed by an address having at least the **[SIGN](../u
 
 ```solidity
 event Executed(
-    uint256 value,
-    bytes4 selector
+    bytes4 indexed selector,
+    uint256 indexed value,
 )
 ```
 
@@ -296,12 +309,12 @@ _**MUST** be fired when a transaction was successfully executed from the **[exec
 
 #### Values:
 
-| Name       | Type    | Description                                                                       |
-| :--------- | :------ | :-------------------------------------------------------------------------------- |
-| `value`    | uint256 | The amount to be sent with the payload.                                           |
-| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
+| Name       | Type      | Description                                                                         |
+| :--------- | :-------- | :---------------------------------------------------------------------------------- |
+| `selector` | `bytes4`  | The selector of the function executed on the linked [`target()`](#target) contract. |
+| `value`    | `uint256` | The amount to be sent with the payload.                                             |
 
 ## References
 
 - [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
-- [LSP6 KeyManager: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP6KeyManager)
+- [LSP6 KeyManager: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/contracts/LSP6KeyManager)
