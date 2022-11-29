@@ -141,7 +141,7 @@ fallback() external payable
 
 Executed when value is transferred to the contract or when function identifier doesn't match any of the available functions.
 
-_Triggers the **[ValueReceived](#valuereceived)** event when receivng native tokens._
+_Triggers the **[ValueReceived](#valuereceived)** event when receiving native tokens._
 
 ### execute
 
