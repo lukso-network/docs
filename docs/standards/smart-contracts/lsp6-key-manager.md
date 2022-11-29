@@ -175,6 +175,9 @@ bytes memory payload = abi.encodeWithSignature(
     ...[<A comma-separated list of parameters that will be passed to the methods>]
 );
 
+// version number for EIP191
+uint256 LSP6_VERSION = 6;
+
 // The chain id of the blockchain where the `payload` will be executed
 uint256 chainId = block.chainid; // or <The chain id of the blockchain where you will interact with the key manager>
 
@@ -188,20 +191,21 @@ uint256 nonce = ILSP6KeyManager(keyManagerAddress).getNonce(...);
 
 ```solidity
 bytes memory encodedMessage = abi.encodePacked(
+    LSP6_VERSION,
     chainId,
-    keyManagerAddress,
     nonce,
+    msg.value,
     payload
 );
 ```
 
-3. Then you must get the hash of the `encodedMessage`:
+3. After that you can sign the encodedMessage using EIP191, providing the address of the Key Manager (`keyManagerAddress`) as the validator address.
 
-```solidity
-bytes32 encodedMessageHash = keccak256(encodedMessage);
-```
+:::info
 
-4. After that you can sign the encodedMessageHash and voila, you have the signature ready.
+You can use our tool [eip191-signer.js](../../tools/eip191-signerjs/Classes/EIP191Signer.md#signdatawithintendedvalidator) to do this. It provides convenience functions to do this.
+
+:::
 
 5. To execute the `payload` you would have to do the following:
 
