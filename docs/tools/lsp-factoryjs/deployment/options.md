@@ -85,7 +85,7 @@ When using proxy deployment, LSPFactory will check that there is some bytecode d
 
 When using proxy deployment developers can specify the base contract address by passing the [`version`](./options.md#version) parameter. This allows deploying a specific contract implementation by deploying a proxy contract which inherits its logic from a previously deployed custom base contract.
 
-`deployProxy` defaults to `true` for all contracts except `LSP1UniversalProfile` when deploying a Universal Profile ([read more](../deployment/universal-profile.md#universal-receiver-delegate-proxy-deployment)).
+`deployProxy` defaults to `true` for all contracts except `LSP1UniversalReceiverDelegate` when deploying a Universal Profile ([read more](../deployment/universal-profile.md#universal-receiver-delegate-proxy-deployment)).
 
 :::info
 If `deployProxy` is set to `false`, the smart contract will be deployed from the current version of the [lsp-smart-contracts library](https://github.com/lukso-network/lsp-smart-contracts).
