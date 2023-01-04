@@ -40,9 +40,9 @@ Projects built by the LUKSO community:
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.0.0-develop.433-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-v1.0.0-develop.433.zip) (All other browsers)**
+### :inbox_tray: **[Download link (v1.0.0-develop.455-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv2-1.0.0-develop.455.zip) (All other browsers)**
 
-### :inbox_tray: **[Download link (v1.0.0-develop.433-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-v1.0.0-develop.433.zip) (Chrome)**
+### :inbox_tray: **[Download link (v1.0.0-develop.455-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-mv3-1.0.0-develop.455.zip) (Chrome)**
 
 ## Unpack the archive
 
