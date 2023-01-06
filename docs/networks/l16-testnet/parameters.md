@@ -30,7 +30,7 @@ The L16 Public Testnet will be the last stable test network before the mainnet l
 
 :::tip
 
-Check the [LUKSO browser extension](../../guides/browser-extension/install-browser-extension).
+Check the [LUKSO browser extension](../../guides/browser-extension/install-browser-extension.md).
 
 :::
 
