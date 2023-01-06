@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Upgrade LSP6 Key Manager'
 sidebar_position: 4
+describtion: 'This guide is useful for changing or upgrading the LSP6 Key Manager of a Universal Profile.'
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info Requirements
 
-You will need a Universal Profile that you can control via its KeyManager to follow this guide.
+You will need a Universal Profile that you can control via its [KeyManager](../../standards/universal-profile/lsp6-key-manager) to follow this guide.
 If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../universal-profile/create-profile.md) or look at the [_lsp-factory.js_](../../tools/lsp-factoryjs/deployment/universal-profile.md) docs.
 
 :::
@@ -20,8 +21,7 @@ In this guide, we will learn how to upgrade the LSP6 Key Manager of your Univers
 By the end of this guide, you will know how to:
 
 - Deploy a new LSP6 Key Manager with the last updates.
-- Transfer ownership of your Universal Profile through the old LSP6 Key Manager.
-- Accept ownership of your Universal Profile through the new LSP6 Key Manager
+- Upgrade your Key Manager by changing the owner of your UP from your old to your new Key Manager.
 
 ## Setup
 
@@ -29,49 +29,35 @@ By the end of this guide, you will know how to:
 npm install @lukso/lsp-smart-contracts web3
 ```
 
-## Step 1 - Set up constants
+## Step 1 - Set up the constants and imports
 
-Create a `constants.js` file with the following constants
+Create a javascript file and add the following imports on the top of the file.
+Create the following constants:
 
-- `privateKey`: private key of a controller address
-- `keyManagerAddress`: address of the current LSP6 Key Manager
-- `universalProfileAddress`: address of your Universal Profile
-  This controller must have the CHANGEOWNER permission
-
-After this first step you can save & close `constants.js`.
-
-```js
-export const privateKey = '0x...';
-export const universalProfileAddress = '0x...';
-export const keyManagerAddress = '0x...';
-```
-
-## Step 2 - Integrate the Imports
-
-Create a file with the name `upgarde-lsp6.js` and you should have the following imports on the top of the file.
+- `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission.
+- `keyManagerAddress`: address of the current LSP6 Key Manager.
+- `universalProfileAddress`: address of your Universal Profile.
 
 ```js
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
-import {
-  privateKey,
-  keyManagerAddress,
-  universalProfileAddress,
-} from './constants.js';
-
 import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l14.lukso.network');
+
+const privateKey = '0x...';
+const universalProfileAddress = '0x...';
+const keyManagerAddress = '0x...';
 ```
 
-## Step 3 - Initialize the controller account
+## Step 2 - Initialize the controller account
 
-In order to use the controller account you need to initialize it using the `web3.js` library.
+In order to send any transaction on the blockchain you need an account, in or case that account MUST have [**CHANGEOWNER**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the Universal Profile that will have its LSP6 Key Manager upgraded.
 
 ```js
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 web3.eth.accounts.wallet.add(account);
 ```
 
-## Step 4 - Initialize the old LSP6 Key Manager
+## Step 3 - Initialize the old LSP6 Key Manager
 
 In order to transfer ownership of your Universal Profile, you need to initialize your current LSP6 Key Manager.
 
@@ -82,7 +68,7 @@ const oldKeyManager = new web3.eth.Contract(
 );
 ```
 
-## Step 5 - Deploy the new LSP6 Key Manager
+## Step 4 - Deploy the new LSP6 Key Manager
 
 Deploy a new LSP6 Key Manager with the latest updates.
 
@@ -100,9 +86,11 @@ const newKeyManager = await NewKeyManager.deploy({
 console.log(newKeyManager._address);
 ```
 
-## Step 6 - Transfer ownership of the Universal Profile
+## Step 5 - Upgrade your Key Manager
 
-Create a payload for the `transferOwnership(address)` function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
+### Step 5.1 - Transfer Ownership to your new Key Manager
+
+Create a payload for the [`transferOwnership(address)`](../../standards/smart-contracts/lsp14-ownable-2-step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
 
 ```js
 const transferOwnershipPayload =
@@ -116,9 +104,9 @@ await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
 });
 ```
 
-## Step 7 - Claim ownership of the Universal Profile
+### Step 5.2 - Accept Ownership from your new Key Manager
 
-Create a payload for the `claimOwnership()` function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
+Create a payload for the [`claimOwnership()`](../../standards/smart-contracts/lsp14-ownable-2-step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
 
 ```js
 const claimOwnershipPayload =
@@ -131,24 +119,18 @@ await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
 });
 ```
 
-## Final code
+## The upgrade has been completed successfully.
 
-```javascript title="constants.js"
-export const privateKey = '0x...';
-export const universalProfileAddress = '0x...';
-export const keyManagerAddress = '0x...';
-```
+## Final code
 
 ```javascript title="upgrade-lsp6.js"
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
-import {
-  privateKey,
-  keyManagerAddress,
-  universalProfileAddress,
-} from './constants.js';
-
 import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l14.lukso.network');
+
+export const privateKey = '0x...';
+export const universalProfileAddress = '0x...';
+export const keyManagerAddress = '0x...';
 
 const upgradeLSP6 = async () => {
   // Initialize the controller account
@@ -218,7 +200,7 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l14.lukso.network');
 
 const upgradeLSP6 = async () => {
-  const unviersalProfile = new web3.eth.Contract(
+  const universalProfile = new web3.eth.Contract(
     LSP0ERC725YAccount.abi,
     universalProfileAddress,
   );
@@ -237,7 +219,7 @@ const upgradeLSP6 = async () => {
   const keyManagerTarget = await keyManager.methods.target().call();
 
   console.log(
-    `The address of the Universal Profile is: ${unviersalProfile._address}`,
+    `The address of the Universal Profile is: ${universalProfile._address}`,
   );
   console.log(`The target of the new LSP6 Key Manager: ${keyManagerTarget}`);
 };
