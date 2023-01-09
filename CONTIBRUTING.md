@@ -1,13 +1,13 @@
 # LUKSO Docs Contribution Guide
 
-Welcome to our documentation guide for contributors. We've set up specific rules and conventions to make PR reviews more seamless and have a global way of styling things.
+Welcome to our documentation guide for contributors. We've set up specific rules and conventions to make PR reviews more seamless and have a global way of documenting and styling things.
 
 ## Naming Conventions
 
-- We write `true`/`false` in code brackets without additional styling or uppercase to ensure it is a boolean, not a value or constant.
+- We write `true`/`false` in code brackets and **lowercase** without additional styling to ensure it is a boolean, not a value or constant.
 - We always refer to [ERC725Y keys]() as _data keys_, so there is no confusion for readers about keys in general, for instance, controller keys, public/private keys, etc.
 - We only use bold text for keywords or phrases instead of whole sentences, as it should only highlight the most critical information.
-- We use _simple present_ tense and _3rd person singular_ to describe functions and document API calls.
+- We use _simple present_ tense and _3rd person singular_ to describe functions and document APIs / ABIs.
 - We use _simple present_ in headings but do not enrich them with additional styling.
 
 ## Word Specification
