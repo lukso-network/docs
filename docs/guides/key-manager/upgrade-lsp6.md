@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Upgrade LSP6 Key Manager'
 sidebar_position: 4
-describtion: 'This guide is useful for changing or upgrading the LSP6 Key Manager of a Universal Profile.'
+describtion: 'This guide explains how to change or upgrade the LSP6 Key Manager of a Universal Profile.'
 ---
 
 import Tabs from '@theme/Tabs';
@@ -61,10 +61,13 @@ web3.eth.accounts.wallet.add(account);
 
 In order to transfer ownership of your Universal Profile, you need to initialize your current LSP6 Key Manager.
 
-```js
 <!-- prettier-ignore-start -->
+
+```js
 const oldKeyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 ```
+
+<!-- prettier-ignore-end -->
 
 ## Step 4 - Deploy the new LSP6 Key Manager
 
@@ -84,7 +87,7 @@ const newKeyManager = await NewKeyManager.deploy({
 console.log(newKeyManager._address);
 ```
 
-## Step 5 - Upgrade your Key Manager
+## Step 5 - Upgrade your Key Manager
 
 ### Step 5.1 - Transfer Ownership to your new Key Manager
 
@@ -106,8 +109,9 @@ await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
 
 Create a payload for the [`claimOwnership()`](../../standards/smart-contracts/lsp14-ownable-2-step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
 
-```js
 <!-- prettier-ignore-start -->
+
+```js
 const claimOwnershipPayload = web3.eth.abi.encodeFunctionSignature('claimOwnership()');
 
 await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
@@ -117,9 +121,17 @@ await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
 });
 ```
 
-## The upgrade has been completed successfully.
+<!-- prettier-ignore-end -->
+
+:::success 🥳
+
+The upgrade has been completed successfully.
+
+:::
 
 ## Final code
+
+<!-- prettier-ignore-start -->
 
 ```javascript title="upgrade-lsp6.js"
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
@@ -135,7 +147,6 @@ const upgradeLSP6 = async () => {
   const account = web3.eth.accounts.privateKeyToAccount(privateKey);
   web3.eth.accounts.wallet.add(account);
 
-  <!-- prettier-ignore-start -->
   // Initialize your current LSP6 Key Manager
   const oldKeyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 
@@ -153,9 +164,7 @@ const upgradeLSP6 = async () => {
   // Transfer the ownership of your Universal Profile from the current LSP6 Key Manager to a new LSP6 Key Manager
   const transferOwnershipPayload =
     web3.eth.abi.encodeFunctionSignature('transferOwnership(address)') +
-    web3.eth.abi
-      .encodeParameter('address', newKeyManager._address)
-      .substring(2);
+    web3.eth.abi.encodeParameter('address', newKeyManager._address).substring(2);
 
   await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
     from: account.address,
@@ -163,7 +172,6 @@ const upgradeLSP6 = async () => {
     gasPrice: '1000000000',
   });
 
-  <!-- prettier-ignore-start -->
   // Accept the ownership of your Universal Profile from the new LSP6 Key Manager
   const claimOwnershipPayload = web3.eth.abi.encodeFunctionSignature('claimOwnership()');
 
@@ -177,6 +185,8 @@ const upgradeLSP6 = async () => {
 await upgradeLSP6();
 ```
 
+<!-- prettier-ignore-end -->
+
 ## Test the new LSP6 Key Manager
 
 We can now check the owner of the Universal Profile. If everything went through, the owner should be the address of the new LSP6 Key Manager.
@@ -185,6 +195,8 @@ Create the following file with the name `test-new-lsp6.js` and run:
 ```shell
 node test-new-lsp6.js
 ```
+
+<!-- prettier-ignore-start -->
 
 ```javascript title="test-new-lsp6.js"
 import LSP0ERC725YAccount from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725YAccount.json' assert { type: 'json' };
@@ -196,25 +208,23 @@ const web3 = new Web3('https://rpc.l14.lukso.network');
 const universalProfileAddress = '0x...';
 const keyManagerAddress = '0x...';
 
-const upgradeLSP6 = async () => {
-  <!-- prettier-ignore-start -->
-  const universalProfile = new web3.eth.Contract(LSP0ERC725YAccount.abi, universalProfileAddress,);
+const testLSP6 = async () => {
+  const universalProfile = new web3.eth.Contract(LSP0ERC725YAccount.abi, universalProfileAddress);
 
   const universalProfileOwner = await universalProfile.methods.owner().call();
 
-  <!-- prettier-ignore-start -->
   console.log(`The new owner of the Universal Profile is: ${universalProfileOwner}`);
   console.log(`The old LSP6 Key Manager is at address: ${keyManagerAdderss}`);
 
-  <!-- prettier-ignore-start -->
-  const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, universalProfileOwner,);
+  const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, universalProfileOwner);
 
   const keyManagerTarget = await keyManager.methods.target().call();
 
-  <!-- prettier-ignore-start -->
   console.log(`The address of the Universal Profile is: ${universalProfile._address}`);
   console.log(`The target of the new LSP6 Key Manager: ${keyManagerTarget}`);
 };
 
-await upgradeLSP6();
+await testLSP6();
 ```
+
+<!-- prettier-ignore-end -->
