@@ -1,6 +1,6 @@
 ---
-title: LSP6KeyManagerUtils
-sidebar_position: 15
+title: LSP10ReceivedVaultsUtils
+sidebar_position: 4
 ---
 
 # LSP10Utils
@@ -51,7 +51,7 @@ function generateSentVaultKeys(
     address sender,
     bytes32 vaultMapKey,
     bytes memory vaultInterfaceIdAndIndex
-) internal view returns (bytes32[] memory keys, bytes[] memory values)
+) internal view returns (bytes32[] memory keys, bytes[] memory values);
 ```
 
 Generating the data keys/values to be set on the sender address after sending vaults.

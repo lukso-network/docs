@@ -1,6 +1,6 @@
 ---
 title: LSP6KeyManagerUtils
-sidebar_position: 14
+sidebar_position: 3
 ---
 
 # LSP6KeyManagerUtils
@@ -37,16 +37,16 @@ Read the permissions of a `caller` on an ERC725Y `target` contract.
 
 Returns a `bytes32` BitArray containing the permissions of a controller address.
 
-### getAllowedAddressesFor
+### getAllowedCallsFor
 
 ```solidity
-function getAllowedAddressesFor(
+function getAllowedCallsFor(
     IERC725Y target,
     address caller
 ) internal view returns (bytes memory);
 ```
 
-Read the allowed addresses of a `caller` on an ERC725Y `target` contract.
+Read the allowed calls of a `caller` on an ERC725Y `target` contract.
 
 #### Parameters:
 
@@ -57,56 +57,12 @@ Read the allowed addresses of a `caller` on an ERC725Y `target` contract.
 
 #### Return Value
 
-Returns an abi-encoded array of addresses that the controller address is allowed to interact with.
-
-### getAllowedFunctionsFor
-
-```solidity
-function getAllowedFunctionsFor(
-    IERC725Y target,
-    address caller
-) internal view returns (bytes memory);
-```
-
-Read the allowed functions of a `caller` on an ERC725Y `target` contract.
-
-#### Parameters:
-
-| Name   | Type     | Description                                           |
-| :----- | :------- | :---------------------------------------------------- |
-| target | IERC725Y | An `IERC725Y` contract where to read the permissions. |
-| caller | address  | The controller address to read the permissions from.  |
-
-#### Return Value
-
-Returns an abi-encoded array of functions selectors that the controller address is allowed to interact with.
-
-### getAllowedStandardsFor
-
-```solidity
-function getAllowedStandardsFor(
-    IERC725Y target,
-    address caller
-) internal view returns (bytes memory);
-```
-
-Read the allowed standards of a `caller` on an ERC725Y `target` contract.
-
-#### Parameters:
-
-| Name   | Type     | Description                                           |
-| :----- | :------- | :---------------------------------------------------- |
-| target | IERC725Y | An `IERC725Y` contract where to read the permissions. |
-| caller | address  | The controller address to read the permissions from.  |
-
-#### Return Value
-
-Returns an abi-encoded array of allowed interface ids that the controller address is allowed to interact with.
+Returns a CompactBytesArray containing the calls that a controller is allowed to make.
 
 ### getAllowedERC725YKeysFor
 
 ```solidity
-function getAllowedERC725YKeysFor(
+function getAllowedERC725YDataKeysFor(
     IERC725Y target,
     address caller
 ) internal view returns (bytes memory);
@@ -123,7 +79,7 @@ Read the allowed ERC725Y keys of a `caller` on an ERC725Y `target` contract.
 
 #### Return Value
 
-Returns an abi-encoded array of allowed ERC725 keys that the controller address is allowed to interact with.
+Returns a CompactBytesArray containing the allowed ERC725 data keys that the controller address is allowed to interact with.
 
 ### hasPermission
 
@@ -147,35 +103,49 @@ Compare the permissions `addressPermissions` of an address to check if they incl
 
 Returns `true` if `addressPermission` is containing the `permissionToCheck`.
 
-### hasPermission
+### setDataViaKeyManager
 
 ```solidity
-/**
-     * @dev use the `setData(bytes32[],bytes[])` via the KeyManager of the target
-     * @param keyManagerAddress the address of the KeyManager
-     * @param keys the array of data keys
-     * @param values the array of data values
-     */
 function setDataViaKeyManager(
     address keyManagerAddress,
     bytes32[] memory keys,
     bytes[] memory values
-) internal returns (bytes memory result)
+) internal returns (bytes memory result);
 ```
 
 Use the `setData(bytes32[],bytes[])` via the KeyManager of the target.
 
 #### Parameters:
 
-| Name              | Type      | Description                     |
-| :---------------- | :-------- | :------------------------------ |
-| keyManagerAddress | address   | Tthe address of the KeyManager. |
-| keys              | bytes32[] | The array of data keys.         |
-| values            | bytes[]   | The array of data values.       |
+| Name              | Type      | Description                    |
+| :---------------- | :-------- | :----------------------------- |
+| keyManagerAddress | address   | The address of the KeyManager. |
+| keys              | bytes32[] | The array of data keys.        |
+| values            | bytes[]   | The array of data values.      |
 
 #### Return Value
 
 Returns the reuslt of the external call.
+
+### getPermissionName
+
+```solidity
+function getPermissionName(
+    bytes32 permission
+) internal pure returns (string memory errorMessage);
+```
+
+Get the name of the permission from its BitArray value.
+
+#### Parameters:
+
+| Name       | Type    | Description                                  |
+| :--------- | :------ | :------------------------------------------- |
+| permission | bytes32 | The permission whose name is to be returned. |
+
+#### Return Value
+
+The name of the permission.
 
 ## References
 

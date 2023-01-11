@@ -1,6 +1,6 @@
 ---
 title: LSP2JSONSchemaUtils
-sidebar_position: 12
+sidebar_position: 1
 ---
 
 # LSP2JSONSchemaUtils
@@ -18,7 +18,9 @@ This library can be used to generate ERC725Y keys according to the JSON schemas 
 ### generateSingletonKey
 
 ```solidity
-function generateSingletonKey(string memory keyName) internal pure returns (bytes32);
+function generateSingletonKey(
+    string memory keyName
+) internal pure returns (bytes32);
 ```
 
 Generates a data key of `keyType` Singleton.
@@ -38,7 +40,9 @@ Generates a data key of `keyType` Singleton.
 ### generateArrayKey
 
 ```solidity
-function generateArrayKey(string memory keyName) internal pure returns (bytes32);
+function generateArrayKey(
+    string memory keyName
+) internal pure returns (bytes32);
 ```
 
 Generates a data key of `keyType` Array by hashing `keyName`.
@@ -314,6 +318,22 @@ Verify that `data` is an array of bytes4 (bytes4[]) encoded according to the Sol
 | Name   | Type  | Description                       |
 | :----- | :---- | :-------------------------------- |
 | `data` | bytes | The value that is to be verified. |
+
+### isCompactBytesArray
+
+```solidity
+function isCompactBytesArray(
+    bytes memory compactBytesArray
+) internal pure returns (bool);
+```
+
+Verify the validity of the `compactBytesArray` according to LSP2.
+
+#### Parameters:
+
+| Name                | Type  | Description                       |
+| :------------------ | :---- | :-------------------------------- |
+| `compactBytesArray` | bytes | The value that is to be verified. |
 
 ### uncheckedIncrement
 

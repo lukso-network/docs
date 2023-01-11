@@ -1,6 +1,6 @@
 ---
 title: LSP8IdentifiableDigitalAsset
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 # LSP8IdentifiableDigitalAsset
@@ -280,7 +280,7 @@ _Triggers the **[Transfer](#transfer-2)** event when the token gets successfully
 
 | Name      | Type    | Description                                                                                                                               |
 | :-------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address | The sender address.                                                                                                                      |
+| `from`    | address | The sender address.                                                                                                                       |
 | `to`      | address | The recipient address.                                                                                                                    |
 | `tokenId` | bytes32 | The token to transfer.                                                                                                                    |
 | `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
@@ -318,7 +318,7 @@ _Triggers the **[Transfer](#transfer-2)** event when the tokens get successfully
 
 | Name      | Type      | Description                                                                                                                               |
 | :-------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`    | address[] | The list of sender addresses.                                                                                                            |
+| `from`    | address[] | The list of sender addresses.                                                                                                             |
 | `to`      | address[] | The list of recipient addresses.                                                                                                          |
 | `tokenId` | bytes32[] | The list of tokenIds to transfer.                                                                                                         |
 | `force`   | bool[]    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
@@ -346,7 +346,7 @@ By deploying an LSP8IdentifiableDigitalAsset contract, there will be no public m
 In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
 :::
 
-### _mint
+### \_mint
 
 ```solidity
 function _mint(
@@ -363,12 +363,12 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 #### Parameters:
 
-|   Name   |   Type   | Description |
-| :------- | :------- | :---------- |
-| `to`     | address  | The recipient address. |
-| `tokenId`| bytes32  | The token to transfer. |
-| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address. |
+| Name      | Type    | Description                                                                                                                               |
+| :-------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `to`      | address | The recipient address.                                                                                                                    |
+| `tokenId` | bytes32 | The token to transfer.                                                                                                                    |
+| `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory`  | bytes   | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address.                                     |
 
 :::note
 
@@ -379,7 +379,7 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 :::
 
-### _transfer
+### \_transfer
 
 ```solidity
 function _transfer(
@@ -397,13 +397,13 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 #### Parameters:
 
-|   Name   |   Type   | Description |
-| :------- | :------- | :---------- |
-| `from`   | address  | The sender address. |
-| `to`     | address  | The recipient address. |
-| `tokenId`| bytes32  | The token to transfer. |
-| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+| Name      | Type    | Description                                                                                                                               |
+| :-------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`    | address | The sender address.                                                                                                                       |
+| `to`      | address | The recipient address.                                                                                                                    |
+| `tokenId` | bytes32 | The token to transfer.                                                                                                                    |
+| `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory`  | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
 :::note
 
@@ -414,7 +414,7 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 :::
 
-### _burn
+### \_burn
 
 ```solidity
 function _burn(
@@ -430,11 +430,11 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 #### Parameters:
 
-|   Name   |   Type   | Description |
-| :------- | :------- | :---------- |
-| `from`   | address  | The sender address. |
-| `tokenId` | bytes32  | The token to burn. |
-| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hook to `from` address. |
+| Name      | Type    | Description                                                                                             |
+| :-------- | :------ | :------------------------------------------------------------------------------------------------------ |
+| `from`    | address | The sender address.                                                                                     |
+| `tokenId` | bytes32 | The token to burn.                                                                                      |
+| `data`    | bytes   | Additional data the caller wants included in the emitted event, and sent in the hook to `from` address. |
 
 :::note
 
@@ -445,7 +445,7 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 :::
 
-### _beforeTokenTransfer
+### \_beforeTokenTransfer
 
 ```solidity
 function _beforeTokenTransfer(
@@ -459,23 +459,23 @@ Hook that is called before any token transfer. This includes minting and burning
 
 #### Parameters:
 
-|   Name   |   Type   | Description |
-| :------- | :------- | :---------- |
-| `from`   | address  | The sender address. |
-| `to`     | address  | The recipient address. |
-| `tokenId` | bytes32  | The token to transfer. |
+| Name      | Type    | Description            |
+| :-------- | :------ | :--------------------- |
+| `from`    | address | The sender address.    |
+| `to`      | address | The recipient address. |
+| `tokenId` | bytes32 | The token to transfer. |
 
 :::note
 
 #### Notice:
 
-- When `from` and `to` are both non-zero, ``from``'s `tokenId` will be transferred to `to`.
+- When `from` and `to` are both non-zero, `from`'s `tokenId` will be transferred to `to`.
 - When `from` is zero, `tokenId` will be minted for `to`.
-- When `to` is zero, ``from``'s `tokenId` will be burned.
+- When `to` is zero, `from`'s `tokenId` will be burned.
 
 :::
 
-### _notifyTokenSender
+### \_notifyTokenSender
 
 ```solidity
 function _notifyTokenSender(
@@ -490,14 +490,14 @@ An attempt is made to notify the token receiver about the `tokenId` token being 
 
 #### Parameters:
 
-|   Name   |   Type   | Description |
-| :------- | :------- | :---------- |
-| `from`   | address  | The sender address. |
-| `to`     | address  | The recipient address. |
-| `tokenId` | bytes32  | The token to transfer. |
-| `data`   | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+| Name      | Type    | Description                                                                                                         |
+| :-------- | :------ | :------------------------------------------------------------------------------------------------------------------ |
+| `from`    | address | The sender address.                                                                                                 |
+| `to`      | address | The recipient address.                                                                                              |
+| `tokenId` | bytes32 | The token to transfer.                                                                                              |
+| `data`    | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
 
-### _notifyTokenReceiver
+### \_notifyTokenReceiver
 
 ```solidity
 function _notifyTokenReceiver(
@@ -513,15 +513,15 @@ An attempt is made to notify the token receiver about the `tokenId` token being 
 
 #### Parameters:
 
-|   Name   |   Type   | Description |
-| :------- | :------- | :---------- |
-| `from`   | address  | The sender address. |
-| `to`     | address  | The recipient address. |
-| `tokenId` | bytes32  | The token to transfer. |
-| `force`  | bool     | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `memory` | bytes    | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses. |
+| Name      | Type    | Description                                                                                                                               |
+| :-------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`    | address | The sender address.                                                                                                                       |
+| `to`      | address | The recipient address.                                                                                                                    |
+| `tokenId` | bytes32 | The token to transfer.                                                                                                                    |
+| `force`   | bool    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory`  | bytes   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
-### _revokeOperator
+### \_revokeOperator
 
 ```solidity
 function _revokeOperator(
@@ -535,13 +535,13 @@ Revoke the `operator` of the `tokenId` token which belongs to `tokenOwner`.
 
 #### Parameters:
 
-|     Name     |   Type   | Description |
-| :----------- | :------- | :---------- |
+| Name         | Type    | Description                               |
+| :----------- | :------ | :---------------------------------------- |
 | `operator`   | address | The address of the operator to revoke.    |
 | `tokenOwner` | address | The address that is the owner of tokenId. |
 | `tokenId`    | bytes32 | The token to disable operator status to.  |
 
-### _clearOperators
+### \_clearOperators
 
 ```solidity
 function clearOperators(
@@ -554,8 +554,8 @@ Revoke the all current operators of the `tokenId` token which belongs to `tokenO
 
 #### Parameters
 
-|     Name     |   Type   | Description |
-| :----------- | :------- | :---------- |
+| Name         | Type    | Description                               |
+| :----------- | :------ | :---------------------------------------- |
 | `tokenOwner` | address | The address that is the owner of tokenId. |
 | `tokenId`    | bytes32 | The token to disable operator status to.  |
 

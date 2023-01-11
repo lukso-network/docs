@@ -1,6 +1,6 @@
 ---
 title: LSP5ReceivedAssetsUtils
-sidebar_position: 13
+sidebar_position: 2
 ---
 
 # LSP5ReceivedAssetsUtils
