@@ -39,7 +39,6 @@ In order to understand the LSPs properly, they should be studied in the followin
 
 - **[LSP10 - ReceivedVaults](./universal-profile/lsp10-received-vaults.md)**
 
-
 ## Further Information
 
-- [Fabian Vogelsteller talks at NFT.NYC 2021 about tyhe new Standards (YouTube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)
+- [Fabian Vogelsteller talks at NFT.NYC 2021 about the new Standards (YouTube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)

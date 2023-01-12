@@ -1,6 +1,6 @@
 ---
 title: 🆙 RPC API
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 # 🆙 RPC API
@@ -43,7 +43,7 @@ params: [
 
 #### Returns
 
-##### 1. `String Array` - Array of universal profile addresses the user selected for this relay service  
+##### 1. `String Array` - Array of universal profile addresses the user selected for this relay service
 
 It returns an array of Universal Profile addresses.
 
@@ -53,7 +53,7 @@ Add a Universal Profile address.
 
 #### Parameters
 
-##### 1. `String` - Universal profile address to add to the extension 
+##### 1. `String` - Universal profile address to add to the extension
 
 The Universal Profile address to add.
 
@@ -63,6 +63,6 @@ params: ['0x311611C9A46a192C14Ea993159a0498EDE5578aC'];
 
 #### Returns
 
-##### 1. `String` - New controller address, to be added to the profile by the dapp. 
+##### 1. `String` - New controller address, to be added to the profile by the dapp.
 
 TODO

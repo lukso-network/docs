@@ -59,10 +59,9 @@ These contracts are not just related to one specific section and could be used w
 ```solidity
 // MyUP.sol
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 import "@lukso/lsp-smart-contracts/contracts/UniversalProfile.sol";
-
-pragma solidity ^0.8.0;
 
 contract MyUP is UniversalProfile {
 
@@ -77,10 +76,9 @@ contract MyUP is UniversalProfile {
 ```solidity
 // MyToken.sol
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
-
-pragma solidity ^0.8.0;
 
 contract MyToken is LSP7DigitalAsset {
     // 4th argument (false) marks that this contract serves as a Fungible Token and not as a NFT.
@@ -96,5 +94,6 @@ contract MyToken is LSP7DigitalAsset {
 
 ## Further Information
 
-- **[UniversalProfile & Identity Section](https://youtu.be/SbTo_e3l_Lk?t=1727)**
-- **[NFT 2.0 Section](https://youtu.be/hg1Ow6u9QVk)**
+- [@lukso/lsp-smart-contracts NPM package](../../tools/lsp-smart-contracts/getting-started.md)
+- [UniversalProfile & Identity Section](https://youtu.be/SbTo_e3l_Lk?t=1727)
+- [NFT 2.0 Section](https://youtu.be/hg1Ow6u9QVk)

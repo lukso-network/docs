@@ -153,7 +153,7 @@ For the properties `profileImage` and `backgroundImage`, we will need to add the
 
 Use this [IPFS file uploader tool](https://anarkrypto.github.io/upload-files-to-ipfs-from-browser-panel/public/#) with the settings shown below in green.
 
-- Node Address: `api.ipfs.lukso.network`
+- Node Address: `api.2eff.lukso.dev`
 - API Port / Gateway Port: `443`
 
 ![ipfs LUKSO settings](./img/ipfs-lukso-settings.jpg)
