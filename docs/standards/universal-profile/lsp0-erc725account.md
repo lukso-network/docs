@@ -84,6 +84,18 @@ As a result, this substandard enables attaching any information to the contract 
 
 Thanks to ERC725Y, contracts become more interoperable, as their storage is represented in the same way. Contracts and interfaces can then read and write data from or to the storage in the same manner via the functions [`getData(...)`](../smart-contracts/lsp0-erc725-account.md#getdata) and [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata).
 
+<details>
+    <summary>Unset Data Key vs. Deleted Data Key</summary>
+    <p>
+      Currently, we do not differentiate between these two types of Data Keys in any of <a href='http://github.com/lukso-network/lsp-smart-contracts/'>our Smart Contract Implementations</a>. But, we <i>recommend</i> using this as a reference point for <u>your Smart Contract Implementations</u> to have a somewhat standard way of differentiating between the two Data Keys.
+      <br/>
+      Querying an <b>Unset Data Key</b> should return: <code>0x</code>
+      <br/>
+      Querying a <b>Deleted Data Key</b> should return: <code>0x00</code>
+    </p>
+
+</details>
+
 ### LSP1 - UniversalReceiver
 
 :::info
@@ -122,9 +134,7 @@ The **[LSP0-ERC725Account](#)** implements the `universalReceiver(..)` function 
 }
 ```
 
-> <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function. 
-
-
+> <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function.
 
 ### ERC1271
 
