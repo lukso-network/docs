@@ -47,6 +47,16 @@ function generateArrayKey(
 
 Generates a data key of `keyType` Array by hashing `keyName`.
 
+##### Requirements:
+
+- The last two characters should be `[]`.
+
+E.g.:
+
+```solidity
+string memory keyName = "ArrayName[]";
+```
+
 #### Parameters:
 
 | Name      | Type   | Description                                                            |
@@ -58,20 +68,6 @@ Generates a data key of `keyType` Array by hashing `keyName`.
 | Name     | Type    | Description                  |
 | :------- | :------ | :--------------------------- |
 | `result` | bytes32 | Data key of `keyType` Array. |
-
-:::note
-
-#### Requirements:
-
-- The last two characters should be `[]`.
-
-E.g.:
-
-```solidity
-string memory keyName = "ArrayName[]";
-```
-
-:::
 
 ### generateArrayElementKeyAtIndex
 
