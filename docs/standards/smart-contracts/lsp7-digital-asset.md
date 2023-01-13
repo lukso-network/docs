@@ -175,7 +175,9 @@ function authorizedAmountFor(
 Returns the amount of tokens to which the `operator` address has access from the `tokenOwner` contract. Operators can send and burn tokens on behalf of their owners.
 
 :::note
+
 The tokenOwner is its own operator.
+
 :::
 
 #### Parameters:
