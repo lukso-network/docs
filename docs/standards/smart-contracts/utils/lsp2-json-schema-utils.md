@@ -78,20 +78,20 @@ function generateArrayElementKeyAtIndex(
 ) internal pure returns (bytes32);
 ```
 
-Generates an Array index data key by concatenating the first 16 bytes of `arrayKey` with an `index`.
+Generates the element key of the array at the given index by concatenating the first 16 bytes of `arrayKey` with an `index`.
 
 #### Parameters:
 
-| Name      | Type    | Description                                                                       |
-| :-------- | :------ | :-------------------------------------------------------------------------------- |
-| `keyName` | string  | The key from which we're getting the first half of the Array index data key from. |
-| `index`   | uint256 | Used to generate the second half of the Array index data key.                     |
+| Name       | Type    | Description                        |
+| :--------- | :------ | :--------------------------------- |
+| `arrayKey` | bytes32 | Array data key.                    |
+| `index`    | uint256 | Index of the element in the array. |
 
 #### Return Values:
 
-| Name     | Type    | Description                        |
-| :------- | :------ | :--------------------------------- |
-| `result` | bytes32 | Data key of `keyType` Array Index. |
+| Name     | Type    | Description                           |
+| :------- | :------ | :------------------------------------ |
+| `result` | bytes32 | Data key of the element in the array. |
 
 ### generateMappingKey(string,srting)
 
@@ -344,4 +344,4 @@ Can be used to save gas when iterating over loops.
 
 ## References
 
-- [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts)
+- [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/contracts)

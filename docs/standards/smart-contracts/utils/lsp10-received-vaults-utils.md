@@ -88,6 +88,12 @@ Returns an index of type uint64.
 | :------- | :---- | :---------------------------------------------------------------------------------- |
 | mapValue | bytes | A bytes12 mapping of `valueType` (bytes8,bytes4) and `valueContent` (Bytes4,Number) |
 
+#### Return Values:
+
+| Name    | Type   | Description                   |
+| :------ | :----- | :---------------------------- |
+| `index` | uint64 | Extracted index from mapping. |
+
 ## References
 
-- [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts)
+- [Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/contracts)
