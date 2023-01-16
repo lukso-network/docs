@@ -1,5 +1,5 @@
 ---
-title: LSP6KeyManagerUtils
+title: LSP6Utils
 sidebar_position: 3
 ---
 

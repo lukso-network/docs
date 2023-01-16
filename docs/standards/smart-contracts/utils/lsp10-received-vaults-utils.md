@@ -1,5 +1,5 @@
 ---
-title: LSP10ReceivedVaultsUtils
+title: LSP10Utils
 sidebar_position: 4
 ---
 

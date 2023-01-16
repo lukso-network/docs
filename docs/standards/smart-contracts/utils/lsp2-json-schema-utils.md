@@ -1,5 +1,5 @@
 ---
-title: LSP2JSONSchemaUtils
+title: LSP2Utils
 sidebar_position: 1
 ---
 
