@@ -11,7 +11,7 @@ sidebar_position: 4
 
 :::
 
-This library should be used to generate ERC725Y data keys and values for transferring vaults (LSP9).
+This library contains helper functions that can be used to generate ERC725Y data keys-values pairs related to LSP10 Received Vaults.
 
 ## Functions
 
@@ -26,23 +26,23 @@ function generateReceivedVaultKeys(
 ) internal view returns (bytes32[] memory keys, bytes[] memory values);
 ```
 
-Generating the data keys/values to be set on the receiver address after receiving vaults.
+Generate the data keys/values to register the address of a `vault` on the ERC725Y storage of the `receiver`.
 
 #### Parameters:
 
-| Name        | Type    | Description                                                                                                 |
-| :---------- | :------ | :---------------------------------------------------------------------------------------------------------- |
-| receiver    | address | The address receiving the vault and where the Keys should be added.                                         |
-| vault       | address | The address of the vault being received.                                                                    |
-| vaultMapKey | bytes32 | The map key of the vault being received containing the interfaceId of the vault and the index in the array. |
-| interfaceID | bytes4  | The interfaceID of the vault being received.                                                                |
+| Name        | Type    | Description                                                                        |
+| :---------- | :------ | :--------------------------------------------------------------------------------- |
+| receiver    | address | The address receiving the vault and where the Keys should be added.                |
+| vault       | address | The address of the received vault.                                                 |
+| vaultMapKey | bytes32 | The map key constructed by concatenating LSP10Vault Map Prefix and `vault` address |
+| interfaceID | bytes4  | The interfaceID of the vault being received.                                       |
 
 #### Return Values:
 
-| Name     | Type      | Description           |
-| :------- | :-------- | :-------------------- |
-| `keys`   | bytes32[] | Array of data keys.   |
-| `values` | bytes[]   | Array of data values. |
+| Name     | Type      | Description                                                                                                |
+| :------- | :-------- | :--------------------------------------------------------------------------------------------------------- |
+| `keys`   | bytes32[] | Array of data keys, `LSP10Vaults[]`, `LSP10Vaults[index]`, `LSP10VaultsMap + vault address` to be precise. |
+| `values` | bytes[]   | Array of data values.                                                                                      |
 
 ### generateSentVaultKeys
 
@@ -54,7 +54,7 @@ function generateSentVaultKeys(
 ) internal view returns (bytes32[] memory keys, bytes[] memory values);
 ```
 
-Generating the data keys/values to be set on the sender address after sending vaults.
+Generate the data keys/values to be set on the sender address after sending vaults.
 
 #### Parameters:
 

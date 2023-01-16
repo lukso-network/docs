@@ -11,7 +11,7 @@ sidebar_position: 2
 
 :::
 
-This library should be used to generate ERC725Y data keys and values for transferring assets (LSP7 & LSP8).
+This library can be used to generate ERC725Y data keys-values pairs related to LSP5ReceivedAssets. This is useful to register and de-register addresses of assets owned such as LSP7 tokens or LSP8 NFTs.
 
 ## Functions
 
@@ -26,7 +26,7 @@ function generateReceivedAssetKeys(
 ) internal view returns (bytes32[] memory keys, bytes[] memory values);
 ```
 
-Generating the data keys/values to be set on the receiver address after receiving assets.
+Generate the data keys/values to be set on the receiver address after receiving assets.
 
 #### Parameters:
 
@@ -66,10 +66,10 @@ Generating the data keys/values to be set on the sender address after sending as
 
 #### Return Values:
 
-| Name     | Type      | Description           |
-| :------- | :-------- | :-------------------- |
-| `keys`   | bytes32[] | Array of data keys.   |
-| `values` | bytes[]   | Array of data values. |
+| Name     | Type      | Description                                                                                                                     |
+| :------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| `keys`   | bytes32[] | Array of data keys, `LSP5RecievedAssets[]`, `LSP5RecievedAssets[index]`, `LSP5RecievedAssetsMap + vault address` to be precise. |
+| `values` | bytes[]   | Array of data values.                                                                                                           |
 
 ### extractIndexFromMap
 

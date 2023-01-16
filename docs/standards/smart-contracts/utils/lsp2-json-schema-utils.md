@@ -11,7 +11,7 @@ sidebar_position: 1
 
 :::
 
-This library can be used to generate ERC725Y keys according to the JSON schemas defined in the LSP2 standard.
+This library can be used to generate ERC725Y data keys according to the JSON schemas defined in the LSP2 standard.
 
 ## Functions
 
@@ -49,7 +49,7 @@ Generates a data key of `keyType` Array by hashing `keyName`.
 
 ##### Requirements:
 
-- The last two characters should be `[]`.
+- The last two characters MUST be `[]`.
 
 E.g.:
 
@@ -78,7 +78,7 @@ function generateArrayElementKeyAtIndex(
 ) internal pure returns (bytes32);
 ```
 
-Generates the element key of the array at the given index by concatenating the first 16 bytes of `arrayKey` with an `index`.
+Generates the element data key for the `arrayKey` at the given `index`. This is done by concatenating the first 16 bytes of `arrayKey` with an `index`.
 
 #### Parameters:
 

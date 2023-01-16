@@ -11,7 +11,7 @@ sidebar_position: 3
 
 :::
 
-This library should be used to querry the permissions that a controller address has for a Key Manager Controlled ERC725 Account.
+Library that contains helper functions to query ERC725Y data keys related to LSP6. They can be used to retrieve permissions, Allowed Calls or ERC725Y Data Keys related to controller addresses.
 
 ## Functions
 
