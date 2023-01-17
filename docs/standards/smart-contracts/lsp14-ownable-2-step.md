@@ -1,6 +1,6 @@
 ---
 title: LSP14Ownable2Step
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 # LSP14Ownable2Step
