@@ -68,7 +68,7 @@ Generating the data keys/values to be set on the sender address after sending as
 
 | Name     | Type      | Description                                                                                                                     |
 | :------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| `keys`   | bytes32[] | Array of data keys, `LSP5RecievedAssets[]`, `LSP5RecievedAssets[index]`, `LSP5RecievedAssetsMap + vault address` to be precise. |
+| `keys`   | bytes32[] | Array of data keys, `LSP5RecievedAssets[]`, `LSP5RecievedAssets[index]`, `LSP5RecievedAssetsMap + asset address` to be precise. |
 | `values` | bytes[]   | Array of data values.                                                                                                           |
 
 ### extractIndexFromMap
