@@ -1,6 +1,6 @@
 ---
 title: LSP1UniversalReceiverDelegateUP
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 # LSP1UniversalReceiverDelegateUP
@@ -17,7 +17,7 @@ The **LSP1UniversalReceiverDelegateUP** is a contract called by the **[`universa
 
 - Writes the data keys representing the owned vaults from type **[LSP9-Vault](./lsp9-vault.md)** into your account storage, and removes them when **transferring ownership** to other accounts according to the **[LSP10-ReceivedVaults Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
-The following two requirements are required to execute the logic above correctly: 
+The following two requirements are required to execute the logic above correctly:
 
 1. The owner of the **LSP0ERC725Account** contract should be an **[LSP6KeyManager](./lsp6-key-manager.md)** contract.
 2. The **LSP1UniversalReceiverDelegateUP** contract should be granted **permission to [`SETDATA`](../universal-profile/lsp6-key-manager.md#permission-values)** on the account (otherwise, the transaction will pass but will not write any data keys to the storage).
