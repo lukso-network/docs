@@ -15,7 +15,7 @@ sidebar_position: 4
 
 Once a contract is deployed on the blockchain, it is not possible to modify the contract to add new native functions or change the behavior of existing ones. This can be a limitation for smart contracts, particularly those that may need to adapt to new use cases and standards over time.
 
-What is required is a method to extend the functionalities of a smart contract even after it has been deployed, allowing it to continue to support new capabilities over time.
+What is required is a method to extend the functionalities of a smart contract even after it has been deployed, allowing it to continue to support new features over time.
 
 A possible solution to this problem is to establish a system of extensions that can be added to a smart contract, enabling it to **acquire new functionalities** without the need for redeployment.
 
@@ -29,7 +29,7 @@ The **_smart contract A_** implements 4 functions natively. Once this smart cont
 
 In contrast, the **_smart contract B_**, which supports the **[LSP17 standard](#)**, does not implement any native functions but rather relies on extensions for the functionality that is needed and can add more extensions in the future.
 
-Thus, Smart contract B has the ability **to support an unlimited number of functionalities** and can add new functions in the future if desired.
+Thus, smart contract B has the ability **to support an unlimited number of functionalities** and can add new functions in the future if desired.
 
 ![Normal contract Vs contract implementing LSP17](/img/standards/lsp17/OneContract.jpeg)
 
