@@ -74,7 +74,6 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event when owner
 | :--------- | :------ | :----------------------------------------------- |
 | `newOwner` | address | The address to set as the owner of the contract. |
 
-
 ### execute - ERC725X
 
 ```solidity
@@ -112,7 +111,7 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :-------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
 | `operationType` | uint256 | The type of operation that needs to be executed.                                                                         |
 | `to`            | address | The address to interact with. The address `to` will be unused if a contract is created (operations 1 & 2).               |
-| `value`         | uint256 | The amount of native tokens to transfer with the transaction (in Wei).                                                                      |
+| `value`         | uint256 | The amount of native tokens to transfer with the transaction (in Wei).                                                   |
 | `data`          | bytes   | The calldata (ABI-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
 
 #### Return Values:
@@ -121,7 +120,43 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :------- | :---- | :------------------------------------------------------------------------------------------------------------------------------------- |
 | `result` | bytes | The data that was returned by the function called on the external contract, or the address of the contract created (operations 1 & 2). |
 
-### setData - ERC725Y 
+### execute (Array) - ERC725X
+
+```solidity
+function execute(
+    uint256[] memory operationsType,
+    address[] memory targets,
+    uint256[] memory values,
+    bytes[] memory datas
+) public payable returns (bytes[] memory results)
+```
+
+Executes batch of calls on any other smart contracts, transfers value, or deploys a new smart contract.
+
+_Triggers the **[Executed](#executed)** event on each call iteration when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
+
+_Triggers the **[ContractCreated](#contractcreated)** event on each contract creation iteration when a smart contract is created using `CREATE/CREATE2` operations._
+
+:::note
+The `execute(...)` function can only be called by the current owner of the contract.
+:::
+
+#### Parameters:
+
+| Name            | Type      | Description                                                                                                                                |
+| :-------------- | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| `operationType` | uint256[] | The list of operation that needs to be executed.                                                                                           |
+| `targets`       | address[] | The list of addresses to interact with. The addresses `targets` will be unused if a contract is created (operations 1 & 2).                |
+| `value`         | uint256[] | The list of amount of native tokens to transfer with the transaction (in Wei).                                                             |
+| `data`          | bytes[]   | The list of calldata (ABI-encoded payload of a function to run on an other contract), or the list of bytecodes of the contracts to deploy. |
+
+#### Return Values:
+
+| Name     | Type    | Description                                                                                                                                         |
+| :------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `result` | bytes[] | The array of data that was returned by the functions called on the external contract, or the addresses of the contracts created (operations 1 & 2). |
+
+### setData - ERC725Y
 
 ```solidity
 function setData(
@@ -145,7 +180,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 | `dataKey`   | bytes32 | The data key for which the data will be set. |
 | `dataValue` | bytes   | The data to be set.                          |
 
-### getData - ERC725Y 
+### getData - ERC725Y
 
 ```solidity
 function getData(bytes32 dataKey) public view returns (bytes memory dataValue)
@@ -165,7 +200,7 @@ Retrieves the data set for the given data key.
 | :---------- | :---- | :----------------------------------- |
 | `dataValue` | bytes | The data for the requested data key. |
 
-### setData (Array) - ERC725Y 
+### setData (Array) - ERC725Y
 
 ```solidity
 function setData(
@@ -189,7 +224,7 @@ The `setData(...)` function can only be called by the current owner of the contr
 | `dataKeys`   | bytes32[&nbsp;] | The data keys for which to set data. |
 | `dataValues` | bytes[&nbsp;]   | The array of data to set.            |
 
-### getData (Array) - ERC725Y 
+### getData (Array) - ERC725Y
 
 ```solidity
 function getData(bytes32[] memory dataKeys) public view returns (bytes[] memory dataValues)
@@ -208,7 +243,6 @@ Retrieves an array of data for multiple given data keys.
 | Name         | Type          | Description                                       |
 | :----------- | :------------ | :------------------------------------------------ |
 | `dataValues` | bytes[&nbsp;] | An array of the data for the requested data keys. |
-
 
 ## Events
 
@@ -229,7 +263,6 @@ _**MUST** be fired when **[transferOwnership(...)](#transferownership)** functio
 | :-------------- | :------ | :---------------------------------- |
 | `previousOwner` | address | The previous owner of the contract. |
 | `newOwner`      | address | The new owner of the contract.      |
-
 
 ### Executed
 
@@ -259,7 +292,8 @@ _**MUST** be fired when **[`execute(...)`](#execute)** function creates a new ca
 event ContractCreated(
     uint256 operation,
     address contractAddress,
-    uint256 value
+    uint256 value,
+    bytes32 salt
 )
 ```
 
@@ -267,11 +301,12 @@ _**MUST** be fired when the **[`execute(...)`](#execute)** function creates a ne
 
 #### Values:
 
-| Name        | Type    | Description                          |
-| :---------- | :------ | :----------------------------------- |
-| `operation` | uint256 | The operation executed.              |
-| `to`        | address | The address of the created contract. |
-| `value`     | uint256 | The value sent to the contract.      |
+| Name        | Type    | Description                                                                             |
+| :---------- | :------ | :-------------------------------------------------------------------------------------- |
+| `operation` | uint256 | The operation executed.                                                                 |
+| `to`        | address | The address of the created contract.                                                    |
+| `value`     | uint256 | The value sent to the contract.                                                         |
+| `salt`      | bytes32 | The salt used in `CREATE2` operation. Will be bytes32(0) in case of `CREATE` operation. |
 
 ### DataChanged
 
@@ -287,7 +322,6 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfu
 | :---------- | :------ | :------------------------------------ |
 | `dataKey`   | bytes32 | The data key which data value is set. |
 | `dataValue` | bytes   | The data value to set.                |
-
 
 ## References
 
