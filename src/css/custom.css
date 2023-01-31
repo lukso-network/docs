@@ -119,6 +119,11 @@ html[data-theme='dark'] .faq .img {
   height: 100%;
 }
 
+.menu, .navbar__link {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: var(--ifm-font-weight-normal);
+}
+
 @font-face {
   font-family: 'Apax';
   src: url('/static/fonts/Apax-Light.woff2') format('woff2');

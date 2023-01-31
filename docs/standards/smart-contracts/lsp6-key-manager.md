@@ -1,6 +1,6 @@
 ---
 title: LSP6KeyManager
-sidebar_position: 5
+sidebar_position: 8
 ---
 
 # LSP6KeyManager
