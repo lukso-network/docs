@@ -2,6 +2,9 @@
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # L15 Public Testnet
 
 :::danger L15-TESTNET HAS ENDED.
@@ -52,9 +55,6 @@ $ sudo lukso start --node-name "REPLACE-WITH-NODE-NAME"
 </Tabs>
 
 This is a one-time operation and it's nescessary to be able to join the fun. -->
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ### Start an Archive Node
 
