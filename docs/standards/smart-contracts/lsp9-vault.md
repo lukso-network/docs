@@ -40,9 +40,9 @@ If the `initialOwner` is an **[LSP0ERC725Account](./lsp0-erc725-account.md)** co
 
 #### Parameters:
 
-| Name           | Type    | Description                                      |
-| :------------- | :------ | :----------------------------------------------- |
-| `initialOwner` | address | The address to set as the owner of the contract. |
+| Name           | Type      | Description                                      |
+| :------------- | :-------- | :----------------------------------------------- |
+| `initialOwner` | `address` | The address to set as the owner of the contract. |
 
 ### owner
 
@@ -54,9 +54,9 @@ Returns the address of the current vault owner.
 
 #### Return Values:
 
-| Name    | Type    | Description                     |
-| :------ | :------ | :------------------------------ |
-| `owner` | address | The current owner of the vault. |
+| Name    | Type      | Description                     |
+| :------ | :-------- | :------------------------------ |
+| `owner` | `address` | The current owner of the vault. |
 
 ### pendingOwner
 
@@ -70,9 +70,9 @@ Return the address of the pending owner that was initiated by [`transferOwnershi
 
 #### Return Values:
 
-| Name           | Type    | Description                      |
-| :------------- | :------ | :------------------------------- |
-| `pendingOwner` | address | The address of the pending owner |
+| Name           | Type      | Description                      |
+| :------------- | :-------- | :------------------------------- |
+| `pendingOwner` | `address` | The address of the pending owner |
 
 ### transferOwnership
 
@@ -89,9 +89,9 @@ Requirements:
 
 #### Parameters:
 
-| Name       | Type    | Description                           |
-| :--------- | :------ | :------------------------------------ |
-| `newOwner` | address | The address to set as `pendingOwner`. |
+| Name       | Type      | Description                           |
+| :--------- | :-------- | :------------------------------------ |
+| `newOwner` | `address` | The address to set as `pendingOwner`. |
 
 ### acceptOwnership
 
@@ -139,7 +139,7 @@ _Triggers the **[ValueReceived](#valuereceived)** event when a native token is r
 ```solidity
 function execute(
     uint256 operationType,
-    address to,
+    address target,
     uint256 value,
     bytes memory data
 ) public payable returns (bytes memory result)
@@ -166,18 +166,18 @@ The operation type `staticcall` (`3`) does not allow to transfer value.
 
 #### Parameters:
 
-| Name            | Type    | Description                                                                                                              |
-| :-------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
-| `operationType` | uint256 | The type of operation that needs to be executed.                                                                         |
-| `to`            | address | The address to interact with. `to` will be unused if a contract is created (operation 1 & 2).                            |
-| `value`         | uint256 | The amount of native tokens to transfer with the transaction (in Wei).                                                   |
-| `data`          | bytes   | The calldata (ABI-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
+| Name            | Type      | Description                                                                                                              |
+| :-------------- | :-------- | :----------------------------------------------------------------------------------------------------------------------- |
+| `operationType` | `uint256` | The type of operation that needs to be executed.                                                                         |
+| `target`        | `address` | The address to interact with. `target` will be unused if a contract is created (operation 1 & 2).                        |
+| `value`         | `uint256` | The amount of native tokens to transfer with the transaction (in Wei).                                                   |
+| `data`          | `bytes`   | The calldata (ABI-encoded payload of a function to run on an other contract), or the bytecode of the contract to deploy. |
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                                         |
-| :------- | :---- | :-------------------------------------------------------------------------------------------------- |
-| `result` | bytes | The returned data of the called function, or the address of the contract created (operation 1 & 2). |
+| Name     | Type    | Description                                                                                         |
+| :------- | :------ | :-------------------------------------------------------------------------------------------------- |
+| `result` | `bytes` | The returned data of the called function, or the address of the contract created (operation 1 & 2). |
 
 ### setData
 
@@ -198,10 +198,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name    | Type    | Description                         |
-| :------ | :------ | :---------------------------------- |
-| `key`   | bytes32 | The data key for which to set data. |
-| `value` | bytes   | The data to set as bytes.           |
+| Name    | Type      | Description                         |
+| :------ | :-------- | :---------------------------------- |
+| `key`   | `bytes32` | The data key for which to set data. |
+| `value` | `bytes`   | The data to set as bytes.           |
 
 ### getData
 
@@ -213,15 +213,15 @@ Retrieves the data that was set for a particular data `key`.
 
 #### Parameters:
 
-| Name  | Type    | Description                         |
-| :---- | :------ | :---------------------------------- |
-| `key` | bytes32 | The data key to retrieve data from. |
+| Name  | Type      | Description                         |
+| :---- | :-------- | :---------------------------------- |
+| `key` | `bytes32` | The data key to retrieve data from. |
 
 #### Return Values:
 
-| Name    | Type  | Description                          |
-| :------ | :---- | :----------------------------------- |
-| `value` | bytes | The data for the requested data key. |
+| Name    | Type    | Description                          |
+| :------ | :------ | :----------------------------------- |
+| `value` | `bytes` | The data for the requested data key. |
 
 ### execute (Array)
 
@@ -256,19 +256,18 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 
 #### Parameters:
 
-| Name             | Type        | Description                                                                                                                  |
-| :--------------- | :-----------| :--------------------------------------------------------------------------------------------------------------------------- |
-| `operationsType` | `uint256[]` | The type of operations that need to be executed.                                                                             |
-| `targets`        | `address[]` | The addresses to interact with. Unused if a contract is created (operations 1 & 2).                                          |
-| `values`         | `uint256[]` | The amount of native tokens to transfer with the transaction (in Wei).                                                       |
+| Name             | Type        | Description                                                                                                               |
+| :--------------- | :---------- | :------------------------------------------------------------------------------------------------------------------------ |
+| `operationsType` | `uint256[]` | The type of operations that need to be executed.                                                                          |
+| `targets`        | `address[]` | The addresses to interact with. Unused if a contract is created (operations 1 & 2).                                       |
+| `values`         | `uint256[]` | The amount of native tokens to transfer with the transaction (in Wei).                                                    |
 | `datas`          | `bytes[]`   | The calldatas (ABI-encoded payloads of functions to run on other contracts), or the bytecodes of the contracts to deploy. |
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                                                                                        |
-| :------- | :---- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name      | Type      | Description                                                                                                                                   |
+| :-------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `results` | `bytes[]` | The datas that were returned by the functions called on the external contracts, or the addresses of the contracts created (operations 1 & 2). |
-
 
 ### setData (Array)
 
@@ -289,10 +288,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 
 #### Parameters:
 
-| Name     | Type            | Description                          |
-| :------- | :-------------- | :----------------------------------- |
-| `keys`   | bytes32[&nbsp;] | The data keys for which to set data. |
-| `values` | bytes[&nbsp;]   | The array of data to set.            |
+| Name     | Type        | Description                          |
+| :------- | :---------- | :----------------------------------- |
+| `keys`   | `bytes32[]` | The data keys for which to set data. |
+| `values` | `bytes[]`   | The array of data to set.            |
 
 ### getData (Array)
 
@@ -304,15 +303,15 @@ Retrieves an array of data for multiple given data keys.
 
 #### Parameters:
 
-| Name   | Type            | Description                          |
-| :----- | :-------------- | :----------------------------------- |
-| `keys` | bytes32[&nbsp;] | The data keys to retrieve data from. |
+| Name   | Type        | Description                          |
+| :----- | :---------- | :----------------------------------- |
+| `keys` | `bytes32[]` | The data keys to retrieve data from. |
 
 #### Return Values:
 
-| Name     | Type          | Description                                       |
-| :------- | :------------ | :------------------------------------------------ |
-| `values` | bytes[&nbsp;] | An array of the data for the requested data keys. |
+| Name     | Type      | Description                                       |
+| :------- | :-------- | :------------------------------------------------ |
+| `values` | `bytes[]` | An array of the data for the requested data keys. |
 
 ### universalReceiver
 
@@ -330,16 +329,16 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
 
 #### Parameters:
 
-| Name     | Type    | Description                    |
-| :------- | :------ | :----------------------------- |
-| `typeId` | bytes32 | The type of transfer received. |
-| `data`   | bytes   | The data received.             |
+| Name     | Type      | Description                    |
+| :------- | :-------- | :----------------------------- |
+| `typeId` | `bytes32` | The type of transfer received. |
+| `data`   | `bytes`   | The data received.             |
 
 #### Return Values:
 
-| Name     | Type  | Description                            |
-| :------- | :---- | :------------------------------------- |
-| `result` | bytes | Can be used to encode response values. |
+| Name     | Type    | Description                            |
+| :------- | :------ | :------------------------------------- |
+| `result` | `bytes` | Can be used to encode response values. |
 
 ## Events
 
@@ -356,10 +355,10 @@ _**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** f
 
 #### Values:
 
-| Name           | Type    | Description                              |
-| :------------- | :------ | :--------------------------------------- |
-| `currentOwner` | address | The current owner of the contract.       |
-| `newOwner`     | address | The potential new owner of the contract. |
+| Name           | Type      | Description                              |
+| :------------- | :-------- | :--------------------------------------- |
+| `currentOwner` | `address` | The current owner of the contract.       |
+| `newOwner`     | `address` | The potential new owner of the contract. |
 
 ### OwnershipTransferred
 
@@ -374,10 +373,10 @@ _**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** f
 
 #### Values:
 
-| Name            | Type    | Description                         |
-| :-------------- | :------ | :---------------------------------- |
-| `previousOwner` | address | The previous owner of the contract. |
-| `newOwner`      | address | The new owner of the contract.      |
+| Name            | Type      | Description                         |
+| :-------------- | :-------- | :---------------------------------- |
+| `previousOwner` | `address` | The previous owner of the contract. |
+| `newOwner`      | `address` | The new owner of the contract.      |
 
 ### RenounceOwnershipStarted
 
@@ -408,17 +407,17 @@ _**MUST** be fired when when a native token is received via **[`fallback(...)`](
 
 #### Values:
 
-| Name     | Type    | Description                |
-| :------- | :------ | :------------------------- |
-| `sender` | address | The address of the sender. |
-| `value`  | uint256 | The amount sent.           |
+| Name     | Type      | Description                |
+| :------- | :-------- | :------------------------- |
+| `sender` | `address` | The address of the sender. |
+| `value`  | `uint256` | The amount sent.           |
 
 ### Executed
 
 ```solidity
 event Executed(
     uint256 operation,
-    address to,
+    address target,
     uint256 value,
     bytes4 selector
 )
@@ -428,12 +427,12 @@ _**MUST** be fired when the **[`execute(...)`](#execute)** function creates a ne
 
 #### Values:
 
-| Name        | Type    | Description                                                       |
-| :---------- | :------ | :---------------------------------------------------------------- |
-| `operation` | uint256 | The operation executed.                                           |
-| `to`        | address | The smart contract or address interacted with.                    |
-| `value`     | uint256 | The value transferred.                                            |
-| `selector`  | bytes4  | The bytes4 selector of the function executed at the `to` address. |
+| Name        | Type      | Description                                                       |
+| :---------- | :-------- | :---------------------------------------------------------------- |
+| `operation` | `uint256` | The operation executed.                                           |
+| `target`    | `address` | The smart contract or address interacted with.                    |
+| `value`     | `uint256` | The value transferred.                                            |
+| `selector`  | `bytes4`  | The bytes4 selector of the function executed at the `to` address. |
 
 ### ContractCreated
 
@@ -449,11 +448,11 @@ _**MUST** be fired when the **[`execute(...)`](#execute)** function creates a ne
 
 #### Values:
 
-| Name        | Type    | Description                          |
-| :---------- | :------ | :----------------------------------- |
-| `operation` | uint256 | The operation executed.              |
-| `to`        | address | The address of the created contract. |
-| `value`     | uint256 | The value sent to the contract.      |
+| Name        | Type      | Description                          |
+| :---------- | :-------- | :----------------------------------- |
+| `operation` | `uint256` | The operation executed.              |
+| `to`        | `address` | The address of the created contract. |
+| `value`     | `uint256` | The value sent to the contract.      |
 
 ### DataChanged
 
@@ -465,10 +464,10 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfu
 
 #### Values:
 
-| Name        | Type    | Description                           |
-| :---------- | :------ | :------------------------------------ |
-| `dataKey`   | bytes32 | The data key which data value is set. |
-| `dataValue` | bytes   | The data value to set.                |
+| Name        | Type      | Description                           |
+| :---------- | :-------- | :------------------------------------ |
+| `dataKey`   | `bytes32` | The data key which data value is set. |
+| `dataValue` | `bytes`   | The data value to set.                |
 
 :::info
 The `DataChanged` event will emit only the first 256 bytes of `dataValue` (for large values set in the ERC725Y storage).
@@ -490,13 +489,13 @@ _**MUST** be fired when the **[`universalReceiver(...)`](#universalreceiver)** f
 
 #### Values:
 
-| Name            | Type    | Description                                                     |
-| :-------------- | :------ | :-------------------------------------------------------------- |
-| `from`          | address | The address calling the **universalReceiver** function.         |
-| `value`         | uint256 | The amount of value sent to the **universalReceiver** function. |
-| `typeId`        | bytes32 | The hash of a specific standard or a hook.                      |
-| `receivedData`  | bytes   | The arbitrary data passed to **universalReceiver** function.    |
-| `returnedValue` | bytes   | The value returned by the **universalReceiver** function.       |
+| Name            | Type      | Description                                                     |
+| :-------------- | :-------- | :-------------------------------------------------------------- |
+| `from`          | `address` | The address calling the **universalReceiver** function.         |
+| `value`         | `uint256` | The amount of value sent to the **universalReceiver** function. |
+| `typeId`        | `bytes32` | The hash of a specific standard or a hook.                      |
+| `receivedData`  | `bytes`   | The arbitrary data passed to **universalReceiver** function.    |
+| `returnedValue` | `bytes`   | The value returned by the **universalReceiver** function.       |
 
 ## References
 

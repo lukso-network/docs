@@ -51,11 +51,11 @@ Sets the **initial owner** of the contract and the following data keys on the **
 
 #### Parameters:
 
-| Name        | Type    | Description                |
-| :---------- | :------ | :------------------------- |
-| `name_`     | string  | The name of the token.     |
-| `symbol_`   | string  | The symbol of the token.   |
-| `newOwner_` | address | The owner of the contract. |
+| Name        | Type      | Description                |
+| :---------- | :-------- | :------------------------- |
+| `name_`     | `string`  | The name of the token.     |
+| `symbol_`   | `string`  | The symbol of the token.   |
+| `newOwner_` | `address` | The owner of the contract. |
 
 ## Events
 
@@ -69,10 +69,10 @@ _**MUST** be fired when the **[`setData(...)`](#setdata)** function is successfu
 
 #### Values:
 
-| Name        | Type    | Description                           |
-| :---------- | :------ | :------------------------------------ |
-| `dataKey`   | bytes32 | The data key which data value is set. |
-| `dataValue` | bytes   | The data value to set.                |
+| Name        | Type      | Description                           |
+| :---------- | :-------- | :------------------------------------ |
+| `dataKey`   | `bytes32` | The data key which data value is set. |
+| `dataValue` | `bytes`   | The data value to set.                |
 
 :::info
 The `DataChanged` event will emit only the first 256 bytes of `dataValue` (for large values set in the ERC725Y storage).

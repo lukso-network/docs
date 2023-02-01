@@ -40,9 +40,9 @@ Links the KeyManager to the address of an **ERC725** contract.
 
 #### Parameters:
 
-| Name     | Type    | Description                                        |
-| :------- | :------ | :------------------------------------------------- |
-| `target` | address | The address of the **ERC725** contract to control. |
+| Name     | Type      | Description                                        |
+| :------- | :-------- | :------------------------------------------------- |
+| `target` | `address` | The address of the **ERC725** contract to control. |
 
 ### target
 
@@ -60,9 +60,9 @@ This can be a contract that implements:
 
 #### Returns
 
-| Name     | Type    | Description                       |
-| -------- | ------- | --------------------------------- |
-| `target` | address | the address of the linked account |
+| Name     | Type      | Description                       |
+| -------- | --------- | --------------------------------- |
+| `target` | `address` | the address of the linked account |
 
 ### execute
 
@@ -84,15 +84,15 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 #### Parameters:
 
-| Name      | Type  | Description                 |
-| :-------- | :---- | :-------------------------- |
-| `payload` | bytes | The payload to be executed. |
+| Name      | Type    | Description                 |
+| :-------- | :------ | :-------------------------- |
+| `payload` | `bytes` | The payload to be executed. |
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                  |
-| :------- | :---- | :--------------------------------------------------------------------------- |
-| `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded. |
+| Name     | Type    | Description                                                                  |
+| :------- | :------ | :--------------------------------------------------------------------------- |
+| `result` | `bytes` | The returned data as ABI-encoded bytes if the call on the account succeeded. |
 
 ### execute (Array)
 
@@ -142,16 +142,16 @@ More info about **channel** can be found here: **[What are multi-channel nonces]
 
 #### Parameters:
 
-| Name      | Type    | Description                                                              |
-| :-------- | :------ | :----------------------------------------------------------------------- |
-| `signer`  | address | The address of the signer of the transaction.                            |
-| `channel` | uint256 | The channel which the signer wants to use for executing the transaction. |
+| Name      | Type      | Description                                                              |
+| :-------- | :-------- | :----------------------------------------------------------------------- |
+| `signer`  | `address` | The address of the signer of the transaction.                            |
+| `channel` | `uint256` | The channel which the signer wants to use for executing the transaction. |
 
 #### Return Values:
 
-| Name    | Type    | Description        |
-| :------ | :------ | :----------------- |
-| `nonce` | uint256 | The current nonce. |
+| Name    | Type      | Description        |
+| :------ | :-------- | :----------------- |
+| `nonce` | `uint256` | The current nonce. |
 
 ### executeRelayCall
 
@@ -217,11 +217,11 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 #### Parameters:
 
-| Name        | Type    | Description                                       |
-| :---------- | :------ | :------------------------------------------------ |
-| `signature` | bytes   | The bytes65 EIP191 signature.                     |
-| `nonce`     | uint256 | The nonce of the address that signed the message. |
-| `_calldata` | bytes   | The payload to be executed.                       |
+| Name        | Type      | Description                                       |
+| :---------- | :-------- | :------------------------------------------------ |
+| `signature` | `bytes`   | The bytes65 EIP191 signature.                     |
+| `nonce`     | `uint256` | The nonce of the address that signed the message. |
+| `_calldata` | `bytes`   | The payload to be executed.                       |
 
 #### Return Value:
 
@@ -270,16 +270,16 @@ Checks if a signature was signed by an address having at least the **[SIGN](../u
 
 #### Parameters:
 
-| Name        | Type    | Description                                           |
-| :---------- | :------ | :---------------------------------------------------- |
-| `hash`      | bytes32 | The hash of the data signed on the behalf of address. |
-| `signature` | bytes   | The Owner's signature(s) of the data.                 |
+| Name        | Type      | Description                                           |
+| :---------- | :-------- | :---------------------------------------------------- |
+| `hash`      | `bytes32` | The hash of the data signed on the behalf of address. |
+| `signature` | `bytes`   | The Owner's signature(s) of the data.                 |
 
 #### Return Values:
 
-| Name         | Type   | Description                                                            |
-| :----------- | :----- | :--------------------------------------------------------------------- |
-| `magicValue` | bytes4 | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
+| Name         | Type     | Description                                                            |
+| :----------- | :------- | :--------------------------------------------------------------------- |
+| `magicValue` | `bytes4` | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
 
 ## Events
 
@@ -296,10 +296,10 @@ _**MUST** be fired when a transaction was successfully executed from the **[exec
 
 #### Values:
 
-| Name       | Type    | Description                                                                       |
-| :--------- | :------ | :-------------------------------------------------------------------------------- |
-| `value`    | uint256 | The amount to be sent with the payload.                                           |
-| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
+| Name       | Type      | Description                                                                       |
+| :--------- | :-------- | :-------------------------------------------------------------------------------- |
+| `value`    | `uint256` | The amount to be sent with the payload.                                           |
+| `selector` | `bytes4`  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
 
 ## References
 
