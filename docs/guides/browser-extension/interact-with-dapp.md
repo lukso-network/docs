@@ -9,16 +9,18 @@ import TabItem from '@theme/TabItem';
 # Interact with a dApp
 
 :::danger
+
 The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
+
 :::
 
 :::note
-If you have **MetaMask** installed, *right click on both* MetaMask and UP Extension and select "This Can Read and Change Site Data > When you Click the Extension". This was you can select per tab, which extension can read your site. By closing the tab you can reset this.
+
+If you have **MetaMask** installed, _right click on both_ MetaMask and UP Extension and select "This Can Read and Change Site Data > When you Click the Extension". This was you can select per tab, which extension can read your site. By closing the tab you can reset this.
 
 <img width="400" src="https://user-images.githubusercontent.com/232662/192822200-392b19f1-321b-4a59-928a-f71876bec6f3.png" />
+
 :::
-
-
 
 ## Setup
 
@@ -214,20 +216,14 @@ await contract.methods
 
 **Example**: Listening for accounts changed event:
 
-<Tabs>
-  <TabItem value="web3" label="web3">
-
 ```js
 window.ethereum.on('accountsChanged', (addresses: string[]) => {
   const newAddress = addresses[0];
-  ...
+  // ...
 }
 ```
 
-  </TabItem>
-</Tabs>
-
 ## Sample dApp
 
-- Check the [Sample dApp](https://up-sample-web-app.staging.lukso.dev/) for more examples in the browser.
+- Check the [LUKSO Test dApp](https://up-test-dapp.lukso.tech/) for more examples in the browser.
 - Check the [Repository](https://github.com/lukso-network/universalprofile-sample-web-app) for code snippets.
