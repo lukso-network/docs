@@ -200,12 +200,12 @@ function transfer(
     address from,
     address to,
     uint256 amount,
-    bool force,
+    bool allowNonLSP1Recipient,
     bytes memory data
 ) public
 ```
 
-Transfers an `amount` of tokens from the `from` address to the `to` address. The `force` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or if contracts do not implement the [LSP1-UniversalReceiverDelegate Standard](../generic-standards/lsp1-universal-receiver.md).
+Transfers an `amount` of tokens from the `from` address to the `to` address. The `allowNonLSP1Recipient` parameter **MUST** be set to TRUE when transferring tokens to Externally Owned Accounts (EOAs) or if contracts do not implement the [LSP1-UniversalReceiverDelegate Standard](../generic-standards/lsp1-universal-receiver.md).
 
 Will notify the token sender and receiver by calling the `universalReceiver(...)` function on the `from` and `to` address.
 
@@ -213,13 +213,13 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 #### Parameters:
 
-| Name     | Type      | Description                                                                                                                               |
-| :------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | `address` | The sender address.                                                                                                                       |
-| `to`     | `address` | The recipient address.                                                                                                                    |
-| `amount` | `uint256` | The amount of token to transfer.                                                                                                          |
-| `force`  | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `data`   | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
+| Name                    | Type      | Description                                                                                                                               |
+| :---------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`                  | `address` | The sender address.                                                                                                                       |
+| `to`                    | `address` | The recipient address.                                                                                                                    |
+| `amount`                | `uint256` | The amount of token to transfer.                                                                                                          |
+| `allowNonLSP1Recipient` | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `data`                  | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
 :::note
 
@@ -239,7 +239,7 @@ function transferBatch(
     address[] from,
     address[] to,
     uint256[] amount,
-    bool[] force,
+    bool[] allowNonLSP1Recipient,
     bytes[] memory data
 ) public
 ```
@@ -250,13 +250,13 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 #### Parameters:
 
-| Name     | Type        | Description                                                                                                                               |
-| :------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | `address[]` | The list of sender addresses.                                                                                                             |
-| `to`     | `address[]` | The list of recipient addresses.                                                                                                          |
-| `amount` | `uint256[]` | The amount of tokens to transfer.                                                                                                         |
-| `force`  | `bool[]`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `data`   | `bytes[]`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
+| Name                    | Type        | Description                                                                                                                               |
+| :---------------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`                  | `address[]` | The list of sender addresses.                                                                                                             |
+| `to`                    | `address[]` | The list of recipient addresses.                                                                                                          |
+| `amount`                | `uint256[]` | The amount of tokens to transfer.                                                                                                         |
+| `allowNonLSP1Recipient` | `bool[]`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `data`                  | `bytes[]`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
 :::note
 
@@ -285,7 +285,7 @@ In order to use them you have to extend the smart contracts and create custom me
 function _mint(
     address to,
     uint256 amount,
-    bool force,
+    bool allowNonLSP1Recipient,
     bytes memory data
 ) internal virtual
 ```
@@ -296,12 +296,12 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 #### Parameters:
 
-| Name     | Type      | Description                                                                                                                               |
-| :------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `to`     | `address` | The recipient address.                                                                                                                    |
-| `amount` | `uint256` | The amount of token to mint.                                                                                                              |
-| `force`  | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `memory` | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address.                                     |
+| Name                    | Type      | Description                                                                                                                               |
+| :---------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `to`                    | `address` | The recipient address.                                                                                                                    |
+| `amount`                | `uint256` | The amount of token to mint.                                                                                                              |
+| `allowNonLSP1Recipient` | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory`                | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hook to `to` address.                                     |
 
 :::note
 
@@ -318,7 +318,7 @@ function _transfer(
     address from,
     address to,
     uint256 amount,
-    bool force,
+    bool allowNonLSP1Recipient,
     bytes memory data
 ) internal virtual
 ```
@@ -329,13 +329,13 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 
 #### Parameters:
 
-| Name     | Type      | Description                                                                                                                               |
-| :------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | `address` | The sender address.                                                                                                                       |
-| `to`     | `address` | The recipient address.                                                                                                                    |
-| `amount` | `uint256` | The amount of token to transfer.                                                                                                          |
-| `force`  | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `memory` | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
+| Name                    | Type      | Description                                                                                                                               |
+| :---------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`                  | `address` | The sender address.                                                                                                                       |
+| `to`                    | `address` | The recipient address.                                                                                                                    |
+| `amount`                | `uint256` | The amount of token to transfer.                                                                                                          |
+| `allowNonLSP1Recipient` | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory`                | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
 :::note
 
@@ -439,7 +439,7 @@ function _notifyTokenReceiver(
     address from,
     address to,
     uint256 amount,
-    bool force,
+    bool allowNonLSP1Recipient,
     bytes memory data
 ) internal virtual
 ```
@@ -448,13 +448,13 @@ An attempt is made to notify the token receiver about the `amount` of tokens bei
 
 #### Parameters:
 
-| Name     | Type      | Description                                                                                                                               |
-| :------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`   | `address` | The sender address.                                                                                                                       |
-| `to`     | `address` | The recipient address.                                                                                                                    |
-| `amount` | `uint256` | The amount of token to transfer.                                                                                                          |
-| `force`  | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `memory` | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
+| Name                    | Type      | Description                                                                                                                               |
+| :---------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`                  | `address` | The sender address.                                                                                                                       |
+| `to`                    | `address` | The recipient address.                                                                                                                    |
+| `amount`                | `uint256` | The amount of token to transfer.                                                                                                          |
+| `allowNonLSP1Recipient` | `bool`    | When set to TRUE, `to` may be any address; when set to FALSE `to` must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `memory`                | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                       |
 
 ### \_updateOperator
 
@@ -496,7 +496,7 @@ event Transfer(
     address from,
     address to,
     uint256 amount,
-    bool force,
+    bool allowNonLSP1Recipient,
     bytes data
 )
 ```
@@ -505,14 +505,14 @@ _**MUST** be fired when the **[transfer](#transfer)** function gets executed suc
 
 #### Values:
 
-| Name       | Type      | Description                                                                                                                           |
-| :--------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `operator` | `address` | The address of operator sending tokens.                                                                                               |
-| `from`     | `address` | The address which tokens are sent.                                                                                                    |
-| `to`       | `address` | The recipient address.                                                                                                                |
-| `amount`   | `uint256` | The amount of tokens transferred.                                                                                                     |
-| `force`    | `bool`    | When set to TRUE, to may be any address; when set to FALSE to must be a contract that supports LSP1 UniversalReceiver and not revert. |
-| `data`     | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.                       |
+| Name                    | Type      | Description                                                                                                                           |
+| :---------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| `operator`              | `address` | The address of operator sending tokens.                                                                                               |
+| `from`                  | `address` | The address which tokens are sent.                                                                                                    |
+| `to`                    | `address` | The recipient address.                                                                                                                |
+| `amount`                | `uint256` | The amount of tokens transferred.                                                                                                     |
+| `allowNonLSP1Recipient` | `bool`    | When set to TRUE, to may be any address; when set to FALSE to must be a contract that supports LSP1 UniversalReceiver and not revert. |
+| `data`                  | `bytes`   | Additional data the caller wants included in the emitted event, and sent in the hooks to from and to addresses.                       |
 
 ### AuthorizedOperator
 
