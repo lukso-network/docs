@@ -3,6 +3,9 @@ sidebar_label: 'LSP6 - Key Manager'
 sidebar_position: 6
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # LSP6 - Key Manager
 
 :::info Standard Document
