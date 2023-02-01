@@ -90,7 +90,7 @@ It will sync up by itself only to the final epoch.
 
 It means that once finality is reached it is not necessarily 
 important how many peers the execution node has. 
-The peers in execution and consensus are also not necesseraly 
+The peers in execution and consensus are also not necessarily 
 the same. There is no mechanism where the consensus is 
 telling the execution node which peers it is connected to 
 and vice versa.
@@ -124,7 +124,7 @@ NOTE: Make sure you also forward those ports in your router.
 
 The final staking amount will be based in LYXe price and likely shortly before
 mainnet. It will very likely not be 32 LYX. As the amount must be high enough
-to incentivise good validator behaviour. If it cost to little the network 
+to incentivise good validator behaviour. If it cost too little the network 
 becomes insecure.
 
 ### When will it be possible to withdraw your LYX from your validator and how?
@@ -142,7 +142,7 @@ No, you can run as many as you want and you can run only just one validator.
 
 It is not given exactly. We were running a node with 60 
 validators. Next to block proposals the validator node has 
-additonal duties like voting on a block. It might get quite 
+additional duties like voting on a block. It might get quite 
 crowded on one slot. But it also depends on the size of 
 the validators in total. If there are many validators out 
 there the duties might be very low for a node.
@@ -151,7 +151,7 @@ there the duties might be very low for a node.
 
 Example: One node with 200 validators or two nodes with 100 validators each.
 
-This is a optimisation problem which goes against 
+This is an optimisation problem which goes against 
 a lot of factors: Price per node. Total Validator Density. 
 It can be reasonable to run 200 validators in one node but 
 we don't recommend it.

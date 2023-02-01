@@ -114,6 +114,16 @@ module.exports = {
         },
       ],
     },
+    algolia: {
+      appId: '2C4F8KVKCI',
+      apiKey: '27e4c8037f1e5b053cf1bf1d4d60c408',
+      indexName: 'lukso_docs',
+      contextualSearch: true,
+      // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+      externalUrlRegex: 'docs\\.lukso\\.tech',
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'search',
+    },
     footer: {
       style: 'dark',
       links: [
