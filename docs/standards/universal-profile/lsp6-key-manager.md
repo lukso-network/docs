@@ -3,6 +3,9 @@ sidebar_label: 'LSP6 - Key Manager'
 sidebar_position: 6
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # LSP6 - Key Manager
 
 :::info Standard Document
@@ -93,6 +96,7 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 Given a contract or EOA has this permission, it enables it to be able to execute a payload during the execution of another payload. A contract would reenter by using `execute(..)` and an EOA would do that through `executeRelayCall(..)`.
 
 E.g. One of the best uses for this permission is the following scenario:
+
 1. The ERC725Acccount linked to the Key Manager makes an external call to a _contract A_.
 2. _Contract A_ will make some internal updates using the received data.
 3. The _contract A_ will then call back the ERC725Account **(via the Key Manager)** with another payload that will update the account storage.
