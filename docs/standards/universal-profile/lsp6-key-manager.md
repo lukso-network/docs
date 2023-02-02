@@ -546,6 +546,8 @@ A CompactBytesArray for these 3 interactions would look like this:
 }
 ```
 
+![LSP6 Allowed Calls Overview](/img/standards/lsp6/lsp6_allowed_calls_example.jpeg)
+
 :::warning
 
 Allowing any function selector, any address and only a specific standard does not offer security over the inner workings or the correctness of a smart contract. It should be used more as a "mistake prevention" mechanism than a security measure.
