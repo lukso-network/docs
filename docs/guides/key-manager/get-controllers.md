@@ -112,7 +112,7 @@ console.log(
 // decoded permission for 0x5F606b5b237623463a90F63230F9b929321dbCBa = {
 //   "CHANGEOWNER": true,
 //   "CHANGEPERMISSIONS": true,
-//   "ADDPERMISSIONS": true,
+//   "ADDCONTROLLER": true,
 //   "SETDATA": true,
 //   "CALL": true,
 //   "STATICCALL": true,
