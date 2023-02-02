@@ -101,7 +101,7 @@ const myUPAddress = deployedContracts.ERC725Account.address;
 // 0xB46BBD556589565730C06bB4B7454B1596c9E70A
 ```
 
-#### Read the UP smart contract ERC725Y keys and values with [`@erc725/erc725.js`](../tools/erc725js/getting-started).
+#### Read the UP smart contract ERC725Y data keys and values with [`@erc725/erc725.js`](../tools/erc725js/getting-started).
 
 ```js title="Read Universal Profile ERC725 keys/values with erc725.js"
 import { ERC725 } from '@erc725/erc725.js';
