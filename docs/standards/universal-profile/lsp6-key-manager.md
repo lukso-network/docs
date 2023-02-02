@@ -88,6 +88,46 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 </details>
 
 <details>
+    <summary><code>ADDEXTENSIONS</code> - Allows adding new extensions</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
+    </p>
+
+This role allows for _adding_ new [**Contract Extensions**](../generic-standards/lsp17-contract-extension.md)
+
+</details>
+
+<details>
+    <summary><code>CHANGEEXTENSIONS</code> - Allows changing existing extensions</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code>
+    </p>
+
+This role allows for _changing_ or _removing_ already existing [**Contract Extensions**](../generic-standards/lsp17-contract-extension.md)
+
+</details>
+
+<details>
+    <summary><code>ADDUNIVERSALRECEIVERDELEGATE</code> - Allows adding new URDs</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
+    </p>
+
+This role allows for _adding_ new [**Universal Receiver Delegate**](../generic-standards/lsp1-universal-receiver-delegate.md)
+
+</details>
+
+<details>
+    <summary><code>CHANGEUNIVERSALRECEIVERDELEGATE</code> - Allows changing existing URDs</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
+    </p>
+
+This role allows for _changing_ or _removing_ already existing [**Universal Receiver Delegate**](../generic-standards/lsp1-universal-receiver-delegate.md)
+
+</details>
+
+<details>
     <summary><code>REENTRANCY</code> - Allows reentering during an execution</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
@@ -223,7 +263,7 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 ### SUPER Permissions
 
-The super permissions grants the same permissions as their non-super counter parts, with the difference being that the checks on restrictions for `addresses`, `standards`, or `functions` are _skipped_. This allows for cheaper transactions whether these restrictions are set or not.
+The super permissions grants the same permissions as their non-super counter parts, with the difference being that the checks on restrictions for [**Allowed Calls**](#allowed-calls) and [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) are _skipped_. This allows for cheaper transactions whether these restrictions are set or not.
 
 <details id="super-set-data">
     <summary><code>SUPER_SETDATA</code></summary>
@@ -231,7 +271,7 @@ The super permissions grants the same permissions as their non-super counter par
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000020000</code>
     </p>
 
-Same as `SETDATA`, but allowing to set any ERC725Y data keys.
+Same as `SETDATA`, but allowing to set any ERC725Y data keys. This will not check for [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) if caller has any restrictions.
 
 </details>
 
@@ -241,7 +281,7 @@ Same as `SETDATA`, but allowing to set any ERC725Y data keys.
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
     </p>
 
-Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the caller has any of these restrictions set.
 
 </details>
 
@@ -251,7 +291,7 @@ Same as `DELEGATECALL`, but allowing to interact with any contract. This will no
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
     </p>
 
-Same as `STATICCALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+Same as `STATICCALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the caller has any of these restrictions set.
 
 </details>
 
@@ -261,7 +301,7 @@ Same as `STATICCALL`, but allowing to interact with any contract. This will not 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
     </p>
 
-Same as `CALL`, but allowing to interact with any contract. This will not check for allowed `address`, standard or functions if the caller has any of these restrictions set.
+Same as `CALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the caller has any of these restrictions set.
 
 </details>
 
@@ -271,7 +311,7 @@ Same as `CALL`, but allowing to interact with any contract. This will not check 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
     </p>
 
-Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for allowed standards or allowed functions when transferring value to contracts.
+Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for [**Allowed Calls**](#allowed-calls) when transferring value to contracts.
 
 </details>
 
@@ -361,31 +401,25 @@ _if the `AddressPermission[]` array data key returns `0x000000000000000000000000
 
 ## Types of permissions
 
-| Permission Type                                        | Description                                                                                                                                                                                                               | `bytes32` data key                    |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [**Address Permissions**](#address-permissions)        | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
-| [**Allowed Addresses**](#allowed-addresses)            | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742de2bfc6dd6b3c0000<address>` |
-| [**Allowed Functions**](#allowed-functions)            | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742de2bf8efea1e80000<address>` |
-| [**Allowed Standards**](#allowed-standards)            | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742de2bf3efa94a30000<address>` |
-| [**Allowed ERC725Y Data Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y Data Keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                       | `0x4b80742de2bf866c29110000<address>` |
+| Permission Type                                        | Description                                                                                                                                                                                         | `bytes32` data key                    |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [**Address Permissions**](#address-permissions)        | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                  | `0x4b80742de2bf82acb3630000<address>` |
+| [**Allowed Calls**](#allowed-calls)                    | defines a set of interactions (function + address + standard) allowed for a controller address.                                                                                                     | `0x4b80742de2bf393a64c70000<address>` |
+| [**Allowed ERC725Y Data Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y Data Keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account. | `0x4b80742de2bf866c29110000<address>` |
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
 
 The values set under these permission keys **MUST be of the following format** to ensure correct behavior of these functionalities.
 
 - **Address Permissions**: a `bytes32` value.
-- **Allowed Addresses**: an ABI-encoded array of `address[]`.
-- **Allowed Functions**: an ABI-encoded array of `bytes4[]`.
-- **Allowed Standards**: an ABI-encoded array of `bytes4[]`.
-- **Allowed ERC725Y Data Keys**: an ABI-encoded array of `bytes32[]`.
-
-> See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
+- **Allowed Calls**: an [CompactBytesArray](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of the tuple `(bytes4,address,bytes4)`.
+- **Allowed ERC725Y Data Keys**: an [CompactBytesArray](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of bytes, containing values from `bytes1` to `bytes32`.
 
 :::caution
 
-To **add / remove entries in the list of allowed addresses, functions, standards or ERC725Y Data Keys**, the **whole array** should be ABI-encoded again and reset. Each update **overrides the entire previous state**.
+To **add / remove entries in the list of allowed calls or ERC725Y Data Keys**, the **whole array** should be encoded again and reset. Each update **overrides the entire previous state**.
 
-Note that this process is expensive since the data being set is an ABI-encoded array.
+Note that this process is expensive since the data being set is a **CompactBytesArray**.
 
 :::
 
@@ -441,29 +475,40 @@ Ensure the `bytes32` value set under the permissions are correct according to th
 
 You can restrict an address to interact with:
 
-- A specific function selector.
+<details>
+    <summary>Functions</summary>
 
-  |    Function Selector     |                     Meaning                      |
-  | :----------------------: | :----------------------------------------------: |
-  |       `0xffffffff`       |    Interaction with any function is allowed.     |
-  |       `0x00000000`       |    Interaction with no functions is allowed.     |
-  | Other function selectors | Interaction with a specific function is allowed. |
+|    Function     |                     Meaning                      |
+| :-------------: | :----------------------------------------------: |
+|  `0xffffffff`   |    Interaction with any function is allowed.     |
+|  `0x00000000`   |    Interaction with no functions is allowed.     |
+| Other functions | Interaction with a specific function is allowed. |
 
-- A specific address.
+</details>
 
-  |                   Address                    |                     Meaning                     |
-  | :------------------------------------------: | :---------------------------------------------: |
-  | `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
-  | `0x0000000000000000000000000000000000000000` |    Interaction with no addresses is allowed.    |
-  |               Other addresses                | Interaction with a specific address is allowed. |
+<details>
+    <summary>Addresses</summary>
 
-- A specific standard. These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard to be able to detect their interfaces.
+|                   Address                    |                     Meaning                     |
+| :------------------------------------------: | :---------------------------------------------: |
+| `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
+| `0x0000000000000000000000000000000000000000` |    Interaction with no addresses is allowed.    |
+|               Other addresses                | Interaction with a specific address is allowed. |
 
-  |   Interface ID   |                     Meaning                      |
-  | :--------------: | :----------------------------------------------: |
-  |   `0xffffffff`   |    Interaction with any standard is allowed.     |
-  |   `0x00000000`   |    Interaction with no standatds is allowed.     |
-  | Other interfaces | Interaction with a specific standard is allowed. |
+</details>
+
+<details>
+    <summary>Standards</summary>
+
+These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard to be able to detect their interfaces.
+
+|   Interface ID   |                     Meaning                      |
+| :--------------: | :----------------------------------------------: |
+|   `0xffffffff`   |    Interaction with any standard is allowed.     |
+|   `0x00000000`   |    Interaction with no standatds is allowed.     |
+| Other interfaces | Interaction with a specific standard is allowed. |
+
+</details>
 
 To restrict an `<address>` to be allowed to execute any function at this address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0` which should
 be an LSP0 standard `0x66767497`, the key-value pair below can be set in the ERC725Y contract storage.
@@ -473,7 +518,8 @@ be an LSP0 standard `0x66767497`, the key-value pair below can be set in the ERC
   - `(bytes4,address,bytes4)[CompactBytesArray]`: an [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4)` which is created by concatenationg the chosen _function selector_, _address_ and _standard_. E.g. `0x001cffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497`
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is not allowed to interact with any functions, address or standards (**= all calls are disallowed**).
 
-:::info
+<details>
+    <summary>Combining multiple interactions</summary>
 
 If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
 
@@ -488,7 +534,7 @@ E.g.:
 A CompactBytesArray for these 3 interactions would look like this:
 `0x001cffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497001c760d9bbaF70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff001cffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`
 
-:::
+</details>
 
 ```json
 {
