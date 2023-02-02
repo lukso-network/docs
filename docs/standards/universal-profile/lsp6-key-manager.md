@@ -60,7 +60,7 @@ Using this permission, you can easily upgrade the [`LSP6KeyManager`](../smart-co
 </details>
 
 <details>
-    <summary><code>ADDPERMISSIONS</code> - Allows giving permissions to new addresses.</summary>
+    <summary><code>ADDCONTROLLER</code> - Allows giving permissions to new addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
     </p>
@@ -181,7 +181,7 @@ Enables the caller to deploy a smart contract, using the linked ERC725Account as
 
 Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
 
-> **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y keys](#allowed-erc725y-keys)**
+> **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y Data Keys](#allowed-erc725y-keys)**
 
 </details>
 
@@ -361,13 +361,13 @@ _if the `AddressPermission[]` array data key returns `0x000000000000000000000000
 
 ## Types of permissions
 
-| Permission Type                                   | Description                                                                                                                                                                                                               | `bytes32` data key                    |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [**Address Permissions**](#address-permissions)   | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
-| [**Allowed Addresses**](#allowed-addresses)       | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742de2bfc6dd6b3c0000<address>` |
-| [**Allowed Functions**](#allowed-functions)       | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742de2bf8efea1e80000<address>` |
-| [**Allowed Standards**](#allowed-standards)       | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742de2bf3efa94a30000<address>` |
-| [**Allowed ERC725Y Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                            | `0x4b80742de2bf90b8b4850000<address>` |
+| Permission Type                                        | Description                                                                                                                                                                                                               | `bytes32` data key                    |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [**Address Permissions**](#address-permissions)        | defines a set of [**permissions**](#permissions) for an `address`.                                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
+| [**Allowed Addresses**](#allowed-addresses)            | defines which EOA or contract addresses an `address` is _allowed to_ interact with them.                                                                                                                                  | `0x4b80742de2bfc6dd6b3c0000<address>` |
+| [**Allowed Functions**](#allowed-functions)            | defines which **[function selector(s)](https://docs.soliditylang.org/en/v0.8.12/abi-spec.html?highlight=selector#function-selector)** an `address` is allowed to run on a specific contract.                              | `0x4b80742de2bf8efea1e80000<address>` |
+| [**Allowed Standards**](#allowed-standards)            | defines a list of interfaces standards an `address` is allowed to interact with when calling contracts (using [ERC165](https://eips.ethereum.org/EIPS/eip-165) and [interface ids](../smart-contracts/interface-ids.md)). | `0x4b80742de2bf3efa94a30000<address>` |
+| [**Allowed ERC725Y Data Keys**](#allowed-erc725y-keys) | defines a list of `bytes32` ERC725Y Data Keys an `address` is only allowed to set when doing [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account.                       | `0x4b80742de2bf866c29110000<address>` |
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
 
@@ -377,13 +377,13 @@ The values set under these permission keys **MUST be of the following format** t
 - **Allowed Addresses**: an ABI-encoded array of `address[]`.
 - **Allowed Functions**: an ABI-encoded array of `bytes4[]`.
 - **Allowed Standards**: an ABI-encoded array of `bytes4[]`.
-- **Allowed ERC725Y Keys**: an ABI-encoded array of `bytes32[]`.
+- **Allowed ERC725Y Data Keys**: an ABI-encoded array of `bytes32[]`.
 
 > See the section [_Contract ABI Specification > Strict Encoding Mode_](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#strict-encoding-mode) in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html#).
 
 :::caution
 
-To **add / remove entries in the list of allowed addresses, functions, standards or ERC725Y keys**, the **whole array** should be ABI-encoded again and reset. Each update **overrides the entire previous state**.
+To **add / remove entries in the list of allowed addresses, functions, standards or ERC725Y Data Keys**, the **whole array** should be ABI-encoded again and reset. Each update **overrides the entire previous state**.
 
 Note that this process is expensive since the data being set is an ABI-encoded array.
 
@@ -437,110 +437,90 @@ Ensure the `bytes32` value set under the permissions are correct according to th
 
 ---
 
-### Allowed addresses
+### Allowed calls
 
-You can restrict an address to interact only with specific contracts or EOAs.
+You can restrict an address to interact with:
 
-To restrict an `<address>` to only talk to a specific contract at address `<target-contract-address>` (or additional addresses), the key-value pair below can be set in the ERC725Y contract storage.
+- A specific function selector.
 
-- **key:** `0x4b80742de2bfc6dd6b3c0000<address>`
+  |    Function Selector     |                     Meaning                      |
+  | :----------------------: | :----------------------------------------------: |
+  |       `0xffffffff`       |    Interaction with any function is allowed.     |
+  |       `0x00000000`       |    Interaction with no functions is allowed.     |
+  | Other function selectors | Interaction with a specific function is allowed. |
+
+- A specific address.
+
+  |                   Address                    |                     Meaning                     |
+  | :------------------------------------------: | :---------------------------------------------: |
+  | `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
+  | `0x0000000000000000000000000000000000000000` |    Interaction with no addresses is allowed.    |
+  |               Other addresses                | Interaction with a specific address is allowed. |
+
+- A specific standard. These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard to be able to detect their interfaces.
+
+  |   Interface ID   |                     Meaning                      |
+  | :--------------: | :----------------------------------------------: |
+  |   `0xffffffff`   |    Interaction with any standard is allowed.     |
+  |   `0x00000000`   |    Interaction with no standatds is allowed.     |
+  | Other interfaces | Interaction with a specific standard is allowed. |
+
+To restrict an `<address>` to be allowed to execute any function at this address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0` which should
+be an LSP0 standard `0x66767497`, the key-value pair below can be set in the ERC725Y contract storage.
+
+- **key:** `0x4b80742de2bf393a64c70000<address>`
 - **possible values:**
-  - `[ <target-contract-address>, 0x.... ]`: an **ABI-encoded** array of `address[]` defining the allowed addresses.
-  - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any address (**= all addresses are whitelisted**).
-
-```json
-{
-  "name": "AddressPermissions:AllowedAddresses:<address>",
-  "key": "0x4b80742de2bfc6dd6b3c0000<address>",
-  "keyType": "MappingWithGrouping",
-  "valueType": "address[]",
-  "valueContent": "Address"
-}
-```
-
-![LSP6 Allowed Addresses explained](/img/standards/lsp6/lsp6-allowed-addresses.jpeg)
-
----
-
-### Allowed functions
-
-You can also restrict which functions a specific address can run by providing a list of `bytes4` function selectors.
-
-To restrict an `<address>` to only execute the function `transfer(address,uint256)` (selector: `a9059cbb`), the following key-value pair can be set in the ERC725Y contract storage.
-
-- **key:** `0x4b80742de2bf8efea1e80000<address>`
-- **possible values:**
-  - `[ 0xa9059cbb, 0x... ]`: an **ABI-encoded** array of `bytes4[]` values, definiting the function selectors allowed.
-  - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to execute any function (**= all `bytes4` function selectors are whitelisted**).
-
-```json
-{
-  "name": "AddressPermissions:AllowedFunctions:<address>",
-  "key": "0x4b80742de2bf8efea1e80000<address>",
-  "keyType": "MappingWithGrouping",
-  "valueType": "bytes4[]",
-  "valueContent": "Bytes4"
-}
-```
+  - `(bytes4,address,bytes4)[CompactBytesArray]`: an [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4)` which is created by concatenationg the chosen _function selector_, _address_ and _standard_. E.g. `0x001cffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497`
+  - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is not allowed to interact with any functions, address or standards (**= all calls are disallowed**).
 
 :::info
 
-The `receive()` and `fallback()` functions can always be called on a target contract if no calldata is passed, even if you restrict an `<address>` to call a certain set of functions.
+If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
+
+E.g.:
+
+|        Function        |                   Address                    |      Standard      |                      CompactBytesArray                       |
+| :--------------------: | :------------------------------------------: | :----------------: | :----------------------------------------------------------: |
+|          any           | `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0` | LSP0, `0x66767497` | `0xffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497` |
+| transfer, `0x760d9bba` | `0xF70Ce3b58f275A4c28d06C98615760dDe774DE57` |        any         | `0x760d9bbaF70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff` |
+|          any           | `0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f` |        any         | `0xffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff` |
+
+A CompactBytesArray for these 3 interactions would look like this:
+`0x001cffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497001c760d9bbaF70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff001cffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`
 
 :::
-
----
-
-### Allowed standards
-
-It is possible to restrict an address to interact only with **contracts that implement specific interface standards**. These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard to be able to detect their interfaces.
-
-For example, to restrict an `<address>` to only be allowed to interact with ERC725Account contracts (interface ID = `0x63cb749b`), the following key-value pair can be set in the ERC725Y contract storage.
-
-- **key:** `0x4b80742de2bf3efa94a30000<address>`
-- **possible values:**
-  - `[ 0x63cb749b, 0x... ]`: an **ABI-encoded** array of `bytes4[]` ERC165 interface ids.
-  - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is allowed to interact with any contracts, whether they implement a specific standard interface or not.
 
 ```json
 {
-  "name": "AddressPermissions:AllowedStandards:<address>",
-  "key": "0x4b80742de2bf3efa94a30000<address>",
+  "name": "AddressPermissions:AllowedCalls:<address>",
+  "key": "0x4b80742de2bf393a64c70000<address>",
   "keyType": "MappingWithGrouping",
-  "valueType": "bytes4[]",
-  "valueContent": "Bytes4"
+  "valueType": "(bytes4,address,bytes4)[CompactBytesArray]",
+  "valueContent": "(Bytes4,Address,Bytes4)"
 }
 ```
 
-![Key Manager Allowed Standards flow](/img/standards/lsp6/lsp6-key-manager-allowed-standards.jpeg)
-
-Below is an example use case. With this permission key, an `<address>` can be allowed to use the linked ERC725Account to interact with [**LSP7 contracts**](../nft-2.0/LSP7-Digital-Asset.md) **(= token contracts only :white_check_mark:)**, but not with [**LSP8 contracts**](../nft-2.0/LSP8-Identifiable-Digital-Asset.md) **(= NFT contracts :x:)**.
-
-![Key Manager Allowed Standards allowed example](/img/standards/lsp6/lsp6-allowed-standard-accepted.jpeg)
-
-![Key Manager Allowed Standards denied example](/img/standards/lsp6/lsp6-allowed-standards-denied.jpeg)
-
 :::warning
 
-This type of permission does not offer security over the inner workings or the correctness of a smart contract. It should be used more as a "mistake prevention" mechanism than a security measure.
+Allowing any function selector, any address and only a specific standard does not offer security over the inner workings or the correctness of a smart contract. It should be used more as a "mistake prevention" mechanism than a security measure.
 
 :::
 
 ---
 
-### Allowed ERC725Y Keys
+### Allowed ERC725Y Data Keys
 
 If an address is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is possible to restrict which keys this address can update.
 
 To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
 
-- **key:** `0x4b80742de2bf90b8b4850000<address>`
+- **key:** `0x4b80742de2bf866c29110000<address>`
 - **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
 
 ```json
 {
-  "name": "AddressPermissions:AllowedERC725YKeys:<address>",
-  "key": "0x4b80742de2bf90b8b4850000<address>",
+  "name": "AddressPermissions:AllowedERC725YDataKeys:<address>",
+  "key": "0x4b80742de2bf866c29110000<address>",
   "keyType": "MappingWithGrouping",
   "valueType": "bytes32[]",
   "valueContent": "Bytes32"
@@ -549,15 +529,15 @@ To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5
 
 Below is an example use case. An ERC725Account can allow some applications to add/edit informations on its storage via `setData(...)`. The account can restrict such Dapps and protocols to edit the data keys that are only relevant to the logic of their applications.
 
-![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-overview.jpeg)
+![LSP6 Allowed ERC725YDataKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ydatakeys-overview.jpeg)
 
 As a result, this provide context for the Dapp on which data they can operate on the account, while preventing them to edit other information, such as the account metadata, or data relevant to other dapps.
 
-![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-allowed.jpeg)
+![LSP6 Allowed ERC725YDataKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ydatakeys-example-allowed.jpeg)
 
-![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-1.jpeg)
+![LSP6 Allowed ERC725YDataKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ydatakeys-example-denied-1.jpeg)
 
-![LSP6 Allowed ERC725YKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ykeys-example-denied-2.jpeg)
+![LSP6 Allowed ERC725YDataKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ydatakeys-example-denied-2.jpeg)
 
 :::info
 
