@@ -50,6 +50,11 @@ The data key representing an **asset** is cleared when the asset is not owned by
 | `typeId` | `bytes32` | The token hooks of the contract.                                             |
 | `data`   | `bytes`   | The data that is associated with the asset or vault transfer (concatenated). |
 
+> **Note:** if the function is called by LSP9's [`universalReceiver(...)`](./lsp9vaults.md#universalreceiver) function, it will receives the following **extra calldata**:
+>
+> - `bytes20 caller`: The token's or vault's smart contract address.
+> - `bytes32 value`: The amount of value sent to the universalReceiver function.
+
 #### Return Values:
 
 | Name     | Type  | Description |

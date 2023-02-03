@@ -260,6 +260,15 @@ Returns all `operator` addresses of a particular `tokenId`.
 
 :::
 
+| Contract                        | Interface ID in 0.7.0 | Interface ID in 0.8.0 |
+| ------------------------------- | --------------------- | --------------------- |
+| `LSP0ERC725Account`             |                       |                       |
+| `LSP1UniversalReceiverDelegate` |                       |                       |
+| `LSP6KeyManager`                |                       |                       |
+| `LSP7DigitalAsset`              |                       |                       |
+| `LSP8IdentifiableDigitalAsset`` |                       |                       |
+| `LSP9Vault`                     |                       |                       |
+
 ### transfer
 
 ```solidity

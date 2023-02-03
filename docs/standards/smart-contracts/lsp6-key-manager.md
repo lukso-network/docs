@@ -188,9 +188,12 @@ uint256 nonce = ILSP6KeyManager(keyManagerAddress).getNonce(...);
 
 ```solidity
 bytes memory encodedMessage = abi.encodePacked(
-    chainId,
+    "\x19\x00",
     keyManagerAddress,
+    6, // LSP6 VERSION
+    chainId,
     nonce,
+    msg.value,
     payload
 );
 ```
