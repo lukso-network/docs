@@ -29,9 +29,9 @@ Returns the address of the current contract owner.
 
 #### Return Values:
 
-| Name    | Type    | Description                        |
-| :------ | :------ | :--------------------------------- |
-| `owner` | address | The current owner of the contract. |
+| Name    | Type      | Description                        |
+| :------ | :-------- | :--------------------------------- |
+| `owner` | `address` | The current owner of the contract. |
 
 ### pendingOwner
 
@@ -45,9 +45,9 @@ Return the address of the pending owner that was initiated by [`transferOwnershi
 
 #### Return Values:
 
-| Name           | Type    | Description                      |
-| :------------- | :------ | :------------------------------- |
-| `pendingOwner` | address | The address of the pending owner |
+| Name           | Type      | Description                      |
+| :------------- | :-------- | :------------------------------- |
+| `pendingOwner` | `address` | The address of the pending owner |
 
 ### transferOwnership
 
@@ -64,9 +64,9 @@ Requirements:
 
 #### Parameters:
 
-| Name       | Type    | Description                           |
-| :--------- | :------ | :------------------------------------ |
-| `newOwner` | address | The address to set as `pendingOwner`. |
+| Name       | Type      | Description                           |
+| :--------- | :-------- | :------------------------------------ |
+| `newOwner` | `address` | The address to set as `pendingOwner`. |
 
 ### acceptOwnership
 
@@ -114,10 +114,10 @@ _**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** f
 
 #### Values:
 
-| Name           | Type    | Description                              |
-| :------------- | :------ | :--------------------------------------- |
-| `currentOwner` | address | The current owner of the contract.       |
-| `newOwner`     | address | The potential new owner of the contract. |
+| Name           | Type      | Description                              |
+| :------------- | :-------- | :--------------------------------------- |
+| `currentOwner` | `address` | The current owner of the contract.       |
+| `newOwner`     | `address` | The potential new owner of the contract. |
 
 ### OwnershipTransferred
 
@@ -132,10 +132,10 @@ _**MUST** be fired when the **[`transferOwnership(...)`](#transferownership)** f
 
 #### Values:
 
-| Name            | Type    | Description                         |
-| :-------------- | :------ | :---------------------------------- |
-| `previousOwner` | address | The previous owner of the contract. |
-| `newOwner`      | address | The new owner of the contract.      |
+| Name            | Type      | Description                         |
+| :-------------- | :-------- | :---------------------------------- |
+| `previousOwner` | `address` | The previous owner of the contract. |
+| `newOwner`      | `address` | The new owner of the contract.      |
 
 ### RenounceOwnershipStarted
 
