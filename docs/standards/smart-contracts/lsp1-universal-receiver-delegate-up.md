@@ -33,12 +33,10 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 
 ## Functions
 
-### universalReceiverDelegate
+### universalReceiver
 
 ```solidity
-function universalReceiverDelegate(
-    address caller,
-    uint256 value,
+function universalReceiver(
     bytes32 typeId,
     bytes memory data
 ) public payable returns (bytes memory result)
@@ -50,18 +48,21 @@ The data keys representing an asset/vault are cleared when the asset/vault is no
 
 #### Parameters:
 
-| Name     | Type    | Description                                                                  |
-| :------- | :------ | :--------------------------------------------------------------------------- |
-| `caller` | address | The token's or vault's smart contract address.                               |
-| `value`  | uint256 | The amount of value sent to the universalReceiver function.                  |
-| `typeId` | bytes32 | The token hooks of the contract.                                             |
-| `data`   | bytes   | The data that is associated with the asset or vault transfer (concatenated). |
+| Name     | Type      | Description                                                                  |
+| :------- | :-------- | :--------------------------------------------------------------------------- |
+| `typeId` | `bytes32` | The token hooks of the contract.                                             |
+| `data`   | `bytes`   | The data that is associated with the asset or vault transfer (concatenated). |
+
+> **Note:** if the function is called by LSP0's [`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver) function, it will receives the following **extra calldata**:
+>
+> - `bytes20 caller`: The token's or vault's smart contract address.
+> - `bytes32 value`: The amount of value sent to the universalReceiver function.
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                                                       |
-| :------- | :---- | :---------------------------------------------------------------------------------------------------------------- |
-| `result` | bytes | The value that is returned by the **Key Manager**'s **[`execute(...)`](./lsp6-key-manager.md#execute)** function. |
+| Name     | Type    | Description                                                                                                       |
+| :------- | :------ | :---------------------------------------------------------------------------------------------------------------- |
+| `result` | `bytes` | The value that is returned by the **Key Manager**'s **[`execute(...)`](./lsp6-key-manager.md#execute)** function. |
 
 ## References
 

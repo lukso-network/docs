@@ -40,9 +40,9 @@ Links the KeyManager to the address of an **ERC725** contract.
 
 #### Parameters:
 
-| Name     | Type    | Description                                        |
-| :------- | :------ | :------------------------------------------------- |
-| `target` | address | The address of the **ERC725** contract to control. |
+| Name     | Type      | Description                                        |
+| :------- | :-------- | :------------------------------------------------- |
+| `target` | `address` | The address of the **ERC725** contract to control. |
 
 ### target
 
@@ -60,33 +60,70 @@ This can be a contract that implements:
 
 #### Returns
 
-| Name     | Type    | Description                       |
-| -------- | ------- | --------------------------------- |
-| `target` | address | the address of the linked account |
+| Name     | Type      | Description                       |
+| -------- | --------- | --------------------------------- |
+| `target` | `address` | the address of the linked account |
 
 ### execute
 
 ```solidity
-function execute(bytes memory _calldata) public payable returns (bytes memory result)
+function execute(bytes memory payload) public payable returns (bytes memory result)
 ```
 
-Executes a payload on the **LSP0ERC725Account** contract.
+Executes a payload on the linked **LSP0ERC725Account**.
 
-This payload must represent the abi-encoded function call of one of the **LSP0ERC725Account** contract functions: **[`setData(...)`](./lsp0-erc725-account.md#setdata)**, **[`execute(...)`](./lsp0-erc725-account.md#execute)**, or **[`transferOwnership(...)`](./lsp0-erc725-account.md#transferownership)**.
+This payload must represent the abi-encoded function call of one of the functions on the linked **LSP0ERC725Account**:
+
+- **[`setData(bytes32,bytes)`](./lsp0-erc725-account.md#setdata)**.
+- **[`setData(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdata-array)**.
+- **[`execute(uint256,address,uint256,bytes)`](./lsp0-erc725-account.md#execute)**.
+- **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
+- **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed._
 
 #### Parameters:
 
-| Name        | Type  | Description                 |
-| :---------- | :---- | :-------------------------- |
-| `_calldata` | bytes | The payload to be executed. |
+| Name      | Type    | Description                 |
+| :-------- | :------ | :-------------------------- |
+| `payload` | `bytes` | The payload to be executed. |
 
 #### Return Values:
 
-| Name     | Type  | Description                                                                  |
-| :------- | :---- | :--------------------------------------------------------------------------- |
-| `result` | bytes | The returned data as ABI-encoded bytes if the call on the account succeeded. |
+| Name     | Type    | Description                                                                  |
+| :------- | :------ | :--------------------------------------------------------------------------- |
+| `result` | `bytes` | The returned data as ABI-encoded bytes if the call on the account succeeded. |
+
+### execute (Array)
+
+```solidity
+function execute(uint256[] calldata values, bytes[] calldata payloads) public payable returns (bytes memory result)
+```
+
+Same than `execute(bytes)` but executes a batch of payloads on the linked **LSP0ERC725Account**.
+
+The payloads must represent the abi-encoded function calls of one of the **LSP0ERC725Account** contract functions:
+
+- **[`setData(bytes32,bytes)`](./lsp0-erc725-account.md#setdata)**.
+- **[`setData(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdata-array)**.
+- **[`execute(uint256,address,uint256,bytes)`](./lsp0-erc725-account.md#execute)**.
+- **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
+- **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
+
+_Triggers the **[Executed](#executed)** event when a call is successfully executed._
+
+#### Parameters:
+
+| Name       | Type        | Description                                        |
+| :--------- | :---------- | :------------------------------------------------- |
+| `values`   | `uint256[]` | The `msg.value` to be sent for a specific payload. |
+| `payloads` | `bytes[]`   | The payloads to be executed.                       |
+
+#### Return Values:
+
+| Name      | Type      | Description                                                                      |
+| :-------- | :-------- | :------------------------------------------------------------------------------- |
+| `results` | `bytes[]` | The returned datas as ABI-encoded bytes[] if the calls on the account succeeded. |
 
 ### getNonce
 
@@ -105,16 +142,16 @@ More info about **channel** can be found here: **[What are multi-channel nonces]
 
 #### Parameters:
 
-| Name      | Type    | Description                                                              |
-| :-------- | :------ | :----------------------------------------------------------------------- |
-| `signer`  | address | The address of the signer of the transaction.                            |
-| `channel` | uint256 | The channel which the signer wants to use for executing the transaction. |
+| Name      | Type      | Description                                                              |
+| :-------- | :-------- | :----------------------------------------------------------------------- |
+| `signer`  | `address` | The address of the signer of the transaction.                            |
+| `channel` | `uint256` | The channel which the signer wants to use for executing the transaction. |
 
 #### Return Values:
 
-| Name    | Type    | Description        |
-| :------ | :------ | :----------------- |
-| `nonce` | uint256 | The current nonce. |
+| Name    | Type      | Description        |
+| :------ | :-------- | :----------------- |
+| `nonce` | `uint256` | The current nonce. |
 
 ### executeRelayCall
 
@@ -126,7 +163,7 @@ function executeRelayCall(
 ) public
 ```
 
-Allows anybody to execute a payload on the **LSP0ERC725Account** contract, if they have a signed message from an executor.
+Allows anybody to execute a payload on the linked **LSP0ERC725Account**, if they have a signed message from an address with some permissions.
 
 To obtain a valid signature you must do the following:
 
@@ -151,9 +188,12 @@ uint256 nonce = ILSP6KeyManager(keyManagerAddress).getNonce(...);
 
 ```solidity
 bytes memory encodedMessage = abi.encodePacked(
-    chainId,
+    "\x19\x00",
     keyManagerAddress,
+    6, // LSP6 VERSION
+    chainId,
     nonce,
+    msg.value,
     payload
 );
 ```
@@ -180,11 +220,45 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 #### Parameters:
 
-| Name        | Type    | Description                                       |
-| :---------- | :------ | :------------------------------------------------ |
-| `signature` | bytes   | The bytes65 ethereum signature.                   |
-| `nonce`     | uint256 | The nonce of the address that signed the message. |
-| `_calldata` | bytes   | The payload to be executed.                       |
+| Name        | Type      | Description                                       |
+| :---------- | :-------- | :------------------------------------------------ |
+| `signature` | `bytes`   | The bytes65 EIP191 signature.                     |
+| `nonce`     | `uint256` | The nonce of the address that signed the message. |
+| `_calldata` | `bytes`   | The payload to be executed.                       |
+
+#### Return Value:
+
+| Name     | Type    | Description                                                                                                                      |
+| :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------- |
+| `result` | `bytes` | If the payload on the linked **LSP0ERC725Account** was `ERC725X.execute(...)`, the data returned by the external made by the UP. |
+
+### executeRelayCall (Array)
+
+```solidity
+function executeRelayCall(
+    bytes[] calldata signatures,
+    uint256[] calldata nonces,
+    uint256[] calldata values,
+    bytes[] calldata payloads
+) public
+```
+
+Same as [`executeRelayCall(bytes,uint256,bytes)`](#executerelaycall), but allows anybody to execute a **batch of payloads** on the linked **LSP0ERC725Account** on behalf of other addresses, as long as the addresses that signed the `payloads` have some permissions.
+
+#### Parameters:
+
+| Name         | Type        | Description                                                   |
+| :----------- | :---------- | :------------------------------------------------------------ |
+| `signatures` | `bytes[]`   | An array of bytes65 EIP191 signatures.                        |
+| `nonces`     | `uint256[]` | An array of nonces of the addresses that signed the messages. |
+| `values`     | `uint256[]` | An array of values to be sent sent for each payload.          |
+| `payloads`   | `bytes[]`   | An array of payloads to be executed.                          |
+
+#### Return Values:
+
+| Name      | Type      | Description                                                                                                                             |
+| :-------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| `results` | `bytes[]` | For each payload on the linked **LSP0ERC725Account** that was `ERC725X.execute(...)`, the data returned by the external made by the UP. |
 
 ### isValidSignature
 
@@ -199,16 +273,16 @@ Checks if a signature was signed by an address having at least the **[SIGN](../u
 
 #### Parameters:
 
-| Name        | Type    | Description                                           |
-| :---------- | :------ | :---------------------------------------------------- |
-| `hash`      | bytes32 | The hash of the data signed on the behalf of address. |
-| `signature` | bytes   | The Owner's signature(s) of the data.                 |
+| Name        | Type      | Description                                           |
+| :---------- | :-------- | :---------------------------------------------------- |
+| `hash`      | `bytes32` | The hash of the data signed on the behalf of address. |
+| `signature` | `bytes`   | The Owner's signature(s) of the data.                 |
 
 #### Return Values:
 
-| Name         | Type   | Description                                                            |
-| :----------- | :----- | :--------------------------------------------------------------------- |
-| `magicValue` | bytes4 | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
+| Name         | Type     | Description                                                            |
+| :----------- | :------- | :--------------------------------------------------------------------- |
+| `magicValue` | `bytes4` | The magicValue either `0x1626ba7e` on success or `0xffffffff` failure. |
 
 ## Events
 
@@ -225,10 +299,10 @@ _**MUST** be fired when a transaction was successfully executed from the **[exec
 
 #### Values:
 
-| Name       | Type    | Description                                                                       |
-| :--------- | :------ | :-------------------------------------------------------------------------------- |
-| `value`    | uint256 | The amount to be sent with the payload.                                           |
-| `selector` | bytes4  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
+| Name       | Type      | Description                                                                       |
+| :--------- | :-------- | :-------------------------------------------------------------------------------- |
+| `value`    | `uint256` | The amount to be sent with the payload.                                           |
+| `selector` | `bytes4`  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
 
 ## References
 

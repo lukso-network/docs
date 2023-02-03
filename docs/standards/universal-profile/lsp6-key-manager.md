@@ -72,7 +72,7 @@ This permission allows giving permissions to new addresses. This role-management
 </details>
 
 <details>
-    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses</summary>
+    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
@@ -88,42 +88,51 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
 </details>
 
 <details>
-    <summary><code>ADDEXTENSIONS</code> - Allows adding new extensions</summary>
+    <summary><code>ADDEXTENSIONS</code> - Allows adding new extension contracts on the linked ERC725Account.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
 
-This role allows for _adding_ new [**Contract Extensions**](../generic-standards/lsp17-contract-extension.md)
+The `ADDEXTENSIONS` permission enables to add new extension contracts via the `fallback` function of the linked ERC725Account.
 
 </details>
 
 <details>
-    <summary><code>CHANGEEXTENSIONS</code> - Allows changing existing extensions</summary>
+    <summary><code>CHANGEEXTENSIONS</code> - Allows editing the address for an extension contract on the linked ERC725Account.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code>
     </p>
 
-This role allows for _changing_ or _removing_ already existing [**Contract Extensions**](../generic-standards/lsp17-contract-extension.md)
+The `CHANGEEXTENSIONS` permission enables to edit the extension contract address for a specific bytes4 function selector sent to the `fallback` function of the linked ERC725Account.
 
 </details>
 
 <details>
-    <summary><code>ADDUNIVERSALRECEIVERDELEGATE</code> - Allows adding new URDs</summary>
+    <summary><code>ADDUNIVERSALRECEIVERDELEGATE</code> - Allows adding new LSP1UniversalReceiverDelegate contracts addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
     </p>
 
-This role allows for _adding_ new [**Universal Receiver Delegate**](../generic-standards/lsp1-universal-receiver-delegate.md)
+The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific Type IDs, when no contracts extension was initially setup for a specific Type ID.
+
+See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
+
+> **NB** this permission also enables to set the address of the default LSP1UniversalReceiverDelegate contract under the `LSP1UniversalReceiverDelegate` data key if no address was set in the first place.
 
 </details>
 
 <details>
-    <summary><code>CHANGEUNIVERSALRECEIVERDELEGATE</code> - Allows changing existing URDs</summary>
+    <summary><code>CHANGEUNIVERSALRECEIVERDELEGATE</code> - Allows editing LSP1UniversalReceiverDelegate contracts addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
     </p>
 
-This role allows for _changing_ or _removing_ already existing [**Universal Receiver Delegate**](../generic-standards/lsp1-universal-receiver-delegate.md)
+The `CHANGEUNIVERSALRECEIVERDELEGATE` permission enables two things:
+
+1. edit the address of the default LSP1UniversalReceiverDelegate contract (linked under the `LSP1UniversalReceiverDelegate` data key).
+2. edit the addresses of the LSP1UniversalReceiverDelegate extension contracts linked to specific Type IDs.
+
+See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
 
 </details>
 
@@ -149,26 +158,38 @@ In order for that interaction to happen the contract A must have the REENTRANCY 
 </details>
 
 <details>
-    <summary><code>TRANSFERVALUE</code> - Allows transfering value to other contracts from the controlled contract</summary>
+    <summary><code>TRANSFERVALUE</code> - Allows to transfer the native tokens of the linked ERC725Account <strong>with restrictions</strong>.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
     </p>
 
-Enables sending native tokens from the linked ERC725Account to any address.<br/>
+The `TRANSFERVALUE` permission enables to transfer the native tokens of the linked ERC725Account **with restrictions**.
 
-> **Note:** For a simple native token transfer, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
+1. to specific addresses (EOAs or contracts).
+2. to contracts implementing specific type of _interfaces standards_, that can be detected using ERC165 interfaces IDs.
+
+Such restrictions can be applied using the LSP6 data `AddressPermissions:AllowedCalls:<address>`, where `<address>` is the address of the controller that has the `TRANSFERVALUE` permission.
+
+<br/>
+
+> **Note:** For simple native token transfers, no data (`""`) should be passed to the fourth parameter of the [`execute`](../smart-contracts/lsp0-erc725-account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
 >
 > The caller will need the permission `CALL` to send any data along the LYX transfer.
 
 </details>
 
 <details>
-    <summary><code>CALL</code> - Allows calling other contracts through the controlled contract</summary>
+    <summary><code>CALL</code> - Allows to use the linked ERC725Account to interact with contracts <strong>with restrictions</strong>.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code><br/>
     </p>
 
-This permission enables anyone to use the ERC725Account linked to Key Manager to make external calls (to contracts or Externally Owned Accounts). Allowing state changes at the address being called.
+The `CALL` permission enables to use the linked ERC725Account to call functions on contracts deployed on the network **with restrictions**.
+
+1. to specific contract addresses (contracts).
+2. to contracts implementing specific type of _interfaces standards_, that can be detected using ERC165 interfaces IDs.
+
+It uses the underlying opcode `CALL` which allows to change states on the called contract.
 
 </details>
 
@@ -265,33 +286,13 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 The super permissions grants the same permissions as their non-super counter parts, with the difference being that the checks on restrictions for [**Allowed Calls**](#allowed-calls) and [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) are _skipped_. This allows for cheaper transactions whether these restrictions are set or not.
 
-<details id="super-set-data">
-    <summary><code>SUPER_SETDATA</code></summary>
-     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000020000</code>
-    </p>
-
-Same as `SETDATA`, but allowing to set any ERC725Y data keys. This will not check for [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) if caller has any restrictions.
-
-</details>
-
 <details>
-    <summary><code>SUPER_DELEGATECALL</code></summary>
+    <summary><code>SUPER_TRANSFERVALUE</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
     </p>
 
-Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the caller has any of these restrictions set.
-
-</details>
-
-<details>
-    <summary><code>SUPER_STATICCALL</code></summary>
-     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
-    </p>
-
-Same as `STATICCALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the caller has any of these restrictions set.
+Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for [**Allowed Calls**](#allowed-calls) when transferring value to contracts.
 
 </details>
 
@@ -306,12 +307,32 @@ Same as `CALL`, but allowing to interact with any contract. This will not check 
 </details>
 
 <details>
-    <summary><code>SUPER_TRANSFERVALUE</code></summary>
+    <summary><code>SUPER_STATICCALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
-        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
     </p>
 
-Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for [**Allowed Calls**](#allowed-calls) when transferring value to contracts.
+Same as `STATICCALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the caller has any of these restrictions set.
+
+</details>
+
+<details>
+    <summary><code>SUPER_DELEGATECALL</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
+    </p>
+
+Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the caller has any of these restrictions set.
+
+</details>
+
+<details id="super-set-data">
+    <summary><code>SUPER_SETDATA</code></summary>
+     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000020000</code>
+    </p>
+
+Same as `SETDATA`, but allowing to set any ERC725Y data keys. This will not check for [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) if caller has any restrictions.
 
 </details>
 
@@ -568,7 +589,7 @@ Allowing a specific standard does not offer security over the inner workings or 
 
 ### Allowed ERC725Y Data Keys
 
-If an address is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is possible to restrict which keys this address can update.
+If an address is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is possible to restrict which data keys this address can set or update.
 
 To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following data key - value pair can be set in the ERC725Y contract storage. Encode data as a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
 
@@ -634,7 +655,7 @@ A CompactBytesArray for these 3 ERC725Y Data Keys would look like this:
   "name": "AddressPermissions:AllowedERC725YDataKeys:<address>",
   "key": "0x4b80742de2bf866c29110000<address>",
   "keyType": "MappingWithGrouping",
-  "valueType": "bytes32[]",
+  "valueType": "bytes32[CompactBytesArray]",
   "valueContent": "Bytes32"
 }
 ```
