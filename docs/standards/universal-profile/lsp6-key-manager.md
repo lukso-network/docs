@@ -32,7 +32,7 @@ Permissioned addresses can interact directly with the Key Manager or can sign a 
 
 ![LSP6 Key Manager overview not allowed](/img/standards/lsp6/lsp6-key-manager-overview-not-allowed.jpeg)
 
-Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the data key-value store of the LSP0ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
+Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the data key - value store of the LSP0ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
 
 ---
 
@@ -65,7 +65,7 @@ Using this permission, you can easily upgrade the [`LSP6KeyManager`](../smart-co
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
     </p>
 
-This permission allows giving permissions to new addresses. This role-management enables the **authorization of new addresses** to interact with the ERC725Account.
+This permission allows giving permissions to new addresses. This role-management enables the **authorization of new addresses** to interact with the ERC725Account. One would also need this permission to **add** a new _controller address_ to `AddressPermission[index]`.
 
 ![ADD Permissions](/img/standards/lsp6/lsp6-add-permissions.jpeg)
 
@@ -77,7 +77,7 @@ This permission allows giving permissions to new addresses. This role-management
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
 
-This permission allows for **editing permissions** of any address that already has some permissions set on the ERC725Account (including itself).
+This permission allows for **editing permissions** of any address that already has some permissions set on the ERC725Account (including itself). One would also need this permission to **change or remove** an existing _controller address_ from `AddressPermission[index]`.
 
 ![CHANGE Permissions](/img/standards/lsp6/lsp6-change-permissions.jpeg)
 
@@ -219,7 +219,7 @@ Enables the caller to deploy a smart contract, using the linked ERC725Account as
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000040000</code>
     </p>
 
-Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
+Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key - value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
 
 > **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y Data Keys](#allowed-erc725y-keys)**
 
@@ -409,7 +409,7 @@ _if the `AddressPermission[]` array data key returns `0x000000000000000000000000
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
 
-The values set under these permission keys **MUST be of the following format** to ensure correct behavior of these functionalities.
+The values set under these permission data keys **MUST be of the following format** to ensure correct behavior of these functionalities.
 
 - **Address Permissions**: a `bytes32` value.
 - **Allowed Calls**: an [CompactBytesArray](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of the tuple `(bytes4,address,bytes4)`.
@@ -427,7 +427,7 @@ Note that this process is expensive since the data being set is a **CompactBytes
 
 An address can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data** on the ERC725Account, **calling other contracts**, **transferring native tokens**, etc.
 
-To grant permission(s) to an `<address>`, set the following key-value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
+To grant permission(s) to an `<address>`, set the following data key - value pair below in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
 
 - **key:** `0x4b80742de2bf82acb3630000<address>`
 - **value:** one of the available permission below. To give multiple permission, see the Combining permissions section.
@@ -471,31 +471,9 @@ Ensure the `bytes32` value set under the permissions are correct according to th
 
 ---
 
-### Allowed calls
+### Allowed Calls
 
 You can restrict an address to interact with:
-
-<details>
-    <summary>Functions</summary>
-
-|    Function     |                     Meaning                      |
-| :-------------: | :----------------------------------------------: |
-|  `0xffffffff`   |    Interaction with any function is allowed.     |
-|  `0x00000000`   |    Interaction with no functions is allowed.     |
-| Other functions | Interaction with a specific function is allowed. |
-
-</details>
-
-<details>
-    <summary>Addresses</summary>
-
-|                   Address                    |                     Meaning                     |
-| :------------------------------------------: | :---------------------------------------------: |
-| `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
-| `0x0000000000000000000000000000000000000000` |    Interaction with no addresses is allowed.    |
-|               Other addresses                | Interaction with a specific address is allowed. |
-
-</details>
 
 <details>
     <summary>Standards</summary>
@@ -505,34 +483,60 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 |   Interface ID   |                     Meaning                      |
 | :--------------: | :----------------------------------------------: |
 |   `0xffffffff`   |    Interaction with any standard is allowed.     |
-|   `0x00000000`   |    Interaction with no standatds is allowed.     |
 | Other interfaces | Interaction with a specific standard is allowed. |
 
 </details>
 
+<details>
+    <summary>Addresses</summary>
+
+|                   Address                    |                     Meaning                     |
+| :------------------------------------------: | :---------------------------------------------: |
+| `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
+|               Other addresses                | Interaction with a specific address is allowed. |
+
+</details>
+
+<details>
+    <summary>Functions</summary>
+
+|    Function     |                     Meaning                      |
+| :-------------: | :----------------------------------------------: |
+|  `0xffffffff`   |    Interaction with any function is allowed.     |
+| Other functions | Interaction with a specific function is allowed. |
+
+</details>
+
 To restrict an `<address>` to be allowed to execute any function at this address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0` which should
-be an LSP0 standard `0x66767497`, the key-value pair below can be set in the ERC725Y contract storage.
+be an LSP0 standard `0x66767497`, the data key - value pair below can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742de2bf393a64c70000<address>`
 - **possible values:**
-  - `(bytes4,address,bytes4)[CompactBytesArray]`: an [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4)` which is created by concatenationg the chosen _function selector_, _address_ and _standard_. E.g. `0x001cffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497`
+  - `(bytes4,address,bytes4)[CompactBytesArray]`: an [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4)` which is created by concatenationg the chosen _function selector_, _address_ and _standard_. E.g. `0x001c66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the caller `<address>` is not allowed to interact with any functions, address or standards (**= all calls are disallowed**).
 
 <details>
     <summary>Combining multiple interactions</summary>
 
-If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
+If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray). Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **28** = **`0x001c`**, because a _standard_ uses **4 bytes**, an _address_ uses **20 bytes** and a _function_ uses **4 bytes**.
 
 E.g.:
 
-|        Function        |                   Address                    |      Standard      |                      CompactBytesArray                       |
-| :--------------------: | :------------------------------------------: | :----------------: | :----------------------------------------------------------: |
-|          any           | `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0` | LSP0, `0x66767497` | `0xffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497` |
-| transfer, `0x760d9bba` | `0xF70Ce3b58f275A4c28d06C98615760dDe774DE57` |        any         | `0x760d9bbaF70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff` |
-|          any           | `0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f` |        any         | `0xffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff` |
+- _Standard_: **LSP0, `0x66767497`**;  
+  _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;  
+  _Function_: **any**;  
+  _CompactBytesArray_: **`0x001c66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`**
+- _Standard_: **any**;  
+  _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;  
+  _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;  
+  _CompactBytesArray_: **`0x001cffffffffF70Ce3b58f275A4c28d06C98615760dDe774DE57760d9bba`**
+- _Standard_: **any**;  
+  _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;  
+  _Function_: **any**;  
+  _CompactBytesArray_: **`0x001cffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`**
 
-A CompactBytesArray for these 3 interactions would look like this:
-`0x001cffffffffCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497001c760d9bbaF70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff001cffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`
+A _CompactBytesArray_ for these 3 interactions would look like this:
+`0x`**`001c`**`66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`**`001c`**`ffffffffF70Ce3b58f275A4c28d06C98615760dDe774DE57760d9bba`**`001c`**`ffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`
 
 </details>
 
@@ -550,7 +554,13 @@ A CompactBytesArray for these 3 interactions would look like this:
 
 :::warning
 
-Allowing any function selector, any address and only a specific standard does not offer security over the inner workings or the correctness of a smart contract. It should be used more as a "mistake prevention" mechanism than a security measure.
+Allowing a specific standard does not offer security over the inner workings or the correctness of a smart contract. It should be used more as a "mistake prevention" mechanism than a security measure.
+
+:::
+
+:::info
+
+**If no Allowed Calls are set, a controller cannot interact with any address nor transfer any value (Contract or EOA).**
 
 :::
 
@@ -560,7 +570,7 @@ Allowing any function selector, any address and only a specific standard does no
 
 If an address is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is possible to restrict which keys this address can update.
 
-To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage. Encode data as a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
+To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following data key - value pair can be set in the ERC725Y contract storage. Encode data as a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
 
 - **key:** `0x4b80742de2bf866c29110000<address>`
 - **value(s):** `0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`
@@ -568,16 +578,29 @@ To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5
 <details>
     <summary>ERC725Y Data Keys: fixed-size vs dynamic-size</summary>
 
+Introduction (summary)
+You can set 2 types of **ERC725Y Data Keys**:
+
+- _Fixed-size Data Keys_
+
 A **fixed-size Data Key** is a data key that has a fixed length of 32 bytes. If a _controller address_ has a fixed-size allowed ERC725Y data key set, then that _controller address_ can only change the value of that specific fixed-size data key.
 
-Let's imagine the following situation, you set an **Allowed ERC725Y Data Key** (e.g. `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`) for a controller address (e.g. Alice).
+- _Dynamic-size Data Keys_
+
+A **dynamic-size Data Key** is a data key that can have a length from 1 byte to 31 bytes. If a _controller address_ has a dynamic-size allowed ERC725Y data key set, then that _controller address_ can change any data key that starts with the _dynamic-size data key_.
+
+_**Examples:**_
+
+- _Fixed-size Data Keys_
+
+Let's imagine the following situation, you set an **Allowed ERC725Y fixed-size Data Key** (e.g. `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`) for a controller address (e.g. Alice).
 With that setup you allowed Alice to update only the value of the **Allowed ERC725Y Data Key**.
 
 ![LSP6 Allowed ERC725Y Data Keys, Fixed-Size Key](/img/standards/lsp6/lsp6_allowed_erc725y_data_keys_fixed_key.jpeg)
 
-A **dynamic-size Data Key** is a data key that can have a length from 1 byte to 31 bytes. If a _controller address_ has a dynamic-size allowed ERC725Y data key set, then that _controller address_ can change any data key that starts with the _dynamic-size data key_.
+- _Dynamic-size Data Keys_
 
-Let's imagine the following situation, you set an Allowed ERC725Y Data Key (e.g. `0xbeefbeefbeefbeef`) for a controller address (e.g. Bob).
+Let's imagine the following situation, you set an **Allowed ERC725Y dynamic-size Data Key** (e.g. `0xbeefbeefbeefbeef`) for a controller address (e.g. Bob).
 With that setup you allowed Bob to set any **Data Key** that starts with `0xbeefbeefbeefbeef`.
 
 E.g:
@@ -597,14 +620,12 @@ If you want to have multiple different ERC725Y data keys allowed, you MUST add e
 
 E.g.:
 
-|                           ERC725Y Data Key                           |                            CompactBytesArray                             |
-| :------------------------------------------------------------------: | :----------------------------------------------------------------------: |
-| `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5` | `0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5` |
-|                 `0x5ef83ad9559033e6e941db7d7c495acd`                 |                 `0x00105ef83ad9559033e6e941db7d7c495acd`                 |
-|                             `0xbeefbeef`                             |                             `0x0004beefbeef`                             |
+- `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5` (**length: 32 bytes** = `0x0020`)
+- `0x5ef83ad9559033e6e941db7d7c495acd` (**length: 16 bytes** = `0x0010`)
+- `0xbeefbeef` (**length: 4 bytes** = `0x0004`)
 
 A CompactBytesArray for these 3 ERC725Y Data Keys would look like this:
-`0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc500105ef83ad9559033e6e941db7d7c495acd0004beefbeef`
+`0x`**`0020`**`5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`**`0010`**`5ef83ad9559033e6e941db7d7c495acd`**`0004`**`beefbeef`
 
 </details>
 
