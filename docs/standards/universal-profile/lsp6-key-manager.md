@@ -560,10 +560,53 @@ Allowing any function selector, any address and only a specific standard does no
 
 If an address is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is possible to restrict which keys this address can update.
 
-To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage.
+To restrict an `<address>` to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following key-value pair can be set in the ERC725Y contract storage. Encode data as a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
 
 - **key:** `0x4b80742de2bf866c29110000<address>`
-- **value(s):** `[ 0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5 ]`
+- **value(s):** `0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`
+
+<details>
+    <summary>ERC725Y Data Keys: fixed-size vs dynamic-size</summary>
+
+A **fixed-size Data Key** is a data key that has a fixed length of 32 bytes. If a _controller address_ has a fixed-size allowed ERC725Y data key set, then that _controller address_ can only change the value of that specific fixed-size data key.
+
+Let's imagine the following situation, you set an **Allowed ERC725Y Data Key** (e.g. `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`) for a controller address (e.g. Alice).
+With that setup you allowed Alice to update only the value of the **Allowed ERC725Y Data Key**.
+
+![LSP6 Allowed ERC725Y Data Keys, Fixed-Size Key](/img/standards/lsp6/lsp6_allowed_erc725y_data_keys_fixed_key.jpeg)
+
+A **dynamic-size Data Key** is a data key that can have a length from 1 byte to 31 bytes. If a _controller address_ has a dynamic-size allowed ERC725Y data key set, then that _controller address_ can change any data key that starts with the _dynamic-size data key_.
+
+Let's imagine the following situation, you set an Allowed ERC725Y Data Key (e.g. `0xbeefbeefbeefbeef`) for a controller address (e.g. Bob).
+With that setup you allowed Bob to set any **Data Key** that starts with `0xbeefbeefbeefbeef`.
+
+E.g:
+
+- `0xbeefbeefbeefbeefcafecafecafecafecafecafecafecafecafecafecafecafe`
+- `0xbeefbeefbeefbeef0000000000000000000000000000000000000000c629dfa8`
+- `0xbeefbeefbeefbeef000000000000000000000000000000000000000000001253`
+
+![LSP6 Allowed ERC725Y Data Keys, Dynamic-Size Key](/img/standards/lsp6/lsp6_allowed_erc725y_data_keys_dynamic_key.jpeg)
+
+</details>
+
+<details>
+    <summary>Combining multiple ERC725Y Data Keys</summary>
+
+If you want to have multiple different ERC725Y data keys allowed, you MUST add each of the desired data keys to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
+
+E.g.:
+
+|                           ERC725Y Data Key                           |                            CompactBytesArray                             |
+| :------------------------------------------------------------------: | :----------------------------------------------------------------------: |
+| `0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5` | `0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5` |
+|                 `0x5ef83ad9559033e6e941db7d7c495acd`                 |                 `0x00105ef83ad9559033e6e941db7d7c495acd`                 |
+|                             `0xbeefbeef`                             |                             `0x0004beefbeef`                             |
+
+A CompactBytesArray for these 3 ERC725Y Data Keys would look like this:
+`0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc500105ef83ad9559033e6e941db7d7c495acd0004beefbeef`
+
+</details>
 
 ```json
 {
@@ -589,7 +632,7 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 :::info
 
-**If no bytes32 values are set, the caller address can set values for any keys.**
+**If no Allowed ERC725Y Data Keys are set, then the controller address cannot set any value for any key.**
 
 :::
 
