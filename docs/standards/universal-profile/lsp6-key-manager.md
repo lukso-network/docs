@@ -338,7 +338,7 @@ Same as `SETDATA`, but allowing to set any ERC725Y data keys. This will not chec
 
 :::caution
 
-Use with caution, as even if restrictions to certain `addresses`, `standards`, or `functions` are set for an controller address, they will be ignored.
+Use with caution, as even if restrictions to certain [**Allowed Calls**](#allowed-calls) or [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) are set for an controller address, they will be ignored.
 
 :::
 
@@ -388,7 +388,7 @@ permissions: CHANGEPERMISSIONS + SETDATA
 
 :::tip
 
-The convenience function [`getData(...)`](../../tools/erc725js/classes/ERC725.md#getdata) from [_erc725.js_](../../../../tools/erc725js/getting-started) will return you the whole list of addresses with permissions, when providing the `AddressPermission[]` array key as a parameter.
+The convenience function [`getData(...)`](../../tools/erc725js/classes/ERC725.md#getdata) from [_erc725.js_](../../../../tools/erc725js/getting-started) will return you the whole list of addresses with permissions, when providing the `AddressPermission[]` array data key as a parameter.
 
 :::
 
@@ -700,6 +700,31 @@ Relay execution minimizes **UX friction** for dapps, including removing the need
 Dapps can then leverage the relay execution features to create their own business model around building their own **relay service**, smart contracts solution on top of the Key Manager to pay with their tokens, or agree with users on payment methods including subscriptions, ads, etc ..
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-relay-execution.jpeg)
+
+#### What are you signing?
+
+The relay transactions are signed using the [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00). The relay call data that you want to sign **MUST** be the _keccak256 hash digest_ of the following elements _(bytes values)_ concatenated together.
+
+```javascript
+0x19 <0x00> <KeyManager address> <LSP6_VERSION> <chainId> <nonce> <value> <payload>
+```
+
+| Message elements     | Details                                                                                                                                                                                                                       |
+| :------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `0x19`               | Is a byte intended to ensure that the _relay call signed data_ is not a valid RLP.                                                                                                                                            |
+| `0x00`               | The [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00).                                                                                                                     |
+| `KeyManager address` | The address of the Key Manager that will execute the relay call.                                                                                                                                                              |
+| `LSP6_VERSION`       | The varsion of the Key Manager that will execute the relay call, as a `uint256`. (Current version of LSP6 Key Manager is **6**)                                                                                               |
+| `chainId`            | The chain id of the blockchain where the Key Manager is deployed, as `uint256`.                                                                                                                                               |
+| `nonce`              | The unique [**nonce**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#getnonce) for the payload.                                                                                                    |
+| `value`              | The amount of **native tokens** that will be transferred to the [**ERC725 Account**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) linked to the Key Manager that will execute the relay call. |
+| `payload`            | The payload that will be exeuted.                                                                                                                                                                                             |
+
+:::info
+
+If you want to sign an _EIP191 Execute Relay Call transaction_ you can use our library, [**eip191-signer.js**](https://github.com/lukso-network/tools-eip191-signer).
+
+:::
 
 ### Out of order execution
 
