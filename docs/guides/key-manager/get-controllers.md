@@ -110,21 +110,28 @@ console.log(
 );
 
 // decoded permission for 0x5F606b5b237623463a90F63230F9b929321dbCBa = {
-//   "CHANGEOWNER": true,
-//   "CHANGEPERMISSIONS": true,
-//   "ADDCONTROLLER": true,
-//   "SETDATA": true,
-//   "CALL": true,
-//   "STATICCALL": true,
-//   "DELEGATECALL": false,
-//   "DEPLOY": true,
-//   "TRANSFERVALUE": true,
-//   "SIGN": true,
-//   "SUPER_SETDATA": false,
-//   "SUPER_TRANSFERVALUE": true,
-//   "SUPER_CALL": true,
-//   "SUPER_STATICCALL": true,
-//   "SUPER_DELEGATECALL": false
+// "CHANGEOWNER": true,
+// "ADDCONTROLLER": true,
+// "CHANGEPERMISSIONS": true,
+// "ADDEXTENSIONS": true,
+// "CHANGEEXTENSIONS": true,
+// "ADDUNIVERSALRECEIVERDELEGATE": true,
+// "CHANGEUNIVERSALRECEIVERDELEGATE": true,
+// "REENTRANCY": false,
+// "SUPER_TRANSFERVALUE": true,
+// "TRANSFERVALUE": true,
+// "SUPER_CALL": true,
+// "CALL": true,
+// "SUPER_STATICCALL": true,
+// "STATICCALL": true,
+// "SUPER_DELEGATECALL": false,
+// "DELEGATECALL": false,
+// "DEPLOY": true,
+// "SUPER_SETDATA": true,
+// "SETDATA": true,
+// "ENCRYPT": true,
+// "DECRYPT": true,
+// "SIGN": true,
 // }
 ```
 

@@ -15,9 +15,9 @@ In order to **reject all the assets** that are being transferred to the profile,
 
 _e.g._
 
-- If `typeId` is **[`0xdbe2c314e1aee2970c72666f2ebe8933a8575263ea71e5ff6a9178e95d47a26f` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
+- If `typeId` is **[`0xdbe2c314e1aee2970c72666f2ebe8933a8575263ea71e5ff6a9178e95d47a26f` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
 
-- If `typeId` is **[`0xc7a120a42b6057a0cbed111fbbfbd52fcd96748c04394f77fc2c3adbe0391e01` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
+- If `typeId` is **[`0xc7a120a42b6057a0cbed111fbbfbd52fcd96748c04394f77fc2c3adbe0391e01` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
 
 ### Step1 - Deploy contract through Remix
 
@@ -108,7 +108,7 @@ After deploying the contract, we need to set its address under the **[LSP1-Unive
 
 ```typescript title="Setting address of the URD in the storage"
 import Web3 from 'web3';
-import constants from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
@@ -117,8 +117,7 @@ const web3 = new Web3('https://rpc.l16.lukso.network');
 const PRIVATE_KEY = '0x...'; // your EOA private key
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
-const URD_DATA_KEY =
-  constants.ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
+const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
 const myURDAddress = '0x..'; // address of the URD Deployed in Step 1
 const myUniversalProfileAddress = '0x..'; // address of the UP
 

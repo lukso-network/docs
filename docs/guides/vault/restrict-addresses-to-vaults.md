@@ -29,7 +29,7 @@ In this step, after granting the 3rd party the permission **CALL**, we will need
 import Web3 from 'web3';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
-import constants from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
@@ -47,7 +47,7 @@ const myUP = new web3.eth.Contract(
 );
 
 const allowedAddressesDataKey = // constructing the data key of allowed addresses
-  constants.ERC725YDataKeys.LSP6['AddressPermissions:AllowedAddresses'] +
+  ERC725YDataKeys.LSP6['AddressPermissions:AllowedAddresses'] +
   thirdPartyAddress.substring(2); // of the 3rd party
 
 // the data value holding the addresses that the 3rd party is allowed to interact with

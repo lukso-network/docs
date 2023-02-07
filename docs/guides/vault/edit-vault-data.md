@@ -50,7 +50,7 @@ The Vault's owner could be an **EOA**, or any **other smart contract**. In our c
 
 ```typescript title="Setting the URD address in the storage"
 import Web3 from 'web3';
-import constants from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
@@ -60,8 +60,7 @@ const web3 = new Web3('https://rpc.l16.lukso.network');
 const PRIVATE_KEY = '0x...'; // your EOA private key
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
-const URD_DATA_KEY =
-  constants.ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
+const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
 const myUniversalProfileAddress = '0x..'; // address of the UP
 const myVaultAddress = '0x..'; // address of the Vault
 const myURDAddress = '0x..'; // address of the URD of the Vault
