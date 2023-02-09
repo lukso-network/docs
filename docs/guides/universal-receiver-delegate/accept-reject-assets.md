@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Accept & Reject Assets
 
-Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver)** function on his profile is called. 
+Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver)** function on his profile is called.
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
 
@@ -13,13 +13,11 @@ Each user can create its own **custom Universal Receiver Delegate** contract tha
 
 In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../standards//smart-contracts/lsp0-erc725-account.md#universalreceiver) is the parameter that will give us more context on the call being made.
 
+_e.g._
 
-*e.g.*
-- If `typeId` is **[`0xdbe2c314e1aee2970c72666f2ebe8933a8575263ea71e5ff6a9178e95d47a26f` _TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
+- If `typeId` is **[`0xdbe2c314e1aee2970c72666f2ebe8933a8575263ea71e5ff6a9178e95d47a26f` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
 
-- If `typeId` is **[`0xc7a120a42b6057a0cbed111fbbfbd52fcd96748c04394f77fc2c3adbe0391e01` _TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
-
-
+- If `typeId` is **[`0xc7a120a42b6057a0cbed111fbbfbd52fcd96748c04394f77fc2c3adbe0391e01` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
 
 ### Step1 - Deploy contract through Remix
 
@@ -51,7 +49,7 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
     error ReceivingAssetsNotAllowed(address asset, address recipient);
 
     /**
-    * @dev Reverts when the typeId is relative to token receiving (LSP7 & LSP8) 
+    * @dev Reverts when the typeId is relative to token receiving (LSP7 & LSP8)
     * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
     * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.
     * @param typeId The typeId representing the context of the call to the universalReceiver function on the UniversalProfile.
@@ -73,8 +71,7 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
 If you want the Universal Receiver Delegate to **reject Vaults**, you can add the LSP9 import statement and modify the if block to include the LSP9 typeId.
 
-
-```sol 
+```sol
 // constants
 // [..] other imports
 import {_TYPEID_LSP9_VAULTRECIPIENT} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP9Vault/LSP9Constants.sol";
@@ -95,17 +92,15 @@ Please make sure to unlock MetaMask and disable Browser Extension while doing th
 
 After copying the code, navigate to the **Solidity Compiler** tab and press the Compile UniversalReceiverDelegate.sol button. Then navigate to the **Deploy & Run Transactions** tab and choose _Injected Provider_ as the environment.
 
-
 ![Compiling contract in Remix](/img/guides/lsp1/remix-compiling-contract.jpeg)
 
 You should be connected to L16 in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
 
 ![Connect to LUKSO L16 in Remix](/img/guides/lsp1/remix-connect-l16.jpeg)
 
-After choosing the **CustomUniversalReceiverDelegate** contract in the *CONTRACT* section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed, you can copy the contract address to be used later when setting the address inside the storage.
+After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT_ section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed, you can copy the contract address to be used later when setting the address inside the storage.
 
 ![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
-
 
 ### Step2 - Set the address of the URD in the storage
 
@@ -113,7 +108,7 @@ After deploying the contract, we need to set its address under the **[LSP1-Unive
 
 ```typescript title="Setting address of the URD in the storage"
 import Web3 from 'web3';
-import constants from "@lukso/lsp-smart-contracts/constants.js";
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
@@ -122,17 +117,21 @@ const web3 = new Web3('https://rpc.l16.lukso.network');
 const PRIVATE_KEY = '0x...'; // your EOA private key
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
-const URD_DATA_KEY = constants.ERC725YKeys.LSP0.LSP1UniversalReceiverDelegate;
-const myURDAddress = "0x.." // address of the URD Deployed in Step 1
-const myUniversalProfileAddress = "0x.." // address of the UP
+const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
+const myURDAddress = '0x..'; // address of the URD Deployed in Step 1
+const myUniversalProfileAddress = '0x..'; // address of the UP
 
 // create an instance of the UP
-const myUP = new web3.eth.Contract(UniversalProfile.abi, myUniversalProfileAddress);
+const myUP = new web3.eth.Contract(
+  UniversalProfile.abi,
+  myUniversalProfileAddress,
+);
 
 // encode setData Payload on the Vault
-const setDataPayload = await myUP.methods[
-    "setData(bytes32,bytes)"
-  ](URD_DATA_KEY, myURDAddress).encodeABI(); 
+const setDataPayload = await myUP.methods['setData(bytes32,bytes)'](
+  URD_DATA_KEY,
+  myURDAddress,
+).encodeABI();
 
 // getting the Key Manager address from UP
 const myKeyManagerAddress = await myUP.methods.owner().call();
@@ -142,8 +141,8 @@ let myKM = new web3.eth.Contract(LSP6KeyManager.abi, myKeyManagerAddress);
 
 // execute the executePayload on the KM
 await myKM.methods.execute(executePayload).send({
-    from: myEOA.address,
-    gasLimit: 600_000,
+  from: myEOA.address,
+  gasLimit: 600_000,
 });
 ```
 
@@ -151,7 +150,7 @@ await myKM.methods.execute(executePayload).send({
 
 To accept specific assets, you should differentiate between the different assets being transferred to you. One way to do it is to have a mapping inside the URD contract that states if the asset being transferred **is allowed to be received or not**. Only the owner should be allowed to add these asset addresses. For simplicity, the owner could be the EOA address deploying the contract.
 
-Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)** section and replace the solidity code with the one written below. 
+Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)** section and replace the solidity code with the one written below.
 
 ```sol title="Solidity Code snippet of the Custom URD that accept specific assets"
 // SPDX-License-Identifier: UNLICENSED
