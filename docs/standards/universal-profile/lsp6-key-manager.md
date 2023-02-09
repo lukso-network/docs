@@ -713,7 +713,7 @@ Dapps can then leverage the relay execution features to create their own busines
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-relay-execution.jpeg)
 
-#### How to sign relay transactions?
+### How to sign relay transactions?
 
 The relay transactions are signed using the [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00). The relay call data that you want to sign **MUST** be the _keccak256 hash digest_ of the following elements _(bytes values)_ concatenated together.
 

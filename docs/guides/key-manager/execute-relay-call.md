@@ -53,8 +53,7 @@ const KeyManager = new web3.eth.Contract(
   keyManagerAddress,
 );
 
-const controllerAccount =
-  web3.eth.accounts.wallet.add(controllerPrivateKey);
+const controllerAccount = web3.eth.accounts.wallet.add(controllerPrivateKey);
 const channelId = 0;
 
 const nonce = await KeyManager.methods
@@ -81,18 +80,31 @@ You can find more information about the [ERC725X `execute` call here](../../stan
 
 Afterward, sign the transaction message from the controller key of the Universal Profile.
 
-The message is constructed by signing the `chainId`, `keyManagerAddress`, signer `nonce` and `abiPayload`.
+The message is constructed by signing the `keyManagerAddress`, `keyManagerVersion`, `chainId`, signer `nonce`, `value` and `abiPayload`.
+
+For more information check: [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 ```typescript title="Sign the transaction"
+import { EIP191Signer } from '@lukso/eip191-signer.js';
+import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
+
 const chainId = await web3.eth.getChainId(); // will be 2828 on L16
 
-const message = web3.utils.soliditySha3(chainId, keyManagerAddress, nonce, {
-  t: 'bytes',
-  v: abiPayload,
-});
+let encodedMessage = web3.utils.encodePacked(
+  { value: LSP6_VERSION, type: 'uint256' },
+  { value: chainId, type: 'uint256' },
+  { value: nonce, type: 'uint256' },
+  { value: msgValue, type: 'uint256' },
+  { value: abiPayload, type: 'bytes' },
+);
 
-const signatureObject = controllerAccount.sign(message);
-const signature = signatureObject.signature;
+let eip191Signer = new EIP191Signer();
+
+let { signature } = await eip191Signer.signDataWithIntendedValidator(
+  keyManagerAddress,
+  encodedMessage,
+  controllerPrivateKey,
+);
 ```
 
 Now the `signature`, `abiPayload`, `nonce` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
@@ -117,7 +129,7 @@ To get the KeyManager address from the UniversalProfile address, call the `owner
 ```javascript title='Send the transaction'
 const executeRelayCallTransaction = await KeyManager.methods
   .executeRelayCall(signature, nonce, abiPayload)
-  .send({from: controllerAccount.address, gasLimit: 300_000});
+  .send({ from: controllerAccount.address, gasLimit: 300_000 });
 ```
 
 :::tip LSP6KeyManager executeRelayCall
