@@ -41,7 +41,7 @@ Create a JavaScript file and add the following imports on the top of the file:
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
@@ -136,7 +136,7 @@ The upgrade has been completed successfully.
 ```javascript title="upgrade-lsp6.js"
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
@@ -203,7 +203,7 @@ import LSP0ERC725YAccount from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Y
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const universalProfileAddress = '0x...';
 const keyManagerAddress = '0x...';
