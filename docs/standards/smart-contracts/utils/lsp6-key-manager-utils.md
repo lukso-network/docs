@@ -59,7 +59,7 @@ Read the allowed calls of a `caller` on an ERC725Y `target` contract.
 
 Returns a CompactBytesArray containing the calls that a controller is allowed to make.
 
-### getAllowedERC725YKeysFor
+### getAllowedERC725YDataKeysFor
 
 ```solidity
 function getAllowedERC725YDataKeysFor(
@@ -68,7 +68,7 @@ function getAllowedERC725YDataKeysFor(
 ) internal view returns (bytes memory);
 ```
 
-Read the allowed ERC725Y keys of a `caller` on an ERC725Y `target` contract.
+Read the allowed ERC725Y data keys of a `caller` on an ERC725Y `target` contract.
 
 #### Parameters:
 
