@@ -206,7 +206,7 @@ The transfer of ownership is conducted in two stages, where a pending owner is d
 
 The process for renouncing ownership follows a similar structure, where an initial call is made, followed by a waiting period and a specific timeframe during which the ownership can be renounced before the process is reset.
 
-![Renounce Ownership](/img/standards/lsp0/LSP0-RENOUNCE.jpeg)
+![Renounce Ownership](/img/standards/lsp0/LSP0-Renounce.jpeg)
 
 ### LSP17 - Contract Extension
 
