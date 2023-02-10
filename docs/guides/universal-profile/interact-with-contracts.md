@@ -246,7 +246,7 @@ const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 ```typescript
 const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(PRIVATE_KEY);
+const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 ```
 
   </TabItem>
@@ -387,7 +387,7 @@ let abiCalldata = universalProfile.interface.encodeFunctionData('execute', [
 ]);
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(PRIVATE_KEY);
+const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 // 3. execute via the KeyManager, passing the UP calldata
 await keyManager.connect(EOA).execute(abiCalldata);

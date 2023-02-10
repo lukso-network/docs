@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Read Asset Data'
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
@@ -211,7 +211,6 @@ const ownedAssetsMetadata = await ownedAssets.map(async (ownedAsset) => {
 
   return await digitalAsset.fetchData('LSP4Metadata');
 });
-
 ```
 
 ## Final Code

@@ -240,7 +240,7 @@ const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 ```typescript
 const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 
-const myEOA = new ethers.Wallet(PRIVATE_KEY);
+const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 ```
 
   </TabItem>
@@ -351,7 +351,7 @@ const transferLYXCalldata = myUP.interface.encodeFunctionData(
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 
-const myEOA = new ethers.Wallet(PRIVATE_KEY);
+const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 await myKM.connect(myEOA).execute(transferLYXCalldata);
 ```
