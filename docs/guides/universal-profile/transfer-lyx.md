@@ -190,9 +190,9 @@ const amount = web3.utils.toWei('3'); // amount of LYX we want to transfer
 const data = '0x';
 
 // encode the calldata to transfer 3 LYX from the UP
-const transferLYXCalldata = await myUP.methods
-  .execute(OPERATION_CALL, recipient, amount, data)
-  .encodeABI();
+const transferLYXCalldata = await myUP.methods[
+  'execute(uint256,address,uint256,bytes)'
+](OPERATION_CALL, recipient, amount, data).encodeABI();
 ```
 
   </TabItem>
@@ -256,7 +256,7 @@ The final step is to pass the encoded LYX transfer calldata to the Key Manager. 
   <TabItem value="web3js" label="web3.js">
 
 ```typescript
-await myKM.methods.execute(transferLYXCalldata).send({
+await myKM.methods['execute(bytes)'](transferLYXCalldata).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
@@ -267,7 +267,7 @@ await myKM.methods.execute(transferLYXCalldata).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript
-await myKM.connect(myEOA).execute(transferLYXCalldata);
+await myKM.connect(myEOA)['execute(bytes)'](transferLYXCalldata);
 ```
 
   </TabItem>
@@ -306,12 +306,12 @@ const amount = web3.utils.toWei('3');
 const data = '0x';
 
 // 2. encode the calldata to transfer 3 LYX from the UP
-const transferLYXCalldata = await myUP.methods
-  .execute(OPERATION_CALL, recipient, amount, data)
-  .encodeABI();
+const transferLYXCalldata = await myUP.methods[
+  'execute(uint256,address,uint256,bytes)'
+](OPERATION_CALL, recipient, amount, data).encodeABI();
 
 // 3. execute the LYX transfer via the Key Manager
-await myKM.methods.execute(transferLYXCalldata).send({
+await myKM.methods['execute(bytes)'](transferLYXCalldata).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
@@ -353,7 +353,7 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 
 const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
-await myKM.connect(myEOA).execute(transferLYXCalldata);
+await myKM.connect(myEOA)['execute(bytes)'](transferLYXCalldata);
 ```
 
   </TabItem>

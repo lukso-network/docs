@@ -199,9 +199,9 @@ const OPERATION_CALL = 0;
 
 // 2. encode the calldata to be run on the UP,
 // passing the calldata to be run at the targetContract as 4th parameter
-let abiCalldata = await universalProfile.methods
-  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata)
-  .encodeABI();
+let abiCalldata = await universalProfile.methods[
+  'execute(uint256,address,uint256,bytes)'
+](OPERATION_CALL, targetContract.address, 0, targetCalldata).encodeABI();
 ```
 
   </TabItem>
@@ -263,7 +263,7 @@ The final step is to pass the encoded calldata to the Key Manager. Since we are 
 
 ```typescript
 // 3. execute via the KeyManager, passing the UP calldata
-await keyManager.methods.execute(abiCalldata).send({
+await keyManager.methods['execute(bytes)'](abiCalldata).send({
   from: EOA.address,
   gasLimit: 300_000,
 });
@@ -275,7 +275,7 @@ await keyManager.methods.execute(abiCalldata).send({
 
 ```typescript
 // 3. execute via the KeyManager, passing the UP calldata
-await keyManager.connect(EOA).execute(abiCalldata);
+await keyManager.connect(EOA)['execute(bytes)'](abiCalldata);
 ```
 
   </TabItem>
@@ -323,15 +323,15 @@ const OPERATION_CALL = 0;
 
 // 2. encode the calldata to be run on the UP,
 // passing the calldata to be run at the targetContract as 4th parameter
-let abiCalldata = await universalProfile.methods
-  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata)
-  .encodeABI();
+let abiCalldata = await universalProfile.methods[
+  'execute(uint256,address,uint256,bytes)'
+](OPERATION_CALL, targetContract.address, 0, targetCalldata).encodeABI();
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 // 3. execute via the KeyManager, passing the UP calldata
-await keyManager.methods.execute(abiCalldata).send({
+await keyManager.methods['execute(bytes)'](abiCalldata).send({
   from: EOA.address,
   gasLimit: 300_000,
 });
@@ -390,7 +390,7 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 // 3. execute via the KeyManager, passing the UP calldata
-await keyManager.connect(EOA).execute(abiCalldata);
+await keyManager.connect(EOA)['execute(bytes)'](abiCalldata);
 ```
 
   </TabItem>

@@ -52,13 +52,12 @@ import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-web3.eth.accounts.wallet.add(account);
+const account = web3.eth.accounts.wallet.add(privateKey);
 ```
 
   </TabItem>
@@ -72,12 +71,12 @@ import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
   </TabItem>
@@ -139,14 +138,14 @@ const tokenCalldata = myToken.methods
   .encodeABI();
 
 // 2. generate calldata for Universal Profile to execute the token transfer on the token contract
-const upCalldata = myUniversalProfile.methods
-  .execute(
-    0, // operation 0 CALL
-    myToken._address,
-    0, // 0  LYX sent
-    tokenCalldata,
-  )
-  .encodeABI();
+const upCalldata = myUniversalProfile.methods[
+  'execute(uint256,address,uint256,bytes)'
+](
+  0, // operation 0 CALL
+  myToken._address,
+  0, // 0  LYX sent
+  tokenCalldata,
+).encodeABI();
 ```
 
   </TabItem>
@@ -156,8 +155,8 @@ const upCalldata = myUniversalProfile.methods
 ```javascript
 // 1. generate the calldata to transfer tokens
 const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
-  '<up-address>',
-  '<bob-up-address>',
+  myUniversalProfileAddress,
+  '<receiver-up-address>',
   15,
   false,
   '0x',
@@ -176,7 +175,7 @@ const upCalldata = myUniversalProfile.interface.encodeFunctionData('execute', [
 
 </Tabs>
 
-### Step 4 - Send transactions
+### Step 4 - Send transaction
 
 Finally we send the transaction and transfer the tokens from a Universal Profile to another.
 
@@ -186,7 +185,7 @@ Finally we send the transaction and transfer the tokens from a Universal Profile
 
 ```javascript
 // 3. execute via the KeyManager
-await myKeyManager.methods.execute(upCalldata).send({
+await myKeyManager.methods['execute(bytes)'](upCalldata).send({
   from: myEOA,
   gas: 5_000_000,
   gasPrice: '1000000000',
@@ -199,7 +198,7 @@ await myKeyManager.methods.execute(upCalldata).send({
 
 ```javascript
 // 3. execute via the KeyManager
-await myKeyManager.connect(myEOA).execute(upCalldata);
+await myKeyManager.connect(myEOA)['execute(bytes)'](upCalldata);
 ```
 
   </TabItem>
@@ -219,13 +218,12 @@ import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-web3.eth.accounts.wallet.add(account);
+const account = web3.eth.accounts.wallet.add(privateKey);
 
 const myUniversalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
@@ -243,17 +241,17 @@ const tokenCalldata = myToken.methods
   .encodeABI();
 
 // 2. generate calldata for Universal Profile to execute the token transfer on the token contract
-const upCalldata = myUniversalProfile.methods
-  .execute(
-    0, // operation 0 CALL
-    myToken._address,
-    0, // 0  LYX sent
-    tokenCalldata,
-  )
-  .encodeABI();
+const upCalldata = myUniversalProfile.methods[
+  'execute(uint256,address,uint256,bytes)'
+](
+  0, // operation 0 CALL
+  myToken._address,
+  0, // 0  LYX sent
+  tokenCalldata,
+).encodeABI();
 
 // 3. execute via the KeyManager
-await myKeyManager.methods.execute(upCalldata).send({
+await myKeyManager.methods['execute(bytes)'](upCalldata).send({
   from: myEOA,
   gas: 5_000_000,
   gasPrice: '1000000000',
@@ -271,12 +269,12 @@ import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 const myUniversalProfile = new ethers.Contract(
   myUniversalProfileAddress,
@@ -290,8 +288,8 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 
 // 1. generate the calldata to transfer tokens
 const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
-  '<up-address>',
-  '<bob-up-address>',
+  myUniversalProfileAddress,
+  '<receiver-up-address>',
   15,
   false,
   '0x',
@@ -306,7 +304,7 @@ const upCalldata = myUniversalProfile.interface.encodeFunctionData('execute', [
 ]);
 
 // 3. execute via the KeyManager
-await myKeyManager.connect(myEOA).execute(upCalldata);
+await myKeyManager.connect(myEOA)['execute(bytes)'](upCalldata);
 ```
 
   </TabItem>

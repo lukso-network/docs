@@ -24,8 +24,8 @@ import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artif
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
-const PRIVATE_KEY = '0x...'; // your EOA private key
-const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+const privateKey = '0x...'; // your EOA private key
+const myEOA = web3.web3.eth.accounts.wallet.add(privateKey);
 
 // create an instance
 const myURDVault = new web3.eth.Contract(
@@ -57,8 +57,8 @@ import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
-const PRIVATE_KEY = '0x...'; // your EOA private key
-const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
+const privateKey = '0x...'; // your EOA private key
+const myEOA = web3.eth.accounts.wallet.add(privateKey);
 
 const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
 const myUniversalProfileAddress = '0x..'; // address of the UP

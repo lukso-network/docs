@@ -50,12 +50,11 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-web3.eth.accounts.wallet.add(account);
+const account = web3.eth.accounts.wallet.add(privateKey);
 ```
 
   </TabItem>
@@ -67,11 +66,11 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
   </TabItem>
@@ -102,7 +101,7 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 
 </Tabs>
 
-### Step 3 - Send transactions
+### Step 3 - Send transaction
 
 Finally, we send the transaction and mint some tokens to the Universal Profile of your choosing.
 
@@ -139,12 +138,11 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-web3.eth.accounts.wallet.add(account);
+const account = web3.eth.accounts.wallet.add(privateKey);
 
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 
@@ -162,11 +160,11 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const PRIVATE_KEY = '0x...';
+const privateKey = '0x...';
 const myTokenAddress = '0x...';
 
 // setup your EOA
-const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 

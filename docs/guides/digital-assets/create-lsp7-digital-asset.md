@@ -52,9 +52,8 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 // initialize your EOA
-const PRIVATE_KEY = '0x...';
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-web3.eth.accounts.wallet.add(account);
+const privateKey = '0x...';
+const account = web3.eth.accounts.wallet.add(privateKey);
 ```
 
   </TabItem>
@@ -68,8 +67,8 @@ import { ethers } from 'ethers';
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
 
 // setup your EOA
-const PRIVATE_KEY = '0x...';
-const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const privateKey = '0x...';
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
   </TabItem>
@@ -108,7 +107,7 @@ const lsp7Factory = new ethers.ContractFactory(
 
 </Tabs>
 
-### Step 3 - Send transactions
+### Step 3 - Send transaction
 
 Finally, we deploy the contract.
 
@@ -164,9 +163,8 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 // initialize your EOA
-const PRIVATE_KEY = '0x...';
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-web3.eth.accounts.wallet.add(account);
+const privateKey = '0x...';
+const account = web3.eth.accounts.wallet.add(privateKey);
 
 // create an instance
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
@@ -201,8 +199,8 @@ import { ethers } from 'ethers';
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
 
 // setup your EOA
-const PRIVATE_KEY = '0x...';
-const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const privateKey = '0x...';
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 // create an instance of the token contract
 const lsp7Factory = new ethers.ContractFactory(

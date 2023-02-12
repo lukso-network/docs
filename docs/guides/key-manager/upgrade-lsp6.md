@@ -53,8 +53,7 @@ const keyManagerAddress = '0x...';
 In order to send any transaction on the blockchain you need an account, in our case that account MUST have [**CHANGEOWNER**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the Universal Profile that will have its LSP6 Key Manager upgraded.
 
 ```js
-const account = web3.eth.accounts.privateKeyToAccount(privateKey);
-web3.eth.accounts.wallet.add(account);
+const account = web3.eth.accounts.wallet.add(privateKey);
 ```
 
 ## Step 3 - Initialize the old LSP6 Key Manager
@@ -144,8 +143,7 @@ const keyManagerAddress = '0x...';
 
 const upgradeLSP6 = async () => {
   // Initialize the controller account
-  const account = web3.eth.accounts.privateKeyToAccount(privateKey);
-  web3.eth.accounts.wallet.add(account);
+  const account = web3.eth.accounts.wallet.add(privateKey);
 
   // Initialize your current LSP6 Key Manager
   const oldKeyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
