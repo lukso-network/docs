@@ -107,8 +107,8 @@ const vaultAddress = '0x...';
 const targetContractAddress = '0x...';
 
 // setup EOA
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const privateKey = '0x...'; // your EOA private key (controller address)
+const EOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
   </TabItem>
@@ -393,8 +393,8 @@ const vaultAddress = '0x...';
 const targetContractAddress = '0x...';
 
 // setup EOA
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+const privateKey = '0x...'; // your EOA private key (controller address)
+const EOA = new ethers.Wallet(privateKey).connect(provider);
 
 // Create Universal Profile contract instance
 const universalProfile = new ethers.Contract(
