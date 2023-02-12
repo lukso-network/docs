@@ -10,6 +10,10 @@ import TabItem from '@theme/TabItem';
 
 In this guide, we will learn how to use our Universal Profile to interact with any other smart contract (like if we were using a regular Externally Owned Account).
 
+**Interaction flow**:
+
+![Guide - Interact with other contracts using a Universal Profile](/img/guides/lsp0/interact-with-contracts-using-universal-profile-flow.jpg)
+
 ## Introduction
 
 We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../standards/smart-contracts/lsp0-erc725-account.md#execute) function.
@@ -48,7 +52,7 @@ The chosen EOA needs to have [**CALL Permission**](../../standards/universal-pro
   
   <TabItem value="web3js" label="web3.js">
 
-```shell
+```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
 ```
 
@@ -56,7 +60,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```shell
+```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
 ```
 
@@ -84,7 +88,7 @@ You can quickly compile and get a contract's ABI in [**Remix IDO**](https://remi
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript
+```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import TargetContractABI from './TargetContractABI.json';
@@ -114,7 +118,7 @@ const targetContract = new web3.eth.Contract(
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript
+```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import TargetContractABI from './TargetContractABI.json';
@@ -151,7 +155,7 @@ const targetContract = new ethers.Contract(
 This is the easy part, we need to create 2 calldatas:
 
 - The _first calldata_ will be executed on the Target Contract.
-- The _second calldata_ will be executed on ythe Universal Profile and will trigger the _first calldata_.
+- The _second calldata_ will be executed on the Universal Profile and will trigger the _first calldata_.
 
 ### Step 2.1 Encode Target Contract calldata
 
@@ -161,7 +165,7 @@ Encoding the calldata that will be be exeuted on the Target Contract.
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript
+```typescript title="Target calldata"
 // 1. encode the calldata to be run at the targetContract
 // assuming targetContract is a Contract instance
 const targetCalldata = targetContract.methods
@@ -173,7 +177,7 @@ const targetCalldata = targetContract.methods
   
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript
+```typescript title="Target calldata"
 // 1. encode the calldata to be run at the targetContract
 // assuming targetContract is a Contract instance
 const targetCalldata = targetContract.interface.encodeFunctionData(
@@ -194,12 +198,12 @@ Encoding the calldata that will be be exeuted on the Universal Profile. This cal
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript
+```typescript title="Universal Profile calldata"
 const OPERATION_CALL = 0;
 
 // 2. encode the calldata to be run on the UP,
 // passing the calldata to be run at the targetContract as 4th parameter
-let abiCalldata = await universalProfile.methods[
+const abiCalldata = await universalProfile.methods[
   'execute(uint256,address,uint256,bytes)'
 ](OPERATION_CALL, targetContract.address, 0, targetCalldata).encodeABI();
 ```
@@ -208,12 +212,12 @@ let abiCalldata = await universalProfile.methods[
   
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript
+```typescript title="Universal Profile calldata"
 const OPERATION_CALL = 0;
 
 // 2. encode the calldata to be run on the UP,
 // passing the calldata to be run at the targetContract as 4th parameter
-let abiCalldata = universalProfile.interface.encodeFunctionData('execute', [
+const abiCalldata = universalProfile.interface.encodeFunctionData('execute', [
   OPERATION_CALL,
   targetContract.address,
   0,
@@ -235,7 +239,7 @@ Like in other guides, an important step is to load our EOA that is a controller 
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript
+```typescript title="Setup EOA"
 const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 ```
@@ -244,7 +248,7 @@ const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript
+```typescript title="Setup EOA"
 const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 ```
@@ -255,13 +259,13 @@ const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 ### Step 3.2 - Send the execute calldata
 
-The final step is to pass the encoded calldata to the Key Manager. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize and execute the LYX transfer.
+The final step is to pass the encoded calldata to the Key Manager. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize and execute the transaction.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript
+```typescript title="Send transaction"
 // 3. execute via the KeyManager, passing the UP calldata
 await keyManager.methods['execute(bytes)'](abiCalldata).send({
   from: EOA.address,
@@ -273,7 +277,7 @@ await keyManager.methods['execute(bytes)'](abiCalldata).send({
   
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript
+```typescript title="Send transaction"
 // 3. execute via the KeyManager, passing the UP calldata
 await keyManager.connect(EOA)['execute(bytes)'](abiCalldata);
 ```
@@ -288,7 +292,7 @@ await keyManager.connect(EOA)['execute(bytes)'](abiCalldata);
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript
+```typescript title="Final code"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import TargetContractABI from './TargetContractABI.json';
@@ -341,7 +345,7 @@ await keyManager.methods['execute(bytes)'](abiCalldata).send({
   
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript
+```typescript title="Final code"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import TargetContractABI from './TargetContractABI.json';
