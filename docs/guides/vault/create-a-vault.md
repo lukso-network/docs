@@ -19,7 +19,10 @@ To start with this guide you will need the following things:
 - The _private key_ of your account, in order to send the transaction.
 - The address of a [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
 
-Before starting please make sure to install the following dependencies:
+Make sure you have the following dependencies installed before beginning this tutorial.
+
+- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   

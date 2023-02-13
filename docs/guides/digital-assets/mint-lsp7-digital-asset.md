@@ -14,13 +14,16 @@ This guide will teach you how to mint some ([**LSP7 Digital Asset**](../../stand
 
 The code snippet below shows how to mint 100 tokens with your Universal Profile as a beneficiary.
 
-Before starting with the guide you will need to install the following dependencies.
+Make sure you have the following dependencies installed before beginning this tutorial.
+
+- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```shell
+```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
 ```
 
@@ -28,7 +31,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```shell
+```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
 ```
 

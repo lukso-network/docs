@@ -59,6 +59,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
+// constants
 const web3 = new Web3('https://rpc.l16.lukso.network');
 const vaultAddress = '0x...';
 const universalProfileAddress = '0x...';
@@ -80,6 +81,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
+// constants
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
 const vaultAddress = '0x...';
 const universalProfileAddress = '0x...';

@@ -26,7 +26,11 @@ The transaction is then executed via the [LSP6KeyManager](../../standards/univer
 
 This example shows how to prepare a transaction to be executed by a third party. This logic can be implemented client-side and then sent to a third-party application or service such as a Transaction Relay service to be executed.
 
-Before starting with the guide you will need to install the following **dependencies**.
+Make sure you have the following dependencies installed before beginning this tutorial.
+
+- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You SHOULD install [`@lukso/eip191-signer.js`](https://github.com/lukso-network/tools-eip191-signer)
 
 <Tabs>
   
