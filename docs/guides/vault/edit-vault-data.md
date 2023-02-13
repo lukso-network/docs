@@ -104,13 +104,13 @@ The **Universal Profile** and the **Vault** don't use the same implementation of
 
 ### Step 2.1 - Create a contract instance
 
-At this step we will create an instance of the Vault URD that will allow us to deploy a new Vault URD.
+At this step we will create an instance of the Vault URD that we will further be used to deploy one.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Contract instance of the LSP9 Vault"
+```typescript title="Contract instance of the LSP9 Vault URD"
 // create an instance of the LSP1UniversalReceiverDelegateVault
 const vaultURD = new web3.eth.Contract(LSP1UniversalReceiverDelegateVault.abi);
 ```
@@ -119,7 +119,7 @@ const vaultURD = new web3.eth.Contract(LSP1UniversalReceiverDelegateVault.abi);
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Contract instance of the LSP9 Vault"
+```typescript title="Contract instance of the LSP9 Vault URD"
 // create a LSP1UniversalReceiverDelegateVault Contract Factory
 const vaultURDFactory = new ethers.ContractFactory(
   LSP1UniversalReceiverDelegateVault.abi,
@@ -158,7 +158,7 @@ await vaultURD
 
 ```typescript title="Send the transaction for deploying a new LSP9 Vault URD"
 // deploy the Universal Receiver Delegate Vault contract
-const vaultURD = await vaultURD.connect(myEOA).deploy();
+const vaultURD = await vaultURDFactory.connect(myEOA).deploy();
 ```
 
   </TabItem>
@@ -361,7 +361,7 @@ Lastly, we need to send the transaction that will send the [`execute(..)` callda
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `sexecuteCalldata` on the KM
+// execute the `executeCalldata` on the Key Manager
 await keyManager.methods['execute(bytes)'](executeCalldata).send({
   from: myEOA.address,
   gasLimit: 600_000,
@@ -373,7 +373,7 @@ await keyManager.methods['execute(bytes)'](executeCalldata).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `sexecuteCalldata` on the KM
+// execute the `executeCalldata` on the Key Manager
 await keyManager.connect(myEOA)['execute(bytes)'](executeCalldata);
 ```
 
