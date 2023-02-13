@@ -3,6 +3,9 @@ sidebar_label: 'Accept & Reject Assets'
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Accept & Reject Assets
 
 Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver)** function on his profile is called.
@@ -15,11 +18,11 @@ In order to **reject all the assets** that are being transferred to the profile,
 
 _e.g._
 
-- If `typeId` is **[`0xdbe2c314e1aee2970c72666f2ebe8933a8575263ea71e5ff6a9178e95d47a26f` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
+- If `typeId` is **[`0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
 
-- If `typeId` is **[`0xc7a120a42b6057a0cbed111fbbfbd52fcd96748c04394f77fc2c3adbe0391e01` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
+- If `typeId` is **[`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
 
-### Step1 - Deploy contract through Remix
+### Step 1 - Deploy contract through Remix
 
 The first step is to navigate to **[Remix's website](https://remix.ethereum.org/)** and create a new solidity file under the **contracts** folder.
 
@@ -69,20 +72,6 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
 ```
 
-If you want the Universal Receiver Delegate to **reject Vaults**, you can add the LSP9 import statement and modify the if block to include the LSP9 typeId.
-
-```sol
-// constants
-// [..] other imports
-import {_TYPEID_LSP9_VAULTRECIPIENT} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP9Vault/LSP9Constants.sol";
-
-// ...
-
-if(typeId == _TYPEID_LSP9_VAULTRECIPIENT || typeId == _TYPEID_LSP7_TOKENSRECIPIENT || typeId == _TYPEID_LSP8_TOKENSRECIPIENT){
-  revert ReceivingAssetsAndVaultsNotAllowed(caller, msg.sender); // also needs to be changed in the error reference
-}
-```
-
 :::note
 
 Please make sure to unlock MetaMask and disable Browser Extension while doing this step.
@@ -102,49 +91,283 @@ After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT
 
 ![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
 
-### Step2 - Set the address of the URD in the storage
+### Step 2 - Set the address of the URD in the storage
 
 After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)**.
 
-```typescript title="Setting address of the URD in the storage"
-import Web3 from 'web3';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+### Step 2.1 Setup
+
+Make sure you have the following dependencies installed before beginning this tutorial.
+
+- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```shell title="Install the dependencies"
+npm install web3 @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```shell title="Install the dependencies"
+npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Step 2.2 Imports, Contants and EOA
+
+For starters we need to get the _ABIs_ for the contracts that we will further use.  
+After that we need to store the address of our Universal Profile and the new URD address.  
+Then we will initialize the EOA that we will further use.
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```typescript title="Imports, Constants & EOA"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import Web3 from 'web3';
 
+// constants
 const web3 = new Web3('https://rpc.l16.lukso.network');
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+const universalProfileAddress = '0x...';
+const universalProfileURDAddress = '0x...';
 
-const PRIVATE_KEY = '0x...'; // your EOA private key
-const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
+// setup your EOA
+const privateKey = '0x...';
+const EOA = web3.eth.accounts.wallet.add(privateKey);
+```
 
-const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
-const myURDAddress = '0x..'; // address of the URD Deployed in Step 1
-const myUniversalProfileAddress = '0x..'; // address of the UP
+  </TabItem>
 
-// create an instance of the UP
-const myUP = new web3.eth.Contract(
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript title="Imports, Constants & EOA"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import { ethers } from 'ethers';
+
+// constants
+const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+const universalProfileAddress = '0x...';
+const universalProfileURDAddress = '0x...';
+
+// setup your EOA
+const privateKey = '0x...'; // your EOA private key (controller address)
+const EOA = new ethers.Wallet(privateKey).connect(provider);
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Step 2.3 Create contract instances
+
+At this point we need to create instances for the following contracts:
+
+- [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
+- [**Key Manager**](../../standards/universal-profile/lsp6-key-manager.md)
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```typescript title="Contract instances for the Universal Profile & Key Manager"
+// create an insatnce of the Universal Profile
+const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
-  myUniversalProfileAddress,
+  universalProfileAddress,
 );
+// get the owner of the Universal Profile
+// in our case it should be the address of the Key Manager
+const keyManagerAddress = await universalProfile.methods.owner().call();
+// create an instance of the LSP6KeyManager
+const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
+```
 
-// encode setData Payload on the Vault
-const setDataPayload = await myUP.methods['setData(bytes32,bytes)'](
-  URD_DATA_KEY,
-  myURDAddress,
-).encodeABI();
+  </TabItem>
 
-// getting the Key Manager address from UP
-const myKeyManagerAddress = await myUP.methods.owner().call();
+  <TabItem value="ethersjs" label="ethers.js">
 
-// create an instance of the KeyManager
-let myKM = new web3.eth.Contract(LSP6KeyManager.abi, myKeyManagerAddress);
+```typescript title="Contract instances for the Universal Profile & Key Manager"
+// create an insatnce of the Universal Profile
+const universalProfile = new ethers.Contract(
+  universalProfileAddress,
+  UniversalProfile.abi,
+);
+// get the owner of the Universal Profile
+// in our case it should be the address of the Key Manager
+const keyManagerAddress = await universalProfile.methods.owner().call();
+// create an instance of the LSP6KeyManager
+const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
+```
 
-// execute the executePayload on the KM
-await myKM.methods.execute(executePayload).send({
-  from: myEOA.address,
+  </TabItem>
+
+</Tabs>
+
+### Step 2.4 Encode `setData(...)` calldata
+
+Encode a calldata for `setData(bytes32,bytes)` that will update the URD of the Universal Profile.
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```typescript title="Encode a calldata that will updated the URD and its permissions"
+// encode setData Calldata on the Universal Profile
+const setDataCalldata = await universalProfile.methods[
+  'setData(bytes32,bytes)'
+](URD_DATA_KEY, universalProfileURDAddress).encodeABI();
+```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript title="Encode a calldata that will updated the URD and its permissions"
+// encode setData Calldata on the Universal Profile
+const setDataCalldata = await universalProfile.interface.encodeFunctionData(
+  'setData(bytes32,bytes)',
+  [URD_DATA_KEY, universalProfileURDAddress],
+);
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Step 2.5 Execute via the Key Manager
+
+Lastly, we need to send the transaction that will update the URD of the Universal Profile via the Key Manager.
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
+// execute the `setDataCalldata` on the Key Manager
+await keyManager.methods['execute(bytes)'](setDataCalldata).send({
+  from: EOA.address,
   gasLimit: 600_000,
 });
 ```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
+// execute the `setDataCalldata` on the Key Manager
+await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Final code
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```typescript title="Imports, Constants & EOA"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import Web3 from 'web3';
+
+// constants
+const web3 = new Web3('https://rpc.l16.lukso.network');
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+const universalProfileAddress = '0x...';
+const universalProfileURDAddress = '0x...';
+
+// setup your EOA
+const privateKey = '0x...';
+const EOA = web3.eth.accounts.wallet.add(privateKey);
+
+// create an insatnce of the Universal Profile
+const universalProfile = new web3.eth.Contract(
+  UniversalProfile.abi,
+  universalProfileAddress,
+);
+// get the owner of the Universal Profile
+// in our case it should be the address of the Key Manager
+const keyManagerAddress = await universalProfile.methods.owner().call();
+// create an instance of the Key Manager
+const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
+
+// encode setData Calldata on the Vault
+const setDataCalldata = await universalProfile.methods[
+  'setData(bytes32,bytes)'
+](URD_DATA_KEY, universalProfileURDAddress).encodeABI();
+
+// execute the executeCalldata on the Key Manager
+await keyManager.methods['execute(bytes)'](executeCalldata).send({
+  from: EOA.address,
+  gasLimit: 600_000,
+});
+```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript title="Imports, Constants & EOA"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import { ethers } from 'ethers';
+
+// constants
+const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+const universalProfileAddress = '0x...';
+const universalProfileURDAddress = '0x...';
+
+// setup your EOA
+const privateKey = '0x...'; // your EOA private key (controller address)
+const EOA = new ethers.Wallet(privateKey).connect(provider);
+
+// create an insatnce of the Universal Profile
+const universalProfile = new ethers.Contract(
+  universalProfileAddress,
+  UniversalProfile.abi,
+);
+// get the owner of the Universal Profile
+// in our case it should be the address of the Key Manager
+const keyManagerAddress = await universalProfile.methods.owner().call();
+// create an instance of the Key Manager
+const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
+
+// encode setData Calldata on the Vault
+const setDataCalldata = await universalProfile.interface.encodeFunctionData(
+  'setData(bytes32,bytes)',
+  [URD_DATA_KEY, universalProfileURDAddress],
+);
+
+// execute the executeCalldata on the Key Manager
+await keyManager.connect(EOA)['execute(bytes)'](executeCalldata);
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Accepting specific Assets
 
@@ -209,4 +432,4 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 }
 ```
 
-The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./set-default-implementation.md#set-the-address-of-the-urd-in-the-storage)** section.
+The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./set-default-implementation.md#set-the-address-of-the-urd-in-the-storage)** section.

@@ -48,7 +48,7 @@ npm install ethers @lukso/lsp-smart-contracts
 ## Step 1 - Imports, Constants and EOA
 
 For starters we need to get the _ABIs_ for the contracts that we will use and the _bytecode_ for the `LSP1UniversalReceiverDelegateUP`.  
-After that we need to store the address of our LSP9 Vault and our Universal Profile.  
+After that we need to store the address of our Universal Profile.  
 Then we will initialize the EOA that we will further use.
 
 <Tabs>
@@ -67,7 +67,7 @@ import Web3 from 'web3';
 
 // constants
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
 // setup your EOA
@@ -91,7 +91,7 @@ import { ethers } from 'ethers';
 
 // constants
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
 // setup your EOA
@@ -376,6 +376,8 @@ const dataValues = [
 
 ### Step 3.3 - Encode `setData(..)` calldata
 
+Encode a calldata for `setData(bytes32[],bytes[])` using the _dataKeys_ & _dataValues_ generated in the [**step before**](#step-32---encode-new-permissions-data-keys--values).
+
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
@@ -405,7 +407,7 @@ const setDataCalldata = await universalProfile.interface.encodeFunctionData(
 
 ### Step 3.4 - Send transaction via Key Manager
 
-Lastly, we need to send the transaction that will update the URD and its permissions on the Universal profile via the Key Manager.
+Lastly, we need to send the transaction that will update the URD and its permissions on the Universal Profile via the Key Manager.
 
 <Tabs>
   
@@ -414,7 +416,7 @@ Lastly, we need to send the transaction that will update the URD and its permiss
 ```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
 // execute the `setDataCalldata` on the Key Manager
 await keyManager.methods['execute(bytes)'](setDataCalldata).send({
-  from: myEOA.address,
+  from: EOA.address,
   gasLimit: 600_000,
 });
 ```
@@ -425,7 +427,7 @@ await keyManager.methods['execute(bytes)'](setDataCalldata).send({
 
 ```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
 // execute the `setDataCalldata` on the Key Manager
-await keyManager.connect(myEOA)['execute(bytes)'](setDataCalldata);
+await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
 ```
 
   </TabItem>
@@ -492,7 +494,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 
   // execute the `setDataCalldata` on the Key Manager
   await keyManager.methods['execute(bytes)'](setDataCalldata).send({
-    from: myEOA.address,
+    from: EOA.address,
     gasLimit: 600_000,
   });
 };
@@ -556,7 +558,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   );
 
   // execute the `setDataCalldata` on the Key Manager
-  await keyManager.connect(myEOA)['execute(bytes)'](setDataCalldata);
+  await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
 };
 
 // update the URD of the Universal profile
@@ -585,7 +587,7 @@ import Web3 from 'web3';
 
 // constants
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
 // setup your EOA
@@ -668,7 +670,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 
   // execute the `setDataCalldata` on the Key Manager
   await keyManager.methods['execute(bytes)'](setDataCalldata).send({
-    from: myEOA.address,
+    from: EOA.address,
     gasLimit: 600_000,
   });
 };
@@ -696,7 +698,7 @@ import { ethers } from 'ethers';
 
 // constants
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP0.LSP1UniversalReceiverDelegate;
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
 // setup your EOA
@@ -768,7 +770,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   );
 
   // execute the `setDataCalldata` on the Key Manager
-  await keyManager.connect(myEOA)['execute(bytes)'](setDataCalldata);
+  await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
 };
 
 // deploy a new Universal Profile URD and retrieve its address
