@@ -113,7 +113,7 @@ const targetContractAddress = '0x...';
 
 // setup EOA
 const privateKey = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(privateKey).connect(provider);
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
   </TabItem>
@@ -144,7 +144,7 @@ const keyManagerAddress = await universalProfile.methods.owner().call();
 // Create LSP6 Key Manager contract instance
 const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 // Create LSP9 Vault contract instance
-const valut = new web3.eth.Contract(LSP9Vault.abi, valutAddress);
+const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
 // Create Target Contract contract instance
 const targetContract = new web3.eth.Contract(
   TargetContractABI,
@@ -167,7 +167,7 @@ const keyManagerAddress = await universalProfile.owner();
 // Create LSP6 Key Manager contract instance
 const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 // Create LSP9 Vault contract instance
-const valut = new ethers.Contract(valutAddress, LSP9Vault.abi);
+const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
 // Create Target Contract contract instance
 const targetContract = new ethers.Contract(
   targetContractAddress,
@@ -299,7 +299,7 @@ The final step is to pass the encoded calldata to the Key Manager. Since we are 
 ```typescript title="Send transaction"
 // Execute via the KeyManager, passing the UP calldata
 await keyManager.methods['execute(bytes)'](universalProfileCalldata).send({
-  from: EOA.address,
+  from: myEOA.address,
   gasLimit: 600_000,
 });
 ```
@@ -310,7 +310,7 @@ await keyManager.methods['execute(bytes)'](universalProfileCalldata).send({
 
 ```typescript title="Send transaction"
 // Execute via the KeyManager, passing the UP calldata
-await keyManager.connect(EOA)['execute(bytes)'](universalProfileCalldata);
+await keyManager.connect(myEOA)['execute(bytes)'](universalProfileCalldata);
 ```
 
   </TabItem>
@@ -349,7 +349,7 @@ const keyManagerAddress = await universalProfile.methods.owner().call();
 // Create LSP6 Key Manager contract instance
 const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 // Create LSP9 Vault contract instance
-const valut = new web3.eth.Contract(LSP9Vault.abi, valutAddress);
+const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
 // Create Target Contract contract instance
 const targetContract = new web3.eth.Contract(
   TargetContractABI,
@@ -376,7 +376,7 @@ const universalProfileCalldata = await universalProfile.methods[
 
 // Execute via the KeyManager, passing the UP calldata
 await keyManager.methods['execute(bytes)'](universalProfileCalldata).send({
-  from: EOA.address,
+  from: myEOA.address,
   gasLimit: 600_000,
 });
 ```
@@ -399,7 +399,7 @@ const targetContractAddress = '0x...';
 
 // setup EOA
 const privateKey = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(privateKey).connect(provider);
+const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 // Create Universal Profile contract instance
 const universalProfile = new ethers.Contract(
@@ -411,7 +411,7 @@ const keyManagerAddress = await universalProfile.owner();
 // Create LSP6 Key Manager contract instance
 const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 // Create LSP9 Vault contract instance
-const valut = new ethers.Contract(valutAddress, LSP9Vault.abi);
+const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
 // Create Target Contract contract instance
 const targetContract = new ethers.Contract(
   targetContractAddress,
@@ -442,7 +442,7 @@ const universalProfileCalldata = universalProfile.interface.encodeFunctionData(
 );
 
 // Execute via the KeyManager, passing the UP calldata
-await keyManager.connect(EOA)['execute(bytes)'](universalProfileCalldata);
+await keyManager.connect(myEOA)['execute(bytes)'](universalProfileCalldata);
 ```
 
   </TabItem>

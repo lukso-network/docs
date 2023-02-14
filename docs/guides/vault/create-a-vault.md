@@ -151,6 +151,12 @@ const myVault = await vaultFactory.connect(myEOA).deploy(vaultReceiver);
 
 ## Final Code
 
+:::caution
+
+You need to have LYXt in your EOA in order to pay for the transaction fees. Visit the :arrow_right: **[LUKSO L16 Faucet Website](https://faucet.l16.lukso.network/)** to get some LYXt.
+
+:::
+
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
