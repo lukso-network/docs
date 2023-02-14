@@ -68,41 +68,41 @@ Check the [**fallback(..)**](https://github.com/lukso-network/lsp-smart-contract
 fallback() external payable
 ```
 
-Executed when sending data to the contract that doesn't match any of the native available functions.
+Executed when sending bytes data to the contract and the first 4 bytes of this data do not match any of the native available functions.
 
 - Triggers the **[ValueReceived](#valuereceived)** event if the call was associated with sending value.
 
-- If the data sent is **shorter than 4 bytes**, then the call should pass. For exmaple, sending `0xaabbcc` to the contract will be successfull.
+- If the data sent is **shorter than 4 bytes**, then the call should pass. For example, sending `0xaabbcc` to the contract will be successful.
 
 - If the data sent is **preprended with 4 zeros (0)**, then the call should pass.
 
-  For example, when sending value to the contract it can be associated with a message, such as `"Here is 1 Ether"`, after enconding the message as bytes: `0x486572652069732031204574686572`.
+  For example, when sending value to the contract it can be associated with a message, such as `"Here is 1 Ether"`, after encoding the message as bytes: `0x486572652069732031204574686572`.
 
   In order to make the call to the contract pass, it should be prepended with `bytes4(0)`. A call to the **LSP0** with `0x00000000486572652069732031204574686572` as data **will pass**.
 
-- If the data sent is equal or larger to 4 bytes and it's not preprended with `bytes4(0)`, the following steps will be executed:
+- If the data sent is equal or larger to 4 bytes and is not prepended with `bytes4(0)`, the following steps will be executed:
 
-  - Query the storage of the LSP0, and check if there is an address under this following data Key:
+1. Query the [storage of the LSP0](../universal-profile/lsp0-erc725account.md#erc725y---generic-key-value-store), and check if there is an address under this following data Key:
 
-    ```json
-    {
-      "name": "LSP17Extension:<bytes4>",
-      "key": "0xcee78b4094da860110960000<bytes4>",
-      "keyType": "Mapping",
-      "valueType": "address",
-      "valueContent": "Address"
-    }
-    ```
+```json
+{
+  "name": "LSP17Extension:<bytes4>",
+  "key": "0xcee78b4094da860110960000<bytes4>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
 
-    > `<bytes4>` is the first 4 bytes of the data received
+> `<bytes4>` is the first 4 bytes of the data received
 
-  - If there is not an address stored under this data key, revert with custom error `NoExtensionFoundForFunctionSelector(bytes4(data))`
+1.1 If there is not an address stored under this data key, revert with custom error `NoExtensionFoundForFunctionSelector(bytes4(data))`
 
-  - If there is an address stored under the data key, forward the `msg.data` received to this address via a low level call with appending the `msg.sender` and `msg.value`as extra 52 bytes to the call.
+1.2 If there is an address stored under the data key, forward the `msg.data` received to this address via a low level call with appending the `msg.sender` and `msg.value`as extra 52 bytes to the call.
 
-    Then return the return value received after this low level call.
+2.Then return the return value received after this low level call.
 
-This feature is useful for making the **LSP0 extendable**, where you can add functions to be called on the LSP0 as extensions. Check [**LSP17-ContractExtension**](../universal-profile/lsp0-erc725account.md#lsp17---contract-extension) section in LSP0.
+This feature is useful for making the **LSP0ERC725Account contract extendable**, where you can add functions to be called on the LSP0 as extensions. Check [**LSP17-ContractExtension**](../universal-profile/lsp0-erc725account.md#lsp17---contract-extension) section in LSP0.
 
 ### supportsInterface
 
@@ -231,7 +231,7 @@ function acceptOwnership() public
 
 Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
 
-Calls the `universalReceiver(..)` function on the previous and the new owner, if it supports LSP1 InterfaceId with the following typeId:
+Calls the `universalReceiver(..)` function on the previous and the new [`pendingOwner`](#pendingOwner), if it supports LSP1 InterfaceId with the following typeId:
 
 - On the [**previous owner**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L345): `keccak256('LSP0OwnershipTransferred_SenderNotification')` > `0xa4e59c931d14f7c8a7a35027f92ee40b5f2886b9fdcdb78f30bc5ecce5a2f814`.
 
@@ -406,7 +406,7 @@ Sets data in the account storage for a particular data key.
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of the data Value._
 
 :::note
-The `setData(...)` function can only be called by the current owner of the contract.
+The `setData(...)` function can only be called by the current [owner](#owner) of the contract.
 :::
 
 #### Parameters:
@@ -470,7 +470,7 @@ Sets an array of values at multiple data keys in the account storage.
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of each data Value._
 
 :::note
-The `setData(...)` function can only be called by the current owner of the contract.
+The `setData(...)` function can only be called by the current [owner](#owner) of the contract.
 :::
 
 #### Parameters:
@@ -555,7 +555,7 @@ function universalReceiver(
 
 > <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function.
 
-If there is no address existing under these data keys, execution continue normally till the emission of the event.
+If there is no address stored under these data keys, execution continue normally until the emission of the event.
 
 _Triggers the **[ValueReceived](#valuereceived)** event when a the call is associated with value._
 
@@ -591,9 +591,9 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Checks if a signature was signed by the `owner` of the contract, according to [**EIP-1271**](https://eips.ethereum.org/EIPS/eip-1271).
+Checks if a signature was signed by the [`owner`](#owner) of the contract, according to [**EIP-1271**](https://eips.ethereum.org/EIPS/eip-1271).
 
-If the `owner` is an EOA, the **ECDSA algorithm** will be used to recover the address of the signer from the dataHash and the signature, the function will return the magicValue pointing that the signature is valid, if the address recovered matches the address of the owner. Will return the failure value otherwise.
+If the `owner` is an EOA, the **ECDSA algorithm** will be used to recover the address of the signer from the dataHash and the signature, the function will return the [**`MAGICVALUE`**](https://eips.ethereum.org/EIPS/eip-1271#specification) pointing that the signature is valid, if the address recovered matches the address of the owner. Will return the **`FAIL VALUE`** `0xffffffff` otherwise.
 
 If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, and return the magicValue if the function returns the magicValue. In any other case such as non-standard return value or revert, it will return the failure value indicating that the signature is not valid.
 

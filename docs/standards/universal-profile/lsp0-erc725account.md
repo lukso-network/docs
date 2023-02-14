@@ -13,11 +13,17 @@ sidebar_position: 2
 
 ## Introduction
 
-Externally Owned Accounts (EOAs) are the basic type of **account** in Ethereum controlled by a private key. If the private key is **compromised**, anyone can execute transactions from the account and access any assets it holds. As well, EOAs have no built-in mechanism for attaching any information or data, making it difficult to identify the person or entity using the account. They can only perform simple interactions using the **[CALL](https://www.evm.codes/#f1)** opcode and creating contracts using the **[CREATE](https://www.evm.codes/#f0)** opcode.
+[Externally Owned Accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) are the primary type of **account** in Ethereum, controlled by a private key. If the private key is **compromised**, anyone can execute transactions from the account and access any assets it holds. EOAs have no built-in mechanism for attaching any information or data, making identifying the person or entity using the account challenging. They can only perform simple interactions using the **[CALL](https://www.evm.codes/#f1)** opcode and create contracts using the **[CREATE](https://www.evm.codes/#f0)** opcode.
 
-These issues can be addressed by the **[ERC725](../lsp-background/erc725.md)** standard, which provides more operations to execute and a flexible way to attach data for the contract even after it's been deployed.
+These issues can be addressed by the **[ERC725](../lsp-background/erc725.md)** standard, which provides more operations to execute and a flexible way to attach data for the contract even after it has been deployed.
 
-However, for a smart contract-based account to be viable in the long term, it should have much more functionalities than the ability to execute and to attach data. The features that makes a smart contract an account are: the ability to **verify signed messages**, be **notified of incoming tokens**, followers, and other types of transactions, and be able to be **extended after deployment** to support functions and standards that will be adopted in the future. Additionally, it should have a **secure ownership management** system to ensure the protection of valuable assets.
+However, for a smart contract-based account to be viable in the long term, it should have much more functionalities than the ability to execute and to attach data. The features that makes a smart contract an account are:
+
+- the ability to **verify signed messages**
+- be **notified of incoming tokens**, followers, and other types of transactions,
+- be able to be **extended after deployment** to support functions and standards that will be adopted in the future.
+
+Additionally, it should have a **secure ownership management** system to ensure the protection of valuable assets.
 
 ## What does this standard represent ?
 
@@ -142,15 +148,15 @@ This standard enables the account to be notified of incoming transactions such a
 
 The **[LSP0-ERC725Account](#)** implements the `universalReceiver(..)` function that:
 
-Emits an event with the `typeId` and `data` passed to it, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
+Emits an [`UniversalReceiver`](../smart-contracts/lsp0-erc725-account.md#universalreceiver-1) event with the `typeId` and `data`, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
 
-The `typeId` is a **bytes32** that represents the type of action being notified about. For instance, if you want to notify an account about a specific type of token, you could hash the word **"TOKENXX"** which would result in a bytes32, and then use it as the typeId.
+The `typeId` is a **bytes32** value that represents the type of action being notified about. For instance, if you want to notify an account about a specific type of token, you could hash the word **"TOKENXX"** which would result in a `bytes32`, and then use it as a `typeId`.
 
-The `data` field would contain relevant information related to the typeId being notified about, in case of token it could be any encoded information such as its balance, time, royalties, etc.
+The `data` field can contain relevant information related to the `typeId` used when the `universalReceiver(...)` function was called. In the case of token transfers, it could be any encoded information such as the recipient balance, time, royalties, etc.
 
 The typeId provides a unique identifier for the type of notification, while the data field provides the specific information related to the notification. This allows for efficient and effective communication of information related to the token, without the need for extensive parsing or decoding of data.
 
-Emitting the event is the mechanism through which an **LSP0-ERC725Account** can receive notifications. Websites can monitor and listen to the event and previous events to understand what the account has been notified about.
+The `universalReceiver(...)` function and its `UniversalReceiver` event are the mechanisms through which an **LSP0-ERC725Account** can receive notifications. Websites can monitor and listen to the event and previous events to understand what the account has been notified about.
 
 # ![LSP0 being notified](/img/standards/lsp0/LSP0-Notification.jpeg)
 
