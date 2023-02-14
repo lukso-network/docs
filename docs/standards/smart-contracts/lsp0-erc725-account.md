@@ -20,15 +20,6 @@ This contract could be used as a _blockchain-based account_ by humans, machines,
 - [`universalReceiver(...)`](#universalreceiver): brings notification of incoming calls and assets.
 - [`setData(...)`](#setdata): offers to set information in the account storage.
 
-:::note
-LSP0ERC725Account contract also contains the method from [ERC165](https://eips.ethereum.org/EIPS/eip-165):
-
-```solidity
-function supportsInterface(bytes4 interfaceId) public view returns (bool)
-```
-
-:::
-
 ---
 
 ## Functions
@@ -47,7 +38,115 @@ Sets the **initial owner** of the contract.
 | :------------- | :-------- | :----------------------------------------------- |
 | `initialOwner` | `address` | The address to set as the owner of the contract. |
 
+### receive
+
+:::info
+
+Check the [**receive(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#receive) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**receive(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L73) function implementation in **LSP0ERC725Account** Contract.
+
+:::
+
+```solidity
+receive() external payable
+```
+
+_Triggers the [**ValueReceived**](#valuereceived)_ event when the contract receives native tokens.
+
+### fallback
+
+:::info
+
+Check the [**fallback(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#fallback) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**fallback(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L121) function implementation in **LSP0ERC725Account** Contract.
+
+:::
+
+```solidity
+fallback() external payable
+```
+
+Executed when sending bytes data to the contract and the first 4 bytes of this data do not match any of the native available functions.
+
+- Triggers the **[ValueReceived](#valuereceived)** event if the call was associated with sending value.
+
+- If the data sent is **shorter than 4 bytes**, then the call should pass. For example, sending `0xaabbcc` to the contract will be successful.
+
+- If the data sent is **preprended with 4 zeros (0)**, then the call should pass.
+
+  For example, when sending value to the contract it can be associated with a message, such as `"Here is 1 Ether"`, after encoding the message as bytes: `0x486572652069732031204574686572`.
+
+  In order to make the call to the contract pass, it should be prepended with `bytes4(0)`. A call to the **LSP0** with `0x00000000486572652069732031204574686572` as data **will pass**.
+
+- If the data sent is equal or larger to 4 bytes and is not prepended with `bytes4(0)`, the following steps will be executed:
+
+1. Query the [storage of the LSP0](../universal-profile/lsp0-erc725account.md#erc725y---generic-key-value-store), and check if there is an address under this following data Key:
+
+```json
+{
+  "name": "LSP17Extension:<bytes4>",
+  "key": "0xcee78b4094da860110960000<bytes4>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+> `<bytes4>` is the first 4 bytes of the data received
+
+1.1 If there is not an address stored under this data key, revert with custom error `NoExtensionFoundForFunctionSelector(bytes4(data))`
+
+1.2 If there is an address stored under the data key, forward the `msg.data` received to this address via a low level call with appending the `msg.sender` and `msg.value`as extra 52 bytes to the call.
+
+2.Then return the return value received after this low level call.
+
+This feature is useful for making the **LSP0ERC725Account contract extendable**, where you can add functions to be called on the LSP0 as extensions. Check [**LSP17-ContractExtension**](../universal-profile/lsp0-erc725account.md#lsp17---contract-extension) section in LSP0.
+
+### supportsInterface
+
+:::info
+
+<!---
+@todo to add a link once it has been added to the LIP repo
+-->
+
+Check the **supportsInterface(..)** function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**supportsInterface(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L136) function implementation in **LSP0ERC725Account** Contract.
+
+:::
+
+```solidity
+function supportsInterface(bytes4 interfaceId) public view returns (bool)
+```
+
+Returns whether the LSP0 supports the given interfaceId or not.
+
+New interfaceIds can be supported even after the deployment of the **LSP0**, by setting the address of a contract that contains these extended interfaceIds under the following data key:
+
+```json
+{
+  "name": "LSP17Extension:<bytes4>",
+  "key": "0xcee78b4094da860110960000<bytes4>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+> `<bytes4>` being the `supportsInterface(..)` selector in this case.
+
 ### owner
+
+:::info
+
+Check the [**owner(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#owner) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**owner(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L20) inherited function implementation in **LSP0ERC725Account** Contract.
+
+:::
 
 ```solidity
 function owner() public view returns (address owner)
@@ -62,6 +161,14 @@ Returns the address of the current owner of the contract.
 | `owner` | `address` | The current owner of the contract. |
 
 ### pendingOwner
+
+:::info
+
+Check the [**pendingOwner(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#pendingowner) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**pendingOwner(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L20) inherited function implementation in **LSP0ERC725Account** Contract.
+
+:::
 
 ```solidity
 function pendingOwner() public view returns (address)
@@ -79,11 +186,23 @@ Return the address of the pending owner that was initiated by [`transferOwnershi
 
 ### transferOwnership
 
+:::info
+
+Check the [**transferOwnership(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#transferownership) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**transferOwnership(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L290) function implementation in **LSP0ERC725Account** Contract.
+
+:::
+
 ```solidity
 function transferOwnership(address newOwner) public
 ```
 
 Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
+
+Calls the `universalReceiver(..)` function [**on the pending owner**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L328), if it supports LSP1 InterfaceId with the following typeId:
+
+- `keccak256('LSP0OwnershipTransferStarted')` > `0xe17117c9d2665d1dbeb479ed8058bbebde3c50ac50e2e65619f60006caac6926`.
 
 Requirements:
 
@@ -98,15 +217,37 @@ Requirements:
 
 ### acceptOwnership
 
+:::info
+
+Check the [**acceptOwnership(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#acceptownership) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**acceptOwnership(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L20) inherited function implementation in **LSP0ERC725Account** Contract.
+
+:::
+
 ```solidity
 function acceptOwnership() public
 ```
 
 Transfers ownership of the contract to the `pendingOwner` address. Can only be called by the `pendingOwner`.
 
+Calls the `universalReceiver(..)` function on the previous and the new [`pendingOwner`](#pendingOwner), if it supports LSP1 InterfaceId with the following typeId:
+
+- On the [**previous owner**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L345): `keccak256('LSP0OwnershipTransferred_SenderNotification')` > `0xa4e59c931d14f7c8a7a35027f92ee40b5f2886b9fdcdb78f30bc5ecce5a2f814`.
+
+- On the [**new owner**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L361): `keccak256('LSP0OwnershipTransferred_RecipientNotification')` > `0xceca317f109c43507871523e82dc2a3cc64dfa18f12da0b6db14f6e23f995538`.
+
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
 
 ### renounceOwnership
+
+:::info
+
+Check the [**renounceOwnership(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#renounceownership) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**renounceOwnership(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L302) function implementation in **LSP0ERC725Account** Contract.
+
+:::
 
 ```solidity
 function renounceOwnership() public
@@ -127,17 +268,17 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event after succ
 Leaves the contract without an owner. Once ownership of the contract is renounced, it won't be possible to call the functions restricted to the owner only.
 :::
 
-### fallback
-
-```solidity
-fallback() external payable
-```
-
-Executed when value is transferred to the contract or when function identifier doesn't match any of the available functions.
-
-_Triggers the **[ValueReceived](#valuereceived)** event when a native token is received._
-
 ### execute
+
+:::info
+
+Check the [**execute(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#execute) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**execute(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L200) function implementation in **LSP0ERC725Account** Contract.
+
+Check the **javascript** guides to know [**How to Send native tokens**](../../guides/universal-profile/transfer-lyx.md) or [**How to Call other contract's function**](../../guides/universal-profile/interact-with-contracts.md) using the execute function.
+
+:::
 
 ```solidity
 function execute(
@@ -157,6 +298,8 @@ The `operationType` can be the following:
 - `2` for `CREATE2`
 - `3` for `STATICCALL`
 - `4` for `DELEGATECALL`
+
+_Triggers the **[ValueReceived](#valuereceived)** event when a the call is associated with value._
 
 _Triggers the **[Executed](#executed)** event when a call is successfully executed using `CALL/STATICCALL/DELEGATECALL` operations._
 
@@ -183,51 +326,15 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------- |
 | `result` | `bytes` | The data that was returned by the function called on the external contract, or the address of the contract created (operations 1 & 2). |
 
-### setData
-
-```solidity
-function setData(
-    bytes32 dataKey,
-    bytes memory dataValue
-) public
-```
-
-Sets data in the account storage for a particular data key.
-
-_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
-
-:::note
-The `setData(...)` function can only be called by the current owner of the contract.
-:::
-
-#### Parameters:
-
-| Name        | Type      | Description                                  |
-| :---------- | :-------- | :------------------------------------------- |
-| `dataKey`   | `bytes32` | The data key for which the data will be set. |
-| `dataValue` | `bytes`   | The data to be set.                          |
-
-### getData
-
-```solidity
-function getData(bytes32 dataKey) public view returns (bytes memory dataValue)
-```
-
-Retrieves the value set for the given data key.
-
-#### Parameters:
-
-| Name      | Type      | Description                         |
-| :-------- | :-------- | :---------------------------------- |
-| `dataKey` | `bytes32` | The data key to retrieve data from. |
-
-#### Return Values:
-
-| Name        | Type    | Description                          |
-| :---------- | :------ | :----------------------------------- |
-| `dataValue` | `bytes` | The data for the requested data key. |
-
 ### execute (Array)
+
+:::info
+
+Check the [**execute(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#execute-array) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**execute(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L215) function implementation in **LSP0ERC725Account** Contract.
+
+:::
 
 ```solidity
 function execute(
@@ -247,6 +354,8 @@ The values in the list of `operationsType` can be one of the following:
 - `2` for `CREATE2`
 - `3` for `STATICCALL`
 - `4` for `DELEGATECALL`
+
+_Triggers the **[ValueReceived](#valuereceived)** event when a the call is associated with value._
 
 _Triggers the **[Executed](#executed)** event on every successful call that used operation type `CALL`, `STATICCALL` or `DELEGATECALL`._
 
@@ -273,7 +382,81 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :-------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `results` | `bytes[]` | The datas that were returned by the functions called on the external contracts, or the addresses of the contracts created (operations 1 & 2). |
 
+### setData
+
+:::info
+
+Check the [**setData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdata) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**setData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
+
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md).
+
+:::
+
+```solidity
+function setData(
+    bytes32 dataKey,
+    bytes memory dataValue
+) public
+```
+
+Sets data in the account storage for a particular data key.
+
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of the data Value._
+
+:::note
+The `setData(...)` function can only be called by the current [owner](#owner) of the contract.
+:::
+
+#### Parameters:
+
+| Name        | Type      | Description                                  |
+| :---------- | :-------- | :------------------------------------------- |
+| `dataKey`   | `bytes32` | The data key for which the data will be set. |
+| `dataValue` | `bytes`   | The data to be set.                          |
+
+### getData
+
+:::info
+
+Check the [**getData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdata) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**getData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
+
+Check the **javascript** guides to know [**How to Read from a Profile (getData)**](../../guides/universal-profile/read-profile-data.md).
+
+:::
+
+```solidity
+function getData(bytes32 dataKey) public view returns (bytes memory dataValue)
+```
+
+Retrieves the value set for the given data key.
+
+#### Parameters:
+
+| Name      | Type      | Description                         |
+| :-------- | :-------- | :---------------------------------- |
+| `dataKey` | `bytes32` | The data key to retrieve data from. |
+
+#### Return Values:
+
+| Name        | Type    | Description                          |
+| :---------- | :------ | :----------------------------------- |
+| `dataValue` | `bytes` | The data for the requested data key. |
+
 ### setData (Array)
+
+:::info
+
+Check the [**setData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdata-array) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**setData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
+
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md).
+
+:::
 
 ```solidity
 function setData(
@@ -284,10 +467,10 @@ function setData(
 
 Sets an array of values at multiple data keys in the account storage.
 
-_Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value pair._
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of each data Value._
 
 :::note
-The `setData(...)` function can only be called by the current owner of the contract.
+The `setData(...)` function can only be called by the current [owner](#owner) of the contract.
 :::
 
 #### Parameters:
@@ -298,6 +481,16 @@ The `setData(...)` function can only be called by the current owner of the contr
 | `dataValues` | `bytes[]`   | The array of data to set.            |
 
 ### getData (Array)
+
+:::info
+
+Check the [**getData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdata-array) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**getData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
+
+Check the **javascript** guides to know [**How to Read from a Profile (getData)**](../../guides/universal-profile/read-profile-data.md).
+
+:::
 
 ```solidity
 function getData(bytes32[] memory dataKeys) public view returns (bytes[] memory dataValues)
@@ -319,6 +512,16 @@ Retrieves an array of values for multiple given data keys.
 
 ### universalReceiver
 
+:::info
+
+Check the [**universalReceiver(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#universalreceiver) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**universalReceiver(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L235) function implementation in **LSP0ERC725Account** Contract.
+
+Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../guides/universal-receiver-delegate/set-default-implementation.md) or [**How to set your own UniversalReceiverDelegate**](../../guides/universal-receiver-delegate/accept-reject-assets.md).
+
+:::
+
 ```solidity
 function universalReceiver(
     bytes32 typeId,
@@ -326,7 +529,35 @@ function universalReceiver(
 ) public payable returns (bytes memory result)
 ```
 
-Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key. The contract being called is expected to be an **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](./interface-ids.md) using [ERC165](https://eips.ethereum.org/EIPS/eip-165).
+- Forwards the `msg.data` appended with the `msg.sender` and `msg.value` to the **UniversalReceiverDelegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiver InterfaceId](../smart-contracts/interface-ids.md).
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate",
+  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+  "keyType": "Singleton",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+- Forwards the `msg.data` appended with the `msg.sender` and `msg.value` to the **typeId delegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiver InterfaceId](../smart-contracts/interface-ids.md).
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate:<bytes32>",
+  "key": "0x0cfc51aec37c55a4d0b10000<bytes32>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+> <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function.
+
+If there is no address stored under these data keys, execution continue normally until the emission of the event.
+
+_Triggers the **[ValueReceived](#valuereceived)** event when a the call is associated with value._
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
 
@@ -339,11 +570,19 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
 
 #### Return Values:
 
-| Name     | Type    | Description                            |
-| :------- | :------ | :------------------------------------- |
-| `result` | `bytes` | Can be used to encode response values. |
+| Name     | Type    | Description                                                                    |
+| :------- | :------ | :----------------------------------------------------------------------------- |
+| `result` | `bytes` | The return value of the UniversalReceiverDelegates contracts encoded as bytes. |
 
 ### isValidSignature
+
+:::info
+
+Check the [**isValidSignature(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#isvalidsignature) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+Check the [**isValidSignature(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L159) function implementation in **LSP0ERC725Account** Contract.
+
+:::
 
 ```solidity
 function isValidSignature(
@@ -352,14 +591,18 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Checks if a signature was signed by the `owner` of the contract, according to [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, if it supports [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). Otherwise it will return the failure value.
+Checks if a signature was signed by the [`owner`](#owner) of the contract, according to [**EIP-1271**](https://eips.ethereum.org/EIPS/eip-1271).
+
+If the `owner` is an EOA, the **ECDSA algorithm** will be used to recover the address of the signer from the dataHash and the signature, the function will return the [**`MAGICVALUE`**](https://eips.ethereum.org/EIPS/eip-1271#specification) pointing that the signature is valid, if the address recovered matches the address of the owner. Will return the **`FAIL VALUE`** `0xffffffff` otherwise.
+
+If the `owner` is a contract itself, it will call the `isValidsignature(..)` function on the owner contract, and return the magicValue if the function returns the magicValue. In any other case such as non-standard return value or revert, it will return the failure value indicating that the signature is not valid.
 
 #### Parameters:
 
-| Name        | Type      | Description                                           |
-| :---------- | :-------- | :---------------------------------------------------- |
-| `hash`      | `bytes32` | The hash of the data signed on the behalf of address. |
-| `signature` | `bytes`   | The Owner's signature(s) of the data.                 |
+| Name        | Type      | Description                  |
+| :---------- | :-------- | :--------------------------- |
+| `hash`      | `bytes32` | The hash of the data signed. |
+| `signature` | `bytes`   | The signature provided.      |
 
 #### Return Values:
 

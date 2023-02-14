@@ -11,7 +11,7 @@ This page is under active development.
 
 :::
 
-The [LUKSO Extension](../guides/browser-extension/install-browser-extension) uses new RPC API which are described here.
+The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) uses new RPC API which are described here.
 
 ## Methods
 
@@ -23,7 +23,7 @@ Add a custom relayer.
 
 ##### 1. `relayer` - Object
 
-Object containing the new relayer properties. To find more information about custom relayers, you can read the [Transaction Relay Service API](https://www.notion.so/lukso/Transaction-Relay-Service-API-Standard-2bda58f4f47f4497bb3381654acda8c3).
+Object containing the new relayer properties. To find more information about custom relayers, you can read the [Transaction Relay Service API](./relayer-api.md).
 
 | Name       | Type   | Description                   |
 | :--------- | :----- | :---------------------------- |
