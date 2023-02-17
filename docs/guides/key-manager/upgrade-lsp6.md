@@ -28,7 +28,7 @@ By the end of this guide, you will know how to:
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -107,7 +107,7 @@ const keyManagerAddress = '0x...';
 
 ## Step 2 - Initialize the controller account
 
-In order to send any transaction on the blockchain you need an account, in our case that account MUST have [**CHANGEOWNER**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the Universal Profile that will have its LSP6 Key Manager upgraded.
+In order to send any transaction on the blockchain you need an EOA. In our case that account MUST have [**`CHANGEOWNER`**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the Universal Profile that will have its LSP6 Key Manager upgraded.
 
 <Tabs>
   
@@ -245,7 +245,7 @@ Create a payload for the [`claimOwnership()`](../../standards/smart-contracts/ls
   
   <TabItem value="web3js" label="web3.js">
 
-```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
+```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const claimOwnershipPayload = new web3.eth.Contract(UniversalProfile.abi).methods.acceptOwnership().encodeABI();
 
 await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
@@ -259,7 +259,7 @@ await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
+```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const claimOwnershipPayload = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
 
 await newKeyManager.connect(account)['execute(bytes)'](claimOwnershipPayload);
@@ -317,7 +317,7 @@ const upgradeLSP6 = async () => {
   const transferOwnershipPayload = new web3.eth.Contract(
     UniversalProfile.abi,
   ).methods
-    .transferOwnership('0xcafecafecafecafecafecafecafecafecafecafe')
+    .transferOwnership(newKeyManager._address)
     .encodeABI();
 
   await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
