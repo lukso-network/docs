@@ -53,6 +53,10 @@ module.exports = {
             from: '/tools/relayer-api/execute-transaction',
             to: '/standards/relayer-api',
           },
+          {
+            from: '/guides/key-manager/execute-relay-call',
+            to: '/guides/key-manager/execute-relay-transactions',
+          },
         ],
       },
     ],
