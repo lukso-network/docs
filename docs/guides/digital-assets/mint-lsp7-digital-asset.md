@@ -17,7 +17,7 @@ The code snippet below shows how to mint 100 tokens with your Universal Profile 
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -107,6 +107,12 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 ### Step 3 - Send transaction
 
 Finally, we send the transaction and mint some tokens to the Universal Profile of your choosing.
+
+:::warning
+
+The contract that we are using as a example in this guied allows minting Digital Assets **only to the owner** of the contract. There might be contracts that don't have this _requirement_.
+
+:::
 
 <Tabs>
   

@@ -19,7 +19,7 @@ The default implementation of the **Universal Receiver Delegate** of the Vault t
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -244,7 +244,7 @@ Firstly we need to create instances for the following contracts:
 ```typescript title="Contract instances for the Universal Profile, Key Manager and Vault"
 // create an instance of the LSP9Vault
 const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
@@ -263,7 +263,7 @@ const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 ```typescript title="Contract instances for the Universal Profile, Key Manager and Vault"
 // create an instance of the LSP9Vault
 const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
@@ -391,7 +391,7 @@ await keyManager.connect(myEOA)['execute(bytes)'](executeCalldata);
 const updateVaultURD = async (vaultURDAddress) => {
   // create an instance of the LSP9Vault
   const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,
@@ -440,7 +440,7 @@ await updateVaultURD(vaultURDAddress);
 const updateVaultURD = async (vaultURDAddress) => {
   // create an instance of the LSP9Vault
   const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new ethers.Contract(
     universalProfileAddress,
     UniversalProfile.abi,
@@ -528,7 +528,7 @@ const deployVaultURD = async () => {
 const updateVaultURD = async (vaultURDAddress) => {
   // create an instance of the LSP9Vault
   const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,
@@ -607,7 +607,7 @@ const deployVaultURD = async () => {
 const updateVaultURD = async (vaultURDAddress) => {
   // create an instance of the LSP9Vault
   const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,

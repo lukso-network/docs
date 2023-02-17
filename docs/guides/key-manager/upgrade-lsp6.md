@@ -166,15 +166,17 @@ Deploy a new LSP6 Key Manager with the latest updates.
   <TabItem value="web3js" label="web3.js">
 
 ```js title="Deploy a new Key Manager"
-const NewKeyManager = new web3.eth.Contract(LSP6KeyManager.abi);
-const newKeyManager = await NewKeyManager.deploy({
-  data: LSP6KeyManager.bytecode,
-  arguments: [universalProfileAddress],
-}).send({
-  from: account.address,
-  gas: 3000000,
-  gasPrice: '1000000000',
-});
+const newKeyManager = new web3.eth.Contract(LSP6KeyManager.abi);
+await newKeyManager
+  .deploy({
+    data: LSP6KeyManager.bytecode,
+    arguments: [universalProfileAddress],
+  })
+  .send({
+    from: account.address,
+    gas: 3000000,
+    gasPrice: '1000000000',
+  });
 ```
 
   </TabItem>
@@ -182,11 +184,11 @@ const newKeyManager = await NewKeyManager.deploy({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```js title="Deploy a new Key Manager"
-const NewKeyManager = new ethers.ContractFactory(
+const keyManagerFactory = new ethers.ContractFactory(
   LSP6KeyManager.abi,
   LSP6KeyManager.bytecode,
 );
-const newKeyManager = await NewKeyManager.deploy(universalProfileAddress);
+const newKeyManager = await keyManagerFactory.deploy(universalProfileAddress);
 ```
 
   </TabItem>
@@ -197,7 +199,7 @@ const newKeyManager = await NewKeyManager.deploy(universalProfileAddress);
 
 ### Step 5.1 - Transfer Ownership to your new Key Manager
 
-Create a payload for the [`transferOwnership(address)`](../../standards/smart-contracts/lsp14-ownable-2-step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
+Create a calldata for the [`transferOwnership(address)`](../../standards/smart-contracts/lsp14-ownable-2-step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
 
 <Tabs>
   
@@ -237,7 +239,7 @@ await oldKeyManager
 
 ### Step 5.2 - Accept Ownership from your new Key Manager
 
-Create a payload for the [`claimOwnership()`](../../standards/smart-contracts/lsp14-ownable-2-step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
+Create a calldata for the [`claimOwnership()`](../../standards/smart-contracts/lsp14-ownable-2-step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
 
 <!-- prettier-ignore-start -->
 
@@ -246,9 +248,9 @@ Create a payload for the [`claimOwnership()`](../../standards/smart-contracts/ls
   <TabItem value="web3js" label="web3.js">
 
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
-const claimOwnershipPayload = new web3.eth.Contract(UniversalProfile.abi).methods.acceptOwnership().encodeABI();
+const acceptOwnershipCalldata = new web3.eth.Contract(UniversalProfile.abi).methods.acceptOwnership().encodeABI();
 
-await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
+await newKeyManager.methods['execute(bytes)'](acceptOwnershipCalldata).send({
   from: account.address,
   gas: 1000000,
   gasPrice: '1000000000',
@@ -260,9 +262,9 @@ await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
-const claimOwnershipPayload = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
+const acceptOwnershipCalldata = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
 
-await newKeyManager.connect(account)['execute(bytes)'](claimOwnershipPayload);
+await newKeyManager.connect(account)['execute(bytes)'](acceptOwnershipCalldata);
 ```
 
   </TabItem>
@@ -303,8 +305,8 @@ const upgradeLSP6 = async () => {
   const oldKeyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 
   // Deploy a new LSP6 Key Manager
-  const NewKeyManager = new web3.eth.Contract(LSP6KeyManager.abi);
-  const newKeyManager = await NewKeyManager.deploy({
+  const newKeyManager = new web3.eth.Contract(LSP6KeyManager.abi);
+  await newKeyManager.deploy({
     data: LSP6KeyManager.bytecode,
     arguments: [universalProfileAddress],
   }).send({
@@ -327,9 +329,9 @@ const upgradeLSP6 = async () => {
   });
 
   // Accept the ownership of your Universal Profile from the new LSP6 Key Manager
-  const claimOwnershipPayload = new web3.eth.Contract(UniversalProfile.abi).methods.acceptOwnership().encodeABI();
+  const acceptOwnershipCalldata = new web3.eth.Contract(UniversalProfile.abi).methods.acceptOwnership().encodeABI();
 
-  await newKeyManager.methods['execute(bytes)'](claimOwnershipPayload).send({
+  await newKeyManager.methods['execute(bytes)'](acceptOwnershipCalldata).send({
     from: account.address,
     gas: 1000000,
     gasPrice: '1000000000',
@@ -347,7 +349,7 @@ await upgradeLSP6();
 
 <!-- prettier-ignore-start -->
 
-```js title="Imports & Constants"
+```js title="upgrade-lsp6.js"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
@@ -366,11 +368,11 @@ const upgradeLSP6 = async () => {
   const oldKeyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
   // Deploy a new LSP6 Key Manager
-  const NewKeyManager = new ethers.ContractFactory(
+  const keyManagerFactory = new ethers.ContractFactory(
     LSP6KeyManager.abi,
     LSP6KeyManager.bytecode,
   );
-  const newKeyManager = await NewKeyManager.deploy(universalProfileAddress);
+  const newKeyManager = await keyManagerFactory.deploy(universalProfileAddress);
 
   // Transfer the ownership of your Universal Profile from the current LSP6 Key Manager to a new LSP6 Key Manager
   const transferOwnershipPayload = new ethers.Interface(
@@ -382,9 +384,9 @@ const upgradeLSP6 = async () => {
     ['execute(bytes)'](transferOwnershipPayload);
 
   // Accept the ownership of your Universal Profile from the new LSP6 Key Manager
-  const claimOwnershipPayload = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
+  const acceptOwnershipCalldata = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
 
-  await newKeyManager.connect(account)['execute(bytes)'](claimOwnershipPayload);
+  await newKeyManager.connect(account)['execute(bytes)'](acceptOwnershipCalldata);
 };
 
 await upgradeLSP6();

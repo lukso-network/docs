@@ -18,9 +18,9 @@ In order to **reject all the assets** that are being transferred to the profile,
 
 _e.g._
 
-- If `typeId` is **[`0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving an LSP7 Token.
+- If `typeId` is **[`0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving a LSP7 Token.
 
-- If `typeId` is **[`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving an LSP8 Token.
+- If `typeId` is **[`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving a LSP8 Token.
 
 ### Step 1 - Deploy contract through Remix
 
@@ -91,16 +91,16 @@ After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT
 
 ![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
 
-### Step 2 - Set the address of the URD in the storage
+### Step 2 - Set the address of the URD in the UP's storage
 
-After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)**.
+After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage.
 
 ### Step 2.1 Setup
 
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -124,9 +124,9 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Step 2.2 Imports, Contants and EOA
 
-For starters we need to get the _ABIs_ for the contracts that we will further use.  
+First, we need to get the _ABIs_ for the contracts that we will use later.
 After that we need to store the address of our Universal Profile and the new URD address.  
-Then we will initialize the EOA that we will further use.
+Then we will initialize the controller address that will be used later.
 
 <Tabs>
   
@@ -176,7 +176,7 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 
 ### Step 2.3 Create contract instances
 
-At this point we need to create instances for the following contracts:
+At this point we need to create instances of the following contracts:
 
 - [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
 - [**Key Manager**](../../standards/universal-profile/lsp6-key-manager.md)
@@ -186,7 +186,7 @@ At this point we need to create instances for the following contracts:
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Contract instances for the Universal Profile & Key Manager"
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
@@ -203,7 +203,7 @@ const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Contract instances for the Universal Profile & Key Manager"
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
@@ -227,7 +227,7 @@ Encode a calldata for `setData(bytes32,bytes)` that will update the URD of the U
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Encode a calldata that will updated the URD and its permissions"
+```typescript title="Encode a calldata that will update the URD and its permissions"
 // encode setData Calldata on the Universal Profile
 const setDataCalldata = await universalProfile.methods[
   'setData(bytes32,bytes)'
@@ -238,7 +238,7 @@ const setDataCalldata = await universalProfile.methods[
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Encode a calldata that will updated the URD and its permissions"
+```typescript title="Encode a calldata that will update the URD and its permissions"
 // encode setData Calldata on the Universal Profile
 const setDataCalldata = await universalProfile.interface.encodeFunctionData(
   'setData(bytes32,bytes)',
@@ -252,7 +252,7 @@ const setDataCalldata = await universalProfile.interface.encodeFunctionData(
 
 ### Step 2.5 Execute via the Key Manager
 
-Lastly, we need to send the transaction that will update the URD of the Universal Profile via the Key Manager.
+Finally, we need to send the transaction that will update the URD of the Universal Profile via the Key Manager.
 
 <Tabs>
   
@@ -301,7 +301,7 @@ const universalProfileURDAddress = '0x...';
 const privateKey = '0x...';
 const EOA = web3.eth.accounts.wallet.add(privateKey);
 
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
@@ -344,7 +344,7 @@ const universalProfileURDAddress = '0x...';
 const privateKey = '0x...'; // your EOA private key (controller address)
 const EOA = new ethers.Wallet(privateKey).connect(provider);
 
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,

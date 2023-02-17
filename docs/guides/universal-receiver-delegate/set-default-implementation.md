@@ -14,7 +14,7 @@ Users deploying their Universal Profiles using the guides that utilize **[lsp-fa
 
 :::
 
-This guide will teach you how to deploy and set the default implementation of the **[Universal Receiver Delegate](../../standards/smart-contracts/lsp1-universal-receiver-delegate-up.md)** (URD) used by the Universal Profile. This contract will register the addresses of the **[received assets](../../standards/universal-profile/lsp5-received-assets.md)** and **[vaults](../../standards/universal-profile/lsp10-received-vaults.md)** and will remove them on a balance equal to 0. This contract requires the [**SUPER_SETDATA Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) to interact with the profile through the KeyManager.
+This guide will teach you how to deploy and set the default implementation of the **[Universal Receiver Delegate](../../standards/smart-contracts/lsp1-universal-receiver-delegate-up.md)** (URD) used by the Universal Profile. This contract will register the addresses of the **[received assets](../../standards/universal-profile/lsp5-received-assets.md)** and **[vaults](../../standards/universal-profile/lsp10-received-vaults.md)** and will remove them on a balance equal to 0. This contract requires the [**`SUPER_SETDATA` Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) to interact with the profile through the KeyManager.
 
 ![UniversalReceiverDelegate setting data keys on profile](/img/standards/lsp1delegate/token-transfer-4.jpg)
 
@@ -23,7 +23,7 @@ This guide will teach you how to deploy and set the default implementation of th
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -47,7 +47,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ## Step 1 - Imports, Constants and EOA
 
-For starters we need to get the _ABIs_ for the contracts that we will use and the _bytecode_ for the `LSP1UniversalReceiverDelegateUP`.  
+For beginners we need to get the _ABIs_ of the contracts that we will use and the _bytecode_ of the `LSP1UniversalReceiverDelegateUP`.  
 After that we need to store the address of our Universal Profile.  
 Then we will initialize the EOA that we will further use.
 
@@ -143,7 +143,7 @@ let universalProfileURDFactory = new ethers.ContractFactory(
 
 ### Step 2.2 - Send the contract deployment transaction
 
-Send the deployment transaction and in a few seconds you will get a new deployed Unviersal Profile URD.
+Send the deployment transaction to get a newly deployed URD.
 
 <Tabs>
   
@@ -255,7 +255,7 @@ Firstly we need to create instances for the following contracts:
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Contract instances for the Universal Profile & Key Manager"
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
@@ -263,7 +263,7 @@ const universalProfile = new web3.eth.Contract(
 // get the owner of the Universal Profile
 // in our case it should be the address of the Key Manager
 const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the LSP6KeyManager
+// create an instance of the Key Manager
 const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 ```
 
@@ -272,7 +272,7 @@ const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Contract instances for the Universal Profile & Key Manager"
-// create an insatnce of the Universal Profile
+// create an instance of the Universal Profile
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
@@ -280,7 +280,7 @@ const universalProfile = new ethers.Contract(
 // get the owner of the Universal Profile
 // in our case it should be the address of the Key Manager
 const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the LSP6KeyManager
+// create an instance of the Key Manager
 const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 ```
 
@@ -288,9 +288,9 @@ const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
 </Tabs>
 
-### Step 3.2 - Encode new permissions Data Keys & Values
+### Step 3.2 - Register URD on the UP + set the URD permissions
 
-Generate _Data Keys & Vaules_ for [**adding a URD**](../../standards/generic-standards/lsp1-universal-receiver-delegate.md/#how-delegation-works) to the Universal Profile and for granting [**SUPER_SETDATA**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) permission to the **URD**.
+Generate _Data Keys & Values_ for [**adding a URD**](../../standards/generic-standards/lsp1-universal-receiver-delegate.md/#how-delegation-works) to the Universal Profile and for granting [**SUPER_SETDATA**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) permission to the **URD**.
 
 <Tabs>
   
@@ -343,10 +343,8 @@ const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
 const addressPermissionsNewArrayLength =
   ethers.toNumber(addressPermissionsOldArrayLengthHex) + 1;
 
-const addressPermissionsNewArrayLengthHex = ethers.toBeHex(
-  addressPermissionsNewArrayLength2,
-  32,
-);
+const addressPermissionsNewArrayLengthHex =
+  '0x' + addressPermissionsNewArrayLength2.toString(16).padStart(64, '0');
 
 // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
 const newElementIndexInArrayHex = addressPermissionsOldArrayLengthHex.substring(
@@ -442,7 +440,7 @@ await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
 const updateUniversalProfileURD = async (vaultURDAddress) => {
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,
@@ -450,7 +448,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   // get the owner of the Universal Profile
   // in our case it should be the address of the Key Manager
   const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
+  // create an instance of the Key Manager
   const keyManager = new web3.eth.Contract(
     LSP6KeyManager.abi,
     keyManagerAddress,
@@ -509,7 +507,7 @@ await updateUniversalProfileURD(vaultURDAddress);
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
 const updateUniversalProfileURD = async (vaultURDAddress) => {
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new ethers.Contract(
     universalProfileAddress,
     UniversalProfile.abi,
@@ -517,7 +515,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   // get the owner of the Universal Profile
   // in our case it should be the address of the Key Manager
   const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
+  // create an instance of the Key Manager
   const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
   const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
@@ -527,10 +525,8 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   const addressPermissionsNewArrayLength =
     ethers.toNumber(addressPermissionsOldArrayLengthHex) + 1;
 
-  const addressPermissionsNewArrayLengthHex = ethers.toBeHex(
-    addressPermissionsNewArrayLength2,
-    32,
-  );
+  const addressPermissionsNewArrayLengthHex =
+    '0x' + addressPermissionsNewArrayLength2.toString(16).padStart(64, '0');
 
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
@@ -618,7 +614,7 @@ const deployUniversalProfileURD = async () => {
 };
 
 const updateUniversalProfileURD = async (vaultURDAddress) => {
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,
@@ -626,7 +622,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   // get the owner of the Universal Profile
   // in our case it should be the address of the Key Manager
   const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
+  // create an instance of the Key Manager
   const keyManager = new web3.eth.Contract(
     LSP6KeyManager.abi,
     keyManagerAddress,
@@ -721,7 +717,7 @@ const deployUniversalProfileURD = async () => {
 };
 
 const updateUniversalProfileURD = async (vaultURDAddress) => {
-  // create an insatnce of the Universal Profile
+  // create an instance of the Universal Profile
   const universalProfile = new ethers.Contract(
     universalProfileAddress,
     UniversalProfile.abi,
@@ -729,7 +725,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   // get the owner of the Universal Profile
   // in our case it should be the address of the Key Manager
   const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
+  // create an instance of the Key Manager
   const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
   const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
@@ -739,10 +735,8 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   const addressPermissionsNewArrayLength =
     ethers.toNumber(addressPermissionsOldArrayLengthHex) + 1;
 
-  const addressPermissionsNewArrayLengthHex = ethers.toBeHex(
-    addressPermissionsNewArrayLength2,
-    32,
-  );
+  const addressPermissionsNewArrayLengthHex =
+    '0x' + addressPermissionsNewArrayLength2.toString(16).padStart(64, '0');
 
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =

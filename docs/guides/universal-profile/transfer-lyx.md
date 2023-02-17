@@ -79,7 +79,7 @@ The chosen EOA needs to have [**TRANSFERVALUE Permission**](../../standards/univ
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -147,7 +147,7 @@ const myUPAddress = '0x...';
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 
 // the KeyManager is the owner of the Universal Profile
-// so we can call the owner() function to obtain the KeyManager's address
+// so we can call the owner() function to obtain the KeyManager contract address
 const owner = await myUP.methods.owner().call();
 const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 ```
@@ -167,7 +167,7 @@ const myUPAddress = '0x...';
 const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi, provider);
 
 // the KeyManager is the owner of the Universal Profile
-// so we can call the owner() function to obtain the KeyManager's address
+// so we can call the owner() function to obtain the KeyManager contract address
 const owner = await myUP.owner();
 const myKM = new ethers.Contract(owner, KeyManager.abi, provider);
 ```
@@ -206,10 +206,9 @@ const transferLYXCalldata = await myUP.methods[
 
 ```typescript
 const OPERATION_CALL = 0;
-const recipient = '0x...'; // address the recipient (any address, including an other UP)
+const recipient = '0x...'; // address of the recipient (any address, including an other UP)
 const amount = ethers.parseEther('3'); // amount of LYX we want to transfer
-// calldata executed at the target (here nothing, just a plain LYX transfer)
-const data = '0x';
+const data = '0x'; // calldata executed at the target (here nothing, just a plain LYX transfer)
 
 // encode the calldata to transfer 3 LYX from the UP
 const transferLYXCalldata = myUP.interface.encodeFunctionData(
@@ -233,7 +232,7 @@ Like in other guides, an important step is to load our EOA that is a controller 
   <TabItem value="web3js" label="web3.js">
 
 ```typescript
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
+const PRIVATE_KEY = '0x...'; // your controller address private key
 
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 ```
@@ -243,7 +242,7 @@ const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
+const PRIVATE_KEY = '0x...'; // your controller address private key
 
 const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 ```
@@ -292,14 +291,14 @@ import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
+const PRIVATE_KEY = '0x...'; // your controller address private key
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY); // amount of LYX we want to transfer
 
 // 1. instantiate your contracts
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 
 // the KeyManager is the owner of the Universal Profile
-// so we can call the owner() function to obtain the KeyManager's address
+// so we can call the owner() function to obtain the KeyManager contract address
 const owner = await myUP.methods.owner().call();
 
 const myKM = new web3.eth.Contract(KeyManager.abi, owner);
@@ -337,7 +336,7 @@ const myUPAddress = '0x...';
 const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi, provider);
 
 // the KeyManager is the owner of the Universal Profile
-// so we can call the owner() function to obtain the KeyManager's address
+// so we can call the owner() function to obtain the KeyManager contract address
 const owner = await myUP.owner();
 
 const myKM = new ethers.Contract(owner, KeyManager.abi, provider);
@@ -354,7 +353,7 @@ const transferLYXCalldata = myUP.interface.encodeFunctionData(
   [OPERATION_CALL, recipient, amount, data],
 );
 
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
+const PRIVATE_KEY = '0x...'; // your controller address private key
 
 const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Digital Asset (Token)
 
-This guide will teach you how to create our token ([**LSP7 Digital Asset**](../../standards/nft-2.0/lsp7-digital-asset)).
+This guide will teach you how to create an ([**LSP7 Digital Asset contract**](../../standards/nft-2.0/lsp7-digital-asset)).
 
 ## Deploy an LSP7 Digital Asset contract
 
@@ -17,7 +17,7 @@ We will use a specific implementation of LSP7, called `LSP7Mintable`. It allows 
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -112,14 +112,13 @@ const lsp7Factory = new ethers.ContractFactory(
 
 ### Step 3 - Send transaction
 
-Finally, we deploy the contract.
+Finally, deploy the contract.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```javascript
-// deploy the token contract
+```javascript title="Deploy the LSP7 Digital Asset contract"
 await myToken
   .deploy({
     data: LSP7Mintable.bytecode,
@@ -139,8 +138,7 @@ await myToken
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```javascript
-// deploy the token contract
+```javascript title="Deploy the LSP7 Digital Asset contract"
 const myToken = await lsp7Factory.connect(myEOA).deploy(
   'My LSP7 Token', // token name
   'LSP7', // token symbol
@@ -169,7 +167,7 @@ const web3 = new Web3('https://rpc.l16.lukso.network');
 const privateKey = '0x...';
 const account = web3.eth.accounts.wallet.add(privateKey);
 
-// create an instance
+// create a contract instance
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
   gas: 5_000_000,
   gasPrice: '1000000000',
@@ -201,7 +199,7 @@ import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
 
-// setup your EOA
+// set up your EOA
 const privateKey = '0x...';
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
 

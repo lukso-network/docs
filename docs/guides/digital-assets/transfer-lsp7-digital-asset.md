@@ -17,7 +17,7 @@ The following code snippet shows how to transfer 15 tokens from your Universal P
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -88,7 +88,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 ### Step 2 - Instantiate contracts
 
-At this point, the `LSP7Mintable`, `UniversalProfile`, `KeyManager` contracts are being prepared for the following intercations. We construct an instance of a contract, using _contract ABI_ and _contract address_.
+At this point, the `LSP7Mintable`, `UniversalProfile`, `KeyManager` contracts are being prepared for the following interactions. Construct an instance of a contract, using _contract ABI_ and _contract address_.
 
 <Tabs>
   

@@ -33,7 +33,7 @@ In this guide, after granting the 3rd party the permission **CALL**, we will nee
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 - You SHOULD install [`@erc725/erc725.js`](https://github.com/ERC725Alliance/erc725.js)
 
 <Tabs>
@@ -59,7 +59,7 @@ npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
 ## Step 1 - Imports, Constants & EOA
 
 For this guide we will firstly need and import the _ABIs_ for the Universal Profile & Key Manager contracts. Also we will import the `ERC725YDataKeys` to retrieve the data key for [AllowedCalls permission](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls).  
-As constants we will need to store the addresses for the Universal profile, Vault & the restricted third party.  
+As constants we will need to store the addresses for the Universal Profile, Vault & the restricted third party.  
 Finally, we will need a private key with the proper _permissions_, in our case [**ADDCONTROLLER permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions).
 
 <Tabs>

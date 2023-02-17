@@ -22,7 +22,7 @@ To start with this guide you will need the following things:
 Make sure you have the following dependencies installed before beginning this tutorial.
 
 - You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You SHOULD install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -58,7 +58,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const vaultReceiver = '0x...'; // The address that will be the vault owner
+const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // initialize your EOA
 const privateKey = '0x...';
@@ -74,7 +74,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const vaultReceiver = '0x...'; // The address that will be the vault owner
+const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // setup your EOA
 const privateKey = '0x...';
@@ -127,7 +127,7 @@ Finally send the **contract deployment** transaction and in a few seconds the co
 await myVault
   .deploy({
     data: LSP9Vault.bytecode,
-    arguments: [vaultReceiver],
+    arguments: [vaultOwner],
   })
   .send({
     from: myEOA.address,
@@ -142,7 +142,7 @@ await myVault
 
 ```typescript title="Sending contract deployment transaction"
 // deploy the vault contract
-const myVault = await vaultFactory.connect(myEOA).deploy(vaultReceiver);
+const myVault = await vaultFactory.connect(myEOA).deploy(vaultOwner);
 ```
 
   </TabItem>
@@ -166,7 +166,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
-const vaultReceiver = '0x...'; // The address that will be the vault owner
+const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // initialize your EOA
 const privateKey = '0x...';
@@ -179,7 +179,7 @@ let myVault = new web3.eth.Contract(LSP9Vault.abi);
 await myVault
   .deploy({
     data: LSP9Vault.bytecode,
-    arguments: [vaultReceiver],
+    arguments: [vaultOwner],
   })
   .send({
     from: myEOA.address,
@@ -197,7 +197,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
-const vaultReceiver = '0x...'; // The address that will be the vault owner
+const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // setup your EOA
 const privateKey = '0x...';
@@ -210,7 +210,7 @@ let vaultFactory = new ethers.ContractFactory(
 );
 
 // deploy the vault contract
-const myVault = await vaultFactory.connect(myEOA).deploy(vaultReceiver);
+const myVault = await vaultFactory.connect(myEOA).deploy(vaultOwner);
 ```
 
   </TabItem>
