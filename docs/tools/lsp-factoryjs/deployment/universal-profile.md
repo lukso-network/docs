@@ -329,7 +329,7 @@ await myLSPFactory.UniversalProfile.uploadMetaData(myLSP3MetaData);
 {
   hash: '0x1234...',
   hashFunction: 'keccak256(utf8)',
-  url: 'https://2eff.lukso.dev/ipfs/QmPzUfdKhY6vfcLNDnitwKanpm5GqjYSmw9todNVmi4bqy',
+  url: 'https://ipfs.lukso.network/ipfs/QmPzUfdKhY6vfcLNDnitwKanpm5GqjYSmw9todNVmi4bqy',
   json: {
     LSP3Profile: {
       name: "My Universal Profile",
