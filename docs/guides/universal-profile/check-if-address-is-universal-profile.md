@@ -18,10 +18,10 @@ To check if an address is a [Universal Profile](../../standards/universal-profil
 
 ## Setup
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -45,7 +45,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ## Step 1 - Check address format
 
-This first basic test can be performed via regular expression or 3rd party library function. For example this is how we can achieve this using Web3js [`isAddress`](https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html#isaddress):
+This first basic test can be performed via regular expression or 3rd party library function. For example this is how we can achieve this using Web3.js [`isAddress`](https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html#isaddress):
 
 <Tabs>
   
@@ -75,13 +75,13 @@ if (!isAddress(address)) {
 
 </Tabs>
 
-## Step 2 - Check the contract supports the `LSP0ERC725Account` interface using ERC165
+## Step 2 - Check if the contract supports the `LSP0ERC725Account` interface using ERC165
 
-This is next check that makes sure we deal with a smart contract that supports the `LSP0ERC725Account` interface ([EIP-165](https://eips.ethereum.org/EIPS/eip-165)). For this we need to create an `universalProfile` contract instance and call `supportsInterface(..)` method.
+This is next check that makes sure we deal with a smart contract that supports the `LSP0ERC725Account` interface ([EIP-165](https://eips.ethereum.org/EIPS/eip-165)). For this we need to create an `universalProfile` contract instance and call `supportsInterface(...)` method.
 
 :::info
 
-Universal Profiles inherit [**ERC165**](https://eips.ethereum.org/EIPS/eip-165), therefore by creating an instance of the Universal Profile contract you have access to the `supportsInterface(..)` method.
+Universal Profiles inherit [ERC165](https://eips.ethereum.org/EIPS/eip-165), therefore by creating an instance of the Universal Profile contract you have access to the `supportsInterface(...)` method.
 
 :::
 
@@ -145,7 +145,7 @@ Last but not least we should perform a check over `LSP3UniversalProfile` standar
 
 :::info
 
-Universal Profiles inherit [**ERC725Y**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y), therefore by creating an instance of the Universal Profile contract you have access to the `getData(..)` method.
+Universal Profiles inherit [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y), therefore by creating an instance of the Universal Profile contract you have access to the `getData(..)` method.
 
 :::
 

@@ -76,10 +76,10 @@ The chosen EOA needs to have [**TRANSFERVALUE Permission**](../../standards/univ
 
 :::
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -223,7 +223,7 @@ const transferLYXCalldata = myUP.interface.encodeFunctionData(
 
 ## Step 4 - Execute via the Key Manager
 
-### 4.1 - Load our EOA
+### Load our EOA
 
 Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile. In this case the controller address must have either [**TRANSFERVALUE Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_TRANSFERVALUE Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) in order for the transaction to be successful.
 
@@ -251,7 +251,7 @@ const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 </Tabs>
 
-### 4.2 - Send the LYX transfer calldata
+### Send the LYX transfer calldata
 
 The final step is to pass the encoded LYX transfer calldata to the Key Manager. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize and execute the LYX transfer.
 

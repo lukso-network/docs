@@ -8,16 +8,16 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Digital Asset (Token)
 
-This guide will teach you how to mint some ([**LSP7 Digital Asset**](../../standards/nft-2.0/lsp7-digital-asset)) tokens to your [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md).
+This guide will teach you how to mint some [LSP7 Digital Asset](../../standards/nft-2.0/LSP7-Digital-Asset.md) tokens to your [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md).
 
 ## Mint tokens for your Universal Profile
 
 The code snippet below shows how to mint 100 tokens with your Universal Profile as a beneficiary.
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -118,11 +118,13 @@ The contract that we are using as a example in this guied allows minting Digital
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```javascript
-await myToken.methods.mint('<up-address>', 100, false, '0x').send({
-  from: myEOA,
-});
+await myToken.methods.mint('<up-address>', 100, false, '0x').send({ from: myEOA });
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -142,6 +144,8 @@ await myToken.connect(myEOA).mint('<up-address>', 100, false, '0x');
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import Web3 from 'web3';
@@ -155,10 +159,10 @@ const account = web3.eth.accounts.wallet.add(privateKey);
 
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 
-await myToken.methods.mint('<up-address>', 100, false, '0x').send({
-  from: myEOA,
-});
+await myToken.methods.mint('<up-address>', 100, false, '0x').send({ from: myEOA });
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
