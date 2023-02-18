@@ -51,14 +51,14 @@ Most of the functions on the UP contract, such as [`setData(...)`](../../standar
 To transfer LYX from our UP, we need to perform the following steps:
 
 1. ABI encode the [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) function call of our UP.
-2. pass the ABI encoded **payload** to the [`execute(payload)`](../../standards/smart-contracts/lsp6-key-manager.md#execute) function on the KM.
+2. pass the ABI encoded **calldata** to the [`execute(calldata)`](../../standards/smart-contracts/lsp6-key-manager.md#execute) function on the KM.
 
 :::info
 
 Make sure to understand the difference between both `execute(...)` functions!
 
 - [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) from the Universal Profile = generic executor function used to call and interact with EOAs or contracts + deploy new contracts from the UP.
-- `execute(payload)` from the Key Manager = used to run functions on the Universal Profile linked to the Key Manager (by forwarding ABI encoded payload), while verifying if the caller has the right permissions to do so.
+- `execute(calldata)` from the Key Manager = used to run functions on the Universal Profile linked to the Key Manager (by forwarding ABI encoded calldata), while verifying if the caller has the right permissions to do so.
 
 :::
 
@@ -68,10 +68,38 @@ To complete this mini-guide, we will need:
 
 - the `UniversalProfile` and `KeyManager` contracts ABIs from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
 - the address of our Universal Profile we want to send LYX from.
+- an EOA with some LYX for gas fees and the required [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
 
-```shell
+:::info
+
+The chosen EOA needs to have [**TRANSFERVALUE Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_TRANSFERVALUE Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
+
+:::
+
+Make sure you have the following dependencies installed before beginning this tutorial.
+
+- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
 ```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```shell title="Install the dependencies"
+npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Step 1 - Get some LYX
 
@@ -104,85 +132,173 @@ The first step is to create instances of our Universal Profile and Key Manager c
 
 - 2.2 - Then, we will use the Key Manager to interact with our Universal Profile and send some LYX.
 
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
 ```typescript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import Web3 from 'web3';
 
+const web3 = new Web3('https://rpc.l16.lukso.network');
+
+const myUPAddress = '0x...';
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 
 // the KeyManager is the owner of the Universal Profile
-// so we can call the owner() function to obtain the KeyManager's address
+// so we can call the owner() function to obtain the KeyManager contract address
 const owner = await myUP.methods.owner().call();
-
 const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 ```
 
-## Step 3 - Encode the payload to transfer LYX
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import { ethers } from 'ethers';
+
+const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+
+const myUPAddress = '0x...';
+const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi, provider);
+
+// the KeyManager is the owner of the Universal Profile
+// so we can call the owner() function to obtain the KeyManager contract address
+const owner = await myUP.owner();
+const myKM = new ethers.Contract(owner, KeyManager.abi, provider);
+```
+
+  </TabItem>
+
+</Tabs>
+
+## Step 3 - Encode the calldata to transfer LYX
 
 With our contract instances ready, we now want to transfer some LYX from the UP using the `execute(...)` function.
 The next step is to ABI encode this function call with the correct parameters, as explained in the introduction.
 
 We can use the [`encodeABI()`](https://web3js.readthedocs.io/en/v1.7.4/web3-eth-contract.html#methods-mymethod-encodeabi) method from web3.js
 
-```javascript
-import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l16.lukso.network');
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
 
+```typescript
 const OPERATION_CALL = 0;
 const recipient = '0x...'; // address the recipient (any address, including an other UP)
 const amount = web3.utils.toWei('3'); // amount of LYX we want to transfer
-// payload executed at the target (here nothing, just a plain LYX transfer)
+// calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x';
 
-// encode the payload to transfer 3 LYX from the UP
-const transferLYXPayload = await myUP.methods
-  .execute(OPERATION_CALL, recipient, amount, data)
-  .encodeABI();
+// encode the calldata to transfer 3 LYX from the UP
+const transferLYXCalldata = await myUP.methods[
+  'execute(uint256,address,uint256,bytes)'
+](OPERATION_CALL, recipient, amount, data).encodeABI();
 ```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript
+const OPERATION_CALL = 0;
+const recipient = '0x...'; // address of the recipient (any address, including an other UP)
+const amount = ethers.parseEther('3'); // amount of LYX we want to transfer
+const data = '0x'; // calldata executed at the target (here nothing, just a plain LYX transfer)
+
+// encode the calldata to transfer 3 LYX from the UP
+const transferLYXCalldata = myUP.interface.encodeFunctionData(
+  'execute(uint256,address,uint256,bytes)',
+  [OPERATION_CALL, recipient, amount, data],
+);
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Step 4 - Execute via the Key Manager
 
 ### 4.1 - Load our EOA
 
-Like in other guides, the first step is to load our EOA that act as the main controller for our Universal Profile.
+Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile. In this case the controller address must have either [**TRANSFERVALUE Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_TRANSFERVALUE Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) in order for the transaction to be successful.
 
-```javascript title="Load EOA from a private key"
-import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l16.lukso.network');
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
 
-const PRIVATE_KEY = '0x...'; // your EOA private key (main controller address)
+```typescript
+const PRIVATE_KEY = '0x...'; // your controller address private key
 
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 ```
 
-### 4.2 - Send the LYX transfer payload
+  </TabItem>
 
-The final step is to pass the encoded LYX transfer function to the Key Manager. Since we are calling from the UP's owner address, the Key Manager will authorize and execute the LYX transfer.
+  <TabItem value="ethersjs" label="ethers.js">
 
-```javascript
-await myKM.methods.execute(transferLYXPayload).send({
+```typescript
+const PRIVATE_KEY = '0x...'; // your controller address private key
+
+const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+```
+
+  </TabItem>
+
+</Tabs>
+
+### 4.2 - Send the LYX transfer calldata
+
+The final step is to pass the encoded LYX transfer calldata to the Key Manager. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize and execute the LYX transfer.
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```typescript
+await myKM.methods['execute(bytes)'](transferLYXCalldata).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
 ```
 
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript
+await myKM.connect(myEOA)['execute(bytes)'](transferLYXCalldata);
+```
+
+  </TabItem>
+
+</Tabs>
+
 ## Final Code
 
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
 ```javascript
-import Web3 from 'web3';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
-const PRIVATE_KEY = '0x...'; // your EOA private key (main controller address)
+const PRIVATE_KEY = '0x...'; // your controller address private key
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY); // amount of LYX we want to transfer
 
 // 1. instantiate your contracts
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 
 // the KeyManager is the owner of the Universal Profile
-// so we can call the owner() function to obtain the KeyManager's address
+// so we can call the owner() function to obtain the KeyManager contract address
 const owner = await myUP.methods.owner().call();
 
 const myKM = new web3.eth.Contract(KeyManager.abi, owner);
@@ -190,17 +306,60 @@ const myKM = new web3.eth.Contract(KeyManager.abi, owner);
 const OPERATION_CALL = 0;
 const recipient = '0x...'; // address the recipient (any address, including an other UP)
 const amount = web3.utils.toWei('3');
-// payload executed at the target (here nothing, just a plain LYX transfer)
+// calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x';
 
-// 2. encode the payload to transfer 3 LYX from the UP
-const transferLYXPayload = await myUP.methods
-  .execute(OPERATION_CALL, recipient, amount, data)
-  .encodeABI();
+// 2. encode the calldata to transfer 3 LYX from the UP
+const transferLYXCalldata = await myUP.methods[
+  'execute(uint256,address,uint256,bytes)'
+](OPERATION_CALL, recipient, amount, data).encodeABI();
 
 // 3. execute the LYX transfer via the Key Manager
-await myKM.methods.execute(transferLYXPayload).send({
+await myKM.methods['execute(bytes)'](transferLYXCalldata).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
 ```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import { ethers } from 'ethers';
+
+const provider = new ethers.JsonRpcProvider('https://rpc.l14.lukso.network');
+
+const myUPAddress = '0x...';
+const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi, provider);
+
+// the KeyManager is the owner of the Universal Profile
+// so we can call the owner() function to obtain the KeyManager contract address
+const owner = await myUP.owner();
+
+const myKM = new ethers.Contract(owner, KeyManager.abi, provider);
+
+const OPERATION_CALL = 0;
+const recipient = '0x...'; // address the recipient (any address, including an other UP)
+const amount = ethers.parseEther('3'); // amount of LYX we want to transfer
+// calldata executed at the target (here nothing, just a plain LYX transfer)
+const data = '0x';
+
+// encode the calldata to transfer 3 LYX from the UP
+const transferLYXCalldata = myUP.interface.encodeFunctionData(
+  'execute(uint256,address,uint256,bytes)',
+  [OPERATION_CALL, recipient, amount, data],
+);
+
+const PRIVATE_KEY = '0x...'; // your controller address private key
+
+const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
+
+await myKM.connect(myEOA)['execute(bytes)'](transferLYXCalldata);
+```
+
+  </TabItem>
+
+</Tabs>
