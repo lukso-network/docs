@@ -19,10 +19,10 @@ To start with this guide you will need the following things:
 - The _private key_ of your account, in order to send the transaction.
 - The address of a [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -116,7 +116,7 @@ let vaultFactory = new ethers.ContractFactory(
 
 ## Step 3 - Send transaction
 
-Finally send the **contract deployment** transaction and in a few seconds the contract may be used.
+Finally send the **contract deployment** transaction.
 
 <Tabs>
   

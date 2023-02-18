@@ -26,11 +26,11 @@ The transaction is then executed via the [LSP6KeyManager](../../standards/univer
 
 This example shows how to prepare a transaction to be executed by a third party. This logic can be implemented client-side and then sent to a third-party application or service such as a Transaction Relay service to be executed.
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
-- You SHOULD install [`@lukso/eip191-signer.js`](https://github.com/lukso-network/tools-eip191-signer)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- [`@lukso/eip191-signer.js`](https://github.com/lukso-network/tools-eip191-signer)
 
 <Tabs>
   
@@ -104,41 +104,37 @@ const controllerAccount = new ethers.Wallet(controllerPrivateKey).connect(
 
 ### Step 2 - Prepare the contact instances
 
-We will get the contract instances for the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) and [**Key Manager**](../../standards/universal-profile/lsp6-key-manager.md) for further use in the guide.
+We will get the contract instances for the [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md) and [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) for further use in the guide.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```typescript title="Contract instances"
-const universalProfile = new web3.eth.Contract(
-  UniversalProfileContract.abi,
-  universalProfileAddress,
-);
+const universalProfile = new web3.eth.Contract(UniversalProfileContract.abi, universalProfileAddress);
 
 const keyManagerAddress = await universalProfile.methods.owner().call();
-const keyManager = new web3.eth.Contract(
-  KeyManagerContract.abi,
-  keyManagerAddress,
-);
+const keyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddress);
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
+<!-- prettier-ignore-start -->
+
 ```typescript title="Contract instances"
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfileContract.abi,
-);
+const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfileContract.abi);
 
 const keyManagerAddress = await universalProfile.owner();
-const keyManager = new ethers.Contract(
-  keyManagerAddress,
-  KeyManagerContract.abi,
-);
+const keyManager = new ethers.Contract(keyManagerAddress, KeyManagerContract.abi);
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -146,7 +142,7 @@ const keyManager = new ethers.Contract(
 
 ### Step 3 - Get nonce of the controller address
 
-Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the `getNonce` function.
+Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../standards/smart-contracts/lsp6-key-manager.md#getnonce) function.
 
 The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
 
@@ -154,12 +150,14 @@ The `channelId` is used to prevent nonce conflicts when multiple apps send trans
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```typescript title="Get the controller key nonce"
 const channelId = 0;
-const nonce = await keyManager.methods
-  .getNonce(controllerAccount.address, channelId)
-  .call();
+const nonce = await keyManager.methods.getNonce(controllerAccount.address, channelId).call();
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -225,7 +223,11 @@ Afterward, sign the transaction message from the controller key of the Universal
 
 The message is constructed by signing the `keyManagerAddress`, `keyManagerVersion`, `chainId`, signer `nonce`, `value` and `abiPayload`.
 
-For more information check: [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+:::tip ERC725X execute
+
+For more information check: [How to sign relay transactions?](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+
+:::
 
 <Tabs>
   
@@ -287,15 +289,17 @@ Now the `signature`, `abiPayload`, `nonce` and `keyManagerAddress` can be sent t
 This example shows how a third party can execute a transaction on behalf of another user.
 :::
 
-To execute a signed transaction ABI payload requires:
+To execute a signed transaction, ABI payload requires:
 
 - the **KeyManager contract address**
 - the **transaction ABI payload**
-- **signed transaction payload**
-- **nonce** of the controller key which signed the transaction.
+- the **signed transaction payload**
+- the **nonce** of the controller key which signed the transaction.
 
 :::note
+
 To get the KeyManager address from the UniversalProfile address, call the `owner` function on the Universal Profile contract.
+
 :::
 
 <Tabs>

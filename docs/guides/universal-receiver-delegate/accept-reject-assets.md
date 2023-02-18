@@ -22,7 +22,7 @@ _e.g._
 
 - If `typeId` is **[`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving a LSP8 Token.
 
-### Step 1 - Deploy contract through Remix
+### Deploy contract through Remix
 
 The first step is to navigate to **[Remix's website](https://remix.ethereum.org/)** and create a new solidity file under the **contracts** folder.
 
@@ -91,16 +91,16 @@ After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT
 
 ![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
 
-### Step 2 - Set the address of the URD in the UP's storage
+### Set the address of the URD in the UP's storage
 
 After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage.
 
-### Step 2.1 Setup
+### Install dependencies
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -122,7 +122,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 </Tabs>
 
-### Step 2.2 Imports, Contants and EOA
+### Imports, contants and EOA
 
 First, we need to get the _ABIs_ for the contracts that we will use later.
 After that we need to store the address of our Universal Profile and the new URD address.  
@@ -174,7 +174,7 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 
 </Tabs>
 
-### Step 2.3 Create contract instances
+### Create contract instances
 
 At this point we need to create instances of the following contracts:
 
@@ -219,7 +219,7 @@ const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
 </Tabs>
 
-### Step 2.4 Encode `setData(...)` calldata
+### Encode `setData(...)` calldata
 
 Encode a calldata for `setData(bytes32,bytes)` that will update the URD of the Universal Profile.
 
@@ -250,7 +250,7 @@ const setDataCalldata = await universalProfile.interface.encodeFunctionData(
 
 </Tabs>
 
-### Step 2.5 Execute via the Key Manager
+### Execute via the Key Manager
 
 Finally, we need to send the transaction that will update the URD of the Universal Profile via the Key Manager.
 

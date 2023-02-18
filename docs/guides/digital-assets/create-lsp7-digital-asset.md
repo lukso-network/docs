@@ -8,16 +8,16 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Digital Asset (Token)
 
-This guide will teach you how to create an ([**LSP7 Digital Asset contract**](../../standards/nft-2.0/lsp7-digital-asset)).
+This guide will teach you how to create an [LSP7 Digital Asset contract](../../standards/nft-2.0/LSP7-Digital-Asset.md).
 
 ## Deploy an LSP7 Digital Asset contract
 
 We will use a specific implementation of LSP7, called `LSP7Mintable`. It allows the contract deployer to mint new tokens.
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -87,7 +87,6 @@ At this point, the `LPS7Mintable` contract is being prepared for deployment.
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-// create an instance
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
   gas: 5_000_000,
   gasPrice: '1000000000',
@@ -99,7 +98,6 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-// create an instance of the token contract
 const lsp7Factory = new ethers.ContractFactory(
   LSP7Mintable.abi,
   LSP7Mintable.bytecode,
@@ -118,9 +116,10 @@ Finally, deploy the contract.
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```javascript title="Deploy the LSP7 Digital Asset contract"
-await myToken
-  .deploy({
+await myToken.deploy({
     data: LSP7Mintable.bytecode,
     arguments: [
       'My LSP7 Token', // token name
@@ -129,10 +128,9 @@ await myToken
       false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
     ],
   })
-  .send({
-    from: account.address,
-  });
+  .send({ from: account.address });
 ```
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -152,6 +150,8 @@ const myToken = await lsp7Factory.connect(myEOA).deploy(
 </Tabs>
 
 ### Final code
+
+<!-- prettier-ignore-start -->
 
 <Tabs>
   
@@ -174,8 +174,7 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, {
 });
 
 // deploy the token contract
-await myToken
-  .deploy({
+await myToken.deploy({
     data: LSP7Mintable.bytecode,
     arguments: [
       'My LSP7 Token', // token name
@@ -184,9 +183,7 @@ await myToken
       false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
     ],
   })
-  .send({
-    from: account.address,
-  });
+  .send({ from: account.address });
 ```
 
   </TabItem>
@@ -221,3 +218,5 @@ const myToken = await lsp7Factory.connect(myEOA).deploy(
   </TabItem>
 
 </Tabs>
+
+<!-- prettier-ignore-end -->

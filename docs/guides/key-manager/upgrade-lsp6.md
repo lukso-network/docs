@@ -25,10 +25,10 @@ By the end of this guide, you will know how to:
 
 ## Setup
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -174,7 +174,7 @@ await newKeyManager
   })
   .send({
     from: account.address,
-    gas: 3000000,
+    gas: 3_000_000,
     gasPrice: '1000000000',
   });
 ```
@@ -214,7 +214,7 @@ const transferOwnershipPayload = new web3.eth.Contract(
 
 await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
   from: account.address,
-  gas: 1000000,
+  gas: 1_000_000,
   gasPrice: '1000000000',
 });
 ```
@@ -252,7 +252,7 @@ const acceptOwnershipCalldata = new web3.eth.Contract(UniversalProfile.abi).meth
 
 await newKeyManager.methods['execute(bytes)'](acceptOwnershipCalldata).send({
   from: account.address,
-  gas: 1000000,
+  gas: 1_000_000,
   gasPrice: '1000000000',
 });
 ```
@@ -311,7 +311,7 @@ const upgradeLSP6 = async () => {
     arguments: [universalProfileAddress],
   }).send({
     from: account.address,
-    gas: 3000000,
+    gas: 3_000_000,
     gasPrice: '1000000000',
   });
 
@@ -324,7 +324,7 @@ const upgradeLSP6 = async () => {
 
   await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
     from: account.address,
-    gas: 1000000,
+    gas: 1_000_000,
     gasPrice: '1000000000',
   });
 
@@ -333,7 +333,7 @@ const upgradeLSP6 = async () => {
 
   await newKeyManager.methods['execute(bytes)'](acceptOwnershipCalldata).send({
     from: account.address,
-    gas: 1000000,
+    gas: 1_000_000,
     gasPrice: '1000000000',
   });
 };

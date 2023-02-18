@@ -16,10 +16,10 @@ The default implementation of the **Universal Receiver Delegate** of the Vault t
 
 ## Setup
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -41,7 +41,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 </Tabs>
 
-## Step 1 - Imports, Constants and EOA
+## Step 1 - Imports, constants and EOA
 
 For starters we need to get the _ABIs_ for the contracts that we will use and the _bytecode_ for the `LSP1UniversalReceiverDelegateVault`.  
 After that we need to store the address of our LSP9 Vault and our Universal Profile.  
@@ -102,7 +102,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 The **Universal Profile** and the **Vault** don't use the same implementation of the Universal Receiver Delegate.
 :::
 
-### Step 2.1 - Create a contract instance
+### Create a contract instance
 
 At this step we will create an instance of the Vault URD that we will further be used to deploy one.
 
@@ -131,7 +131,7 @@ const vaultURDFactory = new ethers.ContractFactory(
 
 </Tabs>
 
-### Step 2.2 - Send the contract deployment transaction
+### Send the contract deployment transaction
 
 Send the deployment transaction and in a few seconds you will get a new deployed Vault URD.
 
@@ -229,7 +229,7 @@ const vaultURDAddress = await deployVaultURD();
 
 The Vault's owner could be an **EOA**, or any **other smart contract**. In our case, we will suppose that the Vault's owner is a [Universal Profile](../../standards/universal-profile/introduction.md) that is controlled by a Key Manager.
 
-### Step 3.1 - Create the contract instances
+### Create the contract instances
 
 Firstly we need to create instances for the following contracts:
 
@@ -279,7 +279,7 @@ const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
 </Tabs>
 
-### Step 3.2 - Encode `setData(..)` calldata
+### Encode `setData(..)` calldata
 
 Secondly, we need to encode a calldata that will update the address of the Vault URD.
 
@@ -311,7 +311,7 @@ const setDataCalldata = vault.interface.encodeFunctionData(
 
 </Tabs>
 
-### Step 3.3 - Encode `execute(..)` calldata
+### Encode `execute(..)` calldata
 
 Thirdly, we need to encode another calldata that will trigger the [Vault URD data updating calldata](#step-32---encode-setdata-calldata).
 
@@ -352,7 +352,7 @@ const executeCalldata = universalProfile.interface.encodeFunctionData(
 
 </Tabs>
 
-### Step 3.4 - Send transaction via Key Manager
+### Send transaction via Key Manager
 
 Lastly, we need to send the transaction that will send the [`execute(..)` calldata](#step-33---encode-execute-calldata) to the Universal profile via the Key Manager.
 

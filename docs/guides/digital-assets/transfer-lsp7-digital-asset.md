@@ -8,16 +8,16 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Digital Asset (Token)
 
-This guide will teach you how to tranfer an existing ([LSP7 Digital Asset](../../standards/nft-2.0/lsp7-digital-asset)) from a [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) controlled by a [**Key Manager**](../../standards//universal-profile/lsp6-key-manager.md) to another Universal Profile.
+This guide will teach you how to tranfer an existing [LSP7 Digital Asset](../../standards/nft-2.0/LSP7-Digital-Asset.md) from a [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md) controlled by a [Key Manager](../../standards//universal-profile/lsp6-key-manager.md) to another Universal Profile.
 
 ## Transfer tokens to an other Universal Profile
 
 The following code snippet shows how to transfer 15 tokens from your Universal Profile to another Universal Profile.
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -94,11 +94,10 @@ At this point, the `LSP7Mintable`, `UniversalProfile`, `KeyManager` contracts ar
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```javascript
-const myUniversalProfile = new web3.eth.Contract(
-  UniversalProfile.abi,
-  myUniversalProfileAddress,
-);
+const myUniversalProfile = new web3.eth.Contract(UniversalProfile.abi, myUniversalProfileAddress);
 
 const owner = await myUniversalProfile.methods.owner();
 const myKeyManager = new web3.eth.Contract(KeyManager.abi, owner);
@@ -106,15 +105,16 @@ const myKeyManager = new web3.eth.Contract(KeyManager.abi, owner);
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
+<!-- prettier-ignore-start -->
+
 ```javascript
-const myUniversalProfile = new ethers.Contract(
-  myUniversalProfileAddress,
-  UniversalProfile.abi,
-);
+const myUniversalProfile = new ethers.Contract(myUniversalProfileAddress, UniversalProfile.abi);
 
 const owner = await myUniversalProfile.methods.owner();
 const myKeyManager = new ethers.Contract(owner, KeyManager.abi);
@@ -122,17 +122,21 @@ const myKeyManager = new ethers.Contract(owner, KeyManager.abi);
 const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
 
 </Tabs>
 
 ### Step 3 - Setup the calldatas
 
-Now we need to prepare the calldatas that we will use in order to transfer tokens from a Universal Profile to another. First calldata is a token tarnsfer. Second calldata is an interaction of the Universal Profile with the Token contract.
+Now we need to prepare the calldatas that we will use in order to transfer tokens from a Universal Profile to another. First calldata is a token transfer. Second calldata is an interaction of the Universal Profile with the Token contract.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
+
+<!-- prettier-ignore-start -->
 
 ```javascript
 // 1. generate the calldata to transfer tokens
@@ -141,15 +145,15 @@ const tokenCalldata = myToken.methods
   .encodeABI();
 
 // 2. generate calldata for Universal Profile to execute the token transfer on the token contract
-const upCalldata = myUniversalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](
+const upCalldata = myUniversalProfile.methods['execute(uint256,address,uint256,bytes)'](
   0, // operation 0 CALL
   myToken._address,
   0, // 0  LYX sent
   tokenCalldata,
 ).encodeABI();
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 

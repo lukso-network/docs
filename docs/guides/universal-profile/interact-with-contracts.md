@@ -34,24 +34,24 @@ Suppose a smart contract `targetContract` was deployed on the network and we wan
 
 ## Setup
 
-To complete this mini-guide, we will need:
+To complete this guide, we will need:
 
-- an EOA with some LYX for gas fees and the required [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
-- the `UniversalProfile` and `KeyManager` contracts ABIs from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
+- an EOA with some LYX for gas fees and the required [permissions](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
+- the `UniversalProfile` and `KeyManager` contracts ABIs from the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) npm package.
 - the address of our Universal Profile.
 - the `targetContract` ABI.
 - the address of the Target Contract.
 
 :::info
 
-The chosen EOA needs to have [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
+The chosen EOA needs to have [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**Allowed Calls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
 
 :::
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -84,8 +84,8 @@ The first step is to create instances of our Universal Profile, Key Manager cont
 
 :::caution
 
-Save the Target Contract ABI in a separate json and import it in the main file.  
-You can quickly compile and get a contract's ABI in [**Remix IDO**](https://remix.ethereum.org/)
+Save the Target Contract ABI in a separate JSON and import it in the main file.  
+You can quickly compile and get a contract's ABI in [Remix IDE](https://remix.ethereum.org/).
 
 :::
 
@@ -96,8 +96,9 @@ You can quickly compile and get a contract's ABI in [**Remix IDO**](https://remi
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
-import TargetContractABI from './TargetContractABI.json';
 import Web3 from 'web3';
+
+import TargetContractABI from './TargetContractABI.json';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
@@ -126,8 +127,9 @@ const targetContract = new web3.eth.Contract(
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
-import TargetContractABI from './TargetContractABI.json';
 import { ethers } from 'ethers';
+
+import TargetContractABI from './TargetContractABI.json';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
 
@@ -162,9 +164,9 @@ This is the easy part, we need to create 2 calldatas:
 - The _first calldata_ will be executed on the Target Contract.
 - The _second calldata_ will be executed on the Universal Profile and will trigger the _first calldata_.
 
-### Step 2.1 Encode Target Contract calldata
+### Encode Target Contract calldata
 
-Encoding the calldata that will be be exeuted on the Target Contract.
+Encoding the calldata that will be be executed on the Target Contract.
 
 <Tabs>
   
@@ -195,9 +197,9 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 
 </Tabs>
 
-### Step 2.2 Encode Universal Profile calldata
+### Encode Universal Profile calldata
 
-Encoding the calldata that will be be exeuted on the Universal Profile. This calldata will also trigger the calldata that will be executed on the Target Contract.
+Encoding the calldata that will be be executed on the Universal Profile. This calldata will also trigger the calldata that will be executed on the Target Contract.
 
 <Tabs>
   
@@ -236,9 +238,9 @@ const abiCalldata = universalProfile.interface.encodeFunctionData('execute', [
 
 ## Step 3 - Execute via the Key Manager
 
-### Step 3.1 - Load the EOA
+### Load the EOA
 
-Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile. In this case the controller address must have either [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) in order for the transaction to be successful.
+Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile. In this case the controller address must have either [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**Allowed Calls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) in order for the transaction to be successful.
 
 <Tabs>
   
@@ -262,7 +264,7 @@ const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 </Tabs>
 
-### Step 3.2 - Send the execute calldata
+### Send the execute calldata
 
 The final step is to pass the encoded calldata to the Key Manager. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize and execute the transaction.
 

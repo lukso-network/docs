@@ -20,10 +20,10 @@ This guide will teach you how to deploy and set the default implementation of th
 
 ## Setup
 
-Make sure you have the following dependencies installed before beginning this tutorial.
+Make sure you have the following dependencies installed before beginning this tutorial:
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -45,7 +45,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 </Tabs>
 
-## Step 1 - Imports, Constants and EOA
+## Step 1 - Imports, constants and EOA
 
 For beginners we need to get the _ABIs_ of the contracts that we will use and the _bytecode_ of the `LSP1UniversalReceiverDelegateUP`.  
 After that we need to store the address of our Universal Profile.  
@@ -110,7 +110,7 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 The **Universal Profile** and the **Vault** don't use the same implementation of the Universal Receiver Delegate.
 :::
 
-### Step 2.1 - Create a contract instance
+### Create a contract instance
 
 At this step we will create an instance of the Universal profile URD that we will further be used to deploy one.
 
@@ -141,7 +141,7 @@ let universalProfileURDFactory = new ethers.ContractFactory(
 
 </Tabs>
 
-### Step 2.2 - Send the contract deployment transaction
+### Send the contract deployment transaction
 
 Send the deployment transaction to get a newly deployed URD.
 
@@ -243,7 +243,7 @@ const universalProfileURDAddress = await deployUniversalProfileURD();
 
 After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** and grant it the **[SUPER_SETDATA](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)** permission.
 
-### Step 3.1 - Create the contract instances
+### Create the contract instances
 
 Firstly we need to create instances for the following contracts:
 
@@ -288,7 +288,7 @@ const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
 </Tabs>
 
-### Step 3.2 - Register URD on the UP + set the URD permissions
+### Register URD on the UP + set the URD permissions
 
 Generate _Data Keys & Values_ for [**adding a URD**](../../standards/generic-standards/lsp1-universal-receiver-delegate.md/#how-delegation-works) to the Universal Profile and for granting [**SUPER_SETDATA**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) permission to the **URD**.
 
@@ -372,7 +372,7 @@ const dataValues = [
 
 </Tabs>
 
-### Step 3.3 - Encode `setData(..)` calldata
+### Encode `setData(..)` calldata
 
 Encode a calldata for `setData(bytes32[],bytes[])` using the _dataKeys_ & _dataValues_ generated in the [**step before**](#step-32---encode-new-permissions-data-keys--values).
 
@@ -403,7 +403,7 @@ const setDataCalldata = await universalProfile.interface.encodeFunctionData(
 
 </Tabs>
 
-### Step 3.4 - Send transaction via Key Manager
+### Send transaction via Key Manager
 
 Lastly, we need to send the transaction that will update the URD and its permissions on the Universal Profile via the Key Manager.
 

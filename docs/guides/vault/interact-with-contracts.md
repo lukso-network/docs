@@ -12,7 +12,7 @@ Similar to our **[previous guide](./edit-vault-data.md)** on setting data on the
 
 :::info
 
-This guide is also very similar to the guide: [**Interact with contract using a Universal Profie**](../universal-profile/interact-with-contracts.md)
+This guide is also very similar to the guide: [**Interact with contract using a Universal Profile**](../universal-profile/interact-with-contracts.md).
 
 :::
 
@@ -39,8 +39,8 @@ The chosen EOA needs to have [**CALL Permission**](../../standards/universal-pro
 
 Make sure you have the following dependencies installed before beginning this tutorial.
 
-- You can use either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
-- You MUST install [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+- Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
   
@@ -187,7 +187,7 @@ This is the easy part, we need to create 2 calldatas:
 - The _second calldata_ will be executed on the Vault and will trigger the _first calldata_.
 - The _third calldata_ will be executed on the Universal Profile and will trigger the _second calldata_.
 
-### Step 3.1 Encode Target Contract calldata
+### Encode Target Contract calldata
 
 Encoding the calldata that will be be exeuted on the Target Contract.
 
@@ -220,7 +220,7 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 
 </Tabs>
 
-### Step 3.2 Encode Vault calldata
+### Encode Vault calldata
 
 Encoding the calldata that will be be exeuted on the Vault. This calldata will also trigger the calldata that will be executed on the Target Contract.
 
@@ -255,7 +255,7 @@ const vaultCalldata = vault.interface.encodeFunctionData('execute', [
 
 </Tabs>
 
-### Step 3.3 Encode Universal Profile calldata
+### Encode Universal Profile calldata
 
 Encoding the calldata that will be be exeuted on the Universal Profile. This calldata will also trigger the calldata that will be executed in the Vault.
 
