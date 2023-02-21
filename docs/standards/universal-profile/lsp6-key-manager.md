@@ -541,7 +541,7 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 
 </details>
 
-To allow an `<address>` to execute any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key - value pair below can be set in the ERC725Y contract storage.
+To allow an `<address>` to execute any function on a LSP0ERC725Account (interface ID `0x0f15a0af`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key - value pair below can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742de2bf393a64c70000<address>`
 - **possible values:**
@@ -555,7 +555,7 @@ If you want to have multiple different interactions, you MUST add each of the de
 
 E.g.:
 
-- _Standard_: **LSP0, `0x66767497`**;  
+- _Standard_: **LSP0, `0x0f15a0af`**;  
   _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;  
   _Function_: **any**;  
   _CompactBytesArray_: **`0x001c66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`**
