@@ -244,7 +244,7 @@ await keyManager.methods['execute(bytes)'](setDataCalldata).send({
 
 ```typescript title="Send transaction to be executed in the Universal Profile contract via the Key Manager"
 // execute the setDataCalldata on the Key Manager
-await myKM.connect(EOA)['execute(bytes)'](setDataCalldata);
+await myKM.connect(myEOA)['execute(bytes)'](setDataCalldata);
 ```
 
   </TabItem>
@@ -372,7 +372,7 @@ const setDataCalldata = universalProfile.interface.encodeFunctionData(
 );
 
 // execute the setDataCalldata on the Key Manager
-await myKM.connect(EOA)['execute(bytes)'](setDataCalldata);
+await myKM.connect(myEOA)['execute(bytes)'](setDataCalldata);
 ```
 
   </TabItem>

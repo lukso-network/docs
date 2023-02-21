@@ -243,12 +243,10 @@ const vaultCalldata = await vault.methods[
 ```typescript title="Vault calldata"
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = vault.interface.encodeFunctionData('execute', [
-  0,
-  targetContract.address,
-  0,
-  targetCalldata,
-]);
+const vaultCalldata = vault.interface.encodeFunctionData(
+  'execute(uint256,address,uint256,bytes)',
+  [0, targetContract.address, 0, targetCalldata],
+);
 ```
 
   </TabItem>
@@ -279,7 +277,7 @@ const universalProfileCalldata = await universalProfile.methods[
 // 3. encode the calldata to be run on the UP,
 // passing the calldata to be run in the Vault as 4th parameter
 const universalProfileCalldata = universalProfile.interface.encodeFunctionData(
-  'execute',
+  'execute(uint256,address,uint256,bytes)',
   [0, vaultAddress, 0, vaultCalldata],
 );
 ```
@@ -427,17 +425,15 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = vault.interface.encodeFunctionData('execute', [
-  0,
-  targetContract.address,
-  0,
-  targetCalldata,
-]);
+const vaultCalldata = vault.interface.encodeFunctionData(
+  'execute(uint256,address,uint256,bytes)',
+  [0, targetContract.address, 0, targetCalldata],
+);
 
 // 3. encode the calldata to be run on the UP,
 // passing the calldata to be run in the Vault as 4th parameter
 const universalProfileCalldata = universalProfile.interface.encodeFunctionData(
-  'execute',
+  'execute(uint256,address,uint256,bytes)',
   [0, vaultAddress, 0, vaultCalldata],
 );
 
