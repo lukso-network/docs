@@ -268,6 +268,63 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event after succ
 Leaves the contract without an owner. Once ownership of the contract is renounced, it won't be possible to call the functions restricted to the owner only.
 :::
 
+### batchCalls
+
+:::info
+
+Check the [**batchCalls(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#batchcalls) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+
+:::
+
+```solidity
+function batchCalls(bytes[] calldata data) external returns (bytes[] memory results)
+```
+
+MUST batch calls on the contract by performing a delegatecall on the contract itself.
+
+#### Parameters:
+
+| Name   | Type      | Description                                   |
+| :----- | :-------- | :-------------------------------------------- |
+| `data` | `bytes[]` | The call data to be executed on the contract. |
+
+#### Return Values:
+
+| Name      | Type      | Description                                        |
+| :-------- | :-------- | :------------------------------------------------- |
+| `results` | `bytes[]` | an array of returned data of each called function. |
+
+:::note
+The `batchCalls(...)` function is not payable because of preserving context when doing delegatecall. Check this [issue](https://github.com/Uniswap/v3-periphery/issues/52).
+:::
+
+#### Data Parameter
+
+The **data** field can be:
+
+- an array of ABI-encoded function call such as an array of ABI-encoded execute, setData, transferOwnership or any LSP0 functions.
+- an array of bytes which will resolve to the fallback function to be checked for an extension.
+
+For example, to execute **[`setData(..)`](#setdata)** and **[`execute(..)`](#execute)** in one call:
+
+```js
+// Using ethersjs
+
+let setDataPayload = lsp0Contract.interface.encodeFunctionData(
+  'setData(bytes32,bytes)',
+  [key, value],
+);
+
+let executePayload = lsp0Contract.interface.encodeFunctionData(
+  'execute(uint256,address,uint256,bytes)',
+  [Operation_Call, recipient, amountToSend, dataToSend],
+);
+
+await lsp0Contract
+  .connect(context.owner)
+  .batchCalls([setDataPayload, executePayload]);
+```
+
 ### execute
 
 :::info
