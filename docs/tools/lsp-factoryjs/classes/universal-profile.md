@@ -26,7 +26,7 @@ After, it will:
 By default the [LSP1 Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate) contract that is specified in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) will be attached to the Universal Profile. A custom Universal Receiver Delegate can be optionally deployed, by passing custom bytecode to the [`options`](../deployment/universal-profile#deployment-configuration) object.
 
 :::caution
-The deployment key passed to LSPFactory will be given `CHANGEOWNER` and `CHANGEPERMISSIONS` [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) in order to carry out the Universal Profile deployment.
+The deployment key passed to LSPFactory will be given `CHANGEOWNER` and `EDITPERMISSIONS` [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) in order to carry out the Universal Profile deployment.
 
 These permisisons are revoked as the final step of deployment. It is important this step is completed correctly to avoid security risks.
 
@@ -174,7 +174,7 @@ await lspFactory.UniversalProfile.deploy(
         console.log(contracts);
       },
     },
-  }
+  },
 );
 
 /**
@@ -508,7 +508,7 @@ await UniversalProfile.uploadProfileData(
   },
   {
     ipfsGateway: 'https://ipfs.infura.io',
-  }
+  },
 );
 
 /**
@@ -540,7 +540,7 @@ await UniversalProfile.uploadProfileData(
       port: 5001,
       protocol: 'https',
     },
-  }
+  },
 );
 
 /**

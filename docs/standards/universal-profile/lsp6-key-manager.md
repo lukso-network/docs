@@ -78,23 +78,23 @@ The `ADDCONTROLLER` permission is needed to:
 </details>
 
 <details>
-    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of addresses.</summary>
+    <summary><code>EDITPERMISSIONS</code> - Allows changing existing permissions of addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
 
 This permission allows for **editing permissions** of any address that has some permissions already set on the ERC725Account (including itself).
-The `CHANGEPERMISSIONS` is also needed to:
+The `EDITPERMISSIONS` is also needed to:
 
 - 🗑️ **Remove** a controller `address` from the list of `AddressPermissions[]`, meaning:
   - removing its address at a specific index at `AddressPermissions[index]`
   - decreasing the `AddressPermissions[]` Array length (to describe that a controller address has been removed).
 - 🖊️ **Edit** an entry in the `AddressPermissions[index]` Array, meaning changing the address stored at a specific index.
-  > ⚠️ **Warning:** a controller address with `CHANGEPERMISSIONS` can also edit its own permissions. Be cautious when granting this permission!
+  > ⚠️ **Warning:** a controller address with `EDITPERMISSIONS` can also edit its own permissions. Be cautious when granting this permission!
 
 ![CHANGE Permissions](/img/standards/lsp6/lsp6-change-permissions.jpeg)
 
-Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending on the new permissions value being set (see figure below).
+Bear in mind that the behavior of `EDITPERMISSIONS` slightly varies depending on the new permissions value being set (see figure below).
 
 ![CHANGE Permissions](/img/standards/lsp6/lsp6-change-permissions-variants.jpeg)
 
@@ -253,7 +253,7 @@ Enables the caller to deploy a smart contract, using the linked ERC725Account as
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000040000</code>
     </p>
 
-Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key - value store of the linked `ERC725Account` (except permissions, which require the permissions `CHANGEPERMISSIONS`).
+Allows an address to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key - value store of the linked `ERC725Account` (except permissions, which require the permissions `EDITPERMISSIONS`).
 
 > **NB:** an `address` can be restricted to set only specific data keys via **[allowed ERC725Y Data Keys](#allowed-erc725y-keys)**
 
@@ -381,7 +381,7 @@ permissions: CALL + TRANSFERVALUE
 <TabItem value="example2" label="Example 2">
 
 ```solidity
-permissions: CHANGEPERMISSIONS + SETDATA
+permissions: EDITPERMISSIONS + SETDATA
 
   0x0000000000000000000000000000000000000000000000000000000000000004 (4 in decimal)
 + 0x0000000000000000000000000000000000000000000000000000000000040000 (262144)
