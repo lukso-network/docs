@@ -1,5 +1,8 @@
 ---
 sidebar_position: 3
+id: l15
+title: L15 Public Testnet
+description: This document points to the L15 LUKSO Testnet guides #luksonetwork #luksoguides
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,10 +11,12 @@ import TabItem from '@theme/TabItem';
 # L15 Public Testnet
 
 :::danger L15-TESTNET HAS ENDED.
-The L15 testnet was superseeded by [L16 Public Testnet](./l16-testnet/parameters), please check these L16 docs.
+
+The L15 testnet was superseeded by [L16 Public Testnet](./l16-testnet/parameters.md), please check these L16 docs.
+
 :::
 
-This network is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](./l16-testnet/parameters) is meant as a more stable persistent testnet before the mainnet (not yet running).
+This network is ephemeral, meaning it is not meant to be fully stable and usable yet for more persistent test smart contracts. Assume the network could be reset at any time. The [L16 Public Testnet](./l16-testnet/parameters.md) is meant as a more stable persistent testnet before the mainnet (not yet running).
 
 # MetaMask
 
