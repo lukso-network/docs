@@ -1,9 +1,9 @@
 # Running a LUKSO node
 
 To be part of LUKSO's network as a validator one should understand the concept of staking.
-Staking is the process of creating and maintaining one (or more) of these validators on the to help the network maintain the consistency and security of the LUKSO blockchain.
+Staking is the process of creating and maintaining one (or more) of these validators to help the network maintain the consistency and security of the LUKSO blockchain.
 
-To earn staking rewards for the LUKSO Network, the job is straightforward, but crucially important: run validators with the highest quality possible, and maximize staking rewards.
+To earn staking rewards for the LUKSO network, the job is straightforward, but crucially important: run validators with the highest quality possible, and maximize staking rewards.
 
 Node operators are responsible for:
 
@@ -17,15 +17,13 @@ It's a big responsibility, and not a simple set-it-and-forget-it kind of job; yo
 
 ## A Proof of Stake Chain
 
-<--! TODO: Hugo/Fabian, please review this text and define the LYX quantity to be deposited to run a node , or point to the community/governance discussion about this amount-->
+Staking 32LYXe in Proof of Stake is done via validators. A validator is essentially a single [Beacon Chain](https://ethereum.org/en/upgrades/beacon-chain/) address to which 32LYXe is deposited on the Execution layer. Validators are responsible for maintaining the consistency and security of the Beacon Chain. They do this by listening for transactions and new block proposals and attesting that the proposed block contains legal, valid transactions by doing some number crunching and verification behind the scenes. Occasionally, they get to propose new blocks themselves.
 
-Staking LYX in Proof of Stake is done via validators. A validator is essentially a single [Beacon Chain](https://ethereum.org/en/upgrades/beacon-chain/) address to which ~~100 LYX~~ is deposited on the Execution layer. Validators are responsible for maintaining the consistency and security of the Beacon Chain. They do this by listening for transactions and new block proposals and attesting that the proposed block contains legal, valid transactions by doing some number crunching and verification behind the scenes. Occasionally, they get to propose new blocks themselves.
-
-Validators are assigned attestations and block proposals on a randomized schedule. This is very different from the old Proof of Work system, where everyone was constantly trying to race each other and come up with the next block before everyone else. This means that unlike Proof of Work where miners weren't guaranteed to earn a block reward unless they found the next block, Proof of Stake validators are guaranteed to have slow, steady income as long as they perform their duties. If a validator is offline and misses an attestation or a block proposal, it will be slightly penalized. The penalties are quite small though; as a rule of thumb, if a validator is offline for X hours, it will make all of its lost LYX back after the same X hours of being back online.
+Validators are assigned attestations and block proposals on a randomized schedule. This is very different from the old Proof of Work system, where everyone was constantly trying to race each other and come up with the next block before everyone else. This means that unlike Proof of Work where miners weren't guaranteed to earn a block reward unless they found the next block, Proof of Stake validators are guaranteed to have slow, steady income as long as they perform their duties. If a validator is offline and misses an attestation or a block proposal, it will be slightly penalized. The penalties are quite small though; as a rule of thumb, if a validator is offline for X hours, it will make all of its lost LYXe back after the same X hours of being back online.
 
 ## LUKSO's Node Requirements
 
-Here is what you will need to run a Lukso node :
+Here is what you will need to run a LUKSO node :
 
 - A stable Internet connection. The longer you stay online, the better your rewards. A spotty Internet connection will hurt your returns, and by extension, the LYX ratio growth.
 - At least 10Mbps of bandwidth both up and down. A LUKSO node usually takes around 8Mbps to 10Mbps up & down of network traffic, depending on your configuration and number of nodes you decide to run.
@@ -39,14 +37,14 @@ Linux or macOS Operating System
 
 - Quad core CPU (or dual-core hyperthreaded); both `x64` and `arm64` are supported
 - 8 GB of RAM (preferably DDR4); Typical configurations tend to use 16 or 32 GB of RAM
-- 2 TB of free SSD Disk Space
+- 1 TB of free SSD Disk Space
 - A spinning platter hard drive is generally not fast enough to handle the constant random reads and writes that blockchain activity requires; you MUST use a solid state drive.
 
 ## Installing the LUKSO CLI
 
 The LUKSO CLI serves the following purposes:
 
-- easy installation of all node types (All installations are done directly into /bin/, and you will not need any docker container)
+- easy installation of all node types (All installations are done directly into `/bin/`, and you will not need any docker container)
 - easy start and stopping of local nodes (Since LUKSO will run as a daemon)
 - easy access to nodes logs
 
@@ -69,7 +67,7 @@ sudo apt-get -y install curl
 
 On a Linux or MacOS open the terminal and copy the following line of code to install the LUKSO client
 
-```console
+```sh
 curl https://install.lukso.network | sudo bash
 ```
 
@@ -77,7 +75,7 @@ curl https://install.lukso.network | sudo bash
 
 Running this `sudo` command line will ask you to type in your User password.
 
-```console
+```sh
 lukso install
 ```
 
@@ -87,13 +85,13 @@ This process will run all the binaries for you and install the Geth Client (your
 
 For a granular installation of specific clients, an advanced user can also run
 
-```console
+```sh
 lukso install prysm
 ```
 
 To install ONLY the prysm client or
 
-```console
+```sh
 lukso install lighthouse
 ```
 
@@ -107,25 +105,25 @@ Y/n?
 
 You can also install LUKSO approving any Terms & Conditions by default with this command line:
 
-```console
+```sh
 lukso install --agree-terms
 ```
 
 Once you download and install the lukso network, please create a directory by typing:
 
-```console
+```sh
 mkdir myLUKSOFolder
 ```
 
 and enter the directory:
 
-```console
+```sh
 cd ./myLUKSOFolder
 ```
 
 And once you're inside your LUKSO Folder`./myLUKSOFolder/$` you can initiate the node by typing:
 
-```console
+```sh
 lukso init
 ```
 
@@ -141,9 +139,7 @@ Your mnemonic is the backup for your signing keys and will be the ONLY way to wi
 
 To generate your keys, we created this easy launchpad, please visit the following link and follow the instructions there:
 
-[https://style-landing-page-cu-33a6bb.network-deposit-launchpad-private.pages.dev/en/](https://style-landing-page-cu-33a6bb.network-deposit-launchpad-private.pages.dev/en/)
-
-<--! TODO: This link above is broken-->
+<--! TODO: Link to the launchpad goes here-->
 
 ### Key Generation via CLI
 
@@ -151,23 +147,23 @@ We also provide a Command Line tool for you and strongly suggest that you do it 
 
 The program generates a set of validator keys as .json files which you will then need to deposit to run your validator.
 
-- Step 1: In this link: [](https://github.com/lukso-network/tools-key-gen-cli/releases) please download the latest version of the Linux / MacOs version of the LUKSO CLI to your computer
+- Step 1: In this link: [https://github.com/lukso-network/tools-key-gen-cli/releases/](https://github.com/lukso-network/tools-key-gen-cli/releases/) please download the latest version of the Linux / macOS version of the LUKSO CLI to your computer
 
 #### Linux-amd64
 
-```console
+```sh
 curl -O https://github.com/lukso-network/tools-key-gen-cli/releases/download/v2.4.7/lukso-key-gen-cli-v2.4.7-linux-amd64.tar.gz
 ```
 
-#### MacOs-amd64
+#### macOS-amd64
 
-```console
+```sh
 curl -O https://github.com/lukso-network/tools-key-gen-cli/releases/download/v2.4.7/lukso-key-gen-cli-v2.4.7-macos-amd64.tar.gz
 ```
 
 #### Windows-amd64
 
-```console
+```sh
 curl -O https://github.com/lukso-network/tools-key-gen-cli/releases/download/v2.4.7/lukso-key-gen-cli-v2.4.7-windows-amd64.tar.gz
 ```
 
@@ -185,7 +181,7 @@ After downloading and installing the tool, you should be able to find it at:
 
 Simply type:
 
-```console
+```sh
 lukso-keygen new-mnemonic
 ```
 
@@ -207,7 +203,7 @@ It might be that you already have a set of 12 words that you want to use to gene
 
 In this case:
 
-```console
+```sh
 lukso-keygen existing-mnemonic --eth1_withdrawal_address <0xADDRESS_YOU_HAVE>
 ```
 
@@ -223,6 +219,6 @@ Your keys will be stored in the directory:
 
 Running the following command will allow you to install and generate a new set of keys using docker
 
-```console
+```sh
  docker run -it -v $(pwd)/validator_keys:/app/validator_keys --rm europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli new-mnemonic --help
 ```

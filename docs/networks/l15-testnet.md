@@ -2,7 +2,7 @@
 sidebar_position: 3
 id: l15
 title: L15 Public Testnet
-description: This document points to the L15 LUKSO Testnet guides #luksonetwork #luksoguides
+description: This document points to the L15 LUKSO Testnet guides \#luksonetwork \#luksoguides
 ---
 
 import Tabs from '@theme/Tabs';
