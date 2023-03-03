@@ -32,4 +32,4 @@ You can close the logs by pressing `ctrl+c`
 
 ## Monitoring
 
-You can find a community guide about how to setup your Grafana dashboard on Linux [here](https://docs.luksoverse.io/docs/Community%20Guides/System%20&%20monitoring%20setup).
+You can find a community guide about how to setup your Grafana dashboard on Linux [here]([https://docs.luksoverse.io/docs/Community%20Guides/System%20&%20monitoring%20setup](https://docs.luksoverse.io/docs/the-guide/monitoring)).
