@@ -19,7 +19,7 @@ In this guide, we will learn how to grant permissions to third-party addresses t
 
 By the end of this guide, you will know:
 
-- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../../tools/erc725js/getting-started).
+- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../../../tools/erc725js/getting-started).
 - How to set permissions for a third party `address` on your Universal Profile.
 
 ![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpeg)
@@ -64,7 +64,7 @@ More permissions are available in erc725.js. See the API docs for [`encodePermis
 
 :::
 
-We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../../../tools/erc725js/classes/ERC725#encodepermissions).
+We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../../../../tools/erc725js/classes/ERC725#encodepermissions).
 
 ### 2.1 - Create the permission
 
