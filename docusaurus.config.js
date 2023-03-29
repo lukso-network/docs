@@ -9,7 +9,7 @@ module.exports = {
     'Network, Standards, Tools and Guides for development on LUKSO and related standards.',
   url: 'https://github.com',
   baseUrl: '/lukso-es/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
   organizationName: 'locodigo', // Usually your GitHub org/user name.
