@@ -3,13 +3,15 @@ module.exports = {
   title: 'LUKSO Tech Documentation',
   tagline:
     'Network, Standards, Tools and Guides for development on LUKSO and related standards.',
-  url: 'https://docs.lukso.tech',
-  baseUrl: '/',
+  url: 'https://github.com',
+  baseUrl: '/lukso-es/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
-  organizationName: 'lukso-network', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  organizationName: 'locodigo', // Usually your GitHub org/user name.
+  projectName: 'lukso-es', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+
   plugins: [
     'docusaurus-plugin-sass',
     'plugin-image-zoom',
