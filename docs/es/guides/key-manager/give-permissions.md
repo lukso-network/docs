@@ -64,7 +64,7 @@ More permissions are available in erc725.js. See the API docs for [`encodePermis
 
 :::
 
-We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions).
+We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../../../tools/erc725js/classes/ERC725#encodepermissions).
 
 ### 2.1 - Create the permission
 
