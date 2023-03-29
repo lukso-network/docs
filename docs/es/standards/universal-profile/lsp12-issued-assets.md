@@ -60,15 +60,15 @@ This data key represents a map key holding both:
 
 ### Asset Verification Flow
 
-![LSP12 Issued Assets Flow](../../../static/img/standards/lsp12/lsp12-issuedassets1.jpeg)
+![LSP12 Issued Assets Flow](../../../../static/img/standards/lsp12/lsp12-issuedassets1.jpeg)
 
 The full **verification flow** for an asset should contain a check on the **asset** and the **issuer** smart contract.
 
 - **Step 1:** Should check on the asset smart contract, the **owner** or the **[LSP4Creators Array](../nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4creators)** data key and retrieve the address of the creator from the array.
 
-![Checking LSP4Creators Array on asset](../../../static/img/standards/lsp12/lsp12-issuedassets2.jpeg)
+![Checking LSP4Creators Array on asset](../../../../static/img/standards/lsp12/lsp12-issuedassets2.jpeg)
 
 - **Step 2:** Should check on the address retrieved in **Step 1** that the address of the asset being checked, matches one of the assets addresses stored in the **[LSP12IssuedAssets Array](#lsp12issuedassets)** of the UniversalProfile.
 
-![Checking LSP12IssuedAssets Array on UP](../../../static/img/standards/lsp12/lsp12-issuedassets3.jpeg)
+![Checking LSP12IssuedAssets Array on UP](../../../../static/img/standards/lsp12/lsp12-issuedassets3.jpeg)
 
