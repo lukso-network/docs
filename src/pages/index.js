@@ -21,35 +21,35 @@ function Index() {
         <CallToActionButton
           bgColor="#6270A4"
           color="#ffffff"
-          link="./guides/browser-extension/install-browser-extension"
+          link="./es/guides/browser-extension/install-browser-extension"
           text="DOWNLOAD THE BROWSER EXTENSION"
         />
         <br />
         <CallToActionButton
           bgColor="#FFCCCC"
           color="#383838"
-          link="./networks/l16-testnet/parameters"
+          link="./es/networks/l16-testnet/parameters"
           text="PARTICIPATE IN NETWORKS"
         />
         <br />
         <div className={styles.cardContainer}>
           <Box
             icon={NetworksIcon}
-            link="./networks/l16-testnet/parameters"
+            link="./es/networks/l16-testnet/parameters"
             title="NETWORKS"
             className="networks"
             content="Learn how to participate in LUKSO's test networks."
           />
           <Box
             icon={StandardsIcon}
-            link="./standards/introduction"
+            link="./es/standards/introduction"
             title="STANDARDS"
             className="standards"
             content="Learn about the new smart contract standards that will change the way we interact with Blockchain."
           />
           <Box
             icon={ToolsIcon}
-            link="./tools/getting-started"
+            link="./es/tools/getting-started"
             title="TOOLS"
             className="tools"
             content="Discover tools that help you to interact with Universal Profiles and NFT2.0."
@@ -58,14 +58,14 @@ function Index() {
         <div className={styles.cardContainer}>
           <Box
             icon={GuidesIcon}
-            link="./guides/getting-started"
+            link="./es/guides/getting-started"
             title="GUIDES"
             className="guides"
             content="Guides and tutorials to help you get started with the LUKSO ecosystem."
           />
           <Box
             icon={FAQIcon}
-            link="./faq/lukso"
+            link="./es/faq/lukso"
             title="FAQ"
             className="faq"
             content="Frequently Asked Questions."

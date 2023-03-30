@@ -1,15 +1,21 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['en', 'es'],
+  },
   title: 'LUKSO Tech Documentation',
   tagline:
     'Network, Standards, Tools and Guides for development on LUKSO and related standards.',
-  url: 'https://docs.lukso.tech',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
+  url: 'https://github.com',
+  baseUrl: '/lukso-es/',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
-  organizationName: 'lukso-network', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  organizationName: 'locodigo', // Usually your GitHub org/user name.
+  projectName: 'lukso-es', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+
   plugins: [
     'docusaurus-plugin-sass',
     'plugin-image-zoom',
@@ -19,43 +25,43 @@ module.exports = {
         redirects: [
           {
             from: '/contracts/erc725-account',
-            to: '/standards/smart-contracts/lsp0-erc725-account',
+            to: '/es/standards/smart-contracts/lsp0-erc725-account',
           },
           {
             from: '/contracts/key-manager',
-            to: '/standards/smart-contracts/lsp6-key-manager',
+            to: '/es/standards/smart-contracts/lsp6-key-manager',
           },
           {
             from: '/contracts/digital-asset',
-            to: '/standards/smart-contracts/lsp7-digital-asset',
+            to: '/es/standards/smart-contracts/lsp7-digital-asset',
           },
           {
             from: '/contracts/identifiable-digital-asset',
-            to: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
+            to: '/es/standards/smart-contracts/lsp8-identifiable-digital-asset',
           },
           {
             from: '/contracts/interface-ids',
-            to: '/standards/smart-contracts/interface-ids',
+            to: '/es/standards/smart-contracts/interface-ids',
           },
           {
             from: '/networks/l16-testnet',
-            to: '/networks/l16-testnet/parameters',
+            to: '/es/networks/l16-testnet/parameters',
           },
           {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
-            to: '/guides/browser-extension/install-browser-extension',
+            to: '/es/guides/browser-extension/install-browser-extension',
           },
           {
             from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
-            to: '/standards/generic-standards/lsp1-universal-receiver-delegate',
+            to: '/es/standards/generic-standards/lsp1-universal-receiver-delegate',
           },
           {
             from: '/tools/relayer-api/execute-transaction',
-            to: '/standards/relayer-api',
+            to: '/es/standards/relayer-api',
           },
           {
             from: '/guides/key-manager/execute-relay-call',
-            to: '/guides/key-manager/execute-relay-transactions',
+            to: '/es/guides/key-manager/execute-relay-transactions',
           },
         ],
       },
@@ -72,31 +78,31 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'guides/getting-started',
+          docId: 'es/guides/getting-started',
           position: 'left',
           label: 'Guides',
         },
         {
           type: 'doc',
-          docId: 'tools/getting-started',
+          docId: 'es/tools/getting-started',
           position: 'left',
           label: 'Tools',
         },
         {
           type: 'doc',
-          docId: 'standards/introduction',
+          docId: 'es/standards/introduction',
           position: 'left',
           label: 'Standards',
         },
         {
           type: 'doc',
-          docId: 'networks/mainnet',
+          docId: 'es/networks/mainnet',
           position: 'left',
           label: 'Networks',
         },
         {
           type: 'doc',
-          docId: 'faq/lukso',
+          docId: 'es/faq/lukso',
           position: 'left',
           label: 'FAQ',
         },
@@ -208,7 +214,7 @@ module.exports = {
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
-          ignorePatterns: ['/networks/l16-testnet/'],
+          ignorePatterns: ['/es/networks/l16-testnet/'],
           filename: 'sitemap.xml',
         },
       },
