@@ -26,7 +26,7 @@ The window for becoming a Genesis Validator will be around 3 weeks before launch
 
 Once frozen, participants can generate two files: genesis.ssz and genesis.json. These files will be the network’s starting point and determine the initial network state.
 
-A deposit dApp that reads from the Genesis Validator Deposit Smart Contract will be available for depositors. The initial network state will contain all Genesis Validator keys and be made available in the form of the genesis.ssz file.
+A deposit dApp that reads from the Genesis Validator Deposit Smart Contract will be available for depositors. The initial network state will contain all Genesis Validator keys and be available in the form of the genesis.ssz file, which can be downloaded after the deposit timeframe ended.
 
 The second file, genesis.json, contains the initial state of the chain. This includes the initial balances and total supply of LYX. The community will have the choice of setting the initial supply at 35M, 42M (the founding team's suggestion), or 100M.
 
