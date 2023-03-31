@@ -22,7 +22,7 @@ LUKSO will start as a PoS Blockchain with an Initial Genesis Validator Set that 
 
 Once deployed on Ethereum, the Genesis Validator Smart contract will allow users to deposit LYXe and become Genesis Validators for LUKSO Mainnet. For each validator, you run, you must generate a validator key and deposit 32 LYXe. There will be no limit on the number of validators you can run.
 
-The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are needed before the Genesis Validator Deposit Smart Contract can be frozen, and the process of genesis can begin.
+The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are required before the Genesis Validator Deposit Smart Contract can be frozen and the process of genesis can begin.
 
 Once frozen, participants will be able to generate two files: genesis.ssz and genesis.json. These files will be the network’s starting point and determine the initial network state.
 
