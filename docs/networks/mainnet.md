@@ -30,7 +30,7 @@ A deposit dApp that reads from the Genesis Validator Deposit Smart Contract will
 
 The second file, genesis.json, contains the initial state of the chain. This includes the initial balances and total supply of LYX. The community will have the choice of setting the initial supply at 35M, 42M (the founding team's suggestion), or 100M.
 
-The network start time will be defined in the genesis files. It will most likely be around 1 week after the Genesis Validator Deposit freeze. Validators must have their modes ready at least one day before the network start time. Nodes will automatically begin to create and receive blocks after the network start time.
+The network start time will be defined in the genesis files. It will likely be around 1 week after the Genesis Validator Deposit freeze. Validators must have their nodes ready at least one day before the network starts. Nodes will then automatically create and receive blocks after the network start time.
 
 ## Further Information
 
