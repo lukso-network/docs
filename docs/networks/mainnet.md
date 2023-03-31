@@ -24,7 +24,7 @@ Once deployed on Ethereum, the Genesis Validator Smart contract will allow users
 
 The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are required before the Genesis Validator Deposit Smart Contract can be frozen and the process of genesis can begin.
 
-Once frozen, participants will be able to generate two files: genesis.ssz and genesis.json. These files will be the network’s starting point and determine the initial network state.
+Once frozen, participants can generate two files: genesis.ssz and genesis.json. These files will be the network’s starting point and determine the initial network state.
 
 A deposit dApp that reads from the Genesis Validator Deposit Smart Contract will be available for depositors. The initial network state will contain all Genesis Validator keys and be made available in the form of the genesis.ssz file.
 
