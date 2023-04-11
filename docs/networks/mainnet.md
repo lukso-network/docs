@@ -5,7 +5,15 @@ sidebar_position: 1
 # Mainnet
 
 :::note
+
 The Mainnet of LUKSO has not started yet. Please follow the progress at [L16 Public Testnet](./l16-testnet/parameters).
+
+:::
+
+:::tip
+
+Get notified when genesis validator deposits are active: <https://deposit.mainnet.lukso.network/>
+
 :::
 
 ## Architecture
@@ -24,11 +32,11 @@ Once deployed on Ethereum, the Genesis Validator Smart contract will allow users
 
 The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are required before the Genesis Validator Deposit Smart Contract can be frozen and the process of genesis can begin.
 
-Once frozen, participants can generate two files: genesis.ssz and genesis.json. These files will be the network’s starting point and determine the initial network state.
+Once frozen, participants can generate two files: `genesis.ssz` and `genesis.json`. These files will be the network’s starting point and determine the initial network state.
 
 A deposit dApp that reads from the Genesis Validator Deposit Smart Contract will be available for depositors. The initial network state will contain all Genesis Validator keys and be available in the form of the genesis.ssz file, which can be downloaded after the deposit timeframe ended.
 
-The second file, genesis.json, contains the initial state of the chain. This includes the initial balances and total supply of LYX. The community will have the choice of setting the initial supply at 35M, 42M (the founding team's suggestion), or 100M.
+The second file, `genesis.json`, contains the initial state of the chain. This includes the initial balances and total supply of LYX. The community will have the choice of setting the initial supply at 35M, 42M (the founding team's suggestion), or 100M.
 
 The network start time will be defined in the genesis files. It will likely be around 1 week after the Genesis Validator Deposit freeze. Validators must have their nodes ready at least one day before the network starts. Nodes will then automatically create and receive blocks after the network start time.
 
