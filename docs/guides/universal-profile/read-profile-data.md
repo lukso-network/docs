@@ -226,7 +226,7 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 // Import and Network Setup
 import Web3 from 'web3';
 import { ERC725 } from '@erc725/erc725.js';
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
 
 // Our static variables
