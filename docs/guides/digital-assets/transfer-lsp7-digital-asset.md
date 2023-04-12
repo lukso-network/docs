@@ -42,7 +42,7 @@ npm install ethers @lukso/lsp-smart-contracts
 ### Step 1 - Setup imports and constants
 
 At this point you will need a private key in order to transfer some tokens as well as the `LSP7Mintable` _token contract address_ and the _address of the Universal Profile_ that has some tokens.
-We will import `LSP7Mintable`, `UniversalProfile`, `KeyManager` in order to get the _ABIs_ of the contracts that we will interact with.
+We will import `LSP7Mintable` and `UniversalProfile` in order to get the _ABIs_ of the contracts that we will interact with.
 
 <Tabs>
   
@@ -51,7 +51,6 @@ We will import `LSP7Mintable`, `UniversalProfile`, `KeyManager` in order to get 
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
@@ -70,7 +69,6 @@ const account = web3.eth.accounts.wallet.add(privateKey);
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
@@ -88,7 +86,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 ### Step 2 - Instantiate contracts
 
-At this point, the `LSP7Mintable`, `UniversalProfile`, `KeyManager` contracts are being prepared for the following interactions. Construct an instance of a contract, using _contract ABI_ and _contract address_.
+At this point, the `LSP7Mintable` and `UniversalProfile` contracts are being prepared for the following interactions. Construct an instance of a contract, using _contract ABI_ and _contract address_.
 
 <Tabs>
   
@@ -98,9 +96,6 @@ At this point, the `LSP7Mintable`, `UniversalProfile`, `KeyManager` contracts ar
 
 ```javascript
 const myUniversalProfile = new web3.eth.Contract(UniversalProfile.abi, myUniversalProfileAddress);
-
-const owner = await myUniversalProfile.methods.owner();
-const myKeyManager = new web3.eth.Contract(KeyManager.abi, owner);
 
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 ```
@@ -116,9 +111,6 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 ```javascript
 const myUniversalProfile = new ethers.Contract(myUniversalProfileAddress, UniversalProfile.abi);
 
-const owner = await myUniversalProfile.methods.owner();
-const myKeyManager = new ethers.Contract(owner, KeyManager.abi);
-
 const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 ```
 
@@ -128,9 +120,9 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 
 </Tabs>
 
-### Step 3 - Setup the calldatas
+### Step 3 - Setup the token trasnfer calldata
 
-Now we need to prepare the calldatas that we will use in order to transfer tokens from a Universal Profile to another. First calldata is a token transfer. Second calldata is an interaction of the Universal Profile with the Token contract.
+Now we need to prepare the calldata that we will use in order to transfer tokens from a Universal Profile to another.s
 
 <Tabs>
   
@@ -139,18 +131,10 @@ Now we need to prepare the calldatas that we will use in order to transfer token
 <!-- prettier-ignore-start -->
 
 ```javascript
-// 1. generate the calldata to transfer tokens
+// generate the calldata to transfer tokens
 const tokenCalldata = myToken.methods
   .transfer(myUniversalProfileAddress, '<receiver-up-address>', 15, false, '0x')
   .encodeABI();
-
-// 2. generate calldata for Universal Profile to execute the token transfer on the token contract
-const upCalldata = myUniversalProfile.methods['execute(uint256,address,uint256,bytes)'](
-  0, // operation 0 CALL
-  myToken._address,
-  0, // 0  LYX sent
-  tokenCalldata,
-).encodeABI();
 ```
 
 <!-- prettier-ignore-end -->
@@ -160,21 +144,13 @@ const upCalldata = myUniversalProfile.methods['execute(uint256,address,uint256,b
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-// 1. generate the calldata to transfer tokens
+// generate the calldata to transfer tokens
 const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
   myUniversalProfileAddress,
   '<receiver-up-address>',
   15,
   false,
   '0x',
-]);
-
-// 2. generate calldata for Universal Profile to execute the token transfer on the token contract
-const upCalldata = myUniversalProfile.interface.encodeFunctionData('execute', [
-  0, // operation 0 CALL
-  myToken._address,
-  0, // 0  LYX sent
-  tokenCalldata,
 ]);
 ```
 
@@ -191,8 +167,13 @@ Finally we send the transaction and transfer the tokens from a Universal Profile
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-// 3. execute via the KeyManager
-await myKeyManager.methods['execute(bytes)'](upCalldata).send({
+// execute the token transfer through the UP
+await myUniversalProfile.methods['execute(uint256,address,uint256,bytes)'](
+  0, // operation 0 CALL
+  myToken._address,
+  0, // 0  LYX sent
+  tokenCalldata,
+).send({
   from: myEOA,
   gas: 5_000_000,
   gasPrice: '1000000000',
@@ -204,8 +185,15 @@ await myKeyManager.methods['execute(bytes)'](upCalldata).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-// 3. execute via the KeyManager
-await myKeyManager.connect(myEOA)['execute(bytes)'](upCalldata);
+// execute the token transfer through the UP
+await myUniversalProfile
+  .connect(myEOA)
+  ['execute(uint256,address,uint256,bytes)'](
+    0, // operation 0 CALL
+    myToken._address,
+    0, // 0  LYX sent
+    tokenCalldata,
+  );
 ```
 
   </TabItem>
@@ -221,7 +209,6 @@ await myKeyManager.connect(myEOA)['execute(bytes)'](upCalldata);
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
@@ -237,28 +224,20 @@ const myUniversalProfile = new web3.eth.Contract(
   myUniversalProfileAddress,
 );
 
-const owner = await myUniversalProfile.methods.owner();
-const myKeyManager = new web3.eth.Contract(KeyManager.abi, owner);
-
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 
-// 1. generate the calldata to transfer tokens
+// generate the calldata to transfer tokens
 const tokenCalldata = myToken.methods
   .transfer(myUniversalProfileAddress, '<receiver-up-address>', 15, false, '0x')
   .encodeABI();
 
-// 2. generate calldata for Universal Profile to execute the token transfer on the token contract
-const upCalldata = myUniversalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](
+// execute the token transfer through the UP
+await myUniversalProfile.methods['execute(uint256,address,uint256,bytes)'](
   0, // operation 0 CALL
   myToken._address,
   0, // 0  LYX sent
   tokenCalldata,
-).encodeABI();
-
-// 3. execute via the KeyManager
-await myKeyManager.methods['execute(bytes)'](upCalldata).send({
+).send({
   from: myEOA,
   gas: 5_000_000,
   gasPrice: '1000000000',
@@ -272,7 +251,6 @@ await myKeyManager.methods['execute(bytes)'](upCalldata).send({
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
@@ -288,12 +266,9 @@ const myUniversalProfile = new ethers.Contract(
   UniversalProfile.abi,
 );
 
-const owner = await myUniversalProfile.methods.owner();
-const myKeyManager = new ethers.Contract(owner, KeyManager.abi);
-
 const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 
-// 1. generate the calldata to transfer tokens
+// generate the calldata to transfer tokens
 const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
   myUniversalProfileAddress,
   '<receiver-up-address>',
@@ -302,16 +277,15 @@ const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
   '0x',
 ]);
 
-// 2. generate calldata for Universal Profile to execute the token transfer on the token contract
-const upCalldata = myUniversalProfile.interface.encodeFunctionData('execute', [
-  0, // operation 0 CALL
-  myToken._address,
-  0, // 0  LYX sent
-  tokenCalldata,
-]);
-
-// 3. execute via the KeyManager
-await myKeyManager.connect(myEOA)['execute(bytes)'](upCalldata);
+// execute the token transfer through the UP
+await myUniversalProfile
+  .connect(myEOA)
+  ['execute(uint256,address,uint256,bytes)'](
+    0, // operation 0 CALL
+    myToken._address,
+    0, // 0  LYX sent
+    tokenCalldata,
+  );
 ```
 
   </TabItem>
