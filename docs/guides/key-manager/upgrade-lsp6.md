@@ -55,7 +55,6 @@ npm install ethers @lukso/lsp-smart-contracts
 Create a JavaScript file and add the following imports on the top of the file:
 
 - `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission.
-- `keyManagerAddress`: address of the current LSP6 Key Manager.
 - `universalProfileAddress`: address of your Universal Profile.
 
 ```js
@@ -82,7 +81,6 @@ const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
-const keyManagerAddress = '0x...';
 ```
 
   </TabItem>
@@ -98,7 +96,6 @@ const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
-const keyManagerAddress = '0x...';
 ```
 
   </TabItem>
@@ -129,9 +126,9 @@ const account = new ethers.Wallet(privateKey).connect(provider);
 
 </Tabs>
 
-## Step 3 - Initialize the old LSP6 Key Manager
+## Step 3 - Initialize UP contract
 
-In order to transfer ownership of your Universal Profile, you need to initialize your current LSP6 Key Manager.
+In order to transfer ownership of your Universal Profile, you need to initialize the UP's contract.
 
 <!-- prettier-ignore-start -->
 
@@ -140,7 +137,7 @@ In order to transfer ownership of your Universal Profile, you need to initialize
   <TabItem value="web3js" label="web3.js">
 
 ```js title="Create an instance of the old Key Manager"
-const oldKeyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
+const unviersalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
 ```
 
   </TabItem>
@@ -148,7 +145,7 @@ const oldKeyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddres
   <TabItem value="ethersjs" label="ethers.js">
 
 ```js title="Create an instance of the old Key Manager"
-const oldKeyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
+const unviersalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi);
 ```
 
   </TabItem>
@@ -206,13 +203,7 @@ Create a calldata for the [`transferOwnership(address)`](../../standards/smart-c
   <TabItem value="web3js" label="web3.js">
 
 ```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
-const transferOwnershipPayload = new web3.eth.Contract(
-  UniversalProfile.abi,
-).methods
-  .transferOwnership('0xcafecafecafecafecafecafecafecafecafecafe')
-  .encodeABI();
-
-await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
+await universalProfile.methods.transferOwnership(newKeyManager.address).send({
   from: account.address,
   gas: 1_000_000,
   gasPrice: '1000000000',
@@ -224,13 +215,9 @@ await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
-const transferOwnershipPayload = new ethers.Interface(
-  UniversalProfile.abi,
-).encodeFunctionData('transferOwnership(address)', [newKeyManager._address]);
-
-await oldKeyManager
+await unviersalProfile
   .connect(account)
-  ['execute(bytes)'](transferOwnershipPayload);
+  .transferOwnership(newKeyManager.address);
 ```
 
   </TabItem>
@@ -301,8 +288,8 @@ const upgradeLSP6 = async () => {
   // Initialize the controller account
   const account = web3.eth.accounts.wallet.add(privateKey);
 
-  // Initialize your current LSP6 Key Manager
-  const oldKeyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
+  // Initialize your current UP
+  const unviersalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
 
   // Deploy a new LSP6 Key Manager
   const newKeyManager = new web3.eth.Contract(LSP6KeyManager.abi);
@@ -316,13 +303,7 @@ const upgradeLSP6 = async () => {
   });
 
   // Transfer the ownership of your Universal Profile from the current LSP6 Key Manager to a new LSP6 Key Manager
-  const transferOwnershipPayload = new web3.eth.Contract(
-    UniversalProfile.abi,
-  ).methods
-    .transferOwnership(newKeyManager._address)
-    .encodeABI();
-
-  await oldKeyManager.methods['execute(bytes)'](transferOwnershipPayload).send({
+  await universalProfile.methods.transferOwnership(newKeyManager.address).send({
     from: account.address,
     gas: 1_000_000,
     gasPrice: '1000000000',
@@ -364,8 +345,8 @@ const upgradeLSP6 = async () => {
   // Initialize the controller account
   const account = new ethers.Wallet(privateKey).connect(provider);
 
-  // Initialize your current LSP6 Key Manager
-  const oldKeyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
+  // Initialize your current UP
+  const unviersalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi);
 
   // Deploy a new LSP6 Key Manager
   const keyManagerFactory = new ethers.ContractFactory(
@@ -375,13 +356,9 @@ const upgradeLSP6 = async () => {
   const newKeyManager = await keyManagerFactory.deploy(universalProfileAddress);
 
   // Transfer the ownership of your Universal Profile from the current LSP6 Key Manager to a new LSP6 Key Manager
-  const transferOwnershipPayload = new ethers.Interface(
-    UniversalProfile.abi,
-  ).encodeFunctionData('transferOwnership(address)', [newKeyManager._address]);
-
-  await oldKeyManager
+  await unviersalProfile
     .connect(account)
-    ['execute(bytes)'](transferOwnershipPayload);
+    .transferOwnership(newKeyManager.address);
 
   // Accept the ownership of your Universal Profile from the new LSP6 Key Manager
   const acceptOwnershipCalldata = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
