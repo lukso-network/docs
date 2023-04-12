@@ -38,8 +38,8 @@ module.exports = {
             to: '/standards/smart-contracts/interface-ids',
           },
           {
-            from: '/networks/l16-testnet',
-            to: '/networks/l16-testnet/parameters',
+            from: '/networks/testnet',
+            to: '/networks/testnet/parameters',
           },
           {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
@@ -208,7 +208,7 @@ module.exports = {
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
-          ignorePatterns: ['/networks/l16-testnet/'],
+          ignorePatterns: ['/networks/testnet/'],
           filename: 'sitemap.xml',
         },
       },

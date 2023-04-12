@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 :::danger
 
 The UP Browser Extenstion is a **ALPHA DEVELOPER PREVIEW**. This is not intended to be used by non developers. And DO NOT use this in production!
-The current UP Browser Extenstion deploys profiles on the [L16 Testnet](http://docs.lukso.tech/networks/l16-testnet/parameters).
+The current UP Browser Extenstion deploys profiles on the [L16 Testnet](http://docs.lukso.tech/networks/testnet/parameters).
 
 :::
 
@@ -23,7 +23,7 @@ If you have **MetaMask** installed, _right click on both_ MetaMask and UP Extens
 
 This guide will teach you how to download and install the Universal Profile browser extension on Chrome, Edge, Opera, or Brave.
 
-You can test the browser extension with the following example dApps (Or any other dApp, that runs on the [L16 Testnet](http://docs.lukso.tech/networks/l16-testnet/parameters)):
+You can test the browser extension with the following example dApps (Or any other dApp, that runs on the [L16 Testnet](http://docs.lukso.tech/networks/testnet/parameters)):
 
 - [up-test-dapp.lukso.tech](https://up-test-dapp.lukso.tech)
 - [examples.lukso.tech](https://examples.lukso.tech)
