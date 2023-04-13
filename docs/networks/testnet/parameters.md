@@ -11,12 +11,12 @@ The Testnet of LUKSO has not started yet! Stay tuned!
 
 # Testnet
 
-The Public Testnet will be running alongside the LUKSO mainnet for developers to test dApps and forks to be run before they move to mainnet.
+The Public Testnet will run alongside the LUKSO mainnet for developers to test dApps and forks before they move to the mainnet.
 
 ## Network Parameters
 
-| Setting                  | Value                                          |
-| ------------------------ | ---------------------------------------------- |
+| Setting                  | Value                                              |
+| ------------------------ | -------------------------------------------------- |
 | Network Name             | Testnet                                            |
 | New RPC URL              | <https://rpc.testnet.lukso.network>                |
 | Websocket URL            | <wss://ws.rpc.testnet.lukso.network>               |
@@ -28,5 +28,3 @@ The Public Testnet will be running alongside the LUKSO mainnet for developers to
 | Consensus Block Explorer | <https://explorer.consensus.testnet.lukso.network> |
 | Consensus Node list      | <https://stats.consensus.ltestnet16.lukso.network> |
 | Faucet                   | <https://faucet.testnet.lukso.network>             |
-
-
