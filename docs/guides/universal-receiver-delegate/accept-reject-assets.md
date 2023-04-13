@@ -124,9 +124,9 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Imports, contants and EOA
 
-First, we need to get the _ABIs_ for the contracts that we will use later.
+First, we need to get the _ABI_ for the Universal Profile contract.
 After that we need to store the address of our Universal Profile and the new URD address.  
-Then we will initialize the controller address that will be used later.
+Then we will initialize the controller address.
 
 <Tabs>
   
@@ -134,7 +134,6 @@ Then we will initialize the controller address that will be used later.
 
 ```typescript title="Imports, Constants & EOA"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
@@ -155,7 +154,6 @@ const EOA = web3.eth.accounts.wallet.add(privateKey);
 
 ```typescript title="Imports, Constants & EOA"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
@@ -174,93 +172,52 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 
 </Tabs>
 
-### Create contract instances
+### Create UP contract instance
 
-At this point we need to create instances of the following contracts:
-
-- [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
-- [**Key Manager**](../../standards/universal-profile/lsp6-key-manager.md)
+At this point we need to create instance of the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract:
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Contract instances for the Universal Profile & Key Manager"
+```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the LSP6KeyManager
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 ```
 
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Contract instances for the Universal Profile & Key Manager"
+```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the LSP6KeyManager
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 ```
 
   </TabItem>
 
 </Tabs>
 
-### Encode `setData(...)` calldata
+### Update the profile data
 
-Encode a calldata for `setData(bytes32,bytes)` that will update the URD of the Universal Profile.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Encode a calldata that will update the URD and its permissions"
-// encode setData Calldata on the Universal Profile
-const setDataCalldata = await universalProfile.methods[
-  'setData(bytes32,bytes)'
-](URD_DATA_KEY, universalProfileURDAddress).encodeABI();
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Encode a calldata that will update the URD and its permissions"
-// encode setData Calldata on the Universal Profile
-const setDataCalldata = await universalProfile.interface.encodeFunctionData(
-  'setData(bytes32,bytes)',
-  [URD_DATA_KEY, universalProfileURDAddress],
-);
-```
-
-  </TabItem>
-
-</Tabs>
-
-### Execute via the Key Manager
-
-Finally, we need to send the transaction that will update the URD of the Universal Profile via the Key Manager.
+Finally, we need to send the transaction that will update the URD of the Universal Profile.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `setDataCalldata` on the Key Manager
-await keyManager.methods['execute(bytes)'](setDataCalldata).send({
+```typescript title="Update the Universal Profile data"
+// Update the profile data
+await universalProfile.methods['setData(bytes32,bytes)'](
+  URD_DATA_KEY,
+  universalProfileURDAddress,
+).send({
   from: EOA.address,
   gasLimit: 600_000,
 });
@@ -270,9 +227,11 @@ await keyManager.methods['execute(bytes)'](setDataCalldata).send({
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `setDataCalldata` on the Key Manager
-await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
+```typescript title="Update the Universal Profile data"
+// Update the profile data
+await universalProfile
+  .connect(EOA)
+  ['setData(bytes32,bytes)'](URD_DATA_KEY, universalProfileURDAddress);
 ```
 
   </TabItem>
@@ -285,9 +244,8 @@ await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Imports, Constants & EOA"
+```typescript title="Update the Universal Profile URD"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
@@ -306,19 +264,12 @@ const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the Key Manager
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
-
-// encode setData Calldata on the Vault
-const setDataCalldata = await universalProfile.methods[
-  'setData(bytes32,bytes)'
-](URD_DATA_KEY, universalProfileURDAddress).encodeABI();
 
 // execute the executeCalldata on the Key Manager
-await keyManager.methods['execute(bytes)'](executeCalldata).send({
+await universalProfile.methods['setData(bytes32,bytes)'](
+  URD_DATA_KEY,
+  universalProfileURDAddress,
+).send({
   from: EOA.address,
   gasLimit: 600_000,
 });
@@ -328,9 +279,8 @@ await keyManager.methods['execute(bytes)'](executeCalldata).send({
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Imports, Constants & EOA"
+```typescript title="Update the Universal Profile URD"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
@@ -349,20 +299,11 @@ const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the Key Manager
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
-
-// encode setData Calldata on the Vault
-const setDataCalldata = await universalProfile.interface.encodeFunctionData(
-  'setData(bytes32,bytes)',
-  [URD_DATA_KEY, universalProfileURDAddress],
-);
 
 // execute the executeCalldata on the Key Manager
-await keyManager.connect(EOA)['execute(bytes)'](executeCalldata);
+await keyManager
+  .connect(EOA)
+  ['setData(bytes32,bytes)'](URD_DATA_KEY, universalProfileURDAddress);
 ```
 
   </TabItem>
