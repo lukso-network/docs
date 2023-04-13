@@ -25,7 +25,7 @@ This guide is also very similar to the guide: [**Interact with contract using a 
 To complete this mini-guide, we will need:
 
 - an EOA with some LYX for gas fees and the required [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
-- the `UniversalProfile`, `LSP6KeyManager` and `LSP9Vault` contracts ABIs from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
+- the `UniversalProfile` and `LSP9Vault` contracts ABIs from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
 - the address of the Universal Profile.
 - the address of the LSP9 Vault.
 - the `targetContract` ABI.
@@ -80,7 +80,6 @@ You can quickly compile and get a contract's ABI in [**Remix IDO**](https://remi
 
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import Web3 from 'web3';
@@ -101,7 +100,6 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import { ethers } from 'ethers';
@@ -125,8 +123,6 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 Further we will create instances for our contracts
 
 - Create an Universal Profile contract instance from `universalProfileAddress`.
-- Get the `owner()` of the Universal Profile.
-- Create a Key Manager contract instance from the owner of the Universal Profile.
 - Create a Target Contract instance from the `targetContractAddress`.
 
 <Tabs>
@@ -139,10 +135,6 @@ const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
 );
-// Get Universal Profile owner
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// Create LSP6 Key Manager contract instance
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 // Create LSP9 Vault contract instance
 const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
 // Create Target Contract contract instance
@@ -162,10 +154,6 @@ const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
-// Get Universal Profile owner
-const keyManagerAddress = await universalProfile.owner();
-// Create LSP6 Key Manager contract instance
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 // Create LSP9 Vault contract instance
 const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
 // Create Target Contract contract instance
@@ -185,7 +173,6 @@ This is the easy part, we need to create 2 calldatas:
 
 - The _first calldata_ will be executed on the Target Contract.
 - The _second calldata_ will be executed on the Vault and will trigger the _first calldata_.
-- The _third calldata_ will be executed on the Universal Profile and will trigger the _second calldata_.
 
 ### Encode Target Contract calldata
 
@@ -253,50 +240,22 @@ const vaultCalldata = vault.interface.encodeFunctionData(
 
 </Tabs>
 
-### Encode Universal Profile calldata
+## Step 4 - Execute the calldata through the UP
 
-Encoding the calldata that will be be exeuted on the Universal Profile. This calldata will also trigger the calldata that will be executed in the Vault.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Universal Profile calldata"
-// 3. encode the calldata to be run on the UP,
-// passing the calldata to be run in the Vault as 4th parameter
-const universalProfileCalldata = await universalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](0, vaultAddress, 0, vaultCalldata).encodeABI();
-```
-
-  </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Universal Profile calldata"
-// 3. encode the calldata to be run on the UP,
-// passing the calldata to be run in the Vault as 4th parameter
-const universalProfileCalldata = universalProfile.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [0, vaultAddress, 0, vaultCalldata],
-);
-```
-
-  </TabItem>
-
-</Tabs>
-
-## Step 4 - Execute via the Key Manager
-
-The final step is to pass the encoded calldata to the Key Manager. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize and execute the transaction.
+The final step is to execute the encoded calldata through the Universal Profile. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize the transaction.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Send transaction"
-// Execute via the KeyManager, passing the UP calldata
-await keyManager.methods['execute(bytes)'](universalProfileCalldata).send({
+// Execute the calldata through the Universal Profile
+await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
+  0,
+  vaultAddress,
+  0,
+  vaultCalldata,
+).send({
   from: myEOA.address,
   gasLimit: 600_000,
 });
@@ -307,8 +266,10 @@ await keyManager.methods['execute(bytes)'](universalProfileCalldata).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Send transaction"
-// Execute via the KeyManager, passing the UP calldata
-await keyManager.connect(myEOA)['execute(bytes)'](universalProfileCalldata);
+// Execute the calldata through the Universal Profile
+await universalProfile
+  .connect(myEOA)
+  ['execute(uint256,address,uint256,bytes)'](0, vaultAddress, 0, vaultCalldata);
 ```
 
   </TabItem>
@@ -323,7 +284,6 @@ await keyManager.connect(myEOA)['execute(bytes)'](universalProfileCalldata);
 
 ```typescript title="Interacting with other contracts through the vault"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import Web3 from 'web3';
@@ -342,10 +302,6 @@ const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
 );
-// Get Universal Profile owner
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// Create LSP6 Key Manager contract instance
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 // Create LSP9 Vault contract instance
 const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
 // Create Target Contract contract instance
@@ -366,14 +322,13 @@ const vaultCalldata = await vault.methods[
   'execute(uint256,address,uint256,bytes)'
 ](0, targetContract.address, 0, targetCalldata).encodeABI();
 
-// 3. encode the calldata to be run on the UP,
-// passing the calldata to be run in the Vault as 4th parameter
-const universalProfileCalldata = await universalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](0, vaultAddress, 0, vaultCalldata).encodeABI();
-
-// Execute via the KeyManager, passing the UP calldata
-await keyManager.methods['execute(bytes)'](universalProfileCalldata).send({
+// Execute the calldata through the Universal Profile
+await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
+  0,
+  vaultAddress,
+  0,
+  vaultCalldata,
+).send({
   from: myEOA.address,
   gasLimit: 600_000,
 });
@@ -385,7 +340,6 @@ await keyManager.methods['execute(bytes)'](universalProfileCalldata).send({
 
 ```typescript title="Interacting with other contracts through the vault"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import { ethers } from 'ethers';
@@ -404,10 +358,6 @@ const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
-// Get Universal Profile owner
-const keyManagerAddress = await universalProfile.owner();
-// Create LSP6 Key Manager contract instance
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 // Create LSP9 Vault contract instance
 const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
 // Create Target Contract contract instance
@@ -430,19 +380,14 @@ const vaultCalldata = vault.interface.encodeFunctionData(
   [0, targetContract.address, 0, targetCalldata],
 );
 
-// 3. encode the calldata to be run on the UP,
-// passing the calldata to be run in the Vault as 4th parameter
-const universalProfileCalldata = universalProfile.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [0, vaultAddress, 0, vaultCalldata],
-);
-
-// Execute via the KeyManager, passing the UP calldata
-await keyManager.connect(myEOA)['execute(bytes)'](universalProfileCalldata);
+// Execute the calldata through the Universal Profile
+await universalProfile
+  .connect(myEOA)
+  ['execute(uint256,address,uint256,bytes)'](0, vaultAddress, 0, vaultCalldata);
 ```
 
   </TabItem>
 
 </Tabs>
 
-In the code snippet above, we interacted with `myCoolfunction(..)` function on the **targetContract** contract through the Vault's [execute](../../standards/smart-contracts/lsp9-vault.md#execute) function. The call was encoded and executed through the Universal Profile and the Key Manager.
+In the code snippet above, we interacted with `myCoolfunction(..)` function on the **targetContract** contract through the Vault's [execute](../../standards/smart-contracts/lsp9-vault.md#execute) function. The call was encoded and executed through the Universal Profile.
