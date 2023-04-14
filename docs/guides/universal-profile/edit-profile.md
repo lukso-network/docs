@@ -300,10 +300,10 @@ const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 ### 4.2 - Create instance of UP
 
-The first step is to create new instances of the Universal Profile smart contract. We will need:
+The first step is to create an instance of the Universal Profile smart contract. We will need:
 
 - the contract ABI (from our npm package [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)).
-- the contract address.
+- the address of the Universal Profile contract.
 
 ```javascript title="Create contracts instances and get the Key Manager address"
 import Web3 from 'web3';
@@ -323,10 +323,10 @@ const universalProfileContract = new web3.eth.Contract(
 The final step is to edit our `LSP3Profile` key on our Universal Profile with the new value obtained in **Step 3**. We can easily access the key-value pair from the encoded data obtained with erc725.js.
 
 ```javascript title="Preparing and executing the setData transaction"
-// Step 4.3 - Set data (updated LSP3Profile metadata) on our Universal Profile
-await universalProfileContract.methods['setData(bytes32[],bytes[])'](
-  encodedData.keys,
-  encodedData.values,
+// Step 4.3 - Update LSP3Profile metadata on our Universal Profile
+await universalProfileContract.methods['setData(bytes32,bytes)'](
+  encodedData.keys[0],
+  encodedData.values[0],
 ).send({ from: myEOA.address, gasLimit: 300_000 });
 ```
 

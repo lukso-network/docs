@@ -42,11 +42,9 @@ For a regular LYX transfer, the parameters will be:
 - `_value`: the amount of LYX we want to transfer (in Wei).
 - `_data`: empty (`0x` since we are just transferring LYX).
 
-### Permissions checking through the Key Manager
+### Permissions required to transfer LYX
 
-Most of the functions on the UP contract, such as [`setData(...)`](../../standards/smart-contracts/erc725-contract.md#setdata---erc725y) and [`execute(...)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) can only be called by the [`owner`](../../standards/smart-contracts/erc725-contract.md#owner) or by the controller addresses that are allowed in the owner contract of the Universal Profile, thanks to **LSP20**. In our case it is the Key Manager the owner o0f the Universal Profile and the contract that verifies the permissions of the controller addresses, therefore if we want to use our UP to do meaningful things, we should set proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the address that we want to allow to use our Universal Profile.
-
-![](/img/guides/lsp6/transfer-lyx-interaction-via-key-manager.jpeg)
+The chosen EOA needs to have [**TRANSFERVALUE Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_TRANSFERVALUE Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions).
 
 ## Setup
 
@@ -55,12 +53,6 @@ To complete this mini-guide, we will need:
 - the `UniversalProfile` contracts ABI from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
 - the address of our Universal Profile we want to send LYX from.
 - an EOA with some LYX for gas fees and the required [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
-
-:::info
-
-The chosen EOA needs to have [**TRANSFERVALUE Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_TRANSFERVALUE Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
-
-:::
 
 Make sure you have the following dependencies installed before beginning this tutorial:
 
@@ -152,10 +144,10 @@ const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi, provider);
 
 ### Step 3 - Load our EOA
 
-Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile. In this case the controller address must have either [**TRANSFERVALUE Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_TRANSFERVALUE Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) in order for the transaction to be successful.
+Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile.
 
 <Tabs>
-  
+
   <TabItem value="web3js" label="web3.js">
 
 ```typescript
@@ -191,7 +183,7 @@ const OPERATION_CALL = 0;
 const recipient = '0x...'; // address the recipient (any address, including an other UP)
 const amount = web3.utils.toWei('3'); // amount of LYX we want to transfer
 // calldata executed at the target (here nothing, just a plain LYX transfer)
-const data = '0x';
+const data = '0x'; // empty data
 
 await myUP.methods['execute(uint256,address,uint256,bytes)'](
   OPERATION_CALL,

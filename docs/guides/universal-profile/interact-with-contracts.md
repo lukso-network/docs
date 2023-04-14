@@ -147,7 +147,7 @@ const targetContract = new ethers.Contract(
 
 ## Step 2 - Encode the calldatas
 
-This is the easy part, we need to create a calldata that will be executed on the Target Contract.
+We need to create a calldata that will be executed on the Target Contract.
 
 <Tabs>
   
@@ -182,10 +182,10 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 
 ### Load the EOA
 
-Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile. In this case the controller address must have either [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**Allowed Calls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) in order for the transaction to be successful.
+Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile.
 
 <Tabs>
-  
+
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Setup EOA"
@@ -208,7 +208,7 @@ const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 ### Send the execute calldata
 
-The final step is to pass the encoded calldata to the Universal Profile. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize the transaction.
+The final step is to pass the encoded calldata to the Universal Profile. Since we are calling from an EOA that is a [controller](../../standards/universal-profile/lsp6-key-manager.md#introduction) on the UP, the Key Manager will authorize the transaction.
 
 <Tabs>
   
