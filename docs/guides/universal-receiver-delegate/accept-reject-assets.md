@@ -122,7 +122,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 </Tabs>
 
-### Imports, contants and EOA
+### Imports, constants and EOA
 
 First, we need to get the _ABI_ for the Universal Profile contract.
 After that we need to store the address of our Universal Profile and the new URD address.  
@@ -174,7 +174,7 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 
 ### Create UP contract instance
 
-At this point we need to create instance of the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract:
+At this point we need to create an instance of the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract:
 
 <Tabs>
   
@@ -204,7 +204,7 @@ const universalProfile = new ethers.Contract(
 
 </Tabs>
 
-### Update the profile data
+### Setup the LSP1 Universal Receiver Delegate
 
 Finally, we need to send the transaction that will update the URD of the Universal Profile.
 

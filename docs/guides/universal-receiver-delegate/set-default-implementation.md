@@ -357,7 +357,7 @@ const dataValues = [
 
 </Tabs>
 
-### Update the UP data
+### Set the URD and its permissions
 
 Lastly, we need to send the transaction that will update the URD and its permissions on the Universal Profile.
 
