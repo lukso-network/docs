@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Transfer an LSP7 Digital Asset (Token)'
+sidebar_label: 'Transfer a LSP7 Digital Asset (Token)'
 sidebar_position: 3
 ---
 
@@ -41,8 +41,11 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Step 1 - Setup imports and constants
 
-At this point you will need a private key, this EOA should be a controller address for the UP with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) in order to transfer some tokens as well as the `LSP7Mintable` _token contract address_ and the _address of the Universal Profile_ that has some tokens.
-We will import `LSP7Mintable` and `UniversalProfile` in order to get the _ABIs_ of the contracts that we will interact with.
+At this point, you will need:
+
+- The address & ABI of the LSP7DigitalAsset token contract.
+- The address & ABI of the Universal Profile.
+- The private key of the [controller](../../standards/universal-profile/lsp6-key-manager.md) of your Universal Profile.
 
 <Tabs>
   
@@ -122,7 +125,7 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 
 ### Step 3 - Setup the token trasnfer calldata
 
-Now we need to prepare the calldata that we will use in order to transfer tokens from a Universal Profile to another.s
+Now we need to prepare the calldata to transfer tokens from a Universal Profile to another UP.
 
 <Tabs>
   
