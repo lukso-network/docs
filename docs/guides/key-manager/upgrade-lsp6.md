@@ -57,17 +57,6 @@ Create a JavaScript file and add the following imports on the top of the file:
 - `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission.
 - `universalProfileAddress`: address of your Universal Profile.
 
-```js
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
-import Web3 from 'web3';
-
-const web3 = new Web3('https://rpc.l16.lukso.network');
-
-const privateKey = '0x...';
-const universalProfileAddress = '0x...';
-const keyManagerAddress = '0x...';
-```
-
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
