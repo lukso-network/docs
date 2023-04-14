@@ -22,7 +22,7 @@ By the end of this guide, you will know:
 - How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../../tools/erc725js/getting-started).
 - How to set permissions for a third party `address` on your Universal Profile.
 
-![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpg)
+![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpeg)
 
 ## Introduction
 
@@ -132,9 +132,13 @@ const permissionData = erc725.encodeData([
 
 We have now all the data needed to setup the permission for this 3rd party addres on our Universal Profile.
 
-### 3.1 Add imports & constants
+### 3.1 - Add imports & constants
 
-At this step you will need to get **UniversalProfile** from [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) in order to use its ABI. Also you need to get the private key for your _controller address_ with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) as well as the address of your Universal Profile.
+To get started you would need the following:
+
+- **UniversalProfile** from [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) in order to use its ABI.
+- The private key for your _controller address_ with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions), used for interacting with the Universal Profile.
+- The address of the Universal Profile that you want to interact with.
 
 <Tabs>
   
@@ -200,7 +204,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 ### 3.3 - Create contract instance
 
-The next steps is to create an instance of our UP smart contract to interact with. The contract ABIs are available in the @lukso/lsp-smart-contracts npm package.
+The next steps is to create an instance of our UP smart contract to interact with. The contract ABIs are available in the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
 
 You will need the address of your Universal Profile.
 
@@ -222,7 +226,7 @@ const myUniversalProfile = new web3.eth.Contract(
 
 ```js
 // step 1 - create instance of UniversalProfile contract
-const unviersalProfile = new ethers.Contract(
+const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
@@ -261,7 +265,7 @@ await myUniversalProfile.methods['setData(bytes32[],bytes[])'](
 
 ```js
 // step 3.3 - send the transaction
-await myUnviersalProfile
+await myUniversalProfile
   .connect(account)
   ['setData(bytes32[],bytes[])'](data.keys, data.values);
 ```
@@ -373,7 +377,7 @@ const erc725 = new ERC725(
 
 async function grantPermissions() {
   // step 1 - create instance of UniversalProfile contract
-  const unviersalProfile = new ethers.Contract(
+  const universalProfile = new ethers.Contract(
     universalProfileAddress,
     UniversalProfile.abi,
   );
@@ -404,7 +408,7 @@ async function grantPermissions() {
   ]);
 
   // step 3.3 - send the transaction
-  await myUnviersalProfile
+  await myUniversalProfile
     .connect(account)
     ['setData(bytes32[],bytes[])'](data.keys, data.values);
 
