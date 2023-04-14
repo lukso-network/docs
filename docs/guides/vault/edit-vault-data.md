@@ -307,7 +307,7 @@ Lastly, we need to send the transaction that will update the Vault data through 
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Execute the calldata on the Universal Profile"
-// execute the `setDataCalldata` that updates the Vault data
+// execute the `setData(bytes32,bytes)` calldata that updates the Vault data
 await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
   0, // OPERATION CALL
   vaultAddress,
@@ -324,7 +324,7 @@ await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Execute the calldata on the Universal Profile"
-// execute the `setDataCalldata` that updates the Vault data
+// execute the `setData(bytes32,bytes)` calldata that updates the Vault data
 await universalProfile.connect(myEOA)['execute(uint256,address,uint256,bytes)'](
   0, // OPERATION CALL
   vaultAddress,

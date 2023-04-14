@@ -47,7 +47,7 @@ npm install ethers @lukso/lsp-smart-contracts
 ## Step 1 - Setup imports and constants​
 
 For the imports, we will need the `LSP9vault` contract **ABI** and **bytecode** in order to deploy a LSP9 Vault.  
-For the contants we will need the _private key_ and _the address of the vault receiver_.
+For the constants we will need the _private key_ and _the address of the vault receiver_.
 
 <Tabs>
   
