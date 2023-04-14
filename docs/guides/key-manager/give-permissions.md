@@ -116,7 +116,41 @@ const permissionData = erc725.encodeData([
 
 We have now all the data needed to setup the permission for this 3rd party addres on our Universal Profile.
 
-### 3.1 - Load your controller address
+### 3.1 Add imports & constants
+
+At this step you will need to get **UniversalProfile** from [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) in order to use its ABI. Also you need to get the private key for your _controller address_ with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) as well as the address of your Universal Profile.
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```javascript title="Load account from a private key"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import Web3 from 'web3';
+
+const web3 = new Web3('https://rpc.l16.lukso.network');
+const myUniversalProfileAddress = '0x...';
+const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
+```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```javascript title="Load account from a private key"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { ethers } from 'ethers';
+
+const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const myUniversalProfileAddress = '0x...';
+const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
+```
+
+  </TabItem>
+
+</Tabs>
+
+### 3.2 - Load your controller address
 
 We will need to interact with the Key Manager from the main controller address (the externally owned account (EOA) that has all the permissions on the UP).
 
@@ -133,15 +167,6 @@ The private key can be obtained depending on how you created your Universal Prof
   <TabItem value="web3js" label="web3.js">
 
 ```javascript title="Load account from a private key"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
-import Web3 from 'web3';
-
-const web3 = new Web3('https://rpc.l16.lukso.network');
-const myUniversalProfileAddress = '0x...';
-
-const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 ```
 
@@ -150,15 +175,6 @@ const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript title="Load account from a private key"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
-import { ethers } from 'ethers';
-
-const myUniversalProfileAddress = '0x...';
-
-const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
@@ -166,7 +182,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 </Tabs>
 
-### 3.2 - Create contract instance
+### 3.3 - Create contract instance
 
 The next steps is to create an instance of our UP smart contract to interact with. The contract ABIs are available in the @lukso/lsp-smart-contracts npm package.
 
@@ -200,7 +216,7 @@ const unviersalProfile = new ethers.Contract(
 
 </Tabs>
 
-### 3.3 - Set the permission on the Universal Profile
+### 3.4 - Set the permission on the Universal Profile
 
 The last and final step is to setup the permissions the `beneficiaryAddress` on our Universal Profile.
 
