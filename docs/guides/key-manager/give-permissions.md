@@ -38,9 +38,25 @@ When granting permissions to a new address, we need to update three data keys in
 
 ## Setup
 
-```shell
-npm install @erc725/erc725.js @lukso/lsp-smart-contracts
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```shell title="Install the dependencies"
+npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
+
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```shell title="Install the dependencies"
+npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Step 1 - Initialize erc725.js
 
