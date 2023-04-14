@@ -301,7 +301,7 @@ const universalProfile = new ethers.Contract(
 );
 
 // execute the executeCalldata on the Key Manager
-await keyManager
+await universalProfile
   .connect(EOA)
   ['setData(bytes32,bytes)'](URD_DATA_KEY, universalProfileURDAddress);
 ```
