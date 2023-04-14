@@ -41,7 +41,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Step 1 - Setup imports and constants
 
-At this point you will need a private key in order to transfer some tokens as well as the `LSP7Mintable` _token contract address_ and the _address of the Universal Profile_ that has some tokens.
+At this point you will need a private key, this EOA should be a controller address for the UP with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) in order to transfer some tokens as well as the `LSP7Mintable` _token contract address_ and the _address of the Universal Profile_ that has some tokens.
 We will import `LSP7Mintable` and `UniversalProfile` in order to get the _ABIs_ of the contracts that we will interact with.
 
 <Tabs>
@@ -58,7 +58,7 @@ const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
 
-// setup your EOA
+// setup your controller adddress
 const account = web3.eth.accounts.wallet.add(privateKey);
 ```
 
@@ -76,7 +76,7 @@ const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
 
-// setup your EOA
+// setup your controller address
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
