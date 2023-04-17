@@ -18,6 +18,34 @@ module.exports = {
       {
         redirects: [
           {
+            from: '/networks/l16-testnet/parameters.md',
+            to: '/networks/testnet/parameters',
+          },
+          {
+            from: '/networks/l16-testnet/become-validator',
+            to: '/networks/testnet/parameters',
+          },
+          {
+            from: '/networks/l16-testnet/logs-stats-monitoring',
+            to: '/networks/testnet/parameters',
+          },
+          {
+            from: '/networks/l16-testnet/node-backup',
+            to: '/networks/testnet/parameters',
+          },
+          {
+            from: '/networks/l16-testnet/run-node',
+            to: '/networks/testnet/running-a-node',
+          },
+          {
+            from: '/networks/l16-testnet/troubleshooting',
+            to: '/networks/testnet/parameters',
+          },
+          {
+            from: '/networks/l16-testnet',
+            to: '/networks/testnet/parameters',
+          },
+          {
             from: '/contracts/erc725-account',
             to: '/standards/smart-contracts/lsp0-erc725-account',
           },
@@ -36,10 +64,6 @@ module.exports = {
           {
             from: '/contracts/interface-ids',
             to: '/standards/smart-contracts/interface-ids',
-          },
-          {
-            from: '/networks/l16-testnet',
-            to: '/networks/l16-testnet/parameters',
           },
           {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
@@ -63,6 +87,13 @@ module.exports = {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
+    announcementBar: {
+      id: 'scam_warning',
+      content:
+        '🚨 Beware of scams! Only trust LUKSO domains: <b>.lukso.network</b> &amp; <b>.lukso.tech</b> 🚨',
+      backgroundColor: '#fbd784',
+      isCloseable: false,
+    },
     navbar: {
       title: 'LUKSO',
       logo: {
@@ -208,7 +239,6 @@ module.exports = {
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
-          ignorePatterns: ['/networks/l16-testnet/'],
           filename: 'sitemap.xml',
         },
       },

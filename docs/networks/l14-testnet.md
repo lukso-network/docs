@@ -8,7 +8,7 @@ sidebar_position: 4
 This testnet is the lastest stable network.
 :::
 
-The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon deprecated POA test network, currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
+The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon-deprecated POA test network currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
 
 ## MetaMask
 
@@ -40,9 +40,9 @@ Run your parity node and connect to the LUKSO L14 test network using:
 $ parity --chain spec.json --bootnodes enode://6a6b0b286e3f96dee993d995f3fd435a065388664e211f02533e28c9ddc31089eb90f71d1386c3c74ee60f79df86cacdb10992c38e2f9cccac4881cb84526415@35.195.116.26:30303
 ```
 
-The [spec.json](https://github.com/lukso-network/lukso-chain-spec/blob/l14/spec.json) is in [l14](https://github.com/lukso-network/lukso-chain-spec/tree/l14) branch of the `lukso-chain-spec` repository.
+The [spec.json](https://github.com/lukso-network/lukso-chain-spec/blob/l14/spec.json) is in the [l14](https://github.com/lukso-network/lukso-chain-spec/tree/l14) branch of the `lukso-chain-spec` repository.
 
-In case the boot node from above does not work, you can find the current specifications [here](https://github.com/lukso-network/lukso-chain-spec/blob/l14/bootnodes.txt).
+In case the bootnode from above does not work, you can find the current specifications [here](https://github.com/lukso-network/lukso-chain-spec/blob/l14/bootnodes.txt).
 
 ## Links
 
