@@ -28,14 +28,14 @@ function Index() {
         <CallToActionButton
           bgColor="#FFCCCC"
           color="#383838"
-          link="./networks/l16-testnet/parameters"
+          link="./networks/mainnet"
           text="PARTICIPATE IN NETWORKS"
         />
         <br />
         <div className={styles.cardContainer}>
           <Box
             icon={NetworksIcon}
-            link="./networks/l16-testnet/parameters"
+            link="./networks/mainnet"
             title="NETWORKS"
             className="networks"
             content="Learn how to participate in LUKSO's test networks."
