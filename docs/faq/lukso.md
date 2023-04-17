@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ## What is LUKSO?
 
-[LUKSO](https://lukso.network/) is a Blockchain network dedicated to existing and coming digital lifestyle use cases. It will be running with a Casper consensus algorithm (PoS) combined with an [Ethereum Virtual Machine](https://medium.com/mycrypto/the-ethereum-virtual-machine-how-does-it-work-9abac2b7c9e) (EVM) execution engine. The main network is planned to launch in 2022.
+[LUKSO](https://lukso.network/) is a Blockchain network dedicated to existing and coming digital lifestyle use cases. It will be running with a Casper consensus algorithm (PoS) combined with an [Ethereum Virtual Machine](https://medium.com/mycrypto/the-ethereum-virtual-machine-how-does-it-work-9abac2b7c9e) (EVM) execution engine.
 
 ## How to stay up to date about LUKSO?
 
@@ -32,8 +32,12 @@ If you are a developer and want to use the future LUKSO Blockchain, you can alre
 
 Please join our [Discord](https://discord.gg/lukso) and get in touch if you have terrific ideas for the new digital lifestyle economy!
 
-## Why LSPs are not proposed as ERCs?
+## Why are LSPs not proposed as ERCs?
 
 The LSPs are part of a larger set of core standards that are all interoperable and cohesive together. Nonetheless, they do function equally for any EVM chain, the ability to make these standards understood requires a less noisy and neutral place, than the current ERC space.
 
 Therefore, we deem a separate repo **[(LIPs/LSPs)](https://github.com/lukso-network/LIPs)** as necessary for the success and transparency of these new sets of standards, many of which use ERCs (ERC165, ERC173, ERC725) as a core basis.
+
+## I found a bug. Where can I report it?
+
+You can create a GitHub issue in the related project's repository. If you can't do it, you can send us a message on our [Discord](https://discord.gg/lukso) server.
