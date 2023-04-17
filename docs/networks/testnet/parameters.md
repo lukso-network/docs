@@ -26,5 +26,5 @@ The Public Testnet will run alongside the LUKSO mainnet for developers to test d
 | Execution Block Explorer | <https://explorer.execution.testnet.lukso.network> |
 | Execution Node list      | <https://stats.execution.testnet.lukso.network>    |
 | Consensus Block Explorer | <https://explorer.consensus.testnet.lukso.network> |
-| Consensus Node list      | <https://stats.consensus.ltestnet16.lukso.network> |
+| Consensus Node list      | <https://stats.consensus.testnet.lukso.network> |
 | Faucet                   | <https://faucet.testnet.lukso.network>             |

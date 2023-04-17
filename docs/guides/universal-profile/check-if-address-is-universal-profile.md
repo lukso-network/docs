@@ -99,7 +99,7 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
-const unviersalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
+const universalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
 
 const supportsLSP0Interface = await universalProfile.methods.supportsInterface(INTERFACE_IDS.LSP0ERC725Account).call();
 // true or false -> if false, this address is not a Universal Profile.
@@ -124,7 +124,7 @@ import { ethers } from 'ethers';
 const provider = new ethers.JsonRpcProvider('https://rpc.l14.lukso.network');
 
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
-const unviersalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
+const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
 
 const supportsLSP0Interface = await universalProfile.supportsInterface(INTERFACE_IDS.LSP0ERC725Account);
 // true or false -> if false, this address is not a Universal Profile.
@@ -163,9 +163,9 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
 const universalProfileAddress = "0x..."; // The address of the contract that you are verifying
-const unviersalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
+const universalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
 
-const supportedStandard = await unviersalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key).call();
+const supportedStandard = await universalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key).call();
 
 if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
   throw new Error('Address does not support LSP3UniversalProfile standard');
@@ -188,9 +188,9 @@ import { ethers } from 'ethers';
 const provider = new ethers.JsonRpcProvider('https://rpc.l14.lukso.network');
 
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
-const unviersalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
+const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
 
-const supportedStandard = await unviersalProfile['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key);
+const supportedStandard = await universalProfile['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key);
 
 if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
   throw new Error('Address does not support LSP3UniversalProfile standard');
@@ -224,7 +224,7 @@ if (!web3.utils.isAddress(address)) {
 
 // We assume that the contract is a Universal Profile
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
-const unviersalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
+const universalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
 
 const supportsLSP0Interface = await universalProfile.methods.supportsInterface(INTERFACE_IDS.LSP0ERC725Account).call();
 // true or false -> if false, this address is not a Universal Profile.
@@ -232,7 +232,7 @@ if (!supportsLSP0Interface) {
   throw new Error('Contract does not support LSP0ERC725Account interface');
 }
 
-const supportedStandard = await unviersalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key).call();
+const supportedStandard = await universalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key).call();
 
 if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
   throw new Error('Address does not support LSP3UniversalProfile standard');
@@ -260,7 +260,7 @@ if (!isAddress(address)) {
 
 // We assume that the contract is a Universal Profile
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
-const unviersalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
+const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
 
 const supportsLSP0Interface = await universalProfile.supportsInterface(INTERFACE_IDS.LSP0ERC725Account);
 // true or false -> if false, this address is not a Universal Profile.
@@ -268,7 +268,7 @@ if (!supportsLSP0Interface) {
   throw new Error('Contract does not support LSP0ERC725Account interface');
 }
 
-const supportedStandard = await unviersalProfile['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key);
+const supportedStandard = await universalProfile['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key);
 
 if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
   throw new Error('Address does not support LSP3UniversalProfile standard');
