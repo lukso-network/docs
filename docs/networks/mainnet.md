@@ -25,8 +25,8 @@ LUKSO's Blockchain Architecture runs the Ethereum protocol and consists of 2 to 
 
 If you are running a validating node, you will also run:
 
-- The validator client, if you run want to run a validating node
-- The slasher client, if you run want to run a validating node
+- The validator client, if you want to run a validating node
+- The slasher client, if you want to run a validating node
 
 ## The Network start process
 
@@ -38,7 +38,7 @@ Only become a Genesis Validator if you know how to run a node continuously 24/7.
 
 ### Becoming a Genesis Validator
 
-The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are ideal for the mainnet start. The Genesis Validator Deposit Smart Contract will be once enough validator keys are registered. The freeze function of the Genesis Validator Contract has a 1-week delay to allow anyone a fair chance to participate.
+The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are ideal for the mainnet start. The Genesis Validator Deposit Smart Contract will be frozen once enough validator keys are registered. The freeze function of the Genesis Validator Contract has a 1-week delay to allow anyone a fair chance to participate.
 
 :::note
 
