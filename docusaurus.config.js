@@ -91,8 +91,7 @@ module.exports = {
       id: 'scam_warning',
       content:
         '🚨 Beware of scams! Only trust LUKSO domains: <b>.lukso.network</b> &amp; <b>.lukso.tech</b> 🚨',
-      backgroundColor: '#e96363',
-      textColor: '#ffffff',
+      backgroundColor: '#fbd784',
       isCloseable: false,
     },
     navbar: {
