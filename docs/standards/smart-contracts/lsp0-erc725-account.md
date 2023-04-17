@@ -22,6 +22,16 @@ This contract could be used as a _blockchain-based account_ by humans, machines,
 
 ---
 
+
+## Behavior
+
+All ownable functions such as `execute(..)`, `setData(..)`, `transferOwnership(..)`, and `renounceOwnership(..)` can be called by the owner and any address that is allowed by the owner conforming to the [LSP20-CallVerification](../universal-profile/lsp0-erc725account.md#lsp20---call-verification) behavior.
+
+If an address is calling the `execute(..)` function and is not the owner, the account contract will forward the call to the owner. The execution of the function will only continue if the owner returns a specific magic value, which indicates that the caller is allowed to execute the function. The magic value can also determine if there should be any post execution check on the owner. This same behavior applies to other ownable functions as well.
+
+This allows the account to have a more dynamic and adaptable approach for managing function execution logic, utilizing the **LSP20-CallVerification** standard.
+
+
 ## Functions
 
 ### constructor
@@ -74,12 +84,6 @@ Executed when sending bytes data to the contract and the first 4 bytes of this d
 
 - If the data sent is **shorter than 4 bytes**, then the call should pass. For example, sending `0xaabbcc` to the contract will be successful.
 
-- If the data sent is **preprended with 4 zeros (0)**, then the call should pass.
-
-  For example, when sending value to the contract it can be associated with a message, such as `"Here is 1 Ether"`, after encoding the message as bytes: `0x486572652069732031204574686572`.
-
-  In order to make the call to the contract pass, it should be prepended with `bytes4(0)`. A call to the **LSP0** with `0x00000000486572652069732031204574686572` as data **will pass**.
-
 - If the data sent is equal or larger to 4 bytes and is not prepended with `bytes4(0)`, the following steps will be executed:
 
 1. Query the [storage of the LSP0](../universal-profile/lsp0-erc725account.md#erc725y---generic-key-value-store), and check if there is an address under this following data Key:
@@ -101,6 +105,12 @@ Executed when sending bytes data to the contract and the first 4 bytes of this d
 1.2 If there is an address stored under the data key, forward the `msg.data` received to this address via a low level call with appending the `msg.sender` and `msg.value`as extra 52 bytes to the call.
 
 2.Then return the return value received after this low level call.
+
+- If the data sent is **preprended with 4 zeros (0)**, then the call should be checked for an extension, if there is none the call should still pass.
+
+  For example, when sending value to the contract it can be associated with a message, such as `"Here is 1 Ether"`, after encoding the message as bytes: `0x486572652069732031204574686572`.
+
+  In order to make the call to the contract pass, it should be prepended with `bytes4(0)`. A call to the **LSP0** with `0x00000000486572652069732031204574686572` as data **will pass** if there is no extension set. If there is an extension set for the `bytes4(0)` selector, the call will either pass or revert depending on the logic of the extension.
 
 This feature is useful for making the **LSP0ERC725Account contract extendable**, where you can add functions to be called on the LSP0 as extensions. Check [**LSP17-ContractExtension**](../universal-profile/lsp0-erc725account.md#lsp17---contract-extension) section in LSP0.
 
@@ -206,7 +216,7 @@ Calls the `universalReceiver(..)` function [**on the pending owner**](https://gi
 
 Requirements:
 
-- Can only be called by the current owner.
+- Can only be called by the current owner and any address allowed by the owner.
 - The `newOwner` to be set as the `pendingOwner` cannot be `address(this)`.
 
 #### Parameters:
@@ -268,6 +278,27 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event after succ
 Leaves the contract without an owner. Once ownership of the contract is renounced, it won't be possible to call the functions restricted to the owner only.
 :::
 
+### batchCalls
+
+```solidity
+function batchCalls(bytes[] calldata data) public returns (bytes[] memory results)
+```
+
+Allows a caller to batch different function calls in one call. Performs a delegatecall on self to call different functions while preserving the context. It is not possible to send value along the functions call due to the use of delegatecall.
+
+#### Parameters:
+
+| Name   | Type      | Description                                                                                                                     |
+| :----- | :-------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| `data` | `bytes[]` | An array of ABI encoded function calls to be called on the contract. The array can contain calls to different functions. |
+
+#### Return Values:
+
+| Name      | Type      | Description                                                                    |
+| :-------- | :-------- | :----------------------------------------------------------------------------- |
+| `results` | `bytes[]` | An array of values returned by the executed functions in the order they appear. |
+
+
 ### execute
 
 :::info
@@ -306,7 +337,7 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 _Triggers the **[ContractCreated](#contractcreated)** event when a smart contract is created using `CREATE/CREATE2` operations._
 
 :::note
-The `execute(...)` function can only be called by the current owner of the contract.
+The `execute(...)` function can only be called by the current owner of the contract and any address allowed by the owner's logic.
 
 The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to transfer value.
 :::
@@ -362,7 +393,7 @@ _Triggers the **[Executed](#executed)** event on every successful call that used
 _Triggers the **[ContractCreated](#contractcreated)** event on every newly created smart contract that used operation `CREATE` or `CREATE2`._
 
 :::note
-The `execute(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner of the contract.
+The `execute(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner of the contract and any address allowed by the owner's logic.
 
 The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to transfer value.
 :::
@@ -406,7 +437,7 @@ Sets data in the account storage for a particular data key.
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of the data Value._
 
 :::note
-The `setData(...)` function can only be called by the current [owner](#owner) of the contract.
+The `setData(...)` function can only be called by the current owner of the contract and any address allowed by the owner's logic.
 :::
 
 #### Parameters:
@@ -470,7 +501,7 @@ Sets an array of values at multiple data keys in the account storage.
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of each data Value._
 
 :::note
-The `setData(...)` function can only be called by the current [owner](#owner) of the contract.
+The `setData(...)` function can only be called by the current owner of the contract and any address allowed by the owner's logic.
 :::
 
 #### Parameters:
