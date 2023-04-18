@@ -52,7 +52,7 @@ The window for becoming a Genesis Validator will be around 3 weeks before launch
 
 ### Genesis Validator Smart Contract Address on Ethereum
 
-### 👉 [0x...](https://etherscan.io/address/0x)
+### 👉 [0x4200042742c62E4386CCfb1E2c895a4011B2773e](https://etherscan.io/address/0x4200042742c62E4386CCfb1E2c895a4011B2773e)
 
 :::
 
@@ -73,4 +73,4 @@ Genesis Validators must run the network clients with the downloaded genesis file
 
 - [LUKSO Mainnet Start Process Update #1](https://medium.com/lukso/the-puzzle-comes-together-milestone-update-2022-7b69571f63a2)
 - [LUKSO Mainnet Start Process Update #2](https://medium.com/lukso/lukso-mainnet-timeline-and-process-dd997fe811c8)
-- **[LUKSO Mainnet Start Process Update #3](http://lukso.network)**
+- [LUKSO Mainnet Start Process Update #3](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6)
