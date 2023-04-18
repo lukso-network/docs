@@ -25,11 +25,11 @@ This contract could be used as a _blockchain-based account_ by humans, machines,
 
 ## Behavior
 
-All ownable functions such as `execute(..)`, `setData(..)`, `transferOwnership(..)`, and `renounceOwnership(..)` can be called by the owner and any address that is allowed by the owner conforming to the [LSP20-CallVerification](../universal-profile/lsp0-erc725account.md#lsp20---call-verification) behavior.
+All ownable functions such as `execute(..)`, `setData(..)`, `transferOwnership(..)`, and `renounceOwnership(..)` can be called by the owner and any address allowed by the owner according to the [LSP20-CallVerification](../universal-profile/lsp0-erc725account.md#lsp20---call-verification) behavior.
 
 If an address calls the `execute(..)` function and is not the owner, the account contract will forward the call to the owner. The execution of the function will only continue if the owner returns a specific magic value, indicating that the caller is allowed to execute the function. The magic value can also determine if there should be any post-execution check on the owner. This same behavior applies to other ownable functions as well.
 
-The structure allows the account to have a more dynamic and adaptable approach for managing function execution logic, utilizing the **LSP20-CallVerification** standard.
+The structure allows the account to have a more dynamic and adaptable approach for managing function execution logic, using the **LSP20-CallVerification** standard.
 
 
 ## Functions
@@ -106,9 +106,11 @@ Executed when sending bytes data to the contract and the first 4 bytes of this d
 
 2.Then return the return value received after this low level call.
 
-- If the data sent is **prepended with 4 zeros (0)**, then the call should be checked for an extension, if there is none the call should still pass.
+- If the data sent is **prepended with 4 zeros (0)**, then the call should be checked for an extension. If there is none, the call should still pass.
 
-  For example, sending value to the contract can be associated with a message, such as `"Here is 1 Ether" after encoding the message as bytes: `0x486572652069732031204574686572`.
+  _Example:_ 
+
+  Sending value to the contract can be associated with a message, such as `"Here is 1 Ether" after encoding the message as bytes: `0x486572652069732031204574686572`.
 
   To make the call to the contract pass, it should be prepended with `bytes4(0)`. A call to the **LSP0** with `0x00000000486572652069732031204574686572` as data **will pass** if there is no extension set. If an extension is set for the `bytes4(0)` selector, the call will either pass or revert depending on the logic of the extension.
 
@@ -284,13 +286,16 @@ Leaves the contract without an owner. Once ownership of the contract is renounce
 function batchCalls(bytes[] calldata data) public returns (bytes[] memory results)
 ```
 
-Allows a caller to batch different function calls in one call. Performs a `delegatecall` on self to call different functions while preserving the context. It is not possible to send value along the functions call due to the use of `delegatecall`.
+Allows a caller to call multiple functions from the contract interface in one single batch call. 
+Under the hood, this function performs a `delegatecall` on the contract itself to call different functions while preserving the context. 
+
+> NB: It is not possible to send value along the functions call due to the use of `delegatecall`.
 
 #### Parameters:
 
 | Name   | Type      | Description                                                                                                                     |
 | :----- | :-------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| `data` | `bytes[]` | An array of ABI encoded function calls to be called on the contract. The array can contain calls to different functions. |
+| `data` | `bytes[]` | An array of ABI encoded function calls to be called on the contract. The array can contain calls to different functions from the contract interface. |
 
 #### Return Values:
 
