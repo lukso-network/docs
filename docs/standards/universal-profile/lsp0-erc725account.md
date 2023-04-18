@@ -43,7 +43,7 @@ An **ERC725Account** is a blockchain account system that can be utilized by indi
 
 - **[LSP17-ContractExtension](../generic-standards/lsp17-contract-extension.md)** enables the contract to be **extended after deployment** to support new standard and functionalities.
 
-- **[LSP20-CallVerification](#)** provides a unified and standard way for all addresses to **interact directly with the account**, streamlining the interaction process taking into consideration the ownership setup, and enhancing accessibility and developer experience.
+- **[LSP20-CallVerification](#)** provides a unified and standard way for all addresses to **interact directly with the account**, streamlining the interaction process considering the ownership setup, and enhancing accessibility and developer experience.
 
 ### ERC725X - Generic Executor
 
@@ -265,20 +265,20 @@ Check the **[LSP0 functions](../smart-contracts/lsp0-erc725-account.md)** to see
 
 :::
 
-The **LSP0ERC725Account** is an ownable contract that can be owned by different types of addresses, including EOAs, contracts like multisigs, KeyManagers, etc.. These owner contracts may have various functions and behaviors, which can create some challenges in terms of figuring out how the interaction with the account works.
+The **LSP0ERC725Account** is an ownable contract that can be owned by different types of addresses, including EOAs, contracts like multi-sig wallets, KeyManagers, etc. These owner contracts may have various functions and behaviors, which can create challenges in figuring out how the interaction with the account works.
 
-Previously, When the account is owned by a KeyManager, for example, only addresses allowed by the KeyManager should interact with it. They cannot directly interact with the account functions because only the KeyManager can call them as the owner. A similar issue arises when the account is owned by a voting contract, as voters must interact with the voting contract rather than the account directly.
+Previously, when a Key Manager owns the account, only addresses allowed by the Key Manager should interact with it. However, they cannot directly interact with the account functions because only the Key Manager can call them as the owner. A similar issue arises when a voting contract owns the account, as voters must interact with the voting contract rather than the account directly.
 
-To ensure a unified and standard way to interact with the account, the **LSP20-CallVerification** standard was proposed. This standard aims to streamline the interaction with the account, taking in consideration the ownership setup.
+To ensure a unified and standard way to interact with the account, the **LSP20-CallVerification** standard was proposed. This standard aims to streamline the interaction with the account, considering the ownership setup.
 
 ![LSP0 Old interaction](/img/standards/lsp0/LSP0-OldInteraction.jpeg)
 
-Currently, When the owner is calling a function on the account contract, they are allowed to directly execute it. However, if a different address calls a function on the LSP0, the function will forward the call to the owner of the account for verification. The owner must then determine if the caller is allowed to execute the specific function.
+Currently, when the owner calls a function on the account contract, they are allowed to execute it directly. However, if a different address calls a function on the LSP0, the function will forward the call to the account owner for verification. The owner must then determine if the caller is allowed to execute the specific function.
 
 If the caller is allowed, the owner should return a specific value. If the caller is not allowed, the owner can either revert the transaction or return an invalid value. This verification process occurs before and possibly after the execution of the function.
 
 ![LSP0 Old interaction](/img/standards/lsp0/LSP0-LSP20Interaction.jpeg)
 
-The primary benefit of this approach is that it ensures a unified way for all addresses to interact directly with the account functions, even if they are not the owner, but are allowed by the owner's logic.
+The primary benefit of this approach is that it ensures a unified way for all addresses to interact directly with the account functions, even if they are not the owner but are allowed by the owner's logic.
 
 By implementing the **LSP20-CallVerification** standard, the account becomes more accessible and versatile, accommodating various ownership structures and simplifying the user experience for those interacting with it.
