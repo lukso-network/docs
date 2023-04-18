@@ -52,7 +52,7 @@ The window for becoming a Genesis Validator will be around 3 weeks before launch
 
 ### Genesis Validator Smart Contract Address on Ethereum
 
-### 👉 [0x4200042742c62E4386CCfb1E2c895a4011B2773e](https://etherscan.io/address/0x4200042742c62E4386CCfb1E2c895a4011B2773e)
+### 👉 0x...
 
 :::
 
