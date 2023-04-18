@@ -58,7 +58,6 @@ Then we will initialize the EOA that we will further use.
 ```typescript title="Imports, Constants & EOA"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
@@ -82,7 +81,6 @@ const EOA = web3.eth.accounts.wallet.add(privateKey);
 ```typescript title="Imports, Constants & EOA"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
@@ -243,45 +241,32 @@ const universalProfileURDAddress = await deployUniversalProfileURD();
 
 After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** and grant it the **[SUPER_SETDATA](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)** permission.
 
-### Create the contract instances
+### Create an UP contract instance
 
-Firstly we need to create instances for the following contracts:
-
-- [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
-- [**Key Manager**](../../standards/universal-profile/lsp6-key-manager.md)
+Firstly we need to create an instance for the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Contract instances for the Universal Profile & Key Manager"
+```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the Key Manager
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 ```
 
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Contract instances for the Universal Profile & Key Manager"
+```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the Key Manager
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 ```
 
   </TabItem>
@@ -372,48 +357,20 @@ const dataValues = [
 
 </Tabs>
 
-### Encode `setData(..)` calldata
+### Set the URD and its permissions
 
-Encode a calldata for `setData(bytes32[],bytes[])` using the _dataKeys_ & _dataValues_ generated in the [**step before**](#step-32---encode-new-permissions-data-keys--values).
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Encode a calldata that will updated the URD and its permissions"
-// encode setData Calldata on the Universal Profile
-const setDataCalldata = await universalProfile.methods[
-  'setData(bytes32[],bytes[])'
-](dataKeys, dataValues).encodeABI();
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Encode a calldata that will updated the URD and its permissions"
-// encode setData Calldata on the Universal Profile
-const setDataCalldata = await universalProfile.interface.encodeFunctionData(
-  'setData(bytes32[],bytes[])',
-  [dataKeys, dataValues],
-);
-```
-
-  </TabItem>
-
-</Tabs>
-
-### Send transaction via Key Manager
-
-Lastly, we need to send the transaction that will update the URD and its permissions on the Universal Profile via the Key Manager.
+Lastly, we need to send the transaction that will update the URD and its permissions on the Universal Profile.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `setDataCalldata` on the Key Manager
-await keyManager.methods['execute(bytes)'](setDataCalldata).send({
+```typescript title="Update the data on the Universal Profile"
+// update the Universal Profile data
+await universalProfile.methods['setData(bytes32[],bytes[])'](
+  dataKeys,
+  dataValues,
+).send({
   from: EOA.address,
   gasLimit: 600_000,
 });
@@ -423,9 +380,11 @@ await keyManager.methods['execute(bytes)'](setDataCalldata).send({
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `setDataCalldata` on the Key Manager
-await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
+```typescript title="Update the data on the Universal Profile"
+// update the Universal Profile data
+await universalProfile
+  .connect(EOA)
+  ['setData(bytes32[],bytes[])'](dataKeys, dataValues);
 ```
 
   </TabItem>
@@ -444,14 +403,6 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,
-  );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the Key Manager
-  const keyManager = new web3.eth.Contract(
-    LSP6KeyManager.abi,
-    keyManagerAddress,
   );
 
   const addressPermissionsOldArrayLengthHex = await myUP.methods[
@@ -485,13 +436,11 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
     PERMISSIONS.SUPER_SETDATA,
   ];
 
-  // encode setData Calldata on the Universal Profile
-  const setDataCalldata = await universalProfile.methods[
-    'setData(bytes32[],bytes[])'
-  ](dataKeys, dataValues).encodeABI();
-
-  // execute the `setDataCalldata` on the Key Manager
-  await keyManager.methods['execute(bytes)'](setDataCalldata).send({
+  // update the Universal Profile data
+  await universalProfile.methods['setData(bytes32[],bytes[])'](
+    dataKeys,
+    dataValues,
+  ).send({
     from: EOA.address,
     gasLimit: 600_000,
   });
@@ -512,11 +461,6 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
     universalProfileAddress,
     UniversalProfile.abi,
   );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the Key Manager
-  const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
   const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
     ERC725YDataKeys.LSP6['AddressPermissions[]'].length,
@@ -547,14 +491,10 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
     PERMISSIONS.SUPER_SETDATA,
   ];
 
-  // encode setData Calldata on the Universal Profile
-  const setDataCalldata = await universalProfile.interface.encodeFunctionData(
-    'setData(bytes32[],bytes[])',
-    [dataKeys, dataValues],
-  );
-
-  // execute the `setDataCalldata` on the Key Manager
-  await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
+  // update the Universal Profile data
+  await universalProfile
+    .connect(EOA)
+    ['setData(bytes32[],bytes[])'](dataKeys, dataValues);
 };
 
 // update the URD of the Universal profile
@@ -574,7 +514,6 @@ await updateUniversalProfileURD(vaultURDAddress);
 ```typescript title="Deploy a Universal Profile URD, update its permissions and add it to the Universal Profile"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
@@ -619,14 +558,6 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
     UniversalProfile.abi,
     universalProfileAddress,
   );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the Key Manager
-  const keyManager = new web3.eth.Contract(
-    LSP6KeyManager.abi,
-    keyManagerAddress,
-  );
 
   const addressPermissionsOldArrayLengthHex = await myUP.methods[
     'getData(bytes32)'
@@ -659,13 +590,11 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
     PERMISSIONS.SUPER_SETDATA,
   ];
 
-  // encode setData Calldata on the Universal Profile
-  const setDataCalldata = await universalProfile.methods[
-    'setData(bytes32[],bytes[])'
-  ](dataKeys, dataValues).encodeABI();
-
-  // execute the `setDataCalldata` on the Key Manager
-  await keyManager.methods['execute(bytes)'](setDataCalldata).send({
+  // update the Universal Profile data
+  await universalProfile.methods['setData(bytes32[],bytes[])'](
+    dataKeys,
+    dataValues,
+  ).send({
     from: EOA.address,
     gasLimit: 600_000,
   });
@@ -685,7 +614,6 @@ await updateUniversalProfileURD(vaultURDAddress);
 ```typescript title="Deploy a Universal Profile URD, update its permissions and add it to the Universal Profile"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
@@ -722,11 +650,6 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
     universalProfileAddress,
     UniversalProfile.abi,
   );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the Key Manager
-  const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
   const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
     ERC725YDataKeys.LSP6['AddressPermissions[]'].length,
@@ -757,14 +680,10 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
     PERMISSIONS.SUPER_SETDATA,
   ];
 
-  // encode setData Calldata on the Universal Profile
-  const setDataCalldata = await universalProfile.interface.encodeFunctionData(
-    'setData(bytes32[],bytes[])',
-    [dataKeys, dataValues],
-  );
-
-  // execute the `setDataCalldata` on the Key Manager
-  await keyManager.connect(EOA)['execute(bytes)'](setDataCalldata);
+  // update the Universal Profile data
+  await universalProfile
+    .connect(EOA)
+    ['setData(bytes32[],bytes[])'](dataKeys, dataValues);
 };
 
 // deploy a new Universal Profile URD and retrieve its address

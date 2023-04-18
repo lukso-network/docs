@@ -25,8 +25,8 @@ LUKSO's Blockchain Architecture runs the Ethereum protocol and consists of 2 to 
 
 If you are running a validating node, you will also run:
 
-- The validator client, if you run want to run a validating node
-- The slasher client, if you run want to run a validating node
+- The validator client, if you want to run a validating node
+- The slasher client, if you want to run a validating node
 
 ## The Network start process
 
@@ -38,7 +38,7 @@ Only become a Genesis Validator if you know how to run a node continuously 24/7.
 
 ### Becoming a Genesis Validator
 
-The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are ideal for the mainnet start. The Genesis Validator Deposit Smart Contract will be once enough validator keys are registered. The freeze function of the Genesis Validator Contract has a 1-week delay to allow anyone a fair chance to participate.
+The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are ideal for the mainnet start. The Genesis Validator Deposit Smart Contract will be frozen once enough validator keys are registered. The freeze function of the Genesis Validator Contract has a 1-week delay to allow anyone a fair chance to participate.
 
 :::note
 
@@ -67,7 +67,7 @@ Once the Genesis Validator Contract is frozen, participants can choose and downl
 
 The second file, `genesis.json` contains the initial balances of the network. It will include the initial balances and total supply of LYX. The community will choose to set the initial supply at 35M, 42M (the LUKSO team's suggestion), or 100M.
 
-As a Genesis Validator, must run the network clients ahead of time with the downloaded genesis files. The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) will make this process easy and will be provided ahead of time.
+Genesis Validators must run the network clients with the downloaded genesis files before the network's starting time. The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) will make this process easy and will be provided beforehand.
 
 ## Further Information
 
