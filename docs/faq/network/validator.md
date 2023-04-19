@@ -41,7 +41,7 @@ This is not something the LUKSO team can help with. You are responsible for rese
 
 ### Are nodes operated through a CLI or will there also be a GUI option?
 
-Running a validator node requires a degree of technical proficiency and as such those looking to run a validator should be comfortable using the terminal to use the LUKSO CLI. There will also be a launchpad website which will streamline the process of generating deposit data and transferring validator funds, though the node setup and maintenance will require using the LUKSO CLI.
+Running a validator node requires a degree of technical proficiency and as such those looking to run a validator should be comfortable using the terminal to use the LUKSO CLI. There will also be a launchpad website which will streamline the process of generating deposit data and transferring validator funds, though the node setup and maintenance will require using the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli).
 
 ### What will be the different validator clients?
 
