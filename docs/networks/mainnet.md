@@ -52,13 +52,15 @@ The window for becoming a Genesis Validator will be around 3 weeks before launch
 
 ### Genesis Validator Smart Contract Address on Ethereum
 
-### 👉 0x...
+### 👉 [0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC)
 
 :::
 
 :::danger
+
 Make sure to always double check the address and that the URL is hosted under **lukso.network**!  
 👉 deposit.mainnet.**lukso.network**
+
 :::
 
 ### Starting the network
