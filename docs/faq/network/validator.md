@@ -87,10 +87,6 @@ udp:12000
 udp:30303
 ```
 
-### How can I open my ports on my node machine?
-
-The LUKSO CLI will automatically open the required ports for your node. This is due to the docker-compose configuration running in "host" mode. If you have a firewall configured, you should enable incoming traffic for the above mentioned ports. Ports will also need to be forwarded in your router.
-
 ### Do you receive higher returns If you deposit more than 32 LYX in a validator?
 
 No.
@@ -102,10 +98,6 @@ Mainnet and Testnet will run on the same client ports. If a validator wants to r
 ### How can I save gas when depositing funds for multiple validators.
 
 Use the official LUKSO deposit launchpad to assist with generating validator credentials and sending validator deposit transactions. **Be careful of phishing websites. Make sure you are on a genuine LUKSO domain before connecting any wallet or sending tokens.**
-
-### Can I run a validator node without using Docker?
-
-Currently the LUSKO CLI uses Docker for the client orchestration. If you would like you run a node without Docker you would have to set up the configuration yourself without using the LUKSO CLI.
 
 ## Security
 
