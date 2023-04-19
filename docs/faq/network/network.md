@@ -22,7 +22,7 @@ Yes, LUKSO will launch with EIP-1559 enabled.
 
 ### What will the LUKSO network token distribution voting process look like in practice?
 
-When using our genesis validator deposit launchpad, validators will be able to select their preferred token distribution from **35M, 42M or 100M LYX** tokens. The network will start with the option most voted for by genesis validators.
+When using our genesis validator deposit launchpad, validators can select their preferred token distribution from **35M, 42M or 100M LYX** tokens. The network will start with the option most voted for by genesis validators.
 
 ### Will the test network be open to community validators?
 
@@ -34,4 +34,4 @@ The length of the discovery phase will depend on several factors including the n
 
 ### How can I transfer my LYXe to LYX
 
-Details about the LYXe to LYX migration process for those who do not participate as genesis validators will come later, after the genesis and discovery phase of the network have completed.
+Details about the LYXe to LYX migration process for those who do not participate as genesis validators will come later, after the genesis and discovery phase of the network have been completed.

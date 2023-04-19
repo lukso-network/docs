@@ -23,13 +23,13 @@ No, you can run as many or as few validators as you want and there is no set min
 
 ### Can I withdraw my staked LYX?
 
-LUKSO will not launch with the Shapella upgrade enabled so there will be some time when staked tokens will be unable to be withdrawn. After the team are happy with the stability of the network and the number of validators, we will support the upgrade Shapella to enable token withdrawals.
+LUKSO will not launch with the Shapella upgrade enabled so there will be some time when staked tokens cannot be withdrawn. After the team are happy with the stability of the network and the number of validators, we will support the upgrade Shapella to enable token withdrawals.
 
 ### What is the easiest way of participating as a validator if I have limited technical knowledge?
 
-It should be noted that running a validator is a commitment and requires a degree of technical proficiency to maintain and set up correctly. People with limited technical knowledge may be more comfortable waiting for third party staking services to come to LUKSO before running a validator node.
+It should be noted that running a validator is a commitment and requires a degree of technical proficiency to maintain and set up correctly. People with limited technical knowledge may be more comfortable waiting for third-party staking services to come to LUKSO before running a validator node.
 
-In the future we aim to work with third party services to make setting up solo validator nodes easier with minimal setup. However, this will not be available at genesis as the network will need to be running for some time before third parties are able to integrate.
+In the future we aim to work with third party services to make setting up solo validator nodes easier with minimal setup. However, this will not be available at genesis as the network will need to be running for some time before third-parties are able to integrate.
 
 ### What penalties will I receive if my node goes offline?
 
@@ -37,11 +37,11 @@ A node going offline is usually not a slashable offense. However, your stake wil
 
 ### How can I arrange my taxes if I receive validator rewards?
 
-This is not something the LUKSO team can help with. You are responsible for researching your local tax jurisdiction and making sure you are compliant with your local tax regulations. There are many tax tools and services that were built for Ethereum validators that can also be helpful for LUKSO validators.
+This is not something the LUKSO team can help with. You are responsible for researching your local tax jurisdiction and making sure you are compliant with your local tax regulations. Many were built for Ethereum validators that can also be helpful for LUKSO validators.
 
 ### Are nodes operated through a CLI or will there also be a GUI option?
 
-Running a validator node requires a degree of technical proficiency and as such those looking to run a validator should be comfortable using the terminal to use the LUKSO CLI. There will also be a launchpad website which will streamline the process of generating deposit data and transferring validator funds, though the node setup and maintenance will require using the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli).
+Running a validator node requires a degree of technical proficiency and as such those looking to run a validator should be comfortable using the terminal to use the LUKSO CLI. There will also be a launchpad website which will streamline the process of generating deposit data and transferring validator funds. However, the node setup and maintenance will require using the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli).
 
 ### What will be the different validator clients?
 
@@ -59,7 +59,7 @@ For details on how to enable withdrawals after the Shapella upgrade see these gu
 
 ### Will lower latency positively influence my rewards?
 
-When the appointed time for a validator comes to propose a block the validator has 12s to vote. 2 scenarios could cause a validator to miss that slot:
+When the appointed time for a validator comes to propose a block, the validator has 12s to vote. 2 scenarios could cause a validator to miss that slot:
 
 1. The node is not synced up to the canonical head of the network.
 2. The validator needed more than 12s to propose the block.
@@ -68,13 +68,13 @@ There are no extra rewards for being very quick.
 
 ### How can I set up my node to maximize my peers?
 
-In the normal case a node will connect to the maximum peers. Each new peer connection goes through an evaluation step that will judge if a node is suitable, otherwise it will disconnect. You can check the logs to see disconnection from peers.
+Typically, a node will connect to the maximum number of peers. Each new peer connection goes through an evaluation step to judge if a node is suitable, otherwise, it will disconnect. You can check the logs to see disconnection from peers.
 
 Max peers can be configured in the configuration of your node, however more peers increase bandwidth and do not necessarily lead to benefits.
 
 ### Why is there a difference between my peers on the execution stats and consensus stats website?
 
-The consensus client follows the beacon chain and will sync by itself only to the final epoch. This means that once finality is reached it is not necessarily important how many peers the execution node has. The execution and consensus peers are also not necessarily the same. There is no mechanism where the consensus tells the execution node which peers it is connected to and vice versa.
+The consensus client follows the beacon chain and will sync by itself only to the final epoch. This means that once finality is reached, it is not necessarily important how many peers the execution node has. The execution and consensus peers are also not necessarily the same. There is no mechanism where the consensus tells the execution node which peers it is connected to and vice versa.
 
 ### What ports must be open on a node?
 
@@ -93,7 +93,7 @@ No.
 
 ### Will LUKSO mainnet and testnet use different ports?
 
-Mainnet and Testnet will run on the same client ports. If a validator wants to run two clients on the same machine it is up to the validator operator to configure separate ports for the two client. For example port **30303** for the first, port **30305** for second etc.
+Mainnet and Testnet will run on the same client ports. If a validator wants to run two clients on the same machine, it is up to the validator operator to configure separate ports for the two clients. For example port **30303** for the first, port **30305** for the second, etc.
 
 ### How can I save gas when depositing funds for multiple validators.
 
