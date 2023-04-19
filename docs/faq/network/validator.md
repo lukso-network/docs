@@ -103,6 +103,10 @@ Mainnet and Testnet will run on the same client ports. If a validator wants to r
 
 Use the official LUKSO deposit launchpad to assist with generating validator credentials and sending validator deposit transactions. **Be careful of phishing websites. Make sure you are on a genuine LUKSO domain before connecting any wallet or sending tokens.**
 
+### Can I run a validator node without using Docker?
+
+Currently the LUSKO CLI uses Docker for the client orchestration. If you would like you run a node without Docker you would have to set up the configuration yourself without using the LUKSO CLI.
+
 ## Security
 
 ### Can my node location be tracked?
