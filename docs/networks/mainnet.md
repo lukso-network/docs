@@ -52,7 +52,7 @@ The window for becoming a Genesis Validator will be around 3 weeks before launch
 
 ### Genesis Validator Smart Contract Address on Ethereum
 
-### 👉 [0x...](https://etherscan.io/address/0x)
+### 👉 0x...
 
 :::
 
@@ -67,10 +67,10 @@ Once the Genesis Validator Contract is frozen, participants can choose and downl
 
 The second file, `genesis.json` contains the initial balances of the network. It will include the initial balances and total supply of LYX. The community will choose to set the initial supply at 35M, 42M (the LUKSO team's suggestion), or 100M.
 
-As a Genesis Validator, must run the network clients ahead of time with the downloaded genesis files. The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) will make this process easy and will be provided ahead of time.
+Genesis Validators must run the network clients with the downloaded genesis files before the network's starting time. The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) will make this process easy and will be provided beforehand.
 
 ## Further Information
 
 - [LUKSO Mainnet Start Process Update #1](https://medium.com/lukso/the-puzzle-comes-together-milestone-update-2022-7b69571f63a2)
 - [LUKSO Mainnet Start Process Update #2](https://medium.com/lukso/lukso-mainnet-timeline-and-process-dd997fe811c8)
-- **[LUKSO Mainnet Start Process Update #3](http://lukso.network)**
+- [LUKSO Mainnet Start Process Update #3](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6)
