@@ -298,37 +298,23 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 ```
 
-### 4.2 - Create instances of Contracts
+### 4.2 - Create instance of UP
 
-The first step is to create new instances of the Universal Profile and the [Key Manager](../../standards/smart-contracts/lsp6-key-manager) smart contracts. We will need:
+The first step is to create an instance of the Universal Profile smart contract. We will need:
 
-- the contract ABIs (from our npm package [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)).
-- the contract addresses.
-
-If you have deployed your Universal Profile with our [lsp-factory.js](./create-profile.md) tool (like in our previous guide), the UP owner will point to the address of the Key Manager.
-
-Therefore, you can quickly obtain the address of your Key Manager by calling the [`owner()`](../../standards/smart-contracts/lsp0-erc725-account.md#owner) function on your Universal Profile's smart contract.
+- the contract ABI (from our npm package [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)).
+- the address of the Universal Profile contract.
 
 ```javascript title="Create contracts instances and get the Key Manager address"
 import Web3 from 'web3';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 const web3 = new Web3('https://rpc.l16.lukso.network');
 
-// create an instance of your Universal Profile
+// Step 4.2 - Create instance of our UP
 const universalProfileContract = new web3.eth.Contract(
   UniversalProfile.abi,
   profileAddress,
-);
-
-// if deployed with lsp-factory.js,
-// the Key Manager is the owner of the UP,
-// so retrieve your Key Manager address via `owner()` (= getter function)
-const keyManagerAddress = await universalProfileContract.methods.owner().call();
-const keyManagerContract = new web3.eth.Contract(
-  KeyManager.abi,
-  keyManagerAddress,
 );
 ```
 
@@ -336,19 +322,12 @@ const keyManagerContract = new web3.eth.Contract(
 
 The final step is to edit our `LSP3Profile` key on our Universal Profile with the new value obtained in **Step 3**. We can easily access the key-value pair from the encoded data obtained with erc725.js.
 
-Since a Key Manager owns our Universal Profile, the call will first check permissions through the Key Manager. We then need to **encode** the `setData` payload and pass it to our Universal Profile smart contract to perform this last step.
-
 ```javascript title="Preparing and executing the setData transaction"
-// encode the setData payload
-// (`encodedData` is the value obtain from Step 3.2)
-const abiPayload = await universalProfileContract.methods[
-  'setData(bytes32[],bytes[])'
-](encodedData.keys, encodedData.values).encodeABI();
-
-// execute via the KeyManager, passing the UP payload
-await keyManagerContract.methods
-  .execute(abiPayload)
-  .send({ from: myEOA.address, gasLimit: 300_000 });
+// Step 4.3 - Update LSP3Profile metadata on our Universal Profile
+await universalProfileContract.methods['setData(bytes32,bytes)'](
+  encodedData.keys[0],
+  encodedData.values[0],
+).send({ from: myEOA.address, gasLimit: 300_000 });
 ```
 
 ## Final Code
@@ -400,7 +379,6 @@ import { ERC725 } from '@erc725/erc725.js';
 import { LSPFactory } from '@lukso/lsp-factory.js';
 
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 
 import jsonFile from './UniversalProfileMetadata.json';
 
@@ -457,31 +435,17 @@ async function editProfileInfo() {
   const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
   console.log('EOA:', myEOA.address);
 
-  // Step 4.2 - Create instances of our Contracts
+  // Step 4.2 - Create instance of our UP
   const universalProfileContract = new web3.eth.Contract(
     UniversalProfile.abi,
     profileAddress,
   );
 
-  const keyManagerAddress = await universalProfileContract.methods
-    .owner()
-    .call();
-  const keyManagerContract = new web3.eth.Contract(
-    KeyManager.abi,
-    keyManagerAddress,
-  );
-
   // Step 4.3 - Set data (updated LSP3Profile metadata) on our Universal Profile
-
-  // encode the setData payload
-  const abiPayload = await universalProfileContract.methods[
-    'setData(bytes32[],bytes[])'
-  ](encodedData.keys, encodedData.values).encodeABI();
-
-  // execute via the KeyManager, passing the UP payload
-  await keyManagerContract.methods
-    .execute(abiPayload)
-    .send({ from: myEOA.address, gasLimit: 300_000 });
+  await universalProfileContract.methods['setData(bytes32[],bytes[])'](
+    encodedData.keys,
+    encodedData.values,
+  ).send({ from: myEOA.address, gasLimit: 300_000 });
 }
 editProfileInfo();
 ```

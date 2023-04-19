@@ -20,7 +20,7 @@ An [LSP0ERC725Account](./../smart-contracts/lsp0-erc725-account.md) on its own c
 
 Here comes the Key Manager. A smart contract that controls an LSP0ERC725Account, acting as its new owner. It then functions as a gateway for the **account** contract.
 
-The idea is to give [permissions](#permissions) to any `address`, like Externally Owned Accounts (EOA) or smart contracts. These can then interact with the LSP0ERC725Account **through the Key Manager**. The Key Manager will allow or restrict access based on the permissions set for the calling `address`.
+The idea is to give [permissions](#permissions) to **controllers**. These can be Externally Owned Accounts (EOA) or smart contracts. They can then interact with the LSP0ERC725Account. The Key Manager will allow or restrict access based on the permissions set for the calling `address`.
 
 Permissioned addresses can interact directly with the Key Manager or can sign a message to be executed by any other parties (users, relay services).
 
