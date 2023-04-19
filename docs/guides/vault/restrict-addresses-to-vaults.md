@@ -12,7 +12,7 @@ As mentioned in the [first Vault guide](./create-a-vault.md), the **Vault** can 
 
 This way, when **granting a third party permissions** to execute through your profile, this third party will only be able to interact with the Vault, and all the other assets will be safe.
 
-![Guide - Restrict addresses to an LSP9Vault](/img/guides/lsp9/restrict-protocol-to-vault.jpeg)
+![Guide - Restrict addresses to an LSP9Vault](/img/guides/lsp9/restrict-protocol-to-vault.jpg)
 
 ## Granting Permission to 3rd Parties
 
@@ -68,7 +68,6 @@ Finally, we will need a private key with the proper _permissions_, in our case [
 
 ```typescript title="Imports, Constants & EOA initialization"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import Web3 from 'web3';
@@ -90,7 +89,6 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 
 ```typescript title="Imports, Constants & EOA initialization"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import { ethers } from 'ethers';
@@ -110,60 +108,47 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 </Tabs>
 
-## Step 2 - Create contract instances
+## Step 2 - Create UP contract instance
 
-At this point we will create instances for the following contracts:
-
-- [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
-- [**Key Manager**](../../standards/universal-profile/lsp6-key-manager.md)
+At this point we will create instance for the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Universal Profile & Key Manager contract instances"
+```typescript title="Universal Profile contract instance"
 // create an instance of the UP
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
 );
-
-// getting the Key Manager address from UP
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the KeyManager
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 ```
 
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Universal Profile & Key Manager contract instances"
+```typescript title="Universal Profile contract instance"
 // create an instance of the UP
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
-
-// getting the Key Manager address from UP
-const keyManagerAddress = await universalProfile.owner();
-// create an instance of the KeyManager
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 ```
 
   </TabItem>
 
 </Tabs>
 
-## Step 3 - Encode the calldata for encoding [`AllowedCalls`](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls)
+## Step 3 - Generate the data key-value pair for [`AllowedCalls`](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls)
 
-Now we need to encode the **Allowed Calls** that we want for the _Third Party address_. After we do that, we will encode a calldata that will update the _Allowed Calls data key_ with the encoded **Allowed Calls**
+Now we need to generate a data key & a data value for the **Allowed Calls** that we want for the _Third Party address_. After we do that, we will update the _Allowed Calls data key_ with the encoded **Allowed Calls**
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Calldata that will update the Allowed Calls of a Controller address"
+```typescript title="Data key & value for updating the Allowed Calls of a Controller address"
 const allowedCallsDataKey = // constructing the data key of allowed addresses
   ERC725YDataKeys.LSP6['AddressPermissions:AllowedCalls'] +
   thirdPartyAddress.substring(2); // of the 3rd party
@@ -181,18 +166,13 @@ const allowedCallsDataValue = encodeKey(allowedCallsSchema, [
   vaultAddress,
   '0xffffffff',
 ]);
-
-// encode setData calldata on the UP
-const setDataCalldata = await universalProfile.methods[
-  'setData(bytes32,bytes)'
-](allowedCallsDataKey, allowedCallsDataValue).encodeABI();
 ```
 
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Calldata that will update the Allowed Calls of a Controller address"
+```typescript title="Data key & value for updating the Allowed Calls of a Controller address"
 const allowedCallsDataKey = // constructing the data key of allowed addresses
   ERC725YDataKeys.LSP6['AddressPermissions:AllowedCalls'] +
   thirdPartyAddress.substring(2); // of the 3rd party
@@ -210,29 +190,26 @@ const allowedCallsDataValue = encodeKey(allowedCallsSchema, [
   vaultAddress,
   '0xffffffff',
 ]);
-
-// encode setData calldata on the UP
-const setDataCalldata = universalProfile.interface.encodeFunctionData(
-  'setData(bytes32,bytes)',
-  [allowedCallsDataKey, allowedCallsDataValue],
-);
 ```
 
   </TabItem>
 
 </Tabs>
 
-## Step 4 - Execute via the Key Manager
+## Step 4 - Update the Universal profile data
 
-Finally we will send a transaction that will execute the `setData(...)` calldata on the Universal Profile via the Key Manager.
+Finally we will send a transaction that will update the Universal Profile AllowedCalls data key with the newly generated AllowedCalls.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Send transaction to be executed in the Universal profile contract via the Key Manager"
-// execute the setDataCalldata on the Key Manager
-await keyManager.methods['execute(bytes)'](setDataCalldata).send({
+```typescript title="Set the data key on the Universal Profile"
+// Set the AllowedCalls data key on the Universal Profile
+await universalProfile.methods['setData(bytes32,bytes)'](
+  allowedCallsDataKey,
+  allowedCallsDataValue,
+).send({
   from: myEOA.address,
   gasLimit: 600_000,
 });
@@ -242,9 +219,11 @@ await keyManager.methods['execute(bytes)'](setDataCalldata).send({
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Send transaction to be executed in the Universal Profile contract via the Key Manager"
-// execute the setDataCalldata on the Key Manager
-await myKM.connect(myEOA)['execute(bytes)'](setDataCalldata);
+```typescript title="Set the data key on the Universal Profile"
+// Set the AllowedCalls data key on the Universal Profile
+await universalProfile
+  .connect(myEOA)
+  ['setData(bytes32,bytes)'](allowedCallsDataKey, allowedCallsDataValue);
 ```
 
   </TabItem>
@@ -259,7 +238,6 @@ await myKM.connect(myEOA)['execute(bytes)'](setDataCalldata);
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import Web3 from 'web3';
@@ -280,11 +258,6 @@ const universalProfile = new web3.eth.Contract(
   universalProfileAddress,
 );
 
-// getting the Key Manager address from UP
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the KeyManager
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
-
 const allowedCallsDataKey = // constructing the data key of allowed addresses
   ERC725YDataKeys.LSP6['AddressPermissions:AllowedCalls'] +
   thirdPartyAddress.substring(2); // of the 3rd party
@@ -297,19 +270,11 @@ const allowedCallsSchema = {
   valueContent: '(Bytes4,Address,Bytes4)',
 };
 
-const allowedCallsDataValue = encodeKey(allowedCallsSchema, [
-  '0xffffffff',
-  vaultAddress,
-  '0xffffffff',
-]);
-
-// encode setData calldata on the UP
-const setDataCalldata = await universalProfile.methods[
-  'setData(bytes32,bytes)'
-](allowedCallsDataKey, allowedCallsDataValue).encodeABI();
-
-// execute the setDataCalldata on the Key Manager
-await keyManager.methods['execute(bytes)'](setDataCalldata).send({
+// Set the AllowedCalls data key on the Universal Profile
+await universalProfile.methods['setData(bytes32,bytes)'](
+  allowedCallsDataKey,
+  allowedCallsDataValue,
+).send({
   from: myEOA.address,
   gasLimit: 600_000,
 });
@@ -321,7 +286,6 @@ await keyManager.methods['execute(bytes)'](setDataCalldata).send({
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import { ethers } from 'ethers';
@@ -342,11 +306,6 @@ const universalProfile = new ethers.Contract(
   UniversalProfile.abi,
 );
 
-// getting the Key Manager address from UP
-const keyManagerAddress = await universalProfile.owner();
-// create an instance of the KeyManager
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
-
 const allowedCallsDataKey = // constructing the data key of allowed addresses
   ERC725YDataKeys.LSP6['AddressPermissions:AllowedCalls'] +
   thirdPartyAddress.substring(2); // of the 3rd party
@@ -365,14 +324,10 @@ const allowedCallsDataValue = encodeKey(allowedCallsSchema, [
   '0xffffffff',
 ]);
 
-// encode setData calldata on the UP
-const setDataCalldata = universalProfile.interface.encodeFunctionData(
-  'setData(bytes32,bytes)',
-  [allowedCallsDataKey, allowedCallsDataValue],
-);
-
-// execute the setDataCalldata on the Key Manager
-await myKM.connect(myEOA)['execute(bytes)'](setDataCalldata);
+// Set the AllowedCalls data key on the Universal Profile
+await universalProfile
+  .connect(myEOA)
+  ['setData(bytes32,bytes)'](allowedCallsDataKey, allowedCallsDataValue);
 ```
 
   </TabItem>

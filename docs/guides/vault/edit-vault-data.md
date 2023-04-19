@@ -54,7 +54,6 @@ Then we will initialize the EOA that we will further use.
 ```typescript title="Imports, Constants & EOA"
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
@@ -76,7 +75,6 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 ```typescript title="Imports, Constants & EOA"
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
@@ -235,13 +233,12 @@ Firstly we need to create instances for the following contracts:
 
 - [**Vault**](../../standards/universal-profile/lsp9-vault.md)
 - [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
-- [**Key Manager**](../../standards/universal-profile/lsp6-key-manager.md)
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Contract instances for the Universal Profile, Key Manager and Vault"
+```typescript title="Contract instances for the Universal Profile and Vault"
 // create an instance of the LSP9Vault
 const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
 // create an instance of the Universal Profile
@@ -249,18 +246,13 @@ const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   universalProfileAddress,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the LSP6KeyManager
-const keyManager = new web3.eth.Contract(LSP6KeyManager.abi, keyManagerAddress);
 ```
 
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Contract instances for the Universal Profile, Key Manager and Vault"
+```typescript title="Contract instances for the Universal Profile and Vault"
 // create an instance of the LSP9Vault
 const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
 // create an instance of the Universal Profile
@@ -268,11 +260,6 @@ const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
 );
-// get the owner of the Universal Profile
-// in our case it should be the address of the Key Manager
-const keyManagerAddress = await universalProfile.methods.owner().call();
-// create an instance of the LSP6KeyManager
-const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 ```
 
   </TabItem>
@@ -311,58 +298,22 @@ const setDataCalldata = vault.interface.encodeFunctionData(
 
 </Tabs>
 
-### Encode `execute(..)` calldata
+### Update the Vault data
 
-Thirdly, we need to encode another calldata that will trigger the [Vault URD data updating calldata](#step-32---encode-setdata-calldata).
+Lastly, we need to send the transaction that will update the Vault data through the Universal Profile's `execute(..)`.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Calldata for executing a the setData(..) calldata through the Universal Profile"
-// encode execute Calldata on the UP
-const executeCalldata = await universalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](
+```typescript title="Execute the calldata on the Universal Profile"
+// execute the `setData(bytes32,bytes)` calldata that updates the Vault data
+await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
   0, // OPERATION CALL
   vaultAddress,
   0, // value to transfer
   setDataCalldata,
-).encodeABI();
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Calldata for executing a the setData(..) calldata through the Universal Profile"
-// encode execute Calldata on the UP
-const executeCalldata = universalProfile.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [
-    0, // OPERATION CALL
-    vaultAddress,
-    0, // value to transfer
-    setDataCalldata,
-  ],
-);
-```
-
-  </TabItem>
-
-</Tabs>
-
-### Send transaction via Key Manager
-
-Lastly, we need to send the transaction that will send the [`execute(..)` calldata](#step-33---encode-execute-calldata) to the Universal profile via the Key Manager.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `executeCalldata` on the Key Manager
-await keyManager.methods['execute(bytes)'](executeCalldata).send({
+).send({
   from: myEOA.address,
   gasLimit: 600_000,
 });
@@ -372,9 +323,14 @@ await keyManager.methods['execute(bytes)'](executeCalldata).send({
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Execute the calldata on the Universal Profile via the Key Manager"
-// execute the `executeCalldata` on the Key Manager
-await keyManager.connect(myEOA)['execute(bytes)'](executeCalldata);
+```typescript title="Execute the calldata on the Universal Profile"
+// execute the `setData(bytes32,bytes)` calldata that updates the Vault data
+await universalProfile.connect(myEOA)['execute(uint256,address,uint256,bytes)'](
+  0, // OPERATION CALL
+  vaultAddress,
+  0, // value to transfer
+  setDataCalldata,
+);
 ```
 
   </TabItem>
@@ -396,14 +352,6 @@ const updateVaultURD = async (vaultURDAddress) => {
     UniversalProfile.abi,
     universalProfileAddress,
   );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
-  const keyManager = new web3.eth.Contract(
-    LSP6KeyManager.abi,
-    keyManagerAddress,
-  );
 
   // encode setData Calldata on the Vault
   const setDataCalldata = await vault.methods['setData(bytes32,bytes)'](
@@ -411,18 +359,13 @@ const updateVaultURD = async (vaultURDAddress) => {
     vaultURDAddress,
   ).encodeABI(); // Any other information can be stored here
 
-  // encode execute Calldata on the UP
-  const executeCalldata = await universalProfile.methods[
-    'execute(uint256,address,uint256,bytes)'
-  ](
+  // execute the `setDataCalldata` that updates the Vault data
+  await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
     0, // OPERATION CALL
     vaultAddress,
     0, // value to transfer
     setDataCalldata,
-  ).encodeABI();
-
-  // execute the `sexecuteCalldata` on the KM
-  await keyManager.methods['execute(bytes)'](executeCalldata).send({
+  ).send({
     from: myEOA.address,
     gasLimit: 600_000,
   });
@@ -445,11 +388,6 @@ const updateVaultURD = async (vaultURDAddress) => {
     universalProfileAddress,
     UniversalProfile.abi,
   );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
-  const keyManager = new ethers.Contract(keyManagerAddress, LSP6KeyManager.abi);
 
   // encode setData Calldata on the Vault
   const setDataCalldata = vault.interface.encodeFunctionData(
@@ -457,19 +395,15 @@ const updateVaultURD = async (vaultURDAddress) => {
     [ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, vaultURDAddress],
   ); // Any other information can be stored here
 
-  // encode execute Calldata on the UP
-  const executeCalldata = universalProfile.interface.encodeFunctionData(
-    'execute(uint256,address,uint256,bytes)',
-    [
+  // execute the `setDataCalldata` that updates the Vault data
+  await universalProfile
+    .connect(myEOA)
+    ['execute(uint256,address,uint256,bytes)'](
       0, // OPERATION CALL
       vaultAddress,
       0, // value to transfer
       setDataCalldata,
-    ],
-  );
-
-  // execute the `sexecuteCalldata` on the KM
-  await keyManager.connect(myEOA)['execute(bytes)'](executeCalldata);
+    );
 };
 
 // update the curent Vault's URD
@@ -489,7 +423,6 @@ await updateVaultURD(vaultURDAddress);
 ```typescript title="Deploy new Vault URD and update Vault's URD"
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
@@ -533,14 +466,6 @@ const updateVaultURD = async (vaultURDAddress) => {
     UniversalProfile.abi,
     universalProfileAddress,
   );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
-  const keyManager = new web3.eth.Contract(
-    LSP6KeyManager.abi,
-    keyManagerAddress,
-  );
 
   // encode setData Calldata on the Vault
   const setDataCalldata = await vault.methods['setData(bytes32,bytes)'](
@@ -548,18 +473,13 @@ const updateVaultURD = async (vaultURDAddress) => {
     vaultURDAddress,
   ).encodeABI(); // Any other information can be stored here
 
-  // encode execute Calldata on the UP
-  const executeCalldata = await universalProfile.methods[
-    'execute(uint256,address,uint256,bytes)'
-  ](
+  // execute the `setDataCalldata` that updates the Vault data
+  await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
     0, // OPERATION CALL
     vaultAddress,
     0, // value to transfer
     setDataCalldata,
-  ).encodeABI();
-
-  // execute the `sexecuteCalldata` on the KM
-  await keyManager.methods['execute(bytes)'](executeCalldata).send({
+  ).send({
     from: myEOA.address,
     gasLimit: 600_000,
   });
@@ -578,7 +498,6 @@ await updateVaultURD(vaultURDAddress);
 ```typescript title="Deploy new Vault URD and update Vault's URD"
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
@@ -612,14 +531,6 @@ const updateVaultURD = async (vaultURDAddress) => {
     UniversalProfile.abi,
     universalProfileAddress,
   );
-  // get the owner of the Universal Profile
-  // in our case it should be the address of the Key Manager
-  const keyManagerAddress = await universalProfile.methods.owner().call();
-  // create an instance of the LSP6KeyManager
-  const keyManager = new web3.eth.Contract(
-    LSP6KeyManager.abi,
-    keyManagerAddress,
-  );
 
   // encode setData Calldata on the Vault
   const setDataCalldata = await vault.methods['setData(bytes32,bytes)'](
@@ -627,21 +538,15 @@ const updateVaultURD = async (vaultURDAddress) => {
     vaultURDAddress,
   ).encodeABI(); // Any other information can be stored here
 
-  // encode execute Calldata on the UP
-  const executeCalldata = await universalProfile.methods[
-    'execute(uint256,address,uint256,bytes)'
-  ](
-    0, // OPERATION CALL
-    vaultAddress,
-    0, // value to transfer
-    setDataCalldata,
-  ).encodeABI();
-
-  // execute the `sexecuteCalldata` on the KM
-  await keyManager.methods['execute(bytes)'](executeCalldata).send({
-    from: myEOA.address,
-    gasLimit: 600_000,
-  });
+  // execute the `setDataCalldata` that updates the Vault data
+  await universalProfile
+    .connect(myEOA)
+    ['execute(uint256,address,uint256,bytes)'](
+      0, // OPERATION CALL
+      vaultAddress,
+      0, // value to transfer
+      setDataCalldata,
+    );
 };
 
 // deploy a new Vault URD and retrieve its address
