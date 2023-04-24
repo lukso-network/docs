@@ -3,6 +3,13 @@ title: Running a node
 sidebar_position: 2
 ---
 
+:::info
+
+This is a non working draft!
+The Testnet of LUKSO has not started yet!
+
+:::
+
 # Run a node
 
 LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUKSO Blockchain.
