@@ -5,8 +5,7 @@ sidebar_position: 2
 
 :::info
 
-This is a non working draft!
-The Testnet of LUKSO has not started yet!
+The Testnet of LUKSO has not started, and the LUKSO CLI is in active development. If you look forward to running a validator node for LUKSO, please wait for the official release announcement. If you want to become a genesis validator on mainnet, prepare your validator keys and deposit LYXe using our [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network).
 
 :::
 
@@ -49,10 +48,14 @@ It also allows you to run clients as a validator.
 
 ### Installing
 
-This will install the LUKSO CLI globally.
+:::info
+
+The current development state can be followed in the repository of the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/).
+
+:::
 
 ```bash
-$ curl https://install.lukso.network | sh
+# The official release script will be provided soon
 ```
 
 ### Initializing a working directory
