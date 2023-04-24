@@ -10,12 +10,6 @@ The Mainnet of LUKSO has not started yet!
 
 :::
 
-:::tip
-
-Get notified when genesis validator deposits are active: <https://deposit.mainnet.lukso.network>
-
-:::
-
 ## Network Architecture
 
 LUKSO's Blockchain Architecture runs the Ethereum protocol and consists of 2 to 4 clients:
