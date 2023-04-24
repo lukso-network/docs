@@ -51,6 +51,13 @@ It also allows you to run clients as a validator.
 
 This will install the LUKSO CLI globally.
 
+:::info
+
+This is a non working draft!
+The latest release of the CLI does not have our latest changes. [[PR 32](https://github.com/lukso-network/tools-lukso-cli/pull/32)]
+
+:::
+
 ```bash
 $ curl https://install.lukso.network | sh
 ```
