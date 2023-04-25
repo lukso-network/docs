@@ -71,6 +71,6 @@ The control of the contract is refully renounced _once the owner of the contract
 
 1. The owner initiates the process of ownerhsip renouncement via the ['renounceOwnership()'](../smart-contracts/lsp14-ownable-2-step.md#renounceownership) function.
 
-2. After waiting for 100 blocks to pass from the intiation of the ownership renouncement process the owner has a window of 100 block for confirming the renouncement via ['renounceOwnership()'](../smart-contracts/lsp14-ownable-2-step.md#renounceownership). If the owner doesn't confirm in that window of time, the process cannot be confirmed and the owner must start again if it was intended to renounce ownership.
+2. After waiting for 200 blocks to pass from the intiation of the ownership renouncement process the owner has a window of 200 block for confirming the renouncement via ['renounceOwnership()'](../smart-contracts/lsp14-ownable-2-step.md#renounceownership). If the owner doesn't confirm in that window of time, the process cannot be confirmed and the owner must start again if it was intended to renounce ownership.
 
 ![Renounce Ownership](/img/standards/lsp14/renounce-ownership.jpeg)
