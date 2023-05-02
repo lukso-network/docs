@@ -5,7 +5,7 @@ sidebar_position: 2
 
 :::info
 
-The Testnet of LUKSO has not started, and the LUKSO CLI is in active development. If you look forward to running a validator node for LUKSO, please wait for the official release announcement. If you want to become a genesis validator on mainnet, prepare your validator keys and deposit LYXe using our [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network).
+If you want to become a genesis validator on mainnet, prepare your validator keys and deposit LYXe using our [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network).
 
 :::
 
@@ -15,12 +15,10 @@ LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUK
 
 Currently tested execution clients are:
 
-- [Ergion](https://github.com/ledgerwatch/erigon)
 - [Geth](https://github.com/ethereum/go-ethereum)
 
 Currently tested consensus clients are:
 
-- [Lighthouse](https://github.com/sigp/lighthouse)
 - [Prysm](https://github.com/prysmaticlabs/prysm)
 
 ## System Requirements
@@ -55,19 +53,20 @@ The current development state can be followed in the repository of the [LUKSO CL
 :::
 
 ```bash
-# The official release script will be provided soon
+# Download the LUKSO CLI
+$ curl https://install.lukso.network | sh
 ```
 
 ### Initializing a working directory
 
-Before installing the clients, you need to create and initialize a working folder to store configs, optional validator keys, and data of your clients.
+Before installing the clients, you need to create and initialize a working directory to store configs, optional validator keys, and data of your clients.
 
 ```bash
-# Change [folder_name] with the folder name you want
-$ mkdir [folder_name]
+# Change [directory_name] with the folder name you want
+$ mkdir [directory_name]
 
 # Change to the folder
-$ cd ./[folder_name]
+$ cd ./[directory_name]
 
 # Initialize the folder.
 # Creates the necessary folder struture, and downloads all network configs from https://github.com/lukso-network/network-configs
