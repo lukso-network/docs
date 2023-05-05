@@ -26,7 +26,11 @@ When using our genesis validator deposit launchpad, validators can select their 
 
 ### Will the test network be open to community validators?
 
-The LUKSO test network will be open to whitelisted validator addresses only.
+The LUKSO test network will be open to whitelisted validator addresses only. The main reason is to allow maximum stability and participation uptime. Each depositor will have a limited number of keys he is whitelisted for so that if his node goes down, it will be less likely genuinely impact the network.
+
+The same applies to the execution and consensus dashboard of the testnet. Only long-term nodes from whitelisted partners will be listed to reduce spam and have a clear overview of the core infrastructure status. If you want to have monitoring and process visualization of your local node, we recommend using [Grafana](https://grafana.com/).
+
+If you plan to become a validator for testnet, please contact [testnet-validators@lukso.network](mailto:testnet-validators@lukso.network).
 
 ### Will there be a guaranteed minimum amount of time that the discovery phase will last before non-genesis validators can be added?
 

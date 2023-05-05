@@ -9,7 +9,13 @@ If you want to become a genesis validator on mainnet, prepare your validator key
 
 :::
 
-# Run a node
+:::info
+
+If you want to become a whitelisted validator on our testnet, prepare your validator keys, set up your node environment, and contact [testnet-validators@lukso.network](mailto:testnet-validators@lukso.network).
+
+:::
+
+# Client Support
 
 LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUKSO Blockchain.
 
@@ -39,7 +45,7 @@ Currently tested consensus clients are:
 | 13000 | TCP      | consensus syncing   | port must be open |
 | 12000 | UDP      | consensus discovery | port must be open |
 
-## Using the CLI
+## Using the LUKSO CLI
 
 The LUKSO CLI allows you to install, run and manage clients that run the LUKSO network.
 It also allows you to run clients as a validator.
@@ -47,6 +53,8 @@ It also allows you to run clients as a validator.
 ### Installing
 
 :::info
+
+Right now, the CLI can run devnets and our official testnet. Mainnet functionality and the related genesis files will be provided after the [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network) has been frozen. The unlock will happen with anoter version update that has to be downloaded, overwriting the current version.
 
 The current development state can be followed in the repository of the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/).
 
@@ -58,6 +66,12 @@ $ curl https://install.lukso.network | sh
 ```
 
 ### Initializing a working directory
+
+:::info
+
+For extended documentation, please have a look at the [official LUKSO CLI documentation](https://github.com/lukso-network/tools-lukso-cli/#lukso-cli).
+
+:::
 
 Before installing the clients, you need to create and initialize a working directory to store configs, optional validator keys, and data of your clients.
 
