@@ -5,12 +5,6 @@ sidebar_position: 2
 
 :::info
 
-If you want to become a genesis validator on mainnet, prepare your validator keys and deposit LYXe using our [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network).
-
-:::
-
-:::info
-
 If you want to become a whitelisted validator on our testnet, prepare your validator keys, set up your node environment, and contact [testnet-validators@lukso.network](mailto:testnet-validators@lukso.network).
 
 :::
@@ -105,10 +99,10 @@ $ lukso install
 ### Running the testnet
 
 The following command will spin up your execution and consensus client and connect to the public testnet.
-You can see the running clients' status and logs using the `lukso status` and `lukso log execution` or `lukso log consensus` commands.
+You can see the running clients' status and logs using the `lukso status` and `lukso logs execution` or `lukso logs consensus` commands.
 
 ```bash
-$ lukso start --testnet
+$ lukso start
 
 # Check the status of runningh clients
 $ lukso status
