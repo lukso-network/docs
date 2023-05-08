@@ -24,7 +24,7 @@ LYX is the native cryptocurrency of the LUKSO Blockchain and is required to secu
 
 "[LYXe](https://etherscan.io/token/0xA8b919680258d369114910511cc87595aec0be6D)" is LYX on the Ethereum Blockchain and is the token that the [Reversible ICO](https://rico.lukso.network) returned.
 
-Once the [LUKSO mainnet](../networks/mainnet.md) starts, there will be a migration of LYXe to LYX on the LUKSO Blockchain. Both LYXe and LYX represent the same asset but on different Blockchain networks.
+Once the [LUKSO mainnet](../networks/mainnet/running-a-node.md) starts, there will be a migration of LYXe to LYX on the LUKSO Blockchain. Both LYXe and LYX represent the same asset but on different Blockchain networks.
 
 ## I am a developer. Where do I start?
 

@@ -18,7 +18,7 @@ module.exports = {
       {
         redirects: [
           {
-            from: '/networks/l16-testnet/parameters.md',
+            from: '/networks/l16-testnet/parameters',
             to: '/networks/testnet/parameters',
           },
           {
@@ -44,6 +44,10 @@ module.exports = {
           {
             from: '/networks/l16-testnet',
             to: '/networks/testnet/parameters',
+          },
+          {
+            from: '/networks/mainnet',
+            to: '/networks/mainnet/running-a-node',
           },
           {
             from: '/contracts/erc725-account',
@@ -121,7 +125,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'networks/mainnet',
+          docId: 'networks/mainnet/running-a-node',
           position: 'left',
           label: 'Networks',
         },
