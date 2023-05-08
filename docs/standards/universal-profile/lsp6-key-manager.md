@@ -18,11 +18,11 @@ import TabItem from '@theme/TabItem';
 
 An [LSP0ERC725Account](./../smart-contracts/lsp0-erc725-account.md) on its own comes with limited usability. Since it is an **owned contract**, only the account's owner can write data into it or use it to interact with other smart contracts.
 
-Here comes the Key Manager. A smart contract that controls a LSP0ERC725Account, acting as its new owner. It functions as a gateway for the **account** contract, and allow not only one main contract owner but multiple **controllers** to interact with the LSP0ERC725Account.
+Here comes the Key Manager. A smart contract that controls a LSP0ERC725Account, acting as its new owner. It functions as a gateway for the **account** contract and allows not only one main contract owner but multiple **controllers** to interact with the LSP0ERC725Account.
 
 > **What is a _"controller"_?**
 >
-> in the LSP6 Key Manager, the term _"controller"_ refers to a **permissioned address**. These addresses **have [permissions](#permissions) that allow them to perform certain action on the LSP0ERC725Account** linked with the Key Manager (e.g: setting data or transferring LYX from the account).
+> in the LSP6 Key Manager, the term _"controller"_ refers to a **permissioned address**. These addresses **have [permissions](#permissions) that allow them to perform certain actions on the LSP0ERC725Account** linked with the Key Manager (e.g., setting data or transferring LYX from the account).
 >
 > Controllers can be Externally Owned Accounts (EOA) or smart contracts. The Key Manager will allow or restrict access based on the permissions set for the calling `address`.
 
@@ -36,7 +36,7 @@ Controllers can interact directly with the Key Manager or [sign messages that ca
 
 ![LSP6 Key Manager overview not allowed](/img/standards/lsp6/lsp6-key-manager-overview-not-allowed.jpeg)
 
-Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the data key - value store of the LSP0ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
+Permissions for addresses are not stored on the Key Manager. Instead, they are **stored inside the data key-value store of the LSP0ERC725Account** linked to the Key Manager. This way, it is possible to easily **upgrade** the Key Manager without resetting all the permissions again.
 
 ---
 
@@ -134,7 +134,7 @@ The `CHANGEEXTENSIONS` permission enables to edit the extension contract address
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
     </p>
 
-The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific [Type IDs](../generic-standards/lsp1-universal-receiver.md#what-does-this-standard-represent), when no contracts extension was initially setup for a specific Type ID.
+The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific [Type IDs](../generic-standards/lsp1-universal-receiver.md#what-does-this-standard-represent) when no contracts extension was initially set up for a specific Type ID.
 
 See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
 
@@ -217,7 +217,7 @@ The `CALL` permission enables to use the linked ERC725Account to call functions 
 1. to specific contract addresses (contracts).
 2. to contracts implementing specific type of _interfaces standards_, that can be detected using ERC165 interfaces IDs.
 
-It uses the `CALL` opcode which allows to change states on the called contract.
+It uses the `CALL` opcode, which allows to change states on the called contract.
 
 </details>
 
@@ -257,7 +257,7 @@ This permission allows executing code and functions from other contracts in the 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000010000</code>
     </p>
 
-The permission `DEPLOY` enables controller to use the linked ERC725Account to deploy new smart contracts (the linked account will act as the deployer of the new contract).
+The permission `DEPLOY` enables the controller to use the linked ERC725Account to deploy new smart contracts (the linked account will act as the deployer of the new contract).
 
 Developers should provide the contract's bytecode to be deployed in the payload (ABI-encoded) passed to the Key Manager.
 
@@ -271,16 +271,17 @@ Developers should provide the contract's bytecode to be deployed in the payload 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000040000</code>
     </p>
 
-The permission `SETDATA` allows a controller to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key - value store of the linked `ERC725Account`.
+The permission `SETDATA` allows a controller to write any form of data in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key-value store of the linked `ERC725Account`.
 
-However, this permission restrict the controller to set data for only specific data keys set via **[allowed ERC725Y Data Keys](#allowed-erc725y-keys)**
+However, this permission restricts the controller to set data for only specific data keys set via **[allowed ERC725Y Data Keys](#allowed-erc725y-keys)**
 
 :::info
+
 A controller with permission `SETDATA` cannot set or edit data keys related to:
 
-- permissions: which require the permissions `ADDCONTROLLER` or `CHANGEPERMISSIONS`.
-- LSP1 data keys: which require the permissions `ADDUNIVERSALRECEIVERDELEGATE` or `CHANGEUNIVERSALRECEIVERDELEGATE`.
-- LSP17 data keys: which require the permissions `ADDEXTENSIONS` or `CHANGEEXTENSIONS`.
+- permissions: requires the permission of `ADDCONTROLLER` or `CHANGEPERMISSIONS`.
+- LSP1 data keys: requires the permission of `ADDUNIVERSALRECEIVERDELEGATE` or `CHANGEUNIVERSALRECEIVERDELEGATE`.
+- LSP17 data keys: requires the permission of `ADDEXTENSIONS` or `CHANGEEXTENSIONS`.
 
 :::
 
@@ -312,7 +313,7 @@ Developers can use the `DECRYPT` permission to decrypt data or messages, for ins
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000200000</code>
     </p>
 
-The permission `SIGN` enables a controller to authenticate on behalf of the UP. It can be used primarily in web2.0 apps to [sign login messages](../../guides/browser-extension/sign-in-with-ethereum).
+The permission `SIGN` enables a controller to authenticate on behalf of the UP. It can be used primarily in Web 2.0 apps to [sign login messages](../../guides/browser-extension/sign-in-with-ethereum).
 
 </details>
 
@@ -324,9 +325,9 @@ When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/l
 
 ### SUPER Permissions
 
-The super permissions grants the same permissions as their non-super counter parts, with the difference being that the checks on restrictions for [**Allowed Calls**](#allowed-calls) and [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) are _skipped_.
+The super permissions grant the same permissions as their non-super counterparts, with the difference being that the checks on restrictions for [**Allowed Calls**](#allowed-calls) and [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) are _skipped_.
 
-This allows for cheaper transactions whether these restrictions are set or not.
+The skip allows for cheaper transactions, whether these restrictions are set or not.
 
 <details>
     <summary><code>SUPER_TRANSFERVALUE</code></summary>
@@ -344,7 +345,7 @@ Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EO
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
     </p>
 
-Same as `CALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the controller has any of these restrictions set.
+Same as `CALL`, but it allows interacting with any contract. This will not check if the controller has any [**Allowed Calls**](#allowed-calls) restrictions set.
 
 </details>
 
@@ -354,7 +355,7 @@ Same as `CALL`, but allowing to interact with any contract. This will not check 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
     </p>
 
-Same as `STATICCALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the controller has any of these restrictions set.
+Same as `STATICCALL`, but it allows interacting with any contract. This will not check if the controller has any [**Allowed Calls**](#allowed-calls) restrictions set.
 
 </details>
 
@@ -364,7 +365,7 @@ Same as `STATICCALL`, but allowing to interact with any contract. This will not 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
     </p>
 
-Same as `DELEGATECALL`, but allowing to interact with any contract. This will not check for [**Allowed Calls**](#allowed-calls) if the controller has any of these restrictions set.
+Same as `DELEGATECALL`, but allows interacting with any contract. This will not check if the controller has any [**Allowed Calls**](#allowed-calls) restrictions set.
 
 </details>
 
@@ -380,13 +381,13 @@ Same as `SETDATA`, but allowing to set any ERC725Y data keys. This will not chec
 
 :::caution
 
-Use with caution, as even if restrictions to certain [**Allowed Calls**](#allowed-calls) or [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) are set for a controller address, they will be ignored.
+Use with caution: If the controller address has [**Allowed Calls**](#allowed-calls) or [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) restrictions set, they will be ignored.
 
 :::
 
 ### Combining Permissions
 
-Permissions can be combined if a controller needs to hold more than one permission. To do so:
+Permissions can be combined if a controller needs more than one permission. To do so:
 
 1. calculate the sum of the decimal value of each permission.
 2. convert the result back into hexadecimal.
@@ -480,7 +481,7 @@ The values set under these permission data keys **MUST be of the following forma
 
 :::caution
 
-To **add / remove entries in the list of allowed calls or ERC725Y Data Keys**, the **whole compact bytes array** should be encoded again and reset. Each update **overrides the entire previous state**. Note that this process can be expensive in gas depending on the total number of allowed calls.
+To **add or remove entries in the list of allowed calls or ERC725Y Data Keys**, the **whole compact bytes array** should be encoded again and reset. Each update **overrides the entire previous state**. Note that this process can be expensive in gas, depending on the total number of allowed calls.
 
 :::
 
@@ -488,7 +489,7 @@ To **add / remove entries in the list of allowed calls or ERC725Y Data Keys**, t
 
 A controller can hold one (or more) permissions, enabling it to perform multiple _"actions"_ on an ERC725Account. Such _"actions"_ include **setting data**, **calling other contracts**, **transferring native tokens**, etc.
 
-To grant permission(s) to a controller, set the following data key - value pair in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
+To grant permission(s) to a controller, set the following data key-value pair in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
 
 - **key:** `0x4b80742de2bf82acb3630000<address>`
 - **value:** one of the available permission below. To give multiple permission, see the Combining permissions section.
@@ -568,7 +569,7 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 
 </details>
 
-To allow a controller to execute any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key - value pair below can be set in the ERC725Y contract storage.
+To allow a controller to execute any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742de2bf393a64c70000<controller-address>`
   - where `<address>` is the controller `address`
@@ -631,7 +632,7 @@ Allowing a specific standard does not offer security over the inner workings or 
 
 If a controller is allowed to [`SETDATA`](#permissions) on an ERC725Account, it is possible to restrict which data keys this address can set or update.
 
-To restrict a controller to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following data key - value pair can be set in the ERC725Y contract storage. Encode data as a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
+To restrict a controller to only be allowed to set the key `LSP3Profile` (`0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`), the following data key-value pair can be set in the ERC725Y contract storage. Encode data as a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
 
 - **key:** `0x4b80742de2bf866c29110000<address>`
 - **value(s):** `0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`
@@ -644,11 +645,11 @@ You can set 2 types of **ERC725Y Data Keys**:
 
 - _Fixed-size Data Keys_
 
-A **fixed-size Data Key** is a data key that has a fixed length of 32 bytes. If a _controller address_ has a fixed-size allowed ERC725Y data key set, then that _controller_ can only change the value of that specific fixed-size data key.
+A **fixed-size Data Key** is a data key with a fixed length of 32 bytes. If a _controller address_ has a fixed-size allowed ERC725Y data key set, then that _controller_ can only change the value of that specific fixed-size data key.
 
 - _Dynamic-size Data Keys_
 
-A **dynamic-size Data Key** is a data key that can have a length from 1 byte to 31 bytes. If a _controller_ has a dynamic-size allowed ERC725Y data key set, then that _controller_ can change any data key that starts with the _dynamic-size data key_.
+A **dynamic-size Data Key** is a data key with a variable length from 1 byte up to 31 bytes. If a _controller_ has a dynamic-size allowed ERC725Y data key set, then that _controller_ can change any data key that starts with the _dynamic-size data key_.
 
 _**Examples:**_
 
@@ -661,7 +662,7 @@ With that setup you allowed Alice to update only the value of the **Allowed ERC7
 
 - _Dynamic-size Data Keys_
 
-Let's imagine the following situation, you set an **Allowed ERC725Y dynamic-size Data Key** (e.g. `0xbeefbeefbeefbeef`) for a controller (e.g. Bob).
+Let's imagine the following situation: You set an **Allowed ERC725Y dynamic-size Data Key** (e.g., `0xbeefbeefbeefbeef`) for a controller (e.g., Bob).
 With that setup you allowed Bob to set any **Data Key** that starts with `0xbeefbeefbeefbeef`.
 
 E.g:
@@ -685,8 +686,7 @@ E.g.:
 - `0x5ef83ad9559033e6e941db7d7c495acd` (**length: 16 bytes** = `0x0010`)
 - `0xbeefbeef` (**length: 4 bytes** = `0x0004`)
 
-A CompactBytesArray for these 3 x ERC725Y Data Keys would look like this:
-`0x`**`0020`**`5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`**`0010`**`5ef83ad9559033e6e941db7d7c495acd`**`0004`**`beefbeef`
+A CompactBytesArray for these 3 different ERC725Y Data Keys would look like this: `0x`**`0020`**`5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`**`0010`**`5ef83ad9559033e6e941db7d7c495acd`**`0004`**`beefbeef`
 
 </details>
 
@@ -714,7 +714,7 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 :::info
 
-**If no Allowed ERC725Y Data Keys are set, then the controller cannot set any value for any key.**
+**If no Allowed ERC725Y Data Keys are set, the controller cannot set any value for any key.**
 
 :::
 
@@ -724,10 +724,10 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 There are 2 ways to interact with the ERC725Account linked with the Key Manager.
 
-- **direct execution**: the controller is the caller (`msg.sender`) and sends directly a **payload** to the Key Manager (= abi-encoded function call on the linked ERC725Account) to the KeyManager via [`execute(...)`](../smart-contracts/lsp6-key-manager.md#execute).
+- **direct execution**: the controller is the caller (`msg.sender`) and sends a **payload** to the Key Manager directly (= abi-encoded function call on the linked ERC725Account) to the KeyManager via [`execute(...)`](../smart-contracts/lsp6-key-manager.md#execute).
 - **relay execution**: a controller **A** signs a payload and an executor `address` **B** (_e.g. a relay service_) executes the payload on behalf of the signer via [`executeRelayCall(...)`](../smart-contracts/lsp6-key-manager.md#executerelaycall).
 
-The main difference between direct _vs_ relay execution is that with direct execution, the controller `address` is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer `address` (a controller) can interact with the ERC725Account without having to pay for gas fee.
+The main difference between direct _vs_ relay execution is that with direct execution, the controller `address` is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer `address` (a controller) can interact with the ERC725Account without paying a gas fee.
 
 ![Direct vs Relay Execution](/img/standards/lsp6/lsp6-direct-vs-relay-execution.jpeg)
 
