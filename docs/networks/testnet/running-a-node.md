@@ -54,7 +54,7 @@ The LUKSO CLI is running natively on the node's operating system. We are current
 
 :::info
 
-Right now, the CLI can run devnets and our official testnet. Mainnet functionality and the related genesis files will be provided after the [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network) has been frozen. The unlock will happen with anoter version update that has to be downloaded, overwriting the current version.
+Right now, the CLI can run devnets and our official testnet. Mainnet functionality and the related genesis files will be provided after the [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network) has been frozen. The unlock will happen with another version update that has to be downloaded, overwriting the current version.
 
 The current development state can be followed in the repository of the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/).
 
