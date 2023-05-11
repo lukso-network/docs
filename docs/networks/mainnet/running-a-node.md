@@ -103,7 +103,7 @@ Currently tested consensus clients are:
 The LUKSO CLI allows you to install, run and manage clients that run the LUKSO network.
 It also allows you to run clients as a validator.
 
-:::warning
+:::tip
 
 The LUKSO CLI is running natively on the node's operating system. We are currently working on providing an additional container setup via Docker to support running multiple blockchain networks on one single node. Containers will also allow running the LUKSO testnet and mainnet on one device.
 
@@ -113,7 +113,7 @@ The LUKSO CLI is running natively on the node's operating system. We are current
 
 :::info
 
-Right now, the CLI can run devnets and our official testnet. Mainnet functionality and the related genesis files will be provided after the [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network) has been frozen. The unlock will happen with anoter version update that has to be downloaded, overwriting the current version.
+Right now, the CLI can run devnets and our official testnet. Mainnet functionality and the related genesis files will be provided after the [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network) has been frozen. The unlock will happen with another version update that has to be downloaded, overwriting the current version.
 
 The current development state can be followed in the repository of the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/).
 
