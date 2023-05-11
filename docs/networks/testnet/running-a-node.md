@@ -4,6 +4,7 @@ sidebar_position: 2
 ---
 
 :::info
+Testnet validators are core members and organizations wanting to run and maintain their LUKSO Testnet node in a stable environment over a long period to ensure healthy uptimes, stability, and quick response times from clients as demand from developers rises.
 
 If you want to become a whitelisted validator on our testnet, prepare your validator keys, set up your node environment, and contact [testnet-validators@lukso.network](mailto:testnet-validators@lukso.network).
 
@@ -44,7 +45,7 @@ Currently tested consensus clients are:
 The LUKSO CLI allows you to install, run and manage clients that run the LUKSO network.
 It also allows you to run clients as a validator.
 
-:::warning
+:::tip
 
 The LUKSO CLI is running natively on the node's operating system. We are currently working on providing an additional container setup via Docker to support running multiple blockchain networks on one single node. Containers will also allow running the LUKSO testnet and mainnet on one device.
 
@@ -91,6 +92,12 @@ $ lukso init
 
 Now you can install the clients that you wish to run. These clients will install globally but are set as default clients within your working directories config. So make sure to run it within the working folder.
 
+:::info
+
+If you want to run your node with validators, make sure to choose the `Prysm` consensus client as we do not support other validator clients right now.
+
+:::
+
 ```bash
 # within the working folder run
 $ lukso install
@@ -102,19 +109,34 @@ The following command will spin up your execution and consensus client and conne
 You can see the running clients' status and logs using the `lukso status` and `lukso logs execution` or `lukso logs consensus` commands.
 
 ```bash
-$ lukso start
+$ lukso start --testnet
 
 # Check the status of runningh clients
 $ lukso status
 
 # Check the logs of a running client
-$ lukso logs execution
+$ lukso logs execution --testnet
 # Or
-$ lukso logs consensus
+$ lukso logs consensus --testnet
 
 # Stop all running clients
 $ lukso stop
 
+```
+
+### Becoming a Testnet Validator
+
+To become a validator, you need a whitelisted wallet address with a sufficient LYXt supply to set them up. Please have a look at the Testnet validator notice at the top of the page. After you became whitelisted, visit the official [Testnet Deposit Launchpad](https://deposit.testnet.lukso.network/) and cautiously go through the process of generating the specified amount of keys you are allowed. Then continue depositing your LYXt to them.
+
+Within the LUKSO CLI, import your keys and start the node with the validator functionality.
+
+```bash
+# Import your key directory
+$ lukso validator import
+
+# Start the node as a validator
+# Define your transaction fee wallet address
+$ lukso validator start --validator --transaction-fee-recipient "0x1234..." --testnet
 ```
 
 ### Documentation

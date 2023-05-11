@@ -103,7 +103,7 @@ Currently tested consensus clients are:
 The LUKSO CLI allows you to install, run and manage clients that run the LUKSO network.
 It also allows you to run clients as a validator.
 
-:::warning
+:::tip
 
 The LUKSO CLI is running natively on the node's operating system. We are currently working on providing an additional container setup via Docker to support running multiple blockchain networks on one single node. Containers will also allow running the LUKSO testnet and mainnet on one device.
 
