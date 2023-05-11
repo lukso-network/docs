@@ -67,7 +67,7 @@ import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
 
@@ -87,7 +87,7 @@ import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
 
@@ -130,7 +130,7 @@ const keyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddre
 ```typescript title="Contract instances"
 const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfileContract.abi);
 
-const keyManagerAddress = await universalProfile.owner();
+const keyManagerAddress = await universalProfile.connect(controllerAccount).owner();
 const keyManager = new ethers.Contract(keyManagerAddress, KeyManagerContract.abi);
 ```
 
@@ -165,7 +165,7 @@ const nonce = await keyManager.methods.getNonce(controllerAccount.address, chann
 
 ```typescript title="Get the controller key nonce"
 const channelId = 0;
-const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
+const nonce = await keyManager.connect(controllerAccount).getNonce(controllerAccount.address, channelId);
 ```
 
   </TabItem>
@@ -201,7 +201,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData(
   [
     0, // Operation type: CALL
     '0x...', // Recipient address
-    web3.utils.toWei('1'), // Value
+    ethers.utils.parseUnits("1", "ether"), // Value
     '0x', // Data
   ],
 );
@@ -260,12 +260,9 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 ```typescript title="Sign the transaction"
 const { chainId } = await provider.getNetwork(); // will be 2828 on L16
 
-let encodedMessage = web3.utils.encodePacked(
-  { value: LSP6_VERSION, type: 'uint256' },
-  { value: chainId, type: 'uint256' },
-  { value: nonce, type: 'uint256' },
-  { value: msgValue, type: 'uint256' },
-  { value: abiPayload, type: 'bytes' },
+let encodedMessage = ethers.utils.solidityPack(
+    ["uint256", "uint256", "uint256", "uint256", "bytes"],
+    [LSP6_VERSION, chainId, nonce, msgValue, abiPayload]
 );
 
 let eip191Signer = new EIP191Signer();
@@ -348,7 +345,7 @@ import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
 
@@ -418,7 +415,7 @@ import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
 
@@ -433,33 +430,30 @@ const universalProfile = new ethers.Contract(
   UniversalProfileContract.abi,
 );
 
-const keyManagerAddress = await universalProfile.owner();
+const keyManagerAddress = await universalProfile.connect(controllerAccount).owner();
 const keyManager = new ethers.Contract(
   keyManagerAddress,
   KeyManagerContract.abi,
 );
 
 const channelId = 0;
-const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
+const nonce = await keyManager.connect(controllerAccount).getNonce(controllerAccount.address, channelId);
 
 const abiPayload = universalProfile.interface.encodeFunctionData(
   'execute(uint256,address,uint256,bytes)',
   [
     0, // Operation type: CALL
     '0x...', // Recipient address
-    web3.utils.toWei('1'), // Value
+    ethers.utils.parseUnits("1", "ether"), // Value
     '0x', // Data
   ],
 );
 
 const { chainId } = await provider.getNetwork(); // will be 2828 on L16
 
-let encodedMessage = web3.utils.encodePacked(
-  { value: LSP6_VERSION, type: 'uint256' },
-  { value: chainId, type: 'uint256' },
-  { value: nonce, type: 'uint256' },
-  { value: msgValue, type: 'uint256' },
-  { value: abiPayload, type: 'bytes' },
+let encodedMessage = ethers.utils.solidityPack(
+    ["uint256", "uint256", "uint256", "uint256", "bytes"],
+    [LSP6_VERSION, chainId, nonce, msgValue, abiPayload]
 );
 
 let eip191Signer = new EIP191Signer();

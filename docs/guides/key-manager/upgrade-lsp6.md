@@ -66,7 +66,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
@@ -81,7 +81,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
@@ -170,11 +170,10 @@ await newKeyManager
   <TabItem value="ethersjs" label="ethers.js">
 
 ```js title="Deploy a new Key Manager"
-const keyManagerFactory = new ethers.ContractFactory(
+const newKeyManager = await new ethers.ContractFactory(
   LSP6KeyManager.abi,
   LSP6KeyManager.bytecode,
-);
-const newKeyManager = await keyManagerFactory.deploy(universalProfileAddress);
+).connect(account).deploy(universalProfileAddress);
 ```
 
   </TabItem>
@@ -267,11 +266,10 @@ The upgrade has been completed successfully.
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
-const keyManagerAddress = '0x...';
 
 const upgradeLSP6 = async () => {
   // Initialize the controller account
@@ -324,11 +322,10 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
-const keyManagerAddress = '0x...';
 
 const upgradeLSP6 = async () => {
   // Initialize the controller account
@@ -338,11 +335,10 @@ const upgradeLSP6 = async () => {
   const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi);
 
   // Deploy a new LSP6 Key Manager
-  const keyManagerFactory = new ethers.ContractFactory(
+  const newKeyManager = await new ethers.ContractFactory(
     LSP6KeyManager.abi,
     LSP6KeyManager.bytecode,
-  );
-  const newKeyManager = await keyManagerFactory.deploy(universalProfileAddress);
+  ).connect(account).deploy(universalProfileAddress);
 
   // Transfer the ownership of your Universal Profile from the current LSP6 Key Manager to a new LSP6 Key Manager
   await universalProfile
@@ -380,10 +376,9 @@ import LSP0ERC725YAccount from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Y
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const universalProfileAddress = '0x...';
-const keyManagerAddress = '0x...';
 
 const testLSP6 = async () => {
   const universalProfile = new web3.eth.Contract(LSP0ERC725YAccount.abi, universalProfileAddress);
