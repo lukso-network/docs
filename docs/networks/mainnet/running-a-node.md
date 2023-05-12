@@ -9,7 +9,7 @@ sidebar_position: 2
 
 ⚠️ The Mainnet of LUKSO has not started yet!
 
-💡 If you want to become a genesis validator on mainnet, prepare your validator keys and deposit LYXe using our [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network).
+💡 The [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code) has been frozen on 9th May, and we are currently preparing the mainnet to start on 23rd May 2023.
 
 :::
 
@@ -113,7 +113,7 @@ The LUKSO CLI is running natively on the node's operating system. We are current
 
 :::info
 
-Right now, the CLI can run devnets and our official testnet. Mainnet functionality and the related genesis files will be provided after the [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network) has been frozen. The unlock will happen with another version update that has to be downloaded, overwriting the current version.
+Right now, the CLI can run devnets and our official LUKSO Testnet. We are currently preparing to enable mainnet functionality and support the related genesis files. The unlock will happen with another version update that has to be downloaded, overwriting the current version.
 
 The current development state can be followed in the repository of the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/).
 
@@ -150,6 +150,12 @@ $ lukso init
 
 Now you can install the clients that you wish to run. These clients will install globally but are set as default clients within your working directories config. So make sure to run it within the working folder.
 
+:::info
+
+If you want to run your node with validators, make sure to choose the `Prysm` consensus client as we do not support other validator clients right now.
+
+:::
+
 ```bash
 # within the working folder run
 $ lukso install
@@ -174,6 +180,27 @@ $ lukso logs consensus
 # Stop all running clients
 $ lukso stop
 
+```
+
+### Becoming a Validator
+
+:::info
+
+Only Genesis Validators can run the back structure of the network for now. The corresponding Genesis Deposit Contract was frozen on the 9th of May. Until the [Discovery Month](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) is over, and LYXe Migration is live, becoming a validator is paused.
+
+:::
+
+Visit the official [Deposit Launchpad](https://deposit.mainnet.lukso.network/) and cautiously go through the process of generating deposit keys. Then continue depositing your LYXt to them.
+
+Within the LUKSO CLI, import your keys and start the node with the validator functionality. Make sure your working directory has been initialized and the blockchain clients installed.
+
+```bash
+# Import your key directory
+$ lukso validator import
+
+# Start the node as a validator
+# Define your transaction fee wallet address
+$ lukso validator start --validator --transaction-fee-recipient "0x1234..."
 ```
 
 ### Documentation
