@@ -53,14 +53,6 @@ The LUKSO CLI is running natively on the node's operating system. We are current
 
 ### Installing
 
-:::info
-
-Right now, the CLI can run devnets and our official testnet. Mainnet functionality and the related genesis files will be provided after the [Validator Deposit Launchpad](https://deposit.mainnet.lukso.network) has been frozen. The unlock will happen with another version update that has to be downloaded, overwriting the current version.
-
-The current development state can be followed in the repository of the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/).
-
-:::
-
 ```bash
 # Download the LUKSO CLI
 $ curl https://install.lukso.network | sh
@@ -128,7 +120,7 @@ $ lukso stop
 
 To become a validator, you need a whitelisted wallet address with a sufficient LYXt supply to set them up. Please have a look at the Testnet validator notice at the top of the page. After you became whitelisted, visit the official [Testnet Deposit Launchpad](https://deposit.testnet.lukso.network/) and cautiously go through the process of generating the specified amount of keys you are allowed. Then continue depositing your LYXt to them.
 
-Within the LUKSO CLI, import your keys and start the node with the validator functionality.
+Within the LUKSO CLI, import your keys and start the node with the validator functionality. Make sure your working directory has been initialized and the blockchain clients installed.
 
 ```bash
 # Import your key directory
