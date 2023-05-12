@@ -176,7 +176,7 @@ This is the easy part, we need to create 2 calldatas:
 
 ### Encode Target Contract calldata
 
-Encoding the calldata that will be be exeuted on the Target Contract.
+Encoding the calldata that will be be executed on the Target Contract.
 
 <Tabs>
   
@@ -209,7 +209,7 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 
 ### Encode Vault calldata
 
-Encoding the calldata that will be be exeuted on the Vault. This calldata will also trigger the calldata that will be executed on the Target Contract.
+Encoding the calldata that will be be executed on the Vault. This calldata will also trigger the calldata that will be executed on the Target Contract.
 
 <Tabs>
   
