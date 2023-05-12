@@ -57,7 +57,7 @@ For the constants we will need the _private key_ and _the address of the vault r
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // initialize your EOA
@@ -73,7 +73,9 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // setup your EOA
@@ -153,7 +155,7 @@ const myVault = await vaultFactory.connect(myEOA).deploy(vaultOwner);
 
 :::caution
 
-You need to have LYXt in your EOA in order to pay for the transaction fees. Visit the :arrow_right: **[LUKSO L16 Faucet Website](https://faucet.l16.lukso.network/)** to get some LYXt.
+You need to have LYXt in your EOA in order to pay for the transaction fees. Visit the :arrow_right: **[LUKSO Testnet Faucet Website](https://faucet.testnet.lukso.network/)** to get some LYXt.
 
 :::
 
@@ -165,7 +167,7 @@ You need to have LYXt in your EOA in order to pay for the transaction fees. Visi
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // initialize your EOA
@@ -196,7 +198,9 @@ await myVault
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const vaultOwner = '0x...'; // The address that will be the vault owner
 
 // setup your EOA

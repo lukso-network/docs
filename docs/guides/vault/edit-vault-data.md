@@ -59,7 +59,7 @@ import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
 // constants
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const vaultAddress = '0x...';
 const universalProfileAddress = '0x...';
 
@@ -80,7 +80,9 @@ import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
 // constants
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const vaultAddress = '0x...';
 const universalProfileAddress = '0x...';
 
@@ -424,10 +426,13 @@ await updateVaultURD(vaultURDAddress);
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import {
+  ERC725YDataKeys,
+  SupportedStandards,
+} from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const vaultAddress = '0x...';
 const universalProfileAddress = '0x...';
 
@@ -451,9 +456,7 @@ const deployVaultURD = async () => {
       gas: 5_000_000,
       gasPrice: '1000000000',
     })
-    .on('receipt', (receipt) => {
-      return receipt.contractAddress;
-    });
+    .on('receipt', (receipt) receipt.contractAddress;);
 
   return vaultURDAddress;
 };
@@ -502,7 +505,9 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const vaultAddress = '0x...';
 const universalProfileAddress = '0x...';
 
@@ -520,7 +525,7 @@ const deployVaultURD = async () => {
   // deploy the Universal Receiver Delegate Vault contract
   const vaultURD = await vaultURDFactory.connect(myEOA).deploy();
 
-  return vaultURD.target;
+  return vaultURD.address;
 };
 
 const updateVaultURD = async (vaultURDAddress) => {
