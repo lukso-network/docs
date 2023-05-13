@@ -169,12 +169,13 @@ You can see the running clients' status and logs using the `lukso status` and `l
 ```bash
 $ lukso start
 
-# Check the status of runningh clients
+# Check the status of all running clients
 $ lukso status
 
-# Check the logs of a running client
+# Check the logs of the running mainnet execution client
 $ lukso logs execution
-# Or
+
+# Check the logs of the running mainnet consensus client
 $ lukso logs consensus
 
 # Stop all running clients
@@ -190,7 +191,7 @@ Only Genesis Validators can run the back structure of the network for now. The c
 
 :::
 
-Visit the official [Deposit Launchpad](https://deposit.mainnet.lukso.network/) and cautiously go through the process of generating deposit keys. Then continue depositing your LYXt to them.
+Visit the official [Deposit Launchpad](https://deposit.mainnet.lukso.network/) and cautiously go through the process of generating deposit keys. Then continue either depositing your LYXe (genesis validator) or LYX (regular validator) to them.
 
 Within the LUKSO CLI, import your keys and start the node with the validator functionality. Make sure your working directory has been initialized and the blockchain clients installed.
 
