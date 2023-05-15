@@ -45,12 +45,12 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import Web3 from 'web3';
 
 // Connect to the LUKSO L14 network
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Create an instance of the Universal Profile
 const myUPContract = new web3.eth.Contract(UniversalProfile.abi, '<contract-address>');
 
-const ERC725AccountInterfaceId = '0x63cb749b';
+const ERC725AccountInterfaceId = '0x3e89ad98';
 await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call();
 // true or false
 ```
@@ -88,14 +88,14 @@ import LSP7DigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAs
 import Web3 from 'web3';
 
 // Connect to the LUKSO L14 network
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Create an instance of the LSP7 Token
 const myTokenContract = new web3.eth.Contract(LSP7DigitalAsset.abi, '<contract-address>');
 
 const SupportedStandards_LSP4 =
   '0xeafec4d89fa9619884b60000a4d96624a38f7ac2d8d9a604ecf07c12c77e480c';
-await myTokenContract.methods['getData(bytes32[])']([SupportedStandards_LSP4,]).call();
+await myTokenContract.methods.getData(SupportedStandards_LSP4).call();
 // 0xa4d96624 -> valid result according to LSP4
 ```
 
