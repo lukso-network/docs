@@ -36,12 +36,12 @@ pragma solidity ^0.8.0;
 
 // This code is only used for guides puprose, it is working but not verified nor audited.
 
-// interfaces
-import {LSP1UniversalReceiverDelegateUP} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";
+// modules
+import {LSP1UniversalReceiverDelegateUP} from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";
 
 // constants
-import {_TYPEID_LSP7_TOKENSRECIPIENT} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP7DigitalAsset/LSP7Constants.sol";
-import {_TYPEID_LSP8_TOKENSRECIPIENT} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol";
+import {_TYPEID_LSP7_TOKENSRECIPIENT} from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7Constants.sol";
+import {_TYPEID_LSP8_TOKENSRECIPIENT} from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol";
 
 contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
@@ -83,9 +83,9 @@ After copying the code, navigate to the **Solidity Compiler** tab and press the 
 
 ![Compiling contract in Remix](/img/guides/lsp1/remix-compiling-contract.jpeg)
 
-You should be connected to L16 in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
+You should be connected to LUKSO Testnet in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
 
-![Connect to LUKSO L16 in Remix](/img/guides/lsp1/remix-connect-l16.jpeg)
+![Connect to LUKSO Testnet in Remix](/img/guides/lsp1/remix-connect-testnet.jpeg)
 
 After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT_ section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed, you can copy the contract address to be used later when setting the address inside the storage.
 
@@ -138,7 +138,7 @@ import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
 // constants
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 const universalProfileURDAddress = '0x...';
@@ -158,7 +158,9 @@ import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
 // constants
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 const universalProfileURDAddress = '0x...';
@@ -250,7 +252,7 @@ import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
 // constants
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 const universalProfileURDAddress = '0x...';
@@ -285,7 +287,9 @@ import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
 // constants
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 const universalProfileURDAddress = '0x...';
@@ -323,11 +327,11 @@ pragma solidity ^0.8.0;
 // This code is only used for guides puprose, it is working but not verified nor audited.
 
 // modules
-import {LSP1UniversalReceiverDelegateUP} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";
+import {LSP1UniversalReceiverDelegateUP} from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";
 
 // constants
-import {_TYPEID_LSP7_TOKENSRECIPIENT} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP7DigitalAsset/LSP7Constants.sol";
-import {_TYPEID_LSP8_TOKENSRECIPIENT} from "https://github.com/lukso-network/lsp-smart-contracts/blob/v0.6.2/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol";
+import {_TYPEID_LSP7_TOKENSRECIPIENT} from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7Constants.sol";
+import {_TYPEID_LSP8_TOKENSRECIPIENT} from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol";
 
 contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
