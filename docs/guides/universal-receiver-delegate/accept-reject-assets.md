@@ -85,7 +85,7 @@ After copying the code, navigate to the **Solidity Compiler** tab and press the 
 
 You should be connected to LUKSO Testnet in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
 
-![Connect to LUKSO Testnet in Remix](/img/guides/lsp1/remix-connect-testnet.jpeg)
+![Connect to LUKSO Testnet in Remix](/img/guides/lsp1/remix-connect-testnet.jpg)
 
 After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT_ section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed, you can copy the contract address to be used later when setting the address inside the storage.
 
