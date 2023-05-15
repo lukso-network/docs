@@ -177,9 +177,10 @@ const deployVaultURD = async () => {
   const vaultURD = new web3.eth.Contract(
     LSP1UniversalReceiverDelegateVault.abi,
   );
+  let vaultURDAddress;
 
   // deploy the Universal Receiver Delegate Vault contract
-  const vaultURDAddress = await vaultURD
+  await vaultURD
     .deploy({
       data: LSP1UniversalReceiverDelegateVault.bytecode,
     })
@@ -188,9 +189,7 @@ const deployVaultURD = async () => {
       gas: 5_000_000,
       gasPrice: '1000000000',
     })
-    .on('receipt', (receipt) => {
-      return receipt.contractAddress;
-    });
+    .on('receipt', (receipt) => (vaultURDAddress = receipt.contractAddress));
 
   return vaultURDAddress;
 };
@@ -426,10 +425,7 @@ await updateVaultURD(vaultURDAddress);
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import {
-  ERC725YDataKeys,
-  SupportedStandards,
-} from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -445,9 +441,10 @@ const deployVaultURD = async () => {
   const vaultURD = new web3.eth.Contract(
     LSP1UniversalReceiverDelegateVault.abi,
   );
+  let vaultURDAddress;
 
   // deploy the Universal Receiver Delegate Vault contract
-  const vaultURDAddress = await vaultURD
+  await vaultURD
     .deploy({
       data: LSP1UniversalReceiverDelegateVault.bytecode,
     })
@@ -456,7 +453,7 @@ const deployVaultURD = async () => {
       gas: 5_000_000,
       gasPrice: '1000000000',
     })
-    .on('receipt', (receipt) receipt.contractAddress;);
+    .on('receipt', (receipt) => (vaultURDAddress = receipt.contractAddress));
 
   return vaultURDAddress;
 };
