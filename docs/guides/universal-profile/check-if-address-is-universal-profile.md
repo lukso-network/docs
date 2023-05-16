@@ -96,7 +96,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
 const universalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
@@ -121,7 +121,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/constants';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l14.lukso.network');
+const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
 const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
@@ -160,7 +160,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import { SupportedStandards } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const universalProfileAddress = "0x..."; // The address of the contract that you are verifying
 const universalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
@@ -185,7 +185,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import { SupportedStandards } from '@lukso/lsp-smart-contracts/constants';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l14.lukso.network');
+const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
 const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
@@ -216,7 +216,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import { INTERFACE_IDS, SupportedStandards } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 if (!web3.utils.isAddress(address)) {
   throw new Error('Invalid address');
@@ -250,11 +250,11 @@ if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
 ```javascript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { INTERFACE_IDS, SupportedStandards } from '@lukso/lsp-smart-contracts/constants';
-import { isAddress, ethers } from 'ethers';
+import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l14.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 
-if (!isAddress(address)) {
+if (!ethers.utils.isAddress(address)) {
   throw new Error('Invalid address');
 }
 
