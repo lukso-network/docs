@@ -52,7 +52,7 @@ We will import `LSP7Mintable` in order to get the _ABI_ and _bytecode_ of the co
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // initialize your EOA
 const privateKey = '0x...';
@@ -67,7 +67,9 @@ const account = web3.eth.accounts.wallet.add(privateKey);
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 
 // setup your EOA
 const privateKey = '0x...';
@@ -161,7 +163,7 @@ const myToken = await lsp7Factory.connect(myEOA).deploy(
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // initialize your EOA
 const privateKey = '0x...';
@@ -194,7 +196,7 @@ await myToken.deploy({
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 
 // set up your EOA
 const privateKey = '0x...';

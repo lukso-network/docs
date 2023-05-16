@@ -87,20 +87,20 @@ You need to have LYX both in your EOA (which will pay for the transaction fees) 
 
 :::
 
-In order to send LYX from our Universal Profile, we will first request some free test LYX for our UP via the **[L16 Faucet](https://faucet.l16.lukso.network/)**.
+In order to send LYX from our Universal Profile, we will first request some free test LYX for our UP via the **[Testnet Faucet](https://faucet.testnet.lukso.network/)**.
 
-1. Visit the :arrow_right: **[LUKSO L16 Faucet Website](https://faucet.l16.lukso.network/)**.
+1. Visit the :arrow_right: **[LUKSO Testnet Faucet Website](https://faucet.testnet.lukso.network/)**.
 2. Make a **[tweet](https://twitter.com)** with your UP address and paste the tweet's url in the input field and click the _"Give me LYX"_ button.
 
-![L16 Faucet screenshot](./img/L16-faucet.png)
+![Testnet Faucet screenshot](./img/testnet-faucet.png)
 
-3. Check the balance of your Universal Profile on the **[LUKSO L16 Block Explorer](https://explorer.execution.l16.lukso.network/)** :arrow_down:
+3. Check the balance of your Universal Profile on the **[LUKSO Testnet Block Explorer](https://explorer.execution.testnet.lukso.network/)** :arrow_down:
 
 Paste the address of the Universal Profile in the address field in the top right corner of the block explorer.
 
 If everything went successfully, you should see that the _"Balance"_ field of your Universal Profile has been updated!
 
-![LUKSO L16 Network Block Explorer (screenshot)](./img/explorer-balance.png)
+![LUKSO Testnet Network Block Explorer (screenshot)](./img/explorer-balance.png)
 
 ## Step 2 - Create the contracts instances
 
@@ -118,7 +118,7 @@ The first step is to create instances of our Universal Profile and Key Manager c
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const myUPAddress = '0x...';
 const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
@@ -132,7 +132,9 @@ const myUP = new web3.eth.Contract(UniversalProfile.abi, myUPAddress);
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 
 const myUPAddress = '0x...';
 const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi, provider);
@@ -203,7 +205,7 @@ await myUP.methods['execute(uint256,address,uint256,bytes)'](
 ```typescript
 const OPERATION_CALL = 0;
 const recipient = '0x...'; // address of the recipient (any address, including an other UP)
-const amount = ethers.parseEther('3'); // amount of LYX we want to transfer
+const amount = ethers.utils.parseEther('3'); // amount of LYX we want to transfer
 const data = '0x'; // calldata executed at the target (here nothing, just a plain LYX transfer)
 
 await myUP
@@ -228,10 +230,9 @@ await myUP
 
 ```javascript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // 1. instantiate your UP contract
 const myUPAddress = '0x...';
@@ -263,10 +264,11 @@ await myUP.methods['execute(uint256,address,uint256,bytes)'](
 
 ```typescript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l14.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 
 const myUPAddress = '0x...';
 const myUP = new ethers.Contract(myUPAddress, UniversalProfile.abi, provider);
@@ -276,7 +278,7 @@ const myEOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 const OPERATION_CALL = 0;
 const recipient = '0x...'; // address the recipient (any address, including an other UP)
-const amount = ethers.parseEther('3'); // amount of LYX we want to transfer
+const amount = ethers.utils.parseEther('3'); // amount of LYX we want to transfer
 // calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x';
 
