@@ -49,6 +49,12 @@ If you deposited in the [Genesis Deposit Contract](https://etherscan.io/address/
 
 #### 😊 Option 1 [easy]: Using the LUKSO CLI
 
+:::warning
+
+The instructions below will work from LUKSO CLI v0.6.0. which has not been released yet ([PR](https://github.com/lukso-network/tools-lukso-cli/pull/127))
+
+:::
+
 You can use the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) to prepare and run your LUKSO mainnet node. The [`README.md`](https://github.com/lukso-network/tools-lukso-cli/blob/main/README.md) has all the documentation related to the CLI, you are encouraged to check it to see all the available options.
 
 ##### Install the LUKSO Command Line Interface.
