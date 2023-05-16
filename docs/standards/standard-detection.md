@@ -50,8 +50,8 @@ const web3 = new Web3('https://rpc.testnet.lukso.network');
 // Create an instance of the Universal Profile
 const myUPContract = new web3.eth.Contract(UniversalProfile.abi, '<contract-address>');
 
-const ERC725AccountInterfaceId = '0x3e89ad98';
-await myUPContract.methods.supportsInterface(ERC725AccountInterfaceId).call();
+const lsp0InterfaceId = '0x3e89ad98';
+await myUPContract.methods.supportsInterface(lsp0InterfaceId).call();
 // true or false
 ```
 
