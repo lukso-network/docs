@@ -13,7 +13,7 @@ The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps
 | ------------------------ | -------------------------------------------------- |
 | Network Name             | Testnet                                            |
 | New RPC URL              | <https://rpc.testnet.lukso.network>                |
-| Websocket URL            | <wss://ws.rpc.testnet.lukso.network>               |
+| Websocket URL            | <wss://ws-rpc.testnet.lukso.network>               |
 | Fork Version             | 0x42010001                                         |
 | Chain ID / Network ID    | 4201                                               |
 | Currency Symbol          | LYXt                                               |
