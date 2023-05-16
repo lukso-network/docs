@@ -52,12 +52,13 @@ We will import `LSP7Mintable` in order to get the _ABI_ of the contract that we 
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const privateKey = '0x...';
 const myTokenAddress = '0x...';
+const universalProfileAddress = '0x...';
 
 // setup your EOA
-const account = web3.eth.accounts.wallet.add(privateKey);
+const myEOA = web3.eth.accounts.wallet.add(privateKey);
 ```
 
   </TabItem>
@@ -68,9 +69,12 @@ const account = web3.eth.accounts.wallet.add(privateKey);
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const privateKey = '0x...';
 const myTokenAddress = '0x...';
+const universalProfileAddress = '0x...';
 
 // setup your EOA
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
@@ -121,7 +125,7 @@ The contract that we are using as a example in this guied allows minting Digital
 <!-- prettier-ignore-start -->
 
 ```javascript
-await myToken.methods.mint('<up-address>', 100, false, '0x').send({ from: myEOA });
+await myToken.methods.mint(universalProfileAddress, 100, false, '0x').send({ from: myEOA.address, gas: 100_000 });
 ```
 
 <!-- prettier-ignore-end -->
@@ -131,7 +135,7 @@ await myToken.methods.mint('<up-address>', 100, false, '0x').send({ from: myEOA 
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript
-await myToken.connect(myEOA).mint('<up-address>', 100, false, '0x');
+await myToken.connect(myEOA).mint(universalProfileAddress, 100, false, '0x');
 ```
 
   </TabItem>
@@ -150,16 +154,17 @@ await myToken.connect(myEOA).mint('<up-address>', 100, false, '0x');
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const privateKey = '0x...';
 const myTokenAddress = '0x...';
+const universalProfileAddress = '0x...';
 
 // setup your EOA
-const account = web3.eth.accounts.wallet.add(privateKey);
+const myEOA = web3.eth.accounts.wallet.add(privateKey);
 
 const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 
-await myToken.methods.mint('<up-address>', 100, false, '0x').send({ from: myEOA });
+await myToken.methods.mint(universalProfileAddress, 100, false, '0x').send({ from: myEOA, gas: 100_000 });
 ```
 
 <!-- prettier-ignore-end -->
@@ -172,16 +177,19 @@ await myToken.methods.mint('<up-address>', 100, false, '0x').send({ from: myEOA 
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const privateKey = '0x...';
 const myTokenAddress = '0x...';
+const universalProfileAddress = '0x...';
 
 // setup your EOA
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 
-await myToken.connect(myEOA).mint('<up-address>', 100, false, '0x');
+await myToken.connect(myEOA).mint(universalProfileAddress, 100, false, '0x');
 ```
 
   </TabItem>
