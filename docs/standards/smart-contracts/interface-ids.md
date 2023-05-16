@@ -34,9 +34,9 @@ const ERC725X_ID = INTERFACE_IDS.ERC725X;
 | **LSP8IdentifiableDigitalAsset** | `0x622e7a01`            | Identifiable Digital Assets (NFT). _ERC721 A-like_                                                             |
 | **LSP9Vault**                    | `0x28af17e6`            | Vault that can hold assets and interact with other smart contracts.                                            |
 | **LSP11BasicSocialRecovery**     | `0x049a28f1`            | Mechanism to recover access control to an account.                                                             |
+| **LSP14Ownable2Steps**           | `0x94be5999`            | Extended version of [EIP173] (Ownable) with a 2-step process to transfer or renounce ownership.                |
 | **LSP17Extendable**              | `0xa918fa6b`            | Module to add more functionalities to a contract using extensions.                                             |
 | **LSP17Extension**               | `0xcee78b40`            | Module to create a contract that can act as an extension.                                                      |
-| **LSP14Ownable2Steps**           | `0x94be5999`            | Extended version of [EIP173] (Ownable) with a 2-step process to transfer or renounce ownership.                |
 | **LSP20CallVerification**        | `0x1a0eb6a5`            | Contract implementing CallVerification standard, verifying the call by calling lsp20 functions on the veriifer |
 | **LSP20CallVerifier**            | `0x480c0ec2`            | Contract implementing lsp20 functions intended to do the verification on behalf of another contract.           |
 
