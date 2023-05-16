@@ -148,7 +148,7 @@ To get started you would need the following:
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const myUniversalProfileAddress = '0x...';
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 ```
@@ -161,7 +161,7 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 const myUniversalProfileAddress = '0x...';
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 ```
@@ -286,7 +286,7 @@ import { ERC725 } from '@erc725/erc725.js';
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const myUniversalProfileAddress = '0x...';
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
@@ -362,11 +362,11 @@ import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const myUniversalProfileAddress = '0x...';
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 const erc725 = new ERC725(
