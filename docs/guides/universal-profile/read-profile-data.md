@@ -22,7 +22,7 @@ A complete _"ready to use"_ JS file is available at the end in the [**Final Code
 
 We will use:
 
-- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L16 network.
+- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO Testnet network.
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
 - [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code.
 
@@ -76,7 +76,7 @@ import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for ERC725 Instance
@@ -231,7 +231,7 @@ import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for ERC725 Instance

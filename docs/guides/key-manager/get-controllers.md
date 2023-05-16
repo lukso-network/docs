@@ -31,7 +31,7 @@ import Web3 from 'web3';
 
 // setup
 const myUniversalProfileAddress = '0xC26508178c4D7d3Ad43Dcb9F9bb1fab9ceeD58B5';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 
 // step 1 - setup erc725.js
 const web3 = new Web3(RPC_ENDPOINT);
@@ -144,7 +144,7 @@ import Web3 from 'web3';
 
 // setup
 const myUniversalProfileAddress = '0xC26508178c4D7d3Ad43Dcb9F9bb1fab9ceeD58B5';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 
 const web3 = new Web3(RPC_ENDPOINT);
 

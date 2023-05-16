@@ -103,12 +103,13 @@ You can see the running clients' status and logs using the `lukso status` and `l
 ```bash
 $ lukso start --testnet
 
-# Check the status of runningh clients
+# Check the status of running clients
 $ lukso status
 
-# Check the logs of a running client
+# Check the logs of the running testnet execution client
 $ lukso logs execution --testnet
-# Or
+
+# Check the logs of the running testnet execution client
 $ lukso logs consensus --testnet
 
 # Stop all running clients
