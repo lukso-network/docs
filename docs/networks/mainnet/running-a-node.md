@@ -96,7 +96,7 @@ As a Genesis Validator you need to import your Genesis Keys (`keystore-xxx-[time
 This will decrypt the keys with the password you chose when generating them, and re-encrypt them with a new password you have to choose. These new keystore files will then be stored under `./myLUKSOnode/mainnet-keystore`
 
 ```bash
-$ lukso validator import --validator-keys "./path/to/your/keys/folder"
+$ lukso validator import --validator-keys "./myKeysDir"
 ```
 
 To start as a validator you need to provide a transaction fee recipient address, which will receive all transaction fees that your validator will generate.

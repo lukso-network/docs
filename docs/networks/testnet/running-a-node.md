@@ -125,7 +125,7 @@ Within the LUKSO CLI, import your keys and start the node with the validator fun
 
 ```bash
 # Import your key directory
-$ lukso validator import
+$ lukso validator import --validator-keys "./myKeysDir"
 
 # Start the node as a validator
 # Define your transaction fee wallet address
