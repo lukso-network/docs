@@ -49,12 +49,6 @@ If you deposited in the [Genesis Deposit Contract](https://etherscan.io/address/
 
 #### 😊 Option 1 [easy]: Using the LUKSO CLI
 
-:::warning
-
-The instructions below will work from LUKSO CLI v0.6.0. which has not been released yet ([PR](https://github.com/lukso-network/tools-lukso-cli/pull/127))
-
-:::
-
 You can use the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) to prepare and run your LUKSO mainnet node. The [`README.md`](https://github.com/lukso-network/tools-lukso-cli/blob/main/README.md) has all the documentation related to the CLI, you are encouraged to check it to see all the available options.
 
 ##### Install the LUKSO Command Line Interface.
@@ -171,3 +165,4 @@ Ask your question in the validators channel on the [official LUKSO Discord serve
 - [LUKSO Mainnet Start Process Update #2](https://medium.com/lukso/lukso-mainnet-timeline-and-process-dd997fe811c8)
 - [LUKSO Mainnet Start Process Update #3](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6)
 - [Genesis Validators Deposit Smart Contract Freeze and Testnet Launch](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc)
+- [Genesis Validators, start your clients!](https://medium.com/lukso/genesis-validators-start-your-clients-fe01db8f3fba)
