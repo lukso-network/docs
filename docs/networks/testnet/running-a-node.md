@@ -121,11 +121,11 @@ $ lukso stop
 
 To become a validator, you need a whitelisted wallet address with a sufficient LYXt supply to set them up. Please have a look at the Testnet validator notice at the top of the page. After you became whitelisted, visit the official [Testnet Deposit Launchpad](https://deposit.testnet.lukso.network/) and cautiously go through the process of generating the specified amount of keys you are allowed. Then continue depositing your LYXt to them.
 
-Within the LUKSO CLI, import your keys and start the node with the validator functionality. Make sure your working directory has been initialized and the blockchain clients installed.
+Within the LUKSO CLI, import your keys and start the node with the validator functionality. Make sure your working directory has been initialized and the blockchain clients installed. Also set your address to receive validator fees on startup.
 
 ```bash
 # Import your key directory
-$ lukso validator import
+$ lukso validator import --validator-keys "./myKeysDir"
 
 # Start the node as a validator
 # Define your transaction fee wallet address
