@@ -107,10 +107,10 @@ This can be a different address, than the withdrawal credential you added to you
 
 :::
 
-The withdrawal credential receives the block reward for your validator. After running the command, you will be asked to enter your newly chosen validator password. You will also need to select the initial supply for the LUKSO mainnet (more information in [this article](https://medium.com/lukso/lukso-mainnet-timeline-and-process-dd997fe811c8)). And your node should start.
+The withdrawal credential receives the block reward for your validator. After running the command, you will be asked to enter your newly chosen validator password. You will also need to select the initial supply for the LUKSO mainnet (more information in [this article](https://medium.com/lukso/lukso-mainnet-timeline-and-process-dd997fe811c8)). Make sure to set your address where you will receive validator fees on startup.
 
 ```bash
-$ lukso start --validator --transaction-fee-recipient "{your lukso address (EOA)}"
+$ lukso start --validator --transaction-fee-recipient "0x1234..."
 ```
 
 To check that everything is running correctly, you can see the status of all your clients using:
