@@ -129,7 +129,7 @@ $ lukso validator import
 
 # Start the node as a validator
 # Define your transaction fee wallet address
-$ lukso validator start --validator --transaction-fee-recipient "0x1234..." --testnet
+$ lukso start --validator --transaction-fee-recipient "0x1234..." --testnet
 ```
 
 ### Documentation
