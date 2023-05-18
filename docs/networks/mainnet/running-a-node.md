@@ -129,11 +129,7 @@ To enable more advanced monitoring tools, you can check the [`lukso-network/netw
 
 #### 🙂 Option 2 [intermediate]: Using docker and docker compose
 
-:::info
-
-This setup will be released as soon as possible.
-
-:::
+Please check this repo for more information: [lukso-network/network-docker-containers](https://github.com/lukso-network/network-docker-containers).
 
 #### 🤯 Option 3 [expert]: Using the genesis files
 
