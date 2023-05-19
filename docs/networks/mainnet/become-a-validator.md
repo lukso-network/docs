@@ -35,7 +35,7 @@ As while running a regular node, you have multiple options to start your validat
 
 Please refer to the regular [Node Guide](./running-a-node.md) that explains the differences between those setups and how to get the correct network configurations.
 
-### LUKSO CLI Validator Node
+### Using LUKSO CLI
 
 Set up your regular node using the LUKSO CLI as described in the [Node Guide](./running-a-node.md).
 
@@ -52,7 +52,7 @@ $ lukso validator import --validator-keys "./path/to/your/keys/folder"
 After importing one or multiple folders, you can check your imported keys.
 
 ```bash
-lukso validator list
+$ lukso validator list
 ```
 
 If the imported deposit keys match the ones in the original folder, you can delete them from your node machine.
@@ -64,7 +64,7 @@ After importing your keys, you can start the node with the validator functionali
 To start the validator, you have to pass a minimum of 2 flags:
 
 - `--validator`: Will start the installed and configured clients, including the validator
-- `transaction-fee-recipient`: Specifies your transaction fee recipient address, which will receive all block rewards and tips from transactions. The address can be any EOA address you have control over on a wallet like MetaMask, Ledger, or any other wallet with the functionality to connect with LUKSO or custom networks.
+- `--transaction-fee-recipient`: Specifies your transaction fee recipient address, which will receive all block rewards and tips from transactions. The address can be any EOA address you have control over on a wallet like MetaMask, Ledger, or any other wallet with the functionality to connect with LUKSO or custom networks.
 
 > If you want to set custom flags to the start command, like the graffiti or a custom stat page connection, make sure to add them. You can find more information about passing options to the client on the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli).
 
@@ -103,28 +103,22 @@ For more options, please check the [LUKSO CLI Documentation](https://github.com/
 
 To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a step-by-step guide.
 
-### Docker Validator Node
+### Using Docker
 
 Our official Docker container provides a base template for images to run the LUKSO validator nodes. Make sure you have Docker and Docker Compose installed on your system.
 
 Head over to the [network-docker-containers](https://github.com/lukso-network/network-docker-containers) repository from LUKSO and follow the installation process. You will have to clone the repository to your node machine and configure various properties, including the genesis files, deposit keys, and node name.
 
-After the configuration, you can automatically download, install, and start all node clients. Head into the repository folder and start up the container:
-
-```bash
-cd network-docker-containers && docker-compose up
-```
-
-For more information, please check the [LUKSO Docker Documentation](https://github.com/lukso-network/network-docker-containers).
+After the configuration, you can automatically download, install, and start all node clients. Head into the repository and follow the instructions in the [README.md](https://github.com/lukso-network/network-docker-monitoring/blob/main/README.md)
 
 To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a step-by-step guide.
 
-### Custom Validator Node
+### Using Custom configs
 
 If you are a pro user or want to generate custom genesis files with a different genesis supply of the blockchain, you can follow the instructions in the following repositories:
 
 - [Genesis File Generation Tool](https://github.com/lukso-network/tools-lodestar-genesis-ssz-generator/blob/spike/pos-from-the-start/packages/beacon-node/test/utils/README.md)
-- [Network Configurations](https://github.com/lukso-network/network-configs/)
+- [Network Configurations](https://github.com/lukso-network/network-configs/mainnet)
 - [Client Specifications](https://github.com/lukso-network/network-configs#binary-applications)
 
 ## Need Help?
