@@ -1,5 +1,5 @@
 ---
-title: Running a node
+title: Running a Node
 sidebar_position: 2
 ---
 
@@ -35,29 +35,29 @@ Not all tested clients are fully supported by the LUKSO CLI yet. You can follow 
 
 :::
 
-## Starting a node
+## Starting Node
 
-To start your clients and contribute to the LUKSO Testnet you have 3 options:
+To start your clients and contribute to the LUKSO Testnet, you have 3 options:
 
-- **Install the LUKSO CLI**: The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact your node and runs natively on your operating system. We recommend this as default for anyone beginning to get into the topic of running a node himself.
-- **Use Docker Compose**: The official [Docker Containers](https://github.com/lukso-network/network-docker-containers) can make it easy for you if you're already experienced with the Docker ecosystem. Different configurations can be started in the blink of an eye and work in encapsulated containers. This makes it especially useful if you want to run multiple networks on your node at once. The repository features extended documentation. By default, the Docker setup will run as a validator for mainnet, but can be modified.
-- **Configure a LUKSO Compatible Client**: You are in no way limited to the tools we provide for easy onboarding. If you are an pro user, you can download and run the Erigon, Geth, Lighthouse, or Prysm clients in your preferred setup. You can either [download](https://deposit.mainnet.lukso.network/) or [generate](https://github.com/lukso-network/tools-lodestar-genesis-ssz-generator/blob/spike/pos-from-the-start/packages/beacon-node/test/utils/README.md) the genesis files of the LUKSO networkand configure your clients manually. Please refer to the respective [clients installation instructions](https://github.com/lukso-network/network-configs#binary-applications) and use the LUKSO [network configuration](https://github.com/lukso-network/network-configs/) repository to start your node.
+- **Install the LUKSO CLI**: The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. We recommend this as default for anyone beginning to get into the topic of running a node himself.
+- **Use Docker Compose**: The official [Docker Containers](https://github.com/lukso-network/network-docker-containers) can make it easy for you if you're already experienced with the Docker ecosystem. Different configurations can be started in the blink of an eye and work in encapsulated containers. The versatility makes it especially useful if you want to run multiple networks on your node at once. The repository features extended documentation. By default, the Docker setup will run as a validator for the mainnet but can be modified.
+- **Configure a LUKSO Compatible Client**: You are in no way limited to the tools we provide for easy onboarding. If you are a pro user, you can download and run the Erigon, Geth, Lighthouse, or Prysm clients in your preferred setup. You can either [download](https://deposit.mainnet.lukso.network/) or [generate](https://github.com/lukso-network/tools-lodestar-genesis-ssz-generator/blob/spike/pos-from-the-start/packages/beacon-node/test/utils/README.md) the genesis files of the LUKSO network and configure your clients manually. Please refer to the respective [clients installation instructions](https://github.com/lukso-network/network-configs#binary-applications) and use the LUKSO [network configuration](https://github.com/lukso-network/network-configs/) repository to start your node.
 
 ### LUKSO CLI Node Setup
 
-You can check out the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/) with further information. It is in no way limiting yourself with running any of the supported clients, as all configurations and flags can be passed down. The guide will give you a brief introduction.
+For further information, you can check out the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/). It is not limiting yourself to running any supported clients, as all configurations and flags can be passed down. The guide will give you a brief introduction.
 
-#### Install the LUKSO Command Line Interface.
+#### Install the LUKSO CLI
 
-This will install the `lukso` command globally on your node machine.
+First, install the `lukso` command globally on your node machine.
 
 ```bash
 $ curl https://install.lukso.network | sh
 ```
 
-#### Create a working folder.
+#### Create a Working Directory
 
-Next, create a working directory for your node's data and move into it. This is where everything regarding your blockchain node will be stored. Make sure to choose a proper name for your node folder. If you plan on running a validator later, this folder will also contain your validator key files, by default.
+Next, create a working directory for your node's data and move into it. The directory is where everything regarding your blockchain node will be stored. Make sure to choose a proper name for your node folder. If you plan on running a validator later, this folder will also contain your validator key files by default.
 
 ```bash
 $ mkdir myLUKSOnode && cd myLUKSOnode
@@ -69,15 +69,15 @@ Initialize the working folder, which will download the LUKSO network configurati
 $ lukso init
 ```
 
-#### Install the clients to run your node.
+#### Install the Clients
 
-After the initialization was successful, we have to download the blockchain clients itself, that will be managed from the CLI under the hood. They will install globally, needing super user permissions, and are set as default clients within your working directories configuration file. During the setup, you will be asked which clients you want to download and install.
+After the initialization is successful, we have to download the blockchain clients, which will be managed from the CLI under the hood. They will install globally, need superuser permissions, and are set as default clients within your working directories configuration file. You will be asked which clients you want to download and install during the setup.
 
 ```bash
 $ sudo lukso install
 ```
 
-#### Start your node clients
+#### Start the Clients
 
 The following command will spin up your execution and consensus client and connect to the mainnet.
 
@@ -87,7 +87,7 @@ lukso start --testnet
 
 #### Checking Processes
 
-To check that everything is running correctly, you can see the status of all your clients using the status command. By default, the validator is not enabled. If you want to run your validator node, please have a look onto the [Validator](./become-a-validator.md) page.
+To check that everything is running correctly, you can see the status of all your clients using the status command. By default, the validator is not enabled. If you want to run your validator node, please have a look at the [validator page](./become-a-validator.md).
 
 ```bash
 $ lukso status
@@ -109,9 +109,9 @@ $ lukso logs execution --testnet
 
 For more options, please check the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli).
 
-To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with an step-by-step guide.
+To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a step-by-step guide.
 
-## Need help?
+## Need Help?
 
 Check the [Network FAQ](../faq/validator.md) section.
 
