@@ -153,6 +153,8 @@ Currently tested consensus clients are:
 
 ## Need help?
 
+Check the [Network FAQ](../faq/validator.md) section.
+
 Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/lukso).
 
 ## Further Information
