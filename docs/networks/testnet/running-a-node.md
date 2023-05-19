@@ -134,6 +134,8 @@ $ lukso start --validator --transaction-fee-recipient "0x1234..." --testnet
 
 ### Documentation
 
+Check the [Network FAQ](../faq/validator.md) section.
+
 For more details to the commands look at the [README of the LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/blob/main/README.md).
 
 ## Need help?
