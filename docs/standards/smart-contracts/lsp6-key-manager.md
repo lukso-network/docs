@@ -11,11 +11,11 @@ sidebar_position: 8
 
 :::
 
-The **LSP6KeyManager** is a contract that controls the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with pre-defined permissions for addresses that could range from setting data, executing, changing owner, etc., as written in the [Permissions Section](../universal-profile/lsp6-key-manager.md#-types-of-permissions)\*\* of the [LSP6-KeyManager Standard](../universal-profile/lsp6-key-manager.md).
+The **LSP6KeyManager** is a contract that controls a **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract. It comes with pre-defined permissions for addresses that range from setting data to executing, changing owner, etc., as written in the [permissions](../universal-profile/lsp6-key-manager.md#-types-of-permissions) section of the [LSP6-KeyManager Standard](../universal-profile/lsp6-key-manager.md).
 
 :::warning
 
-The current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/lsp6-key-manager.md#permissions-value)** operation on the `execute(...)` function of the linked ERC725Account, because of its potential malicious impact on the account contract.
+Because of its potential malicious impact on the linked account, the current implementation of the Key Manager disallows the **[DELEGATECALL](../universal-profile/lsp6-key-manager.md#permissions-value)** operation via the `execute(...)` function of the linked ERC725Account.
 
 :::
 
@@ -36,7 +36,7 @@ function supportsInterface(bytes4 interfaceId) public view returns (bool)
 constructor(address target)
 ```
 
-Links the KeyManager to the address of an **ERC725** contract.
+Links the LSP6KeyManager to the **ERC725** contract deployed at the `target` address.
 
 #### Parameters:
 
@@ -50,7 +50,7 @@ Links the KeyManager to the address of an **ERC725** contract.
 function target() external view returns (address)
 ```
 
-Returns the address of the account linked to this KeyManager.
+Returns the address of the account linked to this Key Manager.
 
 This can be a contract that implements:
 
@@ -80,7 +80,7 @@ This payload must represent the abi-encoded function call of one of the function
 - **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
 - **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
 
-_Triggers the **[Executed](#executed)** event when a call is successfully executed._
+_Triggers the **[VerifiedCall](#verifiedcall)** event when a call is successfully executed._
 
 #### Parameters:
 
@@ -94,15 +94,15 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 | :------- | :------ | :--------------------------------------------------------------------------- |
 | `result` | `bytes` | The returned data as ABI-encoded bytes if the call on the account succeeded. |
 
-### execute (Array)
+### executeBatch
 
 ```solidity
-function execute(uint256[] calldata values, bytes[] calldata payloads) public payable returns (bytes memory result)
+function executeBatch(uint256[] calldata values, bytes[] calldata payloads) public payable returns (bytes memory result)
 ```
 
-Same than `execute(bytes)` but executes a batch of payloads on the linked **LSP0ERC725Account**.
+Same than [`execute(bytes)`](#execute) but executes a batch of payloads on the linked **LSP0ERC725Account**.
 
-The payloads must represent the abi-encoded function calls of one of the **LSP0ERC725Account** contract functions:
+The payloads parameter must represent an array of abi-encoded function calls of one of the **LSP0ERC725Account** contract functions:
 
 - **[`setData(bytes32,bytes)`](./lsp0-erc725-account.md#setdata)**.
 - **[`setData(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdata-array)**.
@@ -110,7 +110,7 @@ The payloads must represent the abi-encoded function calls of one of the **LSP0E
 - **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
 - **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
 
-_Triggers the **[Executed](#executed)** event when a call is successfully executed._
+_Triggers the **[`VerifiedCall`](#verifiedcall)** event when a call is successfully executed._
 
 #### Parameters:
 
@@ -127,6 +127,10 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 
 ### getNonce
 
+:::info
+More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**\_
+:::
+
 ```solidity
 function getNonce(
     address signer,
@@ -134,11 +138,7 @@ function getNonce(
 ) public view returns (uint256 nonce)
 ```
 
-Returns the **nonce** that needs to be signed by an allowed key to be passed into the **[`executeRelayCall(...)`](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
-
-:::note
-More info about **channel** can be found here: **[What are multi-channel nonces](../faq/channel-nonce.md)**\_
-:::
+Returns the **nonce** that needs to be signed by an allowed controller to be passed into the **[`executeRelayCall(...)`](#executerelaycall)** function. A signer can choose his channel number arbitrarily.
 
 #### Parameters:
 
@@ -155,68 +155,26 @@ More info about **channel** can be found here: **[What are multi-channel nonces]
 
 ### executeRelayCall
 
+:::tip
+
+If you are looking to learn how to sign and execute relay transactions via the Key Manager, see our Javascript step by step guide [_"Execute Relay Transactions"_](../../guides/key-manager/execute-relay-transactions.md).
+
+See the LSP6 Standard page for more details on how to [generate a valid signature for Execute Relay Call](../universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions).
+
+:::
+
 ```solidity
 function executeRelayCall(
     bytes memory signature,
     uint256 nonce,
+    uint256 validityTimestamps,
     bytes memory _calldata
 ) public
 ```
 
-Allows anybody to execute a payload on the linked **LSP0ERC725Account**, if they have a signed message from an address with some permissions.
+Allows anybody to execute a payload on the linked **LSP0ERC725Account**, if they have a signed message from a controller with some permissions.
 
-To obtain a valid signature you must do the following:
-
-1. Gather 4 things:
-
-```solidity
-bytes memory payload = abi.encodeWithSignature(
-    "<Signature of the method that will be executed, e.g. 'setData(bytes32[],bytes[])'>",
-    ...[<A comma-separated list of parameters that will be passed to the methods>]
-);
-
-// The chain id of the blockchain where the `payload` will be executed
-uint256 chainId = block.chainid; // or <The chain id of the blockchain where you will interact with the key manager>
-
-// The address of the key manager (the smart contract where the `payload` will be executed)
-address keyManagerAddress = '0x...';
-
-uint256 nonce = ILSP6KeyManager(keyManagerAddress).getNonce(...);
-```
-
-2. Once you have gathered these 4 informations, you must encode them using `abi.encodePacked(...)`:
-
-```solidity
-bytes memory encodedMessage = abi.encodePacked(
-    "\x19\x00",
-    keyManagerAddress,
-    6, // LSP6 VERSION
-    chainId,
-    nonce,
-    msg.value,
-    payload
-);
-```
-
-3. Then you must get the hash of the `encodedMessage`:
-
-```solidity
-bytes32 encodedMessageHash = keccak256(encodedMessage);
-```
-
-4. After that you can sign the encodedMessageHash and voila, you have the signature ready.
-
-5. To execute the `payload` you would have to do the following:
-
-```solidity
-ILSP6KeyManager(keyManagerAddress).executeRelayCall(
-    <The signature that you got from step 4.>,
-    nonce, // We got it in step 1.
-    payload //We got it in step 1.
-);
-```
-
-_Triggers the **[Executed](#executed)** event when a call is successfully executed._
+_Triggers the **[VerifiedCall](#verifiedcall)** event when a call is successfully executed._
 
 #### Parameters:
 
@@ -232,10 +190,10 @@ _Triggers the **[Executed](#executed)** event when a call is successfully execut
 | :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------- |
 | `result` | `bytes` | If the payload on the linked **LSP0ERC725Account** was `ERC725X.execute(...)`, the data returned by the external made by the UP. |
 
-### executeRelayCall (Array)
+### executeRelayCallBatch
 
 ```solidity
-function executeRelayCall(
+function executeRelayCallBatch(
     bytes[] calldata signatures,
     uint256[] calldata nonces,
     uint256[] calldata values,
@@ -243,7 +201,7 @@ function executeRelayCall(
 ) public
 ```
 
-Same as [`executeRelayCall(bytes,uint256,bytes)`](#executerelaycall), but allows anybody to execute a **batch of payloads** on the linked **LSP0ERC725Account** on behalf of other addresses, as long as the addresses that signed the `payloads` have some permissions.
+Same as [`executeRelayCall(bytes,uint256,bytes)`](#executerelaycall), but allows anybody to execute a **batch of payloads** on the linked **LSP0ERC725Account** on behalf of other [controllers](../universal-profile/lsp6-key-manager.md), as long as these controllers that signed the `payloads` have some permissions.
 
 #### Parameters:
 
@@ -269,7 +227,7 @@ function isValidSignature(
 ) public view returns (bytes4 magicValue)
 ```
 
-Checks if a signature was signed by an address having at least the **[SIGN](../universal-profile/lsp6-key-manager.md/#permission-values)** permission for this KeyManager, otherwise it will return the failure value.
+Checks if a signature was signed by a controller having at least the **[SIGN](../universal-profile/lsp6-key-manager.md/#permission-values)** permission for this KeyManager, otherwise it will return the failure value.
 
 #### Parameters:
 
@@ -286,23 +244,25 @@ Checks if a signature was signed by an address having at least the **[SIGN](../u
 
 ## Events
 
-### Executed
+### VerifiedCall
 
 ```solidity
-event Executed(
-    uint256 value,
-    bytes4 selector
-)
+event VerifiedCall(
+    address indexed signer,
+    uint256 indexed value,
+    bytes4 indexed selector
+);
 ```
 
-_**MUST** be fired when a transaction was successfully executed from the **[execute](#execute)** or **[executeRelayCall](#executerelaycall)** function._
+_Fired when a transaction was successfully executed from the **[execute](#execute)** or **[executeRelayCall](#executerelaycall)** function._
 
 #### Values:
 
-| Name       | Type      | Description                                                                       |
-| :--------- | :-------- | :-------------------------------------------------------------------------------- |
-| `value`    | `uint256` | The amount to be sent with the payload.                                           |
-| `selector` | `bytes4`  | The bytes4 selector of the function executed on the linked [`target()`](#target). |
+| Name       | Type      | Description                                                                                                                                                                     |
+| :--------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `signer`   | `address` | The controller that executed the payload (either directly via [`execute(...)](#execute) or indirectly via meta transaction using [`executeRelayCall(...)`](#executerelaycall)). |
+| `value`    | `uint256` | The amount to be sent with the payload.                                                                                                                                         |
+| `selector` | `bytes4`  | The bytes4 selector of the function executed on the linked [`target()`](#target).                                                                                               |
 
 ## References
 

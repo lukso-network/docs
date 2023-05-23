@@ -743,6 +743,32 @@ Dapps can then leverage the relay execution features to create their own busines
 
 ### How to sign relay transactions?
 
+:::tip
+
+You can use our library [**eip191-signer.js**](https://github.com/lukso-network/tools-eip191-signer) to make it easier to sign an _EIP191 Execute Relay Call transaction_.
+
+See also our [step by step Javascript guide](../../guides/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
+
+:::
+
+#### Overview
+
+To obtain a valid signature that can be used by anyone to execute a relayed transaction (= meta transaction) on behalf of someone else, we must do the following:
+
+1. Gather 4 things:
+   a. the **payload** (an abi-encoded function call) to be executed on the linked account.
+   b. the **chain id** of the blockchain where the `payload` will be executed.
+   c. the address of the [`LSP6KeyManager`](../../standards/smart-contracts/lsp6-key-manager.md) smart contract where the **payload** will be executed.
+   d. the Key Manager **nonce** of the controller.
+
+2. Once you have gathered these 4 information, you must **concatenate them all together**.
+
+3. Then you must get the `keccak256` hash of this data.
+
+4. After that you can sign the data to obtain a valid signature ready to be used via [`executeRelayCall(...)`](../smart-contracts/lsp6-key-manager.md#executerelaycall).
+
+#### Details
+
 The relay transactions are signed using the [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00). The relay call data that you want to sign **MUST** be the _keccak256 hash digest_ of the following elements _(bytes values)_ concatenated together.
 
 ```javascript
@@ -759,12 +785,6 @@ The relay transactions are signed using the [**version 0 of EIP191**](https://gi
 | `nonce`              | The unique [**nonce**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#getnonce) for the payload.                                                                                                    |
 | `value`              | The amount of **native tokens** that will be transferred to the [**ERC725 Account**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) linked to the Key Manager that will execute the relay call. |
 | `payload`            | The payload that will be exeuted.                                                                                                                                                                                             |
-
-:::info
-
-If you want to sign an _EIP191 Execute Relay Call transaction_ you can use our library, [**eip191-signer.js**](https://github.com/lukso-network/tools-eip191-signer).
-
-:::
 
 ### Out of order execution
 
