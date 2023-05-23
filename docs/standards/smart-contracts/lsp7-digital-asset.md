@@ -11,7 +11,7 @@ sidebar_position: 9
 
 :::
 
-:::caution
+:::caution Warning
 The `LSP7DigitalAsset` contract is an `abstract` contract that is not deployable as it is. This is because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_).
 
 In order to use the internal [`_mint(...)`](#_mint) and [`_burn(...)`](#_burn) functions, you can:
@@ -203,6 +203,10 @@ This is an alternative approach to [`authorizeOperator`](#authorizedoperator) th
 | `addedAmount` | `uint256` | the additional amount to add on top of the current operator&#39;s allowance |
 
 ### decreaseAllowance
+
+:::info
+This is a non-standard function, not part of the `ILSP7DigitalAsset` interface. It exists to be used as a prevention mechanism against the double spending allowance vulnerability.
+:::
 
 ```solidity
 function decreaseAllowance(address operator, uint256 substractedAmount) external nonpayable
@@ -562,7 +566,7 @@ event Transfer(
 )
 ```
 
-_**MUST** be fired when the **[transfer](#transfer)** function gets executed successfuly._
+_Fired when the **[transfer](#transfer)** function gets executed successfuly._
 
 #### Values:
 
@@ -585,7 +589,7 @@ event AuthorizedOperator(
 )
 ```
 
-_**MUST** be fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
+_Fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
 
 #### Values:
 
@@ -604,7 +608,7 @@ event RevokedOperator(
 )
 ```
 
-_**MUST** be fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
+_Fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
 
 #### Values:
 

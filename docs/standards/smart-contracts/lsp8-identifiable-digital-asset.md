@@ -11,6 +11,17 @@ sidebar_position: 10
 
 :::
 
+:::caution Warning
+
+The `LSP8IdentifiableDigitalAsset` contract is an `abstract` contract that is not deployable as it is. This is because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_).
+
+In order to use the internal [`_mint(...)`](#_mint) and [`_burn(...)`](#_burn) functions, you can:
+
+- use `LSP8Mintable`, a preset contract that contains a public `mint(...)` function callable only by the contract's owner.
+- or extend the `LSP8DigitalAsset` contract and create custom methods that use the internal functions (to create your own supply mechanism).
+
+:::
+
 The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital assets (NFTs) that can be uniquely traded and given metadata using the **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
 Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
 
@@ -197,6 +208,10 @@ _Triggers the **[RevokedOperator](#revokedoperator)** event when an address gets
 
 ### isOperatorFor
 
+:::info
+The tokenOwner is its own operator.
+:::
+
 ```solidity
 function isOperatorFor(
     address operator,
@@ -205,10 +220,6 @@ function isOperatorFor(
 ```
 
 Returns whether the `operator` address is an operator of the `tokenId`. Operators can send and burn tokens on behalf of their owners.
-
-:::note
-The tokenOwner is its own operator.
-:::
 
 #### Parameters:
 
@@ -219,9 +230,9 @@ The tokenOwner is its own operator.
 
 #### Return Values:
 
-| Name     | Type   | Description                                                               |
-| :------- | :----- | :------------------------------------------------------------------------ |
-| `result` | `bool` | TRUE if `operator` address is an operator for `tokenId`, false otherwise. |
+| Name     | Type   | Description                                                           |
+| :------- | :----- | :-------------------------------------------------------------------- |
+| `result` | `bool` | `true` if `operator` is an operator for `tokenId`, `false` otherwise. |
 
 :::note
 
@@ -341,11 +352,6 @@ _Triggers the **[Transfer](#transfer-2)** event when the tokens get successfully
 
 These internal functions can be extended via `override` to add some custom logic.
 
-:::info Warning
-By deploying an LSP8IdentifiableDigitalAsset contract, there will be no public mint or burn function.
-In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
-:::
-
 ### \_mint
 
 ```solidity
@@ -455,7 +461,7 @@ function _beforeTokenTransfer(
 ) internal virtual
 ```
 
-Hook that is called before any token transfer. This includes minting and burning.
+Hook that is called before any token transfer, including minting and burning.
 
 #### Parameters:
 
@@ -464,16 +470,6 @@ Hook that is called before any token transfer. This includes minting and burning
 | `from`    | `address` | The sender address.    |
 | `to`      | `address` | The recipient address. |
 | `tokenId` | `bytes32` | The token to transfer. |
-
-:::note
-
-#### Notice:
-
-- When `from` and `to` are both non-zero, `from`'s `tokenId` will be transferred to `to`.
-- When `from` is zero, `tokenId` will be minted for `to`.
-- When `to` is zero, `from`'s `tokenId` will be burned.
-
-:::
 
 ### \_notifyTokenSender
 
@@ -574,7 +570,7 @@ event Transfer(
 )
 ```
 
-_**MUST** be fired when the **[transfer](#transfer)** function gets executed successfuly._
+_Fired when the **[transfer](#transfer)** function gets executed successfuly._
 
 #### Values:
 
@@ -597,7 +593,7 @@ event AuthorizedOperator(
 )
 ```
 
-_**MUST** be fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
+_Fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
 
 #### Values:
 
@@ -617,7 +613,7 @@ event RevokedOperator(
 )
 ```
 
-_**MUST** be fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
+_Fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
 
 #### Values:
 
