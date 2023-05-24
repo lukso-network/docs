@@ -75,7 +75,7 @@ Executes a payload on the linked **LSP0ERC725Account**.
 This payload must represent the abi-encoded function call of one of the functions on the linked **LSP0ERC725Account**:
 
 - **[`setData(bytes32,bytes)`](./lsp0-erc725-account.md#setdata)**.
-- **[`setData(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdata-array)**.
+- **[`setDataBatch(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdatabatch)**.
 - **[`execute(uint256,address,uint256,bytes)`](./lsp0-erc725-account.md#execute)**.
 - **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
 - **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
@@ -105,7 +105,7 @@ Same than [`execute(bytes)`](#execute) but executes a batch of payloads on the l
 The payloads parameter must represent an array of abi-encoded function calls of one of the **LSP0ERC725Account** contract functions:
 
 - **[`setData(bytes32,bytes)`](./lsp0-erc725-account.md#setdata)**.
-- **[`setData(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdata-array)**.
+- **[`setDataBatch(bytes32[],bytes[])`](./lsp0-erc725-account.md#setdatabatch)**.
 - **[`execute(uint256,address,uint256,bytes)`](./lsp0-erc725-account.md#execute)**.
 - **[`transferOwnership(address)`](./lsp0-erc725-account.md#transferownership)**.
 - **[`acceptOwnership()`](./lsp0-erc725-account.md#acceptownership)**.
@@ -196,6 +196,7 @@ _Triggers the **[VerifiedCall](#verifiedcall)** event when a call is successfull
 function executeRelayCallBatch(
     bytes[] calldata signatures,
     uint256[] calldata nonces,
+    uint256[] calldata validityTimestamps,
     uint256[] calldata values,
     bytes[] calldata payloads
 ) public

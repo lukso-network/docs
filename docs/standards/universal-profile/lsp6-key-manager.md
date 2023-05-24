@@ -755,13 +755,19 @@ See also our [step by step Javascript guide](../../guides/key-manager/execute-re
 
 To obtain a valid signature that can be used by anyone to execute a relayed transaction (= meta transaction) on behalf of someone else, we must do the following:
 
-1. Gather 4 things:
-   a. the **payload** (an abi-encoded function call) to be executed on the linked account.
-   b. the **chain id** of the blockchain where the `payload` will be executed.
-   c. the address of the [`LSP6KeyManager`](../../standards/smart-contracts/lsp6-key-manager.md) smart contract where the **payload** will be executed.
-   d. the Key Manager **nonce** of the controller.
+1. Gather 5 things:
 
-2. Once you have gathered these 4 information, you must **concatenate them all together**.
+   - 1. the **payload** (an abi-encoded function call) to be executed on the linked account.
+   - 2. the **chain id** of the blockchain where the `payload` will be executed.
+   - 3. the address of the [`LSP6KeyManager`](../../standards/smart-contracts/lsp6-key-manager.md) smart contract where the **payload** will be executed.
+        d. the Key Manager **nonce** of the controller.
+   - 4. the `validityTimestamps`, composed of 2 x `uint128` concatenated together, where:
+
+        4.1. the left-side `uint128` corresponds to the timestamp from which the relay call is valid from.
+
+        4.2. the right-side `uint128` corresponds to the timestamp from which the relay call is valid until.
+
+2. Once you have gathered these 5 information, you must **concatenate them all together**.
 
 3. Then you must get the `keccak256` hash of this data.
 
