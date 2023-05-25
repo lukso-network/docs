@@ -122,7 +122,7 @@ If you want to check any of the running clients in more detail, you can use the 
 $ lukso logs execution
 
 # Viewing the logs of the consensus client
-$ lukso logs execution
+$ lukso logs consensus
 ```
 
 For more options, please check the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli).
