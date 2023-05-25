@@ -223,10 +223,10 @@ Retrieves the data that was set for a particular data `key`.
 | :------ | :------ | :----------------------------------- |
 | `value` | `bytes` | The data for the requested data key. |
 
-### execute (Array)
+### executeBatch
 
 ```solidity
-function execute(
+function executeBatch(
     uint256[] memory operationsType,
     address[] memory targets,
     uint256[] memory values,
@@ -249,7 +249,7 @@ _Triggers the **[Executed](#executed)** event on every successful call that used
 _Triggers the **[ContractCreated](#contractcreated)** event on every newly created smart contract that used operation `CREATE` or `CREATE2`._
 
 :::note
-The `execute(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner of the contract.
+The `executeBatch(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner of the contract.
 
 The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to transfer value.
 :::
@@ -269,10 +269,10 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :-------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `results` | `bytes[]` | The datas that were returned by the functions called on the external contracts, or the addresses of the contracts created (operations 1 & 2). |
 
-### setData (Array)
+### setDataBatch
 
 ```solidity
-function setData(
+function setDataBatch(
     bytes32[] memory keys,
     bytes[] memory values
 ) public
@@ -283,7 +283,7 @@ Sets an array of data at multiple data keys in the vault storage.
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting the data._
 
 :::note
-The `setData(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.
+The `setDataBatch(...)` function can only be called by the current owner of the contract and the LSP1UniversalReceiverDelegateVault contract.
 :::
 
 #### Parameters:
@@ -293,10 +293,10 @@ The `setData(...)` function can only be called by the current owner of the contr
 | `keys`   | `bytes32[]` | The data keys for which to set data. |
 | `values` | `bytes[]`   | The array of data to set.            |
 
-### getData (Array)
+### getDataBatch
 
 ```solidity
-function getData(bytes32[] memory keys) public view returns (bytes[] memory values)
+function getDataBatch(bytes32[] memory keys) public view returns (bytes[] memory values)
 ```
 
 Retrieves an array of data for multiple given data keys.
