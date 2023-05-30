@@ -226,7 +226,7 @@ Create a calldata for the [`claimOwnership()`](../../standards/smart-contracts/l
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const acceptOwnershipCalldata = new web3.eth.Contract(UniversalProfile.abi).methods.acceptOwnership().encodeABI();
 
-await newKeyManager.methods['execute(bytes)'](acceptOwnershipCalldata).send({
+await newKeyManager.methods.execute(acceptOwnershipCalldata).send({
   from: account.address,
   gas: 1_000_000,
   gasPrice: '1000000000',
@@ -240,7 +240,7 @@ await newKeyManager.methods['execute(bytes)'](acceptOwnershipCalldata).send({
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const acceptOwnershipCalldata = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
 
-await newKeyManager.connect(account)['execute(bytes)'](acceptOwnershipCalldata);
+await newKeyManager.connect(account).execute(acceptOwnershipCalldata);
 ```
 
   </TabItem>
@@ -301,7 +301,7 @@ const upgradeLSP6 = async () => {
   // Accept the ownership of your Universal Profile from the new LSP6 Key Manager
   const acceptOwnershipCalldata = new web3.eth.Contract(UniversalProfile.abi).methods.acceptOwnership().encodeABI();
 
-  await newKeyManager.methods['execute(bytes)'](acceptOwnershipCalldata).send({
+  await newKeyManager.methods.execute(acceptOwnershipCalldata).send({
     from: account.address,
     gas: 1_000_000,
     gasPrice: '1000000000',
@@ -352,7 +352,7 @@ const upgradeLSP6 = async () => {
   // Accept the ownership of your Universal Profile from the new LSP6 Key Manager
   const acceptOwnershipCalldata = new ethers.Interface(UniversalProfile.abi).encodeFunctionData("acceptOwnership()");
 
-  await newKeyManager.connect(account)['execute(bytes)'](acceptOwnershipCalldata);
+  await newKeyManager.connect(account).execute(acceptOwnershipCalldata);
 };
 
 await upgradeLSP6();

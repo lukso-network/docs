@@ -324,7 +324,7 @@ The final step is to edit our `LSP3Profile` key on our Universal Profile with th
 
 ```javascript title="Preparing and executing the setData transaction"
 // Step 4.3 - Update LSP3Profile metadata on our Universal Profile
-await universalProfileContract.methods['setData(bytes32,bytes)'](
+await universalProfileContract.methods.setData(
   encodedData.keys[0],
   encodedData.values[0],
 ).send({ from: myEOA.address, gasLimit: 300_000 });
@@ -442,7 +442,7 @@ async function editProfileInfo() {
   );
 
   // Step 4.3 - Set data (updated LSP3Profile metadata) on our Universal Profile
-  await universalProfileContract.methods['setData(bytes32[],bytes[])'](
+  await universalProfileContract.methods.setData(
     encodedData.keys,
     encodedData.values,
   ).send({ from: myEOA.address, gasLimit: 300_000 });

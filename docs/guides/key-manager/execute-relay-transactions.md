@@ -181,9 +181,7 @@ Encode the ABI of the transaction you want to be executed. In this case, a LYX t
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Encode transaction ABI"
-const abiPayload = universalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](
+const abiPayload = universalProfile.methods.execute(
   0, // Operation type: CALL
   '0x...', // Recipient address
   web3.utils.toWei('1'), // Value
@@ -307,9 +305,11 @@ To get the KeyManager address from the UniversalProfile address, call the `owner
   <TabItem value="web3js" label="web3.js">
 
 ```javascript title="Send the transaction"
-const executeRelayCallTransaction = await keyManager.methods[
-  'executeRelayCall(bytes,uint256,bytes)'
-](signature, nonce, abiPayload).send({
+const executeRelayCallTransaction = await keyManager.methods.executeRelayCall(
+  signature,
+  nonce,
+  abiPayload
+).send({
   from: controllerAccount.address,
   gasLimit: 300_000,
 });
@@ -322,7 +322,7 @@ const executeRelayCallTransaction = await keyManager.methods[
 ```javascript title="Send the transaction"
 const executeRelayCallTransaction = await keyManager
   .connect(controllerAccount)
-  ['executeRelayCall(bytes,uint256,bytes)'](signature, nonce, abiPayload);
+  .executeRelayCall(signature, nonce, abiPayload);
 ```
 
   </TabItem>
@@ -372,9 +372,7 @@ const nonce = await keyManager.methods
   .getNonce(controllerAccount.address, channelId)
   .call();
 
-const abiPayload = universalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](
+const abiPayload = universalProfile.methods.execute(
   0, // Operation type: CALL
   '0x...', // Recipient address
   web3.utils.toWei('1'), // Value
@@ -399,9 +397,11 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
   controllerPrivateKey,
 );
 
-const executeRelayCallTransaction = await keyManager.methods[
-  'executeRelayCall(bytes,uint256,bytes)'
-](signature, nonce, abiPayload).send({
+const executeRelayCallTransaction = await keyManager.methods.executeRelayCall(
+  signature, 
+  nonce, 
+  abiPayload
+).send({
   from: controllerAccount.address,
   gasLimit: 300_000,
 });
@@ -472,7 +472,7 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 
 const executeRelayCallTransaction = await keyManager
   .connect(controllerAccount)
-  ['executeRelayCall(bytes,uint256,bytes)'](signature, nonce, abiPayload);
+  .executeRelayCall(signature, nonce, abiPayload);
 ```
 
   </TabItem>

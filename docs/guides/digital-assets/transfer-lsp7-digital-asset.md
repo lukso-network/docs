@@ -171,7 +171,7 @@ Finally we send the transaction and transfer the tokens from a Universal Profile
 
 ```javascript
 // execute the token transfer through the UP
-await myUniversalProfile.methods['execute(uint256,address,uint256,bytes)'](
+await myUniversalProfile.methods.execute(
   0, // operation 0 CALL
   myToken._address,
   0, // 0  LYX sent
@@ -191,7 +191,7 @@ await myUniversalProfile.methods['execute(uint256,address,uint256,bytes)'](
 // execute the token transfer through the UP
 await myUniversalProfile
   .connect(myEOA)
-  ['execute(uint256,address,uint256,bytes)'](
+  .execute(
     0, // operation 0 CALL
     myToken._address,
     0, // 0  LYX sent
@@ -235,7 +235,7 @@ const tokenCalldata = myToken.methods
   .encodeABI();
 
 // execute the token transfer through the UP
-await myUniversalProfile.methods['execute(uint256,address,uint256,bytes)'](
+await myUniversalProfile.methods.execute(
   0, // operation 0 CALL
   myToken._address,
   0, // 0  LYX sent
@@ -283,7 +283,7 @@ const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
 // execute the token transfer through the UP
 await myUniversalProfile
   .connect(myEOA)
-  ['execute(uint256,address,uint256,bytes)'](
+  .execute(
     0, // operation 0 CALL
     myToken._address,
     0, // 0  LYX sent

@@ -367,7 +367,7 @@ Lastly, we need to send the transaction that will update the URD and its permiss
 
 ```typescript title="Update the data on the Universal Profile"
 // update the Universal Profile data
-await universalProfile.methods['setData(bytes32[],bytes[])'](
+await universalProfile.methods.setData(
   dataKeys,
   dataValues,
 ).send({
@@ -384,7 +384,7 @@ await universalProfile.methods['setData(bytes32[],bytes[])'](
 // update the Universal Profile data
 await universalProfile
   .connect(EOA)
-  ['setData(bytes32[],bytes[])'](dataKeys, dataValues);
+  .setData(dataKeys, dataValues);
 ```
 
   </TabItem>
@@ -437,7 +437,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   ];
 
   // update the Universal Profile data
-  await universalProfile.methods['setData(bytes32[],bytes[])'](
+  await universalProfile.methods.setData(
     dataKeys,
     dataValues,
   ).send({
@@ -494,7 +494,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   // update the Universal Profile data
   await universalProfile
     .connect(EOA)
-    ['setData(bytes32[],bytes[])'](dataKeys, dataValues);
+    .setData(dataKeys, dataValues);
 };
 
 // update the URD of the Universal profile
@@ -591,7 +591,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   ];
 
   // update the Universal Profile data
-  await universalProfile.methods['setData(bytes32[],bytes[])'](
+  await universalProfile.methods.setData(
     dataKeys,
     dataValues,
   ).send({
@@ -683,7 +683,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
   // update the Universal Profile data
   await universalProfile
     .connect(EOA)
-    ['setData(bytes32[],bytes[])'](dataKeys, dataValues);
+    .setData(dataKeys, dataValues);
 };
 
 // deploy a new Universal Profile URD and retrieve its address

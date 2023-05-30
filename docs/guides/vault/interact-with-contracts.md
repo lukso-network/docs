@@ -218,9 +218,12 @@ Encoding the calldata that will be be exeuted on the Vault. This calldata will a
 ```typescript title="Vault calldata"
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = await vault.methods[
-  'execute(uint256,address,uint256,bytes)'
-](0, targetContract.address, 0, targetCalldata).encodeABI();
+const vaultCalldata = await vault.methods.execute(
+  0,
+  targetContract.address,
+  0,
+  targetCalldata
+).encodeABI();
 ```
 
   </TabItem>
@@ -250,7 +253,7 @@ The final step is to execute the encoded calldata through the Universal Profile.
 
 ```typescript title="Send transaction"
 // Execute the calldata through the Universal Profile
-await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
+await universalProfile.methods.execute(
   0,
   vaultAddress,
   0,
@@ -269,7 +272,7 @@ await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
 // Execute the calldata through the Universal Profile
 await universalProfile
   .connect(myEOA)
-  ['execute(uint256,address,uint256,bytes)'](0, vaultAddress, 0, vaultCalldata);
+  .execute(0, vaultAddress, 0, vaultCalldata);
 ```
 
   </TabItem>
@@ -318,12 +321,15 @@ const targetCalldata = targetContract.methods
 
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = await vault.methods[
-  'execute(uint256,address,uint256,bytes)'
-](0, targetContract.address, 0, targetCalldata).encodeABI();
+const vaultCalldata = await vault.methods.execute(
+  0,
+  targetContract.address,
+  0,
+  targetCalldata
+).encodeABI();
 
 // Execute the calldata through the Universal Profile
-await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
+await universalProfile.methods.execute(
   0,
   vaultAddress,
   0,
@@ -383,7 +389,7 @@ const vaultCalldata = vault.interface.encodeFunctionData(
 // Execute the calldata through the Universal Profile
 await universalProfile
   .connect(myEOA)
-  ['execute(uint256,address,uint256,bytes)'](0, vaultAddress, 0, vaultCalldata);
+  .execute(0, vaultAddress, 0, vaultCalldata);
 ```
 
   </TabItem>

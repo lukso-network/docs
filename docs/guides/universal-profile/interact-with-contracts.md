@@ -215,7 +215,7 @@ The final step is to pass the encoded calldata to the Universal Profile. Since w
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Send transaction"
-await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
+await universalProfile.methods.execute(
   OPERATION_CALL,
   targetContract.address,
   0,
@@ -233,7 +233,7 @@ await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
 ```typescript title="Send transaction"
 await universalProfile
   .connect(EOA)
-  ['execute(uint256,address,uint256,bytes)'](
+  .execute(
     OPERATION_CALL,
     targetContract.address,
     0,
@@ -281,7 +281,7 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 // 2. execute the calldata through the UP
-await universalProfile.methods['execute(uint256,address,uint256,bytes)'](
+await universalProfile.methods.execute(
   OPERATION_CALL,
   targetContract.address,
   0,
@@ -331,7 +331,7 @@ const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 // 2. execute the calldata through the UP
 await universalProfile
   .connect(EOA)
-  ['execute(uint256,address,uint256,bytes)'](
+  .execute(
     OPERATION_CALL,
     targetContract.address,
     0,

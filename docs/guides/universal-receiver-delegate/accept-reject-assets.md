@@ -214,7 +214,7 @@ Finally, we need to send the transaction that will update the URD of the Univers
 
 ```typescript title="Update the Universal Profile data"
 // Update the profile data
-await universalProfile.methods['setData(bytes32,bytes)'](
+await universalProfile.methods.setData(
   URD_DATA_KEY,
   universalProfileURDAddress,
 ).send({
@@ -231,7 +231,7 @@ await universalProfile.methods['setData(bytes32,bytes)'](
 // Update the profile data
 await universalProfile
   .connect(EOA)
-  ['setData(bytes32,bytes)'](URD_DATA_KEY, universalProfileURDAddress);
+  .setData(URD_DATA_KEY, universalProfileURDAddress);
 ```
 
   </TabItem>
@@ -266,7 +266,7 @@ const universalProfile = new web3.eth.Contract(
 );
 
 // execute the executeCalldata on the Key Manager
-await universalProfile.methods['setData(bytes32,bytes)'](
+await universalProfile.methods.setData(
   URD_DATA_KEY,
   universalProfileURDAddress,
 ).send({
@@ -303,7 +303,7 @@ const universalProfile = new ethers.Contract(
 // execute the executeCalldata on the Key Manager
 await universalProfile
   .connect(EOA)
-  ['setData(bytes32,bytes)'](URD_DATA_KEY, universalProfileURDAddress);
+  .setData(URD_DATA_KEY, universalProfileURDAddress);
 ```
 
   </TabItem>

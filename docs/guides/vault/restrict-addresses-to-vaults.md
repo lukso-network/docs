@@ -206,7 +206,7 @@ Finally we will send a transaction that will update the Universal Profile Allowe
 
 ```typescript title="Set the data key on the Universal Profile"
 // Set the AllowedCalls data key on the Universal Profile
-await universalProfile.methods['setData(bytes32,bytes)'](
+await universalProfile.methods.setData(
   allowedCallsDataKey,
   allowedCallsDataValue,
 ).send({
@@ -223,7 +223,7 @@ await universalProfile.methods['setData(bytes32,bytes)'](
 // Set the AllowedCalls data key on the Universal Profile
 await universalProfile
   .connect(myEOA)
-  ['setData(bytes32,bytes)'](allowedCallsDataKey, allowedCallsDataValue);
+  .setData(allowedCallsDataKey, allowedCallsDataValue);
 ```
 
   </TabItem>
@@ -271,7 +271,7 @@ const allowedCallsSchema = {
 };
 
 // Set the AllowedCalls data key on the Universal Profile
-await universalProfile.methods['setData(bytes32,bytes)'](
+await universalProfile.methods.setData(
   allowedCallsDataKey,
   allowedCallsDataValue,
 ).send({
@@ -327,7 +327,7 @@ const allowedCallsDataValue = encodeKey(allowedCallsSchema, [
 // Set the AllowedCalls data key on the Universal Profile
 await universalProfile
   .connect(myEOA)
-  ['setData(bytes32,bytes)'](allowedCallsDataKey, allowedCallsDataValue);
+  .setData(allowedCallsDataKey, allowedCallsDataValue);
 ```
 
   </TabItem>
