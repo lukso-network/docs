@@ -7,17 +7,13 @@ sidebar_position: 3
 
 :::info
 
-It is not possible to deposit LYXe anymore. Becoming a validator is paused until the discovery month ends and the LYXe to LYX migration goes live. For more information, have a look into our Medium posts about the [LUKSO launch process](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) and the [deposit contract freeze](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc).
+The LUKSO Mainnet launched on Tuesday 23rd May, 4:20 PM GMT with validators that previously deposited to the [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code). Becoming a validator is paused until the discovery month ends and the LYXe to LYX migration goes live. For more information, have a look into our Medium posts about the [LUKSO launch process](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) and the [deposit contract freeze](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc).
 
 :::
 
 ![Deposit Launchpad](/img/network/deposit-launchpad.png)
 
 To become a validator, you can use the LUKSO Deposit Launchpad: <https://deposit.mainnet.lukso.network/>.
-
-## Genesis Validator Information
-
-If you already deposited LYXe to the [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code) using the Launchpad before the 9th May 2023, you will need to set up your node before the network start date on Tuesday 23rd May, 4:20 PM GMT.
 
 :::caution Validator Keys
 
