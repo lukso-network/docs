@@ -178,11 +178,12 @@ _Triggers the **[VerifiedCall](#verifiedcall)** event when a call is successfull
 
 #### Parameters:
 
-| Name        | Type      | Description                                       |
-| :---------- | :-------- | :------------------------------------------------ |
-| `signature` | `bytes`   | The bytes65 EIP191 signature.                     |
-| `nonce`     | `uint256` | The nonce of the address that signed the message. |
-| `_calldata` | `bytes`   | The payload to be executed.                       |
+| Name                 | Type      | Description                                                                                                                                              |
+| :------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `signature`          | `bytes`   | The bytes65 EIP191 signature.                                                                                                                            |
+| `nonce`              | `uint256` | The nonce of the address that signed the message.                                                                                                        |
+| `validityTimestamps` | `uint256` | Two `uint128` timestamps concatenated together that describes when the relay transaction is valid "from" (left `uint128`) and "until" (right `uint128`). |
+| `_calldata`          | `bytes`   | The payload to be executed.                                                                                                                              |
 
 #### Return Value:
 
@@ -206,12 +207,13 @@ Same as [`executeRelayCall(bytes,uint256,bytes)`](#executerelaycall), but allows
 
 #### Parameters:
 
-| Name         | Type        | Description                                                   |
-| :----------- | :---------- | :------------------------------------------------------------ |
-| `signatures` | `bytes[]`   | An array of bytes65 EIP191 signatures.                        |
-| `nonces`     | `uint256[]` | An array of nonces of the addresses that signed the messages. |
-| `values`     | `uint256[]` | An array of values to be sent sent for each payload.          |
-| `payloads`   | `bytes[]`   | An array of payloads to be executed.                          |
+| Name                 | Type        | Description                                                                                                                                                |
+| :------------------- | :---------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `signatures`         | `bytes[]`   | An array of bytes65 EIP191 signatures.                                                                                                                     |
+| `nonces`             | `uint256[]` | An array of nonces of the addresses that signed the messages.                                                                                              |
+| `validityTimestamps` | `uint256[]` | An array of two `uint128` concatenated timestamps that describe when the relay transaction is valid "from" (left `uint128`) and "until" (right `uint128`). |
+| `values`             | `uint256[]` | An array of values to be sent sent for each payload.                                                                                                       |
+| `payloads`           | `bytes[]`   | An array of payloads to be executed.                                                                                                                       |
 
 #### Return Values:
 
