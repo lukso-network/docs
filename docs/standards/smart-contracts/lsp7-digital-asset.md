@@ -11,9 +11,19 @@ sidebar_position: 9
 
 :::
 
+:::caution Warning
+The `LSP7DigitalAsset` contract is an `abstract` contract that is not deployable as it is. This is because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_).
+
+In order to use the internal [`_mint(...)`](#_mint) and [`_burn(...)`](#_burn) functions, you can:
+
+- use `LSP7Mintable`, a preset contract that contains a public `mint(...)` function callable only by the contract's owner.
+- or extend the `LSP7DigitalAsset` contract and create custom methods that use the internal functions (to create your own supply mechanism).
+
+:::
+
 The **LSP7DigitalAsset** contract represents digital assets for either fungible or non-fungible tokens where minting and transferring are specified with an amount of tokens. It has some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
 
-This contract serves as a **Fungible Token Contract** when `isNonDivisible` bool is set to **false** in the `constructor(...)` and otherwise serves as a **Non-Fungible Token Contract**.
+This contract serves as a **Fungible Token Contract** when `isNonDivisible` bool is set to `false` in the [`constructor(...)`](#constructor) and otherwise serves as a **Non-Fungible Token Contract**.
 
 :::note
 _The LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :
@@ -56,15 +66,15 @@ The the `isNonDivisible` parameter specifies if the contract represents a fungib
 
 ### decimals
 
+:::info
+If the contract represents a **NFT** then **0** SHOULD be used, otherwise **18** is the common value.
+:::
+
 ```solidity
   function decimals() public view returns (uint256 value)
 ```
 
 Returns the number of decimals used to get its user representation.
-
-:::note
-If the contract represents a **NFT** then **0** SHOULD be used, otherwise **18** is the common value.
-:::
 
 #### Return Values:
 
@@ -109,10 +119,7 @@ Returns the number of existing tokens of the contract owned by the `tokenOwner` 
 ### authorizeOperator
 
 ```solidity
-function authorizeOperator(
-    address operator,
-    uint256 amount
-) public
+function authorizeOperator(address operator, uint256 amount) public
 ```
 
 Sets the `amount` of tokens to which the `operator` has access from the caller's tokens.
@@ -163,7 +170,76 @@ _Triggers the **[RevokedOperator](#revokedoperator)** event when an address get 
 
 :::
 
+### increaseAllowance
+
+:::info
+This is a non-standard function, not part of the `ILSP7DigitalAsset` interface. It exists to be used as a prevention mechanism against the double spending allowance vulnerability.
+:::
+
+```solidity
+function increaseAllowance(address operator, uint256 addedAmount) external;
+```
+
+Increase the allowance of `operator` by +`addedAmount`
+
+Atomically increases the allowance granted to `operator` by the caller.
+
+This is an alternative approach to [`authorizeOperator`](#authorizedoperator) that can be used as a mitigation for the double spending allowance problem.
+
+> **Requirements:**
+>
+> - `operator` cannot be the same address as `msg.sender`
+> - `operator` cannot be the zero address.
+
+> **Events Emitted**
+>
+> - `AuthorizedOperator` event indicating the updated allowance.
+
+#### Parameters
+
+| Name          | Type      | Description                                                                 |
+| ------------- | --------- | --------------------------------------------------------------------------- |
+| `operator`    | `address` | the operator to increase the allowance for `msg.sender`                     |
+| `addedAmount` | `uint256` | the additional amount to add on top of the current operator&#39;s allowance |
+
+### decreaseAllowance
+
+:::info
+This is a non-standard function, not part of the `ILSP7DigitalAsset` interface. It exists to be used as a prevention mechanism against the double spending allowance vulnerability.
+:::
+
+```solidity
+function decreaseAllowance(address operator, uint256 substractedAmount) external;
+```
+
+Decrease the allowance of `operator` by -`substractedAmount`
+
+Atomically decreases the allowance granted to `operator` by the caller.
+
+This is an alternative approach to [`authorizeOperator(...)`](#authorizedoperator) that can be used as a mitigation for the double spending allowance problem
+
+> **Requirements:**
+>
+> - `operator` cannot be the zero address.
+> - `operator` must have allowance for the caller of at least `substractedAmount`.
+
+> **Events Emitted**:
+>
+> - `AuthorizedOperator` event indicating the updated allowance after decreasing it.
+> - `RevokeOperator` event if `substractedAmount` is the full allowance, indicating `operator` does not have any allowance left for `msg.sender`.
+
+#### Parameters
+
+| Name                | Type      | Description                                                |
+| ------------------- | --------- | ---------------------------------------------------------- |
+| `operator`          | `address` | the operator to decrease allowance for `msg.sender`        |
+| `substractedAmount` | `uint256` | the amount to decrease by in the operator&#39;s allowance. |
+
 ### authorizedAmountFor
+
+:::info
+The tokenOwner is its own operator.
+:::
 
 ```solidity
 function authorizedAmountFor(
@@ -173,12 +249,6 @@ function authorizedAmountFor(
 ```
 
 Returns the amount of tokens to which the `operator` address has access from the `tokenOwner` contract. Operators can send and burn tokens on behalf of their owners.
-
-:::note
-
-The tokenOwner is its own operator.
-
-:::
 
 #### Parameters:
 
@@ -273,11 +343,6 @@ _Triggers the **[Transfer](#transfer-2)** event when tokens get successfully tra
 ## Internal Functions
 
 These internal functions can be extended via `override` to add some custom logic.
-
-:::info Warning
-By deploying an LSP7DigitalAsset contract, there will be no public mint or burn function.
-In order to use them you have to extend the smart contracts and create custom methods using the internal functions.
-:::
 
 ### \_mint
 
@@ -501,7 +566,7 @@ event Transfer(
 )
 ```
 
-_**MUST** be fired when the **[transfer](#transfer)** function gets executed successfuly._
+_Fired when the **[transfer](#transfer)** function gets executed successfuly._
 
 #### Values:
 
@@ -524,7 +589,7 @@ event AuthorizedOperator(
 )
 ```
 
-_**MUST** be fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
+_Fired when the **[authorizeOperator](#authorizeoperator)** function gets successfully executed._
 
 #### Values:
 
@@ -543,7 +608,7 @@ event RevokedOperator(
 )
 ```
 
-_**MUST** be fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
+_Fired when the **[revokeOperator](#revokeoperator)** function gets successfully executed._
 
 #### Values:
 
