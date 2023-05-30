@@ -65,7 +65,7 @@ import {
 import Web3 from 'web3';
 
 // constants
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
@@ -88,7 +88,9 @@ import {
 import { ethers } from 'ethers';
 
 // constants
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
@@ -184,12 +186,13 @@ const universalProfileURD = await universalProfileURDFactory
 ```typescript title="Deploy a Universal Receiver Delegate for the Universal Profile"
 const deployUniversalProfileURD = async () => {
   // create an instance of the LSP1UniversalReceiverDelegateUP
-  let universalProfileURD = new web3.eth.Contract(
+  const universalProfileURD = new web3.eth.Contract(
     LSP1UniversalReceiverDelegateUP.abi,
   );
+  let universalProfileURDAddress;
 
   // deploy the Universal Receiver Delegate UP contract
-  const universalProfileURDAddress = await universalProfileURD
+  await universalProfileURD
     .deploy({
       data: LSP1UniversalReceiverDelegateUP.bytecode,
     })
@@ -199,7 +202,7 @@ const deployUniversalProfileURD = async () => {
       gasPrice: '1000000000',
     })
     .on('receipt', (receipt) => {
-      return receipt.contractAddress;
+      universalProfileURDAddress = receipt.contractAddress;
     });
 
   return universalProfileURDAddress;
@@ -226,7 +229,7 @@ const deployUniversalProfileURD = async () => {
     .connect(EOA)
     .deploy();
 
-  return universalProfileURD.target;
+  return testnetuniversalProfileURD.address;
 };
 
 // deploy a new Universal Profile URD and retrieve its address
@@ -282,7 +285,7 @@ Generate _Data Keys & Values_ for [**adding a URD**](../../standards/generic-sta
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Encode Data Keys & Values for updating the URD and its permissions"
-const addressPermissionsOldArrayLengthHex = await myUP.methods[
+const addressPermissionsOldArrayLengthHex = await universalProfile.methods[
   'getData(bytes32)'
 ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length).call();
 
@@ -291,14 +294,12 @@ const addressPermissionsNewArrayLength =
 
 const addressPermissionsNewArrayLengthHex = web3.utils.padLeft(
   web3.utils.numberToHex(addressPermissionsNewArrayLength),
-  64,
+  32,
 );
 
 // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
-const newElementIndexInArrayHex = addressPermissionsOldArrayLengthHex.substring(
-  34,
-  66,
-);
+const newElementIndexInArrayHex =
+  addressPermissionsOldArrayLengthHex.substring(2);
 
 const dataKeys = [
   URD_DATA_KEY,
@@ -321,21 +322,22 @@ const dataValues = [
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Encode Data Keys & Values for updating the URD and its permissions"
-const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
-  ERC725YDataKeys.LSP6['AddressPermissions[]'].length,
-);
+const addressPermissionsOldArrayLengthHex = await universalProfile[
+  'getData(bytes32)'
+](ERC725YDataKeys.LSP6['AddressPermissions[]'].length);
 
-const addressPermissionsNewArrayLength =
-  ethers.toNumber(addressPermissionsOldArrayLengthHex) + 1;
+const addressPermissionsNewArrayLength = ethers.BigNumber.from(
+  addressPermissionsOldArrayLengthHex,
+)
+  .add(1)
+  .toNumber();
 
 const addressPermissionsNewArrayLengthHex =
-  '0x' + addressPermissionsNewArrayLength2.toString(16).padStart(64, '0');
+  '0x' + addressPermissionsNewArrayLength.toString(16).padStart(32, '0');
 
 // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
-const newElementIndexInArrayHex = addressPermissionsOldArrayLengthHex.substring(
-  34,
-  66,
-);
+const newElementIndexInArrayHex =
+  addressPermissionsOldArrayLengthHex.substring(2);
 
 const dataKeys = [
   URD_DATA_KEY,
@@ -398,14 +400,14 @@ await universalProfile
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
-const updateUniversalProfileURD = async (vaultURDAddress) => {
+const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,
   );
 
-  const addressPermissionsOldArrayLengthHex = await myUP.methods[
+  const addressPermissionsOldArrayLengthHex = await universalProfile.methods[
     'getData(bytes32)'
   ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length).call();
 
@@ -414,12 +416,12 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 
   const addressPermissionsNewArrayLengthHex = web3.utils.padLeft(
     web3.utils.numberToHex(addressPermissionsNewArrayLength),
-    64,
+    32,
   );
 
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
-    addressPermissionsOldArrayLengthHex.substring(34, 66);
+    addressPermissionsOldArrayLengthHex.substring(2);
 
   const dataKeys = [
     URD_DATA_KEY,
@@ -447,7 +449,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 };
 
 // update the URD of the Universal profile
-await updateUniversalProfileURD(vaultURDAddress);
+await updateUniversalProfileURD(universalProfileURDAddress);
 ```
 
   </TabItem>
@@ -455,26 +457,29 @@ await updateUniversalProfileURD(vaultURDAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
-const updateUniversalProfileURD = async (vaultURDAddress) => {
+const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   // create an instance of the Universal Profile
   const universalProfile = new ethers.Contract(
     universalProfileAddress,
     UniversalProfile.abi,
   );
 
-  const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].length,
-  );
+  const addressPermissionsOldArrayLengthHex = await universalProfile[
+    'getData(bytes32)'
+  ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length);
 
-  const addressPermissionsNewArrayLength =
-    ethers.toNumber(addressPermissionsOldArrayLengthHex) + 1;
+  const addressPermissionsNewArrayLength = ethers.BigNumber.from(
+    addressPermissionsOldArrayLengthHex,
+  )
+    .add(1)
+    .toNumber();
 
   const addressPermissionsNewArrayLengthHex =
-    '0x' + addressPermissionsNewArrayLength2.toString(16).padStart(64, '0');
+    '0x' + addressPermissionsNewArrayLength.toString(16).padStart(32, '0');
 
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
-    addressPermissionsOldArrayLengthHex.substring(34, 66);
+    addressPermissionsOldArrayLengthHex.substring(2);
 
   const dataKeys = [
     URD_DATA_KEY,
@@ -498,7 +503,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 };
 
 // update the URD of the Universal profile
-await updateUniversalProfileURD(vaultURDAddress);
+await updateUniversalProfileURD(universalProfileURDAddress);
 ```
 
   </TabItem>
@@ -521,7 +526,7 @@ import {
 import Web3 from 'web3';
 
 // constants
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
@@ -531,12 +536,13 @@ const EOA = web3.eth.accounts.wallet.add(privateKey);
 
 const deployUniversalProfileURD = async () => {
   // create an instance of the LSP1UniversalReceiverDelegateUP
-  let universalProfileURD = new web3.eth.Contract(
+  const universalProfileURD = new web3.eth.Contract(
     LSP1UniversalReceiverDelegateUP.abi,
   );
+  let universalProfileURDAddress;
 
   // deploy the Universal Receiver Delegate UP contract
-  const universalProfileURDAddress = await universalProfileURD
+  await universalProfileURD
     .deploy({
       data: LSP1UniversalReceiverDelegateUP.bytecode,
     })
@@ -546,20 +552,20 @@ const deployUniversalProfileURD = async () => {
       gasPrice: '1000000000',
     })
     .on('receipt', (receipt) => {
-      return receipt.contractAddress;
+      universalProfileURDAddress = receipt.contractAddress;
     });
 
   return universalProfileURDAddress;
 };
 
-const updateUniversalProfileURD = async (vaultURDAddress) => {
+const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
     UniversalProfile.abi,
     universalProfileAddress,
   );
 
-  const addressPermissionsOldArrayLengthHex = await myUP.methods[
+  const addressPermissionsOldArrayLengthHex = await universalProfile.methods[
     'getData(bytes32)'
   ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length).call();
 
@@ -568,12 +574,12 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 
   const addressPermissionsNewArrayLengthHex = web3.utils.padLeft(
     web3.utils.numberToHex(addressPermissionsNewArrayLength),
-    64,
+    32,
   );
 
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
-    addressPermissionsOldArrayLengthHex.substring(34, 66);
+    addressPermissionsOldArrayLengthHex.substring(2);
 
   const dataKeys = [
     URD_DATA_KEY,
@@ -604,7 +610,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 const universalProfileURDAddress = await deployUniversalProfileURD();
 
 // update the URD of the Universal profile
-await updateUniversalProfileURD(vaultURDAddress);
+await updateUniversalProfileURD(universalProfileURDAddress);
 ```
 
   </TabItem>
@@ -621,7 +627,9 @@ import {
 import { ethers } from 'ethers';
 
 // constants
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
 const universalProfileAddress = '0x...';
 
@@ -641,29 +649,32 @@ const deployUniversalProfileURD = async () => {
     .connect(EOA)
     .deploy();
 
-  return universalProfileURD.target;
+  return testnetuniversalProfileURD.address;
 };
 
-const updateUniversalProfileURD = async (vaultURDAddress) => {
+const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   // create an instance of the Universal Profile
   const universalProfile = new ethers.Contract(
     universalProfileAddress,
     UniversalProfile.abi,
   );
 
-  const addressPermissionsOldArrayLengthHex = await myUP['getData(bytes32)'](
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].length,
-  );
+  const addressPermissionsOldArrayLengthHex = await universalProfile[
+    'getData(bytes32)'
+  ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length);
 
-  const addressPermissionsNewArrayLength =
-    ethers.toNumber(addressPermissionsOldArrayLengthHex) + 1;
+  const addressPermissionsNewArrayLength = ethers.BigNumber.from(
+    addressPermissionsOldArrayLengthHex,
+  )
+    .add(1)
+    .toNumber();
 
   const addressPermissionsNewArrayLengthHex =
-    '0x' + addressPermissionsNewArrayLength2.toString(16).padStart(64, '0');
+    '0x' + addressPermissionsNewArrayLength.toString(16).padStart(64, '0');
 
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
-    addressPermissionsOldArrayLengthHex.substring(34, 66);
+    addressPermissionsOldArrayLengthHex.substring(2);
 
   const dataKeys = [
     URD_DATA_KEY,
@@ -690,7 +701,7 @@ const updateUniversalProfileURD = async (vaultURDAddress) => {
 const universalProfileURDAddress = await deployUniversalProfileURD();
 
 // update the URD of the Universal profile
-await updateUniversalProfileURD(vaultURDAddress);
+await updateUniversalProfileURD(universalProfileURDAddress);
 ```
 
   </TabItem>

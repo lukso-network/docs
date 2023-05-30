@@ -1,84 +1,9 @@
 ---
-title: Running a node
+title: Running a Node
 sidebar_position: 2
 ---
 
-# Running a node
-
-:::info
-
-⚠️ The Mainnet of LUKSO has not started yet!
-
-💡 The [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code) has been frozen on 9th May, and we are currently preparing the mainnet to start on 23rd May 2023.
-
-:::
-
-## The Network start process
-
-LUKSO will start as a PoS Blockchain with an Initial Genesis Validator Set that anyone can join.
-
-Once deployed on Ethereum, the Genesis Validator Smart contract will allow users to deposit LYXe and become Genesis Validators for LUKSO Mainnet. For each validator, you run, you must generate a validator key and deposit 32 LYXe. There will be no limit on the number of validators you can run.
-
-Only become a Genesis Validator if you know how to run a node continuously 24/7. This is not delegated Proof of Stake!
-
-### Becoming a Genesis Validator
-
-The window for becoming a Genesis Validator will be around 3 weeks before launch (or longer if needed). At least **4,096 genesis validators** are ideal for the mainnet start. The Genesis Validator Deposit Smart Contract will be frozen once enough validator keys are registered. The freeze function of the Genesis Validator Contract has a 1-week delay to allow anyone a fair chance to participate.
-
-:::note
-
-### The staking deposit website
-
-### 👉 <https://deposit.mainnet.lukso.network>
-
-:::
-
-:::note
-
-### Genesis Validator Smart Contract Address on Ethereum
-
-### 👉 [0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC)
-
-:::
-
-:::danger
-
-Make sure to always double check the address and that the URL is hosted under **lukso.network**!  
-👉 deposit.mainnet.**lukso.network**
-
-:::
-
-### Starting the network
-
-Once the Genesis Validator Contract is frozen, participants can choose and download the two genesis files: `genesis.ssz` and `genesis.json` from the [deposit website](https://deposit.mainnet.lukso.network). These files will be the network’s starting point and determine the initial network state. The `genesis.ssz` will contain all Genesis Validator keys and the network start time, estimated to be 1 week after the Genesis Validator Contract freeze.
-
-The second file, `genesis.json` contains the initial balances of the network. It will include the initial balances and total supply of LYX. The community will choose to set the initial supply at 35M, 42M (the LUKSO team's suggestion), or 100M.
-
-Genesis Validators must run the network clients with the downloaded genesis files before the network's starting time. The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) will make this process easy and will be provided beforehand.
-
-## Network Architecture
-
-LUKSO's Blockchain Architecture runs the Ethereum protocol and consists of 2 to 4 clients:
-
-- The consensus client running Casper the Friendly Finality Gadget (Casper FFG) plus LMD-GHOST fork choice algorithm ([More on the Gasper Consensus](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/gasper/))
-- The execution client, [running the Ethereum Virtual Machine](https://ethereum.org/en/developers/docs/ethereum-stack/)
-
-If you are running a validating node, you will also run:
-
-- The validator client, if you want to run a validating node
-- The slasher client, if you want to run a validating node
-
-## Client Support
-
-LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUKSO Blockchain.
-
-Currently tested execution clients are:
-
-- [Geth](https://github.com/ethereum/go-ethereum)
-
-Currently tested consensus clients are:
-
-- [Prysm](https://github.com/prysmaticlabs/prysm)
+# Running a Node
 
 ## System Requirements
 
@@ -98,117 +23,109 @@ Currently tested consensus clients are:
 | 13000 | TCP      | consensus syncing   | port must be open |
 | 12000 | UDP      | consensus discovery | port must be open |
 
-## Using the LUKSO CLI
+## Network Start
 
-The LUKSO CLI allows you to install, run and manage clients that run the LUKSO network.
-It also allows you to run clients as a validator.
+After the [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code) was frozen on the 9th of May ([read the article](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc)), LUKSO mainnet started as a PoS Blockchain on the 23rd of May 2023. The genesis deposit contract received 10.336 deposits from 223 unique addresses, as fetched from the contract's [Dune Analytics Board](https://dune.com/hmc/lukso-genesis-validators)). The network started with about 170 nodes.
 
-:::tip
+## Supported Clients
 
-The LUKSO CLI is running natively on the node's operating system. We are currently working on providing an additional container setup via Docker to support running multiple blockchain networks on one single node. Containers will also allow running the LUKSO testnet and mainnet on one device.
+LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUKSO Blockchain. The currently tested clients are the following:
 
-:::
+- **Execution Clients**: [Geth](https://geth.ethereum.org/), [Erigon](https://github.com/ledgerwatch/erigon)
+- **Consensus Clients**: [Prysm](https://github.com/prysmaticlabs/prysm), [Lighthouse](https://github.com/sigp/lighthouse)
+- **Validator Clients**: [Prysm](https://docs.prylabs.network/docs/how-prysm-works/prysm-validator-client), [Lighthouse](https://github.com/sigp/lighthouse)
 
-### Installing
+:::info CLI Development
 
-:::info
-
-Right now, the CLI can run devnets and our official LUKSO Testnet. We are currently preparing to enable mainnet functionality and support the related genesis files. The unlock will happen with another version update that has to be downloaded, overwriting the current version.
-
-The current development state can be followed in the repository of the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/).
+Not all tested clients are fully supported by the LUKSO CLI yet. You can follow the latest development process on the official [LUKSO CLI repository](https://github.com/lukso-network/tools-lukso-cli/). Version `0.6.0 ` features Geth, Erigon, and Prysm. We are currently working to ensure that Lighthouse also receives full support.
 
 :::
+
+## Starting a Node
+
+To start your clients and contribute to the blockchain network, you have 3 options:
+
+- **Install the LUKSO CLI**: The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. We recommend this as default for anyone beginning to get into the topic of running a node himself.
+- **Use Docker Compose**: The official [Docker Containers](https://github.com/lukso-network/network-docker-containers) can make it easy for you if you're already experienced with the Docker ecosystem. Different configurations can be started in the blink of an eye and work in encapsulated containers. The versatility makes it especially useful if you want to run multiple networks on your node at once. The repository features extended documentation. By default, the Docker setup will run as a validator.
+- **Configure a LUKSO Compatible Client**: You are in no way limited to the tools we provide for easy onboarding. If you are a pro user, you can download and run the Erigon, Geth, Lighthouse, or Prysm clients in your preferred setup. You can either [download](https://deposit.mainnet.lukso.network/) or [generate](https://github.com/lukso-network/tools-lodestar-genesis-ssz-generator/blob/spike/pos-from-the-start/packages/beacon-node/test/utils/README.md) the genesis files of the LUKSO network and configure your clients manually. Please refer to the respective [clients installation instructions](https://github.com/lukso-network/network-configs#binary-applications) and use the LUKSO [network configuration](https://github.com/lukso-network/network-configs/) repository to start your node.
+
+### LUKSO CLI Node Setup
+
+You can use the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) to prepare and run your LUKSO mainnet node. For further information, you can check out the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/). It is not limiting yourself to running any supported clients, as all configurations and flags can be passed down. The guide will give you a brief introduction.
+
+#### Install the LUKSO CLI
+
+First, install the `lukso` command globally on your node machine.
 
 ```bash
-# Download the LUKSO CLI
 $ curl https://install.lukso.network | sh
 ```
 
-### Initializing a working directory
+#### Create a Working Directory
 
-:::info
+Next, create a working directory for your node's data and move into it. The directory is where everything regarding your blockchain node will be stored. Make sure to choose a proper name for your node folder. If you plan on running a validator later, this folder will also contain your validator key files by default.
 
-For extended documentation, please have a look at the [official LUKSO CLI documentation](https://github.com/lukso-network/tools-lukso-cli/#lukso-cli).
+```bash
+$ mkdir myLUKSOnode && cd myLUKSOnode
+```
+
+Initialize the working folder, which will download the LUKSO network configuration and genesis files needed to sync with the LUKSO network.
+
+:::info Pre-Launch
+
+As the network did not launch yet, the CLI will warn that the genesis files could not have been loaded. This behaviour is as expected. Currently, only genesis validators can launch the network. They have the free choice of which [genesis files](https://deposit.mainnet.lukso.network/) to start the network with. After the launch is initialized, the network will reorganize to the majority, and the final version will be transferred to the CLI.
 
 :::
 
-Before installing the clients, you need to create and initialize a working directory to store configs, optional validator keys, and data of your clients.
-
 ```bash
-# Change [directory_name] with the folder name you want
-$ mkdir [directory_name]
-
-# Change to the folder
-$ cd ./[directory_name]
-
-# Initialize the folder.
-# Creates the necessary folder struture, and downloads all network configs from https://github.com/lukso-network/network-configs
 $ lukso init
 ```
 
-### Installing clients
+#### Install the Clients
 
-Now you can install the clients that you wish to run. These clients will install globally but are set as default clients within your working directories config. So make sure to run it within the working folder.
-
-:::info
-
-If you want to run your node with validators, make sure to choose the `Prysm` consensus client as we do not support other validator clients right now.
-
-:::
+After the initialization is successful, we must download the blockchain clients, which will be managed from the CLI under the hood. They will install globally, need superuser permissions, and are set as default clients within your working directories configuration file. You will be asked which clients you want to download and install during the setup.
 
 ```bash
-# within the working folder run
-$ lukso install
+$ sudo lukso install
 ```
 
-### Running the mainnet
+#### Start the Clients
 
-The following command will spin up your execution and consensus client and connect to the public testnet.
-You can see the running clients' status and logs using the `lukso status` and `lukso logs execution` or `lukso logs consensus` commands.
+The following command will spin up your execution and consensus client and connect to the mainnet.
+
+```sh
+lukso start
+```
+
+#### Checking Processes
+
+To check that everything is running correctly, you can see the status of all your clients using the status command. By default, the validator is not enabled. If you want to run your validator node, please have a look at the [validator page](./become-a-validator.md).
 
 ```bash
-$ lukso start
-
-# Check the status of all running clients
 $ lukso status
 
-# Check the logs of the running mainnet execution client
-$ lukso logs execution
-
-# Check the logs of the running mainnet consensus client
-$ lukso logs consensus
-
-# Stop all running clients
-$ lukso stop
-
+# INFO[0000] PID 39424 - Execution (geth): Running 🟢
+# INFO[0000] PID 39430 - Consensus (prysm): Running 🟢
+# INFO[0000] PID 39432 - Validator (validator): Stopped 🔘
 ```
 
-### Becoming a Validator
-
-:::info
-
-Only Genesis Validators can run the back structure of the network for now. The corresponding Genesis Deposit Contract was frozen on the 9th of May. Until the [Discovery Month](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) is over, and LYXe Migration is live, becoming a validator is paused.
-
-:::
-
-Visit the official [Deposit Launchpad](https://deposit.mainnet.lukso.network/) and cautiously go through the process of generating deposit keys. Then continue either depositing your LYXe (genesis validator) or LYX (regular validator) to them.
-
-Within the LUKSO CLI, import your keys and start the node with the validator functionality. Make sure your working directory has been initialized and the blockchain clients installed.
+If you want to check any of the running clients in more detail, you can use the built-in logging command of the CLI. It will print out the current log messages of one client to the terminal screen.
 
 ```bash
-# Import your key directory
-$ lukso validator import
+# Viewing the logs of the execution client
+$ lukso logs execution
 
-# Start the node as a validator
-# Define your transaction fee wallet address
-$ lukso validator start --validator --transaction-fee-recipient "0x1234..."
+# Viewing the logs of the consensus client
+$ lukso logs consensus
 ```
 
-### Documentation
+For more options, please check the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli).
 
-For more details to the commands look at the [README of the LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli/blob/main/README.md).
+To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a step-by-step guide.
 
-## Need help?
+## Need Help?
+
+Check the [Network FAQ](../faq/validator.md) section.
 
 Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/lukso).
 
@@ -218,3 +135,4 @@ Ask your question in the validators channel on the [official LUKSO Discord serve
 - [LUKSO Mainnet Start Process Update #2](https://medium.com/lukso/lukso-mainnet-timeline-and-process-dd997fe811c8)
 - [LUKSO Mainnet Start Process Update #3](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6)
 - [Genesis Validators Deposit Smart Contract Freeze and Testnet Launch](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc)
+- [Genesis Validators, start your clients!](https://medium.com/lukso/genesis-validators-start-your-clients-fe01db8f3fba)

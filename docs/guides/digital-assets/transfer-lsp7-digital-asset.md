@@ -56,10 +56,11 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
+const receiverUniversalProfileAddress = '0x...';
 
 // setup your controller adddress
 const account = web3.eth.accounts.wallet.add(privateKey);
@@ -74,10 +75,13 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
+const receiverUniversalProfileAddress = '0x...';
 
 // setup your controller address
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
@@ -136,7 +140,7 @@ Now we need to prepare the calldata to transfer tokens from a Universal Profile 
 ```javascript
 // generate the calldata to transfer tokens
 const tokenCalldata = myToken.methods
-  .transfer(myUniversalProfileAddress, '<receiver-up-address>', 15, false, '0x')
+  .transfer(myUniversalProfileAddress, receiverUniversalProfileAddress, 15, false, '0x')
   .encodeABI();
 ```
 
@@ -150,7 +154,7 @@ const tokenCalldata = myToken.methods
 // generate the calldata to transfer tokens
 const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
   myUniversalProfileAddress,
-  '<receiver-up-address>',
+  receiverUniversalProfileAddress,
   15,
   false,
   '0x',
@@ -173,13 +177,12 @@ Finally we send the transaction and transfer the tokens from a Universal Profile
 // execute the token transfer through the UP
 await myUniversalProfile.methods.execute(
   0, // operation 0 CALL
-  myToken._address,
+  myTokenAddress,
   0, // 0  LYX sent
   tokenCalldata,
 ).send({
   from: myEOA,
-  gas: 5_000_000,
-  gasPrice: '1000000000',
+  gas: 500_000,
 });
 ```
 
@@ -193,7 +196,7 @@ await myUniversalProfile
   .connect(myEOA)
   .execute(
     0, // operation 0 CALL
-    myToken._address,
+    myTokenAddress,
     0, // 0  LYX sent
     tokenCalldata,
   );
@@ -214,10 +217,11 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
+const receiverUniversalProfileAddress = '0x...';
 
 // setup your EOA
 const account = web3.eth.accounts.wallet.add(privateKey);
@@ -231,19 +235,24 @@ const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 
 // generate the calldata to transfer tokens
 const tokenCalldata = myToken.methods
-  .transfer(myUniversalProfileAddress, '<receiver-up-address>', 15, false, '0x')
+  .transfer(
+    myUniversalProfileAddress,
+    receiverUniversalProfileAddress,
+    15,
+    false,
+    '0x',
+  )
   .encodeABI();
 
 // execute the token transfer through the UP
 await myUniversalProfile.methods.execute(
   0, // operation 0 CALL
-  myToken._address,
+  myTokenAddress,
   0, // 0  LYX sent
   tokenCalldata,
 ).send({
   from: myEOA,
-  gas: 5_000_000,
-  gasPrice: '1000000000',
+  gas: 500_000,
 });
 ```
 
@@ -256,10 +265,13 @@ import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const privateKey = '0x...';
 const myUniversalProfileAddress = '0x...';
 const myTokenAddress = '0x...';
+const receiverUniversalProfileAddress = '0x...';
 
 // setup your EOA
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
@@ -274,7 +286,7 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 // generate the calldata to transfer tokens
 const tokenCalldata = myToken.interface.encodeFunctionData('transfer', [
   myUniversalProfileAddress,
-  '<receiver-up-address>',
+  receiverUniversalProfileAddress,
   15,
   false,
   '0x',
@@ -285,7 +297,7 @@ await myUniversalProfile
   .connect(myEOA)
   .execute(
     0, // operation 0 CALL
-    myToken._address,
+    myTokenAddress,
     0, // 0  LYX sent
     tokenCalldata,
   );

@@ -22,7 +22,6 @@ This contract could be used as a _blockchain-based account_ by humans, machines,
 
 ---
 
-
 ## Behavior
 
 All ownable functions such as `execute(..)`, `setData(..)`, `transferOwnership(..)`, and `renounceOwnership(..)` can be called by the owner and any address allowed by the owner according to the [LSP20-CallVerification](../universal-profile/lsp0-erc725account.md#lsp20---call-verification) behavior.
@@ -30,7 +29,6 @@ All ownable functions such as `execute(..)`, `setData(..)`, `transferOwnership(.
 If an address calls the `execute(..)` function and is not the owner, the account contract will forward the call to the owner. The execution of the function will only continue if the owner returns a specific magic value, indicating that the caller is allowed to execute the function. The magic value can also determine if there should be any post-execution check on the owner. This same behavior applies to other ownable functions as well.
 
 The structure allows the account to have a more dynamic and adaptable approach for managing function execution logic, using the **LSP20-CallVerification** standard.
-
 
 ## Functions
 
@@ -108,7 +106,7 @@ Executed when sending bytes data to the contract and the first 4 bytes of this d
 
 - If the data sent is **prepended with 4 zeros (0)**, then the call should be checked for an extension. If there is none, the call should still pass.
 
-  _Example:_ 
+  _Example:_
 
   Sending value to the contract can be associated with a message, such as `"Here is 1 Ether" after encoding the message as bytes: `0x486572652069732031204574686572`.
 
@@ -286,23 +284,22 @@ Leaves the contract without an owner. Once ownership of the contract is renounce
 function batchCalls(bytes[] calldata data) public returns (bytes[] memory results)
 ```
 
-Allows a caller to call multiple functions from the contract interface in one single batch call. 
-Under the hood, this function performs a `delegatecall` on the contract itself to call different functions while preserving the context. 
+Allows a caller to call multiple functions from the contract interface in one single batch call.
+Under the hood, this function performs a `delegatecall` on the contract itself to call different functions while preserving the context.
 
 > NB: It is not possible to send value along the functions call due to the use of `delegatecall`.
 
 #### Parameters:
 
-| Name   | Type      | Description                                                                                                                     |
-| :----- | :-------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| Name   | Type      | Description                                                                                                                                          |
+| :----- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data` | `bytes[]` | An array of ABI encoded function calls to be called on the contract. The array can contain calls to different functions from the contract interface. |
 
 #### Return Values:
 
-| Name      | Type      | Description                                                                    |
-| :-------- | :-------- | :----------------------------------------------------------------------------- |
+| Name      | Type      | Description                                                                     |
+| :-------- | :-------- | :------------------------------------------------------------------------------ |
 | `results` | `bytes[]` | An array of values returned by the executed functions in the order they appear. |
-
 
 ### execute
 
@@ -362,18 +359,18 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 | :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------- |
 | `result` | `bytes` | The data that was returned by the function called on the external contract, or the address of the contract created (operations 1 & 2). |
 
-### execute (Array)
+### executeBatch
 
 :::info
 
-Check the [**execute(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#execute-array) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+Check the [**executeBatch(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#executebatch) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**execute(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L215) function implementation in **LSP0ERC725Account** Contract.
+Check the [**executeBatch(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L215) function implementation in **LSP0ERC725Account** Contract.
 
 :::
 
 ```solidity
-function execute(
+function executeBatch(
     uint256[] memory operationsType,
     address[] memory targets,
     uint256[] memory values,
@@ -398,7 +395,7 @@ _Triggers the **[Executed](#executed)** event on every successful call that used
 _Triggers the **[ContractCreated](#contractcreated)** event on every newly created smart contract that used operation `CREATE` or `CREATE2`._
 
 :::note
-The `execute(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner and any address the owner allows.
+The `executeBatch(uint256[],address[],uint256[],bytes[])` function can only be called by the current owner and any address the owner allows.
 
 The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to transfer value.
 :::
@@ -482,20 +479,20 @@ Retrieves the value set for the given data key.
 | :---------- | :------ | :----------------------------------- |
 | `dataValue` | `bytes` | The data for the requested data key. |
 
-### setData (Array)
+### setDataBatch
 
 :::info
 
-Check the [**setData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdata-array) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+Check the [**setDataBatch(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdatabatch) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**setData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
+Check the [**setDataBatch(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
 
 Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md).
 
 :::
 
 ```solidity
-function setData(
+function setDataBatch(
     bytes32[] memory dataKeys,
     bytes[] memory dataValues
 ) public
@@ -506,7 +503,7 @@ Sets an array of values at multiple data keys in the account storage.
 _Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of each data Value._
 
 :::note
-The `setData(...)` function can only be called by the current owner and any address the owner allows.
+The `setDataBatch(...)` function can only be called by the current owner and any address the owner allows.
 :::
 
 #### Parameters:
@@ -516,20 +513,20 @@ The `setData(...)` function can only be called by the current owner and any addr
 | `dataKeys`   | `bytes32[]` | The data keys for which to set data. |
 | `dataValues` | `bytes[]`   | The array of data to set.            |
 
-### getData (Array)
+### getDataBatch
 
 :::info
 
-Check the [**getData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdata-array) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
+Check the [**getDataBatch(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdatabatch) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**getData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
+Check the [**getDataBatch(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
 
 Check the **javascript** guides to know [**How to Read from a Profile (getData)**](../../guides/universal-profile/read-profile-data.md).
 
 :::
 
 ```solidity
-function getData(bytes32[] memory dataKeys) public view returns (bytes[] memory dataValues)
+function getDataBatch(bytes32[] memory dataKeys) public view returns (bytes[] memory dataValues)
 ```
 
 Retrieves an array of values for multiple given data keys.

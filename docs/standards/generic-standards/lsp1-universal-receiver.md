@@ -12,6 +12,7 @@ sidebar_position: 1
 :::
 
 ## Introduction
+
 There is often the need for smart contracts to **be aware of incoming transactions**, especially receiving tokens.
 
 A good example is **[ERC20](https://eips.ethereum.org/EIPS/eip-20)** token transfers. When a smart contract receives a token, it has no generic way **to be notified** about it. During the token transfer, the sender's balance decreases, and the recipient's balance increases. There are **no further interactions**, and the ERC20 token contract just acts as a registry.
@@ -47,7 +48,7 @@ This standard defines a single function named `universalReceiver(...)` that coul
 
 > Receiving contracts should consider the `typeId` parameter to **decode the data correctly**.
 
-The `universalReceiver(...)` function **emits an event with the data passed to it and some additional data**. 
+The `universalReceiver(...)` function **emits an event with the data passed to it and some additional data**.
 
 ![universalReceiver function emits an event](/img/standards/lsp1/universal-receiver-event.jpeg)
 
@@ -56,8 +57,7 @@ For example, **to notify the recipient that he is about to receive tokens**, dur
 - bytes32 `typeId`: **Hash**('ERCXXXXTokenReceived')
 - bytes `data`: **packedData**(amount of token sent, the sender address, the block timestamp)
 
-In this way, instead of **listening to all the events of the token contrats on the network**, and checking which one of these transfers is relative to the recipient, users can listen to the **[UniversalReceiver](../smart-contracts/lsp0-erc725-account.md#universalreceiver-1)** event on the contract implementing the `universalReceiver(..)` and know the token transfer details.  
-
+In this way, instead of **listening to all the events of the token contrats on the network**, and checking which one of these transfers is relative to the recipient, users can listen to the **[UniversalReceiver](../smart-contracts/lsp0-erc725-account.md#universalreceiver-1)** event on the contract implementing the `universalReceiver(..)` and know the token transfer details.
 
 As well as emitting an event, the `universalReceiver(...)` function can implement **custom logic** to make the contract behave differently based on the data received. Some ideas include:
 
@@ -70,8 +70,6 @@ As well as emitting an event, the `universalReceiver(...)` function can implemen
 
 ![universalReceiver function execute custom logic](/img/standards/lsp1/universal-receiver-logic.jpeg)
 
-
-
 ## Extension
 
 :::info
@@ -80,29 +78,15 @@ See the **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-r
 
 :::
 
-Overriding and customizing the `universalReceiver(..)` function is an option for users to allow **different behaviours depending on the data received**. However, it's not advised to hardcode the logic of reacting to specific actions inside the function because **this logic may need to change in the future** depending on several factors (eg. the vault where the tokens are forwarded gets compromised, a new staking contract is deployed, decided to revert on specific tokens later). 
+Overriding and customizing the `universalReceiver(..)` function is an option for users to allow **different behaviours depending on the data received**. However, it's not advised to hardcode the logic of reacting to specific actions inside the function because **this logic may need to change in the future** depending on several factors (eg. the vault where the tokens are forwarded gets compromised, a new staking contract is deployed, decided to revert on specific tokens later).
 
 **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)** is an **optional extension** to the **[LSP1-UniversalReceiver](#)** standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
 
 ![Universal Receiver Delegate contract](/img/standards/lsp1/universal-receiver-delegate.jpeg)
 
-
- address of the **external contract** can be stored and changed inside the contract storage. This way, users can customize such contracts to implement a specific logic that is changeable at any time.
+The address of the **external contract** can be stored and changed inside the contract storage. This way, users can customize such contracts to implement a specific logic that is changeable at any time.
 
 ![Multiple Universal Receiver Delegate](/img/standards/lsp1/multiple-urd.jpeg)
-
-If the contract implementing the `universalReceiver(..)` supports **[ERC725Y Data key-value store](https://github.com/ERC725Alliance/erc725/blob/main/docs/ERC-725.md#erc725y)**, the address of the **external contract** MUST be set as a value for the **LSP1UniversalReceiverDelegate data key** shown below to enable the optional extension. This key-value pair will act as a reference, making this external contract upgradeable if required.
-
-```json
-{
-  "name": "LSP1UniversalReceiverDelegate",
-  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
-  "keyType": "Singleton",
-  "valueType": "address",
-  "valueContent": "Address"
-}
-```
-Check **[LSP2-ERC725YJSONSchema](./lsp2-json-schema.md)** for more information about the JSON schema.
 
 ## References
 

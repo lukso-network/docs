@@ -19,8 +19,11 @@ The **LSP1UniversalReceiverDelegateUP** is a contract called by the **[`universa
 
 The following two requirements are required to execute the logic above correctly:
 
-1. The owner of the **LSP0ERC725Account** contract should be an **[LSP6KeyManager](./lsp6-key-manager.md)** contract.
-2. The **LSP1UniversalReceiverDelegateUP** contract should be granted **permission to [`SETDATA`](../universal-profile/lsp6-key-manager.md#permission-values)** on the account (otherwise, the transaction will pass but will not write any data keys to the storage).
+1. The owner of the **LSP0ERC725Account** contract should be a contract allowing the UniversalReceiverDelegate to call `setDataBatch(..)` function.
+
+For example, in the case of having the **LSP6KeyManager** as owner of the **LSP0ERC725Account**:
+
+The **LSP1UniversalReceiverDelegateUP** contract should be granted the **[`SUPER_SETDATA`](../universal-profile/lsp6-key-manager.md#permission-values)** and **[`REENTRANCY`](../universal-profile/lsp6-key-manager.md#permission-values)** permission on the account (otherwise, the transaction will not pass and will not write any data keys to the storage).
 
 :::note
 _LSP1UniversalReceiverDelegateUP contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
@@ -45,6 +48,8 @@ function universalReceiver(
 Writes the data keys of the received **LSP7DigitalAsset**, **LSP8IdentifiableDigitalAsset**, and **LSP9Vault** contract addresses into the account storage according to the **LSP5ReceivedAssets** and **LSP10-ReceivedVaults** Standard.
 
 The data keys representing an asset/vault are cleared when the asset/vault is no longer owned by the account.
+
+In case when the data registered is corrupted such as not stored correctly with standard length (LSP5ReceivedAssets), or when the token received is already registered or when the token being sent is not sent as full balance, the **LSP1UniversalReceiverDelegateUP** will pass and return and not modify any data key on the account.
 
 #### Parameters:
 

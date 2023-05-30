@@ -93,12 +93,10 @@ You can quickly compile and get a contract's ABI in [Remix IDE](https://remix.et
 
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import TargetContractABI from './TargetContractABI.json';
 import Web3 from 'web3';
 
-import TargetContractABI from './TargetContractABI.json';
-
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const universalProfileAddress = '0x...';
 const universalProfile = new web3.eth.Contract(
@@ -119,12 +117,12 @@ const targetContract = new web3.eth.Contract(
 
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import TargetContractABI from './TargetContractABI.json';
 import { ethers } from 'ethers';
 
-import TargetContractABI from './TargetContractABI.json';
-
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 
 const universalProfileAddress = '0x...';
 const universalProfile = new ethers.Contract(
@@ -256,7 +254,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import TargetContractABI from './TargetContractABI.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const universalProfileAddress = '0x...';
 const universalProfile = new web3.eth.Contract(
@@ -301,7 +299,9 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import TargetContractABI from './TargetContractABI.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 
 const universalProfileAddress = '0x...';
 const universalProfile = new ethers.Contract(

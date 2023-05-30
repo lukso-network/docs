@@ -73,7 +73,7 @@ import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import Web3 from 'web3';
 
 // constants
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x..'; // address of the UP
 const vaultAddress = '0x..'; // address of the Vault
 const thirdPartyAddress = '0x..'; // address of the third party you want to restrict
@@ -94,7 +94,9 @@ import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import { ethers } from 'ethers';
 
 // constants
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const universalProfileAddress = '0x..'; // address of the UP
 const vaultAddress = '0x..'; // address of the Vault
 const thirdPartyAddress = '0x..'; // address of the third party you want to restrict
@@ -243,7 +245,7 @@ import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import Web3 from 'web3';
 
 // constants
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x..'; // address of the UP
 const vaultAddress = '0x..'; // address of the Vault
 const thirdPartyAddress = '0x..'; // address of the third party you want to restrict
@@ -270,6 +272,12 @@ const allowedCallsSchema = {
   valueContent: '(Bytes4,Address,Bytes4)',
 };
 
+const allowedCallsDataValue = encodeKey(allowedCallsSchema, [
+  '0xffffffff',
+  vaultAddress,
+  '0xffffffff',
+]);
+
 // Set the AllowedCalls data key on the Universal Profile
 await universalProfile.methods.setData(
   allowedCallsDataKey,
@@ -291,7 +299,9 @@ import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import { ethers } from 'ethers';
 
 // constants
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const universalProfileAddress = '0x..'; // address of the UP
 const vaultAddress = '0x..'; // address of the Vault
 const thirdPartyAddress = '0x..'; // address of the third party you want to restrict

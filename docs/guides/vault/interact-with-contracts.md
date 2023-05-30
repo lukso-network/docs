@@ -84,7 +84,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const vaultAddress = '0x...';
 const targetContractAddress = '0x...';
@@ -104,7 +104,9 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const universalProfileAddress = '0x...';
 const vaultAddress = '0x...';
 const targetContractAddress = '0x...';
@@ -176,7 +178,7 @@ This is the easy part, we need to create 2 calldatas:
 
 ### Encode Target Contract calldata
 
-Encoding the calldata that will be be exeuted on the Target Contract.
+Encoding the calldata that will be be executed on the Target Contract.
 
 <Tabs>
   
@@ -209,7 +211,7 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 
 ### Encode Vault calldata
 
-Encoding the calldata that will be be exeuted on the Vault. This calldata will also trigger the calldata that will be executed on the Target Contract.
+Encoding the calldata that will be be executed on the Vault. This calldata will also trigger the calldata that will be executed on the Target Contract.
 
 <Tabs>
   
@@ -291,7 +293,7 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const vaultAddress = '0x...';
 const targetContractAddress = '0x...';
@@ -350,7 +352,9 @@ import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import TargetContractABI from './TargetContractABI.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.l16.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 const universalProfileAddress = '0x...';
 const vaultAddress = '0x...';
 const targetContractAddress = '0x...';
@@ -383,7 +387,7 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 // passing the calldata to be run at the targetContract as 4th parameter
 const vaultCalldata = vault.interface.encodeFunctionData(
   'execute(uint256,address,uint256,bytes)',
-  [0, targetContract.address, 0, targetCalldata],
+  [0, targetContractAddress, 0, targetCalldata],
 );
 
 // Execute the calldata through the Universal Profile
