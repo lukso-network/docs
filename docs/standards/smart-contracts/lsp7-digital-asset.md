@@ -177,7 +177,7 @@ This is a non-standard function, not part of the `ILSP7DigitalAsset` interface. 
 :::
 
 ```solidity
-function increaseAllowance(address operator, uint256 addedAmount) external nonpayable
+function increaseAllowance(address operator, uint256 addedAmount) external;
 ```
 
 Increase the allowance of `operator` by +`addedAmount`
@@ -209,7 +209,7 @@ This is a non-standard function, not part of the `ILSP7DigitalAsset` interface. 
 :::
 
 ```solidity
-function decreaseAllowance(address operator, uint256 substractedAmount) external nonpayable
+function decreaseAllowance(address operator, uint256 substractedAmount) external;
 ```
 
 Decrease the allowance of `operator` by -`substractedAmount`
