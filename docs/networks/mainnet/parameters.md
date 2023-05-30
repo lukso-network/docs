@@ -7,7 +7,7 @@ sidebar_position: 1
 
 :::info
 
-The Mainnet of LUKSO will start on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis Delay -> 4:20pm GMT)
+The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis Delay -> 4:20pm GMT)
 
 :::
 
