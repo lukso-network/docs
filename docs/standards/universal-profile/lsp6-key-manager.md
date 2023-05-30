@@ -535,7 +535,17 @@ Ensure the `bytes32` value set under the permissions are correct according to th
 
 ### Allowed Calls
 
-You can restrict a controller to interact with:
+You can restrict a controller permission (`CALL`/`TRANSFERVALUE`/etc..) to be valid with specific:
+
+<details>
+    <summary>Addresses</summary>
+
+|                   Address                    |                     Meaning                     |
+| :------------------------------------------: | :---------------------------------------------: |
+| `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
+|               Other addresses                | Interaction with a specific address is allowed. |
+
+</details>
 
 <details>
     <summary>Standards</summary>
@@ -550,16 +560,6 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 </details>
 
 <details>
-    <summary>Addresses</summary>
-
-|                   Address                    |                     Meaning                     |
-| :------------------------------------------: | :---------------------------------------------: |
-| `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
-|               Other addresses                | Interaction with a specific address is allowed. |
-
-</details>
-
-<details>
     <summary>Functions</summary>
 
 |    Function Selector     |                     Meaning                      |
@@ -569,36 +569,39 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 
 </details>
 
-To allow a controller to execute any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
+To allow a controller to call (using `CALL` Permission) any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742de2bf393a64c70000<controller-address>`
   - where `<address>` is the controller `address`
 - **possible values:**
-  - `(bytes4,address,bytes4)[CompactBytesArray]`: a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4)` which is created by concatenating the chosen _function selector_, _address_ and _standard_. (e.g. `0x001c66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`)
+  - `(bytes4,address,bytes4,bytes4)[CompactBytesArray]`: a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4,bytes4)` which is created by concatenating the _permission which restrictions belong to_ and the chosen _function selector_, _address_ and _standard_ to restrict. (e.g. `0x000000027497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0001c6676ffffffff`)
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the controller is not allowed to interact with any functions, address or standards (**= all calls are disallowed**).
 
 <details>
     <summary>Combining multiple interactions</summary>
 
-If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray). Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **28** = **`0x001c`**, because a _standard_ uses **4 bytes**, an _address_ uses **20 bytes** and a _function_ uses **4 bytes**.
+If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray). Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **32** = **`0x0020`**, because the permission being restricted is represented with **4 bytes** and a _standard_ uses **4 bytes**, an _address_ uses **20 bytes** and a _function_ uses **4 bytes**.
 
 _Example:_
 
-- _Standard_: **LSP0, `0x66767497`**;  
-  _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;  
-  _Function_: **any**;  
-  _CompactBytesArray_: **`0x001c66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`**
-- _Standard_: **any**;  
-  _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;  
-  _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;  
-  _CompactBytesArray_: **`0x001cffffffffF70Ce3b58f275A4c28d06C98615760dDe774DE57760d9bba`**
-- _Standard_: **any**;  
-  _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;  
-  _Function_: **any**;  
-  _CompactBytesArray_: **`0x001cffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`**
+- _Permission_: **CALL** , **0x00000002**;
+  _Standard_: **LSP0, `0x66767497`**;  
+   _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;  
+   _Function_: **any**;  
+   _CompactBytesArray_: **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**
+- _Permission_: **CALL and TRANSFERVALUE**, **0x00000003**;
+  _Standard_: **any**;  
+   _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;  
+   _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;  
+   _CompactBytesArray_: **`0x002000000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**
+- _Permission_: **STATICCALL**, **0x00000004**;
+  _Standard_: **any**;  
+   _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;  
+   _Function_: **any**;  
+   _CompactBytesArray_: **`0x002000000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`**
 
 A _CompactBytesArray_ for these 3 interactions would look like this:
-`0x`**`001c`**`66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`**`001c`**`ffffffffF70Ce3b58f275A4c28d06C98615760dDe774DE57760d9bba`**`001c`**`ffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`
+`0x`**`0020`**`00000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**`0020`**`00000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
 
 </details>
 
