@@ -5,12 +5,6 @@ sidebar_position: 2
 
 # Running a Node
 
-:::info
-
-⚠️ The LUKSO mainnet will start on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis Delay -> 4:20pm GMT).
-
-:::
-
 ## System Requirements
 
 | Settings            | Value          |
@@ -31,7 +25,7 @@ sidebar_position: 2
 
 ## Network Start
 
-After the [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code) was frozen on the 9th of May ([read the article](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc)), LUKSO mainnet will start as a PoS Blockchain with the validators who deposited in the genesis contract. The genesis deposit contract received 10.336 deposits from 223 unique addresses, as fetched from the contract's [Dune Analytics Board](https://dune.com/hmc/lukso-genesis-validators)).
+After the [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code) was frozen on the 9th of May ([read the article](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc)), LUKSO mainnet started as a PoS Blockchain on the 23rd of May 2023. The genesis deposit contract received 10.336 deposits from 223 unique addresses, as fetched from the contract's [Dune Analytics Board](https://dune.com/hmc/lukso-genesis-validators)). The network started with about 170 nodes.
 
 ## Supported Clients
 
@@ -122,7 +116,7 @@ If you want to check any of the running clients in more detail, you can use the 
 $ lukso logs execution
 
 # Viewing the logs of the consensus client
-$ lukso logs execution
+$ lukso logs consensus
 ```
 
 For more options, please check the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli).
