@@ -220,12 +220,9 @@ Encoding the calldata that will be be executed on the Vault. This calldata will 
 ```typescript title="Vault calldata"
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = await vault.methods.execute(
-  0,
-  targetContract.address,
-  0,
-  targetCalldata
-).encodeABI();
+const vaultCalldata = await vault.methods
+  .execute(0, targetContract.address, 0, targetCalldata)
+  .encodeABI();
 ```
 
   </TabItem>
@@ -235,10 +232,12 @@ const vaultCalldata = await vault.methods.execute(
 ```typescript title="Vault calldata"
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = vault.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [0, targetContract.address, 0, targetCalldata],
-);
+const vaultCalldata = vault.interface.encodeFunctionData('execute', [
+  0,
+  targetContract.address,
+  0,
+  targetCalldata,
+]);
 ```
 
   </TabItem>
@@ -255,12 +254,7 @@ The final step is to execute the encoded calldata through the Universal Profile.
 
 ```typescript title="Send transaction"
 // Execute the calldata through the Universal Profile
-await universalProfile.methods.execute(
-  0,
-  vaultAddress,
-  0,
-  vaultCalldata,
-).send({
+await universalProfile.methods.execute(0, vaultAddress, 0, vaultCalldata).send({
   from: myEOA.address,
   gasLimit: 600_000,
 });
@@ -323,20 +317,12 @@ const targetCalldata = targetContract.methods
 
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = await vault.methods.execute(
-  0,
-  targetContract.address,
-  0,
-  targetCalldata
-).encodeABI();
+const vaultCalldata = await vault.methods
+  .execute(0, targetContract.address, 0, targetCalldata)
+  .encodeABI();
 
 // Execute the calldata through the Universal Profile
-await universalProfile.methods.execute(
-  0,
-  vaultAddress,
-  0,
-  vaultCalldata,
-).send({
+await universalProfile.methods.execute(0, vaultAddress, 0, vaultCalldata).send({
   from: myEOA.address,
   gasLimit: 600_000,
 });
@@ -385,10 +371,12 @@ const targetCalldata = targetContract.interface.encodeFunctionData(
 
 // 2. encode the calldata to be run on the Vault,
 // passing the calldata to be run at the targetContract as 4th parameter
-const vaultCalldata = vault.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [0, targetContractAddress, 0, targetCalldata],
-);
+const vaultCalldata = vault.interface.encodeFunctionData('execute', [
+  0,
+  targetContractAddress,
+  0,
+  targetCalldata,
+]);
 
 // Execute the calldata through the Universal Profile
 await universalProfile

@@ -228,15 +228,12 @@ const abiPayload = universalProfile.methods
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Encode transaction ABI"
-const abiPayload = universalProfile.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [
-    0, // Operation type: CALL
-    recipientAddress,
-    msgValue,
-    '0x', // Data
-  ],
-);
+const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
+  0, // Operation type: CALL
+  recipientAddress,
+  msgValue,
+  '0x', // Data
+]);
 ```
 
   </TabItem>
@@ -484,15 +481,12 @@ const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
 
 const validityTimestamps = 0; // no timestamp set
 
-const abiPayload = universalProfile.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [
-    0, // Operation type: CALL
-    recipientAddress,
-    msgValue,
-    '0x', // Data
-  ],
-);
+const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
+  0, // Operation type: CALL
+  recipientAddress,
+  msgValue,
+  '0x', // Data
+]);
 
 const { chainId } = await provider.getNetwork();
 

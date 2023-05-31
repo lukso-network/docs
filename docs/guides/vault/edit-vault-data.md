@@ -277,10 +277,9 @@ Secondly, we need to encode a calldata that will update the address of the Vault
 
 ```typescript title="Calldata for updating the LSP9 Vault URD"
 // encode setData Calldata on the Vault
-const setDataCalldata = await vault.methods.setData(
-  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
-  vaultURDAddress,
-).encodeABI(); // Any other information can be stored here
+const setDataCalldata = await vault.methods
+  .setData(ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, vaultURDAddress)
+  .encodeABI(); // Any other information can be stored here
 ```
 
   </TabItem>
@@ -289,10 +288,10 @@ const setDataCalldata = await vault.methods.setData(
 
 ```typescript title="Calldata for updating the LSP9 Vault URD"
 // encode setData Calldata on the Vault
-const setDataCalldata = vault.interface.encodeFunctionData(
-  'setData(bytes32,bytes)',
-  [ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, vaultURDAddress],
-); // Any other information can be stored here
+const setDataCalldata = vault.interface.encodeFunctionData('setData', [
+  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
+  vaultURDAddress,
+]); // Any other information can be stored here
 ```
 
   </TabItem>
@@ -309,15 +308,17 @@ Lastly, we need to send the transaction that will update the Vault data through 
 
 ```typescript title="Execute the calldata on the Universal Profile"
 // execute the `setData(bytes32,bytes)` calldata that updates the Vault data
-await universalProfile.methods.execute(
-  0, // OPERATION CALL
-  vaultAddress,
-  0, // value to transfer
-  setDataCalldata,
-).send({
-  from: myEOA.address,
-  gasLimit: 600_000,
-});
+await universalProfile.methods
+  .execute(
+    0, // OPERATION CALL
+    vaultAddress,
+    0, // value to transfer
+    setDataCalldata,
+  )
+  .send({
+    from: myEOA.address,
+    gasLimit: 600_000,
+  });
 ```
 
   </TabItem>
@@ -355,21 +356,25 @@ const updateVaultURD = async (vaultURDAddress) => {
   );
 
   // encode setData Calldata on the Vault
-  const setDataCalldata = await vault.methods.setData(
-    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
-    vaultURDAddress,
-  ).encodeABI(); // Any other information can be stored here
+  const setDataCalldata = await vault.methods
+    .setData(
+      ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
+      vaultURDAddress,
+    )
+    .encodeABI(); // Any other information can be stored here
 
   // execute the `setDataCalldata` that updates the Vault data
-  await universalProfile.methods.execute(
-    0, // OPERATION CALL
-    vaultAddress,
-    0, // value to transfer
-    setDataCalldata,
-  ).send({
-    from: myEOA.address,
-    gasLimit: 600_000,
-  });
+  await universalProfile.methods
+    .execute(
+      0, // OPERATION CALL
+      vaultAddress,
+      0, // value to transfer
+      setDataCalldata,
+    )
+    .send({
+      from: myEOA.address,
+      gasLimit: 600_000,
+    });
 };
 
 // update the curent Vault's URD
@@ -391,20 +396,18 @@ const updateVaultURD = async (vaultURDAddress) => {
   );
 
   // encode setData Calldata on the Vault
-  const setDataCalldata = vault.interface.encodeFunctionData(
-    'setData(bytes32,bytes)',
-    [ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, vaultURDAddress],
-  ); // Any other information can be stored here
+  const setDataCalldata = vault.interface.encodeFunctionData('setData', [
+    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
+    vaultURDAddress,
+  ]); // Any other information can be stored here
 
   // execute the `setDataCalldata` that updates the Vault data
-  await universalProfile
-    .connect(myEOA)
-    .execute(
-      0, // OPERATION CALL
-      vaultAddress,
-      0, // value to transfer
-      setDataCalldata,
-    );
+  await universalProfile.connect(myEOA).execute(
+    0, // OPERATION CALL
+    vaultAddress,
+    0, // value to transfer
+    setDataCalldata,
+  );
 };
 
 // update the curent Vault's URD
@@ -468,21 +471,25 @@ const updateVaultURD = async (vaultURDAddress) => {
   );
 
   // encode setData Calldata on the Vault
-  const setDataCalldata = await vault.methods.setData(
-    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
-    vaultURDAddress,
-  ).encodeABI(); // Any other information can be stored here
+  const setDataCalldata = await vault.methods
+    .setData(
+      ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
+      vaultURDAddress,
+    )
+    .encodeABI(); // Any other information can be stored here
 
   // execute the `setDataCalldata` that updates the Vault data
-  await universalProfile.methods.execute(
-    0, // OPERATION CALL
-    vaultAddress,
-    0, // value to transfer
-    setDataCalldata,
-  ).send({
-    from: myEOA.address,
-    gasLimit: 600_000,
-  });
+  await universalProfile.methods
+    .execute(
+      0, // OPERATION CALL
+      vaultAddress,
+      0, // value to transfer
+      setDataCalldata,
+    )
+    .send({
+      from: myEOA.address,
+      gasLimit: 600_000,
+    });
 };
 
 // deploy a new Vault URD and retrieve its address
@@ -535,20 +542,20 @@ const updateVaultURD = async (vaultURDAddress) => {
   );
 
   // encode setData Calldata on the Vault
-  const setDataCalldata = await vault.methods.setData(
-    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
-    vaultURDAddress,
-  ).encodeABI(); // Any other information can be stored here
+  const setDataCalldata = await vault.methods
+    .setData(
+      ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
+      vaultURDAddress,
+    )
+    .encodeABI(); // Any other information can be stored here
 
   // execute the `setDataCalldata` that updates the Vault data
-  await universalProfile
-    .connect(myEOA)
-    .execute(
-      0, // OPERATION CALL
-      vaultAddress,
-      0, // value to transfer
-      setDataCalldata,
-    );
+  await universalProfile.connect(myEOA).execute(
+    0, // OPERATION CALL
+    vaultAddress,
+    0, // value to transfer
+    setDataCalldata,
+  );
 };
 
 // deploy a new Vault URD and retrieve its address
