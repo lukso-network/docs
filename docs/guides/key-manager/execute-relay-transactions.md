@@ -117,10 +117,16 @@ We will get the contract instances for the [Universal Profile](../../standards/u
 <!-- prettier-ignore-start -->
 
 ```typescript title="Contract instances"
-const universalProfile = new web3.eth.Contract(UniversalProfileContract.abi, universalProfileAddress);
+const universalProfile = new web3.eth.Contract(
+  UniversalProfileContract.abi,
+  universalProfileAddress
+);
 
 const keyManagerAddress = await universalProfile.methods.owner().call();
-const keyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddress);
+const keyManager = new web3.eth.Contract(
+  KeyManagerContract.abi,
+  keyManagerAddress
+);
 ```
 
 <!-- prettier-ignore-end -->
@@ -132,10 +138,18 @@ const keyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddre
 <!-- prettier-ignore-start -->
 
 ```typescript title="Contract instances"
-const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfileContract.abi, controllerAccount);
+const universalProfile = new ethers.Contract(
+  universalProfileAddress,
+  UniversalProfileContract.abi,
+  controllerAccount
+);
 
 const keyManagerAddress = await universalProfile.owner();
-const keyManager = new ethers.Contract(keyManagerAddress, KeyManagerContract.abi, controllerAccount);
+const keyManager = new ethers.Contract(
+  keyManagerAddress,
+  KeyManagerContract.abi,
+  controllerAccount
+);
 ```
 
 <!-- prettier-ignore-end -->
@@ -178,26 +192,28 @@ const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
 
 ### Step 4 - Setup the validity timestamps
 
-The validity timestamp are constructed by concatenating the `bytes` value of two `uint128` numbers, the **start timestamp** and the **end timestamp**. In the case that you don't want to restrict the relay call by timestamps you just have to set it as _0_.
+:::tip
+
+For more information about _validity timestamps_ check [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+
+:::
+
+A `validityTimestamp` of `0` is used for simplicity in this guide.
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-<!-- prettier-ignore-start -->
-
 ```typescript title="Setup the validity timestamps"
-const validityTimestamps = 0; // no timestamp set
+const validityTimestamps = 0; // no validity timestamp set
 ```
-
-<!-- prettier-ignore-end -->
 
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Setup the validity timestamps"
-const validityTimestamps = 0; // no timestamp set
+const validityTimestamps = 0; // no validity timestamp set
 ```
 
   </TabItem>
@@ -254,7 +270,7 @@ The message is constructed by signing the `keyManagerAddress`, `keyManagerVersio
 
 :::tip ERC725X execute
 
-For more information check: [How to sign relay transactions?](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+For more information check: [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 :::
 
@@ -313,7 +329,15 @@ Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManager
 ## Execute via `executeRelayCall`
 
 :::info
+
 This example shows how a third party can execute a transaction on behalf of another user.
+
+:::
+
+:::tip
+
+For more information about relay execution check [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+
 :::
 
 To execute a signed transaction, ABI payload requires:
@@ -401,7 +425,7 @@ const nonce = await keyManager.methods
   .getNonce(controllerAccount.address, channelId)
   .call();
 
-const validityTimestamps = 0; // no timestamp set
+const validityTimestamps = 0; // no validity timestamp set
 
 const abiPayload = universalProfile.methods
   .execute(
@@ -479,7 +503,7 @@ const keyManager = new ethers.Contract(
 const channelId = 0;
 const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
 
-const validityTimestamps = 0; // no timestamp set
+const validityTimestamps = 0; // no validity timestamp set
 
 const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
   0, // Operation type: CALL

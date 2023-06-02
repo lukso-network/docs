@@ -369,10 +369,7 @@ Lastly, we need to send the transaction that will update the URD and its permiss
 
 ```typescript title="Update the data on the Universal Profile"
 // update the Universal Profile data
-await universalProfile.methods.setData(
-  dataKeys,
-  dataValues,
-).send({
+await universalProfile.methods.setDataBatch(dataKeys, dataValues).send({
   from: EOA.address,
   gasLimit: 600_000,
 });
@@ -384,9 +381,7 @@ await universalProfile.methods.setData(
 
 ```typescript title="Update the data on the Universal Profile"
 // update the Universal Profile data
-await universalProfile
-  .connect(EOA)
-  .setData(dataKeys, dataValues);
+await universalProfile.connect(EOA).setDataBatch(dataKeys, dataValues);
 ```
 
   </TabItem>
@@ -439,10 +434,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   ];
 
   // update the Universal Profile data
-  await universalProfile.methods.setData(
-    dataKeys,
-    dataValues,
-  ).send({
+  await universalProfile.methods.setDataBatch(dataKeys, dataValues).send({
     from: EOA.address,
     gasLimit: 600_000,
   });
@@ -497,9 +489,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   ];
 
   // update the Universal Profile data
-  await universalProfile
-    .connect(EOA)
-    .setData(dataKeys, dataValues);
+  await universalProfile.connect(EOA).setDataBatch(dataKeys, dataValues);
 };
 
 // update the URD of the Universal profile
@@ -597,10 +587,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   ];
 
   // update the Universal Profile data
-  await universalProfile.methods.setData(
-    dataKeys,
-    dataValues,
-  ).send({
+  await universalProfile.methods.setDataBatch(dataKeys, dataValues).send({
     from: EOA.address,
     gasLimit: 600_000,
   });
@@ -692,9 +679,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   ];
 
   // update the Universal Profile data
-  await universalProfile
-    .connect(EOA)
-    .setData(dataKeys, dataValues);
+  await universalProfile.connect(EOA).setDataBatch(dataKeys, dataValues);
 };
 
 // deploy a new Universal Profile URD and retrieve its address
