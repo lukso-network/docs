@@ -468,7 +468,7 @@ _if the `AddressPermission[]` array data key returns `0x000000000000000000000000
 | Permission Type                                        | Description                                                                                                                                                                        | `bytes32` data key                    |
 | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | [**Address Permissions**](#address-permissions)        | defines a set of [**permissions**](#permissions) for a controller.                                                                                                                 | `0x4b80742de2bf82acb3630000<address>` |
-| [**Allowed Calls**](#allowed-calls)                    | defines a set of interactions (function + address + standard) allowed for a controller.                                                                                            | `0x4b80742de2bf393a64c70000<address>` |
+| [**Allowed Calls**](#allowed-calls)                    | defines a set of interactions (action + address + function + standard) allowed for a controller.                                                                                   | `0x4b80742de2bf393a64c70000<address>` |
 | [**Allowed ERC725Y Data Keys**](#allowed-erc725y-keys) | defines a list of ERC725Y Data Keys a controller is only allowed to set via [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata-array) on the linked ERC725Account. | `0x4b80742de2bf866c29110000<address>` |
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
@@ -476,7 +476,7 @@ _if the `AddressPermission[]` array data key returns `0x000000000000000000000000
 The values set under these permission data keys **MUST be of the following format** to ensure correct behavior of these functionalities.
 
 - **Address Permissions**: a `bytes32` value.
-- **Allowed Calls**: a [CompactBytesArray](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of the tuple `(bytes4,address,bytes4)`.
+- **Allowed Calls**: a [CompactBytesArray](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of the tuple `(bytes4,address,bytes4,bytes4)`.
 - **Allowed ERC725Y Data Keys**: a [CompactBytesArray](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of bytes, containing values from `bytes1` to `bytes32`.
 
 :::caution
@@ -535,7 +535,17 @@ Ensure the `bytes32` value set under the permissions are correct according to th
 
 ### Allowed Calls
 
-You can restrict a controller to interact with:
+You can restrict a controller permission (`CALL`/`TRANSFERVALUE`/etc..) to be valid with specific:
+
+<details>
+    <summary>Addresses</summary>
+
+|                   Address                    |                     Meaning                     |
+| :------------------------------------------: | :---------------------------------------------: |
+| `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
+|               Other addresses                | Interaction with a specific address is allowed. |
+
+</details>
 
 <details>
     <summary>Standards</summary>
@@ -550,16 +560,6 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 </details>
 
 <details>
-    <summary>Addresses</summary>
-
-|                   Address                    |                     Meaning                     |
-| :------------------------------------------: | :---------------------------------------------: |
-| `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
-|               Other addresses                | Interaction with a specific address is allowed. |
-
-</details>
-
-<details>
     <summary>Functions</summary>
 
 |    Function Selector     |                     Meaning                      |
@@ -569,36 +569,39 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 
 </details>
 
-To allow a controller to execute any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
+To allow a controller to call (using `CALL` Permission) any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
 
 - **key:** `0x4b80742de2bf393a64c70000<controller-address>`
   - where `<address>` is the controller `address`
 - **possible values:**
-  - `(bytes4,address,bytes4)[CompactBytesArray]`: a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4)` which is created by concatenating the chosen _function selector_, _address_ and _standard_. (e.g. `0x001c66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`)
+  - `(bytes4,address,bytes4,bytes4)[CompactBytesArray]`: a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4,bytes4)` which is created by concatenating the _permission which restrictions belong to_ and the chosen _function selector_, _address_ and _standard_ to restrict. (e.g. `0x000000027497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0001c6676ffffffff`)
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the controller is not allowed to interact with any functions, address or standards (**= all calls are disallowed**).
 
 <details>
     <summary>Combining multiple interactions</summary>
 
-If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray). Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **28** = **`0x001c`**, because a _standard_ uses **4 bytes**, an _address_ uses **20 bytes** and a _function_ uses **4 bytes**.
+If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray). Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **32** = **`0x0020`**, because the permission being restricted is represented with **4 bytes** and a _standard_ uses **4 bytes**, an _address_ uses **20 bytes** and a _function_ uses **4 bytes**.
 
 _Example:_
 
-- _Standard_: **LSP0, `0x66767497`**;  
-  _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;  
-  _Function_: **any**;  
-  _CompactBytesArray_: **`0x001c66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`**
-- _Standard_: **any**;  
-  _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;  
-  _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;  
-  _CompactBytesArray_: **`0x001cffffffffF70Ce3b58f275A4c28d06C98615760dDe774DE57760d9bba`**
-- _Standard_: **any**;  
-  _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;  
-  _Function_: **any**;  
-  _CompactBytesArray_: **`0x001cffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`**
+- _Permission_: **CALL** , **0x00000002**;
+  _Standard_: **LSP0, `0x66767497`**;  
+   _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;  
+   _Function_: **any**;  
+   _CompactBytesArray_: **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**
+- _Permission_: **CALL and TRANSFERVALUE**, **0x00000003**;
+  _Standard_: **any**;  
+   _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;  
+   _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;  
+   _CompactBytesArray_: **`0x002000000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**
+- _Permission_: **STATICCALL**, **0x00000004**;
+  _Standard_: **any**;  
+   _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;  
+   _Function_: **any**;  
+   _CompactBytesArray_: **`0x002000000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`**
 
 A _CompactBytesArray_ for these 3 interactions would look like this:
-`0x`**`001c`**`66767497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0ffffffff`**`001c`**`ffffffffF70Ce3b58f275A4c28d06C98615760dDe774DE57760d9bba`**`001c`**`ffffffffd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffff`
+`0x`**`0020`**`00000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**`0020`**`00000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
 
 </details>
 
@@ -607,8 +610,8 @@ A _CompactBytesArray_ for these 3 interactions would look like this:
   "name": "AddressPermissions:AllowedCalls:<address>",
   "key": "0x4b80742de2bf393a64c70000<address>",
   "keyType": "MappingWithGrouping",
-  "valueType": "(bytes4,address,bytes4)[CompactBytesArray]",
-  "valueContent": "(Bytes4,Address,Bytes4)"
+  "valueType": "(bytes4,address,bytes4,bytes4)[CompactBytesArray]",
+  "valueContent": "(BitArray,Address,Bytes4,Bytes4)"
 }
 ```
 
@@ -722,12 +725,13 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 ## Types of Execution
 
-There are 2 ways to interact with the ERC725Account linked with the Key Manager.
+There are 3 ways to interact with the ERC725Account linked with the Key Manager.
 
 - **direct execution**: the controller is the caller (`msg.sender`) and sends a **payload** to the Key Manager directly (= abi-encoded function call on the linked ERC725Account) to the KeyManager via [`execute(...)`](../smart-contracts/lsp6-key-manager.md#execute).
 - **relay execution**: a controller **A** signs a payload and an executor `address` **B** (_e.g. a relay service_) executes the payload on behalf of the signer via [`executeRelayCall(...)`](../smart-contracts/lsp6-key-manager.md#executerelaycall).
+- **LSP20-CallVerification execution**: Interaction with the ERC725Account can be done directly, in accordance with the LSP20-CallVerification standard. The LSP6 Key Manager supports this standard, allowing anyone to call the LSP0ERC725Account. If the caller is not the owner of the ERC725Account, the call will be forwarded to the LSP20 functions of the Key Manager. These functions will verify the necessary permissions and emit the relevant event.
 
-The main difference between direct _vs_ relay execution is that with direct execution, the controller `address` is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer `address` (a controller) can interact with the ERC725Account without paying a gas fee.
+The main difference between direct vs relay vs LSP20-CallVerification execution is that with direct execution, the controller address is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer address (a controller) can interact with the ERC725Account without paying a gas fee. And with LSP20-CallVerification execution, calls can be made directly to the ERC725Account, with permissions verified by the LSP20 functions of the Key Manager.
 
 ![Direct vs Relay Execution](/img/standards/lsp6/lsp6-direct-vs-relay-execution.jpeg)
 
@@ -740,6 +744,10 @@ Relay execution minimizes **UX friction** for dapps, including removing the need
 Dapps can then leverage the relay execution features to create their own business model around building their own **relay service**, smart contracts solution on top of the Key Manager to pay with their tokens, or agree with users on payment methods including subscriptions, ads, etc ..
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-relay-execution.jpeg)
+
+An essential aspect to consider in relay execution is the time validity of the execution signature. It's sometimes beneficial to limit the execution to be valid within a specific timeframe to prevent potential security risks. For example, if a user signs a relay transaction and the signature is stolen or compromised, the attacker could potentially use this signature indefinitely if there's no validity period set.
+
+To mitigate such risks, adding an optional validity timestamp to the signature could mark the start date and expiry date of its effectiveness. Once the timestamp has passed, the signature is no longer valid, rendering the relay transaction unusable.
 
 ### How to sign relay transactions?
 
@@ -778,19 +786,20 @@ To obtain a valid signature that can be used by anyone to execute a relayed tran
 The relay transactions are signed using the [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00). The relay call data that you want to sign **MUST** be the _keccak256 hash digest_ of the following elements _(bytes values)_ concatenated together.
 
 ```javascript
-0x19 <0x00> <KeyManager address> <LSP6_VERSION> <chainId> <nonce> <value> <payload>
+0x19 <0x00> <KeyManager address> <LSP6_VERSION> <chainId> <nonce> <validityTimestamps> <value> <payload>
 ```
 
-| Message elements     | Details                                                                                                                                                                                                                       |
-| :------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `0x19`               | Byte used to ensure that the _relay call signed data_ is not a valid RLP.                                                                                                                                                     |
-| `0x00`               | The [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00).                                                                                                                     |
-| `KeyManager address` | The address of the Key Manager that will execute the relay call.                                                                                                                                                              |
-| `LSP6_VERSION`       | The varsion of the Key Manager that will execute the relay call, as a `uint256`. (Current version of LSP6 Key Manager is **6**)                                                                                               |
-| `chainId`            | The chain id of the blockchain where the Key Manager is deployed, as `uint256`.                                                                                                                                               |
-| `nonce`              | The unique [**nonce**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#getnonce) for the payload.                                                                                                    |
-| `value`              | The amount of **native tokens** that will be transferred to the [**ERC725 Account**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) linked to the Key Manager that will execute the relay call. |
-| `payload`            | The payload that will be exeuted.                                                                                                                                                                                             |
+| Message elements     | Details                                                                                                                                                                                                                                                   |
+| :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `0x19`               | Byte used to ensure that the _relay call signed data_ is not a valid RLP.                                                                                                                                                                                 |
+| `0x00`               | The [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00).                                                                                                                                                 |
+| `KeyManager address` | The address of the Key Manager that will execute the relay call.                                                                                                                                                                                          |
+| `LSP6_VERSION`       | The varsion of the Key Manager that will execute the relay call, as a `uint256`. (Current version of LSP6 Key Manager is **6**)                                                                                                                           |
+| `chainId`            | The chain id of the blockchain where the Key Manager is deployed, as `uint256`.                                                                                                                                                                           |
+| `nonce`              | The unique [**nonce**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#getnonce) for the payload.                                                                                                                                |
+| `validityTimestamps` | Two `uint128` timestamps concatenated, the first timestamp determines from when the payload can be executed, the second timestamp delimits the end of the validity of the payload. If `validityTimestamps` is 0, the checks of the timestamps are skipped |
+| `value`              | The amount of **native tokens** that will be transferred to the [**ERC725 Account**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) linked to the Key Manager that will execute the relay call.                             |
+| `payload`            | The payload that will be exeuted.                                                                                                                                                                                                                         |
 
 ### Out of order execution
 
