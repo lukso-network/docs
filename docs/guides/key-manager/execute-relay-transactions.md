@@ -158,39 +158,15 @@ const keyManager = new ethers.Contract(
 
 </Tabs>
 
-### Step 3 - Get nonce of the controller address
+### Step 3 - Prepare the relay call parameters
 
 Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../standards/smart-contracts/lsp6-key-manager.md#getnonce) function.
 
 The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
 
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
+A `validityTimestamp` of `0` is used for simplicity in this guide.
 
-<!-- prettier-ignore-start -->
-
-```typescript title="Get the controller key nonce"
-const channelId = 0;
-const nonce = await keyManager.methods.getNonce(controllerAccount.address, channelId).call();
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Get the controller key nonce"
-const channelId = 0;
-const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
-```
-
-  </TabItem>
-
-</Tabs>
-
-### Step 4 - Setup the validity timestamps
+Encode the ABI of the transaction you want to be executed. In this case, a LYX transfer to a recipient address.
 
 :::tip
 
@@ -198,37 +174,18 @@ For more information about _validity timestamps_ check [**How to sign relay tran
 
 :::
 
-A `validityTimestamp` of `0` is used for simplicity in this guide.
-
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Setup the validity timestamps"
+<!-- prettier-ignore-start -->
+
+```typescript title="Prepare the relay call parameters"
+const channelId = 0;
+const nonce = await keyManager.methods.getNonce(controllerAccount.address, channelId).call();
+
 const validityTimestamps = 0; // no validity timestamp set
-```
 
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Setup the validity timestamps"
-const validityTimestamps = 0; // no validity timestamp set
-```
-
-  </TabItem>
-
-</Tabs>
-
-### Step 5 - Encode a transaction ABI
-
-Encode the ABI of the transaction you want to be executed. In this case, a LYX transfer to a recipient address.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Encode transaction ABI"
 const abiPayload = universalProfile.methods
   .execute(
     0, // Operation type: CALL
@@ -239,11 +196,18 @@ const abiPayload = universalProfile.methods
   .encodeABI();
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Encode transaction ABI"
+```typescript title="Prepare the relay call parameters"
+const channelId = 0;
+const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
+
+const validityTimestamps = 0; // no validity timestamp set
+
 const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
   0, // Operation type: CALL
   recipientAddress,
@@ -262,7 +226,7 @@ You can find more information about the [ERC725X `execute` call here](../../stan
 
 :::
 
-### Step 6 - Sign the transaction
+### Step 4 - Sign the transaction
 
 Afterward, sign the transaction message from the controller key of the Universal Profile.
 
