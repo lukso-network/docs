@@ -187,7 +187,7 @@ const amount = web3.utils.toWei('3'); // amount of LYX we want to transfer
 // calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x'; // empty data
 
-await myUP.methods['execute(uint256,address,uint256,bytes)'](
+await myUP.methods.execute(
   OPERATION_CALL,
   recipient,
   amount,
@@ -210,7 +210,7 @@ const data = '0x'; // calldata executed at the target (here nothing, just a plai
 
 await myUP
   .connect(myEOA)
-  ['execute(uint256,address,uint256,bytes)'](
+  .execute(
     OPERATION_CALL,
     recipient,
     amount,
@@ -247,7 +247,7 @@ const amount = web3.utils.toWei('3');
 // calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x';
 
-await myUP.methods['execute(uint256,address,uint256,bytes)'](
+await myUP.methods.execute(
   OPERATION_CALL,
   recipient,
   amount,
@@ -284,7 +284,7 @@ const data = '0x';
 
 await myUP
   .connect(myEOA)
-  ['execute(uint256,address,uint256,bytes)'](
+  .execute(
     OPERATION_CALL,
     recipient,
     amount,

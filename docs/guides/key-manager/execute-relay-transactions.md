@@ -70,6 +70,7 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
+const recipientAddress = '0x...';
 
 // setup the Universal Profile controller account
 const controllerPrivateKey = '0x...';
@@ -92,6 +93,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 );
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
+const recipientAddress = '0x...';
 
 // setup the Universal Profile controller account
 const controllerPrivateKey = '0x...';
@@ -115,10 +117,16 @@ We will get the contract instances for the [Universal Profile](../../standards/u
 <!-- prettier-ignore-start -->
 
 ```typescript title="Contract instances"
-const universalProfile = new web3.eth.Contract(UniversalProfileContract.abi, universalProfileAddress);
+const universalProfile = new web3.eth.Contract(
+  UniversalProfileContract.abi,
+  universalProfileAddress
+);
 
 const keyManagerAddress = await universalProfile.methods.owner().call();
-const keyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddress);
+const keyManager = new web3.eth.Contract(
+  KeyManagerContract.abi,
+  keyManagerAddress
+);
 ```
 
 <!-- prettier-ignore-end -->
@@ -130,10 +138,18 @@ const keyManager = new web3.eth.Contract(KeyManagerContract.abi, keyManagerAddre
 <!-- prettier-ignore-start -->
 
 ```typescript title="Contract instances"
-const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfileContract.abi, controllerAccount);
+const universalProfile = new ethers.Contract(
+  universalProfileAddress,
+  UniversalProfileContract.abi,
+  controllerAccount
+);
 
 const keyManagerAddress = await universalProfile.owner();
-const keyManager = new ethers.Contract(keyManagerAddress, KeyManagerContract.abi, controllerAccount);
+const keyManager = new ethers.Contract(
+  keyManagerAddress,
+  KeyManagerContract.abi,
+  controllerAccount
+);
 ```
 
 <!-- prettier-ignore-end -->
@@ -142,11 +158,21 @@ const keyManager = new ethers.Contract(keyManagerAddress, KeyManagerContract.abi
 
 </Tabs>
 
-### Step 3 - Get nonce of the controller address
+### Step 3 - Prepare the relay call parameters
 
 Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../standards/smart-contracts/lsp6-key-manager.md#getnonce) function.
 
 The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
+
+A `validityTimestamp` of `0` is used for simplicity in this guide.
+
+Encode the ABI of the transaction you want to be executed. In this case, a LYX transfer to a recipient address.
+
+:::tip
+
+For more information about _validity timestamps_ check [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+
+:::
 
 <Tabs>
   
@@ -154,9 +180,20 @@ The `channelId` is used to prevent nonce conflicts when multiple apps send trans
 
 <!-- prettier-ignore-start -->
 
-```typescript title="Get the controller key nonce"
+```typescript title="Prepare the relay call parameters"
 const channelId = 0;
 const nonce = await keyManager.methods.getNonce(controllerAccount.address, channelId).call();
+
+const validityTimestamps = 0; // no validity timestamp set
+
+const abiPayload = universalProfile.methods
+  .execute(
+    0, // Operation type: CALL
+    recipientAddress,
+    msgValue,
+    '0x', // Data
+  )
+  .encodeABI();
 ```
 
 <!-- prettier-ignore-end -->
@@ -165,48 +202,18 @@ const nonce = await keyManager.methods.getNonce(controllerAccount.address, chann
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Get the controller key nonce"
+```typescript title="Prepare the relay call parameters"
 const channelId = 0;
 const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
-```
 
-  </TabItem>
+const validityTimestamps = 0; // no validity timestamp set
 
-</Tabs>
-
-### Step 4 - Encode a transaction ABI
-
-Encode the ABI of the transaction you want to be executed. In this case, a LYX transfer to a recipient address.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Encode transaction ABI"
-const abiPayload = universalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](
+const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
   0, // Operation type: CALL
-  '0x...', // Recipient address
-  web3.utils.toWei('1'), // Value
+  recipientAddress,
+  msgValue,
   '0x', // Data
-).encodeABI();
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Encode transaction ABI"
-const abiPayload = universalProfile.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [
-    0, // Operation type: CALL
-    '0x...', // Recipient address
-    ethers.utils.parseUnits('1', 'ether'), // Value
-    '0x', // Data
-  ],
-);
+]);
 ```
 
   </TabItem>
@@ -219,15 +226,15 @@ You can find more information about the [ERC725X `execute` call here](../../stan
 
 :::
 
-### Step 5 - Sign the transaction
+### Step 4 - Sign the transaction
 
 Afterward, sign the transaction message from the controller key of the Universal Profile.
 
-The message is constructed by signing the `keyManagerAddress`, `keyManagerVersion`, `chainId`, signer `nonce`, `value` and `abiPayload`.
+The message is constructed by signing the `keyManagerAddress`, `keyManagerVersion`, `chainId`, signer `nonce`, `validityTimestamps`, `value` and `abiPayload`.
 
 :::tip ERC725X execute
 
-For more information check: [How to sign relay transactions?](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+For more information check: [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 :::
 
@@ -242,6 +249,7 @@ let encodedMessage = web3.utils.encodePacked(
   { value: LSP6_VERSION, type: 'uint256' },
   { value: chainId, type: 'uint256' },
   { value: nonce, type: 'uint256' },
+  { value: validityTimestamps, type: 'uint256' },
   { value: msgValue, type: 'uint256' },
   { value: abiPayload, type: 'bytes' },
 );
@@ -263,8 +271,8 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 const { chainId } = await provider.getNetwork(); // will be 2828 on L16
 
 let encodedMessage = ethers.utils.solidityPack(
-  ['uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
-  [LSP6_VERSION, chainId, nonce, msgValue, abiPayload],
+  ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
+  [LSP6_VERSION, chainId, nonce, validityTimestamps, msgValue, abiPayload],
 );
 
 let eip191Signer = new EIP191Signer();
@@ -280,20 +288,29 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 
 </Tabs>
 
-Now the `signature`, `abiPayload`, `nonce` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
+Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
 
 ## Execute via `executeRelayCall`
 
 :::info
+
 This example shows how a third party can execute a transaction on behalf of another user.
+
+:::
+
+:::tip
+
+For more information about relay execution check [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+
 :::
 
 To execute a signed transaction, ABI payload requires:
 
 - the **KeyManager contract address**
 - the **transaction ABI payload**
-- the **signed transaction payload**
 - the **nonce** of the controller key which signed the transaction.
+- the **validity timestamps** for the execution of the relay call.
+- the **signed transaction payload**
 
 :::note
 
@@ -306,12 +323,12 @@ To get the KeyManager address from the UniversalProfile address, call the `owner
   <TabItem value="web3js" label="web3.js">
 
 ```javascript title="Send the transaction"
-const executeRelayCallTransaction = await keyManager.methods[
-  'executeRelayCall(bytes,uint256,bytes)'
-](signature, nonce, abiPayload).send({
-  from: controllerAccount.address,
-  gasLimit: 300_000,
-});
+const executeRelayCallTransaction = await keyManager.methods
+  .executeRelayCall(signature, nonce, validityTimestamps, abiPayload)
+  .send({
+    from: controllerAccount.address,
+    gasLimit: 300_000,
+  });
 ```
 
   </TabItem>
@@ -319,9 +336,9 @@ const executeRelayCallTransaction = await keyManager.methods[
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript title="Send the transaction"
-const executeRelayCallTransaction = await keyManager[
-  'executeRelayCall(bytes,uint256,bytes)'
-](signature, nonce, abiPayload);
+const executeRelayCallTransaction = await keyManager
+  .connect(controllerAccount)
+  .executeRelayCall(signature, nonce, validityTimestamps, abiPayload);
 ```
 
   </TabItem>
@@ -350,6 +367,7 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
+const recipientAddress = '0x...';
 
 // setup the Universal Profile controller account
 const controllerPrivateKey = '0x...';
@@ -371,21 +389,24 @@ const nonce = await keyManager.methods
   .getNonce(controllerAccount.address, channelId)
   .call();
 
-const abiPayload = universalProfile.methods[
-  'execute(uint256,address,uint256,bytes)'
-](
-  0, // Operation type: CALL
-  '0x...', // Recipient address
-  web3.utils.toWei('1'), // Value
-  '0x', // Data
-).encodeABI();
+const validityTimestamps = 0; // no validity timestamp set
 
-const chainId = await web3.eth.getChainId(); // will be 2828 on L16
+const abiPayload = universalProfile.methods
+  .execute(
+    0, // Operation type: CALL
+    recipientAddress,
+    msgValue,
+    '0x', // Data
+  )
+  .encodeABI();
+
+const chainId = await web3.eth.getChainId();
 
 let encodedMessage = web3.utils.encodePacked(
   { value: LSP6_VERSION, type: 'uint256' },
   { value: chainId, type: 'uint256' },
   { value: nonce, type: 'uint256' },
+  { value: validityTimestamps, type: 'uint256' },
   { value: msgValue, type: 'uint256' },
   { value: abiPayload, type: 'bytes' },
 );
@@ -398,12 +419,12 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
   controllerPrivateKey,
 );
 
-const executeRelayCallTransaction = await keyManager.methods[
-  'executeRelayCall(bytes,uint256,bytes)'
-](signature, nonce, abiPayload).send({
-  from: controllerAccount.address,
-  gasLimit: 300_000,
-});
+const executeRelayCallTransaction = await keyManager.methods
+  .executeRelayCall(signature, nonce, validityTimestamps, abiPayload)
+  .send({
+    from: controllerAccount.address,
+    gasLimit: 300_000,
+  });
 ```
 
   </TabItem>
@@ -422,6 +443,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 );
 const universalProfileAddress = '0x...';
 const msgValue = 0; // Amount of native tokens to be sent
+const recipientAddress = '0x...';
 
 // setup the Universal Profile controller account
 const controllerPrivateKey = '0x...';
@@ -445,21 +467,20 @@ const keyManager = new ethers.Contract(
 const channelId = 0;
 const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
 
-const abiPayload = universalProfile.interface.encodeFunctionData(
-  'execute(uint256,address,uint256,bytes)',
-  [
-    0, // Operation type: CALL
-    '0x...', // Recipient address
-    ethers.utils.parseUnits('1', 'ether'), // Value
-    '0x', // Data
-  ],
-);
+const validityTimestamps = 0; // no validity timestamp set
 
-const { chainId } = await provider.getNetwork(); // will be 2828 on L16
+const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
+  0, // Operation type: CALL
+  recipientAddress,
+  msgValue,
+  '0x', // Data
+]);
+
+const { chainId } = await provider.getNetwork();
 
 let encodedMessage = ethers.utils.solidityPack(
-  ['uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
-  [LSP6_VERSION, chainId, nonce, msgValue, abiPayload],
+  ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
+  [LSP6_VERSION, chainId, nonce, validityTimestamps, msgValue, abiPayload],
 );
 
 let eip191Signer = new EIP191Signer();
@@ -470,9 +491,9 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
   controllerPrivateKey,
 );
 
-const executeRelayCallTransaction = await keyManager[
-  'executeRelayCall(bytes,uint256,bytes)'
-](signature, nonce, abiPayload);
+const executeRelayCallTransaction = await keyManager
+  .connect(controllerAccount)
+  .executeRelayCall(signature, nonce, validityTimestamps, abiPayload);
 ```
 
   </TabItem>
