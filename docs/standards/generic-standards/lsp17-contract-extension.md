@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP17 - Contract Extension'
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # LSP17 - Contract Extension
