@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP20 - Call Verification'
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # LSP20 - Call Verification
