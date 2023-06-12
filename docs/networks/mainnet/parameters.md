@@ -14,7 +14,7 @@ The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis D
 | Setting                  | Value                                              |
 | ------------------------ | -------------------------------------------------- |
 | Network Name             | Mainnet                                            |
-| Fork Version             | 0x42000001                                         |
+| Genesis Fork Version     | 0x42000001                                         |
 | Chain ID / Network ID    | 42                                                 |
 | Currency Symbol          | LYX                                                |
 | Execution Block Explorer | <https://explorer.execution.mainnet.lukso.network> |
