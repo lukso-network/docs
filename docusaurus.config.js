@@ -125,6 +125,13 @@ module.exports = {
         },
         {
           type: 'doc',
+          docId: 'contracts/introduction',
+          position: 'left',
+          label: 'Contracts',
+          collapsible: true,
+        },
+        {
+          type: 'doc',
           docId: 'networks/mainnet/running-a-node',
           position: 'left',
           label: 'Networks',

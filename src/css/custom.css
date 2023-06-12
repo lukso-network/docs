@@ -9,6 +9,9 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  /* increase for the Contracts sidebar */
+  --doc-sidebar-width: 350px !important;
+
   --ifm-color-primary: #4467bb;
   --ifm-color-primary-dark: #3d5da8;
   --ifm-color-primary-darker: #3a589f;
