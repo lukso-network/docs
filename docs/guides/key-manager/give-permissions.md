@@ -250,7 +250,7 @@ We will then encode this permission data keys in a `setData(...)` payload and in
 
 ```js
 // step 3.3 - send the transaction
-await myUniversalProfile.methods['setData(bytes32[],bytes[])'](
+await myUniversalProfile.methods.setData(
   data.keys,
   data.values,
 ).send({
@@ -267,7 +267,7 @@ await myUniversalProfile.methods['setData(bytes32[],bytes[])'](
 // step 3.3 - send the transaction
 await myUniversalProfile
   .connect(account)
-  ['setData(bytes32[],bytes[])'](data.keys, data.values);
+  .setData(data.keys, data.values);
 ```
 
   </TabItem>
@@ -331,7 +331,7 @@ async function grantPermissions() {
   ]);
 
   // step 3.3 - send the transaction
-  await myUniversalProfile.methods['setData(bytes32[],bytes[])'](
+  await myUniversalProfile.methods.setData(
     data.keys,
     data.values,
   ).send({
@@ -410,7 +410,7 @@ async function grantPermissions() {
   // step 3.3 - send the transaction
   await myUniversalProfile
     .connect(account)
-    ['setData(bytes32[],bytes[])'](data.keys, data.values);
+    .setData(data.keys, data.values);
 
   const result = await myUniversalProfile.['getData(bytes32)'](
     data.keys[0],
