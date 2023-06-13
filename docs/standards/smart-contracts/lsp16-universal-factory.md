@@ -3,7 +3,7 @@ title: LSP16UniversalFactory
 sidebar_position: 13
 ---
 
-# LSP14Ownable2Step
+# LSP16UniversalFactory
 
 :::info Solidity contract
 
