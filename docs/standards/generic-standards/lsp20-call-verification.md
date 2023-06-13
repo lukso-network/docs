@@ -29,15 +29,15 @@ The LSP20 standard defines two sections, detailing the expected behavior in both
 
 ### Delegating Contract
 
-The behavior of the delegating contract is defined in the LSP20 standard. When a function in this contract is called, it should forward the call to the `lsp20VerifyCall` function implemented on the logic verifier contract, passing the necessary arguments for verification. These arguments include:
+The behavior of the delegating contract is defined in the LSP20 standard. When a function in this contract is called, it should forward the call to the `lsp20VerifyCall` function implemented on the verification-receiving contract, passing the necessary arguments for verification. These arguments include:
 
 1. Caller information
-2. Amount of money sent (`msg.value`)
-3. Data provided by the caller (the function called and its arguments)
+2. Amount of native tokens sent (`msg.value`)
+3. Calldata provided by the caller (the function called and its arguments)
 
-The logic verifier contract uses these arguments to perform the verification. For example, it may have logic that checks how much ETH is sent and permits the call based on that. Alternatively, it could verify solely based on the address of the caller, irrespective of the amount of ETH sent.
+The logic verifier contract uses these arguments to perform the verification. For example, it may have logic that checks how much LYX is sent and authorizes the call based on a minimum amount sent. Alternatively, it could verify solely based on the address of the caller, irrespective of the amount of LYX sent.
 
-Once the `lsp20VerifyCall` verifies and permits the call, an optional post-execution check can be performed through the `lsp20VerifyCallResult` function. The result of the executed function gets passed to the logic verifier, which allows for checks such as balance changes or other aspects of the contract.
+Once the `lsp20VerifyCall` verifies and authorizes the call, an optional post-execution check can be performed through the `lsp20VerifyCallResult` function. The result of the executed function gets passed to the logic verifier, which allows for checks such as balance changes or other aspects of the contract.
 
 ### Verification-receiving Contract (Logic Verifier)
 
