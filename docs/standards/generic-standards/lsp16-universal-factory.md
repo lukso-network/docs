@@ -17,7 +17,7 @@ The use of different blockchain networks has brought with it a unique challenge:
 
 ![EOA Control](/img/standards/lsp16/EOA-Control.jpeg)
 
-Currently, this control isn't guaranteed when it comes to smart contracts. Even if a contract resides at a particular address on one chain, the same contract does not necessarily exist at the same address on another chain or even a possibility of not having a contract at all on the other chains at the same address.
+Currently, this control isn't guaranteed when it comes to smart contracts. Even if a contract resides at a particular address on one chain, the same contract does not necessarily exist at the same address on another chain or even a possibility of not having a contract at all on the other chain at the same address.
 
 ![EOA Control](/img/standards/lsp16/Contract-Control.jpeg)
 
