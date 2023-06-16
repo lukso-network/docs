@@ -623,7 +623,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'claimOwnership()',
+  functionName: 'acceptOwnership()',
   status: 'PENDING',
   transaction: {
     ...
@@ -632,7 +632,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'claimOwnership()',
+  functionName: 'acceptOwnership()',
   status: 'COMPLETE',
   receipt: {
     ...
