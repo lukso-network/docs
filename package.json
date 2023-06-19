@@ -13,6 +13,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "docs:tools:sync": "bash scripts/tools-sync.sh",
+    "docs:sc:sync": "bash scripts/sc-sync.sh",
     "lint": "prettier --check \"src/**/*.js\""
   },
   "dependencies": {
