@@ -22,7 +22,12 @@ jobs:
       - name: Check if there are changes
         id: sc_docs_changes
         run: |
-          echo "wip"
+          if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
+          then
+            echo '::set-output name=changed::0'
+          else
+            echo '::set-output name=changed::1'
+          fi
 
       - name: Create Pull Request
         if: steps.sc_docs_changes.outputs.changed == 1
