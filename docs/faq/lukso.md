@@ -66,7 +66,7 @@ Here you can find the download link for the [LUKSO Whitepaper](https://uploads-s
 
 ## I am a developer. Where do I start?
 
-If you are a developer and want to use the future LUKSO Blockchain, you can already start building using our [Public Testnet](../networks/testnet/) and read our [developer's guides](../guides/universal-profile/create-profile).
+If you are a developer and want to use the future LUKSO Blockchain, you can already start building using our [Public Testnet](../networks/testnet/parameters.md) and read our [developer's guides](../guides/universal-profile/create-profile).
 
 Please join our [Discord](https://discord.gg/lukso) and get in touch if you have terrific ideas for the new digital lifestyle economy!
 
