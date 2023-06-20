@@ -20,7 +20,7 @@ Therefore, we consider a separate repo **[(LIPs/LSPs)](https://github.com/lukso-
 
 A transaction relayer service, often just referred to as a "relayer", is a solution designed to improve the blockchain user experience by addressing the issue of gas fees - the costs users pay when executing transactions on a blockchain network.
 
-Normally, users need to possess the blockchain's native coin to pay these gas fees. However, a relayer works around this problem. When a user want to execute a transaction, he could sign a message from their account and send it to the relayer, the relayer then will have the permission and ability to execute transactions on their behalf. Essentially, the relayer pays the gas fees for the user.
+Normally, users need to have the blockchain's native coin to pay these gas fees. However, a relayer works around this problem. When a user want to execute a transaction, he could sign a message from their account and send it to the relayer, the relayer then will have the permission and ability to execute transactions on their behalf. Essentially, the relayer pays the gas fees for the user.
 
 Payment to the relayer can be handled in different ways. One option is an on-chain payment where the fees are deducted directly from a balance within the blockchain. Alternatively, users can set up an off-chain agreement with the relayer service, via a subscription that give them a monthly allowance for relayed transactions. This flexibility allows users to choose the method that best suits their needs.
 
