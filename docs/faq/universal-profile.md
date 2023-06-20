@@ -68,7 +68,7 @@ The migration includes all the NFTs issued by [LUKSO](https://lukso.network/) an
 
 If your app deploys its contracts and Universal Profiles, you will be responsible for migrating them to the mainnet.
 
-## How is lens protocol different than UniversalProfile?
+## How is lens protocol different than Universal Profile?
 
 Universal Profiles are fundamentally new accounts, acting as the center for all your blockchain interactions. They are generic for various use cases, such as regular wallets. They can interact directly with on-chain applications, but on top, feature permission and asset management, updatable profile information, and let you interact as one persona through different EOA keys.
 

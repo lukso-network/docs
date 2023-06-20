@@ -12,9 +12,9 @@ LUKSO Standard Proposals, often abbreviated as **LSPs**, serve as building block
 
 ## Why are LSPs not proposed as ERCs?
 
-The LUKSO Standard Proposals (LSPs) are part of a larger set of core standards that are all interoperable and cohesive together. Nonetheless, they do function equally for any EVM chain, the ability to make these standards understood requires a less noisy and neutral place, than the current ERC space.
+The LUKSO Standard Proposals (LSPs) are part of a larger set of core standards that are all interoperable and cohesive together. Nonetheless, they do function equally for any EVM chain, the ability to make these standards understood requires a less noisy and neutral place than the current ERC space.
 
-Therefore, we deem a separate repo **[(LIPs/LSPs)](https://github.com/lukso-network/LIPs)** as necessary for the success and transparency of these new sets of standards, many of which use ERCs (ERC165, ERC173, ERC725) as a core basis.
+Therefore, we consider a separate repo **[(LIPs/LSPs)](https://github.com/lukso-network/LIPs)** to be necessary for the success and transparency of these new sets of standards, many of which use ERCs (ERC165, ERC173, ERC725) as a core basis.
 
 ## What is a transaction Relayer?
 
@@ -22,15 +22,15 @@ A transaction relayer service, often just referred to as a "relayer", is a solut
 
 Normally, users need to possess the blockchain's native coin to pay these gas fees. However, a relayer works around this problem. When a user want to execute a transaction, he could sign a message from their account and send it to the relayer, the relayer then will have the permission and ability to execute transactions on their behalf. Essentially, the relayer pays the gas fees for the user.
 
-Payment to the relayer can be handled in different ways. One option is an on-chain payment where the fees are deducted directly from a balance within the blockchain. Alternatively, users can set up an off-chain agreement with the relayer service, establishing a monthly allowance for relayed transactions. This flexibility allows users to choose the method that best suits their needs.
+Payment to the relayer can be handled in different ways. One option is an on-chain payment where the fees are deducted directly from a balance within the blockchain. Alternatively, users can set up an off-chain agreement with the relayer service, via a subscription that give them a monthly allowance for relayed transactions. This flexibility allows users to choose the method that best suits their needs.
 
 ## What is a Social Recovery?
 
-For conventional Ethereum accounts, also known as Externally Owned Accounts (EOAs), losing your private key can be disastrous, as it's the sole means of accessing your account. If it's lost, access to the account and all its associated assets are lost as well.
+For conventional Ethereum accounts, also known as Externally Owned Accounts (EOAs), loosing your private key can be disastrous, as it's the sole means of accessing your account. If it's lost, access to the account and all its associated assets are lost as well.
 
-However, with smart contract-based accounts like UniversalProfiles, a more flexible and secure solution is available: Social Recovery. With Social Recovery, users can set up a recovery process that fits their needs. For instance, recovery could require permissions from pre-set trusted individuals (often called "guardians") or the provision of a secret phrase known only to the user, or even a combination of these methods.
+However, with smart contract-based accounts like Universal Profiles, a more flexible and secure solution is available: Social Recovery. With Social Recovery, users can set up a recovery process that fits their needs. For instance, recovery could require permissions from pre-set trusted individuals (often called "guardians") or the provision of a secret phrase known only to the user, or even a combination of these methods.
 
-This process enables users to regain access to their accounts in a secure way, even if they lose the private key controlling the account, making the blockchain experience much more user-friendly and less risky.
+This process enables users to regain access to their accounts securely, even if they lose the private key controlling the account, making the blockchain experience much more user-friendly and less risky.
 
 ## What's the difference between ERC721 and LUKSO's NFT Standards?
 
