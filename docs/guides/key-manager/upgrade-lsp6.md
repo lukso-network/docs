@@ -81,7 +81,9 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';
@@ -173,7 +175,9 @@ await newKeyManager
 const newKeyManager = await new ethers.ContractFactory(
   LSP6KeyManager.abi,
   LSP6KeyManager.bytecode,
-).connect(account).deploy(universalProfileAddress);
+)
+  .connect(account)
+  .deploy(universalProfileAddress);
 ```
 
   </TabItem>
@@ -214,7 +218,7 @@ await universalProfile
 
 ### Step 5.2 - Accept Ownership from your new Key Manager
 
-Create a calldata for the [`claimOwnership()`](../../standards/smart-contracts/lsp14-ownable-2-step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
+Create a calldata for the [`acceptOwnership()`](../../standards/smart-contracts/lsp14-ownable-2-step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
 
 <!-- prettier-ignore-start -->
 
