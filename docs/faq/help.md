@@ -1,7 +1,7 @@
 ---
 title: Help
 description: Help on Frequently Asked Questions
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Help

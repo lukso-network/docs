@@ -1,7 +1,7 @@
 ---
 title: General
 description: LUKSO General Network FAQ
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Frequently Asked Questions
