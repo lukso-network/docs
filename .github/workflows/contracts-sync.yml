@@ -19,7 +19,7 @@ jobs:
         run: npm run docs:contracts:sync
 
       - name: Check if there are changes
-        id: sc_docs_changes
+        id: contracts_docs_changes
         run: |
           if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
           then
@@ -29,12 +29,11 @@ jobs:
           fi
 
       - name: Create Pull Request
-        if: steps.sc_docs_changes.outputs.changed == 1
+        if: steps.contracts_docs_changes.outputs.changed == 1
         uses: peter-evans/create-pull-request@v3
         with:
           draft: false
-          branch: test-sc-docs-sync
-          base: sc-docs-sync
+          branch: contracts-docs-sync
           delete-branch: true
-          title: Update Smart Contracts Documentation
+          title: \[Auto-Sync\] Update Smart Contracts Technical Docs
           body: Update changes from `@lukso/lsp-smart-contracts` repository (contract ABIs docs & interface IDs)
