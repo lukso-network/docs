@@ -1,0 +1,40 @@
+name: Smart Contracts Docs Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  sync-sc-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Pull Smart Contracts docs
+        run: npm run docs:contracts:sync
+
+      - name: Check if there are changes
+        id: sc_docs_changes
+        run: |
+          if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
+          then
+            echo '::set-output name=changed::0'
+          else
+            echo '::set-output name=changed::1'
+          fi
+
+      - name: Create Pull Request
+        if: steps.sc_docs_changes.outputs.changed == 1
+        uses: peter-evans/create-pull-request@v3
+        with:
+          draft: false
+          branch: test-sc-docs-sync
+          base: sc-docs-sync
+          delete-branch: true
+          title: Update Smart Contracts Documentation
+          body: Update changes from `@lukso/lsp-smart-contracts` repository (contract ABIs docs & interface IDs)
