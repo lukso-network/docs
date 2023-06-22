@@ -47,6 +47,18 @@ There is no standardized logic for these functions; it is up to the implementer 
 
 ### Example Usage
 
+**Online marketplace**
+
 Imagine a smart contract that governs an online marketplace where users can buy and sell goods. Each transaction in this marketplace might require specific verification checks like verifying the availability of goods from the seller, confirming the buyer's payment ability, and potentially even checking the reputation score of both parties.
 
 By leveraging the LSP20 standard, the marketplace contract can delegate these complex verification tasks to a separate logic verifier contract. In case the marketplace wants to introduce new checks in the future such as KYC status, dispute history, etc., they simply update the logic verifier contract. This decoupling of verification logic from the primary contract ensures that the marketplace contract remains agile, adaptable, and easy to manage.
+
+**Universal Profiles with Key Manager**
+
+When a Universal Profile is owned by a Key Manager, multiple controllers can use the Universal Profile according to the permissions they are granted. However this setup creates the following problem: since the `owner()` of the Universal Profile is the Key Manager, every single interactions must be done through the Key Manager.
+
+This creates development complexity, as interactions must be crafted, encoded and send to the Key Manager instead. Calling the Universal Profile directly is not possible.
+
+LSP20 being embedded in LSP0 (the smart contract based account under a Universal Profile) simplify this complexity, allowing anyone to interact directly with the Universal Profile without having to go through the Key Manager first. The LSP20 module embedded in the Universal Profile will see that the request does not come from the Key Manager directly, and will instead forward the request and the calldata back to the Key Manager to verify the permissions of the caller first.
+
+![LSP20 with LSP6 Key Manager](/img/standards/lsp20/LSP20-example-LSP6.jpeg)
