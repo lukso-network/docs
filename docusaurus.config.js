@@ -85,6 +85,15 @@ module.exports = {
             from: '/guides/key-manager/execute-relay-call',
             to: '/guides/key-manager/execute-relay-transactions',
           },
+          // Smart Contracts new structure
+          {
+            from: '/standards/smart-contracts/introduction',
+            to: '/contracts/introduction',
+          },
+          {
+            to: '/contracts/interface-ids',
+            from: '/standards/smart-contracts/interface-ids',
+          },
         ],
       },
     ],
@@ -122,6 +131,13 @@ module.exports = {
           docId: 'standards/introduction',
           position: 'left',
           label: 'Standards',
+        },
+        {
+          type: 'doc',
+          docId: 'contracts/introduction',
+          position: 'left',
+          label: 'Contracts',
+          collapsible: true,
         },
         {
           type: 'doc',
