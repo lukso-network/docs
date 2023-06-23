@@ -91,8 +91,8 @@ module.exports = {
             to: '/contracts/introduction',
           },
           {
-            to: '/contracts/interface-ids',
             from: '/standards/smart-contracts/interface-ids',
+            to: '/contracts/interface-ids',
           },
         ],
       },
