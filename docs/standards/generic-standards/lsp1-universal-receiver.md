@@ -37,7 +37,7 @@ One way to solve this problem is by creating a **standard and unified function**
 
 :::success recommendation
 
-Smart contracts implementing the [LSP1-UniversalReceiver](#) standard SHOULD **register** the **[LSP1UniversalReceiver InterfaceId](../smart-contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
+Smart contracts implementing the [LSP1-UniversalReceiver](#) standard SHOULD **register** the **[LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
 
 :::
 
