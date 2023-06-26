@@ -66,10 +66,6 @@ module.exports = {
             to: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
           },
           {
-            from: '/contracts/interface-ids',
-            to: '/standards/smart-contracts/interface-ids',
-          },
-          {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
             to: '/guides/browser-extension/install-browser-extension',
           },

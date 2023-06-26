@@ -21,4 +21,4 @@ import {
 } from '@lukso/lsp-smart-contracts/constants.js';
 ```
 
-You can find the [interface IDs](../../standards/smart-contracts/interface-ids.md) of the smart contracts in or more information in the [`README.md`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/README.md).
+You can find the [interface IDs](../../contracts/interface-ids.md) of the smart contracts in or more information in the [`README.md`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/README.md).
