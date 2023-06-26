@@ -46,3 +46,21 @@ npm run docs:tools:sync
 ```
 
 2. Commit and push generated changes
+
+### How to generate documentation for `@lukso/lsp-smart-contracts`
+
+The contract ABI docs located under the `docs/contracts/contracts` folder are originally stored and updated in the [`lsp-smart-contracts` Github repository](https://github.com/lukso-network/lsp-smart-contracts), under the `docs/` folder.
+
+The CI in [`contracts-sync.yml`](.github/workflows/contracts-sync.yml) runs every day at midnight to pull automatically any new changes from these files in the repo (from the `main` branch).
+
+Any new release of the package will open a PR automatically in the repo to fetch the new docs changes.
+
+You can also fetch the new contract ABI docs manually as follow:
+
+1. Run `docs:contracts:sync` to pull documentation from the ([`lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts)).
+
+```sh
+npm run docs:contracts:sync
+```
+
+2. Commit and push generated changes
