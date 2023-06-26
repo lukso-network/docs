@@ -3,6 +3,9 @@ title: Running a Node
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## System Requirements
 
 | Settings            | Value          |
@@ -23,7 +26,7 @@ sidebar_position: 2
 
 ## Supported Clients
 
-LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUKSO Blockchain. The currently tested clients are the following:
+LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUKSO Blockchain. The currently tested and supported clients are the following:
 
 - **Execution Clients**: [Geth](https://geth.ethereum.org/), [Erigon](https://github.com/ledgerwatch/erigon)
 - **Consensus Clients**: [Prysm](https://github.com/prysmaticlabs/prysm), [Lighthouse](https://github.com/sigp/lighthouse)
@@ -31,7 +34,7 @@ LUKSO runs the Ethereum protocol, meaning most Ethereum clients will run the LUK
 
 :::info CLI Development
 
-Not all tested clients are fully supported by the LUKSO CLI yet. You can follow the latest development process on the official [LUKSO CLI repository](https://github.com/lukso-network/tools-lukso-cli/). Version `0.6.0 ` features Geth, Erigon, and Prysm. We are currently working to ensure that Lighthouse also receives full support.
+You can follow the latest development process on the official [LUKSO CLI repository](https://github.com/lukso-network/tools-lukso-cli/).
 
 :::
 
@@ -39,7 +42,7 @@ Not all tested clients are fully supported by the LUKSO CLI yet. You can follow 
 
 To start your clients and contribute to the LUKSO Testnet, you have 3 options:
 
-- **Install the LUKSO CLI**: The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. We recommend this as default for anyone beginning to get into the topic of running a node himself.
+- **Install the LUKSO CLI**: The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. We recommend this as default for anyone beginning to get into the topic of running a node himself. The LUKSO CLI is officially supported for Ubuntu, Debian, and Mac running on either x86 Intel and AMD Processors or Single Board ARM Computers.
 - **Use Docker Compose**: The official [Docker Containers](https://github.com/lukso-network/network-docker-containers) can make it easy for you if you're already experienced with the Docker ecosystem. Different configurations can be started in the blink of an eye and work in encapsulated containers. The versatility makes it especially useful if you want to run multiple networks on your node at once. The repository features extended documentation. By default, the Docker setup will run as a validator for the mainnet but can be modified.
 - **Configure a LUKSO Compatible Client**: You are in no way limited to the tools we provide for easy onboarding. If you are a pro user, you can download and run the Erigon, Geth, Lighthouse, or Prysm clients in your preferred setup. You can either [download](https://deposit.mainnet.lukso.network/) or [generate](https://github.com/lukso-network/tools-lodestar-genesis-ssz-generator/blob/spike/pos-from-the-start/packages/beacon-node/test/utils/README.md) the genesis files of the LUKSO network and configure your clients manually. Please refer to the respective [clients installation instructions](https://github.com/lukso-network/network-configs#binary-applications) and use the LUKSO [network configuration](https://github.com/lukso-network/network-configs/) repository to start your node.
 
@@ -77,14 +80,122 @@ After the initialization is successful, we have to download the blockchain clien
 $ sudo lukso install
 ```
 
+#### Setting your Public IP Address
+
+Your public IP address is a unique identifier assigned to your internet connection by your service provider. Every device connected to the public internet is set as an IP address, used for communication to other devices.
+
+In order to find other nodes in the network, your public IP should be exposed to build strong connections and download data more quickly. This Public IP value has to be set within the consensus client configuration file that the CLI is downloading from the [LUKSO Network Configuration](https://github.com/lukso-network/network-configs) repository.
+
+<Tabs>
+  <TabItem value="prysm-config" label="Prysm">
+
+Within the node's working directory, open up the related configuration file with an editor of your choice:
+
+```text
+/configs/testnet/prysm/prysm.yaml
+```
+
+There are two different ways how the IP can be configured within Prysm: Regular Host IPs or by using a Dynamic DNS address. Choose what address you are going to use within your setup. If you need further information, please have a look at the [Further Reads](#further-reads) section.
+
+<Tabs>
+<TabItem value="host-ip" label="Host IP">
+
+Exchange the following sample IP address:
+
+```text
+p2p-host-ip: '0.0.0.0'
+```
+
+With your public IP address:
+
+```text
+p2p-host-ip: '<your-public-ip-address>'
+```
+
+</TabItem>
+<TabItem value="host-dns" label="Host DNS">
+
+Exchange the following sample IP address:
+
+```text
+p2p-host-ip: '0.0.0.0'
+```
+
+With the hostname property and address:
+
+```text
+p2p-host-dns: '<your-hostname-address>'
+```
+
+</TabItem>
+</Tabs>
+
+  </TabItem>
+  <TabItem value="lighthouse-config" label="Lighthouse">
+
+Within the node's working directory, open up the related configuration file with an editor of your choice:
+
+```text
+/configs/testnet/lighthouse/lighthouse.toml
+```
+
+Exchange the following sample addresses:
+
+```text
+listen-address = "0.0.0.0"
+enr-address = "0.0.0.0"
+```
+
+With your own public IP addresses:
+
+```text
+listen-address = "<your-public-ip-address>"
+enr-address = "<your-public-ip-address>"
+```
+
+  </TabItem>
+</Tabs>
+
 #### Start the Clients
 
-The following command will spin up your execution and consensus client and connect to the mainnet.
+The following command will spin up your execution and consensus client and connect to the testnet.
+
+Without specifying any further flags, the node is starting it's regular synchronization process.
+
+If you want more convenience and your node to be operating quickly you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis.
+
+<Tabs>
+  <TabItem value="regular-sync" label="Regular Synchronization">
+
+:::info
+
+This process will take multiple hours until finalization.
+
+:::
 
 ```sh
 lukso start --testnet
 ```
 
+  </TabItem>  
+  <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
+
+:::info
+
+The shortcut is ideal to make installation, validator migration, or recovery much faster.
+
+:::
+
+```sh
+# Testnet Checkpoint for Prysm Consensus Client
+$ lukso start --testnet --prysm-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
+
+# Testnet Checkpoint for Lighthouse Consensus Client
+$ lukso start --testnet --lighthouse-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
+```
+
+  </TabItem>
+</Tabs>
 #### Checking Processes
 
 To check that everything is running correctly, you can see the status of all your clients using the status command. By default, the validator is not enabled. If you want to run your validator node, please have a look at the [validator page](./become-a-validator.md).
@@ -116,3 +227,16 @@ To enable more advanced monitoring for your node, you can check the official [`n
 Check the [Network FAQ](../faq/validator.md) section.
 
 Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/lukso).
+
+## Further Reads
+
+For extended help or advise for setting up your node beyond the LUKSO CLI, you can check out the following links.
+
+- [Extended Wiki and LUKSO Node Guide](https://github.com/fhildeb/lukso-node-guide) by Felix Hildebrandt
+- [LUKSO Community Guides](https://docs.luksoverse.io/) by Luksoverse
+- [ETHStaker Community Discord](https://discord.com/invite/ucsTcA2wTq) for running EVM Clients
+
+## Further Network Information
+
+- [Genesis Validators Deposit and Testnet Launch](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc)
+- [Genesis Validators, start your clients!](https://medium.com/lukso/genesis-validators-start-your-clients-fe01db8f3fba)

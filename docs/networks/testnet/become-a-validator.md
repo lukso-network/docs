@@ -3,6 +3,9 @@ title: Become a Validator
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Become a Validator
 
 Testnet validators are core members and organizations wanting to run and maintain their LUKSO Testnet node in a stable environment over a long period to ensure healthy uptimes, stability, and quick response times from clients as demand from developers rises.
@@ -13,7 +16,7 @@ If you want to become a whitelisted validator on our testnet, prepare your valid
 
 After you become whitelisted, visit the official [Testnet Deposit Launchpad](https://deposit.testnet.lukso.network/) and cautiously generate the specified number of keys you are allowed. Then continue depositing your LYXt to them.
 
-:::caution Genesis validators
+:::caution Validators
 
 As a validator, you need to import your validator deposit key (`keystore-xxx-[timestamp].json` files that you have generated using the [LUKSO Wagyu](https://github.com/lukso-network/tools-wagyu-key-gen) or [LUKSO CLI Keygen](https://github.com/lukso-network/tools-key-gen-cli) tools. Ensure you safely copy them to your node before starting the validator node.
 
@@ -33,15 +36,58 @@ Please refer to the regular [Node Guide](./running-a-node.md) that explains the 
 
 Set up your regular node using the LUKSO CLI as described in the [Node Guide](./running-a-node.md).
 
-The instructions are the same as for mainnet node, please refer to [mainnet validator guide](../mainnet/become-a-validator.md#using-lukso-cli). You will simply have to add `--testnet` after each commands to make it work for testnet. The command will look like this:
+The instructions are the same as for mainnet node, please refer to [Mainnet Validator Guide](../mainnet/become-a-validator.md#using-lukso-cli). You will simply have to add the `--testnet` flag to each commands. The commands will look like this:
+
+#### Importing Validator Keys
 
 ```bash
 $ lukso validator import --validator-keys "./path/to/your/keys/folder" --testnet
 
 $ lukso validator list --testnet
+```
 
-$ lukso start --validator --transaction-fee-recipient "0x1234..." --testnet
+#### Starting the Validator
 
+Without specifying any flags, the node starts its normal synchronization process.
+
+If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis.
+
+<Tabs>
+  <TabItem value="regular-sync" label="Regular Synchronization">
+
+:::info
+
+The synchronization process will take multiple hours for the validator to participate in the consensus.
+
+:::
+
+```bash
+$ lukso start --testnet --validator --transaction-fee-recipient "0x1234..."
+```
+
+  </TabItem>
+    <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
+
+:::info
+
+The shortcut is ideal for making installation, validator migration, or recovery much faster.
+
+:::
+
+```sh
+# Testnet Checkpoint for Prysm Consensus Client
+$ lukso start --testnet --validator --transaction-fee-recipient "0x1234..." --prysm-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
+
+# Testnet Checkpoint for Lighthouse Consensus Client
+$ lukso start --testnet --validator --transaction-fee-recipient "0x1234..." --lighthouse-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
+```
+
+  </TabItem>
+</Tabs>
+
+#### Checking Validator Logs
+
+```bash
 $ lukso logs validator --testnet
 ```
 
@@ -63,3 +109,11 @@ If you are a pro user or want to set up the testnet node in a cloud environment,
 Check the [Network FAQ](../faq/validator.md) section.
 
 Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/lukso).
+
+## Further Reads
+
+You can check out the following links for extended help or advice for setting up your node beyond the LUKSO CLI.
+
+- [Extended Wiki and LUKSO Node Guide](https://github.com/fhildeb/lukso-node-guide) by Felix Hildebrandt
+- [LUKSO Community Guides](https://docs.luksoverse.io/) by Luksoverse
+- [ETHStaker Community Discord](https://discord.com/invite/ucsTcA2wTq) for running EVM Clients
