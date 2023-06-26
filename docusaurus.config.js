@@ -66,10 +66,6 @@ module.exports = {
             to: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
           },
           {
-            from: '/contracts/interface-ids',
-            to: '/standards/smart-contracts/interface-ids',
-          },
-          {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
             to: '/guides/browser-extension/install-browser-extension',
           },
@@ -84,6 +80,15 @@ module.exports = {
           {
             from: '/guides/key-manager/execute-relay-call',
             to: '/guides/key-manager/execute-relay-transactions',
+          },
+          // Smart Contracts new structure
+          {
+            from: '/standards/smart-contracts/introduction',
+            to: '/contracts/introduction',
+          },
+          {
+            from: '/standards/smart-contracts/interface-ids',
+            to: '/contracts/interface-ids',
           },
         ],
       },
@@ -122,6 +127,13 @@ module.exports = {
           docId: 'standards/introduction',
           position: 'left',
           label: 'Standards',
+        },
+        {
+          type: 'doc',
+          docId: 'contracts/introduction',
+          position: 'left',
+          label: 'Contracts',
+          collapsible: true,
         },
         {
           type: 'doc',

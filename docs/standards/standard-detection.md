@@ -24,7 +24,7 @@ There are two types of **LSP** standards used to interact with smart contracts o
 
 :::success Tip
 
-See the page **[Contracts Implementation > Interface IDs](./smart-contracts/interface-ids)** for a complete list of current `interfaceId` fields.
+See the page **[Contracts Implementation > Interface IDs](../contracts/interface-ids.md)** for a complete list of current `interfaceId` fields.
 
 :::
 

@@ -562,7 +562,7 @@ function universalReceiver(
 ) public payable returns (bytes memory result)
 ```
 
-- Forwards the `msg.data` appended with the `msg.sender` and `msg.value` to the **UniversalReceiverDelegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiver InterfaceId](../smart-contracts/interface-ids.md).
+- Forwards the `msg.data` appended with the `msg.sender` and `msg.value` to the **UniversalReceiverDelegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md).
 
 ```json
 {
@@ -574,7 +574,7 @@ function universalReceiver(
 }
 ```
 
-- Forwards the `msg.data` appended with the `msg.sender` and `msg.value` to the **typeId delegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiver InterfaceId](../smart-contracts/interface-ids.md).
+- Forwards the `msg.data` appended with the `msg.sender` and `msg.value` to the **typeId delegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md).
 
 ```json
 {
