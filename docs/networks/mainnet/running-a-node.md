@@ -97,8 +97,14 @@ To find other nodes in the network, your public IP should be exposed to build so
 
 Within the node's working directory, open up the related configuration file with an editor of your choice:
 
+:::info
+
+If you are setting up a node for the testnet, make sure to modify the configuration file within the testnet folder `[PATH_TO_NODE_WORKING_DIRECTORY]/configs/testnet/prysm/prysm.yaml` instead.
+
+:::
+
 ```text
-/configs/mainnet/prysm/prysm.yaml
+[PATH_TO_NODE_WORKING_DIRECTORY]/configs/mainnet/prysm/prysm.yaml
 ```
 
 There are two ways the IP can be configured within Prysm: Regular Host IPs or by using a Dynamic DNS address. Choose what address you are going to use within your setup. If you need further information, please have a look at the [Further Reads](#further-reads) section.
@@ -141,8 +147,14 @@ p2p-host-dns: '<your-hostname-address>'
 
 Within the node's working directory, open up the related configuration file with an editor of your choice:
 
+:::info
+
+If you are setting up a node for the testnet, make sure to modify the configuration file within the testnet folder `[PATH_TO_NODE_WORKING_DIRECTORY]/configs/testnet/prysm/prysm.yaml` instead.
+
+:::
+
 ```text
-/configs/mainnet/lighthouse/lighthouse.toml
+[PATH_TO_NODE_WORKING_DIRECTORY]/configs/mainnet/lighthouse/lighthouse.toml
 ```
 
 Exchange the following sample addresses:
@@ -186,9 +198,15 @@ lukso start
   </TabItem>  
   <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
 
+:::tip
+
+The shortcut is ideal for making installation, validator migration, or recovery much faster.
+
+:::
+
 :::info
 
-The shortcut is ideal for making installation or node recovery much faster.
+If you are setting up a node for the testnet, make sure to exchange the mainnet checkpoint address with the testnet checkpoint address `https://checkpoints.testnet.lukso.network` and to add the `--testnet` flag to the start command.
 
 :::
 

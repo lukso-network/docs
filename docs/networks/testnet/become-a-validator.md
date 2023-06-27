@@ -3,9 +3,6 @@ title: Become a Validator
 sidebar_position: 3
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 ## Become a Validator
 
 Testnet validators are core members and organizations wanting to run and maintain their LUKSO Testnet node in a stable environment over a long period to ensure healthy uptimes, stability, and quick response times from clients as demand from developers rises.
@@ -36,7 +33,7 @@ Please refer to the regular [Node Guide](./running-a-node.md) that explains the 
 
 Set up your regular node using the LUKSO CLI as described in the [Node Guide](./running-a-node.md).
 
-The instructions are the same as for mainnet node, please refer to [Mainnet Validator Guide](../mainnet/become-a-validator.md#using-lukso-cli). You will simply have to add the `--testnet` flag to each commands. The commands will look like this:
+The instructions are the same as for mainnet nodes. Please refer to [Mainnet Validator Guide](../mainnet/become-a-validator.md#using-lukso-cli). You will simply have to add the `--testnet` flag to each commands. The commands will look like this:
 
 #### Importing Validator Keys
 
@@ -50,40 +47,17 @@ $ lukso validator list --testnet
 
 Without specifying any flags, the node starts its normal synchronization process.
 
-If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis.
-
-<Tabs>
-  <TabItem value="regular-sync" label="Regular Synchronization">
+If you want more convenience and your validator to operate quickly, you can also use checkpoints. The instructions are the same as for mainnet nodes. Please refer to the [Mainnet Validator Guide](../mainnet/become-a-validator.md).
 
 :::info
 
-The synchronization process will take multiple hours for the validator to participate in the consensus.
+Without using checkpoints, the synchronization process will take multiple hours for the validator to participate in the consensus.
 
 :::
 
 ```bash
 $ lukso start --testnet --validator --transaction-fee-recipient "0x1234..."
 ```
-
-  </TabItem>
-    <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
-
-:::info
-
-The shortcut is ideal for making installation, validator migration, or recovery much faster.
-
-:::
-
-```sh
-# Testnet Checkpoint for Prysm Consensus Client
-$ lukso start --testnet --validator --transaction-fee-recipient "0x1234..." --prysm-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
-
-# Testnet Checkpoint for Lighthouse Consensus Client
-$ lukso start --testnet --validator --transaction-fee-recipient "0x1234..." --lighthouse-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
-```
-
-  </TabItem>
-</Tabs>
 
 #### Checking Validator Logs
 

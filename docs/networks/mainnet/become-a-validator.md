@@ -95,9 +95,15 @@ $ lukso start --validator --transaction-fee-recipient "0x1234..."
   </TabItem>
     <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
 
-:::info
+:::tip
 
 The shortcut is ideal for making installation, validator migration, or recovery much faster.
+
+:::
+
+:::info
+
+If you are setting up a validator node for the testnet, make sure to exchange the mainnet checkpoint address with the testnet checkpoint address `https://checkpoints.testnet.lukso.network` and to add the `--testnet` flag to the start command.
 
 :::
 

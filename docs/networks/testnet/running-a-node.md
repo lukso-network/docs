@@ -3,9 +3,6 @@ title: Running a Node
 sidebar_position: 2
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 ## System Requirements
 
 | Settings            | Value          |
@@ -86,75 +83,7 @@ Your public IP address is a unique identifier assigned to your internet connecti
 
 In order to find other nodes in the network, your public IP should be exposed to build strong connections and download data more quickly. This Public IP value has to be set within the consensus client configuration file that the CLI is downloading from the [LUKSO Network Configuration](https://github.com/lukso-network/network-configs) repository.
 
-<Tabs>
-  <TabItem value="prysm-config" label="Prysm">
-
-Within the node's working directory, open up the related configuration file with an editor of your choice:
-
-```text
-/configs/testnet/prysm/prysm.yaml
-```
-
-There are two different ways how the IP can be configured within Prysm: Regular Host IPs or by using a Dynamic DNS address. Choose what address you are going to use within your setup. If you need further information, please have a look at the [Further Reads](#further-reads) section.
-
-<Tabs>
-<TabItem value="host-ip" label="Host IP">
-
-Exchange the following sample IP address:
-
-```text
-p2p-host-ip: '0.0.0.0'
-```
-
-With your public IP address:
-
-```text
-p2p-host-ip: '<your-public-ip-address>'
-```
-
-</TabItem>
-<TabItem value="host-dns" label="Host DNS">
-
-Exchange the following sample IP address:
-
-```text
-p2p-host-ip: '0.0.0.0'
-```
-
-With the hostname property and address:
-
-```text
-p2p-host-dns: '<your-hostname-address>'
-```
-
-</TabItem>
-</Tabs>
-
-  </TabItem>
-  <TabItem value="lighthouse-config" label="Lighthouse">
-
-Within the node's working directory, open up the related configuration file with an editor of your choice:
-
-```text
-/configs/testnet/lighthouse/lighthouse.toml
-```
-
-Exchange the following sample addresses:
-
-```text
-listen-address = "0.0.0.0"
-enr-address = "0.0.0.0"
-```
-
-With your own public IP addresses:
-
-```text
-listen-address = "<your-public-ip-address>"
-enr-address = "<your-public-ip-address>"
-```
-
-  </TabItem>
-</Tabs>
+The instructions for setting the Public IP Address are the same as for mainnet nodes. Please refer to the [Mainnet Node Guide](../mainnet/running-a-node.md).
 
 #### Start the Clients
 
@@ -162,40 +91,12 @@ The following command will spin up your execution and consensus client and conne
 
 Without specifying any further flags, the node is starting it's regular synchronization process.
 
-If you want more convenience and your node to be operating quickly you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis.
-
-<Tabs>
-  <TabItem value="regular-sync" label="Regular Synchronization">
-
-:::info
-
-This process will take multiple hours until finalization.
-
-:::
+If you want more convenience and your validator to operate quickly, you can also use checkpoints. The instructions are the same as for mainnet nodes. Please refer to the [Mainnet Node Guide](../mainnet/running-a-node.md).
 
 ```sh
 lukso start --testnet
 ```
 
-  </TabItem>  
-  <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
-
-:::info
-
-The shortcut is ideal to make installation, validator migration, or recovery much faster.
-
-:::
-
-```sh
-# Testnet Checkpoint for Prysm Consensus Client
-$ lukso start --testnet --prysm-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
-
-# Testnet Checkpoint for Lighthouse Consensus Client
-$ lukso start --testnet --lighthouse-checkpoint-sync-url=https://checkpoints.testnet.lukso.network
-```
-
-  </TabItem>
-</Tabs>
 #### Checking Processes
 
 To check that everything is running correctly, you can see the status of all your clients using the status command. By default, the validator is not enabled. If you want to run your validator node, please have a look at the [validator page](./become-a-validator.md).
