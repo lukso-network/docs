@@ -538,6 +538,20 @@ Ensure the `bytes32` value set under the permissions are correct according to th
 You can restrict a controller permission (`CALL`/`TRANSFERVALUE`/etc..) to be valid with specific:
 
 <details>
+    <summary>Call Types</summary>
+
+Below is the list of Call Types and their possible combination.
+
+| call type       | value        |
+| --------------- | ------------ |
+| `TRANSFERVALUE` | `0x00000001` |
+| `CALL`          | `0x00000002` |
+| `STATICCALL`    | `0x00000004` |
+| `DELEGATECALL`  | `0x00000008` |
+
+</details>
+
+<details>
     <summary>Addresses</summary>
 
 |                   Address                    |                     Meaning                     |
@@ -589,7 +603,17 @@ If you want to have multiple different interactions, you MUST add each of the de
 <details>
     <summary><strong>Example 1:</strong> allow only to <code>CALL</code> a specific LSP0 at a specific address</summary>
 
-To allow a controller to only do `CALL` to any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
+To allow a controller to only do `CALL` to any function on a LSP0ERC725Account (interface ID `0x3e89ad98`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the following value for the CompactBYytesArray of allowed calls will be used:
+
+`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`
+
+Where:
+
+- _element length_: `0x0020` (= 32 bytes)
+- _Permission_: **CALL**, **0x00000002**;
+- _Standard_: **LSP0 interface ID = `0x3e89ad98`**;
+- _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;
+- _Function_: **any**;
 
 </details>
 
@@ -604,10 +628,10 @@ Consider the scenario where you want to give the following permissions to a cont
 
 The CompactBytesArray of allowed calls for this controller will be composed of the following entries:
 
-- `AllowedCalls[0]` = the 1st value in the CompactBytesArray will be **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**.
+- `AllowedCalls[0]` = the 1st value in the CompactBytesArray will be **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`**.
 
   - _Permission_: **CALL and TRANSFERVALUE**, **0x00000003**;
-  - _Standard_: **LSP0 interface ID = `0x66767497`**;
+  - _Standard_: **LSP0 interface ID = `0x3e89ad98`**;
   - _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;
   - _Function_: **any**;
 
@@ -625,7 +649,7 @@ The CompactBytesArray of allowed calls for this controller will be composed of t
   - _Function_: **any**;
 
 A _CompactBytesArray_ for these 3 interactions would look like this:
-`0x`**`0020`**`00000003CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**`0020`**`00000002F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
+`0x`**`0020`**`00000003CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`**`0020`**`00000002F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
 
 </details>
 
