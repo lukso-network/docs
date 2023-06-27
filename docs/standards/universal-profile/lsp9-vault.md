@@ -66,7 +66,7 @@ The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
 
 - Emits an event with the typeId and data passed to it, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
 
-- Forwards the call to the **UniversalReceiverDelegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md).
+- Forwards the call to the **UniversalReceiverDelegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md).
 
 ```json
 {
@@ -78,7 +78,7 @@ The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
 }
 ```
 
-- Forwards the call to the **typeId delegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiverDelegate InterfaceId](../smart-contracts/interface-ids.md).
+- Forwards the call to the **typeId delegate** contract address stored under the data key attached below, if it supports [LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md).
 
 ```json
 {
@@ -90,7 +90,7 @@ The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
 }
 ```
 
-> <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function. 
+> <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function.
 
 ### LSP14 - Ownable2Step
 
