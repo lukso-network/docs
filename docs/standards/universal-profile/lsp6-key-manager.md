@@ -615,7 +615,7 @@ A _CompactBytesArray_ for these 3 interactions would look like this:
 }
 ```
 
-![LSP6 Allowed Calls Overview](/img/standards/lsp6/lsp6_allowed_calls_example.jpeg)
+![LSP6 Allowed Calls Overview](/img/standards/lsp6/lsp6_allowed_calls_example.jpg)
 
 :::warning
 
