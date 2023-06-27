@@ -569,39 +569,63 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 
 </details>
 
-To allow a controller to call (using `CALL` Permission) any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
+To restrict a controller to a specific set of calls, set the following data key-value pair in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
 
 - **key:** `0x4b80742de2bf393a64c70000<controller-address>`
   - where `<address>` is the controller `address`
 - **possible values:**
-  - `(bytes4,address,bytes4,bytes4)[CompactBytesArray]`: a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple `(bytes4,address,bytes4,bytes4)` which is created by concatenating the _permission which restrictions belong to_ and the chosen _function selector_, _address_ and _standard_ to restrict. (e.g. `0x000000027497CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0001c6676ffffffff`)
+  - `(bytes4,address,bytes4,bytes4)[CompactBytesArray]`: a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of tuple which described the allowed call (_call type_ + _address_ + _standard_ + _function_). **See details below for each element of the tuple**.
   - `0x` (empty): if the value is an **empty byte** (= `0x`), the controller is not allowed to interact with any functions, address or standards (**= all calls are disallowed**).
 
+Each entry in the CompactBytesArray is an **Allowed Call**. An Allowed Call is represented by a tuple of `(bytes4,address,bytes4,bytes4)`, where each value in the tuple corresponds to the following:
+
+1. `bytes4` (**call type**) = the call type(s) allowed for this allowed call (`TRANSFERVALUE`, `CALL`, `STATICCALL` and `DELEGATECALL`).
+2. `address` (**address**) = the address of an EOA or a contract. Can be used to restrict only to interact with a specific address.
+3. `bytes4` (**standard**) = the ERC165 interface ID of a standard interface. Can be used to specify the _"type of contract"_ allowed to interact with.
+4. `bytes4` (**function**) = a bytes4 function selector. Can be used to restrict a controller to call only a specific function on a contract.
+
+If you want to have multiple different interactions, you MUST add each of the desired interaction in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of AllowedCalls. Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **32** = **`0x0020`**, because the tuple `(bytes4,address,bytes4,bytes4)` makes up 32 bytes in total.
+
 <details>
-    <summary>Combining multiple interactions</summary>
+    <summary><strong>Example 1:</strong> allow only to <code>CALL</code> a specific LSP0 at a specific address</summary>
 
-If you want to have multiple different interactions, you MUST add each of the desired interaction to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray). Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **32** = **`0x0020`**, because the permission being restricted is represented with **4 bytes** and a _standard_ uses **4 bytes**, an _address_ uses **20 bytes** and a _function_ uses **4 bytes**.
+To allow a controller to only do `CALL` to any function on a LSP0ERC725Account (interface ID `0x66767497`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the data key-value pair below can be set in the ERC725Y contract storage.
 
-_Example:_
+</details>
 
-- _Permission_: **CALL** , **0x00000002**;
-  _Standard_: **LSP0, `0x66767497`**;  
-   _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;  
-   _Function_: **any**;  
-   _CompactBytesArray_: **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**
-- _Permission_: **CALL and TRANSFERVALUE**, **0x00000003**;
-  _Standard_: **any**;  
-   _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;  
-   _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;  
-   _CompactBytesArray_: **`0x002000000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**
-- _Permission_: **STATICCALL**, **0x00000004**;
-  _Standard_: **any**;  
-   _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;  
-   _Function_: **any**;  
-   _CompactBytesArray_: **`0x002000000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`**
+<details>
+    <summary><strong>Example 2:</strong> allow multiple interactions of different types</summary>
+
+Consider the scenario where you want to give the following permissions to a controller:
+
+- allow to `CALL` any functions (as well as transferring value `TRANSFERVALUE`) to a LSP0 contract deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`.
+- allow to `CALL` only the `transfer(address,address,uint256,bool,bytes)` function on the contract deployed at address `0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`.
+- allow to do `STATICCALL`s to any functions on the contract deployed at address `0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`.
+
+The CompactBytesArray of allowed calls for this controller will be composed of the following entries:
+
+- `AllowedCalls[0]` = the 1st value in the CompactBytesArray will be **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**.
+
+  - _Permission_: **CALL and TRANSFERVALUE**, **0x00000003**;
+  - _Standard_: **LSP0 interface ID = `0x66767497`**;
+  - _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;
+  - _Function_: **any**;
+
+- AllowedCalls[1] = the 2nd value in the CompactBytesArray will be **`0x002000000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**.
+
+  - _Permission_: **CALL**, **0x00000002**;
+  - _Standard_: **any**;
+  - _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;
+  - _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;
+
+- AllowedCalls[2] = the 3rd value in the CompactBytesArray will be **`0x002000000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`**
+  - _Permission_: **STATICCALL**, **0x00000004**;
+  - _Standard_: **any**;
+  - _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;
+  - _Function_: **any**;
 
 A _CompactBytesArray_ for these 3 interactions would look like this:
-`0x`**`0020`**`00000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**`0020`**`00000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
+`0x`**`0020`**`00000003CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc066767497ffffffff`**`0020`**`00000002F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
 
 </details>
 
