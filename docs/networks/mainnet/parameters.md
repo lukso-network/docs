@@ -17,6 +17,7 @@ The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis D
 | Genesis Fork Version     | 0x42000001                                         |
 | Chain ID / Network ID    | 42                                                 |
 | Currency Symbol          | LYX                                                |
+| RPC URL                  | <https://rpc.mainnet.lukso.network>                |
 | Execution Block Explorer | <https://explorer.execution.mainnet.lukso.network> |
 | Execution Status Page    | <https://stats.execution.mainnet.lukso.network>    |
 | Consensus Block Explorer | <https://explorer.consensus.mainnet.lukso.network> |
