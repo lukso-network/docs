@@ -114,7 +114,7 @@ Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending 
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
     </p>
 
-The `ADDEXTENSIONS` permission enables to add new extension contracts via the `fallback` function of the linked ERC725Account.
+The `ADDEXTENSIONS` permission enables the addition of new LSP17 extension contracts for specific function selectors to be called when the account is called with a function that does not exist natively in its public interface. The `fallback` function of the linked ERC725Account will handle the call to the extension set for the function selector being called.
 
 </details>
 
@@ -124,7 +124,7 @@ The `ADDEXTENSIONS` permission enables to add new extension contracts via the `f
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code>
     </p>
 
-The `CHANGEEXTENSIONS` permission enables to edit the extension contract address for a specific `bytes4` function selector sent to the `fallback` function of the linked ERC725Account.
+The `CHANGEEXTENSIONS` permission enables editing LSP17 extension contract addresses for function selectors already set in the account. The LSP17 extension will be called when the account is called with a function that does not exist natively in its public interface. The `fallback` function of the linked ERC725Account will handle the call to the extension set for the function selector being called.
 
 </details>
 
