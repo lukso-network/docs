@@ -124,7 +124,7 @@ $ lukso install
 
 In case you are running a validator, you can copy your keystore files to the new folder. The keystore data in your old folder will act as a backup.
 
-Make sure to adjust the commands using the actual name of the previous folder.
+> Make sure to adjust the commands using the actual name of the previous folder instead of the placeholder.
 
 :::caution
 
