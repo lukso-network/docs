@@ -65,7 +65,7 @@ Move out of your current node's working directory.
 $ cd ..
 ```
 
-Next, create a new working directory for your updated node. Your old folder will be a backup for your previous configuration and keystore files.
+Next, create a new working directory for your updated node. Your old folder will act as a backup for your previous configuration and keystore files.
 
 ```bash
 $ mkdir myNewLUKSOnode && cd myNewLUKSOnode

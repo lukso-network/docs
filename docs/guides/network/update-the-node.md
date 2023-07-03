@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 
 # Update the Node
 
-Updating your node and blockchain clients is from upmost importance. It is not just about having access to the latest features of the LUKSO CLI, but an essential aspect of maintaining the security, performance, and reliability of your node, directly affecting the network.
+Updating your node and blockchain clients is of utmost importance. It is not just about having access to the latest features of the LUKSO CLI, but an essential aspect of maintaining your node's security, performance, and reliability, directly affecting the network.
 
 ## Check your LUKSO CLI Version
 
 :::info Breaking Changes
 
-Since the mainnet launch occured, the LUKSO CLI had breaking changes from version `0.6` to `0.7`.
+Since the mainnet launch occurred, the LUKSO CLI had breaking changes from version `0.6` to `0.7`.
 
 :::
 
@@ -26,7 +26,7 @@ $ lukso version
 
 ## Update the LUKSO CLI
 
-Updating your node is similar to the installing process, while keeping your previous keystore data. If you already have the latest LUKSO CLI version, you can also only update your [blockchain clients](#updating-the-blockchain-clients).
+Updating your node is similar to the installing process, while keeping your previous keystore data. If you already have the **latest LUKSO CLI version** and **network configs**, you can also just update your [blockchain clients](#updating-the-blockchain-clients).
 
 <Tabs>
   <TabItem value="update-v6" label="Update from Version 0.6">
@@ -35,7 +35,7 @@ Updating your node is similar to the installing process, while keeping your prev
 
 :::caution
 
-In case you configured custom services on top of the LUKSO CLI, please make sure to use your service commands to stop your node.
+If you configured custom services on top of the LUKSO CLI, please use your service commands to stop your node.
 
 :::
 
@@ -51,7 +51,7 @@ Make sure to stop all processes of the blockchain node.
 $ lukso stop
 ```
 
-Afterwards, you can check if your node stopped correctly.
+Afterward, you can check if your node stopped correctly.
 
 ```bash
 $ lukso status
@@ -84,7 +84,7 @@ Move out of your current node's working directory.
 $ cd ..
 ```
 
-Next, create a new working directory for your updated node. Your old folder will exist as a backup for your configuration and keystore files.
+Next, create a new working directory for your updated node. Your old folder will act as a backup for your configuration and keystore files.
 
 ```bash
 $ mkdir myNewLUKSOnode && cd myNewLUKSOnode
@@ -106,7 +106,7 @@ $ lukso version
 
 #### Initialize the new Working Directory
 
-Next, you can initialize your new working folder. The command will download the latest network configurations and genesis files needed to synchronize with the LUKSO blockchain.
+Next, you can initialize your new working folder. The command will download the latest network configurations and genesis files to synchronize with the LUKSO blockchain.
 
 ```bash
 $ lukso init
@@ -122,13 +122,13 @@ $ lukso install
 
 #### Copy the Validator Keys
 
-In case you are running a validator, you can copy your keystore files to the new folder. The keystore data in your old folder will act as a backup.
+In case you are running a validator, you are able to copy your keystore files to the new folder. The keystore data in your old folder will act as a backup.
 
 > Make sure to adjust the commands using the actual name of the previous folder instead of the placeholder.
 
 :::caution
 
-Only copy over your keystore data if you want to use the exact same consensus client as you did before the update. Otherwise, you would have to import your validator keys from scratch.
+Only copy over your keystore data if you want to use the same consensus client as before the update. Otherwise, you would have to import your validator keys from scratch.
 
 :::
 
@@ -149,8 +149,8 @@ You can start your node as regular. Please adjust your flags or the recipient ad
 In case you did any modifications to your configuration files, such as:
 
 - configuring a Dynamic DNS
-- setting the explorer page link
-- adding a node name or graffitti
+- connecting the blockchain explorer page
+- adding a node name or graffiti
 - adjusting your peer count
 
 Please add them once again and make sure that these are in the correct format before starting your node.
@@ -159,11 +159,11 @@ Please add them once again and make sure that these are in the correct format be
 
 :::caution
 
-Wait at least 10 minutes after having stopped your node, so the network does not accuse you of slashing, while using updated network configurations.
+Wait 10 minutes after stopping your node so the network does not accuse you of slashing while using updated configurations.
 
 :::
 
-Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you are running a validator node to avoid losing stake.
+Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
 
 <Tabs>
 <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
@@ -193,13 +193,13 @@ $ lukso start --transaction-fee-recipient "0x1234" --lighthouse-checkpoint-sync-
 
 :::caution
 
-The regular synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
+The normal synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
 
 :::
 
 :::info
 
-If you are setting up a node for the testnet, make sure to add the `--testnet` flag to the start command.
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
 
 :::
 
@@ -216,7 +216,7 @@ $ lukso start --validator --transaction-fee-recipient "0x1234"
 
 :::info
 
-After your node has properly syncronized with the network, you can remove the old working directory from your system.
+After your node has finalized the synchronization with the network, you can remove the old working directory from your system.
 
 :::
 
@@ -227,7 +227,7 @@ After your node has properly syncronized with the network, you can remove the ol
 
 :::caution
 
-In case you configured custom services on top of the LUKSO CLI, please make sure to use your service commands to stop your node.
+If you configured custom services on top of the LUKSO CLI, please use your service commands to stop your node.
 
 :::
 
@@ -243,7 +243,7 @@ Make sure to stop all processes of the blockchain node.
 $ lukso stop
 ```
 
-Afterwards, you can check if your node stopped correctly.
+Afterward, you can check if your node stopped correctly.
 
 ```bash
 $ lukso status
@@ -251,7 +251,7 @@ $ lukso status
 
 #### Remove outdated Blockchain Data
 
-If the processes have been stopped sucessfully, you can remove the old network data.
+If the processes have been stopped successfully, you can continue to remove the old network data.
 
 ```bash
 # Remove Mainnet Data
@@ -263,7 +263,7 @@ $ rm -rf testnet-data
 
 #### Backup outdated Configuration
 
-Next you can rename your configuration folder so the latest network files are redownloaded.
+Next, you can rename your configuration folder to reload the latest network files later on.
 
 ```bash
 $ mv configs/ configs-backup
@@ -277,7 +277,7 @@ Re-install the LUKSO CLI to your system. You will be asked to overwrite the curr
 $ curl https://install.lukso.network | sh
 ```
 
-Make sure to check the downloaded version again, to assure that the update was successful.
+Make sure to check the downloaded version again to ensure that the update was successful.
 
 ```bash
 $ lukso version
@@ -301,28 +301,28 @@ $ lukso install
 
 #### Restart your Node
 
-You can start your node as regular. Please adjust your flags or the recipient address in case you are running a validator.
+You can start your node as regular. If you run a validator, please adjust your flags or the recipient address.
 
 :::info
 
 In case you did any modifications to your configuration files, such as:
 
 - configuring a Dynamic DNS
-- setting the explorer page link
-- adding a node name or graffitti
+- connecting the blockchain explorer page
+- adding a node name or graffiti
 - adjusting your peer count
 
-Please add them once again and make sure that these are in the correct format before starting your node.
+Please add them again and ensure these are in the correct format before starting your node.
 
 :::
 
 :::caution
 
-Wait at least 10 minutes after having stopped your node, so the network does not accuse you of slashing, while using updated network configurations.
+Wait 10 minutes after stopping your node so the network does not accuse you of slashing while using updated configurations.
 
 :::
 
-Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you are running a validator node to avoid losing stake.
+Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
 
 <Tabs>
 <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
@@ -352,13 +352,13 @@ $ lukso start --transaction-fee-recipient "0x1234" --lighthouse-checkpoint-sync-
 
 :::caution
 
-The regular synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
+The normal synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
 
 :::
 
 :::info
 
-If you are setting up a node for the testnet, make sure to add the `--testnet` flag to the start command.
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
 
 :::
 
@@ -375,7 +375,7 @@ $ lukso start --validator --transaction-fee-recipient "0x1234"
 
 :::info
 
-After your node has properly syncronized with the network, you can remove the `configs-backup` folder from your system.
+After your node has finalized the synchronization with the network, you can remove the `configs-backup` folder from your system.
 
 :::
 
@@ -384,13 +384,13 @@ After your node has properly syncronized with the network, you can remove the `c
 
 ## Update the Blockchain Clients
 
-In case you are already using the latest LUKSO CLI version and network configuration but want to check for new blockchain client versions, you can update them separately.
+If you already use the **latest LUKSO CLI version** and **network configuration** but want to check for new blockchain client versions, you can update them separately.
 
 ### Stop your Node
 
 :::caution
 
-In case you configured custom services on top of the LUKSO CLI, please make sure to use your service commands to stop your node.
+If you configured custom services on top of the LUKSO CLI, please use your service commands to stop your node.
 
 :::
 
@@ -406,7 +406,7 @@ Stop all processes of the blockchain node.
 $ lukso stop
 ```
 
-Afterwards, you can check if your node stopped correctly.
+Afterward, you can check if your node stopped correctly.
 
 ```bash
 $ lukso status
@@ -422,9 +422,9 @@ $ lukso update
 
 #### Restart your Node
 
-You can start your node as regular. Please adjust your flags or the recipient address in case you are running a validator.
+You can start your node as regular. If you run a validator, please adjust your flags or the recipient address.
 
-Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you are running a validator node to avoid losing stake.
+Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
 
 <Tabs>
 <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
@@ -454,13 +454,13 @@ $ lukso start --transaction-fee-recipient "0x1234" --lighthouse-checkpoint-sync-
 
 :::caution
 
-The regular synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
+The normal synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
 
 :::
 
 :::info
 
-If you are setting up a node for the testnet, make sure to add the `--testnet` flag to the start command.
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
 
 :::
 
