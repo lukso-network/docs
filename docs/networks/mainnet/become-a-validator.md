@@ -3,6 +3,9 @@ title: Become a Validator
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Become a validator
 
 :::info
@@ -17,7 +20,7 @@ To become a validator, you can use the LUKSO Deposit Launchpad: <https://deposit
 
 :::caution Validator Keys
 
-As a validator, you need to import your validator deposit key (`keystore-xxx-[timestamp].json` files that you have generated using the [LUKSO Wagyu](https://github.com/lukso-network/tools-wagyu-key-gen) or [LUKSO CLI Keygen](https://github.com/lukso-network/tools-key-gen-cli) tools. Ensure you safely copy them to your node before starting the validator node.
+As a validator, you need to import your validator deposit key files (`keystore-xxx-[timestamp].json`) that you have generated using the [LUKSO Wagyu](https://github.com/lukso-network/tools-wagyu-key-gen) or [LUKSO CLI Keygen](https://github.com/lukso-network/tools-key-gen-cli) tools. Ensure you safely copy them to your node before starting the validator node.
 
 :::
 
@@ -72,9 +75,45 @@ The recipient fee address can also be different than the withdrawal credential y
 
 As only genesis validators can run the validator on a node, you must select your chosen initial supply for the LUKSO mainnet. More information can be found in the official [Mainnet Timeline](https://medium.com/lukso/lukso-mainnet-timeline-and-process-dd997fe811c8) article.
 
+Without specifying any flags, the node starts its normal synchronization process.
+
+If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis.
+
+<Tabs>
+  <TabItem value="regular-sync" label="Regular Synchronization">
+
+:::info
+
+The synchronization process will take multiple hours for the validator to participate in the consensus.
+
+:::
+
 ```bash
 $ lukso start --validator --transaction-fee-recipient "0x1234..."
 ```
+
+  </TabItem>
+    <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
+
+:::tip
+
+The shortcut is ideal for making installation, validator migration, or recovery much faster.
+
+:::
+
+:::info
+
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+
+:::
+
+```sh
+# Starting the Mainnet Validator
+$ lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
+```
+
+  </TabItem>
+</Tabs>
 
 #### Checking Validator Logs
 
@@ -122,3 +161,11 @@ If you are a pro user or want to generate custom genesis files with a different 
 Check the [Network FAQ](../faq/validator.md) section.
 
 Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/lukso).
+
+## Further Reads
+
+You can check out the following links for extended help or advice for setting up your node beyond the LUKSO CLI.
+
+- [Extended Wiki and LUKSO Node Guide](https://github.com/fhildeb/lukso-node-guide) by Felix Hildebrandt
+- [LUKSO Community Guides](https://docs.luksoverse.io/) by Luksoverse
+- [ETHStaker Community Discord](https://discord.com/invite/ucsTcA2wTq) for running EVM Clients

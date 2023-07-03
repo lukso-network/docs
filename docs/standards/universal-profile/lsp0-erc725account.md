@@ -45,6 +45,8 @@ An **ERC725Account** is a blockchain account system that can be utilized by indi
 
 - **[LSP20-CallVerification](#)** provides a unified and standard way for all addresses to **interact directly with the account**. This streamlines the interaction process considering the ownership setup, and enhancing accessibility and developer experience.
 
+![LSP0 modules diagram](/img/standards/lsp0/LSP0-modules-diagram.jpeg)
+
 ### ERC725X - Generic Executor
 
 :::tip
