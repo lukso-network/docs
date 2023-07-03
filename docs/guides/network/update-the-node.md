@@ -24,6 +24,8 @@ Please check your current LUKSO CLI version to determine your update process.
 $ lukso version
 ```
 
+This guide will lead you through updating to **LUKSO CLI Version 0.8**
+
 ## Update the LUKSO CLI
 
 Updating your node is similar to the installing process, while keeping your previous keystore data. If you already have the **latest LUKSO CLI version** and **network configs**, you can also just update your [blockchain clients](#updating-the-blockchain-clients).
