@@ -120,26 +120,6 @@ After the initialization is successful, we must update the blockchain clients, m
 $ lukso install
 ```
 
-#### Copy the Network Data
-
-Next, you can copy your blockchain data to the new folder. The blockchain data in your old folder will stay intact as a backup.
-
-Make sure to adjust the commands using the actual name of the previous folder.
-
-:::caution
-
-Only copy over your network data if you want to use the exact same blockchain clients as you did before the update!
-
-:::
-
-```bash
-# Copy Mainnet Node Data
-$ cp -r ../myOldLUKSOnode/mainnet-data .
-
-# Copy Testnet Node Data
-$ cp -r ../myOldLUKSOnode/testnet-data .
-```
-
 #### Copy the Validator Keys
 
 In case you are running a validator, you can also copy your keystore files to the new folder. The keystore data in your old folder will stay intact as a backup.
@@ -177,9 +157,22 @@ Please add them once again and make sure that these are in the correct format be
 
 :::
 
-:::tip
+Without specifying any flags, the node starts its normal synchronization process.
 
-You can also add the [checkpoint synchronization](../../networks/mainnet/running-a-node.md) flag as outlaid in the node setup guide.
+If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis.
+
+<Tabs>
+  <TabItem value="regular-sync" label="Regular Synchronization">
+
+:::info
+
+The synchronization process will take multiple hours for the node to finalize.
+
+:::
+
+:::info
+
+If you are setting up a node for the testnet, make sure to add the `--testnet` flag to the start command.
 
 :::
 
@@ -187,29 +180,41 @@ You can also add the [checkpoint synchronization](../../networks/mainnet/running
 # Starting the Mainnet Node
 $ lukso start
 
-# Starting the Testnet Node
-$ lukso start --testnet
-
 # Starting the Mainnet Validator
 $ lukso start --validator --transaction-fee-recipient "0x1234"
-
-# Starting the Testnet Validator
-$ lukso start --testnet --validator --transaction-fee-recipient "0x1234"
 ```
 
-:::caution
+  </TabItem>  
+  <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
 
-In case you've copied over your blockchain and are getting an error during startup, please remove your blockchain data folder and start your node again. This will synchronize the network from scratch.
+:::tip
 
-```bash
-# Remove Mainnet Node Data
-$ sudo rm -rf mainnet-data
-
-# Remove Testnet Node Data
-$ sudo rm -rf testnet-data
-```
+The shortcut is ideal for making installation, validator migration, or recovery much faster.
 
 :::
+
+:::info
+
+If you are setting up a node for the testnet, make sure to exchange the mainnet checkpoint address with the testnet checkpoint address `https://checkpoints.testnet.lukso.network` and to add the `--testnet` flag to the start command.
+
+:::
+
+```sh
+# Mainnet Node with Prysm Consensus Client
+$ lukso start --prysm-checkpoint-sync-url=https://checkpoints.mainnet.lukso.network
+
+# Mainnet Node with Lighthouse Consensus Client
+$ lukso start --lighthouse-checkpoint-sync-url=https://checkpoints.mainnet.lukso.network
+
+# Mainnet Validator with Prysm Consensus Client
+$ lukso start --validator --transaction-fee-recipient "0x1234" --prysm-checkpoint-sync-url=https://checkpoints.mainnet.lukso.network
+
+# Mainnet Validator with Lighthouse Consensus Client
+$ lukso start --transaction-fee-recipient "0x1234" --lighthouse-checkpoint-sync-url=https://checkpoints.mainnet.lukso.network
+```
+
+  </TabItem>
+</Tabs>
 
 :::info
 
