@@ -103,16 +103,13 @@ The shortcut is ideal for making installation, validator migration, or recovery 
 
 :::info
 
-If you are setting up a validator node for the testnet, make sure to exchange the mainnet checkpoint address with the testnet checkpoint address `https://checkpoints.testnet.lukso.network` and to add the `--testnet` flag to the start command.
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
 
 :::
 
 ```sh
-# Mainnet Checkpoint for Prysm Consensus Client
-$ lukso start --validator --transaction-fee-recipient "0x1234..." --prysm-checkpoint-sync-url=https://checkpoints.mainnet.lukso.network
-
-# Mainnet Checkpoint for Lighthouse Consensus Client
-$ lukso start --validator --transaction-fee-recipient "0x1234..." --lighthouse-checkpoint-sync-url=https://checkpoints.mainnet.lukso.network
+# Starting the Mainnet Validator
+$ lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
 ```
 
   </TabItem>
