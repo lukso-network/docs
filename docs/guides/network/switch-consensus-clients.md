@@ -142,6 +142,10 @@ Wait 10 minutes after stopping your node so the network does not accuse you of s
 
 Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
 
+Your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running. After the synchronization is finalized, you will end up with the equal blockchain data.
+
+> You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime.
+
 <Tabs>
 <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
 
