@@ -11,22 +11,6 @@ sidebar_position: 10
 
 :::
 
-:::caution Warning
-
-The `LSP8IdentifiableDigitalAsset` contract is an `abstract` contract that is not deployable as it is. This is because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_).
-
-In order to use the internal [`_mint(...)`](#_mint) and [`_burn(...)`](#_burn) functions, you can:
-
-- use `LSP8Mintable`, a preset contract that contains a public `mint(...)` function callable only by the contract's owner.
-- or extend the `LSP8DigitalAsset` contract and create custom methods that use the internal functions (to create your own supply mechanism).
-
-:::
-
-The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital assets (NFTs) that can be uniquely traded and given metadata using the **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
-Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
-
-A **bytes32** value is used for tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (i.e., serial numbers).
-
 :::note
 _LSP8IdentifiableDigitalAsset contract also contains the methods from the [ERC165 Standard](https://eips.ethereum.org/EIPS/eip-165):_
 

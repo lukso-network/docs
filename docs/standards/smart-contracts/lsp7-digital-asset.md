@@ -11,20 +11,6 @@ sidebar_position: 9
 
 :::
 
-:::caution Warning
-The `LSP7DigitalAsset` contract is an `abstract` contract that is not deployable as it is. This is because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_).
-
-In order to use the internal [`_mint(...)`](#_mint) and [`_burn(...)`](#_burn) functions, you can:
-
-- use `LSP7Mintable`, a preset contract that contains a public `mint(...)` function callable only by the contract's owner.
-- or extend the `LSP7DigitalAsset` contract and create custom methods that use the internal functions (to create your own supply mechanism).
-
-:::
-
-The **LSP7DigitalAsset** contract represents digital assets for either fungible or non-fungible tokens where minting and transferring are specified with an amount of tokens. It has some functions from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC777](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC777/ERC777.sol)** with more upgraded features.
-
-This contract serves as a **Fungible Token Contract** when `isNonDivisible` bool is set to `false` in the [`constructor(...)`](#constructor) and otherwise serves as a **Non-Fungible Token Contract**.
-
 :::note
 _The LSP7DigitalAsset contract also contains the methods from_ [_ERC165_](https://eips.ethereum.org/EIPS/eip-165) :
 
