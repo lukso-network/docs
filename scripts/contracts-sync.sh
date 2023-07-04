@@ -7,3 +7,6 @@ git clone --depth 1  --branch test-docs-sync https://github.com/lukso-network/ls
 
 # Copy Docs
 rsync -av --progress lsp-smart-contracts/docs/. ../docs/contracts/
+
+cd ..
+rm -rf tmpDocsSync
