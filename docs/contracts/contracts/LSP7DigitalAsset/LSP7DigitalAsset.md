@@ -1,6 +1,6 @@
 # LSP7DigitalAsset
 
-:::info Soldity contract
+:::info Solidity contract
 
 [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
 
@@ -25,7 +25,7 @@ Minting and transferring are supplied with a `uint256` amount. This implementati
 
 :::danger
 
-To avoid front-running and Allowance Double-Spend Exploit when increasing or decreasing the authorized amount of an operator, it is advised to: 1. either call {`revokeOperator`} first, and then re-call {`authorizeOperator`} with the new amount. 2. or use the non-standard functions {`increaseAllowance`} or {`decreaseAllowance`}. For more information, see: https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/
+To avoid front-running and Allowance Double-Spend Exploit when increasing or decreasing the authorized amount of an operator, it is advised to: 1. either call {revokeOperator} first, and then re-call {authorizeOperator} with the new amount. 2. or use the non-standard functions {increaseAllowance} or {decreaseAllowance}. For more information, see: https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/
 
 :::
 
@@ -44,6 +44,8 @@ Sets the `amount` of tokens that an `operator` has access from the caller's bala
 | ---------- | :-------: | ------------------------------------------------------ |
 | `operator` | `address` | The address to authorize as an operator.               |
 | `amount`   | `uint256` | The allowance amount of tokens operator has access to. |
+
+&lt;br/&gt;
 
 ### authorizedAmountFor
 
@@ -78,6 +80,8 @@ Get the amount of tokens `operator` address has access to from `tokenOwner`. Ope
 | ---- | :-------: | ----------------------------------------------------------------------------------------------- |
 | `0`  | `uint256` | The amount of tokens the `operator`&#39;s address has access on the `tokenOwner`&#39;s balance. |
 
+&lt;br/&gt;
+
 ### balanceOf
 
 :::note Links
@@ -93,7 +97,7 @@ Get the amount of tokens `operator` address has access to from `tokenOwner`. Ope
 function balanceOf(address tokenOwner) external view returns (uint256);
 ```
 
-Get the number of tokens owned by `tokenOwner`. If the token is divisible (the `[`decimals`](#decimals)` function returns `18`), the amount returned should be divided by 1e18 to get a better picture of the actual balance of the `tokenOwner`. _Example:_ `balanceOf(someAddress) -> 42_000_000_000_000_000_000 / 1e18 = 42 tokens`
+Get the number of tokens owned by `tokenOwner`. If the token is divisible (the [`decimals`](#decimals) function returns `18`), the amount returned should be divided by 1e18 to get a better picture of the actual balance of the `tokenOwner`. _Example:_ `balanceOf(someAddress) -> 42_000_000_000_000_000_000 / 1e18 = 42 tokens`
 
 #### Parameters
 
@@ -106,6 +110,8 @@ Get the number of tokens owned by `tokenOwner`. If the token is divisible (the `
 | Name |   Type    | Description                                 |
 | ---- | :-------: | ------------------------------------------- |
 | `0`  | `uint256` | The number of tokens owned by `tokenOwner`. |
+
+&lt;br/&gt;
 
 ### decimals
 
@@ -129,6 +135,8 @@ Returns the number of decimals used to get its user representation. If the asset
 | Name |  Type   | Description                                                             |
 | ---- | :-----: | ----------------------------------------------------------------------- |
 | `0`  | `uint8` | the number of decimals. If `0` is returned, the asset is non-divisible. |
+
+&lt;br/&gt;
 
 ### decreaseAllowance
 
@@ -156,7 +164,7 @@ function decreaseAllowance(
 
 _Decrease the allowance of `operator` by -`substractedAmount`_
 
-Atomically decreases the allowance granted to `operator` by the caller. This is an alternative approach to [`authorizeOperator(...)`](#`authorizeoperator) that can be used as a mitigation for the double spending allowance problem.
+Atomically decreases the allowance granted to `operator` by the caller. This is an alternative approach to [`authorizeOperator`](#authorizeoperator) that can be used as a mitigation for the double spending allowance problem.
 
 <blockquote>
 
@@ -182,6 +190,8 @@ Atomically decreases the allowance granted to `operator` by the caller. This is 
 | ------------------- | :-------: | ---------------------------------------------------------- |
 | `operator`          | `address` | the operator to decrease allowance for `msg.sender`        |
 | `substractedAmount` | `uint256` | the amount to decrease by in the operator&#39;s allowance. |
+
+&lt;br/&gt;
 
 ### getData
 
@@ -211,6 +221,8 @@ _Gets singular data at a given `dataKey`_
 | Name        |  Type   | Description                |
 | ----------- | :-----: | -------------------------- |
 | `dataValue` | `bytes` | The data stored at the key |
+
+&lt;br/&gt;
 
 ### getDataBatch
 
@@ -243,6 +255,8 @@ _Gets array of data for multiple given keys_
 | ------------ | :-------: | ----------------------------------------- |
 | `dataValues` | `bytes[]` | The array of data stored at multiple keys |
 
+&lt;br/&gt;
+
 ### increaseAllowance
 
 :::note Links
@@ -269,7 +283,7 @@ function increaseAllowance(
 
 _Increase the allowance of `operator` by +`addedAmount`_
 
-Atomically increases the allowance granted to `operator` by the caller. This is an alternative approach to [`authorizeOperator(...)`](#`authorizeoperator) that can be used as a mitigation for the double spending allowance problem.
+Atomically increases the allowance granted to `operator` by the caller. This is an alternative approach to [`authorizeOperator`](#authorizeoperator) that can be used as a mitigation for the double spending allowance problem.
 
 <blockquote>
 
@@ -295,6 +309,8 @@ Atomically increases the allowance granted to `operator` by the caller. This is 
 | `operator`    | `address` | the operator to increase the allowance for `msg.sender`                     |
 | `addedAmount` | `uint256` | the additional amount to add on top of the current operator&#39;s allowance |
 
+&lt;br/&gt;
+
 ### owner
 
 :::note Links
@@ -318,6 +334,8 @@ Returns the address of the current owner.
 | ---- | :-------: | ----------- |
 | `0`  | `address` | -           |
 
+&lt;br/&gt;
+
 ### renounceOwnership
 
 :::note Links
@@ -334,6 +352,8 @@ function renounceOwnership() external nonpayable;
 ```
 
 Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+
+&lt;br/&gt;
 
 ### revokeOperator
 
@@ -358,6 +378,8 @@ Removes the `operator` address as an operator of callers tokens. See [`authorize
 | ---------- | :-------: | ------------------------------------- |
 | `operator` | `address` | The address to revoke as an operator. |
 
+&lt;br/&gt;
+
 ### setData
 
 :::note Links
@@ -381,6 +403,8 @@ _Sets singular data for a given `dataKey`_
 | ----------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
 | `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
+
+&lt;br/&gt;
 
 ### setDataBatch
 
@@ -407,6 +431,8 @@ Sets array of data for multiple given `dataKeys` SHOULD only be callable by the 
 | ------------ | :---------: | ---------------------------------------- |
 | `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
 | `dataValues` |  `bytes[]`  | The array of values to set               |
+
+&lt;br/&gt;
 
 ### supportsInterface
 
@@ -437,6 +463,8 @@ Returns true if this contract implements the interface defined by `interfaceId`.
 | ---- | :----: | ----------- |
 | `0`  | `bool` | -           |
 
+&lt;br/&gt;
+
 ### totalSupply
 
 :::note Links
@@ -459,6 +487,8 @@ Returns the number of existing tokens that has been minted in this contract.
 | Name |   Type    | Description                    |
 | ---- | :-------: | ------------------------------ |
 | `0`  | `uint256` | The number of existing tokens. |
+
+&lt;br/&gt;
 
 ### transfer
 
@@ -493,6 +523,8 @@ Transfers an `amount` of tokens from the `from` address to the `to` address and 
 | `allowNonLSP1Recipient` |  `bool`   | When set to `true`, the `to` address CAN be any address. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
 | `data`                  |  `bytes`  | Additional data the caller wants included in the emitted event, and sent in the hooks of the `from` and `to` addresses.                                              |
 
+&lt;br/&gt;
+
 ### transferBatch
 
 :::note Links
@@ -526,6 +558,8 @@ Same as [`transfer(...)`](#`transfer) but transfer multiple tokens based on the 
 | `allowNonLSP1Recipient` |  `bool[]`   | For each transfer, when set to `true`, the `to` address CAN be any address. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
 | `data`                  |  `bytes[]`  | An array of additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                                                         |
 
+&lt;br/&gt;
+
 ### transferOwnership
 
 :::note Links
@@ -548,6 +582,10 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 | Name       |   Type    | Description |
 | ---------- | :-------: | ----------- |
 | `newOwner` | `address` | -           |
+
+&lt;br/&gt;
+
+---
 
 ## Events
 
@@ -574,6 +612,8 @@ event AuthorizedOperator(address indexed operator, address indexed tokenOwner, u
 | `tokenOwner` **`indexed`** | `address` | -           |
 | `amount` **`indexed`**     | `uint256` | -           |
 
+&lt;br/&gt;
+
 ### DataChanged
 
 :::note Links
@@ -598,6 +638,8 @@ _Emitted when data at a key is changed_
 | `dataKey` **`indexed`** | `bytes32` | -           |
 | `dataValue`             |  `bytes`  | -           |
 
+&lt;br/&gt;
+
 ### OwnershipTransferred
 
 :::note Links
@@ -620,6 +662,8 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 | `previousOwner` **`indexed`** | `address` | -           |
 | `newOwner` **`indexed`**      | `address` | -           |
 
+&lt;br/&gt;
+
 ### RevokedOperator
 
 :::note Links
@@ -641,6 +685,8 @@ event RevokedOperator(address indexed operator, address indexed tokenOwner);
 | -------------------------- | :-------: | ----------- |
 | `operator` **`indexed`**   | `address` | -           |
 | `tokenOwner` **`indexed`** | `address` | -           |
+
+&lt;br/&gt;
 
 ### Transfer
 
@@ -668,6 +714,9 @@ event Transfer(address indexed operator, address indexed from, address indexed t
 | `allowNonLSP1Recipient`  |  `bool`   | -           |
 | `data`                   |  `bytes`  | -           |
 
+&lt;br/&gt;
+&lt;hr/&gt;
+
 ## Errors
 
 ### ERC725Y_DataKeysValuesEmptyArray
@@ -687,6 +736,8 @@ error ERC725Y_DataKeysValuesEmptyArray();
 
 reverts when one of the array parameter provided to `setDataBatch` is an empty array
 
+&lt;br/&gt;
+
 ### ERC725Y_DataKeysValuesLengthMismatch
 
 :::note Links
@@ -703,6 +754,8 @@ error ERC725Y_DataKeysValuesLengthMismatch();
 ```
 
 reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
+
+&lt;br/&gt;
 
 ### ERC725Y_MsgValueDisallowed
 
@@ -721,6 +774,8 @@ error ERC725Y_MsgValueDisallowed();
 
 reverts when sending value to the `setData(..)` functions
 
+&lt;br/&gt;
+
 ### LSP4TokenNameNotEditable
 
 :::note Links
@@ -738,6 +793,8 @@ error LSP4TokenNameNotEditable();
 
 Reverts when trying to edit the data key `LSP4TokenName` after the digital asset contract has been deployed. The `LSP4TokenName` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
 
+&lt;br/&gt;
+
 ### LSP4TokenSymbolNotEditable
 
 :::note Links
@@ -754,6 +811,8 @@ error LSP4TokenSymbolNotEditable();
 ```
 
 Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital asset contract has been deployed. The `LSP4TokenSymbol` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
+
+&lt;br/&gt;
 
 ### LSP7AmountExceedsAuthorizedAmount
 
@@ -786,6 +845,8 @@ reverts when `operator` of `tokenOwner` send an `amount` of tokens larger than t
 | `operator`         | `address` | -           |
 | `amount`           | `uint256` | -           |
 
+&lt;br/&gt;
+
 ### LSP7AmountExceedsBalance
 
 :::note Links
@@ -815,6 +876,8 @@ reverts when sending an `amount` of tokens larger than the current `balance` of 
 | `tokenOwner` | `address` | -           |
 | `amount`     | `uint256` | -           |
 
+&lt;br/&gt;
+
 ### LSP7CannotSendToSelf
 
 :::note Links
@@ -832,6 +895,8 @@ error LSP7CannotSendToSelf();
 
 reverts when specifying the same address for `from` or `to` in a token transfer.
 
+&lt;br/&gt;
+
 ### LSP7CannotSendWithAddressZero
 
 :::note Links
@@ -847,7 +912,15 @@ reverts when specifying the same address for `from` or `to` in a token transfer.
 error LSP7CannotSendWithAddressZero();
 ```
 
-reverts when one tries to send tokens to or from the zero address.
+reverts when trying to:
+
+- mint tokens to the zero address.
+
+- burn tokens from the zero address.
+
+- transfer tokens from or to the zero address.
+
+&lt;br/&gt;
 
 ### LSP7CannotUseAddressZeroAsOperator
 
@@ -866,6 +939,8 @@ error LSP7CannotUseAddressZeroAsOperator();
 
 reverts when trying to set the zero address as an operator.
 
+&lt;br/&gt;
+
 ### LSP7DecreasedAllowanceBelowZero
 
 :::note Links
@@ -881,7 +956,9 @@ reverts when trying to set the zero address as an operator.
 error LSP7DecreasedAllowanceBelowZero();
 ```
 
-Reverts when trying to decrease an operator's allowance to more than his current allowance
+Reverts when trying to decrease an operator's allowance to more than its current allowance.
+
+&lt;br/&gt;
 
 ### LSP7InvalidTransferBatch
 
@@ -898,7 +975,9 @@ Reverts when trying to decrease an operator's allowance to more than his current
 error LSP7InvalidTransferBatch();
 ```
 
-reverts when the parameters used for `transferBatch` have different lengths.
+reverts when the array parameters used in [`transferBatch`](#transferbatch) have different lengths.
+
+&lt;br/&gt;
 
 ### LSP7NotifyTokenReceiverContractMissingLSP1Interface
 
@@ -925,6 +1004,8 @@ reverts if the `tokenReceiver` does not implement LSP1 when minting or transferr
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
+&lt;br/&gt;
+
 ### LSP7NotifyTokenReceiverIsEOA
 
 :::note Links
@@ -948,6 +1029,8 @@ reverts if the `tokenReceiver` is an EOA when minting or transferring tokens wit
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
+&lt;br/&gt;
+
 ### LSP7TokenOwnerCannotBeOperator
 
 :::note Links
@@ -964,3 +1047,5 @@ error LSP7TokenOwnerCannotBeOperator();
 ```
 
 reverts when trying to authorize or revoke the token's owner as an operator.
+
+&lt;br/&gt;

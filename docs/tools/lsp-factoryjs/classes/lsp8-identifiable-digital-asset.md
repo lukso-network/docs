@@ -48,9 +48,9 @@ You can read more about the `options` object specification on [its official page
 
 ### Returns
 
-| Type         | Description                                                                                  |
-| :----------- | :------------------------------------------------------------------------------------------- |
-| `Promise`    | Resolves to an object containing deployed contract details.                                  |
+| Type      | Description                                                 |
+| :-------- | :---------------------------------------------------------- |
+| `Promise` | Resolves to an object containing deployed contract details. |
 
 ### Example
 
@@ -202,7 +202,7 @@ Deployment Complete
 ```
 
 [contract deployment options]: ../deployment/digital-asset/#deployment-configuration
-[constructor parameters]: ../../../../../standards/smart-contracts/lsp7-digital-asset#constructor
+[constructor parameters]: ../../../../../contracts/contracts/LSP7DigitalAsset#constructor
 [contract deployment options]: ../deployment/digital-asset.md
 [lsp4]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md
 [uploading lsp4 digital asset metadata]: ./lsp4-digital-asset-metadata#uploadMetadata

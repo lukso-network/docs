@@ -59,7 +59,7 @@ module.exports = {
           },
           {
             from: '/contracts/digital-asset',
-            to: '/standards/smart-contracts/lsp7-digital-asset',
+            to: '/contracts/contracts/LSP7DigitalAsset',
           },
           {
             from: '/contracts/identifiable-digital-asset',
@@ -89,6 +89,10 @@ module.exports = {
           {
             from: '/standards/smart-contracts/interface-ids',
             to: '/contracts/interface-ids',
+          },
+          {
+            from: '/standards/smart-contracts/lsp7-digital-assets',
+            to: '/contracts/contracts/LSP7DigitalAsset',
           },
         ],
       },
