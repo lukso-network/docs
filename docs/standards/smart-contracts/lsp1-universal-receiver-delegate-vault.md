@@ -13,7 +13,7 @@ sidebar_position: 6
 
 The **LSP1UniversalReceiverDelegateVault** is a contract called by the **[`universalReceiver(...)`](./lsp9-vault.md#universalreceiver)** function of the **[LSP9Vault](./lsp9-vault.md)** contract that:
 
-- Writes the data keys representing assets received from type **[LSP7-DigitalAsset](./lsp7-digital-asset.md)** and **[LSP8-IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** into the account storage, and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+- Writes the data keys representing assets received from type **[LSP7-DigitalAsset](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md)** and **[LSP8-IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** into the account storage, and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
 The requirements stated in the **[LSP1UniversalReceiverDelegateUP](./lsp1-universal-receiver-delegate-up.md)** contract doesn't apply in this contract to execute the logic above correctly, as the address registred under the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md/#extension) data key has write access to the storage on the LSP9Vault.
 
