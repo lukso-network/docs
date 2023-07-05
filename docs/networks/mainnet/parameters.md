@@ -25,6 +25,13 @@ The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis D
 
 The mainnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/mainnet/shared) repo.
 
+### 3rd party RPC providers
+
+Developers can use the services of the following 3rd party providers:
+
+- [Gateway.fm](https://gateway.fm/) RPC URL: `https://rpc.lukso.gateway.fm`
+- [NowNodes](https://nownodes.io/)
+
 ## Network Architecture
 
 LUKSO's Blockchain Architecture runs the Ethereum protocol and consists of 2 to 4 clients:
