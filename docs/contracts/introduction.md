@@ -74,7 +74,7 @@ The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced vers
 
 - **[LSP4DigitalAssetMetadata](./contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md)**: a contract that sets the **metadata** of the **Digital Asset**.
 - **[LSP7DigitalAsset](./contracts/LSP7DigitalAsset/LSP7DigitalAsset.md)**: a contract that either represents a fungible or non-fungible token (NFT).
-- **[LSP8IdentifiableDigitalAsset](../standards/smart-contracts/lsp8-identifiable-digital-asset.md)**: a contract that represents a non-fungible token (NFT). It uses a bytes32 tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (e.g., serial numbers).
+- **[LSP8IdentifiableDigitalAsset](./contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md)**: a contract that represents a non-fungible token (NFT). It uses a bytes32 tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (e.g., serial numbers).
 
 ### Generic Standards
 
