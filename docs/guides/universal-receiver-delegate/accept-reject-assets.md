@@ -18,9 +18,9 @@ In order to **reject all the assets** that are being transferred to the profile,
 
 _e.g._
 
-- If `typeId` is **[`0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` \_TYPEID_LSP7_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP7DigitalAsset/LSP7Constants.sol#L13)**, then we know that we are receiving a LSP7 Token.
+- If `typeId` is **`0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` \_TYPEID_LSP7_TOKENSRECIPIENT**, then we know that we are receiving a LSP7 Token.
 
-- If `typeId` is **[`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol#L21)**, then we know that we are receiving a LSP8 Token.
+- If `typeId` is **`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT**, then we know that we are receiving a LSP8 Token.
 
 ### Deploy contract through Remix
 
@@ -216,13 +216,12 @@ Finally, we need to send the transaction that will update the URD of the Univers
 
 ```typescript title="Update the Universal Profile data"
 // Update the profile data
-await universalProfile.methods.setData(
-  URD_DATA_KEY,
-  universalProfileURDAddress,
-).send({
-  from: EOA.address,
-  gasLimit: 600_000,
-});
+await universalProfile.methods
+  .setData(URD_DATA_KEY, universalProfileURDAddress)
+  .send({
+    from: EOA.address,
+    gasLimit: 600_000,
+  });
 ```
 
   </TabItem>
@@ -268,13 +267,12 @@ const universalProfile = new web3.eth.Contract(
 );
 
 // execute the executeCalldata on the Key Manager
-await universalProfile.methods.setData(
-  URD_DATA_KEY,
-  universalProfileURDAddress,
-).send({
-  from: EOA.address,
-  gasLimit: 600_000,
-});
+await universalProfile.methods
+  .setData(URD_DATA_KEY, universalProfileURDAddress)
+  .send({
+    from: EOA.address,
+    gasLimit: 600_000,
+  });
 ```
 
   </TabItem>
