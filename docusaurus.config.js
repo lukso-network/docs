@@ -145,7 +145,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'networks/mainnet/running-a-node',
+          docId: 'networks/mainnet/parameters',
           position: 'left',
           label: 'Networks',
         },
