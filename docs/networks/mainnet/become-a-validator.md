@@ -77,7 +77,9 @@ As only genesis validators can run the validator on a node, you must select your
 
 Without specifying any flags, the node starts its normal synchronization process.
 
-If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis.
+If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running.
+
+> After the synchronization is finalized, you will end up with the equal blockchain data. You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime. The shortcut is ideal for fresh installations, validator migration, or recovery.
 
 <Tabs>
   <TabItem value="regular-sync" label="Regular Synchronization">
@@ -104,6 +106,12 @@ The shortcut is ideal for making installation, validator migration, or recovery 
 :::info
 
 If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+
+:::
+
+:::note
+
+You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version, please pass down the checkpoint flag as described in the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
 
 :::
 

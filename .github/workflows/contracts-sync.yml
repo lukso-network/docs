@@ -35,5 +35,5 @@ jobs:
           draft: false
           branch: contracts-docs-sync
           delete-branch: true
-          title: \[Auto-Sync\] Update Smart Contracts Technical Docs
+          title: '[Auto-Sync] Update Smart Contracts Technical Docs'
           body: Update changes from `@lukso/lsp-smart-contracts` repository (contract ABIs docs & interface IDs)

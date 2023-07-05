@@ -142,12 +142,22 @@ Wait 10 minutes after stopping your node so the network does not accuse you of s
 
 Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
 
+Your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running. After the synchronization is finalized, you will end up with the equal blockchain data.
+
+> You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime.
+
 <Tabs>
 <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
 
 :::info
 
 If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+
+:::
+
+:::note
+
+You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version, please pass down the checkpoint flag as described in the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
 
 :::
 

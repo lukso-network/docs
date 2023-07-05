@@ -9,7 +9,7 @@ sidebar_position: 5
 
 [`LSP1UniversalReceiverDelegateUP.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol)
 
-:::LSP7DigitalAsset
+:::
 
 The **LSP1UniversalReceiverDelegateUP** is a contract called by the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract that:
 
