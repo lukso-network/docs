@@ -52,8 +52,6 @@ Sets the **initial owner** of the contract.
 
 Check the [**receive(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#receive) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**receive(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L73) function implementation in **LSP0ERC725Account** Contract.
-
 :::
 
 ```solidity
@@ -67,8 +65,6 @@ _Triggers the [**ValueReceived**](#valuereceived)_ event when the contract recei
 :::info
 
 Check the [**fallback(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#fallback) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**fallback(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L121) function implementation in **LSP0ERC725Account** Contract.
 
 :::
 
@@ -124,8 +120,6 @@ This feature is useful for making the **LSP0ERC725Account contract extendable**,
 
 Check the **supportsInterface(..)** function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**supportsInterface(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L136) function implementation in **LSP0ERC725Account** Contract.
-
 :::
 
 ```solidity
@@ -154,8 +148,6 @@ New interfaceIds can be supported even after the deployment of the **LSP0**, by 
 
 Check the [**owner(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#owner) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**owner(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L20) inherited function implementation in **LSP0ERC725Account** Contract.
-
 :::
 
 ```solidity
@@ -175,8 +167,6 @@ Returns the address of the current owner of the contract.
 :::info
 
 Check the [**pendingOwner(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#pendingowner) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**pendingOwner(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L20) inherited function implementation in **LSP0ERC725Account** Contract.
 
 :::
 
@@ -200,8 +190,6 @@ Return the address of the pending owner that was initiated by [`transferOwnershi
 
 Check the [**transferOwnership(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#transferownership) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**transferOwnership(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L290) function implementation in **LSP0ERC725Account** Contract.
-
 :::
 
 ```solidity
@@ -210,7 +198,7 @@ function transferOwnership(address newOwner) public
 
 Initiate an ownership transfer by setting the `newOwner` as `pendingOwner`.
 
-Calls the `universalReceiver(..)` function [**on the pending owner**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L328), if it supports LSP1 InterfaceId with the following typeId:
+Calls the `universalReceiver(..)` function **on the pending owner**, if it supports LSP1 InterfaceId with the following typeId:
 
 - `keccak256('LSP0OwnershipTransferStarted')` > `0xe17117c9d2665d1dbeb479ed8058bbebde3c50ac50e2e65619f60006caac6926`.
 
@@ -231,8 +219,6 @@ Requirements:
 
 Check the [**acceptOwnership(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#acceptownership) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**acceptOwnership(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L20) inherited function implementation in **LSP0ERC725Account** Contract.
-
 :::
 
 ```solidity
@@ -243,9 +229,9 @@ Transfers ownership of the contract to the `pendingOwner` address. Can only be c
 
 Calls the `universalReceiver(..)` function on the previous and the new [`pendingOwner`](#pendingOwner), if it supports LSP1 InterfaceId with the following typeId:
 
-- On the [**previous owner**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L345): `keccak256('LSP0OwnershipTransferred_SenderNotification')` > `0xa4e59c931d14f7c8a7a35027f92ee40b5f2886b9fdcdb78f30bc5ecce5a2f814`.
+- On the **previous owner**: `keccak256('LSP0OwnershipTransferred_SenderNotification')` > `0xa4e59c931d14f7c8a7a35027f92ee40b5f2886b9fdcdb78f30bc5ecce5a2f814`.
 
-- On the [**new owner**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L361): `keccak256('LSP0OwnershipTransferred_RecipientNotification')` > `0xceca317f109c43507871523e82dc2a3cc64dfa18f12da0b6db14f6e23f995538`.
+- On the **new owner**: `keccak256('LSP0OwnershipTransferred_RecipientNotification')` > `0xceca317f109c43507871523e82dc2a3cc64dfa18f12da0b6db14f6e23f995538`.
 
 _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the new owner has claimed ownership._
 
@@ -254,8 +240,6 @@ _Triggers the **[OwnershipTransferred](#ownershiptransferred)** event once the n
 :::info
 
 Check the [**renounceOwnership(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#renounceownership) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**renounceOwnership(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L302) function implementation in **LSP0ERC725Account** Contract.
 
 :::
 
@@ -306,8 +290,6 @@ Under the hood, this function performs a `delegatecall` on the contract itself t
 :::info
 
 Check the [**execute(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#execute) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**execute(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L200) function implementation in **LSP0ERC725Account** Contract.
 
 Check the **javascript** guides to know [**How to Send native tokens**](../../guides/universal-profile/transfer-lyx.md) or [**How to Call other contract's function**](../../guides/universal-profile/interact-with-contracts.md) using the execute function.
 
@@ -365,8 +347,6 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 
 Check the [**executeBatch(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#executebatch) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**executeBatch(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L215) function implementation in **LSP0ERC725Account** Contract.
-
 :::
 
 ```solidity
@@ -421,8 +401,6 @@ The operation types `staticcall` (`3`) and `delegatecall` (`4`) do not allow to 
 
 Check the [**setData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdata) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**setData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
-
 Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md).
 
 :::
@@ -436,7 +414,7 @@ function setData(
 
 Sets data in the account storage for a particular data key.
 
-_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of the data Value._
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting the data with emitting the first 256 bytes of the data Value._
 
 :::note
 The `setData(...)` function can only be called by the current owner and any address the owner allows.
@@ -454,8 +432,6 @@ The `setData(...)` function can only be called by the current owner and any addr
 :::info
 
 Check the [**getData(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdata) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**getData(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
 
 Check the **javascript** guides to know [**How to Read from a Profile (getData)**](../../guides/universal-profile/read-profile-data.md).
 
@@ -485,8 +461,6 @@ Retrieves the value set for the given data key.
 
 Check the [**setDataBatch(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdatabatch) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
 
-Check the [**setDataBatch(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
-
 Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md).
 
 :::
@@ -500,7 +474,7 @@ function setDataBatch(
 
 Sets an array of values at multiple data keys in the account storage.
 
-_Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value with [emitting the first 256 bytes](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L314) of each data Value._
+_Triggers the **[DataChanged](#datachanged)** event when successfully setting each data key/value with emitting the first 256 bytes of each data Value._
 
 :::note
 The `setDataBatch(...)` function can only be called by the current owner and any address the owner allows.
@@ -518,8 +492,6 @@ The `setDataBatch(...)` function can only be called by the current owner and any
 :::info
 
 Check the [**getDataBatch(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdatabatch) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**getDataBatch(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L17) function implementation in **LSP0ERC725Account** Contract.
 
 Check the **javascript** guides to know [**How to Read from a Profile (getData)**](../../guides/universal-profile/read-profile-data.md).
 
@@ -548,8 +520,6 @@ Retrieves an array of values for multiple given data keys.
 :::info
 
 Check the [**universalReceiver(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#universalreceiver) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**universalReceiver(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L235) function implementation in **LSP0ERC725Account** Contract.
 
 Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../guides/universal-receiver-delegate/set-default-implementation.md) or [**How to set your own UniversalReceiverDelegate**](../../guides/universal-receiver-delegate/accept-reject-assets.md).
 
@@ -612,8 +582,6 @@ _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this func
 :::info
 
 Check the [**isValidSignature(..)**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#isvalidsignature) function specification in [**LSP0-ERC725Account Standard**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) in the **LIP repository**.
-
-Check the [**isValidSignature(..)**](https://github.com/lukso-network/lsp-smart-contracts/blob/v0.8.0/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol#L159) function implementation in **LSP0ERC725Account** Contract.
 
 :::
 
