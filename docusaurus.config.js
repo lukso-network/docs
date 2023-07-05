@@ -94,6 +94,10 @@ module.exports = {
             from: '/standards/smart-contracts/lsp7-digital-assets',
             to: '/contracts/contracts/LSP7DigitalAsset',
           },
+          {
+            from: '/standards/smart-contracts/lsp4-digital-asset-metadata',
+            to: '/contracts/contracts/LSP4DigitalAssetMetadata',
+          },
         ],
       },
     ],

@@ -72,7 +72,7 @@ The **Universal Profile** contracts allow a better representation of the identit
 
 The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](../standards/universal-profile/lsp0-erc725account.md) and [Universal Receivers](../standards/generic-standards/lsp1-universal-receiver.md).
 
-- **[LSP4DigitalAssetMetadata](../standards/smart-contracts/lsp4-digital-asset-metadata)**: a contract that sets the **metadata** of the **Digital Asset**.
+- **[LSP4DigitalAssetMetadata](./contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md)**: a contract that sets the **metadata** of the **Digital Asset**.
 - **[LSP7DigitalAsset](./contracts/LSP7DigitalAsset/LSP7DigitalAsset.md)**: a contract that either represents a fungible or non-fungible token (NFT).
 - **[LSP8IdentifiableDigitalAsset](../standards/smart-contracts/lsp8-identifiable-digital-asset.md)**: a contract that represents a non-fungible token (NFT). It uses a bytes32 tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (e.g., serial numbers).
 
