@@ -221,7 +221,7 @@ After your node has finalized the synchronization with the network, you can remo
 :::
 
   </TabItem>
-  <TabItem value="update-v7" label="Update from Version 0.7">
+  <TabItem value="update-v7-or-above" label="Update from Version 0.7 or above">
 
 #### Stop your Node
 
