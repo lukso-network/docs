@@ -13,7 +13,7 @@ sidebar_position: 5
 
 The **LSP1UniversalReceiverDelegateUP** is a contract called by the **[`universalReceiver(...)`](./lsp0-erc725-account.md#universalreceiver)** function of the **[LSP0ERC725Account](./lsp0-erc725-account.md)** contract that:
 
-- Writes the data keys representing assets received from type **[LSP7-DigitalAsset](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md)** and **[LSP8-IdentifiableDigitalAsset](./lsp8-identifiable-digital-asset.md)** into the account storage, and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
+- Writes the data keys representing assets received from type **[LSP7-DigitalAsset](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md)** and **[LSP8-IdentifiableDigitalAsset](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md)** into the account storage, and removes them when the balance is zero according to the **[LSP5-ReceivedAssets Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
 - Writes the data keys representing the owned vaults from type **[LSP9-Vault](./lsp9-vault.md)** into your account storage, and removes them when **transferring ownership** to other accounts according to the **[LSP10-ReceivedVaults Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)**.
 
