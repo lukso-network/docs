@@ -63,7 +63,7 @@ module.exports = {
           },
           {
             from: '/contracts/identifiable-digital-asset',
-            to: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
+            to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
           },
           {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
@@ -105,6 +105,10 @@ module.exports = {
           {
             from: '/standards/smart-contracts/lsp7-digital-assets',
             to: '/contracts/contracts/LSP7DigitalAsset',
+          },
+          {
+            from: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
+            to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
           },
         ],
       },
