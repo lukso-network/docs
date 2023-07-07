@@ -323,7 +323,7 @@ function universalReceiver(
 ```
 
 Forwards the call to the **UniversalReceiverDelegate** contract if its address is stored at the [LSP1UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver.md#extension) data Key.
-The contract being called is expected to be an **[LSP1UniversalReceiverDelegateVault](./lsp1-universal-receiver-delegate-vault.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md) using ERC165.
+The contract being called is expected to be an **[LSP1UniversalReceiverDelegateVault](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md)**, supporting [LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md) using ERC165.
 
 _Triggers the **[UniversalReceiver](#universalreceiver-1)** event when this function gets successfully executed._
 
