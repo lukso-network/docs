@@ -18,6 +18,8 @@ The current UP Browser Extenstion deploys profiles on the [Testnet](http://docs.
 :::note
 If you have **MetaMask** installed, _right click on both_ MetaMask and UP Extension and select _"This Can Read and Change Site Data > When you Click the Extension"_. Then you you can select for every website which extension you use. By closing the tab you can reset this selection.
 
+It is important not to forget the previous step. Otherwise, it might conflict with the UP Browser Extension, and this might prevent you from finalizing the setup process.
+
 <img width="400" src="https://user-images.githubusercontent.com/232662/192822200-392b19f1-321b-4a59-928a-f71876bec6f3.png" />
 :::
 
