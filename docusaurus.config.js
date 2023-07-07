@@ -63,7 +63,7 @@ module.exports = {
           },
           {
             from: '/contracts/identifiable-digital-asset',
-            to: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
+            to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
           },
           {
             from: '/guides/universal-profile/browser-extension/install-browser-extension',
@@ -91,12 +91,24 @@ module.exports = {
             to: '/contracts/interface-ids',
           },
           {
-            from: '/standards/smart-contracts/lsp7-digital-assets',
-            to: '/contracts/contracts/LSP7DigitalAsset',
+            from: '/standards/smart-contracts/lsp1-universal-receiver-delegate-up',
+            to: '/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP',
+          },
+          {
+            from: '/standards/smart-contracts/lsp1-universal-receiver-delegate-vault',
+            to: '/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault',
           },
           {
             from: '/standards/smart-contracts/lsp4-digital-asset-metadata',
             to: '/contracts/contracts/LSP4DigitalAssetMetadata',
+          },
+          {
+            from: '/standards/smart-contracts/lsp7-digital-assets',
+            to: '/contracts/contracts/LSP7DigitalAsset',
+          },
+          {
+            from: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
+            to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
           },
         ],
       },

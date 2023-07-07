@@ -1,14 +1,14 @@
-# LSP7DigitalAsset
+# LSP8IdentifiableDigitalAsset
 
 :::info Solidity contract
 
-[`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+[`LSP8IdentifiableDigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 
 :::
 
-> Implementation of a LSP7 Digital Asset, a contract that represents a fungible token.
+> Implementation of a LSP8 Identifiable Digital Asset, a contract that represents a non-fungible token.
 
-Minting and transferring are supplied with a `uint256` amount. This implementation is agnostic to the way tokens are created. A supply mechanism has to be added in a derived contract using [`_mint`](#_mint) For a generic mechanism, see [`LSP7Mintable`](#lsp7mintable).
+Standard implementation contract of the LSP8 standard. Minting and transferring are done using by giving a unique `tokenId`. This implementation is agnostic to the way tokens are created. A supply mechanism has to be added in a derived contract using [`_mint`](#_mint) For a generic mechanism, see [`LSP7Mintable`](#lsp7mintable).
 
 ## Methods
 
@@ -16,78 +16,35 @@ Minting and transferring are supplied with a `uint256` amount. This implementati
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#authorizeoperator)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `authorizeOperator(address,uint256)`
-- Function selector: `0x47980aa3`
-
-:::
-
-:::danger
-
-To avoid front-running and Allowance Double-Spend Exploit when increasing or decreasing the authorized amount of an operator, it is advised to: 1. either call {revokeOperator} first, and then re-call {authorizeOperator} with the new amount. 2. or use the non-standard functions {increaseAllowance} or {decreaseAllowance}. For more information, see: https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#authorizeoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `authorizeOperator(address,bytes32)`
+- Function selector: `0xcf5182ba`
 
 :::
 
 ```solidity
 function authorizeOperator(
   address operator,
-  uint256 amount
+  bytes32 tokenId
 ) external nonpayable;
 ```
 
-Sets the `amount` of tokens that an `operator` has access from the caller's balance (allowance). See [`authorizedAmountFor`](#authorizedamountfor).
+Allow an `operator` address to transfer or burn a specific `tokenId` on behalf of its token owner. See [`isOperatorFor`](#isoperatorfor).
 
 #### Parameters
 
-| Name       |   Type    | Description                                            |
-| ---------- | :-------: | ------------------------------------------------------ |
-| `operator` | `address` | The address to authorize as an operator.               |
-| `amount`   | `uint256` | The allowance amount of tokens operator has access to. |
-
-&lt;br/&gt;
-
-### authorizedAmountFor
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#authorizedamountfor)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `authorizedAmountFor(address,address)`
-- Function selector: `0x65aeaa95`
-
-:::
-
-```solidity
-function authorizedAmountFor(
-  address operator,
-  address tokenOwner
-) external view returns (uint256);
-```
-
-Get the amount of tokens `operator` address has access to from `tokenOwner`. Operators can send and burn tokens on behalf of their owners.
-
-#### Parameters
-
-| Name         |   Type    | Description                                                    |
-| ------------ | :-------: | -------------------------------------------------------------- |
-| `operator`   | `address` | The operator&#39;s address to query the authorized amount for. |
-| `tokenOwner` | `address` | The token owner that `operator` has allowance on.              |
-
-#### Returns
-
-| Name |   Type    | Description                                                                                     |
-| ---- | :-------: | ----------------------------------------------------------------------------------------------- |
-| `0`  | `uint256` | The amount of tokens the `operator`&#39;s address has access on the `tokenOwner`&#39;s balance. |
-
-&lt;br/&gt;
+| Name       |   Type    | Description                              |
+| ---------- | :-------: | ---------------------------------------- |
+| `operator` | `address` | The address to authorize as an operator. |
+| `tokenId`  | `bytes32` | The token ID operator has access to..    |
 
 ### balanceOf
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#balanceof)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#balanceof)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `balanceOf(address)`
 - Function selector: `0x70a08231`
 
@@ -97,108 +54,26 @@ Get the amount of tokens `operator` address has access to from `tokenOwner`. Ope
 function balanceOf(address tokenOwner) external view returns (uint256);
 ```
 
-Get the number of tokens owned by `tokenOwner`. If the token is divisible (the [`decimals`](#decimals) function returns `18`), the amount returned should be divided by 1e18 to get a better picture of the actual balance of the `tokenOwner`. _Example:_ `balanceOf(someAddress) -> 42_000_000_000_000_000_000 / 1e18 = 42 tokens`
+Get the number of token IDs owned by `tokenOwner`.
 
 #### Parameters
 
-| Name         |   Type    | Description                                               |
-| ------------ | :-------: | --------------------------------------------------------- |
-| `tokenOwner` | `address` | The address of the token holder to query the balance for. |
+| Name         |   Type    | Description             |
+| ------------ | :-------: | ----------------------- |
+| `tokenOwner` | `address` | The address to query \* |
 
 #### Returns
 
-| Name |   Type    | Description                                 |
-| ---- | :-------: | ------------------------------------------- |
-| `0`  | `uint256` | The number of tokens owned by `tokenOwner`. |
-
-&lt;br/&gt;
-
-### decimals
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#decimals)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `decimals()`
-- Function selector: `0x313ce567`
-
-:::
-
-```solidity
-function decimals() external view returns (uint8);
-```
-
-Returns the number of decimals used to get its user representation. If the asset contract has been set to be non-divisible via the `isNonDivisible_` parameter in the `constructor`, the decimals returned wiil be `0`. Otherwise `18` is the common value.
-
-#### Returns
-
-| Name |  Type   | Description                                                             |
-| ---- | :-----: | ----------------------------------------------------------------------- |
-| `0`  | `uint8` | the number of decimals. If `0` is returned, the asset is non-divisible. |
-
-&lt;br/&gt;
-
-### decreaseAllowance
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#decreaseallowance)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `decreaseAllowance(address,uint256)`
-- Function selector: `0xa457c2d7`
-
-:::
-
-:::info
-
-This is a non-standard function, not part of the LSP7 standard interface. It has been added in the LSP7 contract implementation so that it can be used as a prevention mechanism against the double spending allowance vulnerability.
-
-:::
-
-```solidity
-function decreaseAllowance(
-  address operator,
-  uint256 substractedAmount
-) external nonpayable;
-```
-
-_Decrease the allowance of `operator` by -`substractedAmount`_
-
-Atomically decreases the allowance granted to `operator` by the caller. This is an alternative approach to [`authorizeOperator`](#authorizeoperator) that can be used as a mitigation for the double spending allowance problem.
-
-<blockquote>
-
-**Requirements:**
-
-- `operator` cannot be the zero address.
-- `operator` must have allowance for the caller of at least `substractedAmount`.
-
-</blockquote>
-
-<blockquote>
-
-**Emitted events:**
-
-- [`AuthorizedOperator`](#authorizedoperator) event indicating the updated allowance after decreasing it.
-- [`RevokeOperator`](#revokeoperator) event if `substractedAmount` is the full allowance, indicating `operator` does not have any alauthorizedAmountForlowance left for `msg.sender`.
-
-</blockquote>
-
-#### Parameters
-
-| Name                |   Type    | Description                                                |
-| ------------------- | :-------: | ---------------------------------------------------------- |
-| `operator`          | `address` | the operator to decrease allowance for `msg.sender`        |
-| `substractedAmount` | `uint256` | the amount to decrease by in the operator&#39;s allowance. |
-
-&lt;br/&gt;
+| Name |   Type    | Description                                           |
+| ---- | :-------: | ----------------------------------------------------- |
+| `0`  | `uint256` | The total number of token IDs that `tokenOwner` owns. |
 
 ### getData
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#getdata)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdata)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `getData(bytes32)`
 - Function selector: `0x54f6127f`
 
@@ -222,14 +97,12 @@ _Gets singular data at a given `dataKey`_
 | ----------- | :-----: | -------------------------- |
 | `dataValue` | `bytes` | The data stored at the key |
 
-&lt;br/&gt;
-
 ### getDataBatch
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#getdatabatch)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatabatch)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `getDataBatch(bytes32[])`
 - Function selector: `0xdedff9c6`
 
@@ -255,68 +128,74 @@ _Gets array of data for multiple given keys_
 | ------------ | :-------: | ----------------------------------------- |
 | `dataValues` | `bytes[]` | The array of data stored at multiple keys |
 
-&lt;br/&gt;
-
-### increaseAllowance
+### getOperatorsOf
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#increaseallowance)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `increaseAllowance(address,uint256)`
-- Function selector: `0x39509351`
-
-:::
-
-:::info
-
-This is a non-standard function, not part of the LSP7 standard interface. It has been added in the LSP7 contract implementation so that it can be used as a prevention mechanism against double spending allowance vulnerability.
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getoperatorsof)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `getOperatorsOf(bytes32)`
+- Function selector: `0x49a6078d`
 
 :::
 
 ```solidity
-function increaseAllowance(
-  address operator,
-  uint256 addedAmount
-) external nonpayable;
+function getOperatorsOf(bytes32 tokenId) external view returns (address[]);
 ```
 
-_Increase the allowance of `operator` by +`addedAmount`_
-
-Atomically increases the allowance granted to `operator` by the caller. This is an alternative approach to [`authorizeOperator`](#authorizeoperator) that can be used as a mitigation for the double spending allowance problem.
-
-<blockquote>
-
-**Requirements:**
-
-- `operator` cannot be the same address as `msg.sender`
-- `operator` cannot be the zero address.
-
-</blockquote>
-
-<blockquote>
-
-**Emitted events:**
-
-- [`AuthorizedOperator`](#authorizedoperator) indicating the updated allowance
-
-</blockquote>
+Returns all `operator` addresses that are allowed to transfer or burn a specific `tokenId` on behalf of its owner.
 
 #### Parameters
 
-| Name          |   Type    | Description                                                                 |
-| ------------- | :-------: | --------------------------------------------------------------------------- |
-| `operator`    | `address` | the operator to increase the allowance for `msg.sender`                     |
-| `addedAmount` | `uint256` | the additional amount to add on top of the current operator&#39;s allowance |
+| Name      |   Type    | Description                            |
+| --------- | :-------: | -------------------------------------- |
+| `tokenId` | `bytes32` | The token ID to get the operators for. |
 
-&lt;br/&gt;
+#### Returns
+
+| Name |    Type     | Description                                                                                                  |
+| ---- | :---------: | ------------------------------------------------------------------------------------------------------------ |
+| `0`  | `address[]` | An array of operators allowed to transfer or burn a specific `tokenId`. Requirements - `tokenId` must exist. |
+
+### isOperatorFor
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#isoperatorfor)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `isOperatorFor(address,bytes32)`
+- Function selector: `0x2a3654a4`
+
+:::
+
+```solidity
+function isOperatorFor(
+  address operator,
+  bytes32 tokenId
+) external view returns (bool);
+```
+
+Returns whether `operator` address is an operator for a given `tokenId`.
+
+#### Parameters
+
+| Name       |   Type    | Description                                                   |
+| ---------- | :-------: | ------------------------------------------------------------- |
+| `operator` | `address` | The address to query operator status for.                     |
+| `tokenId`  | `bytes32` | The token ID to check if `operator` is allowed to operate on. |
+
+#### Returns
+
+| Name |  Type  | Description                                                           |
+| ---- | :----: | --------------------------------------------------------------------- |
+| `0`  | `bool` | `true` if `operator` is an operator for `tokenId`, `false` otherwise. |
 
 ### owner
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#owner)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#owner)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -334,14 +213,12 @@ Returns the address of the current owner.
 | ---- | :-------: | ----------- |
 | `0`  | `address` | -           |
 
-&lt;br/&gt;
-
 ### renounceOwnership
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#renounceownership)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#renounceownership)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
 
@@ -353,39 +230,36 @@ function renounceOwnership() external nonpayable;
 
 Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
 
-&lt;br/&gt;
-
 ### revokeOperator
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#revokeoperator)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `revokeOperator(address)`
-- Function selector: `0xfad8b32a`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokeoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `revokeOperator(address,bytes32)`
+- Function selector: `0x0b0c6d82`
 
 :::
 
 ```solidity
-function revokeOperator(address operator) external nonpayable;
+function revokeOperator(address operator, bytes32 tokenId) external nonpayable;
 ```
 
-Removes the `operator` address as an operator of callers tokens. See [`authorizedAmountFor`](#authorizedamountfor).
+Remove access of `operator` for a given `tokenId`, disallowing it to transfer `tokenId` on behalf of its owner. See also [`isOperatorFor`](#isoperatorfor).
 
 #### Parameters
 
-| Name       |   Type    | Description                           |
-| ---------- | :-------: | ------------------------------------- |
-| `operator` | `address` | The address to revoke as an operator. |
-
-&lt;br/&gt;
+| Name       |   Type    | Description                                          |
+| ---------- | :-------: | ---------------------------------------------------- |
+| `operator` | `address` | The address to revoke as an operator.                |
+| `tokenId`  | `bytes32` | The tokenId `operator` is revoked from operating on. |
 
 ### setData
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#setdata)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setdata)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `setData(bytes32,bytes)`
 - Function selector: `0x7f23690c`
 
@@ -404,14 +278,12 @@ _Sets singular data for a given `dataKey`_
 | `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
 | `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
 
-&lt;br/&gt;
-
 ### setDataBatch
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#setdatabatch)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setdatabatch)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `setDataBatch(bytes32[],bytes[])`
 - Function selector: `0x97902421`
 
@@ -432,14 +304,12 @@ Sets array of data for multiple given `dataKeys` SHOULD only be callable by the 
 | `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
 | `dataValues` |  `bytes[]`  | The array of values to set               |
 
-&lt;br/&gt;
-
 ### supportsInterface
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#supportsinterface)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#supportsinterface)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -463,14 +333,70 @@ Returns true if this contract implements the interface defined by `interfaceId`.
 | ---- | :----: | ----------- |
 | `0`  | `bool` | -           |
 
-&lt;br/&gt;
+### tokenIdsOf
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#tokenidsof)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `tokenIdsOf(address)`
+- Function selector: `0xa3b261f2`
+
+:::
+
+```solidity
+function tokenIdsOf(address tokenOwner) external view returns (bytes32[]);
+```
+
+Returns the list of token IDs that the `tokenOwner` address owns.
+
+#### Parameters
+
+| Name         |   Type    | Description                                                |
+| ------------ | :-------: | ---------------------------------------------------------- |
+| `tokenOwner` | `address` | The address that we want to get the list of token IDs for. |
+
+#### Returns
+
+| Name |    Type     | Description                                             |
+| ---- | :---------: | ------------------------------------------------------- |
+| `0`  | `bytes32[]` | An array of `bytes32[] tokenIds` owned by `tokenOwner`. |
+
+### tokenOwnerOf
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#tokenownerof)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `tokenOwnerOf(bytes32)`
+- Function selector: `0x217b2270`
+
+:::
+
+```solidity
+function tokenOwnerOf(bytes32 tokenId) external view returns (address);
+```
+
+Returns the list of `tokenIds` for the `tokenOwner` address.
+
+#### Parameters
+
+| Name      |   Type    | Description                                  |
+| --------- | :-------: | -------------------------------------------- |
+| `tokenId` | `bytes32` | tokenOwner The address to query owned tokens |
+
+#### Returns
+
+| Name |   Type    | Description                               |
+| ---- | :-------: | ----------------------------------------- |
+| `0`  | `address` | The owner address of the given `tokenId`. |
 
 ### totalSupply
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#totalsupply)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#totalsupply)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `totalSupply()`
 - Function selector: `0x18160ddd`
 
@@ -480,7 +406,7 @@ Returns true if this contract implements the interface defined by `interfaceId`.
 function totalSupply() external view returns (uint256);
 ```
 
-Returns the number of existing tokens that has been minted in this contract.
+Returns the number of existing tokens that have been minted in this contract.
 
 #### Returns
 
@@ -488,16 +414,14 @@ Returns the number of existing tokens that has been minted in this contract.
 | ---- | :-------: | ------------------------------ |
 | `0`  | `uint256` | The number of existing tokens. |
 
-&lt;br/&gt;
-
 ### transfer
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transfer)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `transfer(address,address,uint256,bool,bytes)`
-- Function selector: `0x760d9bba`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transfer)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `transfer(address,address,bytes32,bool,bytes)`
+- Function selector: `0x511b6952`
 
 :::
 
@@ -505,34 +429,32 @@ Returns the number of existing tokens that has been minted in this contract.
 function transfer(
   address from,
   address to,
-  uint256 amount,
+  bytes32 tokenId,
   bool allowNonLSP1Recipient,
   bytes data
 ) external nonpayable;
 ```
 
-Transfers an `amount` of tokens from the `from` address to the `to` address and notify both sender and recipients via the LSP1 [`universalReceiver(...)`](#`universalreceiver) function.
+Transfer a given `tokenId` token from the `from` address to the `to` address. If operators are set for a specific `tokenId`, all the operators are revoked after the tokenId have been transferred. The `allowNonLSP1Recipient` parameter MUST be set to `true` when transferring tokens to Externally Owned Accounts (EOAs) or contracts that do not implement the LSP1 standard.
 
 #### Parameters
 
-| Name                    |   Type    | Description                                                                                                                                                          |
-| ----------------------- | :-------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                  | `address` | The sender address.                                                                                                                                                  |
-| `to`                    | `address` | The recipient address.                                                                                                                                               |
-| `amount`                | `uint256` | The amount of tokens to transfer.                                                                                                                                    |
-| `allowNonLSP1Recipient` |  `bool`   | When set to `true`, the `to` address CAN be any address. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
-| `data`                  |  `bytes`  | Additional data the caller wants included in the emitted event, and sent in the hooks of the `from` and `to` addresses.                                              |
-
-&lt;br/&gt;
+| Name                    |   Type    | Description                                                                                                                                                         |
+| ----------------------- | :-------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`                  | `address` | The address that owns the given `tokenId`.                                                                                                                          |
+| `to`                    | `address` | The address that will receive the `tokenId`.                                                                                                                        |
+| `tokenId`               | `bytes32` | The token ID to transfer.                                                                                                                                           |
+| `allowNonLSP1Recipient` |  `bool`   | When set to `true`, the `to` address CAN be any addres. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
+| `data`                  |  `bytes`  | Any additional data the caller wants included in the emitted event, and sent in the hooks of the `from` and `to` addresses.                                         |
 
 ### transferBatch
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transferbatch)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Function signature: `transferBatch(address[],address[],uint256[],bool[],bytes[])`
-- Function selector: `0x2d7667c9`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transferbatch)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Function signature: `transferBatch(address[],address[],bytes32[],bool[],bytes[])`
+- Function selector: `0x7e87632c`
 
 :::
 
@@ -540,32 +462,30 @@ Transfers an `amount` of tokens from the `from` address to the `to` address and 
 function transferBatch(
   address[] from,
   address[] to,
-  uint256[] amount,
+  bytes32[] tokenId,
   bool[] allowNonLSP1Recipient,
   bytes[] data
 ) external nonpayable;
 ```
 
-Same as [`transfer(...)`](#`transfer) but transfer multiple tokens based on the arrays of `from`, `to`, `amount`.
+Transfers multiple tokens at once based on the arrays of `from`, `to` and `tokenId`. If any transfer fails, the whole call will revert.
 
 #### Parameters
 
-| Name                    |    Type     | Description                                                                                                                                                                             |
-| ----------------------- | :---------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                  | `address[]` | An array of sending addresses.                                                                                                                                                          |
-| `to`                    | `address[]` | An array of receiving addresses.                                                                                                                                                        |
-| `amount`                | `uint256[]` | An array of amount of tokens to transfer for each `from -&gt; to` transfer.                                                                                                             |
-| `allowNonLSP1Recipient` |  `bool[]`   | For each transfer, when set to `true`, the `to` address CAN be any address. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
-| `data`                  |  `bytes[]`  | An array of additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                                                         |
-
-&lt;br/&gt;
+| Name                    |    Type     | Description                                                                                                                               |
+| ----------------------- | :---------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`                  | `address[]` | An array of sending addresses.                                                                                                            |
+| `to`                    | `address[]` | An array of recipient addresses.                                                                                                          |
+| `tokenId`               | `bytes32[]` | An array of token IDs to transfer.                                                                                                        |
+| `allowNonLSP1Recipient` |  `bool[]`   | When set to `true`, `to` may be any address. When set to `false`, `to` must be a contract that supports the LSP1 standard and not revert. |
+| `data`                  |  `bytes[]`  | Any additional data the caller wants included in the emitted event, and sent in the hooks to the `from` and `to` addresses.               |
 
 ### transferOwnership
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transferownership)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transferownership)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -583,8 +503,6 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 | ---------- | :-------: | ----------- |
 | `newOwner` | `address` | -           |
 
-&lt;br/&gt;
-
 ---
 
 ## Events
@@ -593,15 +511,15 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#authorizedoperator)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Event signature: `AuthorizedOperator(address,address,uint256)`
-- Event hash: `0xd66aff874162a96578e919097b6f6d153dfd89a5cec41bb331fdb0c4aec16e2c`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#authorizedoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Event signature: `AuthorizedOperator(address,address,bytes32)`
+- Event hash: `0x34b797fc5a526f7bf1d2b5de25f6564fd85ae364e3ee939aee7c1ac27871a988`
 
 :::
 
 ```solidity
-event AuthorizedOperator(address indexed operator, address indexed tokenOwner, uint256 indexed amount);
+event AuthorizedOperator(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId);
 ```
 
 #### Parameters
@@ -610,16 +528,14 @@ event AuthorizedOperator(address indexed operator, address indexed tokenOwner, u
 | -------------------------- | :-------: | ----------- |
 | `operator` **`indexed`**   | `address` | -           |
 | `tokenOwner` **`indexed`** | `address` | -           |
-| `amount` **`indexed`**     | `uint256` | -           |
-
-&lt;br/&gt;
+| `tokenId` **`indexed`**    | `bytes32` | -           |
 
 ### DataChanged
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#datachanged)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#datachanged)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Event signature: `DataChanged(bytes32,bytes)`
 - Event hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
 
@@ -638,14 +554,12 @@ _Emitted when data at a key is changed_
 | `dataKey` **`indexed`** | `bytes32` | -           |
 | `dataValue`             |  `bytes`  | -           |
 
-&lt;br/&gt;
-
 ### OwnershipTransferred
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#ownershiptransferred)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#ownershiptransferred)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Event signature: `OwnershipTransferred(address,address)`
 - Event hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
 
@@ -662,21 +576,19 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 | `previousOwner` **`indexed`** | `address` | -           |
 | `newOwner` **`indexed`**      | `address` | -           |
 
-&lt;br/&gt;
-
 ### RevokedOperator
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#revokedoperator)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Event signature: `RevokedOperator(address,address)`
-- Event hash: `0x50546e66e5f44d728365dc3908c63bc5cfeeab470722c1677e3073a6ac294aa1`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokedoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Event signature: `RevokedOperator(address,address,bytes32)`
+- Event hash: `0x17d5389f6ab6adb2647dfa0aa365c323d37adacc30b33a65310b6158ce1373d5`
 
 :::
 
 ```solidity
-event RevokedOperator(address indexed operator, address indexed tokenOwner);
+event RevokedOperator(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId);
 ```
 
 #### Parameters
@@ -685,37 +597,35 @@ event RevokedOperator(address indexed operator, address indexed tokenOwner);
 | -------------------------- | :-------: | ----------- |
 | `operator` **`indexed`**   | `address` | -           |
 | `tokenOwner` **`indexed`** | `address` | -           |
-
-&lt;br/&gt;
+| `tokenId` **`indexed`**    | `bytes32` | -           |
 
 ### Transfer
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transfer)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Event signature: `Transfer(address,address,address,uint256,bool,bytes)`
-- Event hash: `0x3997e418d2cef0b3b0e907b1e39605c3f7d32dbd061e82ea5b4a770d46a160a6`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transfer)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Event signature: `Transfer(address,address,address,bytes32,bool,bytes)`
+- Event hash: `0xb333c813a7426a7a11e2b190cad52c44119421594b47f6f32ace6d8c7207b2bf`
 
 :::
 
 ```solidity
-event Transfer(address indexed operator, address indexed from, address indexed to, uint256 amount, bool allowNonLSP1Recipient, bytes data);
+event Transfer(address operator, address indexed from, address indexed to, bytes32 indexed tokenId, bool allowNonLSP1Recipient, bytes data);
 ```
 
 #### Parameters
 
-| Name                     |   Type    | Description |
-| ------------------------ | :-------: | ----------- |
-| `operator` **`indexed`** | `address` | -           |
-| `from` **`indexed`**     | `address` | -           |
-| `to` **`indexed`**       | `address` | -           |
-| `amount`                 | `uint256` | -           |
-| `allowNonLSP1Recipient`  |  `bool`   | -           |
-| `data`                   |  `bytes`  | -           |
+| Name                    |   Type    | Description |
+| ----------------------- | :-------: | ----------- |
+| `operator`              | `address` | -           |
+| `from` **`indexed`**    | `address` | -           |
+| `to` **`indexed`**      | `address` | -           |
+| `tokenId` **`indexed`** | `bytes32` | -           |
+| `allowNonLSP1Recipient` |  `bool`   | -           |
+| `data`                  |  `bytes`  | -           |
 
-&lt;br/&gt;
-&lt;hr/&gt;
+---
 
 ## Errors
 
@@ -723,8 +633,8 @@ event Transfer(address indexed operator, address indexed from, address indexed t
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#erc725y_datakeysvaluesemptyarray)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
 - Error hash: `0x97da5f95`
 
@@ -736,14 +646,12 @@ error ERC725Y_DataKeysValuesEmptyArray();
 
 reverts when one of the array parameter provided to `setDataBatch` is an empty array
 
-&lt;br/&gt;
-
 ### ERC725Y_DataKeysValuesLengthMismatch
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#erc725y_datakeysvalueslengthmismatch)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
 - Error hash: `0x3bcc8979`
 
@@ -755,14 +663,12 @@ error ERC725Y_DataKeysValuesLengthMismatch();
 
 reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
 
-&lt;br/&gt;
-
 ### ERC725Y_MsgValueDisallowed
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#erc725y_msgvaluedisallowed)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#erc725y_msgvaluedisallowed)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Error signature: `ERC725Y_MsgValueDisallowed()`
 - Error hash: `0xf36ba737`
 
@@ -774,14 +680,12 @@ error ERC725Y_MsgValueDisallowed();
 
 reverts when sending value to the `setData(..)` functions
 
-&lt;br/&gt;
-
 ### LSP4TokenNameNotEditable
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp4tokennamenoteditable)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp4tokennamenoteditable)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Error signature: `LSP4TokenNameNotEditable()`
 - Error hash: `0x85c169bd`
 
@@ -793,14 +697,12 @@ error LSP4TokenNameNotEditable();
 
 Reverts when trying to edit the data key `LSP4TokenName` after the digital asset contract has been deployed. The `LSP4TokenName` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
 
-&lt;br/&gt;
-
 ### LSP4TokenSymbolNotEditable
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp4tokensymbolnoteditable)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp4tokensymbolnoteditable)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
 - Error signature: `LSP4TokenSymbolNotEditable()`
 - Error hash: `0x76755b38`
 
@@ -812,186 +714,183 @@ error LSP4TokenSymbolNotEditable();
 
 Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital asset contract has been deployed. The `LSP4TokenSymbol` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
 
-&lt;br/&gt;
-
-### LSP7AmountExceedsAuthorizedAmount
+### LSP8CannotSendToAddressZero
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7amountexceedsauthorizedamount)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7AmountExceedsAuthorizedAmount(address,uint256,address,uint256)`
-- Error hash: `0xf3a6b691`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8cannotsendtoaddresszero)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8CannotSendToAddressZero()`
+- Error hash: `0x24ecef4d`
 
 :::
 
 ```solidity
-error LSP7AmountExceedsAuthorizedAmount(
-  address tokenOwner,
-  uint256 authorizedAmount,
-  address operator,
-  uint256 amount
-);
+error LSP8CannotSendToAddressZero();
 ```
 
-reverts when `operator` of `tokenOwner` send an `amount` of tokens larger than the `authorizedAmount`.
+reverts when trying to send token to the zero address.
+
+### LSP8CannotSendToSelf
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8cannotsendtoself)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8CannotSendToSelf()`
+- Error hash: `0x5d67d6c1`
+
+:::
+
+```solidity
+error LSP8CannotSendToSelf();
+```
+
+reverts when specifying the same address for `from` and `to` in a token transfer.
+
+### LSP8CannotUseAddressZeroAsOperator
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8cannotuseaddresszeroasoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8CannotUseAddressZeroAsOperator()`
+- Error hash: `0x9577b8b3`
+
+:::
+
+```solidity
+error LSP8CannotUseAddressZeroAsOperator();
+```
+
+reverts when trying to set the zero address as an operator.
+
+### LSP8InvalidTransferBatch
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8invalidtransferbatch)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8InvalidTransferBatch()`
+- Error hash: `0x93a83119`
+
+:::
+
+```solidity
+error LSP8InvalidTransferBatch();
+```
+
+reverts when the parameters used for `transferBatch` have different lengths.
+
+### LSP8NonExistentTokenId
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nonexistenttokenid)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8NonExistentTokenId(bytes32)`
+- Error hash: `0xae8f9a36`
+
+:::
+
+```solidity
+error LSP8NonExistentTokenId(bytes32 tokenId);
+```
+
+reverts when `tokenId` has not been minted.
 
 #### Parameters
 
-| Name               |   Type    | Description |
-| ------------------ | :-------: | ----------- |
-| `tokenOwner`       | `address` | -           |
-| `authorizedAmount` | `uint256` | -           |
-| `operator`         | `address` | -           |
-| `amount`           | `uint256` | -           |
+| Name      |   Type    | Description |
+| --------- | :-------: | ----------- |
+| `tokenId` | `bytes32` | -           |
 
-&lt;br/&gt;
-
-### LSP7AmountExceedsBalance
+### LSP8NonExistingOperator
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7amountexceedsbalance)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7AmountExceedsBalance(uint256,address,uint256)`
-- Error hash: `0x08d47949`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nonexistingoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8NonExistingOperator(address,bytes32)`
+- Error hash: `0x4aa31a8c`
 
 :::
 
 ```solidity
-error LSP7AmountExceedsBalance(
-  uint256 balance,
-  address tokenOwner,
-  uint256 amount
-);
+error LSP8NonExistingOperator(address operator, bytes32 tokenId);
 ```
 
-reverts when sending an `amount` of tokens larger than the current `balance` of the `tokenOwner`.
+reverts when `operator` is not an operator for the `tokenId`.
+
+#### Parameters
+
+| Name       |   Type    | Description |
+| ---------- | :-------: | ----------- |
+| `operator` | `address` | -           |
+| `tokenId`  | `bytes32` | -           |
+
+### LSP8NotTokenOperator
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nottokenoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8NotTokenOperator(bytes32,address)`
+- Error hash: `0x1294d2a9`
+
+:::
+
+```solidity
+error LSP8NotTokenOperator(bytes32 tokenId, address caller);
+```
+
+reverts when `caller` is not an allowed operator for `tokenId`.
+
+#### Parameters
+
+| Name      |   Type    | Description |
+| --------- | :-------: | ----------- |
+| `tokenId` | `bytes32` | -           |
+| `caller`  | `address` | -           |
+
+### LSP8NotTokenOwner
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nottokenowner)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8NotTokenOwner(address,bytes32,address)`
+- Error hash: `0x5b271ea2`
+
+:::
+
+```solidity
+error LSP8NotTokenOwner(address tokenOwner, bytes32 tokenId, address caller);
+```
+
+reverts when `caller` is not the `tokenOwner` of the `tokenId`.
 
 #### Parameters
 
 | Name         |   Type    | Description |
 | ------------ | :-------: | ----------- |
-| `balance`    | `uint256` | -           |
 | `tokenOwner` | `address` | -           |
-| `amount`     | `uint256` | -           |
+| `tokenId`    | `bytes32` | -           |
+| `caller`     | `address` | -           |
 
-&lt;br/&gt;
-
-### LSP7CannotSendToSelf
+### LSP8NotifyTokenReceiverContractMissingLSP1Interface
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotsendtoself)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7CannotSendToSelf()`
-- Error hash: `0xb9afb000`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8notifytokenreceivercontractmissinglsp1interface)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8NotifyTokenReceiverContractMissingLSP1Interface(address)`
+- Error hash: `0x4349776d`
 
 :::
 
 ```solidity
-error LSP7CannotSendToSelf();
-```
-
-reverts when specifying the same address for `from` or `to` in a token transfer.
-
-&lt;br/&gt;
-
-### LSP7CannotSendWithAddressZero
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotsendwithaddresszero)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7CannotSendWithAddressZero()`
-- Error hash: `0xd2d5ec30`
-
-:::
-
-```solidity
-error LSP7CannotSendWithAddressZero();
-```
-
-reverts when trying to:
-
-- mint tokens to the zero address.
-
-- burn tokens from the zero address.
-
-- transfer tokens from or to the zero address.
-
-&lt;br/&gt;
-
-### LSP7CannotUseAddressZeroAsOperator
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotuseaddresszeroasoperator)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7CannotUseAddressZeroAsOperator()`
-- Error hash: `0x6355e766`
-
-:::
-
-```solidity
-error LSP7CannotUseAddressZeroAsOperator();
-```
-
-reverts when trying to set the zero address as an operator.
-
-&lt;br/&gt;
-
-### LSP7DecreasedAllowanceBelowZero
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7decreasedallowancebelowzero)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7DecreasedAllowanceBelowZero()`
-- Error hash: `0x0ef76c35`
-
-:::
-
-```solidity
-error LSP7DecreasedAllowanceBelowZero();
-```
-
-Reverts when trying to decrease an operator's allowance to more than its current allowance.
-
-&lt;br/&gt;
-
-### LSP7InvalidTransferBatch
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7invalidtransferbatch)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7InvalidTransferBatch()`
-- Error hash: `0x263eee8d`
-
-:::
-
-```solidity
-error LSP7InvalidTransferBatch();
-```
-
-reverts when the array parameters used in [`transferBatch`](#transferbatch) have different lengths.
-
-&lt;br/&gt;
-
-### LSP7NotifyTokenReceiverContractMissingLSP1Interface
-
-:::note Links
-
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7notifytokenreceivercontractmissinglsp1interface)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7NotifyTokenReceiverContractMissingLSP1Interface(address)`
-- Error hash: `0xa608fbb6`
-
-:::
-
-```solidity
-error LSP7NotifyTokenReceiverContractMissingLSP1Interface(
+error LSP8NotifyTokenReceiverContractMissingLSP1Interface(
   address tokenReceiver
 );
 ```
@@ -1004,21 +903,19 @@ reverts if the `tokenReceiver` does not implement LSP1 when minting or transferr
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
-&lt;br/&gt;
-
-### LSP7NotifyTokenReceiverIsEOA
+### LSP8NotifyTokenReceiverIsEOA
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7notifytokenreceiveriseoa)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7NotifyTokenReceiverIsEOA(address)`
-- Error hash: `0x26c247f4`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8notifytokenreceiveriseoa)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8NotifyTokenReceiverIsEOA(address)`
+- Error hash: `0x03173137`
 
 :::
 
 ```solidity
-error LSP7NotifyTokenReceiverIsEOA(address tokenReceiver);
+error LSP8NotifyTokenReceiverIsEOA(address tokenReceiver);
 ```
 
 reverts if the `tokenReceiver` is an EOA when minting or transferring tokens with `bool allowNonLSP1Recipient` set as `false`.
@@ -1029,26 +926,46 @@ reverts if the `tokenReceiver` is an EOA when minting or transferring tokens wit
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
-&lt;br/&gt;
-
-### LSP7TokenOwnerCannotBeOperator
+### LSP8OperatorAlreadyAuthorized
 
 :::note Links
 
-- Specification details in [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7tokenownercannotbeoperator)
-- Solidity implementation in [**LSP7DigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol)
-- Error signature: `LSP7TokenOwnerCannotBeOperator()`
-- Error hash: `0xdab75047`
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8operatoralreadyauthorized)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8OperatorAlreadyAuthorized(address,bytes32)`
+- Error hash: `0xa7626b68`
 
 :::
 
 ```solidity
-error LSP7TokenOwnerCannotBeOperator();
+error LSP8OperatorAlreadyAuthorized(address operator, bytes32 tokenId);
+```
+
+reverts when `operator` is already authorized for the `tokenId`.
+
+#### Parameters
+
+| Name       |   Type    | Description |
+| ---------- | :-------: | ----------- |
+| `operator` | `address` | -           |
+| `tokenId`  | `bytes32` | -           |
+
+### LSP8TokenOwnerCannotBeOperator
+
+:::note Links
+
+- Specification details in [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenownercannotbeoperator)
+- Solidity implementation in [**LSP8IdentifiableDigitalAsset**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
+- Error signature: `LSP8TokenOwnerCannotBeOperator()`
+- Error hash: `0x89fdad62`
+
+:::
+
+```solidity
+error LSP8TokenOwnerCannotBeOperator();
 ```
 
 reverts when trying to authorize or revoke the token's owner as an operator.
-
-&lt;br/&gt;
 
 <!-- prettier-ignore-start -->
 
