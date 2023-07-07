@@ -64,7 +64,7 @@ Some of the LSP standards do not have a contract implementation as they represen
 The **Universal Profile** contracts allow a better representation of the identity on the blockchain and better control over it.
 
 - **[LSP0ERC725Account](../standards/smart-contracts/lsp0-erc725-account.md)**: a contract that can be used as an account and represents an **identity on-chain**.
-- **[LSP1UniversalReceiverDelegateUP](../standards/smart-contracts/lsp1-universal-receiver-delegate-up.md)**: a contract that allows the account to react to the calls that it receives (Normal transaction, Token transfer, Vaults transfer, etc.).
+- **[LSP1UniversalReceiverDelegateUP](./contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)**: a contract that allows the account to react to the calls that it receives (Normal transaction, Token transfer, Vaults transfer, etc.).
 - **[LSP6KeyManager](../standards/smart-contracts/lsp6-key-manager.md)**: a contract that allows **multi-control** over the account using different permissions.
 - **LSP11BasicSocialRecovery**
 
@@ -81,7 +81,7 @@ The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced vers
 These contracts are not just related to one specific section and could be used with the **Universal Profile**, **Digital Asset**, and **NFT 2.0** contracts.
 
 - **[LSP9Vault](../standards/smart-contracts/lsp9-vault.md)**: a contract representing a **Vault** able to execute and hold assets could be owned by an LSP0ERC725Account contract.
-- **[LSP1UniversalReceiverDelegateVault](../standards/smart-contracts/lsp1-universal-receiver-delegate-vault.md)**: a contract that allows the vault to react to the calls it receives (Normal transaction, Token transfer, etc.).
+- **[LSP1UniversalReceiverDelegateVault](./contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md)**: a contract that allows the vault to react to the calls it receives (Normal transaction, Token transfer, etc.).
 - **LSP14Ownable2Step**
 - **LSP17ContractExtension**
 - **LSP20CallVerification**

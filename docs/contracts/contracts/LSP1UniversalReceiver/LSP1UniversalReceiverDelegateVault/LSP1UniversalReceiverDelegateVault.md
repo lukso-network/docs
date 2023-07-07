@@ -1,173 +1,30 @@
-# LSP4DigitalAssetMetadata
+# LSP1UniversalReceiverDelegateVault
 
-:::info Solidity contract
+:::info Standard Specifications
 
-[`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+[`LSP-1-UniversalReceiver`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md)
+
+:::
+:::info Soldity implementation
+
+[`LSP1UniversalReceiverDelegateVault.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
 
 :::
 
-> Implementation of a LSP4DigitalAssetMetadata contract that stores the **Token-Metadata** (`LSP4TokenName` and `LSP4TokenSymbol`) in its ERC725Y data store.
+> Implementation of a UniversalReceiverDelegate for the [LSP9Vault]
 
-Standard Implementation of the LSP4 standard.
+The [`LSP1UniversalReceiverDelegateVault`](#lsp1universalreceiverdelegatevault) follows the [LSP-1-UniversalReceiver] standard and is designed for [LSP9Vault] contracts. The [`LSP1UniversalReceiverDelegateVault`](#lsp1universalreceiverdelegatevault) is a contract called by the [`universalReceiver(...)`](#universalreceiver) function of the [LSP-9-Vault] contract that:
+
+- Writes the data keys representing assets received from type [LSP-7-DigitalAsset] and [LSP-8-IdentifiableDigitalAsset] into the account storage, and removes them when the balance is zero according to the [LSP-5-ReceivedAssets] Standard.
 
 ## Methods
-
-### getData
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#getdata)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `getData(bytes32)`
-- Function selector: `0x54f6127f`
-
-:::
-
-```solidity
-function getData(bytes32 dataKey) external view returns (bytes dataValue);
-```
-
-_Gets singular data at a given `dataKey`_
-
-#### Parameters
-
-| Name      |   Type    | Description                     |
-| --------- | :-------: | ------------------------------- |
-| `dataKey` | `bytes32` | The key which value to retrieve |
-
-#### Returns
-
-| Name        |  Type   | Description                |
-| ----------- | :-----: | -------------------------- |
-| `dataValue` | `bytes` | The data stored at the key |
-
-### getDataBatch
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#getdatabatch)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `getDataBatch(bytes32[])`
-- Function selector: `0xdedff9c6`
-
-:::
-
-```solidity
-function getDataBatch(
-  bytes32[] dataKeys
-) external view returns (bytes[] dataValues);
-```
-
-_Gets array of data for multiple given keys_
-
-#### Parameters
-
-| Name       |    Type     | Description                                |
-| ---------- | :---------: | ------------------------------------------ |
-| `dataKeys` | `bytes32[]` | The array of keys which values to retrieve |
-
-#### Returns
-
-| Name         |   Type    | Description                               |
-| ------------ | :-------: | ----------------------------------------- |
-| `dataValues` | `bytes[]` | The array of data stored at multiple keys |
-
-### owner
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#owner)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `owner()`
-- Function selector: `0x8da5cb5b`
-
-:::
-
-```solidity
-function owner() external view returns (address);
-```
-
-Returns the address of the current owner.
-
-#### Returns
-
-| Name |   Type    | Description |
-| ---- | :-------: | ----------- |
-| `0`  | `address` | -           |
-
-### renounceOwnership
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#renounceownership)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `renounceOwnership()`
-- Function selector: `0x715018a6`
-
-:::
-
-```solidity
-function renounceOwnership() external nonpayable;
-```
-
-Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
-
-### setData
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#setdata)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `setData(bytes32,bytes)`
-- Function selector: `0x7f23690c`
-
-:::
-
-```solidity
-function setData(bytes32 dataKey, bytes dataValue) external payable;
-```
-
-_Sets singular data for a given `dataKey`_
-
-#### Parameters
-
-| Name        |   Type    | Description                                                                                                                                                                                                                                                                                                           |
-| ----------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
-| `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
-
-### setDataBatch
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#setdatabatch)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `setDataBatch(bytes32[],bytes[])`
-- Function selector: `0x97902421`
-
-:::
-
-```solidity
-function setDataBatch(bytes32[] dataKeys, bytes[] dataValues) external payable;
-```
-
-Sets array of data for multiple given `dataKeys` SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal
-
-0. Emits a [`DataChanged`](#datachanged) event.
-
-#### Parameters
-
-| Name         |    Type     | Description                              |
-| ------------ | :---------: | ---------------------------------------- |
-| `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
-| `dataValues` |  `bytes[]`  | The array of values to set               |
 
 ### supportsInterface
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#supportsinterface)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#supportsinterface)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -177,7 +34,9 @@ Sets array of data for multiple given `dataKeys` SHOULD only be callable by the 
 function supportsInterface(bytes4 interfaceId) external view returns (bool);
 ```
 
-See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
+_Achieves the goal of ERC165 to detect supported interfaces and LSP17 by checking if the interfaceId being queried is supported on another linked extension._
+
+Returns true if this contract implements the interface defined by `interfaceId`. If the contract doesn't support the `interfaceId`, it forwards the call to the `supportsInterface` extension according to LSP17, and checks if the extension implements the interface defined by `interfaceId`.
 
 #### Parameters
 
@@ -191,167 +50,229 @@ See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
 | ---- | :----: | ----------- |
 | `0`  | `bool` | -           |
 
-### transferOwnership
+### universalReceiver
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#transferownership)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `transferOwnership(address)`
-- Function selector: `0xf2fde38b`
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#universalreceiver)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+- Function signature: `universalReceiver(bytes32,)`
+- Function selector: `0x534e72c8`
 
 :::
 
 ```solidity
-function transferOwnership(address newOwner) external nonpayable;
+function universalReceiver(
+  bytes32 typeId,
+  bytes
+) external payable returns (bytes result);
 ```
 
-Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
+_Achieves the goal of [LSP-1-UniversalReceiver] by allowing the account to be notified about incoming/outgoing transactions and enabling reactions to these actions. The reaction is achieved by having two external contracts (UniversalReceiverDelegates) that react on the whole transaction and on the specific typeId, respectively. The notification is achieved by emitting a [`UniversalReceiver`](#universalreceiver) event on the call with the function parameters, call options, and the response of the UniversalReceiverDelegates (URD) contract._
+
+The function performs the following steps:
+
+1. Query the ERC725Y storage with the data key `[_LSP1_UNIVERSAL_RECEIVER_DELEGATE_KEY]`.
+
+- If there is an address stored under the data key, check if this address supports the LSP1 interfaceId.
+
+- If yes, call this address with the typeId and data (params), along with additional calldata consisting of 20 bytes of `msg.sender` and 32 bytes of `msg.value`. If not, continue the execution of the function.
+
+2. Query the ERC725Y storage with the data key `[_LSP1_UNIVERSAL_RECEIVER_DELEGATE_KEY] + <bytes32 typeId>`. (Check [LSP2-ERC725YJSONSchema] for encoding the data key)
+
+- If there is an address stored under the data key, check if this address supports the LSP1 interfaceId.
+
+- If yes, call this address with the typeId and data (params), along with additional calldata consisting of 20 bytes of `msg.sender` and 32 bytes of `msg.value`. If not, continue the execution of the function.
+
+<blockquote>
+
+**Emitted events:**
+
+- [`ValueReceived`](#valuereceived) when receiving native tokens.
+- [`UniversalReceiver`](#universalreceiver) event.
+
+</blockquote>
 
 #### Parameters
 
-| Name       |   Type    | Description |
-| ---------- | :-------: | ----------- |
-| `newOwner` | `address` | -           |
+| Name     |   Type    | Description                |
+| -------- | :-------: | -------------------------- |
+| `typeId` | `bytes32` | The type of call received. |
+| `_1`     |  `bytes`  | -                          |
 
----
+#### Returns
+
+| Name     |  Type   | Description |
+| -------- | :-----: | ----------- |
+| `result` | `bytes` | -           |
 
 ## Events
 
-### DataChanged
+### UniversalReceiver
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#datachanged)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Event signature: `DataChanged(bytes32,bytes)`
-- Event hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#universalreceiver)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+- Event signature: `UniversalReceiver(address,uint256,bytes32,bytes,bytes)`
+- Event hash: `0x9c3ba68eb5742b8e3961aea0afc7371a71bf433c8a67a831803b64c064a178c2`
 
 :::
 
 ```solidity
-event DataChanged(bytes32 indexed dataKey, bytes dataValue);
+event UniversalReceiver(address indexed from, uint256 indexed value, bytes32 indexed typeId, bytes receivedData, bytes returnedValue);
 ```
 
-_Emitted when data at a key is changed_
+_`from` sent `value` native tokens and a notification using `typeId` and `receivedData`._
+
+The event is emitted when `universalReceiver(...)` reacted successfully on all of the following inputs:
+
+- A valid notifier: `from`
+
+- A valid amount of native tokens are sent: `value`
+
+- A supported type ID: `typeId`
+
+- Arbitrary data which may or may not be used: `receivedData` And returned a valid result: `returnedValue` based on the inputs.
 
 #### Parameters
 
-| Name                    |   Type    | Description |
-| ----------------------- | :-------: | ----------- |
-| `dataKey` **`indexed`** | `bytes32` | -           |
-| `dataValue`             |  `bytes`  | -           |
-
-### OwnershipTransferred
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#ownershiptransferred)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Event signature: `OwnershipTransferred(address,address)`
-- Event hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
-
-:::
-
-```solidity
-event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-```
-
-#### Parameters
-
-| Name                          |   Type    | Description |
-| ----------------------------- | :-------: | ----------- |
-| `previousOwner` **`indexed`** | `address` | -           |
-| `newOwner` **`indexed`**      | `address` | -           |
-
----
+| Name                   |   Type    | Description                                                     |
+| ---------------------- | :-------: | --------------------------------------------------------------- |
+| `from` **`indexed`**   | `address` | The address calling the {universalReceiver(...)} function.      |
+| `value` **`indexed`**  | `uint256` | The amount sent to the {universalReceiver(...)} function.       |
+| `typeId` **`indexed`** | `bytes32` | The hash of a specific standard or a hook.                      |
+| `receivedData`         |  `bytes`  | The arbitrary data passed to {universalReceiver(...)} function. |
+| `returnedValue`        |  `bytes`  | The value returned by the {universalReceiver(...)} function.    |
 
 ## Errors
 
-### ERC725Y_DataKeysValuesEmptyArray
+### CannotRegisterEOAsAsAssets
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
-- Error hash: `0x97da5f95`
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#cannotregistereoasasassets)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+- Error signature: `CannotRegisterEOAsAsAssets(address)`
+- Error hash: `0xa5295345`
 
 :::
 
 ```solidity
-error ERC725Y_DataKeysValuesEmptyArray();
+error CannotRegisterEOAsAsAssets(address caller);
 ```
 
-reverts when one of the array parameter provided to `setDataBatch` is an empty array
+_EOA: `caller` cannot be registered as an asset._
 
-### ERC725Y_DataKeysValuesLengthMismatch
+Reverts when EOA calls the [`universalReceiver(..)`](#universalreceiver) function with an asset/vault typeId.
+
+#### Parameters
+
+| Name     |   Type    | Description            |
+| -------- | :-------: | ---------------------- |
+| `caller` | `address` | The address of the EOA |
+
+### InvalidLSP5ReceivedAssetsArrayLength
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
-- Error hash: `0x3bcc8979`
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#invalidlsp5receivedassetsarraylength)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+- Error signature: `InvalidLSP5ReceivedAssetsArrayLength(bytes,uint256)`
+- Error hash: `0xecba7af8`
 
 :::
 
 ```solidity
-error ERC725Y_DataKeysValuesLengthMismatch();
+error InvalidLSP5ReceivedAssetsArrayLength(
+  bytes invalidValueStored,
+  uint256 invalidValueLength
+);
 ```
 
-reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
+_The data stored under `LSP5ReceivedAssets[]` Data Key is invalid. Value storred: `invalidValueStored`. Value length: `invalidValueLength`._
 
-### ERC725Y_MsgValueDisallowed
+Reverts when the value stored under the 'LSP5ReceivedAssets[]' data key is not valid. The value stored under this data key should be exactly 16 bytes long. Only possible valid values are:
+
+- any valid uint128 values i.e. `0x00000000000000000000000000000000` (zero), empty array, no assets received. i.e. `0x00000000000000000000000000000005` (non-zero), 5 array elements, 5 assets received.
+
+- `0x` (nothing stored under this data key, equivalent to empty array)
+
+#### Parameters
+
+| Name                 |   Type    | Description                                                                                                   |
+| -------------------- | :-------: | ------------------------------------------------------------------------------------------------------------- |
+| `invalidValueStored` |  `bytes`  | The invalid value stored under the `LSP5ReceivedAssets[]` data key.                                           |
+| `invalidValueLength` | `uint256` | The invalid number of bytes stored under the `LSP5ReceivedAssets[]` data key (MUST be exactly 16 bytes long). |
+
+### MaxLSP5ReceivedAssetsCountReached
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_msgvaluedisallowed)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_MsgValueDisallowed()`
-- Error hash: `0xf36ba737`
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#maxlsp5receivedassetscountreached)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+- Error signature: `MaxLSP5ReceivedAssetsCountReached(address)`
+- Error hash: `0x0b51a2d0`
 
 :::
 
 ```solidity
-error ERC725Y_MsgValueDisallowed();
+error MaxLSP5ReceivedAssetsCountReached(address notRegisteredAsset);
 ```
 
-reverts when sending value to the `setData(..)` functions
+_Limit reached. Cannot register more assets. Failed to register: `notRegisteredAsset`._
 
-### LSP4TokenNameNotEditable
+Reverts when the `LSP5ReceivedAssets[]` array reaches its maximum limit (`max(uint128)`).
+
+#### Parameters
+
+| Name                 |   Type    | Description                                            |
+| -------------------- | :-------: | ------------------------------------------------------ |
+| `notRegisteredAsset` | `address` | The address of the asset that could not be registered. |
+
+### NativeTokensNotAccepted
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#lsp4tokennamenoteditable)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `LSP4TokenNameNotEditable()`
-- Error hash: `0x85c169bd`
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#nativetokensnotaccepted)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+- Error signature: `NativeTokensNotAccepted()`
+- Error hash: `0x114b721a`
 
 :::
 
 ```solidity
-error LSP4TokenNameNotEditable();
+error NativeTokensNotAccepted();
 ```
 
-Reverts when trying to edit the data key `LSP4TokenName` after the digital asset contract has been deployed. The `LSP4TokenName` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
+_Cannot send native tokens to [`universalReceiver(...)`](#universalreceiver) function of the delegated contract._
 
-### LSP4TokenSymbolNotEditable
+Reverts when [`universalReceiver(...)`](#universalreceiver) function in the delegated contract is called with a value different than 0.
+
+### ReceivedAssetsIndexSuperiorToUint128
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#lsp4tokensymbolnoteditable)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `LSP4TokenSymbolNotEditable()`
-- Error hash: `0x76755b38`
+- Specification details in [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#receivedassetsindexsuperiortouint128)
+- Solidity implementation in [**LSP1UniversalReceiverDelegateVault**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol)
+- Error signature: `ReceivedAssetsIndexSuperiorToUint128(uint256)`
+- Error hash: `0xe8a4fba0`
 
 :::
 
 ```solidity
-error LSP4TokenSymbolNotEditable();
+error ReceivedAssetsIndexSuperiorToUint128(uint256 index);
 ```
 
-Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital asset contract has been deployed. The `LSP4TokenSymbol` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
+_Asset index stored under the `ReceivedAssetsMap` Data Key is invalid. Invalid index: `index`._
+
+Reverts when the received assets index is superior to `uint128`.
+
+#### Parameters
+
+| Name    |   Type    | Description                |
+| ------- | :-------: | -------------------------- |
+| `index` | `uint256` | The received assets index. |
 
 <!-- prettier-ignore-start -->
 

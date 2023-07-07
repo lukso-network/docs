@@ -56,7 +56,7 @@ See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.
 
 :::caution
 
-The implementation of the **UniversalReceiverDelegate** used by the Universal Profile is different from the one used by the vault. Check [LSP1UniversalReceiverDelegateVault](../smart-contracts/lsp1-universal-receiver-delegate-vault.md)
+The implementation of the **UniversalReceiverDelegate** used by the Universal Profile is different from the one used by the vault. Check [LSP1UniversalReceiverDelegateVault](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md)
 
 :::
 
