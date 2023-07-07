@@ -151,7 +151,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'faq/lukso',
+          docId: 'faq/lukso/general-information',
           position: 'left',
           label: 'FAQ',
         },
