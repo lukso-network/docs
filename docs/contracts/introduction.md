@@ -80,7 +80,7 @@ The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced vers
 
 These contracts are not just related to one specific section and could be used with the **Universal Profile**, **Digital Asset**, and **NFT 2.0** contracts.
 
-- **[LSP9Vault](../standards/smart-contracts/lsp9-vault.md)**: a contract representing a **Vault** able to execute and hold assets could be owned by an LSP0ERC725Account contract.
+- **[LSP9Vault](../contracts/contracts/LSP9Vault/LSP9Vault.md)**: a contract representing a **Vault** able to execute and hold assets could be owned by an LSP0ERC725Account contract.
 - **[LSP1UniversalReceiverDelegateVault](./contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md)**: a contract that allows the vault to react to the calls it receives (Normal transaction, Token transfer, etc.).
 - **LSP14Ownable2Step**
 - **LSP17ContractExtension**
