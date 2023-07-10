@@ -110,6 +110,10 @@ module.exports = {
             from: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
             to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
           },
+          {
+            from: '/standards/smart-contracts/lsp14-ownable-2-step',
+            to: '/contracts/contracts/LSP14Ownable2Step',
+          },
         ],
       },
     ],
