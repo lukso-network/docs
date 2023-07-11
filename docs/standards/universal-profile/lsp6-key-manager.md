@@ -59,7 +59,7 @@ Click on the toggles below to **learn more about the features enabled by each pe
     </p>
 
 The `CHANGEOWNER` permission enables to change the owner of the linked ERC725Account.
-Using this permission, you can easily upgrade the [`LSP6KeyManager`](../smart-contracts/lsp6-key-manager.md) attached to the Account by transferring ownership to a new Key Manager.
+Using this permission, you can easily upgrade the [`LSP6KeyManager`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) attached to the Account by transferring ownership to a new Key Manager.
 
 </details>
 
@@ -435,7 +435,7 @@ The convenience function [`getData(...)`](../../tools/erc725js/classes/ERC725.md
 
 :::
 
-You can obtain the list of controllers that have some permissions on the linked ERC725Account by reading the `AddressPermission[]` data key via [`getData(...)`](../smart-contracts/erc725-contract.md#getdata---erc725y).
+You can obtain the list of controllers that have some permissions on the linked ERC725Account by reading the `AddressPermission[]` data key via [`getData(...)`](../../contracts/contracts/ERC725/ERC725.md#getdata).
 
 - **key:** `0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3`
 - **value return:** the total number of address that have some permissions set (= array length)
@@ -775,8 +775,8 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 There are 3 ways to interact with the ERC725Account linked with the Key Manager.
 
-- **direct execution**: the controller is the caller (`msg.sender`) and sends a **payload** to the Key Manager directly (= abi-encoded function call on the linked ERC725Account) to the KeyManager via [`execute(...)`](../smart-contracts/lsp6-key-manager.md#execute).
-- **relay execution**: a controller **A** signs a payload and an executor `address` **B** (_e.g. a relay service_) executes the payload on behalf of the signer via [`executeRelayCall(...)`](../smart-contracts/lsp6-key-manager.md#executerelaycall).
+- **direct execution**: the controller is the caller (`msg.sender`) and sends a **payload** to the Key Manager directly (= abi-encoded function call on the linked ERC725Account) to the KeyManager via [`execute(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#execute).
+- **relay execution**: a controller **A** signs a payload and an executor `address` **B** (_e.g. a relay service_) executes the payload on behalf of the signer via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 - **LSP20-CallVerification execution**: Interaction with the ERC725Account can be done directly, in accordance with the LSP20-CallVerification standard. The LSP6 Key Manager supports this standard, allowing anyone to call the LSP0ERC725Account. If the caller is not the owner of the ERC725Account, the call will be forwarded to the LSP20 functions of the Key Manager. These functions will verify the necessary permissions and emit the relevant event.
 
 The main difference between direct vs relay vs LSP20-CallVerification execution is that with direct execution, the controller address is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer address (a controller) can interact with the ERC725Account without paying a gas fee. And with LSP20-CallVerification execution, calls can be made directly to the ERC725Account, with permissions verified by the LSP20 functions of the Key Manager.
@@ -815,7 +815,7 @@ To obtain a valid signature that can be used by anyone to execute a relayed tran
 
    - 1. the **payload** (an abi-encoded function call) to be executed on the linked account.
    - 2. the **chain id** of the blockchain where the `payload` will be executed.
-   - 3. the address of the [`LSP6KeyManager`](../../standards/smart-contracts/lsp6-key-manager.md) smart contract where the **payload** will be executed.
+   - 3. the address of the [`LSP6KeyManager`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) smart contract where the **payload** will be executed.
         d. the Key Manager **nonce** of the controller.
    - 4. the `validityTimestamps`, composed of 2 x `uint128` concatenated together, where:
 
@@ -827,7 +827,7 @@ To obtain a valid signature that can be used by anyone to execute a relayed tran
 
 3. Then you must get the `keccak256` hash of this data.
 
-4. After that you can sign the data to obtain a valid signature ready to be used via [`executeRelayCall(...)`](../smart-contracts/lsp6-key-manager.md#executerelaycall).
+4. After that you can sign the data to obtain a valid signature ready to be used via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 #### Details
 
@@ -842,7 +842,7 @@ The relay transactions are signed using the [**version 0 of EIP191**](https://gi
 | `0x19`               | Byte used to ensure that the _relay call signed data_ is not a valid RLP.                                                                                                                                                                                 |
 | `0x00`               | The [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00).                                                                                                                                                 |
 | `KeyManager address` | The address of the Key Manager that will execute the relay call.                                                                                                                                                                                          |
-| `LSP6_VERSION`       | The varsion of the Key Manager that will execute the relay call, as a `uint256`. (Current version of LSP6 Key Manager is **6**)                                                                                                                           |
+| `LSP6_VERSION`       | The version of the Key Manager that will execute the relay call, as a `uint256`. (Current version of LSP6 Key Manager is **6**)                                                                                                                           |
 | `chainId`            | The chain id of the blockchain where the Key Manager is deployed, as `uint256`.                                                                                                                                                                           |
 | `nonce`              | The unique [**nonce**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#getnonce) for the payload.                                                                                                                                |
 | `validityTimestamps` | Two `uint128` timestamps concatenated, the first timestamp determines from when the payload can be executed, the second timestamp delimits the end of the validity of the payload. If `validityTimestamps` is 0, the checks of the timestamps are skipped |

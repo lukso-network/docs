@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Edit Vault Data
 
-This guide will teach you how to set data to an **[LSP9Vault](../../standards/smart-contracts/lsp9-vault.md)** contract through a UniversalProfile owned by an LSP6KeyManager. Any data can be attached to the vault, and since it supports the **[LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver.md)** standard, we will set the [**Universal Receiver Delegate**](../../standards/smart-contracts/lsp1-universal-receiver-delegate-vault.md) address inside the storage.
+This guide will teach you how to set data to an **[LSP9Vault](../../contracts/contracts/LSP9Vault/LSP9Vault.md)** contract through a UniversalProfile owned by an LSP6KeyManager. Any data can be attached to the vault, and since it supports the **[LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver.md)** standard, we will set the [**Universal Receiver Delegate**](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md) address inside the storage.
 
 ## Setting Data (Universal Receiver Delegate)
 

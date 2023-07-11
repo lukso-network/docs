@@ -25,7 +25,6 @@ Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-backgroun
 
 :::
 
-
 This Metadata standard describes two data keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) smart contract to keep track of received and owned [LSP9-Vaults](./lsp9-vault.md).
 
 ### `LSP10Vaults[]`
@@ -41,7 +40,6 @@ This data key represents a list of all the vaults owned by the contract.
   "valueContent": "Address"
 }
 ```
-
 
 :::tip Recommendation
 
@@ -76,7 +74,7 @@ The data keys are also set on the **sender's Universal Profile** to remove the v
 
 :::
 
-If set when transferring vaults, these data keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract.
+If set when transferring vaults, these data keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md) contract.
 
 ![Vault transfer detailed flow](/img/standards/lsp10/detailed-vault-transfer.jpeg)
 
