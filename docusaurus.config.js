@@ -122,7 +122,11 @@ module.exports = {
             from: '/standards/smart-contracts/lsp14-ownable-2-step',
             to: '/contracts/contracts/LSP14Ownable2Step',
           },
-          // FAQ New Structure
+          // FAQ new structure
+          {
+            from: '/faq/lukso',
+            to: '/faq/lukso/general-information',
+          },
           {
             from: '/faq/lukso-standard-proposal',
             to: '/faq/onboarding/lukso-standards',
@@ -184,7 +188,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'faq/lukso',
+          docId: 'faq/lukso/general-information',
           position: 'left',
           label: 'FAQ',
         },
