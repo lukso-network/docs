@@ -222,7 +222,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
 :::tip ERC725X execute
 
-You can find more information about the [ERC725X `execute` call here](../../standards/smart-contracts/erc725-contract#execute---erc725x).
+You can find more information about the [ERC725X `execute` call here](../../contracts/contracts/ERC725/ERC725.md#execute).
 
 :::
 
