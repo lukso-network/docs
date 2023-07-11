@@ -118,6 +118,10 @@ module.exports = {
             from: '/standards/smart-contracts/lsp9-vault',
             to: '/contracts/contracts/LSP9Vault',
           },
+          {
+            from: '/standards/smart-contracts/lsp14-ownable-2-step',
+            to: '/contracts/contracts/LSP14Ownable2Step',
+          },
         ],
       },
     ],
