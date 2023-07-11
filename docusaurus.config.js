@@ -122,6 +122,15 @@ module.exports = {
             from: '/standards/smart-contracts/lsp14-ownable-2-step',
             to: '/contracts/contracts/LSP14Ownable2Step',
           },
+          // FAQ New Structure
+          {
+            from: '/faq/lukso-standard-proposal',
+            to: '/faq/onboarding/lukso-standards',
+          },
+          {
+            from: '/faq/universal-profile',
+            to: '/faq/onboarding/universal-profiles',
+          },
         ],
       },
     ],
