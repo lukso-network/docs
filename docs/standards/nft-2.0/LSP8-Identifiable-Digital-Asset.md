@@ -80,7 +80,7 @@ The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId*
 
 It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
 
-To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../smart-contracts//lsp8-identifiable-digital-asset.md#transfer) and mint functions:
+To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) and mint functions:
 
 - If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
 
@@ -102,7 +102,7 @@ Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-
 
 :::caution
 
-When LSP8 assets are transfered, the LSP8 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../smart-contracts/lsp8-identifiable-digital-asset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../smart-contracts/lsp8-identifiable-digital-asset.md#_notifytokenreceiver).
+When LSP8 assets are transfered, the LSP8 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokenreceiver).
 
 **These methods will make external calls** to the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) functions of both the sender and recipient.
 

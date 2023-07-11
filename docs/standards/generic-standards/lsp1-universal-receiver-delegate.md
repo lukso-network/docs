@@ -63,7 +63,7 @@ In summary, delegation provides a flexible way for smart contracts to handle and
 
 ## Implementations
 
-There are several implementations of the standard. The **[LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md)** contract is one of them and is used as a delegate to the `universalReceiver(...)` function of **UniversalProfile** contract.
+There are several implementations of the standard. The **[LSP1UniversalReceiverDelegateUP](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/)** contract is one of them and is used as a delegate to the `universalReceiver(...)` function of **UniversalProfile** contract.
 
 At the moment, this contract allows to:
 

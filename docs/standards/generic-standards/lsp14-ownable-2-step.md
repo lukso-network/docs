@@ -38,11 +38,11 @@ In addition, this standard defines hooks that call the **[universalReceiver(...)
 
 The control of the contract is fully transferred _once the new owner has accepted the new ownership_. The 2 steps of ownership transfer are described below:
 
-1. The previous owner transfers ownership to a new owner via the [`transferOwnership(...)`](../smart-contracts/lsp14-ownable-2-step.md#transferownership) function.
+1. The previous owner transfers ownership to a new owner via the [`transferOwnership(...)`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#transferownership) function.
 
 ![Transfer Ownership](/img/standards/lsp14/transfer-ownership.jpeg)
 
-2. The new owner claims ownership of the contract by calling the [`acceptOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#acceptownership)` function.
+2. The new owner claims ownership of the contract by calling the [`acceptOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md #acceptownership)` function.
 
 ![Accept Ownership](/img/standards/lsp14/accept-ownership.jpeg)
 
@@ -69,8 +69,8 @@ Each hook is executed whenever the _new owner confirms the process of tranferrin
 
 The control of the contract is refully renounced _once the owner of the contract confirmes the ownership renouncement_. The 2 steps of ownership renouncement are described below:
 
-1. The owner initiates the process of ownerhsip renouncement via the ['renounceOwnership()'](../smart-contracts/lsp14-ownable-2-step.md#renounceownership) function.
+1. The owner initiates the process of ownerhsip renouncement via the ['renounceOwnership()'](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#renounceownership) function.
 
-2. After waiting for 200 blocks to pass from the intiation of the ownership renouncement process the owner has a window of 200 block for confirming the renouncement via ['renounceOwnership()'](../smart-contracts/lsp14-ownable-2-step.md#renounceownership). If the owner doesn't confirm in that window of time, the process cannot be confirmed and the owner must start again if it was intended to renounce ownership.
+2. After waiting for 200 blocks to pass from the intiation of the ownership renouncement process the owner has a window of 200 block for confirming the renouncement via ['renounceOwnership()'](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#renounceownership). If the owner doesn't confirm in that window of time, the process cannot be confirmed and the owner must start again if it was intended to renounce ownership.
 
 ![Renounce Ownership](/img/standards/lsp14/renounce-ownership.jpeg)
