@@ -115,6 +115,10 @@ module.exports = {
             to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
           },
           {
+            from: '/standards/smart-contracts/lsp9-vault',
+            to: '/contracts/contracts/LSP9Vault',
+          },
+          {
             from: '/standards/smart-contracts/lsp14-ownable-2-step',
             to: '/contracts/contracts/LSP14Ownable2Step',
           },
@@ -122,6 +126,14 @@ module.exports = {
           {
             from: '/faq/lukso',
             to: '/faq/lukso/general-information',
+          },
+          {
+            from: '/faq/lukso-standard-proposal',
+            to: '/faq/onboarding/lukso-standards',
+          },
+          {
+            from: '/faq/universal-profile',
+            to: '/faq/onboarding/universal-profiles',
           },
         ],
       },
