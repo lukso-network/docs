@@ -160,7 +160,7 @@ const keyManager = new ethers.Contract(
 
 ### Step 3 - Prepare the relay call parameters
 
-Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../standards/smart-contracts/lsp6-key-manager.md#getnonce) function.
+Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) function.
 
 The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
 
@@ -288,7 +288,7 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 
 </Tabs>
 
-Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
+Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 ## Execute via `executeRelayCall`
 
@@ -347,7 +347,7 @@ const executeRelayCallTransaction = await keyManager
 
 :::tip LSP6KeyManager executeRelayCall
 
-You can find more information about the [LSP6KeyManager `executeRelayCall` here](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
+You can find more information about the [LSP6KeyManager `executeRelayCall` here](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 :::
 
