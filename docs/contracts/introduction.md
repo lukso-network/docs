@@ -65,7 +65,7 @@ The **Universal Profile** contracts allow a better representation of the identit
 
 - **[LSP0ERC725Account](../standards/smart-contracts/lsp0-erc725-account.md)**: a contract that can be used as an account and represents an **identity on-chain**.
 - **[LSP1UniversalReceiverDelegateUP](./contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)**: a contract that allows the account to react to the calls that it receives (Normal transaction, Token transfer, Vaults transfer, etc.).
-- **[LSP6KeyManager](../standards/smart-contracts/lsp6-key-manager.md)**: a contract that allows **multi-control** over the account using different permissions.
+- **[LSP6KeyManager](../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md)**: a contract that allows **multi-control** over the account using different permissions.
 - **LSP11BasicSocialRecovery**
 
 ### Digital Assets
