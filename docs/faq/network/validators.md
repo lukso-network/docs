@@ -43,7 +43,7 @@ The Genesis Validator smart contract on Ethereum [has been frozen](https://mediu
 
 ## How can I check if my validator is deposited and attesting?
 
-You can check your validator keys on the [Mainnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/) or [Testnet Consensus Explorer](https://explorer.consensus.testnet.lukso.network/) by searching for them. The page will show you the status of the validator key and their last attestations and proposals. If you want to check multiple validator keys simultainiously, you can add them to the dashboard. For adding higher validator amounts, you can also check out the [script automation](https://docs.luksoverse.io/docs/mainnet/complete-node-guide/monitoring/explorers) by the community.
+You can check your validator keys on the [Mainnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/) or [Testnet Consensus Explorer](https://explorer.consensus.testnet.lukso.network/) by searching for them. The page will show you the status of the validator key and their last attestations and proposals. You can add multiple validator keys to the dashboard to check numerous validator keys simultaneously. For adding higher validator amounts to the dashboard, you can also check out the [script automation](https://docs.luksoverse.io/docs/mainnet/complete-node-guide/monitoring/explorers) by the community.
 
 ## Will the testnet be open to community validators?
 
