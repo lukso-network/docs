@@ -56,29 +56,7 @@ The current token standards don't enable attaching metadata to the contract in a
 
 To ensure a flexible and generic asset representation, the token contract should use the **[LSP4-DigitalAsset-Metadata](./LSP4-Digital-Asset-Metadata.md)**. In this way, any information could be attached to the token contract.
 
-### Force Boolean
-
-It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts](../universal-profile/lsp0-erc725account.md)** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens, but they will be used mainly to control these accounts and not to hold them.
-
-To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) and mint functions:
-
-- If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
-
-![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
-
-:::note
-
-It's advised to set the **force** bool as **False** when transferring or minting tokens to avoid sending them to the wrong address.
-
-:::
-
-- If set to **TRUE**, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
-
-![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
-
-Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
-
-### Token Hooks
+### LSP1 Token Hooks
 
 :::caution
 
@@ -96,11 +74,42 @@ During an **ERC20 token transfer**, the sender's balance is decreased, and the r
 
 ![ERC20 Transfer](/img/standards/lsp7/erc20-transfer.jpeg)
 
-During an **LSP7 token transfer**, as well as updating the balances, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
+During an **LSP7 token transfer**, as well as updating the balances, both the sender and recipient are informed of the transfer by calling their **[`universalReceiver(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function (if these are both smart contracts).
 
 ![LSP7DigitalAsset Transfer](/img/standards/lsp7/lsp7-transfer.jpeg)
 
 In this way, users are **informed** about the token transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
+
+If the sender and recipient are smart contracts that implement the LSP1 standard, the LSP7 token contract will notify them using the following `bytes32 typeIds` when calling their `universalReceiver(...)` function.
+
+| address notified       | `bytes32` typeId used                                                | description                                     |
+| ---------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| Token sender (`from`)  | `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` | `keccak256('LSP7Tokens_SenderNotification')`    |
+| Token recipient (`to`) | `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` | `keccak256('LSP7Tokens_RecipientNotification')` |
+
+### `allowNonLSP1Recipient` boolean
+
+:::success
+
+It is advised to set the `allowNonLSP1Recipient` boolean to `false` when transferring or minting tokens to avoid sending them to the wrong address.
+
+For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
+
+:::
+
+It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts](../universal-profile/lsp0-erc725account.md)** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens, but they will be used mainly to control these accounts and not to hold them.
+
+To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)``](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) and `_mint(...)` functions:
+
+- If set to `false`, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
+
+![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
+
+- If set to `true`, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
+
+![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
+
+Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 
 ## References
 
