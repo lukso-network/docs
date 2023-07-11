@@ -188,7 +188,7 @@ The **UniversalReceiverDelegate** contracts **provides optional interactions** t
 
 See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)** standard for more information.
 
-Check the [**LSP14 functions**](../smart-contracts/lsp14-ownable-2-step.md) allowing 2 step ownership transfers.
+Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md) allowing 2 step ownership transfers.
 
 Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../guides/key-manager/upgrade-lsp6.md).
 
