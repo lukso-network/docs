@@ -98,6 +98,11 @@ module.exports = {
             from: '/standards/smart-contracts/lsp4-digital-asset-metadata',
             to: '/contracts/contracts/LSP4DigitalAssetMetadata',
           },
+          // FAQ new structure
+          {
+            from: '/faq/lukso',
+            to: '/faq/lukso/general-information',
+          },
         ],
       },
     ],
