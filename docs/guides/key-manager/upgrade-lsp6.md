@@ -188,7 +188,7 @@ const newKeyManager = await new ethers.ContractFactory(
 
 ### Step 5.1 - Transfer Ownership to your new Key Manager
 
-Create a calldata for the [`transferOwnership(address)`](../../standards/smart-contracts/lsp14-ownable-2-step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
+Create a calldata for the [`transferOwnership(address)`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
 
 <Tabs>
   
@@ -218,7 +218,7 @@ await universalProfile
 
 ### Step 5.2 - Accept Ownership from your new Key Manager
 
-Create a calldata for the [`acceptOwnership()`](../../standards/smart-contracts/lsp14-ownable-2-step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
+Create a calldata for the [`acceptOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
 
 <!-- prettier-ignore-start -->
 

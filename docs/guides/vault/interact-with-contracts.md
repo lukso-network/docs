@@ -124,7 +124,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 Further we will create instances for our contracts
 
-- Create an Universal Profile contract instance from `universalProfileAddress`.
+- Create a Universal Profile contract instance from `universalProfileAddress`.
 - Create a Target Contract instance from the `targetContractAddress`.
 
 <Tabs>
