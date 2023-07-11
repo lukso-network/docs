@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # Peer Connections
 
-### What can I do if my peer connections are low?
+## What can I do if my peer connections are low?
 
 You can maximize the peer count for both the execution and consensus clients **within the configuration files** of your node clients. For the LUKSO CLI, these config files are stored within the configs folder of the node's working directory.
 
@@ -13,11 +13,11 @@ If you just started your node, it might take multiple hours to synchronize with 
 
 Another issue could be that your **Public IP** was not set within the node configuration. The IP address should be exposed so other peers can find and connect to your node. The LUKSO CLI automatically asks to put the public IP during the initialization. However, your public IP might change over time, resulting in your node dropping peers. Therefore, keep your public IP updated or configure a Dynamic DNS address for your node. You can find further information about the topic within the [Extended Node Guide](https://docs.luksoverse.io/docs/) written by community members.
 
-### What is the ideal peer count for my node?
+## What is the ideal peer count for my node?
 
 More peers increase bandwidth and do not necessarily lead to benefits. The default value of 50 execution peers was chosen wisely by the network team, as you might run into router bandwidth issues above. Make sure your router is capable of handling higher loads and requests. It's not recommended to set your execution peer limit any higher than 100 in grown-out networks. **Ideally, you want an evenly spread network that favors decentralization** while being energy and data efficient.
 
-### Are there drawbacks to setting my peer count too high?
+## Are there drawbacks to setting my peer count too high?
 
 Setting your peer count too high can have adverse side effects:
 
@@ -27,10 +27,10 @@ Setting your peer count too high can have adverse side effects:
 
 - **Wasted Connections**: There's a point beyond which additional connections don't provide a meaningful increase in data propagation speed or network resilience, for instance, if you are already connected to 33% or more percent for smaller networks or more than 100 active peers for bigger ones. Peers beyond this point are just wasting connections, harming the topology, and consuming resources without providing additional benefits.
 
-### Why do my execution and consensus peers differ?
+## Why do my execution and consensus peers differ?
 
 The execution and consensus peers are not the same. Both the execution and consensus clients gather independent communication channels to other nodes. There is no mechanism where the clients exchange their peer count.
 
-### Is it essential to have many consensus peers?
+## Is it essential to have many consensus peers?
 
 The consensus client follows the chain and will synchronize only to the final epoch. Once finality is reached, it is not necessarily important how many peers the execution node has. A few peers would already be enough.

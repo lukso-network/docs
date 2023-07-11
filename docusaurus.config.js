@@ -98,6 +98,15 @@ module.exports = {
             from: '/standards/smart-contracts/lsp4-digital-asset-metadata',
             to: '/contracts/contracts/LSP4DigitalAssetMetadata',
           },
+          // FAQ New Structure
+          {
+            from: '/faq/network/network',
+            to: '/faq/network/blockchain-architecture',
+          },
+          {
+            from: '/networks/faq/validator',
+            to: '/faq/network/validators',
+          },
         ],
       },
     ],
