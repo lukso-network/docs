@@ -103,6 +103,10 @@ module.exports = {
             to: '/contracts/contracts/LSP4DigitalAssetMetadata',
           },
           {
+            from: '/contracts/smart-contracts/lsp6-key-manager',
+            to: '/contracts/contracts/LSP6KeyManager',
+          },
+          {
             from: '/standards/smart-contracts/lsp7-digital-assets',
             to: '/contracts/contracts/LSP7DigitalAsset',
           },
@@ -111,8 +115,8 @@ module.exports = {
             to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
           },
           {
-            from: '/contracts/smart-contracts/lsp6-key-manager',
-            to: '/contracts/contracts/LSP6KeyManager',
+            from: '/standards/smart-contracts/lsp14-ownable-2-step',
+            to: '/contracts/contracts/LSP14Ownable2Step',
           },
         ],
       },

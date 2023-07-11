@@ -102,9 +102,9 @@ See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)**
 
 This standard allows for the **LSP9 - Vault** contract's ownership to be controlled by an EOA or by another contract, by implementing **3 essential methods**:
 
-- [`transferOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#transferownership)
-- [`acceptOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#acceptownership)
-- [`renounceOwnership()`](../smart-contracts/lsp14-ownable-2-step.md#renounceownership)
+- [`transferOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md)
+- [`acceptOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md)
+- [`renounceOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md)
 
 ### Flow
 
