@@ -31,7 +31,7 @@ We previously saw how to use `setData(...)` to update data in our UP contract's 
 
 ### Basics of the `execute(...)` function
 
-The [`execute(operation,to,value,data)`](../../standards/smart-contracts/erc725-contract.md#execute---erc725x) function from [ERC725X](../../standards/lsp-background/erc725.md#erc725x---generic-executor) enable us to use our UP to interact with other addresses, such as transferring LYX or calling other smart contracts. This function takes four arguments (see [ERC725 API docs](../../standards/smart-contracts/erc725-contract.md#execute---erc725x)).
+The [`execute(operation,to,value,data)`](../../contracts/contracts/ERC725/ERC725.md#execute) function from [ERC725X](../../standards/lsp-background/erc725.md#erc725x---generic-executor) enable us to use our UP to interact with other addresses, such as transferring LYX or calling other smart contracts. This function takes four arguments (see [ERC725 API docs](../../contracts/contracts/ERC725/ERC725.md#execute)).
 
 We can use this function to transfer LYX from our UP to any address (including another UP). Transferring LYX from our UP is as simple as making a standard [`CALL`](../../standards/universal-profile/lsp6-key-manager.md#permission-values) to any `address`, attaching some **value** to the call.
 
@@ -187,12 +187,7 @@ const amount = web3.utils.toWei('3'); // amount of LYX we want to transfer
 // calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x'; // empty data
 
-await myUP.methods.execute(
-  OPERATION_CALL,
-  recipient,
-  amount,
-  data,
-).send({
+await myUP.methods.execute(OPERATION_CALL, recipient, amount, data).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
@@ -208,14 +203,7 @@ const recipient = '0x...'; // address of the recipient (any address, including a
 const amount = ethers.utils.parseEther('3'); // amount of LYX we want to transfer
 const data = '0x'; // calldata executed at the target (here nothing, just a plain LYX transfer)
 
-await myUP
-  .connect(myEOA)
-  .execute(
-    OPERATION_CALL,
-    recipient,
-    amount,
-    data,
-  );
+await myUP.connect(myEOA).execute(OPERATION_CALL, recipient, amount, data);
 ```
 
   </TabItem>
@@ -247,12 +235,7 @@ const amount = web3.utils.toWei('3');
 // calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x';
 
-await myUP.methods.execute(
-  OPERATION_CALL,
-  recipient,
-  amount,
-  data,
-).send({
+await myUP.methods.execute(OPERATION_CALL, recipient, amount, data).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
@@ -282,14 +265,7 @@ const amount = ethers.utils.parseEther('3'); // amount of LYX we want to transfe
 // calldata executed at the target (here nothing, just a plain LYX transfer)
 const data = '0x';
 
-await myUP
-  .connect(myEOA)
-  .execute(
-    OPERATION_CALL,
-    recipient,
-    amount,
-    data,
-  );
+await myUP.connect(myEOA).execute(OPERATION_CALL, recipient, amount, data);
 ```
 
   </TabItem>
