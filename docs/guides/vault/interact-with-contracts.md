@@ -124,7 +124,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 Further we will create instances for our contracts
 
-- Create an Universal Profile contract instance from `universalProfileAddress`.
+- Create a Universal Profile contract instance from `universalProfileAddress`.
 - Create a Target Contract instance from the `targetContractAddress`.
 
 <Tabs>
@@ -388,4 +388,4 @@ await universalProfile
 
 </Tabs>
 
-In the code snippet above, we interacted with `myCoolfunction(..)` function on the **targetContract** contract through the Vault's [execute](../../standards/smart-contracts/lsp9-vault.md#execute) function. The call was encoded and executed through the Universal Profile.
+In the code snippet above, we interacted with `myCoolfunction(..)` function on the **targetContract** contract through the Vault's [execute](../../contracts/contracts/LSP9Vault/LSP9Vault.md#execute) function. The call was encoded and executed through the Universal Profile.

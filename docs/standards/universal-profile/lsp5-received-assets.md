@@ -25,7 +25,6 @@ Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-backgroun
 
 :::
 
-
 This Metadata standard describes two data keys that can be added to an [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) smart contract to reference and keep track of received assets.
 
 ### `LSP5ReceivedAssets[]`
@@ -75,7 +74,7 @@ The data keys are also set on the **sender Universal Profile** to remove the tok
 
 :::
 
-If set when transferring tokens, these data keys are automatically updated in the Universal Profile storage via the [LSP1UniversalReceiverDelegateUP](../smart-contracts/lsp1-universal-receiver-delegate-up.md) contract.
+If set when transferring tokens, these data keys are automatically updated in the Universal Profile storage via the [LSP1UniversalReceiverDelegateUP](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md) contract.
 
 :::note
 Check the [token transfer scenario](../generic-standards/lsp1-universal-receiver-delegate#token-transfer-scenario) for more details.

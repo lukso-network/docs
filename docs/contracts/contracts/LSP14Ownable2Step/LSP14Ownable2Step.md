@@ -1,83 +1,106 @@
-# LSP4DigitalAssetMetadata
+# LSP14Ownable2Step
 
-:::info Solidity contract
+:::info Soldity contract
 
-[`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+[`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 
 :::
 
-> Implementation of a LSP4DigitalAssetMetadata contract that stores the **Token-Metadata** (`LSP4TokenName` and `LSP4TokenSymbol`) in its ERC725Y data store.
+> LSP14Ownable2Step
 
-Standard Implementation of the LSP4 standard.
+This contract is a modified version of the [`OwnableUnset.sol`] implementation, where transferring and renouncing ownership works as a 2-step process. This can be used as a confirmation mechanism to prevent potential mistakes when transferring ownership of the contract, where the control of the contract could be lost forever.
 
 ## Methods
 
-### getData
+### RENOUNCE_OWNERSHIP_CONFIRMATION_DELAY
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#getdata)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `getData(bytes32)`
-- Function selector: `0x54f6127f`
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounce_ownership_confirmation_delay)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Function signature: `RENOUNCE_OWNERSHIP_CONFIRMATION_DELAY()`
+- Function selector: `0xead3fbdf`
 
 :::
 
 ```solidity
-function getData(bytes32 dataKey) external view returns (bytes dataValue);
+function RENOUNCE_OWNERSHIP_CONFIRMATION_DELAY()
+  external
+  view
+  returns (uint256);
 ```
 
-_Gets singular data at a given `dataKey`_
-
-#### Parameters
-
-| Name      |   Type    | Description                     |
-| --------- | :-------: | ------------------------------- |
-| `dataKey` | `bytes32` | The key which value to retrieve |
+The number of block that MUST pass before one is able to confirm renouncing ownership.
 
 #### Returns
 
-| Name        |  Type   | Description                |
-| ----------- | :-----: | -------------------------- |
-| `dataValue` | `bytes` | The data stored at the key |
+| Name |   Type    | Description       |
+| ---- | :-------: | ----------------- |
+| `0`  | `uint256` | Number of blocks. |
 
-### getDataBatch
+### RENOUNCE_OWNERSHIP_CONFIRMATION_PERIOD
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#getdatabatch)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `getDataBatch(bytes32[])`
-- Function selector: `0xdedff9c6`
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounce_ownership_confirmation_period)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Function signature: `RENOUNCE_OWNERSHIP_CONFIRMATION_PERIOD()`
+- Function selector: `0x01bfba61`
 
 :::
 
 ```solidity
-function getDataBatch(
-  bytes32[] dataKeys
-) external view returns (bytes[] dataValues);
+function RENOUNCE_OWNERSHIP_CONFIRMATION_PERIOD()
+  external
+  view
+  returns (uint256);
 ```
 
-_Gets array of data for multiple given keys_
-
-#### Parameters
-
-| Name       |    Type     | Description                                |
-| ---------- | :---------: | ------------------------------------------ |
-| `dataKeys` | `bytes32[]` | The array of keys which values to retrieve |
+The number of blocks during which one can renounce ownership.
 
 #### Returns
 
-| Name         |   Type    | Description                               |
-| ------------ | :-------: | ----------------------------------------- |
-| `dataValues` | `bytes[]` | The array of data stored at multiple keys |
+| Name |   Type    | Description       |
+| ---- | :-------: | ----------------- |
+| `0`  | `uint256` | Number of blocks. |
+
+### acceptOwnership
+
+:::note Links
+
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#acceptownership)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Function signature: `acceptOwnership()`
+- Function selector: `0x79ba5097`
+
+:::
+
+```solidity
+function acceptOwnership() external nonpayable;
+```
+
+_`msg.sender` is accepting ownership of contract: `address(this)`._
+
+Transfer ownership of the contract from the current [`owner()`](#owner) to the [`pendingOwner()`](#pendingowner). Once this function is called:
+
+- The current [`owner()`](#owner) will loose access to the functions restricted to the [`owner()`](#owner) only.
+
+- The [`pendingOwner()`](#pendingowner) will gain access to the functions restricted to the [`owner()`](#owner) only.
+
+<blockquote>
+
+**Requirements:**
+
+- This function can only be called by the [`pendingOwner()`](#pendingowner).
+
+</blockquote>
 
 ### owner
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#owner)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#owner)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -95,14 +118,49 @@ Returns the address of the current owner.
 | ---- | :-------: | ----------- |
 | `0`  | `address` | -           |
 
+### pendingOwner
+
+:::note Links
+
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#pendingowner)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Function signature: `pendingOwner()`
+- Function selector: `0xe30c3978`
+
+:::
+
+:::info
+
+If no ownership transfer is in progress, the pendingOwner will be `address(0).`.
+
+:::
+
+```solidity
+function pendingOwner() external view returns (address);
+```
+
+The address that ownership of the contract is transferred to. This address may use [`acceptOwnership()`](#acceptownership) to gain ownership of the contract.
+
+#### Returns
+
+| Name |   Type    | Description |
+| ---- | :-------: | ----------- |
+| `0`  | `address` | -           |
+
 ### renounceOwnership
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#renounceownership)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounceownership)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
+
+:::
+
+:::danger
+
+Leaves the contract without an owner. Once ownership of the contract has been renounced, any functions that are restricted to be called by the owner will be permanently inaccessible, making these functions not callable anymore and unusable.
 
 :::
 
@@ -110,93 +168,20 @@ Returns the address of the current owner.
 function renounceOwnership() external nonpayable;
 ```
 
-Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+_`msg.sender` is renouncing ownership of contract: `address(this)`._
 
-### setData
+Renounce ownership of the contract in a 2-step process.
 
-:::note Links
+1. The first call will initiate the process of renouncing ownership.
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#setdata)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `setData(bytes32,bytes)`
-- Function selector: `0x7f23690c`
-
-:::
-
-```solidity
-function setData(bytes32 dataKey, bytes dataValue) external payable;
-```
-
-_Sets singular data for a given `dataKey`_
-
-#### Parameters
-
-| Name        |   Type    | Description                                                                                                                                                                                                                                                                                                           |
-| ----------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
-| `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
-
-### setDataBatch
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#setdatabatch)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `setDataBatch(bytes32[],bytes[])`
-- Function selector: `0x97902421`
-
-:::
-
-```solidity
-function setDataBatch(bytes32[] dataKeys, bytes[] dataValues) external payable;
-```
-
-Sets array of data for multiple given `dataKeys` SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal
-
-0. Emits a [`DataChanged`](#datachanged) event.
-
-#### Parameters
-
-| Name         |    Type     | Description                              |
-| ------------ | :---------: | ---------------------------------------- |
-| `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
-| `dataValues` |  `bytes[]`  | The array of values to set               |
-
-### supportsInterface
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#supportsinterface)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `supportsInterface(bytes4)`
-- Function selector: `0x01ffc9a7`
-
-:::
-
-```solidity
-function supportsInterface(bytes4 interfaceId) external view returns (bool);
-```
-
-See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
-
-#### Parameters
-
-| Name          |   Type   | Description |
-| ------------- | :------: | ----------- |
-| `interfaceId` | `bytes4` | -           |
-
-#### Returns
-
-| Name |  Type  | Description |
-| ---- | :----: | ----------- |
-| `0`  | `bool` | -           |
+2. The second is used as a confirmation and will leave the contract without an owner.
 
 ### transferOwnership
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#transferownership)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#transferownership)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -206,48 +191,77 @@ See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
 function transferOwnership(address newOwner) external nonpayable;
 ```
 
-Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
+_Transfer ownership initiated by `newOwner`._
+
+Initiate the process of transferring ownership of the contract by setting the new owner as the pending owner. If the new owner is a contract that supports + implements LSP1, this will also attempt to notify the new owner that ownership has been transferred to them by calling the [`universalReceiver()`](#universalreceiver) function on the `newOwner` contract.
+
+<blockquote>
+
+**Requirements:**
+
+- `newOwner` cannot accept ownership of the contract in the same transaction.
+
+</blockquote>
 
 #### Parameters
 
-| Name       |   Type    | Description |
-| ---------- | :-------: | ----------- |
-| `newOwner` | `address` | -           |
-
----
+| Name       |   Type    | Description                   |
+| ---------- | :-------: | ----------------------------- |
+| `newOwner` | `address` | The address of the new owner. |
 
 ## Events
 
-### DataChanged
+### OwnershipRenounced
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#datachanged)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Event signature: `DataChanged(bytes32,bytes)`
-- Event hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiprenounced)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Event signature: `OwnershipRenounced()`
+- Event hash: `0xd1f66c3d2bc1993a86be5e3d33709d98f0442381befcedd29f578b9b2506b1ce`
 
 :::
 
 ```solidity
-event DataChanged(bytes32 indexed dataKey, bytes dataValue);
+event OwnershipRenounced();
 ```
 
-_Emitted when data at a key is changed_
+_Ownership renouncement complete._
+
+Emitted when the ownership of the contract has been renounced.
+
+### OwnershipTransferStarted
+
+:::note Links
+
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiptransferstarted)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Event signature: `OwnershipTransferStarted(address,address)`
+- Event hash: `0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700`
+
+:::
+
+```solidity
+event OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner);
+```
+
+_Ownership transfer initiated. From: `previousOwner`. To: `newOwner`._
+
+Emitted when starting the [`transferOwnership(..)`](#transferownership) 2-step process.
 
 #### Parameters
 
-| Name                    |   Type    | Description |
-| ----------------------- | :-------: | ----------- |
-| `dataKey` **`indexed`** | `bytes32` | -           |
-| `dataValue`             |  `bytes`  | -           |
+| Name                          |   Type    | Description                       |
+| ----------------------------- | :-------: | --------------------------------- |
+| `previousOwner` **`indexed`** | `address` | The address of the previous owner |
+| `newOwner` **`indexed`**      | `address` | The address of the new owner      |
 
 ### OwnershipTransferred
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#ownershiptransferred)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiptransferred)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Event signature: `OwnershipTransferred(address,address)`
 - Event hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
 
@@ -257,101 +271,85 @@ _Emitted when data at a key is changed_
 event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 ```
 
+_Ownership transfering from: `previousOwner` to `newOwner`._
+
+Emitted when ownership is tranferred.
+
 #### Parameters
 
-| Name                          |   Type    | Description |
-| ----------------------------- | :-------: | ----------- |
-| `previousOwner` **`indexed`** | `address` | -           |
-| `newOwner` **`indexed`**      | `address` | -           |
+| Name                          |   Type    | Description                        |
+| ----------------------------- | :-------: | ---------------------------------- |
+| `previousOwner` **`indexed`** | `address` | The address of the previous owner. |
+| `newOwner` **`indexed`**      | `address` | The address of the new owner.      |
 
----
+### RenounceOwnershipStarted
+
+:::note Links
+
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounceownershipstarted)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Event signature: `RenounceOwnershipStarted()`
+- Event hash: `0x81b7f830f1f0084db6497c486cbe6974c86488dcc4e3738eab94ab6d6b1653e7`
+
+:::
+
+```solidity
+event RenounceOwnershipStarted();
+```
+
+_Ownership renouncement initiated._
+
+Emitted when starting the [`renounceOwnership(..)`](#renounceownership) 2-step process.
 
 ## Errors
 
-### ERC725Y_DataKeysValuesEmptyArray
+### CannotTransferOwnershipToSelf
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
-- Error hash: `0x97da5f95`
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#cannottransferownershiptoself)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Error signature: `CannotTransferOwnershipToSelf()`
+- Error hash: `0x43b248cd`
 
 :::
 
 ```solidity
-error ERC725Y_DataKeysValuesEmptyArray();
+error CannotTransferOwnershipToSelf();
 ```
 
-reverts when one of the array parameter provided to `setDataBatch` is an empty array
+_Cannot transfer ownerhsip to yourself._
 
-### ERC725Y_DataKeysValuesLengthMismatch
+Reverts when trying to transfer ownership to the `address(this)`
+
+### NotInRenounceOwnershipInterval
 
 :::note Links
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
-- Error hash: `0x3bcc8979`
+- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#notinrenounceownershipinterval)
+- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Error signature: `NotInRenounceOwnershipInterval(uint256,uint256)`
+- Error hash: `0x8b9bf507`
 
 :::
 
 ```solidity
-error ERC725Y_DataKeysValuesLengthMismatch();
+error NotInRenounceOwnershipInterval(
+  uint256 renounceOwnershipStart,
+  uint256 renounceOwnershipEnd
+);
 ```
 
-reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
+_Cannot confirm ownership renouncement yet. The ownership renouncement is allowed from: `renounceOwnershipStart` until: `renounceOwnershipEnd`._
 
-### ERC725Y_MsgValueDisallowed
+Reverts when trying to renounce ownership before the initial confirmation delay
 
-:::note Links
+#### Parameters
 
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_msgvaluedisallowed)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_MsgValueDisallowed()`
-- Error hash: `0xf36ba737`
-
-:::
-
-```solidity
-error ERC725Y_MsgValueDisallowed();
-```
-
-reverts when sending value to the `setData(..)` functions
-
-### LSP4TokenNameNotEditable
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#lsp4tokennamenoteditable)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `LSP4TokenNameNotEditable()`
-- Error hash: `0x85c169bd`
-
-:::
-
-```solidity
-error LSP4TokenNameNotEditable();
-```
-
-Reverts when trying to edit the data key `LSP4TokenName` after the digital asset contract has been deployed. The `LSP4TokenName` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
-
-### LSP4TokenSymbolNotEditable
-
-:::note Links
-
-- Specification details in [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#lsp4tokensymbolnoteditable)
-- Solidity implementation in [**LSP4DigitalAssetMetadata**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `LSP4TokenSymbolNotEditable()`
-- Error hash: `0x76755b38`
-
-:::
-
-```solidity
-error LSP4TokenSymbolNotEditable();
-```
-
-Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital asset contract has been deployed. The `LSP4TokenSymbol` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
+| Name                     |   Type    | Description                                                                     |
+| ------------------------ | :-------: | ------------------------------------------------------------------------------- |
+| `renounceOwnershipStart` | `uint256` | The start of the period when you one can confirm the renouncement of ownership. |
+| `renounceOwnershipEnd`   | `uint256` | The end of the period when you one can confirm the renouncement of ownership.   |
 
 <!-- prettier-ignore-start -->
 
