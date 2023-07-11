@@ -23,7 +23,7 @@ The full potential of new accounts like Universal Profiles can't be realized if 
 
 ### Can I use a regular wallet to control my Universal Profile?
 
-As a developer, you can connect a regular wallet to the network where the Universal Profile was deployed and **manually add its EOA** as a controller. You will then have to send all transactions through the [Key Manager](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager) of the Universal Profile to execute them as your persona. However, we recommend directly using the [Universal Profile Extension](https://docs.lukso.tech/guides/browser-extension/install-browser-extension) to interact with dApps on LUKSO.
+As a developer, you can connect a regular wallet to the network where the Universal Profile was deployed and **manually add its EOA** as a controller. You will then have to send all transactions through the [Key Manager](../../standards/universal-profile/lsp6-key-manager) of the Universal Profile to execute them as your persona. However, we recommend directly using the [Universal Profile Extension](../../guides/browser-extension/install-browser-extension) to interact with dApps on LUKSO.
 
 ### How safe are assets stored within a Universal Profile?
 
@@ -31,7 +31,7 @@ The safety of a Universal Profile **depends on the security steps taken by its o
 
 ### Can I send Ether, Token, or NFTs from Ethereum to my Universal Profile?
 
-You can't send any assets to the address if you do not deploy the Universal Profile on Ethereum. Most Universal Profiles are currently deployed on the [L14 Testnet](https://docs.lukso.tech/networks/l14-testnet), a different network than Ethereum. Users will lose their assets if they send them to other networks without having access to the controller key.
+You can't send any assets to the address if you do not deploy the Universal Profile on Ethereum. Most Universal Profiles are currently deployed on the [L14 Testnet](../../networks/l14-testnet), a different network than Ethereum. Users will lose their assets if they send them to other networks without having access to the controller key.
 
 ### Which tokens and coins can my UniversalProfile hold?
 
