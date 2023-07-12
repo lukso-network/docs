@@ -11,9 +11,9 @@ LUKSO Standard Proposals, often abbreviated as [LSPs](../../standards/introducti
 
 With LSPs, the mission is to have standards that facilitate using tools that abstract the blockchain complexity, effectively minimizing the technical problems users may encounter. The goal is to **make blockchain technology as user-friendly and accessible** as standard Web 2.0 technologies. This ease of use paves the way for broader acceptance and integration of blockchain systems in everyday digital interactions.
 
-## Who can utilize [LUKSO Standard Proposals](../../standards/introduction.md)?
+## Who can utilize LUKSO Standard Proposals?
 
-LSPs are a public good and are entirely open source. They can be implemented directly on any EVM blockchain. While LSPs are implemented in Solidity by default, LUKSO ensures that the standardizations are kept platform-independent and can be rewritten in other languages for other blockchain architecture.
+[LSPs](../../standards/introduction.md) are a public good and are entirely open source. They can be implemented directly on any EVM blockchain. While LSPs are implemented in Solidity by default, LUKSO ensures that the standardizations are kept platform-independent and can be rewritten in other languages for other blockchain architecture.
 
 ## What are the main features of LSPs?
 
@@ -43,9 +43,9 @@ LUKSO has quite the advantage with first implementation as the whole user base w
 
 Thanks to the LSP4-DigitalAsset-Metadata standard that is included in the [LSP7](../../standards/nft-2.0/LSP7-Digital-Asset) Token and [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) NFT standards, **assets can hold unlimited metadata** including images, videos, gifs, and text.
 
-## When using the [LSP9](../../standards/universal-profile/lsp9-vault.md) Vault, is the NFT stored on-chain?
+## When using the LSP9 Vault, is the NFT stored on-chain?
 
-Yes, The vault is a subcontract of a UP. While the NFT contract is stored on-chain, some of its metadata will rely on a **storage solution link** that is specified in its **JSON schema**. This link can point to anything including centralized and decentralized storage solutions.
+Yes, the [LSP9 Vault](../../standards/universal-profile/lsp9-vault.md) is a subcontract of a UP. While the NFT contract is stored on-chain, some of its metadata will rely on a **storage solution link** that is specified in its **JSON schema**. This link can point to anything including centralized and decentralized storage solutions.
 
 ## Do LSPs specify a storage solution for contract data?
 
