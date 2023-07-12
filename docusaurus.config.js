@@ -122,7 +122,15 @@ module.exports = {
             from: '/standards/smart-contracts/lsp14-ownable-2-step',
             to: '/contracts/contracts/LSP14Ownable2Step',
           },
-          // FAQ new structure
+          // FAQ new Structure
+          {
+            from: '/faq/network/network',
+            to: '/faq/network/blockchain-architecture',
+          },
+          {
+            from: '/networks/faq/validator',
+            to: '/faq/network/validators',
+          },
           {
             from: '/faq/lukso',
             to: '/faq/lukso/general-information',
