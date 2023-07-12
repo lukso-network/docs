@@ -32,7 +32,7 @@ Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)**
 
 This standard was based on **[ERC721](https://eips.ethereum.org/EIPS/eip-20)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-777)** with additional features mentioned below:
 
-### Bytes32 TokenId
+### Bytes32 TokenId Type
 
 The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** **lack asset representation** as they define the tokenIds **as Numbers** `(uint256)`. Each token from the NFT collection will be defined and queried based on this tokenId, which is normally incremental.
 
@@ -76,29 +76,7 @@ The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId*
 
 :::
 
-### Force Boolean
-
-It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
-
-To ensure a **safe asset transfer**, an additional boolean parameter was added to the [transfer](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) and mint functions:
-
-- If set to **False**, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
-
-![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
-
-:::note
-
-It's advised to set the **force** bool as **False** when transferring or minting tokens to avoid sending them to the wrong address.
-
-:::
-
-- If set to **True**, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
-
-![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
-
-Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
-
-### Token Hooks
+### LSP1 Token Hooks
 
 :::caution
 
@@ -116,11 +94,41 @@ During an **ERC721 token transfer**, the ownership of the tokenId is changed fro
 
 ![ERC721 Transfer](/img/standards/lsp8/erc721-transfer.jpeg)
 
-During an **LSP8 token transfer**, as well as updating the tokenId owenrship, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
+During an **LSP8 token transfer**, as well as updating the tokenId ownership, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
 
 ![LSP8 Transfer](/img/standards/lsp8/lsp8-transfer.jpeg)
 
-In this way, users are **informed** about the NFT transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
+In this way, users are **informed** about the NFT transfer and can decide how to **react on the transfer**, either by accepting or rejecting the NFT, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
+
+If the sender and recipient are smart contracts that implement the LSP1 standard, the LSP8 token contract will notify them using the following `bytes32 typeIds` when calling their `universalReceiver(...)` function.
+
+| address notified       | `bytes32` typeId used                                                | description                                     |
+| ---------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| Token sender (`from`)  | `0xb23eae7e6d1564b295b4c3e3be402d9a2f0776c57bdf365903496f6fa481ab00` | `keccak256('LSP8Tokens_SenderNotification')`    |
+| Token recipient (`to`) | `0x0b084a55ebf70fd3c06fd755269dac2212c4d3f0f4d09079780bfa50c1b2984d` | `keccak256('LSP8Tokens_RecipientNotification')` |
+
+### `allowNonLSP1Recipient` boolean
+
+:::success
+
+It is advised to set the `allowNonLSP1Recipient` boolean to `false` when transferring or minting tokens to avoid sending them to the wrong address.
+
+For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
+:::
+
+It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
+
+To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)``](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) and `_mint(...)` functions:
+
+- If set to `false`, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
+
+![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
+
+- If set to `true`, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
+
+![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
+
+Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 
 ## References
 

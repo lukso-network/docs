@@ -64,8 +64,10 @@ To encode a transaction, we need the address of the Universal Profile smart cont
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { EIP191Signer } from '@lukso/eip191-signer.js';
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
+
+// This is the version relative to the LSP6 standard, defined as the number 6.
+import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
@@ -85,8 +87,10 @@ const controllerAccount = web3.eth.accounts.wallet.add(controllerPrivateKey);
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { EIP191Signer } from '@lukso/eip191-signer.js';
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import { ethers } from 'ethers';
+
+// This is the version relative to the LSP6 standard, defined as the number 6.
+import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const provider = new ethers.providers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
@@ -160,7 +164,7 @@ const keyManager = new ethers.Contract(
 
 ### Step 3 - Prepare the relay call parameters
 
-Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../standards/smart-contracts/lsp6-key-manager.md#getnonce) function.
+Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) function.
 
 The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
 
@@ -222,7 +226,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
 :::tip ERC725X execute
 
-You can find more information about the [ERC725X `execute` call here](../../standards/smart-contracts/erc725-contract#execute---erc725x).
+You can find more information about the [ERC725X `execute` call here](../../contracts/contracts/ERC725/ERC725.md#execute).
 
 :::
 
@@ -243,7 +247,7 @@ For more information check: [**How to sign relay transactions?**](../../standard
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Sign the transaction"
-const chainId = await web3.eth.getChainId(); // will be 2828 on L16
+const chainId = await web3.eth.getChainId();
 
 let encodedMessage = web3.utils.encodePacked(
   { value: LSP6_VERSION, type: 'uint256' },
@@ -268,7 +272,7 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Sign the transaction"
-const { chainId } = await provider.getNetwork(); // will be 2828 on L16
+const { chainId } = await provider.getNetwork();
 
 let encodedMessage = ethers.utils.solidityPack(
   ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
@@ -288,7 +292,7 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 
 </Tabs>
 
-Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
+Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 ## Execute via `executeRelayCall`
 
@@ -347,7 +351,7 @@ const executeRelayCallTransaction = await keyManager
 
 :::tip LSP6KeyManager executeRelayCall
 
-You can find more information about the [LSP6KeyManager `executeRelayCall` here](../../standards/smart-contracts/lsp6-key-manager#executerelaycall).
+You can find more information about the [LSP6KeyManager `executeRelayCall` here](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 :::
 
@@ -361,8 +365,10 @@ You can find more information about the [LSP6KeyManager `executeRelayCall` here]
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { EIP191Signer } from '@lukso/eip191-signer.js';
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
+
+// This is the version relative to the LSP6 standard, defined as the number 6.
+import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
@@ -435,8 +441,10 @@ const executeRelayCallTransaction = await keyManager.methods
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { EIP191Signer } from '@lukso/eip191-signer.js';
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 import { ethers } from 'ethers';
+
+// This is the version relative to the LSP6 standard, defined as the number 6.
+import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const provider = new ethers.providers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
