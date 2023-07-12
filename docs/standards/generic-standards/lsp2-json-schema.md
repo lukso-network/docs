@@ -234,3 +234,40 @@ bytes32 dataKey = bytes32(
 ```
 
 </details>
+
+## `valueType` encoding
+
+:::success Recommendation
+
+Watch our following video for an overview of how static types (`uintM`, `bytesN`, `bool`), `bytes` and `string` are encoded in the [ERC725Y](../lsp-background/erc725.md#erc725y-data-representation) storage of a smart contract using the LSP2 standard.
+
+:::
+
+<div class="video-container">
+<iframe src="https://www.youtube.com/embed/6uj8Lbodf5A" title="LSP2 Encoding - static types" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+LSP2 differs in terms of how data is encoded depending on its type. As a basic summary, LSP2 and the [ABI](https://docs.soliditylang.org/en/latest/abi-spec.html) encoding specification can be compared as follow:
+
+**Differences:**
+
+- static types (types that have a fixed size like `uintM`, `bytesN` and `bool`) are encoded as they are without any padding to make a 32 bytes long word.
+- `bytes` and `string` are also encoded as they are as arbitrary bytes, without any 32 bytes words for the offset or the data length.
+
+**Similarities**
+
+- any array types (_e.g: `uintM[]`, `bytesN[]`, `bool`, etc..._) in LSP2 are ABI encoded the same way as the ABI specification.
+
+Below is a table that describe the LSP2 encoding format for `valueTypes`.
+
+| `valueType`                                                                      | Encoding                                                                            | Example                                                                             |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `bool`                                                                           | `0x01` (for `true`) or `0x00` (for `false`)                                         |                                                                                     |
+| `string`                                                                         | as utf8 hex bytes <br/> **without padding ❌**                                      | `"Hello"` --> `0x48656c6c6f`                                                        |
+| `address`                                                                        | as a 20 bytes long address                                                          | `0x388C818CA8B9251b393131C08a736A67ccB19297`                                        |
+| `uin256`                                                                         | as a hex value 32 bytes long <br/> **left padded** with zeros to fill 32 bytes      | number `5` --> `0x0000000000000000000000000000000000000000000000000000000000000005` |
+| `uintM` <br/> (where ` N` is a multiple of **8 bits** in the range`8 > N > 256`) | as a hex value **`M` bits long** <br/> **left padded** with zeros to fill `M` bytes | number `5` as `uint32` --> `0x00000005`                                             |
+| `bytes32`                                                                        | as a hex value 32 bytes long <br/> **right padded** to fill 32 bytes                | `0xca5ebeeff00dca11ab1efe6701df563bc1add009076ded6bcf4c6f771f2e3436`                |
+| `bytes4`                                                                         | as a hex value 4 bytes long <br/> **right padded** to fill 4 bytes                  | `0xcafecafe`                                                                        |
+| `bytesN` (from 1 to 32)                                                          | as a hex value **`N` bytes long** <br/> **right padded** to fill `N` bytes          |                                                                                     |
+| `bytes`                                                                          | as hex bytes of any length <br/> **without padding** ❌                             | `0xcafecafecafecafecafecafecafecafe...`                                             |
