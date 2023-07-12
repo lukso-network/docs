@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Project Differentiation
 
-## How does Universal Profile differ from ENS?
+## How do Universal Profiles differ from ENS?
 
 The [Ethereum Name Service](https://docs.ens.domains/) (ENS) and Universal Profiles serve different purposes but can complement each other in the blockchain ecosystem. While they might look similar from the outside, they **differ in their tech stack and target**.
 
