@@ -35,7 +35,7 @@ On newer networks, like LUKSO, fewer users equate to **less competition and lowe
 
 ## What EVM Protocol Upgrades are live on LUKSO?
 
-The LUKSO Mainnet is up to date with [every Ethereum fork](https://ethereum.org/en/history/) until Shanghai, which was released in 2023. Except for Shapella (Capella and Shanghai), all upgrades were integrated within the mainnet launch.
+The LUKSO Mainnet is up to date with [every Ethereum fork](https://ethereum.org/en/history/) until Shanghai and Capella. All upgrades, except for Shapella (Capella and Shanghai), were integrated within the mainnet launch on block `0`. Shapella got activated at block `1687969198` on 28th June 2023.
 
 ## Why is client diversity so important?
 
