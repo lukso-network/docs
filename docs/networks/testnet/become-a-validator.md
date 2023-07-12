@@ -80,7 +80,7 @@ If you are a pro user or want to set up the testnet node in a cloud environment,
 
 ## Need Help?
 
-Check the [Network FAQ](../faq/validator.md) section.
+Check the [Network FAQ](../../faq/network/validators.md) section.
 
 Ask your question in the validators channel on the [official LUKSO Discord server](https://discord.gg/lukso).
 
