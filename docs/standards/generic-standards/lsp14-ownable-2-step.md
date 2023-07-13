@@ -32,7 +32,7 @@ What is needed is a safer mechanism for managing contract ownership.
 
 2. For _renouncing ownership_ the method `renounceOwnership()` is modified in the following way. The **owner** of the contract need to firstly initiate the process of _renouncing ownership_ which starts a countdown of **200 blocks** which are broken into two _distinct periods_. The **first 100 blocks** are meant to be waited, a period when one can reflect upon the desire of renouncing ownership of the contract. The **second 100 blocks** are meant for confirming the ownership renouncement process. After a total of **200 blocks** pass from the initiation, the process is restarted.
 
-In addition, this standard defines hooks that call the **[universalReceiver(...)](../smart-contracts/lsp0-erc725-account.md#universalreceiver)** function of the current owner and new owner, if these addresses are contracts that implement LSP1.
+In addition, this standard defines hooks that call the **[universalReceiver(...)](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function of the current owner and new owner, if these addresses are contracts that implement LSP1.
 
 ### Transferring the contract ownership
 

@@ -63,7 +63,7 @@ Some of the LSP standards do not have a contract implementation as they represen
 
 The **Universal Profile** contracts allow a better representation of the identity on the blockchain and better control over it.
 
-- **[LSP0ERC725Account](../standards/smart-contracts/lsp0-erc725-account.md)**: a contract that can be used as an account and represents an **identity on-chain**.
+- **[LSP0ERC725Account](../contracts/contracts/LSP0ERC725Account)**: a contract that can be used as an account and represents an **identity on-chain**.
 - **[LSP1UniversalReceiverDelegateUP](./contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)**: a contract that allows the account to react to the calls that it receives (Normal transaction, Token transfer, Vaults transfer, etc.).
 - **[LSP6KeyManager](../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md)**: a contract that allows **multi-control** over the account using different permissions.
 - **LSP11BasicSocialRecovery**
