@@ -43,10 +43,10 @@ Read more about configuring Universal Profile smart contracts deployment [here](
 
 Object containing profile properties set during Universal Profile deployment.
 
-| Name                                                                             | Type             | Description                                                                                                                                                                                              |
-| :------------------------------------------------------------------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`controllerAddresses`](../deployment/universal-profile#controller-addresses)    | Array            | A list of public addresses which will have all [LSP6 permissions](../../../standards/smart-contracts/lsp6-key-manager.md) except `DELEGATECALL` set on the Universal Profile contract during deployment. |
-| [`lsp3Profile`](../deployment/universal-profile#adding-lsp3-metadata) (optional) | String \| Object | [LSP3 Profile metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md) which will be uploaded and set during deployment.                                       |
+| Name                                                                             | Type             | Description                                                                                                                                                                                                     |
+| :------------------------------------------------------------------------------- | :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`controllerAddresses`](../deployment/universal-profile#controller-addresses)    | Array            | A list of public addresses which will have all [LSP6 permissions](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) except `DELEGATECALL` set on the Universal Profile contract during deployment. |
+| [`lsp3Profile`](../deployment/universal-profile#adding-lsp3-metadata) (optional) | String \| Object | [LSP3 Profile metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md) which will be uploaded and set during deployment.                                              |
 
 #### 2. `options` - Object (optional)
 
@@ -174,7 +174,7 @@ await lspFactory.UniversalProfile.deploy(
         console.log(contracts);
       },
     },
-  }
+  },
 );
 
 /**
@@ -508,7 +508,7 @@ await UniversalProfile.uploadProfileData(
   },
   {
     ipfsGateway: 'https://ipfs.infura.io',
-  }
+  },
 );
 
 /**
@@ -540,7 +540,7 @@ await UniversalProfile.uploadProfileData(
       port: 5001,
       protocol: 'https',
     },
-  }
+  },
 );
 
 /**
