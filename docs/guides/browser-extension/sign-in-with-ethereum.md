@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Sign-In with Ethereum'
-sidebar_position: 4
+sidebar_position: 
 ---
 
 import Tabs from '@theme/Tabs';
