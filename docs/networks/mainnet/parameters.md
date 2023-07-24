@@ -20,8 +20,9 @@ The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis D
 | Execution Block Explorer | <https://explorer.execution.mainnet.lukso.network> |
 | Execution Status Page    | <https://stats.execution.mainnet.lukso.network>    |
 | Consensus Block Explorer | <https://explorer.consensus.mainnet.lukso.network> |
-| Consensus Status Page    | <https://stats.consensus.mainnet.lukso.network/>   |
-| Launchpad                | <https://deposit.mainnet.lukso.network/>           |
+| Consensus Status Page    | <https://stats.consensus.mainnet.lukso.network>    |
+| Launchpad                | <https://deposit.mainnet.lukso.network>            |
+| Checkpoints              | <https://checkpoints.mainnet.lukso.network>        |
 
 The mainnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/mainnet/shared) repo.
 
