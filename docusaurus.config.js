@@ -10,6 +10,13 @@ module.exports = {
   favicon: 'img/favicon.png',
   organizationName: 'lukso-network', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
+  scripts: [
+    {
+      src: 'https://plausible.io/js/script.js',
+      defer: true,
+      'data-domain': 'docs.lukso.tech',
+    },
+  ],
   plugins: [
     'docusaurus-plugin-sass',
     'plugin-image-zoom',
