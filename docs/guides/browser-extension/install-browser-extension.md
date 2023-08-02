@@ -42,18 +42,19 @@ Projects built by the LUKSO community:
 
 Click on link below to download the extension, based on the browser to which you want to install it.
 
-### :inbox_tray: **[Download link (v1.3.3-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.3.3-mv2.zip) (All other browsers)**
+### :inbox_tray: **[Download from Chrome Web Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) (Chrome / Brave)**
 
-### :inbox_tray: **[Download from Chrome Web Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) (Chrome)**
+
+### :inbox_tray: **[Download Archive](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.4.0-mv2.zip) (All other browsers)**
 
 ## Unpack the archive
 
 Open your download folder and unpack the ZIP archive by opening the file.
 
-## Install the extension
+## Install the extension 
 
 <Tabs>
-  <TabItem value="chrome" label="Chrome">
+  <TabItem value="chrome" label="Chrome / Brave">
 
 ## 1. Simply download the extension from the [Chrome Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn)
 
@@ -147,50 +148,7 @@ Open the extension by clicking its icon from the menu bar.
 
 ![Step 5 - Opera: Open Extension](/img/extension/opera5.png)
 
-  </TabItem>
-  <TabItem value="brave" label="Brave">
-
-#### 1. Open the extension page in your browser.
-
-<Tabs>
-  <TabItem value="brave-settings" label="Using Settings">
-
-![Step 1 - Brave: Settings](/img/extension/brave1.png)
-
-  </TabItem>
-  <TabItem value="brave-menu" label="Using Menu Bar">
-
-![Step 1 - Brave: Menu Bar](/img/extension/brave2.png)
-
-  </TabItem>
-  <TabItem value="brave-url" label="Using URL">
-
-Type `brave://extensions` into the searchbar to open the extension page.
-
-  </TabItem>
-</Tabs>
-
-#### 2. Enable the browser's developer mode.
-
-![Step 2 - Brave: Developer Mode](/img/extension/brave3.png)
-
-#### 3. Load the extension from the folder.
-
-Click _Load unpacked_ pointing to the extracted ZIP archive of the extension.<br/>
-
-![Step 3 - Brave: Load Extension](/img/extension/brave4.png)
-
-#### 4. Pin the extension.
-
-Pin the extension through the extension icon.
-
-![Step 4 - Brave: Pin Extension](/img/extension/brave5.png)
-
-#### 5. Launch the extension.
-
-Open the extension by clicking its icon from the menu bar.
-
-![Step 5 - Brave: Open Extension](/img/extension/brave6.png)
+ 
 
   </TabItem>
    <TabItem value="firefox" label="Firefox">
