@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'LSP3 - Universal Profile Metadata'
+sidebar_label: 'LSP3 - Profile Metadata'
 sidebar_position: 4
 ---
 
-# LSP3 - Universal Profile Metadata
+# LSP3 - Profile Metadata
 
 :::info Standard Document
 
-[LSP3 - Universal Profile Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
+[LSP3 - Profile Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md)
 
 :::
 
@@ -15,10 +15,10 @@ sidebar_position: 4
 
 The implementation of the **[LSP0-ERC725Account](./lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
-**LSP3-UniversalProfile-Metadata** is a Metadata standard that defines specific data keys to describe a Universal Profile. A Universal Profile combines the following two standards.
+**LSP3-Profile-Metadata** is a Metadata standard that defines specific data keys to describe a profile. A Universal Profile combines the following two standards.
 
 - **[LSP0-ERC725Account](./lsp0-erc725account.md)**: an interface for a smart contract-based account.
-- **LSP3-UniversalProfile-Metadata**: a set of predefined [ERC725Y](lsp0-erc725account.md#erc725y---generic-key-value-store) Data keys to describe the profile.
+- **LSP3-Profile-Metadata**: a set of predefined [ERC725Y](lsp0-erc725account.md#erc725y---generic-key-value-store) Data keys to describe the profile.
 
 ## ERC725Y Data Keys
 
@@ -54,7 +54,7 @@ This data key is used to know if the contract represents a **Universal Profile**
 }
 ```
 
-The value attached to this data key is a [JSONURL-encoded value](../../standards/generic-standards/lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Universal Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
+The value attached to this data key is a [JSONURL-encoded value](../../standards/generic-standards/lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
 
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, defining an image with different dimensions, `width` and `height`. Picture scaling is helpful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them afterward.
 

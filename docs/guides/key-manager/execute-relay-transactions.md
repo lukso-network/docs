@@ -12,7 +12,7 @@ The [LSP6 KeyManager](../../standards/universal-profile/lsp6-key-manager.md) sta
 
 Relayed execution enables use cases such as Transaction Relayer Services to be possible where users can send their transaction details to a third party to be executed, moving the gas cost burden away from the user who owns the Universal Profile.
 
-For example, Alice can send an encoded transaction which updates the [LSP3Profile](../../standards/universal-profile/lsp3-universal-profile-metadata.md) picture on her Universal Profile to a second user, Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
+For example, Alice can send an encoded transaction which updates the [LSP3Profile](../../standards/universal-profile/lsp3-profile-metadata.md) picture on her Universal Profile to a second user, Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
 
 To execute the transaction, Bob needs to know:
 
