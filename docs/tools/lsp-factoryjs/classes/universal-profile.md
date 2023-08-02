@@ -18,7 +18,7 @@ Deploys and **configures** a [Universal Profile](../../../standards/universal-pr
 
 After, it will:
 
-- upload metadata to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata,
+- upload metadata to IPFS and set the [LSP3 Profile](../../../standards/universal-profile/lsp3-profile-metadata) metadata,
 - attach the Universal Receiver Delegate to the ERC725 Account contract,
 - set the Key Manager as the owner of the LSP0 ERC725 Account, and
 - set all [LSP6 Permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) to the `controllerAddresses` except `DELEGATECALL`.
@@ -310,7 +310,7 @@ Deployment Complete
 lspFactory.UniversalProfile.uploadProfileData(profileData [, options]);
 ```
 
-Processes and uploads the [LSP3Profile Metadata](../../../standards/universal-profile/lsp3-universal-profile-metadata) to IPFS. The IPFS gateway can be set inside the `options` object.
+Processes and uploads the [LSP3Profile Metadata](../../../standards/universal-profile/lsp3-profile-metadata) to IPFS. The IPFS gateway can be set inside the `options` object.
 
 Will resize and upload passed images.
 
@@ -320,7 +320,7 @@ Available as a static or non-static method callable on the LSPFactory library in
 
 #### 1. `profileData` - Object
 
-Object containing the [LSP3 Metadata](../../../standards/universal-profile/lsp3-universal-profile-metadata) fields which will be processed and uploaded to IPFS.
+Object containing the [LSP3 Metadata](../../../standards/universal-profile/lsp3-profile-metadata) fields which will be processed and uploaded to IPFS.
 
 :::info
 [Read more about how LSP3 Metadata is processed here](../deployment/universal-profile#uploading-lsp3-metadata-to-ipfs).
@@ -559,4 +559,4 @@ await UniversalProfile.uploadProfileData(
 ```
 
 [all permissions]: ../../../../../standards/universal-profile/lsp6-key-manager#-address-permissions
-[lsp3]: ../../../standards/universal-profile/lsp3-universal-profile-metadata
+[lsp3]: ../../../standards/universal-profile/lsp3-profile-metadata
