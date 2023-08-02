@@ -44,7 +44,7 @@ Click on link below to download the extension, based on the browser to which you
 
 ### :inbox_tray: **[Download link (v1.3.3-MV2)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.3.3-mv2.zip) (All other browsers)**
 
-### :inbox_tray: **[Download link (v1.3.3-MV3)](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.3.3-mv3.zip) (Chrome)**
+### :inbox_tray: **[Download from Chrome Web Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) (Chrome)**
 
 ## Unpack the archive
 
@@ -55,47 +55,11 @@ Open your download folder and unpack the ZIP archive by opening the file.
 <Tabs>
   <TabItem value="chrome" label="Chrome">
 
-#### 1. Open the extension page in your browser.
+## 1. Simply download the extension from the [Chrome Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn)
 
-<Tabs>
-  <TabItem value="chrome-settings" label="Using Settings">
+![Chrome Store view](/img/extension/chrome-store.png)
 
-![Step 1 - Chrome: Extension Settings](/img/extension/chrome1.png)
 
-  </TabItem>
-  <TabItem value="chrome-menu" label="Using Menu Bar">
-
-![Step 1 - Chrome: Extension Menu Bar](/img/extension/chrome2.png)
-
-  </TabItem>
-  <TabItem value="chrome-url" label="Using URL">
-
-Type `chrome://extensions` into the searchbar to open the extension page.
-
-  </TabItem>
-</Tabs>
-
-#### 2. Enable the browser's developer mode.
-
-![Step 2 - Chrome: Enable Developer Mode](/img/extension/chrome3.png)
-
-#### 3. Load the extension from the folder.
-
-Click _Load unpacked_ pointing to the extracted ZIP archive of the extension.<br/>
-
-![Step 3 - Chrome: Load Extension](/img/extension/chrome4.png)
-
-#### 4. Pin the extension.
-
-Pin the extension to the extension bar and click on the icon to open it up.
-
-![Step 4 - Chrome: Pin Extension](/img/extension/chrome5.png)
-
-#### 5. Launch the extension.
-
-Open the extension by clicking its icon from the menu bar.
-
-![Step 5 - Chrome: Open Extension](/img/extension/chrome-launch-extension.webp)
 
   </TabItem>
   <TabItem value="edge" label="Edge">
