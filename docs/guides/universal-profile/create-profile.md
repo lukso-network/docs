@@ -222,7 +222,7 @@ The final step is to deploy our UP by calling `lspFactory.UniversalProfile.deplo
 The `deploy` function takes an object as an argument that contains two elements:
 
 - `controllerAddresses`: the EOA address(es) that we will use to control our UP.
-- `lsp3Profile`: an object that represents your [`LSP3Profile` Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata).
+- `lsp3Profile`: an object that represents your [`LSP3Profile` Metadata](../../standards/universal-profile/lsp3-profile-metadata).
 
 > We keep our `LSP3Profile` metadata simple in this tutorial. But you can easily add more details about your UP in this object such as `profileImage`, `backgroundImage` and `avatar`. Read how to do this with lsp-factory [here](../../tools/lsp-factoryjs/deployment/universal-profile.md#setting-images-in-lsp3metadata)
 

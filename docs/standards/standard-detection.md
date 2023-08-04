@@ -13,10 +13,10 @@ The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** data key i
 
 There are two types of **LSP** standards used to interact with smart contracts on the LUKSO blockchain.
 
-| Standard Type           | Description                                                                                                                                                | Examples                                                                                                                                                                                                                                        |
-| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Interface Standards** | **Standardize a set of functions**. <br/> Defines the functions that can be called on a smart contract and their expected parameters                       | [LSP0-ERC725Account](./universal-profile/lsp0-erc725account.md) <br/> [LSP6-KeyManager](./universal-profile/lsp6-key-manager.md) <br/> [LSP7-DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)                                                     |
-| **Metadata Standards**  | **Standardize a set of ERC725Y data keys**. <br/> Informs about the data set by default on the contract and which data keys to query to retrieve such data | [LSP3-UniversalProfile-Metadata](./universal-profile/lsp3-universal-profile-metadata.md) <br/> [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md) <br/> [LSP10ReceivedVaults](./universal-profile/lsp10-received-vaults.md) |
+| Standard Type           | Description                                                                                                                                                | Examples                                                                                                                                                                                                                     |
+| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Interface Standards** | **Standardize a set of functions**. <br/> Defines the functions that can be called on a smart contract and their expected parameters                       | [LSP0-ERC725Account](./universal-profile/lsp0-erc725account.md) <br/> [LSP6-KeyManager](./universal-profile/lsp6-key-manager.md) <br/> [LSP7-DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)                                  |
+| **Metadata Standards**  | **Standardize a set of ERC725Y data keys**. <br/> Informs about the data set by default on the contract and which data keys to query to retrieve such data | [LSP3-Profile-Metadata](./universal-profile/lsp3-profile-metadata.md) <br/> [LSP4-DigitalAsset-Metadata](./nft-2.0/LSP4-Digital-Asset-Metadata.md) <br/> [LSP10ReceivedVaults](./universal-profile/lsp10-received-vaults.md) |
 
 ![Interface and metadata standards](/img/standards/standard-detection/standard-detection.jpeg)
 
@@ -36,7 +36,7 @@ Calling this function will return **TRUE** if the contract implements this speci
 
 ### Interface Example
 
-A **[Universal Profile](./universal-profile/lsp3-universal-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/lsp0-erc725account.md)(LSP0). Therefore, the contract SHOULD implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+A **[Universal Profile](./universal-profile/lsp3-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/lsp0-erc725account.md)(LSP0). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 <!-- prettier-ignore-start -->
 
