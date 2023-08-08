@@ -60,7 +60,7 @@ If using erc725.js in a NodeJS environment you may need to install and import [`
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
+import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 import Web3 from 'web3';
 
 // Static variables
@@ -100,7 +100,7 @@ If using erc725.js in a NodeJS environment you may need to install and import [`
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
+import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 import Web3 from 'web3';
 
 // Static variables
@@ -224,7 +224,7 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
+import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import Web3 from 'web3';
 
@@ -289,7 +289,7 @@ console.log(ownedAssetsMetadata);
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
+import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import Web3 from 'web3';
 import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';

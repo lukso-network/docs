@@ -141,7 +141,7 @@ if (!supportsLSP0Interface) {
 
 ## Step 3 - Check supported standard
 
-Last but not least we should perform a check over `LSP3UniversalProfile` standard. For this we need to call `getData` with the `SupportedStandards:LSP3UniversalProfile` key.
+Last but not least we should perform a check over `LSP3Profile-Metadata` standard. For this we need to call `getData` with the `SupportedStandards:LSP3Profile` key.
 
 :::info
 
@@ -165,10 +165,10 @@ const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = "0x..."; // The address of the contract that you are verifying
 const universalProfile = new web3.eth.Contract(UniversalProfile.abi, universalProfileAddress);
 
-const supportedStandard = await universalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key).call();
+const supportedStandard = await universalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3Profile.key).call();
 
-if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
-  throw new Error('Address does not support LSP3UniversalProfile standard');
+if (supportedStandard !== SupportedStandards.LSP3Profile.value) {
+  throw new Error('Address does not support LSP3Profile-Metadata standard');
 }
 ```
 
@@ -190,10 +190,10 @@ const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network')
 const universalProfileAddress = '0x...'; // The address of the contract that you are verifying
 const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfile.abi, provider);
 
-const supportedStandard = await universalProfile['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key);
+const supportedStandard = await universalProfile['getData(bytes32)'](SupportedStandards.LSP3Profile.key);
 
-if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
-  throw new Error('Address does not support LSP3UniversalProfile standard');
+if (supportedStandard !== SupportedStandards.LSP3Profile.value) {
+  throw new Error('Address does not support LSP3Profile-Metadata standard');
 }
 ```
 
@@ -232,10 +232,10 @@ if (!supportsLSP0Interface) {
   throw new Error('Contract does not support LSP0ERC725Account interface');
 }
 
-const supportedStandard = await universalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key).call();
+const supportedStandard = await universalProfile.methods['getData(bytes32)'](SupportedStandards.LSP3Profile.key).call();
 
-if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
-  throw new Error('Address does not support LSP3UniversalProfile standard');
+if (supportedStandard !== SupportedStandards.LSP3Profile.value) {
+  throw new Error('Address does not support LSP3Profile-Metadata standard');
 }
 ```
 
@@ -268,10 +268,10 @@ if (!supportsLSP0Interface) {
   throw new Error('Contract does not support LSP0ERC725Account interface');
 }
 
-const supportedStandard = await universalProfile['getData(bytes32)'](SupportedStandards.LSP3UniversalProfile.key);
+const supportedStandard = await universalProfile['getData(bytes32)'](SupportedStandards.LSP3Profile.key);
 
-if (supportedStandard !== SupportedStandards.LSP3UniversalProfile.value) {
-  throw new Error('Address does not support LSP3UniversalProfile standard');
+if (supportedStandard !== SupportedStandards.LSP3Profile.value) {
+  throw new Error('Address does not support LSP3Profile-Metadata standard');
 }
 ```
 
