@@ -157,6 +157,8 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 
   <TabItem value="ethersjs" label="ethers.js">
 
+<!-- prettier-ignore-start -->
+
 ```javascript title="Load account from a private key"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ethers } from 'ethers';
@@ -165,6 +167,8 @@ const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso
 const myUniversalProfileAddress = '0x...';
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -248,6 +252,8 @@ We will then encode this permission data keys in a `setData(...)` payload and in
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```js
 // step 3.3 - send the transaction
 await myUniversalProfile.methods.setData(
@@ -259,9 +265,13 @@ await myUniversalProfile.methods.setData(
 });
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
+
+<!-- prettier-ignore-start -->
 
 ```js
 // step 3.3 - send the transaction
@@ -269,6 +279,8 @@ await myUniversalProfile
   .connect(account)
   .setData(data.keys, data.values);
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -279,6 +291,8 @@ await myUniversalProfile
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
+
+<!-- prettier-ignore-start -->
 
 ```js
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -350,6 +364,8 @@ async function grantPermissions() {
 
 grantPermissions();
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 

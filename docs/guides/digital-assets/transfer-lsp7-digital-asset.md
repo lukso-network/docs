@@ -173,6 +173,8 @@ Finally we send the transaction and transfer the tokens from a Universal Profile
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```javascript
 // execute the token transfer through the UP
 await myUniversalProfile.methods.execute(
@@ -186,9 +188,13 @@ await myUniversalProfile.methods.execute(
 });
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
+
+<!-- prettier-ignore-start -->
 
 ```javascript
 // execute the token transfer through the UP
@@ -202,6 +208,8 @@ await myUniversalProfile
   );
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
 
 </Tabs>
@@ -211,6 +219,8 @@ await myUniversalProfile
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
+
+<!-- prettier-ignore-start -->
 
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
@@ -256,9 +266,13 @@ await myUniversalProfile.methods.execute(
 });
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
+
+<!-- prettier-ignore-start -->
 
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
@@ -302,6 +316,8 @@ await myUniversalProfile
     tokenCalldata,
   );
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
