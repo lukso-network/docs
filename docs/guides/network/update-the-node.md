@@ -41,6 +41,12 @@ If you configured custom services on top of the LUKSO CLI, please use your servi
 
 :::
 
+:::tip
+
+The name of the directory `myLUKSOnode/` can be changed in the examples below.
+
+:::
+
 Move into your node's working directory.
 
 ```bash
