@@ -44,7 +44,7 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
 
 - [LSP3 - Profile Metadata](../../standards/universal-profile/lsp3-profile-metadata) describes the data in the Universal Profile contract storage, and which data keys to use to retrieve it. We can import the schema directly from the [erc725.js](../../tools/erc725js/schemas#standard-lsp-schemas) library.
 
-  - `SupportedStandards` shows the interface using a Metadata Standard with a key. In our case we use `SupportedStandards:LSP3UniversalProfile` from to check if the contract is a Universal Profile.
+  - `SupportedStandards` shows the interface using a Metadata Standard with a key. In our case we use `SupportedStandards:LSP3Profile` from to check if the contract is a Universal Profile.
   - `LSP3Profile` shows the data of the Universal Profile.
   - `LSP12IssuedAssets[]` shows assets the Universal Profile issued.
   - `LSP5ReceivedAssets[]` shows assets the Universal Profile received.
@@ -72,7 +72,7 @@ We will use the convenient `fetchData()` function since we only need one command
 import Web3 from 'web3';
 import { ERC725 } from '@erc725/erc725.js';
 import 'isomorphic-fetch';
-import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
+import erc725schema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
@@ -113,7 +113,7 @@ If everything went fine, we now have the profile's [LSP3 - Universal Profile Met
 [
   {
     "key": "...",
-    "name": "SupportedStandards:LSP3UniversalProfile",
+    "name": "SupportedStandards:LSP3Profile",
     "value": null
   },
   {
@@ -181,7 +181,7 @@ If everything went fine, we now have the profile's [LSP3 - Universal Profile Met
 
 With the JSON response, we can fetch all sorts of data including:
 
-- `SupportedStandards:LSP3UniversalProfile`: Check if the smart contract is an LSP3 Universal Profile
+- `SupportedStandards:LSP3Profile`: Check if the smart contract is an LSP3 Universal Profile
 - `LSP3Profile`: The data of the Universal Profile (name, description, tags, links, pictures)
 - `LSP12IssuedAssets[]`: Assets the Universal Profile issued
 - `LSP5ReceivedAssets[]`: Assets the Universal Profile received
@@ -227,7 +227,7 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 import Web3 from 'web3';
 import { ERC725 } from '@erc725/erc725.js';
 import 'isomorphic-fetch';
-import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
+import erc725schema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
 // Our static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
