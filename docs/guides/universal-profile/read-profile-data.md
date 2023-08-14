@@ -42,7 +42,7 @@ Complete "ready to use" JSON and JS files are available at the end in the [**Fin
 
 To inspect the address and check if it has an ERC725 contract, we can call its interface through the `erc725.js` library. The instance of the contract will need the following information:
 
-- [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata) describes the data in the Universal Profile contract storage, and which keys to use to retrieve it. We can import the schema directly from the [erc725.js](../../tools/erc725js/schemas#standard-lsp-schemas) library.
+- [LSP3 - Profile Metadata](../../standards/universal-profile/lsp3-profile-metadata) describes the data in the Universal Profile contract storage, and which data keys to use to retrieve it. We can import the schema directly from the [erc725.js](../../tools/erc725js/schemas#standard-lsp-schemas) library.
 
   - `SupportedStandards` shows the interface using a Metadata Standard with a key. In our case we use `SupportedStandards:LSP3UniversalProfile` from to check if the contract is a Universal Profile.
   - `LSP3Profile` shows the data of the Universal Profile.
@@ -104,7 +104,7 @@ fetchProfile(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
 );
 ```
 
-If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-universal-profile-metadata) JSON. It should look like this JSON file:
+If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-profile-metadata) JSON. It should look like this JSON file:
 
 <details>
     <summary>Show JSON response</summary>

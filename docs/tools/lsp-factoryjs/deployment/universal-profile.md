@@ -19,12 +19,12 @@ This will deploy the following contracts:
 
 After, it will:
 
-- upload metadata to IPFS and set the [LSP3 Universal Profile](../../../standards/universal-profile/lsp3-universal-profile-metadata) metadata,
+- upload metadata to IPFS and set the [LSP3 Profile](../../../standards/universal-profile/lsp3-profile-metadata) metadata,
 - attach the Universal Receiver Delegate to the ERC725 Account,
 - set the Key Manager as the owner of the ERC725 Account, and
 - set all [permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) for the `controllerAddresses` except `DELEGATECALL`.
 
-These smart contracts linked with some [LSP3 Universal Profile Metadata](../../../standards/universal-profile/lsp3-universal-profile-metadata) form a Universal Profile. The metadata is the 'face' of your profile and contains information such as your name, description, and profile image.
+These smart contracts linked with some [LSP3 Profile Metadata](../../../standards/universal-profile/lsp3-profile-metadata) form a Universal Profile. The metadata is the 'face' of your profile and contains information such as your name, description, and profile image.
 
 :::caution
 The deployment key passed to LSPFactory will be given `CHANGEOWNER` and `CHANGEPERMISSIONS` [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) in order to carry out the Universal Profile deployment.
@@ -207,9 +207,9 @@ An avatar can be set by passing the `avatar` property to the `lsp3Profile` objec
 
 An avatar can be passed as an array where each element is a different file format of the same avatar. Each file format can be passed as a `File` object, or asset metadata object according to the [LSP2 ERC725Y JSON Schema standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#Array).
 
-If an avatar file is passed as a `File` object, the file will uploaded to IPFS, converted to the correct asset metadata format and added to the [LSP3 Profile Metadata](https://docs.lukso.tech/standards/universal-profile/lsp3-universal-profile-metadata) Json.
+If an avatar file is passed as a `File` object, the file will uploaded to IPFS, converted to the correct asset metadata format and added to the [LSP3 Profile Metadata](https://docs.lukso.tech/standards/universal-profile/lsp3-profile-metadata) Json.
 
-Avatar files passed as a metadata objects will be set directly on the [LSP3 Profile Metadata](https://docs.lukso.tech/standards/universal-profile/lsp3-universal-profile-metadata) Json.
+Avatar files passed as a metadata objects will be set directly on the [LSP3 Profile Metadata](https://docs.lukso.tech/standards/universal-profile/lsp3-profile-metadata) Json.
 
 ```javascript title='Setting LSP3 metadata to be uploaded with an avatar with two formats'
 <input type="file" id="avatar">

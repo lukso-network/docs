@@ -35,7 +35,7 @@ function Index() {
         <div className={styles.cardContainer}>
           <Box
             icon={NetworksIcon}
-            link="./networks/mainnet/running-a-node"
+            link="./networks/mainnet/parameters/"
             title="NETWORKS"
             className="networks"
             content="Learn how to participate in LUKSO's test networks."

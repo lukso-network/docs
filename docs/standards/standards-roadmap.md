@@ -7,7 +7,7 @@ sidebar_position: 2
 
 ## Introduction
 
-As mentioned in the [LSPs Foundation](./introduction.md#lsps-foundation) section, the LSPs are not order dependant meaning a standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](#)** uses **[LSP1 - UniversalReceiver](#)**, **[LSP2 - ERC725YJSONSchema](#)** and could use **[LSP3 - UniversalProfileMetadata](#)**, etc.
+As mentioned in the [LSPs Foundation](./introduction.md#lsps-foundation) section, the LSPs are not order dependant meaning a standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](#)** uses **[LSP1 - UniversalReceiver](#)**, **[LSP2 - ERC725YJSONSchema](#)** and could use **[LSP3 - ProfileMetadata](#)**, etc.
 
 ## LSPs Roadmap
 
@@ -23,7 +23,7 @@ In order to understand the LSPs properly, they should be studied in the followin
 
 - **[LSP6 - KeyManager](./universal-profile/lsp6-key-manager.md)**
 
-- **[LSP3 - UniversalProfileMetadata](./universal-profile/lsp3-universal-profile-metadata.md)**
+- **[LSP3 - ProfileMetadata](./universal-profile/lsp3-profile-metadata.md)**
 
 - **[LSP7 - DigitalAsset](./nft-2.0/LSP7-Digital-Asset.md)**
 

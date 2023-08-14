@@ -14,7 +14,7 @@ The LUKSO Mainnet launched on Tuesday 23rd May, 4:20 PM GMT with validators that
 
 :::
 
-![Deposit Launchpad](/img/network/deposit-launchpad.png)
+![Deposit Launchpad](/img/network/mainnet-launchpad.png)
 
 To become a validator, you can use the LUKSO Deposit Launchpad: <https://deposit.mainnet.lukso.network/>.
 
