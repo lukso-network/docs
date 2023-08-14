@@ -42,7 +42,7 @@ An LSP0-ERC725Account can work standalone and doesn't require a Key Manager or a
 
 The **[LSP0 - ERC725Account](./lsp0-erc725account.md)** standard represents a blockchain-based account that does not contain any metadata describing the account. It's important to standardize specific data keys to give the account a unique character and look like a typical **Web2 profile**.
 
-**[LSP3 - UniversalProfile Metadata](./lsp3-universal-profile-metadata.md)** is a standard used to add profile information by setting its defined data keys in the account storage. The combination of these two standards forms a **Universal Profile**.
+**[LSP3 - Profile Metadata](./lsp3-profile-metadata.md)** is a standard used to add profile information by setting its defined data keys in the account storage. The combination of these two standards forms a **Universal Profile**.
 
 :::tip
 
@@ -53,6 +53,6 @@ The guide [how to check if an address is a Universal Profile?](../../guides/univ
 ## References
 
 - [LUKSO Standards Proposals: LSP0 - ERC725 Account (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
-- [LUKSO Standards Proposals: LSP3 - Universal Profile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
+- [LUKSO Standards Proposals: LSP3 - Profile Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md)
 - [LUKSO Standards Proposals: LSP6 - Key Manager (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
 - [LSP1 Universal Receiver: Solidity implementations (GitHub)](https://github.com/lukso-network/lsp-universalprofile-smart-contracts/tree/develop/contracts/LSP1UniversalReceiver)
