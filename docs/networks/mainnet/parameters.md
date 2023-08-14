@@ -3,11 +3,13 @@ title: 'Network parameters'
 sidebar_position: 1
 ---
 
+import AddNetworkButton from '../../../src/components/AddNetworkButton'
+
 # Network Parameters
 
 :::info
 
-The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis Delay -> 4:20pm GMT)
+The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis Delay -> 4:20pm GMT).
 
 :::
 
@@ -26,12 +28,37 @@ The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis D
 
 The mainnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/mainnet/shared) repo.
 
-### 3rd party RPC providers
+## 3rd party RPC providers
 
 Developers can use the services of the following 3rd party providers:
 
 - [Gateway.fm](https://gateway.fm/) RPC URL: `https://rpc.lukso.gateway.fm`
 - [NowNodes](https://nownodes.io/)
+
+## Add LUKSO network (MetaMask...)
+
+<AddNetworkButton/>
+
+You can add LUKSO as a custom network in your existing wallet (MetaMask, Rainbow, Coinbase Wallet, Trust Wallet, etc.) with the parameters below:
+
+| Setting               | Value                                             |
+| --------------------- | ------------------------------------------------- |
+| Network Name          | LUKSO                                             |
+| RPC URL               | https://rpc.lukso.gateway.fm                      |
+| Chain ID / Network ID | 42                                                |
+| Currency Symbol       | LYX                                               |
+| Block explorer URL    | https://explorer.execution.mainnet.lukso.network/ |
+
+:::tip Hardware wallets
+
+You can use your hardware wallet with MetaMask. You will simply need to:
+
+1. Connect your hardware wallet to MetaMask
+2. Add LUKSO as a custom network (cf. settings above)
+3. For Ledger users: Download the Ethereum app on your Ledger
+4. Switch the network to "LUKSO"
+
+:::
 
 ## Network Architecture
 
