@@ -71,4 +71,3 @@ The full **verification flow** for an asset should contain a check on the **asse
 - **Step 2:** Should check on the address retrieved in **Step 1** that the address of the asset being checked, matches one of the assets addresses stored in the **[LSP12IssuedAssets Array](#lsp12issuedassets)** of the UniversalProfile.
 
 ![Checking LSP12IssuedAssets Array on UP](../../../static/img/standards/lsp12/lsp12-issuedassets3.jpeg)
-

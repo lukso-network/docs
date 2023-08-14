@@ -206,6 +206,8 @@ Finally we will send a transaction that will update the Universal Profile Allowe
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```typescript title="Set the data key on the Universal Profile"
 // Set the AllowedCalls data key on the Universal Profile
 await universalProfile.methods.setData(
@@ -216,6 +218,8 @@ await universalProfile.methods.setData(
   gasLimit: 600_000,
 });
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -237,6 +241,8 @@ await universalProfile
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
+
+<!-- prettier-ignore-start -->
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -287,6 +293,8 @@ await universalProfile.methods.setData(
   gasLimit: 600_000,
 });
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
