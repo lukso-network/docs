@@ -16,8 +16,8 @@ jobs:
       - name: Install ⚙️
         run: yarn install --frozen-lockfile
 
-      - name: Lint 🎨
-        run: yarn run lint
+      - name: Prettier 🎨
+        run: yarn run prettier
 
       - name: Build 🛠
         run: yarn build
