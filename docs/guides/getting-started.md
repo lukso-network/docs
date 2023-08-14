@@ -110,10 +110,10 @@ import { ERC725 } from '@erc725/erc725.js';
 // https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-3-UniversalProfile.md
 const schema = [
   {
-    name: 'SupportedStandards:LSP3Profile',
+    name: 'SupportedStandards:LSP3UniversalProfile',
     key: '0xeafec4d89fa9619884b6b89135626455000000000000000000000000abe425d6',
     keyType: 'Mapping',
-    valueContent: '0x5ef83ad9',
+    valueContent: '0xabe425d6',
     valueType: 'bytes',
   },
   {
@@ -148,7 +148,7 @@ console.log(data);
 
 ```json title="console.log(data)"
 {
-  "SupportedStandards:LSP3Profile": "0x5ef83ad9",
+  "SupportedStandards:LSP3UniversalProfile": "0xabe425d6",
   "LSP3Profile": {
     "LSP3Profile": {
       "name": "My Universal Profile",
