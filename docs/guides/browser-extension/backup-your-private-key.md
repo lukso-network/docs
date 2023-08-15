@@ -13,27 +13,19 @@ This guide is intended for advanced users. In order to use this recovery method 
 :::
 
 # Backup your Private key on local storage
+
 This guide will teach you how to backup your private key on your local storage, such that if you forget your password you can later use the **Restore** functionality.
 
-Look on the top right corner of your profile for the **gear sign**. Press it in order to open **Settings**.
+Look in the top right corner of your profile for the **gear sign**. Press it in order to open **Settings**.
 In the Setting menu, look for the second option, **Reveal private keys** and click on it.
 
-<div style={{textAlign: 'center'}}>
-<img
-    src="../digital-assets/img/settings-menu.png"
-    alt="Example of Settings menu"
-/>
-</div>
+![Example of Settings Menu](../digital-assets/img/settings-menu.png)
 
 ## Select Reveal Private Keys
+
 At this point, you will be prompted to enter your password one more time. You will then be able to see the JSON containing your private key.
 
-<div style={{textAlign: 'center'}}>
-<img
-    src="../digital-assets/img/type-password.png"
-    alt="Example of type password field"
-/>
-</div>
+![Example of Type Password Field](../digital-assets/img/type-password.png)
 
 ## Store securely the JSON file with your private key
 
