@@ -9,22 +9,26 @@ sidebar_position: 2
 The UP Browser Extension is currently in the **development alpha** version. DO NOT use this in production!
 :::
 
-#### 1. Launch the extension and create your profile.
+#### 1. Launch the extension and create your profile. You will have to validate your Twitter and Discord profiles.
 
-![Step 1 - Firefox: Open Extension](/img/extension/01-create-profile.png)
+![Validate Extension](/img/extension/02-create-profile.png)
 
-#### 2. Select your identicon, password, and an optional backup email.
+#### 2. Select your backup email.
 
-![Step 2 - Firefox: Set Up Extension](/img/extension/02-create-profile.png)
+![Step 2 - Firefox: Set Up Extension](/img/extension/03-create-profile.png)
+
+#### 3. Accept the terms and conditions.
+
+![Step 3 - Firefox: Profile Type Extension](/img/extension/04-create-profile.png)
+
+#### 4. Select your identicon.
+
+![Step 4 - Firefox: Success Extension](/img/extension/05-create-profile.png)
 
 #### 3. Choose between an anonymous or public profile.
 
-![Step 3 - Firefox: Profile Type Extension](/img/extension/03-create-profile.png)
+![Step 4 - Firefox: Success Extension](/img/extension/06-create-profile.png)
 
-:::note
-It may take a while until your profile is created. You don't need to keep the popup open.
-:::
+#### 6. Your are now ready to add your profile to the extension!
 
-#### Step 4. Your Universal Profile has been created!
-
-![Step 4 - Firefox: Success Extension](/img/extension/04-create-profile.png)
+![Step 4 - Firefox: Success Extension](/img/extension/07-create-profile.png)
