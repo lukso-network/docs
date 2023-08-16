@@ -112,7 +112,7 @@ console.log(
 // decoded permission for 0x5F606b5b237623463a90F63230F9b929321dbCBa = {
 // "CHANGEOWNER": true,
 // "ADDCONTROLLER": true,
-// "CHANGEPERMISSIONS": true,
+// "EDITPERMISSIONS": true,
 // "ADDEXTENSIONS": true,
 // "CHANGEEXTENSIONS": true,
 // "ADDUNIVERSALRECEIVERDELEGATE": true,
