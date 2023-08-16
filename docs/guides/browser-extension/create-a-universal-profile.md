@@ -13,6 +13,9 @@ The UP Browser Extension is currently in the **development alpha** version. DO N
 
 ![Validate Extension](/img/extension/02-create-profile.png)
 
+**_NOTE:_** You can use the same Twitter and Discord profiles for multiple Universal Profiles (UPs). The verification steps for using Twitter/ Discord are not linked to particular profiles.
+The verification is in place for using the relayer. The relayer plays a vital role in subsidizing gas costs for early users and the verification process is in place to prevent bots from abusing the gas quota.
+
 #### 2. Select your backup email.
 
 ![Step 2 - Firefox: Set Up Extension](/img/extension/03-create-profile.png)
