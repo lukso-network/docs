@@ -44,7 +44,7 @@ Click on link below to download the extension, based on the browser to which you
 
 ### :inbox_tray: **[Download from Chrome Web Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) (Chrome / Brave)**
 
-### :inbox_tray: **[Download Archive](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.4.0-mv2.zip) (All other browsers)**
+### :inbox_tray: **[Download Archive](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.5.0-mv2.zip) (All other browsers)**
 
 ## Unpack the archive
 
