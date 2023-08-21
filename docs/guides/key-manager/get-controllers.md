@@ -42,7 +42,6 @@ const erc725 = new ERC725(
 );
 ```
 
-
 ## Step 2 - Get the list of controller addresses
 
 The next step is to retrieve the list of controller addresses. In other words, addresses with some permissions can interact with the Universal Profile.
