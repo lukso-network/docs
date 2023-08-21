@@ -22,7 +22,7 @@ npm install @erc725/erc725.js
 
 ## Step 1 - setup web3.js and erc725.js
 
-The first step is to set up both and _web3.js_ and _erc725.js_, and connect to the LUKSO L16 network. We will also need the address of the Universal Profile that we want to get the controller addresses from.
+The first step is to set up both and _web3.js_ and _erc725.js_, and connect to the LUKSO testnet network. We will also need the address of the Universal Profile that we want to get the controller addresses from.
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -41,6 +41,7 @@ const erc725 = new ERC725(
   web3.currentProvider,
 );
 ```
+
 
 ## Step 2 - Get the list of controller addresses
 

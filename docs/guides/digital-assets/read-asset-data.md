@@ -28,7 +28,7 @@ A complete _"ready to use"_ JS file is available at the end in the [**Final Code
 
 We will use:
 
-- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the LUKSO L14 or L16 network.
+- [web3.js](https://web3js.readthedocs.io/en/v1.7.0/) for utility as well as connecting to the Testnet network
 - [erc725.js](../../tools/erc725js/getting-started/) library to fetch the asset metadata.
 - [lsp-smart-contracts](https://github.com/lukso-network/lsp-smart-contracts) to integrate the ABIs for the LUKSO Standards.
 
@@ -65,7 +65,7 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
@@ -105,7 +105,7 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
@@ -155,7 +155,7 @@ import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';
 
 // ...
 
-const web3 = new Web3('https://rpc.l14.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Get all received assets from the Universal Receiver of the Universal Profile.
 const universalReceiver = new web3.eth.Contract(
@@ -230,7 +230,7 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance
@@ -296,7 +296,7 @@ import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
-const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
 
 // Parameters for the ERC725 instance

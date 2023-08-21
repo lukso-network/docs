@@ -16,7 +16,7 @@ This guide will teach you how to **customize our Universal Profile** programmati
 
 - adding a profile and cover picture to our Universal Profile,
 - editing our Universal Profile infos (e.g., description, badges, links),
-- see the updated profile details and images of our Universal Profile on the [l16.universalprofile.cloud](https://l16.universalprofile.cloud) website.
+- see the updated profile details and images of our Universal Profile on the [universalprofile.cloud](https://universalprofile.cloud/) website.
 
 To achieve this goal, we will perform the following steps:
 
@@ -189,11 +189,11 @@ import { LSPFactory } from '@lukso/lsp-factory.js';
 // reference to the previously created JSON file (LSP3Profile metadata)
 import jsonFile from './UniversalProfileMetadata.json';
 
-const provider = 'https://rpc.l16.lukso.network'; // RPC provider url
+const provider = 'https://rpc.testnet.lukso.network'; // RPC provider url
 
 const lspFactory = new LSPFactory(provider, {
   deployKey: PRIVATE_KEY,
-  chainId: 2828, // Chain Id of the network you want to deploy to
+  chainId: 4201, // Chain Id of the network you want to deploy to, here we have the chainId for Testnet
 });
 
 async function editProfileInfo() {
@@ -214,9 +214,9 @@ To do so, we will use our [erc725.js] library, which helps us encode the data ea
 
 To set up the erc725.js library, we will need the following:
 
-- The address of our Universal Profile contract: this is the address of our profile mentioned in the URL on the [profile explorer](https://l16.universalprofile.cloud/).
+- The address of our Universal Profile contract: this is the address of our profile mentioned in the URL on the [profile explorer](https://universalprofile.cloud/).
 - An ERC725Y JSON Schema: a set of ERC725Y key-value pairs ([LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md))
-- A RPC provider: `https://rpc.l16.lukso.network`
+- A RPC provider: `https://rpc.testnet.lukso.network
 
 Once our erc725.js is initialized, we can encode the `LSP3Profile` data to generate a key and a value.
 
@@ -236,7 +236,7 @@ import Web3 from 'web3';
 import { ERC725 } from '@erc725/erc725.js';
 // ...
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Step 1 - Create a new LSP3Profile JSON file
 // ...
@@ -291,7 +291,7 @@ The first step is to load our EOA using our private key from [previous steps](./
 
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 
@@ -309,7 +309,7 @@ The first step is to create an instance of the Universal Profile smart contract.
 import Web3 from 'web3';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Step 4.2 - Create instance of our UP
 const universalProfileContract = new web3.eth.Contract(
@@ -386,7 +386,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 
 import jsonFile from './UniversalProfileMetadata.json';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // constants
 const PRIVATE_KEY = '0x...';
@@ -394,7 +394,7 @@ const profileAddress = '0x...';
 
 // Step 1 - Create a new LSP3Profile JSON file
 
-const provider = 'https://rpc.l16.lukso.network'; // RPC provider url
+const provider = 'https://rpc.testnet.lukso.network'; // RPC provider url
 
 const lspFactory = new LSPFactory(provider, {
   deployKey: PRIVATE_KEY,
@@ -421,7 +421,7 @@ async function editProfileInfo() {
   ];
 
   const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
-    ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
+    ipfsGateway: 'https://2eff.lukso.dev/ipfs/ ',
   });
 
   // Step 3.2 - Encode the LSP3Profile data (to be written on our UP)
@@ -455,11 +455,11 @@ editProfileInfo();
 
 ## Visualize our updated Universal Profile
 
-You can now check your UP on the [profile explorer](https://l16.universalprofile.cloud/) website by pasting the returned address after the slash of the base URL:
+You can now check your UP on the [profile explorer](https://universalprofile.cloud/) website by pasting the returned address after the slash of the base URL:
 
-`https://l16.universalprofile.cloud/[UP ADDRESS]`
+`https://universalprofile.cloud/[UP ADDRESS]`
 
-![Universal Profile with pictures and infos on l16.universalprofile.cloud](./img/edit-profile.png)
+![Universal Profile with pictures and infos on universalprofile.cloud](./img/edit-profile.png)
 
 [erc725.js]: ../../tools/erc725js/getting-started
 [ipfs]: https://ipfs.io/
