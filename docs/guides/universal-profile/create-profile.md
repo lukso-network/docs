@@ -142,7 +142,7 @@ After creating an EOA that will control our Universal Profile in **Step 1**, we 
 
 :arrow_right: **[LUKSO Testnet Faucet Website](https://faucet.testnet.lukso.network)**
 
-![ Faucet screenshot](./img/UP-lowLevel/faucet.png)
+![ Faucet screenshot](/img/UP-lowLevel/create-profile/faucet3.png)
 
 We will look up our address balance in the **[LUKSO Testnet Block Explorer](https://explorer.execution.testnet.lukso.network)** to ensure we have received our test LYX.
 
@@ -367,7 +367,7 @@ const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
 // Step 3.2
 // Initialize the LSPFactory with the Testnet RPC endpoint and your EOA's private key, which will deploy the UP smart contracts
-const lspFactory = new LSPFactory('	https://rpc.testnet.lukso.network', {
+const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
   deployKey: PRIVATE_KEY,
   chainId: 2828,
 });
