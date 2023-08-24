@@ -1,54 +1,77 @@
 <!-- This file is auto-generated. Do not edit! -->
 <!-- Check `@lukso-network/lsp-smart-contracts/CONTRIBUTING.md#solidity-code-comments` for more information. -->
 
-# IPostDeploymentModule
+# LSP20CallVerification
 
 :::info Standard Specifications
 
-[`LSP-23-LinkedContractsDeployment`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md)
+[`LSP-20-CallVerification`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-20-CallVerification.md)
 
 :::
 :::info Solidity implementation
 
-[`IPostDeploymentModule.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/IPostDeploymentModule.sol)
+[`LSP20CallVerification.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP20CallVerification/LSP20CallVerification.sol)
 
 :::
 
-## Public Methods
+> Implementation of a contract calling the verification functions according to LSP20 - Call Verification standard.
 
-Public methods are accessible externally from users, allowing interaction with this function from dApps or other smart contracts.
-When marked as 'public', a method can be called both externally and internally, on the other hand, when marked as 'external', a method can only be called externally.
+Module to be inherited used to verify the execution of functions according to a verifier address. Verification can happen before or after execution based on a magicValue.
 
-### executePostDeployment
+## Internal Methods
 
-:::note References
+Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#executepostdeployment)
-- Solidity implementation: [`IPostDeploymentModule.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/IPostDeploymentModule.sol)
-- Function signature: `executePostDeployment(address,address,bytes)`
-- Function selector: `0x28c4d14e`
+Internal functions cannot be called externally, whether from other smart contracts, dApp interfaces, or backend services. Their restricted accessibility ensures that they remain exclusively available within the context of the current contract, promoting controlled and encapsulated usage of these internal utilities.
 
-:::
+### \_verifyCall
 
 ```solidity
-function executePostDeployment(
-  address primaryContract,
-  address secondaryContract,
-  bytes calldataToPostDeploymentModule
-) external nonpayable;
+function _verifyCall(
+  address logicVerifier
+) internal nonpayable returns (bool verifyAfter);
 ```
 
-_This function can be used to perform any additional setup or configuration after the primary and secondary contracts have been deployed._
+Calls [`lsp20VerifyCall`](#lsp20verifycall) function on the logicVerifier.
+Reverts in case the value returned does not match the magic value (lsp20VerifyCall selector)
+Returns whether a verification after the execution should happen based on the last byte of the magicValue
 
-Executes post-deployment logic for the primary and secondary contracts.
+<br/>
 
-#### Parameters
+### \_verifyCallResult
 
-| Name                             |   Type    | Description                                              |
-| -------------------------------- | :-------: | -------------------------------------------------------- |
-| `primaryContract`                | `address` | The address of the deployed primary contract.            |
-| `secondaryContract`              | `address` | The address of the deployed secondary contract.          |
-| `calldataToPostDeploymentModule` |  `bytes`  | Calldata to be passed for the post-deployment execution. |
+```solidity
+function _verifyCallResult(
+  address logicVerifier,
+  bytes callResult
+) internal nonpayable;
+```
+
+Calls [`lsp20VerifyCallResult`](#lsp20verifycallresult) function on the logicVerifier.
+Reverts in case the value returned does not match the magic value (lsp20VerifyCallResult selector)
+
+<br/>
+
+### \_validateCall
+
+```solidity
+function _validateCall(
+  bool postCall,
+  bool success,
+  bytes returnedData
+) internal pure;
+```
+
+<br/>
+
+### \_revertWithLSP20DefaultError
+
+```solidity
+function _revertWithLSP20DefaultError(
+  bool postCall,
+  bytes returnedData
+) internal pure;
+```
 
 <br/>
 <!-- prettier-ignore-start -->

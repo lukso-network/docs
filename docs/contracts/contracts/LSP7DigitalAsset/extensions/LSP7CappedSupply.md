@@ -1,21 +1,32 @@
+<!-- This file is auto-generated. Do not edit! -->
+<!-- Check `@lukso-network/lsp-smart-contracts/CONTRIBUTING.md#solidity-code-comments` for more information. -->
+
 # LSP7CappedSupply
 
-:::info Solidity contract
+:::info Standard Specifications
 
-[`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+[`LSP-7-DigitalAsset`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md)
+
+:::
+:::info Solidity implementation
+
+[`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 
 :::
 
 LSP7 token extension to add a max token supply cap.
 
-## Methods
+## Public Methods
+
+Public methods are accessible externally from users, allowing interaction with this function from dApps or other smart contracts.
+When marked as 'public', a method can be called both externally and internally, on the other hand, when marked as 'external', a method can only be called externally.
 
 ### authorizeOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#authorizeoperator)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#authorizeoperator)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `authorizeOperator(address,uint256)`
 - Function selector: `0x47980aa3`
 
@@ -43,12 +54,14 @@ Sets an `amount` of tokens that an `operator` has access from the caller's balan
 | `operator` | `address` | The address to authorize as an operator.               |
 | `amount`   | `uint256` | The allowance amount of tokens operator has access to. |
 
+<br/>
+
 ### authorizedAmountFor
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#authorizedamountfor)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#authorizedamountfor)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `authorizedAmountFor(address,address)`
 - Function selector: `0x65aeaa95`
 
@@ -65,23 +78,25 @@ Get the amount of tokens `operator` address has access to from `tokenOwner`. Ope
 
 #### Parameters
 
-| Name         |   Type    | Description                                                    |
-| ------------ | :-------: | -------------------------------------------------------------- |
-| `operator`   | `address` | The operator&#39;s address to query the authorized amount for. |
-| `tokenOwner` | `address` | The token owner that `operator` has allowance on.              |
+| Name         |   Type    | Description                                                |
+| ------------ | :-------: | ---------------------------------------------------------- |
+| `operator`   | `address` | The operator's address to query the authorized amount for. |
+| `tokenOwner` | `address` | The token owner that `operator` has allowance on.          |
 
 #### Returns
 
-| Name |   Type    | Description                                                                                     |
-| ---- | :-------: | ----------------------------------------------------------------------------------------------- |
-| `0`  | `uint256` | The amount of tokens the `operator`&#39;s address has access on the `tokenOwner`&#39;s balance. |
+| Name |   Type    | Description                                                                             |
+| ---- | :-------: | --------------------------------------------------------------------------------------- |
+| `0`  | `uint256` | The amount of tokens the `operator`'s address has access on the `tokenOwner`'s balance. |
+
+<br/>
 
 ### balanceOf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#balanceof)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#balanceof)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `balanceOf(address)`
 - Function selector: `0x70a08231`
 
@@ -105,12 +120,14 @@ Get the number of tokens owned by `tokenOwner`. If the token is divisible (the [
 | ---- | :-------: | ------------------------------------------- |
 | `0`  | `uint256` | The amount of tokens owned by `tokenOwner`. |
 
+<br/>
+
 ### decimals
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#decimals)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#decimals)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `decimals()`
 - Function selector: `0x313ce567`
 
@@ -128,12 +145,14 @@ Returns the number of decimals used to get its user representation. If the asset
 | ---- | :-----: | ----------------------------------------------------------------------- |
 | `0`  | `uint8` | the number of decimals. If `0` is returned, the asset is non-divisible. |
 
+<br/>
+
 ### decreaseAllowance
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#decreaseallowance)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#decreaseallowance)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `decreaseAllowance(address,uint256)`
 - Function selector: `0xa457c2d7`
 
@@ -176,17 +195,19 @@ Atomically decreases the allowance granted to `operator` by the caller. This is 
 
 #### Parameters
 
-| Name                |   Type    | Description                                                |
-| ------------------- | :-------: | ---------------------------------------------------------- |
-| `operator`          | `address` | the operator to decrease allowance for `msg.sender`        |
-| `substractedAmount` | `uint256` | the amount to decrease by in the operator&#39;s allowance. |
+| Name                |   Type    | Description                                            |
+| ------------------- | :-------: | ------------------------------------------------------ |
+| `operator`          | `address` | the operator to decrease allowance for `msg.sender`    |
+| `substractedAmount` | `uint256` | the amount to decrease by in the operator's allowance. |
+
+<br/>
 
 ### getData
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#getdata)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#getdata)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `getData(bytes32)`
 - Function selector: `0x54f6127f`
 
@@ -196,28 +217,28 @@ Atomically decreases the allowance granted to `operator` by the caller. This is 
 function getData(bytes32 dataKey) external view returns (bytes dataValue);
 ```
 
-_Reading the ERC725Y storage for data key `dataKey` returned the following value: `dataValue`._
-
-Get in the ERC725Y storage the bytes data stored at a specific data key `dataKey`.
+_Gets singular data at a given `dataKey`_
 
 #### Parameters
 
-| Name      |   Type    | Description                                   |
-| --------- | :-------: | --------------------------------------------- |
-| `dataKey` | `bytes32` | The data key for which to retrieve the value. |
+| Name      |   Type    | Description                     |
+| --------- | :-------: | ------------------------------- |
+| `dataKey` | `bytes32` | The key which value to retrieve |
 
 #### Returns
 
-| Name        |  Type   | Description                                          |
-| ----------- | :-----: | ---------------------------------------------------- |
-| `dataValue` | `bytes` | The bytes value stored under the specified data key. |
+| Name        |  Type   | Description                |
+| ----------- | :-----: | -------------------------- |
+| `dataValue` | `bytes` | The data stored at the key |
+
+<br/>
 
 ### getDataBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#getdatabatch)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#getdatabatch)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `getDataBatch(bytes32[])`
 - Function selector: `0xdedff9c6`
 
@@ -229,9 +250,7 @@ function getDataBatch(
 ) external view returns (bytes[] dataValues);
 ```
 
-_Reading the ERC725Y storage for data keys `dataKeys` returned the following values: `dataValues`._
-
-Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys`.
+_Gets array of data for multiple given keys_
 
 #### Parameters
 
@@ -245,12 +264,14 @@ Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys
 | ------------ | :-------: | ----------------------------------------- |
 | `dataValues` | `bytes[]` | The array of data stored at multiple keys |
 
+<br/>
+
 ### increaseAllowance
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#increaseallowance)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#increaseallowance)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `increaseAllowance(address,uint256)`
 - Function selector: `0x39509351`
 
@@ -292,17 +313,19 @@ Atomically increases the allowance granted to `operator` by the caller. This is 
 
 #### Parameters
 
-| Name          |   Type    | Description                                                                 |
-| ------------- | :-------: | --------------------------------------------------------------------------- |
-| `operator`    | `address` | the operator to increase the allowance for `msg.sender`                     |
-| `addedAmount` | `uint256` | the additional amount to add on top of the current operator&#39;s allowance |
+| Name          |   Type    | Description                                                             |
+| ------------- | :-------: | ----------------------------------------------------------------------- |
+| `operator`    | `address` | the operator to increase the allowance for `msg.sender`                 |
+| `addedAmount` | `uint256` | the additional amount to add on top of the current operator's allowance |
+
+<br/>
 
 ### owner
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#owner)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#owner)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -320,12 +343,14 @@ Returns the address of the current owner.
 | ---- | :-------: | ----------- |
 | `0`  | `address` | -           |
 
+<br/>
+
 ### renounceOwnership
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#renounceownership)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#renounceownership)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
 
@@ -337,12 +362,14 @@ function renounceOwnership() external nonpayable;
 
 Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
 
+<br/>
+
 ### revokeOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#revokeoperator)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#revokeoperator)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `revokeOperator(address)`
 - Function selector: `0xfad8b32a`
 
@@ -360,20 +387,16 @@ Removes the `operator` address as an operator of callers tokens, disallowing it 
 | ---------- | :-------: | ------------------------------------- |
 | `operator` | `address` | The address to revoke as an operator. |
 
+<br/>
+
 ### setData
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#setdata)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#setdata)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `setData(bytes32,bytes)`
 - Function selector: `0x7f23690c`
-
-:::
-
-:::caution Warning
-
-**Note for developers:** despite the fact that this function is set as `payable`, if the function is not intended to receive value (= native tokens), **an additional check should be implemented to ensure that `msg.value` sent was equal to 0**.
 
 :::
 
@@ -381,47 +404,25 @@ Removes the `operator` address as an operator of callers tokens, disallowing it 
 function setData(bytes32 dataKey, bytes dataValue) external payable;
 ```
 
-_Setting the following data key value pair in the ERC725Y storage. Data key: `dataKey`, data value: `dataValue`. _
-
-Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data key `dataKey`. The function is marked as payable to enable flexibility on child contracts. For instance to implement a fee mechanism for setting specific data.
-
-<blockquote>
-
-**Requirements:**
-
-- SHOULD only be callable by the [`owner`](#owner).
-
-</blockquote>
-
-<blockquote>
-
-**Emitted events:**
-
-- [`DataChanged`](#datachanged) event.
-
-</blockquote>
+_Sets singular data for a given `dataKey`_
 
 #### Parameters
 
-| Name        |   Type    | Description                                |
-| ----------- | :-------: | ------------------------------------------ |
-| `dataKey`   | `bytes32` | The data key for which to set a new value. |
-| `dataValue` |  `bytes`  | The new bytes value to set.                |
+| Name        |   Type    | Description                                                                                                                                                                                                                                                                                                           |
+| ----------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
+| `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
+
+<br/>
 
 ### setDataBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#setdatabatch)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#setdatabatch)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `setDataBatch(bytes32[],bytes[])`
 - Function selector: `0x97902421`
-
-:::
-
-:::caution Warning
-
-**Note for developers:** despite the fact that this function is set as `payable`, if the function is not intended to receive value (= native tokens), **an additional check should be implemented to ensure that `msg.value` sent was equal to 0**.
 
 :::
 
@@ -429,39 +430,25 @@ Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data
 function setDataBatch(bytes32[] dataKeys, bytes[] dataValues) external payable;
 ```
 
-_Setting the following data key value pairs in the ERC725Y storage. Data keys: `dataKeys`, data values: `dataValues`. _
+Sets array of data for multiple given `dataKeys` SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal
 
-Batch data setting function that behaves the same as [`setData`](#setdata) but allowing to set multiple data key/value pairs in the ERC725Y storage in the same transaction.
-
-<blockquote>
-
-**Requirements:**
-
-- SHOULD only be callable by the [`owner`](#owner) of the contract.
-
-</blockquote>
-
-<blockquote>
-
-**Emitted events:**
-
-- [`DataChanged`](#datachanged) event **for each data key/value pair set**.
-
-</blockquote>
+0. Emits a [`DataChanged`](#datachanged) event.
 
 #### Parameters
 
-| Name         |    Type     | Description                                          |
-| ------------ | :---------: | ---------------------------------------------------- |
-| `dataKeys`   | `bytes32[]` | An array of data keys to set bytes values for.       |
-| `dataValues` |  `bytes[]`  | An array of bytes values to set for each `dataKeys`. |
+| Name         |    Type     | Description                              |
+| ------------ | :---------: | ---------------------------------------- |
+| `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
+| `dataValues` |  `bytes[]`  | The array of values to set               |
+
+<br/>
 
 ### supportsInterface
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#supportsinterface)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#supportsinterface)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -485,12 +472,14 @@ Returns true if this contract implements the interface defined by `interfaceId`.
 | ---- | :----: | ----------- |
 | `0`  | `bool` | -           |
 
+<br/>
+
 ### tokenSupplyCap
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#tokensupplycap)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#tokensupplycap)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `tokenSupplyCap()`
 - Function selector: `0x52058d8a`
 
@@ -510,12 +499,14 @@ Get the maximum number of tokens that can exist to circulate. Once [`totalSupply
 | ---- | :-------: | ------------------------------------------------------------ |
 | `0`  | `uint256` | The maximum number of tokens that can exist in the contract. |
 
+<br/>
+
 ### totalSupply
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#totalsupply)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#totalsupply)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `totalSupply()`
 - Function selector: `0x18160ddd`
 
@@ -533,12 +524,14 @@ Returns the number of existing tokens that have been minted in this contract.
 | ---- | :-------: | ------------------------------ |
 | `0`  | `uint256` | The number of existing tokens. |
 
+<br/>
+
 ### transfer
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#transfer)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transfer)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `transfer(address,address,uint256,bool,bytes)`
 - Function selector: `0x760d9bba`
 
@@ -566,12 +559,14 @@ Transfers an `amount` of tokens from the `from` address to the `to` address and 
 | `allowNonLSP1Recipient` |  `bool`   | When set to `true`, the `to` address CAN be any address. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
 | `data`                  |  `bytes`  | Any additional data the caller wants included in the emitted event, and sent in the hooks of the `from` and `to` addresses.                                          |
 
+<br/>
+
 ### transferBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#transferbatch)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transferbatch)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `transferBatch(address[],address[],uint256[],bool[],bytes[])`
 - Function selector: `0x2d7667c9`
 
@@ -595,16 +590,18 @@ Same as [`transfer(...)`](#`transfer) but transfer multiple tokens based on the 
 | ----------------------- | :---------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `from`                  | `address[]` | An array of sending addresses.                                                                                                                                                          |
 | `to`                    | `address[]` | An array of receiving addresses.                                                                                                                                                        |
-| `amount`                | `uint256[]` | An array of amount of tokens to transfer for each `from -&gt; to` transfer.                                                                                                             |
+| `amount`                | `uint256[]` | An array of amount of tokens to transfer for each `from -> to` transfer.                                                                                                                |
 | `allowNonLSP1Recipient` |  `bool[]`   | For each transfer, when set to `true`, the `to` address CAN be any address. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
 | `data`                  |  `bytes[]`  | An array of additional data the caller wants included in the emitted event, and sent in the hooks to `from` and `to` addresses.                                                         |
 
+<br/>
+
 ### transferOwnership
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#transferownership)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transferownership)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -622,18 +619,239 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 | ---------- | :-------: | ----------- |
 | `newOwner` | `address` | -           |
 
----
+<br/>
+
+## Internal Methods
+
+Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
+
+Internal functions cannot be called externally, whether from other smart contracts, dApp interfaces, or backend services. Their restricted accessibility ensures that they remain exclusively available within the context of the current contract, promoting controlled and encapsulated usage of these internal utilities.
+
+### \_checkOwner
+
+```solidity
+function _checkOwner() internal view;
+```
+
+Throws if the sender is not the owner.
+
+<br/>
+
+### \_setOwner
+
+```solidity
+function _setOwner(address newOwner) internal nonpayable;
+```
+
+Changes the owner if `newOwner` and oldOwner are different
+This pattern is useful in inheritance.
+
+<br/>
+
+### \_getData
+
+```solidity
+function _getData(bytes32 dataKey) internal view returns (bytes dataValue);
+```
+
+<br/>
+
+### \_setData
+
+```solidity
+function _setData(bytes32 dataKey, bytes dataValue) internal nonpayable;
+```
+
+Save gas by emitting the [`DataChanged`](#datachanged) event with only the first 256 bytes of dataValue
+
+<br/>
+
+### \_updateOperator
+
+```solidity
+function _updateOperator(
+  address tokenOwner,
+  address operator,
+  uint256 amount
+) internal nonpayable;
+```
+
+Changes token `amount` the `operator` has access to from `tokenOwner` tokens.
+If the amount is zero then the operator is being revoked, otherwise the operator amount is being modified.
+
+<br/>
+
+### \_mint
+
+```solidity
+function _mint(
+  address to,
+  uint256 amount,
+  bool allowNonLSP1Recipient,
+  bytes data
+) internal nonpayable;
+```
+
+Same as [`_mint`](#_mint) but allows to mint only if the [`totalSupply`](#totalsupply) does not exceed the [`tokenSupplyCap`](#tokensupplycap)
+after `amount` of tokens have been minted.
+
+<br/>
+
+### \_burn
+
+:::tip Hint
+
+In dApps, you can know which address is burning tokens by listening for the `Transfer` event and filter with the zero address as `to`.
+
+:::
+
+```solidity
+function _burn(address from, uint256 amount, bytes data) internal nonpayable;
+```
+
+Burns (= destroys) `amount` of tokens, decrease the `from` balance. This is done by sending them to the zero address.
+Both the sender and recipient will be notified of the token transfer through the LSP1 [`universalReceiver`](#universalreceiver)
+function, if they are contracts that support the LSP1 interface. Their `universalReceiver` function will receive
+all the parameters in the calldata packed encoded.
+Any logic in the [`_beforeTokenTransfer`](#_beforetokentransfer) function will run before updating the balances.
+
+<blockquote>
+
+**Emitted events:**
+
+- [`Transfer`](#transfer) event with `address(0)` as the `to` address
+
+</blockquote>
+
+#### Parameters
+
+| Name     |   Type    | Description                                                                                                               |
+| -------- | :-------: | ------------------------------------------------------------------------------------------------------------------------- |
+| `from`   | `address` | the address to burn tokens from its balance.                                                                              |
+| `amount` | `uint256` | the amount of tokens to burn.                                                                                             |
+| `data`   |  `bytes`  | Additional data the caller wants included in the emitted event, and sent in the LSP1 hook to the `from` and `to` address. |
+
+<br/>
+
+### \_transfer
+
+```solidity
+function _transfer(
+  address from,
+  address to,
+  uint256 amount,
+  bool allowNonLSP1Recipient,
+  bytes data
+) internal nonpayable;
+```
+
+Transfer tokens from `from` to `to` by decreasing the balance of `from` by `-amount` and increasing the balance
+of `to` by `+amount`.
+Both the sender and recipient will be notified of the token transfer through the LSP1 [`universalReceiver`](#universalreceiver)
+function, if they are contracts that support the LSP1 interface. Their `universalReceiver` function will receive
+all the parameters in the calldata packed encoded.
+Any logic in the [`_beforeTokenTransfer`](#_beforetokentransfer) function will run before updating the balances.
+
+<blockquote>
+
+**Emitted events:**
+
+- [`Transfer`](#transfer) event.
+
+</blockquote>
+
+#### Parameters
+
+| Name                    |   Type    | Description                                                                                                               |
+| ----------------------- | :-------: | ------------------------------------------------------------------------------------------------------------------------- |
+| `from`                  | `address` | the address to decrease the balance.                                                                                      |
+| `to`                    | `address` | the address to increase the balance.                                                                                      |
+| `amount`                | `uint256` | the amount of tokens to transfer from `from` to `to`.                                                                     |
+| `allowNonLSP1Recipient` |  `bool`   | a boolean that describe if transfer to a `to` address that does not support LSP1 is allowed or not.                       |
+| `data`                  |  `bytes`  | Additional data the caller wants included in the emitted event, and sent in the LSP1 hook to the `from` and `to` address. |
+
+<br/>
+
+### \_beforeTokenTransfer
+
+```solidity
+function _beforeTokenTransfer(
+  address from,
+  address to,
+  uint256 amount
+) internal nonpayable;
+```
+
+Hook that is called before any token transfer, including minting and burning.
+Allows to run custom logic before updating balances and notifiying sender/recipient by overriding this function.
+
+#### Parameters
+
+| Name     |   Type    | Description                     |
+| -------- | :-------: | ------------------------------- |
+| `from`   | `address` | The sender address              |
+| `to`     | `address` | The recipient address           |
+| `amount` | `uint256` | The amount of token to transfer |
+
+<br/>
+
+### \_notifyTokenSender
+
+```solidity
+function _notifyTokenSender(address from, bytes lsp1Data) internal nonpayable;
+```
+
+Attempt to notify the token sender `from` about the `amount` of tokens being transferred.
+This is done by calling its [`universalReceiver`](#universalreceiver) function with the `_TYPEID_LSP7_TOKENSSENDER` as typeId, if `from` is a contract that supports the LSP1 interface.
+If `from` is an EOA or a contract that does not support the LSP1 interface, nothing will happen and no notification will be sent.
+
+#### Parameters
+
+| Name       |   Type    | Description                                                                |
+| ---------- | :-------: | -------------------------------------------------------------------------- |
+| `from`     | `address` | The address to call the {universalReceiver} function on.                   |
+| `lsp1Data` |  `bytes`  | the data to be sent to the `from` address in the `universalReceiver` call. |
+
+<br/>
+
+### \_notifyTokenReceiver
+
+```solidity
+function _notifyTokenReceiver(
+  address to,
+  bool allowNonLSP1Recipient,
+  bytes lsp1Data
+) internal nonpayable;
+```
+
+Attempt to notify the token receiver `to` about the `amount` tokens being received.
+This is done by calling its [`universalReceiver`](#universalreceiver) function with the `_TYPEID_LSP7_TOKENSRECIPIENT` as typeId, if `to` is a contract that supports the LSP1 interface.
+If `to` is is an EOA or a contract that does not support the LSP1 interface, the behaviour will depend on the `allowNonLSP1Recipient` boolean flag.
+
+- if `allowNonLSP1Recipient` is set to `true`, nothing will happen and no notification will be sent.
+
+- if `allowNonLSP1Recipient` is set to `false, the transaction will revert.
+
+#### Parameters
+
+| Name                    |   Type    | Description                                                                                         |
+| ----------------------- | :-------: | --------------------------------------------------------------------------------------------------- |
+| `to`                    | `address` | The address to call the {universalReceiver} function on.                                            |
+| `allowNonLSP1Recipient` |  `bool`   | a boolean that describe if transfer to a `to` address that does not support LSP1 is allowed or not. |
+| `lsp1Data`              |  `bytes`  | the data to be sent to the `to` address in the `universalReceiver(...)` call.                       |
+
+<br/>
 
 ## Events
 
 ### AuthorizedOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#authorizedoperator)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#authorizedoperator)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Event signature: `AuthorizedOperator(address,address,uint256)`
-- Event hash: `0xd66aff874162a96578e919097b6f6d153dfd89a5cec41bb331fdb0c4aec16e2c`
+- Event topic hash: `0xd66aff874162a96578e919097b6f6d153dfd89a5cec41bb331fdb0c4aec16e2c`
 
 :::
 
@@ -641,24 +859,26 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 event AuthorizedOperator(address indexed operator, address indexed tokenOwner, uint256 indexed amount);
 ```
 
-Emitted when `tokenOwner` enables `operator` for `amount` tokens.
+Emitted when `tokenOwner` enables `operator` to transfer or burn the `tokenId`.
 
 #### Parameters
 
 | Name                       |   Type    | Description                                                             |
 | -------------------------- | :-------: | ----------------------------------------------------------------------- |
-| `operator` **`indexed`**   | `address` | The address authorized as an operator                                   |
-| `tokenOwner` **`indexed`** | `address` | The token owner                                                         |
+| `operator` **`indexed`**   | `address` | The address authorized as an operator.                                  |
+| `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                             |
 | `amount` **`indexed`**     | `uint256` | The amount of tokens `operator` address has access to from `tokenOwner` |
+
+<br/>
 
 ### DataChanged
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#datachanged)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#datachanged)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Event signature: `DataChanged(bytes32,bytes)`
-- Event hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
+- Event topic hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
 
 :::
 
@@ -666,25 +886,25 @@ Emitted when `tokenOwner` enables `operator` for `amount` tokens.
 event DataChanged(bytes32 indexed dataKey, bytes dataValue);
 ```
 
-_The following data key/value pair has been changed in the ERC725Y storage: Data key: `dataKey`, data value: `dataValue`._
-
-Emitted when data at a specific `dataKey` was changed to a new value `dataValue`.
+_Emitted when data at a key is changed_
 
 #### Parameters
 
-| Name                    |   Type    | Description                                  |
-| ----------------------- | :-------: | -------------------------------------------- |
-| `dataKey` **`indexed`** | `bytes32` | The data key for which a bytes value is set. |
-| `dataValue`             |  `bytes`  | The value to set for the given data key.     |
+| Name                    |   Type    | Description                          |
+| ----------------------- | :-------: | ------------------------------------ |
+| `dataKey` **`indexed`** | `bytes32` | The data key which data value is set |
+| `dataValue`             |  `bytes`  | The data value to set                |
+
+<br/>
 
 ### OwnershipTransferred
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#ownershiptransferred)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#ownershiptransferred)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Event signature: `OwnershipTransferred(address,address)`
-- Event hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
+- Event topic hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
 
 :::
 
@@ -699,14 +919,16 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 | `previousOwner` **`indexed`** | `address` | -           |
 | `newOwner` **`indexed`**      | `address` | -           |
 
+<br/>
+
 ### RevokedOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#revokedoperator)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#revokedoperator)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Event signature: `RevokedOperator(address,address)`
-- Event hash: `0x50546e66e5f44d728365dc3908c63bc5cfeeab470722c1677e3073a6ac294aa1`
+- Event topic hash: `0x50546e66e5f44d728365dc3908c63bc5cfeeab470722c1677e3073a6ac294aa1`
 
 :::
 
@@ -714,23 +936,25 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 event RevokedOperator(address indexed operator, address indexed tokenOwner);
 ```
 
-Emitted when `tokenOwner` disables `operator` for `amount` tokens and set its [`authorizedAmountFor(...)`](#`authorizedamountfor) to `0`.
+Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on its behalf.
 
 #### Parameters
 
-| Name                       |   Type    | Description                        |
-| -------------------------- | :-------: | ---------------------------------- |
-| `operator` **`indexed`**   | `address` | The address revoked from operating |
-| `tokenOwner` **`indexed`** | `address` | The token owner                    |
+| Name                       |   Type    | Description                                                     |
+| -------------------------- | :-------: | --------------------------------------------------------------- |
+| `operator` **`indexed`**   | `address` | The address revoked from the operator array ({getOperatorsOf}). |
+| `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                     |
+
+<br/>
 
 ### Transfer
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#transfer)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#transfer)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Event signature: `Transfer(address,address,address,uint256,bool,bytes)`
-- Event hash: `0x3997e418d2cef0b3b0e907b1e39605c3f7d32dbd061e82ea5b4a770d46a160a6`
+- Event topic hash: `0x3997e418d2cef0b3b0e907b1e39605c3f7d32dbd061e82ea5b4a770d46a160a6`
 
 :::
 
@@ -738,29 +962,29 @@ Emitted when `tokenOwner` disables `operator` for `amount` tokens and set its [`
 event Transfer(address indexed operator, address indexed from, address indexed to, uint256 amount, bool allowNonLSP1Recipient, bytes data);
 ```
 
-Emitted when the `from` transferred successfully `amount` of tokens to `to`.
+Emitted when `tokenId` token is transferred from the `from` to the `to` address.
 
 #### Parameters
 
-| Name                     |   Type    | Description                                                                                                                  |
-| ------------------------ | :-------: | ---------------------------------------------------------------------------------------------------------------------------- |
-| `operator` **`indexed`** | `address` | The address of the operator that executed the transfer.                                                                      |
-| `from` **`indexed`**     | `address` | The address which tokens were sent from (balance decreased by `-amount`).                                                    |
-| `to` **`indexed`**       | `address` | The address that received the tokens (balance increased by `+amount`).                                                       |
-| `amount`                 | `uint256` | The amount of tokens transferred.                                                                                            |
-| `allowNonLSP1Recipient`  |  `bool`   | if the transferred enforced the `to` recipient address to be a contract that implements the LSP1 standard or not.            |
-| `data`                   |  `bytes`  | Any additional data included by the caller during the transfer, and sent in the LSP1 hooks to the `from` and `to` addresses. |
+| Name                     |   Type    | Description                                                                                                                        |
+| ------------------------ | :-------: | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `operator` **`indexed`** | `address` | The address of operator that sent the `tokenId`                                                                                    |
+| `from` **`indexed`**     | `address` | The previous owner of the `tokenId`                                                                                                |
+| `to` **`indexed`**       | `address` | The new owner of `tokenId`                                                                                                         |
+| `amount`                 | `uint256` | The amount of tokens transferred.                                                                                                  |
+| `allowNonLSP1Recipient`  |  `bool`   | If the token transfer enforces the `to` recipient address to be a contract that implements the LSP1 standard or not.               |
+| `data`                   |  `bytes`  | Any additional data the caller included by the caller during the transfer, and sent in the hooks to the `from` and `to` addresses. |
 
----
+<br/>
 
 ## Errors
 
 ### ERC725Y_DataKeysValuesEmptyArray
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#erc725y_datakeysvaluesemptyarray)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
 - Error hash: `0x97da5f95`
 
@@ -770,14 +994,16 @@ Emitted when the `from` transferred successfully `amount` of tokens to `to`.
 error ERC725Y_DataKeysValuesEmptyArray();
 ```
 
-Reverts when one of the array parameter provided to [`setDataBatch`](#setdatabatch) function is an empty array.
+reverts when one of the array parameter provided to `setDataBatch` is an empty array
+
+<br/>
 
 ### ERC725Y_DataKeysValuesLengthMismatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#erc725y_datakeysvalueslengthmismatch)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
 - Error hash: `0x3bcc8979`
 
@@ -787,14 +1013,16 @@ Reverts when one of the array parameter provided to [`setDataBatch`](#setdatabat
 error ERC725Y_DataKeysValuesLengthMismatch();
 ```
 
-Reverts when there is not the same number of elements in the `datakeys` and `dataValues` array parameters provided when calling the [`setDataBatch`](#setdatabatch) function.
+reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
+
+<br/>
 
 ### ERC725Y_MsgValueDisallowed
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#erc725y_msgvaluedisallowed)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#erc725y_msgvaluedisallowed)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `ERC725Y_MsgValueDisallowed()`
 - Error hash: `0xf36ba737`
 
@@ -804,14 +1032,16 @@ Reverts when there is not the same number of elements in the `datakeys` and `dat
 error ERC725Y_MsgValueDisallowed();
 ```
 
-Reverts when sending value to the [`setData`](#setdata) or [`setDataBatch`](#setdatabatch) function.
+reverts when sending value to the `setData(..)` functions
+
+<br/>
 
 ### LSP4TokenNameNotEditable
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp4tokennamenoteditable)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp4tokennamenoteditable)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP4TokenNameNotEditable()`
 - Error hash: `0x85c169bd`
 
@@ -823,12 +1053,14 @@ error LSP4TokenNameNotEditable();
 
 Reverts when trying to edit the data key `LSP4TokenName` after the digital asset contract has been deployed. The `LSP4TokenName` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
 
+<br/>
+
 ### LSP4TokenSymbolNotEditable
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp4tokensymbolnoteditable)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp4tokensymbolnoteditable)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP4TokenSymbolNotEditable()`
 - Error hash: `0x76755b38`
 
@@ -840,12 +1072,14 @@ error LSP4TokenSymbolNotEditable();
 
 Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital asset contract has been deployed. The `LSP4TokenSymbol` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
 
+<br/>
+
 ### LSP7AmountExceedsAuthorizedAmount
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7amountexceedsauthorizedamount)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7amountexceedsauthorizedamount)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7AmountExceedsAuthorizedAmount(address,uint256,address,uint256)`
 - Error hash: `0xf3a6b691`
 
@@ -871,12 +1105,14 @@ reverts when `operator` of `tokenOwner` send an `amount` of tokens larger than t
 | `operator`         | `address` | -           |
 | `amount`           | `uint256` | -           |
 
+<br/>
+
 ### LSP7AmountExceedsBalance
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7amountexceedsbalance)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7amountexceedsbalance)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7AmountExceedsBalance(uint256,address,uint256)`
 - Error hash: `0x08d47949`
 
@@ -900,12 +1136,14 @@ reverts when sending an `amount` of tokens larger than the current `balance` of 
 | `tokenOwner` | `address` | -           |
 | `amount`     | `uint256` | -           |
 
+<br/>
+
 ### LSP7CannotSendToSelf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7cannotsendtoself)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotsendtoself)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7CannotSendToSelf()`
 - Error hash: `0xb9afb000`
 
@@ -917,12 +1155,14 @@ error LSP7CannotSendToSelf();
 
 reverts when specifying the same address for `from` or `to` in a token transfer.
 
+<br/>
+
 ### LSP7CannotSendWithAddressZero
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7cannotsendwithaddresszero)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotsendwithaddresszero)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7CannotSendWithAddressZero()`
 - Error hash: `0xd2d5ec30`
 
@@ -940,12 +1180,14 @@ reverts when trying to:
 
 - transfer tokens from or to the zero address.
 
+<br/>
+
 ### LSP7CannotUseAddressZeroAsOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7cannotuseaddresszeroasoperator)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotuseaddresszeroasoperator)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7CannotUseAddressZeroAsOperator()`
 - Error hash: `0x6355e766`
 
@@ -957,12 +1199,14 @@ error LSP7CannotUseAddressZeroAsOperator();
 
 reverts when trying to set the zero address as an operator.
 
+<br/>
+
 ### LSP7CappedSupplyCannotMintOverCap
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7cappedsupplycannotmintovercap)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cappedsupplycannotmintovercap)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7CappedSupplyCannotMintOverCap()`
 - Error hash: `0xeacbf0d1`
 
@@ -976,12 +1220,14 @@ _Cannot mint anymore as total supply reached the maximum cap._
 
 Reverts when trying to mint tokens but the [`totalSupply`](#totalsupply) has reached the maximum [`tokenSupplyCap`](#tokensupplycap).
 
+<br/>
+
 ### LSP7CappedSupplyRequired
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7cappedsupplyrequired)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7cappedsupplyrequired)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7CappedSupplyRequired()`
 - Error hash: `0xacf1d8c5`
 
@@ -995,12 +1241,14 @@ _The `tokenSupplyCap` must be set and cannot be `0`._
 
 Reverts when setting `0` for the [`tokenSupplyCap`](#tokensupplycap). The max token supply MUST be set to a number greater than 0.
 
+<br/>
+
 ### LSP7DecreasedAllowanceBelowZero
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7decreasedallowancebelowzero)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7decreasedallowancebelowzero)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7DecreasedAllowanceBelowZero()`
 - Error hash: `0x0ef76c35`
 
@@ -1012,12 +1260,14 @@ error LSP7DecreasedAllowanceBelowZero();
 
 Reverts when trying to decrease an operator's allowance to more than its current allowance.
 
+<br/>
+
 ### LSP7InvalidTransferBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7invalidtransferbatch)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7invalidtransferbatch)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7InvalidTransferBatch()`
 - Error hash: `0x263eee8d`
 
@@ -1029,12 +1279,14 @@ error LSP7InvalidTransferBatch();
 
 reverts when the array parameters used in [`transferBatch`](#transferbatch) have different lengths.
 
+<br/>
+
 ### LSP7NotifyTokenReceiverContractMissingLSP1Interface
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7notifytokenreceivercontractmissinglsp1interface)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7notifytokenreceivercontractmissinglsp1interface)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7NotifyTokenReceiverContractMissingLSP1Interface(address)`
 - Error hash: `0xa608fbb6`
 
@@ -1054,12 +1306,14 @@ reverts if the `tokenReceiver` does not implement LSP1 when minting or transferr
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
+<br/>
+
 ### LSP7NotifyTokenReceiverIsEOA
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7notifytokenreceiveriseoa)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7notifytokenreceiveriseoa)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7NotifyTokenReceiverIsEOA(address)`
 - Error hash: `0x26c247f4`
 
@@ -1077,12 +1331,14 @@ reverts if the `tokenReceiver` is an EOA when minting or transferring tokens wit
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
+<br/>
+
 ### LSP7TokenOwnerCannotBeOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-7-CappedSupply**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-CappedSupply.md#lsp7tokenownercannotbeoperator)
-- Solidity implementation in [**LSP7CappedSupply**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7CappedSupply)
+- Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-7-DigitalAsset.md#lsp7tokenownercannotbeoperator)
+- Solidity implementation: [`LSP7CappedSupply.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol)
 - Error signature: `LSP7TokenOwnerCannotBeOperator()`
 - Error hash: `0xdab75047`
 
@@ -1093,3 +1349,5 @@ error LSP7TokenOwnerCannotBeOperator();
 ```
 
 reverts when trying to authorize or revoke the token's owner as an operator.
+
+<br/>
