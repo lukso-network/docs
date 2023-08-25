@@ -16,7 +16,7 @@ In this guide, we will learn how to use our Universal Profile to interact with a
 
 ## Introduction
 
-We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../standards/smart-contracts/lsp0-erc725-account.md#execute) function.
+We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../contracts/contracts/LSP0ERC725Account#execute) function.
 
 This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from our UP. The `_data` parameter is handy when the `_to` recipient is a smart contract.
 
@@ -215,15 +215,12 @@ The final step is to pass the encoded calldata to the Universal Profile. Since w
 <!-- prettier-ignore-start -->
 
 ```typescript title="Send transaction"
-await universalProfile.methods.execute(
-  OPERATION_CALL,
-  targetContract.address,
-  0,
-  targetCalldata,
-).send({
-  from: EOA.address,
-  gasLimit: 300_000,
-});
+await universalProfile.methods
+  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata)
+  .send({
+    from: EOA.address,
+    gasLimit: 300_000,
+  });
 ```
 
 <!-- prettier-ignore-end -->
@@ -237,12 +234,7 @@ await universalProfile.methods.execute(
 ```typescript title="Send transaction"
 await universalProfile
   .connect(EOA)
-  .execute(
-    OPERATION_CALL,
-    targetContract.address,
-    0,
-    targetCalldata,
-  );
+  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata);
 ```
 
 <!-- prettier-ignore-end -->
@@ -289,15 +281,12 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
 const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 // 2. execute the calldata through the UP
-await universalProfile.methods.execute(
-  OPERATION_CALL,
-  targetContract.address,
-  0,
-  targetCalldata,
-).send({
-  from: EOA.address,
-  gasLimit: 300_000,
-});
+await universalProfile.methods
+  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata)
+  .send({
+    from: EOA.address,
+    gasLimit: 300_000,
+  });
 ```
 
   </TabItem>
@@ -342,12 +331,7 @@ const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 // 2. execute the calldata through the UP
 await universalProfile
   .connect(EOA)
-  .execute(
-    OPERATION_CALL,
-    targetContract.address,
-    0,
-    targetCalldata,
-  );
+  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata);
 ```
 
 <!-- prettier-ignore-end -->

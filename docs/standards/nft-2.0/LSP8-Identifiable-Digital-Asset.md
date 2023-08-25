@@ -82,7 +82,7 @@ The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId*
 
 When LSP8 assets are transfered, the LSP8 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokenreceiver).
 
-**These methods will make external calls** to the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) functions of both the sender and recipient.
+**These methods will make external calls** to the [`universalReceiver(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) functions of both the sender and recipient.
 
 This function could perform more complex logic, like delegating the call to the `LSP1UniversalReceiverDelegate` contract. This contract can contain custom logic for each user. For instance, a user could decide to re-transfer the tokens to another address once they are transferred to his UP.
 

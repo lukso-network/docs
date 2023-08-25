@@ -53,7 +53,7 @@ An **ERC725Account** is a blockchain account system that can be utilized by indi
 
 See the **[ERC725](../lsp-background//erc725.md)** standard for more information.
 
-Check the [**execute functions**](../smart-contracts/lsp0-erc725-account.md#execute) provided by **ERC725X** that allows the contract to execute multiple operations.
+Check the [**execute functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#execute) provided by **ERC725X** that allows the contract to execute multiple operations.
 
 Check the **javascript** guides to know [**How to Send native tokens**](../../guides/universal-profile/transfer-lyx.md) or [**How to Call other contract's function**](../../guides/universal-profile/interact-with-contracts.md) using the execute function.
 
@@ -99,7 +99,7 @@ The following types of calls (operation types) are available:
 
 See the **[ERC725](../lsp-background//erc725.md)** standard for more information.
 
-Check the [**setData functions**](../smart-contracts/lsp0-erc725-account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
+Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
 Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../guides/universal-profile/read-profile-data.md).
 
@@ -116,7 +116,7 @@ ERC725Y standardizes a mapping of data keys to data values to store data dynamic
 
 Developers can access the data stored in the contract via data keys instead of referencing the storage slot where the data resides.
 
-Thanks to ERC725Y, contracts become more interoperable, as their storage is represented in the same way. Contracts and interfaces can then read and write data from or to the storage in the same manner via the functions [`getData(...)`](../smart-contracts/lsp0-erc725-account.md#getdata) and [`setData(...)`](../smart-contracts/lsp0-erc725-account.md#setdata).
+Thanks to ERC725Y, contracts become more interoperable, as their storage is represented in the same way. Contracts and interfaces can then read and write data from or to the storage in the same manner via the functions [`getData(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#getdata) and [`setData(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata).
 
 ### ERC1271
 
@@ -124,7 +124,7 @@ Thanks to ERC725Y, contracts become more interoperable, as their storage is repr
 
 See the **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** standard for more information.
 
-Check the [**isValidSignature**](../smart-contracts/lsp0-erc725-account.md#isvalidsignature) function documentation.
+Check the [**isValidSignature**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#isvalidsignature) function documentation.
 
 :::
 
@@ -142,7 +142,7 @@ When the owner is a smart contract, the `isValidSignature(..)` function will be 
 
 See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
 
-Check the [**universalReceiver functions**](../smart-contracts/lsp0-erc725-account.md#universalreceiver) provided by **LSP1** that allows notifying about incoming/ outgoing transactions.
+Check the [**universalReceiver functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) provided by **LSP1** that allows notifying about incoming/ outgoing transactions.
 
 Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../guides/universal-receiver-delegate/set-default-implementation.md) or [**How to set your own UniversalReceiverDelegate**](../../guides/universal-receiver-delegate/accept-reject-assets.md).
 
@@ -152,7 +152,7 @@ This standard enables the account to be notified of incoming transactions such a
 
 The **[LSP0-ERC725Account](#)** implements the `universalReceiver(..)` function that:
 
-Emits an [`UniversalReceiver`](../smart-contracts/lsp0-erc725-account.md#universalreceiver-1) event with the `typeId` and `data`, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
+Emits an [`UniversalReceiver`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver-1) event with the `typeId` and `data`, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
 
 The `typeId` is a **bytes32** value that represents the type of action being notified about. For instance, if you want to notify an account about a specific type of token, you could hash the word **"TOKENXX"** which would result in a `bytes32`, and then use it as a `typeId`.
 
@@ -224,7 +224,7 @@ The process for renouncing ownership follows a similar structure, where an initi
 
 See the **[LSP17 - ContractExtension](../generic-standards/lsp17-contract-extension.md)** standard for more information.
 
-Check the [**fallback function**](../smart-contracts/lsp0-erc725-account.md#fallback) that allows calls for the extensions.
+Check the [**fallback function**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#fallback) that allows calls for the extensions.
 
 :::
 
@@ -262,7 +262,7 @@ However, the account can declare support for new interface IDs after it has been
 
 See the **[LSP20 - CallVerification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-20-CallVerification.md)** standard for more information.
 
-Check the **[LSP0 functions](../smart-contracts/lsp0-erc725-account.md)** to see how verification of allowed calls to the account happens.
+Check the **[LSP0 functions](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md)** to see how verification of allowed calls to the account happens.
 
 :::
 
