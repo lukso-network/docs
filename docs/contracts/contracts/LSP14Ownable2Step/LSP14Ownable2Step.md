@@ -1,23 +1,34 @@
+<!-- This file is auto-generated. Do not edit! -->
+<!-- Check `@lukso-network/lsp-smart-contracts/CONTRIBUTING.md#solidity-code-comments` for more information. -->
+
 # LSP14Ownable2Step
 
-:::info Soldity contract
+:::info Standard Specifications
 
-[`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+[`LSP-14-Ownable2Step`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md)
+
+:::
+:::info Solidity implementation
+
+[`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 
 :::
 
 > LSP14Ownable2Step
 
-This contract is a modified version of the [`OwnableUnset.sol`] implementation, where transferring and renouncing ownership works as a 2-step process. This can be used as a confirmation mechanism to prevent potential mistakes when transferring ownership of the contract, where the control of the contract could be lost forever.
+This contract is a modified version of the [`OwnableUnset.sol`] implementation, where transferring and renouncing ownership works as a 2-step process. This can be used as a confirmation mechanism to prevent potential mistakes when transferring ownership of the contract, where the control of the contract could be lost forever. (_e.g: providing the wrong address as a parameter to the function, transferring ownership to an EOA for which the user lost its private key, etc..._)
 
-## Methods
+## Public Methods
+
+Public methods are accessible externally from users, allowing interaction with this function from dApps or other smart contracts.
+When marked as 'public', a method can be called both externally and internally, on the other hand, when marked as 'external', a method can only be called externally.
 
 ### RENOUNCE_OWNERSHIP_CONFIRMATION_DELAY
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounce_ownership_confirmation_delay)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounce_ownership_confirmation_delay)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `RENOUNCE_OWNERSHIP_CONFIRMATION_DELAY()`
 - Function selector: `0xead3fbdf`
 
@@ -38,12 +49,14 @@ The number of block that MUST pass before one is able to confirm renouncing owne
 | ---- | :-------: | ----------------- |
 | `0`  | `uint256` | Number of blocks. |
 
+<br/>
+
 ### RENOUNCE_OWNERSHIP_CONFIRMATION_PERIOD
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounce_ownership_confirmation_period)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounce_ownership_confirmation_period)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `RENOUNCE_OWNERSHIP_CONFIRMATION_PERIOD()`
 - Function selector: `0x01bfba61`
 
@@ -64,12 +77,14 @@ The number of blocks during which one can renounce ownership.
 | ---- | :-------: | ----------------- |
 | `0`  | `uint256` | Number of blocks. |
 
+<br/>
+
 ### acceptOwnership
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#acceptownership)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#acceptownership)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `acceptOwnership()`
 - Function selector: `0x79ba5097`
 
@@ -95,12 +110,14 @@ Transfer ownership of the contract from the current [`owner()`](#owner) to the [
 
 </blockquote>
 
+<br/>
+
 ### owner
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#owner)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#owner)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -118,12 +135,14 @@ Returns the address of the current owner.
 | ---- | :-------: | ----------- |
 | `0`  | `address` | -           |
 
+<br/>
+
 ### pendingOwner
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#pendingowner)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#pendingowner)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `pendingOwner()`
 - Function selector: `0xe30c3978`
 
@@ -147,12 +166,14 @@ The address that ownership of the contract is transferred to. This address may u
 | ---- | :-------: | ----------- |
 | `0`  | `address` | -           |
 
+<br/>
+
 ### renounceOwnership
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounceownership)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounceownership)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
 
@@ -160,7 +181,7 @@ The address that ownership of the contract is transferred to. This address may u
 
 :::danger
 
-Leaves the contract without an owner. Once ownership of the contract has been renounced, any functions that are restricted to be called by the owner will be permanently inaccessible, making these functions not callable anymore and unusable.
+Leaves the contract without an owner. Once ownership of the contract has been renounced, any function that is restricted to be called only by the owner will be permanently inaccessible, making these functions not callable anymore and unusable.
 
 :::
 
@@ -168,20 +189,22 @@ Leaves the contract without an owner. Once ownership of the contract has been re
 function renounceOwnership() external nonpayable;
 ```
 
-_`msg.sender` is renouncing ownership of contract: `address(this)`._
+_`msg.sender` is renouncing ownership of contract `address(this)`._
 
 Renounce ownership of the contract in a 2-step process.
 
 1. The first call will initiate the process of renouncing ownership.
 
-2. The second is used as a confirmation and will leave the contract without an owner.
+2. The second call is used as a confirmation and will leave the contract without an owner.
+
+<br/>
 
 ### transferOwnership
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#transferownership)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#transferownership)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -199,7 +222,7 @@ Initiate the process of transferring ownership of the contract by setting the ne
 
 **Requirements:**
 
-- `newOwner` cannot accept ownership of the contract in the same transaction.
+- `newOwner` cannot accept ownership of the contract in the same transaction. (For instance, via a callback from its [`universalReceiver(...)`](#universalreceiver) function).
 
 </blockquote>
 
@@ -209,16 +232,89 @@ Initiate the process of transferring ownership of the contract by setting the ne
 | ---------- | :-------: | ----------------------------- |
 | `newOwner` | `address` | The address of the new owner. |
 
+<br/>
+
+## Internal Methods
+
+Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
+
+Internal functions cannot be called externally, whether from other smart contracts, dApp interfaces, or backend services. Their restricted accessibility ensures that they remain exclusively available within the context of the current contract, promoting controlled and encapsulated usage of these internal utilities.
+
+### \_checkOwner
+
+```solidity
+function _checkOwner() internal view;
+```
+
+Throws if the sender is not the owner.
+
+<br/>
+
+### \_setOwner
+
+```solidity
+function _setOwner(address newOwner) internal nonpayable;
+```
+
+Changes the owner if `newOwner` and oldOwner are different
+This pattern is useful in inheritance.
+
+<br/>
+
+### \_transferOwnership
+
+```solidity
+function _transferOwnership(address newOwner) internal nonpayable;
+```
+
+Set the pending owner of the contract and cancel any renounce ownership process that was previously started.
+
+<blockquote>
+
+**Requirements:**
+
+- `newOwner` cannot be the address of the contract itself.
+
+</blockquote>
+
+#### Parameters
+
+| Name       |   Type    | Description                           |
+| ---------- | :-------: | ------------------------------------- |
+| `newOwner` | `address` | The address of the new pending owner. |
+
+<br/>
+
+### \_acceptOwnership
+
+```solidity
+function _acceptOwnership() internal nonpayable;
+```
+
+Set the pending owner of the contract as the new owner.
+
+<br/>
+
+### \_renounceOwnership
+
+```solidity
+function _renounceOwnership() internal nonpayable;
+```
+
+Initiate or confirm the process of renouncing ownership after a specific delay of blocks have passed.
+
+<br/>
+
 ## Events
 
 ### OwnershipRenounced
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiprenounced)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiprenounced)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Event signature: `OwnershipRenounced()`
-- Event hash: `0xd1f66c3d2bc1993a86be5e3d33709d98f0442381befcedd29f578b9b2506b1ce`
+- Event topic hash: `0xd1f66c3d2bc1993a86be5e3d33709d98f0442381befcedd29f578b9b2506b1ce`
 
 :::
 
@@ -226,18 +322,20 @@ Initiate the process of transferring ownership of the contract by setting the ne
 event OwnershipRenounced();
 ```
 
-_Ownership renouncement complete._
+_Successfully renounced ownership of the contract. This contract is now owned by anyone, it's owner is `address(0)`._
 
 Emitted when the ownership of the contract has been renounced.
 
+<br/>
+
 ### OwnershipTransferStarted
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiptransferstarted)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiptransferstarted)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Event signature: `OwnershipTransferStarted(address,address)`
-- Event hash: `0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700`
+- Event topic hash: `0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700`
 
 :::
 
@@ -245,35 +343,9 @@ Emitted when the ownership of the contract has been renounced.
 event OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner);
 ```
 
-_Ownership transfer initiated. From: `previousOwner`. To: `newOwner`._
+_The transfer of ownership of the contract was initiated. Pending new owner set to: `newOwner`._
 
-Emitted when starting the [`transferOwnership(..)`](#transferownership) 2-step process.
-
-#### Parameters
-
-| Name                          |   Type    | Description                       |
-| ----------------------------- | :-------: | --------------------------------- |
-| `previousOwner` **`indexed`** | `address` | The address of the previous owner |
-| `newOwner` **`indexed`**      | `address` | The address of the new owner      |
-
-### OwnershipTransferred
-
-:::note Links
-
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiptransferred)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
-- Event signature: `OwnershipTransferred(address,address)`
-- Event hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
-
-:::
-
-```solidity
-event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-```
-
-_Ownership transfering from: `previousOwner` to `newOwner`._
-
-Emitted when ownership is tranferred.
+Emitted when [`transferOwnership(..)`](#transferownership) was called and the first step of transferring ownership completed successfully which leads to [`pendingOwner`](#pendingowner) being updated.
 
 #### Parameters
 
@@ -282,14 +354,40 @@ Emitted when ownership is tranferred.
 | `previousOwner` **`indexed`** | `address` | The address of the previous owner. |
 | `newOwner` **`indexed`**      | `address` | The address of the new owner.      |
 
+<br/>
+
+### OwnershipTransferred
+
+:::note References
+
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownershiptransferred)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Event signature: `OwnershipTransferred(address,address)`
+- Event topic hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
+
+:::
+
+```solidity
+event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+```
+
+#### Parameters
+
+| Name                          |   Type    | Description |
+| ----------------------------- | :-------: | ----------- |
+| `previousOwner` **`indexed`** | `address` | -           |
+| `newOwner` **`indexed`**      | `address` | -           |
+
+<br/>
+
 ### RenounceOwnershipStarted
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounceownershipstarted)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#renounceownershipstarted)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Event signature: `RenounceOwnershipStarted()`
-- Event hash: `0x81b7f830f1f0084db6497c486cbe6974c86488dcc4e3738eab94ab6d6b1653e7`
+- Event topic hash: `0x81b7f830f1f0084db6497c486cbe6974c86488dcc4e3738eab94ab6d6b1653e7`
 
 :::
 
@@ -301,14 +399,16 @@ _Ownership renouncement initiated._
 
 Emitted when starting the [`renounceOwnership(..)`](#renounceownership) 2-step process.
 
+<br/>
+
 ## Errors
 
 ### CannotTransferOwnershipToSelf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#cannottransferownershiptoself)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#cannottransferownershiptoself)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Error signature: `CannotTransferOwnershipToSelf()`
 - Error hash: `0x43b248cd`
 
@@ -318,16 +418,39 @@ Emitted when starting the [`renounceOwnership(..)`](#renounceownership) 2-step p
 error CannotTransferOwnershipToSelf();
 ```
 
-_Cannot transfer ownerhsip to yourself._
+_Cannot transfer ownership to the address of the contract itself._
 
-Reverts when trying to transfer ownership to the `address(this)`
+Reverts when trying to transfer ownership to the `address(this)`.
+
+<br/>
+
+### LSP14MustAcceptOwnershipInSeparateTransaction
+
+:::note References
+
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#lsp14mustacceptownershipinseparatetransaction)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Error signature: `LSP14MustAcceptOwnershipInSeparateTransaction()`
+- Error hash: `0x5758dd07`
+
+:::
+
+```solidity
+error LSP14MustAcceptOwnershipInSeparateTransaction();
+```
+
+_Cannot accept ownership in the same transaction with [`transferOwnership(...)`](#transferownership)._
+
+Reverts when pending owner accept ownership in the same transaction of transferring ownership.
+
+<br/>
 
 ### NotInRenounceOwnershipInterval
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#notinrenounceownershipinterval)
-- Solidity implementation in [**LSP14Ownable2Step**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#notinrenounceownershipinterval)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
 - Error signature: `NotInRenounceOwnershipInterval(uint256,uint256)`
 - Error hash: `0x8b9bf507`
 
@@ -342,14 +465,16 @@ error NotInRenounceOwnershipInterval(
 
 _Cannot confirm ownership renouncement yet. The ownership renouncement is allowed from: `renounceOwnershipStart` until: `renounceOwnershipEnd`._
 
-Reverts when trying to renounce ownership before the initial confirmation delay
+Reverts when trying to renounce ownership before the initial confirmation delay.
 
 #### Parameters
 
-| Name                     |   Type    | Description                                                                     |
-| ------------------------ | :-------: | ------------------------------------------------------------------------------- |
-| `renounceOwnershipStart` | `uint256` | The start of the period when you one can confirm the renouncement of ownership. |
-| `renounceOwnershipEnd`   | `uint256` | The end of the period when you one can confirm the renouncement of ownership.   |
+| Name                     |   Type    | Description                                                             |
+| ------------------------ | :-------: | ----------------------------------------------------------------------- |
+| `renounceOwnershipStart` | `uint256` | The start timestamp when one can confirm the renouncement of ownership. |
+| `renounceOwnershipEnd`   | `uint256` | The end timestamp when one can confirm the renouncement of ownership.   |
+
+<br/>
 
 <!-- GLOBAL LINKS -->
 

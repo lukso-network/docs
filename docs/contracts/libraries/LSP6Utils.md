@@ -1,6 +1,14 @@
+<!-- This file is auto-generated. Do not edit! -->
+<!-- Check `@lukso-network/lsp-smart-contracts/CONTRIBUTING.md#solidity-code-comments` for more information. -->
+
 # LSP6Utils
 
-:::info Solidity contract
+:::info Standard Specifications
+
+[`LSP-6-KeyManager`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md)
+
+:::
+:::info Solidity implementation
 
 [`LSP6Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6Utils.sol)
 
@@ -10,9 +18,11 @@
 
 LSP6Utils is a library of utility functions that can be used to retrieve, check and set LSP6 permissions stored under the ERC725Y storage of a smart contract. Based on the LSP6 Key Manager standard.
 
----
-
 ## Internal Methods
+
+Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
+
+Internal functions cannot be called externally, whether from other smart contracts, dApp interfaces, or backend services. Their restricted accessibility ensures that they remain exclusively available within the context of the current contract, promoting controlled and encapsulated usage of these internal utilities.
 
 ### getPermissionsFor
 
@@ -31,15 +41,19 @@ Read the permissions of a `caller` on an ERC725Y `target` contract.
 
 #### Returns
 
-| Name |   Type    | Description                                                                      |
-| ---- | :-------: | -------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return A `bytes32` BitArray containing the permissions of a controller address. |
+| Name |   Type    | Description                                                              |
+| ---- | :-------: | ------------------------------------------------------------------------ |
+| `0`  | `bytes32` | A `bytes32` BitArray containing the permissions of a controller address. |
+
+<br/>
 
 ### getAllowedCallsFor
 
 ```solidity
 function getAllowedCallsFor(contract IERC725Y target, address from) internal view returns (bytes);
 ```
+
+<br/>
 
 ### getAllowedERC725YDataKeysFor
 
@@ -58,14 +72,19 @@ Read the Allowed ERC725Y data keys of a `caller` on an ERC725Y `target` contract
 
 #### Returns
 
-| Name |  Type   | Description                                                                                                       |
-| ---- | :-----: | ----------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bytes` | @return An abi-encoded array of allowed ERC725 data keys that the controller address is allowed to interact with. |
+| Name |  Type   | Description                                                                                               |
+| ---- | :-----: | --------------------------------------------------------------------------------------------------------- |
+| `0`  | `bytes` | An abi-encoded array of allowed ERC725 data keys that the controller address is allowed to interact with. |
+
+<br/>
 
 ### hasPermission
 
 ```solidity
-function hasPermission(bytes32 controllerPermissions, bytes32 permissionToCheck) internal pure returns (bool);
+function hasPermission(
+  bytes32 controllerPermissions,
+  bytes32 permissionToCheck
+) internal pure returns (bool);
 ```
 
 Compare the permissions `controllerPermissions` of a controller address to check if they includes the permissions `permissionToCheck`.
@@ -79,14 +98,18 @@ Compare the permissions `controllerPermissions` of a controller address to check
 
 #### Returns
 
-| Name |  Type  | Description                                                                                |
-| ---- | :----: | ------------------------------------------------------------------------------------------ |
-| `0`  | `bool` | @return `true` if `controllerPermissions` includes `permissionToCheck`, `false` otherwise. |
+| Name |  Type  | Description                                                                        |
+| ---- | :----: | ---------------------------------------------------------------------------------- |
+| `0`  | `bool` | `true` if `controllerPermissions` includes `permissionToCheck`, `false` otherwise. |
+
+<br/>
 
 ### isCompactBytesArrayOfAllowedCalls
 
 ```solidity
-function isCompactBytesArrayOfAllowedCalls(bytes allowedCallsCompacted) internal pure returns (bool);
+function isCompactBytesArrayOfAllowedCalls(
+  bytes allowedCallsCompacted
+) internal pure returns (bool);
 ```
 
 Same as `LSP2Utils.isCompactBytesArray` with the additional requirement that each element must be 32 bytes long.
@@ -99,14 +122,18 @@ Same as `LSP2Utils.isCompactBytesArray` with the additional requirement that eac
 
 #### Returns
 
-| Name |  Type  | Description                                                                                                            |
-| ---- | :----: | ---------------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bool` | @return `true` if the value passed is a valid compact bytes array of bytes32 AllowedCalls elements, `false` otherwise. |
+| Name |  Type  | Description                                                                                                    |
+| ---- | :----: | -------------------------------------------------------------------------------------------------------------- |
+| `0`  | `bool` | `true` if the value passed is a valid compact bytes array of bytes32 AllowedCalls elements, `false` otherwise. |
+
+<br/>
 
 ### isCompactBytesArrayOfAllowedERC725YDataKeys
 
 ```solidity
-function isCompactBytesArrayOfAllowedERC725YDataKeys(bytes allowedERC725YDataKeysCompacted) internal pure returns (bool);
+function isCompactBytesArrayOfAllowedERC725YDataKeys(
+  bytes allowedERC725YDataKeysCompacted
+) internal pure returns (bool);
 ```
 
 Same as `LSP2Utils.isCompactBytesArray` with the additional requirement that each element must be from 1 to 32 bytes long.
@@ -119,14 +146,20 @@ Same as `LSP2Utils.isCompactBytesArray` with the additional requirement that eac
 
 #### Returns
 
-| Name |  Type  | Description                                                                                                                |
-| ---- | :----: | -------------------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bool` | @return `true` if the value passed is a valid compact bytes array of bytes32 Allowed ERC725Y data keys, `false` otherwise. |
+| Name |  Type  | Description                                                                                                        |
+| ---- | :----: | ------------------------------------------------------------------------------------------------------------------ |
+| `0`  | `bool` | `true` if the value passed is a valid compact bytes array of bytes32 Allowed ERC725Y data keys, `false` otherwise. |
+
+<br/>
 
 ### setDataViaKeyManager
 
 ```solidity
-function setDataViaKeyManager(address keyManagerAddress, bytes32[] keys, bytes[] values) internal nonpayable returns (bytes result);
+function setDataViaKeyManager(
+  address keyManagerAddress,
+  bytes32[] keys,
+  bytes[] values
+) internal nonpayable returns (bytes result);
 ```
 
 Use the `setData(bytes32[],bytes[])` function via the KeyManager on the target contract.
@@ -139,10 +172,14 @@ Use the `setData(bytes32[],bytes[])` function via the KeyManager on the target c
 | `keys`              | `bytes32[]` | The array of `bytes32[]` data keys. |
 | `values`            |  `bytes[]`  | The array of `bytes[]` data values. |
 
+<br/>
+
 ### combinePermissions
 
 ```solidity
-function combinePermissions(bytes32[] permissions) internal pure returns (bytes32);
+function combinePermissions(
+  bytes32[] permissions
+) internal pure returns (bytes32);
 ```
 
 Combine multiple permissions into a single `bytes32`.
@@ -156,9 +193,11 @@ Make sure that the sum of the values of the input array is less than `2^256-1 to
 
 #### Returns
 
-| Name |   Type    | Description                                                    |
-| ---- | :-------: | -------------------------------------------------------------- |
-| `0`  | `bytes32` | @return A `bytes32` value containing the combined permissions. |
+| Name |   Type    | Description                                            |
+| ---- | :-------: | ------------------------------------------------------ |
+| `0`  | `bytes32` | A `bytes32` value containing the combined permissions. |
+
+<br/>
 
 ### generateNewPermissionsKeys
 
@@ -183,6 +222,8 @@ Generate a new set of 3 x LSP6 permission data keys to add a new `controller` on
 | `keys`   | `bytes32[]` | An array of 3 x data keys containing:   |
 | `values` |  `bytes[]`  | An array of 3 x data values containing: |
 
+<br/>
+
 ### getPermissionName
 
 ```solidity
@@ -199,6 +240,8 @@ Returns the name of the permission as a string.
 
 #### Returns
 
-| Name |   Type   | Description                                                |
-| ---- | :------: | ---------------------------------------------------------- |
-| `0`  | `string` | @return The string name of the `bytes32` permission value. |
+| Name |   Type   | Description                                        |
+| ---- | :------: | -------------------------------------------------- |
+| `0`  | `string` | The string name of the `bytes32` permission value. |
+
+<br/>

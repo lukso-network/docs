@@ -1,21 +1,32 @@
+<!-- This file is auto-generated. Do not edit! -->
+<!-- Check `@lukso-network/lsp-smart-contracts/CONTRIBUTING.md#solidity-code-comments` for more information. -->
+
 # LSP8CompatibleERC721Mintable
 
-:::info Solidity contract
+:::info Standard Specifications
 
-[`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+[`LSP-8-IdentifiableDigitalAsset`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)
+
+:::
+:::info Solidity implementation
+
+[`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 
 :::
 
 > LSP8CompatibleERC721Mintable deployable preset contract with a public {mint} function callable only by the contract {owner}.
 
-## Methods
+## Public Methods
+
+Public methods are accessible externally from users, allowing interaction with this function from dApps or other smart contracts.
+When marked as 'public', a method can be called both externally and internally, on the other hand, when marked as 'external', a method can only be called externally.
 
 ### constructor
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#constructor)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#constructor)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 
 :::
 
@@ -23,7 +34,7 @@
 constructor(string name_, string symbol_, address newOwner_);
 ```
 
-_Deploying a `LSP8CompatibleERC721Mintable` token contract with: token name = `name\_`, token symbol = `symbol\_`, and address `newOwner\_` as the token contract owner._
+_Deploying a `LSP8CompatibleERC721Mintable` token contract with: token name = `name_`, token symbol = `symbol_`, and address `newOwner_` as the token contract owner._
 
 #### Parameters
 
@@ -33,12 +44,14 @@ _Deploying a `LSP8CompatibleERC721Mintable` token contract with: token name = `n
 | `symbol_`   | `string`  | The symbol of the token.         |
 | `newOwner_` | `address` | The owner of the token contract. |
 
+<br/>
+
 ### approve
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#approve)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#approve)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `approve(address,uint256)`
 - Function selector: `0x095ea7b3`
 
@@ -48,21 +61,25 @@ _Deploying a `LSP8CompatibleERC721Mintable` token contract with: token name = `n
 function approve(address operator, uint256 tokenId) external nonpayable;
 ```
 
-Compatible with ERC721 approve.
+_Calling `approve` function on `ILSP8CompatibleERC721` contract. Approving operator at address `operator` to transfer tokenId `tokenId` on behalf of its owner._
+
+Approval function compatible with ERC721 `approve(address,uint256)`.
 
 #### Parameters
 
-| Name       |   Type    | Description                          |
-| ---------- | :-------: | ------------------------------------ |
-| `operator` | `address` | The address to approve for `tokenId` |
-| `tokenId`  | `uint256` | The tokenId to approve               |
+| Name       |   Type    | Description                           |
+| ---------- | :-------: | ------------------------------------- |
+| `operator` | `address` | The address to approve for `tokenId`. |
+| `tokenId`  | `uint256` | The tokenId to approve.               |
+
+<br/>
 
 ### authorizeOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#authorizeoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#authorizeoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `authorizeOperator(address,bytes32)`
 - Function selector: `0xcf5182ba`
 
@@ -93,12 +110,14 @@ Allow an `operator` address to transfer or burn a specific `tokenId` on behalf o
 | `operator` | `address` | The address to authorize as an operator. |
 | `tokenId`  | `bytes32` | The token ID operator has access to..    |
 
+<br/>
+
 ### balanceOf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#balanceof)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#balanceof)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `balanceOf(address)`
 - Function selector: `0x70a08231`
 
@@ -122,12 +141,14 @@ Get the number of token IDs owned by `tokenOwner`.
 | ---- | :-------: | ----------------------------------------------------- |
 | `0`  | `uint256` | The total number of token IDs that `tokenOwner` owns. |
 
+<br/>
+
 ### getApproved
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#getapproved)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getapproved)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `getApproved(uint256)`
 - Function selector: `0x081812fc`
 
@@ -137,26 +158,30 @@ Get the number of token IDs owned by `tokenOwner`.
 function getApproved(uint256 tokenId) external view returns (address);
 ```
 
+_Retrieving the address other than the token owner that is approved to transfer tokenId `tokenId` on behalf of its owner._
+
 Compatible with ERC721 getApproved.
 
 #### Parameters
 
-| Name      |   Type    | Description          |
-| --------- | :-------: | -------------------- |
-| `tokenId` | `uint256` | The tokenId to query |
+| Name      |   Type    | Description           |
+| --------- | :-------: | --------------------- |
+| `tokenId` | `uint256` | The tokenId to query. |
 
 #### Returns
 
-| Name |   Type    | Description                               |
-| ---- | :-------: | ----------------------------------------- |
-| `0`  | `address` | The address of the operator for `tokenId` |
+| Name |   Type    | Description                                |
+| ---- | :-------: | ------------------------------------------ |
+| `0`  | `address` | The address of the operator for `tokenId`. |
+
+<br/>
 
 ### getData
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#getdata)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdata)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `getData(bytes32)`
 - Function selector: `0x54f6127f`
 
@@ -166,28 +191,28 @@ Compatible with ERC721 getApproved.
 function getData(bytes32 dataKey) external view returns (bytes dataValue);
 ```
 
-_Reading the ERC725Y storage for data key `dataKey` returned the following value: `dataValue`._
-
-Get in the ERC725Y storage the bytes data stored at a specific data key `dataKey`.
+_Gets singular data at a given `dataKey`_
 
 #### Parameters
 
-| Name      |   Type    | Description                                   |
-| --------- | :-------: | --------------------------------------------- |
-| `dataKey` | `bytes32` | The data key for which to retrieve the value. |
+| Name      |   Type    | Description                     |
+| --------- | :-------: | ------------------------------- |
+| `dataKey` | `bytes32` | The key which value to retrieve |
 
 #### Returns
 
-| Name        |  Type   | Description                                          |
-| ----------- | :-----: | ---------------------------------------------------- |
-| `dataValue` | `bytes` | The bytes value stored under the specified data key. |
+| Name        |  Type   | Description                |
+| ----------- | :-----: | -------------------------- |
+| `dataValue` | `bytes` | The data stored at the key |
+
+<br/>
 
 ### getDataBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#getdatabatch)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatabatch)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `getDataBatch(bytes32[])`
 - Function selector: `0xdedff9c6`
 
@@ -199,9 +224,7 @@ function getDataBatch(
 ) external view returns (bytes[] dataValues);
 ```
 
-_Reading the ERC725Y storage for data keys `dataKeys` returned the following values: `dataValues`._
-
-Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys`.
+_Gets array of data for multiple given keys_
 
 #### Parameters
 
@@ -215,12 +238,14 @@ Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys
 | ------------ | :-------: | ----------------------------------------- |
 | `dataValues` | `bytes[]` | The array of data stored at multiple keys |
 
+<br/>
+
 ### getOperatorsOf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#getoperatorsof)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getoperatorsof)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `getOperatorsOf(bytes32)`
 - Function selector: `0x49a6078d`
 
@@ -244,12 +269,14 @@ Returns all `operator` addresses that are allowed to transfer or burn a specific
 | ---- | :---------: | ------------------------------------------------------------------------------------------------------------ |
 | `0`  | `address[]` | An array of operators allowed to transfer or burn a specific `tokenId`. Requirements - `tokenId` must exist. |
 
+<br/>
+
 ### isApprovedForAll
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#isapprovedforall)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#isapprovedforall)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `isApprovedForAll(address,address)`
 - Function selector: `0xe985e9c5`
 
@@ -275,12 +302,14 @@ function isApprovedForAll(
 | ---- | :----: | ----------- |
 | `0`  | `bool` | -           |
 
+<br/>
+
 ### isOperatorFor
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#isoperatorfor)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#isoperatorfor)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `isOperatorFor(address,bytes32)`
 - Function selector: `0x2a3654a4`
 
@@ -308,12 +337,14 @@ Returns whether `operator` address is an operator for a given `tokenId`.
 | ---- | :----: | --------------------------------------------------------------------- |
 | `0`  | `bool` | `true` if `operator` is an operator for `tokenId`, `false` otherwise. |
 
+<br/>
+
 ### mint
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#mint)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#mint)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `mint(address,bytes32,bool,bytes)`
 - Function selector: `0xaf255b61`
 
@@ -328,23 +359,27 @@ function mint(
 ) external nonpayable;
 ```
 
+_Minting tokenId `tokenId` for address `to` with the additional data `data` (Note: allow non-LSP1 recipient is set to `allowNonLSP1Recipient`)._
+
 Public [`_mint`](#_mint) function only callable by the [`owner`](#owner).
 
 #### Parameters
 
-| Name                    |   Type    | Description |
-| ----------------------- | :-------: | ----------- |
-| `to`                    | `address` | -           |
-| `tokenId`               | `bytes32` | -           |
-| `allowNonLSP1Recipient` |  `bool`   | -           |
-| `data`                  |  `bytes`  | -           |
+| Name                    |   Type    | Description                                                                                                                    |
+| ----------------------- | :-------: | ------------------------------------------------------------------------------------------------------------------------------ |
+| `to`                    | `address` | The address that will receive the minted `tokenId`.                                                                            |
+| `tokenId`               | `bytes32` | The tokenId to mint.                                                                                                           |
+| `allowNonLSP1Recipient` |  `bool`   | Set to `false` to ensure that you are minting for a recipient that implements LSP1, `false` otherwise for forcing the minting. |
+| `data`                  |  `bytes`  | Any addition data to be sent alongside the minting.                                                                            |
+
+<br/>
 
 ### name
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#name)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#name)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `name()`
 - Function selector: `0x06fdde03`
 
@@ -362,12 +397,14 @@ Returns the name of the token.
 | ---- | :------: | --------------------- |
 | `0`  | `string` | The name of the token |
 
+<br/>
+
 ### owner
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#owner)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#owner)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -385,12 +422,14 @@ Returns the address of the current owner.
 | ---- | :-------: | ----------- |
 | `0`  | `address` | -           |
 
+<br/>
+
 ### ownerOf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#ownerof)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#ownerof)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `ownerOf(uint256)`
 - Function selector: `0x6352211e`
 
@@ -400,26 +439,30 @@ Returns the address of the current owner.
 function ownerOf(uint256 tokenId) external view returns (address);
 ```
 
+_Retrieving the address that own tokenId `tokenId`._
+
 Compatible with ERC721 ownerOf.
 
 #### Parameters
 
-| Name      |   Type    | Description          |
-| --------- | :-------: | -------------------- |
-| `tokenId` | `uint256` | The tokenId to query |
+| Name      |   Type    | Description           |
+| --------- | :-------: | --------------------- |
+| `tokenId` | `uint256` | The tokenId to query. |
 
 #### Returns
 
-| Name |   Type    | Description              |
-| ---- | :-------: | ------------------------ |
-| `0`  | `address` | The owner of the tokenId |
+| Name |   Type    | Description               |
+| ---- | :-------: | ------------------------- |
+| `0`  | `address` | The owner of the tokenId. |
+
+<br/>
 
 ### renounceOwnership
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#renounceownership)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#renounceownership)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
 
@@ -431,12 +474,14 @@ function renounceOwnership() external nonpayable;
 
 Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
 
+<br/>
+
 ### revokeOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#revokeoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokeoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `revokeOperator(address,bytes32)`
 - Function selector: `0x0b0c6d82`
 
@@ -455,12 +500,14 @@ Remove access of `operator` for a given `tokenId`, disallowing it to transfer `t
 | `operator` | `address` | The address to revoke as an operator.                |
 | `tokenId`  | `bytes32` | The tokenId `operator` is revoked from operating on. |
 
+<br/>
+
 ### safeTransferFrom
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#safetransferfrom)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#safetransferfrom)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `safeTransferFrom(address,address,uint256)`
 - Function selector: `0x42842e0e`
 
@@ -480,6 +527,8 @@ function safeTransferFrom(
 ) external nonpayable;
 ```
 
+_Calling `safeTransferFrom` function on `ILSP8CompatibleERC721` contract. Transferring tokenId `tokenId` from address `from` to address `to`._
+
 Safe Transfer function without optional data from the ERC721 standard interface.
 
 #### Parameters
@@ -490,12 +539,14 @@ Safe Transfer function without optional data from the ERC721 standard interface.
 | `to`      | `address` | The receiving address.   |
 | `tokenId` | `uint256` | The tokenId to transfer. |
 
+<br/>
+
 ### safeTransferFrom
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#safetransferfrom)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#safetransferfrom)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `safeTransferFrom(address,address,uint256,bytes)`
 - Function selector: `0xb88d4fde`
 
@@ -516,7 +567,9 @@ function safeTransferFrom(
 ) external nonpayable;
 ```
 
-Safe Transfer function with optional data from the ERC721 standard interface..
+_Calling `safeTransferFrom` function with `data` on `ILSP8CompatibleERC721` contract. Transferring tokenId `tokenId` from address `from` to address `to`._
+
+Safe Transfer function with optional data from the ERC721 standard interface.
 
 #### Parameters
 
@@ -527,12 +580,14 @@ Safe Transfer function with optional data from the ERC721 standard interface..
 | `tokenId` | `uint256` | The tokenId to transfer.               |
 | `data`    |  `bytes`  | The data to be sent with the transfer. |
 
+<br/>
+
 ### setApprovalForAll
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#setapprovalforall)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setapprovalforall)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `setApprovalForAll(address,bool)`
 - Function selector: `0xa22cb465`
 
@@ -551,20 +606,16 @@ See [`_setApprovalForAll`](#_setapprovalforall)
 | `operator` | `address` | -           |
 | `approved` |  `bool`   | -           |
 
+<br/>
+
 ### setData
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#setdata)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setdata)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `setData(bytes32,bytes)`
 - Function selector: `0x7f23690c`
-
-:::
-
-:::caution Warning
-
-**Note for developers:** despite the fact that this function is set as `payable`, if the function is not intended to receive value (= native tokens), **an additional check should be implemented to ensure that `msg.value` sent was equal to 0**.
 
 :::
 
@@ -572,47 +623,25 @@ See [`_setApprovalForAll`](#_setapprovalforall)
 function setData(bytes32 dataKey, bytes dataValue) external payable;
 ```
 
-_Setting the following data key value pair in the ERC725Y storage. Data key: `dataKey`, data value: `dataValue`. _
-
-Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data key `dataKey`. The function is marked as payable to enable flexibility on child contracts. For instance to implement a fee mechanism for setting specific data.
-
-<blockquote>
-
-**Requirements:**
-
-- SHOULD only be callable by the [`owner`](#owner).
-
-</blockquote>
-
-<blockquote>
-
-**Emitted events:**
-
-- [`DataChanged`](#datachanged) event.
-
-</blockquote>
+_Sets singular data for a given `dataKey`_
 
 #### Parameters
 
-| Name        |   Type    | Description                                |
-| ----------- | :-------: | ------------------------------------------ |
-| `dataKey`   | `bytes32` | The data key for which to set a new value. |
-| `dataValue` |  `bytes`  | The new bytes value to set.                |
+| Name        |   Type    | Description                                                                                                                                                                                                                                                                                                           |
+| ----------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
+| `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
+
+<br/>
 
 ### setDataBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#setdatabatch)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setdatabatch)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `setDataBatch(bytes32[],bytes[])`
 - Function selector: `0x97902421`
-
-:::
-
-:::caution Warning
-
-**Note for developers:** despite the fact that this function is set as `payable`, if the function is not intended to receive value (= native tokens), **an additional check should be implemented to ensure that `msg.value` sent was equal to 0**.
 
 :::
 
@@ -620,39 +649,25 @@ Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data
 function setDataBatch(bytes32[] dataKeys, bytes[] dataValues) external payable;
 ```
 
-_Setting the following data key value pairs in the ERC725Y storage. Data keys: `dataKeys`, data values: `dataValues`. _
+Sets array of data for multiple given `dataKeys` SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal
 
-Batch data setting function that behaves the same as [`setData`](#setdata) but allowing to set multiple data key/value pairs in the ERC725Y storage in the same transaction.
-
-<blockquote>
-
-**Requirements:**
-
-- SHOULD only be callable by the [`owner`](#owner) of the contract.
-
-</blockquote>
-
-<blockquote>
-
-**Emitted events:**
-
-- [`DataChanged`](#datachanged) event **for each data key/value pair set**.
-
-</blockquote>
+0. Emits a [`DataChanged`](#datachanged) event.
 
 #### Parameters
 
-| Name         |    Type     | Description                                          |
-| ------------ | :---------: | ---------------------------------------------------- |
-| `dataKeys`   | `bytes32[]` | An array of data keys to set bytes values for.       |
-| `dataValues` |  `bytes[]`  | An array of bytes values to set for each `dataKeys`. |
+| Name         |    Type     | Description                              |
+| ------------ | :---------: | ---------------------------------------- |
+| `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
+| `dataValues` |  `bytes[]`  | The array of values to set               |
+
+<br/>
 
 ### supportsInterface
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#supportsinterface)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#supportsinterface)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -676,12 +691,14 @@ Returns true if this contract implements the interface defined by `interfaceId`.
 | ---- | :----: | ----------- |
 | `0`  | `bool` | -           |
 
+<br/>
+
 ### symbol
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#symbol)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#symbol)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `symbol()`
 - Function selector: `0x95d89b41`
 
@@ -699,12 +716,14 @@ Returns the symbol of the token, usually a shorter version of the name.
 | ---- | :------: | ----------------------- |
 | `0`  | `string` | The symbol of the token |
 
+<br/>
+
 ### tokenIdsOf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#tokenidsof)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#tokenidsof)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `tokenIdsOf(address)`
 - Function selector: `0xa3b261f2`
 
@@ -728,12 +747,14 @@ Returns the list of token IDs that the `tokenOwner` address owns.
 | ---- | :---------: | ------------------------------------------------------- |
 | `0`  | `bytes32[]` | An array of `bytes32[] tokenIds` owned by `tokenOwner`. |
 
+<br/>
+
 ### tokenOwnerOf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#tokenownerof)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#tokenownerof)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `tokenOwnerOf(bytes32)`
 - Function selector: `0x217b2270`
 
@@ -757,12 +778,14 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
 | ---- | :-------: | ----------------------------------------- |
 | `0`  | `address` | The owner address of the given `tokenId`. |
 
+<br/>
+
 ### tokenURI
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#))
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#))
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `)`
 - Function selector: `0x59d76dc3`
 
@@ -784,12 +807,14 @@ function tokenURI(uint256) external view returns (string);
 | ---- | :------: | ----------- |
 | `0`  | `string` | -           |
 
+<br/>
+
 ### totalSupply
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#totalsupply)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#totalsupply)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `totalSupply()`
 - Function selector: `0x18160ddd`
 
@@ -807,12 +832,14 @@ Returns the number of existing tokens that have been minted in this contract.
 | ---- | :-------: | ------------------------------ |
 | `0`  | `uint256` | The number of existing tokens. |
 
+<br/>
+
 ### transfer
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#transfer)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transfer)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `transfer(address,address,bytes32,bool,bytes)`
 - Function selector: `0x511b6952`
 
@@ -840,12 +867,14 @@ Transfer a given `tokenId` token from the `from` address to the `to` address. If
 | `allowNonLSP1Recipient` |  `bool`   | When set to `true`, the `to` address CAN be any addres. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
 | `data`                  |  `bytes`  | Any additional data the caller wants included in the emitted event, and sent in the hooks of the `from` and `to` addresses.                                         |
 
+<br/>
+
 ### transferBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#transferbatch)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transferbatch)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `transferBatch(address[],address[],bytes32[],bool[],bytes[])`
 - Function selector: `0x7e87632c`
 
@@ -873,12 +902,14 @@ Transfers multiple tokens at once based on the arrays of `from`, `to` and `token
 | `allowNonLSP1Recipient` |  `bool[]`   | When set to `true`, `to` may be any address. When set to `false`, `to` must be a contract that supports the LSP1 standard and not revert. |
 | `data`                  |  `bytes[]`  | Any additional data the caller wants included in the emitted event, and sent in the hooks to the `from` and `to` addresses.               |
 
+<br/>
+
 ### transferFrom
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#transferfrom)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transferfrom)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `transferFrom(address,address,uint256)`
 - Function selector: `0x23b872dd`
 
@@ -898,6 +929,8 @@ function transferFrom(
 ) external nonpayable;
 ```
 
+_Calling `transferFrom` function on `ILSP8CompatibleERC721` contract. Transferring tokenId `tokenId` from address `from` to address `to`._
+
 Transfer functions from the ERC721 standard interface.
 
 #### Parameters
@@ -908,12 +941,14 @@ Transfer functions from the ERC721 standard interface.
 | `to`      | `address` | The receiving address.   |
 | `tokenId` | `uint256` | The tokenId to transfer. |
 
+<br/>
+
 ### transferOwnership
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#transferownership)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transferownership)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -931,18 +966,260 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 | ---------- | :-------: | ----------- |
 | `newOwner` | `address` | -           |
 
----
+<br/>
+
+## Internal Methods
+
+Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
+
+Internal functions cannot be called externally, whether from other smart contracts, dApp interfaces, or backend services. Their restricted accessibility ensures that they remain exclusively available within the context of the current contract, promoting controlled and encapsulated usage of these internal utilities.
+
+### \_checkOwner
+
+```solidity
+function _checkOwner() internal view;
+```
+
+Throws if the sender is not the owner.
+
+<br/>
+
+### \_setOwner
+
+```solidity
+function _setOwner(address newOwner) internal nonpayable;
+```
+
+Changes the owner if `newOwner` and oldOwner are different
+This pattern is useful in inheritance.
+
+<br/>
+
+### \_getData
+
+```solidity
+function _getData(bytes32 dataKey) internal view returns (bytes dataValue);
+```
+
+<br/>
+
+### \_setData
+
+```solidity
+function _setData(bytes32 key, bytes value) internal nonpayable;
+```
+
+<br/>
+
+### \_isOperatorOrOwner
+
+```solidity
+function _isOperatorOrOwner(
+  address caller,
+  bytes32 tokenId
+) internal view returns (bool);
+```
+
+verifies if the `caller` is operator or owner for the `tokenId`
+
+#### Returns
+
+| Name |  Type  | Description                                  |
+| ---- | :----: | -------------------------------------------- |
+| `0`  | `bool` | true if `caller` is either operator or owner |
+
+<br/>
+
+### \_revokeOperator
+
+```solidity
+function _revokeOperator(
+  address operator,
+  address tokenOwner,
+  bytes32 tokenId
+) internal nonpayable;
+```
+
+removes `operator` from the list of operators for the `tokenId`
+
+<br/>
+
+### \_clearOperators
+
+```solidity
+function _clearOperators(
+  address tokenOwner,
+  bytes32 tokenId
+) internal nonpayable;
+```
+
+revoke all the current operators for a specific `tokenId` token which belongs to `tokenOwner`.
+
+#### Parameters
+
+| Name         |   Type    | Description                                       |
+| ------------ | :-------: | ------------------------------------------------- |
+| `tokenOwner` | `address` | The address that is the owner of the `tokenId`.   |
+| `tokenId`    | `bytes32` | The token to remove the associated operators for. |
+
+<br/>
+
+### \_exists
+
+```solidity
+function _exists(bytes32 tokenId) internal view returns (bool);
+```
+
+Returns whether `tokenId` exists.
+Tokens start existing when they are minted ([`_mint`](#_mint)), and stop existing when they are burned ([`_burn`](#_burn)).
+
+<br/>
+
+### \_existsOrError
+
+```solidity
+function _existsOrError(bytes32 tokenId) internal view;
+```
+
+When `tokenId` does not exist then revert with an error.
+
+<br/>
+
+### \_mint
+
+```solidity
+function _mint(
+  address to,
+  bytes32 tokenId,
+  bool allowNonLSP1Recipient,
+  bytes data
+) internal nonpayable;
+```
+
+<br/>
+
+### \_burn
+
+```solidity
+function _burn(bytes32 tokenId, bytes data) internal nonpayable;
+```
+
+<br/>
+
+### \_transfer
+
+```solidity
+function _transfer(
+  address from,
+  address to,
+  bytes32 tokenId,
+  bool allowNonLSP1Recipient,
+  bytes data
+) internal nonpayable;
+```
+
+<br/>
+
+### \_beforeTokenTransfer
+
+```solidity
+function _beforeTokenTransfer(
+  address from,
+  address to,
+  bytes32 tokenId
+) internal nonpayable;
+```
+
+Hook that is called before any token transfer, including minting and burning.
+
+- Allows to run custom logic before updating balances and notifiying sender/recipient by overriding this function.
+
+#### Parameters
+
+| Name      |   Type    | Description                            |
+| --------- | :-------: | -------------------------------------- |
+| `from`    | `address` | The sender address                     |
+| `to`      | `address` | @param tokenId The tokenId to transfer |
+| `tokenId` | `bytes32` | The tokenId to transfer                |
+
+<br/>
+
+### \_notifyTokenSender
+
+```solidity
+function _notifyTokenSender(address from, bytes lsp1Data) internal nonpayable;
+```
+
+An attempt is made to notify the token sender about the `tokenId` changing owners using
+LSP1 interface.
+
+<br/>
+
+### \_notifyTokenReceiver
+
+```solidity
+function _notifyTokenReceiver(
+  address to,
+  bool allowNonLSP1Recipient,
+  bytes lsp1Data
+) internal nonpayable;
+```
+
+An attempt is made to notify the token receiver about the `tokenId` changing owners
+using LSP1 interface. When allowNonLSP1Recipient is FALSE the token receiver MUST support LSP1.
+The receiver may revert when the token being sent is not wanted.
+
+<br/>
+
+### \_safeTransfer
+
+```solidity
+function _safeTransfer(
+  address from,
+  address to,
+  uint256 tokenId,
+  bytes data
+) internal nonpayable;
+```
+
+Transfer the `tokenId` from `from` to `to` and check if the `to` recipient address is
+a contract that implements the `IERC721Received` interface and return the right magic value.
+See [`_checkOnERC721Received`](#_checkonerc721received) for more infos.
+
+<br/>
+
+### \_setApprovalForAll
+
+```solidity
+function _setApprovalForAll(
+  address tokensOwner,
+  address operator,
+  bool approved
+) internal nonpayable;
+```
+
+Approve `operator` to operate on all tokens of `tokensOwner`
+
+<blockquote>
+
+**Emitted events:**
+
+- [`ApprovalForAll`](#approvalforall) event.
+
+</blockquote>
+
+<br/>
 
 ## Events
 
 ### Approval
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#approval)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#approval)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Event signature: `Approval(address,address,uint256)`
-- Event hash: `0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925`
+- Event topic hash: `0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925`
 
 :::
 
@@ -950,24 +1227,28 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 event Approval(address indexed owner, address indexed operator, uint256 indexed tokenId);
 ```
 
-Emitted when the allowance of a `spender` for an `owner` is set by a call to [`approve`](#approve). `value` is the new allowance.
+_ERC721 `Approval` compatible event emitted. Successfully approved operator `operator` to operate on tokenId `tokenId` on behalf of token owner `owner`._
+
+ERC721 `Approval` event emitted when `owner` enables `operator` for `tokenId`. To provide compatibility with indexing ERC721 events.
 
 #### Parameters
 
-| Name                     |   Type    | Description |
-| ------------------------ | :-------: | ----------- |
-| `owner` **`indexed`**    | `address` | -           |
-| `operator` **`indexed`** | `address` | -           |
-| `tokenId` **`indexed`**  | `uint256` | -           |
+| Name                     |   Type    | Description                                |
+| ------------------------ | :-------: | ------------------------------------------ |
+| `owner` **`indexed`**    | `address` | The address of the owner of the `tokenId`. |
+| `operator` **`indexed`** | `address` | The address set as operator.               |
+| `tokenId` **`indexed`**  | `uint256` | The approved tokenId.                      |
+
+<br/>
 
 ### ApprovalForAll
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#approvalforall)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#approvalforall)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Event signature: `ApprovalForAll(address,address,bool)`
-- Event hash: `0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31`
+- Event topic hash: `0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31`
 
 :::
 
@@ -975,24 +1256,28 @@ Emitted when the allowance of a `spender` for an `owner` is set by a call to [`a
 event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 ```
 
-Emitted when `account` grants or revokes permission to `operator` to transfer their tokens, according to `approved`.
+_ERC721 `ApprovalForAll` compatible event emitted. Successfully set "approved for all" status to `approved` for operator `operator` for token owner `owner`._
+
+ERC721 `ApprovalForAll` event emitted when an `operator` is enabled or disabled for an owner to transfer any of its tokenIds. The operator can manage all NFTs of the owner.
 
 #### Parameters
 
-| Name                     |   Type    | Description |
-| ------------------------ | :-------: | ----------- |
-| `owner` **`indexed`**    | `address` | -           |
-| `operator` **`indexed`** | `address` | -           |
-| `approved`               |  `bool`   | -           |
+| Name                     |   Type    | Description                                    |
+| ------------------------ | :-------: | ---------------------------------------------- |
+| `owner` **`indexed`**    | `address` | The address of the owner of tokenIds.          |
+| `operator` **`indexed`** | `address` | The address set as operator.                   |
+| `approved`               |  `bool`   | If `operator` is approved for all NFTs or not. |
+
+<br/>
 
 ### AuthorizedOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#authorizedoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#authorizedoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Event signature: `AuthorizedOperator(address,address,bytes32)`
-- Event hash: `0x34b797fc5a526f7bf1d2b5de25f6564fd85ae364e3ee939aee7c1ac27871a988`
+- Event topic hash: `0x34b797fc5a526f7bf1d2b5de25f6564fd85ae364e3ee939aee7c1ac27871a988`
 
 :::
 
@@ -1000,7 +1285,7 @@ Emitted when `account` grants or revokes permission to `operator` to transfer th
 event AuthorizedOperator(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId);
 ```
 
-Emitted when `tokenOwner` enables `operator` to transfer or burn `tokenId` on its behalf.
+Emitted when `tokenOwner` enables `operator` to transfer or burn the `tokenId`.
 
 #### Parameters
 
@@ -1010,14 +1295,16 @@ Emitted when `tokenOwner` enables `operator` to transfer or burn `tokenId` on it
 | `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                          |
 | `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` address has access on behalf of `tokenOwner`. |
 
+<br/>
+
 ### DataChanged
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#datachanged)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#datachanged)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Event signature: `DataChanged(bytes32,bytes)`
-- Event hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
+- Event topic hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
 
 :::
 
@@ -1025,25 +1312,25 @@ Emitted when `tokenOwner` enables `operator` to transfer or burn `tokenId` on it
 event DataChanged(bytes32 indexed dataKey, bytes dataValue);
 ```
 
-_The following data key/value pair has been changed in the ERC725Y storage: Data key: `dataKey`, data value: `dataValue`._
-
-Emitted when data at a specific `dataKey` was changed to a new value `dataValue`.
+_Emitted when data at a key is changed_
 
 #### Parameters
 
-| Name                    |   Type    | Description                                  |
-| ----------------------- | :-------: | -------------------------------------------- |
-| `dataKey` **`indexed`** | `bytes32` | The data key for which a bytes value is set. |
-| `dataValue`             |  `bytes`  | The value to set for the given data key.     |
+| Name                    |   Type    | Description                          |
+| ----------------------- | :-------: | ------------------------------------ |
+| `dataKey` **`indexed`** | `bytes32` | The data key which data value is set |
+| `dataValue`             |  `bytes`  | The data value to set                |
+
+<br/>
 
 ### OwnershipTransferred
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#ownershiptransferred)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#ownershiptransferred)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Event signature: `OwnershipTransferred(address,address)`
-- Event hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
+- Event topic hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
 
 :::
 
@@ -1058,14 +1345,16 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 | `previousOwner` **`indexed`** | `address` | -           |
 | `newOwner` **`indexed`**      | `address` | -           |
 
+<br/>
+
 ### RevokedOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#revokedoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokedoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Event signature: `RevokedOperator(address,address,bytes32)`
-- Event hash: `0x17d5389f6ab6adb2647dfa0aa365c323d37adacc30b33a65310b6158ce1373d5`
+- Event topic hash: `0x17d5389f6ab6adb2647dfa0aa365c323d37adacc30b33a65310b6158ce1373d5`
 
 :::
 
@@ -1077,26 +1366,30 @@ Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on i
 
 #### Parameters
 
-| Name                       |   Type    | Description                                          |
-| -------------------------- | :-------: | ---------------------------------------------------- |
-| `operator` **`indexed`**   | `address` | The address revoked as an operator.                  |
-| `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                          |
-| `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on. |
+| Name                       |   Type    | Description                                                     |
+| -------------------------- | :-------: | --------------------------------------------------------------- |
+| `operator` **`indexed`**   | `address` | The address revoked from the operator array ({getOperatorsOf}). |
+| `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                     |
+| `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on.            |
+
+<br/>
 
 ### Transfer
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#transfer)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transfer)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Event signature: `Transfer(address,address,address,bytes32,bool,bytes)`
-- Event hash: `0xb333c813a7426a7a11e2b190cad52c44119421594b47f6f32ace6d8c7207b2bf`
+- Event topic hash: `0xb333c813a7426a7a11e2b190cad52c44119421594b47f6f32ace6d8c7207b2bf`
 
 :::
 
 ```solidity
 event Transfer(address operator, address indexed from, address indexed to, bytes32 indexed tokenId, bool allowNonLSP1Recipient, bytes data);
 ```
+
+_ERC721 `Transfer` compatible event emitted. Successfully transferred tokenId `tokenId` from `from` to `to`._
 
 Emitted when `tokenId` token is transferred from the `from` to the `to` address.
 
@@ -1111,16 +1404,16 @@ Emitted when `tokenId` token is transferred from the `from` to the `to` address.
 | `allowNonLSP1Recipient` |  `bool`   | If the token transfer enforces the `to` recipient address to be a contract that implements the LSP1 standard or not.               |
 | `data`                  |  `bytes`  | Any additional data the caller included by the caller during the transfer, and sent in the hooks to the `from` and `to` addresses. |
 
----
+<br/>
 
 ## Errors
 
 ### ERC725Y_DataKeysValuesEmptyArray
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#erc725y_datakeysvaluesemptyarray)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
 - Error hash: `0x97da5f95`
 
@@ -1130,14 +1423,16 @@ Emitted when `tokenId` token is transferred from the `from` to the `to` address.
 error ERC725Y_DataKeysValuesEmptyArray();
 ```
 
-Reverts when one of the array parameter provided to [`setDataBatch`](#setdatabatch) function is an empty array.
+reverts when one of the array parameter provided to `setDataBatch` is an empty array
+
+<br/>
 
 ### ERC725Y_DataKeysValuesLengthMismatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#erc725y_datakeysvalueslengthmismatch)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
 - Error hash: `0x3bcc8979`
 
@@ -1147,14 +1442,16 @@ Reverts when one of the array parameter provided to [`setDataBatch`](#setdatabat
 error ERC725Y_DataKeysValuesLengthMismatch();
 ```
 
-Reverts when there is not the same number of elements in the `datakeys` and `dataValues` array parameters provided when calling the [`setDataBatch`](#setdatabatch) function.
+reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
+
+<br/>
 
 ### ERC725Y_MsgValueDisallowed
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#erc725y_msgvaluedisallowed)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#erc725y_msgvaluedisallowed)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `ERC725Y_MsgValueDisallowed()`
 - Error hash: `0xf36ba737`
 
@@ -1164,14 +1461,16 @@ Reverts when there is not the same number of elements in the `datakeys` and `dat
 error ERC725Y_MsgValueDisallowed();
 ```
 
-Reverts when sending value to the [`setData`](#setdata) or [`setDataBatch`](#setdatabatch) function.
+reverts when sending value to the `setData(..)` functions
+
+<br/>
 
 ### LSP4TokenNameNotEditable
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp4tokennamenoteditable)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp4tokennamenoteditable)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP4TokenNameNotEditable()`
 - Error hash: `0x85c169bd`
 
@@ -1183,12 +1482,14 @@ error LSP4TokenNameNotEditable();
 
 Reverts when trying to edit the data key `LSP4TokenName` after the digital asset contract has been deployed. The `LSP4TokenName` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
 
+<br/>
+
 ### LSP4TokenSymbolNotEditable
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp4tokensymbolnoteditable)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp4tokensymbolnoteditable)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP4TokenSymbolNotEditable()`
 - Error hash: `0x76755b38`
 
@@ -1200,12 +1501,14 @@ error LSP4TokenSymbolNotEditable();
 
 Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital asset contract has been deployed. The `LSP4TokenSymbol` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
 
+<br/>
+
 ### LSP8CannotSendToAddressZero
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8cannotsendtoaddresszero)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8cannotsendtoaddresszero)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8CannotSendToAddressZero()`
 - Error hash: `0x24ecef4d`
 
@@ -1217,12 +1520,14 @@ error LSP8CannotSendToAddressZero();
 
 reverts when trying to send token to the zero address.
 
+<br/>
+
 ### LSP8CannotSendToSelf
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8cannotsendtoself)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8cannotsendtoself)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8CannotSendToSelf()`
 - Error hash: `0x5d67d6c1`
 
@@ -1234,12 +1539,14 @@ error LSP8CannotSendToSelf();
 
 reverts when specifying the same address for `from` and `to` in a token transfer.
 
+<br/>
+
 ### LSP8CannotUseAddressZeroAsOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8cannotuseaddresszeroasoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8cannotuseaddresszeroasoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8CannotUseAddressZeroAsOperator()`
 - Error hash: `0x9577b8b3`
 
@@ -1251,12 +1558,14 @@ error LSP8CannotUseAddressZeroAsOperator();
 
 reverts when trying to set the zero address as an operator.
 
+<br/>
+
 ### LSP8InvalidTransferBatch
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8invalidtransferbatch)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8invalidtransferbatch)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8InvalidTransferBatch()`
 - Error hash: `0x93a83119`
 
@@ -1268,12 +1577,14 @@ error LSP8InvalidTransferBatch();
 
 reverts when the parameters used for `transferBatch` have different lengths.
 
+<br/>
+
 ### LSP8NonExistentTokenId
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8nonexistenttokenid)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nonexistenttokenid)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8NonExistentTokenId(bytes32)`
 - Error hash: `0xae8f9a36`
 
@@ -1291,12 +1602,14 @@ reverts when `tokenId` has not been minted.
 | --------- | :-------: | ----------- |
 | `tokenId` | `bytes32` | -           |
 
+<br/>
+
 ### LSP8NonExistingOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8nonexistingoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nonexistingoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8NonExistingOperator(address,bytes32)`
 - Error hash: `0x4aa31a8c`
 
@@ -1315,12 +1628,14 @@ reverts when `operator` is not an operator for the `tokenId`.
 | `operator` | `address` | -           |
 | `tokenId`  | `bytes32` | -           |
 
+<br/>
+
 ### LSP8NotTokenOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8nottokenoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nottokenoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8NotTokenOperator(bytes32,address)`
 - Error hash: `0x1294d2a9`
 
@@ -1339,12 +1654,14 @@ reverts when `caller` is not an allowed operator for `tokenId`.
 | `tokenId` | `bytes32` | -           |
 | `caller`  | `address` | -           |
 
+<br/>
+
 ### LSP8NotTokenOwner
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8nottokenowner)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8nottokenowner)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8NotTokenOwner(address,bytes32,address)`
 - Error hash: `0x5b271ea2`
 
@@ -1364,12 +1681,14 @@ reverts when `caller` is not the `tokenOwner` of the `tokenId`.
 | `tokenId`    | `bytes32` | -           |
 | `caller`     | `address` | -           |
 
+<br/>
+
 ### LSP8NotifyTokenReceiverContractMissingLSP1Interface
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8notifytokenreceivercontractmissinglsp1interface)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8notifytokenreceivercontractmissinglsp1interface)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8NotifyTokenReceiverContractMissingLSP1Interface(address)`
 - Error hash: `0x4349776d`
 
@@ -1389,12 +1708,14 @@ reverts if the `tokenReceiver` does not implement LSP1 when minting or transferr
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
+<br/>
+
 ### LSP8NotifyTokenReceiverIsEOA
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8notifytokenreceiveriseoa)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8notifytokenreceiveriseoa)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8NotifyTokenReceiverIsEOA(address)`
 - Error hash: `0x03173137`
 
@@ -1412,12 +1733,14 @@ reverts if the `tokenReceiver` is an EOA when minting or transferring tokens wit
 | --------------- | :-------: | ----------- |
 | `tokenReceiver` | `address` | -           |
 
+<br/>
+
 ### LSP8OperatorAlreadyAuthorized
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8operatoralreadyauthorized)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8operatoralreadyauthorized)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8OperatorAlreadyAuthorized(address,bytes32)`
 - Error hash: `0xa7626b68`
 
@@ -1436,12 +1759,14 @@ reverts when `operator` is already authorized for the `tokenId`.
 | `operator` | `address` | -           |
 | `tokenId`  | `bytes32` | -           |
 
+<br/>
+
 ### LSP8TokenIdAlreadyMinted
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8tokenidalreadyminted)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidalreadyminted)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8TokenIdAlreadyMinted(bytes32)`
 - Error hash: `0x34c7b511`
 
@@ -1459,12 +1784,14 @@ reverts when `tokenId` has already been minted.
 | --------- | :-------: | ----------- |
 | `tokenId` | `bytes32` | -           |
 
+<br/>
+
 ### LSP8TokenOwnerCannotBeOperator
 
-:::note Links
+:::note References
 
-- Specification details in [**LSP-8-CompatibleERC721Mintable**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-CompatibleERC721Mintable.md#lsp8tokenownercannotbeoperator)
-- Solidity implementation in [**LSP8CompatibleERC721Mintable**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8CompatibleERC721Mintable)
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenownercannotbeoperator)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
 - Error signature: `LSP8TokenOwnerCannotBeOperator()`
 - Error hash: `0x89fdad62`
 
@@ -1476,193 +1803,4 @@ error LSP8TokenOwnerCannotBeOperator();
 
 reverts when trying to authorize or revoke the token's owner as an operator.
 
-<!-- GLOBAL LINKS -->
-
-<!-- prettier-ignore-start -->
-
-<!-- SPECS -->
-
-[ERC-165]: https://eips.ethereum.org/EIPS/eip-165
-[EIP-165]: https://eips.ethereum.org/EIPS/eip-165
-[ERC-173]: https://eips.ethereum.org/EIPS/eip-173
-[EIP-173]: https://eips.ethereum.org/EIPS/eip-173
-[ERC-191]: https://eips.ethereum.org/EIPS/eip-191
-[EIP-191]: https://eips.ethereum.org/EIPS/eip-191
-[ERC-725X]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725X
-[ERC-725Y]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725Y
-[ERC-725]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md
-[ERC-1271]: https://eips.ethereum.org/EIPS/eip-1271
-[EIP-1271]: https://eips.ethereum.org/EIPS/eip-1271
-[LSP-0-ERC725Account]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-0-ERC725Account.md
-[LSP-1-UniversalReceiver]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-1-UniversalReceiver.md
-[LSP-2-ERC725YJSONSchema]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-2-ERC725YJSONSchema.md
-[LSP-3-UniversalProfile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md
-[LSP-4-DigitalAsset-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-4-DigitalAsset-Metadata.md
-[LSP-5-ReceivedAssets]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-5-ReceivedAssets.md
-[LSP-6-KeyManager]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-6-KeyManager.md
-[LSP-7-DigitalAsset]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-7-DigitalAsset.md
-[LSP-8-IdentifiableDigitalAsset]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md
-[LSP-9-Vault.md]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-9-Vault.md.md
-[LSP-10-ReceivedVaults]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-10-ReceivedVaults.md
-[LSP-11-BasicSocialRecovery]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-11-BasicSocialRecovery.md
-[LSP-12-IssuedAssets]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-12-IssuedAssets.md
-[LSP-14-Ownable2Step]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-14-Ownable2Step.md
-[LSP-15-TransactionRelayServiceAPI]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-15-TransactionRelayServiceAPI.md
-[LSP-16-UniversalFactory]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-16-UniversalFactory.md
-[LSP-17-ContractExtension]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-17-ContractExtension.md
-[LSP-20-CallVerification]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-20-CallVerification.md
-
-<!-- DOCS -->
-
-[ERC725]: https://docs.lukso.tech/standards/lsp-background/erc725
-[UniversalProfile]: https://docs.lukso.tech/standards/universal-profile/introduction
-[LSP0ERC725Account]: https://docs.lukso.tech/standards/universal-profile/lsp0-erc725account
-[LSP1UniversalReceiver]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver
-[LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver-delegate
-[LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema
-[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/nft-2.0/LSP4-Digital-Asset-Metadata
-[LSP5ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp5-received-assets
-[LSP6KeyManager]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
-[LSP7DigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP7-Digital-Asset
-[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP8-Identifiable-Digital-Asset
-[LSP10ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp10-received-vaults
-[LSP14Ownable2Step]: https://docs.lukso.tech/standards/generic-standards/lsp14-ownable-2-step
-[LSP17ContractExtension]: https://docs.lukso.tech/standards/generic-standards/lsp17-contract-extension
-[LSP20CallVerification]: https://docs.lukso.tech/standards/generic-standards/lsp20-call-verification
-
-<!-- DATA KEYS -->
-
-[_LSP17_EXTENSION_PREFIX]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#lsp17extendable-specification
-[_LSP1_UNIVERSAL_RECEIVER_DELEGATE_KEY]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md#specification-1
-[_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md#specification-1
-
-<!-- LSP1 TYPE IDS -->
-
-[LSP0OwnershipTransferStarted]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#transferownership
-[LSP0OwnershipTransferred_SenderNotification]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#acceptownership
-[LSP0OwnershipTransferred_RecipientNotification]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#acceptownership
-
-<!-- ERC725 LIBRARY -->
-
-[`ERC725.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725.sol
-[`ERC725Init.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Init.sol
-[`ERC725InitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725InitAbstract
-[`IERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725X.sol
-[`ERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725X.sol
-[`ERC725XCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XCore.sol
-[`ERC725XInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInit.sol
-[`ERC725XInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInitAbstract.sol
-[`IERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725Y.sol
-[`ERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Y.sol
-[`ERC725YCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YCore.sol
-[`ERC725YInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInit.sol
-[`ERC725YInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInitAbstract.soll
-[`OwnableUnset.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/custom/OwnableUnset.sol
-
-<!-- EXTERNAL LIBRARIES -->
-
-[`Create2.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Create2.sol
-[`ECDSA.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/cryptography/ECDSA.sol
-[`ERC165Checker.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165Checker.sol
-[`Address.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Address.sol
-[`ERC165.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165.sol
-[`EnumerableSet.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/structs/EnumerableSet.so
-[`Initializable.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/v4.9.2/contracts/proxy/utils/Initializable.sol
-[`BytesLib.sol`]: https://github.com/GNSPS/solidity-bytes-utils/blob/v0.8.0/contracts/BytesLib.sol
-
-<!-- SOLIDITY IMPLEMENTATION -->
-
-[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol
-[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Utils.sol
-[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInitAbstract.sol
-[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/ILSP0ERC725Account.sol
-[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725Account.sol
-[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInit.sol
-[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Constants.sol
-[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInitAbstract.sol
-[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfile.sol
-[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInit.sol
-[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol
-[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Utils.sol
-[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol
-[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiver.sol
-[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Constants.sol
-[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Errors.sol
-[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadataInitAbstract.sol
-[`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/ontracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
-[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Compatibility.sol
-[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol
-[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/ILSP4Compatibility.sol
-[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Errors.sol
-[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6SetDataModule.sol
-[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerCore.sol
-[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6ExecuteModule.sol
-[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Utils.sol
-[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Constants.sol
-[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/ILSP6KeyManager.sol
-[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Errors.sol
-[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6OwnershipModule.sol
-[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInitAbstract.sol
-[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManager.sol
-[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInit.sol
-[`LSP7DigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol
-[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20InitAbstract.sol
-[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20.sol
-[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol
-[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetInitAbstract.sol
-[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol
-[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupplyInitAbstract.sol
-[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol
-[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInitAbstract.sol
-[`LSP7CompatibleERC20MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInitAbstract.sol
-[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol
-[`LSP7CompatibleERC20Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20Mintable.sol
-[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Errors.sol
-[`LSP7CompatibleERC20MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInit.sol
-[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInit.sol
-[`ILSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/ILSP7CompatibleERC20.sol
-[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/ILSP7Mintable.sol
-[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol
-[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7BurnableInitAbstract.sol
-[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Constants.sol
-[`LSP8IdentifiableDigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetCore.sol
-[`LSP8CompatibleERC721InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721InitAbstract.sol
-[`LSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721.sol
-[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol
-[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8EnumerableInitAbstract.sol
-[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.sol
-[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupplyInitAbstract.sol
-[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.sol
-[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetInitAbstract.sol
-[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInitAbstract.sol
-[`ILSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/ILSP8CompatibleERC721.sol
-[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol
-[`LSP8CompatibleERC721MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInitAbstract.s
-[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol
-[`LSP8CompatibleERC721Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol
-[`LSP8CompatibleERC721MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInit.sol
-[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Errors.sol
-[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInit.sol
-[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.sol
-[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/ILSP8Mintable.sol
-[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.s
-[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol
-[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/ILSP14Ownable2Step.sol
-[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Constants.sol
-[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Errors.sol
-[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extendable.sol
-[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extension.sol
-[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Constants.sol
-[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Errors.sol
-[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Utils.sol
-[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20CallVerification.sol
-[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/ILSP20CallVerifier.sol
-[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Constants.sol
-[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Errors.sol
-[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol
-[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Utils.sol
-[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Constants.sol
-[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Utils.sol
-[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Constants.sol
-
-<!-- prettier-ignore-end -->
+<br/>

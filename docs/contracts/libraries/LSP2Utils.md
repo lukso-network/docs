@@ -1,6 +1,14 @@
+<!-- This file is auto-generated. Do not edit! -->
+<!-- Check `@lukso-network/lsp-smart-contracts/CONTRIBUTING.md#solidity-code-comments` for more information. -->
+
 # LSP2Utils
 
-:::info Solidity contract
+:::info Standard Specifications
+
+[`LSP-2-ERC725YJSONSchema`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-2-ERC725YJSONSchema.md)
+
+:::
+:::info Solidity implementation
 
 [`LSP2Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol)
 
@@ -10,9 +18,11 @@
 
 LSP2Utils is a library of utility functions that can be used to encode data key of different key type defined on the LSP2 standard. Based on LSP2 ERC725Y JSON Schema standard.
 
----
-
 ## Internal Methods
+
+Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
+
+Internal functions cannot be called externally, whether from other smart contracts, dApp interfaces, or backend services. Their restricted accessibility ensures that they remain exclusively available within the context of the current contract, promoting controlled and encapsulated usage of these internal utilities.
 
 ### generateSingletonKey
 
@@ -34,9 +44,11 @@ keccak256("keyName")
 
 #### Returns
 
-| Name |   Type    | Description                                                     |
-| ---- | :-------: | --------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type Singleton. |
+| Name |   Type    | Description                                             |
+| ---- | :-------: | ------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type Singleton. |
+
+<br/>
 
 ### generateArrayKey
 
@@ -58,14 +70,19 @@ keccak256("arrayKeyName[]")
 
 #### Returns
 
-| Name |   Type    | Description                                                 |
-| ---- | :-------: | ----------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type Array. |
+| Name |   Type    | Description                                         |
+| ---- | :-------: | --------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type Array. |
+
+<br/>
 
 ### generateArrayElementKeyAtIndex
 
 ```solidity
-function generateArrayElementKeyAtIndex(bytes32 arrayKey, uint128 index) internal pure returns (bytes32);
+function generateArrayElementKeyAtIndex(
+  bytes32 arrayKey,
+  uint128 index
+) internal pure returns (bytes32);
 ```
 
 Generates an Array data key at a specific `index` by concatenating together the first 16 bytes of `arrayKey`
@@ -84,14 +101,19 @@ arrayKey[index]
 
 #### Returns
 
-| Name |   Type    | Description                                                                       |
-| ---- | :-------: | --------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type Array at a specific `index`. |
+| Name |   Type    | Description                                                               |
+| ---- | :-------: | ------------------------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type Array at a specific `index`. |
+
+<br/>
 
 ### generateMappingKey
 
 ```solidity
-function generateMappingKey(string firstWord, string lastWord) internal pure returns (bytes32);
+function generateMappingKey(
+  string firstWord,
+  string lastWord
+) internal pure returns (bytes32);
 ```
 
 Generates a data key of key type Mapping that map `firstWord` to `lastWord`. This is done by hashing two strings words `firstWord` and `lastWord`. As:
@@ -109,14 +131,19 @@ bytes10(firstWordHash):0000:bytes20(lastWordHash)
 
 #### Returns
 
-| Name |   Type    | Description                                                                                                 |
-| ---- | :-------: | ----------------------------------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type Mapping that map `firstWord` to a specific `lastWord`. |
+| Name |   Type    | Description                                                                                         |
+| ---- | :-------: | --------------------------------------------------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type Mapping that map `firstWord` to a specific `lastWord`. |
+
+<br/>
 
 ### generateMappingKey
 
 ```solidity
-function generateMappingKey(string firstWord, address addr) internal pure returns (bytes32);
+function generateMappingKey(
+  string firstWord,
+  address addr
+) internal pure returns (bytes32);
 ```
 
 Generates a data key of key type Mapping that map `firstWord` to an address `addr`.
@@ -135,14 +162,19 @@ bytes10(firstWordHash):0000:<address>
 
 #### Returns
 
-| Name |   Type    | Description                                                                                                     |
-| ---- | :-------: | --------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type Mapping that map `firstWord` to a specific address `addr`. |
+| Name |   Type    | Description                                                                                             |
+| ---- | :-------: | ------------------------------------------------------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type Mapping that map `firstWord` to a specific address `addr`. |
+
+<br/>
 
 ### generateMappingKey
 
 ```solidity
-function generateMappingKey(bytes10 keyPrefix, bytes20 bytes20Value) internal pure returns (bytes32);
+function generateMappingKey(
+  bytes10 keyPrefix,
+  bytes20 bytes20Value
+) internal pure returns (bytes32);
 ```
 
 Generate a data key of key type Mapping that map a 10 bytes `keyPrefix` to a `bytes20Value`. As:
@@ -160,14 +192,20 @@ keyPrefix:bytes20Value
 
 #### Returns
 
-| Name |   Type    | Description                                                                                                       |
-| ---- | :-------: | ----------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type Mapping that map a `keyPrefix` to a specific `bytes20Value`. |
+| Name |   Type    | Description                                                                                               |
+| ---- | :-------: | --------------------------------------------------------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type Mapping that map a `keyPrefix` to a specific `bytes20Value`. |
+
+<br/>
 
 ### generateMappingWithGroupingKey
 
 ```solidity
-function generateMappingWithGroupingKey(string firstWord, string secondWord, address addr) internal pure returns (bytes32);
+function generateMappingWithGroupingKey(
+  string firstWord,
+  string secondWord,
+  address addr
+) internal pure returns (bytes32);
 ```
 
 Generate a data key of key type MappingWithGrouping by using two strings `firstWord`
@@ -187,14 +225,20 @@ bytes6(keccak256("firstWord")):bytes4(keccak256("secondWord")):0000:<address>
 
 #### Returns
 
-| Name |   Type    | Description                                                                                                                                     |
-| ---- | :-------: | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type MappingWithGrouping that map a `firstWord` to a `secondWord` to a specific address `addr`. |
+| Name |   Type    | Description                                                                                                                             |
+| ---- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type MappingWithGrouping that map a `firstWord` to a `secondWord` to a specific address `addr`. |
+
+<br/>
 
 ### generateMappingWithGroupingKey
 
 ```solidity
-function generateMappingWithGroupingKey(bytes6 keyPrefix, bytes4 mapPrefix, bytes20 subMapKey) internal pure returns (bytes32);
+function generateMappingWithGroupingKey(
+  bytes6 keyPrefix,
+  bytes4 mapPrefix,
+  bytes20 subMapKey
+) internal pure returns (bytes32);
 ```
 
 Generate a data key of key type MappingWithGrouping that map a `keyPrefix` to an other `mapPrefix` to a specific `subMapKey`. As:
@@ -213,14 +257,19 @@ keyPrefix:mapPrefix:0000:subMapKey
 
 #### Returns
 
-| Name |   Type    | Description                                                                                                                                 |
-| ---- | :-------: | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type MappingWithGrouping that map a `keyPrefix` to a `mapPrefix` to a specific `subMapKey`. |
+| Name |   Type    | Description                                                                                                                         |
+| ---- | :-------: | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type MappingWithGrouping that map a `keyPrefix` to a `mapPrefix` to a specific `subMapKey`. |
+
+<br/>
 
 ### generateMappingWithGroupingKey
 
 ```solidity
-function generateMappingWithGroupingKey(bytes10 keyPrefix, bytes20 bytes20Value) internal pure returns (bytes32);
+function generateMappingWithGroupingKey(
+  bytes10 keyPrefix,
+  bytes20 bytes20Value
+) internal pure returns (bytes32);
 ```
 
 Generate a data key of key type MappingWithGrouping that map a 10 bytes `keyPrefix` to a specific `bytes20Value`. As:
@@ -234,14 +283,20 @@ Generate a data key of key type MappingWithGrouping that map a 10 bytes `keyPref
 
 #### Returns
 
-| Name |   Type    | Description                                                                                     |
-| ---- | :-------: | ----------------------------------------------------------------------------------------------- |
-| `0`  | `bytes32` | @return The generated `bytes32` data key of key type MappingWithGrouping that map a `keyPrefix` |
+| Name |   Type    | Description                                                                             |
+| ---- | :-------: | --------------------------------------------------------------------------------------- |
+| `0`  | `bytes32` | The generated `bytes32` data key of key type MappingWithGrouping that map a `keyPrefix` |
+
+<br/>
 
 ### generateJSONURLValue
 
 ```solidity
-function generateJSONURLValue(string hashFunction, string json, string url) internal pure returns (bytes);
+function generateJSONURLValue(
+  string hashFunction,
+  string json,
+  string url
+) internal pure returns (bytes);
 ```
 
 Generate a JSONURL value content.
@@ -254,10 +309,16 @@ Generate a JSONURL value content.
 | `json`         | `string` | Bytes value of the JSON file.            |
 | `url`          | `string` | The URL where the JSON file is hosted.   |
 
+<br/>
+
 ### generateASSETURLValue
 
 ```solidity
-function generateASSETURLValue(string hashFunction, string assetBytes, string url) internal pure returns (bytes);
+function generateASSETURLValue(
+  string hashFunction,
+  string assetBytes,
+  string url
+) internal pure returns (bytes);
 ```
 
 Generate a ASSETURL value content.
@@ -272,9 +333,11 @@ Generate a ASSETURL value content.
 
 #### Returns
 
-| Name |  Type   | Description                                 |
-| ---- | :-----: | ------------------------------------------- |
-| `0`  | `bytes` | @return The encoded value as an `ASSETURL`. |
+| Name |  Type   | Description                         |
+| ---- | :-----: | ----------------------------------- |
+| `0`  | `bytes` | The encoded value as an `ASSETURL`. |
+
+<br/>
 
 ### isEncodedArray
 
@@ -292,9 +355,11 @@ Verify if `data` is an abi-encoded array.
 
 #### Returns
 
-| Name |  Type  | Description                                                                      |
-| ---- | :----: | -------------------------------------------------------------------------------- |
-| `0`  | `bool` | @return `true` if the `data` represents an abi-encoded array, `false` otherwise. |
+| Name |  Type  | Description                                                              |
+| ---- | :----: | ------------------------------------------------------------------------ |
+| `0`  | `bool` | `true` if the `data` represents an abi-encoded array, `false` otherwise. |
+
+<br/>
 
 ### isEncodedArrayOfAddresses
 
@@ -312,9 +377,11 @@ Verify if `data` is an abi-encoded array of addresses (`address[]`) encoded acco
 
 #### Returns
 
-| Name |  Type  | Description                                                                                   |
-| ---- | :----: | --------------------------------------------------------------------------------------------- |
-| `0`  | `bool` | @return `true` if the `data` represents an abi-encoded array of addresses, `false` otherwise. |
+| Name |  Type  | Description                                                                           |
+| ---- | :----: | ------------------------------------------------------------------------------------- |
+| `0`  | `bool` | `true` if the `data` represents an abi-encoded array of addresses, `false` otherwise. |
+
+<br/>
 
 ### isBytes4EncodedArray
 
@@ -332,14 +399,18 @@ Verify if `data` is an abi-array of `bytes4` values (`bytes4[]`) encoded accordi
 
 #### Returns
 
-| Name |  Type  | Description                                                                                  |
-| ---- | :----: | -------------------------------------------------------------------------------------------- |
-| `0`  | `bool` | @return `true` if the `data` represents an abi-encoded array of `bytes4`, `false` otherwise. |
+| Name |  Type  | Description                                                                          |
+| ---- | :----: | ------------------------------------------------------------------------------------ |
+| `0`  | `bool` | `true` if the `data` represents an abi-encoded array of `bytes4`, `false` otherwise. |
+
+<br/>
 
 ### isCompactBytesArray
 
 ```solidity
-function isCompactBytesArray(bytes compactBytesArray) internal pure returns (bool);
+function isCompactBytesArray(
+  bytes compactBytesArray
+) internal pure returns (bool);
 ```
 
 Verify if `data` is a valid array of value encoded as a `CompactBytesArray` according to the LSP2 `CompactBytesArray` valueType specification.
@@ -352,6 +423,83 @@ Verify if `data` is a valid array of value encoded as a `CompactBytesArray` acco
 
 #### Returns
 
-| Name |  Type  | Description                                                                             |
-| ---- | :----: | --------------------------------------------------------------------------------------- |
-| `0`  | `bool` | @return `true` if the `data` is correctly encoded CompactBytesArray, `false` otherwise. |
+| Name |  Type  | Description                                                                     |
+| ---- | :----: | ------------------------------------------------------------------------------- |
+| `0`  | `bool` | `true` if the `data` is correctly encoded CompactBytesArray, `false` otherwise. |
+
+<br/>
+
+### isValidLSP2ArrayLengthValue
+
+```solidity
+function isValidLSP2ArrayLengthValue(
+  bytes arrayLength
+) internal pure returns (bool);
+```
+
+Validates if the bytes `arrayLength` are exactly 16 bytes long, and are of the exact size of an LSP2 Array length value
+
+#### Parameters
+
+| Name          |  Type   | Description                           |
+| ------------- | :-----: | ------------------------------------- |
+| `arrayLength` | `bytes` | Plain bytes that should be validated. |
+
+#### Returns
+
+| Name |  Type  | Description                                              |
+| ---- | :----: | -------------------------------------------------------- |
+| `0`  | `bool` | `true` if the value is 16 bytes long, `false` otherwise. |
+
+<br/>
+
+### removeLastElementFromArrayAndMap
+
+```solidity
+function removeLastElementFromArrayAndMap(
+  bytes32 arrayKey,
+  uint128 newArrayLength,
+  bytes32 removedElementIndexKey,
+  bytes32 removedElementMapKey
+) internal pure returns (bytes32[] dataKeys, bytes[] dataValues);
+```
+
+Generates Data Key/Value pairs for removing the last element from an LSP2 Array and a mapping Data Key.
+
+#### Parameters
+
+| Name                     |   Type    | Description                                                   |
+| ------------------------ | :-------: | ------------------------------------------------------------- |
+| `arrayKey`               | `bytes32` | The Data Key of Key Type Array.                               |
+| `newArrayLength`         | `uint128` | The new Array Length for the `arrayKey`.                      |
+| `removedElementIndexKey` | `bytes32` | The Data Key of Key Type Array Index for the removed element. |
+| `removedElementMapKey`   | `bytes32` | The Data Key of a mapping to be removed.                      |
+
+<br/>
+
+### removeElementFromArrayAndMap
+
+:::info
+
+The function assumes that the Data Value stored under the mapping Data Key is of length 20 where the last 16 bytes are the index of the element in the array.
+
+:::
+
+```solidity
+function removeElementFromArrayAndMap(contract IERC725Y ERC725YContract, bytes32 arrayKey, uint128 newArrayLength, bytes32 removedElementIndexKey, uint128 removedElementIndex, bytes32 removedElementMapKey) internal view returns (bytes32[] dataKeys, bytes[] dataValues);
+```
+
+Generates Data Key/Value pairs for removing an element from an LSP2 Array and a mapping Data Key.
+
+#### Parameters
+
+| Name                     |        Type         | Description                                                   |
+| ------------------------ | :-----------------: | ------------------------------------------------------------- |
+| `ERC725YContract`        | `contract IERC725Y` | The ERC725Y contract.                                         |
+| `arrayKey`               |      `bytes32`      | The Data Key of Key Type Array.                               |
+| `newArrayLength`         |      `uint128`      | The new Array Length for the `arrayKey`.                      |
+| `removedElementIndexKey` |      `bytes32`      | The Data Key of Key Type Array Index for the removed element. |
+| `removedElementIndex`    |      `uint128`      | the index of the removed element.                             |
+| `removedElementMapKey`   |      `bytes32`      | The Data Key of a mapping to be removed.                      |
+
+<br/>
