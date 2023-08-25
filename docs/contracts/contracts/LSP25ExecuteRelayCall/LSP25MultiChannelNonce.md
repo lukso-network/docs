@@ -1,245 +1,22 @@
 <!-- This file is auto-generated. Do not edit! -->
 <!-- Check `@lukso-network/lsp-smart-contracts/CONTRIBUTING.md#solidity-code-comments` for more information. -->
 
-# LSP4DigitalAssetMetadata
+# LSP25MultiChannelNonce
 
 :::info Standard Specifications
 
-[`LSP-4-DigitalAssetMetadata`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md)
+[`LSP-25-ExecuteRelayCall`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-25-ExecuteRelayCall.md)
 
 :::
 :::info Solidity implementation
 
-[`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
+[`LSP25MultiChannelNonce.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP25ExecuteRelayCall/LSP25MultiChannelNonce.sol)
 
 :::
 
-> Implementation of a LSP4DigitalAssetMetadata contract that stores the **Token-Metadata** (`LSP4TokenName` and `LSP4TokenSymbol`) in its ERC725Y data store.
+> Implementation of the multi channel nonce and the signature verification defined in the LSP25 standard.
 
-Standard Implementation of the LSP4 standard.
-
-## Public Methods
-
-Public methods are accessible externally from users, allowing interaction with this function from dApps or other smart contracts.
-When marked as 'public', a method can be called both externally and internally, on the other hand, when marked as 'external', a method can only be called externally.
-
-### getData
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#getdata)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `getData(bytes32)`
-- Function selector: `0x54f6127f`
-
-:::
-
-```solidity
-function getData(bytes32 dataKey) external view returns (bytes dataValue);
-```
-
-_Gets singular data at a given `dataKey`_
-
-#### Parameters
-
-| Name      |   Type    | Description                     |
-| --------- | :-------: | ------------------------------- |
-| `dataKey` | `bytes32` | The key which value to retrieve |
-
-#### Returns
-
-| Name        |  Type   | Description                |
-| ----------- | :-----: | -------------------------- |
-| `dataValue` | `bytes` | The data stored at the key |
-
-<br/>
-
-### getDataBatch
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#getdatabatch)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `getDataBatch(bytes32[])`
-- Function selector: `0xdedff9c6`
-
-:::
-
-```solidity
-function getDataBatch(
-  bytes32[] dataKeys
-) external view returns (bytes[] dataValues);
-```
-
-_Gets array of data for multiple given keys_
-
-#### Parameters
-
-| Name       |    Type     | Description                                |
-| ---------- | :---------: | ------------------------------------------ |
-| `dataKeys` | `bytes32[]` | The array of keys which values to retrieve |
-
-#### Returns
-
-| Name         |   Type    | Description                               |
-| ------------ | :-------: | ----------------------------------------- |
-| `dataValues` | `bytes[]` | The array of data stored at multiple keys |
-
-<br/>
-
-### owner
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#owner)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `owner()`
-- Function selector: `0x8da5cb5b`
-
-:::
-
-```solidity
-function owner() external view returns (address);
-```
-
-Returns the address of the current owner.
-
-#### Returns
-
-| Name |   Type    | Description |
-| ---- | :-------: | ----------- |
-| `0`  | `address` | -           |
-
-<br/>
-
-### renounceOwnership
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#renounceownership)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `renounceOwnership()`
-- Function selector: `0x715018a6`
-
-:::
-
-```solidity
-function renounceOwnership() external nonpayable;
-```
-
-Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
-
-<br/>
-
-### setData
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#setdata)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `setData(bytes32,bytes)`
-- Function selector: `0x7f23690c`
-
-:::
-
-```solidity
-function setData(bytes32 dataKey, bytes dataValue) external payable;
-```
-
-_Sets singular data for a given `dataKey`_
-
-#### Parameters
-
-| Name        |   Type    | Description                                                                                                                                                                                                                                                                                                           |
-| ----------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
-| `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
-
-<br/>
-
-### setDataBatch
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#setdatabatch)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `setDataBatch(bytes32[],bytes[])`
-- Function selector: `0x97902421`
-
-:::
-
-```solidity
-function setDataBatch(bytes32[] dataKeys, bytes[] dataValues) external payable;
-```
-
-Sets array of data for multiple given `dataKeys` SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal
-
-0. Emits a [`DataChanged`](#datachanged) event.
-
-#### Parameters
-
-| Name         |    Type     | Description                              |
-| ------------ | :---------: | ---------------------------------------- |
-| `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
-| `dataValues` |  `bytes[]`  | The array of values to set               |
-
-<br/>
-
-### supportsInterface
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#supportsinterface)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `supportsInterface(bytes4)`
-- Function selector: `0x01ffc9a7`
-
-:::
-
-```solidity
-function supportsInterface(bytes4 interfaceId) external view returns (bool);
-```
-
-See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
-
-#### Parameters
-
-| Name          |   Type   | Description |
-| ------------- | :------: | ----------- |
-| `interfaceId` | `bytes4` | -           |
-
-#### Returns
-
-| Name |  Type  | Description |
-| ---- | :----: | ----------- |
-| `0`  | `bool` | -           |
-
-<br/>
-
-### transferOwnership
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#transferownership)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Function signature: `transferOwnership(address)`
-- Function selector: `0xf2fde38b`
-
-:::
-
-```solidity
-function transferOwnership(address newOwner) external nonpayable;
-```
-
-Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-
-#### Parameters
-
-| Name       |   Type    | Description |
-| ---------- | :-------: | ----------- |
-| `newOwner` | `address` | -           |
-
-<br/>
+This contract can be used as a backbone for other smart contracts to implement meta-transactions via the LSP25 Execute Relay Call interface. It contains a storage of nonces for signer addresses across various channel IDs, enabling these signers to submit signed transactions that order-independant. (transactions that do not need to be submitted one after the other in a specific order). Finally, it contains internal functions to verify signatures for specific calldata according the signature format specified in the LSP25 standard.
 
 ## Internal Methods
 
@@ -247,191 +24,125 @@ Any method labeled as `internal` serves as utility function within the contract.
 
 Internal functions cannot be called externally, whether from other smart contracts, dApp interfaces, or backend services. Their restricted accessibility ensures that they remain exclusively available within the context of the current contract, promoting controlled and encapsulated usage of these internal utilities.
 
-### \_checkOwner
+### \_getNonce
 
 ```solidity
-function _checkOwner() internal view;
+function _getNonce(
+  address from,
+  uint128 channelId
+) internal view returns (uint256 idx);
 ```
 
-Throws if the sender is not the owner.
+Read the nonce for a `from` address on a specific `channelId`.
+This will return an `idx`, which is the concatenation of two `uint128` as follow:
 
-<br/>
+1. the `channelId` where the nonce was queried for.
 
-### \_setOwner
+2. the actual nonce of the given `channelId`.
+   For example, if on `channelId` number `5`, the latest nonce is `1`, the `idx` returned by this function will be:
 
-```solidity
-function _setOwner(address newOwner) internal nonpayable;
+```
+// in decimals = 1701411834604692317316873037158841057281
+idx = 0x0000000000000000000000000000000500000000000000000000000000000001
 ```
 
-Changes the owner if `newOwner` and oldOwner are different
-This pattern is useful in inheritance.
+This idx can be described as follow:
 
-<br/>
-
-### \_getData
-
-```solidity
-function _getData(bytes32 dataKey) internal view returns (bytes dataValue);
 ```
-
-<br/>
-
-### \_setData
-
-```solidity
-function _setData(bytes32 dataKey, bytes dataValue) internal nonpayable;
-```
-
-Save gas by emitting the [`DataChanged`](#datachanged) event with only the first 256 bytes of dataValue
-
-<br/>
-
-## Events
-
-### DataChanged
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#datachanged)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Event signature: `DataChanged(bytes32,bytes)`
-- Event topic hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
-
-:::
-
-```solidity
-event DataChanged(bytes32 indexed dataKey, bytes dataValue);
-```
-
-_Emitted when data at a key is changed_
-
-#### Parameters
-
-| Name                    |   Type    | Description                          |
-| ----------------------- | :-------: | ------------------------------------ |
-| `dataKey` **`indexed`** | `bytes32` | The data key which data value is set |
-| `dataValue`             |  `bytes`  | The data value to set                |
-
-<br/>
-
-### OwnershipTransferred
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#ownershiptransferred)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Event signature: `OwnershipTransferred(address,address)`
-- Event topic hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
-
-:::
-
-```solidity
-event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+            channelId => 5          nonce in this channel => 1
+  v------------------------------v-------------------------------v
+0x0000000000000000000000000000000500000000000000000000000000000001
 ```
 
 #### Parameters
 
-| Name                          |   Type    | Description |
-| ----------------------------- | :-------: | ----------- |
-| `previousOwner` **`indexed`** | `address` | -           |
-| `newOwner` **`indexed`**      | `address` | -           |
+| Name        |   Type    | Description                                |
+| ----------- | :-------: | ------------------------------------------ |
+| `from`      | `address` | The address to read the nonce for.         |
+| `channelId` | `uint128` | The channel in which to extract the nonce. |
+
+#### Returns
+
+| Name  |   Type    | Description                                                                                                            |
+| ----- | :-------: | ---------------------------------------------------------------------------------------------------------------------- |
+| `idx` | `uint256` | The idx composed of two `uint128`: the channelId + nonce in channel concatenated together in a single `uint256` value. |
 
 <br/>
 
-## Errors
-
-### ERC725Y_DataKeysValuesEmptyArray
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
-- Error hash: `0x97da5f95`
-
-:::
+### \_recoverSignerFromLSP25Signature
 
 ```solidity
-error ERC725Y_DataKeysValuesEmptyArray();
+function _recoverSignerFromLSP25Signature(
+  bytes signature,
+  uint256 nonce,
+  uint256 validityTimestamps,
+  uint256 msgValue,
+  bytes callData
+) internal view returns (address);
 ```
 
-reverts when one of the array parameter provided to `setDataBatch` is an empty array
+Recover the address of the signer that generated a `signature` using the parameters provided `nonce`, `validityTimestamps`, `msgValue` and `callData`.
+The address of the signer will be recovered using the LSP25 signature format.
+
+#### Parameters
+
+| Name                 |   Type    | Description                                                                                                             |
+| -------------------- | :-------: | ----------------------------------------------------------------------------------------------------------------------- |
+| `signature`          |  `bytes`  | A 65 bytes long signature generated according to the signature format specified in the LSP25 standard.                  |
+| `nonce`              | `uint256` | The nonce that the signer used to generate the `signature`.                                                             |
+| `validityTimestamps` | `uint256` | The validity timestamp that the signer used to generate the signature (See {\_verifyValidityTimestamps} to learn more). |
+| `msgValue`           | `uint256` | The amount of native tokens intended to be sent for the relay transaction.                                              |
+| `callData`           |  `bytes`  | The calldata to execute as a relay transaction that the signer signed for.                                              |
+
+#### Returns
+
+| Name |   Type    | Description                                              |
+| ---- | :-------: | -------------------------------------------------------- |
+| `0`  | `address` | The address that signed, recovered from the `signature`. |
 
 <br/>
 
-### ERC725Y_DataKeysValuesLengthMismatch
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
-- Error hash: `0x3bcc8979`
-
-:::
+### \_verifyValidityTimestamps
 
 ```solidity
-error ERC725Y_DataKeysValuesLengthMismatch();
+function _verifyValidityTimestamps(uint256 validityTimestamps) internal view;
 ```
 
-reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
+Verify that the current timestamp is within the date and time range provided by `validityTimestamps`.
+
+#### Parameters
+
+| Name                 |   Type    | Description                                                                                                                            |
+| -------------------- | :-------: | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `validityTimestamps` | `uint256` | Two `uint128` concatenated together, where the left-most `uint128` represent the timestamp from which the transaction can be executed, |
 
 <br/>
 
-### ERC725Y_MsgValueDisallowed
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#erc725y_msgvaluedisallowed)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `ERC725Y_MsgValueDisallowed()`
-- Error hash: `0xf36ba737`
-
-:::
+### \_isValidNonce
 
 ```solidity
-error ERC725Y_MsgValueDisallowed();
+function _isValidNonce(address from, uint256 idx) internal view returns (bool);
 ```
 
-reverts when sending value to the `setData(..)` functions
+Verify that the nonce `_idx` for `_from` (obtained via [`getNonce`](#getnonce)) is valid in its channel ID.
+The "idx" is a 256bits (unsigned) integer, where:
 
-<br/>
+- the 128 leftmost bits = channelId
 
-### LSP4TokenNameNotEditable
+- and the 128 rightmost bits = nonce within the channel
 
-:::note References
+#### Parameters
 
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#lsp4tokennamenoteditable)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `LSP4TokenNameNotEditable()`
-- Error hash: `0x85c169bd`
+| Name   |   Type    | Description                                                                  |
+| ------ | :-------: | ---------------------------------------------------------------------------- |
+| `from` | `address` | The signer's address.                                                        |
+| `idx`  | `uint256` | The concatenation of the `channelId` + `nonce` within a specific channel ID. |
 
-:::
+#### Returns
 
-```solidity
-error LSP4TokenNameNotEditable();
-```
-
-Reverts when trying to edit the data key `LSP4TokenName` after the digital asset contract has been deployed. The `LSP4TokenName` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
-
-<br/>
-
-### LSP4TokenSymbolNotEditable
-
-:::note References
-
-- Specification details: [**LSP-4-DigitalAssetMetadata**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-4-DigitalAssetMetadata.md#lsp4tokensymbolnoteditable)
-- Solidity implementation: [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol)
-- Error signature: `LSP4TokenSymbolNotEditable()`
-- Error hash: `0x76755b38`
-
-:::
-
-```solidity
-error LSP4TokenSymbolNotEditable();
-```
-
-Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital asset contract has been deployed. The `LSP4TokenSymbol` data key is located inside the ERC725Y Data key-value store of the digital asset contract. It can be set only once inside the constructor/initializer when the digital asset contract is being deployed.
+| Name |  Type  | Description                                                              |
+| ---- | :----: | ------------------------------------------------------------------------ |
+| `0`  | `bool` | true if the nonce is the latest nonce for the `signer`, false otherwise. |
 
 <br/>
 <!-- GLOBAL LINKS -->
