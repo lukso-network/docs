@@ -106,7 +106,7 @@ If everything went successfully, you should see that the _"Balance"_ field of yo
 
 The first step is to create instances of our Universal Profile and Key Manager contracts.
 
-- 2.1 - First, we will use the Universal Profile to retrieve the address of the KeyManager via the [`owner()`](../../standards/smart-contracts/lsp0-erc725-account.md#owner) function.
+- 2.1 - First, we will use the Universal Profile to retrieve the address of the KeyManager via the [`owner()`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#owner) function.
 
 - 2.2 - Then, we will use the Key Manager to interact with our Universal Profile and send some LYX.
 

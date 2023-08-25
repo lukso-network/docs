@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 
 # Accept & Reject Assets
 
-Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../standards/smart-contracts/lsp0-erc725-account.md#universalreceiver)** function on his profile is called.
+Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function on his profile is called.
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
 
 ## Rejecting all Assets
 
-In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../standards//smart-contracts/lsp0-erc725-account.md#universalreceiver) is the parameter that will give us more context on the call being made.
+In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) is the parameter that will give us more context on the call being made.
 
 _e.g._
 

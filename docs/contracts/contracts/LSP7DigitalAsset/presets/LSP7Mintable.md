@@ -39,7 +39,7 @@ constructor(
 );
 ```
 
-_Deploying a `LSP7Mintable` token contract with: token name = `name_`, token symbol = `symbol_`, and address `newOwner_` as the token contract owner._
+_Deploying a `LSP7Mintable` token contract with: token name = `name\_`, token symbol = `symbol\_`, and address `newOwner\_` as the token contract owner._
 
 #### Parameters
 
