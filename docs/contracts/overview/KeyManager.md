@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Key Manager
 
 The Key Manager uses the concept of permissions to _authorize_ any addresses (dApps, protocols, devices, etc…) to do certain specific actions on the contract it is linked to.

@@ -1,7 +1,12 @@
-# LSP1 Delegate
+---
+sidebar_position: 3
+---
 
-There are several standard implementations of the LSP1 Delegate contracts available in the `@lukso/lsp-smart-contracts` package. Each for different use cases.
+# Universal Receiver Delegate
 
-- **[LSP1UniversalReceiverDelegateUP](./contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)**: a contract that allows the account to react to the calls that it receives (Normal transaction, Token transfer, Vaults transfer, etc.).
+There are two default implementations of the LSP1 Delegate contracts available, each for different use cases.
 
-- **[LSP1UniversalReceiverDelegateVault](./contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md)**: a contract that allows the vault to react to the calls it receives (Normal transaction, Token transfer, etc.).
+| Contract | Description |
+|----|-----|
+| **[`LSP1UniversalReceiverDelegateUP.sol`](../contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)**| Add feature to a `LSP0ERC725Account` to registered and un-register tokens (LSP7 and LSP8) and vaults (LSP9) received. |
+| **[`LSP1UniversalReceiverDelegateVault.sol`](../contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md)** | Add feature to a `LSP9Vault` to register and un-register tokens (LSP7 and LSP8). |

@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Universal Profile
 
 The `UniversalProfile.sol` smart contract is a combination of two LSP standards:

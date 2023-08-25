@@ -1,3 +1,8 @@
+---
+title: Digital Assets (Token & NFT)
+sidebar_position: 4
+---
+
 # Digital Assets
 
 The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](../standards/universal-profile/lsp0-erc725account.md) and [Universal Receivers](../standards/generic-standards/lsp1-universal-receiver.md).
@@ -6,7 +11,9 @@ The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced vers
 
 The interfaces of LSP7 and LSP8 have some differences compared to ERC20 and ERC721. Their functions are simpler, more straight forward and unified.
 
+**Similar function names**
 
+Both functions in LSP7 and LSP8 have the same name (`transfer`) to transfer assets. This is easier compared to ERC20 and ERC721 that use different naming (`transfer` for ERC20 vs `transferFrom` in ERC721 to transfer tokens as the token owner).
  
 The table below highlights these differences:
 
