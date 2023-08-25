@@ -1341,6 +1341,7 @@ error LSP8TokenOwnerCannotBeOperator();
 reverts when trying to authorize or revoke the token's owner as an operator.
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

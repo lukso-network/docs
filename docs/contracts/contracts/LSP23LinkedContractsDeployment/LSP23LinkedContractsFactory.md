@@ -375,6 +375,7 @@ Reverts when the deployment & intialisation of the secondary contract has failed
 | `errorData` | `bytes` | Potentially information about why the deployment & intialisation have failed. |
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

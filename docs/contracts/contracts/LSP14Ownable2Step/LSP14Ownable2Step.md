@@ -475,6 +475,7 @@ Reverts when trying to renounce ownership before the initial confirmation delay.
 | `renounceOwnershipEnd`   | `uint256` | The end timestamp when one can confirm the renouncement of ownership.   |
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

@@ -74,6 +74,7 @@ function _revertWithLSP20DefaultError(
 ```
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

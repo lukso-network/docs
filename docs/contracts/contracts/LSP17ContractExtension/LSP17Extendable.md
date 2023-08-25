@@ -111,6 +111,7 @@ called before other codes in fallback().
 Otherwise, the codes after \_fallbackLSP17Extendable() may never be reached.
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

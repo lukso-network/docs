@@ -963,6 +963,7 @@ error WrongPlainSecret();
 reverts when the plain secret produce a different hash than the secret hash originally set
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

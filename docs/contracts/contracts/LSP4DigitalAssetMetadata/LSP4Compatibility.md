@@ -444,6 +444,7 @@ error ERC725Y_MsgValueDisallowed();
 reverts when sending value to the `setData(..)` functions
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
