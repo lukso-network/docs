@@ -14,7 +14,7 @@ The LUKSO Mainnet launched on Tuesday 23rd May, 4:20 PM GMT with validators that
 
 :::
 
-![Deposit Launchpad](/img/network/deposit-launchpad.png)
+![Deposit Launchpad](/img/network/mainnet-launchpad.png)
 
 To become a validator, you can use the LUKSO Deposit Launchpad: <https://deposit.mainnet.lukso.network/>.
 
@@ -40,10 +40,16 @@ Set up your regular node using the LUKSO CLI as described in the [Node Guide](./
 
 #### Importing Validator Keys
 
+:::tip
+
+The name of the directory `myLUKSOnode/` in the example below can be changed according to your preferences.4
+
+:::
+
 If it is set up correctly and all clients are working, you can continue importing your validator keys into the validator wallet. You will be asked to set a new wallet password to store the imported deposit keys safely. Further, you will have to input your password for the deposit keys you want to import so that they can be encrypted and added to the wallet. The new keystore files will be stored under the `./myLUKSOnode/mainnet-keystore` directory.
 
 ```bash
-$ lukso validator import --validator-keys "./path/to/your/keys/folder"
+lukso validator import --validator-keys "./path/to/your/keys/folder"
 ```
 
 #### Checking Validator Keys
@@ -51,7 +57,7 @@ $ lukso validator import --validator-keys "./path/to/your/keys/folder"
 After importing one or multiple folders, you can check your imported keys.
 
 ```bash
-$ lukso validator list
+lukso validator list
 ```
 
 If the imported deposit keys match the ones in the original folder, you can delete them from your node machine.
@@ -91,7 +97,7 @@ The synchronization process will take multiple hours for the validator to partic
 :::
 
 ```bash
-$ lukso start --validator --transaction-fee-recipient "0x1234..."
+lukso start --validator --transaction-fee-recipient "0x1234..."
 ```
 
   </TabItem>
@@ -117,7 +123,7 @@ You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkp
 
 ```sh
 # Starting the Mainnet Validator
-$ lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
+lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
 ```
 
   </TabItem>
@@ -128,7 +134,7 @@ $ lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
 To check that everything is running correctly, you can see the status of all your clients using the status command.
 
 ```bash
-$ lukso status
+lukso status
 
 # INFO[0000] PID 39424 - Execution (geth): Running 🟢
 # INFO[0000] PID 39430 - Consensus (prysm): Running 🟢
@@ -139,7 +145,7 @@ In addition to the _consensus_ and _execution_ clients, you can now further chec
 
 ```bash
 # Viewing the logs of the validator client
-$ lukso logs validator
+lukso logs validator
 ```
 
 For more options, please check the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli).

@@ -246,6 +246,10 @@ module.exports = {
               label: 'Playground',
               href: 'https://github.com/lukso-network/lukso-playground',
             },
+            {
+              label: 'StackOverflow',
+              href: 'https://stackoverflow.com/questions/tagged/lukso',
+            },
           ],
         },
         {

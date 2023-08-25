@@ -44,14 +44,13 @@ Click on link below to download the extension, based on the browser to which you
 
 ### :inbox_tray: **[Download from Chrome Web Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) (Chrome / Brave)**
 
-
-### :inbox_tray: **[Download Archive](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.4.0-mv2.zip) (All other browsers)**
+### :inbox_tray: **[Download Archive](https://storage.googleapis.com/up-browser-extension/universalprofile-extension-v1.5.0-mv2.zip) (All other browsers)**
 
 ## Unpack the archive
 
 Open your download folder and unpack the ZIP archive by opening the file.
 
-## Install the extension 
+## Install the extension
 
 <Tabs>
   <TabItem value="chrome" label="Chrome / Brave">
@@ -59,8 +58,6 @@ Open your download folder and unpack the ZIP archive by opening the file.
 ## 1. Simply download the extension from the [Chrome Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn)
 
 ![Chrome Store view](/img/extension/chrome-store.png)
-
-
 
   </TabItem>
   <TabItem value="edge" label="Edge">
@@ -147,8 +144,6 @@ Pin the extension through the extension icon.
 Open the extension by clicking its icon from the menu bar.
 
 ![Step 5 - Opera: Open Extension](/img/extension/opera5.png)
-
- 
 
   </TabItem>
    <TabItem value="firefox" label="Firefox">

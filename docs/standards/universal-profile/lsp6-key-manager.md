@@ -82,29 +82,29 @@ The `ADDCONTROLLER` permission is needed to:
 </details>
 
 <details>
-    <summary><code>CHANGEPERMISSIONS</code> - Allows changing existing permissions of controllers.</summary>
+    <summary><code>EDITPERMISSIONS</code> - Allows changing existing permissions of controllers.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
     </p>
 
 :::caution Caution:
-Be aware that a controller with `CHANGEPERMISSIONS` can also edit its own permissions!
+Be aware that a controller with `EDITPERMISSIONS` can also edit its own permissions!
 :::
 
 This permission allows for **editing permissions** of any controller (permissioned address) that has some permissions already set on the ERC725Account (including itself, see warning above).
 
-The `CHANGEPERMISSIONS` is also needed to:
+The `EDITPERMISSIONS` is also needed to:
 
 - 🗑️ **Remove** a controller from the list of `AddressPermissions[]`, meaning:
   - removing the controller `address` at a specific index in `AddressPermissions[index]`
   - decreasing the `AddressPermissions[]` Array length (to describe that a controller has been removed).
 - 🖊️ **Edit** an entry in the `AddressPermissions[index]` Array, meaning changing the address stored at a specific index.
 
-![CHANGE Permissions](/img/standards/lsp6/lsp6-change-permissions.jpeg)
+![EDIT Permissions](/img/standards/lsp6/lsp6-change-permissions.jpeg)
 
-Bear in mind that the behavior of `CHANGEPERMISSIONS` slightly varies depending on the new permissions value being set (see figure below).
+Bear in mind that the behavior of `EDITPERMISSIONS` slightly varies depending on the new permissions value being set (see figure below).
 
-![CHANGE Permissions](/img/standards/lsp6/lsp6-change-permissions-variants.jpeg)
+![EDIT Permissions](/img/standards/lsp6/lsp6-change-permissions-variants.jpeg)
 
 </details>
 
@@ -279,7 +279,7 @@ However, this permission restricts the controller to set data for only specific 
 
 A controller with permission `SETDATA` cannot set or edit data keys related to:
 
-- permissions: requires the permission of `ADDCONTROLLER` or `CHANGEPERMISSIONS`.
+- permissions: requires the permission of `ADDCONTROLLER` or `EDITPERMISSIONS`.
 - LSP1 data keys: requires the permission of `ADDUNIVERSALRECEIVERDELEGATE` or `CHANGEUNIVERSALRECEIVERDELEGATE`.
 - LSP17 data keys: requires the permission of `ADDEXTENSIONS` or `CHANGEEXTENSIONS`.
 
@@ -411,7 +411,7 @@ permissions: CALL + TRANSFERVALUE
 <TabItem value="example2" label="Example 2">
 
 ```solidity
-permissions: CHANGEPERMISSIONS + SETDATA
+permissions: EDITPERMISSIONS + SETDATA
 
   0x0000000000000000000000000000000000000000000000000000000000000004 (4 in decimal)
 + 0x0000000000000000000000000000000000000000000000000000000000040000 (262144)

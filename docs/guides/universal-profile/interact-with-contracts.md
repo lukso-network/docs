@@ -212,6 +212,8 @@ The final step is to pass the encoded calldata to the Universal Profile. Since w
   
   <TabItem value="web3js" label="web3.js">
 
+<!-- prettier-ignore-start -->
+
 ```typescript title="Send transaction"
 await universalProfile.methods
   .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata)
@@ -221,15 +223,21 @@ await universalProfile.methods
   });
 ```
 
+<!-- prettier-ignore-end -->
+
   </TabItem>
   
   <TabItem value="ethersjs" label="ethers.js">
+
+<!-- prettier-ignore-start -->
 
 ```typescript title="Send transaction"
 await universalProfile
   .connect(EOA)
   .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata);
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -240,6 +248,8 @@ await universalProfile
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
+
+<!-- prettier-ignore-start -->
 
 ```typescript title="Final code"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -283,6 +293,7 @@ await universalProfile.methods
   
   <TabItem value="ethersjs" label="ethers.js">
 
+
 ```typescript title="Final code"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import TargetContractABI from './TargetContractABI.json';
@@ -322,6 +333,8 @@ await universalProfile
   .connect(EOA)
   .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata);
 ```
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 

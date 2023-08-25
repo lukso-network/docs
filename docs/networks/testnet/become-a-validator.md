@@ -38,9 +38,9 @@ The instructions are the same as for mainnet nodes. Please refer to [Mainnet Val
 #### Importing Validator Keys
 
 ```bash
-$ lukso validator import --validator-keys "./path/to/your/keys/folder" --testnet
+lukso validator import --validator-keys "./path/to/your/keys/folder" --testnet
 
-$ lukso validator list --testnet
+lukso validator list --testnet
 ```
 
 #### Starting the Validator
@@ -56,13 +56,13 @@ Without using checkpoints, the synchronization process will take multiple hours 
 :::
 
 ```bash
-$ lukso start --testnet --validator --transaction-fee-recipient "0x1234..."
+lukso start --testnet --validator --transaction-fee-recipient "0x1234..."
 ```
 
 #### Checking Validator Logs
 
 ```bash
-$ lukso logs validator --testnet
+lukso logs validator --testnet
 ```
 
 ### Using Docker

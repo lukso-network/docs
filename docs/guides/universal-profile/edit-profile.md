@@ -322,6 +322,8 @@ const universalProfileContract = new web3.eth.Contract(
 
 The final step is to edit our `LSP3Profile` key on our Universal Profile with the new value obtained in **Step 3**. We can easily access the key-value pair from the encoded data obtained with erc725.js.
 
+<!-- prettier-ignore-start -->
+
 ```javascript title="Preparing and executing the setData transaction"
 // Step 4.3 - Update LSP3Profile metadata on our Universal Profile
 await universalProfileContract.methods.setData(
@@ -329,6 +331,8 @@ await universalProfileContract.methods.setData(
   encodedData.values[0],
 ).send({ from: myEOA.address, gasLimit: 300_000 });
 ```
+
+<!-- prettier-ignore-end -->
 
 ## Final Code
 
@@ -442,10 +446,9 @@ async function editProfileInfo() {
   );
 
   // Step 4.3 - Set data (updated LSP3Profile metadata) on our Universal Profile
-  await universalProfileContract.methods.setData(
-    encodedData.keys,
-    encodedData.values,
-  ).send({ from: myEOA.address, gasLimit: 300_000 });
+  await universalProfileContract.methods
+    .setData(encodedData.keys, encodedData.values)
+    .send({ from: myEOA.address, gasLimit: 300_000 });
 }
 editProfileInfo();
 ```

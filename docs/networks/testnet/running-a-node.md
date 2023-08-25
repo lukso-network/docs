@@ -52,21 +52,27 @@ For further information, you can check out the official [LUKSO CLI Documentation
 First, install the `lukso` command globally on your node machine.
 
 ```bash
-$ curl https://install.lukso.network | sh
+curl https://install.lukso.network | sh
 ```
 
 #### Create a Working Directory
 
+:::tip
+
+The name of the directory `myLUKSOnode/` in the commands below can be changed according to your preferences.
+
+:::
+
 Next, create a working directory for your node's data and move into it. The directory is where everything regarding your blockchain node will be stored. Make sure to choose a proper name for your node folder. If you plan on running a validator later, this folder will also contain your validator key files by default.
 
 ```bash
-$ mkdir myLUKSOnode && cd myLUKSOnode
+mkdir myLUKSOnode && cd myLUKSOnode
 ```
 
 Initialize the working folder, which will download the LUKSO network configuration and genesis files needed to sync with the LUKSO network.
 
 ```bash
-$ lukso init
+lukso init
 ```
 
 #### Install the Clients
@@ -74,7 +80,7 @@ $ lukso init
 After the initialization is successful, we have to download the blockchain clients, which will be managed from the CLI under the hood. They will install globally, need superuser permissions, and are set as default clients within your working directories configuration file. You will be asked which clients you want to download and install during the setup.
 
 ```bash
-$ sudo lukso install
+sudo lukso install
 ```
 
 #### Setting your Public IP Address
@@ -102,7 +108,7 @@ lukso start --testnet
 To check that everything is running correctly, you can see the status of all your clients using the status command. By default, the validator is not enabled. If you want to run your validator node, please have a look at the [validator page](./become-a-validator.md).
 
 ```bash
-$ lukso status
+lukso status
 
 # INFO[0000] PID 39424 - Execution (geth): Running 🟢
 # INFO[0000] PID 39430 - Consensus (prysm): Running 🟢
@@ -113,10 +119,10 @@ If you want to check any of the running clients in more detail, you can use the 
 
 ```bash
 # Viewing the logs of the execution client
-$ lukso logs execution --testnet
+lukso logs execution --testnet
 
 # Viewing the logs of the consensus client
-$ lukso logs consensus --testnet
+lukso logs consensus --testnet
 ```
 
 For more options, please check the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli).
