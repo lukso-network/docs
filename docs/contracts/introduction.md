@@ -5,6 +5,7 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import {ContractCardsRow} from '@site/src/components/Contracts';
 
 # Smart Contracts
 
@@ -53,19 +54,8 @@ pnpm add @lukso/lsp-smart-contracts
 
 Overall the contracts can be divided by their usage.
 
-```mdx-code-block
-import {ContractCardsRow} from '@site/src/components/Contracts';
-
 <ContractCardsRow />
-```
 
-### LSP Recipes
-
-Some of the LSP standards do not have a contract implementation as they represent **Metadata-Standards** to be used in the implementation contracts.
-
-Each contracts are not just related to one specific section. They could be used in different fashion and combination, with the **Universal Profile**, **Digital Asset**, and **NFT 2.0** contracts.
-
-For instance, the **Universal Profile Browser extension** comprises a set of contracts allow a better representation of the identity on the blockchain and better control over it.
 
 ## Types of contracts
 
@@ -83,6 +73,16 @@ The `@lukso/lsp-smart-contracts` repository contains two types of contracts:
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | **Standard contracts** | One contract deployed per user. Deployed and initialized via a `constructor`.                                               | `LSP0ERC725Account.sol`     |
 | **Base contracts**     | Deploy one contract for all users. To be used as base contract behind proxies. Initialized via a `initalize(...)` function. | `LSP0ERC725AccountInit.sol` |
+
+
+## LSP Recipes
+
+Some of the LSP standards do not have a contract implementation as they represent **Metadata-Standards** to be used in the implementation contracts.
+
+Each contracts are not just related to one specific section. They could be used in different fashion and combination, with the **Universal Profile**, **Digital Asset**, and **NFT 2.0** contracts.
+
+For instance, the **Universal Profile Browser extension** comprises a set of contracts allow a better representation of the identity on the blockchain and better control over it.
+
 
 ## Further Information
 

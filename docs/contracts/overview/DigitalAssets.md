@@ -2,6 +2,59 @@
 
 The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](../standards/universal-profile/lsp0-erc725account.md) and [Universal Receivers](../standards/generic-standards/lsp1-universal-receiver.md).
 
+## Comparisons with ERC20 / ERC721
+
+The interfaces of LSP7 and LSP8 have some differences compared to ERC20 and ERC721. Their functions are simpler, more straight forward and unified.
+
+
+ 
+The table below highlights these differences:
+
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>ERC20</th>
+    <th>LSP7</th>
+  </tr>
+  <tr>
+    <td>Transferring tokens as an owner.</td>
+    <td><code>transfer(address,uint256)</code></td>
+    <td rowspan="2"><code>transfer(address,address,uint256,bool,bytes)</code></td>
+  </tr>
+  <tr>
+    <td>Transferring tokens as an operator.</td>
+    <td><code>transferFrom(address,address,uint256)</code></td>
+  </tr>
+  <tr>
+    <td>Approving an operator to spend tokens on behalf of the owner.</td>
+    <td><code>approve(address,uint256)</code></td>
+    <td><code>authorizeOperator(address,uint256)</code></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <th>ERC721</th>
+    <th>LSP8</th>
+  </tr>
+  <tr>
+    <td>Transferring tokens as an owner.</td>
+    <td rowspan="2">
+        <code>transferFrom(address,address,uint256)</code><br/>
+        <code>safeTransferFrom(address,address,uint256)</code><br/>
+        <code>safeTransferFrom(address,address,uint256,bytes)</code>
+    </td>
+    <td rowspan="2"><code>transfer(address,address,bytes32,bool,bytes)</code></td>
+  </tr>
+  <tr>
+    <td>Transferring tokens as an operator.</td>
+  </tr>
+  <tr>
+    <td>Approving an operator to spend tokens on behalf of the owner.</td>
+    <td><code>approve(address,uint256)</code></td>
+    <td><code>authorizeOperator(address,bytes32)</code></td>
+  </tr>
+</table>
+
 ## LSP4 Digital Asset Metadata
 
 The **LSP4DigitalAssetMetadata** is a contract that sets the **Token-Metadata** (name and symbol) for the **LSP7DigitalAsset** and **LSP8IdentifiableDigitalAsset** token contracts.
@@ -45,25 +98,6 @@ The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital as
 Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
 
 A **bytes32** value is used for tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (i.e., serial numbers).
-
-## Comparisons with ERC20 / ERC721
-
-
-
-The LSP7 and LSP8 standards are very distinguishable compared to ERC20 and ERC721 when it comes to their functions.
-
-Mainly, their functions are simpler and more straight forward. The table below highlights this:
-
-| ERC20 | LSP7 |
-|----|----|
-| `transfer(address,uint256)` | `transfer(address,address,uint256,bool,bytes)` |
-| `transferFrom(address,address,uint256)`| `transfer(address,address,uint256,bool,bytes)` |
-| `approve(address,address)` | `authorizeOperator()` |
-
-
-
-- [ ]  explain the differences between the functions of ERC20/721
-- [ ]  explain the unified function names between LSP7 and LSP8, so that developers use the same methods to interact with a token (LSP7) or a NFT (LSP8), unlike ERC20/721. Put the similar functions in a table to emphasize this.
 
 ## Note on LSP7 and LSP8 implementations
 

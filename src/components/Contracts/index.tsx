@@ -122,9 +122,8 @@ const LSPs_DigitalAssets = [
     urlABI: '#',
     description: (
       <Translate id="playground.codesandbox.description">
-        Creates your non-fungible token (NFT) using various types of tokenId to
-        identify each NFT (numbers, serial numbers, a contract for each
-        individual NFT...).
+        Creates a non-fungible token where each NFT can be represented
+        differently (numbers, serial numbers, an ERC725Y contract per NFT...).
       </Translate>
     ),
   },
@@ -147,8 +146,8 @@ const LSPs_OwnershipAccessControl = [
     urlABI: 'https://docusaurus.new/stackblitz-ts',
     description: (
       <Translate>
-        A contract to recover access to your Blockchain based account if you are
-        locked using a social recovery mechanism.
+        Recover access to your Blockchain based account if you are locked using
+        a social recovery mechanism.
       </Translate>
     ),
   },
@@ -158,8 +157,8 @@ const LSPs_OwnershipAccessControl = [
     urlABI: 'https://docusaurus.new/stackblitz-ts',
     description: (
       <Translate>
-        A module to allow secure owner management and transfer of a smart
-        contract using a 2-steps process.
+        A module to allow secure owner management of a smart contract using a
+        2-steps process for transferring and renouncing ownership.
       </Translate>
     ),
   },
@@ -174,6 +173,8 @@ interface Props {
 }
 
 function ContractCard({ name, url, urlABI, description }: Props) {
+  const displayLink: boolean = url === '';
+
   return (
     <div className={clsx('card')}>
       <div className="card__body">
@@ -182,16 +183,12 @@ function ContractCard({ name, url, urlABI, description }: Props) {
       </div>
       <div className="card__footer">
         <div className="button-group button-group--block">
-          {url !== '' && (
-            <Link className="button button--secondary" to={url}>
-              Overview
-            </Link>
-          )}
-          {urlABI !== '' && (
-            <Link className="button button--secondary" to={urlABI}>
-              ABI Reference
-            </Link>
-          )}
+          <Link className="button button--secondary" to={url}>
+            Overview
+          </Link>
+          <Link className="button button--secondary" to={urlABI}>
+            ABI Reference
+          </Link>
         </div>
       </div>
     </div>
