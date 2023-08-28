@@ -5,7 +5,7 @@ sidebar_position: 1
 # Universal Profile
 
 The `UniversalProfile.sol` smart contract is a combination of two LSP standards:
-- **[LSP0-ERC725Account Standard](../universal-profile/lsp0-erc725account)** that also contains some LSP3Profile metadata, giving a "face and uniqueness" to the smart contract based account.
+- **[LSP0-ERC725Account Standard](../../standards/universal-profile/lsp0-erc725account)** that also contains some LSP3Profile metadata, giving a "face and uniqueness" to the smart contract based account.
 - **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)**
 
 The LSP3 Profile Metadata enables to give a "face" to the smart contract based account, making it distinguishable and unique from others Universal Profiles. 
@@ -23,7 +23,7 @@ A `UniversalProfile` has all the basic functionalities of an _Externally Owned A
 
 All ownable functions such as `execute(..)`, `setData(..)`, `transferOwnership(..)`, and `renounceOwnership(..)` can be called by the owner 
 
-The contract also includes the [LSP20-CallVerification](../universal-profile/lsp0-erc725account.md#lsp20---call-verification) at its core. Meaning if the contract is owned by an other contract, LSP20 enables to interact with the contract directly without having to resolve through its owner first. This allows seamless integrations with other contracts, protocols and dApps, as the contract can be called directly, making the developer experience easier.
+The contract also includes the [LSP20-CallVerification](../../standards/universal-profile/lsp0-erc725account.md#lsp20---call-verification) at its core. Meaning if the contract is owned by an other contract, LSP20 enables to interact with the contract directly without having to resolve through its owner first. This allows seamless integrations with other contracts, protocols and dApps, as the contract can be called directly, making the developer experience easier.
 
 To illustrate, if an other address than the owner calls the `execute(..)` function, the account contract will:
 

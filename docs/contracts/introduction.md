@@ -5,7 +5,7 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {ContractCardsRow} from '@site/src/components/Contracts';
+import {ContractCardsGallery} from '@site/src/components/ContractCardsGallery';
 
 # Smart Contracts
 
@@ -54,7 +54,7 @@ pnpm add @lukso/lsp-smart-contracts
 
 Overall the contracts can be divided by their usage.
 
-<ContractCardsRow />
+<ContractCardsGallery />
 
 
 ## Types of contracts
