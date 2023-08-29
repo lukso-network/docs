@@ -185,7 +185,7 @@ const signature = await web3.eth.sign(siweMessage, upAddress);
 
 Your Dapp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the `SIGN` permission for this UP.
 
-To do so, you can use the [`isValidSignature(...)`](../../standards/smart-contracts/lsp0-erc725-account#isvalidsignature) function to check if the signature was signed ([EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)) by an EOA that has the [`SIGN` permission](../../standards/universal-profile/lsp6-key-manager#permissions) over the Universal Profile.
+To do so, you can use the [`isValidSignature(...)`](../../contracts/contracts/UniversalProfile.md#isvalidsignature) function to check if the signature was signed ([EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)) by an EOA that has the [`SIGN` permission](../../standards/universal-profile/lsp6-key-manager#permissions) over the Universal Profile.
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">

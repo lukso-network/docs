@@ -48,7 +48,7 @@ module.exports = {
     { type: 'html', value: '<hr/>', defaultStyle: false },
     {
       type: 'category',
-      label: '📒 Contract Libraries',
+      label: '📒 Solidity Libraries',
       collapsible: true,
       collapsed: false,
       items: [
