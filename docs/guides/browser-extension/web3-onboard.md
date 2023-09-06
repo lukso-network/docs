@@ -6,7 +6,7 @@
 
 Web3-onboard configuration allows the detection of the Universal Profiles (UP) Extension, along with any other installed browser extensions. Users can integrate it into their Dapp to handle the routing for the different browser extensions.
 
-Web3-onboard is an open-source, framework-agnostic JavaScript library to onboard users to web3 apps. This package can be used to integrate LUKSO [Universal Profiles Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl=en) support into web3-onboard's "Connect Wallet" modal. With this module, **the LUKSO Universal Profile Extension option will be shown even if the extension is not installed on the user's browser or used within the LUKSO Universal Profile Extension**. If selected the user will be taken to a download screen and prompted to create a LUKSO Universal Profile.
+Web3-onboard is an open-source, framework-agnostic JavaScript library to onboard users to web3 apps. This package can be used to integrate LUKSO [Universal Profiles Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl=en) support into web3-onboard's "Connect Wallet" modal. With this module, **the LUKSO Universal Profile Extension option will be shown even if the extension is not installed on the user's browser**. If selected the user will be taken to a download screen where they can install the extension.
 
 ### Installation
 
