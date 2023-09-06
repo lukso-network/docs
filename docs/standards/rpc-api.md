@@ -10,14 +10,109 @@ sidebar_position: 10
 This page is under active development.
 
 :::
+The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) uses the RPC API methods from the table below. The methods are grouped by category: signing methods, standard methods, and LUKSO-specific methods.
 
-The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) uses new RPC API which are described here.
+## Supported Methods
 
-## Methods
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Type</td>
+  </tr>
+  <tr>
+    <td><a href="#eth_sign">eth_sign</a></td>
+    <td>signing</td>
+  </tr>
+  <tr>
+    <td><a href="#personal_sign">personal_sign</a></td>
+    <td>signing</td>
+  </tr>
+  <tr>
+    <td><a href="#eth_getAccounts">eth_getAccounts</a></td>
+    <td>standard</td>
+  </tr>
+  <tr>
+    <td><a href="#eth_requestAccounts">eth_requestAccounts</a></td>
+    <td>standard</td>
+  </tr>
+  <tr>
+    <td><a href="#eth_sendTransaction">eth_sendTransaction</a></td>
+    <td>standard</td>
+  </tr>
+  <tr>
+    <td><a href="#wallet_switchEthereumChain">wallet_switchEthereumChain</a></td>
+    <td>standard</td>
+  </tr>
+   <tr>
+    <td><a href="#up_addTransactionRelayer">up_addTransactionRelayer</a></td>
+    <td>LUKSO specific</td>
+  </tr>
+   <tr>
+    <td><a href="#up_import">up_import</a></td>
+    <td>LUKSO specific</td>
+  </tr>
+   <tr>
+    <td><a href="#up_generateLsp23Address">up_generateLsp23Address</a></td>
+    <td>LUKSO specific</td>
+  </tr>
+</table>
 
-### up_addTransactionRelayer
+## Signing
 
-Add a custom relayer.
+### eth_sign
+
+**_NOTE:_** We encourage developers to use eth_sign for signing purposes.
+
+While a security issue potentially existed in the initial implementation on Ethereum, the current implementation has no such potential exploit. As such usage of this method is preferable to [personal_sign](#personal_sign).
+
+This method returns a [EIP-191](https://eips.ethereum.org/EIPS/eip-191) signature over the data provided to the call.
+It requests that the user provides an Ethereum address that should sign the transaction as well as the data (encoded bytes) that are to be executed.
+
+Returns
+`string[]` - on a successful call the method returns a signature, a string representing hex encoded bytes or 4001 - if the user rejects the requets
+
+### personal_sign
+
+The personal_sign endpoint is enabled to allow for backward compatibility. However, its use is not recommended.
+Some libraries such as Ethers.js end up using personal_sign under the hood. That is why, for compatibility reasons, personal_sign is left enabled. Note however that personal_sign ultimately acts as a proxy, redirecting the call to the [eth_sign](#eth_sign) method.
+
+## Standard
+
+### eth_sendTransaction {#eth_sendTransaction}
+
+Creates new message call transaction or a contract creation, if the data field contains code, and signs it using the account specified in `from`. This method requires that the user has granted permission to interact with their account first, so make sure to call eth_requestAccounts first.
+
+### eth_requestAccounts {#eth_requestAccounts}
+
+This method is specified by [EIP-1102](https://eips.ethereum.org/EIPS/eip-1102).
+It requests that the user provides an Ethereum address to be identified by.
+
+Returns
+`string[]` - if the user accepts the request, it returns an array of a single, hexadecimal Ethereum address string, or
+4001 - if the user rejects the request
+
+### wallet_switchEthereumChain {#wallet_switchEthereumChain}
+
+This method implements [EIP-3326](https://eips.ethereum.org/EIPS/eip-3326).
+It allows Dapps to request that a wallet switches its active chain (connection).
+
+The method requires that a target chain ID is provided
+
+Returns
+`null` or `error` - the method will return null if successful or throw an error otherwise
+
+### eth_getAccounts {#eth_getAccounts}
+
+This method returns all of the addresses that returns a list of accounts the node controls.
+
+Returns
+`string[][]` - a successful request returns an array of hexadecimal Ethereum address strings
+
+## LUKSO Specific
+
+### up_addTransactionRelayer {#up_addTransactionRelayer}
+
+<p id="up_addTransactionRelayer">Add a custom relayer.</p>
 
 #### Parameters
 
@@ -47,9 +142,9 @@ params: [
 
 It returns an array of Universal Profile addresses.
 
-### up_import
+### up_import {#up_import}
 
-Add a Universal Profile address.
+<p id="up_import">Add a Universal Profile address.</p>
 
 #### Parameters
 
@@ -64,5 +159,3 @@ params: ['0x311611C9A46a192C14Ea993159a0498EDE5578aC'];
 #### Returns
 
 ##### 1. `String` - New controller address, to be added to the profile by the dapp.
-
-TODO
