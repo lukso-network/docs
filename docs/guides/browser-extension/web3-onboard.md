@@ -10,7 +10,7 @@ Web3-onboard is an open-source, framework-agnostic JavaScript library to onboard
 
 ### Installation
 
-Users can install web3-onboard using npm, from the [following package](https://www.npmjs.com/package/@lukso/web3-onboard-config). The implementation can be found in the [web3-onboard-config LUKSO GitHub repo](https://github.com/lukso-network/web3-onboard-config).
+Developers can install web3-onboard in their Dapp using npm, from the [following package](https://www.npmjs.com/package/@lukso/web3-onboard-config). The implementation can be found in the [web3-onboard-config LUKSO GitHub repo](https://github.com/lukso-network/web3-onboard-config).
 
 ```
 npm i @web3-onboard/core @lukso/web3-onboard-config @web3-onboard/injected-wallets
