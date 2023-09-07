@@ -103,7 +103,7 @@ Returns
 
 ### eth_getAccounts {#eth_getAccounts}
 
-This method returns all of the addresses that returns a list of accounts the node controls.
+Similar to the `eth_requestAccounts` this method returns all of the addresses that are controlled by the application.
 
 Returns
 `string[]` - a successful request returns an array of hexadecimal Ethereum address strings
