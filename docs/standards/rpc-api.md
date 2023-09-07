@@ -69,7 +69,7 @@ This method returns a [EIP-191](https://eips.ethereum.org/EIPS/eip-191) signatur
 It requests that the user provides an Ethereum address that should sign the transaction as well as the data (encoded bytes) that are to be executed.
 
 Returns
-`string[]` - on a successful call the method returns a signature, a string representing hex encoded bytes or 4001 - if the user rejects the requets
+`string` - on a successful call the method returns a signature, a string representing hex encoded bytes or an error with code 4001 - if the user rejects the requets
 
 ### personal_sign
 
@@ -80,7 +80,8 @@ Some libraries such as Ethers.js end up using personal_sign under the hood. That
 
 ### eth_sendTransaction {#eth_sendTransaction}
 
-Creates new message call transaction or a contract creation, if the data field contains code, and signs it using the account specified in `from`. This method requires that the user has granted permission to interact with their account first, so make sure to call eth_requestAccounts first.
+Creates new message call transaction and signs it using the account specified in `from`. This method requires that the user has granted permission to interact with their account first.
+The transaction will not be signed by the UP itself, but by a controller address that has sufficient permissions.
 
 ### eth_requestAccounts {#eth_requestAccounts}
 
@@ -88,8 +89,7 @@ This method is specified by [EIP-1102](https://eips.ethereum.org/EIPS/eip-1102).
 It requests that the user provides an Ethereum address to be identified by.
 
 Returns
-`string[]` - if the user accepts the request, it returns an array of a single, hexadecimal Ethereum address string, or
-4001 - if the user rejects the request
+`string[]` - if the user accepts the request, it returns an array of a single, hexadecimal Ethereum address string, or an error with code 4001 if the user rejects the request.
 
 ### wallet_switchEthereumChain {#wallet_switchEthereumChain}
 
@@ -106,7 +106,7 @@ Returns
 This method returns all of the addresses that returns a list of accounts the node controls.
 
 Returns
-`string[][]` - a successful request returns an array of hexadecimal Ethereum address strings
+`string[]` - a successful request returns an array of hexadecimal Ethereum address strings
 
 ## LUKSO Specific
 
