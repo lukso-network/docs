@@ -28,7 +28,7 @@ The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) 
     <td>signing</td>
   </tr>
   <tr>
-    <td><a href="#eth_getAccounts">eth_getAccounts</a></td>
+    <td><a href="#eth_accounts">eth_accounts</a></td>
     <td>standard</td>
   </tr>
   <tr>
@@ -68,7 +68,8 @@ While a security issue potentially existed in the initial implementation on Ethe
 This method returns a [EIP-191](https://eips.ethereum.org/EIPS/eip-191) signature over the data provided to the call.
 It requests that the user provides an Ethereum address that should sign the transaction as well as the data (encoded bytes) that are to be executed.
 
-Returns
+#### Returns
+
 `string` - on a successful call the method returns a signature, a string representing hex encoded bytes or an error with code `4001` - if the user rejects the requets
 
 ### personal_sign
@@ -88,7 +89,8 @@ The transaction will not be signed by the UP itself, but by a controller address
 This method is specified by [EIP-1102](https://eips.ethereum.org/EIPS/eip-1102).
 Calling this method may trigger a user interface that allows the user to approve or reject account access for a given DApp.
 
-Returns
+#### Returns
+
 `string[]` - an array of accounts or throws an error with code `4001` if the request was rejected by the user.
 
 ### wallet_switchEthereumChain {#wallet_switchEthereumChain}
@@ -98,14 +100,16 @@ It allows Dapps to request that a wallet switches its active chain (connection).
 
 The method requires that a target chain ID is provided
 
-Returns
+#### Returns
+
 `null` or `error` - the method will return null if successful or throw an error otherwise
 
-### eth_getAccounts {#eth_getAccounts}
+### eth_accounts {#eth_accounts}
 
 Similar to the `eth_requestAccounts` this method returns all of the addresses that are controlled by the application.
 
-Returns
+#### Returns
+
 `string[]` - a successful request returns an array of hexadecimal Ethereum address strings
 
 ## LUKSO Specific
