@@ -86,10 +86,10 @@ The transaction will not be signed by the UP itself, but by a controller address
 ### eth_requestAccounts {#eth_requestAccounts}
 
 This method is specified by [EIP-1102](https://eips.ethereum.org/EIPS/eip-1102).
-It requests that the user provides an Ethereum address to be identified by.
+Calling this method may trigger a user interface that allows the user to approve or reject account access for a given DApp.
 
 Returns
-`string[]` - if the user accepts the request, it returns an array of a single, hexadecimal Ethereum address string, or an error with code 4001 if the user rejects the request.
+`string[]` - an array of accounts or throws an error with code `4001` if the request was rejected by the user.
 
 ### wallet_switchEthereumChain {#wallet_switchEthereumChain}
 
