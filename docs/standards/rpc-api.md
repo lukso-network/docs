@@ -111,7 +111,7 @@ The method requires that a target chain ID is provided
 
 ### eth_accounts {#eth_accounts}
 
-Similar to the `eth_requestAccounts` this method returns all of the addresses that are controlled by the application.
+Similar to the `eth_requestAccounts` this method returns all of the addresses that the user has approved for the DApp. This method does not trigger a user interface.
 
 #### Returns
 
