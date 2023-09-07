@@ -32,11 +32,11 @@ You can test the browser extension with the following example dApps (Or any othe
 
 Projects built by the LUKSO community:
 
-- [lookso.io](https://lookso.io/) - A decentralized social feed geared towards Universal Profiles and the LUKSO blockchain
 - [universal.page](https://universal.page/) - Create a customizable website to showcase and sell digital assets on
   LUKSO.
 - [relayer-frontend.vercel.app](https://relayer-frontend.vercel.app/) - A relayer that lets you used your staking rewards to pay for your transaction fees.
-- [marble.cool](https://www.marble.cool/) - A LUKSO-native wallet.
+
+More are coming 🚀
 
 ## Download the extension
 
