@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Setup your Hardhat project
 
-In this article will guide you through the process of seting up an Hardhat installation (using TypeScript), adding the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package, creating a basic LSP7 contract, and deploying it on [LUKSO Testnet](http://docs.lukso.tech/networks/testnet/parameters).
+In this article, we will guide you through the process of seting up an Hardhat project (using TypeScript), adding the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package (using version 0.11.0-rc.1), creating a basic LSP7 contract, and deploying it on [LUKSO Testnet](http://docs.lukso.tech/networks/testnet/parameters).
 
 ## Create Hardhat project
 
@@ -27,7 +27,7 @@ To work in the best condition possible, we will install libraries that includes 
 
 ```js title="Install dependencies"
 npm i -D dotenv prettier
-npm i -s @lukso/lsp-smart-contracts
+npm i -s @lukso/lsp-smart-contracts@0.11.0-rc.1
 ```
 
 ### Add a build script in your package.json
