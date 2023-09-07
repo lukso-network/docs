@@ -61,7 +61,7 @@ The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) 
 
 ### eth_sign
 
-**_NOTE:_** We encourage developers to use eth_sign for signing purposes.
+**_NOTE:_** We encourage developers to use `eth_sign` for signing purposes.
 
 While a security issue potentially existed in the initial implementation on Ethereum, the current implementation has no such potential exploit. As such usage of this method is preferable to [personal_sign](#personal_sign).
 
@@ -103,7 +103,7 @@ Returns
 
 ### eth_getAccounts {#eth_getAccounts}
 
-This method returns all of the addresses that returns a list of accounts the node controls.
+Similar to the `eth_requestAccounts` this method returns all of the addresses that are controlled by the application.
 
 Returns
 `string[]` - a successful request returns an array of hexadecimal Ethereum address strings
