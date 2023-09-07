@@ -61,7 +61,7 @@ The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) 
 
 ### eth_sign
 
-**_NOTE:_** We encourage developers to use eth_sign for signing purposes.
+**_NOTE:_** We encourage developers to use `eth_sign` for signing purposes.
 
 While a security issue potentially existed in the initial implementation on Ethereum, the current implementation has no such potential exploit. As such usage of this method is preferable to [personal_sign](#personal_sign).
 
