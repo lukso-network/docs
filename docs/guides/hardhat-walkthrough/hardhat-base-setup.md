@@ -59,11 +59,15 @@ Create a new file at the root of your project called `.prettierrc` with the foll
 Create a new file at the root of your project called `.env` with the following content:
 
 :::warning
+
 The `.env` file contains sensitive values, such as API_KEY or PRIVATE_KEY. Do not commit it to your source code repository!!
+
 :::
 
 :::note
+
 We will populate the values of the `.env` file later
+
 :::
 
 ```text title="Create the .env file"
