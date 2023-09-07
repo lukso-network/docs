@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Add a contract in your Hardhat project
 
-Following the previous guide on "How to setup a hardhat base setup", we will now create a custom LSP7 contract.
+Following the previous guide on ["How to setup a hardhat base setup"](./hardhat-base-setup.md), we will now create a custom LSP7 contract.
 
 ## Create a custom LSP7 Digital Asset
 

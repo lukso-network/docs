@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # Deploy your contract
 
-Following the previous guide ("Create a custom LSP7 contract"), we are now ready to deploy it on the LUKSO Testnet network!
+Following the previous guide (["Create a custom LSP7 contract"](./create-custom-lsp7.md)), we are now ready to deploy it on the LUKSO Testnet network!
 
 ## Deploy the contract on LUKSO Testnet
 
