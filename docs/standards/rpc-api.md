@@ -69,12 +69,12 @@ This method returns a [EIP-191](https://eips.ethereum.org/EIPS/eip-191) signatur
 It requests that the user provides an Ethereum address that should sign the transaction as well as the data (encoded bytes) that are to be executed.
 
 Returns
-`string` - on a successful call the method returns a signature, a string representing hex encoded bytes or an error with code 4001 - if the user rejects the requets
+`string` - on a successful call the method returns a signature, a string representing hex encoded bytes or an error with code `4001` - if the user rejects the requets
 
 ### personal_sign
 
-The personal_sign endpoint is enabled to allow for backward compatibility. However, its use is not recommended.
-Some libraries such as Ethers.js end up using personal_sign under the hood. That is why, for compatibility reasons, personal_sign is left enabled. Note however that personal_sign ultimately acts as a proxy, redirecting the call to the [eth_sign](#eth_sign) method.
+The `personal_sign` endpoint is enabled to allow for backward compatibility. However, its use is not recommended.
+Some libraries such as Ethers.js end up using `personal_sign` under the hood. That is why, for compatibility reasons, `personal_sign` is left enabled. Note however that `personal_sign` ultimately acts as a proxy, redirecting the call to the [eth_sign](#eth_sign) method.
 
 ## Standard
 
