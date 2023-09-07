@@ -112,7 +112,7 @@ Returns
 
 ### up_addTransactionRelayer {#up_addTransactionRelayer}
 
-<p id="up_addTransactionRelayer">Add a custom relayer.</p>
+Add a custom relayer.
 
 #### Parameters
 
