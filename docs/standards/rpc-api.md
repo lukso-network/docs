@@ -10,6 +10,7 @@ sidebar_position: 10
 This page is under active development.
 
 :::
+
 The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) uses the RPC API methods from the table below. The methods are grouped by category: signing methods, standard methods, and LUKSO-specific methods.
 
 ## Supported Methods
@@ -61,7 +62,11 @@ The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) 
 
 ### eth_sign
 
-**_NOTE:_** We encourage developers to use `eth_sign` for signing purposes.
+:::tip
+
+We encourage developers to use `eth_sign` for signing purposes.
+
+:::
 
 While a security issue potentially existed in the initial implementation on Ethereum, the current implementation has no such potential exploit. As such usage of this method is preferable to [personal_sign](#personal_sign).
 
@@ -148,7 +153,7 @@ It returns an array of Universal Profile addresses.
 
 ### up_import {#up_import}
 
-<p id="up_import">Add a Universal Profile address.</p>
+Add a Universal Profile address.
 
 #### Parameters
 
