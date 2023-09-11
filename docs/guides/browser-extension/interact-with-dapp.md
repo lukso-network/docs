@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Interact with a dApp'
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
