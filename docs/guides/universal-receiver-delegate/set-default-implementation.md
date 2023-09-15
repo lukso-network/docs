@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Set the default implementation'
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
