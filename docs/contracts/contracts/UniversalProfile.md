@@ -234,21 +234,15 @@ function execute(
 ) external payable returns (bytes);
 ```
 
+_Calling address `target` using `operationType`, transferring `value` wei and data: `data`._
+
 Generic executor function to:
 
 - send native tokens to any address.
 
 - interact with any contract by passing an abi-encoded function call in the `data` parameter.
 
-- deploy a contract by providing its creation bytecode in the `data` parameter. Requirements:
-
-- SHOULD only be callable by the owner of the contract set via ERC173.
-
-- if a `value` is provided, the contract MUST have at least this amount in its balance to execute successfully.
-
-- if the operation type is STATICCALL or DELEGATECALL, `value` SHOULD be 0.
-
-- `target` SHOULD be address(0) when deploying a contract. Emits an [`Executed`](#executed) event, when a call is made with `operationType` 0 (CALL), 3 (STATICCALL) or 4 (DELEGATECALL) Emits a [`ContractCreated`](#contractcreated) event, when deploying a contract with `operationType` 1 (CREATE) or 2 (CREATE2)
+- deploy a contract by providing its creation bytecode in the `data` parameter.
 
 <blockquote>
 
@@ -278,7 +272,7 @@ Generic executor function to:
 | `operationType` | `uint256` | The operation type used: CALL = 0; CREATE = 1; CREATE2 = 2; STATICCALL = 3; DELEGATECALL = 4          |
 | `target`        | `address` | The address of the EOA or smart contract. (unused if a contract is created via operation type 1 or 2) |
 | `value`         | `uint256` | The amount of native tokens to transfer (in Wei)                                                      |
-| `data`          |  `bytes`  | The call data, or the creation bytecode of the contract to deploy                                     |
+| `data`          |  `bytes`  | The call data, or the creation bytecode of the contract to deploy if `operationType` is `1` or `2`.   |
 
 #### Returns
 
@@ -308,23 +302,9 @@ function executeBatch(
 ) external payable returns (bytes[]);
 ```
 
-Generic batch executor function to:
+_Calling multiple addresses `targets` using `operationsType`, transferring `values` wei and data: `datas`._
 
-- send native tokens to any address.
-
-- interact with any contract by passing an abi-encoded function call in the `datas` parameter.
-
-- deploy a contract by providing its creation bytecode in the `datas` parameter. Requirements:
-
-- The length of the parameters provided MUST be equal
-
-- SHOULD only be callable by the owner of the contract set via ERC173.
-
-- if a `values` is provided, the contract MUST have at least this amount in its balance to execute successfully.
-
-- if the operation type is STATICCALL or DELEGATECALL, `values` SHOULD be 0.
-
-- `targets` SHOULD be address(0) when deploying a contract. Emits an [`Executed`](#executed) event, when a call is made with `operationType` 0 (CALL), 3 (STATICCALL) or 4 (DELEGATECALL) Emits a [`ContractCreated`](#contractcreated) event, when deploying a contract with `operationType` 1 (CREATE) or 2 (CREATE2)
+Batch executor function that behaves the same as [`execute`](#execute) but allowing multiple operations in the same transaction.
 
 <blockquote>
 
@@ -350,12 +330,12 @@ Generic batch executor function to:
 
 #### Parameters
 
-| Name             |    Type     | Description                                                                                                 |
-| ---------------- | :---------: | ----------------------------------------------------------------------------------------------------------- |
-| `operationsType` | `uint256[]` | The list of operations type used: CALL = 0; CREATE = 1; CREATE2 = 2; STATICCALL = 3; DELEGATECALL = 4       |
-| `targets`        | `address[]` | The list of addresses to call. `targets` will be unused if a contract is created (operation types 1 and 2). |
-| `values`         | `uint256[]` | The list of native token amounts to transfer (in Wei)                                                       |
-| `datas`          |  `bytes[]`  | The list of call data, or the creation bytecode of the contract to deploy                                   |
+| Name             |    Type     | Description                                                                                                     |
+| ---------------- | :---------: | --------------------------------------------------------------------------------------------------------------- |
+| `operationsType` | `uint256[]` | The list of operations type used: `CALL = 0`; `CREATE = 1`; `CREATE2 = 2`; `STATICCALL = 3`; `DELEGATECALL = 4` |
+| `targets`        | `address[]` | The list of addresses to call. `targets` will be unused if a contract is created (operation types 1 and 2).     |
+| `values`         | `uint256[]` | The list of native token amounts to transfer (in Wei).                                                          |
+| `datas`          |  `bytes[]`  | The list of calldata, or the creation bytecode of the contract to deploy if `operationType` is `1` or `2`.      |
 
 #### Returns
 
@@ -380,19 +360,21 @@ Generic batch executor function to:
 function getData(bytes32 dataKey) external view returns (bytes dataValue);
 ```
 
-_Gets singular data at a given `dataKey`_
+_Reading the ERC725Y storage for data key `dataKey` returned the following value: `dataValue`._
+
+Get in the ERC725Y storage the bytes data stored at a specific data key `dataKey`.
 
 #### Parameters
 
-| Name      |   Type    | Description                     |
-| --------- | :-------: | ------------------------------- |
-| `dataKey` | `bytes32` | The key which value to retrieve |
+| Name      |   Type    | Description                                   |
+| --------- | :-------: | --------------------------------------------- |
+| `dataKey` | `bytes32` | The data key for which to retrieve the value. |
 
 #### Returns
 
-| Name        |  Type   | Description                |
-| ----------- | :-----: | -------------------------- |
-| `dataValue` | `bytes` | The data stored at the key |
+| Name        |  Type   | Description                                          |
+| ----------- | :-----: | ---------------------------------------------------- |
+| `dataValue` | `bytes` | The bytes value stored under the specified data key. |
 
 <br/>
 
@@ -413,7 +395,9 @@ function getDataBatch(
 ) external view returns (bytes[] dataValues);
 ```
 
-_Gets array of data for multiple given keys_
+_Reading the ERC725Y storage for data keys `dataKeys` returned the following values: `dataValues`._
+
+Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys`.
 
 #### Parameters
 
@@ -588,7 +572,9 @@ Renounce ownership of the contract in a 2-step process.
 function setData(bytes32 dataKey, bytes dataValue) external payable;
 ```
 
-_Sets singular data for a given `dataKey`_
+_Setting the following data key value pair in the ERC725Y storage. Data key: `dataKey`, data value: `dataValue`._
+
+Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data key `dataKey`. The function is marked as payable to enable flexibility on child contracts. For instance to implement a fee mechanism for setting specific data.
 
 <blockquote>
 
@@ -609,10 +595,10 @@ _Sets singular data for a given `dataKey`_
 
 #### Parameters
 
-| Name        |   Type    | Description                                                                                                                                                                                                                                                                                                           |
-| ----------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dataKey`   | `bytes32` | The key to retrieve stored value                                                                                                                                                                                                                                                                                      |
-| `dataValue` |  `bytes`  | The value to set SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal 0. Emits a {DataChanged} event. |
+| Name        |   Type    | Description                                |
+| ----------- | :-------: | ------------------------------------------ |
+| `dataKey`   | `bytes32` | The data key for which to set a new value. |
+| `dataValue` |  `bytes`  | The new bytes value to set.                |
 
 <br/>
 
@@ -631,9 +617,9 @@ _Sets singular data for a given `dataKey`_
 function setDataBatch(bytes32[] dataKeys, bytes[] dataValues) external payable;
 ```
 
-Sets array of data for multiple given `dataKeys` SHOULD only be callable by the owner of the contract set via ERC173 The function is marked as payable to enable flexibility on child contracts If the function is not intended to receive value, an additional check should be implemented to check that value equal
+_Setting the following data key value pairs in the ERC725Y storage. Data keys: `dataKeys`, data values: `dataValues`._
 
-0. Emits a [`DataChanged`](#datachanged) event.
+Batch data setting function that behaves the same as [`setData`](#setdata) but allowing to set multiple data key/value pairs in the ERC725Y storage in the same transaction.
 
 <blockquote>
 
@@ -654,10 +640,10 @@ Sets array of data for multiple given `dataKeys` SHOULD only be callable by the 
 
 #### Parameters
 
-| Name         |    Type     | Description                              |
-| ------------ | :---------: | ---------------------------------------- |
-| `dataKeys`   | `bytes32[]` | The array of data keys for values to set |
-| `dataValues` |  `bytes[]`  | The array of values to set               |
+| Name         |    Type     | Description                                          |
+| ------------ | :---------: | ---------------------------------------------------- |
+| `dataKeys`   | `bytes32[]` | An array of data keys to set bytes values for.       |
+| `dataValues` |  `bytes[]`  | An array of bytes values to set for each `dataKeys`. |
 
 <br/>
 
@@ -827,8 +813,7 @@ function _execute(
 ) internal nonpayable returns (bytes);
 ```
 
-check the `operationType` provided and perform the associated low-level opcode.
-see `IERC725X.execute(uint256,address,uint256,bytes)`.
+check the `operationType` provided and perform the associated low-level opcode after checking for requirements (see [`execute`](#execute)).
 
 <br/>
 
@@ -843,8 +828,7 @@ function _executeBatch(
 ) internal nonpayable returns (bytes[]);
 ```
 
-same as `_execute` but for batch execution
-see `IERC725X,execute(uint256[],address[],uint256[],bytes[])`
+check each `operationType` provided in the batch and perform the associated low-level opcode after checking for requirements (see [`executeBatch`](#executebatch)).
 
 <br/>
 
@@ -858,7 +842,7 @@ function _executeCall(
 ) internal nonpayable returns (bytes result);
 ```
 
-perform low-level call (operation type = 0)
+Perform low-level call (operation type = 0)
 
 #### Parameters
 
@@ -885,7 +869,7 @@ function _executeStaticCall(
 ) internal nonpayable returns (bytes result);
 ```
 
-perform low-level staticcall (operation type = 3)
+Perform low-level staticcall (operation type = 3)
 
 #### Parameters
 
@@ -911,7 +895,7 @@ function _executeDelegateCall(
 ) internal nonpayable returns (bytes result);
 ```
 
-perform low-level delegatecall (operation type = 4)
+Perform low-level delegatecall (operation type = 4)
 
 #### Parameters
 
@@ -937,7 +921,7 @@ function _deployCreate(
 ) internal nonpayable returns (bytes newContract);
 ```
 
-deploy a contract using the CREATE opcode (operation type = 1)
+Deploy a contract using the `CREATE` opcode (operation type = 1)
 
 #### Parameters
 
@@ -963,7 +947,7 @@ function _deployCreate2(
 ) internal nonpayable returns (bytes newContract);
 ```
 
-deploy a contract using the CREATE2 opcode (operation type = 2)
+Deploy a contract using the `CREATE2` opcode (operation type = 2)
 
 #### Parameters
 
@@ -985,6 +969,25 @@ deploy a contract using the CREATE2 opcode (operation type = 2)
 ```solidity
 function _getData(bytes32 dataKey) internal view returns (bytes dataValue);
 ```
+
+Read the value stored under a specific `dataKey` inside the underlying ERC725Y storage,
+represented as a mapping of `bytes32` data keys mapped to their `bytes` data values.
+
+```solidity
+mapping(bytes32 => bytes) _store
+```
+
+#### Parameters
+
+| Name      |   Type    | Description                                                             |
+| --------- | :-------: | ----------------------------------------------------------------------- |
+| `dataKey` | `bytes32` | A bytes32 data key to read the associated `bytes` value from the store. |
+
+#### Returns
+
+| Name        |  Type   | Description                                                                   |
+| ----------- | :-----: | ----------------------------------------------------------------------------- |
+| `dataValue` | `bytes` | The `bytes` value associated with the given `dataKey` in the ERC725Y storage. |
 
 <br/>
 
@@ -1170,18 +1173,18 @@ function _revertWithLSP20DefaultError(
 event ContractCreated(uint256 indexed operationType, address indexed contractAddress, uint256 indexed value, bytes32 salt);
 ```
 
-_Emitted when deploying a contract_
+_Deployed new contract at address `contractAddress` and funded with `value` wei (deployed using opcode: `operationType`)._
 
-Emitted whenever a contract is created
+Emitted when a new contract was created and deployed.
 
 #### Parameters
 
-| Name                            |   Type    | Description                                                                    |
-| ------------------------------- | :-------: | ------------------------------------------------------------------------------ |
-| `operationType` **`indexed`**   | `uint256` | The opcode used to deploy the contract (CREATE or CREATE2)                     |
-| `contractAddress` **`indexed`** | `address` | The created contract address                                                   |
-| `value` **`indexed`**           | `uint256` | The amount of native tokens (in Wei) sent to fund the created contract address |
-| `salt`                          | `bytes32` | -                                                                              |
+| Name                            |   Type    | Description                                                                                                                               |
+| ------------------------------- | :-------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `operationType` **`indexed`**   | `uint256` | The opcode used to deploy the contract (`CREATE` or `CREATE2`).                                                                           |
+| `contractAddress` **`indexed`** | `address` | The created contract address.                                                                                                             |
+| `value` **`indexed`**           | `uint256` | The amount of native tokens (in Wei) sent to fund the created contract on deployment.                                                     |
+| `salt`                          | `bytes32` | The salt used to deterministically deploy the contract (`CREATE2` only). If `CREATE` opcode is used, the salt value will be `bytes32(0)`. |
 
 <br/>
 
@@ -1200,14 +1203,16 @@ Emitted whenever a contract is created
 event DataChanged(bytes32 indexed dataKey, bytes dataValue);
 ```
 
-_Emitted when data at a key is changed_
+_The following data key/value pair has been changed in the ERC725Y storage: Data key: `dataKey`, data value: `dataValue`._
+
+Emitted when data at a specific `dataKey` was changed to a new value `dataValue`.
 
 #### Parameters
 
-| Name                    |   Type    | Description                          |
-| ----------------------- | :-------: | ------------------------------------ |
-| `dataKey` **`indexed`** | `bytes32` | The data key which data value is set |
-| `dataValue`             |  `bytes`  | The data value to set                |
+| Name                    |   Type    | Description                                  |
+| ----------------------- | :-------: | -------------------------------------------- |
+| `dataKey` **`indexed`** | `bytes32` | The data key for which a bytes value is set. |
+| `dataValue`             |  `bytes`  | The value to set for the given data key.     |
 
 <br/>
 
@@ -1226,16 +1231,18 @@ _Emitted when data at a key is changed_
 event Executed(uint256 indexed operationType, address indexed target, uint256 indexed value, bytes4 selector);
 ```
 
-_Emitted when calling an address (EOA or contract)_
+_Called address `target` using `operationType` with `value` wei and `data`._
+
+Emitted when calling an address `target` (EOA or contract) with `value`.
 
 #### Parameters
 
-| Name                          |   Type    | Description                                                                                      |
-| ----------------------------- | :-------: | ------------------------------------------------------------------------------------------------ |
-| `operationType` **`indexed`** | `uint256` | The low-level call opcode used to call the `to` address (CALL, STATICALL or DELEGATECALL)        |
-| `target` **`indexed`**        | `address` | The address to call. `target` will be unused if a contract is created (operation types 1 and 2). |
-| `value` **`indexed`**         | `uint256` | The amount of native tokens transferred with the call (in Wei)                                   |
-| `selector`                    | `bytes4`  | The first 4 bytes (= function selector) of the data sent with the call                           |
+| Name                          |   Type    | Description                                                                                          |
+| ----------------------------- | :-------: | ---------------------------------------------------------------------------------------------------- |
+| `operationType` **`indexed`** | `uint256` | The low-level call opcode used to call the `target` address (`CALL`, `STATICALL` or `DELEGATECALL`). |
+| `target` **`indexed`**        | `address` | The address to call. `target` will be unused if a contract is created (operation types 1 and 2).     |
+| `value` **`indexed`**         | `uint256` | The amount of native tokens transferred along the call (in Wei).                                     |
+| `selector`                    | `bytes4`  | The first 4 bytes (= function selector) of the data sent with the call.                              |
 
 <br/>
 
@@ -1432,7 +1439,7 @@ Reverts when trying to transfer ownership to the `address(this)`.
 error ERC725X_ContractDeploymentFailed();
 ```
 
-reverts when contract deployment via `ERC725X.execute(...)`/`ERC725X.executeBatch(...)` failed. whether using operation type 1 (CREATE) or 2 (CREATE2).
+Reverts when contract deployment failed via [`execute`](#execute) or [`executeBatch`](#executebatch) functions, This error can occur using either operation type 1 (`CREATE`) or 2 (`CREATE2`).
 
 <br/>
 
@@ -1451,7 +1458,7 @@ reverts when contract deployment via `ERC725X.execute(...)`/`ERC725X.executeBatc
 error ERC725X_CreateOperationsRequireEmptyRecipientAddress();
 ```
 
-reverts when passing a `to` address while deploying a contract va `ERC725X.execute(...)`/`ERC725X.executeBatch(...)` whether using operation type 1 (CREATE) or 2 (CREATE2).
+Reverts when passing a `to` address that is not `address(0)` (= address zero) while deploying a contract via [`execute`](#execute) or [`executeBatch`](#executebatch) functions. This error can occur using either operation type 1 (`CREATE`) or 2 (`CREATE2`).
 
 <br/>
 
@@ -1470,7 +1477,7 @@ reverts when passing a `to` address while deploying a contract va `ERC725X.execu
 error ERC725X_ExecuteParametersEmptyArray();
 ```
 
-reverts when one of the array parameter provided to `executeBatch(uint256[],address[],uint256[],bytes[]) is an empty array
+Reverts when one of the array parameter provided to the [`executeBatch`](#executebatch) function is an empty array.
 
 <br/>
 
@@ -1489,7 +1496,7 @@ reverts when one of the array parameter provided to `executeBatch(uint256[],addr
 error ERC725X_ExecuteParametersLengthMismatch();
 ```
 
-reverts when there is not the same number of operation, to addresses, value, and data.
+Reverts when there is not the same number of elements in the `operationTypes`, `targets` addresses, `values`, and `datas` array parameters provided when calling the [`executeBatch`](#executebatch) function.
 
 <br/>
 
@@ -1508,14 +1515,14 @@ reverts when there is not the same number of operation, to addresses, value, and
 error ERC725X_InsufficientBalance(uint256 balance, uint256 value);
 ```
 
-reverts when trying to send more native tokens `value` than available in current `balance`.
+Reverts when trying to send more native tokens `value` than available in current `balance`.
 
 #### Parameters
 
-| Name      |   Type    | Description                                                                              |
-| --------- | :-------: | ---------------------------------------------------------------------------------------- |
-| `balance` | `uint256` | the balance of the ERC725X contract.                                                     |
-| `value`   | `uint256` | the amount of native tokens sent via `ERC725X.execute(...)`/`ERC725X.executeBatch(...)`. |
+| Name      |   Type    | Description                                                                                                                            |
+| --------- | :-------: | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `balance` | `uint256` | The balance of native tokens of the ERC725X smart contract.                                                                            |
+| `value`   | `uint256` | The amount of native tokens sent via `ERC725X.execute(...)`/`ERC725X.executeBatch(...)` that is greater than the contract's `balance`. |
 
 <br/>
 
@@ -1534,7 +1541,7 @@ reverts when trying to send more native tokens `value` than available in current
 error ERC725X_MsgValueDisallowedInDelegateCall();
 ```
 
-the `value` parameter (= sending native tokens) is not allowed when making a delegatecall via `ERC725X.execute(...)`/`ERC725X.executeBatch(...)` because msg.value is persisting.
+Reverts when trying to send native tokens (`value` / `values[]` parameter of [`execute`](#execute) or [`executeBatch`](#executebatch) functions) while making a `delegatecall` (`operationType == 4`). Sending native tokens via `staticcall` is not allowed because `msg.value` is persisting.
 
 <br/>
 
@@ -1553,7 +1560,7 @@ the `value` parameter (= sending native tokens) is not allowed when making a del
 error ERC725X_MsgValueDisallowedInStaticCall();
 ```
 
-the `value` parameter (= sending native tokens) is not allowed when making a staticcall via `ERC725X.execute(...)`/`ERC725X.executeBatch(...)` because sending native tokens is a state changing operation.
+Reverts when trying to send native tokens (`value` / `values[]` parameter of [`execute`](#execute) or [`executeBatch`](#executebatch) functions) while making a `staticcall` (`operationType == 3`). Sending native tokens via `staticcall` is not allowed because it is a state changing operation.
 
 <br/>
 
@@ -1572,7 +1579,7 @@ the `value` parameter (= sending native tokens) is not allowed when making a sta
 error ERC725X_NoContractBytecodeProvided();
 ```
 
-reverts when no contract bytecode was provided as parameter when trying to deploy a contract via `ERC725X.execute(...)`/`ERC725X.executeBatch(...)`, whether using operation type 1 (CREATE) or 2 (CREATE2).
+Reverts when no contract bytecode was provided as parameter when trying to deploy a contract via [`execute`](#execute) or [`executeBatch`](#executebatch). This error can occur using either operation type 1 (`CREATE`) or 2 (`CREATE2`).
 
 <br/>
 
@@ -1591,13 +1598,13 @@ reverts when no contract bytecode was provided as parameter when trying to deplo
 error ERC725X_UnknownOperationType(uint256 operationTypeProvided);
 ```
 
-reverts when the `operationTypeProvided` is none of the default operation types available. (CALL = 0; CREATE = 1; CREATE2 = 2; STATICCALL = 3; DELEGATECALL = 4)
+Reverts when the `operationTypeProvided` is none of the default operation types available. (CALL = 0; CREATE = 1; CREATE2 = 2; STATICCALL = 3; DELEGATECALL = 4)
 
 #### Parameters
 
-| Name                    |   Type    | Description |
-| ----------------------- | :-------: | ----------- |
-| `operationTypeProvided` | `uint256` | -           |
+| Name                    |   Type    | Description                                                                                            |
+| ----------------------- | :-------: | ------------------------------------------------------------------------------------------------------ |
+| `operationTypeProvided` | `uint256` | The unrecognised operation type number provided to `ERC725X.execute(...)`/`ERC725X.executeBatch(...)`. |
 
 <br/>
 
@@ -1616,7 +1623,7 @@ reverts when the `operationTypeProvided` is none of the default operation types 
 error ERC725Y_DataKeysValuesLengthMismatch();
 ```
 
-reverts when there is not the same number of elements in the lists of data keys and data values when calling setDataBatch.
+Reverts when there is not the same number of elements in the `datakeys` and `dataValues` array parameters provided when calling the [`setDataBatch`](#setdatabatch) function.
 
 <br/>
 
@@ -1747,195 +1754,3 @@ Reverts when trying to renounce ownership before the initial confirmation delay.
 | `renounceOwnershipEnd`   | `uint256` | The end timestamp when one can confirm the renouncement of ownership.   |
 
 <br/>
-
-
-<!-- GLOBAL LINKS -->
-
-<!-- prettier-ignore-start -->
-
-<!-- SPECS -->
-
-[ERC-165]: https://eips.ethereum.org/EIPS/eip-165
-[EIP-165]: https://eips.ethereum.org/EIPS/eip-165
-[ERC-173]: https://eips.ethereum.org/EIPS/eip-173
-[EIP-173]: https://eips.ethereum.org/EIPS/eip-173
-[ERC-191]: https://eips.ethereum.org/EIPS/eip-191
-[EIP-191]: https://eips.ethereum.org/EIPS/eip-191
-[ERC-725X]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725X
-[ERC-725Y]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725Y
-[ERC-725]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md
-[ERC-1271]: https://eips.ethereum.org/EIPS/eip-1271
-[EIP-1271]: https://eips.ethereum.org/EIPS/eip-1271
-[LSP-0-ERC725Account]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-0-ERC725Account.md
-[LSP-1-UniversalReceiver]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-1-UniversalReceiver.md
-[LSP-2-ERC725YJSONSchema]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-2-ERC725YJSONSchema.md
-[LSP-3-UniversalProfile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md
-[LSP-4-DigitalAsset-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-4-DigitalAsset-Metadata.md
-[LSP-5-ReceivedAssets]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-5-ReceivedAssets.md
-[LSP-6-KeyManager]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-6-KeyManager.md
-[LSP-7-DigitalAsset]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-7-DigitalAsset.md
-[LSP-8-IdentifiableDigitalAsset]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md
-[LSP-9-Vault.md]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-9-Vault.md.md
-[LSP-10-ReceivedVaults]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-10-ReceivedVaults.md
-[LSP-11-BasicSocialRecovery]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-11-BasicSocialRecovery.md
-[LSP-12-IssuedAssets]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-12-IssuedAssets.md
-[LSP-14-Ownable2Step]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-14-Ownable2Step.md
-[LSP-15-TransactionRelayServiceAPI]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-15-TransactionRelayServiceAPI.md
-[LSP-16-UniversalFactory]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-16-UniversalFactory.md
-[LSP-17-ContractExtension]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-17-ContractExtension.md
-[LSP-20-CallVerification]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-20-CallVerification.md
-
-<!-- DOCS -->
-
-[ERC725]: https://docs.lukso.tech/standards/lsp-background/erc725
-[UniversalProfile]: https://docs.lukso.tech/standards/universal-profile/introduction
-[LSP0ERC725Account]: https://docs.lukso.tech/standards/universal-profile/lsp0-erc725account
-[LSP1UniversalReceiver]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver
-[LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver-delegate
-[LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema
-[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/nft-2.0/LSP4-Digital-Asset-Metadata
-[LSP5ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp5-received-assets
-[LSP6KeyManager]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
-[LSP7DigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP7-Digital-Asset
-[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP8-Identifiable-Digital-Asset
-[LSP10ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp10-received-vaults
-[LSP14Ownable2Step]: https://docs.lukso.tech/standards/generic-standards/lsp14-ownable-2-step
-[LSP17ContractExtension]: https://docs.lukso.tech/standards/generic-standards/lsp17-contract-extension
-[LSP20CallVerification]: https://docs.lukso.tech/standards/generic-standards/lsp20-call-verification
-
-<!-- DATA KEYS -->
-
-[_LSP17_EXTENSION_PREFIX]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#lsp17extendable-specification
-[_LSP1_UNIVERSAL_RECEIVER_DELEGATE_KEY]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md#specification-1
-[_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md#specification-1
-
-<!-- LSP1 TYPE IDS -->
-
-[LSP0OwnershipTransferStarted]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#transferownership
-[LSP0OwnershipTransferred_SenderNotification]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#acceptownership
-[LSP0OwnershipTransferred_RecipientNotification]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#acceptownership
-
-<!-- ERC725 LIBRARY -->
-
-[`ERC725.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725.sol
-[`ERC725Init.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Init.sol
-[`ERC725InitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725InitAbstract
-[`IERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725X.sol
-[`ERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725X.sol
-[`ERC725XCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XCore.sol
-[`ERC725XInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInit.sol
-[`ERC725XInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInitAbstract.sol
-[`IERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725Y.sol
-[`ERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Y.sol
-[`ERC725YCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YCore.sol
-[`ERC725YInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInit.sol
-[`ERC725YInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInitAbstract.soll
-[`OwnableUnset.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/custom/OwnableUnset.sol
-
-<!-- EXTERNAL LIBRARIES -->
-
-[`Create2.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Create2.sol
-[`ECDSA.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/cryptography/ECDSA.sol
-[`ERC165Checker.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165Checker.sol
-[`Address.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Address.sol
-[`ERC165.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165.sol
-[`EnumerableSet.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/structs/EnumerableSet.so
-[`Initializable.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/v4.9.2/contracts/proxy/utils/Initializable.sol
-[`BytesLib.sol`]: https://github.com/GNSPS/solidity-bytes-utils/blob/v0.8.0/contracts/BytesLib.sol
-
-<!-- SOLIDITY IMPLEMENTATION -->
-
-[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol
-[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Utils.sol
-[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInitAbstract.sol
-[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/ILSP0ERC725Account.sol
-[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725Account.sol
-[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInit.sol
-[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Constants.sol
-[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInitAbstract.sol
-[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfile.sol
-[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInit.sol
-[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol
-[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Utils.sol
-[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol
-[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiver.sol
-[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Constants.sol
-[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Errors.sol
-[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadataInitAbstract.sol
-[`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/ontracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
-[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Compatibility.sol
-[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol
-[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/ILSP4Compatibility.sol
-[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Errors.sol
-[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6SetDataModule.sol
-[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerCore.sol
-[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6ExecuteModule.sol
-[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Utils.sol
-[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Constants.sol
-[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/ILSP6KeyManager.sol
-[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Errors.sol
-[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6OwnershipModule.sol
-[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInitAbstract.sol
-[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManager.sol
-[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInit.sol
-[`LSP7DigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol
-[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20InitAbstract.sol
-[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20.sol
-[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol
-[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetInitAbstract.sol
-[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol
-[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupplyInitAbstract.sol
-[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol
-[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInitAbstract.sol
-[`LSP7CompatibleERC20MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInitAbstract.sol
-[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol
-[`LSP7CompatibleERC20Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20Mintable.sol
-[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Errors.sol
-[`LSP7CompatibleERC20MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInit.sol
-[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInit.sol
-[`ILSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/ILSP7CompatibleERC20.sol
-[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/ILSP7Mintable.sol
-[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol
-[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7BurnableInitAbstract.sol
-[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Constants.sol
-[`LSP8IdentifiableDigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetCore.sol
-[`LSP8CompatibleERC721InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721InitAbstract.sol
-[`LSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721.sol
-[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol
-[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8EnumerableInitAbstract.sol
-[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.sol
-[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupplyInitAbstract.sol
-[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.sol
-[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetInitAbstract.sol
-[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInitAbstract.sol
-[`ILSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/ILSP8CompatibleERC721.sol
-[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol
-[`LSP8CompatibleERC721MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInitAbstract.s
-[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol
-[`LSP8CompatibleERC721Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol
-[`LSP8CompatibleERC721MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInit.sol
-[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Errors.sol
-[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInit.sol
-[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.sol
-[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/ILSP8Mintable.sol
-[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.s
-[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol
-[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/ILSP14Ownable2Step.sol
-[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Constants.sol
-[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Errors.sol
-[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extendable.sol
-[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extension.sol
-[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Constants.sol
-[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Errors.sol
-[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Utils.sol
-[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20CallVerification.sol
-[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/ILSP20CallVerifier.sol
-[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Constants.sol
-[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Errors.sol
-[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol
-[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Utils.sol
-[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Constants.sol
-[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Utils.sol
-[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Constants.sol
-
-<!-- prettier-ignore-end -->
