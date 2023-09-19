@@ -29,6 +29,7 @@ As a validator, you need to import your validator deposit key files (`keystore-x
 As while running a regular node, you have multiple options to start your validator:
 
 - **LUKSO CLI Validator**
+- **Docker Factory**
 - **Docker Compose Setup**
 - **Configure a LUKSO Compatible Client**
 
