@@ -269,7 +269,7 @@ module.exports = {
             },
             {
               label: 'YouTube',
-              href: 'https://www.youtube.com/channel/UCG3TAT6pSpfafGihCMUcrjA',
+              href: 'https://www.youtube.com/@LUKSOBlockchain',
             },
           ],
         },
