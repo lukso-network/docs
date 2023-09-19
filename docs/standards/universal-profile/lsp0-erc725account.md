@@ -228,6 +228,13 @@ Check the [**fallback function**](../../contracts/contracts/LSP0ERC725Account/LS
 
 :::
 
+:::warning
+
+In the `LSP0ERC725Account` contract, calls to the fallback function revert if no matching function selector is found. However, the `0x00000000` function selector returns in order to allow the Unviersal Profile to act similarly to EOAs, you can send data to the Universal Profile without executing anything else.  
+If any security check involves calling an `LSP17Extension` do not rely on extensions to revert, but check its return value instead.
+
+:::
+
 Once a smart contract based account is deployed on the blockchain, it is not possible to modify the contract to add new native functions or change the behavior of existing ones. This can be a limitation for these accounts, that may need to support new use cases, functions, and standards that may be adopted in the future.
 
 **[LSP17-ContractExtension](../generic-standards/lsp17-contract-extension.md)** defines a mechanism for extending a contract to support new standard and functions through the use of **extensions**.
