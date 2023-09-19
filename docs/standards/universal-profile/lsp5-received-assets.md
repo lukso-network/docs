@@ -65,7 +65,7 @@ The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications t
   "name": "LSP5ReceivedAssetsMap:<address>",
   "key": "0x812c4334633eb816c80d0000<address>",
   "keyType": "Mapping",
-  "valueType": "(bytes4,bytes8)",
+  "valueType": "(bytes4,uint128)",
   "valueContent": "(Bytes4,Number)"
 }
 ```

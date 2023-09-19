@@ -5,9 +5,14 @@ sidebar_position: 1
 
 # The LUKSO Standard Proposals (LSPs)
 
+### High Level Overview of Universal Profiles
+
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/skA4Y-vvt5s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/_qmkcGvx9Dg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 </div>
+
+**👉 📺 If you want to have a presentation that goes more in depth, [watch Fabian's Presentation from ETHCC6 2023](https://www.youtube.com/live/MKFB_pGse4A?si=Yuo_sYRrhrtAYycG&t=312).**
 
 :::success Implementation
 
