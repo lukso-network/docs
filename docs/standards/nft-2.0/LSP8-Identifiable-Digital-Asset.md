@@ -107,16 +107,16 @@ If the sender and recipient are smart contracts that implement the LSP1 standard
 | Token sender (`from`)  | `0xb23eae7e6d1564b295b4c3e3be402d9a2f0776c57bdf365903496f6fa481ab00` | `keccak256('LSP8Tokens_SenderNotification')`    |
 | Token recipient (`to`) | `0x0b084a55ebf70fd3c06fd755269dac2212c4d3f0f4d09079780bfa50c1b2984d` | `keccak256('LSP8Tokens_RecipientNotification')` |
 
-### `allowNonLSP1Recipient` boolean
+### `force` mint and transfer
 
 :::success
 
-It is advised to set the `allowNonLSP1Recipient` boolean to `false` when transferring or minting tokens to avoid sending them to the wrong address.
+It is advised to set the `force` boolean to `false` when transferring or minting tokens to avoid sending them to the wrong address.
 
 For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
 :::
 
-It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens but they will be mainly used to control these accounts and not to hold tokens.
+It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to interact on the blockchain. This includes sending and receiving tokens. EOAs can receive tokens, but should be used mainly to control these accounts, not to interact on the network or hold tokens.
 
 To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)``](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) and `_mint(...)` functions:
 
