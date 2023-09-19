@@ -86,9 +86,12 @@ async function main() {
   const fullBytecode = CustomURDBytecode + params;
 
   // get the address of the contract that will be created
-  const CustomURDAddress = await UP.connect(signer)
-    .getFunction('execute')
-    .staticCall(1, ethers.ZeroAddress, 0, fullBytecode);
+  const CustomURDAddress = await UP.connect(signer).execute.staticCall(
+    1,
+    ethers.ZeroAddress,
+    0,
+    fullBytecode,
+  );
 
   // deploy LSP1URDForwarder as the UP (signed by the browser extension controller)
   const tx1 = await UP.connect(signer).execute(
@@ -135,7 +138,7 @@ async function main() {
   // console.log('values: ', dataValues);
 
   // execute the tx
-  const setDataBatchTx = await UP.connect(signer).getFunction('setDataBatch')(
+  const setDataBatchTx = await UP.connect(signer).setDataBatch(
     dataKeys,
     dataValues,
   );

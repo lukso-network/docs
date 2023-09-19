@@ -142,64 +142,60 @@ contract LSP1URDForwarder is
         // CHECK that the caller is a LSP0 (UniversalProfile)
         // by checking its interface support
         if (
-            ERC165Checker.supportsERC165InterfaceUnchecked(
+            !ERC165Checker.supportsERC165InterfaceUnchecked(
                 msg.sender,
                 _INTERFACEID_LSP0
             )
         ) {
-            // GET the notifier (e.g., the LSP7 Token) from the calldata
-            address notifier = address(bytes20(msg.data[msg.data.length - 52:]));
-
-            // CHECK that notifier is a contract with a `balanceOf` method
-            // and that msg.sender (the UP) has a positive balance
-            if (notifier.code.length > 0) {
-                try ILSP7DigitalAsset(notifier).balanceOf(msg.sender) returns (
-                    uint256 balance
-                ) {
-                    if (balance == 0) {
-                        return "LSP1: balance is zero";
-                    }
-                } catch {
-                    return "LSP1: `balanceOf(address)` function not found";
-                }
-            }
-
-            // CHECK that the URD has been called because we received a LSP7 token
-            if (typeId == _TYPEID_LSP7_TOKENSRECIPIENT) {
-                // CHECK that the address of the LSP7 is whitelisted
-                if (allowlist[notifier]) {
-                    // extract data (we only need the amount that was transfered / minted)
-                    (, , uint256 amount, ) = abi.decode(
-                        data,
-                        (address, address, uint256, bytes)
-                    );
-
-                    // CHECK if amount is not too low
-                    if (amount < 100) {
-                        return "Amount is too low (< 100)";
-                    } else {
-                        uint256 tokensToTransfer = (amount * percentage) / 100;
-
-                        // Requirements for direct Transfer via UP:
-                        // - setData on PREFIX + _TYPEID_LSP7_TOKENSRECIPIENT with custom URD address
-                        // - setData on AddressPermissions:Permissions<customURDAddress> (=create a controller) with SUPER_CALL
-                        bytes memory encodedTx = abi.encodeWithSelector(
-                            ILSP7DigitalAsset.transfer.selector,
-                            msg.sender,
-                            recipient,
-                            tokensToTransfer,
-                            true,
-                            ""
-                        );
-                        IERC725X(msg.sender).execute(0, notifier, 0, encodedTx);
-                    }
-                } else {
-                    return "Token not in allowlist";
-                }
-            }
-            return "";
-        } else {
             return "Caller is not a LSP0";
+        }
+        // GET the notifier (e.g., the LSP7 Token) from the calldata
+        address notifier = address(bytes20(msg.data[msg.data.length - 52:]));
+
+        // CHECK that notifier is a contract with a `balanceOf` method
+        // and that msg.sender (the UP) has a positive balance
+        if (notifier.code.length > 0) {
+            try ILSP7DigitalAsset(notifier).balanceOf(msg.sender) returns (
+                uint256 balance
+            ) {
+                if (balance == 0) {
+                    return "LSP1: balance is zero";
+                }
+            } catch {
+                return "LSP1: `balanceOf(address)` function not found";
+            }
+        }
+
+        // CHECK that the address of the LSP7 is whitelisted
+        if (!allowlist[notifier]) {
+            return "Token not in allowlist";
+        }
+
+        // extract data (we only need the amount that was transfered / minted)
+        (, , uint256 amount, ) = abi.decode(
+            data,
+            (address, address, uint256, bytes)
+        );
+
+        // CHECK if amount is not too low
+        if (amount < 100) {
+            return "Amount is too low (< 100)";
+        } else {
+            uint256 tokensToTransfer = (amount * percentage) / 100;
+
+            // Requirements for direct Transfer via UP:
+            // - setData on PREFIX + _TYPEID_LSP7_TOKENSRECIPIENT with custom URD address
+            // - setData on AddressPermissions:Permissions<customURDAddress> (=create a controller) with SUPER_CALL
+            bytes memory encodedTx = abi.encodeWithSelector(
+                ILSP7DigitalAsset.transfer.selector,
+                msg.sender,
+                recipient,
+                tokensToTransfer,
+                true,
+                ""
+            );
+            IERC725X(msg.sender).execute(0, notifier, 0, encodedTx);
+            return "";
         }
     }
 
