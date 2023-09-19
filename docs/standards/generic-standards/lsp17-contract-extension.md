@@ -69,6 +69,20 @@ This approach leads to fewer contracts being deployed on the blockchain with the
 
 ### Security Considerations
 
+:::warning
+
+If the extansion that you are creating is not supposed to receive value, make sure to revert when receiving value by adding a simple check, `msg.value == 0`. The extendable contract forwards the value that it receives on extansion call, if your extansion does not revert or does not have a way to withdraw the tokens, those tokens will be stuck in the contract.
+
+:::
+
+:::warning
+
+Adding an extension with the ability to `selfdestruct` is dangerous as it opens the possibility of the `LSP17Extension` contract do deploy a contract with `CREATE2`, with a pre-determined address.  
+Further if you add it as an extension, the attacker can use `selfdestruct` and deploy a new one with different runtime bytecode using `CREATE2` and the same salt and initialization code as on the first deployment, resulting in the new contract to have the same contract but different functionality.  
+The attacker can now use this contract to perform malicious actions.
+
+:::
+
 As the extensions are called using the **CALL** opcode not **DELEGATECALL**, it' safe to assume that there is no risk of destroying the extendable smart contract through `selfdestruct`.
 
 However, it is important to be aware that **adding random contracts as extensions carelessly** can be problematic as the extensions will have the extendable contract as their caller (`msg.sender`), which can lead to impersonating the extendable contract in certain situations.
