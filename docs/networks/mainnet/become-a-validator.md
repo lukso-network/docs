@@ -155,19 +155,28 @@ To enable more advanced monitoring for your node, you can check the official [`n
 
 ### Using Docker
 
-Our official Docker container provides a base template for images to run the LUKSO validator nodes. Make sure you have Docker and Docker Compose installed on your system.
+Our official Docker container provides a base template for images to run the LUKSO validator nodes. Make sure you have
+Docker and Docker Compose installed on your system.
 
 There are 2 ways that you can utilize Docker in LUKSO ecosystem:
-- Use [Docker Factory](https://docker-factory.lukso.tech) app to generate your own docker-compose file. Select your desired clients, fill the options and copy your generated docker-compose service. 
 
-    After the file has been generated, all that is left to do is to download, install and start the clients with your docker-compose file. 
+- Use [Docker Factory](https://docker-factory.lukso.tech) app to generate your own docker-compose file. Select your
+  desired clients, fill the options and copy your generated docker-compose service.
 
-- Head over to the [network-docker-containers](https://github.com/lukso-network/network-docker-containers) repository from LUKSO and follow the installation process. You will have to clone the repository to your node machine and configure various properties, including the genesis files, deposit keys, and node name.
+  After the file has been generated, all that is left to do is to download, install and start the clients with your
+  docker-compose file.
 
-    After the configuration, you can automatically download, install, and start all node clients. Head into the repository and follow the instructions in the [README.md](https://github.com/lukso-network/network-docker-monitoring/blob/main/README.md)
+- Head over to the [network-docker-containers](https://github.com/lukso-network/network-docker-containers) repository
+  from LUKSO and follow the installation process. You will have to clone the repository to your node machine and
+  configure various properties, including the genesis files, deposit keys, and node name.
 
-To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a step-by-step guide.
+  After the configuration, you can automatically download, install, and start all node clients. Head into the repository
+  and follow the instructions in
+  the [README.md](https://github.com/lukso-network/network-docker-monitoring/blob/main/README.md)
 
+To enable more advanced monitoring for your node, you can check the
+official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a
+step-by-step guide.
 
 ### Using Custom configs
 
