@@ -6,9 +6,18 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Running a Node
+# Running a mainnet Node
 
-Anyone is welcome to participate in the LUKSO network by running her/his own node. On this page, you will find the relevant information to configure and start your node. If you wish to stake LYX and run a validator node, you can check the [Become a Validator page](./become-a-validator.md).
+Anyone is welcome to participate in the LUKSO network by running her/his own node. On this page, you will find the relevant information to configure and start your node. If you wish to [stake LYX](https://deposit.mainnet.lukso.network/en/) and run a validator node, you can check the [Become a Validator page](./become-a-validator.md).
+
+<div style={{textAlign: 'center'}}>
+<img
+    width="600px"
+    src="/img/lukso-mainnet-genesis-nodes.png"
+    alt="A map fo the LUKSO mainnet network with genesis validators."
+/><br/>
+<i>Map of the LUKSO genesis validators from the <a href="https://stats.execution.mainnet.lukso.network/">execution stats website</a> - 19.09.23</i>.
+</div>
 
 ## System Requirements
 
@@ -39,9 +48,9 @@ LUKSO has partnered with [Dappnode](https://dappnode.com/) ([announcement](https
 
 Difficulty: Medium 🌶️🌶️
 
-The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. We recommend this as default for anyone beginning to get into the topic of running a node himself. The LUKSO CLI is officially supported for Ubuntu, Debian, and Mac running on either x86 Intel and AMD Processors or Single Board ARM Computers.
+The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. The LUKSO CLI is officially supported for Ubuntu, Debian and macOS running on either x86 Intel and AMD Processors or Single Board ARM Computers.
 
-You can use the [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) to prepare and run your LUKSO node. For further information, you can check out the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/). It is not limiting yourself to running any supported clients, as all configurations and flags can be passed down.
+For further information, you can check out the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/). It is not limiting yourself to running any supported clients, as all configurations and flags can be passed down.
 
 #### Install the LUKSO CLI
 
@@ -51,7 +60,7 @@ First, install the `lukso` command globally on your node machine.
 curl https://install.lukso.network | sh
 ```
 
-#### Create a Working Directory
+#### Create a working directory
 
 :::tip
 
@@ -71,7 +80,13 @@ Initialize the working folder, which will download the LUKSO network configurati
 lukso init
 ```
 
-#### Install the Clients
+:::tip Sudo mode
+
+Depending on your configuration and permissions, you might need to run the commands as super user with the `sudo` command.
+
+:::
+
+#### Install the clients
 
 After the initialization is successful, we must download the blockchain clients, which will be managed from the CLI under the hood. They will install globally, need superuser permissions, and are set as default clients within your working directories configuration file. You will be asked which clients you want to download and install during the setup.
 
@@ -79,77 +94,7 @@ After the initialization is successful, we must download the blockchain clients,
 lukso install
 ```
 
-#### Setting your Public IP Address
-
-To find other nodes in the network, your public IP should be exposed to build solid peer connections and download data more quickly. This public IP value must be set within the consensus client configuration file that the CLI downloads from the [LUKSO Network Configuration](https://github.com/lukso-network/network-configs) repository.
-
-Within the node's working directory, open up the related configuration file with an editor of your choice:
-
-:::info
-
-If you are setting up a node for the testnet, make sure to modify the configuration file within the testnet folder `[PATH_TO_NODE_WORKING_DIRECTORY]/configs/testnet/...` instead.
-
-:::
-
-<Tabs>
-  <TabItem value="prysm-config" label="Prysm">
-
-There are two ways the IP can be configured within Prysm: Regular Host IPs or by using a Dynamic DNS address. Choose what address you are going to use within your setup. If you need further information, please have a look at the [Further Reads](#further-reads) section.
-
-<Tabs>
-<TabItem value="host-ip" label="Host IP">
-
-Exchange the following sample IP address:
-
-```text title="[PATH_TO_NODE_WORKING_DIRECTORY]/configs/mainnet/prysm/prysm.yaml"
-p2p-host-ip: '0.0.0.0'
-```
-
-With your public IP address:
-
-```text title="[PATH_TO_NODE_WORKING_DIRECTORY]/configs/mainnet/prysm/prysm.yaml"
-p2p-host-ip: '<your-public-ip-address>'
-```
-
-</TabItem>
-<TabItem value="host-dns" label="Host DNS">
-
-Exchange the following sample IP address:
-
-```text
-p2p-host-ip: '0.0.0.0'
-```
-
-With the hostname property and address:
-
-```text
-p2p-host-dns: '<your-hostname-address>'
-```
-
-</TabItem>
-</Tabs>
-
-  </TabItem>
-  <TabItem value="lighthouse-config" label="Lighthouse">
-
-Exchange the following sample addresses:
-
-```text title="[PATH_TO_NODE_WORKING_DIRECTORY]/configs/mainnet/lighthouse/lighthouse.toml"
-listen-address = "0.0.0.0"
-enr-address = "0.0.0.0"
-```
-
-With your own public IP addresses:
-
-```text title="[PATH_TO_NODE_WORKING_DIRECTORY]/configs/mainnet/lighthouse/lighthouse.toml"
-listen-address = "<your-public-ip-address>"
-enr-address = "<your-public-ip-address>"
-```
-
-  </TabItem>
-</Tabs>
-
-#### Start the Clients
+#### Start the clients
 
 The following command will spin up your execution and consensus client and connect to the mainnet.
 
@@ -181,12 +126,6 @@ The shortcut is ideal for making installation, validator migration, or recovery 
 
 :::
 
-:::info
-
-If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
-
-:::
-
 :::note
 
 You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version, please pass down the checkpoint flag as described in the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
@@ -199,6 +138,12 @@ lukso start --checkpoint-sync
 
   </TabItem>
 </Tabs>
+
+:::info
+
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+
+:::
 
 #### Checking Processes
 
@@ -228,7 +173,7 @@ To enable more advanced monitoring for your node, you can check the official [`n
 
 ### 🚢 With Docker
 
-Difficulty: Hard 🌶️🌶️
+Difficulty: Hard 🌶️🌶️🌶️
 
 We provide a basic repository with examples of `docker-compose.yml` files to run the LUKSO network.
 
@@ -254,7 +199,7 @@ You are in no way limited to the tools we provide. If you are a pro user, you ca
 
 :::info LUKSO Network configuration
 
-👉 <https://github.com/lukso-network/network-configs/>
+👉 <https://github.com/lukso-network/network-configs>
 
 :::
 
@@ -272,7 +217,7 @@ Ask your question in the validators channel on the [official LUKSO Discord serve
 - [Genesis Validators Deposit and Testnet Launch](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc)
 - [Genesis Validators, start your clients!](https://medium.com/lukso/genesis-validators-start-your-clients-fe01db8f3fba)
 
-You can check out the following links for extended help or advice for setting up your node beyond the LUKSO CLI.
+You can check out the following links for extended help or advice for setting up your node:
 
 - [Extended Wiki and LUKSO Node Guide](https://github.com/fhildeb/lukso-node-guide) by Felix Hildebrandt
 - [LUKSO Community Guides](https://docs.luksoverse.io/) by Luksoverse
