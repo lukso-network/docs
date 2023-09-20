@@ -50,7 +50,7 @@ Difficulty: Medium 🌶️🌶️
 
 The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. The LUKSO CLI is officially supported for Ubuntu, Debian and macOS running on either x86 Intel and AMD Processors or Single Board ARM Computers.
 
-For further information, you can check out the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/). It is not limiting yourself to running any supported clients, as all configurations and flags can be passed down.
+For further information, you can check out the official [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/). It does not stop you from running any supported clients, all configurations and flags can be passed down.
 
 #### Install the LUKSO CLI
 
@@ -88,7 +88,7 @@ Depending on your configuration and permissions, you might need to run the comma
 
 #### Install the clients
 
-After the initialization is successful, we must download the blockchain clients, which will be managed from the CLI under the hood. They will install globally, need superuser permissions, and are set as default clients within your working directories configuration file. You will be asked which clients you want to download and install during the setup.
+After the initialization is successful, you must download the blockchain clients, which will be managed from the CLI under the hood. They will be installed globally, need superuser permissions, and are set as default clients within your working directories configuration file. You will be asked which clients you want to download and install during the setup.
 
 ```bash
 lukso install
