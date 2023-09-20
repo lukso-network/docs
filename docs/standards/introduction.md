@@ -5,9 +5,14 @@ sidebar_position: 1
 
 # The LUKSO Standard Proposals (LSPs)
 
+### High Level Overview of Universal Profiles
+
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/skA4Y-vvt5s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/_qmkcGvx9Dg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 </div>
+
+**👉 📺 If you want to have a presentation that goes more in depth, [watch Fabian's Presentation from ETHCC6 2023](https://www.youtube.com/live/MKFB_pGse4A?si=Yuo_sYRrhrtAYycG&t=312).**
 
 :::success Implementation
 
@@ -15,7 +20,7 @@ See the [Contracts Implementation](../contracts/introduction.md) section for the
 
 :::
 
-The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. People, groups, and organizations can use them to build blockchain-based applications that aim to maximize the user experience, allow more flexibility and interaction, and open doors to hundreds of ideas.
+The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. People, groups, and organizations can use them to build blockchain-based applications that aim to maximize the user experience, allow more flexibility and interaction, and open doors to innovation.
 
 The **[default implementation](../contracts/introduction.md)** of these standards in Solidity is available as Open Source Software under the [LUKSO GitHub repository](https://github.com/lukso-network). They can be used as a base by developers to build their applications.
 

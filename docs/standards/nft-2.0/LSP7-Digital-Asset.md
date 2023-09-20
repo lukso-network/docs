@@ -62,7 +62,7 @@ To ensure a flexible and generic asset representation, the token contract should
 
 When LSP7 assets are transfered, the LSP7 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokenreceiver).
 
-**These methods will make external calls** to the [`universalReceiver(...)`](../smart-contracts/lsp0-erc725-account.md#universalreceiver) functions of both the sender and recipient.
+**These methods will make external calls** to the [`universalReceiver(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) functions of both the sender and recipient.
 
 This function could perform more complex logic, like delegating the call to the `LSP1UniversalReceiverDelegate` contract. This contract can contain custom logic for each user. For instance, a user could decide to re-transfer the tokens to another address once they are transferred to his UP.
 
@@ -87,17 +87,17 @@ If the sender and recipient are smart contracts that implement the LSP1 standard
 | Token sender (`from`)  | `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` | `keccak256('LSP7Tokens_SenderNotification')`    |
 | Token recipient (`to`) | `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` | `keccak256('LSP7Tokens_RecipientNotification')` |
 
-### `allowNonLSP1Recipient` boolean
+### `force` mint and transfer
 
 :::success
 
-It is advised to set the `allowNonLSP1Recipient` boolean to `false` when transferring or minting tokens to avoid sending them to the wrong address.
+It is advised to set the `force` boolean to `false` when transferring or minting tokens to avoid sending them to the wrong address.
 
 For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
 
 :::
 
-It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts](../universal-profile/lsp0-erc725account.md)** to operate on the blockchain, which includes receiving and sending tokens. EOAs can receive tokens, but they will be used mainly to control these accounts and not to hold them.
+It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts](../universal-profile/lsp0-erc725account.md)** to interact on the blockchain. This includes sending and receiving tokens. EOAs can receive tokens, but should be used mainly to control these accounts, not to interact on the network or hold tokens.
 
 To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)``](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) and `_mint(...)` functions:
 

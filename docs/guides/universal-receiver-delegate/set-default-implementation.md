@@ -30,7 +30,7 @@ Make sure you have the following dependencies installed before beginning this tu
   <TabItem value="web3js" label="web3.js">
 
 ```shell title="Install the dependencies"
-npm install web3 @lukso/lsp-smart-contracts
+npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
 ```
 
   </TabItem>
@@ -38,7 +38,7 @@ npm install web3 @lukso/lsp-smart-contracts
   <TabItem value="ethersjs" label="ethers.js">
 
 ```shell title="Install the dependencies"
-npm install ethers @lukso/lsp-smart-contracts
+npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
 ```
 
   </TabItem>
@@ -285,6 +285,8 @@ Generate _Data Keys & Values_ for [**adding a URD**](../../standards/generic-sta
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Encode Data Keys & Values for updating the URD and its permissions"
+import { ERC725 } from '@erc725/erc725.js';
+
 const addressPermissionsOldArrayLengthHex = await universalProfile.methods[
   'getData(bytes32)'
 ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length).call();
@@ -296,6 +298,12 @@ const addressPermissionsNewArrayLengthHex = web3.utils.padLeft(
   web3.utils.numberToHex(addressPermissionsNewArrayLength),
   32,
 );
+
+// create bytes32 permission value for the LSP1 Delegate
+const lsp1DelegatePermissions = ERC725.encodePermissions({
+  SUPER_SETDATA: true,
+  REENTRANCY: true,
+});
 
 // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
 const newElementIndexInArrayHex =
@@ -313,7 +321,7 @@ const dataValues = [
   universalProfileURDAddress,
   addressPermissionsNewArrayLengthHex,
   universalProfileURDAddress,
-  PERMISSIONS.SUPER_SETDATA,
+  lsp1DelegatePermissions,
 ];
 ```
 
@@ -322,6 +330,8 @@ const dataValues = [
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Encode Data Keys & Values for updating the URD and its permissions"
+import { ERC725 } from '@erc725/erc725.js';
+
 const addressPermissionsOldArrayLengthHex = await universalProfile[
   'getData(bytes32)'
 ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length);
@@ -335,6 +345,12 @@ const addressPermissionsNewArrayLength = ethers.BigNumber.from(
 const addressPermissionsNewArrayLengthHex =
   '0x' + addressPermissionsNewArrayLength.toString(16).padStart(32, '0');
 
+// create bytes32 permission value for the LSP1 Delegate
+const lsp1DelegatePermissions = ERC725.encodePermissions({
+  SUPER_SETDATA: true,
+  REENTRANCY: true,
+});
+
 // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
 const newElementIndexInArrayHex =
   addressPermissionsOldArrayLengthHex.substring(2);
@@ -347,11 +363,12 @@ const dataKeys = [
   ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
     universalProfileURDAddress.substring(2),
 ];
+
 const dataValues = [
   universalProfileURDAddress,
   addressPermissionsNewArrayLengthHex,
   universalProfileURDAddress,
-  PERMISSIONS.SUPER_SETDATA,
+  lsp1DelegatePermissions,
 ];
 ```
 
@@ -395,6 +412,8 @@ await universalProfile.connect(EOA).setDataBatch(dataKeys, dataValues);
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
+import { ERC725 } from '@erc725/erc725.js';
+
 const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   // create an instance of the Universal Profile
   const universalProfile = new web3.eth.Contract(
@@ -414,6 +433,12 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     32,
   );
 
+  // create bytes32 permission value for the LSP1 Delegate
+  const lsp1DelegatePermissions = ERC725.encodePermissions({
+    SUPER_SETDATA: true,
+    REENTRANCY: true,
+  });
+
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
     addressPermissionsOldArrayLengthHex.substring(2);
@@ -430,7 +455,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     universalProfileURDAddress,
     addressPermissionsNewArrayLengthHex,
     universalProfileURDAddress,
-    PERMISSIONS.SUPER_SETDATA,
+    lsp1DelegatePermissions,
   ];
 
   // update the Universal Profile data
@@ -449,6 +474,8 @@ await updateUniversalProfileURD(universalProfileURDAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
+import { ERC725 } from '@erc725/erc725.js';
+
 const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   // create an instance of the Universal Profile
   const universalProfile = new ethers.Contract(
@@ -469,6 +496,12 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   const addressPermissionsNewArrayLengthHex =
     '0x' + addressPermissionsNewArrayLength.toString(16).padStart(32, '0');
 
+  // create bytes32 permission value for the LSP1 Delegate
+  const lsp1DelegatePermissions = ERC725.encodePermissions({
+    SUPER_SETDATA: true,
+    REENTRANCY: true,
+  });
+
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
     addressPermissionsOldArrayLengthHex.substring(2);
@@ -485,7 +518,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     universalProfileURDAddress,
     addressPermissionsNewArrayLengthHex,
     universalProfileURDAddress,
-    PERMISSIONS.SUPER_SETDATA,
+    lsp1DelegatePermissions,
   ];
 
   // update the Universal Profile data
@@ -514,6 +547,7 @@ import {
   PERMISSIONS,
 } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
+import { ERC725 } from '@erc725/erc725.js';
 
 // constants
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -567,6 +601,12 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     32,
   );
 
+  // create bytes32 permission value for the LSP1 Delegate
+  const lsp1DelegatePermissions = ERC725.encodePermissions({
+    SUPER_SETDATA: true,
+    REENTRANCY: true,
+  });
+
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
     addressPermissionsOldArrayLengthHex.substring(2);
@@ -583,7 +623,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     universalProfileURDAddress,
     addressPermissionsNewArrayLengthHex,
     universalProfileURDAddress,
-    PERMISSIONS.SUPER_SETDATA,
+    lsp1DelegatePermissions,
   ];
 
   // update the Universal Profile data
@@ -612,6 +652,7 @@ import {
   PERMISSIONS,
 } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
+import { ERC725 } from '@erc725/erc725.js';
 
 // constants
 const provider = new ethers.providers.JsonRpcProvider(
@@ -659,6 +700,12 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
   const addressPermissionsNewArrayLengthHex =
     '0x' + addressPermissionsNewArrayLength.toString(16).padStart(64, '0');
 
+  // create bytes32 permission value for the LSP1 Delegate
+  const lsp1DelegatePermissions = ERC725.encodePermissions({
+    SUPER_SETDATA: true,
+    REENTRANCY: true,
+  });
+
   // bytes16 index `addressPermissionsOldArrayLengthHex` will serve as index
   const newElementIndexInArrayHex =
     addressPermissionsOldArrayLengthHex.substring(2);
@@ -675,7 +722,7 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     universalProfileURDAddress,
     addressPermissionsNewArrayLengthHex,
     universalProfileURDAddress,
-    PERMISSIONS.SUPER_SETDATA,
+    lsp1DelegatePermissions,
   ];
 
   // update the Universal Profile data

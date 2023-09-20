@@ -25,11 +25,11 @@ As for features, these standards are just representing **incremental tokenIds** 
 
 ## Tokens & NFT 2.0
 
-| Standard                                                                  | Description                                                                                                                                                                                           |
-| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[ LSP4 - DigitalAssetMetadata ](./LSP4-Digital-Asset-Metadata.md)**     | The standard used by both **LSP7** & **LSP8** to provide proper **metadata** to the asset with standard ERC725Y Data Keys.                                                                            |
-| **[LSP7-DigitalAsset](./LSP7-Digital-Asset.md)**                          | Similar to ERC20 Standard, LSP7 represents **fungible tokens** standard with proper metadata, more secure transfers and more interactive transfer.                                                    |
-| **[LSP8-IdentifiableDigitalAsset](./LSP8-Identifiable-Digital-Asset.md)** | Similar to ERC721 and ERC1155 Standard, LSP8 represents **non-fungible tokens (NFTs)** standard with proper metadata, more secure transfers, more asset representation and more interactive transfer. |
+| Standard                                                                    | Description                                                                                                                                                                                           |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **[ LSP4 - DigitalAssetMetadata ](./LSP4-Digital-Asset-Metadata.md)**       | The standard used by both **LSP7** & **LSP8** to provide proper **metadata** to the asset with standard ERC725Y Data Keys.                                                                            |
+| **[LSP7 - DigitalAsset](./LSP7-Digital-Asset.md)**                          | Similar to ERC20 Standard, LSP7 represents **fungible tokens** standard with proper metadata, more secure transfers and more interactive transfer.                                                    |
+| **[LSP8 - IdentifiableDigitalAsset](./LSP8-Identifiable-Digital-Asset.md)** | Similar to ERC721 and ERC1155 Standard, LSP8 represents **non-fungible tokens (NFTs)** standard with proper metadata, more secure transfers, more asset representation and more interactive transfer. |
 
 ![Tokens & NFT Standards LSP4, LSP7 and LSP8](/img/standards/LUKSO-Tokens-NFT-Standards.jpeg)
 

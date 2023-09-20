@@ -51,7 +51,7 @@ module.exports = {
           },
           {
             from: '/contracts/erc725-account',
-            to: '/standards/smart-contracts/lsp0-erc725-account',
+            to: '/contracts/contracts/LSP0ERC725Account',
           },
           {
             from: '/contracts/key-manager',
@@ -89,6 +89,10 @@ module.exports = {
           {
             from: '/standards/smart-contracts/interface-ids',
             to: '/contracts/interface-ids',
+          },
+          {
+            from: '/standards/smart-contracts/lsp0-erc725-account',
+            to: '/contracts/contracts/LSP0ERC725Account',
           },
           {
             from: '/standards/smart-contracts/lsp1-universal-receiver-delegate-up',
@@ -265,7 +269,7 @@ module.exports = {
             },
             {
               label: 'YouTube',
-              href: 'https://www.youtube.com/channel/UCG3TAT6pSpfafGihCMUcrjA',
+              href: 'https://www.youtube.com/@LUKSOBlockchain',
             },
           ],
         },
