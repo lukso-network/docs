@@ -34,6 +34,39 @@ The magic value can also determine if there should be any post-execution check o
 
 The structure allows the account to have a more dynamic and adaptable approach for managing function execution logic, using the **LSP20-CallVerification** standard.
 
+## Extensions
+
+An `LSP0ERC725Account` has the functionalities of `LSP17Extendable` built-in. This allows extending its behavior with functions it does not support natively in its interface.
+
+However, calls to the `fallback` function will revert if no extension is registered for the function selector that was called.
+
+:::tip
+
+The only exception is the `0x00000000` function selector, which returns in order to allow the Universal Profile to act similarly to an EOA, and receive _"graffiti"_ data (when receiving native tokens or not) without executing anything else.
+
+:::
+
+:::caution
+
+If your Universal Profile calls an extension to perform some security check, verification or validation, you should not rely on the extension to revert to ensure
+the validation failed, but check the `bytes` returned by the extension through `_fallbackLSP17Extendable`.
+
+:::
+
+:::caution
+
+Be aware of phantom functions for functions in extensions with the `0x00000000` selector.
+
+For example, a contract might perform some kind of validation in an extension (_e.g: checking for permissions_), and expect the function to revert if the user is not authorized. 
+
+However, since the function's selector is `0x00000000` and the LSP0 account doesn't have this extension registered, the `fallback` function will `return` instead of reverting, giving the contract the impression that the user is authorized.
+
+> See `_fallbackLSP17Extendable` for more details.
+
+In such case, make sure to double that an extension is registered first for the `0x00000000` selector via `_getExtension`.
+
+:::
+
 ## Adding metadata 
 
 Unlike private keys and EOAs that cannot hold any metadata, a UniversalProfile is a blockchain based account that can have any info attached to it.
@@ -43,3 +76,4 @@ You can do so using the `setData(bytes32,bytes)` and `setDataBatch(bytes32[],byt
 ### Updating your `LSP3Profile` metadata.
 
 The [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata.md#lsp3profile) data key has a special meaning. It enables you to edit your profile details
+
