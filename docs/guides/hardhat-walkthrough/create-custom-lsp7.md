@@ -30,7 +30,18 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
 }
 ```
 
-We are now ready to build it using the command:
+## Bonus: Create a MockContract to generate the UniversalProfile type
+
+In order to deploy this Custom LSP7 contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract.
+To do that, you can create a `MockContract.sol` file in the `contracts/` file with the following content:
+
+```solidity title="contracts/MyCustomToken.sol"
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.9;
+import {UniversalProfile} from '@lukso/lsp-smart-contracts/contracts/UniversalProfile.sol';
+```
+
+We are now ready to build our contracts using the command:
 
 ```bash
 npm run build
