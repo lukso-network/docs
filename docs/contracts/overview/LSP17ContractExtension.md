@@ -12,11 +12,11 @@ Contracts that use the LSP17 standard are called **Extendable Contracts**. Meani
 
 The list of extensions for specific functions are stored under the specific data keys under their ERC725Y storage. You can think of them as **Extension Hosts**.
 
-You can inherit the `LSP17Extendable.sol` contract to create an extendable contract.
+You can inherit the [`LSP17Extendable.sol`](../contracts/LSP17ContractExtension/LSP17Extendable.md) contract to create an extendable contract.
 
 :::warning
 
-Be aware that adding an extension that can `selfdestruct` itself can be dangerous. This can make the `LSP17Extendable` contract vulnerable to [metamorphic contracts](https://twitter.com/samczsun/status/1660012956632104960).
+Be aware that adding an extension that can `selfdestruct` itself can be dangerous. This can make the [`LSP17Extendable`](../contracts/LSP17ContractExtension/LSP17Extendable.md) contract vulnerable to [metamorphic contracts](https://twitter.com/samczsun/status/1660012956632104960).
 
 If this extension contract has been deployed at a pre-determined address with `CREATE2`, an attacker could `selfdestruct` it and deploy a new one with different runtime bytecode using `CREATE2` and the same salt and initialization code as on the first deployment. 
 
@@ -26,9 +26,9 @@ This can result in the new contract to have the same address but different funct
 
 ### Forwarding native tokens received to extensions
 
-The `LSP17Extendable` contract implementation does not forward by default the native tokens received by the contract to the extension contract.
+The [`LSP17Extendable`](../contracts/LSP17ContractExtension/LSP17Extendable.md) contract implementation does not forward by default the native tokens received by the contract to the extension contract.
 
-If you want your extension to receive native tokens, by forwarding them to the extension contract (for instance, for extensions that require native tokens as part of their logic, or to make the extendable contract to fully work as a _"proxy forwarder contract"_), you can override the `_fallbackLSP17Extendable(...)` function.
+If you want your extension to receive native tokens, by forwarding them to the extension contract (for instance, for extensions that require native tokens as part of their logic, or to make the extendable contract to fully work as a _"proxy forwarder contract"_), you can override the [`_fallbackLSP17Extendable`](../contracts/LSP17ContractExtension/LSP17Extendable.md#_fallbacklsp17extendable) function.
 
 
 
@@ -37,7 +37,7 @@ If you want your extension to receive native tokens, by forwarding them to the e
 
 Extension contracts are contracts deployed on the network that aim to be used for extending functionalities that use the LSP17 standard.
 
-You can inherit the `LSP17Extension.sol` contract to create a contract extension.
+You can inherit the [`LSP17Extendable.sol`](../contracts/LSP17ContractExtension/LSP17Extendable.md) contract to create a contract extension.
 
 :::warning
 
@@ -55,7 +55,7 @@ if (msg.value == 0) revert(...)
 
 ### Checking the amount of native tokens received by the extended contract
 
-You can use the function `_extendableMsgValue()` function to check the amount of native tokens received by the extended contract in the first place.
+You can use the function [`_extendableMsgValue()`](../contracts/LSP17ContractExtension/LSP17Extension.md#_extendablemsgvalue) function to check the amount of native tokens received by the extended contract in the first place.
 
 This function can be useful if you want to create a behaviour in your extension contract that takes into account that the `msg.value` received. For instance:
 
