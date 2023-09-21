@@ -6,17 +6,11 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Become a validator
-
-:::info
-
-The LUKSO Mainnet launched on Tuesday 23rd May, 4:20 PM GMT with validators that previously deposited to the [Genesis Deposit Contract](https://etherscan.io/address/0x42000421dd80D1e90E56E87e6eE18D7770b9F8cC#code). Becoming a validator is paused until the discovery month ends and the LYXe to LYX migration goes live. For more information, have a look into our Medium posts about the [LUKSO launch process](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) and the [deposit contract freeze](https://medium.com/lukso/genesis-validators-deposit-smart-contract-freeze-and-testnet-launch-c5f7b568b1fc).
-
-:::
+# Become a validator
 
 ![Deposit Launchpad](/img/network/mainnet-launchpad.png)
 
-To become a validator, you can use the LUKSO Deposit Launchpad: <https://deposit.mainnet.lukso.network/>.
+To become a validator, you will need to use [LUKSO Deposit Launchpad](https://deposit.mainnet.lukso.network/) to deposit 32 LYX per validator. Once you have generated your keystore files (`keystore-xxx-[timestamp].json`) and deposited the LYX, you can adjust your node to run as a validator.
 
 :::caution Validator Keys
 
@@ -26,15 +20,13 @@ As a validator, you need to import your validator deposit key files (`keystore-x
 
 ## Starting a validator
 
-As while running a regular node, you have multiple options to start your validator:
+Similar to running a regular node, you have multiple options to start your validator. Please refer to the regular [Node Guide](./running-a-node.md) that explains the differences between those setups and how to get the correct network configurations.
 
-- **LUKSO CLI Validator**
-- **Docker Compose Setup**
-- **Configure a LUKSO Compatible Client**
+### 📦 With Dappnode
 
-Please refer to the regular [Node Guide](./running-a-node.md) that explains the differences between those setups and how to get the correct network configurations.
+The [Dappnode tutorial](https://docs.dappnode.io/docs/user/staking/lukso/solo#2-creating-validator-keys-for-lukso) explains the process.
 
-### Using LUKSO CLI
+### 📟 With LUKSO CLI
 
 Set up your regular node using the LUKSO CLI as described in the [Node Guide](./running-a-node.md).
 
@@ -152,23 +144,9 @@ For more options, please check the [LUKSO CLI Documentation](https://github.com/
 
 To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a step-by-step guide.
 
-### Using Docker
+### 🚢 With Docker
 
-Our official Docker container provides a base template for images to run the LUKSO validator nodes. Make sure you have Docker and Docker Compose installed on your system.
-
-Head over to the [network-docker-containers](https://github.com/lukso-network/network-docker-containers) repository from LUKSO and follow the installation process. You will have to clone the repository to your node machine and configure various properties, including the genesis files, deposit keys, and node name.
-
-After the configuration, you can automatically download, install, and start all node clients. Head into the repository and follow the instructions in the [README.md](https://github.com/lukso-network/network-docker-monitoring/blob/main/README.md)
-
-To enable more advanced monitoring for your node, you can check the official [`network-docker-monitoring`](https://github.com/lukso-network/network-docker-monitoring) repository with a step-by-step guide.
-
-### Using Custom configs
-
-If you are a pro user or want to generate custom genesis files with a different genesis supply of the blockchain, you can follow the instructions in the following repositories:
-
-- [Genesis File Generation Tool](https://github.com/lukso-network/tools-lodestar-genesis-ssz-generator/blob/spike/pos-from-the-start/packages/beacon-node/test/utils/README.md)
-- [Network Configurations](https://github.com/lukso-network/network-configs/mainnet)
-- [Client Specifications](https://github.com/lukso-network/network-configs#binary-applications)
+If you are using Docker images in your setup, you need to make sure you have activated the validator related options.
 
 ## Need Help?
 
