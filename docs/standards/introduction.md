@@ -22,7 +22,15 @@ See the [Contracts Implementation](../contracts/introduction.md) section for the
 
 The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. People, groups, and organizations can use them to build blockchain-based applications that aim to maximize the user experience, allow more flexibility and interaction, and open doors to innovation.
 
-The **[default implementation](../contracts/introduction.md)** of these standards in Solidity is available as Open Source Software under the [LUKSO GitHub repository](https://github.com/lukso-network). They can be used as a base by developers to build their applications.
+The use of smart contracts and standards like the LSPs can mitigate some centralization risks by allowing for decentralized ownership and control of accounts and assets.
+
+:::info
+
+The **[default implementation of these standards in Solidity](../contracts/introduction.md)** is available as Open Source Software. They can be used as a base by developers to build their applications.
+
+Developers wishing to understand the logic behind the standards and their tradeoffs within are well-advised to read these documents alongside the Solidity code itself.
+
+:::
 
 :::info Questions? Want to learn more?
 
