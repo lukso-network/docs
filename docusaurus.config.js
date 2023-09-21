@@ -147,6 +147,10 @@ module.exports = {
             from: '/faq/universal-profile',
             to: '/faq/onboarding/universal-profiles',
           },
+          {
+            from: '/standards/standards-roadmap',
+            to: '/standards/introduction',
+          },
         ],
       },
     ],

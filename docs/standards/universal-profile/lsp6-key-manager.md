@@ -48,6 +48,17 @@ You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ER
 
 :::
 
+:::info Best Practices
+
+While the Key Manager allows for a very fine-grained control over the Universal Profile (_eg: `CALL` permission combined with [`AllowedCalls`](#allowed-calls), `SETDATA` permission combined with [`AllowedERC725YDataKeys`](#allowed-erc725y-data-keys)_), it also allows for a very coarse-grained control over the Universal Profile, due to the [`SUPER`](#super-permissions) permissions. This makes the Key Manager very flexible, but that flexibility comes with a slightly higher responsibility from the users.
+
+**Good practices:**
+
+1. Split the permissions over the Universal Profile accross different devices, hardware wallets or a combination of both.
+2. Make sure to double or triple check when granting permissions to 3rd parties (other Universal Profiles, DApps, etc.).
+
+:::
+
 ![LSP6 permissions](/img/standards/lsp6/lsp6-permissions.jpeg)
 
 Click on the toggles below to **learn more about the features enabled by each permission**.
@@ -783,7 +794,21 @@ The main difference between direct vs relay vs LSP20-CallVerification execution 
 
 ![Direct vs Relay Execution](/img/standards/lsp6/lsp6-direct-vs-relay-execution.jpeg)
 
-### Relay Execution
+### Gas-Less Transactions
+
+:::info Best Practices
+
+While gas-less transactions / relay-execution is a very convenient way of using your Universal Profile to surf the blockchain, it comes with its risks.
+
+- A relay call does not enforce a gas price to execute a transaction, meaning a Relay Service can potentially send your transaction with a lower gas price in order to cut costs which might take a long time to execute.
+- A Relay Service can also frontrun your transaction.
+
+**Best practices:**
+
+- Make sure to only use audited, transparent, community trusted Relay Services that have passed the test of time.
+- Stay away from Relay Services that try to acquire users by offering cheaper prices. In the end any Relay Service must have a business model in order to work. If it does not profit from users it profits from other ways, might be shady or not.
+
+:::
 
 Relay execution enables users to interact with smart contracts on the blockchain **without needing native tokens** to pay for transaction fees. This allows a better onboarding experience for users new to cryptocurrencies and blockchain.
 
