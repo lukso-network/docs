@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # The LUKSO Standard Proposals (LSPs)
 
-### High Level Overview of Universal Profiles
+## High Level Overview of Universal Profiles
 
 <div class="video-container">
 <iframe src="https://www.youtube.com/embed/_qmkcGvx9Dg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -57,9 +57,11 @@ The following documentation describes the fundamentals of the standards and tech
 ## LSPs Foundation
 
 :::note
+
 The LSP standards are **not order-dependent**. They can be related to each other in a **backward or forward** order.
 
 Meaning a LSP standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](#)** uses **[LSP1 - UniversalReceiver](#)**, **[LSP2 - ERC725YJSONSchema](#)** and could use **[LSP3 - ProfileMetadata](#)**, etc.
+
 :::
 
 This section lists and describes the first ten Standards representing the foundation of **LUKSO's ecosystem**.
@@ -75,7 +77,7 @@ They introduce new concepts like **blockchain-based accounts** (_e.g: **Universa
 - [Fabian Vogelsteller talks at BLOCKCHANCE 2021 about LUKSO (YouTube)](https://www.youtube.com/watch?v=aoZE_0Ey1SQ)
 - [Fabian Vogelsteller talks at NFT.NYC 2021 about the new Standards (YouTube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)
 - [Developer DAO - Dev & Tell | Yamen - LUKSO Network (YouTube)](https://www.youtube.com/watch?v=1OeBpJIstSQ)
-- [Lukso Build 🆙 #1 Hackathon (YouTube)](https://www.youtube.com/watch?v=veHqhpgGDr4)
+- [LUKSO Build 🆙 #1 Hackathon (YouTube)](https://www.youtube.com/watch?v=veHqhpgGDr4)
 
 ## References
 
