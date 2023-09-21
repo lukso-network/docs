@@ -147,6 +147,10 @@ module.exports = {
             from: '/faq/universal-profile',
             to: '/faq/onboarding/universal-profiles',
           },
+          {
+            from: '/standards/standards-roadmap',
+            to: '/standards/introduction',
+          },
         ],
       },
     ],
@@ -269,7 +273,7 @@ module.exports = {
             },
             {
               label: 'YouTube',
-              href: 'https://www.youtube.com/channel/UCG3TAT6pSpfafGihCMUcrjA',
+              href: 'https://www.youtube.com/@LUKSOBlockchain',
             },
           ],
         },

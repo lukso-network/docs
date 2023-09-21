@@ -312,18 +312,18 @@ await lspFactory.UniversalProfile.deploy({
 
 ### Uploading LSP3 metadata to IPFS
 
-You can upload your LSP3 metadata before deploying a Universal Profile using the `uploadMetaData()` method. The function uses the same [`lsp3Profile` object schema](./universal-profile#adding-lsp3-metadata) defined above when deploying a Universal Profile. Returns an object containing the IPFS upload location of your metadata and your `lsp3Metdata` as a javascript object.
+You can upload your LSP3 metadata before deploying a Universal Profile using the `uploadProfileData()` method. The function uses the same [`lsp3Profile` object schema](./universal-profile#adding-lsp3-metadata) defined above when deploying a Universal Profile. Returns an object containing the IPFS upload location of your metadata and your `lsp3Metdata` as a javascript object.
 
 ```javascript
-await myLSPFactory.UniversalProfile.uploadMetaData(lsp3Profile [, options]);
+await myLSPFactory.UniversalProfile.uploadProfileData(lsp3Profile [, options]);
 ```
 
 To upload using a custom IPFS gateway, pass the `options` object. The field is the same `options` object used when deploying a Universal Profile. [Read more](./universal-profile#ipfs-upload-options).
 
-The `uploadMetaData()` function is available as a static or non-static method to be called without instantiating an `LSPFactory` object.
+The `uploadProfileData()` function is available as a static or non-static method to be called without instantiating an `LSPFactory` object.
 
-```javascript title="Calling uploadMetaData on an LSPFactory instance"
-await myLSPFactory.UniversalProfile.uploadMetaData(myLSP3MetaData);
+```javascript title="Calling uploadProfileData on an LSPFactory instance"
+await myLSPFactory.UniversalProfile.uploadProfileData(myLSP3MetaData);
 
 /**
 {
@@ -341,8 +341,8 @@ await myLSPFactory.UniversalProfile.uploadMetaData(myLSP3MetaData);
 */
 ```
 
-```javascript title="Calling uploadMetaData on the uninstantiated class"
-await UniversalProfile.uploadMetaData(myLSP3MetaData);
+```javascript title="Calling uploadProfileData on the uninstantiated class"
+await UniversalProfile.uploadProfileData(myLSP3MetaData);
 
 > // same as above
 ```
