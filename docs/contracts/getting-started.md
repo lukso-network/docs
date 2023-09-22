@@ -1,13 +1,120 @@
 ---
-sidebar_label: Deploy our custom LSP7 contract
-sidebar_position: 3
+sidebar_label: Getting Started
+title: Getting Started
+sidebar_position: 2
 ---
 
-# Deploy your contract
+This page will guide you through the process of:
 
-Following the previous guide (["Create a custom LSP7 contract"](./create-custom-lsp7.md)), we are now ready to deploy our contract on the LUKSO Testnet network!
+- setting up an [Hardhat](https://hardhat.org/) installation (using TypeScript)
+- adding the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package (using version 0.11.0-rc.1)
+- creating a basic `LSP7DigitalAsset` contract
+- and deploying it on [LUKSO Testnet](../../networks/testnet/parameters).
 
-## Deploy the contract on LUKSO Testnet
+### Create Hardhat project
+
+The first thing to do is to [create a new Hardhat project](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) that will use TypeScript:
+
+```bash title="Setup new hardhat project"
+mkdir lukso-app
+cd lukso-app
+npx hardhat
+# select 'Create a TypeScript project' and
+# use the default value for the rest of the setup
+```
+
+Once finished, you have a working Hardhat setup!
+
+### Install packages &amp; setup tools
+
+To work in the best condition possible, we will install libraries that includes tools, helpers and the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package.
+
+#### Install dependencies
+
+```bash
+npm i -D dotenv
+npm i -s @lukso/lsp-smart-contracts@0.11.0-rc.1
+```
+
+#### Add a build script in your package.json
+
+Update your `package.json` with the following:
+
+```json title="package.json"
+"scripts": {
+  "build": "hardhat compile --force --show-stack-traces"
+},
+```
+
+#### Create a .env file
+
+Create a new file at the root of your project called `.env` with the following content:
+
+:::warning
+
+The `.env` file contains sensitive values such as PRIVATE_KEY. Do not commit it to your source code repository!
+
+:::
+
+:::note
+
+We will populate the values of the `.env` file later.
+
+:::
+
+```text title=".env"
+PRIVATE_KEY=
+UP_ADDR=
+```
+
+We now have a base Hardhat setup that we can use to develop and deploy our smart contracts.
+
+
+## Create a custom LSP7 Token contract
+
+We will now create a custom [LSP7 Digital Asset contract](../standards/nft-2.0/LSP7-Digital-Asset.md). This contract will extend [`LSP7Mintable`](./contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) & [LSP7Burnable](./contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md) (to allow burning tokens). We will also pre-mint 20k tokens to the owner of the contract (the deployer).
+To do that, delete the `Lock.sol` contract in the `contracts/` folder, then create a new file named `MyCustomToken.sol` with the following content:
+
+```solidity title="contracts/MyCustomToken.sol"
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.9;
+
+import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol";
+import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol";
+
+contract CustomToken is LSP7Mintable, LSP7Burnable {
+  // parameters for LSP7Mintable constructor are:
+  // token name,
+  // token symbol,
+  // token owner,
+  // boolean isNonDivisible
+  // for more informations, check https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md
+  constructor() LSP7Mintable("My Custom Token", "MCT", msg.sender, false) {
+    mint(msg.sender, 20000 * 10**decimals(), true, '0x' );
+  }
+}
+```
+
+### Bonus: Create a MockContract to generate the UniversalProfile type
+
+In order to deploy this Custom LSP7 contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract.
+To do that, you can create a `MockContract.sol` file in the `contracts/` file with the following content:
+
+```solidity title="contracts/MyCustomToken.sol"
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.9;
+import {UniversalProfile} from '@lukso/lsp-smart-contracts/contracts/UniversalProfile.sol';
+```
+
+We are now ready to build our contracts using the command:
+
+```bash
+npm run build
+```
+
+## Deploy our LSP7 Token contract on LUKSO Testnet
+
+We are now ready to deploy our contract on the [**LUKSO Testnet network**](../networks/testnet/parameters.md)!
 
 In order to deploy the contract, we will have to update the `hardhat.config.ts` and create a deploy script. Let's go!
 
