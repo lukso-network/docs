@@ -149,7 +149,7 @@ We will create a script to deploy the smart contract to the LUKSO Testnet networ
 
 #### Deploy using a Universal Profile (Recommended)
 
-In this chapter, we are going to deploy our contract using our Universal Profile. First thing is to [Install the UP browser extension](../../guides/browser-extension/install-browser-extension.md). Once installed, we will retrieve the information we need:
+In this chapter, we are going to deploy our contract using our Universal Profile. First thing is to [Install the UP browser extension](../guides/browser-extension/install-browser-extension.md). Once installed, we will retrieve the information we need:
 
 - Click on the extension
 - Click on the cogwheel ⚙️ at the top right corner, then select "reveal private keys"
@@ -159,7 +159,7 @@ In this chapter, we are going to deploy our contract using our Universal Profile
 
 :::note
 
-The `privateKey` coming from your UP extension is the private key of the EOA that controls your UP (more information about controllers can be found in the [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) page). You can find the associated address in the extension if you click on the controller tab > UP Extension. This address will need to be funded using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
+The `privateKey` coming from your UP extension is the private key of the EOA that controls your UP (more information about controllers can be found in the [Key Manager](../standards/universal-profile/lsp6-key-manager.md) page). You can find the associated address in the extension if you click on the controller tab > UP Extension. This address will need to be funded using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
 
 :::
 
