@@ -95,7 +95,7 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
 }
 ```
 
-### Bonus: Create a MockContract to generate the UniversalProfile type
+### 🍭 Bonus: create a MockContract to generate the UniversalProfile type
 
 In order to deploy this Custom LSP7 contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract.
 To do that, you can create a `MockContract.sol` file in the `contracts/` file with the following content:
