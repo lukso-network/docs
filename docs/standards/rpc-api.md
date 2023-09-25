@@ -166,7 +166,7 @@ params: ['0x311611C9A46a192C14Ea993159a0498EDE5578aC'];
 
 ### up_generateLsp23Address {#up_generateLsp23Address}
 
-To perform the deployment, the dApp needs the salt and the controllerAddress. The controllerAddress will be injected in the dataKeys and dataValues array, then the salt and the encoded dataKeys and dataValues are sent to the relayer to deploy the profile. Previously, the relayer had to do several consecutive transactions in order to deploy a profile. Now, all those transactions are taking place at the smart contract level, so the relayer only creates one transaction.
+To perform the deployment of a profile, the dApp needs the salt and the controllerAddress. The controllerAddress will be injected in the dataKeys and dataValues array, then the salt and the encoded dataKeys and dataValues are sent to the relayer to deploy the profile. Previously, the relayer had to do several consecutive transactions in order to deploy a profile. Now, all those transactions are taking place at the smart contract level, so the relayer only creates one transaction.
 
 ##### Parameters
 
