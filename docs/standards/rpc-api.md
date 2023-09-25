@@ -241,7 +241,7 @@ To perform the deployment, the dApp needs the salt and the controllerAddress. Th
 #### Returns
 
 | Name              | Type      |
-|-------------------|-----------|
+| ----------------- | --------- |
 | salt              | string    |
 | controllerAddress | string    |
 | upAddress         | upAddress |
