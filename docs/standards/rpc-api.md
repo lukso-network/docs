@@ -240,20 +240,8 @@ To perform the deployment, the dApp needs the salt and the controllerAddress. Th
 
 #### Returns
 
-<table>
-<tr>
-  <td>Name</td>
-  <td>Type</td>
-</tr>
-<tr>
-  <td>salt</td>
-  <td>string</td>
-</tr><tr>
-  <td>controllerAddress</td>
-  <td>string</td>
-</tr>
-<tr>
-  <td>upAddress</td>
-  <td>upAddress</td>
-</tr>
-</table>
+| Name              | Type      |
+|-------------------|-----------|
+| salt              | string    |
+| controllerAddress | string    |
+| upAddress         | upAddress |
