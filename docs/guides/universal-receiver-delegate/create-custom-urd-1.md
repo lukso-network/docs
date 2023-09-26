@@ -5,7 +5,10 @@ sidebar_position: 1
 
 # Create a custom forwarder URD
 
-In this guide, we will create a custom Universal Receiver Delegate contract. This contract will be called each time the associated UP receives a LSP7 token, and will forward a certain percentage to another address. The use-case it answers is: **"As a UP owner, I want to transfer part of the token I received to another UP"**.
+In this guide, we will create a custom Universal Receiver Delegate contract. This contract will be called each time the associated UP receives a LSP7 token, and will forward a certain percentage to another address. The use-case it answers is:
+
+> **"As a UP owner, I want to transfer part of the token I received to another UP"**.
+
 An example scenario could be: "each time I receive USDT, I want to automatically transfer 20% to my wife's UP".
 
 ## Requirements
@@ -51,9 +54,17 @@ We can start fresh with a brand new LSP7 Token, or we can use an already existin
 
 ## 4 - Create the Custom URD Contract
 
-In Hardhat, create a new file in `contracts/` folder named `LSP1URDForwarder.sol` with the following content:
+The custom URD contract can be created using 2 methods.
 
-```solidity title="contracts/LSP1URDForwarder.sol"
+The first one will execute the LSP7 transfer function as the UP. In order to work, the Custom URD will needs special privileges on the UP (SUPER_CALL + REENTRANT). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
+
+The seocnd one will execute the LSP7 transfer function directly from the URD. In order to work, the custom URD needs to be authorized at the LSP7 level (using `authorizeOperator`) with unlimited amount (type(uint256).max), which is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amout, and this, for all the LSP7 you want to allow. The advantage is the gas effiency.
+
+### Method 1
+
+In Hardhat, create a new file in `contracts/` folder named `LSP1URDForwarderMethod1.sol` with the following content:
+
+```solidity title="contracts/LSP1URDForwarderMethod1.sol"
 // SPDX-License-Identifier: CC0-1.0
 pragma solidity ^0.8.4;
 
@@ -75,10 +86,17 @@ import "@lukso/lsp-smart-contracts/contracts/LSP0ERC725Account/LSP0Constants.sol
 // errors
 import "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1Errors.sol";
 
-contract LSP1URDForwarder is
+contract LSP1URDForwarderSimpleMethod1 is
     ERC165,
     ILSP1UniversalReceiver
 {
+
+    // CHECK onlyOwner
+    modifier onlyOwner {
+        require(msg.sender == owner, "Not the owner");
+        _;
+    }
+
     // Owner
     address owner;
 
@@ -90,12 +108,6 @@ contract LSP1URDForwarder is
 
     // Set a mapping of authorized LSP7 tokens
     mapping (address => bool) allowlist;
-
-    // CHECK onlyOwner
-    modifier onlyOwner {
-        require(msg.sender == owner, "Not the owner");
-        _;
-    }
 
     // we set the recipient & percentage & allowedAddresses of the deployer in the constructor for simplicity
     constructor(address _recipient, uint256 _percentage, address[] memory tokenAddresses) {
@@ -149,6 +161,7 @@ contract LSP1URDForwarder is
         ) {
             return "Caller is not a LSP0";
         }
+
         // GET the notifier (e.g., the LSP7 Token) from the calldata
         address notifier = address(bytes20(msg.data[msg.data.length - 52:]));
 
@@ -183,9 +196,6 @@ contract LSP1URDForwarder is
         } else {
             uint256 tokensToTransfer = (amount * percentage) / 100;
 
-            // Requirements for direct Transfer via UP:
-            // - setData on PREFIX + _TYPEID_LSP7_TOKENSRECIPIENT with custom URD address
-            // - setData on AddressPermissions:Permissions<customURDAddress> (=create a controller) with SUPER_CALL
             bytes memory encodedTx = abi.encodeWithSelector(
                 ILSP7DigitalAsset.transfer.selector,
                 msg.sender,
@@ -216,7 +226,7 @@ contract LSP1URDForwarder is
 
 This code is commented enough to be self explanatory, but let's dive a bit more into some interesting bits.
 
-### Creation of the transaction
+#### Creation of the transaction
 
 When all the verification passed in the `universalReceiver` function, we calculate the amount of token to transfer (`tokensToTransfer`) and create the transaction that will be executed:
 
@@ -239,7 +249,7 @@ The `encodeWithSelector` function takes the function that will be called as 1st 
 - the `allowNonLSP1Recipient` boolean that indicates if we can transfer to any address, or if it has to be a LSP1 enabled one
 - the `data` (no additional data)
 
-### Execution of the transaction
+#### Execution of the transaction
 
 Directly after creating our encoded transaction, we can execute it using the following line:
 
@@ -253,6 +263,30 @@ As we know from the `// CHECK that the caller is a LSP0 (UniversalProfile)` test
 - the `target` (notifier => our LSP7 contract)
 - the `value` (in native token) (0 => nothing is sent)
 - the `data` (our encoded transaction)
+
+### Method 2
+
+In Hardhat, copy the `contracts/LSP1URDForwarderMethod1.sol` file to `contracts/LSP1URDForwarderMethod2.sol` and change the following:
+
+```solidity title="contracts/LSP1URDForwarderMethod2.sol"
+// ...
+        // CHECK if amount is not too low
+        if (amount < 100) {
+            return "Amount is too low (< 100)";
+        } else {
+            uint256 tokensToTransfer = (amount * percentage) / 100;
+
+            ILSP7DigitalAsset(notifier).transfer(msg.sender, recipient, tokensToTransfer, true, "");
+            return "";
+        }
+// ...
+```
+
+Let's explain what changed.
+
+### Execution of the transaction
+
+In this method, we're directly calling the `transfer` method of the notifier (the LSP7 token) as the URD. Of course, in order for this to work, the custom URD needs to be authorized to spend the token of the UP on his behalf (using `authorizeOperator`).
 
 ## Congratulations 🥳
 

@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Deploy and test our custom forwarder URD
 
-In the [first part](./create-custom-urd-1.md), we setup our universal profile and created the custom URD contract. We will now deploy it and test it!
+In the [first part](./create-custom-urd-1.md), we setup our universal profile and created the custom URD contract. We will now deploy and test it!
 
 ## Create a MockContract to generate the UniversalProfile type
 
@@ -19,11 +19,18 @@ import {UniversalProfile} from '@lukso/lsp-smart-contracts/contracts/UniversalPr
 
 ## Deploy our custom URD
 
+As we have 2 different methods with specific requirements, we will provide both set of code. Comment the code that doesn't match your choice.
+
 Now we can create the deploy scripts that will connect all the pieces together. This script will:
 
 - Connect to our UP
 - Deploy the custom URD as our UP
 - Register it as a URD in our UP
+
+and, depending on the method selected, it will also:
+
+- grants permission to the URD to call the UP (SUPER_CALL + REENTRANT) - Method 1
+- calls `authorizeOperator()` on the LSP7 token to authorize the URD to spend token on the UP's behalf - Method 2
 
 Create a file called `deployLSP1.ts` in your `scripts/` folder with the following content:
 
@@ -107,9 +114,10 @@ async function main() {
     CustomURDAddress,
   );
 
-  // --------------
-  // SET DATA BATCH
-  // --------------
+  // -------------------------
+  // GRANT URD PERM - METHOD 1
+  // -------------------------
+  // COMMENT IF YOU USE METHOD 2
 
   // we need the key to store our custom URD contract address
   // {_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX + <bytes32 typeId>}
@@ -131,11 +139,7 @@ async function main() {
   const permInt =
     parseInt(PERMISSIONS.SUPER_CALL, 16) ^ parseInt(PERMISSIONS.REENTRANCY, 16);
   const permHex = '0x' + permInt.toString(16).padStart(64, '0');
-
   const dataValues = [CustomURDAddress, permHex];
-
-  // console.log('keys: ', dataKeys);
-  // console.log('values: ', dataValues);
 
   // execute the tx
   const setDataBatchTx = await UP.connect(signer).setDataBatch(
@@ -144,6 +148,51 @@ async function main() {
   );
   await setDataBatchTx.wait();
   console.log('✅ Custom URD has been correctly registered on the UP');
+
+  // --------------------------------------------
+  // REGISTER URD + AUTHORIZE OPERATOR - METHOD 2
+  // --------------------------------------------
+  // COMMENT IF YOU USE METHOD 2
+
+  // we need the key to store our custom URD contract address
+  // {_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX + <bytes32 typeId>}
+  console.log('⏳ Registering custom URD on the UP');
+  const URDdataKey =
+    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegatePrefix +
+    LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification.slice(2).slice(0, 40);
+
+  // execute the tx
+  const setDataTx = await UP.connect(signer).setData(
+    URDdataKey,
+    CustomURDAddress,
+  );
+  await setDataTx.wait();
+  console.log('✅ Custom URD has been correctly registered on the UP');
+
+  console.log('⏳ Authorizing URD on Custom Token');
+  // we only authorize the first contract in the contractsAddr array, but feel free to add a loop :)
+  const CustomToken = await ethers.getContractAt(
+    'CustomToken',
+    contractsAddr[0] as string,
+  );
+
+  // Create the function call by encoding the function to be called and the params
+  const authBytes = CustomToken.interface.encodeFunctionData(
+    'authorizeOperator',
+    [CustomURDAddress, ethers.MaxUint256, '0x'], // we authorize CustomURDAddress to spend ethers.MaxUint256
+  );
+  // Execute the function call as the UP
+  const authTxWithBytes = await UP.connect(signer).execute(
+    0,
+    await CustomToken.getAddress(),
+    0,
+    authBytes,
+  );
+  await authTxWithBytes.wait();
+  console.log(
+    '✅ URD authorized on Custom Token for UP ',
+    await UP.getAddress(),
+  );
 }
 
 main()
