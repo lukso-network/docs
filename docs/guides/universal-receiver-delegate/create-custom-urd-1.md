@@ -17,7 +17,7 @@ In order to follow this guide, you'll need to:
 
 - install the [UP Browser extension](../browser-extension/install-browser-extension.md)
 - fund the EOA that controls your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
-- follow the [Hardhat basic setup](../hardhat-walkthrough/hardhat-base-setup.md) to setup a new Hardhat project
+- follow the contracts [Getting started](../../contracts/getting-started.md) to setup a new Hardhat project
 
 ## 1 - EOA permission
 
@@ -50,7 +50,7 @@ We will need 2 additional information:
 
 ## 3 - (Optional) Create a Custom LSP7 Token
 
-We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../hardhat-walkthrough/create-custom-lsp7.md) and [deploy it](../hardhat-walkthrough/deploy-custom-lsp7.md).
+We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../../contracts/getting-started.md#create-a-custom-lsp7-token-contract) and [deploy it](../../contracts/getting-started.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
 
 ## 4 - Create the Custom URD Contract
 
