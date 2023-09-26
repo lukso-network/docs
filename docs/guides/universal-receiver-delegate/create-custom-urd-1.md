@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Create a custom forwarder URD
 
-In this guide, we will create a custom Universal Receiver Delegate contract. This contract will be called each time the associated UP receives a LSP7 token, and will forward a certain percentage to another address. The use-case it answers is:
+In this guide, we will create a custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../standards/nft-2.0/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
 
 > **"As a UP owner, I want to transfer part of the token I received to another UP"**.
 
@@ -15,9 +15,9 @@ An example scenario could be: "each time I receive USDT, I want to automatically
 
 In order to follow this guide, you'll need to:
 
-- install the [UP Browser extension](../browser-extension/install-browser-extension.md)
-- fund the EOA that controls your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
-- follow the contracts [Getting started](../../contracts/getting-started.md) to setup a new Hardhat project
+1. Install the [UP Browser extension](../browser-extension/install-browser-extension.md).
+2. Fund the EOA that controls your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
+3. Follow the contracts [Getting started](../../contracts/getting-started.md) to setup a new Hardhat project.
 
 ## 1 - EOA permission
 
@@ -25,11 +25,21 @@ First, we will need to give the EOA that controls our UP proper permission to ad
 
 To do that, click on the controller tab > "UP Extension" which will bring the controller information page.
 
-![ControllerSettings](/img/guides/lsp1/ControllerSettings.png)
+<div style={{textAlign: 'center'}}>
+<img
+    src="/img/guides/lsp1/ControllerSettings.png"
+    alt="Screenshot of the controller settings in the extension"
+/>
+</div>
 
 Scroll down to the "Administration & Ownership" part and check both "Add notifications & automation" and "Edit notifications & automation".
 
-![ControllerPerm](/img/guides/lsp1/ControllerPerm.png)
+<div style={{textAlign: 'center'}}>
+<img
+    src="/img/guides/lsp1/ControllerPerm.png"
+    alt="Screenshot of the controller permissions in the extension"
+/>
+</div>
 
 Confirm the changes and submit the transaction.
 
@@ -46,7 +56,7 @@ In your hardhat project, create a `.env` file (if it's not already present) and 
 We will need 2 additional information:
 
 - `UP_RECEIVER` => the address that will receive part of the tokens
-- `PERCENTAGE` => the %age of the received tokens that will be transfered
+- `PERCENTAGE` => the percentage of the received tokens that will be transfered
 
 ## 3 - (Optional) Create a Custom LSP7 Token
 
@@ -58,7 +68,7 @@ The custom URD contract can be created using 2 methods.
 
 The first one will execute the LSP7 transfer function as the UP. In order to work, the Custom URD will needs special privileges on the UP (SUPER_CALL + REENTRANT). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
 
-The seocnd one will execute the LSP7 transfer function directly from the URD. In order to work, the custom URD needs to be authorized at the LSP7 level (using `authorizeOperator`) with unlimited amount (type(uint256).max), which is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amout, and this, for all the LSP7 you want to allow. The advantage is the gas effiency.
+The second one will execute the LSP7 transfer function directly from the URD. In order to work, the custom URD needs to be authorized at the LSP7 level (using `authorizeOperator`) with unlimited amount (type(uint256).max), which is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amout, and this, for all the LSP7 you want to allow. The advantage is the gas effiency.
 
 ### Method 1
 
