@@ -20,7 +20,7 @@ npm install @lukso/lsp-factory.js
 ```javascript
 import { LSPFactory } from '@lukso/lsp-factory.js';
 
-const provider = 'https://rpc.l16.lukso.network';
+const provider = 'https://rpc.testnet.lukso.network';
 
 const lspFactory = new LSPFactory(provider, {
   deployKey: '0x...', // Private key of the account which will deploy smart contracts
@@ -116,7 +116,7 @@ const myUPAddress = myContracts.LSP0ERC725Account.address;
 When instantiating LSPFactory options can be passed to specify parameters such as `chainId` and `ipfsGateway`.
 
 ```javascript title="Instantiating LSPFactory with custom options set"
-const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
+const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
   deployKey: '0x...',
   chainId: 2828,
   ipfsGateway: 'https://ipfs.infura.io:5001',
@@ -138,7 +138,7 @@ If no value is set here, LSPFactory will attempt to sign transactions via a brow
 `ipfsGateway` is used to specify the IPFS node which should be interacted with for uploading and retrieving metadata. `ipfsGateway` can be either a URL string or an object as defined by the [IPFS-HTTP Client](https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions) library which is used internally to interact with the IPFS node.
 
 ```javascript title="Instantiating LSPFactory with custom ipfsGateway options set"
-const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
+const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
   deployKey: '0x...',
   chainId: 2828,
   ipfsGateway: {
