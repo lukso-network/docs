@@ -1,6 +1,5 @@
 ---
 title: Interfaces IDs
-sidebar_position: 2
 ---
 
 import InterfaceIdsTable from "./\_interface_ids_table.mdx";

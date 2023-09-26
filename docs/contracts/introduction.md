@@ -19,7 +19,9 @@ import {ContractCardsGallery} from '@site/src/components/ContractCardsGallery';
 
 In this section, you will find all the documentation and resources related to the `@lukso/lsp-smart-contracts`, the reference contract implementations in Solidity of the **[LUKSO Standard Proposals](../standards/introduction.md)**.
 
-Developers wishing to understand the logic behind the standards and their tradeoffs within are well-advised to read these documents alongside the Solidity code itself.
+The `@lukso/lsp-smart-contracts` codebase is modular, with each LSP standard and features implemented in separate contracts. This allows smart contract developers to _"pick and choose"_ the contracts for the requirements and behaviors they need for their protocols and applications. 
+
+This modular design also helps in making the codebase easier to navigate and understand for developers using it.
 
 ## Installation
 
@@ -88,3 +90,4 @@ For instance, the **Universal Profile Browser extension** comprises a set of con
 
 - [UniversalProfile & Identity Section](https://youtu.be/SbTo_e3l_Lk?t=1727)
 - [NFT 2.0 Section](https://youtu.be/hg1Ow6u9QVk)
+- [LSP Smart Contracts - Detailed Architecture Diagram](https://twitter.com/gpersoon/status/1676588871255990272) by [@gpersoon](https://twitter.com/gpersoon)

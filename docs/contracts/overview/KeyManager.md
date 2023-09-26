@@ -21,3 +21,6 @@ To illustrate, in the case of Universal Profile and the browser extension, you c
 
 Afterwards, you can grant partial access to dApp and protocol (more specifically the smart contract addresses behind them), so that they can use your Universal Profile to interact on your behalf. This catalyze interactions on the blockchain, where your Universal Profile can do more and operate automatically in controlled manner, without requiring the main profile owner to have to do everything.
 
+## Further Reading
+
+- [The Bytecode episode #4 (Youtube) - overview of the Solidity code of the `LSP6KeyManagerCore.sol` by Jean Cavallera](https://www.youtube.com/watch?v=2Sm9LsCPjdE)
