@@ -5,16 +5,24 @@ sidebar_position: 1
 
 # Create a Universal Profile
 
+:::note Notice
+
+This guide works with @lukso/lsp-smart-contracts: 0.11.1
+
+:::
+
 :::tip
+
 A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
+
 :::
 
 In this guide, we will learn how to:
 
 - create a Universal Profile.
-- see our new Universal Profile on [l16.universalprofile.cloud](https://l16.universalprofile.cloud).
+- see our new Universal Profile on [wallet.universalprofile.cloud](https://wallet.universalprofile.cloud/).
 
-![Universal Profile example on universalprofile.cloud](./img/my-up.png)
+![Universal Profile example on wallet.universalprofile.cloud](/img/universal-profile/profile.png)
 
 We will use the [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) library to create a Universal Profile in **fewer than 50 lines of code!**
 
@@ -136,19 +144,19 @@ node create-eoa.js
 
 ## Step 2 - Get some LYX
 
-After creating an EOA that will control our Universal Profile in **Step 1**, we will need to fund our address with some test LYX (the native cryptocurrency of the LUKSO blockchain). You can obtain some free test LYX via the **[L16 Faucet](http://faucet.l16.lukso.network/)**.
+After creating an EOA that will control our Universal Profile in **Step 1**, we will need to fund our address with some test LYX (the native cryptocurrency of the LUKSO blockchain). You can obtain some free test LYX via the **[Testnet Faucet](https://faucet.testnet.lukso.network)**.
 
-**Instructions:** visit the faucet website, and follow the instructions to _request LYX_.
+**Instructions:** visit the faucet website, and **follow the instructions** to _request LYX_.
 
-:arrow_right: **[LUKSO L16 Faucet Website](http://faucet.l16.lukso.network/)**
+:arrow_right: **[LUKSO Testnet Faucet Website](https://faucet.testnet.lukso.network)**
 
-![L16 Faucet screenshot](https://user-images.githubusercontent.com/58372066/182743024-6866a180-29d2-4e07-93fc-862400547a15.png)
+![Testnet Faucet screenshot](/img/universal-profile/testnet-faucet.png)
 
-We will look up our address balance in the **[LUKSO L16 Block Explorer](https://explorer.execution.l16.lukso.network/)** to ensure we have received our test LYX.
+We will look up our address balance in the **[LUKSO Testnet Block Explorer](https://explorer.execution.testnet.lukso.network)** to ensure we have received our test LYX.
 
-**Instructions:** go to the LUKSO L16 Block Explorer, and search your pasted address at the top right corner.<br/> You should see the requested LYX amount next to the _Balance_ field.
+**Instructions:** go to the LUKSO Testnet Block Explorer, and search your pasted address at the top right corner.<br/> You should see the requested LYX amount next to the _Balance_ field.
 
-![L16 Block Explorer screenshot](https://user-images.githubusercontent.com/58372066/182744109-0dfa37e4-3713-49cb-bd36-37f953e654e8.png)
+![Testnet Block Explorer screenshot](/img/universal-profile/balance.png)
 
 ## Step 3 - Create our Universal Profile
 
@@ -208,10 +216,10 @@ import { LSPFactory } from '@lukso/lsp-factory.js';
 const PRIVATE_KEY = '0x...'; // add the private key of your EOA here (created in Step 1)
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
-// initialize the LSPFactory with the L16 chain RPC endpoint, chainId and your EOA's private key which will deploy the UP smart contracts
-const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
+// initialize the LSPFactory with the Testnet chain RPC endpoint, chainId and your EOA's private key which will deploy the UP smart contracts
+const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
   deployKey: PRIVATE_KEY,
-  chainId: 2828,
+  chainId: 4201,
 });
 ```
 
@@ -308,22 +316,22 @@ async function createUniversalProfile() {
 
 createUniversalProfile();
 
-// my Universal Profile address: 0xEde1198b046d8ED64B71adeA5d3B7370cc84A7FB
+// my Universal Profile address: 0xA6f219315fb9982B25Ac81EA1E242cB9DE42Ec9d
 ```
 
-We can also visualize our UP on the [l16.universalprofile.cloud](https://l16.universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
+We can also visualize our UP on the [wallet.universalprofile.cloud](https://wallet.universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
 
-*https://l16.universalprofile.cloud/{your-up-address}*
+*https://wallet.universalprofile.cloud/{your-up-address}*
 
-![Universal Profile example on universalprofile.cloud](./img/my-up.png)
+![Universal Profile example on wallet.universalprofile.cloud](/img/universal-profile/profile.png)
 
-You can also see the contracts created by the lsp-factory.js library on the LUKSO L16 Block explorer:
+You can also see the contracts created by the lsp-factory.js library on the LUKSO Testnet Block explorer:
 
-*https://explorer.execution.l16.lukso.network/address/{your-eoa-address}/transactions*
+- *https://explorer.execution.testnet.lukso.network/address/{your-eoa-address}/transactions*
 
 The figure below describes each transaction performed by the lsp-factory.js. It also shows how transactions <br/> are mapped to the **[Contracts Overview](#contracts-overview)** diagram introduced at the beginning of this guide.
 
-![lsp-factory.js: contract deployed on L16 and transactions flow](img/lsp-factory-deployments-explained.jpeg)
+![lsp-factory.js: contract deployed on Testnet and transactions flow](img/lsp-factory-deployments-explained.jpeg)
 
 ## Congratulations 🥳
 
@@ -366,10 +374,10 @@ const PRIVATE_KEY = '0x...'; // add the private key of your EOA here (created in
 const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
 // Step 3.2
-// Initialize the LSPFactory with the L16 RPC endpoint and your EOA's private key, which will deploy the UP smart contracts
-const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
+// Initialize the LSPFactory with the Testnet RPC endpoint and your EOA's private key, which will deploy the UP smart contracts
+const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
   deployKey: PRIVATE_KEY,
-  chainId: 2828,
+  chainId: 4201,
 });
 
 // Step 3.3 - Deploy our Universal Profile
@@ -397,5 +405,5 @@ async function createUniversalProfile() {
 
 createUniversalProfile();
 
-// my Universal Profile address: 0xEde1198b046d8ED64B71adeA5d3B7370cc84A7FB
+// my Universal Profile address: 0xA6f219315fb9982B25Ac81EA1E242cB9DE42Ec9d
 ```
