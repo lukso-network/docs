@@ -6,14 +6,15 @@ sidebar_position: 1
 # Create a Universal Profile
 
 :::note Notice
-This guide uses @lukso/lsp-smart-contracts: ^0.11.1
 
-To install version ^0.11.1 use: npm install @lukso/lsp-smart-contracts@0.11.1
+This guide works with @lukso/lsp-smart-contracts: 0.11.1
 
 :::
 
 :::tip
+
 A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
+
 :::
 
 In this guide, we will learn how to:
