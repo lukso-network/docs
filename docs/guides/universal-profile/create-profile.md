@@ -5,6 +5,13 @@ sidebar_position: 1
 
 # Create a Universal Profile
 
+:::note Notice
+This guide uses @lukso/lsp-smart-contracts: ^0.11.1
+
+To install version ^0.11.1 use: npm install @lukso/lsp-smart-contracts@0.11.1
+
+:::
+
 :::tip
 A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
 :::
@@ -12,9 +19,9 @@ A complete _"ready to use"_ JS file is available at the end in the [**Final Code
 In this guide, we will learn how to:
 
 - create a Universal Profile.
-- see our new Universal Profile on [universalprofile.cloud](https://universalprofile.cloud).
+- see our new Universal Profile on [wallet.universalprofile.cloud](https://wallet.universalprofile.cloud/).
 
-![Universal Profile example on universalprofile.cloud](./img/my-up.png)
+![Universal Profile example on wallet.universalprofile.cloud](/img/universal-profile/profile.png)
 
 We will use the [lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md) library to create a Universal Profile in **fewer than 50 lines of code!**
 
@@ -308,14 +315,14 @@ async function createUniversalProfile() {
 
 createUniversalProfile();
 
-// my Universal Profile address: 0xbd9Ef16132258ACbfEd899F594C45772604C6509
+// my Universal Profile address: 0xA6f219315fb9982B25Ac81EA1E242cB9DE42Ec9d
 ```
 
-We can also visualize our UP on the [universalprofile.cloud](https://universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
+We can also visualize our UP on the [wallet.universalprofile.cloud](https://wallet.universalprofile.cloud) website by adding the address of the deployed UP in the URL, after the `/` (slash), as follow:
 
-*https://universalprofile.cloud/{your-up-address}*
+*https://wallet.universalprofile.cloud/{your-up-address}*
 
-![Universal Profile example on universalprofile.cloud](./img/my-up.png)
+![Universal Profile example on wallet.universalprofile.cloud](/img/universal-profile/profile.png)
 
 You can also see the contracts created by the lsp-factory.js library on the LUKSO Testnet Block explorer:
 
@@ -397,5 +404,5 @@ async function createUniversalProfile() {
 
 createUniversalProfile();
 
-// my Universal Profile address: 0xbd9Ef16132258ACbfEd899F594C45772604C6509
+// my Universal Profile address: 0xA6f219315fb9982B25Ac81EA1E242cB9DE42Ec9d
 ```
