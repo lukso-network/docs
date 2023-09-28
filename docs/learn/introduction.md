@@ -11,18 +11,22 @@ LUKSO is the first blockchain that powers self-sovereign identities.
 
 ## Why choose LUKSO?
 
-LSPs (LUKSO Standard Proposals) are the building blocks of LUKSO. They are used to to build blockchain-based applications that offer an enhanced user experience, and allow for more flexibility and interaction. LSPs are part of the more general LIPs used to discuss protocol specifications and client API improvements. To learn more about LSPs, check out the following [link](https://docs.lukso.tech/standards/introduction).
+[LSPs](/standards/introduction.md) (LUKSO Standard Proposals) are the building blocks of LUKSO. They are used to to build blockchain-based applications that offer an enhanced user experience, and allow for more flexibility and interaction. LSPs are part of the more general LIPs used to discuss protocol specifications and client API improvements.
 
-**LSPs introduce new concepts like blockchain-based accounts, also known as Universal Profiles (UPs), Digital Assets, and NFT 2.0.**.
+**LSPs introduce new concepts like blockchain-based accounts, also known as Universal Profiles (UPs), Digital Assets, and NFT 2.0.**
 
 By integrating different LSPs in unique ways, LUKSO solves fundamental problems that we currently face when it comes to blockchains such as:
 
-- upgradeable security: UPs can be owned by an EOA or a custom contract such as a multisig. Therefore, you can have multiple devices and applications controlling your account, each of them with different permissions. You can even have social recovery, such that you grant certain permissions to your account to your friends and family
-- you can build your identity by attaching info to your UP account such as your name, a profile picture, description, etc., offering a web2 like-experience
-- senders and receivers are notified of transfers (e.g.: tokens transfers), and you can see which assets you own within your profile. You can even block transfers of certain assets
-- updatable and flexible metadata: metadata can be updated, enabling dynamic NFTs that can change certain properties over time, while other properties remain immutable
-- you can extend your account over time seamlessly, with no need to redeploy the associated smart contract
-- gassless experience: want to do a token transfer but you don't have LYX? No worries. UPs support relay services that cover the gas for users's transactions. Currently, there is a relay service that subsidizes users' transactions maintained by the LUKSO team. In the future, various relay services will be offered by multiple third parties, evolving into a competitive relay ecosystem with various business models.
+- [upgradeable security](/standards/universal-profile/lsp6-key-manager): UPs can be owned by an EOA or a custom contract such as a multisig. Therefore, users can have multiple devices and applications controlling their account, each of them with different permissions. Users can even have social recovery, such that you grant certain permissions to their account to their friends and family
+- [onchain persona](docs/standards/generic-standards/lsp2-json-schema.md): users can build their profiles onchain, adding images, tags, descriptions and links to their accounts to shape their online persona
+- [senders and receivers are notified upon transfers (e.g.: tokens transfers)](docs/standards/generic-standards/lsp1-universal-receiver-delegate.md): users can see which assets they own within their profile. They can even block transfers of certain assets by creating a list of allowed assets they want to accept.
+- [updatable and flexible metadata](docs/standards/nft-2.0/LSP4-Digital-Asset-Metadata.md): metadata can be updated, enabling dynamic NFTs that can change certain properties over time, while other properties remain immutable
+- [extend your account over time](/standards/lsp-background/erc725.md): users can extend their account over time seamlessly, with no need to redeploy the associated smart contract
+- gassless experience: UPs support transaction relay services that cover the gas for users's transactions.
+
+:::success
+Currently, there is a relay service that subsidizes users' transactions maintained by the LUKSO team. In the future, various relay services will be offered by multiple third parties, evolving into a competitive relay ecosystem with various business models.
+:::
 
 Since LUKSO is EVM-compatible, Solidity developers can build on LUKSO's implementation of the EVM straight out-of-the box, using the same tools they are familiar with.
 
@@ -33,11 +37,11 @@ LUKSO allows brands, creatives, and developers to dictate the distribution of we
 
 ## What can you build on LUKSO?
 
-The number of LSPs is constantly evolving. Even more, there are innumerable ways you can connect the LSPs and create innovative dApps. Your imagination is the limit. If you are looking for potential use cases, look at the following list. Please bear in mind that those represent only the tip of the iceberg.
+The number of LSPs is constantly evolving. Even more, there are innumerable ways one can connect the LSPs and create innovative dApps. The following list contains several potential use cases. Please bear in mind that those represent only the tip of the iceberg.
 
-- decentralized social media applications
-- decentralized content publishing platforms
-- decentralized identity and reputation systems
-- decentralized marketplaces
-- decentralized news outlets
+- social media applications
+- content publishing platforms
+- identity and reputation systems
+- marketplaces
+- news outlets
 - tokenized communities for artists and creatives
