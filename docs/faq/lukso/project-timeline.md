@@ -27,8 +27,8 @@ The L15 was the ephemeral testnet to showcase LUKSOs initial network architectur
 
 ## What was the L16 Testnet?
 
-The L16 was LUKSOs latest testnet before the LUKSO launch phase. It started as a decentralized network in 2022 and featured the almost final network architecture without slasher functionality. People could add and run validators nodes and prepare for the mainnet setups. The LUKSO team also went on and did stress tests for transactions and analyzed network behaviors. The community also started developing the first applications and deployed contracts using funds from the faucet.
+The L16 was LUKSOs latest testnet before the LUKSO launch phase. It started as a decentralized network in 2022 and featured the almost final network architecture without slasher functionality. Users could add and run validators nodes and prepare for the mainnet setup. The LUKSO team also went on and did stress tests for transactions and analyzed network behaviors. The community also started developing the first applications and deployed contracts using funds from the faucet.
 
 ## Since when has the L16 Testnet been deprecated?
 
-After the final and consistent LUKSO Testnet release, L16 has been officially deprecated since 15th June 2023. Developers had a transition time of 3 months. Community members and the team then shut down all nodes and services at the end of June 2023.
+After the final and consistent LUKSO Testnet release, L16 has been officially deprecated since 15th June 2023. Developers had a transition time of 3 months. Community members and the team will shut down all nodes and services at the end of September 2023.
