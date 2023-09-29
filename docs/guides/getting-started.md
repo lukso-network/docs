@@ -34,57 +34,60 @@ We will use the [`@erc725/erc725.js`](../tools/erc725js/getting-started) NPM pac
 
 ```js title="Load web3"
 import Web3 from 'web3';
+import 'dotenv/config';
 
-const web3 = new Web3('https://rpc.l16.lukso.network');
+let privateKey = process.env.MY_PRIVATE_KEY;
+let address = process.env.MY_ADDRESS;
 
-const myDummyPassword = 'mypassword';
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
-// Here we try to load an already created key from the localstorage
-web3.eth.accounts.wallet.load(myDummyPassword);
+// Check if there is already a key, if none exists, we create a new one
+if (privateKey === '') {
+  let account = web3.eth.accounts.create();
 
-// If none exists we create a new key
-if (!web3.eth.accounts.wallet.length) {
-  web3.eth.accounts.wallet.create(1);
-  web3.eth.accounts.wallet.save(myDummyPassword);
+  console.log('My address is: ', account.address);
 
-  // Then we log the address and send test LYX from the L16 faucet here: http://faucet.l16.lukso.network
-  console.log('My new key address ', web3.eth.accounts.wallet[0].address);
+  console.log('My Private key is: ', account.privateKey);
+  privateKey = account.privateKey;
+}
+// setup the wallet
+let wallet = web3.eth.accounts.privateKeyToAccount(privateKey);
 
-  // If we already have a key created we display it, with its current balance
-} else {
-  const myKeyAddress = web3.eth.accounts.wallet[0].address;
-
-  console.log('Loaded existing key address ', myKeyAddress);
-  console.log(
-    'Balance ',
-    web3.utils.fromWei(await web3.eth.getBalance(myKeyAddress), 'ether'),
-    'LYXt',
-  );
+// make a function to check our balance, make sure you fund your account at https://faucet.testnet.lukso.network
+async function getBalance() {
+  let balance = await web3.eth.getBalance(address);
+  console.log('My balance is: ', web3.utils.fromWei(balance), 'LYXt');
 }
 
-// Stop here if our key is yet created and funded
-if (!myKeyAddress) return;
+// check the balance
+getBalance();
 ```
 
-#### Fund the Universal Profile by using the [L16 Faucet](http://faucet.l16.lukso.network).
+#### Fund the Universal Profile by using the [Testnet Faucet](https://faucet.testnet.lukso.network)
 
 #### Deploy your UP smart contracts using [`@lukso/lsp-factory.js`](../tools/lsp-factoryjs/getting-started).
 
 ```js title="Deploy and configure contracts with lsp-factory.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
+// This tutorial uses @lukso/lsp-factory.js": "^3.0.0"
 
-// We initialize the LSPFactory with the right chain RPC endpoint and a private key from which we will deploy the UPs
-const lspFactory = new LSPFactory('https://rpc.l16.lukso.network', {
-  chainId: 2828, // L16s chain Id
-  deployKey: web3.eth.accounts.wallet[0].privateKey,
-});
+let myUPAddress = process.env.MY_UP_ADDRESS;
 
-const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
-  controllerAddresses: [myKeyAddress], // our key will be controlling our UP in the beginning
+// if we don't have an up let's make a new one
+if (myUPAddress === '') {
+  // We initialize the LSPFactory with the right chain RPC endpoint and a private key from which we will deploy the UPs
+  const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
+    chainId: 2828, // Testnet chain Id
+    deployKey: wallet.privateKey,
+  });
+}
+
+const deployedContracts = await lspFactory.UniversalProfile.deploy({
+  controllerAddresses: [wallet.address], // our key will be controlling our UP at the beginning
   lsp3Profile: {
     name: 'My Universal Profile',
     description: 'My Cool Universal Profile',
-    profileImage: [fileBlob], // got some Image uploaded?
+    // profileImage: [fileBlob], // got some Image uploaded?
     backgroundImage: [],
     tags: ['Public Profile'],
     links: [
@@ -97,7 +100,7 @@ const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
 });
 
 // Get the UP address
-const myUPAddress = deployedContracts.ERC725Account.address;
+myUPAddress = deployedContracts.LSP0ERC725Account.address;
 // 0xB46BBD556589565730C06bB4B7454B1596c9E70A
 ```
 

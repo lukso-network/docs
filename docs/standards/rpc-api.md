@@ -10,7 +10,8 @@ sidebar_position: 10
 This page is under active development.
 
 :::
-The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) uses the RPC API methods from the table below. The methods are grouped by category: signing methods, standard methods, and LUKSO-specific methods.
+
+The [LUKSO UP Browser Extension](../guides/browser-extension/install-browser-extension.md) uses the RPC API methods from the table below. The methods are grouped by category: signing methods, standard methods, and LUKSO-specific methods.
 
 ## Supported Methods
 
@@ -61,7 +62,11 @@ The [LUKSO Extension](../guides/browser-extension/install-browser-extension.md) 
 
 ### eth_sign
 
-**_NOTE:_** We encourage developers to use `eth_sign` for signing purposes.
+:::tip
+
+We encourage developers to use `eth_sign` for signing purposes.
+
+:::
 
 While a security issue potentially existed in the initial implementation on Ethereum, the current implementation has no such potential exploit. As such usage of this method is preferable to [personal_sign](#personal_sign).
 
@@ -106,7 +111,7 @@ The method requires that a target chain ID is provided
 
 ### eth_accounts {#eth_accounts}
 
-Similar to the `eth_requestAccounts` this method returns all of the addresses that are controlled by the application.
+Similar to the `eth_requestAccounts` this method returns all of the addresses that the user has approved for the DApp. This method does not trigger a user interface.
 
 #### Returns
 
@@ -142,17 +147,17 @@ params: [
 
 #### Returns
 
-##### 1. `String Array` - Array of universal profile addresses the user selected for this relay service
+##### 1. `String Array` - Array of Universal Profile addresses the user selected for this relay service
 
 It returns an array of Universal Profile addresses.
 
 ### up_import {#up_import}
 
-<p id="up_import">Add a Universal Profile address.</p>
+Add a Universal Profile address to the UP Browser Extension.
 
 #### Parameters
 
-##### 1. `String` - Universal profile address to add to the extension
+##### 1. `String` - Universal Profile address to add to the extension
 
 The Universal Profile address to add.
 
@@ -163,3 +168,86 @@ params: ['0x311611C9A46a192C14Ea993159a0498EDE5578aC'];
 #### Returns
 
 ##### 1. `String` - New controller address, to be added to the profile by the dapp.
+
+### up_generateLsp23Address {#up_generateLsp23Address}
+
+It allows the creation of a Universal Profile for the UP Browser Extension using the [LSP23 Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md), which under the hood will wrap many operations/transactions into one, simplifying deployment.
+
+To perform the deployment of a Universal Profile, the dApp needs the salt and the controllerAddress. The controllerAddress will be injected in the dataKeys and dataValues array, then the salt and the encoded dataKeys and dataValues are sent to the relayer to deploy the profile. Previously, the relayer had to do several consecutive transactions to deploy a profile. Now, all those transactions are taking place at the smart contract level, so the relayer only creates one transaction.
+
+**up_generateLsp23Address**: should be used for creating a new Universal Profile using the UP Browser Extension
+
+**up_import**: should be used for adding already existing Universal Profiles to the UP Browser Extension
+
+##### Parameters
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Type</td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td>primaryImplementationContractAddress</td>
+    <td>string</td>
+    <td>Universal Profile implementation address</td>
+  </tr>
+    <tr>
+    <td>secondaryImplementationContractAddress</td>
+    <td>string</td>
+    <td>Key Manager implementation address</td>
+  </tr>
+  <tr>
+    <td>secondaryContractInitializationCalldata</td>
+    <td>string</td>
+    <td>initialization calldata for for the Key Manager contract</td>
+  </tr>
+  <tr>
+    <td>secondaryContractAddControlledContractAddress</td>
+    <td>boolean</td>
+    <td>the my.universalprofile.cloud sets it as true</td>
+  </tr>
+   <tr>
+    <td>secondaryContractExtraInitializationParams</td>
+    <td>string</td>
+    <td>my.universalprofile.cloud sets it as '0x'</td>
+  </tr>
+  <tr>
+    <td>upPostDeploymentModuleAddress</td>
+    <td>string</td>
+    <td>address of the post deployment module</td>
+  </tr>
+   <tr>
+    <td>linkedContractsFactoryAddress</td>
+    <td>string</td>
+    <td> address of the linkedContractsFactory (LSP23)</td>
+  </tr>
+  <tr>
+    <td>dataKeys</td>
+    <td>string[]</td>
+    <td> data that will be set on a smart contract, e.g: adding controllers, adding LSP3 metadata, or adding default controller permissions</td>
+  </tr>
+  <tr>
+    <td>dataValues</td>
+    <td>string[]</td>
+    <td> data that will be set on a smart contract, e.g: adding controllers, adding LSP3 metadata, or adding default controller permissions</td>
+  </tr>
+  <tr>
+    <td>dataKeysControllerIndex</td>
+    <td>number</td>
+    <td> an array index where the controller key is placed</td>
+  </tr>
+    <tr>
+    <td>dataValuesControllerIndex</td>
+    <td>number</td>
+    <td> array index where the controller value is placed</td>
+  </tr>
+</table>
+
+#### Returns
+
+| Name                | Type      |
+| ------------------- | --------- |
+| `salt`              | string    |
+| `controllerAddress` | string    |
+| `upAddress`         | upAddress |

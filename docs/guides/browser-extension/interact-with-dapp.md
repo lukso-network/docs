@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Interact with a dApp'
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 :::danger
 
-The UP Browser Extenstion is currently in the **development alpha** version. DO NOT use this in production!
+The UP Browser Extenstion is currently in the **BETA Phase** version. DO NOT use this in production!
 
 :::
 

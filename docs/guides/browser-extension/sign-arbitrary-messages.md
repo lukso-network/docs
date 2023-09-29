@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Sign arbitrary messages'
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,7 +14,7 @@ If you want to authenticate a user, please refer to the [Sign-In with Ethereum](
 
 :::
 
-This article explains how to request a signature from the [LUKSO browser extension](../browser-extension/install-browser-extension.md).
+This article explains how to request a signature from the [LUKSO UP Browser Extension](../browser-extension/install-browser-extension.md).
 
 <div style={{textAlign: 'center'}}>
 <img
@@ -25,7 +25,7 @@ This article explains how to request a signature from the [LUKSO browser extensi
 
 ## 1. Initialize a blockchain provider
 
-The browser extension injects a global API into the website that is visited. This API is available under `window.ethereum`. You can use this object to initialise your [web3.js](https://web3js.readthedocs.io/en/v1.8.0/) or [Ethers.js](https://docs.ethers.io/v5/) library.
+The UP Browser Extension injects a global API into the website that is visited. This API is available under `window.ethereum`. You can use this object to initialise your [web3.js](https://web3js.readthedocs.io/en/v1.8.0/) or [Ethers.js](https://docs.ethers.io/v5/) library.
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
@@ -50,7 +50,7 @@ const web3 = new Web3(window.ethereum);
 
 ## 2. Get the Universal Profile address
 
-A call to `requestAccounts` will open the extension popup and prompt the user to select her or his Universal Profile to interact with your Dapp. The LUKSO browser extension will send the Universal Profile address back to your Dapp (which is the address of the [`LSP0 - ERC725 Account`](../../standards/universal-profile/lsp0-erc725account.md) smart contract).
+A call to `requestAccounts` will open the extension popup and prompt the user to select her or his Universal Profile to interact with your Dapp. The UP Browser Extension will send the Universal Profile address back to your Dapp (which is the address of the [`LSP0 - ERC725 Account`](../../standards/universal-profile/lsp0-erc725account.md) smart contract).
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
@@ -93,7 +93,7 @@ const upAddress = accounts[0];
 
 ## 3. Sign the message
 
-Once you have access to the Universal Profile address, you can request a signature. The browser extension will sign the message with the controller key used by the extension (a smart contract can't sign).
+Once you have access to the Universal Profile address, you can request a signature. The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign).
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
