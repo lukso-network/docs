@@ -4885,15 +4885,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-plugin-sass@npm:^0.2.1":
-  version: 0.2.2
-  resolution: "docusaurus-plugin-sass@npm:0.2.2"
+"docusaurus-plugin-sass@npm:^0.2.5":
+  version: 0.2.5
+  resolution: "docusaurus-plugin-sass@npm:0.2.5"
   dependencies:
     sass-loader: ^10.1.1
   peerDependencies:
-    "@docusaurus/core": ^2.0.0-beta
+    "@docusaurus/core": ^2.0.0-beta || ^3.0.0-alpha
     sass: ^1.30.0
-  checksum: e409c403fe0679ffbf5bd3e7738664fc95dae78b4152321b546fd5b04b5309566ad19d4b9ea90554d587b5647d20957d7024a2ae180cc708112227a66eca84d0
+  checksum: db17a8c87a344330717962fe195c94089e32281dc7f79b66bf99587254ebad71353b8588c5b74feb1c2841c6183e59b20259f5fb1a5c74026903557cbb113a68
   languageName: node
   linkType: hard
 
@@ -7322,7 +7322,7 @@ __metadata:
     "@mdx-js/react": ^1.6.22
     "@svgr/webpack": ^5.5.0
     clsx: ^1.1.1
-    docusaurus-plugin-sass: ^0.2.1
+    docusaurus-plugin-sass: ^0.2.5
     file-loader: ^6.2.0
     plugin-image-zoom: flexanalytics/plugin-image-zoom
     prettier: ^2.4.1
