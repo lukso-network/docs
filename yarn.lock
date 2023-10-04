@@ -7328,7 +7328,7 @@ __metadata:
     prettier: ^2.4.1
     react: 17.0.2
     react-dom: 17.0.2
-    sass: ^1.43.5
+    sass: ^1.68.0
     url-loader: ^4.1.1
   languageName: unknown
   linkType: soft
@@ -9674,16 +9674,16 @@ plugin-image-zoom@flexanalytics/plugin-image-zoom:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.43.5":
-  version: 1.51.0
-  resolution: "sass@npm:1.51.0"
+"sass@npm:^1.68.0":
+  version: 1.68.0
+  resolution: "sass@npm:1.68.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: d674fd87be863961d5e5233a148e381a72b06ca1749ffd95a08be2c3f4aa8fc77e3e21840347a84d7d4542cbf97cd6f9bfae19ecb1f5eefa6c207a3d8f923dbc
+  checksum: 65ccede83c96768beeb8dcaf67957b7c76b12ff1276bfd2849d7be151d46ba1400048a67717e6e5e4969bc75e87348e5530f5f272833f2e60a891c21a33d8ab0
   languageName: node
   linkType: hard
 
