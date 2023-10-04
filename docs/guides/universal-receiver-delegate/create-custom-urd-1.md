@@ -7,17 +7,17 @@ sidebar_position: 1
 
 In this guide, we will create a custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../standards/nft-2.0/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
 
-> **"As a UP owner, I want to transfer part of the token I received to another UP"**.
+> **"As a Universal Profile (UP) owner, I want to transfer part of the tokens I received to another UP"**.
 
-An example scenario could be: "each time I receive USDT, I want to automatically transfer 20% to my wife's UP".
+An example scenario could be: _"each time I receive USDT, I want to automatically transfer 20% to my wife's UP"_.
 
 ## Requirements
 
 In order to follow this guide, you'll need to:
 
 1. Install the [UP Browser extension](../browser-extension/install-browser-extension.md).
-2. Fund the EOA that controls your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
-3. Follow the contracts [Getting started](../../contracts/getting-started.md) to setup a new Hardhat project.
+2. Fund the main controller (EOA) of your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
+3. Setup a new Hardhat project using the [Getting started](../../contracts/getting-started.md) guide.
 
 ## 1 - EOA permission
 
@@ -48,7 +48,7 @@ Confirm the changes and submit the transaction.
 In your hardhat project, create a `.env` file (if it's not already present) and fill the `PRIVATE_KEY` and `UP_ADDR` with the info coming from your UP Browser Extension. To get those values:
 
 - Click on the extension
-- Click on the ⚙️ at the top right corner, then select "reveal private keys"
+- Click on the Settings icon ⚙️ at the top right corner, then select "reveal private keys"
 - Enter your password
 - Scroll down and copy the `privateKey` field to your `.env` file in `PRIVATE_KEY`
 - Copy the `address` field to your `.env` file in `UP_ADDR`
@@ -66,9 +66,9 @@ We can start fresh with a brand new LSP7 Token, or we can use an already existin
 
 The custom URD contract can be created using 2 methods.
 
-The first one will execute the LSP7 transfer function as the UP. In order to work, the Custom URD will needs special privileges on the UP (SUPER_CALL + REENTRANT). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
+The first method will execute the LSP7 transfer function as the UP. In order to work, the Custom URD will needs special privileges on the UP (`SUPER_CALL` + `REENTRANCY`). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
 
-The second one will execute the LSP7 transfer function directly from the URD. In order to work, the custom URD needs to be authorized at the LSP7 level (using `authorizeOperator`) with unlimited amount (type(uint256).max), which is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amout, and this, for all the LSP7 you want to allow. The advantage is the gas effiency.
+The second method will execute the LSP7 transfer function directly from the URD. In order to work, the custom URD needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../contracts/contracts/LSP7DigitalAsset#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
 
 ### Method 1
 
@@ -161,7 +161,8 @@ contract LSP1URDForwarderSimpleMethod1 is
             revert NativeTokensNotAccepted();
         }
 
-        // CHECK that the caller is a LSP0 (UniversalProfile)
+        // CHECK that the caller is an ERC725Account (e.g: a UniversalProfile)
+        // by checking it supports the LSP0 interface
         // by checking its interface support
         if (
             !ERC165Checker.supportsERC165InterfaceUnchecked(
@@ -172,7 +173,7 @@ contract LSP1URDForwarderSimpleMethod1 is
             return "Caller is not a LSP0";
         }
 
-        // GET the notifier (e.g., the LSP7 Token) from the calldata
+        // GET the address of the notifier from the calldata (e.g., the LSP7 Token)
         address notifier = address(bytes20(msg.data[msg.data.length - 52:]));
 
         // CHECK that notifier is a contract with a `balanceOf` method
@@ -200,7 +201,7 @@ contract LSP1URDForwarderSimpleMethod1 is
             (address, address, uint256, bytes)
         );
 
-        // CHECK if amount is not too low
+        // CHECK that amount is not too low
         if (amount < 100) {
             return "Amount is too low (< 100)";
         } else {
@@ -251,7 +252,7 @@ bytes memory encodedTx = abi.encodeWithSelector(
 );
 ```
 
-The `encodeWithSelector` function takes the function that will be called as 1st param, and its parameters as the following ones. Here, we target the `transfer` method of the LSP7 token that we received (e.g., the notifier), and we need 4 additional parameters:
+The `encodeWithSelector` function takes the function that will be called as 1st parameter, and its parameters as the following ones. Here, we target the `transfer` method of the LSP7 token that we received (e.g., the notifier), and we need 4 additional parameters:
 
 - the `from` (msg.sender => the UP that received tokens)
 - the `to` (recipient => the address that will receives part of the tokens)
