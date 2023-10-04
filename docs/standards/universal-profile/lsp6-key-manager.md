@@ -59,7 +59,7 @@ While the Key Manager allows for a very fine-grained control over the Universal 
 
 :::
 
-![LSP6 permissions](/img/standards/lsp6/lsp6-permissions.jpeg)
+![LSP6 permissions](/img/standards/lsp6/lsp6-permissions.jpg)
 
 Click on the toggles below to **learn more about the features enabled by each permission**.
 
@@ -328,6 +328,16 @@ The permission `SIGN` enables a controller to authenticate on behalf of the UP. 
 
 </details>
 
+<details>
+    <summary><code>EXECUTE_RELAY_CALL</code>: Enables a controller's signed relay calls to be executable</summary>
+    <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
+        <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000400000</code>
+    </p>
+
+The permission `EXECUTE_RELAY_CALL` enables a controller's signed relay calls to be executable. This permission will be checked against the controller that signed the relay call.
+
+</details>
+
 :::note
 
 When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started), the Universal Profile owner will have all the permissions above set by default.
@@ -517,7 +527,7 @@ To grant permission(s) to a controller, set the following data key-value pair in
 }
 ```
 
-![Address Permissions range](/img/standards/lsp6/lsp6-address-permissions.jpeg)
+![Address Permissions range](/img/standards/lsp6/lsp6-address-permissions.jpg)
 
 :::danger
 
