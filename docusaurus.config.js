@@ -185,6 +185,12 @@ module.exports = {
       items: [
         {
           type: 'doc',
+          docId: 'learn/introduction',
+          position: 'left',
+          label: 'Learn',
+        },
+        {
+          type: 'doc',
           docId: 'guides/getting-started',
           position: 'left',
           label: 'Guides',

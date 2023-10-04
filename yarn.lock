@@ -4116,10 +4116,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.1.1, clsx@npm:^1.2.1":
+"clsx@npm:^1.2.1":
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: a2cfb2351b254611acf92faa0daf15220f4cd648bdf96ce369d729813b85336993871a4bf6978ddea2b81b5a130478339c20d9d0b5c6fc287e5147f0c059276e
   languageName: node
   linkType: hard
 
@@ -4885,15 +4892,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-plugin-sass@npm:^0.2.1":
-  version: 0.2.2
-  resolution: "docusaurus-plugin-sass@npm:0.2.2"
+"docusaurus-plugin-sass@npm:^0.2.5":
+  version: 0.2.5
+  resolution: "docusaurus-plugin-sass@npm:0.2.5"
   dependencies:
     sass-loader: ^10.1.1
   peerDependencies:
-    "@docusaurus/core": ^2.0.0-beta
+    "@docusaurus/core": ^2.0.0-beta || ^3.0.0-alpha
     sass: ^1.30.0
-  checksum: e409c403fe0679ffbf5bd3e7738664fc95dae78b4152321b546fd5b04b5309566ad19d4b9ea90554d587b5647d20957d7024a2ae180cc708112227a66eca84d0
+  checksum: db17a8c87a344330717962fe195c94089e32281dc7f79b66bf99587254ebad71353b8588c5b74feb1c2841c6183e59b20259f5fb1a5c74026903557cbb113a68
   languageName: node
   linkType: hard
 
@@ -7321,14 +7328,14 @@ __metadata:
     "@docusaurus/preset-classic": ^2.4.3
     "@mdx-js/react": ^1.6.22
     "@svgr/webpack": ^5.5.0
-    clsx: ^1.1.1
-    docusaurus-plugin-sass: ^0.2.1
+    clsx: ^2.0.0
+    docusaurus-plugin-sass: ^0.2.5
     file-loader: ^6.2.0
     plugin-image-zoom: flexanalytics/plugin-image-zoom
     prettier: ^2.4.1
     react: 17.0.2
     react-dom: 17.0.2
-    sass: ^1.43.5
+    sass: ^1.68.0
     url-loader: ^4.1.1
   languageName: unknown
   linkType: soft
@@ -9674,16 +9681,16 @@ plugin-image-zoom@flexanalytics/plugin-image-zoom:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.43.5":
-  version: 1.51.0
-  resolution: "sass@npm:1.51.0"
+"sass@npm:^1.68.0":
+  version: 1.68.0
+  resolution: "sass@npm:1.68.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: d674fd87be863961d5e5233a148e381a72b06ca1749ffd95a08be2c3f4aa8fc77e3e21840347a84d7d4542cbf97cd6f9bfae19ecb1f5eefa6c207a3d8f923dbc
+  checksum: 65ccede83c96768beeb8dcaf67957b7c76b12ff1276bfd2849d7be151d46ba1400048a67717e6e5e4969bc75e87348e5530f5f272833f2e60a891c21a33d8ab0
   languageName: node
   linkType: hard
 

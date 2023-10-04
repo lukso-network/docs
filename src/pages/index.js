@@ -58,6 +58,13 @@ function Index() {
         <div className={styles.cardContainer}>
           <Box
             icon={GuidesIcon}
+            link="./learn/introduction"
+            title="LEARN"
+            className="learn"
+            content="Learn about the LUKSO ecosystem"
+          />
+          <Box
+            icon={GuidesIcon}
             link="./guides/getting-started"
             title="GUIDES"
             className="guides"

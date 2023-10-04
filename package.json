@@ -23,14 +23,14 @@
     "@docusaurus/preset-classic": "^2.4.3",
     "@mdx-js/react": "^1.6.22",
     "@svgr/webpack": "^5.5.0",
-    "clsx": "^1.1.1",
-    "docusaurus-plugin-sass": "^0.2.1",
+    "clsx": "^2.0.0",
+    "docusaurus-plugin-sass": "^0.2.5",
     "file-loader": "^6.2.0",
     "plugin-image-zoom": "flexanalytics/plugin-image-zoom",
     "prettier": "^2.4.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sass": "^1.43.5",
+    "sass": "^1.68.0",
     "url-loader": "^4.1.1"
   },
   "browserslist": {
