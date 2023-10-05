@@ -161,3 +161,4 @@ You can check out the following links for extended help or advice for setting up
 - [Extended Wiki and LUKSO Node Guide](https://github.com/fhildeb/lukso-node-guide) by Felix Hildebrandt
 - [LUKSO Community Guides](https://docs.luksoverse.io/) by Luksoverse
 - [ETHStaker Community Discord](https://discord.com/invite/ucsTcA2wTq) for running EVM Clients
+- [ETH Validator Watcher](https://github.com/kilnfi/eth-validator-watcher) potential alternative for monitoring
