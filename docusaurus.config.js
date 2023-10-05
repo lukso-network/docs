@@ -126,6 +126,10 @@ module.exports = {
             from: '/standards/smart-contracts/lsp14-ownable-2-step',
             to: '/contracts/contracts/LSP14Ownable2Step',
           },
+          {
+            from: '/standards/smart-contracts/lsp16-universal-factory',
+            to: '/contracts/contracts/LSP16UniversalFactory',
+          },
           // FAQ new Structure
           {
             from: '/faq/network/network',
