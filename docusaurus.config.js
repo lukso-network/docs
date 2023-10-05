@@ -54,6 +54,14 @@ module.exports = {
             to: '/contracts/contracts/LSP0ERC725Account',
           },
           {
+            from: '/guides/network/update-the-node',
+            to: '/networks/network/update-the-node',
+          },
+          {
+            from: '/guides/network/switch-consensus-clients',
+            to: '/networks/network/switch-consensus-clients',
+          },
+          {
             from: '/contracts/key-manager',
             to: '/contracts/contracts/LSP6KeyManager',
           },
