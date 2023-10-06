@@ -5,13 +5,9 @@ sidebar_position: 1
 
 # Universal Profiles
 
-## What is a Universal Profile?
-
-Universal Profiles are **fundamentally new accounts based on smart contracts**, acting as the **center for all your blockchain interactions**. They are generic for various use cases, such as regular wallets, and can interact directly with on-chain applications. However, they also feature permission and asset management, updatable profile information, and let you interact as one persona through different controller keys. With their feature-rich functionality, they can tackle a new wave of blockchain adoption.
-
 ## Is there a Universal Profile Explorer?
 
-Yes, you can find our Universal Profile Explorer at [universalprofile.cloud](https://universalprofile.cloud/). The explorer is currently only showing profiles and assets of the initial L14 Testnet. We will also add the explorer page to our Testnet and Mainnet within the migration process.
+Yes, you can find the Universal Profile Explorer at [universalprofile.cloud](https://universalprofile.cloud/).
 
 ## Why did LUKSO not launch Universal Profiles on Ethereum?
 
