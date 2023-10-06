@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📑 Major Concepts'
+sidebar_label: '📑 Concepts & Glossary'
 sidebar_position: 2
 ---
 
