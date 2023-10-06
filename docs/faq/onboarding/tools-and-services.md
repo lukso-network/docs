@@ -29,14 +29,6 @@ If you want to experiment with the Universal Profile Extension and its interacti
 
 Yes. You can use the in-browser [inspection tool](https://erc725-inspect.lukso.tech/).
 
-## What is a transaction relay service?
-
-A transaction relay service, often referred to as a relayer, is a solution designed to **improve the blockchain user experience** by addressing the issue of gas fees - the costs users pay when executing transactions on a blockchain.
-
-Typically, users must have the blockchain's native token to pay these gas fees. However, a relayer works around this problem. Users can **send their signed transactions** to the relayer. The relayer will then **execute the transaction on their behalf and cover the associated gas cost.**
-
-Payment to the relayer can be handled in different ways. One option is an on-chain payment where the fees are deducted directly from an on-chain balance. Alternatively, users can set up an off-chain agreement with the relayer service via a subscription that gives them a monthly allowance for relayed transactions. This flexibility allows users to **choose the method that best suits their needs**.
-
 ## What is social recovery?
 
 For conventional Ethereum accounts, also known as Externally Owned Accounts (EOAs), losing your private key can be disastrous as it's the sole means of accessing your account. If it's lost, access to the account and all its associated assets is also lost.
