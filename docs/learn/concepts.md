@@ -5,18 +5,18 @@ sidebar_position: 2
 
 # Major Concepts
 
-## Universal Profile (UP):
+## Universal Profile (UP)
 
 A Universal Profile (UP) is a smart contract-based account that acts as the center for all your blockchain interactions. UPs are generic for various use cases, such as regular wallets, and can interact directly with onchain applications. Additionally, they also feature permission and asset management, updatable profile information, and let you interact as one persona through different controller keys.
 
-## Controller:
+## Controller
 
 In the [LSP6 Key Manager](../standards/universal-profile/lsp6-key-manager.md), the term _"controller"_ refers to a permissioned address. These addresses have permissions that allow them to perform certain actions on the [LSP0ERC725Account](../standards/universal-profile/lsp0-erc725account.md) linked with the Key Manager (e.g., setting data or transferring LYX from the account).
 
 The controllers can be Externally Owned Accounts (EOA) or smart contracts. The Key Manager will allow or restrict access based on the permissions set for the calling address.
 A controller can interact directly with the Key Manager, or it can sign messages that can then be executed by other parties (such as users or transaction relay services).
 
-## Transaction Relay Service:
+## Transaction Relay Service
 
 A transaction relay service, often referred to as a relayer, is a solution designed to improve the blockchain user experience by addressing the issue of gas fees - the costs users pay when executing transactions on a blockchain.
 
