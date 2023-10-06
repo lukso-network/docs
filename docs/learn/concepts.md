@@ -3,7 +3,7 @@ sidebar_label: '📑 Concepts & Glossary'
 sidebar_position: 2
 ---
 
-# Major Concepts
+# Concepts & Glossary
 
 ## Universal Profile (UP)
 
