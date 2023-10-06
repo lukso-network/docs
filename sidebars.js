@@ -59,6 +59,11 @@ module.exports = {
     // divider for the Libraries Technical references
     { type: 'html', value: '<hr/>', defaultStyle: false },
     'contracts/interface-ids',
+    {
+      type: 'link',
+      label: 'Audits',
+      href: 'https://github.com/lukso-network/lsp-smart-contracts/tree/develop/audits',
+    },
   ],
   toolsSidebar: [
     'tools/getting-started',
