@@ -37,7 +37,8 @@ This multi-chain compatibility eliminates the **risk of asset loss** due to mism
 
 :::tip
 
-Check the [**LSP16UniversalFactory contract functions**](../../standards/smart-contracts/lsp16-universal-factory.md) to know how to deploy contracts at the same address across different chains.
+Check the [**LSP16UniversalFactory contract functions**](../../contracts/contracts/LSP16UniversalFactory/LSP16UniversalFactory.md) to know how to deploy contracts at the same address across different chains.
+
 :::
 
 LSP16 establishes a range of functions to deploy different types of contracts using the [CREATE2](https://eips.ethereum.org/EIPS/eip-1014) opcode, including standard and initializable contracts (proxies).
