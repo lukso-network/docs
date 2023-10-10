@@ -165,7 +165,8 @@ lukso status peers
 # INFO[0000] Consensus (Lighthouse): Outbound: 5 | Inbound: 8 🟢 
 ```
 
-Please note that execution client may need additional APIs enabled in order to send peer info. You can read more on how to enable those [here](https://github.com/lukso-network/tools-lukso-cli#how-to-get-your-peer-count).
+Please note that execution client may need additional APIs enabled in order to send peer info. You can read more on how
+to enable those [here](https://github.com/lukso-network/tools-lukso-cli#how-to-get-your-peer-count).
 
 If you want to check any of the running clients in more detail, you can use the built-in logging command of the CLI. It will print out the current log messages of one client to the terminal screen.
 
