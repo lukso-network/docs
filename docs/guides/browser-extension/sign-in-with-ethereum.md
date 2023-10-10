@@ -8,8 +8,8 @@ import TabItem from '@theme/TabItem';
 
 # Sign-In with Ethereum
 
-The [LUKSO Browser Extension](./install-browser-extension.md) is compatible with [EIP-4361: Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361).
-Therefore, if the message you want to sign complies with this standard, the LUKSO Browser Extension will show a custom login screen.
+The [LUKSO UP Browser Extension](./install-browser-extension.md) is compatible with [EIP-4361: Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361).
+Therefore, if the message you want to sign complies with this standard, the LUKSO UP Browser Extension will show a custom login screen.
 
 <div style={{textAlign: 'center'}}>
 <img
@@ -20,7 +20,7 @@ Therefore, if the message you want to sign complies with this standard, the LUKS
 
 ## 1. Get the Universal Profile address
 
-The browser extension injects the Universal Profile smart contract address into the page. We need this address to generate the message to sign.
+The UP Browser Extension injects the Universal Profile smart contract address into the page. We need this address to generate the message to sign.
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">
@@ -146,7 +146,7 @@ Resources:
 
 ## 3. Sign the message
 
-Once you have access to the Universal Profile address, you can request a signature. The browser extension will sign the message with the controller key used by the extension (a smart contract can't sign).
+Once you have access to the Universal Profile address, you can request a signature. The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign).
 
 <Tabs groupId="provider">
   <TabItem value="ethers" label="Ethers.js">

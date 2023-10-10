@@ -54,6 +54,14 @@ module.exports = {
             to: '/contracts/contracts/LSP0ERC725Account',
           },
           {
+            from: '/guides/network/update-the-node',
+            to: '/networks/network/update-the-node',
+          },
+          {
+            from: '/guides/network/switch-consensus-clients',
+            to: '/networks/network/switch-consensus-clients',
+          },
+          {
             from: '/contracts/key-manager',
             to: '/contracts/contracts/LSP6KeyManager',
           },
@@ -126,6 +134,10 @@ module.exports = {
             from: '/standards/smart-contracts/lsp14-ownable-2-step',
             to: '/contracts/contracts/LSP14Ownable2Step',
           },
+          {
+            from: '/standards/smart-contracts/lsp16-universal-factory',
+            to: '/contracts/contracts/LSP16UniversalFactory',
+          },
           // FAQ new Structure
           {
             from: '/faq/network/network',
@@ -183,6 +195,12 @@ module.exports = {
         src: 'img/logo.png',
       },
       items: [
+        {
+          type: 'doc',
+          docId: 'learn/introduction',
+          position: 'left',
+          label: 'Learn',
+        },
         {
           type: 'doc',
           docId: 'guides/getting-started',

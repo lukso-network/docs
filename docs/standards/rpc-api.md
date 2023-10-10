@@ -5,12 +5,6 @@ sidebar_position: 10
 
 # 🆙 RPC API
 
-:::danger Work in progress
-
-This page is under active development.
-
-:::
-
 The [LUKSO UP Browser Extension](../guides/browser-extension/install-browser-extension.md) uses the RPC API methods from the table below. The methods are grouped by category: signing methods, standard methods, and LUKSO-specific methods.
 
 ## Supported Methods
