@@ -45,7 +45,16 @@ Confirm the changes and submit the transaction.
 
 ## 2 - Environment variables
 
-In your hardhat project, create a `.env` file (if it's not already present) and fill the `PRIVATE_KEY` and `UP_ADDR` with the info coming from your UP Browser Extension. To get those values:
+In your hardhat project, create a `.env` file (if it's not already present).
+
+```text title=".env"
+PRIVATE_KEY=
+UP_ADDR=
+UP_RECEIVER=
+PERCENTAGE=
+```
+
+To fill the `PRIVATE_KEY` and `UP_ADDR` info:
 
 - Click on the extension
 - Click on the Settings icon ⚙️ at the top right corner, then select "reveal private keys"
@@ -53,7 +62,7 @@ In your hardhat project, create a `.env` file (if it's not already present) and 
 - Scroll down and copy the `privateKey` field to your `.env` file in `PRIVATE_KEY`
 - Copy the `address` field to your `.env` file in `UP_ADDR`
 
-We will need 2 additional information:
+We will need to fill 2 additional parameters:
 
 - `UP_RECEIVER` => the address that will receive part of the tokens
 - `PERCENTAGE` => the percentage of the received tokens that will be transfered
