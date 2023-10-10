@@ -159,7 +159,7 @@ lukso status
 
 You can also check the connectivity of your clients by running `lukso status peers` command - this will show how many peers are your clients connected with.
 ```bash
-lukso status
+lukso status peers
 
 # INFO[0000] Execution (Geth): Outbound: 10 | Inbound: 3 🟢
 # INFO[0000] Consensus (Lighthouse): Outbound: 5 | Inbound: 8 🟢 
