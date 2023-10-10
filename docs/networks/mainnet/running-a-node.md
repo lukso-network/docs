@@ -164,7 +164,7 @@ peers are your clients connected with.
 lukso status peers
 
 # INFO[0000] Execution (Geth): Outbound: 10 | Inbound: 3 🟢
-# INFO[0000] Consensus (Lighthouse): Outbound: 5 | Inbound: 8 🟢 
+# INFO[0000] Consensus (Lighthouse): Outbound: 5 | Inbound: 8 🟢
 ```
 
 Please note that execution client may need additional APIs enabled in order to send peer info. You can read more on how
