@@ -77,7 +77,7 @@ The custom LSP1 Delegate contract can be created using 2 methods.
 
 The first method will execute the LSP7 transfer function as the UP. In order to work, the Custom LSP1 Delegate forwarder will needs special privileges on the UP (`SUPER_CALL` + `REENTRANCY`). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
 
-The second method will execute the LSP7 transfer function directly from the LSP1 Delegate contract. In order to work, the custom contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../contracts/contracts/LSP7DigitalAsset#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
+The second method will execute the LSP7 transfer function directly from the LSP1 Delegate contract. In order to work, the custom contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
 
 ### Method 1
 
