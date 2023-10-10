@@ -1,15 +1,17 @@
 ---
-sidebar_label: 'Create a custom Forwarder URD (2/2)'
+sidebar_label: 'Create a custom LSP1 Delegate forwarder (2/2)'
 sidebar_position: 2
 ---
 
-# Deploy and test our custom forwarder URD
+# Deploy and test our custom LSP1 Delegate forwarder
 
-In the [first part](./create-custom-urd-1.md), we setup our Universal Profile and created the custom URD contract. We will now deploy and test it!
+In the [first part](./create-custom-urd-1.md), we setup our Universal Profile and created the custom LSP1 Delegate contract. We will now deploy and test it!
 
-## Create a MockContract to generate the UniversalProfile type
+## Generate the UniversalProfile type
 
-In order to deploy this Custom URD contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract by creating a contract that will import it. Create a `MockContract.sol` file in the `contracts/` file with the following content:
+In order to deploy this Custom LSP1 Delegate contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract. To do that, we can either:
+
+- Create a contract that will import it.
 
 ```solidity title="contracts/MockContract.sol"
 // SPDX-License-Identifier: Apache-2.0
@@ -17,20 +19,26 @@ pragma solidity ^0.8.9;
 import {UniversalProfile} from '@lukso/lsp-smart-contracts/contracts/UniversalProfile.sol';
 ```
 
-## Deploy our custom URD
+- Use this typechain command:
+
+```bash
+typechain --target ethers-v5 --out-dir types './node_modules/@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json'
+```
+
+## Deploy our custom LSP1 Delegate forwarder
 
 As we have 2 different methods with specific requirements, we will provide both set of code. Comment the code that doesn't match your choice.
 
-Now we can create the deploy scripts that will connect all the pieces together. This script will:
+Now we can create the deploy scripts that will connect all the pieces together.
 
-- Connect to our UP
-- Deploy the custom URD as our UP
-- Register it as a URD in our UP
+- We will connect to our UP using our "UP Extension" controller private key
+- Then, we will use our connected UP to deploy the custom LSP1 Delegate contract
+- Finally, we register it as a LSP1 Universal Receiver in our UP
 
-and, depending on the method selected, it will also:
+and, depending on the method selected, we will also:
 
-- grants permission to the URD to call the UP (SUPER_CALL + REENTRANT) - Method 1
-- calls `authorizeOperator()` on the LSP7 token to authorize the URD to spend token on the UP's behalf - Method 2
+- grant permission to the custom LSP1 Delegate contract to call the UP (SUPER_CALL + REENTRANT) - Method 1
+- or call [`authorizeOperator()`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator) on the LSP7 token to authorize the custom LSP1 Delegate contract to spend token on the UP's behalf - Method 2
 
 Create a file called `deployLSP1.ts` in your `scripts/` folder with the following content:
 
@@ -42,6 +50,7 @@ import {
   ERC725YDataKeys,
   LSP1_TYPE_IDS,
   PERMISSIONS,
+  OPERATION_TYPES,
 } from '@lukso/lsp-smart-contracts';
 
 // load env vars
@@ -53,11 +62,6 @@ const contractsAddr = ['0x63890ea231c6e966142288d805b9f9de7e0e5927'];
 // Update those values in the .env file
 const { UP_ADDR, PRIVATE_KEY, UP_RECEIVER, PERCENTAGE } = process.env;
 
-/**
- * In this script, we will:
- * - deploy our URD implementation (LSP1URDForwarder.sol)
- * - setDataBatch on the UP to register URD implementation + permission for URD contract
- */
 async function main() {
   // ----------
   // BASE SETUP
@@ -74,13 +78,19 @@ async function main() {
   console.log('🔑 EOA: ', signer.address);
   console.log('🆙 Universal Profile: ', await UP.getAddress());
 
-  // ----------
-  // DEPLOY URD
-  // ----------
+  // -----------------------------
+  // DEPLOY LSP1 Delegate contract
+  // -----------------------------
 
-  console.log('⏳ Deploying the custom URD');
-  const CustomURDBytecode =
-    hre.artifacts.readArtifactSync('LSP1URDForwarder').bytecode;
+  console.log('⏳ Deploying the custom LSP1 Delegate forwarder');
+  // COMMENT IF YOU USE METHOD 2
+  const CustomURDBytecode = hre.artifacts.readArtifactSync(
+    'LSP1URDForwarderMethod1',
+  ).bytecode;
+  // UNCOMMENT IF YOU USE METHOD 2
+  // const CustomURDBytecode = hre.artifacts.readArtifactSync(
+  //   'LSP1URDForwarderMethod2',
+  // ).bytecode;
 
   // we need to encode the constructor parameters and add them to the contract bytecode
   const abiCoder = new ethers.AbiCoder();
@@ -94,20 +104,20 @@ async function main() {
 
   // get the address of the contract that will be created
   const CustomURDAddress = await UP.connect(signer).execute.staticCall(
-    1,
-    ethers.ZeroAddress,
-    0,
+    OPERATION_TYPES.CREATE,
+    ethers.ZeroAddress, // need to specify address zero for deploying contracts
+    0, // the amount of native tokens to fund the contract with when deploying it
     fullBytecode,
   );
 
   // deploy LSP1URDForwarder as the UP (signed by the browser extension controller)
-  const tx1 = await UP.connect(signer).execute(
-    1,
-    ethers.ZeroAddress,
-    0,
+  const deployLSP1DelegateTx = await UP.connect(signer).execute(
+    OPERATION_TYPES.CREATE,
+    ethers.ZeroAddress, // need to specify address zero for deploying contracts
+    0, // the amount of native tokens to fund the contract with when deploying it
     fullBytecode,
   );
-  await tx1.wait();
+  await deployLSP1DelegateTx.wait();
 
   console.log(
     '✅ Custom URD successfully deployed at address: ',
@@ -115,11 +125,11 @@ async function main() {
   );
 
   // -------------------------
-  // GRANT URD PERM - METHOD 1
+  // GRANT LSP1 Delegate contract PERM - METHOD 1
   // -------------------------
   // COMMENT IF YOU USE METHOD 2
 
-  // we need the key to store our custom URD contract address
+  // we need the key to store our custom LSP1 Delegate contract address
   // {_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX + <bytes32 typeId>}
   console.log('⏳ Registering custom URD on the UP');
   const URDdataKey =
@@ -127,8 +137,8 @@ async function main() {
     LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification.slice(2).slice(0, 40);
 
   // we will update the keys for:
-  // - the custom URD of specific TYPE_ID (with our custom URD contract address)
-  // - the permission of this custom URD contract (this will create a new controller in the Browser Extension)
+  // - the custom LSP1 Delegate with a specific TYPE_ID (with our custom LSP1 Delegate contract address)
+  // - the permission of this custom LSP1 Delegate contract (this will create a new controller in the Browser Extension)
   const dataKeys = [
     URDdataKey,
     ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
@@ -149,14 +159,14 @@ async function main() {
   await setDataBatchTx.wait();
   console.log('✅ Custom URD has been correctly registered on the UP');
 
-  // --------------------------------------------
-  // REGISTER URD + AUTHORIZE OPERATOR - METHOD 2
-  // --------------------------------------------
-  // COMMENT IF YOU USE METHOD 2
+  // ----------------------------------------------------------------
+  // REGISTER LSP1 UNIVERSAL RECEIVER + AUTHORIZE OPERATOR - METHOD 2
+  // ----------------------------------------------------------------
+  // COMMENT IF YOU USE METHOD 1
 
-  // we need the key to store our custom URD contract address
+  // we need the key to store our custom LSP1 Delegate contract address
   // {_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX + <bytes32 typeId>}
-  console.log('⏳ Registering custom URD on the UP');
+  console.log('⏳ Registering custom LSP1 Delegate on the UP');
   const URDdataKey =
     ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegatePrefix +
     LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification.slice(2).slice(0, 40);
@@ -167,9 +177,11 @@ async function main() {
     CustomURDAddress,
   );
   await setDataTx.wait();
-  console.log('✅ Custom URD has been correctly registered on the UP');
+  console.log(
+    '✅ Custom LSP1 Delegate has been correctly registered on the UP',
+  );
 
-  console.log('⏳ Authorizing URD on Custom Token');
+  console.log('⏳ Authorizing Custom LSP1 Delegate contract on Custom Token');
   // we only authorize the first contract in the contractsAddr array, but feel free to add a loop :)
   const CustomToken = await ethers.getContractAt(
     'CustomToken',
@@ -183,14 +195,14 @@ async function main() {
   );
   // Execute the function call as the UP
   const authTxWithBytes = await UP.connect(signer).execute(
-    0,
+    OPERATION_TYPES.CALL,
     await CustomToken.getAddress(),
     0,
     authBytes,
   );
   await authTxWithBytes.wait();
   console.log(
-    '✅ URD authorized on Custom Token for UP ',
+    '✅ LSP1 Delegate contract authorized on Custom Token for UP ',
     await UP.getAddress(),
   );
 }
@@ -203,25 +215,25 @@ main()
   });
 ```
 
-We can now deploy our custom URD by running:
+We can now deploy our custom LSP1 Delegate contract by running:
 
 ```bash
-npx hardhat --network luksoTestnet run scripts/deployLSP1.ts
+npx hardhat run scripts/deployLSP1.ts --network luksoTestnet
 ```
 
-## Test our custom URD
+## Test our custom LSP1 Delegate forwarder
 
 Now that all the pieces are connected, we can try it out!
 
-The expected behaviour is that **everytime the UP on which the custom URD has been set receives an allowed token (either through `transfer` or `mint`), it will automatically send a percentage to the specified receiver.**
+The expected behaviour is that **everytime the UP on which the custom LSP1 Delegate contract has been set receives an allowed token (either through `transfer` or `mint`), it will automatically send a percentage to the specified receiver.**
 
 Here are the test data:
 
-- I set up the custom URD on a test UP (neo: `0xD62940E95A7A4a760c96B1Ec1434092Ac2C4855E`)
+- I set up the custom LSP1 Delegate contract on a test UP (neo: `0xD62940E95A7A4a760c96B1Ec1434092Ac2C4855E`)
 - I created a custom LSP7 token named "My USDC" with symbol "MUSDC" (LSP7: `0x63890ea231c6e966142288d805b9f9de7e0e5927` / owner neo / 20k pre-minted to neo)
-- The custom URD will send 20% of the received (transfer or mint) MUSDC
+- The custom LSP1 Delegate contract will send 20% of the received (transfer or mint) MUSDC
 - The recipient will be another test UP (karasu: `0xe5B9B2C3f72bA13fF43A6CfC6205b5147F0BEe84`)
-- The custom URD is deployed at address `0x4f614ebd07b81b42373b136259915b74565fedf5`
+- The custom LSP1 Delegate contract is deployed at address `0x4f614ebd07b81b42373b136259915b74565fedf5`
 
 Let's go to [the test dapp](https://up-test-dapp.lukso.tech/) and connect with neo's profile.
 
@@ -245,7 +257,7 @@ Click on "Refresh tokens" to see our `MUSDC` balance.
 />
 </div>
 
-Use the "Mint" box to mint an additional 10k `MUSDC` to ourself (to neo's UP). This should trigger the custom URD and send 20% of 10k (= 2k) to karasu.
+Use the "Mint" box to mint an additional 10k `MUSDC` to ourself (to neo's UP). This should trigger the custom LSP1 Delegate forwarder and send 20% of 10k (= 2k) to karasu.
 
 <div style={{textAlign: 'center'}}>
 <img
@@ -287,8 +299,8 @@ We connect karasu's profile to the test dapp
 />
 </div>
 
-... Success 🎉 ! Our custom Universal Receiver Delegate worked as expected!
+... Success 🎉 ! Our custom LSP1 Delegate forwarder worked as expected!
 
 ## Congratulations 🥳
 
-You now have a fully functional custom Universal Receiver Delegate contract that will automatically forward a certain amount of the allowed received tokens to another UP!
+You now have a fully functional custom LSP1 Delegate contract that will automatically forward a certain amount of the allowed received tokens to another UP!

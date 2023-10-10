@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'Create a custom Forwarder URD (1/2)'
+sidebar_label: 'Create a custom LSP1 Delegate forwarder (1/2)'
 sidebar_position: 1
 ---
 
-# Create a custom forwarder URD
+# Create a custom LSP1 Delegate forwarder
 
 In this guide, we will create a custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../standards/nft-2.0/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
 
@@ -62,13 +62,13 @@ We will need 2 additional information:
 
 We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../../contracts/getting-started.md#create-a-custom-lsp7-token-contract) and [deploy it](../../contracts/getting-started.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
 
-## 4 - Create the Custom URD Contract
+## 4 - Create the Custom LSP1 Delegate Contract
 
-The custom URD contract can be created using 2 methods.
+The custom LSP1 Delegate contract can be created using 2 methods.
 
-The first method will execute the LSP7 transfer function as the UP. In order to work, the Custom URD will needs special privileges on the UP (`SUPER_CALL` + `REENTRANCY`). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
+The first method will execute the LSP7 transfer function as the UP. In order to work, the Custom LSP1 Delegate forwarder will needs special privileges on the UP (`SUPER_CALL` + `REENTRANCY`). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
 
-The second method will execute the LSP7 transfer function directly from the URD. In order to work, the custom URD needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../contracts/contracts/LSP7DigitalAsset#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
+The second method will execute the LSP7 transfer function directly from the LSP1 Delegate contract. In order to work, the custom contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../contracts/contracts/LSP7DigitalAsset#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
 
 ### Method 1
 
@@ -76,7 +76,7 @@ In Hardhat, create a new file in `contracts/` folder named `LSP1URDForwarderMeth
 
 ```solidity title="contracts/LSP1URDForwarderMethod1.sol"
 // SPDX-License-Identifier: CC0-1.0
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.11;
 
 // interfaces
 import { IERC725X } from "@erc725/smart-contracts/contracts/interfaces/IERC725X.sol";
@@ -96,7 +96,7 @@ import "@lukso/lsp-smart-contracts/contracts/LSP0ERC725Account/LSP0Constants.sol
 // errors
 import "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1Errors.sol";
 
-contract LSP1URDForwarderSimpleMethod1 is
+contract LSP1URDForwarderMethod1 is
     ERC165,
     ILSP1UniversalReceiver
 {
@@ -207,8 +207,8 @@ contract LSP1URDForwarderSimpleMethod1 is
         } else {
             uint256 tokensToTransfer = (amount * percentage) / 100;
 
-            bytes memory encodedTx = abi.encodeWithSelector(
-                ILSP7DigitalAsset.transfer.selector,
+            bytes memory encodedTx = abi.encodeCall(
+                ILSP7DigitalAsset.transfer,
                 msg.sender,
                 recipient,
                 tokensToTransfer,
@@ -242,8 +242,8 @@ This code is commented enough to be self explanatory, but let's dive a bit more 
 When all the verification passed in the `universalReceiver` function, we calculate the amount of token to transfer (`tokensToTransfer`) and create the transaction that will be executed:
 
 ```solidity title="Create the transaction"
-bytes memory encodedTx = abi.encodeWithSelector(
-    ILSP7DigitalAsset.transfer.selector,
+bytes memory encodedTx = abi.encodeCall(
+    ILSP7DigitalAsset.transfer,
     msg.sender,
     recipient,
     tokensToTransfer,
@@ -252,7 +252,7 @@ bytes memory encodedTx = abi.encodeWithSelector(
 );
 ```
 
-The `encodeWithSelector` function takes the function that will be called as 1st parameter, and its parameters as the following ones. Here, we target the `transfer` method of the LSP7 token that we received (e.g., the notifier), and we need 4 additional parameters:
+The `encodeCall` function takes the function that will be called as 1st parameter, and its parameters as the following ones. Here, we target the `transfer` method of the LSP7 token that we received (e.g., the notifier), and we need 4 additional parameters:
 
 - the `from` (msg.sender => the UP that received tokens)
 - the `to` (recipient => the address that will receives part of the tokens)
@@ -277,9 +277,22 @@ As we know from the `// CHECK that the caller is a LSP0 (UniversalProfile)` test
 
 ### Method 2
 
-In Hardhat, copy the `contracts/LSP1URDForwarderMethod1.sol` file to `contracts/LSP1URDForwarderMethod2.sol` and change the following:
+In Hardhat, copy the `contracts/LSP1URDForwarderMethod1.sol` file to `contracts/LSP1URDForwarderMethod2.sol` (see command below) and change the following:
 
-```solidity title="contracts/LSP1URDForwarderMethod2.sol"
+```bash
+cp contracts/LSP1URDForwarderMethod1 contracts/LSP1URDForwarderMethod2.sol
+```
+
+```solidity title="Change constructor name"
+// ...
+contract LSP1URDForwarderMethod2 is
+    ERC165,
+    ILSP1UniversalReceiver
+{
+// ...
+```
+
+```solidity title="Change implementation"
 // ...
         // CHECK if amount is not too low
         if (amount < 100) {
@@ -301,4 +314,4 @@ In this method, we're directly calling the `transfer` method of the notifier (th
 
 ## Congratulations 🥳
 
-You now have a custom Universal Receiver Delegate contract that we will register on our Universal Profile in the [second part](./create-custom-urd-2.md) of this guide!
+You now have a custom LSP1 Delegate forwarder contract that we will register on our Universal Profile in the [second part](./create-custom-urd-2.md) of this guide!
