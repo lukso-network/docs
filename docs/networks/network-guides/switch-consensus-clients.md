@@ -39,9 +39,9 @@ If you configured custom services on top of the LUKSO CLI, please use your servi
 
 :::
 
-:::tip
+:::warning
 
-The name `myLUKSOnode` has to be changed to your node directory's name.
+In the examples below, the name `myLUKSOnode` has to be changed to your node directory's name.
 
 :::
 
