@@ -24,14 +24,14 @@ Please check your current LUKSO CLI version to determine your update process.
 $ lukso version
 ```
 
-This guide will lead you through updating to **LUKSO CLI Version 0.8**
+This guide will lead you through updating the LUKSO CLI to the **latest version**.
 
 ## Update the LUKSO CLI
 
 Updating your node is similar to the installing process, while keeping your previous keystore data. If you already have the **latest LUKSO CLI version** and **network configs**, you can also just update your [blockchain clients](#updating-the-blockchain-clients).
 
 <Tabs>
-  <TabItem value="update-v6" label="Update from Version 0.6">
+  <TabItem value="update-v6" label="Update from Version 0.6 or below">
 
 #### Stop your Node
 
@@ -82,6 +82,9 @@ $ sudo pkill validator
 
 # Stop the Lighthouse and Lighthouse Validator clients
 $ sudo pkill lighthouse
+
+# Stop the Teku and Teku Validator clients
+$ sudo pkill teku
 ```
 
 #### Create a new Working Directory
@@ -162,6 +165,8 @@ In case you did any modifications to your configuration files, such as:
 - adjusting your peer count
 
 Please add them once again and make sure that these are in the correct format before starting your node.
+
+You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md/#further-reads) for more information.
 
 :::
 
@@ -319,6 +324,8 @@ In case you did any modifications to your configuration files, such as:
 - adjusting your peer count
 
 Please add them again and ensure these are in the correct format before starting your node.
+
+You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md/#further-reads) for more information.
 
 :::
 
