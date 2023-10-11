@@ -24,14 +24,14 @@ Please check your current LUKSO CLI version to determine your update process.
 $ lukso version
 ```
 
-This guide will lead you through updating to **LUKSO CLI Version 0.8**
+This guide will lead you through updating the LUKSO CLI to the **latest version**.
 
 ## Update the LUKSO CLI
 
 Updating your node is similar to the installing process, while keeping your previous keystore data. If you already have the **latest LUKSO CLI version** and **network configs**, you can also just update your [blockchain clients](#updating-the-blockchain-clients).
 
 <Tabs>
-  <TabItem value="update-v6" label="Update from Version 0.6">
+  <TabItem value="update-v6" label="Update from Version 0.6 or below">
 
 #### Stop your Node
 
@@ -41,9 +41,9 @@ If you configured custom services on top of the LUKSO CLI, please use your servi
 
 :::
 
-:::tip
+:::warning
 
-The name of the directory `myLUKSOnode/` can be changed in the examples below.
+In the examples below, the name `myLUKSOnode` has to be changed to your node directory's name.
 
 :::
 
@@ -82,6 +82,9 @@ $ sudo pkill validator
 
 # Stop the Lighthouse and Lighthouse Validator clients
 $ sudo pkill lighthouse
+
+# Stop the Teku and Teku Validator clients
+$ sudo pkill teku
 ```
 
 #### Create a new Working Directory
@@ -163,6 +166,8 @@ In case you did any modifications to your configuration files, such as:
 
 Please add them once again and make sure that these are in the correct format before starting your node.
 
+You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md/#further-reads) for more information.
+
 :::
 
 :::caution
@@ -227,13 +232,19 @@ After your node has finalized the synchronization with the network, you can remo
 :::
 
   </TabItem>
-  <TabItem value="update-v7-or-above" label="Update from Version 0.7 or above">
+  <TabItem value="update-v7" label="Update from Version 0.7">
 
 #### Stop your Node
 
 :::caution
 
 If you configured custom services on top of the LUKSO CLI, please use your service commands to stop your node.
+
+:::
+
+:::warning
+
+In the examples below, the name `myLUKSOnode` has to be changed to your node directory's name.
 
 :::
 
@@ -320,6 +331,8 @@ In case you did any modifications to your configuration files, such as:
 
 Please add them again and ensure these are in the correct format before starting your node.
 
+You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md/#further-reads) for more information.
+
 :::
 
 :::caution
@@ -384,6 +397,109 @@ After your node has finalized the synchronization with the network, you can remo
 :::
 
   </TabItem>
+
+<TabItem value="update-v8-or-above" label="Update from Version 0.8 or above">
+
+#### Stop your Node
+
+:::caution
+
+If you configured custom services on top of the LUKSO CLI, please use your service commands to stop your node.
+
+:::
+
+:::warning
+
+In the examples below, the name `myLUKSOnode` has to be changed to your node directory's name.
+
+:::
+
+Move into your node's working directory.
+
+```bash
+$ cd myLUKSOnode
+```
+
+Make sure to stop all processes of the blockchain node.
+
+```bash
+$ lukso stop
+```
+
+Afterward, you can check if your node stopped correctly.
+
+```bash
+$ lukso status
+```
+
+#### Update the LUKSO CLI
+
+Re-install the LUKSO CLI to your system. You will be asked to overwrite the current version.
+
+```bash
+$ curl https://install.lukso.network | sh
+```
+
+Make sure to check the downloaded version again to ensure that the update was successful.
+
+```bash
+$ lukso version
+```
+
+#### Restart your Node
+
+You can start your node as regular. If you run a validator, please adjust your flags or the recipient address.
+
+Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
+
+Your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running. After the synchronization is finalized, you will end up with the equal blockchain data.
+
+> You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime.
+
+<Tabs>
+<TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
+
+:::info
+
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+
+:::
+
+```sh
+# Starting the Mainnet Node
+$ lukso start --checkpoint-sync
+
+# Starting the Mainnet Validator
+$ lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
+```
+
+  </TabItem>
+  <TabItem value="regular-sync" label="Regular Synchronization">
+
+:::caution
+
+The normal synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
+
+:::
+
+:::info
+
+If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+
+:::
+
+```bash
+# Starting the Mainnet Node
+$ lukso start
+
+# Starting the Mainnet Validator
+$ lukso start --validator --transaction-fee-recipient "0x1234"
+```
+
+  </TabItem>  
+</Tabs>
+
+  </TabItem>
 </Tabs>
 
 ## Update the Blockchain Clients
@@ -395,6 +511,12 @@ If you already use the **latest LUKSO CLI version** and **network configuration*
 :::caution
 
 If you configured custom services on top of the LUKSO CLI, please use your service commands to stop your node.
+
+:::
+
+:::warning
+
+In the examples below, the name `myLUKSOnode` has to be changed to your node directory's name.
 
 :::
 

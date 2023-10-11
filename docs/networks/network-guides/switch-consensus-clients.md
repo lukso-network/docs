@@ -21,7 +21,7 @@ Most validator nodes on the LUKSO mainnet are running with Geth and Prysm. Node 
 
 :::
 
-## Switching from Prysm to Lighthouse
+## Switching from Prysm to Lighthouse or Teku
 
 :::caution Validator Keys
 
@@ -39,9 +39,9 @@ If you configured custom services on top of the LUKSO CLI, please use your servi
 
 :::
 
-:::tip
+:::warning
 
-The name of the directory `myLUKSOnode/` can be changed in the examples below.
+In the examples below, the name `myLUKSOnode` has to be changed to your node directory's name.
 
 :::
 
@@ -91,13 +91,7 @@ After the initialization is successful, we must install the new blockchain clien
 
 :::tip
 
-It is recommended to use Erigon and Lighthouse clients to address both client majorities at once.
-
-:::
-
-:::info
-
-After the installation has been successful, you can continue importing your validator keys into the new validator wallet that will be used within Lighthouse. You will be asked to set a new wallet password to safely store the imported deposit keys. Further, you must input your password for the deposit keys to be encrypted and added to the wallet.
+To balance the network, it is recommended to use Erigon as execution and Lighthouse or Teku as consensus clients.
 
 :::
 
@@ -107,7 +101,7 @@ $ lukso install
 
 #### Importing Validator Keys
 
-After the installation has been successful, you can continue importing your validator keys into the new validator wallet that will be used within Lighthouse. You will be asked to set a new wallet password to store the imported deposit keys safely. Further, you will have to input your password for the deposit keys, so that they can be encrypted and added to the wallet.
+After the installation has been successful, you can continue importing your validator keys into the new validator wallet that will be used within the new consensus client. You will be asked to set a new wallet password to store the imported deposit keys safely. Further, you will have to input your password for the deposit keys, so that they can be encrypted and added to the wallet.
 
 ```bash
 $ lukso validator import --validator-keys "./path/to/your/keys/folder"
@@ -137,6 +131,8 @@ In case you did any modifications to your configuration files, such as:
 - adjusting your peer count
 
 Please add them again and ensure these are in the correct format before starting your node.
+
+You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md/#further-reads) for more information.
 
 :::
 
