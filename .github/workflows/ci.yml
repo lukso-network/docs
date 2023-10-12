@@ -2,28 +2,16 @@ name: ci
 
 on:
   pull_request:
+    branches: [main]
   push:
     branches: [main]
 
+env:
+  CF_PROJECT_NAME: tech-docs
+  CF_BASE_URL: tech-docs-2ac
+
 jobs:
-  checks:
-    if: github.event_name != 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
-      - name: Install ⚙️
-        run: yarn install --frozen-lockfile
-
-      - name: Prettier 🎨
-        run: yarn run prettier
-
-      - name: Build 🛠
-        run: yarn build
-
   build-and-deploy:
-    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -34,11 +22,40 @@ jobs:
       - name: Install ⚙️
         run: yarn install --frozen-lockfile
 
+      - name: Prettier 🎨
+        run: yarn run prettier
+
       - name: Build 🛠
         run: yarn build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+      - name: Extract branch name
+        shell: bash
+        run: |
+          PR_NUMBER="${{ github.event.number }}"
+          if [ -n "$PR_NUMBER" ]
+          then
+            echo "branch_name=pr-${PR_NUMBER}" >> $GITHUB_OUTPUT
+            echo "url=https://pr-${PR_NUMBER}.${{ env.CF_BASE_URL }}.pages.dev" >> $GITHUB_OUTPUT
+          else
+            echo "branch_name=" >> $GITHUB_OUTPUT
+          fi
+        id: extract_branch
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@2.0.0
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build # The folder the action should deploy.
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages deploy --project-name "${CF_PROJECT_NAME}" build ${{ steps.extract_branch.outputs.branch }} | tee output.log
+          postCommands: |
+            sed < output.log -n 's#.*Take a peek over at \(.*\)$#specific_url=\1#p' >> $GITHUB_OUTPUT
+        id: deploy
+
+      - name: Create commit comment
+        uses: mshick/add-pr-comment@v2
+        if: ${{ github.event.number != '' }}
+        with:
+          message: |
+            ### Deployed with **Cloudflare Pages** :cloud: :rocket: :ok:
+            - **URL**: [${{ steps.extract_branch.outputs.url }}](${{ steps.extract_branch.outputs.url }})
+            - **Specific**: [${{ steps.deploy.outputs.specific_url }}](${{ steps.deploy.outputs.specific_url }})
