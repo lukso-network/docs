@@ -242,8 +242,6 @@ await LSP4DigitalAssetMetadata.uploadMetadata(
 
 #### Upload Custom LSP4 Metadata Example
 
-<!-- prettier-ignore-start -->
-
 ```javascript title="Uploading LSP4Metadata using custom upload options"
 await LSP4DigitalAssetMetadata.uploadMetadata(
   {
@@ -440,7 +438,6 @@ await lspFactory.LSP4DigitalAssetMetadata.uploadMetadata({
 }
 */
 ```
-<!-- prettier-ignore-end -->
 
 [ipfs-http-client library]: https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#createoptions
 [lsp4]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md

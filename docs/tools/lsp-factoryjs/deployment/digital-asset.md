@@ -480,7 +480,7 @@ const contracts = lspFactory.LSP7DigitalAsset.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP7DigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'PENDING',
   transaction: {
     ...
@@ -489,7 +489,7 @@ const contracts = lspFactory.LSP7DigitalAsset.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP7DigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'COMPLETE',
   receipt: {
     ...
@@ -580,7 +580,7 @@ const contracts = lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP8IdentifiableDigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'PENDING',
   transaction: {
     ...
@@ -589,7 +589,7 @@ const contracts = lspFactory.LSP8IdentifiableDigitalAsset.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP8IdentifiableDigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'COMPLETE',
   receipt: {
     ...
