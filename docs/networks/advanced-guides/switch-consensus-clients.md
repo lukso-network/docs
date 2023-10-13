@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Switch Consensus Clients'
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
@@ -33,13 +33,13 @@ As a validator, you need to import your validator deposit key files (`keystore-x
 
 If you are currently running the Prysm consensus client, stop the clients before making any adjustments.
 
-:::caution
+:::info Custom Setup
 
 If you configured custom services on top of the LUKSO CLI, please use your service commands to stop your node.
 
 :::
 
-:::warning
+:::caution
 
 In the examples below, the name `myLUKSOnode` has to be changed to your node directory's name.
 
@@ -48,19 +48,19 @@ In the examples below, the name `myLUKSOnode` has to be changed to your node dir
 Move into your node's working directory.
 
 ```bash
-$ cd myLUKSOnode
+cd myLUKSOnode
 ```
 
 Make sure to stop all processes of the blockchain node.
 
 ```bash
-$ lukso stop
+lukso stop
 ```
 
 Afterward, you can check if your node stopped correctly.
 
 ```bash
-$ lukso status
+lukso status
 ```
 
 #### Create a new Working Directory
@@ -68,13 +68,13 @@ $ lukso status
 Move out of your current node's working directory.
 
 ```bash
-$ cd ..
+cd ..
 ```
 
 Next, create a new working directory for your updated node. Your old folder will act as a backup for your previous configuration and keystore files.
 
 ```bash
-$ mkdir myNewLUKSOnode && cd myNewLUKSOnode
+mkdir myNewLUKSOnode && cd myNewLUKSOnode
 ```
 
 #### Initialize the new Working Directory
@@ -82,7 +82,7 @@ $ mkdir myNewLUKSOnode && cd myNewLUKSOnode
 Next, you can initialize your new working folder. The command will download the latest network configurations and genesis files to synchronize with the LUKSO blockchain.
 
 ```bash
-$ lukso init
+lukso init
 ```
 
 #### Install the Latest Clients
@@ -96,7 +96,7 @@ To balance the network, it is recommended to use Erigon as execution and Lightho
 :::
 
 ```bash
-$ lukso install
+lukso install
 ```
 
 #### Importing Validator Keys
@@ -104,7 +104,7 @@ $ lukso install
 After the installation has been successful, you can continue importing your validator keys into the new validator wallet that will be used within the new consensus client. You will be asked to set a new wallet password to store the imported deposit keys safely. Further, you will have to input your password for the deposit keys, so that they can be encrypted and added to the wallet.
 
 ```bash
-$ lukso validator import --validator-keys "./path/to/your/keys/folder"
+lukso validator import --validator-keys "./path/to/your/keys/folder"
 ```
 
 #### Checking Validator Keys
@@ -112,7 +112,7 @@ $ lukso validator import --validator-keys "./path/to/your/keys/folder"
 After importing one or multiple folders, you can check your imported keys.
 
 ```bash
-$ lukso validator list
+lukso validator list
 ```
 
 If the imported deposit keys match the ones in the original folder, you can delete them from your node machine.
@@ -165,10 +165,10 @@ You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkp
 
 ```sh
 # Starting the Mainnet Node
-$ lukso start --checkpoint-sync
+lukso start --checkpoint-sync
 
 # Starting the Mainnet Validator
-$ lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
+lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
 ```
 
   </TabItem>
@@ -188,10 +188,10 @@ If you are setting up a node for the testnet, add the `--testnet` flag to the st
 
 ```bash
 # Starting the Mainnet Node
-$ lukso start
+lukso start
 
 # Starting the Mainnet Validator
-$ lukso start --validator --transaction-fee-recipient "0x1234"
+lukso start --validator --transaction-fee-recipient "0x1234"
 ```
 
   </TabItem>  

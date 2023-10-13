@@ -55,11 +55,11 @@ module.exports = {
           },
           {
             from: '/guides/network/update-the-node',
-            to: '/networks/network-guides/update-the-node',
+            to: '/networks/advanced-guides/update-the-node',
           },
           {
             from: '/guides/network/switch-consensus-clients',
-            to: '/networks/network-guides/switch-consensus-clients',
+            to: '/networks/advanced-guides/switch-consensus-clients',
           },
           {
             from: '/contracts/key-manager',
