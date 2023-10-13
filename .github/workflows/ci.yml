@@ -11,7 +11,7 @@ env:
   CF_BASE_URL: tech-docs-2ac
 
 jobs:
-  build-and-deploy:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -19,11 +19,33 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.18.1'
+          cache: 'yarn'
+
       - name: Install ⚙️
         run: yarn install --frozen-lockfile
 
       - name: Prettier 🎨
         run: yarn run prettier
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: checks
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.18.1'
+          cache: 'yarn'
+
+      - name: Install ⚙️
+        run: yarn install --frozen-lockfile
 
       - name: Build 🛠
         run: yarn build
