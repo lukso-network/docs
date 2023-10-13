@@ -68,7 +68,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy --project-name "${CF_PROJECT_NAME}" build ${{ steps.extract_branch.outputs.branch }} | tee output.log
+          command: pages deploy --project-name "${CF_PROJECT_NAME}" build ${{ steps.extract_branch.outputs.branch_name }} | tee output.log
           postCommands: |
             sed < output.log -n 's#.*Take a peek over at \(.*\)$#specific_url=\1#p' >> $GITHUB_OUTPUT
         id: deploy
