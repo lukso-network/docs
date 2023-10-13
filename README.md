@@ -64,3 +64,7 @@ npm run docs:contracts:sync
 ```
 
 2. Commit and push generated changes
+
+# Note
+
+Added some whitelisting of github actions.
