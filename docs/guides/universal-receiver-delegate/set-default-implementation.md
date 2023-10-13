@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](../universal-profile/create-profile.md)** or the **[Browser Extension](../browser-extension/create-a-universal-profile.md)** can skip this guide, as this contract is already deployed and set for their profiles.
+Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](../universal-profile/create-profile.md)** or the **[Browser Extension](../browser-extension/install-browser-extension.md)** can skip this guide, as this contract is already deployed and set for their profiles.
 
 :::
 
