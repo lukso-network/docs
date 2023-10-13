@@ -62,9 +62,10 @@ Afterward, you can check if your node stopped correctly.
 lukso status
 ```
 
-:::info Force Quit
+<details>
+    <summary>Show how to force client shutdowns.</summary>
 
-If you have problems stopping the processes, please use the `pkill` command to force their shutdowns.
+If you have problems stopping the node processes, you can force their shutdowns using the `pkill` command.
 
 ```bash
 # Stop the Geth client
@@ -86,7 +87,7 @@ sudo pkill lighthouse
 sudo pkill teku
 ```
 
-:::
+</details>
 
 <Tabs>
   <TabItem value="update-v6" label="Update from Version 0.6 or below">
