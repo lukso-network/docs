@@ -1,3 +1,8 @@
+---
+sidebar_label: 'Update Validator Withdrawals'
+sidebar_position: 4
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
