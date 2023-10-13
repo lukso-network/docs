@@ -14,6 +14,7 @@ lspFactory.LSP8IdentifiableDigitalAsset.deploy(digitalAssetProperties [, options
 Deploys a mintable [LSP8 Identifiable Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
 
 :::info
+
 By default LSPFactory deploys the [`Mintable`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol) implementation of LSP8 digital assets. To call the `mint` function import the `LSP8Mintable` abi from the [lsp-smart-contracts library](https://github.com/lukso-network/lsp-smart-contracts).
 
 :::
@@ -43,7 +44,9 @@ Object which specifies how the LSP8 Digital Asset will be deployed
 | [`ipfsGateway`](../deployment/digital-asset#ipfs-upload-options) (optional)    | String \| Object | An IPFS gateway URL or an object containing IPFS configuration options.                                                                                                               |
 
 :::info
+
 You can read more about the `options` object specification on [its official page](../deployment/digital-asset.md#deployment-configuration)
+
 :::
 
 ### Returns
@@ -158,7 +161,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy(
 {
   type: 'TRANSACTION',
   contractName: 'LSP8IdentifiableDigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'PENDING',
   transaction: {
     ...
@@ -167,7 +170,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy(
 {
   type: 'TRANSACTION',
   contractName: 'LSP8IdentifiableDigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'COMPLETE',
   receipt: {
     ...
