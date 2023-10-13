@@ -58,8 +58,10 @@ jobs:
           then
             echo "branch_name=pr-${PR_NUMBER}" >> $GITHUB_OUTPUT
             echo "url=https://pr-${PR_NUMBER}.${{ env.CF_BASE_URL }}.pages.dev" >> $GITHUB_OUTPUT
+            echo "branch=--branch pr-${PR_NUMBER}" >> $GITHUB_OUTPUT
           else
             echo "branch_name=" >> $GITHUB_OUTPUT
+            echo "branch=" >> $GITHUB_OUTPUT
           fi
         id: extract_branch
 
@@ -68,7 +70,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy --project-name "${CF_PROJECT_NAME}" build ${{ steps.extract_branch.outputs.branch_name }} | tee output.log
+          command: pages deploy --project-name "${CF_PROJECT_NAME}" build ${{ steps.extract_branch.outputs.branch }} | tee output.log
           postCommands: |
             sed < output.log -n 's#.*Take a peek over at \(.*\)$#specific_url=\1#p' >> $GITHUB_OUTPUT
         id: deploy
