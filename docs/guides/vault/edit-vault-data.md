@@ -572,4 +572,4 @@ await updateVaultURD(vaultURDAddress);
 
 The **LSP9Vault** contract is an **ERC725** contract, so it shares the same way to read data as Universal Profiles and other ERC725 contracts by using **[erc725.js](../../tools/erc725js/getting-started.md)**.
 
-You can refer to this **[previous guide](../universal-profile/read-profile-data.md)** to learn how to **fetch data** (received assets, issued assets, etc ..). Please note, that you will need to replace the address of the **Universal Profile** with the **Vault's** address.
+You can refer to this **[ guide](../../learn/dapp-developer/readData)** to learn how to **fetch data** (received assets, issued assets, etc ..). Please note, that you will need to replace the address of the **Universal Profile** with the **Vault's** address.
