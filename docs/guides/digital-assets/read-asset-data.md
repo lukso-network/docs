@@ -45,7 +45,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 <Tabs>
   <TabItem value="Current Standard" label="Current Standard">
 
-In this [guide](../../learn/dapp-developer/readData), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch all the assets owned by the Universal Profile by calling `fetchData` and passing the `LSP5ReceivedAssets[]` key.
+In the [Read Profile Data](../../learn/dapp-developer/readData), we learned how to get the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch all the assets owned by the Universal Profile by calling `fetchData` and passing the `LSP5ReceivedAssets[]` key.
 
 :::info
 This same method can also be used to fetch all assets a Universal Profile has ever issued by using the `LSP12IssuedAssets[]` key.
