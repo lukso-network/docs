@@ -7,6 +7,10 @@ sidebar_position: 1
 
 In this guide, we will learn how to read data from a [Universal Profile](../../standards/universal-profile/introduction.md).
 
+:::tip
+If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground/blob/main/fetch-profile/02-fetch-profile-metadata.js) repository.
+:::
+
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('/img/learn/up_view.png').default}
@@ -19,14 +23,13 @@ In this guide, we will learn how to read data from a [Universal Profile](../../s
 We will use:
 
 - [erc725.js](../../tools/erc725js/getting-started/) library to check the interface of a profile.
-- [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch) to enable you to use `fetch()` in Node.js code.
 
 ## Setup
 
 Open a terminal in the project's folder of your choice and install all required libraries.
 
 ```shell
-npm install web3 @erc725/erc725.js isomorphic-fetch
+npm install web3 @erc725/erc725.js
 ```
 
 ## Step 1 - Call the Universal Profile
@@ -49,8 +52,6 @@ To inspect the address and check if it has an ERC725 contract, we can call its i
 - `provider`: a [provider](../../tools/erc725js/providers) object. Usually used with the RPC endpoint URL
 - `config`: used to configure the IPFS gateway
 
-Besides the schema, we also use `isomorphic-fetch` to fetch the HTTP response from the profile while using `node` for execution. You may not need this library if you use browser environments like `ReactJS` or `VueJS`.
-
 </div>
 </details>
 
@@ -67,11 +68,13 @@ We will use the convenient `fetchData()` function since we only need one command
 
 ```javascript title="read_profile.js"
 import { ERC725 } from '@erc725/erc725.js'; // Library to check the interface of a profile
-import 'isomorphic-fetch'; // Enables you to use 'fetch()' in Node.js code
 import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json' assert { type: 'json' };
 
 // Parameters for ERC725 Instance
-const config = { ipfsGateway: 'https://2eff.lukso.dev/ipfs/' };
+const config = {
+  ipfsGateway: 'https://ipfs-proxy.lukso-account.workers.dev/ipfs/',
+};
+const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 
 /*
  * Try fetching the @param's Universal Profile
@@ -79,20 +82,16 @@ const config = { ipfsGateway: 'https://2eff.lukso.dev/ipfs/' };
  * @param address of Universal Profile
  * @return string JSON or custom error
  */
-async function fetchProfile(address) {
-  try {
-    const profile = new ERC725(erc725schema, address, provider, config);
-    return await profile.fetchData();
-  } catch (error) {
-    console.log(error);
-    return console.log('This is not an ERC725 Contract');
-  }
-}
+const profileData = await new ERC725(
+  erc725schema,
+  address,
+  provider,
+  config,
+).fetchData();
 
 // Debug
-fetchProfile(0x6979474ecb890a8efe37dab2b9b66b32127237f7).then((profileData) =>
-  console.log(JSON.stringify(profileData, undefined, 2)),
-);
+
+console.log(JSON.stringify(profileData, undefined, 2));
 ```
 
 If everything went fine, we now have the profile's [LSP3 - Universal Profile Metadata](../../standards/universal-profile/lsp3-profile-metadata) JSON. It should look like this JSON file:
@@ -194,17 +193,14 @@ In our case, to only read the profile's information, we can use `fetchData('LSP3
  * @param address of Universal Profile
  * @return string JSON or custom error
  */
-async function fetchProfileData(address) {
-  try {
-    const profile = new ERC725(erc725schema, address, provider, config);
-    return await profile.fetchData('LSP3Profile');
-  } catch (error) {
-    return console.log('This is not an ERC725 Contract');
-  }
-}
+
+const profileData = await new ERC725(
+  erc725schema,
+  address,
+  provider,
+  config,
+).fetchData('LSP3Profile');
 
 // Debug
-fetchProfileData(SAMPLE_PROFILE_ADDRESS).then((profileData) =>
-  console.log(JSON.stringify(profileData, undefined, 2)),
-);
+console.log(JSON.stringify(profileData, undefined, 2));
 ```
