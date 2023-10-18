@@ -141,7 +141,7 @@ const provider = new Web3.providers.HttpProvider(
 
 const erc725 = new ERC725(schema, myUPAddress, provider);
 const config = {
-  ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
+  ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
 };
 
 const data = await erc725.fetchData();
