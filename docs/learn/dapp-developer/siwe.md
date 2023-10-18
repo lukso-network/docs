@@ -1,27 +1,27 @@
 ---
-sidebar_label: 'Sign-In with Ethereum'
+sidebar_label: '🦄 Log-in a Universal Profile'
 sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Sign-In with Ethereum
-
-The [LUKSO UP Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) is compatible with [EIP-4361: Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361).
-Therefore, if the message you want to sign complies with this standard, the LUKSO UP Browser Extension will show a custom login screen.
+# Log-in a Universal Profile (SIWE)
 
 <div style={{textAlign: 'center'}}>
 
 <img
     src="/img/learn/siwe.png"
     alt="Example of Sign-In with Ethereum screen"
-    width="400"
+    width="300"
 />
 
 </div>
 
-## 1. Get the Universal Profile address
+The [Universal Profile Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) is compatible with [EIP-4361: Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361).
+Therefore, if the message you want to sign complies with this standard, the LUKSO UP Browser Extension will show a custom login screen.
+
+## Get the Universal Profile address
 
 ```js
 import Web3 from 'web3';
@@ -33,7 +33,7 @@ await web3.eth.requestAccounts();
 const accounts = await web3.eth.getAccounts();
 ```
 
-## 2. Sign the message
+## Sign the message
 
 Once you have access to the Universal Profile address, you can request a signature. The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign).
 :::tip
@@ -52,11 +52,11 @@ const myUniversalProfileContract = new web3.eth.Contract(
 const hashedMessage = web3.eth.accounts.hashMessage(
   new SiweMessage({
     domain: window.location.host, // domain requesting the signing
-    address: upAddress, // address performing the signing
+    address: upAddress,           // address performing the signing
     statement: 'By logging in you agree to the terms and conditions.', // a human-readable assertion user signs
-    uri: window.location.origin, // URI from the resource that is the subject of the signing
-    version: '1', // current version of the SIWE Message
-    chainId: '4201', // Chain ID to which the session is bound, 4201 is LUKSO Testnet
+    uri: window.location.origin,  // URI from the resource that is the subject of the signing
+    version: '1',                 // current version of the SIWE Message
+    chainId: '4201',              // Chain ID to which the session is bound, 4201 is LUKSO Testnet
     resources: ['https://terms.website.com'], // information the user wishes to have resolved as part of authentication by the relying party
   }).prepareMessage(),
 );
@@ -66,8 +66,35 @@ const hashedMessage = web3.eth.accounts.hashMessage(
 const signature = await web3.eth.sign(siweMessage, accounts[0]);
 // 0x38c53...
 ```
+<details>
+    <summary>Raw SIWE message format</summary>
 
-## 3. Verify the signature on the user's Universal Profile
+```js
+const domain = window.location.host;       // explain
+const uri = window.location.origin;        // explain
+const LUKSO_TESTNET_CHAIN_ID = '4201';
+const nonce = 'm97bdsjo';                  // a randomized token, at least 8 alphanumeric characters
+const issuedAt = new Date().toISOString(); // explain
+
+const siweMessage = 
+`${domain} wants you to sign in with your Ethereum account:
+
+${usersUPaddress}
+
+By logging in you agree to the terms and conditions.
+
+URI: ${uri}
+Version: 1
+Chain ID: ${LUKSO_TESTNET_CHAIN_ID}
+Nonce: ${nonce}
+Issued At: ${issuedAt}
+Resources:
+- https://terms.website.com`;
+```
+
+</details>
+
+## Verify the signature on the user's Universal Profile
 
 Your Dapp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the `SIGN` permission for this UP.
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Read Profile Data'
+sidebar_label: '📒 Read Profile Data'
 sidebar_position: 3
 ---
 
@@ -10,6 +10,7 @@ sidebar_position: 3
   <img
     src={require('/img/learn/up_view.png').default}
     alt="Universal Profile example on universalprofile.cloud"
+    width="800"
   />
 <br/>
 <i>A <a href="https://wallet.universalprofile.cloud/0x6979474Ecb890a8EFE37daB2b9b66b32127237f7">Universal Profile</a> as seen on UniversalProfile.cloud</i>
