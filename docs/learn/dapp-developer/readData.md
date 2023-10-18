@@ -72,7 +72,7 @@ import erc725schema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata
 
 // Parameters for ERC725 Instance
 const config = {
-  ipfsGateway: 'https://ipfs-proxy.lukso-account.workers.dev/ipfs/',
+  ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
 };
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
 
