@@ -36,6 +36,9 @@ const accounts = await web3.eth.getAccounts();
 ## 2. Sign the message
 
 Once you have access to the Universal Profile address, you can request a signature. The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign).
+:::tip
+If you need further explanation on the `SiWeMessage` properties, please have a look at the [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) specification.
+:::
 
 ```js
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
