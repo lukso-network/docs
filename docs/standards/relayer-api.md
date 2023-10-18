@@ -103,7 +103,7 @@ const signer = ethers.utils.verifyMessage(arrayify(message), signature); // Sign
 </TabItem>
 </Tabs>
 
-To verify if the signature was signed by an authorized EOA, please refer to the [Sign-In With Ethereum](../guides/browser-extension/sign-in-with-ethereum#4-verify-the-signature) guide.
+To verify if the signature was signed by an authorized EOA, please refer to the [Sign-In With Ethereum](../learn/dapp-developer/siwe.md) guide.
 
 </details>
 
