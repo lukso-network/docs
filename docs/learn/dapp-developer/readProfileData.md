@@ -29,7 +29,7 @@ We are using 👉 [erc725.js](../../tools/erc725js/getting-started/) to make rea
 
 ## Setup
 
-To easily interact with a profile you should use [erc725.js](https://npmjs.com/package/@erc725/erc725.js). You can install it using:
+To easily interact with a profile you should use [erc725.js](https://npmjs.com/package/@erc725/erc725.js). You can install it in your project using:
 
 ```shell
 npm install @erc725/erc725.js
