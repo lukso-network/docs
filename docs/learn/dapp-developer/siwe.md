@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 <div style={{textAlign: 'center'}}>
 
 <img
-    src="/img/learn/up_extension_login"
+    src="/img/learn/up_extension_login.png"
     alt="Example of Sign-In with Ethereum screen"
     width="300"
 />

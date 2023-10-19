@@ -16,7 +16,7 @@ Optionally you [can deploy a profile smart contract for your users](../../guides
 <div style={{textAlign: 'center'}}>
 
 <img
-    src="/img/learn/up_extension_connect"
+    src="/img/learn/up_extension_connect.png"
     alt="Example of Sign-In with Ethereum screen"
     width="300"
 />
