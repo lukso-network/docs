@@ -34,7 +34,7 @@ You can check all `SupportedStandards:{StandardName}` data keys within the **[er
 :::
 
 :::info
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/verify-lsp-storage) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=verify-lsp-storage%2Fprofile-check.js).
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=metadata-detection%2Fdigital-asset-check.js).
 :::
 
 ```
@@ -131,8 +131,13 @@ A **[Universal Profile](./universal-profile/lsp3-profile-metadata.md)** is a con
 
 :::
 
+:::info
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/interface-detection/erc165-interface-check.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=interface-detection%2Ferc165-interface-check.js).
+:::
+
 ```javascript
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
 import Web3 from 'web3';
 
 // Connect to the LUKSO L14 network
@@ -144,10 +149,38 @@ const myUPContract = new web3.eth.Contract(
   '<myContractAddress>',
 );
 
-const lsp0InterfaceId = '0x3e89ad98';
-await myUPContract.methods.supportsInterface(lsp0InterfaceId).call();
-// true or false
+const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
+console.log(
+  // true or false
+  await myUPContract.methods.supportsInterface(LSP0_INTERFACE_ID).call(),
+);
 ```
+
+<details>
+    <summary>
+    
+Instead of using the interface ID from `LSP0ERC725Account`, you can use any of the supported IDs within the `lsp-smart-contracts` library to check all standardizations used by the LSP ecosystem:
+
+</summary>
+
+```js
+ERC165                        ERC20
+ERC223                        ERC721
+ERC721Metadata                ERC725X
+ERC725Y                       ERC777
+ERC1155
+
+LSP0ERC725Account             LSP1UniversalReceiver
+LSP6KeyManager                LSP7DigitalAsset
+LSP8IdentifiableDigitalAsset  LSP9Vault
+LSP11BasicSocialRecovery      LSP14Ownable2Step
+LSP17Extendable               LSP17Extension
+LSP20CallVerification         LSP20CallVerifier
+LSP25ExecuteRelayCall
+
+```
+
+</details>
 
 :::info Further Information
 
