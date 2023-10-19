@@ -101,7 +101,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
-Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/dapp-developer/readProfileData).
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/dapp-developer/read-profile-data).
 
 :::
 

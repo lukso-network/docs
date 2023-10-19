@@ -1,9 +1,9 @@
 ---
-sidebar_label: '👮 LSP Detection'
+sidebar_label: '👮 Standard Detection'
 sidebar_position: 6
 ---
 
-# LSP Detection
+# Standard Detection
 
 If you want to ensure that LSP standards are implemented and working correctly before letting your application interact with smart contracts, you can check their supported ERC725 storage keys and interfaces.
 
@@ -25,7 +25,7 @@ We can verify if a contract contains a specific set of ERC725Y keys (= **metadat
 
 :::
 
-Similar to the [Read Profile Data Guide](./readProfileData.md), you can use the `getData()` function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata), or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use the `getData()` function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata), or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
 
 :::tip
 
