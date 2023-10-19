@@ -5,7 +5,6 @@ sidebar_position: 1
 
 # Connect to a Universal Profile
 
-
 To allow your users to connect to your dApp and to have the benefits of Universal Profiles, they need to ✨ [create a profile](https://my.universalprofile.cloud) smart contract and install the 🖥️ [Universal Profile Browser Extension](#)
 
 The easiest for your users to create a Universal Profile, is through 👉 [my.universalprofile.cloud](https://my.universalprofile.cloud).
@@ -17,7 +16,7 @@ Optionally you [can deploy a profile smart contract for your users](../../guides
 <div style={{textAlign: 'center'}}>
 
 <img
-    src="/img/learn/siwe.png"
+    src="/img/learn/up_extension_connect"
     alt="Example of Sign-In with Ethereum screen"
     width="300"
 />

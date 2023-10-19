@@ -1,6 +1,6 @@
 ---
-sidebar_label: '⬢ Transfer LYX'
-sidebar_position: 4
+sidebar_label: '💰 Transfer LYX'
+sidebar_position: 6
 ---
 
 # Transfer LYX

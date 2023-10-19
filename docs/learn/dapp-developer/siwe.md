@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 <div style={{textAlign: 'center'}}>
 
 <img
-    src="/img/learn/siwe.png"
+    src="/img/learn/up_extension_login"
     alt="Example of Sign-In with Ethereum screen"
     width="300"
 />
@@ -52,11 +52,11 @@ const myUniversalProfileContract = new web3.eth.Contract(
 const hashedMessage = web3.eth.accounts.hashMessage(
   new SiweMessage({
     domain: window.location.host, // domain requesting the signing
-    address: upAddress,           // address performing the signing
+    address: upAddress, // address performing the signing
     statement: 'By logging in you agree to the terms and conditions.', // a human-readable assertion user signs
-    uri: window.location.origin,  // URI from the resource that is the subject of the signing
-    version: '1',                 // current version of the SIWE Message
-    chainId: '4201',              // Chain ID to which the session is bound, 4201 is LUKSO Testnet
+    uri: window.location.origin, // URI from the resource that is the subject of the signing
+    version: '1', // current version of the SIWE Message
+    chainId: '4201', // Chain ID to which the session is bound, 4201 is LUKSO Testnet
     resources: ['https://terms.website.com'], // information the user wishes to have resolved as part of authentication by the relying party
   }).prepareMessage(),
 );
@@ -66,18 +66,18 @@ const hashedMessage = web3.eth.accounts.hashMessage(
 const signature = await web3.eth.sign(siweMessage, accounts[0]);
 // 0x38c53...
 ```
+
 <details>
     <summary>Raw SIWE message format</summary>
 
 ```js
-const domain = window.location.host;       // explain
-const uri = window.location.origin;        // explain
+const domain = window.location.host; // explain
+const uri = window.location.origin; // explain
 const LUKSO_TESTNET_CHAIN_ID = '4201';
-const nonce = 'm97bdsjo';                  // a randomized token, at least 8 alphanumeric characters
+const nonce = 'm97bdsjo'; // a randomized token, at least 8 alphanumeric characters
 const issuedAt = new Date().toISOString(); // explain
 
-const siweMessage = 
-`${domain} wants you to sign in with your Ethereum account:
+const siweMessage = `${domain} wants you to sign in with your Ethereum account:
 
 ${usersUPaddress}
 
