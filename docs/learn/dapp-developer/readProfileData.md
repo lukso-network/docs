@@ -129,7 +129,7 @@ console.log(profileData);
 Note: You can also create and load your own custom ERC725Y JSON schemas.
 :::
 
-## Download the LSP3Profile metadata JSON
+## Fetch the Profile Metadata
 
 If you only need the actual profile data JSON file you can use `.fetchData('LSP3Profile')`. This will download the JSON file and verify its file hash automatically.
 
@@ -140,8 +140,6 @@ The `.getData(...)` function only retrieves the data keys values from the smart 
 :::info
 ⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/fetch-json-data.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Ffetch-json-data.js).
 :::
-
-The following code will fetch the JSON contents of the Profile metadata. Instead of using the `LSP3Profile` key, you can also pass down all other keys like `LSP12IssuedAssets[]`, `LSP5ReceivedAssets[]`, or `LSP1UniversalReceiverDelegate`.
 
 ```javascript title="fetch-json-data.js"
 // ...
@@ -154,7 +152,7 @@ console.log(profileMetaData);
 <details>
     <summary>Show result</summary>
 
-```json
+```js
 {
   "key": "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5",
   "name": "LSP3Profile",
@@ -198,3 +196,70 @@ console.log(profileMetaData);
 ```
 
 </details>
+
+## Fetch Assets and Universal Receiver
+
+:::tip Fetch other data
+
+Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can pass down all other storage keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate).
+
+:::
+
+```javascript title="fetch-json-data.js"
+// ...
+
+// Fetch all of the profile's issued assets
+let issuedAssets = await erc725js.fetchData('LSP12IssuedAssets[]');
+console.log(issuedAssets);
+
+// Fetch all owned assets of the profile
+let receivedAssets = await erc725js.fetchData('LSP5ReceivedAssets[]');
+console.log(receivedAssets);
+
+// Fetch the profile's universal receiver
+let universalReceiver = await erc725js.fetchData(
+  'LSP1UniversalReceiverDelegate',
+);
+console.log(universalReceiver);
+```
+
+<details>
+    <summary>Show result</summary>
+
+```js
+// Issued Assets (empty, no current assets)
+{
+  key: '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
+  name: 'LSP12IssuedAssets[]',
+  value: []
+}
+
+// Owned Assets (six individual assets)
+{
+  key: '0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b',
+  name: 'LSP5ReceivedAssets[]',
+  value: [
+    '0x5a44c7c0E47d1BeCEF166874Cd0b1be8f4090f64',
+    '0x303aE9B19ee9B6FDa8c710b7F74b0582bbCC7b81',
+    '0x2Bc3bfFf67094B4416623bDe626fd5f904b590d1',
+    '0x48e37a167A3eE426389dc6E1Dc2d440E86C3737F',
+    '0xDB9183ddA773285d5A4C5b1067A78c9F64Fb26E6',
+    '0x778b47Bd998A5D0cc645Ff0c548096ea50628C83'
+  ]
+}
+
+// Universal Receiver Delegate Address
+{
+  key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
+  name: 'LSP1UniversalReceiverDelegate',
+  value: '0x0000000000F49F9818D746b4b999A9E449F675bb'
+}
+```
+
+</details>
+
+:::info
+
+The actual data of the requests can be seen within the `value` (string) or `values` (array) property of the related JSON.
+
+:::
