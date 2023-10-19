@@ -28,8 +28,8 @@ function Index() {
         <CallToActionButton
           bgColor="#FFCCCC"
           color="#383838"
-          link="./networks/mainnet/running-a-node"
-          text="PARTICIPATE IN NETWORKS"
+          link="https://app.buidlbox.io/lukso/build-up-2"
+          text="JOIN THE HACKATHON (30 Oct - 27 Nov)"
         />
         <br />
         <div className={styles.cardContainer}>
