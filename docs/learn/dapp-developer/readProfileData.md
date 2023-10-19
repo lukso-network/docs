@@ -139,6 +139,8 @@ If you only need the actual profile data JSON file you can use `.fetchData('LSP3
 
 :::note get and fetch
 The `.getData(...)` function only retrieves the data keys values from the smart contract. In comparison, `.fetchData(...)` will download `JSONURL` and `AssetURL` content.
+
+If you want to fetch linked or attached data from a ERC725Y storage key, make sure to use `fetchData`. Otherwise, you can retrieve plain contract data using `getData`.
 :::
 
 :::info
