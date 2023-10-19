@@ -116,3 +116,41 @@ console.log(isLSP4);
 You can also check custom data on smart contract storage by loading your own JSON schemas.
 
 :::
+
+## Interface Identification
+
+> How to detect if a contract implements a specific interface.
+
+Every LSP standard has their own interface ID using [ERC165](https://eips.ethereum.org/EIPS/eip-165). To verify their specific set of functions (= an **interface**) we can call the standardized `supportsInterface(interfaceId)` function, passing the bytes4 `interfaceId` as a parameter.
+
+Calling this function will return **TRUE** if the contract implements this specific interfaceId.
+
+:::note Example
+
+A **[Universal Profile](./universal-profile/lsp3-profile-metadata.md)** is a contract based on [ERC725Account](./universal-profile/lsp0-erc725account.md)(LSP0). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+
+:::
+
+```javascript
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import Web3 from 'web3';
+
+// Connect to the LUKSO L14 network
+const web3 = new Web3('https://rpc.testnet.lukso.network');
+
+// Create an instance of the Universal Profile
+const myUPContract = new web3.eth.Contract(
+  UniversalProfile.abi,
+  '<myContractAddress>',
+);
+
+const lsp0InterfaceId = '0x3e89ad98';
+await myUPContract.methods.supportsInterface(lsp0InterfaceId).call();
+// true or false
+```
+
+:::info Further Information
+
+See [ERC165 - Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165) for more details.
+
+:::
