@@ -5,7 +5,6 @@ sidebar_position: 3
 
 # Read Universal Profile Data
 
-
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('/img/learn/up_view.png').default}
@@ -20,7 +19,7 @@ sidebar_position: 3
 This guide shows you how to read data from a [Universal Profile](../../standards/universal-profile/introduction.md) smart contract.
 
 :::info
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/read-profiledata/read-profiledata.js) repository.
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/get-data-keys.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
 :::
 
 :::tip
@@ -38,7 +37,7 @@ npm install @erc725/erc725.js
 ## Get all profile data keys
 
 :::tip
-🔍 You can inspect a profile smart contract (or any ERC725 contract) using 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspect) to see all its data keys.
+🔍 You can inspect a profile smart contract (or any ERC725 contract) using 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector) to see all its data keys.
 :::
 
 <details>
@@ -50,21 +49,20 @@ npm install @erc725/erc725.js
 
 <div>
 
-  - `SupportedStandards:LSP3UniversalProfile` allows you to verify that this ERC725Y contract contains LSP3UniversalProfile data keys.
-  - `LSP3Profile` contains the JSON file with profile descriptions and images.
-  - `LSP12IssuedAssets[]` contains assets the profile issued.
-  - `LSP5ReceivedAssets[]` contains assets the profile received.
-  - `LSP1UniversalReceiverDelegate` contains the address of the [Universal Receiver Delegate smart contract](../../standards/generic-standards/lsp1-universal-receiver/).
+- `SupportedStandards:LSP3Profile` allows you to verify that this ERC725Y contract contains LSP3UniversalProfile data keys.
+- `LSP3Profile` contains the JSON file with profile descriptions and images.
+- `LSP12IssuedAssets[]` contains assets the profile issued.
+- `LSP5ReceivedAssets[]` contains assets the profile received.
+- `LSP1UniversalReceiverDelegate` contains the address of the [Universal Receiver Delegate smart contract](../../standards/generic-standards/lsp1-universal-receiver/).
 
 </div>
 </details>
-
 
 To read the profile data you simply instantiate `erc725.js` with your profile address, an RPC provider (`web3.js`, `ethereum`, etc) or RPC URL and an IPFS gateway.
 
 And you can call `.getData()` to get all data that is stored on the profile smart contract and in your provided schema JSON.
 
-```javascript title="read_profiledata.js"
+```javascript title="get-data-keys.js"
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert {type: 'json'};
 
@@ -87,7 +85,7 @@ console.log(profileData);
   {
     key: '0xeafec4d89fa9619884b600005ef83ad9559033e6e941db7d7c495acdce616347',
     name: 'SupportedStandards:LSP3Profile',
-    value: '0x5ef83ad9'
+    value: '0x5ef83ad9',
   },
   {
     key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
@@ -95,13 +93,13 @@ console.log(profileData);
     value: {
       hashFunction: 'keccak256(utf8)',
       hash: '0x9b54d921f8365353667cabc331aa0c1dd42f173a6b7d871f7d94ac2cf226eafa',
-      url: 'ipfs://QmaXQSZFoUPM43kND6EUPSnJF7NjpkW9LwW6J9vRki5QDh'
-    }
+      url: 'ipfs://QmaXQSZFoUPM43kND6EUPSnJF7NjpkW9LwW6J9vRki5QDh',
+    },
   },
   {
     key: '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
     name: 'LSP12IssuedAssets[]',
-    value: []
+    value: [],
   },
   {
     key: '0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b',
@@ -112,15 +110,15 @@ console.log(profileData);
       '0x2Bc3bfFf67094B4416623bDe626fd5f904b590d1',
       '0x48e37a167A3eE426389dc6E1Dc2d440E86C3737F',
       '0xDB9183ddA773285d5A4C5b1067A78c9F64Fb26E6',
-      '0x778b47Bd998A5D0cc645Ff0c548096ea50628C83'
-    ]
+      '0x778b47Bd998A5D0cc645Ff0c548096ea50628C83',
+    ],
   },
   {
     key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
     name: 'LSP1UniversalReceiverDelegate',
-    value: '0x0000000000F49F9818D746b4b999A9E449F675bb'
-  }
-]
+    value: '0x0000000000F49F9818D746b4b999A9E449F675bb',
+  },
+];
 ```
 
 </details>
@@ -131,17 +129,21 @@ console.log(profileData);
 Note: You can also create and load your own custom ERC725Y JSON schemas.
 :::
 
-
 ## Download the LSP3Profile metadata JSON
 
 If you only need the actual profile data JSON file you can use `.fetchData('LSP3Profile')`. This will download the JSON file and verify its file hash automatically.
 
-:::note Difference between `getData` and `fetchData`
-`.getData(...)` only retrieves the data keys values from the smart contract, while `.fetchData(...)` will download `JSONURL` and `AssetURL` content.
+:::note get and fetch
+The `.getData(...)` function only retrieves the data keys values from the smart contract. In comparison, `.fetchData(...)` will download `JSONURL` and `AssetURL` content.
 :::
 
+:::info
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/fetch-json-data.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Ffetch-json-data.js).
+:::
 
-```javascript title="read_profiledata.js"
+The following code will fetch the JSON contents of the Profile metadata. Instead of using the `LSP3Profile` key, you can also pass down all other keys like `LSP12IssuedAssets[]`, `LSP5ReceivedAssets[]`, or `LSP1UniversalReceiverDelegate`.
+
+```javascript title="fetch-json-data.js"
 // ...
 
 // Download and verify the profile metadata JSON file
