@@ -64,13 +64,17 @@ And you can call `.getData()` to get all data that is stored on the profile smar
 
 ```javascript title="get-data-keys.js"
 import { ERC725 } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert {type: 'json'};
-
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
 
 // Initatiate erc725.js
-const erc725js = new ERC725(lsp3ProfileSchema, <myProfileAddress>, 'https://rpc.testnet.lukso.gateway.fm', {
-  ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
-});
+const erc725js = new ERC725(
+  lsp3ProfileSchema,
+  '<myProfileAddress>',
+  'https://rpc.testnet.lukso.gateway.fm',
+  {
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
+  },
+);
 
 // Get all profile data from the profile smart contract
 let profileData = await erc725js.getData();
@@ -199,10 +203,10 @@ console.log(profileMetaData);
 
 ## Fetch Assets and Universal Receiver
 
-:::tip Fetch other data
-
 Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can pass down all other storage keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate).
 
+:::info
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/fetch-json-data.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Ffetch-json-data.js).
 :::
 
 ```javascript title="fetch-json-data.js"
