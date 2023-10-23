@@ -26,7 +26,7 @@
     "clsx": "^2.0.0",
     "docusaurus-plugin-sass": "^0.2.5",
     "file-loader": "^6.2.0",
-    "plugin-image-zoom": "flexanalytics/plugin-image-zoom",
+    "plugin-image-zoom": "^1.2.0",
     "prettier": "^3.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
