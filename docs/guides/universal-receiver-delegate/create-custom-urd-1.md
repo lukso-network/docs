@@ -89,7 +89,7 @@ pragma solidity ^0.8.11;
 
 // interfaces
 import { IERC725X } from "@erc725/smart-contracts/contracts/interfaces/IERC725X.sol";
-import { ILSP1UniversalReceiver } from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiver.sol";
+import { ILSP1UniversalReceiverDelegate } from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiverDelegate.sol";
 import { ILSP7DigitalAsset } from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol";
 
 // modules
@@ -107,7 +107,7 @@ import "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1Errors.so
 
 contract LSP1URDForwarderMethod1 is
     ERC165,
-    ILSP1UniversalReceiver
+    ILSP1UniversalReceiverDelegate
 {
 
     // CHECK onlyOwner
@@ -162,14 +162,11 @@ contract LSP1URDForwarderMethod1 is
     }
 
     function universalReceiver(
+        address notifier,
+        uint256 value,
         bytes32 typeId,
         bytes memory data
-    ) public payable virtual returns (bytes memory) {
-        // CHECK that we did not send any native tokens to the LSP1 Delegate, as it cannot transfer them back.
-        if (msg.value != 0) {
-            revert NativeTokensNotAccepted();
-        }
-
+    ) public virtual returns (bytes memory) {
         // CHECK that the caller is an ERC725Account (e.g: a UniversalProfile)
         // by checking it supports the LSP0 interface
         // by checking its interface support
@@ -181,9 +178,6 @@ contract LSP1URDForwarderMethod1 is
         ) {
             return "Caller is not a LSP0";
         }
-
-        // GET the address of the notifier from the calldata (e.g., the LSP7 Token)
-        address notifier = address(bytes20(msg.data[msg.data.length - 52:]));
 
         // CHECK that notifier is a contract with a `balanceOf` method
         // and that msg.sender (the UP) has a positive balance
@@ -238,7 +232,7 @@ contract LSP1URDForwarderMethod1 is
         bytes4 interfaceId
     ) public view virtual override returns (bool) {
         return
-            interfaceId == _INTERFACEID_LSP1 ||
+            interfaceId == _INTERFACEID_LSP1_DELEGATE ||
             super.supportsInterface(interfaceId);
     }
 }
@@ -296,7 +290,7 @@ cp contracts/LSP1URDForwarderMethod1 contracts/LSP1URDForwarderMethod2.sol
 // ...
 contract LSP1URDForwarderMethod2 is
     ERC165,
-    ILSP1UniversalReceiver
+    ILSP1UniversalReceiverDelegate
 {
 // ...
 ```
