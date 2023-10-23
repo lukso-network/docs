@@ -587,7 +587,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'PENDING',
   transaction: {
     ...
@@ -596,7 +596,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'COMPLETE',
   receipt: {
     ...
@@ -641,7 +641,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32,bytes)',
+  functionName: 'setDataBatch(bytes32,bytes)',
   status: 'PENDING',
   transaction: {
     ...
@@ -650,7 +650,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32,bytes)',
+  functionName: 'setDataBatch(bytes32,bytes)',
   status: 'COMPLETE',
   receipt: {
     ...

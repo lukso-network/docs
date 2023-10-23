@@ -60,6 +60,7 @@ module.exports = {
     // divider for the Libraries Technical references
     { type: 'html', value: '<hr/>', defaultStyle: false },
     'contracts/interface-ids',
+    'contracts/type-ids',
     {
       type: 'link',
       label: 'Audits',

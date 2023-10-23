@@ -45,7 +45,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 <Tabs>
   <TabItem value="Current Standard" label="Current Standard">
 
-In the [**Read Profile Data** guide](../universal-profile/read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch all the assets owned by the Universal Profile by calling `fetchData` and passing the `LSP5ReceivedAssets[]` key.
+In the [Read Profile Data](../../learn/dapp-developer/readData), we learned how to get the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch all the assets owned by the Universal Profile by calling `fetchData` and passing the `LSP5ReceivedAssets[]` key.
 
 :::info
 This same method can also be used to fetch all assets a Universal Profile has ever issued by using the `LSP12IssuedAssets[]` key.
@@ -66,7 +66,7 @@ import Web3 from 'web3';
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://api.universalprofile.cloud/ipfs';
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -90,7 +90,7 @@ console.log(ownedAssets);
 
   <TabItem value="Legacy Standard" label="Legacy Standard">
 
-In the [previous guide](../universal-profile/read-profile-data), we learned how to read the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch the address of the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver/) by using `fetchData("LSP1UniversalReceiverDelegate")`.
+In the [Read Profile Data Guide](../../learn/dapp-developer/readData), we learned how to get the Universal Profile properties and use the data key names with the `fetchData()` function of the [erc725.js](../../tools/erc725js/getting-started/) library. In the same way, we can now fetch the address of the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver/) by using `fetchData("LSP1UniversalReceiverDelegate")`.
 
 :::caution
 If using erc725.js in a NodeJS environment you may need to install and import [`isomorphic-fetch`](https://www.npmjs.com/package/isomorphic-fetch) to use the `fetchData()` method.
@@ -106,7 +106,7 @@ import Web3 from 'web3';
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://api.universalprofile.cloud/ipfs';
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -231,7 +231,7 @@ import Web3 from 'web3';
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
 const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://api.universalprofile.cloud/ipfs';
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
@@ -297,7 +297,7 @@ import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
 const RPC_ENDPOINT = 'https://rpc.l14.lukso.network';
-const IPFS_GATEWAY = 'https://2eff.lukso.dev/ipfs/';
+const IPFS_GATEWAY = 'https://api.universalprofile.cloud/ipfs';
 
 // Parameters for the ERC725 instance
 const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);

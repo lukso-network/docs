@@ -94,6 +94,32 @@ One of the possible scenarios is a token transfer between Alice and Bob. Alice w
 
 > For the UniversalReceiverDelegate to be able to call setData function on the UniversalProfile, it should be allowed by the logic of the owner through LSP20.
 
+## Data Keys
+
+### LSP1UniversalReceiverDelegate Singleton
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate",
+  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+  "keyType": "Singleton",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+### LSP1UniversalReceiverDelegate Mapping
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate:<bytes32>",
+  "key": "0x0cfc51aec37c55a4d0b10000<bytes32>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
 ## References
 
 - [LUKSO Standards Proposals: LSP1 - Universal Receiver (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md)

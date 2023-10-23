@@ -31,7 +31,7 @@ We cannot provide specific tax implications for LUKSO validator rewards as they 
 
 ## Is every validator able to withdraw staking rewards?
 
-Every validator key can withdraw staking rewards **after their withdrawal credentials have been set** or attached to them, called ETH1 address. The [LUKSO Wagyu Key Gen](https://github.com/lukso-network/tools-wagyu-key-gen) automatically creates the validator key with your withdrawal address. If you created your validator keys with the [LUKSO Keygen CLI](https://github.com/lukso-network/tools-key-gen-cli) and did not **set the withdrawal credential**, you can update your validator keys shortly after the migration.
+Every validator key can withdraw staking rewards **after their withdrawal credentials have been set** or attached to them, called ETH1 address. The [LUKSO Wagyu Key Gen](https://github.com/lukso-network/tools-wagyu-key-gen) automatically creates the validator key with your withdrawal address. If you created your validator keys with the [LUKSO Keygen CLI](https://github.com/lukso-network/tools-key-gen-cli) and did not **set the withdrawal credential**, you can update your validator keys using our [Validator Withdrawal Update](../../networks/advanced-guides/withdrawal-update.md) guide.
 
 ## Do rewards per validator increase based on the node's validator number?
 

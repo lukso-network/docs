@@ -257,7 +257,7 @@ async function editProfileInfo() {
   ];
 
   const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
-    ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   });
 
   // Step 3.2 - Encode the LSP3Profile data
@@ -421,7 +421,7 @@ async function editProfileInfo() {
   ];
 
   const erc725 = new ERC725(schema, profileAddress, web3.currentProvider, {
-    ipfsGateway: 'https://2eff.lukso.dev/ipfs/',
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   });
 
   // Step 3.2 - Encode the LSP3Profile data (to be written on our UP)
