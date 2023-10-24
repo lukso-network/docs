@@ -64,7 +64,7 @@ This data key represents a map key holding both:
 
 The full **verification flow** for an asset should contain a check on the **asset** and the **issuer** smart contract.
 
-- **Step 1:** Should check on the asset smart contract, the **owner** or the **[LSP4Creators Array](../nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4creators)** data key and retrieve the address of the creator from the array.
+- **Step 1:** Should check on the asset smart contract, the **owner** or the **[LSP4Creators Array](../tokens/LSP4-Digital-Asset-Metadata.md#lsp4creators)** data key and retrieve the address of the creator from the array.
 
 ![Checking LSP4Creators Array on asset](../../../static/img/standards/lsp12/lsp12-issuedassets2.jpeg)
 

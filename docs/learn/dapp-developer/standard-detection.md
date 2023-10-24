@@ -1,6 +1,6 @@
 ---
 sidebar_label: '👮 Standard Detection'
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 # Standard Detection
@@ -33,7 +33,7 @@ You can verify if a contract contains a specific set of ERC725Y keys (= **metada
 
 :::note Example
 
-**[LSP7DigitalAsset](../../standards/nft-2.0/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y Data keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y Data keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
+**[LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y Data keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y Data keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 
 :::
 
@@ -61,7 +61,7 @@ console.log(isLSP3);
 <!-- prettier-ignore-end -->
 
 <details>
-    <summary>Show Vault Storage Check</summary>
+    <summary>Example for detecting LSP9Vault data keys</summary>
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -86,7 +86,7 @@ console.log(isLSP9);
 </details>
 
 <details>
-    <summary>Show Asset Storage Check</summary>
+    <summary>Example for detecting LSP4DigitalAsset metadata data keys</summary>
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -119,6 +119,8 @@ You can also check custom data on smart contract storage by loading your own JSO
 ## Interface Identification
 
 Every [LSP standard](../../standards/introduction.md) has its own [interface ID](../../contracts/interface-ids.md) (as defined by [ERC-165](https://eips.ethereum.org/EIPS/eip-165)). To verify their specific set of functions (= an **interface**) we can call the standardized `supportsInterface(interfaceId)` function, passing the bytes4 `interfaceId` as a parameter.
+
+## Interface Detection
 
 Calling this function will return **TRUE** if the contract implements this specific interface ID.
 

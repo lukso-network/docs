@@ -20,7 +20,7 @@ This guide shows you how to read data from a [Universal Profile](../../standards
 
 :::info
 
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/get-data-keys.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
 
 :::
 
@@ -70,7 +70,7 @@ And you can call [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) t
 
 <!-- prettier-ignore-start -->
 
-```javascript
+```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
 
@@ -145,21 +145,7 @@ Note: You can also create and load your own custom ERC725Y JSON schemas.
 
 If you only need the actual profile data JSON file you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
 
-:::note get and fetch
-
-The `getData(...)` function only retrieves the data keys values from the smart contract. In comparison, `fetchData(...)` will download `JSONURL` and `AssetURL` content.
-
-If you want to fetch linked or attached data from a ERC725Y storage key, make sure to use `fetchData`. Otherwise, you can retrieve plain contract data using `getData`.
-
-:::
-
-:::info
-
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/fetch-json-data.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Ffetch-json-data.js).
-
-:::
-
-```javascript
+```js
 // ...
 
 // Download and verify the profile metadata JSON file
@@ -215,19 +201,19 @@ console.log(profileMetaData);
 
 </details>
 
-## Fetch Assets and Universal Receiver
+:::note get and fetch
 
-Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can pass down all other storage keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate).
+The `.getData(...)` function only retrieves the data keys values from the smart contract. In comparison, `.fetchData(...)` will download `JSONURL` and `AssetURL` content.
 
-:::info
-
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/fetch-json-data.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Ffetch-json-data.js).
+If you want to fetch linked or attached data from a ERC725Y storage key, make sure to use `fetchData`. Otherwise, you can retrieve plain contract data using `getData`.
 
 :::
 
-<!-- prettier-ignore-start -->
+## Fetch Assets and Universal Receiver
 
-```javascript
+Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can also use other data keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate), like in the following example:
+
+```js
 // ...
 
 // Fetch all of the profile's issued assets
@@ -239,7 +225,9 @@ const receivedAssets = await erc725js.fetchData('LSP5ReceivedAssets[]');
 console.log(receivedAssets);
 
 // Fetch the profile's universal receiver
-const universalReceiver = await erc725js.fetchData('LSP1UniversalReceiverDelegate');
+const universalReceiver = await erc725js.fetchData(
+  'LSP1UniversalReceiverDelegate',
+);
 console.log(universalReceiver);
 ```
 

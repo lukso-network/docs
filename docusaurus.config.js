@@ -175,6 +175,18 @@ module.exports = {
             from: '/guides/hardhat-walkthrough/deploy-custom-lsp7',
             to: '/contracts/getting-started',
           },
+          {
+            from: '/standards/nft-2.0/LSP4-Digital-Asset-Metadata',
+            to: '/standards/tokens/LSP4-Digital-Asset-Metadata',
+          },
+          {
+            from: '/standards/nft-2.0/LSP7-Digital-Asset',
+            to: '/standards/tokens/LSP7-Digital-Asset',
+          },
+          {
+            from: '/standards/nft-2.0/LSP8-Identifiable-Digital-Asset',
+            to: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
+          },
         ],
       },
     ],
