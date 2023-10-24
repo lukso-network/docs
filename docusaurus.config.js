@@ -219,6 +219,10 @@ module.exports = {
             from: '/guides/universal-receiver-delegate/accept-reject-assets',
             to: '/learn/expert-guides/accept-reject-assets',
           },
+          {
+            from: '/guides/vault/restrict-addresses-to-vaults',
+            to: '/learn/expert-guides/grant-vault-permissions',
+          },
         ],
       },
     ],
