@@ -181,13 +181,6 @@ module.exports = {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    announcementBar: {
-      id: 'scam_warning',
-      content:
-        '🚨 Beware of scams! Only trust LUKSO domains: <b>.lukso.network</b> &amp; <b>.lukso.tech</b> 🚨',
-      backgroundColor: '#fbd784',
-      isCloseable: false,
-    },
     navbar: {
       title: 'LUKSO',
       logo: {
