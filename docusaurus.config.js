@@ -227,6 +227,10 @@ module.exports = {
             from: '/guides/digital-assets/mint-lsp7-digital-asset',
             to: '/learn/smart-contract-developers/mint-lsp7-token',
           },
+          {
+            from: '/guides/digital-assets/create-lsp7-digital-asset',
+            to: '/learn/smart-contract-developers/create-lsp7-token',
+          },
         ],
       },
     ],
