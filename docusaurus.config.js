@@ -195,6 +195,10 @@ module.exports = {
             from: '/guides/key-manager/execute-relay-transactions',
             to: '/learn/expert-guides/execute-relay-transactions',
           },
+          {
+            from: '/guides/key-manager/upgrade-lsp6',
+            to: '/learn/expert-guides/upgrade-key-manager',
+          },
         ],
       },
     ],
