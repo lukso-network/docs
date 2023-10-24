@@ -211,6 +211,10 @@ module.exports = {
             from: '/guides/vault/create-a-vault',
             to: '/learn/expert-guides/create-a-vault',
           },
+          {
+            from: '/guides/vault/edit-vault-data',
+            to: '/learn/expert-guides/edit-vault-data',
+          },
         ],
       },
     ],
