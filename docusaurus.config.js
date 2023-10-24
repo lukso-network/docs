@@ -207,6 +207,10 @@ module.exports = {
             from: '/guides/universal-receiver-delegate/create-custom-urd-2',
             to: '/learn/expert-guides/create-receiver-forwarder',
           },
+          {
+            from: '/guides/vault/create-a-vault',
+            to: '/learn/expert-guides/create-a-vault',
+          },
         ],
       },
     ],

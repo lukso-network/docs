@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Restrict Addresses to Vaults
 
-As mentioned in the [first Vault guide](./create-a-vault.md), the **Vault** can be used to restrict different addresses (protocols, other devices, etc..) to execute and set data on it instead of doing it directly on the Universal Profile.
+As mentioned in the [first Vault guide](../../learn/expert-guides/create-a-vault.md), the **Vault** can be used to restrict different addresses (protocols, other devices, etc..) to execute and set data on it instead of doing it directly on the Universal Profile.
 
 This way, when **granting a third party permissions** to execute through your profile, this third party will only be able to interact with the Vault, and all the other assets will be safe.
 
