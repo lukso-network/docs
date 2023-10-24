@@ -48,9 +48,7 @@ npm install @erc725/erc725.js
 
 <details>
 <summary>
-
 [LSP3 - Profile Metadata](../../standards/universal-profile/lsp3-profile-metadata) describes the data in the Universal Profile contract [ERC725Y data storage](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You can get the content of these data keys directly using [erc725.js](../../tools/erc725js/classes/ERC725#getdata). 👇
-
 </summary>
 
 <div>
