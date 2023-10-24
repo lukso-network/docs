@@ -223,6 +223,10 @@ module.exports = {
             from: '/guides/vault/restrict-addresses-to-vaults',
             to: '/learn/expert-guides/grant-vault-permissions',
           },
+          {
+            from: '/guides/digital-assets/mint-lsp7-digital-asset',
+            to: '/learn/smart-contract-developers/mint-lsp7-token',
+          },
         ],
       },
     ],
