@@ -16,11 +16,9 @@ sidebar_position: 3
 <br /><br />
 </div>
 
-This guide shows you how to read data from a [Universal Profile](../../standards/universal-profile/introduction.md) smart contract.
-
 :::info
 
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
 
 :::
 
@@ -42,29 +40,29 @@ npm install @erc725/erc725.js
 
 :::tip
 
-🔍 You can inspect a profile smart contract (or any ERC725 contract) using 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector) to see all its data keys.
+🔍 You can inspect a profile smart contract (or any ERC725 contract) using 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector) to see all its 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store).
 
 :::
 
 <details>
 <summary>
-[LSP3 - Profile Metadata](../../standards/universal-profile/lsp3-profile-metadata) describes the data in the Universal Profile contract [ERC725Y data storage](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You can get the content of these data keys directly using [erc725.js](../../tools/erc725js/classes/ERC725#getdata). 👇
+<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using <a href="../../tools/erc725js/classes/ERC725#getdata">erc725.js</a>. 👇
 </summary>
 
 <div>
 
-- `SupportedStandards:LSP3Profile` allows you to verify that this ERC725Y contract contains LSP3UniversalProfile data keys.
-- `LSP3Profile` contains the JSON file with profile descriptions and images.
-- `LSP12IssuedAssets[]` contains assets the profile issued.
-- `LSP5ReceivedAssets[]` contains assets the profile received.
-- `LSP1UniversalReceiverDelegate` contains the address of the [Universal Receiver Delegate smart contract](../../standards/generic-standards/lsp1-universal-receiver/).
+- `SupportedStandards:LSP3Profile` Verifies that the ERC725Y contract contains [LSP3UniversalProfile](../../standards/universal-profile/lsp3-profile-metadata) data keys
+- `LSP3Profile` contains the JSON file with profile descriptions and images
+- `LSP12IssuedAssets[]` contains assets the profile issued
+- `LSP5ReceivedAssets[]` contains assets the profile received
+- `LSP1UniversalReceiverDelegate` contains the address of the [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver/) smart contract
 
 </div>
 </details>
 
-To read the profile data you simply instantiate `erc725.js` with your profile address, an RPC provider (`web3.js`, `ethereum`, etc) or RPC URL and an IPFS gateway.
+To read the profile data you simply instantiate `erc725.js` with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway.
 
-And you can call [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) to get all data that is stored on the profile smart contract and in your provided JSON schema.
+You can call [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
 
 <!-- prettier-ignore-start -->
 
@@ -78,7 +76,7 @@ const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://rp
   },
 );
 
-// Get all profile data from the profile smart contract
+// Get all profile data keys of the smart contract
 const profileData = await erc725js.getData();
 console.log(profileData);
 ```
@@ -133,15 +131,15 @@ console.log(profileData);
 
 :::note ERC725Y JSON schemas
 
-`erc725.js` works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema), which are JSON structures that tell `erc725.js` how to decode and encode [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the the schema you want to load when initializing `erc725.js`.
+`erc725.js` works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell `erc725.js` how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `erc725.js` object.
 
-Note: You can also create and load your own custom ERC725Y JSON schemas.
+You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
 
 :::
 
 ## Fetch the Profile Metadata
 
-If you only need the actual profile data JSON file you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
+If you only need the contents of the profile data JSON file you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
 
 ```js
 // ...
@@ -215,18 +213,18 @@ Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-prof
 // ...
 
 // Fetch all of the profile's issued assets
-const issuedAssets = await erc725js.fetchData('LSP12IssuedAssets[]');
-console.log(issuedAssets);
+const issuedAssetsDataKey = await erc725js.fetchData('LSP12IssuedAssets[]');
+console.log(issuedAssetsDataKey);
 
 // Fetch all owned assets of the profile
-const receivedAssets = await erc725js.fetchData('LSP5ReceivedAssets[]');
-console.log(receivedAssets);
+const receivedAssetsDataKey = await erc725js.fetchData('LSP5ReceivedAssets[]');
+console.log(receivedAssetsDataKey);
 
 // Fetch the profile's universal receiver
-const universalReceiver = await erc725js.fetchData(
+const universalReceiverDataKey = await erc725js.fetchData(
   'LSP1UniversalReceiverDelegate',
 );
-console.log(universalReceiver);
+console.log(universalReceiverDataKey);
 ```
 
 <!-- prettier-ignore-end -->
@@ -256,7 +254,7 @@ console.log(universalReceiver);
   ]
 }
 
-// Universal Receiver Delegate Address
+// Universal Receiver Delegate Address 0x0...75bb
 {
   key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
   name: 'LSP1UniversalReceiverDelegate',

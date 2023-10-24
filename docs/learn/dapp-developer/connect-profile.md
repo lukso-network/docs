@@ -11,7 +11,7 @@ The easiest way for your users to create a Universal Profile, is through 👉 [m
 
 :::note
 
-Optionally you [can deploy a Universal Profile porgrammatically for your users](../../guides/universal-profile/create-profile.md), but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
+Optionally you can ⚒️ [deploy a Universal Profile porgrammatically](../../guides/universal-profile/create-profile.md) for your users, but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
 
 :::
 
