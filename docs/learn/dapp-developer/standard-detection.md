@@ -9,13 +9,27 @@ If you want to ensure that LSP standards are implemented and working correctly b
 
 :::tip
 
-You can also use the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) to fetch and check standards of smart contract addresses within the browser.
+You can also use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) to fetch and check standards of smart contract addresses within the browser.
 
 :::
 
+:::info
+
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=metadata-detection%2Fdigital-asset-check.js).
+
+:::
+
+## Setup
+
+The following code snippets require to install a few libraries.
+
+```shell
+npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
+```
+
 ## Metadata Detection
 
-We can verify if a contract contains a specific set of ERC725Y keys (= **metadata**) by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [ERC725.js](https://www.npmjs.com/package/@erc725/erc725.js) library.
+You can verify if a contract contains a specific set of ERC725Y keys (= **metadata**) by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library.
 
 :::note Example
 
@@ -23,27 +37,15 @@ We can verify if a contract contains a specific set of ERC725Y keys (= **metadat
 
 :::
 
-Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use the `getData()` function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/tokens/LSP4-Digital-Asset-Metadata), or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use the `getData()` function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
 
-:::tip
-
-You can check all `SupportedStandards:{StandardName}` data keys within the **[erc725.js](https://github.com/ERC725Alliance/erc725.js/blob/develop/src/schemas/index.ts)** GitHub repository.
-
-:::
-
-:::info
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=metadata-detection%2Fdigital-asset-check.js).
-:::
+<!-- prettier-ignore-start -->
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
 
-// Initatiate erc725.js
-const erc725js = new ERC725(
-  lsp3ProfileSchema,
-  '<myProfileAddress>',
-  'https://rpc.testnet.lukso.gateway.fm',
+const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
     ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
@@ -54,8 +56,9 @@ let isLSP3 = await erc725js.getData('SupportedStandards:LSP3Profile');
 
 // Verify if the standard is supported (value !== null)
 console.log(isLSP3);
-
 ```
+
+<!-- prettier-ignore-end -->
 
 <details>
     <summary>Example for detecting LSP9Vault data keys</summary>
@@ -64,7 +67,6 @@ console.log(isLSP3);
 import { ERC725 } from '@erc725/erc725.js';
 import lsp9VaultSchema from '@erc725/erc725.js/schemas/LSP9Vault.json' assert { type: 'json' };
 
-// Initatiate erc725.js
 const erc725js = new ERC725(
   lsp9VaultSchema,
   '0x9139def55c73c12bcda9c44f12326686e3948634',
@@ -90,7 +92,6 @@ console.log(isLSP9);
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json' assert { type: 'json' };
 
-// Initatiate erc725.js
 const erc725js = new ERC725(
   lsp3ProfileSchema,
   '0x6395b330F063F96579aA8F7b59f2584fb9b6c3a5',
@@ -115,20 +116,18 @@ You can also check custom data on smart contract storage by loading your own JSO
 
 :::
 
+## Interface Identification
+
+Every [LSP standard](../../standards/introduction.md) has its own [interface ID](../../contracts/interface-ids.md) (as defined by [ERC-165](https://eips.ethereum.org/EIPS/eip-165)). To verify their specific set of functions (= an **interface**) we can call the standardized `supportsInterface(interfaceId)` function, passing the bytes4 `interfaceId` as a parameter.
+
 ## Interface Detection
 
-Every LSP standard has their own interface ID using [ERC165](https://eips.ethereum.org/EIPS/eip-165). To verify their specific set of functions (= an **interface**) we can call the standardized `supportsInterface(interfaceId)` function, passing the bytes4 `interfaceId` as a parameter.
-
-Calling this function will return **TRUE** if the contract implements this specific interfaceId.
+Calling this function will return **TRUE** if the contract implements this specific interface ID.
 
 :::note Example
 
-A **[Universal Profile](../../standards/universal-profile/lsp3-profile-metadata.md)** is a contract based on [ERC725Account](../../standards/universal-profile/lsp0-erc725account.md)(LSP0). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+A **[Universal Profile](../../standards/universal-profile/lsp3-profile-metadata.md)** is a contract based on [LSP0 - ERC725Account](../../standards/universal-profile/lsp0-erc725account.md). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
-:::
-
-:::info
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/interface-detection/erc165-interface-check.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=interface-detection%2Ferc165-interface-check.js).
 :::
 
 ```javascript
@@ -153,13 +152,11 @@ console.log(
 ```
 
 <details>
-    <summary>
-    
-Instead of using the interface ID from `LSP0ERC725Account`, you can use any of the supported IDs within the `lsp-smart-contracts` library to check all standardizations used by the LSP ecosystem:
+  <summary>
+    Instead of using the interface ID from <code>LSP0ERC725Account</code>, you can use any of the supported IDs within the <code>lsp-smart-contracts</code> library to check <a href="../../standards/introduction">all standards used by the LSP ecosystem</a>:
+  </summary>
 
-</summary>
-
-```js
+```text
 ERC165                        ERC20
 ERC223                        ERC721
 ERC721Metadata                ERC725X
@@ -173,7 +170,6 @@ LSP11BasicSocialRecovery      LSP14Ownable2Step
 LSP17Extendable               LSP17Extension
 LSP20CallVerification         LSP20CallVerifier
 LSP25ExecuteRelayCall
-
 ```
 
 </details>
