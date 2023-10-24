@@ -187,6 +187,10 @@ module.exports = {
             from: '/standards/nft-2.0/LSP8-Identifiable-Digital-Asset',
             to: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
           },
+          {
+            from: '/standards/nft-2.0/introduction',
+            to: '/standards/tokens/introduction',
+          },
         ],
       },
     ],
