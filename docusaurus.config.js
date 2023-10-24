@@ -192,7 +192,7 @@ module.exports = {
       title: 'LUKSO',
       logo: {
         alt: 'LUKSO Logo',
-        src: 'img/logo.png',
+        src: 'img/logo.svg',
       },
       items: [
         {
