@@ -7,7 +7,7 @@ sidebar_position: 1
 
 :::success Useful Tip
 
-The [Guides Section](../../guides/universal-profile/create-profile) will take you through the process of creating a Universal Profile and deploying it on the [L14 testnet](../../networks/l14-testnet.md).  
+The [Guides Section](../../guides/universal-profile/create-profile) will take you through the process of creating a Universal Profile and deploying it on the [LUKSO Testnet](../../networks/testnet/).  
 You can also browse the already deployed Universal Profiles on [universalprofile.cloud](https://universalprofile.cloud/).
 
 :::
