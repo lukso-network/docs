@@ -191,6 +191,10 @@ module.exports = {
             from: '/standards/nft-2.0/introduction',
             to: '/standards/tokens/introduction',
           },
+          {
+            from: '/guides/key-manager/execute-relay-transactions',
+            to: '/learn/expert-guides/execute-relay-transactions',
+          },
         ],
       },
     ],
