@@ -104,7 +104,26 @@ If you want more convenience and your validator to operate quickly, you can also
 
 > After the synchronization is finalized, you will end up with the equal blockchain data. You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime. The shortcut is ideal for fresh installations, validator migration, or recovery.
 
-<Tabs>
+<Tabs>  
+  <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
+
+:::tip
+
+The shortcut is ideal for making installation, validator migration, or recovery much faster.
+
+:::
+
+:::caution
+
+If you are experiencing issues with the `--checkpoint-sync` flag or are using a LUKSO CLI Version below version 0.7.0, the checkpoint synchronization can be [enabled manually](https://github.com/lukso-network/tools-lukso-cli/tree/main#checkpoints-with-lukso-cli-version-07-or-below).
+
+:::
+
+```sh
+lukso start --checkpoint-sync
+```
+
+  </TabItem>
   <TabItem value="regular-sync" label="Regular Synchronization">
 
 :::info
@@ -118,25 +137,6 @@ lukso start
 ```
 
   </TabItem>  
-  <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
-
-:::tip
-
-The shortcut is ideal for making installation, validator migration, or recovery much faster.
-
-:::
-
-:::note
-
-You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version, please pass down the checkpoint flag as described in the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
-
-:::
-
-```sh
-lukso start --checkpoint-sync
-```
-
-  </TabItem>
 </Tabs>
 
 :::info

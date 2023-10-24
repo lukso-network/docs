@@ -157,12 +157,6 @@ If you are setting up a node for the testnet, add the `--testnet` flag to the st
 
 :::
 
-:::note
-
-You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version, please pass down the checkpoint flag as described in the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
-
-:::
-
 ```sh
 # Starting the Mainnet Node
 lukso start --checkpoint-sync
@@ -170,6 +164,12 @@ lukso start --checkpoint-sync
 # Starting the Mainnet Validator
 lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
 ```
+
+:::caution
+
+If you are experiencing issues with the `--checkpoint-sync` flag or are using a LUKSO CLI Version below version 0.7.0, the checkpoint synchronization can be [enabled manually](https://github.com/lukso-network/tools-lukso-cli/tree/main#checkpoints-with-lukso-cli-version-07-or-below).
+
+:::
 
   </TabItem>
   <TabItem value="regular-sync" label="Regular Synchronization">

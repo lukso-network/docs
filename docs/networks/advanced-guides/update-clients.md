@@ -99,6 +99,12 @@ lukso start --checkpoint-sync
 lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
 ```
 
+:::caution
+
+If you are experiencing issues with the `--checkpoint-sync` flag or are using a LUKSO CLI Version below version 0.7.0, the checkpoint synchronization can be [enabled manually](https://github.com/lukso-network/tools-lukso-cli/tree/main#checkpoints-with-lukso-cli-version-07-or-below).
+
+:::
+
   </TabItem>
   <TabItem value="regular-sync" label="Regular Synchronization">
 
