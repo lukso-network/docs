@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Digital Asset (Token)
 
-This guide will teach you how to create an [LSP7 Digital Asset contract](../../standards/nft-2.0/LSP7-Digital-Asset.md).
+This guide will teach you how to create an [LSP7 Digital Asset contract](../../standards/tokens/LSP7-Digital-Asset.md).
 
 ## Deploy an LSP7 Digital Asset contract
 

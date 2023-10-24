@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Digital Asset (Token)
 
-This guide will teach you how to mint some [LSP7 Digital Asset](../../standards/nft-2.0/LSP7-Digital-Asset.md) tokens to your [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md).
+This guide will teach you how to mint some [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) tokens to your [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md).
 
 ## Mint tokens for your Universal Profile
 

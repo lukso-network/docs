@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Create a custom LSP1 Delegate forwarder
 
-In this guide, we will create a custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../standards/nft-2.0/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
+In this guide, we will create a custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../standards/tokens/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
 
 > **"As a Universal Profile (UP) owner, I want to transfer part of the tokens I received to another UP"**.
 

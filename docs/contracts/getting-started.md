@@ -72,7 +72,7 @@ We now have a base Hardhat setup that we can use to develop and deploy our smart
 
 ## Create a custom LSP7 Token contract
 
-We will now create a custom [LSP7 Digital Asset contract](../standards/nft-2.0/LSP7-Digital-Asset.md). This contract will extend [`LSP7Mintable`](./contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) & [LSP7Burnable](./contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md) (to allow burning tokens). We will also pre-mint 20k tokens to the owner of the contract (the deployer).
+We will now create a custom [LSP7 Digital Asset contract](../standards/tokens/LSP7-Digital-Asset.md). This contract will extend [`LSP7Mintable`](./contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) & [LSP7Burnable](./contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md) (to allow burning tokens). We will also pre-mint 20k tokens to the owner of the contract (the deployer).
 To do that, delete the `Lock.sol` contract in the `contracts/` folder, then create a new file named `MyCustomToken.sol` with the following content:
 
 ```solidity title="contracts/MyCustomToken.sol"

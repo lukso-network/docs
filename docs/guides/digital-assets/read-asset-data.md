@@ -181,7 +181,7 @@ console.log(receivedAssets),
 
 ## Step 2 - Fetch the asset metadata
 
-Now we can retrieve the metadata for the asset address. The [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) metadata is saved under the ERC725Y key-value store of the digital asset. We need to input the correct data key to fetch the associated value. There are multiple [LSP4 keys](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata) for different properties.
+Now we can retrieve the metadata for the asset address. The [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata) metadata is saved under the ERC725Y key-value store of the digital asset. We need to input the correct data key to fetch the associated value. There are multiple [LSP4 keys](../../standards/tokens/LSP4-Digital-Asset-Metadata) for different properties.
 
 - `LSP4TokenName`
 - `LSP4TokenSymbol`

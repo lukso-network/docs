@@ -1,6 +1,6 @@
 ---
 sidebar_label: '👮 Standard Detection'
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 # Standard Detection
@@ -15,17 +15,15 @@ You can also use the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) t
 
 ## Metadata Detection
 
-> How to detect if a contract contains a specific set of ERC725Y in its storage.
-
 We can verify if a contract contains a specific set of ERC725Y keys (= **metadata**) by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [ERC725.js](https://www.npmjs.com/package/@erc725/erc725.js) library.
 
 :::note Example
 
-**[LSP7DigitalAsset](../../standards/nft-2.0/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y Data keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y Data keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
+**[LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md)** is a contract that contains ERC725Y Data keys defined in **[LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)**. Therefore, the contract **SHOULD** have the following ERC725Y Data keys set by default: `LSP4TokenName`, `LSP4TokenSymbol`, `LSP4Metadata`, `LSP4CreatorsMap:<address>` and `LSP4Creators[]`.
 
 :::
 
-Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use the `getData()` function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata), or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use the `getData()` function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/tokens/LSP4-Digital-Asset-Metadata), or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
 
 :::tip
 
@@ -37,7 +35,7 @@ You can check all `SupportedStandards:{StandardName}` data keys within the **[er
 ⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=metadata-detection%2Fdigital-asset-check.js).
 :::
 
-```
+```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
 
@@ -60,7 +58,7 @@ console.log(isLSP3);
 ```
 
 <details>
-    <summary>Show Vault Storage Check</summary>
+    <summary>Example for detecting LSP9Vault data keys</summary>
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -86,7 +84,7 @@ console.log(isLSP9);
 </details>
 
 <details>
-    <summary>Show Asset Storage Check</summary>
+    <summary>Example for detecting LSP4DigitalAsset metadata data keys</summary>
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -117,9 +115,7 @@ You can also check custom data on smart contract storage by loading your own JSO
 
 :::
 
-## Interface Identification
-
-> How to detect if a contract implements a specific interface.
+## Interface Detection
 
 Every LSP standard has their own interface ID using [ERC165](https://eips.ethereum.org/EIPS/eip-165). To verify their specific set of functions (= an **interface**) we can call the standardized `supportsInterface(interfaceId)` function, passing the bytes4 `interfaceId` as a parameter.
 
