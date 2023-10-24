@@ -3,15 +3,15 @@ sidebar_label: '🔗 Connect a Universal Profile'
 sidebar_position: 1
 ---
 
-# Connect to a Universal Profile
+# Connect Your Universal Profile to a Dapp
 
-To allow your users to connect to your dApp and to have the benefits of Universal Profiles, they need to ✨ [create a profile](https://my.universalprofile.cloud) smart contract and install the 🖥️ [Universal Profile Browser Extension](../../guides/browser-extension/install-browser-extension.md).
+To allow your users to connect to your dApp with their Universal Profile, they need to ✨ [create a Universal Profile](https://my.universalprofile.cloud) and install the 🖥️ [Universal Profile Browser Extension](../../guides/browser-extension/install-browser-extension.md).
 
-The easiest for your users to create a Universal Profile, is through 👉 [my.universalprofile.cloud](https://my.universalprofile.cloud).
+The easiest way for your users to create a Universal Profile, is through 👉 [my.universalprofile.cloud](https://my.universalprofile.cloud).
 
 :::note
 
-Optionally you [can deploy a profile smart contract for your users](../../guides/universal-profile/create-profile.md), but then they will not have the ability to make free transactions through our Transaction Relay Service.
+Optionally you [can deploy a Universal Profile porgrammatically for your users](../../guides/universal-profile/create-profile.md), but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
 
 :::
 
@@ -24,3 +24,18 @@ Optionally you [can deploy a profile smart contract for your users](../../guides
 />
 
 </div>
+
+## Connect to a Dapp
+
+```js
+import Web3 from 'web3';
+
+const web3 = new Web3(window.ethereum);
+
+try {
+  const accounts = await web3.eth.requestAccounts();
+  console.log('Connected with', accounts[0]);
+} catch (error) {
+  // handle connection error
+}
+```
