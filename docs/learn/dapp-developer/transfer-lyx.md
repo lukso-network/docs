@@ -15,11 +15,11 @@ This article is a WIP
 :::
 
 - show simple token transfer call
-- `sendTransaction({from:, to, vlaue, data: '0x', ....})`
+- `sendTransaction({from:, to, value, data: '0x', ....})`
 
 In this guide, we will learn **how to transfer LYX** from our Universal Profile to any `address` (including another :up: ). We will cover:
 
-- the basics of the `execute(...)` function and how it works.
+- the basics of the [`execute(...)`](../../contracts/contracts/LSP0ERC725Account/#execute) function and how it works.
 - how to use this function to transfer LYX from our UP.
 
 ![Guide - How to send LYX from a Universal Profile](./img/guide-LYX-transfer.jpeg)

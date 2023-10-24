@@ -3,7 +3,7 @@ sidebar_label: '🔗 Connect a Universal Profile'
 sidebar_position: 1
 ---
 
-# Connect Your Universal Profile to a Dapp
+# Connect Your Universal Profile to a dApp
 
 To allow your users to connect to your dApp with their Universal Profile, they need to ✨ [create a Universal Profile](https://my.universalprofile.cloud) and install the 🖥️ [Universal Profile Browser Extension](../../guides/browser-extension/install-browser-extension.md).
 
@@ -25,7 +25,7 @@ Optionally you can ⚒️ [deploy a Universal Profile porgrammatically](../../gu
 
 </div>
 
-## Connect to a Dapp
+## Connect to a dApp
 
 ```js
 import Web3 from 'web3';
