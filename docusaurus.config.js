@@ -199,6 +199,14 @@ module.exports = {
             from: '/guides/key-manager/upgrade-lsp6',
             to: '/learn/expert-guides/upgrade-key-manager',
           },
+          {
+            from: '/guides/universal-receiver-delegate/create-custom-urd-1',
+            to: '/learn/expert-guides/create-universal-receiver',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/create-custom-urd-2',
+            to: '/learn/expert-guides/create-receiver-forwarder',
+          },
         ],
       },
     ],
