@@ -231,6 +231,10 @@ module.exports = {
             from: '/guides/digital-assets/create-lsp7-digital-asset',
             to: '/learn/smart-contract-developers/create-lsp7-token',
           },
+          {
+            from: '/guides/key-manager/get-controllers',
+            to: '/learn/expert-guides/get-controller-permissions',
+          },
         ],
       },
     ],
