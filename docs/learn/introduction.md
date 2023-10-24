@@ -23,7 +23,7 @@ LUKSO is the first blockchain that powers self-sovereign identities.
 By integrating different LSPs in unique ways, LUKSO solves fundamental problems that we currently face when it comes to blockchains such as:
 
 - [Upgradeable security](../standards/universal-profile/lsp6-key-manager): UPs can be owned by an EOA or a custom contract such as a multisig. Therefore, users can have multiple devices and applications controlling their account, each of them with different permissions. Users can even have social recovery, such that you grant certain permissions to their account to their friends and family
-- [On-chain profile](../standards/universal-profile/lsp3-profile-metadata.md ): users can build their profiles onchain, adding images, tags, descriptions and links to their accounts to shape their online persona
+- [On-chain profile](../standards/universal-profile/lsp3-profile-metadata.md): users can build their profiles onchain, adding images, tags, descriptions and links to their accounts to shape their online persona
 - [senders and receivers are notified upon transfers (e.g.: tokens transfers)](../standards/tokens/LSP7-Digital-Asset.md): users can see which assets they own within their profile. They can even block transfers of certain assets by creating a list of allowed assets they want to accept.
 - [Updatable and flexible metadata](../standards/generic-standards/lsp2-json-schema.md): metadata can be updated, enabling dynamic NFTs that can change certain properties over time, while other properties remain immutable
 - [Extend your account over time](../standards/generic-standards/lsp17-contract-extension.md): users can extend their account over time seamlessly, with no need to redeploy the associated smart contract
