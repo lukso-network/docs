@@ -7,7 +7,7 @@ sidebar_position: 1
 
 :::success Useful Tip
 
-The [guide section](../../guides/digital-assets/create-lsp7-digital-asset.md) will walk you through creating and deploying an LSP7 token or an LSP8 NFT on the [L14 test network](../../networks/l14-testnet.md).
+The [guide section](../../learn/smart-contract-developers/create-lsp7-token.md) will walk you through creating and deploying an LSP7 token or an LSP8 NFT on the [L14 test network](../../networks/l14-testnet.md).
 
 Check the [profile explorer](https://universalprofile.cloud/) to browse the deployed digital assets.
 

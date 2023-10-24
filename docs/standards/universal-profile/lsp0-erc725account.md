@@ -144,7 +144,7 @@ See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.
 
 Check the [**universalReceiver functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) provided by **LSP1** that allows notifying about incoming/ outgoing transactions.
 
-Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../guides/universal-receiver-delegate/set-default-implementation.md) or [**How to set your own UniversalReceiverDelegate**](../../guides/universal-receiver-delegate/accept-reject-assets.md).
+Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../guides/universal-receiver-delegate/set-default-implementation.md) or [**How to set your own UniversalReceiverDelegate**](../../learn/expert-guides/accept-reject-assets.md).
 
 :::
 
@@ -190,7 +190,7 @@ See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)**
 
 Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md) allowing 2 step ownership transfers.
 
-Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../guides/key-manager/upgrade-lsp6.md).
+Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../learn/expert-guides/upgrade-key-manager.md).
 
 :::
 

@@ -191,6 +191,54 @@ module.exports = {
             from: '/standards/nft-2.0/introduction',
             to: '/standards/tokens/introduction',
           },
+          {
+            from: '/guides/key-manager/execute-relay-transactions',
+            to: '/learn/expert-guides/execute-relay-transactions',
+          },
+          {
+            from: '/guides/key-manager/upgrade-lsp6',
+            to: '/learn/expert-guides/upgrade-key-manager',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/create-custom-urd-1',
+            to: '/learn/expert-guides/create-universal-receiver',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/create-custom-urd-2',
+            to: '/learn/expert-guides/create-receiver-forwarder',
+          },
+          {
+            from: '/guides/vault/create-a-vault',
+            to: '/learn/expert-guides/create-a-vault',
+          },
+          {
+            from: '/guides/vault/edit-vault-data',
+            to: '/learn/expert-guides/edit-vault-data',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/accept-reject-assets',
+            to: '/learn/expert-guides/accept-reject-assets',
+          },
+          {
+            from: '/guides/vault/restrict-addresses-to-vaults',
+            to: '/learn/expert-guides/grant-vault-permissions',
+          },
+          {
+            from: '/guides/digital-assets/mint-lsp7-digital-asset',
+            to: '/learn/smart-contract-developers/mint-lsp7-token',
+          },
+          {
+            from: '/guides/digital-assets/create-lsp7-digital-asset',
+            to: '/learn/smart-contract-developers/create-lsp7-token',
+          },
+          {
+            from: '/guides/key-manager/get-controllers',
+            to: '/learn/expert-guides/get-controller-permissions',
+          },
+          {
+            from: '/guides/universal-profile/transfer-lyx',
+            to: '/learn/expert-guides/get-controller-permissions',
+          },
         ],
       },
     ],

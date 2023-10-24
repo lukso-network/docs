@@ -1,12 +1,18 @@
 ---
-sidebar_label: 'Mint an LSP7 Digital Asset (Token)'
-sidebar_position: 2
+sidebar_label: '💽 Mint LSP7 Token'
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create an LSP7 Digital Asset (Token)
+# Mint LSP7 Token
+
+:::caution
+
+This article is a WIP
+
+:::
 
 This guide will teach you how to mint some [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) tokens to your [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md).
 
