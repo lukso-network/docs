@@ -5,12 +5,14 @@ sidebar_position: 1
 
 # Connect to a Universal Profile
 
-To allow your users to connect to your dApp and to have the benefits of Universal Profiles, they need to ✨ [create a profile](https://my.universalprofile.cloud) smart contract and install the 🖥️ [Universal Profile Browser Extension](#)
+To allow your users to connect to your dApp and to have the benefits of Universal Profiles, they need to ✨ [create a profile](https://my.universalprofile.cloud) smart contract and install the 🖥️ [Universal Profile Browser Extension](../../guides/browser-extension/install-browser-extension.md).
 
 The easiest for your users to create a Universal Profile, is through 👉 [my.universalprofile.cloud](https://my.universalprofile.cloud).
 
 :::note
-Optionally you [can deploy a profile smart contract for your users](../../guides/universal-profile/create-profile.md), but then they will not reveive the ability to make free transactions through our Transaction Relay Service.
+
+Optionally you [can deploy a profile smart contract for your users](../../guides/universal-profile/create-profile.md), but then they will not have the ability to make free transactions through our Transaction Relay Service.
+
 :::
 
 <div style={{textAlign: 'center'}}>

@@ -21,6 +21,14 @@ import TabItem from '@theme/TabItem';
 The [Universal Profile Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) is compatible with [EIP-4361: Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361).
 Therefore, if the message you want to sign complies with this standard, the LUKSO UP Browser Extension will show a custom login screen.
 
+## Setup
+
+The following code snippets require to install a few libraries.
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts siwe
+```
+
 ## Get the Universal Profile address
 
 ```js
@@ -36,8 +44,11 @@ const accounts = await web3.eth.getAccounts();
 ## Sign the message
 
 Once you have access to the Universal Profile address, you can request a signature. The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign by itself).
+
 :::tip
+
 If you need further explanation on the `SiweMessage` properties, please have a look at the [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) specification.
+
 :::
 
 ```js
@@ -48,6 +59,7 @@ const myUniversalProfileContract = new web3.eth.Contract(
   UniversalProfileContract.abi,
   accounts[0],
 );
+
 // To enable the Sign-In With Ethereum (SIWE) screen, you need to prepare a message with a specific format
 const hashedMessage = web3.eth.accounts.hashMessage(
   new SiweMessage({
@@ -96,12 +108,12 @@ Resources:
 
 ## Verify the signature on the user's Universal Profile
 
-Your Dapp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the `SIGN` permission for this UP.
+Your dApp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the [`SIGN`](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission for this UP.
 
 To do so, you can use the [`isValidSignature(...)`](../../contracts/contracts/UniversalProfile.md#isvalidsignature) function ([EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)) to check the signature.
 
 ```js
-// If the signature is valid it should return the succes value 0x1626ba7e.
+// If the signature is valid it should return the success value 0x1626ba7e.
 // Then, the message was signed by an EOA which has a SIGN (https://github.com/lukso-network/standards/universal-profile/lsp6-key-manager#permissions)permission for this Universal Profile.
 // For additional details, check https://eips.ethereum.org/EIPS/eip-1271
 const isValidSignature = await myUniversalProfileContract.methods
