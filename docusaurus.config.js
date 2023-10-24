@@ -215,6 +215,10 @@ module.exports = {
             from: '/guides/vault/edit-vault-data',
             to: '/learn/expert-guides/edit-vault-data',
           },
+          {
+            from: '/guides/universal-receiver-delegate/accept-reject-assets',
+            to: '/learn/expert-guides/accept-reject-assets',
+          },
         ],
       },
     ],
