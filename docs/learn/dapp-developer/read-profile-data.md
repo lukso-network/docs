@@ -19,7 +19,7 @@ sidebar_position: 3
 This guide shows you how to read data from a [Universal Profile](../../standards/universal-profile/introduction.md) smart contract.
 
 :::info
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/get-data-keys.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
 :::
 
 :::tip
@@ -62,7 +62,7 @@ To read the profile data you simply instantiate `erc725.js` with your profile ad
 
 And you can call `.getData()` to get all data that is stored on the profile smart contract and in your provided schema JSON.
 
-```javascript title="get-data-keys.js"
+```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
 
@@ -137,17 +137,8 @@ Note: You can also create and load your own custom ERC725Y JSON schemas.
 
 If you only need the actual profile data JSON file you can use `.fetchData('LSP3Profile')`. This will download the JSON file and verify its file hash automatically.
 
-:::note get and fetch
-The `.getData(...)` function only retrieves the data keys values from the smart contract. In comparison, `.fetchData(...)` will download `JSONURL` and `AssetURL` content.
 
-If you want to fetch linked or attached data from a ERC725Y storage key, make sure to use `fetchData`. Otherwise, you can retrieve plain contract data using `getData`.
-:::
-
-:::info
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/fetch-json-data.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Ffetch-json-data.js).
-:::
-
-```javascript title="fetch-json-data.js"
+```js
 // ...
 
 // Download and verify the profile metadata JSON file
@@ -203,15 +194,20 @@ console.log(profileMetaData);
 
 </details>
 
-## Fetch Assets and Universal Receiver
+:::note get and fetch
 
-Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can pass down all other storage keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate).
+The `.getData(...)` function only retrieves the data keys values from the smart contract. In comparison, `.fetchData(...)` will download `JSONURL` and `AssetURL` content.
 
-:::info
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data/fetch-json-data.js) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Ffetch-json-data.js).
+If you want to fetch linked or attached data from a ERC725Y storage key, make sure to use `fetchData`. Otherwise, you can retrieve plain contract data using `getData`.
+
 :::
 
-```javascript title="fetch-json-data.js"
+## Fetch Assets and Universal Receiver
+
+Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can also use other data keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate), like in the following example:
+
+
+```js
 // ...
 
 // Fetch all of the profile's issued assets
@@ -265,7 +261,5 @@ console.log(universalReceiver);
 </details>
 
 :::info
-
-The actual data of the requests can be seen within the `value` (string) or `values` (array) property of the related JSON.
-
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
 :::
