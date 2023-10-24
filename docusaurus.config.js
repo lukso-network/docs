@@ -18,76 +18,12 @@ module.exports = {
       {
         redirects: [
           {
-            from: '/networks/l16-testnet/parameters',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/become-validator',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/logs-stats-monitoring',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/node-backup',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/run-node',
-            to: '/networks/testnet/running-a-node',
-          },
-          {
-            from: '/networks/l16-testnet/troubleshooting',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/mainnet',
-            to: '/networks/mainnet/running-a-node',
-          },
-          {
-            from: '/contracts/erc725-account',
-            to: '/contracts/contracts/LSP0ERC725Account',
-          },
-          {
             from: '/guides/network/update-the-node',
             to: '/networks/advanced-guides/update-the-node',
           },
           {
             from: '/guides/network/switch-consensus-clients',
             to: '/networks/advanced-guides/switch-consensus-clients',
-          },
-          {
-            from: '/contracts/key-manager',
-            to: '/contracts/contracts/LSP6KeyManager',
-          },
-          {
-            from: '/contracts/digital-asset',
-            to: '/contracts/contracts/LSP7DigitalAsset',
-          },
-          {
-            from: '/contracts/identifiable-digital-asset',
-            to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
-          },
-          {
-            from: '/guides/universal-profile/browser-extension/install-browser-extension',
-            to: '/guides/browser-extension/install-browser-extension',
-          },
-          {
-            from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
-            to: '/standards/generic-standards/lsp1-universal-receiver-delegate',
-          },
-          {
-            from: '/tools/relayer-api/execute-transaction',
-            to: '/standards/relayer-api',
-          },
-          {
-            from: '/guides/key-manager/execute-relay-call',
-            to: '/guides/key-manager/execute-relay-transactions',
           },
           // Smart Contracts new structure
           {
@@ -181,13 +117,6 @@ module.exports = {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    announcementBar: {
-      id: 'scam_warning',
-      content:
-        '🚨 Beware of scams! Only trust LUKSO domains: <b>.lukso.network</b> &amp; <b>.lukso.tech</b> 🚨',
-      backgroundColor: '#fbd784',
-      isCloseable: false,
-    },
     navbar: {
       title: 'LUKSO',
       logo: {
