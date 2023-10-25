@@ -247,6 +247,10 @@ module.exports = {
             from: '/guides/digital-assets/read-asset-data',
             to: '/learn/expert-guides/read-asset-data',
           },
+          {
+            from: '/guides/vault/interact-with-contracts',
+            to: '/learn/expert-guides/vault-interact-with-contracts',
+          },
         ],
       },
     ],

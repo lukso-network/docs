@@ -1,6 +1,5 @@
 ---
-sidebar_label: 'Interact With Contracts'
-sidebar_position: 3
+sidebar_label: '[vault] Interact With Contracts'
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,11 +7,17 @@ import TabItem from '@theme/TabItem';
 
 # Interact With Contracts
 
+:::caution
+
+This article is a WIP
+
+:::
+
 Similar to our **[previous guide](../../learn/expert-guides/edit-vault-data.md)** on setting data on the Vault, in this guide, we will be learning how to **interact with other contracts** through the Vault's execute function.
 
 :::info
 
-This guide is also very similar to the guide: [**Interact with contract using a Universal Profile**](../universal-profile/interact-with-contracts.md).
+This guide is also very similar to the guide: [**Interact with contract using a Universal Profile**](../../guides/universal-profile/interact-with-contracts.md).
 
 :::
 
