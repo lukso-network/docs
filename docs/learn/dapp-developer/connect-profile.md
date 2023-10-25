@@ -5,13 +5,13 @@ sidebar_position: 1
 
 # Connect Your Universal Profile to a dApp
 
-To allow your users to connect to your dApp with their [Universal Profile](../../standards/universal-profile/introduction.md), they need to ✨ [create a Universal Profile](https://my.universalprofile.cloud) and install the 🖥️ [Universal Profile Browser Extension](../../guides/browser-extension/install-browser-extension.md).
+To allow your users to connect to your dApp with their [Universal Profile](../../standards/universal-profile/introduction.md), they need to ✨ [create a Universal Profile](https://my.universalprofile.cloud) and install the 🖥️ [Universal Profile Browser Extension](/install-up-browser-extension).
 
 The easiest way for your users to create a Universal Profile, is through 👉 [my.universalprofile.cloud](https://my.universalprofile.cloud).
 
 :::note
 
-Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../guides/universal-profile/create-profile.md) for your users, but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
+Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../learn/expert-guides/create-profile.md) for your users, but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
 
 :::
 

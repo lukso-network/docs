@@ -7,7 +7,7 @@ sidebar_position: 1
 
 :::success Useful Tip
 
-The [Learn Section](../../learn/introduction.md) will take you through the process of creating a Universal Profile and deploying it on the [LUKSO Testnet](../../networks/testnet/).  
+The [Learn Section](../../learn/introduction.md) will take you through the process of creating a Universal Profile and deploying it on the [LUKSO Testnet](../../networks/testnet/parameters.md).  
 You can also browse the already deployed Universal Profiles on [universalprofile.cloud](https://universalprofile.cloud/).
 
 :::

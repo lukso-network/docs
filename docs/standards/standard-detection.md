@@ -27,7 +27,3 @@ There are two types of **LSP** standards used to interact with smart contracts o
 See the **[LSP Detection Guide](../learn/dapp-developer/standard-detection.md)** to lean how to check standardized metadata storage and interfaces.
 
 :::
-
-## Further information
-
-- [How to check if an address is a Universal Profile? - (LUKSO Docs)](../guides/universal-profile/check-if-address-is-universal-profile.md)

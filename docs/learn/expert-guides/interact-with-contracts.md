@@ -1,12 +1,17 @@
 ---
 sidebar_label: 'Interact with Contracts'
-sidebar_position: 5
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Interact with other contracts
+
+:::caution
+
+This article is a WIP
+
+:::
 
 In this guide, we will learn how to use our Universal Profile to interact with any other smart contract (like if we were using a regular Externally Owned Account).
 

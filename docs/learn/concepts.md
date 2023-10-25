@@ -11,7 +11,7 @@ A [Universal Profile (UP)](../standards/universal-profile/introduction.md) is a 
 
 :::info The importance of using Universal Profiles
 
-Contrary to most EVM chains, you're encouraged on LUKSO to mainly use [Universal Profiles](../standards/universal-profile/introduction.md) as the account solution for dApps and as a gateway for your users to the LUKSO Blockchain. It is discouraged to use simple EOAs as accounts, as they are insecure, inflexible and don't track incoming assets. If you need a more general understanding of why we build our accounts on the smart contract level, we advise you to read about the [LUKSO Ecosystem](https://medium.com/lukso/lukso-ecosystem-part-1-4c3f5d67b081) concept.
+On LUKSO, you are encouraged to mainly use [Universal Profiles](../standards/universal-profile/introduction.md) as the account solution for dApps and as a gateway for your users to the LUKSO Blockchain. It is discouraged to use simple EOAs as accounts, as they are insecure, inflexible and don't track incoming assets. If you need a more general understanding of why we build our accounts on the smart contract level, we advise you to read about the [LUKSO Ecosystem](https://medium.com/lukso/lukso-ecosystem-part-1-4c3f5d67b081) concept.
 
 :::
 

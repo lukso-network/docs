@@ -1,6 +1,5 @@
 ---
-sidebar_label: 'Set the default implementation'
-sidebar_position: 3
+sidebar_label: 'URD Set the default implementation'
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,9 +7,15 @@ import TabItem from '@theme/TabItem';
 
 # Set the default implementation
 
+:::caution
+
+This article is a WIP
+
+:::
+
 :::note
 
-Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](../universal-profile/create-profile.md)** or the **[Browser Extension](../browser-extension/install-browser-extension.md)** can skip this guide, as this contract is already deployed and set for their profiles.
+Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](./create-profile.md)** or the **[Browser Extension](/install-up-browser-extension)** can skip this guide, as this contract is already deployed and set for their profiles.
 
 :::
 

@@ -1,9 +1,14 @@
 ---
 sidebar_label: 'Create a Universal Profile'
-sidebar_position: 1
 ---
 
 # Create a Universal Profile
+
+:::caution
+
+This article is a WIP
+
+:::
 
 :::note Notice
 

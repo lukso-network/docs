@@ -17,7 +17,7 @@ Similar to our **[previous guide](../../learn/expert-guides/edit-vault-data.md)*
 
 :::info
 
-This guide is also very similar to the guide: [**Interact with contract using a Universal Profile**](../../guides/universal-profile/interact-with-contracts.md).
+This guide is also very similar to the guide: [**Interact with contract using a Universal Profile**](./interact-with-contracts.md).
 
 :::
 

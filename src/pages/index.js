@@ -21,7 +21,7 @@ function Index() {
         <CallToActionButton
           bgColor="#6270A4"
           color="#ffffff"
-          link="./guides/browser-extension/install-browser-extension"
+          link="./install-up-browser-extension"
           text="DOWNLOAD THE BROWSER EXTENSION"
         />
         <br />
@@ -62,13 +62,6 @@ function Index() {
             title="LEARN"
             className="learn"
             content="Learn about the LUKSO ecosystem"
-          />
-          <Box
-            icon={GuidesIcon}
-            link="./guides/getting-started"
-            title="GUIDES"
-            className="guides"
-            content="Guides and tutorials to help you get started with the LUKSO ecosystem."
           />
           <Box
             icon={FAQIcon}

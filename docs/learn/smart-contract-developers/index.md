@@ -146,7 +146,7 @@ We will create a script to deploy the smart contract to the LUKSO Testnet networ
 
 #### Deploy using a Universal Profile (Recommended)
 
-In this chapter, we are going to deploy our contract using our Universal Profile. First thing is to [Install the UP browser extension](../../guides/browser-extension/install-browser-extension.md). Once installed, we will retrieve the information we need:
+In this chapter, we are going to deploy our contract using our Universal Profile. First thing is to [Install the UP browser extension](/install-up-browser-extension). Once installed, we will retrieve the information we need:
 
 - Click on the extension
 - Click on the cogwheel ⚙️ at the top right corner, then select "reveal private keys"

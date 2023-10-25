@@ -17,7 +17,7 @@ In essence, using UniversalProfile provides a **safer environment for managing y
 
 ## Where can I download the Universal Profile Extension?
 
-You can download the Universal Profile Extension from the [Extension Guide](../../guides/browser-extension/install-browser-extension) section of our technical documentation. There is an official release in the Chrome Store and other platforms coming during the mainnet launch process.
+You can download the Universal Profile Extension from the [Extension Guide](/install-up-browser-extension) section of our technical documentation. There is an official release in the Chrome Store and other platforms coming during the mainnet launch process.
 
 ## Where can I find my controller keys for the Universal Profile?
 

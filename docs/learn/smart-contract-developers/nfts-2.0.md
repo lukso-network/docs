@@ -5,6 +5,12 @@ sidebar_position: 1
 
 # NFTs 2.0
 
+:::caution
+
+This article is a WIP
+
+:::
+
 ## From ERC20 to LSP7
 
 ### LSP 7 Token

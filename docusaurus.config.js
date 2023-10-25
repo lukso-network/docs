@@ -101,15 +101,15 @@ module.exports = {
           },
           {
             from: '/guides/hardhat-walkthrough/hardhat-base-setup',
-            to: '/contracts/getting-started',
+            to: '/learn/smart-contract-developers/',
           },
           {
             from: '/guides/hardhat-walkthrough/create-custom-lsp7',
-            to: '/contracts/getting-started',
+            to: '/learn/smart-contract-developers/',
           },
           {
             from: '/guides/hardhat-walkthrough/deploy-custom-lsp7',
-            to: '/contracts/getting-started',
+            to: '/learn/smart-contract-developers/',
           },
           {
             from: '/standards/nft-2.0/LSP4-Digital-Asset-Metadata',
@@ -207,6 +207,30 @@ module.exports = {
             from: '/guides/getting-started',
             to: '/learn/introduction',
           },
+          {
+            from: '/guides/universal-receiver-delegate/set-default-implementation',
+            to: '/learn/expert-guides/set-default-implementation',
+          },
+          {
+            from: '/guides/universal-profile/create-profile',
+            to: '/learn/expert-guides/create-profile',
+          },
+          {
+            from: '/guides/universal-profile/interact-with-contracts',
+            to: '/learn/expert-guides/interact-with-contracts',
+          },
+          {
+            from: '/guides/browser-extension/interact-with-dapp',
+            to: '/learn/dapp-developer/connect-profile',
+          },
+          {
+            from: '/guides/browser-extension/web3-onboard',
+            to: '/learn/expert-guides/web3-onboard',
+          },
+          {
+            from: '/guides/browser-extension/install-browser-extension',
+            to: '/install-up-browser-extension',
+          },
         ],
       },
     ],
@@ -225,12 +249,6 @@ module.exports = {
           docId: 'learn/introduction',
           position: 'left',
           label: 'Learn',
-        },
-        {
-          type: 'doc',
-          docId: 'guides/getting-started',
-          position: 'left',
-          label: 'Guides',
         },
         {
           type: 'doc',
@@ -262,6 +280,11 @@ module.exports = {
           docId: 'faq/lukso/general-information',
           position: 'left',
           label: 'FAQ',
+        },
+        {
+          to: '/install-up-browser-extension',
+          label: 'UP Browser Extension',
+          position: 'right',
         },
         {
           href: 'https://github.com/lukso-network/LIPs/tree/main/LSPs',
