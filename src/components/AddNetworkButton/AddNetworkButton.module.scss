@@ -1,5 +1,6 @@
 .button {
   tab-size: 4;
+  transition: box-shadow .3s;
 
   box-sizing: border-box;
   border: 0 solid #f2f2f2;
@@ -20,10 +21,10 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
-  background-color: #fff1f8;
+  background-color: #fe005b;
+  color: white;
 
   &:hover {
-    background-color: #fe005b;
-    color: white;
+    box-shadow: 0 0 11px rgba(33,33,33,.7); 
   }
 }
