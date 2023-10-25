@@ -14,7 +14,7 @@ This article is a WIP
 
 :::
 
-This guide will teach you how to deploy an **[LSP9Vault](../../contracts/contracts/LSP9Vault/LSP9Vault.md)** contract. This contract can be used to **hold assets** such as tokens and NFTs. Also can be used with a [UniversalProfile](../../standards/universal-profile/introduction.md) and a [KeyManager](../../standards/universal-profile/lsp6-key-manager.md) to **restrict some addresses** (protocols, friends, etc..) to execute and setData on it, instead of setting or executing directly on the profile.
+This guide will teach you how to deploy an **[LSP9Vault](../../../contracts/contracts/LSP9Vault/LSP9Vault.md)** contract. This contract can be used to **hold assets** such as tokens and NFTs. Also can be used with a [UniversalProfile](../../../standards/universal-profile/introduction.md) and a [KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) to **restrict some addresses** (protocols, friends, etc..) to execute and setData on it, instead of setting or executing directly on the profile.
 
 ![Guide - How to create an LSP9Vault](/img/guides/lsp9/LSP9VaultGuide.jpeg)
 
@@ -23,7 +23,7 @@ This guide will teach you how to deploy an **[LSP9Vault](../../contracts/contrac
 To start with this guide you will need the following things:
 
 - The _private key_ of your account, in order to send the transaction.
-- The address of a [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
+- The address of a [**Universal Profile**](../../../standards/universal-profile/lsp0-erc725account.md)
 
 Make sure you have the following dependencies installed before beginning this tutorial:
 

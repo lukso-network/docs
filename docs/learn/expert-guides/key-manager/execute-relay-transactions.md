@@ -14,11 +14,11 @@ This guide is a WIP
 
 :::
 
-The [LSP6 KeyManager](../../standards/universal-profile/lsp6-key-manager.md) standard enables anybody to execute a transaction on behalf of a Universal Profile, given they have a valid transaction which has been signed by a key that controls the Universal Profile.
+The [LSP6 KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) standard enables anybody to execute a transaction on behalf of a Universal Profile, given they have a valid transaction which has been signed by a key that controls the Universal Profile.
 
 Relayed execution enables use cases such as Transaction Relayer Services to be possible where users can send their transaction details to a third party to be executed, moving the gas cost burden away from the user who owns the Universal Profile.
 
-For example, Alice can send an encoded transaction which updates the [LSP3Profile](../../standards/universal-profile/lsp3-profile-metadata.md) picture on her Universal Profile to a second user, Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
+For example, Alice can send an encoded transaction which updates the [LSP3Profile](../../../standards/universal-profile/lsp3-profile-metadata.md) picture on her Universal Profile to a second user, Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
 
 To execute the transaction, Bob needs to know:
 
@@ -26,7 +26,7 @@ To execute the transaction, Bob needs to know:
 - the transaction signature,
 - the nonce of the key that signed the transaction.
 
-The transaction is then executed via the [LSP6KeyManager](../../standards/universal-profile/lsp6-key-manager.md) function `executeRelayCall`.
+The transaction is then executed via the [LSP6KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) function `executeRelayCall`.
 
 ## Generate the signed transaction payload
 
@@ -60,7 +60,7 @@ npm install ethers @lukso/lsp-smart-contracts @lukso/eip191-signer.js
 
 ### Step 1 - Setup imports and constants
 
-To encode a transaction, we need the address of the Universal Profile smart contract and the private key of a controller key with sufficient [LSP6 permissions](../../standards/universal-profile/lsp6-key-manager.md#permissions) to execute the transaction.
+To encode a transaction, we need the address of the Universal Profile smart contract and the private key of a controller key with sufficient [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager.md#permissions) to execute the transaction.
 
 <Tabs>
   
@@ -118,7 +118,7 @@ const controllerAccount = new ethers.Wallet(controllerPrivateKey).connect(
 
 ### Step 2 - Prepare the contact instances
 
-We will get the contract instances for the [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md) and [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) for further use in the guide.
+We will get the contract instances for the [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) and [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) for further use in the guide.
 
 <Tabs>
   
@@ -170,9 +170,9 @@ const keyManager = new ethers.Contract(
 
 ### Step 3 - Prepare the relay call parameters
 
-Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) function.
+Get the `nonce` of the controller key from the KeyManager by instantiating the KeyManager smart contract instance and calling the [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) function.
 
-The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
+The `channelId` is used to prevent nonce conflicts when multiple apps send transactions to the same KeyManager at the same time. Read more about [out of order execution here](../../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution).
 
 A `validityTimestamp` of `0` is used for simplicity in this guide.
 
@@ -180,7 +180,7 @@ Encode the ABI of the transaction you want to be executed. In this case, a LYX t
 
 :::tip
 
-For more information about _validity timestamps_ check [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+For more information about _validity timestamps_ check [**How to sign relay transactions?**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 :::
 
@@ -232,7 +232,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
 :::tip ERC725X execute
 
-You can find more information about the [ERC725X `execute` call here](../../contracts/contracts/ERC725/ERC725.md#execute).
+You can find more information about the [ERC725X `execute` call here](../../../contracts/contracts/ERC725/ERC725.md#execute).
 
 :::
 
@@ -244,7 +244,7 @@ The message is constructed by signing the `keyManagerAddress`, `keyManagerVersio
 
 :::tip ERC725X execute
 
-For more information check: [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+For more information check: [**How to sign relay transactions?**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 :::
 
@@ -298,7 +298,7 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 
 </Tabs>
 
-Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
+Now the `signature`, `abiPayload`, `nonce`, `validityTimestamps` and `keyManagerAddress` can be sent to a third party to execute the transaction using [`executeRelayCall`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 ## Execute via `executeRelayCall`
 
@@ -310,7 +310,7 @@ This example shows how a third party can execute a transaction on behalf of anot
 
 :::tip
 
-For more information about relay execution check [**How to sign relay transactions?**](../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+For more information about relay execution check [**How to sign relay transactions?**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 :::
 
@@ -357,7 +357,7 @@ const executeRelayCallTransaction = await keyManager
 
 :::tip LSP6KeyManager executeRelayCall
 
-You can find more information about the [LSP6KeyManager `executeRelayCall` here](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
+You can find more information about the [LSP6KeyManager `executeRelayCall` here](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 :::
 

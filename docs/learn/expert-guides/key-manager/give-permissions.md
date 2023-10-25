@@ -16,7 +16,7 @@ This article is a WIP
 :::info Requirements
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
-If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../expert-guides/create-profile.md) or look at the [_lsp-factory.js_](../../tools/lsp-factoryjs/deployment/universal-profile.md) docs.
+If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../create-profile.md) or look at the [_lsp-factory.js_](../../../tools/lsp-factoryjs/deployment/universal-profile.md) docs.
 
 :::
 
@@ -24,7 +24,7 @@ In this guide, we will learn how to grant permissions to third-party addresses t
 
 By the end of this guide, you will know:
 
-- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../../tools/erc725js/getting-started).
+- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../tools/erc725js/getting-started.md).
 - How to set permissions for a third party `address` on your Universal Profile.
 
 ![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpeg)
@@ -33,13 +33,13 @@ By the end of this guide, you will know:
 
 The Key Manager (KM) enables us to give permissions to other 3rd party addresses to perform certain actions on our Universal Profile (UP), such as editing our profile details, or any other profile metadata.
 
-When granting permissions to a new address, we need to update three data keys in the [ERC725Y](../../standards/lsp-background/erc725.md#erc725y) storage of our Universal Profile:
+When granting permissions to a new address, we need to update three data keys in the [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y) storage of our Universal Profile:
 
-| :file_cabinet: ERC725Y data key                                                                                                     | :page_with_curl: Description                                   | :dart: **Objective**                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`AddressPermissions[]`](../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions)               | holds the number of addresses that have permissions on our UP. | We need to **increment it by +1**.                                                 |
-| [`AddressPermissions[index]`](../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions)          | holds a controller address at a specific index.                | We need to **add the beneficiary address at the new index**.                       |
-| [`AddressPermissions:Permissions:<beneficiary-address>`](../../standards/universal-profile/lsp6-key-manager.md#address-permissions) | this data key holds the permissions of a controller address.   | We need to **add the permissions of the beneficiary address** under this data key. |
+| :file_cabinet: ERC725Y data key                                                                                                        | :page_with_curl: Description                                   | :dart: **Objective**                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`AddressPermissions[]`](../../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions)               | holds the number of addresses that have permissions on our UP. | We need to **increment it by +1**.                                                 |
+| [`AddressPermissions[index]`](../../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions)          | holds a controller address at a specific index.                | We need to **add the beneficiary address at the new index**.                       |
+| [`AddressPermissions:Permissions:<beneficiary-address>`](../../../standards/universal-profile/lsp6-key-manager.md#address-permissions) | this data key holds the permissions of a controller address.   | We need to **add the permissions of the beneficiary address** under this data key. |
 
 ## Setup
 
@@ -83,11 +83,11 @@ const erc725 = new ERC725(
 
 :::info
 
-More permissions are available in erc725.js. See the API docs for [`encodePermissions(...)`](../../tools/erc725js/classes/ERC725.md#encodepermissions) function for a complete list.
+More permissions are available in erc725.js. See the API docs for [`encodePermissions(...)`](../../../tools/erc725js/classes/ERC725.md#encodepermissions) function for a complete list.
 
 :::
 
-We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../../tools/erc725js/classes/ERC725#encodepermissions).
+We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../tools/erc725js/classes/ERC725#encodepermissions).
 
 ### 2.1 - Create the permission
 
@@ -142,7 +142,7 @@ We have now all the data needed to setup the permission for this 3rd party addre
 To get started you would need the following:
 
 - **UniversalProfile** from [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) in order to use its ABI.
-- The private key for your _controller address_ with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions), used for interacting with the Universal Profile.
+- The private key for your _controller address_ with proper [**permissions**](../../../standards/universal-profile/lsp6-key-manager.md#permissions), used for interacting with the Universal Profile.
 - The address of the Universal Profile that you want to interact with.
 
 <Tabs>
@@ -188,7 +188,7 @@ The first step is to load this main controller address as an EOA using its priva
 The private key can be obtained depending on how you created your Universal Profile:
 
 - UP created with our **Create a Universal Profile guide**: you should have provided the private key and known it.
-- UP created with the _lsp-factory.js_: this is the private key given in the `controllerAddresses` field in the method [`lspFactory.UniversalProfile.deploy(...)`](../../tools/lsp-factoryjs/classes/universal-profile#deploy)
+- UP created with the _lsp-factory.js_: this is the private key given in the `controllerAddresses` field in the method [`lspFactory.UniversalProfile.deploy(...)`](../../../tools/lsp-factoryjs/classes/universal-profile#deploy)
 - UP created via the Browser extension: click on the _Settings_ icon (top right) > and _Export Private Key_
 
 <Tabs>

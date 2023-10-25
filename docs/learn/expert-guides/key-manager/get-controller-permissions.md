@@ -18,7 +18,7 @@ In this guide, you will learn how to:
 
 ![Get controller addresses](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
 
-We will use the [_erc725.js_](../../tools/erc725js/getting-started.md) library to do this with just over 30 lines of code.
+We will use the [_erc725.js_](../../../tools/erc725js/getting-started.md) library to do this with just over 30 lines of code.
 
 ## Setup
 
@@ -78,7 +78,7 @@ console.log(result);
 
 Getting the addresses of each controller is not enough. We need to retrieve the permissions of each of these controller address, so to know what they are allowed to do in our Universal Profile.
 
-We can do this easily again with the [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) and [`decodePermissions(...)`](../../tools/erc725js/classes/ERC725#decodepermissions) functions from _erc725.js_.
+We can do this easily again with the [`getData(...)`](../../../tools/erc725js/classes/ERC725#getdata) and [`decodePermissions(...)`](../../../tools/erc725js/classes/ERC725#decodepermissions) functions from _erc725.js_.
 
 ### 3.1 - Retrieve controller's permissions
 
@@ -103,7 +103,7 @@ console.log(addressPermission);
 
 As you can see in step 3.1, the permission that we obtain for a controller address is still encoded in `bytes32` as a [`BitArray`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#BitArray).
 
-In order to read the controller permissions in a human readable format, we can use the convenience function [`decodePermissions(...)`](../../tools/erc725js/classes/ERC725#decodepermissions) from _erc725.js_.
+In order to read the controller permissions in a human readable format, we can use the convenience function [`decodePermissions(...)`](../../../tools/erc725js/classes/ERC725#decodepermissions) from _erc725.js_.
 
 ```js
 // step 3.2 - decode the permission of each address

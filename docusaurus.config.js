@@ -129,11 +129,11 @@ module.exports = {
           },
           {
             from: '/guides/key-manager/execute-relay-transactions',
-            to: '/learn/expert-guides/execute-relay-transactions',
+            to: '/learn/expert-guides/key-manager/execute-relay-transactions',
           },
           {
             from: '/guides/key-manager/upgrade-lsp6',
-            to: '/learn/expert-guides/upgrade-key-manager',
+            to: '/learn/expert-guides/key-manager/upgrade-key-manager',
           },
           {
             from: '/guides/universal-receiver-delegate/create-custom-urd-1',
@@ -145,11 +145,11 @@ module.exports = {
           },
           {
             from: '/guides/vault/create-a-vault',
-            to: '/learn/expert-guides/create-a-vault',
+            to: '/learn/expert-guides/vault/create-a-vault',
           },
           {
             from: '/guides/vault/edit-vault-data',
-            to: '/learn/expert-guides/edit-vault-data',
+            to: '/learn/expert-guides/vault/edit-vault-data',
           },
           {
             from: '/guides/universal-receiver-delegate/accept-reject-assets',
@@ -157,7 +157,7 @@ module.exports = {
           },
           {
             from: '/guides/vault/restrict-addresses-to-vaults',
-            to: '/learn/expert-guides/grant-vault-permissions',
+            to: '/learn/expert-guides/vault/grant-vault-permissions',
           },
           {
             from: '/guides/digital-assets/mint-lsp7-digital-asset',
@@ -169,15 +169,15 @@ module.exports = {
           },
           {
             from: '/guides/key-manager/get-controllers',
-            to: '/learn/expert-guides/get-controller-permissions',
+            to: '/learn/expert-guides/key-manager/get-controller-permissions',
           },
           {
             from: '/guides/universal-profile/transfer-lyx',
-            to: '/learn/expert-guides/get-controller-permissions',
+            to: '/learn/dapp-developer/transfer-lyx',
           },
           {
             from: '/guides/key-manager/give-permissions',
-            to: '/learn/expert-guides/give-permissions',
+            to: '/learn/expert-guides/key-manager/give-permissions',
           },
           {
             from: '/guides/digital-assets/read-asset-data',
@@ -185,7 +185,7 @@ module.exports = {
           },
           {
             from: '/guides/vault/interact-with-contracts',
-            to: '/learn/expert-guides/vault-interact-with-contracts',
+            to: '/learn/expert-guides/vault/interact-with-contracts',
           },
           {
             from: '/guides/digital-assets/transfer-lsp7-digital-asset',

@@ -190,7 +190,7 @@ See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)**
 
 Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md) allowing 2 step ownership transfers.
 
-Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../learn/expert-guides/upgrade-key-manager.md).
+Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../learn/expert-guides/key-manager/upgrade-key-manager.md).
 
 :::
 
