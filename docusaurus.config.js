@@ -191,6 +191,10 @@ module.exports = {
             from: '/guides/digital-assets/transfer-lsp7-digital-asset',
             to: '/learn/dapp-developer/transfer-lsp7-digital-asset',
           },
+          {
+            from: '/guides/universal-profile/edit-profile',
+            to: '/learn/expert-guides/edit-profile',
+          },
         ],
       },
     ],

@@ -1,14 +1,19 @@
 ---
 sidebar_label: 'Edit a Universal Profile'
-sidebar_position: 3
 ---
 
 # Edit a Universal Profile
 
+:::caution
+
+This article is a WIP
+
+:::
+
 :::info Requirements
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
-:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](./create-profile.md).
+:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../../guides/universal-profile/create-profile.md).
 
 :::
 
