@@ -7,7 +7,7 @@ sidebar_position: 1
 
 :::success Useful Tip
 
-The [Guides Section](../../guides/universal-profile/create-profile) will take you through the process of creating a Universal Profile and deploying it on the [LUKSO Testnet](../../networks/testnet/).  
+The [Learn Section](../../learn/introduction.md) will take you through the process of creating a Universal Profile and deploying it on the [LUKSO Testnet](../../networks/testnet/).  
 You can also browse the already deployed Universal Profiles on [universalprofile.cloud](https://universalprofile.cloud/).
 
 :::
@@ -48,7 +48,7 @@ The **[LSP0 - ERC725Account](./lsp0-erc725account.md)** standard represents a bl
 
 :::tip
 
-The guide [how to check if an address is a Universal Profile?](../../guides/universal-profile/check-if-address-is-universal-profile.md) may interest you.
+The guide [Connect Your Universal Profile to a dApp](../../learn/dapp-developer/connect-profile.md) may interest you.
 
 :::
 

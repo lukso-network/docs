@@ -5,6 +5,8 @@ sidebar_position: 1
 
 # Introduction
 
+Here you will find tutorials and tools that help you build on LUKSO. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO. If you need EVM and Smart Contract knowledge, we advise you to look at [these great resources from the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/).
+
 ## What is LUKSO?
 
 LUKSO is L1 blockchain, EVM (Ethereum Virtual Machine) compatible, based on PoS (Proof of Stake), for creative economies.

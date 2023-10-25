@@ -2,7 +2,7 @@
 
 Smart contract developer, welcome to the LUKSO documentation! The LUKSO ecosystem offers you a lot of [new standards](../../standards/introduction.md) and tools to build more powerful blockchain applications which are - _very important_ - standardised.
 
-LUKSO is based on the EVM so there should be a lot of familiar concepts here. The following tutorial will teach you how to:
+As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO. The following tutorial will teach you how to:
 
 - set up a [Hardhat](https://hardhat.org/) installation (using TypeScript)
 - install the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package (using version 0.11.0-rc.1)

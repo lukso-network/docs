@@ -203,6 +203,10 @@ module.exports = {
             from: '/contracts/getting-started',
             to: '/learn/smart-contract-developers/',
           },
+          {
+            from: '/guides/getting-started',
+            to: '/learn/introduction',
+          },
         ],
       },
     ],
