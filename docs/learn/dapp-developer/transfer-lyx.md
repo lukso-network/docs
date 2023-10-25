@@ -34,7 +34,7 @@ Let's recap what we have learned so far!
 
 - In our [**Create a Universal Profile**](../../guides/universal-profile/create-profile.md) guide, we saw in the [Universal Profile architecture diagram](../../guides/universal-profile/create-profile.md#contracts-overview) that the owner of a Universal Profile (UP) is a Key Manager (KM). This smart contract acts as its controller.
 
-- In our [**Edit a Universal Profile**](../../guides/universal-profile/edit-profile.md) guide, we saw the basics of interacting with our UP to edit our profile info. We did so by interacting via the KM.
+- In our [**Edit a Universal Profile**](../expert-guides/edit-profile.md) guide, we saw the basics of interacting with our UP to edit our profile info. We did so by interacting via the KM.
 
 We previously saw how to use `setData(...)` to update data in our UP contract's storage. Let's now look at `execute(...)`.
 

@@ -195,6 +195,10 @@ module.exports = {
             from: '/guides/universal-profile/edit-profile',
             to: '/learn/expert-guides/edit-profile',
           },
+          {
+            from: '/guides/universal-profile/check-if-address-is-universal-profile',
+            to: '/learn/dapp-developer/standard-detection',
+          },
         ],
       },
     ],
