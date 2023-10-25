@@ -60,9 +60,9 @@ npm install @erc725/erc725.js
 </div>
 </details>
 
-To read the profile data you simply instantiate `erc725.js` with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway.
+To read the profile data you simply instantiate `erc725.js` with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
 
-You can call [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
+[`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
 
 <!-- prettier-ignore-start -->
 
@@ -131,7 +131,7 @@ console.log(profileData);
 
 :::note ERC725Y JSON schemas
 
-`erc725.js` works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell `erc725.js` how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `erc725.js` object.
+`erc725.js` works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `erc725.js` object. The most common schemas are [available](../../tools/erc725js/schemas.md) in the erc725.js library.
 
 You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
 
@@ -199,9 +199,7 @@ console.log(profileMetaData);
 
 :::note get and fetch
 
-The `.getData(...)` function only retrieves the data keys values from the smart contract. In comparison, `.fetchData(...)` will download `JSONURL` and `AssetURL` content.
-
-If you want to fetch linked or attached data from a ERC725Y storage key, make sure to use `fetchData`. Otherwise, you can retrieve plain contract data using `getData`.
+The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download `JSONURL` and `AssetURL` content.
 
 :::
 

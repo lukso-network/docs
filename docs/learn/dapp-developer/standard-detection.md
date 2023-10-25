@@ -29,7 +29,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Metadata Detection
 
-You can verify if a contract contains a specific set of ERC725Y keys (= **metadata**) by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library.
+You can verify if a contract contains a specific set of ERC725Y keys (= **metadata**) by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](../../tools/erc725js/getting-started.md) library.
 
 :::note Example
 
@@ -37,7 +37,7 @@ You can verify if a contract contains a specific set of ERC725Y keys (= **metada
 
 :::
 
-Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use the `getData()` function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use the [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../../standards/universal-profile/lsp9-vault).
 
 <!-- prettier-ignore-start -->
 
@@ -52,7 +52,7 @@ const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://rp
 );
 
 // Fetch the supported storage standard of LSP3
-let isLSP3 = await erc725js.getData('SupportedStandards:LSP3Profile');
+const isLSP3 = await erc725js.getData('SupportedStandards:LSP3Profile');
 
 // Verify if the standard is supported (value !== null)
 console.log(isLSP3);
@@ -118,17 +118,19 @@ You can also check custom data on smart contract storage by loading your own JSO
 
 ## Interface Identification
 
-Every [LSP standard](../../standards/introduction.md) has its own [interface ID](../../contracts/interface-ids.md) (as defined by [ERC-165](https://eips.ethereum.org/EIPS/eip-165)). To verify their specific set of functions (= an **interface**) we can call the standardized `supportsInterface(interfaceId)` function, passing the bytes4 `interfaceId` as a parameter.
+Every [LSP standard](../../standards/introduction.md) has its own [interface ID](../../contracts/interface-ids.md) (as defined by [ERC-165](https://eips.ethereum.org/EIPS/eip-165)). To verify their specific set of functions (= an **interface**) you can call the standardized `supportsInterface(interfaceId)` function, passing the bytes4 `interfaceId` as a parameter.
 
 ## Interface Detection
 
-Calling this function will return **TRUE** if the contract implements this specific interface ID.
+Calling this function will return `true` if the contract implements this specific interface ID.
 
 :::note Example
 
 A **[Universal Profile](../../standards/universal-profile/lsp3-profile-metadata.md)** is a contract based on [LSP0 - ERC725Account](../../standards/universal-profile/lsp0-erc725account.md). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 :::
+
+<!--prettier-ignore-start-->
 
 ```javascript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
@@ -139,10 +141,7 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Create an instance of the Universal Profile
-const myUPContract = new web3.eth.Contract(
-  UniversalProfile.abi,
-  '<myContractAddress>',
-);
+const myUPContract = new web3.eth.Contract(UniversalProfile.abi, '<myContractAddress>');
 
 const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
 console.log(
@@ -150,6 +149,8 @@ console.log(
   await myUPContract.methods.supportsInterface(LSP0_INTERFACE_ID).call(),
 );
 ```
+
+<!--prettier-ignore-end-->
 
 <details>
   <summary>
