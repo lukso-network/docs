@@ -23,7 +23,7 @@ In order to follow this guide, you'll need to:
 
 1. Install the [UP Browser extension](../../guides/browser-extension/install-browser-extension.md).
 2. Fund the main controller (EOA) of your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
-3. Setup a new Hardhat project using the [Getting started](../../contracts/getting-started.md) guide.
+3. Setup a new Hardhat project using the [Getting started](../smart-contract-developers/index.md) guide.
 
 ## 1 - EOA permission
 

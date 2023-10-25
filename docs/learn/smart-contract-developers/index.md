@@ -1,17 +1,19 @@
----
-sidebar_label: Getting Started
-title: Getting Started
-sidebar_position: 2
----
+# Getting started
 
-This page will guide you through the process of:
+Smart contract developer, welcome to the LUKSO documentation! The LUKSO ecosystem offers you a lot of [new standards](../../standards/introduction.md) and tools to build more powerful blockchain applications which are - _very important_ - standardised.
 
-- setting up an [Hardhat](https://hardhat.org/) installation (using TypeScript)
-- adding the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package (using version 0.11.0-rc.1)
-- creating a basic `LSP7DigitalAsset` contract
-- and deploying it on [LUKSO Testnet](../../networks/testnet/parameters).
+LUKSO is based on the EVM so there should be a lot of familiar concepts here. The following tutorial will teach you how to:
 
-### Create Hardhat project
+- set up a [Hardhat](https://hardhat.org/) installation (using TypeScript)
+- install the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package (using version 0.11.0-rc.1)
+- create a basic [`LSP7DigitalAsset` (token)](../../standards/tokens/LSP7-Digital-Asset.md) contract
+- deploy it on [LUKSO Testnet](../../networks/testnet/parameters).
+
+If you need more low level information about our contracts, you can check the dedicated [contracts](../../contracts/introduction.md) section.
+
+Happy coding 🧙
+
+## Create Hardhat project
 
 The first thing to do is to [create a new Hardhat project](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) that will use TypeScript:
 
@@ -25,18 +27,14 @@ npx hardhat
 
 Once finished, you have a working Hardhat setup!
 
-### Install packages &amp; setup tools
+## Install packages &amp; setup tools
 
 To work in the best condition possible, we will install libraries that includes tools, helpers and the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package.
-
-#### Install dependencies
 
 ```bash
 npm i -D dotenv
 npm i -s @lukso/lsp-smart-contracts@0.11.0-rc.1
 ```
-
-#### Add a build script in your package.json
 
 Update your `package.json` with the following:
 
@@ -46,7 +44,7 @@ Update your `package.json` with the following:
 },
 ```
 
-#### Create a .env file
+## Create a .env file
 
 Create a new file at the root of your project called `.env` with the following content:
 
@@ -63,16 +61,15 @@ We will populate the values of the `.env` file later.
 :::
 
 ```text title=".env"
-PRIVATE_KEY=
-UP_ADDR=
+PRIVATE_KEY=0x....
+UP_ADDR=0x...
 ```
 
 We now have a base Hardhat setup that we can use to develop and deploy our smart contracts.
 
-
 ## Create a custom LSP7 Token contract
 
-We will now create a custom [LSP7 Digital Asset contract](../standards/tokens/LSP7-Digital-Asset.md). This contract will extend [`LSP7Mintable`](./contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) & [LSP7Burnable](./contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md) (to allow burning tokens). We will also pre-mint 20k tokens to the owner of the contract (the deployer).
+We will now create a custom [LSP7 Digital Asset contract](../../standards/tokens/LSP7-Digital-Asset.md). This contract will extend [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) & [LSP7Burnable](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md) (to allow burning tokens). We will also pre-mint 20k tokens to the owner of the contract (the deployer).
 To do that, delete the `Lock.sol` contract in the `contracts/` folder, then create a new file named `MyCustomToken.sol` with the following content:
 
 ```solidity title="contracts/MyCustomToken.sol"
@@ -95,7 +92,7 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
 }
 ```
 
-### 🍭 Bonus: create a MockContract to generate the UniversalProfile type
+<!-- ### 🍭 Bonus: create a MockContract to generate the UniversalProfile type
 
 In order to deploy this Custom LSP7 contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract.
 To do that, you can create a `MockContract.sol` file in the `contracts/` file with the following content:
@@ -110,11 +107,11 @@ We are now ready to build our contracts using the command:
 
 ```bash
 npm run build
-```
+``` -->
 
 ## Deploy our LSP7 Token contract on LUKSO Testnet
 
-We are now ready to deploy our contract on the [**LUKSO Testnet network**](../networks/testnet/parameters.md)!
+We are now ready to deploy our contract on the [**LUKSO Testnet network**](../../networks/testnet/parameters.md)!
 
 In order to deploy the contract, we will have to update the `hardhat.config.ts` and create a deploy script. Let's go!
 
@@ -149,7 +146,7 @@ We will create a script to deploy the smart contract to the LUKSO Testnet networ
 
 #### Deploy using a Universal Profile (Recommended)
 
-In this chapter, we are going to deploy our contract using our Universal Profile. First thing is to [Install the UP browser extension](../guides/browser-extension/install-browser-extension.md). Once installed, we will retrieve the information we need:
+In this chapter, we are going to deploy our contract using our Universal Profile. First thing is to [Install the UP browser extension](../../guides/browser-extension/install-browser-extension.md). Once installed, we will retrieve the information we need:
 
 - Click on the extension
 - Click on the cogwheel ⚙️ at the top right corner, then select "reveal private keys"
@@ -159,7 +156,7 @@ In this chapter, we are going to deploy our contract using our Universal Profile
 
 :::note
 
-The `privateKey` coming from your UP extension is the private key of the EOA that controls your UP (more information about controllers can be found in the [Key Manager](../standards/universal-profile/lsp6-key-manager.md) page). You can find the associated address in the extension if you click on the controller tab > UP Extension. This address will need to be funded using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
+The `privateKey` coming from your UP extension is the private key of the EOA that controls your UP (more information about controllers can be found in the [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) page). You can find the associated address in the extension if you click on the controller tab > UP Extension. This address will need to be funded using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
 
 :::
 
@@ -253,7 +250,8 @@ dotenv.config();
 async function main() {
   // Hardhat has some issues with EIP 1559 settings, so we force it
   // See this issue for more info: https://github.com/NomicFoundation/hardhat/issues/3418
-  const { maxFeePerGas, maxPriorityFeePerGas } = await ethers.provider.getFeeData();
+  const { maxFeePerGas, maxPriorityFeePerGas } =
+    await ethers.provider.getFeeData();
 
   const customToken = await ethers.getContractFactory('CustomToken');
 
