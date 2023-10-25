@@ -187,6 +187,10 @@ module.exports = {
             from: '/guides/vault/interact-with-contracts',
             to: '/learn/expert-guides/vault-interact-with-contracts',
           },
+          {
+            from: '/guides/digital-assets/transfer-lsp7-digital-asset',
+            to: '/learn/dapp-developer/transfer-lsp7-digital-asset',
+          },
         ],
       },
     ],

@@ -1,16 +1,22 @@
 ---
-sidebar_label: 'Transfer a LSP7 Digital Asset (Token)'
-sidebar_position: 3
+sidebar_label: '🪙 Transfer LSP7 Token'
+sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create an LSP7 Digital Asset (Token)
+# Transfer LSP7 Token
+
+:::caution
+
+This article is a WIP
+
+:::
 
 This guide will teach you how to tranfer an existing [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) from a [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md) controlled by a [Key Manager](../../standards//universal-profile/lsp6-key-manager.md) to another Universal Profile.
 
-## Transfer tokens to an other Universal Profile
+## Transfer tokens to another Universal Profile
 
 The following code snippet shows how to transfer 15 tokens from your Universal Profile to another Universal Profile.
 
@@ -127,7 +133,7 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
 
 </Tabs>
 
-### Step 3 - Setup the token trasnfer calldata
+### Step 3 - Setup the token transfer calldata
 
 Now we need to prepare the calldata to transfer tokens from a Universal Profile to another UP.
 
