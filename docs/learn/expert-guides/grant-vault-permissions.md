@@ -28,7 +28,7 @@ Make sure not to grant the 3rd party address the **SUPER Permissions**. Otherwis
 
 :::
 
-Check the guide of **[granting permissions to 3rd Parties](../../guides/key-manager/give-permissions.md)**, and make sure to grant the 3rd party address the **CALL Permission**.
+Check the guide of **[granting permissions to 3rd Parties](./give-permissions.md)**, and make sure to grant the 3rd party address the **CALL Permission**.
 
 ## Use AllowedCalls permission for the 3rd Parties
 

@@ -1,6 +1,5 @@
 ---
 sidebar_label: 'Grant Permissions to 3rd parties'
-sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,10 +7,16 @@ import TabItem from '@theme/TabItem';
 
 # Grant Permissions to 3rd party addresses
 
+:::caution
+
+This article is a WIP
+
+:::
+
 :::info Requirements
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
-If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../universal-profile/create-profile.md) or look at the [_lsp-factory.js_](../../tools/lsp-factoryjs/deployment/universal-profile.md) docs.
+If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../../guides/universal-profile/create-profile.md) or look at the [_lsp-factory.js_](../../tools/lsp-factoryjs/deployment/universal-profile.md) docs.
 
 :::
 

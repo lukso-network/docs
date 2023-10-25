@@ -239,6 +239,10 @@ module.exports = {
             from: '/guides/universal-profile/transfer-lyx',
             to: '/learn/expert-guides/get-controller-permissions',
           },
+          {
+            from: '/guides/key-manager/give-permissions',
+            to: '/learn/expert-guides/give-permissions',
+          },
         ],
       },
     ],

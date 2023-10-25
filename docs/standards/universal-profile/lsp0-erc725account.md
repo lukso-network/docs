@@ -55,7 +55,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**execute functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#execute) provided by **ERC725X** that allows the contract to execute multiple operations.
 
-Check the **javascript** guides to know [**How to Send native tokens**](../../guides/universal-profile/transfer-lyx.md) or [**How to Call other contract's function**](../../guides/universal-profile/interact-with-contracts.md) using the execute function.
+Check the **javascript** guides to know [**How to Send native tokens**](../../learn/dapp-developer/transfer-lyx.md) or [**How to Call other contract's function**](../../guides/universal-profile/interact-with-contracts.md) using the execute function.
 
 :::
 
