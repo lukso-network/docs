@@ -243,6 +243,10 @@ module.exports = {
             from: '/guides/key-manager/give-permissions',
             to: '/learn/expert-guides/give-permissions',
           },
+          {
+            from: '/guides/digital-assets/read-asset-data',
+            to: '/learn/expert-guides/read-asset-data',
+          },
         ],
       },
     ],

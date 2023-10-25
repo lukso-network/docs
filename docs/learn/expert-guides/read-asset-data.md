@@ -1,12 +1,17 @@
 ---
 sidebar_label: 'Read Asset Data'
-sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Read Asset Data
+
+:::caution
+
+This article is a WIP
+
+:::
 
 In this guide, we will learn how to:
 
