@@ -60,18 +60,20 @@ const myUniversalProfileContract = new web3.eth.Contract(
   accounts[0],
 );
 
+<!-- prettier-ignore-start -->
 // To enable the Sign-In With Ethereum (SIWE) screen, you need to prepare a message with a specific format
 const hashedMessage = web3.eth.accounts.hashMessage(
   new SiweMessage({
-    domain: window.location.host, // domain requesting the signing
-    address: upAddress, // address performing the signing
+    domain: window.location.host, // Domain requesting the signing
+    address: upAddress,           // Address performing the signing
     statement: 'By logging in you agree to the terms and conditions.', // a human-readable assertion user signs
-    uri: window.location.origin, // URI from the resource that is the subject of the signing
-    version: '1', // current version of the SIWE Message
-    chainId: '4201', // Chain ID to which the session is bound, 4201 is LUKSO Testnet
-    resources: ['https://terms.website.com'], // information the user wishes to have resolved as part of authentication by the relying party
+    uri: window.location.origin,  // URI from the resource that is the subject of the signing
+    version: '1',                 // Current version of the SIWE Message
+    chainId: '4201',              // Chain ID to which the session is bound, 4201 is LUKSO Testnet
+    resources: ['https://terms.website.com'], // Information the user wishes to have resolved as part of authentication by the relying party
   }).prepareMessage(),
 );
+<!-- prettier-ignore-end -->
 
 // Request the user to sign the login message with his Universal Profile
 // The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign)
@@ -83,11 +85,11 @@ const signature = await web3.eth.sign(siweMessage, accounts[0]);
     <summary>Raw SIWE message format</summary>
 
 ```js
-const domain = window.location.host; // explain
-const uri = window.location.origin; // explain
+const domain = window.location.host; // Domain requesting the signing
+const uri = window.location.origin; // URI from the resource that is the subject of the signing
 const LUKSO_TESTNET_CHAIN_ID = '4201';
-const nonce = 'm97bdsjo'; // a randomized token, at least 8 alphanumeric characters
-const issuedAt = new Date().toISOString(); // explain
+const nonce = 'm97bdsjo'; // A randomized token, at least 8 alphanumeric characters
+const issuedAt = new Date().toISOString(); // The time when the message was generated
 
 const siweMessage = `${domain} wants you to sign in with your Ethereum account:
 
