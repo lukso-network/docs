@@ -51,6 +51,7 @@ If you need further explanation on the `SiweMessage` properties, please have a l
 
 :::
 
+<!-- prettier-ignore-start -->
 ```js
 import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { SiweMessage } from 'siwe';
@@ -60,7 +61,6 @@ const myUniversalProfileContract = new web3.eth.Contract(
   accounts[0],
 );
 
-<!-- prettier-ignore-start -->
 // To enable the Sign-In With Ethereum (SIWE) screen, you need to prepare a message with a specific format
 const hashedMessage = web3.eth.accounts.hashMessage(
   new SiweMessage({
@@ -73,13 +73,13 @@ const hashedMessage = web3.eth.accounts.hashMessage(
     resources: ['https://terms.website.com'], // Information the user wishes to have resolved as part of authentication by the relying party
   }).prepareMessage(),
 );
-<!-- prettier-ignore-end -->
 
 // Request the user to sign the login message with his Universal Profile
 // The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign)
 const signature = await web3.eth.sign(siweMessage, accounts[0]);
 // 0x38c53...
 ```
+<!-- prettier-ignore-end -->
 
 <details>
     <summary>Raw SIWE message format</summary>
