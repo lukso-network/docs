@@ -5,9 +5,10 @@ sidebar_position: 1
 
 # Connect Your Universal Profile to a dApp
 
-To allow your users to connect to your dApp with their [Universal Profile](../../standards/universal-profile/introduction.md), they need to ✨ [create a Universal Profile](https://my.universalprofile.cloud) and install the 🖥️ [Universal Profile Browser Extension](/install-up-browser-extension).
+To allow your users to connect to your dApp with their [Universal Profile](../../standards/universal-profile/introduction.md), they need to:
 
-The easiest way for your users to create a Universal Profile, is through 👉 [my.universalprofile.cloud](https://my.universalprofile.cloud).
+- install the 🖥️ [Universal Profile Browser Extension](/install-up-browser-extension)
+- and ✨ [create a Universal Profile](https://my.universalprofile.cloud)
 
 :::note
 

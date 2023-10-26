@@ -3,6 +3,9 @@ sidebar_label: '📒 Read Profile Data'
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Read Universal Profile Data
 
 <div style={{textAlign: 'center', color: 'grey'}}>
@@ -22,9 +25,15 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::
 
-:::tip
+:::tip erc725.js
 
 We are using 👉 [erc725.js](../../tools/erc725js/getting-started/) to make reading profile data easy.
+
+:::
+
+:::tip Universal Profile directory
+
+[UniversalProfile.cloud](https://universalprofile.cloud/) indexes every Universal Profiles deployed on the LUKSO network. You can try the following examples with any Universal Profile address.
 
 :::
 
@@ -64,6 +73,9 @@ To read the profile data you simply instantiate `erc725.js` with your profile ad
 
 [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
 
+<Tabs>  
+  <TabItem value="javascript" label="JavaScript">
+
 <!-- prettier-ignore-start -->
 
 ```js
@@ -82,6 +94,33 @@ console.log(profileData);
 ```
 
 <!-- prettier-ignore-end -->
+
+  </TabItem>
+    <TabItem value="typescript" label="TypeScript">
+
+<!-- prettier-ignore-start -->
+
+```js
+import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
+
+const erc725js = new ERC725(lsp3ProfileSchema as ERC725JSONSchema[], '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
+  {
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
+  },
+);
+
+// Get all profile data keys of the smart contract
+const profileData = await erc725js.getData();
+console.log(profileData);
+```
+
+<!-- prettier-ignore-end -->
+
+  </TabItem>
+</Tabs>
+
+You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684655e4e688CCF72d88F028c62EC3B1046CC`](https://wallet.universalprofile.cloud/0xE1F684655e4e688CCF72d88F028c62EC3B1046CC).
 
 <details>
     <summary>Show result</summary>
@@ -207,6 +246,8 @@ The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only 
 
 Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can also use other data keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate), like in the following example:
 
+<!-- prettier-ignore-start -->
+
 ```js
 // ...
 
@@ -219,9 +260,7 @@ const receivedAssetsDataKey = await erc725js.fetchData('LSP5ReceivedAssets[]');
 console.log(receivedAssetsDataKey);
 
 // Fetch the profile's universal receiver
-const universalReceiverDataKey = await erc725js.fetchData(
-  'LSP1UniversalReceiverDelegate',
-);
+const universalReceiverDataKey = await erc725js.fetchData('LSP1UniversalReceiverDelegate');
 console.log(universalReceiverDataKey);
 ```
 
