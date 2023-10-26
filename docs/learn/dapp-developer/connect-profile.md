@@ -21,7 +21,7 @@ Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../le
 <img
     src="/img/learn/up_extension_connect.png"
     alt="Example of Sign-In with Ethereum screen"
-    width="300"
+    width="400"
 />
 
 </div>

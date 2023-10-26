@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 <img
     src="/img/learn/up_extension_login.png"
     alt="Example of Sign-In with Ethereum screen"
-    width="300"
+    width="400"
 />
 
 </div>
