@@ -3566,6 +3566,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mdx-js/react@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@mdx-js/react@npm:3.0.0"
+  dependencies:
+    "@types/mdx": ^2.0.0
+  peerDependencies:
+    "@types/react": ">=16"
+    react: ">=16"
+  checksum: a780cff9d7f7639d6fc21c9d4e0a6ac1370c3209ea0db176923df7f9145785309591cf871f227f5135d1fe2accce0d5df9a22fc0530e5dda0c7b4b105705f20d
+  languageName: node
+  linkType: hard
+
 "@mdx-js/util@npm:1.6.22":
   version: 1.6.22
   resolution: "@mdx-js/util@npm:1.6.22"
@@ -4139,6 +4151,13 @@ __metadata:
   dependencies:
     "@types/unist": "*"
   checksum: 3f587bfc0a9a2403ecadc220e61031b01734fedaf82e27eb4d5ba039c0eb54db8c85681ccc070ab4df3f7ec711b736a82b990e69caa14c74bf7ac0ccf2ac7313
+  languageName: node
+  linkType: hard
+
+"@types/mdx@npm:^2.0.0":
+  version: 2.0.9
+  resolution: "@types/mdx@npm:2.0.9"
+  checksum: 751738fc836eca71375c956ff0a428a40dfd8cabe3024971bb4b47d51b908eef4700ddac30ecf5f1b66e7fe0c474741f71880c4f4db5e7cf9db325c64d5d63c3
   languageName: node
   linkType: hard
 
@@ -8473,7 +8492,7 @@ __metadata:
     "@docusaurus/plugin-client-redirects": ^2.4.3
     "@docusaurus/plugin-google-gtag": ^2.4.3
     "@docusaurus/preset-classic": ^2.4.3
-    "@mdx-js/react": ^1.6.22
+    "@mdx-js/react": ^3.0.0
     "@svgr/webpack": ^8.1.0
     clsx: ^2.0.0
     docusaurus-plugin-sass: ^0.2.5
