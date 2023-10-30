@@ -45,7 +45,7 @@ const accounts = await web3.eth.getAccounts();
 
 Once you have access to the Universal Profile address, you can request a signature. The UP Browser Extension will sign the message with the controller key used by the extension (a smart contract can't sign by itself).
 
-:::tip
+:::tip SIWE Specification
 
 If you need further explanation on the `SiweMessage` properties, please have a look at the [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) specification.
 
