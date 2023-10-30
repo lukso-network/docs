@@ -21,7 +21,13 @@ import TabItem from '@theme/TabItem';
 
 :::tip Generic Transaction Handling
 
-This guide can be used to **transfer LYX** from controller keys and profiles. As LUKSO is EVM-compatible, all regular Ethereum providers can be used to execute transfers or contract calls.
+This guide can be used to **transfer LYX** from controller keys (EOA) and Universal Profiles. As LUKSO is EVM-compatible, all regular Ethereum providers can be used to execute transfers or contract calls.
+
+:::
+
+:::info
+
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/transfer-lyx/) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=transfer-lyx%2Fup-transaction.js).
 
 :::
 
