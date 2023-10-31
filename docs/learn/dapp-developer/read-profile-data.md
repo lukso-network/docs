@@ -25,12 +25,6 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::
 
-:::tip erc725.js
-
-By using the ⚒️ [erc725.js](../../tools/erc725js/getting-started/) library, reading profile data can be fetched and encoded easily.
-
-:::
-
 :::tip Universal Profile Explorer
 
 The explorer on 🔮 [universalprofile.cloud](https://universalprofile.cloud/) indexes all deployed Universal Profiles on the LUKSO network. You can try out the following examples with any Universal Profile address.
@@ -39,7 +33,7 @@ The explorer on 🔮 [universalprofile.cloud](https://universalprofile.cloud/) i
 
 ## Setup
 
-To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js). You can install it in your project using:
+To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js). It is able to fetch and conde profile and contract data easily. You can install it in your project using:
 
 ```shell
 npm install @erc725/erc725.js
