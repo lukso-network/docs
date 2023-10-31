@@ -189,7 +189,7 @@ module.exports = {
           },
           {
             from: '/guides/digital-assets/transfer-lsp7-digital-asset',
-            to: '/learn/dapp-developer/transfer-lsp7-digital-asset',
+            to: '/learn/dapp-developer/transfer-lsp7-token',
           },
           {
             from: '/guides/universal-profile/edit-profile',
