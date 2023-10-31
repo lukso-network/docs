@@ -75,9 +75,21 @@ await web3.eth.sendTransaction({
 <!-- prettier-ignore-start -->
 
 ```js
-const { ethers } = require('ethers'); // TODO: use import
+import { ethers } from 'ethers';
 
-const provider = new ethers // use window.ethereum here
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+await provider.send("eth_requestAccounts", []);
+
+const signer = provider.getSigner();
+const account = await signer.getAddress();
+
+// Send transaction
+const tx = await signer.sendTransaction({
+    from: account,                        // The Universal Profile address
+    to: '0x...',                          // Receiving address, can be a UP or EOA
+    value: ethers.utils.parseEther('0.5') // 0.5 amount in ETH, in wei unit
+});
 ```
 <!-- prettier-ignore-end -->
 
