@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Accept & Reject Assets
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

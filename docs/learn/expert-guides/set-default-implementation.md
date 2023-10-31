@@ -7,9 +7,9 @@ import TabItem from '@theme/TabItem';
 
 # Set the default implementation
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

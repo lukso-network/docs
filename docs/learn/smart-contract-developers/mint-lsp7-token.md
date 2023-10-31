@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Mint LSP7 Token
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

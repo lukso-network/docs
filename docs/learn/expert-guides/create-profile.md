@@ -5,9 +5,10 @@ sidebar_label: 'Create a Universal Profile'
 # Create a Universal Profile
 
 ![Universal Profile example on wallet.universalprofile.cloud](/img/universal-profile/profile.png)
-:::note Notice
 
-This guide works with @lukso/lsp-smart-contracts: 0.11.1
+:::caution Disclaimer
+
+This guide uses an old `@lukso/lsp-smart-contracts@v0.11.1` version and will be updated soon.
 
 :::
 

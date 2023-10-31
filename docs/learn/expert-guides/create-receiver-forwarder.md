@@ -5,9 +5,9 @@ sidebar_position: 5
 
 # Create LSP1 Forwarder
 
-:::caution
+:::caution Disclaimer
 
-This article is WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

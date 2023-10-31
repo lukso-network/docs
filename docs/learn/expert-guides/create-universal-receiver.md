@@ -5,9 +5,9 @@ sidebar_position: 4
 
 # Create Universal Receiver
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

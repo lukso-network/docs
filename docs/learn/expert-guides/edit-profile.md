@@ -4,9 +4,9 @@ sidebar_label: 'Edit a Universal Profile'
 
 # Edit a Universal Profile
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 
