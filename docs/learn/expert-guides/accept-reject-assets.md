@@ -1,6 +1,6 @@
 ---
-sidebar_label: '🤝 Accept & Reject Assets'
-sidebar_position: 6
+sidebar_label: '✋🏼 Accept & Reject Assets'
+sidebar_position: 7
 ---
 
 import Tabs from '@theme/Tabs';
@@ -381,4 +381,4 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 }
 ```
 
-The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./set-default-implementation.md#set-the-address-of-the-urd-in-the-storage)** section.
+The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./universal-receiver/deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.

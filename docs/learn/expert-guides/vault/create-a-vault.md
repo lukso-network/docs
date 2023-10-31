@@ -1,6 +1,6 @@
 ---
 sidebar_label: '👝 Create a Vault'
-sidebar_position: 7
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Create a Vault
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 sidebar_label: '📄 Edit Vault Data'
-sidebar_position: 8
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Edit Vault Data
 
-:::caution
+:::caution Disclaimer
 
-This article is WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

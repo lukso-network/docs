@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Execute Relay Transactions
 
-:::caution
+:::caution Disclaimer
 
-This guide is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

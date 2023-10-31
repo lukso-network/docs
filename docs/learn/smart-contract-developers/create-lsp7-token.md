@@ -18,7 +18,7 @@ This guide might contain outdated information and will be updated soon.
 
 :::tip
 
-Please read the [Introduction](./index.md) page to set up your project correctly.
+Please read the [Introduction](./getting-started.md) page to set up your project correctly.
 
 :::
 

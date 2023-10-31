@@ -1,6 +1,6 @@
 ---
 sidebar_label: '📋 Grant Vault Permissions'
-sidebar_position: 9
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Grant Vault Permissions
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 
@@ -28,7 +28,7 @@ Make sure not to grant the 3rd party address the **SUPER Permissions**. Otherwis
 
 :::
 
-Check the guide of **[granting permissions to 3rd Parties](../key-manager/give-permissions.md)**, and make sure to grant the 3rd party address the **CALL Permission**.
+Check the guide of **[granting permissions to 3rd Parties](../../../learn/expert-guides/key-manager/grant-permissions.md)**, and make sure to grant the 3rd party address the **CALL Permission**.
 
 ## Use AllowedCalls permission for the 3rd Parties
 

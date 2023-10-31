@@ -54,7 +54,7 @@ pnpm add @lukso/lsp-smart-contracts
 
 :::tip
 
-To set up your developer environment, you can check the 👉 [getting started section for Smart Contract developers](../learn/smart-contract-developers/index.md).
+To set up your developer environment, you can check the 👉 [getting started section for Smart Contract developers](../learn/smart-contract-developers/getting-started.md).
 
 :::
 

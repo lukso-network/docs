@@ -1,5 +1,6 @@
 ---
-sidebar_label: 'Create a Universal Profile'
+sidebar_label: '👶 Create a Universal Profile'
+sidebar_position: 1
 ---
 
 # Create a Universal Profile
@@ -25,7 +26,7 @@ To easiest way to create a Universal Profile is through the Universal Profile Br
 - install the 🖥️ [Universal Profile Browser Extension](/install-up-browser-extension)
 - and ✨ [create a Universal Profile](https://my.universalprofile.cloud)
 
-However, if you want to create a profile programmatically you should use the ⚒️[lsp-factory.js](../../tools/lsp-factoryjs/deployment/universal-profile.md). You can install it in your project using:
+However, if you want to create a profile programmatically you should use the ⚒️[lsp-factory.js](../../../tools/lsp-factoryjs/deployment/universal-profile.md). You can install it in your project using:
 
 ```shell
 npm install @lukso/lsp-factory.js
@@ -43,7 +44,7 @@ The Contract's owner is a blockchain `address` that can represent anything, such
 - a multi-sig wallet, or
 - another smart contract that can represent anything (a DAO, a DEX, etc...).
 
-![Universal Profile smart contract: ownership diagram](./img/universal-profile-ownership.jpeg)
+![Universal Profile smart contract: ownership diagram](../img/universal-profile-overview.jpeg)
 
 > For more details, see [EIP-173: Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173)
 
@@ -51,11 +52,11 @@ With the **Ownable** design pattern, a contract can be designed with _functional
 
 In the context of Universal Profile, _reading data from the contract storage can be done by anyone_, but **only the owner can**:
 
-- `setData(...)` = add, edit or remove data from the [ERC725Y](../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) storage.
-- `execute(...)` = transfer LYX to addresses, call other contracts, or create and deploy new contracts (see [ERC725X](../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor)
+- `setData(...)` = add, edit or remove data from the [ERC725Y](../../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) storage.
+- `execute(...)` = transfer LYX to addresses, call other contracts, or create and deploy new contracts (see [ERC725X](../../../standards/universal-profile/lsp0-erc725account#erc725x---generic-executor) executor)
 - `transferOwnership(...)` = make an address be the new owner of the Universal Profile.
 
-In this guide, your Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) is a smart contract that enables granting specific permissions to `addresses`, so that they can interact with the Universal Profile. For example, transferring LYX on behalf of the Universal Profile.
+In this guide, your Universal Profile's owner will be a contract called a **Key Manager**. The [Key Manager](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) is a smart contract that enables granting specific permissions to `addresses`, so that they can interact with the Universal Profile. For example, transferring LYX on behalf of the Universal Profile.
 
 :::info Learn More
 You can implement any complex ownership structure (and fine-grained control) on top of Universal Profiles. The structure includes having a UP owned and controlled by:
@@ -64,24 +65,24 @@ You can implement any complex ownership structure (and fine-grained control) on 
 - one or multiple other smart contracts, or
 - a mixture of both.
 
-For more details, see [LSP6 - Key Manager Standard](../../standards/universal-profile/lsp6-key-manager.md).
+For more details, see [LSP6 - Key Manager Standard](../../../standards/universal-profile/lsp6-key-manager.md).
 :::
 
 ### Contracts Overview
 
-![Universal Profile: overview of deployed contracts](./img/universal-profile-overview.jpeg)
+![Universal Profile: overview of deployed contracts](../img/universal-profile-overview.jpeg)
 
-The [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) library will help us quickly deploy and set up a Universal Profile with just a few lines of code.
+The [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) library will help us quickly deploy and set up a Universal Profile with just a few lines of code.
 
 Under the hood, lsp-factory.js performs the following:
 
 1. Deploy the Universal Profile contracts:
-   - [Universal Profile](../../standards/universal-profile/lsp0-erc725account.md) (UP) is the core smart contract representing a Universal Profile.
-   - [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br/> to enable other addresses to interact with the UP.
-2. Link a previously deployed [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) (URD) smart contract with the deployed UP. The URD reacts to events, such as tokens received or transferred.
+   - [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) (UP) is the core smart contract representing a Universal Profile.
+   - [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br/> to enable other addresses to interact with the UP.
+2. Link a previously deployed [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) (URD) smart contract with the deployed UP. The URD reacts to events, such as tokens received or transferred.
 3. Set all the permissions for provided EOA addresses so that they can act on the UP.
 
-> :arrow_right: &nbsp; [See lsp-factory.js docs for more details](../../tools/lsp-factoryjs/getting-started)
+> :arrow_right: &nbsp; [See lsp-factory.js docs for more details](../../../tools/lsp-factoryjs/getting-started)
 
 :::info Learn More
 The figure above is your default setup for Universal Profile. However, _using a Key Manager as an owner is optional_.<br/>

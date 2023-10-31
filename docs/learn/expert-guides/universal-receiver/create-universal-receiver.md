@@ -1,6 +1,6 @@
 ---
-sidebar_label: '📡 Create Universal Receiver'
-sidebar_position: 4
+sidebar_label: '📬 Create Universal Receiver'
+sidebar_position: 1
 ---
 
 # Create Universal Receiver
@@ -11,7 +11,7 @@ This guide might contain outdated information and will be updated soon.
 
 :::
 
-In this guide, we will create a custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../standards/tokens/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
+In this guide, we will create a custom [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../../standards/tokens/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
 
 > **"As a Universal Profile (UP) owner, I want to transfer part of the tokens I received to another UP"**.
 
@@ -23,7 +23,7 @@ In order to follow this guide, you'll need to:
 
 1. Install the [UP Browser extension](/install-up-browser-extension).
 2. Fund the main controller (EOA) of your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
-3. Setup a new Hardhat project using the [Getting started](../smart-contract-developers/index.md) guide.
+3. Setup a new Hardhat project using the [Getting started](../../smart-contract-developers/getting-started.md) guide.
 
 ## 1 - EOA permission
 
@@ -75,7 +75,7 @@ We will need to fill 2 additional parameters:
 
 ## 3 - (Optional) Create a Custom LSP7 Token
 
-We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../../learn/smart-contract-developers/index.md#create-a-custom-lsp7-token-contract) and [deploy it](../../learn/smart-contract-developers/index.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
+We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../../../learn/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract) and [deploy it](../../../learn/smart-contract-developers/getting-started.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
 
 ## 4 - Create the Custom LSP1 Delegate Contract
 
@@ -83,7 +83,7 @@ The custom LSP1 Delegate contract can be created using 2 methods.
 
 The first method will execute the LSP7 transfer function as the UP. In order to work, the Custom LSP1 Delegate forwarder will needs special privileges on the UP (`SUPER_CALL` + `REENTRANCY`). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
 
-The second method will execute the LSP7 transfer function directly from the LSP1 Delegate contract. In order to work, the custom contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
+The second method will execute the LSP7 transfer function directly from the LSP1 Delegate contract. In order to work, the custom contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
 
 ### Method 1
 

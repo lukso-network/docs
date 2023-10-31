@@ -101,7 +101,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
-Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/expert-guides/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/dapp-developer/read-profile-data).
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/expert-guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/dapp-developer/read-profile-data).
 
 :::
 
@@ -144,7 +144,7 @@ See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.
 
 Check the [**universalReceiver functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) provided by **LSP1** that allows notifying about incoming/ outgoing transactions.
 
-Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../learn/expert-guides/set-default-implementation.md) or [**How to set your own UniversalReceiverDelegate**](../../learn/expert-guides/accept-reject-assets.md).
+Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../learn/expert-guides/universal-receiver/deploy-universal-receiver.md) or [**How to set your own UniversalReceiverDelegate**](../../learn/expert-guides/accept-reject-assets.md).
 
 :::
 

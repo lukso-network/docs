@@ -1,5 +1,6 @@
 ---
-sidebar_label: 'Connect with web3-onboard'
+sidebar_label: '🛳️ Connect Web3-Onboard'
+sidebar_position: 5
 ---
 
 # Connect users' wallets to your dApp with web3-onboard

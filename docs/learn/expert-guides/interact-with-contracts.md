@@ -1,5 +1,6 @@
 ---
-sidebar_label: 'Interact with Contracts'
+sidebar_label: '🔁 Interact with Contracts'
+sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,11 +1,12 @@
 ---
-sidebar_label: 'URD Set the default implementation'
+sidebar_label: '📢 Deploy Universal Receiver'
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Set the default implementation
+# Implement LSP1
 
 :::caution Disclaimer
 
@@ -15,11 +16,11 @@ This guide might contain outdated information and will be updated soon.
 
 :::note
 
-Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](./create-profile.md)** or the **[Browser Extension](/install-up-browser-extension)** can skip this guide, as this contract is already deployed and set for their profiles.
+Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](../universal-profile/create-profile.md)** or the **[Browser Extension](/install-up-browser-extension)** can skip this guide, as this contract is already deployed and set for their profiles.
 
 :::
 
-This guide will teach you how to deploy and set the default implementation of the **[Universal Receiver Delegate](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)** (URD) used by the Universal Profile. This contract will register the addresses of the **[received assets](../../standards/universal-profile/lsp5-received-assets.md)** and **[vaults](../../standards/universal-profile/lsp10-received-vaults.md)** and will remove them on a balance equal to 0. This contract requires the [**`SUPER_SETDATA` Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) to interact with the profile through the KeyManager.
+This guide will teach you how to deploy and set the default implementation of the **[Universal Receiver Delegate](../../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)** (URD) used by the Universal Profile. This contract will register the addresses of the **[received assets](../../../standards/universal-profile/lsp5-received-assets.md)** and **[vaults](../../../standards/universal-profile/lsp10-received-vaults.md)** and will remove them on a balance equal to 0. This contract requires the [**`SUPER_SETDATA` Permission**](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions) to interact with the profile through the KeyManager.
 
 ![UniversalReceiverDelegate setting data keys on profile](/img/standards/lsp1delegate/token-transfer-4.jpg)
 
@@ -247,11 +248,11 @@ const universalProfileURDAddress = await deployUniversalProfileURD();
 
 ## Step 3 - Set the address of the URD in the storage
 
-After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** and grant it the **[SUPER_SETDATA](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)** permission.
+After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../../standards/generic-standards/lsp1-universal-receiver.md#extension)** and grant it the **[SUPER_SETDATA](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions)** permission.
 
 ### Create an UP contract instance
 
-Firstly we need to create an instance for the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract.
+Firstly we need to create an instance for the [**Universal Profile**](../../../standards/universal-profile/lsp0-erc725account.md) contract.
 
 <Tabs>
   
@@ -283,7 +284,7 @@ const universalProfile = new ethers.Contract(
 
 ### Register URD on the UP + set the URD permissions
 
-Generate _Data Keys & Values_ for [**adding a URD**](../../standards/generic-standards/lsp1-universal-receiver-delegate.md/#how-delegation-works) to the Universal Profile and for granting [**SUPER_SETDATA**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions) permission to the **URD**.
+Generate _Data Keys & Values_ for [**adding a URD**](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md/#how-delegation-works) to the Universal Profile and for granting [**SUPER_SETDATA**](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions) permission to the **URD**.
 
 <Tabs>
   

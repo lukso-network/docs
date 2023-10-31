@@ -1,5 +1,6 @@
 ---
-sidebar_label: 'Read Asset Data'
+sidebar_label: '🔖 Read Asset Data'
+sidebar_position: 8
 ---
 
 import Tabs from '@theme/Tabs';

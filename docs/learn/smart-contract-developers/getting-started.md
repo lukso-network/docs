@@ -1,3 +1,8 @@
+---
+sidebar_label: '👋🏻 Getting Started'
+sidebar_position: 1
+---
+
 # Getting started
 
 Smart contract developer, welcome to the LUKSO documentation! The LUKSO ecosystem offers you a lot of [new standards](../../standards/introduction.md) and tools to build more powerful blockchain applications which are - _very important_ - standardised.

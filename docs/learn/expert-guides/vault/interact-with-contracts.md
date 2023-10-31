@@ -1,5 +1,6 @@
 ---
-sidebar_label: 'Interact With Contracts'
+sidebar_label: '📋 Vault Execution'
+sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # Interact With Contracts
 
-:::caution
+:::caution Disclaimer
 
-This article is a WIP
+This guide might contain outdated information and will be updated soon.
 
 :::
 

@@ -1,5 +1,6 @@
 ---
-sidebar_label: 'Edit a Universal Profile'
+sidebar_label: '🎀 Edit a Universal Profile'
+sidebar_position: 3
 ---
 
 # Edit a Universal Profile
@@ -13,7 +14,7 @@ This guide might contain outdated information and will be updated soon.
 :::info Requirements
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
-:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../expert-guides/create-profile.md).
+:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](./create-profile.md).
 
 :::
 
@@ -26,14 +27,14 @@ This guide will teach you how to **customize our Universal Profile** programmati
 To achieve this goal, we will perform the following steps:
 
 1. Create a JSON file that contains our profile details (`LSP3Profile` metadata).
-2. Upload this JSON file to [IPFS] using our [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) tool.
+2. Upload this JSON file to [IPFS] using our [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) tool.
 3. Encode + set our new [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) metadata key in our profile with our [erc725.js] library and web3.js.
 
 :::tip
 A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
 :::
 
-![Universal Profile with pictures and infos on universalprofile.cloud](./img/edit-profile.png)
+![Universal Profile with pictures and infos on universalprofile.cloud](../img/edit-profile.png)
 
 ## Introduction
 
@@ -57,7 +58,7 @@ We can add (or edit) any pieces of informations related to our UP by the followi
 2. Upload the file to IPFS.
 3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
 
-![LSP3Profile Metadata as JSON file on IPFS (diagram)](./img/profile-metadata-ipfs-explained.jpeg)
+![LSP3Profile Metadata as JSON file on IPFS (diagram)](../img/profile-metadata-ipfs-explained.jpeg)
 
 :::info Learn More
 **IPFS is just one place among many** where you can store your Universal Profile metadata.<br/>
@@ -161,14 +162,14 @@ Use this [IPFS file uploader tool](https://anarkrypto.github.io/upload-files-to-
 - Node Address: `api.2eff.lukso.dev`
 - API Port / Gateway Port: `443`
 
-![ipfs LUKSO settings](./img/ipfs-lukso-settings.jpg)
+![ipfs LUKSO settings](../img/ipfs-lukso-settings.jpg)
 
 Drag & Drop your images (you can upload multiple images at once) and _upload_ them. Once the process is completed:
 
 1. Copy the IPFS file identifier (`CID`) shown in the `hash` field marked with green below.
 2. Paste the `CID` into the `url` field in our JSON file, beginning with `ipfs://` at the start.
 
-![ipfs file upload](./img/ipfs-file-upload.jpg)
+![ipfs file upload](../img/ipfs-file-upload.jpg)
 
 Make sure to save your JSON file after you have added all your details and images.
 
@@ -187,7 +188,7 @@ You should do the rest of this tutorial should be done in a **new file** (`main.
 We will now start writing the main code of the tutorial.
 Create a new file, `main.js`.
 
-Our [lsp-factory.js](../../tools/lsp-factoryjs/getting-started.md) tool provides convenience to upload our profile Metadata to IPFS.
+Our [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) tool provides convenience to upload our profile Metadata to IPFS.
 
 ```javascript title="main.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
@@ -225,7 +226,7 @@ To set up the erc725.js library, we will need the following:
 
 Once our erc725.js is initialized, we can encode the `LSP3Profile` data to generate a key and a value.
 
-To do so, we use the [`encodeData()`](../../tools/erc725js/classes/ERC725.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
+To do so, we use the [`encodeData()`](../../../tools/erc725js/classes/ERC725.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
 
 - `keyName`: `LSP3Profile`, the name of the key we want to encode.
 - `value`: an object with:
@@ -464,7 +465,7 @@ You can now check your UP on the [profile explorer](https://l16.universalprofile
 
 `https://l16.universalprofile.cloud/[UP ADDRESS]`
 
-![Universal Profile with pictures and infos on l16.universalprofile.cloud](./img/edit-profile.png)
+![Universal Profile with pictures and infos on l16.universalprofile.cloud](../img/edit-profile.png)
 
-[erc725.js]: ../../tools/erc725js/getting-started
+[erc725.js]: ../../../tools/erc725js/getting-started
 [ipfs]: https://ipfs.io/

@@ -12,7 +12,7 @@ To allow your users to connect to your dApp with their [Universal Profile](../..
 
 :::note Manual Deployment
 
-Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../learn/expert-guides/create-profile.md) for your users, but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
+Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../learn/expert-guides/universal-profile/create-profile.md) for your users, but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
 
 :::
 

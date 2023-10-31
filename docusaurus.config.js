@@ -101,15 +101,15 @@ module.exports = {
           },
           {
             from: '/guides/hardhat-walkthrough/hardhat-base-setup',
-            to: '/learn/smart-contract-developers/',
+            to: '/learn/smart-contract-developers/getting-started',
           },
           {
             from: '/guides/hardhat-walkthrough/create-custom-lsp7',
-            to: '/learn/smart-contract-developers/',
+            to: '/learn/smart-contract-developers/getting-started',
           },
           {
             from: '/guides/hardhat-walkthrough/deploy-custom-lsp7',
-            to: '/learn/smart-contract-developers/',
+            to: '/learn/smart-contract-developers/getting-started',
           },
           {
             from: '/standards/nft-2.0/LSP4-Digital-Asset-Metadata',
@@ -137,11 +137,11 @@ module.exports = {
           },
           {
             from: '/guides/universal-receiver-delegate/create-custom-urd-1',
-            to: '/learn/expert-guides/create-universal-receiver',
+            to: '/learn/expert-guides/universal-receiver/create-universal-receiver',
           },
           {
             from: '/guides/universal-receiver-delegate/create-custom-urd-2',
-            to: '/learn/expert-guides/create-receiver-forwarder',
+            to: '/learn/expert-guides/universal-receiver/create-receiver-forwarder',
           },
           {
             from: '/guides/vault/create-a-vault',
@@ -177,7 +177,7 @@ module.exports = {
           },
           {
             from: '/guides/key-manager/give-permissions',
-            to: '/learn/expert-guides/key-manager/give-permissions',
+            to: '/learn/expert-guides/key-manager/grant-permissions',
           },
           {
             from: '/guides/digital-assets/read-asset-data',
@@ -193,7 +193,7 @@ module.exports = {
           },
           {
             from: '/guides/universal-profile/edit-profile',
-            to: '/learn/expert-guides/edit-profile',
+            to: '/learn/expert-guides/universal-profile/edit-profile',
           },
           {
             from: '/guides/universal-profile/check-if-address-is-universal-profile',
@@ -201,7 +201,7 @@ module.exports = {
           },
           {
             from: '/contracts/getting-started',
-            to: '/learn/smart-contract-developers/',
+            to: '/learn/smart-contract-developers/getting-started',
           },
           {
             from: '/guides/getting-started',
@@ -209,11 +209,11 @@ module.exports = {
           },
           {
             from: '/guides/universal-receiver-delegate/set-default-implementation',
-            to: '/learn/expert-guides/set-default-implementation',
+            to: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
           },
           {
             from: '/guides/universal-profile/create-profile',
-            to: '/learn/expert-guides/create-profile',
+            to: '/learn/expert-guides/universal-profile/create-profile',
           },
           {
             from: '/guides/universal-profile/interact-with-contracts',
