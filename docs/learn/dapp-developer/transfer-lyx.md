@@ -19,7 +19,13 @@ import TabItem from '@theme/TabItem';
 <br /><br />
 </div>
 
-<!-- The code on the playground is wrong - it is for manual / low level lyx transfer. It is not relevant for this article -->
+:::info
+
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/transfer-lyx) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=transfer-lyx%2Fregular-transaction.js).
+
+The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) makes it easy to send LYX transaction without having to interact with the smart contract of the Universal Profile. If you are building a service or backend, you can also 👾 [execute transfers by directly calling the profile contract](https://github.com/lukso-network/lukso-playground/blob/main/transfer-lyx/backend-transaction.js).
+
+:::
 
 ## Setup
 
@@ -62,9 +68,9 @@ await web3.eth.requestAccounts();
 const accounts = await web3.eth.getAccounts();
 
 await web3.eth.sendTransaction({
-    from: accounts[0],             // The Universal Profile address
-    to: '0x...',                   // receiving address, can be a UP or EOA
-    value: '5000000000000000000'   // 0.5 amount in LYX, in wei unit
+    from: accounts[0],                      // The Universal Profile address
+    to: '0x...',                            // receiving address, can be a UP or EOA
+    value: web3.utils.toWei('0.5', 'ether') // 0.5 amount in ETH, in wei unit
 })
 ```
 <!-- prettier-ignore-end -->
@@ -96,3 +102,9 @@ const tx = await signer.sendTransaction({
   </TabItem>
 
 </Tabs>
+
+:::tip
+
+If you are building a service that wants to directly execute actions on the Universal Profile
+
+:::
