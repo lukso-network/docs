@@ -8,26 +8,26 @@ import TabItem from '@theme/TabItem';
 
 # Update Validator Withdrawals
 
-The following guide will teach you how to update your plain **BLS Validator Key** to reference an **ETH1 Address** to allow your validator keys to withdraw staked LYX/LYXt and earnings. If an ETH1 Address is referenced to the BLS Key, the validator's stake can be exited to any wallet. The earnings of your validators will be automatically withdrawn regularly.
-
 :::info Key Generation
 
 The [LUKSO KeyGen GUI](https://github.com/lukso-network/tools-wagyu-key-gen#lukso-wagyu-keygen) automatically adds a withdrawal address during setup.
 
 :::
 
+The following guide will teach you how to update your plain **BLS Validator Key** to reference an **ETH1 Address** to allow your validator keys to withdraw staked LYX/LYXt and earnings. If an ETH1 Address is referenced to the BLS Key, the validator's stake can be exited to any wallet. The earnings of your validators will be automatically withdrawn regularly.
+
 - **BLS Keys** are the backbone of the digital signature type to secure the **PoS Consensus Layer** of EVM blockchains. Every validator uses them to sign blocks and stake LYX/LYXt on the LUKSO networks.
 - **ETH1 Addresses** are the traditional Ethereum addresses from _Externally Owned Accounts_ or _Smart Contracts_ on the **Execution Layer** which can receive tokens or coins on the network.
 
-## How to check withdrawals?
-
-If you've never updated your validator withdrawals after the initial deposit, you can check the `deposit_data.json` file of the validator locally. To check if your withdrawals are executed on the network, you can check them using the consensus explorer.
+## Check the Withdrawals Status
 
 :::tip Withdrawal Activation Time
 
 If you've updated your ETH1 recently, its activation can take up to 48 hours.
 
 :::
+
+If you've never updated your validator withdrawals after the initial deposit, you can check the `deposit_data.json` file of the validator locally. To check if your withdrawals are executed on the network, you can check them using the consensus explorer.
 
 <Tabs>
   <TabItem value="local-deposit-check" label="Local Deposit File Check">
@@ -37,9 +37,7 @@ If you've updated your ETH1 recently, its activation can take up to 48 hours.
 1. Open the `deposit_data.json` file of the validator
 2. Search for the `withdrawal_credentials` properties for every key
    - If the hexadecimal number starts with `01`, withdrawals are already enabled
-   - If the hexadecimal number starts with `00`, withdrawals are disabled
-
-If your withdrawals are disabled, follow this guide to set a withdrawal address.
+   - If the hexadecimal number starts with `00`, withdrawals can be enabled using this guide
 
 </div>
 
@@ -54,9 +52,7 @@ If your withdrawals are disabled, follow this guide to set a withdrawal address.
    - [LUKSO Testnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/)
 3. View the validator’s details and open the **Withdrawals** section
    - If you see withdrawals, the withdrawal credentials are working correctly
-   - If there are no withdrawals, they are still disabled
-
-If you don't see any withdrawals, follow this guide to set a withdrawal address.
+   - If the withdrawal section is greyed out, you can enable them by following this guide
 
 </div>
 
@@ -113,7 +109,7 @@ cat <latest-validator-logs.log> | grep -o 'index=[0-9]* ' | awk -F'=' '{printf "
  
 Copy the validator indices so they can be used to generate the withdrawal credential later on.
 
-## Start the LUKSO KeyGen CLI
+## Download the LUKSO KeyGen CLI
 
 :::caution
 
@@ -128,7 +124,7 @@ You will need to input your **Validator Seed Phrase** again.
 3. Extract the archive to receive the executable binary file
 4. Open the terminal and move into the generated folder
 
-## Generate the Withdrawal Credential
+## Start the LUKSO KeyGen CLI
 
 :::tip
 
@@ -140,9 +136,9 @@ If you want to have different withdrawal credentials, the following steps must b
 
 You will need the following information:
 
-- Validator Indices (Previous Step)
-- Old Withdrawal Credentials for each Key (Deposit File)
-- New ETH1 Withdrawal Address (Generated)
+- Current **Validator Indices** (Previous Step)
+- Old **Withdrawal Credentials** for each Validator Key (Deposit File)
+- New ETH1 **Withdrawal Address** (Generated)
 
 :::
 
@@ -152,12 +148,25 @@ Start the BLS to Execution process from the LUKSO KeyGen CLI
 ./lukso-key-gen generate-bls-to-execution-change
 ```
 
+## Generate the Withdrawal Credential
+
 :::info Index Position
 
-During the setup, you will have to define an index position of the validator keys, indicating the starting point of your credential generation.
+During **Step 4**, you will have to define an index position of the validator keys, indicating the starting point of your credential generation.
 
 - To generate the withdrawal credentials from the first key, set the index position to `0`.
 - To generate the withdrawal credentials for the 11th key onwards, set the index position to `10`.
+
+During **Step 6 and 7**, you will have to input hexadecimal values.
+
+- Ensure to add `0x` in front of the copied withdrawal credential
+- Verify that your EOA address has the `0x` prefixe
+
+:::
+
+:::caution Error Handling
+
+The LUKSO KeyGen CLI might show errors about given inputs no being hexadecimal or checksum values. If your inputs are correct and the JSON file is generated sucessfully, these errors can be ignored.
 
 :::
 
@@ -171,13 +180,11 @@ During the setup, you will have to define an index position of the validator key
 
 The [LUKSO KeyGen CLI](https://github.com/lukso-network/tools-key-gen-cli/releases) will then generate a `bls_to_execution_change.json` file.
 
-You can proceed to the next step once the withdrawal credential is generated successfully.
-
 ## Broadcast the Withdrawal Credential
 
 :::warning
 
-The withdrawal credential can only be set once. Ensure to have ownership over the withdrawal address.
+The withdrawal credential can only be set/published once for each validator key. Ensure to have ownership over the withdrawal address.
 
 :::
 
@@ -199,24 +206,48 @@ The **Withdrawal Credential** can be shared directly from your node or the publi
   </TabItem>
   <TabItem value="broadcast-from-node" label="Broadcast Message from Node">
 
-:::caution
-
-Within the following section, `<PATH_TO_JSON_FILE>` has to be exchanged with the path of the `bls_to_execution_change.json` file.
-
-:::
-
-<div>
-
-1. Log into your node’s terminal
-2. Copy the `bls_to_execution_change.json` file to your node
-3. Send the JSON file to the local consensus instance using the following code:
-
-</div>
+1. Print and copy the contents of the `bls_to_execution_change.json` file:
 
 ```bash
-curl -X POST -H "Content-type: application/json" -d @<PATH_TO_JSON_FILE> \
+cat bls_to_execution_change.json
+```
+
+2. Input the contents into the broadcast command:
+
+```bash
+POST -H "Content-type: application/json" -d  '<MY_CONTENTS>'
 http://localhost:3500/eth/v1/beacon/pool/bls_to_execution_changes
 ```
 
+3. Log into your node’s terminal and execute the broadcast command on your consensus interface:
+
+```bash
+curl -X POST -H "Content-type: application/json" -d  '<MY_CONTENTS>'
+http://localhost:3500/eth/v1/beacon/pool/bls_to_execution_changes
+```
+
+<details>
+    <summary>Show broadcast message example</summary>
+
+```bash
+curl -X POST -H “Content-type: application/json” -d '[{"message": {"validator_index": "7", "from_bls_pubkey": "0x89a6dc1e83570b99cfb2557f01c852ab2bf00957367d0c35a5aa0e3101c9aad33645064e5da8a1efcd5cd501eb123ad0", "to_execution_address": "0x3daee8cd2e3c18dafe13332de33972ac5cf558f3"}, "signature": "0x80e4c40a543ffb99b6fc4b66e0d37726c1739830d27c229091bf8e792ffb98cac0971274bdc815dcba1042e33a4087d809113a0293614f8533f911cb6726c2efb03cf46470bff3ecf00ed962964262470f502208f6cd50e93f56e1b71ee61fa7", "metadata": {"network_name": "lukso-devnet", "genesis_validators_root": "0xd7cc24d150c617450dfa8176ef45a01dadb885a75a1a4c32d4a6828f8f088760", "deposit_cli_version": "2.5.6"}}]' http://localhost:3500/eth/v1/beacon/pool/bls_to_execution_changes
+```
+
+</details>
+
   </TabItem>
 </Tabs>
+
+## Check your Withdrawal Progress
+
+:::caution Execution Delay
+
+It may take up to an hour until validator key updates are recognized on the explorer.
+
+:::
+
+1. Open the Validator Withdrawal Page of the related network:
+   - [LUKSO Mainnet Validator Withdrawals](https://explorer.consensus.mainnet.lukso.network/tools/broadcast)
+   - [LUKSO Testnet Validator Withdrawals](https://explorer.consensus.testnet.lukso.network/tools/broadcast)
+2. Scroll down to the list of **Address Changes**.
+3. Your Validator indices should show up as some of the latest entries.
