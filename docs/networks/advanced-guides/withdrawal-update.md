@@ -160,7 +160,7 @@ During **Step 4**, you will have to define an index position of the validator ke
 During **Step 6 and 7**, you will have to input hexadecimal values.
 
 - Ensure to add `0x` in front of the copied withdrawal credential
-- Verify that your EOA address has the `0x` prefixe
+- Verify that your EOA address has the `0x` prefix
 
 :::
 
@@ -216,10 +216,9 @@ cat bls_to_execution_change.json
 
 ```bash
 POST -H "Content-type: application/json" -d  '<MY_CONTENTS>'
-http://localhost:3500/eth/v1/beacon/pool/bls_to_execution_changes
 ```
 
-3. Log into your node’s terminal and execute the broadcast command on your consensus interface:
+3. Log into your node’s terminal and execute the broadcast command on it's local consensus interface:
 
 ```bash
 curl -X POST -H "Content-type: application/json" -d  '<MY_CONTENTS>'
