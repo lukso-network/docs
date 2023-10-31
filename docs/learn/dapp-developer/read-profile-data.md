@@ -25,7 +25,7 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::
 
-:::tip Developer Library
+:::tip erc725.js
 
 By using the ⚒️ [erc725.js](../../tools/erc725js/getting-started/) library, reading profile data can be fetched and encoded easily.
 
@@ -69,10 +69,7 @@ npm install @erc725/erc725.js
 </div>
 </details>
 
-To read the profile data you simply instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages:
-
-- [LUKSO Mainnet Parameters](../../networks/mainnet/parameters.md)
-- [LUKSO Testnet Parameters](../../networks/testnet/parameters.md).
+To read the profile data you simply instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
 
 The [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
 
@@ -173,7 +170,7 @@ You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684
 
 :::note ERC725Y JSON schemas
 
-The ⚒️ `erc725.js` library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `erc725.js` object. The most common schemas are [available](../../tools/erc725js/schemas.md) in the erc725.js library.
+erc725.js works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js.
 
 You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
 
