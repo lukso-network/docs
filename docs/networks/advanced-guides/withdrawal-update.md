@@ -242,7 +242,7 @@ curl -X POST -H “Content-type: application/json” -d '[{"message": {"validato
 
 :::caution Execution Delay
 
-It may take up to an hour until validator key updates are recognized on the explorer.
+A maximum of 16 validator keys can update their withdrawal credentials per block. It might take several hours for the change to be included in a block, depending on the number of address updates in the queue. If the update hasn't been done after several hours, consider re-submitting the JSON file or data.
 
 :::
 
