@@ -27,19 +27,19 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::tip erc725.js
 
-We are using 👉 [erc725.js](../../tools/erc725js/getting-started/) to make reading profile data easy.
+By using the ⚒️ [erc725.js](../../tools/erc725js/getting-started/) library, reading profile data can be fetched and encoded easily.
 
 :::
 
-:::tip Universal Profile directory
+:::tip Universal Profile Explorer
 
-[UniversalProfile.cloud](https://universalprofile.cloud/) indexes every Universal Profiles deployed on the LUKSO network. You can try the following examples with any Universal Profile address.
+The explorer on 🔮 [universalprofile.cloud](https://universalprofile.cloud/) indexes all deployed Universal Profiles on the LUKSO network. You can try out the following examples with any Universal Profile address.
 
 :::
 
 ## Setup
 
-To easily interact with a profile you should use [erc725.js](https://npmjs.com/package/@erc725/erc725.js). You can install it in your project using:
+To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js). You can install it in your project using:
 
 ```shell
 npm install @erc725/erc725.js
@@ -55,7 +55,7 @@ npm install @erc725/erc725.js
 
 <details>
 <summary>
-<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using <a href="../../tools/erc725js/classes/ERC725#getdata">erc725.js</a>. 👇
+<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/classes/ERC725#getdata"> erc725.js</a>  library. 👇
 </summary>
 
 <div>
@@ -69,9 +69,9 @@ npm install @erc725/erc725.js
 </div>
 </details>
 
-To read the profile data you simply instantiate `erc725.js` with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
+To read the profile data you simply instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
 
-[`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
+The [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
 
 <Tabs>  
   <TabItem value="javascript" label="JavaScript">
@@ -170,7 +170,7 @@ You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684
 
 :::note ERC725Y JSON schemas
 
-`erc725.js` works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `erc725.js` object. The most common schemas are [available](../../tools/erc725js/schemas.md) in the erc725.js library.
+erc725.js works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js.
 
 You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
 

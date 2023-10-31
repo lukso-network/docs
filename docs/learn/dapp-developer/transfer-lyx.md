@@ -19,10 +19,7 @@ import TabItem from '@theme/TabItem';
 <br /><br />
 </div>
 
-In this guide, we will learn **how to transfer LYX** from your Universal Profile to any `address` (including another Universal Profile :up: ). We will cover:
-
-- `sendTransaction({from:, to, value, data: '0x', ....})`
-- Give example with Web3js v1 / Ethers -> <https://www.quicknode.com/guides/ethereum-development/transactions/how-to-send-a-transaction-in-ethersjs>
+<!-- The code on the playground is wrong - it is for manual / low level lyx transfer. It is not relevant for this article -->
 
 ## Setup
 
@@ -46,22 +43,56 @@ npm install ethers
 
 </Tabs>
 
-:::caution
+## Transfer LYX from a Universal Profile
 
-Note there is an example here: <https://github.com/lukso-network/universalprofile-test-dapp/blob/main/src/components/endpoints/SendTransaction.vue#L304>
+The Universal Profile browser extension will magically wrap all the calls internally so you don't have to worry about crafting custom transactions. Simply use [`eth_sendTransaction`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction) as you always did while working with EOA.
 
-```
-// using the promise
-web3.eth.sendTransaction({
-    from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
-    to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
-    value: '1000000000000000'
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+<!-- prettier-ignore-start -->
+
+```js
+import Web3 from 'web3';
+
+const web3 = new Web3(window.ethereum);
+
+await web3.eth.requestAccounts();
+const accounts = await web3.eth.getAccounts();
+
+await web3.eth.sendTransaction({
+    from: accounts[0],             // The Universal Profile address
+    to: '0x...',                   // receiving address, can be a UP or EOA
+    value: '5000000000000000000'   // 0.5 amount in LYX, in wei unit
 })
-.then(function(receipt){
-    ...
+```
+<!-- prettier-ignore-end -->
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+<!-- prettier-ignore-start -->
+
+```js
+import { ethers } from 'ethers';
+
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+await provider.send("eth_requestAccounts", []);
+
+const signer = provider.getSigner();
+const account = await signer.getAddress();
+
+// Send transaction
+const tx = await signer.sendTransaction({
+    from: account,                        // The Universal Profile address
+    to: '0x...',                          // Receiving address, can be a UP or EOA
+    value: ethers.utils.parseEther('0.5') // 0.5 amount in ETH, in wei unit
 });
 ```
+<!-- prettier-ignore-end -->
 
-https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendtransaction
+  </TabItem>
 
-:::
+</Tabs>
