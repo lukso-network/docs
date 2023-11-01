@@ -257,7 +257,7 @@ await LSP4DigitalAssetMetadata.uploadMetadata(
       port: 5001,
       protocol: 'https',
     },
-  },
+  }
 );
 /**
 {

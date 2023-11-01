@@ -115,7 +115,7 @@ await lspFactory.LSP7DigitalAsset.deploy(
         console.log(contracts.LSP7DigitalAsset);
       },
     },
-  },
+  }
 );
 
 /**
