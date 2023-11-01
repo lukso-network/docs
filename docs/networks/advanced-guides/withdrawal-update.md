@@ -246,7 +246,7 @@ A maximum of 16 validator keys can update their withdrawal credentials per block
 :::
 
 1. Open the Validator Withdrawal Page of the related network:
-   - [LUKSO Mainnet Validator Withdrawals](https://explorer.consensus.mainnet.lukso.network/tools/broadcast)
-   - [LUKSO Testnet Validator Withdrawals](https://explorer.consensus.testnet.lukso.network/tools/broadcast)
+   - [LUKSO Mainnet Validator Withdrawals](https://explorer.consensus.mainnet.lukso.network/validators/withdrawals)
+   - [LUKSO Testnet Validator Withdrawals](https://explorer.consensus.testnet.lukso.network/validators/withdrawals)
 2. Scroll down to the list of **Address Changes**.
 3. Your Validator indices should show up as some of the latest entries.
