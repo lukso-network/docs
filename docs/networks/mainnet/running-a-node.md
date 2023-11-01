@@ -105,19 +105,6 @@ If you want more convenience and your validator to operate quickly, you can also
 > After the synchronization is finalized, you will end up with the equal blockchain data. You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime. The shortcut is ideal for fresh installations, validator migration, or recovery.
 
 <Tabs>
-  <TabItem value="regular-sync" label="Regular Synchronization">
-
-:::info
-
-The synchronization process will take multiple hours for the node to finalize.
-
-:::
-
-```sh
-lukso start
-```
-
-  </TabItem>  
   <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
 
 :::tip
@@ -137,6 +124,19 @@ lukso start --checkpoint-sync
 ```
 
   </TabItem>
+  <TabItem value="regular-sync" label="Regular Synchronization">
+
+:::info
+
+The synchronization process will take multiple hours for the node to finalize.
+
+:::
+
+```sh
+lukso start
+```
+
+  </TabItem>  
 </Tabs>
 
 :::info
