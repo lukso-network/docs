@@ -102,9 +102,3 @@ const tx = await signer.sendTransaction({
   </TabItem>
 
 </Tabs>
-
-:::tip
-
-If you are building a service that wants to directly execute actions on the Universal Profile
-
-:::
