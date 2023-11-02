@@ -299,6 +299,12 @@ If you are setting up a node for the testnet, add the `--testnet` flag to the st
 
 :::
 
+:::info
+
+You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version or run into issues, please pass down the checkpoint flag manually, as described in the [LUKSO CLI Checkpoint Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
+
+:::
+
 ```sh
 # Starting the Mainnet Node
 lukso start --checkpoint-sync
