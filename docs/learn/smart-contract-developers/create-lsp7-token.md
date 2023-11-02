@@ -269,7 +269,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 </Tabs>
 
-### Step 1 - Setup imports and constants
+### Setup imports and constants
 
 At this point you will need a private key in order to deploy an `LSP7Mintable` contract.
 We will import `LSP7Mintable` in order to get the _ABI_ and _bytecode_ of the contract that will be deployed.
@@ -310,7 +310,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 </Tabs>
 
-### Step 2 - Instantiate contracts
+### Instantiate contracts
 
 At this point, the `LPS7Mintable` contract is being prepared for deployment.
 
@@ -340,7 +340,7 @@ const lsp7Factory = new ethers.ContractFactory(
 
 </Tabs>
 
-### Step 3 - Send transaction
+### Send transaction
 
 Finally, deploy the contract.
 
@@ -355,9 +355,9 @@ await myToken.deploy({
     data: LSP7Mintable.bytecode,
     arguments: [
       'My LSP7 Token', // token name
-      'LSP7', // token symbol
+      'LSP7',          // token symbol
       account.address, // new owner, who will mint later
-      false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
+      false,           // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
     ],
   })
   .send({ from: account.address });
@@ -366,16 +366,21 @@ await myToken.deploy({
 
   </TabItem>
 
+<!-- prettier-ignore-start -->
+
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript title="Deploy the LSP7 Digital Asset contract"
 const myToken = await lsp7Factory.connect(myEOA).deploy(
   'My LSP7 Token', // token name
-  'LSP7', // token symbol
-  myEOA.address, // new owner, who will mint later
-  false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
+  'LSP7',          // token symbol
+  myEOA.address,   // new owner, who will mint later
+  false,           // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
 );
 ```
+
+
+<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -410,9 +415,9 @@ await myToken.deploy({
     data: LSP7Mintable.bytecode,
     arguments: [
       'My LSP7 Token', // token name
-      'LSP7', // token symbol
+      'LSP7',          // token symbol
       account.address, // new owner, who will mint later
-      false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
+      false,           // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
     ],
   })
   .send({ from: account.address });
@@ -441,9 +446,9 @@ const lsp7Factory = new ethers.ContractFactory(
 // deploy the token contract
 const myToken = await lsp7Factory.connect(myEOA).deploy(
   'My LSP7 Token', // token name
-  'LSP7', // token symbol
-  myEOA.address, // new owner, who will mint later
-  false, // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
+  'LSP7',          // token symbol
+  myEOA.address,   // new owner, who will mint later
+  false,           // isNonDivisible = TRUE, means NOT divisible, decimals = 0)
 );
 ```
 
