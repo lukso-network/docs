@@ -47,7 +47,7 @@ The [LUKSO UP Browser Extension](../guides/browser-extension/install-browser-ext
     <td>LUKSO specific</td>
   </tr>
    <tr>
-    <td><a href="#up_generateLsp23Address">up_generateLsp23Address</a></td>
+    <td><a href="#up_generateLSP23Address">up_generateLSP23Address</a></td>
     <td>LUKSO specific</td>
   </tr>
 </table>
@@ -133,8 +133,8 @@ Object containing the new relayer properties. To find more information about cus
 params: [
   {
     name: 'My Relayer',
-    apiUrl: 'https://relayer.l16.staging.lukso.dev/api/v1/',
-    chainIds: [2828],
+    apiUrl: 'https://relayer.testnet.staging.lukso.dev/api/v1/',
+    chainIds: [4201],
   },
 ];
 ```
@@ -163,13 +163,13 @@ params: ['0x311611C9A46a192C14Ea993159a0498EDE5578aC'];
 
 ##### 1. `String` - New controller address, to be added to the profile by the dapp.
 
-### up_generateLsp23Address {#up_generateLsp23Address}
+### up_generateLSP23Address {#up_generateLSP23Address}
 
 It allows the creation of a Universal Profile for the UP Browser Extension using the [LSP23 Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md), which under the hood will wrap many operations/transactions into one, simplifying deployment.
 
 To perform the deployment of a Universal Profile, the dApp needs the salt and the controllerAddress. The controllerAddress will be injected in the dataKeys and dataValues array, then the salt and the encoded dataKeys and dataValues are sent to the relayer to deploy the profile. Previously, the relayer had to do several consecutive transactions to deploy a profile. Now, all those transactions are taking place at the smart contract level, so the relayer only creates one transaction.
 
-**up_generateLsp23Address**: should be used for creating a new Universal Profile using the UP Browser Extension
+**up_generateLSP23Address**: should be used for creating a new Universal Profile using the UP Browser Extension
 
 **up_import**: should be used for adding already existing Universal Profiles to the UP Browser Extension
 
