@@ -11,7 +11,7 @@ title: LSP7DigitalAsset
 lspFactory.LSP7DigitalAsset.deploy(digitalAssetProperties [, options]);
 ```
 
-Deploys a mintable [LSP7 Digital Asset](../../../standards/nft-2.0/LSP7-Digital-Asset).
+Deploys a mintable [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset).
 
 :::info
 

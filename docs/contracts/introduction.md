@@ -52,6 +52,12 @@ pnpm add @lukso/lsp-smart-contracts
 
 </Tabs>
 
+:::tip
+
+To set up your developer environment, you can check the 👉 [getting started section for Smart Contract developers](../learn/smart-contract-developers/getting-started.md).
+
+:::
+
 ## Overview
 
 Overall the contracts can be divided by their usage.

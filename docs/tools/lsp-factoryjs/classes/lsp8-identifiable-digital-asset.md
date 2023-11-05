@@ -11,7 +11,7 @@ title: LSP8IdentifiableDigitalAsset
 lspFactory.LSP8IdentifiableDigitalAsset.deploy(digitalAssetProperties [, options]);
 ```
 
-Deploys a mintable [LSP8 Identifiable Digital Asset](../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
+Deploys a mintable [LSP8 Identifiable Digital Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset).
 
 :::info
 
