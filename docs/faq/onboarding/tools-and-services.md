@@ -7,7 +7,7 @@ sidebar_position: 2
 
 ## I am a developer. Where do I start?
 
-If you are a developer and want to use the LUKSO Blockchain, you can start by experimenting with the [Public Testnet](../../networks/testnet/parameters) and reading the [developer's guides](../../guides/universal-profile/create-profile). Please join our [Discord](https://discord.gg/lukso) and get in touch if you have ideas for the new digital lifestyle economy!
+If you are a developer and want to use the LUKSO Blockchain, you can start by experimenting with the [Public Testnet](../../networks/testnet/parameters.md) and reading the [developer's guides](../../learn/expert-guides/universal-profile/create-profile.md). Please join our [Discord](https://discord.gg/lukso) and get in touch if you have ideas for the new digital lifestyle economy!
 
 ## Are there any sample projects to look at?
 
@@ -15,7 +15,7 @@ If you want to experiment with simple code snippets for LSPs, please look at the
 
 ## Which tools can be used to develop dApps on LUKSO?
 
-We have a [full set of tools](../../tools/getting-started/) and libraries that you can use to build on LSPs and interact with Universal Profiles. You can also [install the latest Universal Profile Extension](../../guides/browser-extension/install-browser-extension) to connect Universal Profiles with dApps.
+We have a [full set of tools](../../tools/getting-started/) and libraries that you can use to build on LSPs and interact with Universal Profiles. You can also [install the latest Universal Profile Extension](/install-up-browser-extension) to connect Universal Profiles with dApps.
 
 ## Where can I get LYXt for test deployments?
 

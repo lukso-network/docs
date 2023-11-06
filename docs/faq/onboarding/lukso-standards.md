@@ -17,12 +17,12 @@ With LSPs, the mission is to have standards that facilitate using tools that abs
 
 ## What are the main features of LSPs?
 
-- Tokens and NFTs get **extensible, standardized, and exchangeable** storage through a key-value scheme for any metadata or attached files using [LSP4](../../standards/nft-2.0/LSP4-Digital-Asset-Metadata).
+- Tokens and NFTs get **extensible, standardized, and exchangeable** storage through a key-value scheme for any metadata or attached files using [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata).
 - All contracts can also have **native rights management** and **permissions handling** by using [LSP6](../../standards/universal-profile/lsp6-key-manager).
 - Assets can be **anchored** directly to the blockchain **account's storage** using [LSP1](../../standards/generic-standards/lsp1-universal-receiver), abandoning complex data fetching.
 - Token IDs have an increased size and can map any serial number (for digital or physical products) on-chain, which also allows NFC integration.
 - Developers and users can safely utilize **events from asset contracts**, regulate allowlists and blocklists, customize UI and app workflows, or create consensus for asset transfers using LSP1 Delegate.
-- Assets have **built-in security for sending assets** to accounts without recovery, utiliszing account abstraction with their force parameter in [LSP7](../../standards/nft-2.0/LSP7-Digital-Asset) and [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset).
+- Assets have **built-in security for sending assets** to accounts without recovery, utiliszing account abstraction with their force parameter in [LSP7](../../standards/tokens/LSP7-Digital-Asset) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset).
 - Attached data can always be verified through hash integration in the [LSP2](../../standards/generic-standards/lsp2-json-schema) schema.
 - Assets can be **organized and managed in vaults** using [LSP9](../../standards/universal-profile/lsp9-vault). Here, multiple services and games can have permissioned access for updating the asset data of user accounts.
 - For NFTs, individual token IDs from a collection can have **separate metadata**, upgrades, creators, and behaviors, instead of just being limited to the logic of the mint contract.
@@ -41,7 +41,7 @@ LUKSO has quite the advantage with first implementation as the whole user base w
 
 ## How many pictures or datasets can be added to NFTs 2.0?
 
-Thanks to the LSP4-DigitalAsset-Metadata standard that is included in the [LSP7](../../standards/nft-2.0/LSP7-Digital-Asset) Token and [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) NFT standards, **assets can hold unlimited metadata** including images, videos, gifs, and text.
+Thanks to the LSP4-DigitalAsset-Metadata standard that is included in the [LSP7](../../standards/tokens/LSP7-Digital-Asset) Token and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset) NFT standards, **assets can hold unlimited metadata** including images, videos, gifs, and text.
 
 ## When using the LSP9 Vault, is the NFT stored on-chain?
 
@@ -55,16 +55,16 @@ No, LSPs do not require the use of any specific data solution. Any content link 
 
 [ERC721](https://eips.ethereum.org/EIPS/eip-721) and [ERC1155](https://eips.ethereum.org/EIPS/eip-1155) are widely used Non-Fungible Token (NFT) standards on Ethereum. While they set off NFT adoption and were the first of their kind, they have certain limitations. Namely these standards lack metadata for the asset, limit the NFT's storage and attachments, and restrict potential interaction due to them not being updatable and having limited EOA management.
 
-LUKSO's NFT standards, [LSP7](../../standards/nft-2.0/LSP7-Digital-Asset.md) and [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset.md), are designed to overcome these limitations. These standards enhance NFT's interaction potential. For instance, when an asset is transferred, the sender and recipient are notified. You can also attach multiple owners, add various media content, and update its content over time.
+LUKSO's NFT standards, [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), are designed to overcome these limitations. These standards enhance NFT's interaction potential. For instance, when an asset is transferred, the sender and recipient are notified. You can also attach multiple owners, add various media content, and update its content over time.
 
-Furthermore, LSP7 and LSP8 standardize the on-chain information available for these assets, thereby enhancing their traceability and enabling authenticity checks for NFTs. While ERC721 and ERC1155 provide a foundation for NFTs, LUKSO's LSP7 and LSP8 standards offer more sophisticated features and capabilities, catering to a broader range of use cases and improving the overall user experience. For more detailed information, check out the [LSP7](../../standards/nft-2.0/LSP7-Digital-Asset.md) and [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) documentation.
+Furthermore, LSP7 and LSP8 standardize the on-chain information available for these assets, thereby enhancing their traceability and enabling authenticity checks for NFTs. While ERC721 and ERC1155 provide a foundation for NFTs, LUKSO's LSP7 and LSP8 standards offer more sophisticated features and capabilities, catering to a broader range of use cases and improving the overall user experience. For more detailed information, check out the [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset) documentation.
 
 ## How can I create an updatable NFT on LUKSO?
 
-On the LUKSO network, NFTs can be made **updatable** with the [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) standard. While the underlying technology of the LUKSO network is similar to that of Ethereum, it differentiates itself through the use of these standards. The commonly used NFT standards on Ethereum, ERC721, and ERC1155 do not fully support updatable metadata for NFTs. This is a limitation that LUKSO's LSP8 standard seeks to address.
+On the LUKSO network, NFTs can be made **updatable** with the [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset) standard. While the underlying technology of the LUKSO network is similar to that of Ethereum, it differentiates itself through the use of these standards. The commonly used NFT standards on Ethereum, ERC721, and ERC1155 do not fully support updatable metadata for NFTs. This is a limitation that LUKSO's LSP8 standard seeks to address.
 
-The LSP8 standard introduces a **standardized key-value store**, allowing metadata to be stored and updated over time. This makes NFTs on the LUKSO network dynamic, as their information can be altered after they are minted. For more detailed information please refer to the [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) documentation.
+The LSP8 standard introduces a **standardized key-value store**, allowing metadata to be stored and updated over time. This makes NFTs on the LUKSO network dynamic, as their information can be altered after they are minted. For more detailed information please refer to the [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset) documentation.
 
 ## How can I create a phygital asset on LUKSO?
 
-Creating a hybrid between a physical and a digital asset on LUKSO involves using the [LSP7](../../standards/nft-2.0/LSP7-Digital-Asset) or [LSP8](../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset) token standards. These standards offer a **flexible and updatable key-value store** for the data of the digital half on the blockchain to carry and update relevant information related to its physical counterpart. The managing instance of the token can then update information about the asset's physical aspect dynamically.
+Creating a hybrid between a physical and a digital asset on LUKSO involves using the [LSP7](../../standards/tokens/LSP7-Digital-Asset) or [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset) token standards. These standards offer a **flexible and updatable key-value store** for the data of the digital half on the blockchain to carry and update relevant information related to its physical counterpart. The managing instance of the token can then update information about the asset's physical aspect dynamically.

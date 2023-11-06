@@ -109,9 +109,9 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 
 ### `LSP12IssuedAssets`
 
-**Universal Profiles** can create digital assets, such as [tokens and NFTs](../nft-2.0/introduction.md). All assets (tokens and NFTs) created should be registered in the `LSP12IssuedAssets[]` Array.
+**Universal Profiles** can create digital assets, such as [tokens and NFTs](../tokens/introduction.md). All assets (tokens and NFTs) created should be registered in the `LSP12IssuedAssets[]` Array.
 
-The `LSP12IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g., an [LSP7 token](../nft-2.0/LSP7-Digital-Asset.md) or an [LSP8 NFT](../nft-2.0/LSP8-Identifiable-Digital-Asset.md)_) by extracting the `bytes4` ERC165 interface id of the asset contract. Developers can extract this `bytes4` value from the value retrieved, first 4bytes.
+The `LSP12IssuedAssetsMap:<address>` can then be used to know the asset type (_e.g., an [LSP7 token](../tokens/LSP7-Digital-Asset.md) or an [LSP8 NFT](../tokens/LSP8-Identifiable-Digital-Asset.md)_) by extracting the `bytes4` ERC165 interface id of the asset contract. Developers can extract this `bytes4` value from the value retrieved, first 4bytes.
 
 ```json
 {
