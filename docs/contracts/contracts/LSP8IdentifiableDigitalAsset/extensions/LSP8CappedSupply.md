@@ -879,9 +879,9 @@ after a new `tokenId` has of tokens have been minted.
 
 Any logic in the:
 
-- {\_beforeTokenTransfer} function will run before updating the balances and ownership of `tokenId`s.
+- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
 
-- {\_afterTokenTransfer} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender via LSP1**.
+- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender via LSP1**.
 
 :::
 
@@ -924,9 +924,9 @@ all the parameters in the calldata packed encoded.
 
 Any logic in the:
 
-- {\_beforeTokenTransfer} function will run before updating the balances and ownership of `tokenId`s.
+- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
 
-- {\_afterTokenTransfer} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender/recipient via LSP1**.
+- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender/recipient via LSP1**.
 
 :::
 
@@ -1198,7 +1198,7 @@ Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on i
 
 | Name                       |   Type    | Description                                                     |
 | -------------------------- | :-------: | --------------------------------------------------------------- |
-| `operator` **`indexed`**   | `address` | The address revoked from the operator array ({getOperatorsOf}). |
+| `operator` **`indexed`**   | `address` | The address revoked from the operator array (getOperatorsOf). |
 | `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                     |
 | `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on.            |
 | `notified`                 |  `bool`   | Bool indicating whether the operator has been notified or not   |

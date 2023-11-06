@@ -90,7 +90,7 @@ The address of the signer will be recovered using the LSP25 signature format.
 | -------------------- | :-------: | ----------------------------------------------------------------------------------------------------------------------- |
 | `signature`          |  `bytes`  | A 65 bytes long signature generated according to the signature format specified in the LSP25 standard.                  |
 | `nonce`              | `uint256` | The nonce that the signer used to generate the `signature`.                                                             |
-| `validityTimestamps` | `uint256` | The validity timestamp that the signer used to generate the signature (See {\_verifyValidityTimestamps} to learn more). |
+| `validityTimestamps` | `uint256` | The validity timestamp that the signer used to generate the signature (See \{\_verifyValidityTimestamps\} to learn more). |
 | `msgValue`           | `uint256` | The amount of native tokens intended to be sent for the relay transaction.                                              |
 | `callData`           |  `bytes`  | The calldata to execute as a relay transaction that the signer signed for.                                              |
 

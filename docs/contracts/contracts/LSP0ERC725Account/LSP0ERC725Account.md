@@ -1196,7 +1196,7 @@ This function does not forward to the extension contract the `msg.value` receive
 If you would like to forward the `msg.value` to the extension contract, you can override the code of this internal function as follow:
 
 ```solidity
-(bool success, bytes memory result) = extension.call{value: msg.value}(
+(bool success, bytes memory result) = extension.call\{value: msg.value\}(
     abi.encodePacked(callData, msg.sender, msg.value)
 );
 ```
@@ -1464,11 +1464,11 @@ Emitted when the [`universalReceiver`](#universalreceiver) function was called w
 
 | Name                   |   Type    | Description                                                                                                                                                                             |
 | ---------------------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from` **`indexed`**   | `address` | The address of the EOA or smart contract that called the {universalReceiver(...)} function.                                                                                             |
-| `value` **`indexed`**  | `uint256` | The amount sent to the {universalReceiver(...)} function.                                                                                                                               |
+| `from` **`indexed`**   | `address` | The address of the EOA or smart contract that called the \{universalReceiver(...)\} function.                                                                                             |
+| `value` **`indexed`**  | `uint256` | The amount sent to the \{universalReceiver(...)\} function.                                                                                                                               |
 | `typeId` **`indexed`** | `bytes32` | A `bytes32` unique identifier (= _"hook"_)that describe the type of notification, information or transaction received by the contract. Can be related to a specific standard or a hook. |
-| `receivedData`         |  `bytes`  | Any arbitrary data that was sent to the {universalReceiver(...)} function.                                                                                                              |
-| `returnedValue`        |  `bytes`  | The value returned by the {universalReceiver(...)} function.                                                                                                                            |
+| `receivedData`         |  `bytes`  | Any arbitrary data that was sent to the \{universalReceiver(...)\} function.                                                                                                              |
+| `returnedValue`        |  `bytes`  | The value returned by the \{universalReceiver(...)\} function.                                                                                                                            |
 
 <br/>
 

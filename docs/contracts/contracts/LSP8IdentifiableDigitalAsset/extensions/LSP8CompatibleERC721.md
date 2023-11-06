@@ -1562,7 +1562,7 @@ Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on i
 
 | Name                       |   Type    | Description                                                     |
 | -------------------------- | :-------: | --------------------------------------------------------------- |
-| `operator` **`indexed`**   | `address` | The address revoked from the operator array ({getOperatorsOf}). |
+| `operator` **`indexed`**   | `address` | The address revoked from the operator array (getOperatorsOf). |
 | `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                     |
 | `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on.            |
 | `notified`                 |  `bool`   | Bool indicating whether the operator has been notified or not   |
