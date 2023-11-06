@@ -64,7 +64,7 @@ npm run build
 
 ## Deploy our LSP7 Token contract on LUKSO Testnet
 
-We are now ready to deploy our contract on the [**LUKSO Testnet network**](../../networks/testnet/parameters.md)!
+We are now ready to deploy our contract on the [**LUKSO Testnet network**](../../networks/testnet/parameters)!
 
 In order to deploy the contract, we will have to update the `hardhat.config.ts` and create a deploy script. Let's go!
 
