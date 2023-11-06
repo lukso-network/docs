@@ -22,8 +22,7 @@ The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail
 
 The following code snippets require to install a web3 provider like web3 or ethers, as well as using smart contract schemas. The 📃 [@lukso/lsp-smart-contracts](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) library is the most convenient way to interact with LSP-based smart contracts.
 
-<Tabs>
-  
+<Tabs groupId="web3-lib">
   <TabItem value="web3js" label="web3.js">
 
 ```shell title="Install the dependencies"
@@ -31,7 +30,6 @@ npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
 ```shell title="Install the dependencies"
@@ -39,15 +37,13 @@ npm install ethers @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
-
 </Tabs>
 
 ### Sending LSP7 Tokens from a Universal Profile
 
 As the initial step, you have to set up the Universal Profile and LSP7 Token. Both require an ABI that can be imported from the `@lukso/lsp-smart-contracts` library. After setting up the contracts, you can set up the parameters for the [LSP7 token transfer](https://docs.lukso.tech/contracts/contracts/LSP7DigitalAsset/#transfer).
 
-<Tabs>
-  
+<Tabs groupId="web3-lib">
   <TabItem value="web3js" label="web3.js">
 
 <!-- prettier-ignore-start -->
@@ -80,7 +76,6 @@ await myToken.methods
 <!-- prettier-ignore-end -->
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
 <!-- prettier-ignore-start -->
@@ -110,5 +105,4 @@ await myToken.transfer(
 <!-- prettier-ignore-end -->
 
   </TabItem>
-
 </Tabs>

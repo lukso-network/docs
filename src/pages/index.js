@@ -21,8 +21,8 @@ function Index() {
         <CallToActionButton
           bgColor="#6270A4"
           color="#ffffff"
-          link="./install-up-browser-extension"
-          text="DOWNLOAD THE BROWSER EXTENSION"
+          link="./learn/introduction"
+          text="START BUILDING WITH LUKSO STANDARDS"
         />
         <br />
         <CallToActionButton
