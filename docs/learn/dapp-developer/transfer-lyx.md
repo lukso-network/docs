@@ -29,7 +29,7 @@ The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail
 
 ## Setup
 
-<Tabs>
+<Tabs groupId="web3-lib">
   
   <TabItem value="web3js" label="web3.js">
 
@@ -53,7 +53,7 @@ npm install ethers
 
 The Universal Profile browser extension will magically wrap all the calls internally so you don't have to worry about crafting custom transactions. Simply use [`eth_sendTransaction`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction) as you always did while working with EOA.
 
-<Tabs>
+<Tabs groupId="web3-lib">
   
   <TabItem value="web3js" label="web3.js">
 
