@@ -284,7 +284,7 @@ const universalProfile = new ethers.Contract(
 
 ### Register URD on the UP + set the URD permissions
 
-Generate _Data Keys & Values_ for [**adding a URD**](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md/#how-delegation-works) to the Universal Profile and for granting [**SUPER_SETDATA**](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions) permission to the **URD**.
+Generate _Data Keys & Values_ for [**adding a URD**](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md#how-delegation-works) to the Universal Profile and for granting [**SUPER_SETDATA**](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions) permission to the **URD**.
 
 <Tabs>
   

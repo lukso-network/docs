@@ -132,7 +132,7 @@ In case you did any modifications to your configuration files, such as:
 
 Please add them again and ensure these are in the correct format before starting your node.
 
-You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md/#further-reads) for more information.
+You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md#further-reads) for more information.
 
 :::
 

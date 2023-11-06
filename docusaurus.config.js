@@ -1,5 +1,6 @@
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-module.exports = {
+import { themes as prismThemes } from 'prism-react-renderer';
+
+export default {
   title: 'LUKSO Tech Documentation',
   tagline:
     'Network, Standards, Tools and Guides for development on LUKSO and related standards.',
@@ -372,8 +373,8 @@ module.exports = {
     },
     prism: {
       additionalLanguages: ['solidity'],
-      theme: require('prism-react-renderer/themes/github'),
-      darkTheme: require('prism-react-renderer/themes/dracula'),
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
     },
   },
   presets: [

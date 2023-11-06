@@ -12,22 +12,22 @@ L14 is still running but we recommend you to use [LUKSO Testnet](./testnet/param
 
 The [L14 Public Testnet](http://explorer.l14.lukso.network/) is the soon-deprecated POA test network currently used for all UniversalProfiles and issued (Pre) NFTs. L14 is up-to-date with the latest Ethereum forks until Constantinople.
 
-| Setting            | Value                              |
-| ------------------ | ---------------------------------- |
-| Network Name       | L14                                |
-| New RPC URL        | <https://rpc.l14.lukso.network>    |
-| Chain ID           | 22 (0x16)                          |
-| Currency Symbol    | LYXt                               |
-| Block Explorer URL | <https://blockscout.com/lukso/l14> |
-| Faucet             | <http://faucet.l14.lukso.network>  |
+| Setting            | Value                                                                |
+| ------------------ | -------------------------------------------------------------------- |
+| Network Name       | L14                                                                  |
+| New RPC URL        | [https://rpc.l14.lukso.network](https://rpc.l14.lukso.network)       |
+| Chain ID           | 22 (0x16)                                                            |
+| Currency Symbol    | LYXt                                                                 |
+| Block Explorer URL | [https://blockscout.com/lukso/l14](https://blockscout.com/lukso/l14) |
+| Faucet             | [http://faucet.l14.lukso.network](http://faucet.l14.lukso.network)   |
 
 You can use the values above to add LUKSO L14 to MetaMask. [Here is a tutorial on how to do it](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
 
 ## Repositories
 
-- <https://github.com/lukso-network/l14-deploy-node-gcloud>
-- <https://github.com/lukso-network/l14-chain-spec>
-- <https://github.com/lukso-network/l14-dapps-validators>
+- [https://github.com/lukso-network/l14-deploy-node-gcloud](https://github.com/lukso-network/l14-deploy-node-gcloud)
+- [https://github.com/lukso-network/l14-chain-spec](https://github.com/lukso-network/l14-chain-spec)
+- [https://github.com/lukso-network/l14-dapps-validators](https://github.com/lukso-network/l14-dapps-validators)
 
 ## Features
 

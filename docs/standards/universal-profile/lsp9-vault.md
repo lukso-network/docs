@@ -90,7 +90,7 @@ The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
 }
 ```
 
-> <bytes32\> is the `typeId` passed to the `universalReceiver(..)` function.
+> \<bytes32\> is the `typeId` passed to the `universalReceiver(..)` function.
 
 ### LSP14 - Ownable2Step
 

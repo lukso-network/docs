@@ -193,7 +193,7 @@ We provide a basic repository with examples of `docker-compose.yml` files to run
 
 :::info
 
-👉 <https://github.com/lukso-network/network-docker-containers>
+👉 [https://github.com/lukso-network/network-docker-containers](https://github.com/lukso-network/network-docker-containers)
 
 :::
 
@@ -201,7 +201,7 @@ We also created a "docker factory" web interface which allows you to generate yo
 
 :::tip LUKSO Docker Factory
 
-👉 <https://docker-factory.lukso.tech/>
+👉 [https://docker-factory.lukso.tech](https://docker-factory.lukso.tech)
 
 :::
 
@@ -213,7 +213,7 @@ You are in no way limited to the tools we provide. If you are a pro user, you ca
 
 :::info LUKSO Network configuration
 
-👉 <https://github.com/lukso-network/network-configs>
+👉 [https://github.com/lukso-network/network-configs](https://github.com/lukso-network/network-configs)
 
 :::
 
