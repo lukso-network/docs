@@ -60,7 +60,7 @@ The process is similar to the [mainnet version](../mainnet/running-a-node.md#-wi
 
 :::info LUKSO Network configuration
 
-👉 <https://github.com/lukso-network/network-configs/tree/main/testnet>
+👉 [https://github.com/lukso-network/network-configs/tree/main/testnet](https://github.com/lukso-network/network-configs/tree/main/testnet)
 
 :::
 
