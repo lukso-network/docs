@@ -30,9 +30,9 @@ If you have **MetaMask** installed, _right click on both_ MetaMask and UP Extens
 
 #### Example dApps for testing the UP Browser Extension
 
-| Name                                                                | Description                                                                       | Built by LUKSO/ Community |
-| ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------- |
-| [up-test-dapp.lukso.tech](https://up-test-dapp.lukso.tech)          | LUKSO Demo App                                                                    | LUKSO                     |
-| [examples.lukso.tech](https://examples.lukso.tech)                  | LSP Implementation Examples                                                       | LUKSO                     |
-| [universal.page](https://universal.page/)                           | Create a customizable website to showcase and sell digital assets on LUKSO        | Community                 |
-| [relayer-frontend.vercel.app](https://relayer-frontend.vercel.app/) | A relayer where you can use your staking rewards to pay for your transaction fees | Community                 |
+| Name                                                                | Description                                                                       | Built by  |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------- |
+| [up-test-dapp.lukso.tech](https://up-test-dapp.lukso.tech)          | LUKSO Demo App                                                                    | LUKSO     |
+| [examples.lukso.tech](https://examples.lukso.tech)                  | LSP Implementation Examples                                                       | LUKSO     |
+| [universal.page](https://universal.page/)                           | Create a customizable website to showcase and sell digital assets on LUKSO        | Community |
+| [relayer-frontend.vercel.app](https://relayer-frontend.vercel.app/) | A relayer where you can use your staking rewards to pay for your transaction fees | Community |
