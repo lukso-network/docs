@@ -314,3 +314,7 @@ If there is an extension for the function selector being called, it calls the ex
 [`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Constants.sol
 
 <!-- prettier-ignore-end -->
+
+### Additional Resources
+
+[🎥 BuildUP #2 | Adding Functionalities to Universal Profiles using LSP17 - Contract Extension](https://www.youtube.com/watch?v=0KxkLZHFa0E)

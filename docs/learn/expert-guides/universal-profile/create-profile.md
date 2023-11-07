@@ -198,3 +198,7 @@ const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
   chainId: 4201,
 });
 ```
+
+### Additional Resources
+
+[🎥 BuildUP #2 | Create a Universal Profile Programmatically and Read Profile Data](https://www.youtube.com/watch?v=K3y-wLEbyFw)

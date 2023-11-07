@@ -129,3 +129,7 @@ if (isValidSignature === '0x1626ba7e') {
   console.log('Log In failed');
 }
 ```
+
+### Additional Resources
+
+[🎥 BuildUP #2 | Web3 Auth: Using Universal Profile and SIWE for Login](https://www.youtube.com/watch?v=lY18lBu3_XA)

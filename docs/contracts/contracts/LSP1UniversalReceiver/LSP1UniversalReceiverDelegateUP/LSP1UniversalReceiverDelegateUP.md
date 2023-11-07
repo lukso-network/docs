@@ -278,3 +278,7 @@ Reverts when EOA calls the [`universalReceiver(..)`](#universalreceiver) functio
 | `caller` | `address` | The address of the EOA |
 
 <br/>
+
+### Additional Resources
+
+[🎥 BuildUP #2 | Adding Reactivity to Universal Profiles using LSP1 - Universal Receiver](https://www.youtube.com/watch?v=aE00rHVAWbw)
