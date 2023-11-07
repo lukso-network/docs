@@ -248,4 +248,4 @@ To perform the deployment of a Universal Profile, the dApp needs the salt and th
 
 ### Additional Resources
 
-[🎥 BuildUP #2 | Introduction to the Transaction Relay Service](https://www.youtube.com/watch?v=cpoczP3Y7Hk)
+- [🎥 BuildUP #2 | Introduction to the Transaction Relay Service (YouTube)](https://www.youtube.com/watch?v=cpoczP3Y7Hk)

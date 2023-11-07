@@ -201,4 +201,4 @@ const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
 
 ### Additional Resources
 
-[🎥 BuildUP #2 | Create a Universal Profile Programmatically and Read Profile Data](https://www.youtube.com/watch?v=K3y-wLEbyFw)
+- [🎥 BuildUP #2 | Create a Universal Profile Programmatically and Read Profile Data (YouTube)](https://www.youtube.com/watch?v=K3y-wLEbyFw)

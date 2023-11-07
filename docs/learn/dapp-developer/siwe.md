@@ -132,4 +132,4 @@ if (isValidSignature === '0x1626ba7e') {
 
 ### Additional Resources
 
-[🎥 BuildUP #2 | Web3 Auth: Using Universal Profile and SIWE for Login](https://www.youtube.com/watch?v=lY18lBu3_XA)
+- [🎥 BuildUP #2 | Web3 Auth: Using Universal Profile and SIWE for Login (YouTube)](https://www.youtube.com/watch?v=lY18lBu3_XA)

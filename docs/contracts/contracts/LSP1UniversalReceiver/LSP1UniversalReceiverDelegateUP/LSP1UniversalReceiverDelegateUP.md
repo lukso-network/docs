@@ -281,4 +281,4 @@ Reverts when EOA calls the [`universalReceiver(..)`](#universalreceiver) functio
 
 ### Additional Resources
 
-[🎥 BuildUP #2 | Adding Reactivity to Universal Profiles using LSP1 - Universal Receiver](https://www.youtube.com/watch?v=aE00rHVAWbw)
+- [🎥 BuildUP #2 | Adding Reactivity to Universal Profiles using LSP1 - Universal Receiver (YouTube)](https://www.youtube.com/watch?v=aE00rHVAWbw)
