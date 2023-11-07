@@ -16,6 +16,12 @@ Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../le
 
 :::
 
+:::note
+
+If you expect your users to have MetaMask or other similar browser extensions installed, you can also connect to the Universal Profile Browser Extension directly, using the `window.lukso` object.
+
+:::
+
 <div style={{textAlign: 'center'}}>
 
 <img
@@ -30,13 +36,17 @@ Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../le
 
 ```js
 import Web3 from 'web3';
-
 const web3 = new Web3(window.ethereum);
 
-try {
-  const accounts = await web3.eth.requestAccounts();
-  console.log('Connected with', accounts[0]);
-} catch (error) {
-  // handle connection error
+async function connect() {
+  await web3.eth.requestAccounts();
+
+  try {
+    const accounts = await web3.eth.requestAccounts();
+    console.log('Connected with', accounts[0]);
+  } catch (error) {
+    // handle connection error
+  }
 }
+connect();
 ```
