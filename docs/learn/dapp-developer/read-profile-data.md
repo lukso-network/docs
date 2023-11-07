@@ -33,7 +33,7 @@ The explorer on 🔮 [universalprofile.cloud](https://universalprofile.cloud/) i
 
 ## Setup
 
-To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js). It is able to fetch and conde profile and contract data easily. You can install it in your project using:
+To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js). It is able to fetch and encode profile and contract data easily. You can install it in your project using:
 
 ```shell
 npm install @erc725/erc725.js
