@@ -124,6 +124,10 @@ If there is an extension for the function selector being called, it calls the ex
 
 <br/>
 
+### Additional Resources
+
+- [🎥 BuildUP #2 | Adding Functionalities to Universal Profiles using LSP17 - Contract Extension (YouTube)](https://www.youtube.com/watch?v=0KxkLZHFa0E)
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
