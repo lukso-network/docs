@@ -3,9 +3,6 @@ sidebar_label: 'Switch Consensus Clients'
 sidebar_position: 3
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Switching Consensus Clients
 
 Having a variety of clients in a blockchain network and improving our client diversity is critically important.
@@ -142,45 +139,13 @@ Wait 10 minutes after stopping your node so the network does not accuse you of s
 
 :::
 
-Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
-
-Your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running. After the synchronization is finalized, you will end up with the equal blockchain data.
-
-> You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime.
-
-<Tabs>
-<TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
-
 :::info
 
-If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+If you are starting your node in a fresh working directory or after being offline for a while, make sure to [add checkpoint synchronization](../mainnet/running-a-node.md#start-the-clients) to significantly speed up the synchronization during the startup.
 
 :::
 
-:::info
-
-You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version or run into issues, please pass down the checkpoint flag manually, as described in the [LUKSO CLI Checkpoint Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
-
-:::
-
-```sh
-# Starting the Mainnet Node
-lukso start --checkpoint-sync
-
-# Starting the Mainnet Validator
-lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
-```
-
-  </TabItem>
-  <TabItem value="regular-sync" label="Regular Synchronization">
-
-:::caution
-
-The normal synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
-
-:::
-
-:::info
+:::note
 
 If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
 
@@ -194,10 +159,7 @@ lukso start
 lukso start --validator --transaction-fee-recipient "0x1234"
 ```
 
-  </TabItem>  
-</Tabs>
-
-:::info
+:::note
 
 After your node finalizes the synchronization with the network, you can remove the validator key folder and the old working directory.
 

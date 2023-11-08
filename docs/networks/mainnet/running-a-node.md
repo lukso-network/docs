@@ -64,7 +64,7 @@ curl https://install.lukso.network | sh
 
 :::tip
 
-The name of the directory `myLUKSOnode/` in the commands below can be changed according to your preferences.
+The name of the directory `myLUKSOnode` in the commands below can be changed according to your preferences.
 
 :::
 
@@ -98,7 +98,7 @@ lukso install
 
 The following command will spin up your execution and consensus client and connect to the mainnet.
 
-Without specifying any flags, the node starts its normal synchronization process.
+Without specifying any flags, the node starts the regular synchronization process.
 
 If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running.
 
@@ -126,7 +126,7 @@ lukso start --checkpoint-sync
   </TabItem>
   <TabItem value="regular-sync" label="Regular Synchronization">
 
-:::info
+:::caution Sync Delay
 
 The synchronization process will take multiple hours for the node to finalize.
 
@@ -138,12 +138,6 @@ lukso start
 
   </TabItem>  
 </Tabs>
-
-:::info
-
-If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
-
-:::
 
 #### Checking Processes
 
