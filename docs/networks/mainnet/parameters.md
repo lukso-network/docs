@@ -7,12 +7,6 @@ import AddNetworkButton from '../../../src/components/AddNetworkButton'
 
 # Network Parameters
 
-:::info
-
-The Mainnet of LUKSO started on Tuesday, 23rd May 2023 15:40:00 GMT (+ Genesis Delay -> 4:20pm GMT).
-
-:::
-
 | Setting                  | Value                                                                                                |
 | ------------------------ | ---------------------------------------------------------------------------------------------------- |
 | Network Name             | Mainnet                                                                                              |
