@@ -88,7 +88,36 @@ sudo pkill teku
 </details>
 
 <Tabs>
-  <TabItem value="update-v07" label="Update from Version 0.7 or below">
+  <TabItem value="update-v08" label="Update from Version 0.8 or above">
+
+#### Update the LUKSO CLI
+
+Re-install the LUKSO CLI to your system. You will be asked to overwrite the current version.
+
+```bash
+curl https://install.lukso.network | sh
+```
+
+Make sure to check the downloaded version again to ensure that the update was successful.
+
+```bash
+lukso version
+```
+
+Then continue to download the latest network configurations.
+
+:::info
+
+The `lukso init` command will not overwrite any personal configurations.
+
+:::
+
+```bash
+lukso init
+```
+
+  </TabItem>
+    <TabItem value="update-v07" label="Update from Version 0.7 or below">
 
 #### Create a new Working Directory
 
@@ -178,35 +207,6 @@ Wait 10 minutes after stopping your node so the network does not accuse you of s
 Keep your old working directory on your system until the new node setup fully synchronizes within the next step. It will reference your previous configuration in case something goes wrong.
 
 :::
-
-  </TabItem>
-  <TabItem value="update-v08" label="Update from Version 0.8 or above">
-
-#### Update the LUKSO CLI
-
-Re-install the LUKSO CLI to your system. You will be asked to overwrite the current version.
-
-```bash
-curl https://install.lukso.network | sh
-```
-
-Make sure to check the downloaded version again to ensure that the update was successful.
-
-```bash
-lukso version
-```
-
-Then continue to download the latest network configurations.
-
-:::info
-
-The `lukso init` command will not overwrite any personal configurations.
-
-:::
-
-```bash
-lukso init
-```
 
   </TabItem>
 </Tabs>
