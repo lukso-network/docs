@@ -5,13 +5,9 @@ sidebar_position: 1
 
 # Universal Profiles
 
-## What is a Universal Profile?
-
-Universal Profiles are **fundamentally new accounts based on smart contracts**, acting as the **center for all your blockchain interactions**. They are generic for various use cases, such as regular wallets, and can interact directly with on-chain applications. However, they also feature permission and asset management, updatable profile information, and let you interact as one persona through different controller keys. With their feature-rich functionality, they can tackle a new wave of blockchain adoption.
-
 ## Is there a Universal Profile Explorer?
 
-Yes, you can find our Universal Profile Explorer at [universalprofile.cloud](https://universalprofile.cloud/). The explorer is currently only showing profiles and assets of the initial L14 Testnet. We will also add the explorer page to our Testnet and Mainnet within the migration process.
+Yes, you can find the Universal Profile Explorer at [universalprofile.cloud](https://universalprofile.cloud/).
 
 ## Why did LUKSO not launch Universal Profiles on Ethereum?
 
@@ -23,7 +19,7 @@ The full potential of new accounts like Universal Profiles can't be realized if 
 
 ## Can I use a regular wallet to control my Universal Profile?
 
-As a developer, you can connect a regular wallet to the network where the Universal Profile was deployed and **manually add its EOA** as a controller. You will then have to send all transactions through the [Key Manager](../../standards/universal-profile/lsp6-key-manager) of the Universal Profile to execute them as your persona. However, we recommend directly using the [Universal Profile Extension](../../guides/browser-extension/install-browser-extension) to interact with dApps on LUKSO.
+As a developer, you can connect a regular wallet to the network where the Universal Profile was deployed and **manually add its EOA** as a controller. You will then have to send all transactions through the [Key Manager](../../standards/universal-profile/lsp6-key-manager) of the Universal Profile to execute them as your persona. However, we recommend directly using the [Universal Profile Extension](/install-up-browser-extension) to interact with dApps on LUKSO.
 
 ## How safe are assets stored within a Universal Profile?
 

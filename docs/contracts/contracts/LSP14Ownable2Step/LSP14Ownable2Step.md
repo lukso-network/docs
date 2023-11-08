@@ -403,19 +403,44 @@ Emitted when starting the [`renounceOwnership(..)`](#renounceownership) 2-step p
 
 ## Errors
 
-### CannotTransferOwnershipToSelf
+### LSP14CallerNotPendingOwner
 
 :::note References
 
-- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#cannottransferownershiptoself)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#lsp14callernotpendingowner)
 - Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
-- Error signature: `CannotTransferOwnershipToSelf()`
-- Error hash: `0x43b248cd`
+- Error signature: `LSP14CallerNotPendingOwner(address)`
+- Error hash: `0x451e4528`
 
 :::
 
 ```solidity
-error CannotTransferOwnershipToSelf();
+error LSP14CallerNotPendingOwner(address caller);
+```
+
+Reverts when the `caller` that is trying to accept ownership of the contract is not the pending owner.
+
+#### Parameters
+
+| Name     |   Type    | Description                                 |
+| -------- | :-------: | ------------------------------------------- |
+| `caller` | `address` | The address that tried to accept ownership. |
+
+<br/>
+
+### LSP14CannotTransferOwnershipToSelf
+
+:::note References
+
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#lsp14cannottransferownershiptoself)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Error signature: `LSP14CannotTransferOwnershipToSelf()`
+- Error hash: `0xe052a6f8`
+
+:::
+
+```solidity
+error LSP14CannotTransferOwnershipToSelf();
 ```
 
 _Cannot transfer ownership to the address of the contract itself._
@@ -445,19 +470,19 @@ Reverts when pending owner accept ownership in the same transaction of transferr
 
 <br/>
 
-### NotInRenounceOwnershipInterval
+### LSP14NotInRenounceOwnershipInterval
 
 :::note References
 
-- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#notinrenounceownershipinterval)
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#lsp14notinrenounceownershipinterval)
 - Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
-- Error signature: `NotInRenounceOwnershipInterval(uint256,uint256)`
-- Error hash: `0x8b9bf507`
+- Error signature: `LSP14NotInRenounceOwnershipInterval(uint256,uint256)`
+- Error hash: `0x1b080942`
 
 :::
 
 ```solidity
-error NotInRenounceOwnershipInterval(
+error LSP14NotInRenounceOwnershipInterval(
   uint256 renounceOwnershipStart,
   uint256 renounceOwnershipEnd
 );
@@ -473,6 +498,31 @@ Reverts when trying to renounce ownership before the initial confirmation delay.
 | ------------------------ | :-------: | ----------------------------------------------------------------------- |
 | `renounceOwnershipStart` | `uint256` | The start timestamp when one can confirm the renouncement of ownership. |
 | `renounceOwnershipEnd`   | `uint256` | The end timestamp when one can confirm the renouncement of ownership.   |
+
+<br/>
+
+### OwnableCallerNotTheOwner
+
+:::note References
+
+- Specification details: [**LSP-14-Ownable2Step**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-14-Ownable2Step.md#ownablecallernottheowner)
+- Solidity implementation: [`LSP14Ownable2Step.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol)
+- Error signature: `OwnableCallerNotTheOwner(address)`
+- Error hash: `0xbf1169c5`
+
+:::
+
+```solidity
+error OwnableCallerNotTheOwner(address callerAddress);
+```
+
+Reverts when only the owner is allowed to call the function.
+
+#### Parameters
+
+| Name            |   Type    | Description                              |
+| --------------- | :-------: | ---------------------------------------- |
+| `callerAddress` | `address` | The address that tried to make the call. |
 
 <br/>
 
@@ -520,11 +570,11 @@ Reverts when trying to renounce ownership before the initial confirmation delay.
 [LSP1UniversalReceiver]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver
 [LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver-delegate
 [LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema
-[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/nft-2.0/LSP4-Digital-Asset-Metadata
+[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata
 [LSP5ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp5-received-assets
 [LSP6KeyManager]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
-[LSP7DigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP7-Digital-Asset
-[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP8-Identifiable-Digital-Asset
+[LSP7DigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP7-Digital-Asset
+[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP8-Identifiable-Digital-Asset
 [LSP10ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp10-received-vaults
 [LSP14Ownable2Step]: https://docs.lukso.tech/standards/generic-standards/lsp14-ownable-2-step
 [LSP17ContractExtension]: https://docs.lukso.tech/standards/generic-standards/lsp17-contract-extension

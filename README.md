@@ -1,6 +1,6 @@
 # LUKSO Public Documentation Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus 3](https://docusaurus.io/), a modern static website generator.
 It is the official Technical Documentation Website of LUKSO.
 
 Live URL: <https://docs.lukso.tech/>

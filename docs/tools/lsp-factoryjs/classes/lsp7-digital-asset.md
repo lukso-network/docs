@@ -11,9 +11,10 @@ title: LSP7DigitalAsset
 lspFactory.LSP7DigitalAsset.deploy(digitalAssetProperties [, options]);
 ```
 
-Deploys a mintable [LSP7 Digital Asset](../../../standards/nft-2.0/LSP7-Digital-Asset).
+Deploys a mintable [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset).
 
 :::info
+
 By default LSPFactory deploys the [`Mintable`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol) implementation of LSP7 digital assets. To call the `mint` function import the `LSP7Mintable` abi from the [lsp-smart-contracts library](https://github.com/lukso-network/lsp-smart-contracts).
 
 :::
@@ -44,7 +45,9 @@ Object which specifies how the LSP7 Digital Asset will be deployed
 | [`ipfsGateway`](../deployment/digital-asset#ipfs-upload-options) (optional)    | String \| Object | An IPFS gateway URL or an object containing IPFS configuration options.                                                                                                               |
 
 :::info
+
 You can read more about the `options` object specification on [its official page](../deployment/digital-asset.md#deployment-configuration)
+
 :::
 
 ### Returns
@@ -154,7 +157,7 @@ await lspFactory.LSP7DigitalAsset.deploy(
 {
   type: 'TRANSACTION',
   contractName: 'LSP7DigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'PENDING',
   transaction: {
     ...
@@ -163,7 +166,7 @@ await lspFactory.LSP7DigitalAsset.deploy(
 {
   type: 'TRANSACTION',
   contractName: 'LSP7DigitalAsset',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'COMPLETE',
   receipt: {
     ...

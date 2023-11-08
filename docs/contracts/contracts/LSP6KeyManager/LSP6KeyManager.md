@@ -79,13 +79,13 @@ Execute A `payload` on the linked [`target`](#target) contract after having veri
 
 | Name      |  Type   | Description                                                      |
 | --------- | :-----: | ---------------------------------------------------------------- |
-| `payload` | `bytes` | The abi-encoded function call to execute on the linked {target}. |
+| `payload` | `bytes` | The abi-encoded function call to execute on the linked \{target}. |
 
 #### Returns
 
 | Name |  Type   | Description                                                                  |
 | ---- | :-----: | ---------------------------------------------------------------------------- |
-| `0`  | `bytes` | The abi-decoded data returned by the function called on the linked {target}. |
+| `0`  | `bytes` | The abi-decoded data returned by the function called on the linked \{target}. |
 
 <br/>
 
@@ -128,13 +128,13 @@ Same as [`execute`](#execute) but execute a batch of payloads (abi-encoded funct
 | Name       |    Type     | Description                                                                            |
 | ---------- | :---------: | -------------------------------------------------------------------------------------- |
 | `values`   | `uint256[]` | An array of amount of native tokens to be transferred for each `payload`.              |
-| `payloads` |  `bytes[]`  | An array of abi-encoded function calls to execute successively on the linked {target}. |
+| `payloads` |  `bytes[]`  | An array of abi-encoded function calls to execute successively on the linked \{target}. |
 
 #### Returns
 
 | Name |   Type    | Description                                                                           |
 | ---- | :-------: | ------------------------------------------------------------------------------------- |
-| `0`  | `bytes[]` | An array of abi-decoded data returned by the functions called on the linked {target}. |
+| `0`  | `bytes[]` | An array of abi-decoded data returned by the functions called on the linked \{target}. |
 
 <br/>
 
@@ -151,7 +151,7 @@ Same as [`execute`](#execute) but execute a batch of payloads (abi-encoded funct
 
 :::tip Hint
 
-If you are looking to learn how to sign and execute relay transactions via the Key Manager, see our Javascript step by step guide [_&quot;Execute Relay Transactions&quot;_](../../../guides/key-manager/execute-relay-transactions.md). See the LSP6 Standard page for more details on how to [generate a valid signature for Execute Relay Call](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions).
+If you are looking to learn how to sign and execute relay transactions via the Key Manager, see our Javascript step by step guide [_&quot;Execute Relay Transactions&quot;_](../../../learn/expert-guides/key-manager/execute-relay-transactions.md). See the LSP6 Standard page for more details on how to [generate a valid signature for Execute Relay Call](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions).
 
 :::
 
@@ -181,7 +181,7 @@ Allows any address (executor) to execute a payload (= abi-encoded function call)
 | Name                 |   Type    | Description                                                                                                                                                            |
 | -------------------- | :-------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `signature`          |  `bytes`  | A 65 bytes long signature for a meta transaction according to LSP25.                                                                                                   |
-| `nonce`              | `uint256` | The nonce of the address that signed the calldata (in a specific `_channel`), obtained via {getNonce}. Used to prevent replay attack.                                  |
+| `nonce`              | `uint256` | The nonce of the address that signed the calldata (in a specific `_channel`), obtained via \{getNonce}. Used to prevent replay attack.                                  |
 | `validityTimestamps` | `uint256` | Two `uint128` timestamps concatenated together that describes when the relay transaction is valid "from" (left `uint128`) and "until" as a deadline (right `uint128`). |
 | `payload`            |  `bytes`  | The abi-encoded function call to execute.                                                                                                                              |
 
@@ -232,7 +232,7 @@ Same as [`executeRelayCall`](#executerelaycall) but execute a batch of signed ca
 | Name                 |    Type     | Description                                                                                                                                                |
 | -------------------- | :---------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `signatures`         |  `bytes[]`  | An array of 65 bytes long signatures for meta transactions according to LSP25.                                                                             |
-| `nonces`             | `uint256[]` | An array of nonces of the addresses that signed the calldata payloads (in specific channels). Obtained via {getNonce}. Used to prevent replay attack.      |
+| `nonces`             | `uint256[]` | An array of nonces of the addresses that signed the calldata payloads (in specific channels). Obtained via \{getNonce}. Used to prevent replay attack.      |
 | `validityTimestamps` | `uint256[]` | An array of two `uint128` concatenated timestamps that describe when the relay transaction is valid "from" (left `uint128`) and "until" (right `uint128`). |
 | `values`             | `uint256[]` | An array of amount of native tokens to be transferred for each calldata `payload`.                                                                         |
 | `payloads`           |  `bytes[]`  | An array of abi-encoded function calls to be executed successively.                                                                                        |
@@ -306,10 +306,10 @@ Get the nonce for a specific `from` address that can be used for signing relay t
 function isValidSignature(
   bytes32 dataHash,
   bytes signature
-) external view returns (bytes4 magicValue);
+) external view returns (bytes4 returnedStatus);
 ```
 
-Checks if a signature was signed by a controller that has the permission `SIGN`. If the signer is a controller with the permission `SIGN`, it will return the ERC1271 magic value.
+Checks if a signature was signed by a controller that has the permission `SIGN`. If the signer is a controller with the permission `SIGN`, it will return the ERC1271 success value.
 
 #### Parameters
 
@@ -320,9 +320,9 @@ Checks if a signature was signed by a controller that has the permission `SIGN`.
 
 #### Returns
 
-| Name         |   Type   | Description                                          |
-| ------------ | :------: | ---------------------------------------------------- |
-| `magicValue` | `bytes4` | `0x1626ba7e` on success, or `0xffffffff` on failure. |
+| Name             |   Type   | Description                                          |
+| ---------------- | :------: | ---------------------------------------------------- |
+| `returnedStatus` | `bytes4` | `0x1626ba7e` on success, or `0xffffffff` on failure. |
 
 <br/>
 
@@ -332,37 +332,39 @@ Checks if a signature was signed by a controller that has the permission `SIGN`.
 
 - Specification details: [**LSP-6-KeyManager**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md#lsp20verifycall)
 - Solidity implementation: [`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6KeyManager.sol)
-- Function signature: `lsp20VerifyCall(address,address,uint256,bytes)`
-- Function selector: `0x1a2380e1`
+- Function signature: `lsp20VerifyCall(address,address,address,uint256,bytes)`
+- Function selector: `0xde928f14`
 
 :::
 
 :::tip Hint
 
-This function can call by any other address than the {`target`}. This allows to verify permissions in a _&quot;read-only&quot;_ manner. Anyone can call this function to verify if the `caller` has the right permissions to perform the abi-encoded function call `data` on the {`target`} contract (while sending `msgValue` alongside the call). If the permissions have been verified successfully and `caller` is authorized, one of the following two LSP20 magic value will be returned:
+This function can call by any other address than the \{`target`}. This allows to verify permissions in a _&quot;read-only&quot;_ manner. Anyone can call this function to verify if the `caller` has the right permissions to perform the abi-encoded function call `data` on the \{`target`\} contract (while sending `msgValue` alongside the call). If the permissions have been verified successfully and `caller` is authorized, one of the following two LSP20 success value will be returned:
 
-- `0x1a238000`: LSP20 magic value **without** post verification (last byte is `0x00`).
-- `0x1a238001`: LSP20 magic value **with** post-verification (last byte is `0x01`).
+- `0x1a238000`: LSP20 success value **without** post verification (last byte is `0x00`).
+- `0x1a238001`: LSP20 success value **with** post-verification (last byte is `0x01`).
 
 :::
 
 ```solidity
 function lsp20VerifyCall(
+  address,
   address targetContract,
   address caller,
   uint256 msgValue,
-  bytes data
+  bytes callData
 ) external nonpayable returns (bytes4);
 ```
 
 #### Parameters
 
-| Name             |   Type    | Description                                           |
-| ---------------- | :-------: | ----------------------------------------------------- |
-| `targetContract` | `address` | -                                                     |
-| `caller`         | `address` | The address who called the function on the msg.sender |
-| `msgValue`       | `uint256` | -                                                     |
-| `data`           |  `bytes`  | -                                                     |
+| Name             |   Type    | Description                                                   |
+| ---------------- | :-------: | ------------------------------------------------------------- |
+| `_0`             | `address` | -                                                             |
+| `targetContract` | `address` | -                                                             |
+| `caller`         | `address` | The address who called the function on the `target` contract. |
+| `msgValue`       | `uint256` | -                                                             |
+| `callData`       |  `bytes`  | The calldata sent by the caller to the msg.sender             |
 
 #### Returns
 
@@ -376,10 +378,10 @@ function lsp20VerifyCall(
 
 :::note References
 
-- Specification details: [**LSP-6-KeyManager**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md#,))
+- Specification details: [**LSP-6-KeyManager**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md#lsp20verifycallresult)
 - Solidity implementation: [`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6KeyManager.sol)
-- Function signature: `,)`
-- Function selector: `0x9f47dbd3`
+- Function signature: `lsp20VerifyCallResult(bytes32,bytes)`
+- Function selector: `0xd3fc45d3`
 
 :::
 
@@ -458,6 +460,33 @@ Get The address of the contract linked to this Key Manager.
 | Name |   Type    | Description                        |
 | ---- | :-------: | ---------------------------------- |
 | `0`  | `address` | The address of the linked contract |
+
+<br/>
+
+### version
+
+:::note References
+
+- Specification details: [**LSP-6-KeyManager**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md#version)
+- Solidity implementation: [`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6KeyManager.sol)
+- Function signature: `version()`
+- Function selector: `0x54fd4d50`
+
+:::
+
+```solidity
+function version() external view returns (string);
+```
+
+_Contract version._
+
+Get the version of the contract.
+
+#### Returns
+
+| Name |   Type   | Description                      |
+| ---- | :------: | -------------------------------- |
+| `0`  | `string` | The version of the the contract. |
 
 <br/>
 
@@ -616,22 +645,22 @@ function _getPermissionToSetAllowedCalls(
 ) internal view returns (bytes32);
 ```
 
-retrieve the permission required to set some AllowedCalls for a controller.
+Retrieve the permission required to set some AllowedCalls for a controller.
 
 #### Parameters
 
 | Name                                     |   Type    | Description                                                                                 |
 | ---------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
-| `controlledContract`                     | `address` | the address of the ERC725Y contract where the data key is verified.                         |
-| `dataKey`                                | `bytes32` | `AddressPermissions:AllowedCalls:<controller-address>`.                                     |
-| `dataValue`                              |  `bytes`  | the updated value for the `dataKey`. MUST be a bytes28[CompactBytesArray] of Allowed Calls. |
+| `controlledContract`                     | `address` | The address of the ERC725Y contract from which to fetch the value of `dataKey`.             |
+| `dataKey`                                | `bytes32` | A data key ion the format `AddressPermissions:AllowedCalls:<controller-address>`.           |
+| `dataValue`                              |  `bytes`  | The updated value for the `dataKey`. MUST be a bytes32[CompactBytesArray] of Allowed Calls. |
 | `hasBothAddControllerAndEditPermissions` |  `bool`   | -                                                                                           |
 
 #### Returns
 
-| Name |   Type    | Description                       |
-| ---- | :-------: | --------------------------------- |
-| `0`  | `bytes32` | either ADD or CHANGE PERMISSIONS. |
+| Name |   Type    | Description                     |
+| ---- | :-------: | ------------------------------- |
+| `0`  | `bytes32` | Either ADD or EDIT PERMISSIONS. |
 
 <br/>
 
@@ -646,22 +675,22 @@ function _getPermissionToSetAllowedERC725YDataKeys(
 ) internal view returns (bytes32);
 ```
 
-retrieve the permission required to set some Allowed ERC725Y Data Keys for a controller.
+Retrieve the permission required to set some Allowed ERC725Y Data Keys for a controller.
 
 #### Parameters
 
 | Name                                     |   Type    | Description                                                                                           |
 | ---------------------------------------- | :-------: | ----------------------------------------------------------------------------------------------------- |
-| `controlledContract`                     | `address` | the address of the ERC725Y contract where the data key is verified.                                   |
-| `dataKey`                                | `bytes32` | or `AddressPermissions:AllowedERC725YDataKeys:<controller-address>`.                                  |
-| `dataValue`                              |  `bytes`  | the updated value for the `dataKey`. MUST be a bytes[CompactBytesArray] of Allowed ERC725Y Data Keys. |
+| `controlledContract`                     | `address` | the address of the ERC725Y contract from which to fetch the value of `dataKey`.                       |
+| `dataKey`                                | `bytes32` | A data key in the format `AddressPermissions:AllowedERC725YDataKeys:<controller-address>`.            |
+| `dataValue`                              |  `bytes`  | The updated value for the `dataKey`. MUST be a bytes[CompactBytesArray] of Allowed ERC725Y Data Keys. |
 | `hasBothAddControllerAndEditPermissions` |  `bool`   | -                                                                                                     |
 
 #### Returns
 
-| Name |   Type    | Description                       |
-| ---- | :-------: | --------------------------------- |
-| `0`  | `bytes32` | either ADD or CHANGE PERMISSIONS. |
+| Name |   Type    | Description                     |
+| ---- | :-------: | ------------------------------- |
+| `0`  | `bytes32` | Either ADD or EDIT PERMISSIONS. |
 
 <br/>
 
@@ -1031,7 +1060,7 @@ The address of the signer will be recovered using the LSP25 signature format.
 | -------------------- | :-------: | ----------------------------------------------------------------------------------------------------------------------- |
 | `signature`          |  `bytes`  | A 65 bytes long signature generated according to the signature format specified in the LSP25 standard.                  |
 | `nonce`              | `uint256` | The nonce that the signer used to generate the `signature`.                                                             |
-| `validityTimestamps` | `uint256` | The validity timestamp that the signer used to generate the signature (See {\_verifyValidityTimestamps} to learn more). |
+| `validityTimestamps` | `uint256` | The validity timestamp that the signer used to generate the signature (See \{\_verifyValidityTimestamps\} to learn more). |
 | `msgValue`           | `uint256` | The amount of native tokens intended to be sent for the relay transaction.                                              |
 | `callData`           |  `bytes`  | The calldata to execute as a relay transaction that the signer signed for.                                              |
 
@@ -1104,7 +1133,7 @@ function _execute(
 
 Be aware that this function can also throw an error if the `callData` was signed incorrectly (not conforming to the signature format defined in the LSP25 standard).
 This is because the contract cannot distinguish if the data is signed correctly or not. Instead, it will recover an incorrect signer address from the signature
-and throw an {InvalidRelayNonce} error with the incorrect signer address as the first parameter.
+and throw an \{InvalidRelayNonce\} error with the incorrect signer address as the first parameter.
 
 :::
 
@@ -1151,13 +1180,13 @@ _Execute the `payload` passed to `execute(...)` or `executeRelayCall(...)`_
 | ---------------- | :-------: | ------------------------------------------------------------------ |
 | `targetContract` | `address` | -                                                                  |
 | `msgValue`       | `uint256` | -                                                                  |
-| `payload`        |  `bytes`  | The abi-encoded function call to execute on the {target} contract. |
+| `payload`        |  `bytes`  | The abi-encoded function call to execute on the \{target\} contract. |
 
 #### Returns
 
 | Name |  Type   | Description                                                               |
 | ---- | :-----: | ------------------------------------------------------------------------- |
-| `0`  | `bytes` | bytes The data returned by the call made to the linked {target} contract. |
+| `0`  | `bytes` | bytes The data returned by the call made to the linked \{target\} contract. |
 
 <br/>
 
@@ -1167,7 +1196,6 @@ _Execute the `payload` passed to `execute(...)` or `executeRelayCall(...)`_
 function _verifyPermissions(
   address targetContract,
   address from,
-  uint256 msgValue,
   bool isRelayedCall,
   bytes payload
 ) internal view;
@@ -1179,11 +1207,10 @@ Verify if the `from` address is allowed to execute the `payload` on the [`target
 
 | Name             |   Type    | Description                                                         |
 | ---------------- | :-------: | ------------------------------------------------------------------- |
-| `targetContract` | `address` | -                                                                   |
-| `from`           | `address` | Either the caller of {execute} or the signer of {executeRelayCall}. |
-| `msgValue`       | `uint256` | -                                                                   |
+| `targetContract` | `address` | The contract that is owned by the Key Manager                       |
+| `from`           | `address` | Either the caller of \{execute\} or the signer of \{executeRelayCall}. |
 | `isRelayedCall`  |  `bool`   | -                                                                   |
-| `payload`        |  `bytes`  | The abi-encoded function call to execute on the {target} contract.  |
+| `payload`        |  `bytes`  | The abi-encoded function call to execute on the \{target\} contract.  |
 
 <br/>
 
@@ -1239,9 +1266,9 @@ Emitted when the LSP6KeyManager contract verified the permissions of the `signer
 
 | Name                     |   Type    | Description                                                                                                                                        |
 | ------------------------ | :-------: | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `signer` **`indexed`**   | `address` | The address of the controller that executed the calldata payload (either directly via {execute} or via meta transaction using {executeRelayCall}). |
+| `signer` **`indexed`**   | `address` | The address of the controller that executed the calldata payload (either directly via \{execute\} or via meta transaction using \{executeRelayCall}). |
 | `value` **`indexed`**    | `uint256` | The amount of native token to be transferred in the calldata payload.                                                                              |
-| `selector` **`indexed`** | `bytes4`  | The bytes4 function of the function that was executed on the linked {target}                                                                       |
+| `selector` **`indexed`** | `bytes4`  | The bytes4 function of the function that was executed on the linked \{target\}                                                                       |
 
 <br/>
 
@@ -1310,27 +1337,6 @@ Reverts when calling the KeyManager through `execute(uint256,address,uint256,byt
 
 <br/>
 
-### CannotSendValueToSetData
-
-:::note References
-
-- Specification details: [**LSP-6-KeyManager**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md#cannotsendvaluetosetdata)
-- Solidity implementation: [`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6KeyManager.sol)
-- Error signature: `CannotSendValueToSetData()`
-- Error hash: `0x59a529fc`
-
-:::
-
-```solidity
-error CannotSendValueToSetData();
-```
-
-_Cannot sent native tokens while setting data._
-
-Reverts when calling the `setData(byte32,bytes)` or `setData(bytes32[],bytes[]) functions on the linked [`target`](#target) while sending value.
-
-<br/>
-
 ### DelegateCallDisallowedViaKeyManager
 
 :::note References
@@ -1349,6 +1355,44 @@ error DelegateCallDisallowedViaKeyManager();
 _Performing DELEGATE CALLS via the Key Manager is currently disallowed._
 
 Reverts when trying to do a `delegatecall` via the ERC725X.execute(uint256,address,uint256,bytes) (operation type 4) function of the linked [`target`](#target). `DELEGATECALL` is disallowed by default on the LSP6KeyManager.
+
+<br/>
+
+### ERC725X_ExecuteParametersEmptyArray
+
+:::note References
+
+- Specification details: [**LSP-6-KeyManager**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md#erc725x_executeparametersemptyarray)
+- Solidity implementation: [`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6KeyManager.sol)
+- Error signature: `ERC725X_ExecuteParametersEmptyArray()`
+- Error hash: `0xe9ad2b5f`
+
+:::
+
+```solidity
+error ERC725X_ExecuteParametersEmptyArray();
+```
+
+Reverts when one of the array parameter provided to the [`executeBatch`](#executebatch) function is an empty array.
+
+<br/>
+
+### ERC725X_ExecuteParametersLengthMismatch
+
+:::note References
+
+- Specification details: [**LSP-6-KeyManager**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md#erc725x_executeparameterslengthmismatch)
+- Solidity implementation: [`LSP6KeyManager.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6KeyManager.sol)
+- Error signature: `ERC725X_ExecuteParametersLengthMismatch()`
+- Error hash: `0x3ff55f4d`
+
+:::
+
+```solidity
+error ERC725X_ExecuteParametersLengthMismatch();
+```
+
+Reverts when there is not the same number of elements in the `operationTypes`, `targets` addresses, `values`, and `datas` array parameters provided when calling the [`executeBatch`](#executebatch) function.
 
 <br/>
 
@@ -1424,15 +1468,17 @@ Reverts when trying to call a function on the linked [`target`](#target), that i
 
 - `execute(uint256,address,uint256,bytes)` (ERC725X)
 
-- `transferOwnership(address)`
+- `transferOwnership(address)` (LSP14)
 
 - `acceptOwnership()` (LSP14)
+
+- `renounceOwnership()` (LSP14)
 
 #### Parameters
 
 | Name              |   Type   | Description                                                                                                      |
 | ----------------- | :------: | ---------------------------------------------------------------------------------------------------------------- |
-| `invalidFunction` | `bytes4` | The `bytes4` selector of the function that was attempted to be called on the linked {target} but not recognised. |
+| `invalidFunction` | `bytes4` | The `bytes4` selector of the function that was attempted to be called on the linked \{target\} but not recognised. |
 
 <br/>
 
@@ -1781,7 +1827,7 @@ Reverts when `from` is not authorised to call the `execute(uint256,address,uint2
 | Name       |   Type    | Description                                                                                                                                                                  |
 | ---------- | :-------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `from`     | `address` | The controller that tried to call the `execute(uint256,address,uint256,bytes)` function.                                                                                     |
-| `to`       | `address` | The address of an EOA or contract that `from` tried to call using the linked {target}                                                                                        |
+| `to`       | `address` | The address of an EOA or contract that `from` tried to call using the linked \{target\}                                                                                        |
 | `selector` | `bytes4`  | If `to` is a contract, the bytes4 selector of the function that `from` is trying to call. If no function is called (_e.g: a native token transfer_), selector = `0x00000000` |
 
 <br/>
@@ -1809,8 +1855,8 @@ Reverts when address `from` is not authorised to set the key `disallowedKey` on 
 
 | Name            |   Type    | Description                                                                                            |
 | --------------- | :-------: | ------------------------------------------------------------------------------------------------------ |
-| `from`          | `address` | address The controller that tried to `setData` on the linked {target}.                                 |
-| `disallowedKey` | `bytes32` | A bytes32 data key that `from` is not authorised to set on the ERC725Y storage of the linked {target}. |
+| `from`          | `address` | address The controller that tried to `setData` on the linked \{target}.                                 |
+| `disallowedKey` | `bytes32` | A bytes32 data key that `from` is not authorised to set on the ERC725Y storage of the linked \{target}. |
 
 <br/>
 
@@ -1955,11 +2001,11 @@ Reverts when the period to execute the relay call has expired.
 [LSP1UniversalReceiver]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver
 [LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver-delegate
 [LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema
-[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/nft-2.0/LSP4-Digital-Asset-Metadata
+[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata
 [LSP5ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp5-received-assets
 [LSP6KeyManager]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
-[LSP7DigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP7-Digital-Asset
-[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP8-Identifiable-Digital-Asset
+[LSP7DigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP7-Digital-Asset
+[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP8-Identifiable-Digital-Asset
 [LSP10ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp10-received-vaults
 [LSP14Ownable2Step]: https://docs.lukso.tech/standards/generic-standards/lsp14-ownable-2-step
 [LSP17ContractExtension]: https://docs.lukso.tech/standards/generic-standards/lsp17-contract-extension

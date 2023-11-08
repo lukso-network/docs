@@ -64,7 +64,7 @@ curl https://install.lukso.network | sh
 
 :::tip
 
-The name of the directory `myLUKSOnode/` in the commands below can be changed according to your preferences.
+The name of the directory `myLUKSOnode` in the commands below can be changed according to your preferences.
 
 :::
 
@@ -98,16 +98,35 @@ lukso install
 
 The following command will spin up your execution and consensus client and connect to the mainnet.
 
-Without specifying any flags, the node starts its normal synchronization process.
+Without specifying any flags, the node starts the regular synchronization process.
 
 If you want more convenience and your validator to operate quickly, you can also use checkpoints. Checkpoint synchronization is a feature that significantly speeds up the initial sync time of the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running.
 
 > After the synchronization is finalized, you will end up with the equal blockchain data. You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime. The shortcut is ideal for fresh installations, validator migration, or recovery.
 
 <Tabs>
-  <TabItem value="regular-sync" label="Regular Synchronization">
+  <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
+
+:::tip
+
+The shortcut is ideal for making installation, validator migration, or recovery much faster.
+
+:::
 
 :::info
+
+You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version or run into issues, please pass down the checkpoint flag manually, as described in the [LUKSO CLI Checkpoint Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
+
+:::
+
+```sh
+lukso start --checkpoint-sync
+```
+
+  </TabItem>
+  <TabItem value="regular-sync" label="Regular Synchronization">
+
+:::caution Sync Delay
 
 The synchronization process will take multiple hours for the node to finalize.
 
@@ -118,32 +137,7 @@ lukso start
 ```
 
   </TabItem>  
-  <TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
-
-:::tip
-
-The shortcut is ideal for making installation, validator migration, or recovery much faster.
-
-:::
-
-:::note
-
-You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version, please pass down the checkpoint flag as described in the [LUKSO CLI Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
-
-:::
-
-```sh
-lukso start --checkpoint-sync
-```
-
-  </TabItem>
 </Tabs>
-
-:::info
-
-If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
-
-:::
 
 #### Checking Processes
 
@@ -157,7 +151,21 @@ lukso status
 # INFO[0000] PID 39432 - Validator (validator): Stopped 🔘
 ```
 
-If you want to check any of the running clients in more detail, you can use the built-in logging command of the CLI. It will print out the current log messages of one client to the terminal screen.
+You can also check the connectivity of your clients by running `lukso status peers` command - this will show how many
+peers are your clients connected with.
+
+```bash
+lukso status peers
+
+# INFO[0000] Execution (Geth): Outbound: 10 | Inbound: 3 🟢
+# INFO[0000] Consensus (Lighthouse): Outbound: 5 | Inbound: 8 🟢
+```
+
+Please note that execution client may need additional APIs enabled in order to send peer info. You can read more on how
+to enable those [here](https://github.com/lukso-network/tools-lukso-cli#how-to-get-your-peer-count).
+
+If you want to check any of the running clients in more detail, you can use the built-in logging command of the CLI. It
+will print out the current log messages of one client to the terminal screen.
 
 ```bash
 # Viewing the logs of the execution client
@@ -179,7 +187,7 @@ We provide a basic repository with examples of `docker-compose.yml` files to run
 
 :::info
 
-👉 <https://github.com/lukso-network/network-docker-containers>
+👉 [https://github.com/lukso-network/network-docker-containers](https://github.com/lukso-network/network-docker-containers)
 
 :::
 
@@ -187,7 +195,7 @@ We also created a "docker factory" web interface which allows you to generate yo
 
 :::tip LUKSO Docker Factory
 
-👉 <https://docker-factory.lukso.tech/>
+👉 [https://docker-factory.lukso.tech](https://docker-factory.lukso.tech)
 
 :::
 
@@ -199,7 +207,7 @@ You are in no way limited to the tools we provide. If you are a pro user, you ca
 
 :::info LUKSO Network configuration
 
-👉 <https://github.com/lukso-network/network-configs>
+👉 [https://github.com/lukso-network/network-configs](https://github.com/lukso-network/network-configs)
 
 :::
 

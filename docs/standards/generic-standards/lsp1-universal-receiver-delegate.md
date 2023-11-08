@@ -29,17 +29,19 @@ Therefore, it is advised not to hardcode how the smart contract should handle an
 
 :::success recommendation
 
-Smart contracts implementing the [LSP1-UniversalReceiverDelegate](#) standard SHOULD **register** the **[LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
+Smart contracts implementing the [LSP1-UniversalReceiverDelegate](#) standard SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1-UniversalReceiverDelegate standard.
 
 :::
 
-This standard defines a contract called **UniversalReceiverDelegate** containing a single function named `universalReceiver(...)` that should be called by the `universalReceiver(..)` function with:
+This standard defines a contract called **UniversalReceiverDelegate** containing a single function named `universalReceiverDelegate(...)` that should be called by the `universalReceiver(..)` function with:
+
+- address `caller` is the address calling the `universalReceiver` function.
+
+- uint256 `value` is the amount of value sent to the `universalReceiver` function.
 
 - bytes32 `typeId`: the typeId passed to the `universalReceiver(...)` function.
 
 - bytes `data`: the data passed to the `universalReceiver(...)` function.
-
-> NB: It is possible to send extra calldata from the main `universalReceiver(..)` function to the `universalReceiver(..)` function on the UniversalReceiverDelegate.
 
 ### How Delegation works
 
@@ -47,9 +49,9 @@ Delegation in the context of smart contracts implementing the `universalReceiver
 
 1- Query the **UniversalReceiverDelegate** address: Typically, the address of the **UniversalReceiverDelegate** contract is stored in the primary contract's storage. When the `universalReceiver(...)` function is called, the address is retrieved to facilitate delegation.
 
-2- Check for LSP1 support: Before making any calls to the UniversalReceiverDelegate contract, it's essential to ensure that the contract supports the LSP1 standard. This can be done by checking for the **LSP1UniversalReceiver InterfaceId** using ERC165.
+2- Check for LSP1Delegate support: Before making any calls to the UniversalReceiverDelegate contract, it's essential to ensure that the contract supports the LSP1Delegate standard. This can be done by checking for the **LSP1UniversalReceiverDelegate InterfaceId** using ERC165.
 
-3- Call the UniversalReceiverDelegate's `universalReceiver(..)` function: Once LSP1 support is confirmed, the primary contract's `universalReceiver(...)` function can delegate the call to the UniversalReceiverDelegate's `universalReceiver(...)` function. This allows the primary contract to utilize the logic implemented in the delegate contract.
+3- Call the UniversalReceiverDelegate's `universalReceiverDelegate(..)` function: Once LSP1Delegate support is confirmed, the primary contract's `universalReceiver(...)` function can delegate the call to the UniversalReceiverDelegate's `universalReceiverDelegate(...)` function. This allows the primary contract to utilize the logic implemented in the delegate contract.
 
 Delegation can be implemented in various ways, depending on the developer's requirements. Some possible delegation strategies include:
 
@@ -91,6 +93,32 @@ One of the possible scenarios is a token transfer between Alice and Bob. Alice w
 ![UniversalReceiverDelegate setting data keys on profile](/img/standards/lsp1delegate/token-transfer-4.jpeg)
 
 > For the UniversalReceiverDelegate to be able to call setData function on the UniversalProfile, it should be allowed by the logic of the owner through LSP20.
+
+## Data Keys
+
+### LSP1UniversalReceiverDelegate Singleton
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate",
+  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+  "keyType": "Singleton",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+### LSP1UniversalReceiverDelegate Mapping
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate:<bytes32>",
+  "key": "0x0cfc51aec37c55a4d0b10000<bytes32>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
 
 ## References
 

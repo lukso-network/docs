@@ -44,7 +44,7 @@ Set `initialOwner` as the contract owner and the `SupportedStandards:LSP3Univers
 
 **Emitted events:**
 
-- [`ValueReceived`](#valuereceived) event when funding the contract on deployment.
+- [`UniversalReceiver`](#universalreceiver) event when funding the contract on deployment.
 - [`OwnershipTransferred`](#ownershiptransferred) event when `initialOwner` is set as the contract [`owner`](#owner).
 - [`DataChanged`](#datachanged) event when setting the [`_LSP3_SUPPORTED_STANDARDS_KEY`](#_lsp3_supported_standards_key).
 
@@ -261,7 +261,7 @@ Generic executor function to:
 
 - [`Executed`](#executed) event for each call that uses under `operationType`: `CALL` (0), `STATICCALL` (3) and `DELEGATECALL` (4).
 - [`ContractCreated`](#contractcreated) event, when a contract is created under `operationType`: `CREATE` (1) and `CREATE2` (2).
-- [`ValueReceived`](#valuereceived) event when receiving native tokens.
+- [`UniversalReceiver`](#universalreceiver) event when receiving native tokens.
 
 </blockquote>
 
@@ -330,7 +330,7 @@ Batch executor function that behaves the same as [`execute`](#execute) but allow
 
 - [`Executed`](#executed) event for each call that uses under `operationType`: `CALL` (0), `STATICCALL` (3) and `DELEGATECALL` (4). (each iteration)
 - [`ContractCreated`](#contractcreated) event, when a contract is created under `operationType`: `CREATE` (1) and `CREATE2` (2) (each iteration)
-- [`ValueReceived`](#valuereceived) event when receiving native tokens.
+- [`UniversalReceiver`](#universalreceiver) event when receiving native tokens.
 
 </blockquote>
 
@@ -434,7 +434,7 @@ Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys
 function isValidSignature(
   bytes32 dataHash,
   bytes signature
-) external view returns (bytes4 magicValue);
+) external view returns (bytes4 returnedStatus);
 ```
 
 _Achieves the goal of [EIP-1271] by validating signatures of smart contracts according to their own logic._
@@ -443,15 +443,15 @@ Handles two cases:
 
 1. If the owner is an EOA, recovers an address from the hash and the signature provided:
 
-- Returns the `magicValue` if the address recovered is the same as the owner, indicating that it was a valid signature.
+- Returns the `_ERC1271_SUCCESSVALUE` if the address recovered is the same as the owner, indicating that it was a valid signature.
 
-- If the address is different, it returns the fail value indicating that the signature is not valid.
+- If the address is different, it returns the `_ERC1271_FAILVALUE` indicating that the signature is not valid.
 
 2. If the owner is a smart contract, it forwards the call of [`isValidSignature()`](#isvalidsignature) to the owner contract:
 
-- If the contract fails or returns the fail value, the [`isValidSignature()`](#isvalidsignature) on the account returns the fail value, indicating that the signature is not valid.
+- If the contract fails or returns the `_ERC1271_FAILVALUE`, the [`isValidSignature()`](#isvalidsignature) on the account returns the `_ERC1271_FAILVALUE`, indicating that the signature is not valid.
 
-- If the [`isValidSignature()`](#isvalidsignature) on the owner returned the `magicValue`, the [`isValidSignature()`](#isvalidsignature) on the account returns the `magicValue`, indicating that it's a valid signature.
+- If the [`isValidSignature()`](#isvalidsignature) on the owner returned the `_ERC1271_SUCCESSVALUE`, the [`isValidSignature()`](#isvalidsignature) on the account returns the `_ERC1271_SUCCESSVALUE`, indicating that it's a valid signature.
 
 #### Parameters
 
@@ -462,9 +462,9 @@ Handles two cases:
 
 #### Returns
 
-| Name         |   Type   | Description                                                       |
-| ------------ | :------: | ----------------------------------------------------------------- |
-| `magicValue` | `bytes4` | A `bytes4` value that indicates if the signature is valid or not. |
+| Name             |   Type   | Description                                                       |
+| ---------------- | :------: | ----------------------------------------------------------------- |
+| `returnedStatus` | `bytes4` | A `bytes4` value that indicates if the signature is valid or not. |
 
 <br/>
 
@@ -594,7 +594,7 @@ Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data
 
 **Emitted events:**
 
-- [`ValueReceived`](#valuereceived) event when receiving native tokens.
+- [`UniversalReceiver`](#universalreceiver) event when receiving native tokens.
 - [`DataChanged`](#datachanged) event.
 
 </blockquote>
@@ -639,7 +639,7 @@ Batch data setting function that behaves the same as [`setData`](#setdata) but a
 
 **Emitted events:**
 
-- [`ValueReceived`](#valuereceived) event when receiving native tokens.
+- [`UniversalReceiver`](#universalreceiver) event when receiving native tokens.
 - [`DataChanged`](#datachanged) event. (on each iteration of setting data)
 
 </blockquote>
@@ -761,7 +761,7 @@ Achieves the goal of [LSP-1-UniversalReceiver] by allowing the account to be not
 
 **Emitted events:**
 
-- [`ValueReceived`](#valuereceived) when receiving native tokens.
+- [`UniversalReceiver`](#universalreceiver) when receiving native tokens.
 - [`UniversalReceiver`](#universalreceiver) event with the function parameters, call options, and the response of the UniversalReceiverDelegates (URD) contract that was called.
 
 </blockquote>
@@ -778,6 +778,33 @@ Achieves the goal of [LSP-1-UniversalReceiver] by allowing the account to be not
 | Name             |  Type   | Description                                                                                             |
 | ---------------- | :-----: | ------------------------------------------------------------------------------------------------------- |
 | `returnedValues` | `bytes` | The ABI encoded return value of the LSP1UniversalReceiverDelegate call and the LSP1TypeIdDelegate call. |
+
+<br/>
+
+### version
+
+:::note References
+
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#version)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
+- Function signature: `version()`
+- Function selector: `0x54fd4d50`
+
+:::
+
+```solidity
+function version() external view returns (string);
+```
+
+_Contract version._
+
+Get the version of the contract.
+
+#### Returns
+
+| Name |   Type   | Description                      |
+| ---- | :------: | -------------------------------- |
+| `0`  | `string` | The version of the the contract. |
 
 <br/>
 
@@ -893,6 +920,12 @@ Perform low-level staticcall (operation type = 3)
 <br/>
 
 ### \_executeDelegateCall
+
+:::caution Warning
+
+The `msg.value` should not be trusted for any method called with `operationType`: `DELEGATECALL` (4).
+
+:::
 
 ```solidity
 function _executeDelegateCall(
@@ -1082,10 +1115,12 @@ extension if the extension is set, if not it returns false.
 
 <br/>
 
-### \_getExtension
+### \_getExtensionAndForwardValue
 
 ```solidity
-function _getExtension(bytes4 functionSelector) internal view returns (address);
+function _getExtensionAndForwardValue(
+  bytes4 functionSelector
+) internal view returns (address, bool);
 ```
 
 Returns the extension address stored under the following data key:
@@ -1118,8 +1153,9 @@ function _fallbackLSP17Extendable(
 ```
 
 Forwards the call to an extension mapped to a function selector.
-Calls [`_getExtension`](#_getextension) to get the address of the extension mapped to the function selector being
+Calls [`_getExtensionAndForwardValue`](#_getextensionandforwardvalue) to get the address of the extension mapped to the function selector being
 called on the account. If there is no extension, the `address(0)` will be returned.
+Forwards the value sent with the call to the extension if the function selector is mapped to a payable extension.
 Reverts if there is no extension for the function being called, except for the `bytes4(0)` function selector, which passes even if there is no extension for it.
 If there is an extension for the function selector being called, it calls the extension with the
 `CALL` opcode, passing the `msg.data` appended with the 20 bytes of the [`msg.sender`](#msg.sender) and 32 bytes of the `msg.value`.
@@ -1135,8 +1171,6 @@ function _verifyCall(
 ```
 
 Calls [`lsp20VerifyCall`](#lsp20verifycall) function on the logicVerifier.
-Reverts in case the value returned does not match the magic value (lsp20VerifyCall selector)
-Returns whether a verification after the execution should happen based on the last byte of the magicValue
 
 <br/>
 
@@ -1150,19 +1184,6 @@ function _verifyCallResult(
 ```
 
 Calls [`lsp20VerifyCallResult`](#lsp20verifycallresult) function on the logicVerifier.
-Reverts in case the value returned does not match the magic value (lsp20VerifyCallResult selector)
-
-<br/>
-
-### \_validateCall
-
-```solidity
-function _validateCall(
-  bool postCall,
-  bool success,
-  bytes returnedData
-) internal pure;
-```
 
 <br/>
 
@@ -1380,70 +1401,21 @@ event UniversalReceiver(address indexed from, uint256 indexed value, bytes32 ind
 
 - Data received: `receivedData`.\*
 
-Emitted when the [`universalReceiver`](#universalreceiver) function was called with a specific `typeId` and some `receivedData` s
+Emitted when the [`universalReceiver`](#universalreceiver) function was called with a specific `typeId` and some `receivedData`
 
 #### Parameters
 
 | Name                   |   Type    | Description                                                                                                                                                                             |
 | ---------------------- | :-------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from` **`indexed`**   | `address` | The address of the EOA or smart contract that called the {universalReceiver(...)} function.                                                                                             |
-| `value` **`indexed`**  | `uint256` | The amount sent to the {universalReceiver(...)} function.                                                                                                                               |
+| `from` **`indexed`**   | `address` | The address of the EOA or smart contract that called the \{universalReceiver(...)\} function.                                                                                             |
+| `value` **`indexed`**  | `uint256` | The amount sent to the \{universalReceiver(...)\} function.                                                                                                                               |
 | `typeId` **`indexed`** | `bytes32` | A `bytes32` unique identifier (= _"hook"_)that describe the type of notification, information or transaction received by the contract. Can be related to a specific standard or a hook. |
-| `receivedData`         |  `bytes`  | Any arbitrary data that was sent to the {universalReceiver(...)} function.                                                                                                              |
-| `returnedValue`        |  `bytes`  | The value returned by the {universalReceiver(...)} function.                                                                                                                            |
-
-<br/>
-
-### ValueReceived
-
-:::note References
-
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#valuereceived)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
-- Event signature: `ValueReceived(address,uint256)`
-- Event topic hash: `0x7e71433ddf847725166244795048ecf3e3f9f35628254ecbf736056664233493`
-
-:::
-
-```solidity
-event ValueReceived(address indexed sender, uint256 indexed value);
-```
-
-_`value` native tokens received from `sender`._
-
-Emitted when receiving native tokens.
-
-#### Parameters
-
-| Name                   |   Type    | Description                                                |
-| ---------------------- | :-------: | ---------------------------------------------------------- |
-| `sender` **`indexed`** | `address` | The address that sent some native tokens to this contract. |
-| `value` **`indexed`**  | `uint256` | The amount of native tokens received.                      |
+| `receivedData`         |  `bytes`  | Any arbitrary data that was sent to the \{universalReceiver(...)\} function.                                                                                                              |
+| `returnedValue`        |  `bytes`  | The value returned by the \{universalReceiver(...)\} function.                                                                                                                            |
 
 <br/>
 
 ## Errors
-
-### CannotTransferOwnershipToSelf
-
-:::note References
-
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#cannottransferownershiptoself)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
-- Error signature: `CannotTransferOwnershipToSelf()`
-- Error hash: `0x43b248cd`
-
-:::
-
-```solidity
-error CannotTransferOwnershipToSelf();
-```
-
-_Cannot transfer ownership to the address of the contract itself._
-
-Reverts when trying to transfer ownership to the `address(this)`.
-
-<br/>
 
 ### ERC725X_ContractDeploymentFailed
 
@@ -1667,6 +1639,52 @@ Reverts when there is not the same number of elements in the `datakeys` and `dat
 
 <br/>
 
+### LSP14CallerNotPendingOwner
+
+:::note References
+
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp14callernotpendingowner)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
+- Error signature: `LSP14CallerNotPendingOwner(address)`
+- Error hash: `0x451e4528`
+
+:::
+
+```solidity
+error LSP14CallerNotPendingOwner(address caller);
+```
+
+Reverts when the `caller` that is trying to accept ownership of the contract is not the pending owner.
+
+#### Parameters
+
+| Name     |   Type    | Description                                 |
+| -------- | :-------: | ------------------------------------------- |
+| `caller` | `address` | The address that tried to accept ownership. |
+
+<br/>
+
+### LSP14CannotTransferOwnershipToSelf
+
+:::note References
+
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp14cannottransferownershiptoself)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
+- Error signature: `LSP14CannotTransferOwnershipToSelf()`
+- Error hash: `0xe052a6f8`
+
+:::
+
+```solidity
+error LSP14CannotTransferOwnershipToSelf();
+```
+
+_Cannot transfer ownership to the address of the contract itself._
+
+Reverts when trying to transfer ownership to the `address(this)`.
+
+<br/>
+
 ### LSP14MustAcceptOwnershipInSeparateTransaction
 
 :::note References
@@ -1685,6 +1703,63 @@ error LSP14MustAcceptOwnershipInSeparateTransaction();
 _Cannot accept ownership in the same transaction with [`transferOwnership(...)`](#transferownership)._
 
 Reverts when pending owner accept ownership in the same transaction of transferring ownership.
+
+<br/>
+
+### LSP14NotInRenounceOwnershipInterval
+
+:::note References
+
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp14notinrenounceownershipinterval)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
+- Error signature: `LSP14NotInRenounceOwnershipInterval(uint256,uint256)`
+- Error hash: `0x1b080942`
+
+:::
+
+```solidity
+error LSP14NotInRenounceOwnershipInterval(
+  uint256 renounceOwnershipStart,
+  uint256 renounceOwnershipEnd
+);
+```
+
+_Cannot confirm ownership renouncement yet. The ownership renouncement is allowed from: `renounceOwnershipStart` until: `renounceOwnershipEnd`._
+
+Reverts when trying to renounce ownership before the initial confirmation delay.
+
+#### Parameters
+
+| Name                     |   Type    | Description                                                             |
+| ------------------------ | :-------: | ----------------------------------------------------------------------- |
+| `renounceOwnershipStart` | `uint256` | The start timestamp when one can confirm the renouncement of ownership. |
+| `renounceOwnershipEnd`   | `uint256` | The end timestamp when one can confirm the renouncement of ownership.   |
+
+<br/>
+
+### LSP20CallVerificationFailed
+
+:::note References
+
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp20callverificationfailed)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
+- Error signature: `LSP20CallVerificationFailed(bool,bytes4)`
+- Error hash: `0x9d6741e3`
+
+:::
+
+```solidity
+error LSP20CallVerificationFailed(bool postCall, bytes4 returnedStatus);
+```
+
+reverts when the call to the owner does not return the LSP20 success value
+
+#### Parameters
+
+| Name             |   Type   | Description                                             |
+| ---------------- | :------: | ------------------------------------------------------- |
+| `postCall`       |  `bool`  | True if the execution call was done, False otherwise    |
+| `returnedStatus` | `bytes4` | The bytes4 decoded data returned by the logic verifier. |
 
 <br/>
 
@@ -1728,39 +1803,13 @@ reverts when the call to the owner fail with no revert reason
 error LSP20EOACannotVerifyCall(address logicVerifier);
 ```
 
-Reverts when the logic verifier is an Externally Owned Account (EOA) that cannot return the LSP20 magic value.
+Reverts when the logic verifier is an Externally Owned Account (EOA) that cannot return the LSP20 success value.
 
 #### Parameters
 
 | Name            |   Type    | Description                       |
 | --------------- | :-------: | --------------------------------- |
 | `logicVerifier` | `address` | The address of the logic verifier |
-
-<br/>
-
-### LSP20InvalidMagicValue
-
-:::note References
-
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp20invalidmagicvalue)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
-- Error signature: `LSP20InvalidMagicValue(bool,bytes)`
-- Error hash: `0xd088ec40`
-
-:::
-
-```solidity
-error LSP20InvalidMagicValue(bool postCall, bytes returnedData);
-```
-
-reverts when the call to the owner does not return the magic value
-
-#### Parameters
-
-| Name           |  Type   | Description                                          |
-| -------------- | :-----: | ---------------------------------------------------- |
-| `postCall`     | `bool`  | True if the execution call was done, False otherwise |
-| `returnedData` | `bytes` | The data returned by the call to the logic verifier  |
 
 <br/>
 
@@ -1786,36 +1835,5 @@ reverts when there is no extension for the function selector being called with
 | Name               |   Type   | Description |
 | ------------------ | :------: | ----------- |
 | `functionSelector` | `bytes4` | -           |
-
-<br/>
-
-### NotInRenounceOwnershipInterval
-
-:::note References
-
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md#notinrenounceownershipinterval)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/UniversalProfile.sol)
-- Error signature: `NotInRenounceOwnershipInterval(uint256,uint256)`
-- Error hash: `0x8b9bf507`
-
-:::
-
-```solidity
-error NotInRenounceOwnershipInterval(
-  uint256 renounceOwnershipStart,
-  uint256 renounceOwnershipEnd
-);
-```
-
-_Cannot confirm ownership renouncement yet. The ownership renouncement is allowed from: `renounceOwnershipStart` until: `renounceOwnershipEnd`._
-
-Reverts when trying to renounce ownership before the initial confirmation delay.
-
-#### Parameters
-
-| Name                     |   Type    | Description                                                             |
-| ------------------------ | :-------: | ----------------------------------------------------------------------- |
-| `renounceOwnershipStart` | `uint256` | The start timestamp when one can confirm the renouncement of ownership. |
-| `renounceOwnershipEnd`   | `uint256` | The end timestamp when one can confirm the renouncement of ownership.   |
 
 <br/>

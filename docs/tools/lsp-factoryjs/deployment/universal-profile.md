@@ -39,7 +39,7 @@ Inside the `profileProperties` object, you can set profile configuration options
 
 ### Controller Addresses
 
-You can set the addresses which should be able to control your Universal Profile initially by passing in the `controllerAddresses`. The addresses that were passed here will be given all LSP6 KeyManager permissions except `DELEGATECALL` to [prevent accidental misuse](https://solidity-by-example.org/hacks/delegatecall/). If your controller keys require `DELEGATECALL`, you can [change the permission after deployment](../../../guides/key-manager/give-permissions.md).
+You can set the addresses which should be able to control your Universal Profile initially by passing in the `controllerAddresses`. The addresses that were passed here will be given all LSP6 KeyManager permissions except `DELEGATECALL` to [prevent accidental misuse](https://solidity-by-example.org/hacks/delegatecall/). If your controller keys require `DELEGATECALL`, you can [change the permission after deployment](../../../learn/expert-guides/key-manager/grant-permissions.md).
 
 The property `controllerAddresses` can be filled with addresses of externally owned accounts (EOAs) or another smart contract that can call the `execute(calldata)` function on the KeyManager.
 
@@ -587,7 +587,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'PENDING',
   transaction: {
     ...
@@ -596,7 +596,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32[],bytes[])',
+  functionName: 'setDataBatch(bytes32[],bytes[])',
   status: 'COMPLETE',
   receipt: {
     ...
@@ -641,7 +641,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32,bytes)',
+  functionName: 'setDataBatch(bytes32,bytes)',
   status: 'PENDING',
   transaction: {
     ...
@@ -650,7 +650,7 @@ const contracts = await lspFactory.UniversalProfile.deploy({...}, {
 {
   type: 'TRANSACTION',
   contractName: 'LSP0ERC725Account',
-  functionName: 'setData(bytes32,bytes)',
+  functionName: 'setDataBatch(bytes32,bytes)',
   status: 'COMPLETE',
   receipt: {
     ...

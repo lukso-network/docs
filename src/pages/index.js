@@ -21,15 +21,15 @@ function Index() {
         <CallToActionButton
           bgColor="#6270A4"
           color="#ffffff"
-          link="./guides/browser-extension/install-browser-extension"
-          text="DOWNLOAD THE BROWSER EXTENSION"
+          link="./learn/introduction"
+          text="START BUILDING WITH LUKSO STANDARDS"
         />
         <br />
         <CallToActionButton
           bgColor="#FFCCCC"
           color="#383838"
-          link="./networks/mainnet/running-a-node"
-          text="PARTICIPATE IN NETWORKS"
+          link="https://app.buidlbox.io/lukso/build-up-2"
+          text="JOIN THE HACKATHON (30 Oct - 27 Nov)"
         />
         <br />
         <div className={styles.cardContainer}>
@@ -62,13 +62,6 @@ function Index() {
             title="LEARN"
             className="learn"
             content="Learn about the LUKSO ecosystem"
-          />
-          <Box
-            icon={GuidesIcon}
-            link="./guides/getting-started"
-            title="GUIDES"
-            className="guides"
-            content="Guides and tutorials to help you get started with the LUKSO ecosystem."
           />
           <Box
             icon={FAQIcon}

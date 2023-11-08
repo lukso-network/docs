@@ -55,7 +55,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**execute functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#execute) provided by **ERC725X** that allows the contract to execute multiple operations.
 
-Check the **javascript** guides to know [**How to Send native tokens**](../../guides/universal-profile/transfer-lyx.md) or [**How to Call other contract's function**](../../guides/universal-profile/interact-with-contracts.md) using the execute function.
+Check the **javascript** guides to know [**How to Send native tokens**](../../learn/dapp-developer/transfer-lyx.md) or [**How to Call other contract's function**](../../learn/expert-guides/interact-with-contracts.md) using the execute function.
 
 :::
 
@@ -101,7 +101,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
-Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../guides/universal-profile/read-profile-data.md).
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/expert-guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/dapp-developer/read-profile-data).
 
 :::
 
@@ -144,7 +144,7 @@ See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.
 
 Check the [**universalReceiver functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) provided by **LSP1** that allows notifying about incoming/ outgoing transactions.
 
-Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../guides/universal-receiver-delegate/set-default-implementation.md) or [**How to set your own UniversalReceiverDelegate**](../../guides/universal-receiver-delegate/accept-reject-assets.md).
+Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../learn/expert-guides/universal-receiver/deploy-universal-receiver.md) or [**How to set your own UniversalReceiverDelegate**](../../learn/expert-guides/accept-reject-assets.md).
 
 :::
 
@@ -190,7 +190,7 @@ See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)**
 
 Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md) allowing 2 step ownership transfers.
 
-Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../guides/key-manager/upgrade-lsp6.md).
+Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../learn/expert-guides/key-manager/upgrade-key-manager.md).
 
 :::
 

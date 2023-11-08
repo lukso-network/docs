@@ -14,7 +14,7 @@
 
 :::
 
-> LSP8CompatibleERC721Mintable deployable preset contract with a public {mint} function callable only by the contract {owner}.
+> LSP8CompatibleERC721Mintable deployable preset contract with a public \{mint\} function callable only by the contract \{owner}.
 
 ## Public Methods
 
@@ -97,7 +97,7 @@ receive() external payable;
 function approve(address operator, uint256 tokenId) external nonpayable;
 ```
 
-_Calling `approve` function on `ILSP8CompatibleERC721` contract. Approving operator at address `operator` to transfer tokenId `tokenId` on behalf of its owner._
+_Calling `approve` function to approve operator at address `operator` to transfer tokenId `tokenId` on behalf of its owner._
 
 Approval function compatible with ERC721 `approve(address,uint256)`.
 
@@ -129,7 +129,7 @@ function authorizeOperator(
 ) external nonpayable;
 ```
 
-Allow an `operator` address to transfer or burn a specific `tokenId` on behalf of its token owner. See [`isOperatorFor`](#isoperatorfor).
+Allow an `operator` address to transfer or burn a specific `tokenId` on behalf of its token owner. See [`isOperatorFor`](#isoperatorfor). Notify the operator based on the LSP1-UniversalReceiver standard
 
 <blockquote>
 
@@ -331,18 +331,22 @@ function isApprovedForAll(
 ) external view returns (bool);
 ```
 
+_Checking if address `operator` is approved to transfer any tokenId owned by address `owner`._
+
+Compatible with ERC721 isApprovedForAll.
+
 #### Parameters
 
-| Name         |   Type    | Description |
-| ------------ | :-------: | ----------- |
-| `tokenOwner` | `address` | -           |
-| `operator`   | `address` | -           |
+| Name         |   Type    | Description                      |
+| ------------ | :-------: | -------------------------------- |
+| `tokenOwner` | `address` | The tokenOwner address to query. |
+| `operator`   | `address` | The operator address to query.   |
 
 #### Returns
 
-| Name |  Type  | Description |
-| ---- | :----: | ----------- |
-| `0`  | `bool` | -           |
+| Name |  Type  | Description                                                                 |
+| ---- | :----: | --------------------------------------------------------------------------- |
+| `0`  | `bool` | Returns if the `operator` is allowed to manage all of the assets of `owner` |
 
 <br/>
 
@@ -431,7 +435,7 @@ Public [`_mint`](#_mint) function only callable by the [`owner`](#owner).
 function name() external view returns (string);
 ```
 
-Returns the name of the token.
+Returns the name of the token. For compatibility with clients & tools that expect ERC721.
 
 #### Returns
 
@@ -524,8 +528,8 @@ Leaves the contract without owner. It will not be possible to call `onlyOwner` f
 
 - Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokeoperator)
 - Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
-- Function signature: `revokeOperator(address,bytes32,bytes)`
-- Function selector: `0xf1b97e04`
+- Function signature: `revokeOperator(address,bytes32,bool,bytes)`
+- Function selector: `0xdb8c9663`
 
 :::
 
@@ -533,6 +537,7 @@ Leaves the contract without owner. It will not be possible to call `onlyOwner` f
 function revokeOperator(
   address operator,
   bytes32 tokenId,
+  bool notify,
   bytes operatorNotificationData
 ) external nonpayable;
 ```
@@ -541,11 +546,12 @@ Remove access of `operator` for a given `tokenId`, disallowing it to transfer `t
 
 #### Parameters
 
-| Name                       |   Type    | Description                                          |
-| -------------------------- | :-------: | ---------------------------------------------------- |
-| `operator`                 | `address` | The address to revoke as an operator.                |
-| `tokenId`                  | `bytes32` | The tokenId `operator` is revoked from operating on. |
-| `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.      |
+| Name                       |   Type    | Description                                              |
+| -------------------------- | :-------: | -------------------------------------------------------- |
+| `operator`                 | `address` | The address to revoke as an operator.                    |
+| `tokenId`                  | `bytes32` | The tokenId `operator` is revoked from operating on.     |
+| `notify`                   |  `bool`   | Boolean indicating whether to notify the operator or not |
+| `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.          |
 
 <br/>
 
@@ -574,7 +580,7 @@ function safeTransferFrom(
 ) external nonpayable;
 ```
 
-_Calling `safeTransferFrom` function on `ILSP8CompatibleERC721` contract. Transferring tokenId `tokenId` from address `from` to address `to`._
+_Calling `safeTransferFrom` function to transfer tokenId `tokenId` from address `from` to address `to`._
 
 Safe Transfer function without optional data from the ERC721 standard interface.
 
@@ -614,7 +620,7 @@ function safeTransferFrom(
 ) external nonpayable;
 ```
 
-_Calling `safeTransferFrom` function with `data` on `ILSP8CompatibleERC721` contract. Transferring tokenId `tokenId` from address `from` to address `to`._
+_Calling `safeTransferFrom` function to transfer tokenId `tokenId` from address `from` to address `to`._
 
 Safe Transfer function with optional data from the ERC721 standard interface.
 
@@ -644,14 +650,24 @@ Safe Transfer function with optional data from the ERC721 standard interface.
 function setApprovalForAll(address operator, bool approved) external nonpayable;
 ```
 
-See [`_setApprovalForAll`](#_setapprovalforall)
+_Setting the "approval for all" status of operator `_operator` to `_approved` to allow it to transfer any tokenIds on behalf of `msg.sender`._
+
+Enable or disable approval for a third party ("operator") to manage all of `msg.sender`'s assets. The contract MUST allow multiple operators per owner. See [`_setApprovalForAll`](#_setapprovalforall)
+
+<blockquote>
+
+**Emitted events:**
+
+- [`ApprovalForAll`](#approvalforall) event
+
+</blockquote>
 
 #### Parameters
 
-| Name       |   Type    | Description |
-| ---------- | :-------: | ----------- |
-| `operator` | `address` | -           |
-| `approved` |  `bool`   | -           |
+| Name       |   Type    | Description                                                 |
+| ---------- | :-------: | ----------------------------------------------------------- |
+| `operator` | `address` | Address to add to the set of authorized operators.          |
+| `approved` |  `bool`   | True if the operator is approved, false to revoke approval. |
 
 <br/>
 
@@ -801,7 +817,7 @@ Returns true if this contract implements the interface defined by `interfaceId`.
 function symbol() external view returns (string);
 ```
 
-Returns the symbol of the token, usually a shorter version of the name.
+Returns the symbol of the token, usually a shorter version of the name. For compatibility with clients & tools that expect ERC721.
 
 #### Returns
 
@@ -877,16 +893,20 @@ Returns the list of `tokenIds` for the `tokenOwner` address.
 
 :::note References
 
-- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#))
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#tokenuri)
 - Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
-- Function signature: `)`
-- Function selector: `0x59d76dc3`
+- Function signature: `tokenURI(uint256)`
+- Function selector: `0xc87b56dd`
 
 :::
 
 ```solidity
 function tokenURI(uint256) external view returns (string);
 ```
+
+_Retrieving the token URI of tokenId `tokenId`._
+
+Compatible with ERC721Metadata tokenURI. Retrieve the tokenURI for a specific `tokenId`.
 
 #### Parameters
 
@@ -896,9 +916,9 @@ function tokenURI(uint256) external view returns (string);
 
 #### Returns
 
-| Name |   Type   | Description |
-| ---- | :------: | ----------- |
-| `0`  | `string` | -           |
+| Name |   Type   | Description    |
+| ---- | :------: | -------------- |
+| `0`  | `string` | The token URI. |
 
 <br/>
 
@@ -1022,7 +1042,7 @@ function transferFrom(
 ) external nonpayable;
 ```
 
-_Calling `transferFrom` function on `ILSP8CompatibleERC721` contract. Transferring tokenId `tokenId` from address `from` to address `to`._
+_Calling `transferFrom` function to transfer tokenId `tokenId` from address `from` to address `to`._
 
 Transfer functions from the ERC721 standard interface.
 
@@ -1058,6 +1078,33 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 | Name       |   Type    | Description |
 | ---------- | :-------: | ----------- |
 | `newOwner` | `address` | -           |
+
+<br/>
+
+### version
+
+:::note References
+
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#version)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
+- Function signature: `version()`
+- Function selector: `0x54fd4d50`
+
+:::
+
+```solidity
+function version() external view returns (string);
+```
+
+_Contract version._
+
+Get the version of the contract.
+
+#### Returns
+
+| Name |   Type   | Description                      |
+| ---- | :------: | -------------------------------- |
+| `0`  | `string` | The version of the the contract. |
 
 <br/>
 
@@ -1118,8 +1165,11 @@ mapping(bytes32 => bytes) _store
 ### \_setData
 
 ```solidity
-function _setData(bytes32 key, bytes value) internal nonpayable;
+function _setData(bytes32 dataKey, bytes dataValue) internal nonpayable;
 ```
+
+The ERC725Y data key `_LSP8_TOKENID_TYPE_KEY` cannot be changed
+once the identifiable digital asset contract has been deployed.
 
 <br/>
 
@@ -1149,6 +1199,7 @@ function _revokeOperator(
   address operator,
   address tokenOwner,
   bytes32 tokenId,
+  bool notified,
   bytes operatorNotificationData
 ) internal nonpayable;
 ```
@@ -1239,13 +1290,13 @@ function _transfer(
 function _beforeTokenTransfer(
   address from,
   address to,
-  bytes32 tokenId
+  bytes32 tokenId,
+  bytes data
 ) internal nonpayable;
 ```
 
 Hook that is called before any token transfer, including minting and burning.
-
-- Allows to run custom logic before updating balances and notifiying sender/recipient by overriding this function.
+Allows to run custom logic before updating balances and notifiying sender/recipient by overriding this function.
 
 #### Parameters
 
@@ -1254,39 +1305,32 @@ Hook that is called before any token transfer, including minting and burning.
 | `from`    | `address` | The sender address                     |
 | `to`      | `address` | @param tokenId The tokenId to transfer |
 | `tokenId` | `bytes32` | The tokenId to transfer                |
+| `data`    |  `bytes`  | The data sent alongside the transfer   |
 
 <br/>
 
-### \_notifyTokenOperator
+### \_afterTokenTransfer
 
 ```solidity
-function _notifyTokenOperator(
-  address operator,
-  bytes lsp1Data
+function _afterTokenTransfer(
+  address from,
+  address to,
+  bytes32 tokenId,
+  bytes data
 ) internal nonpayable;
 ```
 
-Attempt to notify the operator `operator` about the `tokenId` tokens being authorized.
-This is done by calling its [`universalReceiver`](#universalreceiver) function with the `_TYPEID_LSP8_TOKENOPERATOR` as typeId, if `operator` is a contract that supports the LSP1 interface.
-If `operator` is an EOA or a contract that does not support the LSP1 interface, nothing will happen and no notification will be sent.
+Hook that is called after any token transfer, including minting and burning.
+Allows to run custom logic after updating balances, but **before notifiying sender/recipient via LSP1** by overriding this function.
 
 #### Parameters
 
-| Name       |   Type    | Description                                                                    |
-| ---------- | :-------: | ------------------------------------------------------------------------------ |
-| `operator` | `address` | The address to call the {universalReceiver} function on.                       |
-| `lsp1Data` |  `bytes`  | the data to be sent to the `operator` address in the `universalReceiver` call. |
-
-<br/>
-
-### \_notifyTokenSender
-
-```solidity
-function _notifyTokenSender(address from, bytes lsp1Data) internal nonpayable;
-```
-
-An attempt is made to notify the token sender about the `tokenId` changing owners using
-LSP1 interface.
+| Name      |   Type    | Description                            |
+| --------- | :-------: | -------------------------------------- |
+| `from`    | `address` | The sender address                     |
+| `to`      | `address` | @param tokenId The tokenId to transfer |
+| `tokenId` | `bytes32` | The tokenId to transfer                |
+| `data`    |  `bytes`  | The data sent alongside the transfer   |
 
 <br/>
 
@@ -1322,10 +1366,12 @@ extension if the extension is set, if not it returns false.
 
 <br/>
 
-### \_getExtension
+### \_getExtensionAndForwardValue
 
 ```solidity
-function _getExtension(bytes4 functionSelector) internal view returns (address);
+function _getExtensionAndForwardValue(
+  bytes4 functionSelector
+) internal view returns (address, bool);
 ```
 
 Returns the extension address stored under the following data key:
@@ -1352,8 +1398,9 @@ function _fallbackLSP17Extendable(
 ```
 
 Forwards the call with the received value to an extension mapped to a function selector.
-Calls [`_getExtension`](#_getextension) to get the address of the extension mapped to the function selector being
+Calls [`_getExtensionAndForwardValue`](#_getextensionandforwardvalue) to get the address of the extension mapped to the function selector being
 called on the account. If there is no extension, the address(0) will be returned.
+We will always forward the value to the extension, as the LSP8 contract is not supposed to hold any native tokens.
 Reverts if there is no extension for the function being called.
 If there is an extension for the function selector being called, it calls the extension with the
 CALL opcode, passing the [`msg.data`](#msg.data) appended with the 20 bytes of the [`msg.sender`](#msg.sender) and
@@ -1388,7 +1435,7 @@ function _setApprovalForAll(
 ) internal nonpayable;
 ```
 
-Approve `operator` to operate on all tokens of `tokensOwner`
+Approve `operator` to operate on all tokens of `tokensOwner`.
 
 <blockquote>
 
@@ -1414,20 +1461,18 @@ Approve `operator` to operate on all tokens of `tokensOwner`
 :::
 
 ```solidity
-event Approval(address indexed owner, address indexed operator, uint256 indexed tokenId);
+event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
 ```
-
-_ERC721 `Approval` compatible event emitted. Successfully approved operator `operator` to operate on tokenId `tokenId` on behalf of token owner `owner`._
 
 Emitted when the allowance of a `spender` for an `owner` is set by a call to [`approve`](#approve). `value` is the new allowance.
 
 #### Parameters
 
-| Name                     |   Type    | Description                  |
-| ------------------------ | :-------: | ---------------------------- |
-| `owner` **`indexed`**    | `address` | The account giving approval  |
-| `operator` **`indexed`** | `address` | The address set as operator. |
-| `tokenId` **`indexed`**  | `uint256` | The approved tokenId.        |
+| Name                     |   Type    | Description |
+| ------------------------ | :-------: | ----------- |
+| `owner` **`indexed`**    | `address` | -           |
+| `approved` **`indexed`** | `address` | -           |
+| `tokenId` **`indexed`**  | `uint256` | -           |
 
 <br/>
 
@@ -1446,17 +1491,15 @@ Emitted when the allowance of a `spender` for an `owner` is set by a call to [`a
 event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 ```
 
-_ERC721 `ApprovalForAll` compatible event emitted. Successfully set "approved for all" status to `approved` for operator `operator` for token owner `owner`._
-
 Emitted when `account` grants or revokes permission to `operator` to transfer their tokens, according to `approved`.
 
 #### Parameters
 
-| Name                     |   Type    | Description                                    |
-| ------------------------ | :-------: | ---------------------------------------------- |
-| `owner` **`indexed`**    | `address` | The address of the owner of tokenIds.          |
-| `operator` **`indexed`** | `address` | The address set as operator.                   |
-| `approved`               |  `bool`   | If `operator` is approved for all NFTs or not. |
+| Name                     |   Type    | Description |
+| ------------------------ | :-------: | ----------- |
+| `owner` **`indexed`**    | `address` | -           |
+| `operator` **`indexed`** | `address` | -           |
+| `approved`               |  `bool`   | -           |
 
 <br/>
 
@@ -1546,13 +1589,13 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 
 - Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokedoperator)
 - Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
-- Event signature: `RevokedOperator(address,address,bytes32,bytes)`
-- Event topic hash: `0x501bc920d7f604417e315bcf29247652b2327fa1076b27b7f132bd8927cb15ea`
+- Event signature: `RevokedOperator(address,address,bytes32,bool,bytes)`
+- Event topic hash: `0x3ee932cea40ebbbfd8577d47156cc17cce8683802c57bbd1fb8c131c6f07af0a`
 
 :::
 
 ```solidity
-event RevokedOperator(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bytes operatorNotificationData);
+event RevokedOperator(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bool notified, bytes operatorNotificationData);
 ```
 
 Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on its behalf.
@@ -1561,39 +1604,11 @@ Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on i
 
 | Name                       |   Type    | Description                                                     |
 | -------------------------- | :-------: | --------------------------------------------------------------- |
-| `operator` **`indexed`**   | `address` | The address revoked from the operator array ({getOperatorsOf}). |
+| `operator` **`indexed`**   | `address` | The address revoked from the operator array (getOperatorsOf). |
 | `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                     |
 | `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on.            |
+| `notified`                 |  `bool`   | Bool indicating whether the operator has been notified or not   |
 | `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.                 |
-
-<br/>
-
-### Transfer
-
-:::note References
-
-- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transfer)
-- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
-- Event signature: `Transfer(address,address,uint256)`
-- Event topic hash: `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef`
-
-:::
-
-```solidity
-event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
-```
-
-_ERC721 `Transfer` compatible event emitted. Successfully transferred tokenId `tokenId` from `from` to `to`._
-
-Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero.
-
-#### Parameters
-
-| Name                    |   Type    | Description              |
-| ----------------------- | :-------: | ------------------------ |
-| `from` **`indexed`**    | `address` | The sending address      |
-| `to` **`indexed`**      | `address` | The receiving address    |
-| `tokenId` **`indexed`** | `uint256` | The tokenId to transfer. |
 
 <br/>
 
@@ -1624,6 +1639,33 @@ Emitted when `tokenId` token is transferred from the `from` to the `to` address.
 | `tokenId` **`indexed`** | `bytes32` | The tokenId that was transferred                                                                                                   |
 | `force`                 |  `bool`   | If the token transfer enforces the `to` recipient address to be a contract that implements the LSP1 standard or not.               |
 | `data`                  |  `bytes`  | Any additional data the caller included by the caller during the transfer, and sent in the hooks to the `from` and `to` addresses. |
+
+<br/>
+
+### Transfer
+
+:::note References
+
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#transfer)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
+- Event signature: `Transfer(address,address,uint256)`
+- Event topic hash: `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef`
+
+:::
+
+```solidity
+event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+```
+
+Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero.
+
+#### Parameters
+
+| Name                    |   Type    | Description |
+| ----------------------- | :-------: | ----------- |
+| `from` **`indexed`**    | `address` | -           |
+| `to` **`indexed`**      | `address` | -           |
+| `tokenId` **`indexed`** | `uint256` | -           |
 
 <br/>
 
@@ -2138,5 +2180,49 @@ reverts when there is no extension for the function selector being called with
 | Name               |   Type   | Description |
 | ------------------ | :------: | ----------- |
 | `functionSelector` | `bytes4` | -           |
+
+<br/>
+
+### OwnableCallerNotTheOwner
+
+:::note References
+
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#ownablecallernottheowner)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
+- Error signature: `OwnableCallerNotTheOwner(address)`
+- Error hash: `0xbf1169c5`
+
+:::
+
+```solidity
+error OwnableCallerNotTheOwner(address callerAddress);
+```
+
+Reverts when only the owner is allowed to call the function.
+
+#### Parameters
+
+| Name            |   Type    | Description                              |
+| --------------- | :-------: | ---------------------------------------- |
+| `callerAddress` | `address` | The address that tried to make the call. |
+
+<br/>
+
+### OwnableCannotSetZeroAddressAsOwner
+
+:::note References
+
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#ownablecannotsetzeroaddressasowner)
+- Solidity implementation: [`LSP8CompatibleERC721Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol)
+- Error signature: `OwnableCannotSetZeroAddressAsOwner()`
+- Error hash: `0x1ad8836c`
+
+:::
+
+```solidity
+error OwnableCannotSetZeroAddressAsOwner();
+```
+
+Reverts when trying to set `address(0)` as the contract owner when deploying the contract, initializing it or transferring ownership of the contract.
 
 <br/>

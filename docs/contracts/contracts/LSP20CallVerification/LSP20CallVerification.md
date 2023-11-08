@@ -16,7 +16,7 @@
 
 > Implementation of a contract calling the verification functions according to LSP20 - Call Verification standard.
 
-Module to be inherited used to verify the execution of functions according to a verifier address. Verification can happen before or after execution based on a magicValue.
+Module to be inherited used to verify the execution of functions according to a verifier address. Verification can happen before or after execution based on a returnedStatus.
 
 ## Internal Methods
 
@@ -33,8 +33,6 @@ function _verifyCall(
 ```
 
 Calls [`lsp20VerifyCall`](#lsp20verifycall) function on the logicVerifier.
-Reverts in case the value returned does not match the magic value (lsp20VerifyCall selector)
-Returns whether a verification after the execution should happen based on the last byte of the magicValue
 
 <br/>
 
@@ -48,19 +46,6 @@ function _verifyCallResult(
 ```
 
 Calls [`lsp20VerifyCallResult`](#lsp20verifycallresult) function on the logicVerifier.
-Reverts in case the value returned does not match the magic value (lsp20VerifyCallResult selector)
-
-<br/>
-
-### \_validateCall
-
-```solidity
-function _validateCall(
-  bool postCall,
-  bool success,
-  bytes returnedData
-) internal pure;
-```
 
 <br/>
 
@@ -119,11 +104,11 @@ function _revertWithLSP20DefaultError(
 [LSP1UniversalReceiver]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver
 [LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver-delegate
 [LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema
-[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/nft-2.0/LSP4-Digital-Asset-Metadata
+[LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata
 [LSP5ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp5-received-assets
 [LSP6KeyManager]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
-[LSP7DigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP7-Digital-Asset
-[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/nft-2.0/LSP8-Identifiable-Digital-Asset
+[LSP7DigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP7-Digital-Asset
+[LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP8-Identifiable-Digital-Asset
 [LSP10ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp10-received-vaults
 [LSP14Ownable2Step]: https://docs.lukso.tech/standards/generic-standards/lsp14-ownable-2-step
 [LSP17ContractExtension]: https://docs.lukso.tech/standards/generic-standards/lsp17-contract-extension

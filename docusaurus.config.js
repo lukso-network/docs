@@ -1,5 +1,6 @@
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-module.exports = {
+import { themes as prismThemes } from 'prism-react-renderer';
+
+export default {
   title: 'LUKSO Tech Documentation',
   tagline:
     'Network, Standards, Tools and Guides for development on LUKSO and related standards.',
@@ -18,76 +19,12 @@ module.exports = {
       {
         redirects: [
           {
-            from: '/networks/l16-testnet/parameters',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/become-validator',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/logs-stats-monitoring',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/node-backup',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet/run-node',
-            to: '/networks/testnet/running-a-node',
-          },
-          {
-            from: '/networks/l16-testnet/troubleshooting',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/l16-testnet',
-            to: '/networks/testnet/parameters',
-          },
-          {
-            from: '/networks/mainnet',
-            to: '/networks/mainnet/running-a-node',
-          },
-          {
-            from: '/contracts/erc725-account',
-            to: '/contracts/contracts/LSP0ERC725Account',
-          },
-          {
             from: '/guides/network/update-the-node',
-            to: '/networks/network/update-the-node',
+            to: '/networks/advanced-guides/update-the-node',
           },
           {
             from: '/guides/network/switch-consensus-clients',
-            to: '/networks/network/switch-consensus-clients',
-          },
-          {
-            from: '/contracts/key-manager',
-            to: '/contracts/contracts/LSP6KeyManager',
-          },
-          {
-            from: '/contracts/digital-asset',
-            to: '/contracts/contracts/LSP7DigitalAsset',
-          },
-          {
-            from: '/contracts/identifiable-digital-asset',
-            to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
-          },
-          {
-            from: '/guides/universal-profile/browser-extension/install-browser-extension',
-            to: '/guides/browser-extension/install-browser-extension',
-          },
-          {
-            from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
-            to: '/standards/generic-standards/lsp1-universal-receiver-delegate',
-          },
-          {
-            from: '/tools/relayer-api/execute-transaction',
-            to: '/standards/relayer-api',
-          },
-          {
-            from: '/guides/key-manager/execute-relay-call',
-            to: '/guides/key-manager/execute-relay-transactions',
+            to: '/networks/advanced-guides/switch-consensus-clients',
           },
           // Smart Contracts new structure
           {
@@ -165,15 +102,135 @@ module.exports = {
           },
           {
             from: '/guides/hardhat-walkthrough/hardhat-base-setup',
-            to: '/contracts/getting-started',
+            to: '/learn/smart-contract-developers/getting-started',
           },
           {
             from: '/guides/hardhat-walkthrough/create-custom-lsp7',
-            to: '/contracts/getting-started',
+            to: '/learn/smart-contract-developers/getting-started',
           },
           {
             from: '/guides/hardhat-walkthrough/deploy-custom-lsp7',
-            to: '/contracts/getting-started',
+            to: '/learn/smart-contract-developers/getting-started',
+          },
+          {
+            from: '/standards/nft-2.0/LSP4-Digital-Asset-Metadata',
+            to: '/standards/tokens/LSP4-Digital-Asset-Metadata',
+          },
+          {
+            from: '/standards/nft-2.0/LSP7-Digital-Asset',
+            to: '/standards/tokens/LSP7-Digital-Asset',
+          },
+          {
+            from: '/standards/nft-2.0/LSP8-Identifiable-Digital-Asset',
+            to: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
+          },
+          {
+            from: '/standards/nft-2.0/introduction',
+            to: '/standards/tokens/introduction',
+          },
+          {
+            from: '/guides/key-manager/execute-relay-transactions',
+            to: '/learn/expert-guides/key-manager/execute-relay-transactions',
+          },
+          {
+            from: '/guides/key-manager/upgrade-lsp6',
+            to: '/learn/expert-guides/key-manager/upgrade-key-manager',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/create-custom-urd-1',
+            to: '/learn/expert-guides/universal-receiver/create-universal-receiver',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/create-custom-urd-2',
+            to: '/learn/expert-guides/universal-receiver/create-receiver-forwarder',
+          },
+          {
+            from: '/guides/vault/create-a-vault',
+            to: '/learn/expert-guides/vault/create-a-vault',
+          },
+          {
+            from: '/guides/vault/edit-vault-data',
+            to: '/learn/expert-guides/vault/edit-vault-data',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/accept-reject-assets',
+            to: '/learn/expert-guides/accept-reject-assets',
+          },
+          {
+            from: '/guides/vault/restrict-addresses-to-vaults',
+            to: '/learn/expert-guides/vault/grant-vault-permissions',
+          },
+          {
+            from: '/guides/digital-assets/mint-lsp7-digital-asset',
+            to: '/learn/smart-contract-developers/mint-lsp7-token',
+          },
+          {
+            from: '/guides/digital-assets/create-lsp7-digital-asset',
+            to: '/learn/smart-contract-developers/create-lsp7-token',
+          },
+          {
+            from: '/guides/key-manager/get-controllers',
+            to: '/learn/expert-guides/key-manager/get-controller-permissions',
+          },
+          {
+            from: '/guides/universal-profile/transfer-lyx',
+            to: '/learn/dapp-developer/transfer-lyx',
+          },
+          {
+            from: '/guides/key-manager/give-permissions',
+            to: '/learn/expert-guides/key-manager/grant-permissions',
+          },
+          {
+            from: '/guides/digital-assets/read-asset-data',
+            to: '/learn/expert-guides/read-asset-data',
+          },
+          {
+            from: '/guides/vault/interact-with-contracts',
+            to: '/learn/expert-guides/vault/interact-with-contracts',
+          },
+          {
+            from: '/guides/digital-assets/transfer-lsp7-digital-asset',
+            to: '/learn/dapp-developer/transfer-lsp7-token',
+          },
+          {
+            from: '/guides/universal-profile/edit-profile',
+            to: '/learn/expert-guides/universal-profile/edit-profile',
+          },
+          {
+            from: '/guides/universal-profile/check-if-address-is-universal-profile',
+            to: '/learn/dapp-developer/standard-detection',
+          },
+          {
+            from: '/contracts/getting-started',
+            to: '/learn/smart-contract-developers/getting-started',
+          },
+          {
+            from: '/guides/getting-started',
+            to: '/learn/introduction',
+          },
+          {
+            from: '/guides/universal-receiver-delegate/set-default-implementation',
+            to: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
+          },
+          {
+            from: '/guides/universal-profile/create-profile',
+            to: '/learn/expert-guides/universal-profile/create-profile',
+          },
+          {
+            from: '/guides/universal-profile/interact-with-contracts',
+            to: '/learn/expert-guides/interact-with-contracts',
+          },
+          {
+            from: '/guides/browser-extension/interact-with-dapp',
+            to: '/learn/dapp-developer/connect-profile',
+          },
+          {
+            from: '/guides/browser-extension/web3-onboard',
+            to: '/learn/expert-guides/web3-onboard',
+          },
+          {
+            from: '/guides/browser-extension/install-browser-extension',
+            to: '/install-up-browser-extension',
           },
         ],
       },
@@ -181,18 +238,11 @@ module.exports = {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    announcementBar: {
-      id: 'scam_warning',
-      content:
-        '🚨 Beware of scams! Only trust LUKSO domains: <b>.lukso.network</b> &amp; <b>.lukso.tech</b> 🚨',
-      backgroundColor: '#fbd784',
-      isCloseable: false,
-    },
     navbar: {
       title: 'LUKSO',
       logo: {
         alt: 'LUKSO Logo',
-        src: 'img/logo.png',
+        src: 'img/logo.svg',
       },
       items: [
         {
@@ -200,12 +250,6 @@ module.exports = {
           docId: 'learn/introduction',
           position: 'left',
           label: 'Learn',
-        },
-        {
-          type: 'doc',
-          docId: 'guides/getting-started',
-          position: 'left',
-          label: 'Guides',
         },
         {
           type: 'doc',
@@ -237,6 +281,11 @@ module.exports = {
           docId: 'faq/lukso/general-information',
           position: 'left',
           label: 'FAQ',
+        },
+        {
+          to: '/install-up-browser-extension',
+          label: 'UP Browser Extension',
+          position: 'right',
         },
         {
           href: 'https://github.com/lukso-network/LIPs/tree/main/LSPs',
@@ -324,8 +373,8 @@ module.exports = {
     },
     prism: {
       additionalLanguages: ['solidity'],
-      theme: require('prism-react-renderer/themes/github'),
-      darkTheme: require('prism-react-renderer/themes/dracula'),
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
     },
   },
   presets: [

@@ -14,7 +14,7 @@
 
 :::
 
-> LSP8IdentifiableDigitalAsset deployable preset contract with a public {mint} function callable only by the contract {owner}.
+> LSP8IdentifiableDigitalAsset deployable preset contract with a public \{mint\} function callable only by the contract \{owner}.
 
 ## Public Methods
 
@@ -125,7 +125,7 @@ function authorizeOperator(
 ) external nonpayable;
 ```
 
-Allow an `operator` address to transfer or burn a specific `tokenId` on behalf of its token owner. See [`isOperatorFor`](#isoperatorfor).
+Allow an `operator` address to transfer or burn a specific `tokenId` on behalf of its token owner. See [`isOperatorFor`](#isoperatorfor). Notify the operator based on the LSP1-UniversalReceiver standard
 
 #### Parameters
 
@@ -387,8 +387,8 @@ Leaves the contract without owner. It will not be possible to call `onlyOwner` f
 
 - Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokeoperator)
 - Solidity implementation: [`LSP8Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol)
-- Function signature: `revokeOperator(address,bytes32,bytes)`
-- Function selector: `0xf1b97e04`
+- Function signature: `revokeOperator(address,bytes32,bool,bytes)`
+- Function selector: `0xdb8c9663`
 
 :::
 
@@ -396,6 +396,7 @@ Leaves the contract without owner. It will not be possible to call `onlyOwner` f
 function revokeOperator(
   address operator,
   bytes32 tokenId,
+  bool notify,
   bytes operatorNotificationData
 ) external nonpayable;
 ```
@@ -404,11 +405,12 @@ Remove access of `operator` for a given `tokenId`, disallowing it to transfer `t
 
 #### Parameters
 
-| Name                       |   Type    | Description                                          |
-| -------------------------- | :-------: | ---------------------------------------------------- |
-| `operator`                 | `address` | The address to revoke as an operator.                |
-| `tokenId`                  | `bytes32` | The tokenId `operator` is revoked from operating on. |
-| `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.      |
+| Name                       |   Type    | Description                                              |
+| -------------------------- | :-------: | -------------------------------------------------------- |
+| `operator`                 | `address` | The address to revoke as an operator.                    |
+| `tokenId`                  | `bytes32` | The tokenId `operator` is revoked from operating on.     |
+| `notify`                   |  `bool`   | Boolean indicating whether to notify the operator or not |
+| `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.          |
 
 <br/>
 
@@ -725,6 +727,33 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 
 <br/>
 
+### version
+
+:::note References
+
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#version)
+- Solidity implementation: [`LSP8Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol)
+- Function signature: `version()`
+- Function selector: `0x54fd4d50`
+
+:::
+
+```solidity
+function version() external view returns (string);
+```
+
+_Contract version._
+
+Get the version of the contract.
+
+#### Returns
+
+| Name |   Type   | Description                      |
+| ---- | :------: | -------------------------------- |
+| `0`  | `string` | The version of the the contract. |
+
+<br/>
+
 ## Internal Methods
 
 Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
@@ -816,6 +845,7 @@ function _revokeOperator(
   address operator,
   address tokenOwner,
   bytes32 tokenId,
+  bool notified,
   bytes operatorNotificationData
 ) internal nonpayable;
 ```
@@ -867,6 +897,16 @@ When `tokenId` does not exist then revert with an error.
 
 ### \_mint
 
+:::info
+
+Any logic in the:
+
+- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
+
+- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the recipient via LSP1**.
+
+:::
+
 ```solidity
 function _mint(
   address to,
@@ -899,6 +939,16 @@ Create `tokenId` by minting it and transfers it to `to`.
 
 ### \_burn
 
+:::info
+
+Any logic in the:
+
+- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
+
+- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender via LSP1**.
+
+:::
+
 :::tip Hint
 
 In dApps, you can know which addresses are burning tokens by listening for the `Transfer` event and filter with the zero address as `to`.
@@ -914,7 +964,6 @@ This will also clear all the operators allowed to transfer the `tokenId`.
 The owner of the `tokenId` will be notified about the `tokenId` being transferred through its LSP1 [`universalReceiver`](#universalreceiver)
 function, if it is a contract that supports the LSP1 interface. Its [`universalReceiver`](#universalreceiver) function will receive
 all the parameters in the calldata packed encoded.
-Any logic in the [`_beforeTokenTransfer`](#_beforetokentransfer) function will run before burning `tokenId` and updating the balances.
 
 <blockquote>
 
@@ -934,6 +983,16 @@ Any logic in the [`_beforeTokenTransfer`](#_beforetokentransfer) function will r
 <br/>
 
 ### \_transfer
+
+:::info
+
+Any logic in the:
+
+- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
+
+- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender/recipient via LSP1**.
+
+:::
 
 :::danger
 
@@ -955,7 +1014,6 @@ Change the owner of the `tokenId` from `from` to `to`.
 Both the sender and recipient will be notified of the `tokenId` being transferred through their LSP1 [`universalReceiver`](#universalreceiver)
 function, if they are contracts that support the LSP1 interface. Their `universalReceiver` function will receive
 all the parameters in the calldata packed encoded.
-Any logic in the [`_beforeTokenTransfer`](#_beforetokentransfer) function will run before changing the owner of `tokenId`.
 
 <blockquote>
 
@@ -983,13 +1041,13 @@ Any logic in the [`_beforeTokenTransfer`](#_beforetokentransfer) function will r
 function _beforeTokenTransfer(
   address from,
   address to,
-  bytes32 tokenId
+  bytes32 tokenId,
+  bytes data
 ) internal nonpayable;
 ```
 
 Hook that is called before any token transfer, including minting and burning.
-
-- Allows to run custom logic before updating balances and notifiying sender/recipient by overriding this function.
+Allows to run custom logic before updating balances and notifiying sender/recipient by overriding this function.
 
 #### Parameters
 
@@ -998,39 +1056,32 @@ Hook that is called before any token transfer, including minting and burning.
 | `from`    | `address` | The sender address                     |
 | `to`      | `address` | @param tokenId The tokenId to transfer |
 | `tokenId` | `bytes32` | The tokenId to transfer                |
+| `data`    |  `bytes`  | The data sent alongside the transfer   |
 
 <br/>
 
-### \_notifyTokenOperator
+### \_afterTokenTransfer
 
 ```solidity
-function _notifyTokenOperator(
-  address operator,
-  bytes lsp1Data
+function _afterTokenTransfer(
+  address from,
+  address to,
+  bytes32 tokenId,
+  bytes data
 ) internal nonpayable;
 ```
 
-Attempt to notify the operator `operator` about the `tokenId` tokens being authorized.
-This is done by calling its [`universalReceiver`](#universalreceiver) function with the `_TYPEID_LSP8_TOKENOPERATOR` as typeId, if `operator` is a contract that supports the LSP1 interface.
-If `operator` is an EOA or a contract that does not support the LSP1 interface, nothing will happen and no notification will be sent.
+Hook that is called after any token transfer, including minting and burning.
+Allows to run custom logic after updating balances, but **before notifiying sender/recipient via LSP1** by overriding this function.
 
 #### Parameters
 
-| Name       |   Type    | Description                                                                    |
-| ---------- | :-------: | ------------------------------------------------------------------------------ |
-| `operator` | `address` | The address to call the {universalReceiver} function on.                       |
-| `lsp1Data` |  `bytes`  | the data to be sent to the `operator` address in the `universalReceiver` call. |
-
-<br/>
-
-### \_notifyTokenSender
-
-```solidity
-function _notifyTokenSender(address from, bytes lsp1Data) internal nonpayable;
-```
-
-An attempt is made to notify the token sender about the `tokenId` changing owners using
-LSP1 interface.
+| Name      |   Type    | Description                            |
+| --------- | :-------: | -------------------------------------- |
+| `from`    | `address` | The sender address                     |
+| `to`      | `address` | @param tokenId The tokenId to transfer |
+| `tokenId` | `bytes32` | The tokenId to transfer                |
+| `data`    |  `bytes`  | The data sent alongside the transfer   |
 
 <br/>
 
@@ -1066,10 +1117,12 @@ extension if the extension is set, if not it returns false.
 
 <br/>
 
-### \_getExtension
+### \_getExtensionAndForwardValue
 
 ```solidity
-function _getExtension(bytes4 functionSelector) internal view returns (address);
+function _getExtensionAndForwardValue(
+  bytes4 functionSelector
+) internal view returns (address, bool);
 ```
 
 Returns the extension address stored under the following data key:
@@ -1096,8 +1149,9 @@ function _fallbackLSP17Extendable(
 ```
 
 Forwards the call with the received value to an extension mapped to a function selector.
-Calls [`_getExtension`](#_getextension) to get the address of the extension mapped to the function selector being
+Calls [`_getExtensionAndForwardValue`](#_getextensionandforwardvalue) to get the address of the extension mapped to the function selector being
 called on the account. If there is no extension, the address(0) will be returned.
+We will always forward the value to the extension, as the LSP8 contract is not supposed to hold any native tokens.
 Reverts if there is no extension for the function being called.
 If there is an extension for the function selector being called, it calls the extension with the
 CALL opcode, passing the [`msg.data`](#msg.data) appended with the 20 bytes of the [`msg.sender`](#msg.sender) and
@@ -1193,13 +1247,13 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 
 - Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#revokedoperator)
 - Solidity implementation: [`LSP8Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol)
-- Event signature: `RevokedOperator(address,address,bytes32,bytes)`
-- Event topic hash: `0x501bc920d7f604417e315bcf29247652b2327fa1076b27b7f132bd8927cb15ea`
+- Event signature: `RevokedOperator(address,address,bytes32,bool,bytes)`
+- Event topic hash: `0x3ee932cea40ebbbfd8577d47156cc17cce8683802c57bbd1fb8c131c6f07af0a`
 
 :::
 
 ```solidity
-event RevokedOperator(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bytes operatorNotificationData);
+event RevokedOperator(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bool notified, bytes operatorNotificationData);
 ```
 
 Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on its behalf.
@@ -1208,9 +1262,10 @@ Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on i
 
 | Name                       |   Type    | Description                                                     |
 | -------------------------- | :-------: | --------------------------------------------------------------- |
-| `operator` **`indexed`**   | `address` | The address revoked from the operator array ({getOperatorsOf}). |
+| `operator` **`indexed`**   | `address` | The address revoked from the operator array (getOperatorsOf). |
 | `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                     |
 | `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on.            |
+| `notified`                 |  `bool`   | Bool indicating whether the operator has been notified or not   |
 | `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.                 |
 
 <br/>
@@ -1756,5 +1811,49 @@ reverts when there is no extension for the function selector being called with
 | Name               |   Type   | Description |
 | ------------------ | :------: | ----------- |
 | `functionSelector` | `bytes4` | -           |
+
+<br/>
+
+### OwnableCallerNotTheOwner
+
+:::note References
+
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#ownablecallernottheowner)
+- Solidity implementation: [`LSP8Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol)
+- Error signature: `OwnableCallerNotTheOwner(address)`
+- Error hash: `0xbf1169c5`
+
+:::
+
+```solidity
+error OwnableCallerNotTheOwner(address callerAddress);
+```
+
+Reverts when only the owner is allowed to call the function.
+
+#### Parameters
+
+| Name            |   Type    | Description                              |
+| --------------- | :-------: | ---------------------------------------- |
+| `callerAddress` | `address` | The address that tried to make the call. |
+
+<br/>
+
+### OwnableCannotSetZeroAddressAsOwner
+
+:::note References
+
+- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#ownablecannotsetzeroaddressasowner)
+- Solidity implementation: [`LSP8Mintable.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol)
+- Error signature: `OwnableCannotSetZeroAddressAsOwner()`
+- Error hash: `0x1ad8836c`
+
+:::
+
+```solidity
+error OwnableCannotSetZeroAddressAsOwner();
+```
+
+Reverts when trying to set `address(0)` as the contract owner when deploying the contract, initializing it or transferring ownership of the contract.
 
 <br/>
