@@ -828,7 +828,7 @@ Dapps can then leverage the relay execution features to create their own busines
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-relay-execution.jpeg)
 
-An essential aspect to consider in relay execution is the time validity of the execution signature. It's sometimes beneficial to limit the execution to be valid within a specific timeframe to prevent potential security risks. For example, if a user signs a relay transaction and the signature is stolen or compromised, the attacker could potentially use this signature indefinitely if there's no validity period set.
+An essential aspect to consider in relay execution is the time validity of the execution signature. It's sometimes beneficial to limit the execution to be valid within a specific time frame to prevent potential security risks. For example, if a user signs a relay transaction and the signature is stolen or compromised, the attacker could potentially use this signature indefinitely if there's no validity period set.
 
 To mitigate such risks, adding an optional validity timestamp to the signature could mark the start date and expiry date of its effectiveness. Once the timestamp has passed, the signature is no longer valid, rendering the relay transaction unusable.
 

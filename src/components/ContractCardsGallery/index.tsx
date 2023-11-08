@@ -46,7 +46,7 @@ const Contracts_AccountsInteraction = [
   },
   {
     name: '⛽ LSP25 Execute Relay Call',
-    url: '',
+    url: './overview/ExecuteRelayCall',
     urlABI: './contracts/LSP25ExecuteRelayCall/LSP25MultiChannelNonce',
     description:
       'Add Meta Transactions on your contract to enable gas-less transactions and more easily onboard new users.',
