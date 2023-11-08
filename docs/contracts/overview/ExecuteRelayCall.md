@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Execute Relay Call
 
-## Validity timestamps
+## Validity timestamps
 
 :::info
 
@@ -16,7 +16,7 @@ It is possible to make signatures for relay executions valid for specific time p
 
 Below are examples of constructing different **validity timestamps**:
 
-### Example 1: only from a specific date / time.
+### Example 1: from a specific date / time
 
 Valid only from the 1st June 2024 (midnight).
 
@@ -30,7 +30,7 @@ Timestamp for _1st June 2024_ = `1717200000` (decimal) = `0x665A6480` (hex)
                                       valid until indefinitely
 ```
 
-### Example 2: set an expiry date
+### Example 2: set an expiry date
 
 Valid until 31st January 2025, 5pm CET.
 

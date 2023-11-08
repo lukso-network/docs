@@ -178,7 +178,10 @@ Encode the ABI of the transaction you want to be executed. In this case, a LYX t
 
 :::tip
 
-For more information about _validity timestamps_ check [**How to sign relay transactions?**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+The `validityTimestamp` can take different forms. For more information about _validity timestamps_, see the following pages:
+
+- section [**Execute Relay Calls > Validity Timestamps**](../../../contracts/overview/ExecuteRelayCall.md#validity-timestamps) in our **Contracts** docs.
+- [**How to sign relay transactions?**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 :::
 
@@ -261,7 +264,8 @@ let encodedMessage = web3.utils.encodePacked(
   { value: LSP25_VERSION, type: 'uint256' },      // `0x0000000000000000000000000000000000000000000000000000000000000019`
   // e.g: `4201` for LUKSO Testnet
   { value: chainId, type: 'uint256' },            // `0x0000000000000000000000000000000000000000000000000000000000001069`
-  // e.g: nonce nb 5
+  // e.g: nonce number 5 of the signer key X 
+  // (the private key associated with the address of the controller that want to execute the payload)
   { value: nonce, type: 'uint256' },              // `0x0000000000000000000000000000000000000000000000000000000000000005`
   // e.g: valid until 1st January 2025 at midnight (GMT). 
   // Timestamp = 1735689600
@@ -297,7 +301,8 @@ let encodedMessage = ethers.utils.solidityPack(
     LSP25_VERSION,       // `0x0000000000000000000000000000000000000000000000000000000000000019`
     // e.g: `4201` for LUKSO Testnet
     chainId,             // `0x0000000000000000000000000000000000000000000000000000000000001069`
-    // e.g: nonce nb 5
+    // e.g: nonce number 5 of the signer key X 
+    // (the private key associated with the address of the controller that want to execute the payload)
     nonce,              // `0x0000000000000000000000000000000000000000000000000000000000000005`
     // e.g: valid until 1st January 2025 at midnight (GMT).
     // Timestamp = 1735689600
