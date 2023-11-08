@@ -12,13 +12,11 @@ Updating your node and blockchain clients is of utmost importance. It is not jus
 
 ## Check your LUKSO CLI Version
 
-:::info Breaking Changes
+:::caution Breaking Changes
 
-Since the mainnet launch occurred, the LUKSO CLI had breaking changes from version `0.6` to `0.7`.
+Since the mainnet launch occurred, the LUKSO CLI had breaking changes. Please check your current LUKSO CLI version to determine your update process.
 
 :::
-
-Please check your current LUKSO CLI version to determine your update process.
 
 ```bash
 lukso version
@@ -28,7 +26,7 @@ This guide will lead you through updating the LUKSO CLI to the **latest version*
 
 ## Update the LUKSO CLI
 
-Updating your node is similar to the installing process, while keeping your previous keystore data. If you already have the **latest LUKSO CLI version** and **network configs**, you can also just update your [blockchain clients](./update-clients.md).
+Updating your node is similar to the installing process, while keeping your previous keystore data. If you already have the **latest LUKSO CLI version** and **network configs**, you can just [Update the Blockchain Clients](./update-clients.md).
 
 #### Stop your Node
 
@@ -90,7 +88,7 @@ sudo pkill teku
 </details>
 
 <Tabs>
-  <TabItem value="update-v6" label="Update from Version 0.6 or below">
+  <TabItem value="update-v07" label="Update from Version 0.7 or below">
 
 #### Create a new Working Directory
 
@@ -182,27 +180,7 @@ Keep your old working directory on your system until the new node setup fully sy
 :::
 
   </TabItem>
-  <TabItem value="update-v7" label="Update from Version 0.7">
-
-#### Remove outdated Blockchain Data
-
-If the processes have been stopped successfully, you can continue to remove the old network data.
-
-```bash
-# Remove Mainnet Data
-rm -rf mainnet-data
-
-# Remove Testnet Data
-rm -rf testnet-data
-```
-
-#### Backup outdated Configuration
-
-Next, you can rename your configuration folder to reload the latest network files later on.
-
-```bash
-mv configs/ configs-backup
-```
+  <TabItem value="update-v08" label="Update from Version 0.8 or above">
 
 #### Update the LUKSO CLI
 
@@ -218,63 +196,16 @@ Make sure to check the downloaded version again to ensure that the update was su
 lukso version
 ```
 
-#### Re-initialize the Working Directory
+Then continue to download the latest network configurations.
 
-Next, you can re-download the latest network configurations and genesis files.
+:::info
+
+The `lukso init` command will not overwrite any personal configurations.
+
+:::
 
 ```bash
 lukso init
-```
-
-#### Install the Latest Clients
-
-After updating the LUKSO CLI, we must install the updated blockchain clients.
-
-```bash
-lukso install
-```
-
-#### Apply Configurations
-
-In case you did any modifications to your configuration files, such as:
-
-- configuring a Dynamic DNS
-- connecting the blockchain explorer page
-- adding a node name or graffiti
-- adjusting your peer count
-
-Please add them once again and make sure that these are in the correct format before starting your node.
-
-You can follow the [extended node guide](https://github.com/fhildeb/lukso-node-guide/blob/main/6-blockchain-clients/README.md) or list of [further reads](../mainnet/running-a-node.md#further-reads) for more information.
-
-:::caution
-
-Wait 10 minutes after stopping your node so the network does not accuse you of slashing while using updated configurations.
-
-:::
-
-:::danger Backup
-
-Keep your old working directory on your system until the new node setup fully synchronizes within the next step. It will reference your previous configuration in case something goes wrong.
-
-:::
-
-  </TabItem>
-
-<TabItem value="update-v8-or-above" label="Update from Version 0.8 or above">
-
-#### Update the LUKSO CLI
-
-Re-install the LUKSO CLI to your system. You will be asked to overwrite the current version.
-
-```bash
-curl https://install.lukso.network | sh
-```
-
-Make sure to check the downloaded version again to ensure that the update was successful.
-
-```bash
-lukso version
 ```
 
   </TabItem>
@@ -284,45 +215,13 @@ lukso version
 
 You can start your node as regular. If you run a validator, please adjust your flags or the recipient address.
 
-Start up your node using checkpoint synchronization to reduce your downtime while synchronizing with the network significantly. Fast synchronization speeds are essential if you run a validator node to avoid losing stake.
-
-Your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus is already running. After the synchronization is finalized, you will end up with the equal blockchain data.
-
-> You can use the flag on every startup. However, it shows the most significant effect when synchronizing from scratch or after an extended downtime.
-
-<Tabs>
-<TabItem value="checkpoint-sync" label="Checkpoint Synchronization">
-
 :::info
 
-If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
+If you are starting your node in a fresh working directory or after being offline for a while, make sure to [add checkpoint synchronization](../mainnet/running-a-node.md#start-the-clients) to significantly speed up the synchronization during the startup.
 
 :::
 
-:::info
-
-You will need the LUKSO CLI Version 0.8.0 or above in order to use the `--checkpoint-sync` command. If you are using an older version or run into issues, please pass down the checkpoint flag manually, as described in the [LUKSO CLI Checkpoint Documentation](https://github.com/lukso-network/tools-lukso-cli/tree/main#using-checkpoint-syncing).
-
-:::
-
-```sh
-# Starting the Mainnet Node
-lukso start --checkpoint-sync
-
-# Starting the Mainnet Validator
-lukso start --validator --transaction-fee-recipient "0x1234" --checkpoint-sync
-```
-
-  </TabItem>
-  <TabItem value="regular-sync" label="Regular Synchronization">
-
-:::caution
-
-The normal synchronization process will take multiple hours for the node to finalize. It is not recommended if you are running a validator.
-
-:::
-
-:::info
+:::note
 
 If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
 
@@ -335,6 +234,3 @@ lukso start
 # Starting the Mainnet Validator
 lukso start --validator --transaction-fee-recipient "0x1234"
 ```
-
-  </TabItem>  
-</Tabs>

@@ -21,6 +21,12 @@ Difficulty: Medium 🌶️🌶️
 
 For the main information, please refer to the [mainnet version](../mainnet/running-a-node.md#-with-the-lukso-cli) of this article. The only difference to run a testnet node with the CLI is to append the `--testnet` flag to the commands:
 
+:::info
+
+If you are starting your node in a fresh working directory or after being offline for a while, make sure to [add the checkpoint synchronization flag](../mainnet/running-a-node.md#start-the-clients) to significantly speed up the synchronization during the startup.
+
+:::
+
 ```sh
 lukso start --testnet
 ```
