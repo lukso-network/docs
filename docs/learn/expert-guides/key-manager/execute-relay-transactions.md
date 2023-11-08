@@ -72,12 +72,11 @@ import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyMana
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import Web3 from 'web3';
 
-// This is the version relative to the LSP6 standard, defined as the number 6.
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
+// This is the version relative to the LSP25 standard, defined as the number 25.
+import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
-const msgValue = 0; // Amount of native tokens to be sent
 const recipientAddress = '0x...';
 
 // setup the Universal Profile controller account
@@ -95,14 +94,13 @@ import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyMana
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { ethers } from 'ethers';
 
-// This is the version relative to the LSP6 standard, defined as the number 6.
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
+// This is the version relative to the LSP25 standard, defined as the number 25.
+import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const provider = new ethers.providers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 const universalProfileAddress = '0x...';
-const msgValue = 0; // Amount of native tokens to be sent
 const recipientAddress = '0x...';
 
 // setup the Universal Profile controller account
@@ -180,7 +178,10 @@ Encode the ABI of the transaction you want to be executed. In this case, a LYX t
 
 :::tip
 
-For more information about _validity timestamps_ check [**How to sign relay transactions?**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
+The `validityTimestamp` can take different forms. For more information about _validity timestamps_, see the following pages:
+
+- section [**Execute Relay Calls > Validity Timestamps**](../../../contracts/overview/ExecuteRelayCall.md#validity-timestamps) in our **Contracts** docs.
+- [**How to sign relay transactions?**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions)
 
 :::
 
@@ -195,12 +196,13 @@ const channelId = 0;
 const nonce = await keyManager.methods.getNonce(controllerAccount.address, channelId).call();
 
 const validityTimestamps = 0; // no validity timestamp set
+const msgValue = 0; // Amount of native tokens to fund the UP with while calling
 
 const abiPayload = universalProfile.methods
   .execute(
     0, // Operation type: CALL
     recipientAddress,
-    msgValue,
+    web3.utils.toWei(3), // transfer 3 LYX to recipient
     '0x', // Data
   )
   .encodeABI();
@@ -217,11 +219,12 @@ const channelId = 0;
 const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
 
 const validityTimestamps = 0; // no validity timestamp set
+const msgValue = 0; // Amount of native tokens to fund the UP with while calling
 
 const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
   0, // Operation type: CALL
   recipientAddress,
-  msgValue,
+  ethers.utils.parseEther('3'), // transfer 3 LYX to recipient
   '0x', // Data
 ]);
 ```
@@ -255,13 +258,23 @@ For more information check: [**How to sign relay transactions?**](../../../stand
 ```typescript title="Sign the transaction"
 const chainId = await web3.eth.getChainId();
 
+// prettier-ignore
 let encodedMessage = web3.utils.encodePacked(
-  { value: LSP6_VERSION, type: 'uint256' },
-  { value: chainId, type: 'uint256' },
-  { value: nonce, type: 'uint256' },
-  { value: validityTimestamps, type: 'uint256' },
-  { value: msgValue, type: 'uint256' },
-  { value: abiPayload, type: 'bytes' },
+  // MUST be number `25`
+  { value: LSP25_VERSION, type: 'uint256' },      // `0x0000000000000000000000000000000000000000000000000000000000000019`
+  // e.g: `4201` for LUKSO Testnet
+  { value: chainId, type: 'uint256' },            // `0x0000000000000000000000000000000000000000000000000000000000001069`
+  // e.g: nonce number 5 of the signer key X 
+  // (the private key associated with the address of the controller that want to execute the payload)
+  { value: nonce, type: 'uint256' },              // `0x0000000000000000000000000000000000000000000000000000000000000005`
+  // e.g: valid until 1st January 2025 at midnight (GMT). 
+  // Timestamp = 1735689600
+  { value: validityTimestamps, type: 'uint256' }, // `0x0000000000000000000000000000000000000000000000000000000067748580`
+  // e.g: not funding the contract with any LYX (0)
+  { value: msgValue, type: 'uint256' },           // `0x0000000000000000000000000000000000000000000000000000000000000000`
+  // e.g: execute(uint256,address,uint256,bytes) 
+  // send 3 LYX to address `0xcafecafecafecafeafecafecafecafeafecafecafecafeafecafecafecafe`
+  { value: abiPayload, type: 'bytes' },           // `0x44c028fe0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000cafecafecafecafecafecafecafecafecafecafe00000000000000000000000000000000000000000000000029a2241af62c000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000`
 );
 
 let eip191Signer = new EIP191Signer();
@@ -280,9 +293,25 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 ```typescript title="Sign the transaction"
 const { chainId } = await provider.getNetwork();
 
+// prettier-ignore
 let encodedMessage = ethers.utils.solidityPack(
   ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
-  [LSP6_VERSION, chainId, nonce, validityTimestamps, msgValue, abiPayload],
+  [
+    // MUST be number `25`
+    LSP25_VERSION,       // `0x0000000000000000000000000000000000000000000000000000000000000019`
+    // e.g: `4201` for LUKSO Testnet
+    chainId,             // `0x0000000000000000000000000000000000000000000000000000000000001069`
+    // e.g: nonce number 5 of the signer key X 
+    // (the private key associated with the address of the controller that want to execute the payload)
+    nonce,              // `0x0000000000000000000000000000000000000000000000000000000000000005`
+    // e.g: valid until 1st January 2025 at midnight (GMT).
+    // Timestamp = 1735689600
+    validityTimestamps, // `0x0000000000000000000000000000000000000000000000000000000067748580`
+    // e.g: not funding the contract with any LYX (0)
+    msgValue,           // `0x0000000000000000000000000000000000000000000000000000000000000000`
+    // e.g: execute(uint256,address,uint256,bytes) -> send 3 LYX to address `0xcafecafecafecafeafecafecafecafeafecafecafecafeafecafecafecafe`
+    abiPayload,         // `0x44c028fe0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000cafecafecafecafecafecafecafecafecafecafe00000000000000000000000000000000000000000000000029a2241af62c000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000`
+  ],
 );
 
 let eip191Signer = new EIP191Signer();
@@ -373,12 +402,11 @@ import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyMana
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import Web3 from 'web3';
 
-// This is the version relative to the LSP6 standard, defined as the number 6.
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
+// This is the version relative to the LSP25 standard, defined as the number 25.
+import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 const universalProfileAddress = '0x...';
-const msgValue = 0; // Amount of native tokens to be sent
 const recipientAddress = '0x...';
 
 // setup the Universal Profile controller account
@@ -402,25 +430,36 @@ const nonce = await keyManager.methods
   .call();
 
 const validityTimestamps = 0; // no validity timestamp set
+const msgValue = 0; // Amount of native tokens to fund the UP with while calling
 
+// send 3 LYX to recipient
 const abiPayload = universalProfile.methods
   .execute(
     0, // Operation type: CALL
     recipientAddress,
-    msgValue,
+    web3.utils.toWei(3), // transfer 3 LYX to recipient
     '0x', // Data
   )
   .encodeABI();
 
 const chainId = await web3.eth.getChainId();
 
+// prettier-ignore
 let encodedMessage = web3.utils.encodePacked(
-  { value: LSP6_VERSION, type: 'uint256' },
-  { value: chainId, type: 'uint256' },
-  { value: nonce, type: 'uint256' },
-  { value: validityTimestamps, type: 'uint256' },
-  { value: msgValue, type: 'uint256' },
-  { value: abiPayload, type: 'bytes' },
+  // MUST be number `25`
+  { value: LSP25_VERSION, type: 'uint256' },      // `0x0000000000000000000000000000000000000000000000000000000000000019`
+  // e.g: `4201` for LUKSO Testnet
+  { value: chainId, type: 'uint256' },            // `0x0000000000000000000000000000000000000000000000000000000000001069`
+  // e.g: nonce nb 5
+  { value: nonce, type: 'uint256' },              // `0x0000000000000000000000000000000000000000000000000000000000000005`
+  // e.g: valid until 1st January 2025 at midnight (GMT). 
+  // Timestamp = 1735689600
+  { value: validityTimestamps, type: 'uint256' }, // `0x0000000000000000000000000000000000000000000000000000000067748580`
+  // e.g: not funding the contract with any LYX (0)
+  { value: msgValue, type: 'uint256' },           // `0x0000000000000000000000000000000000000000000000000000000000000000`
+  // e.g: execute(uint256,address,uint256,bytes) 
+  // send 3 LYX to address `0xcafecafecafecafeafecafecafecafeafecafecafecafeafecafecafecafe`
+  { value: abiPayload, type: 'bytes' },           // `0x44c028fe0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000cafecafecafecafecafecafecafecafecafecafe00000000000000000000000000000000000000000000000029a2241af62c000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000`
 );
 
 let eip191Signer = new EIP191Signer();
@@ -449,8 +488,8 @@ import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyMana
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { ethers } from 'ethers';
 
-// This is the version relative to the LSP6 standard, defined as the number 6.
-import { LSP6_VERSION } from '@lukso/lsp-smart-contracts/constants';
+// This is the version relative to the LSP25 standard, defined as the number 25.
+import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const provider = new ethers.providers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
@@ -492,9 +531,24 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
 const { chainId } = await provider.getNetwork();
 
+// prettier-ignore
 let encodedMessage = ethers.utils.solidityPack(
   ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
-  [LSP6_VERSION, chainId, nonce, validityTimestamps, msgValue, abiPayload],
+  [
+    // MUST be number `25`
+    LSP25_VERSION,       // `0x0000000000000000000000000000000000000000000000000000000000000019`
+    // e.g: `4201` for LUKSO Testnet
+    chainId,             // `0x0000000000000000000000000000000000000000000000000000000000001069`
+    // e.g: nonce nb 5
+    nonce,              // `0x0000000000000000000000000000000000000000000000000000000000000005`
+    // e.g: valid until 1st January 2025 at midnight (GMT).
+    // Timestamp = 1735689600
+    validityTimestamps, // `0x0000000000000000000000000000000000000000000000000000000067748580`
+    // e.g: not funding the contract with any LYX (0)
+    msgValue,           // `0x0000000000000000000000000000000000000000000000000000000000000000`
+    // e.g: execute(uint256,address,uint256,bytes) -> send 3 LYX to address `0xcafecafecafecafeafecafecafecafeafecafecafecafeafecafecafecafe`
+    abiPayload,         // `0x44c028fe0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000cafecafecafecafecafecafecafecafecafecafe00000000000000000000000000000000000000000000000029a2241af62c000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000`
+  ],
 );
 
 let eip191Signer = new EIP191Signer();
