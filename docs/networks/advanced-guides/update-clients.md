@@ -71,24 +71,10 @@ lukso install ---teku-tag v23.10.0
 
 ## Restart your Node
 
-You can start your node as regular. If you run a validator, please adjust your flags or the recipient address.
+You can [start your node as regular](../mainnet/running-a-node.md#start-the-clients).
 
 :::info
 
 If you are starting your node in a fresh working directory or after being offline for a while, make sure to [add checkpoint synchronization](../mainnet/running-a-node.md#start-the-clients) to significantly speed up the synchronization during the startup.
 
 :::
-
-:::note
-
-If you are setting up a node for the testnet, add the `--testnet` flag to the start command.
-
-:::
-
-```bash
-# Starting the Mainnet Node
-lukso start
-
-# Starting the Mainnet Validator
-lukso start --validator --transaction-fee-recipient "0x1234"
-```
