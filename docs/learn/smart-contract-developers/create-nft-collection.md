@@ -5,10 +5,16 @@ sidebar_position: 4
 
 # Create an NFT Collection Using LSP8
 
-This tutorial will teach you how to create a collection of unique digital assets.
+This tutorial will explore how to create a collection of unique digital assets.
 
 :::info
 ⌨️ The full code of this example can be found in the 👾 [lukso-hardhat-template](https://github.com/CJ42/LUKSO-Hardhat-template).
+:::
+
+:::note
+
+This guide builds on top of a Hartdhat project using TypeScript as described in the [Getting Started section](../smart-contract-developers/getting-started.md).
+
 :::
 
 ## Setup
@@ -18,13 +24,13 @@ Make sure you have the following dependencies installed:
 - [`ethers.js`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
-\```bash
+```bash
 npm install ethers @lukso/lsp-smart-contracts
-\```
+```
 
 ## Create the Smart Contracts
 
-When creating digital asset smart contracts on LUKSO, you will need to specify the token type and the following data keys in the ERC725Y storage. There are three types that you can define:
+When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Universal Profile. There are three different token types:
 
 - `0` = Token
 - `1` = NFT
@@ -41,11 +47,9 @@ enum TokenType {
     NFT,
     COLLECTION
 }
-
-
 ```
 
-You will also create a custom [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md).
+After defining the type of the asset and its 🗂️ [ERC725 data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) you can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
 
 ```solidity title="contracts/MyNFTCollection.sol"
 
@@ -82,7 +86,53 @@ contract BasicNFTCollection is LSP8Mintable {
 }
 ```
 
-## Deploy our NFT Collection Contract on the LUKSO Testnet
+## Deploy your NFT Collection Contract on the LUKSO Testnet
+
+:::info
+
+By default, the deployment will be to your local network. If you want to deploy to the LUKSO Testnet, you will need to add the LUKSO Testnet network in your `hardhat.config.ts`.
+
+:::
+
+```js
+function getTestnetChainConfig(): NetworkUserConfig {
+  const config: NetworkUserConfig = {
+    url: 'https://rpc.testnet.lukso.network',
+    chainId: 4201,
+  };
+
+  if (process.env.PRIVATE_KEY !== undefined) {
+    config['accounts'] = [process.env.PRIVATE_KEY];
+  }
+
+  return config;
+}
+```
+
+Also add a definition for the testnet in the `HardhatUserConfig`:
+
+```js
+const config: HardhatUserConfig = {
+  solidity: {
+    version: '0.8.19',
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
+  typechain: {
+    outDir: 'typechain-types',
+    target: 'ethers-v6',
+  },
+  networks: {
+    luksoTestnet: getTestnetChainConfig(),
+  },
+};
+```
+
+Next you define the deployment script:
 
 ```js
 import { ethers } from "hardhat";
@@ -109,9 +159,9 @@ deployLSP8Collection().catch((error) => {
 
 ```
 
-## Congratulations 🥳
+## Check Your NFT Collection
 
-You have deployed your first LSP8 NFT Collection on the LUKSO Testnet.
+You can now check your NFT collection using the [execution block explorer](https://explorer.execution.testnet.lukso.network/).
 
 ## References
 
