@@ -663,33 +663,6 @@ Transfers ownership of the contract to a new account (`newOwner`). Can only be c
 
 <br/>
 
-### version
-
-:::note References
-
-- Specification details: [**LSP-8-IdentifiableDigitalAsset**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#version)
-- Solidity implementation: [`LSP8IdentifiableDigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol)
-- Function signature: `version()`
-- Function selector: `0x54fd4d50`
-
-:::
-
-```solidity
-function version() external view returns (string);
-```
-
-_Contract version._
-
-Get the version of the contract.
-
-#### Returns
-
-| Name |   Type   | Description                      |
-| ---- | :------: | -------------------------------- |
-| `0`  | `string` | The version of the the contract. |
-
-<br/>
-
 ## Internal Methods
 
 Any method labeled as `internal` serves as utility function within the contract. They can be used when writing solidity contracts that inherit from this contract. These methods can be extended or modified by overriding their internal behavior to suit specific needs.
@@ -837,9 +810,9 @@ When `tokenId` does not exist then revert with an error.
 
 Any logic in the:
 
-- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
+- [`_beforeTokenTransfer`](#_beforetokentransfer) function will run before updating the balances and ownership of `tokenId`s.
 
-- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the recipient via LSP1**.
+- [`_afterTokenTransfer`](#_aftertokentransfer) function will run after updating the balances and ownership of `tokenId`s, **but before notifying the recipient via LSP1**.
 
 :::
 
@@ -879,9 +852,9 @@ Create `tokenId` by minting it and transfers it to `to`.
 
 Any logic in the:
 
-- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
+- [`_beforeTokenTransfer`](#_beforetokentransfer) function will run before updating the balances and ownership of `tokenId`s.
 
-- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender via LSP1**.
+- [`_afterTokenTransfer`](#_aftertokentransfer) function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender via LSP1**.
 
 :::
 
@@ -924,9 +897,9 @@ all the parameters in the calldata packed encoded.
 
 Any logic in the:
 
-- \{\_beforeTokenTransfer\} function will run before updating the balances and ownership of `tokenId`s.
+- [`_beforeTokenTransfer`](#_beforetokentransfer) function will run before updating the balances and ownership of `tokenId`s.
 
-- \{\_afterTokenTransfer\} function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender/recipient via LSP1**.
+- [`_afterTokenTransfer`](#_aftertokentransfer) function will run after updating the balances and ownership of `tokenId`s, **but before notifying the sender/recipient via LSP1**.
 
 :::
 
@@ -1196,13 +1169,13 @@ Emitted when `tokenOwner` disables `operator` to transfer or burn `tokenId` on i
 
 #### Parameters
 
-| Name                       |   Type    | Description                                                     |
-| -------------------------- | :-------: | --------------------------------------------------------------- |
-| `operator` **`indexed`**   | `address` | The address revoked from the operator array (getOperatorsOf). |
-| `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                     |
-| `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on.            |
-| `notified`                 |  `bool`   | Bool indicating whether the operator has been notified or not   |
-| `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.                 |
+| Name                       |   Type    | Description                                                                        |
+| -------------------------- | :-------: | ---------------------------------------------------------------------------------- |
+| `operator` **`indexed`**   | `address` | The address revoked from the operator array ([`getOperatorsOf`](#getoperatorsof)). |
+| `tokenOwner` **`indexed`** | `address` | The owner of the `tokenId`.                                                        |
+| `tokenId` **`indexed`**    | `bytes32` | The tokenId `operator` is revoked from operating on.                               |
+| `notified`                 |  `bool`   | Bool indicating whether the operator has been notified or not                      |
+| `operatorNotificationData` |  `bytes`  | The data to notify the operator about via LSP1.                                    |
 
 <br/>
 
