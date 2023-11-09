@@ -8,7 +8,7 @@ sidebar_position: 4
 This tutorial goes over creating a collection of collectibles, where each item is unique and has its own design.
 
 :::info
-⌨️ The full code of this example can be found in 👾 [here](https://github.com/CJ42/LUKSO-Hardhat-template).
+⌨️ The full code of this example can be found in the 👾 [lukso-hardhat-template](https://github.com/CJ42/LUKSO-Hardhat-template).
 :::
 
 ## Setup
