@@ -18,6 +18,10 @@ Make sure you have the following dependencies installed:
 - [`ethers.js`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
+\```bash
+npm install ethers @lukso/lsp-smart-contracts
+\```
+
 ## Create the Smart Contracts
 
 When creating digital asset smart contracts on LUKSO, you will need to specify the token type and the following data keys in the ERC725Y storage. There are three types that you can define:
