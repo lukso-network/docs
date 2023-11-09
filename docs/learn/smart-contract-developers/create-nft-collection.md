@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # Create an NFT Collection Using LSP8
 
-This tutorial goes over creating a collection of collectibles, where each item is unique and has its own design.
+This tutorial will teach you how to create a collection of unique digital assets.
 
 :::info
 ⌨️ The full code of this example can be found in the 👾 [lukso-hardhat-template](https://github.com/CJ42/LUKSO-Hardhat-template).
