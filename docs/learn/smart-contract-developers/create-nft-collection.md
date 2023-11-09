@@ -26,9 +26,9 @@ npm install ethers @lukso/lsp-smart-contracts
 
 When creating digital asset smart contracts on LUKSO, you will need to specify the token type and the following data keys in the ERC725Y storage. There are three types that you can define:
 
-- 0 = Token
-- 1 = NFT
-- 2 = Collection
+- `0` = Token
+- `1` = NFT
+- `2` = Collection
 
 ```solidity title="contracts/TokenTypes.sol"
 // SPDX-License-Identifier: MIT
