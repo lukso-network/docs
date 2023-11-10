@@ -3,6 +3,9 @@ sidebar_label: '🗃 Create an NFT Collection'
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Create an NFT Collection Using LSP8
 
 This tutorial will explore how to create a collection of unique [digital assets](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
@@ -15,7 +18,7 @@ This tutorial will explore how to create a collection of unique [digital assets]
 
 :::note
 
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started section](../smart-contract-developers/getting-started.md).
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../smart-contract-developers/getting-started.md) section.
 
 :::
 
@@ -87,23 +90,28 @@ contract BasicNFTCollection is LSP8Mintable {
 }
 ```
 
-Next you define the deployment script:
+Next you define the deployment script.
 
+<Tabs groupId="web3-lib">
+  <TabItem value="ethersjs" label="ethers.js">
+
+<!-- prettier-ignore-start -->
 ```js
 import { ethers } from "hardhat";
-
 import {BasicNFTCollection, BasicNFTCollection__factory} from "../typechain-types";
 
 async function deployLSP8Collection() {
   const accounts = await ethers.getSigners();
   const deployer = accounts[0];
 
-  const nftCollection: BasicNFTCollection = await new BasicNFTCollection__factory(deployer).deploy(
-    "NFT Collection Name", // collection name
-    "NFT",                 // collection symbol
-    deployer.address
-  );
-
+  const nftCollection: BasicNFTCollection = await new BasicNFTCollection\_\_factory(deployer).deploy(
+      "NFT Collection Name", // collection name
+      "NFT", // collection symbol
+      deployer.address
+   );
+  const nftCollectionAddress = await nftCollection.getAddress()
+  console.log("NFT Collection deployed to:", nftCollectionAddress)
+  console.log("Check the block explorer to see the deployed contract")
 }
 
 deployLSP8Collection().catch((error) => {
@@ -111,12 +119,65 @@ deployLSP8Collection().catch((error) => {
   process.exitCode = 1;
 });
 
+```
+<!-- prettier-ignore-end -->
+</TabItem>
+<TabItem value="web3js" label="web3.js">
+
+Swap to the latest version of node;
+
+```sh
+nvm install node
+nvm use node
+```
+
+Install hardhat web3;
+
+```sh
+npm install --save-dev @nomiclabs/hardhat-web3 'web3@^1.0.0-beta.36'
+```
+
+Add the following to your hardhat.config.ts;
+
+```js
+import '@nomiclabs/hardhat-web3';
+```
+
+Write your deployment script;
+
+```js
+
+import { ethers, web3 } from "hardhat";
+import {BasicNFTCollection, BasicNFTCollection__factory} from "../typechain-types";
+
+async function deployLSP8Collection() {
+  const accounts = await web3.eth.getAccounts();
+  const deployer = await ethers.getSigner(accounts[0])
+
+  const nftCollection: BasicNFTCollection = await new BasicNFTCollection__factory(deployer).deploy(
+    "NFT Collection Name", // collection name
+    "NFT",                 // collection symbol
+    deployer.address
+  );
+
+  const nftCollectionAddress = await nftCollection.getAddress()
+  console.log("NFT Collection deployed to:", nftCollectionAddress)
+  console.log("Check the block explorer to see the deployed contract")
+}
+
+deployLSP8Collection().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 
 ```
 
+</TabItem>
+</Tabs>
+
 ## Check Your NFT Collection
 
-You can now check your NFT collection using the [execution block explorer](https://explorer.execution.testnet.lukso.network/).
+You can now check out your NFT collection on the [execution block explorer](https://explorer.execution.testnet.lukso.network/) using the address output to the web console during deployment.
 
 ## References
 
