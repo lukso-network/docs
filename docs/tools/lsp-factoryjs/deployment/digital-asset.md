@@ -113,7 +113,7 @@ Set the address which should own your digital asset contract by passing the `con
 
 ### Adding LSP4 Metadata
 
-[LSP7] and [LSP8] both adhere to the [LSP4 Digital Asset Metadata standard](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md). Developers can specify the LSP4Metadata by setting the `name`, `symbol`, `digitalAssetMetadata` and `creators` keys when deploying with LSPFactory.
+[LSP7] and [LSP8] both adhere to the [LSP4 Digital Asset Metadata standard](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md). Developers can specify the LSP4Metadata by setting the `name`, `symbol`, `digitalAssetMetadata` and `creators` keys when deploying with LSPFactory.
 
 ```javascript
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
@@ -128,9 +128,9 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 });
 ```
 
-The `name` and `symbol` keys are passed as deployment constructor parameters. These values will set the [`LSP4TokenName`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol) [ERC725Y] keys directly on the contract during deployment.
+The `name` and `symbol` keys are passed as deployment constructor parameters. These values will set the [`LSP4TokenName`](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol) [ERC725Y] keys directly on the contract during deployment.
 
-Addresses passed inside the `creators` array will be set under the [LSP4Creators[]](../../../standards/tokens/LSP4-Digital-Asset-Metadata#lsp4creators) [ERC725Y] key.
+Addresses passed inside the `creators` array will be set under the [LSP4Creators[]](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata#lsp4creators) [ERC725Y] key.
 
 :::warning
 LSPFactory does not set the [LSP3IssuedAssets key](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3issuedassets) on any Universal Profile when deploying a digital asset. This key will have to be updated seperately.
@@ -139,7 +139,7 @@ LSPFactory does not set the [LSP3IssuedAssets key](https://github.com/lukso-netw
 
 #### Digital Asset Metadata
 
-Further Digital Asset metadata can be added by passing the `digitalAssetMetadata` parameter. This is metadata stored as JSON on a server and referenced from the contract by the [`LSP4Metadata`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) [ERC725Y] key.
+Further Digital Asset metadata can be added by passing the `digitalAssetMetadata` parameter. This is metadata stored as JSON on a server and referenced from the contract by the [`LSP4Metadata`](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4metadata) [ERC725Y] key.
 
 :::info Info
 Digital Asset Metadata can be passed as either a JSON object containing the [LSP4Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) you want to upload or a URL of your previously uploaded metadata.
@@ -197,7 +197,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 });
 ```
 
-You can also provide the JSON file yourself to generate the hash value:
+You can also provide the JSON file yourself to generate the verification data value:
 
 ```javascript title='Providing a previously uploaded LSP4 metadata URL and JSON file itself'
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
@@ -209,13 +209,15 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 });
 ```
 
-Or you can provide the hash value and then uploaded file URL:
+Or you can provide the verification data value and then uploaded file URL:
 
-```javascript title='Providing a previously uploaded LSP4 metadata URL and hash values'
+```javascript title='Providing a previously uploaded LSP4 metadata URL and verification data values'
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
   digitalAssetMetadata: {
-    hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
-    hashFunction: 'keccak256(utf8)',
+    verification: {
+      method: 'keccak256(utf8)',
+      data: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
+    },
     url: 'https://mycoolserver.com/file.json'
   },
   ...
@@ -244,8 +246,10 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
         {
           width: 500,
           height: 500,
-          hashFunction: 'keccak256(bytes)',
-          hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          verification: {
+            method: 'keccak256(bytes)',
+            data: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          },
           url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
         }
         ... // Multiple sizes of the image should be included
@@ -266,8 +270,10 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
       {
         width: 256,
         height: 256,
-        hashFunction: 'keccak256(bytes)',
-        hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+        verification: {
+          method: 'keccak256(bytes)',
+          data: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+        },
         url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
       }
       ... // Multiple sizes of the icon image should be included
@@ -286,8 +292,10 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
   digitalAssetMetadata: {
     assets: [
         {
-          hashFunction: 'keccak256(bytes)',
-          hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          verification: {
+            method: 'keccak256(bytes)',
+            data: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          },
           url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
           fileType: 'fbx'
         }
@@ -624,7 +632,7 @@ Digital Asset deployment completed
 
 ```
 
-[lsp7]: ../../../standards/tokens/LSP7-Digital-Asset
-[lsp8]: ../../../standards/tokens/LSP8-Identifiable-Digital-Asset
+[lsp7]: ../../../standards/nft-2.0/LSP7-Digital-Asset
+[lsp8]: ../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset
 [erc20]: https://eips.ethereum.org/EIPS/eip-20
 [erc725y]: ../../../standards/generic-standards/lsp2-json-schema.md

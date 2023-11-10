@@ -39,7 +39,7 @@ Inside the `profileProperties` object, you can set profile configuration options
 
 ### Controller Addresses
 
-You can set the addresses which should be able to control your Universal Profile initially by passing in the `controllerAddresses`. The addresses that were passed here will be given all LSP6 KeyManager permissions except `DELEGATECALL` to [prevent accidental misuse](https://solidity-by-example.org/hacks/delegatecall/). If your controller keys require `DELEGATECALL`, you can [change the permission after deployment](../../../learn/expert-guides/key-manager/grant-permissions.md).
+You can set the addresses which should be able to control your Universal Profile initially by passing in the `controllerAddresses`. The addresses that were passed here will be given all LSP6 KeyManager permissions except `DELEGATECALL` to [prevent accidental misuse](https://solidity-by-example.org/hacks/delegatecall/). If your controller keys require `DELEGATECALL`, you can [change the permission after deployment](../../../guides/key-manager/give-permissions.md).
 
 The property `controllerAddresses` can be filled with addresses of externally owned accounts (EOAs) or another smart contract that can call the `execute(calldata)` function on the KeyManager.
 
@@ -147,8 +147,10 @@ Or you can provide the hash value and then uploaded file URL:
 await lspFactory.UniversalProfile.deploy({
   controllerAddresses: ['0x...'],
   lsp3Profile: {
-    hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
-    hashFunction: 'keccak256(utf8)',
+    verification: {
+      data: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
+      method: 'keccak256(utf8)',
+    },
     url: 'https://mycoolserver.com/file.json',
   },
 });
@@ -176,8 +178,10 @@ const myUniversalProfileData = {
     {
       width: 500,
       height: 500,
-      hashFunction: 'keccak256(bytes)',
-      hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14', // bytes32 hex string of the image hash
+      verification: {
+        method: 'keccak256(bytes)',
+        data: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14', // bytes32 hex string of the image verificationData
+      },
       url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
     },
     ... // Multiple image sizes should be included
@@ -186,8 +190,10 @@ const myUniversalProfileData = {
     {
       width: 500,
       height: 500,
-      hashFunction: 'keccak256(bytes)',
-      hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14', // bytes32 hex string of the image hash
+      verification: {
+        method: 'keccak256(bytes)',
+        datas: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14', // bytes32 hex string of the image hash
+      },
       url: 'ipfs://QmPLqMFHxiUDYAom3Zg4SiwoxDaFcZpHXpAmiDzxrtjSGp',
     },
     ... // Multiple image sizes should be included
@@ -223,8 +229,10 @@ Avatar files passed as a metadata objects will be set directly on the [LSP3 Prof
     asset: [
         myLocalAvatar,
         {
-          hashFunction: 'keccak256(bytes)',
-          hash: '0x5f3dbd89cde4dde36241c501203b67a93b89908063f5516535136bc25f712e11',
+          verification: {
+            method: 'keccak256(bytes)',
+            data: '0x5f3dbd89cde4dde36241c501203b67a93b89908063f5516535136bc25f712e11',
+          },
           url: 'ipfs://QmWkAki4mLq2c9hsbKs4HFCaZdpUX1jLKKBb5y8YMATkak',
           fileType: 'image/obj',
         },
@@ -327,8 +335,10 @@ await myLSPFactory.UniversalProfile.uploadProfileData(myLSP3MetaData);
 
 /**
 {
-  hash: '0x1234...',
-  hashFunction: 'keccak256(utf8)',
+  verification: {
+    data: '0x1234...',
+    method: 'keccak256(utf8)',
+  },
   url: 'https://ipfs.lukso.network/ipfs/QmPzUfdKhY6vfcLNDnitwKanpm5GqjYSmw9todNVmi4bqy',
   json: {
     LSP3Profile: {

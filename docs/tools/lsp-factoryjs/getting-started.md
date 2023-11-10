@@ -24,7 +24,7 @@ const provider = 'https://rpc.testnet.lukso.network';
 
 const lspFactory = new LSPFactory(provider, {
   deployKey: '0x...', // Private key of the account which will deploy smart contracts
-  chainId: 2828,
+  chainId: 4201,
 });
 ```
 
@@ -36,7 +36,7 @@ If used in the browser on a dApp's page, pass the ethereum object as the provide
 await ethereum.request({ method: 'eth_requestAccounts', params: [] });
 
 const lspFactory = new LSPFactory(ethereum, {
-  chainId: 2828,
+  chainId: 4201,
 });
 ```
 
@@ -61,9 +61,11 @@ const myLSP3MetaData = {
     {
       width: 500,
       height: 500,
-      hashFunction: 'keccak256(bytes)',
-      // bytes32 hex string of the image hash
-      hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
+      verification: {
+        method: 'keccak256(bytes)',
+        // bytes32 hex string of the image hash
+        data: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
+      },
       url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
     },
   ],
@@ -71,9 +73,11 @@ const myLSP3MetaData = {
     {
       width: 500,
       height: 500,
-      hashFunction: 'keccak256(bytes)',
-      // bytes32 hex string of the image hash
-      hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
+      verification: {
+        method: 'keccak256(bytes)',
+        // bytes32 hex string of the image hash
+        data: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
+      },
       url: 'ipfs://QmPLqMFHxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrtjSGp',
     },
   ],
@@ -118,7 +122,7 @@ When instantiating LSPFactory options can be passed to specify parameters such a
 ```javascript title="Instantiating LSPFactory with custom options set"
 const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
   deployKey: '0x...',
-  chainId: 2828,
+  chainId: 4201,
   ipfsGateway: 'https://ipfs.infura.io:5001',
 });
 ```
@@ -131,7 +135,7 @@ If no value is set here, LSPFactory will attempt to sign transactions via a brow
 
 #### Chain Id
 
-`chainId` is used to specify the network that LSPFactory is interacting with. The provided `chainId` will be used to determine which base contracts to use when using [proxy deployment](./deployment/options.md#deploy-proxy). Previously deployed base contract addresses are stored in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) and accessed using the provided chainId. Defaults to 4201.
+`chainId` is used to specify the network that LSPFactory is interacting with. The provided `chainId` will be used to determine which base contracts to use when using [proxy deployment](./deployment/options.md#deploy-proxy). Previously deployed base contract addresses are stored in the [versions file](https://github.com/lukso-network/tools-lsp-factory/blob/main/src/versions.json) and accessed using the provided chainId. Defaults to 4201 ([LUKSO Testnet](https://docs.lukso.tech/networks/testnet/parameters)).
 
 #### IPFS Gateway
 
