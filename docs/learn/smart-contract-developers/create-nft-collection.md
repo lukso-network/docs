@@ -87,52 +87,6 @@ contract BasicNFTCollection is LSP8Mintable {
 }
 ```
 
-## Deploy your NFT Collection Contract on the LUKSO Testnet
-
-:::info
-
-By default, the deployment will be to your local network. If you want to deploy to the LUKSO Testnet, you will need to add the LUKSO Testnet network in your `hardhat.config.ts`.
-
-:::
-
-```js
-function getTestnetChainConfig(): NetworkUserConfig {
-  const config: NetworkUserConfig = {
-    url: 'https://rpc.testnet.lukso.network',
-    chainId: 4201,
-  };
-
-  if (process.env.PRIVATE_KEY !== undefined) {
-    config['accounts'] = [process.env.PRIVATE_KEY];
-  }
-
-  return config;
-}
-```
-
-Also add a definition for the testnet in the `HardhatUserConfig`:
-
-```js
-const config: HardhatUserConfig = {
-  solidity: {
-    version: '0.8.19',
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
-      },
-    },
-  },
-  typechain: {
-    outDir: 'typechain-types',
-    target: 'ethers-v6',
-  },
-  networks: {
-    luksoTestnet: getTestnetChainConfig(),
-  },
-};
-```
-
 Next you define the deployment script:
 
 ```js
