@@ -5,15 +5,17 @@ sidebar_position: 4
 
 # Create an NFT Collection Using LSP8
 
-This tutorial will explore how to create a collection of unique digital assets.
+This tutorial will explore how to create a collection of unique [digital assets](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
 
 :::info
+
 ⌨️ The full code of this example can be found in the 👾 [lukso-hardhat-template](https://github.com/CJ42/LUKSO-Hardhat-template).
+
 :::
 
 :::note
 
-This guide builds on top of a Hartdhat project using TypeScript as described in the [Getting Started section](../smart-contract-developers/getting-started.md).
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started section](../smart-contract-developers/getting-started.md).
 
 :::
 
@@ -52,7 +54,6 @@ enum TokenType {
 After defining the type of the asset and its 🗂️ [ERC725 data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) you can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
 
 ```solidity title="contracts/MyNFTCollection.sol"
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
