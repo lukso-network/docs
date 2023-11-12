@@ -371,7 +371,7 @@ async function grantPermissions() {
   ]);
 
   // step 3.3 - send the transaction
-  await myUniversalProfile.methods.setData(
+  await myUniversalProfile.methods.setDataBatch(
     data.keys,
     data.values,
   ).send({
