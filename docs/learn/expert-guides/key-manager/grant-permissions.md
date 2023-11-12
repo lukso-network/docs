@@ -292,6 +292,26 @@ await myUniversalProfile
 
 </Tabs>
 
+## Testing the permissions
+
+We can now check that the permissions have been correctly set by querying the `AddressPermissions:Permissions:<beneficiaryAddress>` data key on the ERC725Y storage of the Universal Profile.
+
+If everything went well, the code snippet below should return you back an object with the permission `SETDATA` set to `true`.
+
+```js
+const result = await myUniversalProfile.methods['getData(bytes32)'](
+  data.keys[0],
+).call();
+console.log(
+  `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
+  erc725.decodePermissions(result),
+);
+```
+
+Finally, to test the actual permissions, you can do this guide using a `beneficiaryAddress` that you have control over (created manually via web3.js).
+
+You can then try to do again the **Edit our Universal Profile** guide, using this new 3rd party address that you have control over to test if it can successfull edit the profile details. This will give you guarantee that this `beneficiaryAddress` has the `SETDATA` permission working.
+
 ## Final code
 
 <Tabs>
@@ -449,23 +469,3 @@ grantPermissions();
   </TabItem>
 
 </Tabs>
-
-## Testing the permissions
-
-We can now check that the permissions have been correctly set by querying the `AddressPermissions:Permissions:<beneficiaryAddress>` data key on the ERC725Y storage of the Universal Profile.
-
-If everything went well, the code snippet below should return you back an object with the permission `SETDATA` set to `true`.
-
-```js
-const result = await myUniversalProfile.methods['getData(bytes32)'](
-  data.keys[0],
-).call();
-console.log(
-  `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
-  erc725.decodePermissions(result),
-);
-```
-
-Finally, to test the actual permissions, you can do this guide using a `beneficiaryAddress` that you have control over (created manually via web3.js).
-
-You can then try to do again the **Edit our Universal Profile** guide, using this new 3rd party address that you have control over to test if it can successfull edit the profile details. This will give you guarantee that this `beneficiaryAddress` has the `SETDATA` permission working.

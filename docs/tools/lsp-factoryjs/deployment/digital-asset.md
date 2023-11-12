@@ -36,10 +36,10 @@ The [LSP7] standard can be useful for NFT collections where you want all tokens 
 
 ```javascript
 await lspFactory.LSP7DigitalAsset.deploy({
-    isNFT: true,
-    controllerAddress: '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
-    name: 'MYTOKEN'
-    symbol: 'DEMO',
+  isNFT: true,
+  controllerAddress: '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
+  name: 'MYTOKEN',
+  symbol: 'DEMO',
 });
 ```
 
