@@ -27,7 +27,7 @@ The safety of a Universal Profile **depends on the security steps taken by its o
 
 ## Can I send Ether, Token, or NFTs from Ethereum to my Universal Profile?
 
-You can't send any assets to the address if you do not deploy the Universal Profile on Ethereum. Most Universal Profiles are currently deployed on the [L14 Testnet](../../networks/l14-testnet), a different network than Ethereum. Users will lose their assets if they send them to other networks without having access to the controller key.
+You can't send any assets to the address if you do not deploy the Universal Profile on Ethereum. Most Universal Profiles are currently deployed on the [L14 Testnet](/networks/l14-testnet), a different network than Ethereum. Users will lose their assets if they send them to other networks without having access to the controller key.
 
 ## Which tokens and coins can my UniversalProfile hold?
 
