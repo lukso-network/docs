@@ -30,7 +30,7 @@ Make sure you have the following dependencies installed:
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 ```bash
-npm install ethers @lukso/lsp-smart-contracts
+yarn add ethers @lukso/lsp-smart-contracts
 ```
 
 ## Create the Smart Contracts
@@ -120,6 +120,10 @@ async function deployAndCreateTickets() {
         true, // force sending to an EOA
         "0x" // data
     );
+    const luksoMeetupTicketsAddress = await luksoMeetupTickets.getAddress()
+    console.log("NFT Collection deployed to:", luksoMeetupTicketsAddress)
+    console.log("Check the block explorer to see the deployed contract")
+    
 }
 
 deployAndCreateTickets().catch((error) => {
@@ -171,9 +175,18 @@ async function deployAndCreateTickets() {
         deployer.address,
     )
 
-  const luksoMeetupTicketsAddress = await luksoMeetupTickets.getAddress()
-  console.log("NFT Collection deployed to:", luksoMeetupTicketsAddress)
-  console.log("Check the block explorer to see the deployed contract")
+    // create 100 entry tickets.
+    // give them to the deployer initially, who will distribute them afterwards.
+    await luksoMeetupTickets.mint(
+        deployer.address, // recipient
+        100, // amount
+        true, // force sending to an EOA
+        "0x" // data
+    );
+
+    const luksoMeetupTicketsAddress = await luksoMeetupTickets.getAddress()
+    console.log("NFT Collection deployed to:", luksoMeetupTicketsAddress)
+    console.log("Check the block explorer to see the deployed contract")
 }
 
 deployAndCreateTickets().catch((error) => {
