@@ -26,7 +26,7 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 Make sure you have the following dependencies installed:
 
-- [`ethers.js`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
+- [`ethers.js v6`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 ```bash
@@ -35,7 +35,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ## Create the Smart Contracts
 
-When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Universal Profile. There are three different token types:
+When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different token types:
 
 - `0` = Token
 - `1` = NFT
@@ -96,7 +96,7 @@ Next you define the deployment script.
   <TabItem value="ethersjs" label="ethers.js">
 
 <!-- prettier-ignore-start -->
-```js
+```js title="deployLSP8Collection.ts"
 import { ethers } from "hardhat";
 import {BasicNFTCollection, BasicNFTCollection__factory} from "../typechain-types";
 
@@ -104,7 +104,7 @@ async function deployLSP8Collection() {
   const accounts = await ethers.getSigners();
   const deployer = accounts[0];
 
-  const nftCollection: BasicNFTCollection = await new BasicNFTCollection\_\_factory(deployer).deploy(
+  const nftCollection: BasicNFTCollection = await new BasicNFTCollection__factory(deployer).deploy(
       "NFT Collection Name", // collection name
       "NFT", // collection symbol
       deployer.address
