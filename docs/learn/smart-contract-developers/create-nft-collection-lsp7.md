@@ -26,7 +26,7 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 Make sure you have the following dependencies installed:
 
-- [`ethers.js`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
+- [`ethers.js v6`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 ```bash
@@ -35,7 +35,7 @@ yarn add ethers @lukso/lsp-smart-contracts
 
 ## Create the Smart Contracts
 
-When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Universal Profile. There are three different token types:
+When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different token types:
 
 - `0` = Token
 - `1` = NFT
@@ -54,7 +54,7 @@ enum TokenType {
 }
 ```
 
-After defining the type of the asset and its 🗂️ [ERC725 data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) you can create a custom 🌄 [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be created within the smart contract.
+After defining the type of the asset you can create a custom 🌄 [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be created within the smart contract.
 
 ```solidity title="contracts/EventTicketsNFT.sol"
 // SPDX-License-Identifier: MIT
