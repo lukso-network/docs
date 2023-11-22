@@ -95,6 +95,8 @@ Next you define the deployment script.
 ```js
 import { ethers } from "hardhat";
 
+// typechain should generate new types for you on every compilation 
+// otherwise you can always: npx hardhat typechain 
 import {
     EventTicketsNFT,
     EventTicketsNFT__factory
