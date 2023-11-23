@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 ## Background
 
-Currently LSP7 and LSP8 can both be used as NFTs. LSP7 is useful for mass-digital NFTs, where individual items are not unique, whereas LSP8 is mainly used for phygitals, or NFTs with unique properties per item.
+[LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) can be both used as NFTs. LSP7 is useful for mass-digital NFTs, where individual items are not unique, whereas LSP8 is mainly used for phygitals, or NFTs with unique properties per item.
 
-Previously, an interface could not differentiate between LSP7 being a token or an NFT. [LSP4TokenType data key](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md?plain=1) allows to define the type, in a smart contract readable form.
+To detect the fungibility of an asset, the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) standard defines the `LSP4TokenType`. This data key can be retrieved from the smart contracts 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage.
 
 ```js
 {
@@ -24,7 +24,7 @@ Previously, an interface could not differentiate between LSP7 being a token or a
 }
 ```
 
-This value is not changeable, and is set during the token's initialization.
+The `LSP4TokenType` is not changeable and it is set during the token's initialization.
 
 | Value |     Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | :---: | :----------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -34,7 +34,7 @@ This value is not changeable, and is set during the token's initialization.
 
 ## Implementation
 
-When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different token types:
+When creating digital assets using [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), the type and data keys of the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) have to be defined within the smart contract like the following:
 
 ```solidity title="contracts/TokenTypes.sol"
 // SPDX-License-Identifier: MIT
@@ -49,4 +49,4 @@ enum TokenType {
 }
 ```
 
-After defining the token type of the asset you can create a custom [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
+After defining the token type of the asset, you can create a custom [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8 Identifiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md). During deployment, the token type is then written to the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the smart contract.
