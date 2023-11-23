@@ -7,12 +7,6 @@ sidebar_position: 1
 
 ![Universal Profile example on wallet.universalprofile.cloud](/img/universal-profile/profile.png)
 
-:::caution Disclaimer
-
-This guide uses an old `@lukso/lsp-smart-contracts@v0.11.1` version and will be updated soon.
-
-:::
-
 :::tip
 
 If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository or use the correlated [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground) page.
