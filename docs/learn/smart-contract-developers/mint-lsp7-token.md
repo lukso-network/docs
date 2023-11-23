@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Mint LSP7 Token
 
-In this guide you will mint some [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) tokens to the EOA owner of your token.
+In this guide you will mint some [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) tokens to the EOA that controls the contract.
 
 ## Setup
 
@@ -23,8 +23,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Imports and constants
 
-At this point you will need a private key in order to mint some tokens as well as the `LSP7Mintable` _token contract address_.
-You will import `LSP7Mintable` in order to get the _ABI_ of the contract that you will interact with.
+At this point, the `LPS7Mintable` contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
 
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
@@ -55,7 +54,7 @@ Finally, you send the transaction and mint some tokens.
 
 :::warning
 
-The example contract here allows minting Digital Assets **only to the owner** of the contract. There might be contracts that don't have this _requirement_.
+The example contract here allows only the owner of the contract to mint Digital Assets. There might be contracts that don't have this _requirement_.
 
 :::
 
@@ -83,9 +82,9 @@ async function main() {
   const signer = new ethers.Wallet(privateKey as string, provider);
   console.log('🔑 EOA: ', signer.address);
 
-  let myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi, signer);
+  const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi, signer);
 
-  let mintTxn = await myToken.mint(signer.address, 1, true, '0x', { gasLimit: 400_000 })
+  const mintTxn = await myToken.mint(signer.address, 1, true, '0x', { gasLimit: 400_000 })
   console.log(mintTxn)
   await new Promise(r => setTimeout(r, 10000));
 
