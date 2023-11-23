@@ -8,11 +8,11 @@ import TabItem from '@theme/TabItem';
 
 # Mint LSP7 Token
 
-In this guide you will mint some [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) tokens to the EOA that controls the contract.
+In this guide you will mint some [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) tokens as an EOA contract owner.
 
 ## Setup
 
-The following code snippets require to install a few libraries.
+The following code snippets require the installation of the following libraries:
 
 - [`ethers.js`](https://github.com/ethers-io/ethers.js/)
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
@@ -42,19 +42,19 @@ console.log('🔑 EOA: ', signer.address);
 
 ### Instantiate the contracts
 
-At this point, the `LPS7Mintable` contract is being prepared for the following intercation. you construct an instance of a contract, using _contract ABI_ and _contract address_.
+After defining the core parameters of the [`LPS7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you are able to create an instance using its _ABI_ and the _contract address_.
 
 ```javascript
 let myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi, signer);
 ```
 
-### Send transaction
+### Send the transaction
 
-Finally, you send the transaction and mint some tokens.
+Finally, you can send the transaction to mint some tokens.
 
 :::warning
 
-The example contract here allows only the owner of the contract to mint Digital Assets. There might be contracts that don't have this _requirement_.
+The sample contract of this guide only allows the smart contract owner to mint assets. Custom [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) implementations might implement different permission sets.
 
 :::
 
