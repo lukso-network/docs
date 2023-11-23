@@ -27,6 +27,31 @@ The [`LSP1UniversalReceiverDelegateUP`](#lsp1universalreceiverdelegateup) follow
 Public methods are accessible externally from users, allowing interaction with this function from dApps or other smart contracts.
 When marked as 'public', a method can be called both externally and internally, on the other hand, when marked as 'external', a method can only be called externally.
 
+### VERSION
+
+:::note References
+
+- Specification details: [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#version)
+- Solidity implementation: [`LSP1UniversalReceiverDelegateUP.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol)
+- Function signature: `VERSION()`
+- Function selector: `0xffa1ad74`
+
+:::
+
+```solidity
+function VERSION() external view returns (string);
+```
+
+_Contract version._
+
+#### Returns
+
+| Name |   Type   | Description |
+| ---- | :------: | ----------- |
+| `0`  | `string` | -           |
+
+<br/>
+
 ### supportsInterface
 
 :::note References
@@ -78,7 +103,7 @@ See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
 
 :::caution Warning
 
-When the data stored in the ERC725Y storage of the LSP0 contract is corrupted (\_e.g: ([LSP-5-ReceivedAssets]&#39;s Array length not 16 bytes long, the token received is already registered in `LSP5ReceivetAssets[]`, the token being sent is not sent as full balance, etc...), the function call will still pass and return (**not revert!**) and not modify any data key on the storage of the [LSP-0-ERC725Account].
+When the data stored in the ERC725Y storage of the LSP0 contract is corrupted (\_e.g: ([LSP-5-ReceivedAssets]'s Array length not 16 bytes long, the token received is already registered in `LSP5ReceivetAssets[]`, the token being sent is not sent as full balance, etc...), the function call will still pass and return (**not revert!**) and not modify any data key on the storage of the [LSP-0-ERC725Account].
 
 :::
 
@@ -120,33 +145,6 @@ _Reacted on received notification with `typeId`._
 | Name |  Type   | Description                              |
 | ---- | :-----: | ---------------------------------------- |
 | `0`  | `bytes` | The result of the reaction for `typeId`. |
-
-<br/>
-
-### version
-
-:::note References
-
-- Specification details: [**LSP-1-UniversalReceiver**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md#version)
-- Solidity implementation: [`LSP1UniversalReceiverDelegateUP.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol)
-- Function signature: `version()`
-- Function selector: `0x54fd4d50`
-
-:::
-
-```solidity
-function version() external view returns (string);
-```
-
-_Contract version._
-
-Get the version of the contract.
-
-#### Returns
-
-| Name |   Type   | Description                      |
-| ---- | :------: | -------------------------------- |
-| `0`  | `string` | The version of the the contract. |
 
 <br/>
 
@@ -278,7 +276,3 @@ Reverts when EOA calls the [`universalReceiver(..)`](#universalreceiver) functio
 | `caller` | `address` | The address of the EOA |
 
 <br/>
-
-### Additional Resources
-
-- [🎥 BuildUP #2 | Adding Reactivity to Universal Profiles using LSP1 - Universal Receiver (YouTube)](https://www.youtube.com/watch?v=aE00rHVAWbw)

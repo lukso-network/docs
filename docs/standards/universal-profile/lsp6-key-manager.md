@@ -828,7 +828,7 @@ Dapps can then leverage the relay execution features to create their own busines
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-relay-execution.jpeg)
 
-An essential aspect to consider in relay execution is the time validity of the execution signature. It's sometimes beneficial to limit the execution to be valid within a specific timeframe to prevent potential security risks. For example, if a user signs a relay transaction and the signature is stolen or compromised, the attacker could potentially use this signature indefinitely if there's no validity period set.
+An essential aspect to consider in relay execution is the time validity of the execution signature. It's sometimes beneficial to limit the execution to be valid within a specific time frame to prevent potential security risks. For example, if a user signs a relay transaction and the signature is stolen or compromised, the attacker could potentially use this signature indefinitely if there's no validity period set.
 
 To mitigate such risks, adding an optional validity timestamp to the signature could mark the start date and expiry date of its effectiveness. Once the timestamp has passed, the signature is no longer valid, rendering the relay transaction unusable.
 
@@ -851,8 +851,8 @@ To obtain a valid signature that can be used by anyone to execute a relayed tran
    - 1. the **payload** (an abi-encoded function call) to be executed on the linked account.
    - 2. the **chain id** of the blockchain where the `payload` will be executed.
    - 3. the address of the [`LSP6KeyManager`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) smart contract where the **payload** will be executed.
-        d. the Key Manager **nonce** of the controller.
-   - 4. the `validityTimestamps`, composed of 2 x `uint128` concatenated together, where:
+   - 4. the Key Manager **nonce** of the controller.
+   - 5. the `validityTimestamps`, composed of 2 x `uint128` concatenated together, where:
 
         4.1. the left-side `uint128` corresponds to the timestamp from which the relay call is valid from.
 
@@ -869,7 +869,7 @@ To obtain a valid signature that can be used by anyone to execute a relayed tran
 The relay transactions are signed using the [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00). The relay call data that you want to sign **MUST** be the _keccak256 hash digest_ of the following elements _(bytes values)_ concatenated together.
 
 ```javascript
-0x19 <0x00> <KeyManager address> <LSP6_VERSION> <chainId> <nonce> <validityTimestamps> <value> <payload>
+0x19 <0x00> <KeyManager address> <LSP25_VERSION> <chainId> <nonce> <validityTimestamps> <value> <payload>
 ```
 
 | Message elements     | Details                                                                                                                                                                                                                                                   |
@@ -877,7 +877,7 @@ The relay transactions are signed using the [**version 0 of EIP191**](https://gi
 | `0x19`               | Byte used to ensure that the _relay call signed data_ is not a valid RLP.                                                                                                                                                                                 |
 | `0x00`               | The [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00).                                                                                                                                                 |
 | `KeyManager address` | The address of the Key Manager that will execute the relay call.                                                                                                                                                                                          |
-| `LSP6_VERSION`       | The version of the Key Manager that will execute the relay call, as a `uint256`. (Current version of LSP6 Key Manager is **6**)                                                                                                                           |
+| `LSP25_VERSION`      | The `uint256` number **25** that defines the current version of the LSP25 Execute Relay Call standard.                                                                                                                                                    |
 | `chainId`            | The chain id of the blockchain where the Key Manager is deployed, as `uint256`.                                                                                                                                                                           |
 | `nonce`              | The unique [**nonce**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#getnonce) for the payload.                                                                                                                                |
 | `validityTimestamps` | Two `uint128` timestamps concatenated, the first timestamp determines from when the payload can be executed, the second timestamp delimits the end of the validity of the payload. If `validityTimestamps` is 0, the checks of the timestamps are skipped |

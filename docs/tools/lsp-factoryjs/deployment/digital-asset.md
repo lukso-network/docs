@@ -36,10 +36,10 @@ The [LSP7] standard can be useful for NFT collections where you want all tokens 
 
 ```javascript
 await lspFactory.LSP7DigitalAsset.deploy({
-    isNFT: true,
-    controllerAddress: '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
-    name: 'MYTOKEN'
-    symbol: 'DEMO',
+  isNFT: true,
+  controllerAddress: '0x56fE4E7dc2bc0b6397E4609B07b4293482E3F72B',
+  name: 'MYTOKEN',
+  symbol: 'DEMO',
 });
 ```
 
@@ -197,7 +197,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 });
 ```
 
-You can also provide the JSON file yourself to generate the hash value:
+You can also provide the JSON file yourself to generate the verification data value:
 
 ```javascript title='Providing a previously uploaded LSP4 metadata URL and JSON file itself'
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
@@ -209,13 +209,15 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 });
 ```
 
-Or you can provide the hash value and then uploaded file URL:
+Or you can provide the verification data value and then uploaded file URL:
 
-```javascript title='Providing a previously uploaded LSP4 metadata URL and hash values'
+```javascript title='Providing a previously uploaded LSP4 metadata URL and verification data values'
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
   digitalAssetMetadata: {
-    hash: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
-    hashFunction: 'keccak256(utf8)',
+    verification: {
+      method: 'keccak256(utf8)',
+      data: '0xfdafad027ecfe57eb4ad047b938805d1dec209d6e9f960fc320d7b9b11cbed14',
+    },
     url: 'https://mycoolserver.com/file.json'
   },
   ...
@@ -244,8 +246,10 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
         {
           width: 500,
           height: 500,
-          hashFunction: 'keccak256(bytes)',
-          hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          verification: {
+            method: 'keccak256(bytes)',
+            data: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          },
           url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
         }
         ... // Multiple sizes of the image should be included
@@ -266,8 +270,10 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
       {
         width: 256,
         height: 256,
-        hashFunction: 'keccak256(bytes)',
-        hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+        verification: {
+          method: 'keccak256(bytes)',
+          data: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+        },
         url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
       }
       ... // Multiple sizes of the icon image should be included
@@ -286,8 +292,10 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
   digitalAssetMetadata: {
     assets: [
         {
-          hashFunction: 'keccak256(bytes)',
-          hash: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          verification: {
+            method: 'keccak256(bytes)',
+            data: '0xfdafad027ecfe57eb4ad044b938805d1dec209d6e9f960fc320d7b9b11cced14',
+          },
           url: 'ipfs://QmPLqMFDxiUgYAom3Zg4SiwoxDaFcZpHXpCmiDzxrajSGp',
           fileType: 'fbx'
         }

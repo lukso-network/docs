@@ -5,14 +5,6 @@ sidebar_position: 2
 
 # Deploy Your Universal Profile
 
-:::caution Disclaimer
-
-This guide might contain outdated information and will be updated soon.
-
-:::
-
-### Deploy your Universal Profile
-
 After you craeted your [Universal Profile (UP)](./create-profile.md), you can deploy your UP by calling `lspFactory.UniversalProfile.deploy(...)`. This method will deploy and set up the three main contracts shown in the [architecture diagram above](#contracts-overview).
 
 The `deploy` function takes an object as an argument that contains two elements:

@@ -11,7 +11,7 @@ If you want to become a whitelisted validator on our testnet, prepare your valid
 
 ![Testnet Launchpad](/img/network/testnet-launchpad.png)
 
-After you become whitelisted, visit the official [Testnet Deposit Launchpad](https://deposit.testnet.lukso.network/) and cautiously generate the specified number of keys you are allowed. Then continue depositing your LYXt to them.
+After you became whitelisted, visit the official [Testnet Deposit Launchpad](https://deposit.testnet.lukso.network/) and cautiously generate the specified number of keys you are allowed. Then continue depositing your LYXt to them.
 
 :::caution Validators
 
@@ -33,7 +33,7 @@ Please refer to the regular [Node Guide](./running-a-node.md) that explains the 
 
 Set up your regular node using the LUKSO CLI as described in the [Node Guide](./running-a-node.md).
 
-The instructions are the same as for mainnet nodes. Please refer to [Mainnet Validator Guide](../mainnet/become-a-validator.md#using-lukso-cli). You will simply have to add the `--testnet` flag to each commands. The commands will look like this:
+The instructions are the same as for mainnet nodes. Please refer to the [Mainnet Validator Setup Guide](../mainnet/become-a-validator.md#using-lukso-cli). You will simply have to add the `--testnet` flag to each command.
 
 #### Importing Validator Keys
 
@@ -45,13 +45,9 @@ lukso validator list --testnet
 
 #### Starting the Validator
 
-Without specifying any flags, the node starts its normal synchronization process.
-
-If you want more convenience and your validator to operate quickly, you can also use checkpoints. The instructions are the same as for mainnet nodes. Please refer to the [Mainnet Validator Guide](../mainnet/become-a-validator.md).
-
 :::info
 
-Without using checkpoints, the synchronization process will take multiple hours for the validator to participate in the consensus.
+If you are starting your node in a fresh working directory or after being offline for a while, make sure to [add the checkpoint synchronization flag](../mainnet/running-a-node.md#start-the-clients) to significantly speed up the synchronization during the startup.
 
 :::
 
