@@ -10,13 +10,18 @@ import TabItem from '@theme/TabItem';
 
 :::tip
 
-Please check the [Getting Started](./getting-started.md) for the project setup.
+You can learn about the project setup by checking the [Getting Started](./getting-started.md) page.
 
 :::
 
-## Create a custom LSP7 Token contract
+## Create a custom LSP7 Token
 
-You will create a custom [LSP7 Digital Asset contract](../../standards/tokens/LSP7-Digital-Asset.md) that extends [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) & [LSP7Burnable](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md) (to allow burning tokens). You will also pre-mint 20k tokens to the owner of the contract (the deployer).
+In this guide you will create a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to a specific address. The smart contract will use the following standardization:
+
+- [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): Allow creating new assets on the smart contract
+- [`LSP7Burnable`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): Allow tokens to be removed from the supply
+
+You can modify the `mint()` function to adjust the amount of initially minted tokens and their receiver as described in the [LSP7 Mintable Documentation](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint).
 
 ```solidity title="contracts/MyCustomToken.sol"
 // SPDX-License-Identifier: Apache-2.0
@@ -88,7 +93,7 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-### Create a deploy script
+### Create a deployment script
 
 Create a script to deploy the smart contract to the LUKSO Testnet network. You can either use a regular EOA (Externally Owned Account) or a Universal Profile.
 
@@ -216,7 +221,5 @@ Deploy the contract:
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployEOA.ts
 ```
-
-## Check your token address on the Execution Block Explorer
 
 You have deployed your first LSP7 token contract on the LUKSO Testnet. You can go and check out the token on the [Execution Block Explorer](https://explorer.execution.testnet.lukso.network/) using the address you just obtained.
