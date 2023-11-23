@@ -26,12 +26,28 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 Make sure you have the following dependencies installed:
 
-- [`ethers.js v6`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
-- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+<Tabs groupId="web3-lib">
+  
+  <TabItem value="web3js" label="web3.js">
+```shell 
+npm install @lukso/lsp-smart-contracts
+```
+Install hardhat-web3:
+```shell
+npm install --save-dev @nomiclabs/hardhat-web3 'web3@^1.0.0-beta.36'
+```
 
-```bash
+  </TabItem>
+
+  <TabItem value="ethersjs" label="ethers.js">
+
+```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
+
+  </TabItem>
+
+</Tabs>
 
 ## Create the Smart Contracts
 
@@ -56,7 +72,7 @@ enum TokenType {
 
 After defining the type of the asset and its 🗂️ [ERC725 data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) you can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
 
-```solidity title="contracts/MyNFTCollection.sol"
+```solidity title="contracts/Example3/BasicNFTCollection.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -96,7 +112,7 @@ Next you define the deployment script.
   <TabItem value="ethersjs" label="ethers.js">
 
 <!-- prettier-ignore-start -->
-```js title="deployLSP8Collection.ts"
+```js title="scripts/deploy.ts"
 import { ethers } from "hardhat";
 import {BasicNFTCollection, BasicNFTCollection__factory} from "../typechain-types";
 
@@ -124,26 +140,13 @@ deployLSP8Collection().catch((error) => {
 </TabItem>
 <TabItem value="web3js" label="web3.js">
 
-Swap to the latest version of node;
-
-```sh
-nvm install node
-nvm use node
-```
-
-Install hardhat web3;
-
-```sh
-npm install --save-dev @nomiclabs/hardhat-web3 'web3@^1.0.0-beta.36'
-```
-
-Add the following to your hardhat.config.ts;
+Add the following to your `hardhat.config.ts`:
 
 ```js
 import '@nomiclabs/hardhat-web3';
 ```
 
-Write your deployment script;
+Write your deployment script:
 
 ```js
 
