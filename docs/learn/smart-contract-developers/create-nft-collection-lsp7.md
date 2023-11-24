@@ -24,14 +24,28 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 ## Setup
 
-Make sure you have the following dependencies installed:
+<Tabs groupId="web3-lib">
 
-- [`ethers.js v6`](https://github.com/ethers-io/ethers.js/) (alternatively you can use [`web3.js`](https://github.com/web3/web3.js))
-- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
-
-```bash
-yarn add ethers @lukso/lsp-smart-contracts
+  <TabItem value="web3js" label="web3.js">
+```shell 
+npm install @lukso/lsp-smart-contracts
 ```
+Install hardhat-web3:
+```shell
+npm install --save-dev @nomiclabs/hardhat-web3 'web3@^1.0.0-beta.36'
+```
+
+  </TabItem>
+
+<TabItem value="ethersjs" label="ethers.js">
+
+```shell
+npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Create the Smart Contracts
 
@@ -56,7 +70,7 @@ enum TokenType {
 
 After defining the type of the asset you can create a custom 🌄 [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be created within the smart contract.
 
-```solidity title="contracts/EventTicketsNFT.sol"
+```solidity title="contracts/Example1/EventTicketsNFT.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -92,7 +106,7 @@ Next you define the deployment script.
   <TabItem value="ethersjs" label="ethers.js">
 
 <!-- prettier-ignore-start -->
-```js
+```js title="scripts/mintTickets.ts"
 import { ethers } from "hardhat";
 
 // typechain should generate new types for you on every compilation 
@@ -137,19 +151,6 @@ deployAndCreateTickets().catch((error) => {
 <!-- prettier-ignore-end -->
 </TabItem>
 <TabItem value="web3js" label="web3.js">
-
-Swap to the latest version of node;
-
-```sh
-nvm install node
-nvm use node
-```
-
-Install hardhat web3;
-
-```sh
-yarn add --save-dev @nomiclabs/hardhat-web3 'web3@^1.0.0-beta.36'
-```
 
 Add the following to your hardhat.config.ts;
 
