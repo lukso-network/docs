@@ -69,6 +69,38 @@ The value attached to this data key represents the name of the digital asset.
 
 The value attached to this data key represents the symbol of the digital asset.
 
+### `LSP4TokenType`
+
+:::caution Warning
+
+This MUST NOT be changeable, and set only during initialization of the token contract.
+
+:::
+
+```json
+{
+  "name": "LSP4TokenType",
+  "key": "0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3",
+  "keyType": "Singleton",
+  "valueType": "uint256",
+  "valueContent": "Number"
+}
+```
+
+The value attached to this data key repesents the type of token of the digital asset.
+
+:::note References
+
+More token types COULD be added later.
+
+:::
+
+| Value |     Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :---: | :----------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  `0`  |   `Token`    | Only valid for LSP7, meaning its a generic token, where the `LSP4Metadata` represents the token information.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|  `1`  |    `NFT`     | If the contract is LSP7 or LSP8, then the `LSP4Metadata` represents the information of a **single** NFT, that has multiple ownable amounts or IDs. If its an LSP8 each individual token ID COULD have its own custom metadata specific for the token ID, but MUST NOT be a different NFT, just different metadata per item in the NFT. Those COULD be set using `LSP8TokenIdType` and `LSP8MetadataTokenURI`. [See LSP8 for details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md). If its an LSP7 contract, the `decimals` function MUST return `0`. |
+|  `2`  | `Collection` | Only valid for LSP8. The `LSP4Metadata` represents the information of a the collection, and each individual token ID represents its own NFT and MUST have its own metadata set using `LSP8TokenIdType` and `LSP8MetadataTokenURI`. [See LSP8 for details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md).                                                                                                                                                                                                                                              |
+
 ### `LSP4Metadata`
 
 ```json
