@@ -71,9 +71,9 @@ The value attached to this data key represents the symbol of the digital asset.
 
 ### `LSP4TokenType`
 
-:::caution Warning
+:::note References
 
-This MUST NOT be changeable, and set only during initialization of the token contract.
+LSP4 defines 3 default token types (see table below). However, these are not restrictive. Applications and protocols can define new custom token types starting from `3`.
 
 :::
 
@@ -88,12 +88,6 @@ This MUST NOT be changeable, and set only during initialization of the token con
 ```
 
 The value attached to this data key repesents the type of token of the digital asset.
-
-:::note References
-
-More token types COULD be added later.
-
-:::
 
 | Value |     Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | :---: | :----------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
