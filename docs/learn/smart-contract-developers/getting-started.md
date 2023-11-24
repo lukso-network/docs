@@ -10,8 +10,7 @@ Smart contract developer, welcome to the LUKSO documentation! The LUKSO ecosyste
 As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO. The following tutorial will teach you how to:
 
 - set up a [Hardhat](https://hardhat.org/) installation (using TypeScript)
-- install the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package (using version 0.11.0-rc.1)
-- create a basic [`LSP7DigitalAsset` (token)](../../standards/tokens/LSP7-Digital-Asset.md) contract
+- install the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package.
 - deploy it on [LUKSO Testnet](../../networks/testnet/parameters).
 
 If you need more low level information about our contracts, you can check the dedicated [contracts](../../contracts/introduction.md) section.
@@ -22,7 +21,7 @@ Happy coding 🧙
 
 The first thing to do is to [create a new Hardhat project](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) that will use TypeScript:
 
-```bash title="Setup new hardhat project"
+```bash
 mkdir lukso-app
 cd lukso-app
 npx hardhat
@@ -38,7 +37,7 @@ To work in the best condition possible, we will install libraries that includes 
 
 ```bash
 npm i -D dotenv
-npm i -s @lukso/lsp-smart-contracts@0.11.0-rc.1
+npm i -s @lukso/lsp-smart-contracts@0.12.1
 ```
 
 Update your `package.json` with the following:
@@ -71,3 +70,58 @@ UP_ADDR=0x...
 ```
 
 We now have a base Hardhat setup that we can use to develop and deploy our smart contracts.
+
+## Get testnet LYXt
+
+To pay for the deployment fees, you need LYXt. You can request some from the [LUKSO Testnet faucet](https://faucet.testnet.lukso.network/)
+
+## Deploy your contracts on the LUKSO Testnet
+
+:::info
+
+By default, the deployment will be to your local network. If you want to deploy to the LUKSO Testnet, you will need to add the LUKSO Testnet network in your `hardhat.config.ts`.
+
+:::
+
+```js title="hardhat.config.ts"
+// ...
+import { NetworkUserConfig } from 'hardhat/types';
+
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+// ...
+
+function getTestnetChainConfig(): NetworkUserConfig {
+  const config: NetworkUserConfig = {
+    url: 'https://rpc.testnet.lukso.network',
+    chainId: 4201,
+  };
+
+  if (process.env.PRIVATE_KEY !== undefined) {
+    config['accounts'] = [process.env.PRIVATE_KEY];
+  }
+
+  return config;
+}
+
+// Edit the default config object so it matches this one:
+const config: HardhatUserConfig = {
+  solidity: {
+    version: '0.8.19',
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
+  typechain: {
+    outDir: 'typechain-types',
+    target: 'ethers-v6',
+  },
+  networks: {
+    luksoTestnet: getTestnetChainConfig(),
+  },
+};
+```
