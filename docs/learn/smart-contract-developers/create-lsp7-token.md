@@ -16,10 +16,10 @@ You can learn about the project setup by checking the [Getting Started](./gettin
 
 ## Create a custom LSP7 Token
 
-In this guide you will create a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to a specific address. The smart contract will use the following standardization:
+In this guide you will create a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to a specific address. To build your smart contract you will use the following LSP7 preset and extension:
 
-- [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): Allow creating new assets on the smart contract
-- [`LSP7Burnable`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): Allow tokens to be removed from the supply
+- [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow creating new assets on the smart contract.
+- [`LSP7Burnable`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): allow tokens to be removed from the supply.
 
 You can modify the `mint()` function to adjust the amount of initially minted tokens and their receiver as described in the [LSP7 Mintable Documentation](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint).
 
@@ -118,7 +118,7 @@ Create the script that will deploy the contract as your Universal Profile.
 import hre from 'hardhat';
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
-import LSP0ERC725Account from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
 
 // load env vars
 dotenv.config();
