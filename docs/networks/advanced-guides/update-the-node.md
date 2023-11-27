@@ -176,10 +176,10 @@ Only copy over your keystore data if you want to use the same consensus client a
 :::
 
 ```bash
-# Copy Mainnet Node Data
+# Copy previous mainnet validator keys
 cp -r ../myOldLUKSOnode/mainnet-keystore .
 
-# Copy Testnet Node Data
+# Copy previous testnet validator keys
 cp -r ../myOldLUKSOnode/testnet-keystore .
 ```
 
