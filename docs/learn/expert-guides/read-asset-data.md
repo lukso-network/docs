@@ -71,7 +71,7 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://api.universalprofile.cloud/ipfs';
 
 // Parameters for the ERC725 instance
@@ -236,7 +236,7 @@ import Web3 from 'web3';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0xa907c1904c22DFd37FF56c1f3c3d795682539196';
-const RPC_ENDPOINT = 'https://rpc.l16.lukso.network';
+const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const IPFS_GATEWAY = 'https://api.universalprofile.cloud/ipfs';
 
 // Parameters for the ERC725 instance
