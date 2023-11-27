@@ -1,20 +1,11 @@
 ---
 sidebar_label: '👾 Create an NFT Collection with LSP7'
-sidebar_position: 5
+sidebar_position: 4
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Create an NFT Collection Using LSP7
 
 This tutorial explores how to create a collection of [digital assets](../../standards/tokens/LSP7-Digital-Asset.md), where each digital asset is the same. This method is useful for minting large quantities of NFTs at once efficiently (eg: tickets for an event).
-
-:::info
-
-⌨️ The full code of this example can be found in the 👾 [lukso-hardhat-template](https://github.com/CJ42/LUKSO-Hardhat-template).
-
-:::
 
 :::note
 
@@ -22,30 +13,19 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 :::
 
+:::info
+
+⌨️ The full code of this example can be found in the 👾 [LUKSO-Hardhat-template](https://github.com/CJ42/LUKSO-Hardhat-template).
+
+:::
+
 ## Setup
 
-<Tabs groupId="web3-lib">
+To create your custom contract based on the [LUKSO smart contracts](../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
 
-  <TabItem value="web3js" label="web3.js">
-```shell 
+```shell
 npm install @lukso/lsp-smart-contracts
 ```
-Install hardhat-web3:
-```shell
-npm install --save-dev @nomiclabs/hardhat-web3 'web3@^1.0.0-beta.36'
-```
-
-  </TabItem>
-
-<TabItem value="ethersjs" label="ethers.js">
-
-```shell
-npm install ethers @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-
-</Tabs>
 
 ## Create the Smart Contracts
 
@@ -102,9 +82,6 @@ contract EventTicketsNFT is LSP7Mintable {
 
 Next you define the deployment script.
 
-<Tabs groupId="web3-lib">
-  <TabItem value="ethersjs" label="ethers.js">
-
 <!-- prettier-ignore-start -->
 ```js title="scripts/mintTickets.ts"
 import { ethers } from "hardhat";
@@ -149,58 +126,6 @@ deployAndCreateTickets().catch((error) => {
 
 ```
 <!-- prettier-ignore-end -->
-</TabItem>
-<TabItem value="web3js" label="web3.js">
-
-Add the following to your hardhat.config.ts;
-
-```js
-import '@nomiclabs/hardhat-web3';
-```
-
-Write your deployment script:
-
-```js
-
-import { ethers, web3 } from "hardhat";
-import {
-    EventTicketsNFT,
-    EventTicketsNFT__factory
-} from "../typechain-types";
-
-async function deployAndCreateTickets() {
-  const accounts = await web3.eth.getAccounts();
-  const deployer = await ethers.getSigner(accounts[0])
-
-    const luksoMeetupTickets: EventTicketsNFT = await new EventTicketsNFT__factory(deployer).deploy(
-        "LUKSO Meetup #2",
-        "MUP2",
-        deployer.address,
-    )
-
-    // create 100 entry tickets.
-    // give them to the deployer initially, who will distribute them afterwards.
-    await luksoMeetupTickets.mint(
-        deployer.address, // recipient
-        100, // amount
-        true, // force sending to an EOA
-        "0x" // data
-    );
-
-    const luksoMeetupTicketsAddress = await luksoMeetupTickets.getAddress()
-    console.log("NFT Collection deployed to:", luksoMeetupTicketsAddress)
-    console.log("Check the block explorer to see the deployed contract")
-}
-
-deployAndCreateTickets().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
-
-```
-
-</TabItem>
-</Tabs>
 
 ## Check Your NFT Collection
 

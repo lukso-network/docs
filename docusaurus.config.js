@@ -162,7 +162,7 @@ export default {
           },
           {
             from: '/guides/digital-assets/mint-lsp7-digital-asset',
-            to: '/learn/smart-contract-developers/mint-lsp7-token',
+            to: '/learn/dapp-developer/mint-lsp7-token',
           },
           {
             from: '/guides/digital-assets/create-lsp7-digital-asset',

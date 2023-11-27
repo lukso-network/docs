@@ -1,6 +1,6 @@
 ---
-sidebar_label: '🗃 Create an NFT Collection'
-sidebar_position: 4
+sidebar_label: '🗃 Create an NFT Collection with LSP8'
+sidebar_position: 5
 ---
 
 import Tabs from '@theme/Tabs';
