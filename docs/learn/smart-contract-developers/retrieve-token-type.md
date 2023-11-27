@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📖 Retrieve Token Type'
+sidebar_label: '🔎 Retrieve Token Type'
 sidebar_position: 6
 ---
 
@@ -10,14 +10,14 @@ import TabItem from '@theme/TabItem';
 
 ## Background
 
-[LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) can be both used as NFTs. LSP7 is useful for NFTs where individual items are not unique, whereas LSP8 is mainly used for phygitals, or NFTs with unique properties per item.
+[LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) can be both used as NFTs. LSP7 is useful for NFTs where individual items are not unique and to mint large quantity of NFTs at once, whereas LSP8 is mainly used for phygitals, or NFTs with unique properties per item.
 
-To detect the fungibility of an asset, the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) standard defines the `LSP4TokenType`. This data key can be retrieved from the smart contracts 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage.
+To detect if an asset is a **Token**, an **NFT** or a **Collection**, the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) standard defines a data key `LSP4TokenType`where this information is stored. The token type can be retrieved by querying this data key from the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the digital asset contract.
 
 ```js
 {
   "name": "LSP4TokenType",
-  "key": "0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3", // kecca256 hash of the word « LSP4TokenType »
+  "key": "0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3", // keccak256 hash of the word « LSP4TokenType »
   "keyType": "Singleton",
   "valueType": "uint256",
   "valueContent": "Number"
@@ -34,13 +34,13 @@ The `LSP4TokenType` is not changeable and it is set during the token's initializ
 
 ## Implementation
 
-When creating digital assets using [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), the type and data keys of the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) have to be defined within the smart contract like the following:
+When creating digital assets using [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), the token type is defined under the `LSP4TokenType` data key. We can retrieve the value and type using `getData`.
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-bytes32 constant _LSP4_TOKEN_TYPE_DATA_KEY = 0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3; // kecca256 hash of the word `LSP4TokenType`
+bytes32 constant _LSP4_TOKEN_TYPE_DATA_KEY = 0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3; // keccak256 hash of the word `LSP4TokenType`
 
 enum TokenType {
     TOKEN,     // `0` = Token
