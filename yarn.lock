@@ -7723,7 +7723,7 @@ __metadata:
     file-loader: ^6.2.0
     plugin-image-zoom: ^1.2.0
     prettier: ^3.0.3
-    prism-react-renderer: ^2.1.0
+    prism-react-renderer: ^2.3.0
     react: ^18.2.0
     react-dom: ^18.2.0
     sass: ^1.69.3
@@ -9912,6 +9912,18 @@ __metadata:
   peerDependencies:
     react: ">=16.0.0"
   checksum: 61b4eb22bdbf01005a0d7ec2a24a27b69e28f124a1fbbfc2adb4d7d41a7929ea94d5ce506a361dd5a230728402f02595d521d9a5286d74ec9b34be0896c513a5
+  languageName: node
+  linkType: hard
+
+"prism-react-renderer@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "prism-react-renderer@npm:2.3.0"
+  dependencies:
+    "@types/prismjs": ^1.26.0
+    clsx: ^2.0.0
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: 29b24eb5015c09e1b7e3fa2941584ead6fceb5556fdfbe7c34548d96886e0b291290bda93a421aab8b26ce6aae677387aac294982d11349a050843f6dbbc7449
   languageName: node
   linkType: hard
 
