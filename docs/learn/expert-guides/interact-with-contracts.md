@@ -98,8 +98,8 @@ You can quickly compile and get a contract's ABI in [Remix IDE](https://remix.et
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports & Constants"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -122,8 +122,8 @@ const targetContract = new web3.eth.Contract(
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports & Constants"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(
@@ -258,8 +258,8 @@ await universalProfile
 <!-- prettier-ignore-start -->
 
 ```typescript title="Final code"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -301,8 +301,8 @@ await universalProfile.methods
 
 
 ```typescript title="Final code"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(
