@@ -24,31 +24,18 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 To create your custom contract based on the [LUKSO smart contracts](../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
 
 ```shell
-npm install @lukso/lsp-smart-contracts
+npm install @lukso/lsp-smart-contracts@0.13.0
 ```
 
 ## Create the Smart Contracts
 
-When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different token types:
+When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
 - `1` = NFT
 - `2` = Collection
 
-```solidity title="contracts/TokenTypes.sol"
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
-
-bytes32 constant _LSP4_TOKEN_TYPE_DATA_KEY = 0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3; // kecca256 hash of the word `LSP4TokenType`
-
-enum TokenType {
-    TOKEN,
-    NFT,
-    COLLECTION
-}
-```
-
-After defining the type of the asset you can create a custom 🌄 [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be created within the smart contract.
+For this example we will use the `Token` token type. You can create a custom 🌄 [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be created within the smart contract.
 
 ```solidity title="contracts/Example1/EventTicketsNFT.sol"
 // SPDX-License-Identifier: MIT
@@ -58,8 +45,9 @@ pragma solidity ^0.8.4;
 import {
     LSP7Mintable
 } from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol";
-
-import {_LSP4_TOKEN_TYPE_DATA_KEY, TokenType} from "../TokenTypes.sol";
+import {
+    _LSP4_TOKEN_TYPE_TOKEN
+} from "@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol";
 
 contract EventTicketsNFT is LSP7Mintable {
     constructor(
@@ -71,12 +59,10 @@ contract EventTicketsNFT is LSP7Mintable {
             eventName,
             tokenSymbol,
             contractOwner,
+            _LSP4_TOKEN_TYPE_TOKEN, // set the token type as Token
             true // make the token non divisible
         )
-    {
-        // set the token type
-        _setData(_LSP4_TOKEN_TYPE_DATA_KEY, abi.encode(TokenType.TOKEN));
-    }
+    {}
 }
 ```
 
