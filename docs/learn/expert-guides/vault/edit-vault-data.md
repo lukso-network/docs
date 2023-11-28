@@ -219,7 +219,11 @@ const deployVaultURD = async () => {
   // deploy the Universal Receiver Delegate Vault contract
   const vaultURD = await vaultURDFactory.connect(myEOA).deploy();
 
-  return vaultURD.target;
+  // get back the transaction data when deployed
+  const transactionReceipt = await vaultURD.deployTransaction.wait();
+
+  // return the address of the Vault URD
+  return transactionReceipt.contractAddress;
 };
 
 // deploy a new Vault URD and retrieve its address
