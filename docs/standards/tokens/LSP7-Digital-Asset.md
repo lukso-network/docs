@@ -31,7 +31,7 @@ Fungible assets such as **[ERC20](https://eips.ethereum.org/EIPS/eip-20)**, **[E
 
 LSP7-DigitalAsset is an interface standard which describes a set of methods that fungible asset contracts should implement which other contracts and clients can call.
 
-This standard was based on **[ERC20](https://eips.ethereum.org/EIPS/eip-20)** and **[ERC777](https://eips.ethereum.org/EIPS/eip-777)** with additional features mentioned below:
+This standard was based on the ideas of **[ERC20](https://eips.ethereum.org/EIPS/eip-20)** and **[ERC777](https://eips.ethereum.org/EIPS/eip-777)**. While it does not integrate all the functionality from [ERC777](https://eips.ethereum.org/EIPS/eip-777), LSP7 comes with the additional features mentioned below:
 
 ### Divisible _vs_ Non-Divisible
 
