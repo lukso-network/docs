@@ -26,7 +26,7 @@ npm install ethers @lukso/lsp-smart-contracts
 At this point, the `LPS7Mintable` contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
 
 ```javascript
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const privateKey = '0x...';
@@ -68,7 +68,7 @@ let mintTxn = await myToken.mint(signer.address, 1, true, '0x', {
 
 ```javascript
 import { ethers } from 'hardhat';
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json' assert { type: 'json' };
 
 const privateKey = '0x..';
 const myTokenAddress = '0x..';

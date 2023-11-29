@@ -85,9 +85,9 @@ You can quickly compile and get a contract's ABI in [**Remix IDO**](https://remi
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports & Constants"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -105,9 +105,9 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports & Constants"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider(
@@ -288,9 +288,9 @@ await universalProfile
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Interacting with other contracts through the vault"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -339,9 +339,9 @@ await universalProfile.methods.execute(0, vaultAddress, 0, vaultCalldata).send({
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Interacting with other contracts through the vault"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import TargetContractABI from './TargetContractABI.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import TargetContractABI from './TargetContractABI.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(

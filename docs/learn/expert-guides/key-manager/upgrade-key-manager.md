@@ -67,8 +67,8 @@ Create a JavaScript file and add the following imports on the top of the file:
   <TabItem value="web3js" label="web3.js">
 
 ```js title="Imports & Constants"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -82,8 +82,8 @@ const universalProfileAddress = '0x...';
   <TabItem value="ethersjs" label="ethers.js">
 
 ```js title="Imports & Constants"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(
@@ -272,8 +272,8 @@ The upgrade has been completed successfully.
 <!-- prettier-ignore-start -->
 
 ```javascript title="upgrade-lsp6.js"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import Web3 from 'web3';
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 
@@ -327,8 +327,8 @@ await upgradeLSP6();
 <!-- prettier-ignore-start -->
 
 ```js title="upgrade-lsp6.js"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
@@ -381,8 +381,8 @@ node test-new-lsp6.js
 <!-- prettier-ignore-start -->
 
 ```javascript title="test-new-lsp6.js"
-import LSP0ERC725YAccount from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725YAccount.json';
-import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import LSP0ERC725YAccount from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725YAccount.json' assert { type: 'json' };
+import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');

@@ -118,7 +118,7 @@ Create the script that will deploy the contract as your Universal Profile.
 import hre from 'hardhat';
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json' assert { type: 'json' };
 
 // load env vars
 dotenv.config();
