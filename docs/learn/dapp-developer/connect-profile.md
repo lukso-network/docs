@@ -3,36 +3,26 @@ sidebar_label: '🔗 Connect a Universal Profile'
 sidebar_position: 1
 ---
 
-# Connect Your Universal Profile to a dApp
+# Connect a Universal Profile
 
-To allow your users to connect to your dApp with their [Universal Profile](../../standards/universal-profile/introduction.md), they need to:
+To interact with a [Universal Profile](../../standards/universal-profile/introduction.md), your dApp can call the `window.ethereum` object, similar to other wallets. Before a connection can be established, users have to create their Universal Profile by:
 
-- install the 🖥️ [Universal Profile Browser Extension](/install-up-browser-extension)
-- and ✨ [create a Universal Profile](https://my.universalprofile.cloud)
+1. [Installing the Universal Profile Browser Extension](/install-up-browser-extension)
+2. [Deploying their Universal Profile](https://my.universalprofile.cloud)
 
 :::note Manual Deployment
 
-Optionally you can ⚒️ [deploy a Universal Profile programmatically](../../learn/expert-guides/universal-profile/create-profile.md) for your users, but then they will not benefit from free transactions through the LUKSO Transaction Relay Service.
+Optionally, you can create new [Universal Profiles](../../standards/universal-profile/introduction.md) by ⚒️ [deploying them programmatically](../../learn/expert-guides/universal-profile/create-profile.md). Please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/relayer-api.md) to allow gasless onboarding, as customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
 
 :::
-
-:::note
-
-If you expect your users to have MetaMask or other similar browser extensions installed, you can also connect to the Universal Profile Browser Extension directly, using the `window.lukso` object.
-
-:::
-
-<div style={{textAlign: 'center'}}>
-
-<img
-    src="/img/learn/up_extension_connect.png"
-    alt="Example of Sign-In with Ethereum screen"
-    width="400"
-/>
-
-</div>
 
 ## Connect to a dApp
+
+:::success Request Handling
+
+The [Universal Profile Extension](/install-up-browser-extension) automatically manages incoming requests and returns the address of the connected [Universal Profile](../../standards/universal-profile/introduction.md). To get the conrolling EOAs of the [smart contract account](../../standards/universal-profile/lsp0-erc725account.md), you can manually [fetch it's controllers](../expert-guides/key-manager/get-controller-permissions.md).
+
+:::
 
 ```js
 import Web3 from 'web3';
@@ -50,3 +40,19 @@ async function connect() {
 }
 connect();
 ```
+
+<div style={{textAlign: 'center'}}>
+
+<img
+    src="/img/learn/up_extension_connect.png"
+    alt="Example of Sign-In with Ethereum screen"
+    width="400"
+/>
+
+</div>
+
+:::info
+
+If you expect your users to have multiple browser wallets or extensions, we recommend installing [Web3 Onboard](https://onboard.blocknative.com/) by following our [Web3 Onboard Configuration](../expert-guides/web3-onboard.md). The library will allow users to manage multiple browser providers in parallel.
+
+:::
