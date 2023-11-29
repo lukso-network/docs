@@ -58,9 +58,9 @@ Then we will initialize the EOA that we will further use.
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports, Constants & EOA"
-import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
+import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
@@ -79,9 +79,9 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports, Constants & EOA"
-import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
+import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
@@ -435,9 +435,9 @@ await updateVaultURD(vaultURDAddress);
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Deploy new Vault URD and update Vault's URD"
-import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
+import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
@@ -513,9 +513,9 @@ await updateVaultURD(vaultURDAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Deploy new Vault URD and update Vault's URD"
-import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
+import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
