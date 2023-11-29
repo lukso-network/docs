@@ -28,23 +28,20 @@ Make sure you have the following dependencies installed before beginning this tu
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```shell title="Install the dependencies"
+```shell
 npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```shell title="Install the dependencies"
+```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
-
 </Tabs>
 
 ## Step 1 - Imports, constants and EOA
@@ -54,14 +51,13 @@ After that we need to store the address of our LSP9 Vault and our Universal Prof
 Then we will initialize the EOA that we will further use.
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Imports, Constants & EOA"
+```typescript
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 import Web3 from 'web3';
 
 // constants
@@ -75,14 +71,13 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Imports, Constants & EOA"
+```typescript
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 import { ethers } from 'ethers';
 
 // constants
@@ -98,7 +93,6 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
   </TabItem>
-
 </Tabs>
 
 ## Step 2 - Deploying Universal Receiver Delegate (URD)
@@ -113,19 +107,17 @@ The **Universal Profile** and the **Vault** don't use the same implementation of
 At this step we will create an instance of the Vault URD that we will further be used to deploy one.
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Contract instance of the LSP9 Vault URD"
+```typescript
 // create an instance of the LSP1UniversalReceiverDelegateVault
 const vaultURD = new web3.eth.Contract(LSP1UniversalReceiverDelegateVault.abi);
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Contract instance of the LSP9 Vault URD"
+```typescript
 // create a LSP1UniversalReceiverDelegateVault Contract Factory
 const vaultURDFactory = new ethers.ContractFactory(
   LSP1UniversalReceiverDelegateVault.abi,
@@ -134,7 +126,6 @@ const vaultURDFactory = new ethers.ContractFactory(
 ```
 
   </TabItem>
-
 </Tabs>
 
 ### Send the contract deployment transaction
@@ -142,10 +133,9 @@ const vaultURDFactory = new ethers.ContractFactory(
 Send the deployment transaction and in a few seconds you will get a new deployed Vault URD.
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Send the transaction for deploying a new LSP9 Vault URD"
+```typescript
 // deploy the Universal Receiver Delegate Vault contract
 await vaultURD
   .deploy({
@@ -153,31 +143,28 @@ await vaultURD
   })
   .send({
     from: myEOA.address,
-    gas: 5_000_000,
+    gas: '5000000',
     gasPrice: '1000000000',
   });
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Send the transaction for deploying a new LSP9 Vault URD"
+```typescript
 // deploy the Universal Receiver Delegate Vault contract
 const vaultURD = await vaultURDFactory.connect(myEOA).deploy();
 ```
 
   </TabItem>
-
 </Tabs>
 
 ### Final code
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Deploy a new LSP9 Vault Universal Receive Delegate"
+```typescript
 const deployVaultURD = async () => {
   // create an instance of the LSP1UniversalReceiverDelegateVault
   const vaultURD = new web3.eth.Contract(
@@ -192,7 +179,7 @@ const deployVaultURD = async () => {
     })
     .send({
       from: myEOA.address,
-      gas: 5_000_000,
+      gas: '5000000',
       gasPrice: '1000000000',
     })
     .on('receipt', (receipt) => (vaultURDAddress = receipt.contractAddress));
@@ -205,10 +192,9 @@ const vaultURDAddress = await deployVaultURD();
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Deploy a new LSP9 Vault Universal Receive Delegate"
+```typescript
 const deployVaultURD = async () => {
   // create a LSP1UniversalReceiverDelegateVault Contract Factory
   const vaultURDFactory = new ethers.ContractFactory(
@@ -231,7 +217,6 @@ const vaultURDAddress = await deployVaultURD();
 ```
 
   </TabItem>
-
 </Tabs>
 
 ## Step 3 - Setting the URD address in the storage
@@ -246,10 +231,9 @@ Firstly we need to create instances for the following contracts:
 - [**Universal Profile**](../../../standards/universal-profile/lsp0-erc725account.md)
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Contract instances for the Universal Profile and Vault"
+```typescript
 // create an instance of the LSP9Vault
 const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
 // create an instance of the Universal Profile
@@ -260,10 +244,9 @@ const universalProfile = new web3.eth.Contract(
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Contract instances for the Universal Profile and Vault"
+```typescript
 // create an instance of the LSP9Vault
 const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
 // create an instance of the Universal Profile
@@ -274,7 +257,6 @@ const universalProfile = new ethers.Contract(
 ```
 
   </TabItem>
-
 </Tabs>
 
 ### Encode `setData(..)` calldata
@@ -282,10 +264,9 @@ const universalProfile = new ethers.Contract(
 Secondly, we need to encode a calldata that will update the address of the Vault URD.
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Calldata for updating the LSP9 Vault URD"
+```typescript
 // encode setData Calldata on the Vault
 const setDataCalldata = await vault.methods
   .setData(ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, vaultURDAddress)
@@ -293,10 +274,9 @@ const setDataCalldata = await vault.methods
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Calldata for updating the LSP9 Vault URD"
+```typescript
 // encode setData Calldata on the Vault
 const setDataCalldata = vault.interface.encodeFunctionData('setData', [
   ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate,
@@ -305,7 +285,6 @@ const setDataCalldata = vault.interface.encodeFunctionData('setData', [
 ```
 
   </TabItem>
-
 </Tabs>
 
 ### Update the Vault data
@@ -313,10 +292,9 @@ const setDataCalldata = vault.interface.encodeFunctionData('setData', [
 Lastly, we need to send the transaction that will update the Vault data through the Universal Profile's `execute(..)`.
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Execute the calldata on the Universal Profile"
+```typescript
 // execute the `setData(bytes32,bytes)` calldata that updates the Vault data
 await universalProfile.methods
   .execute(
@@ -335,7 +313,7 @@ await universalProfile.methods
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Execute the calldata on the Universal Profile"
+```typescript
 // execute the `setData(bytes32,bytes)` calldata that updates the Vault data
 await universalProfile.connect(myEOA).execute(
   0, // OPERATION CALL
@@ -346,16 +324,14 @@ await universalProfile.connect(myEOA).execute(
 ```
 
   </TabItem>
-
 </Tabs>
 
 ### Final code
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Update Vault's URD to the one newly deployed"
+```typescript
 const updateVaultURD = async (vaultURDAddress) => {
   // create an instance of the LSP9Vault
   const vault = new web3.eth.Contract(LSP9Vault.abi, vaultAddress);
@@ -392,10 +368,9 @@ await updateVaultURD(vaultURDAddress);
 ```
 
   </TabItem>
-
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Update Vault's URD to the one newly deployed"
+```typescript
 const updateVaultURD = async (vaultURDAddress) => {
   // create an instance of the LSP9Vault
   const vault = new ethers.Contract(vaultAddress, LSP9Vault.abi);
@@ -425,20 +400,18 @@ await updateVaultURD(vaultURDAddress);
 ```
 
   </TabItem>
-
 </Tabs>
 
 ## Final code - Deploy & Update
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Deploy new Vault URD and update Vault's URD"
+```typescript
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -463,7 +436,7 @@ const deployVaultURD = async () => {
     })
     .send({
       from: myEOA.address,
-      gas: 5_000_000,
+      gas: '5000000',
       gasPrice: '1000000000',
     })
     .on('receipt', (receipt) => (vaultURDAddress = receipt.contractAddress));
@@ -509,14 +482,14 @@ await updateVaultURD(vaultURDAddress);
 ```
 
   </TabItem>
-  
+
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Deploy new Vault URD and update Vault's URD"
+```typescript
 import LSP1UniversalReceiverDelegateVault from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateVault.json';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(
@@ -575,7 +548,6 @@ await updateVaultURD(vaultURDAddress);
 ```
 
   </TabItem>
-
 </Tabs>
 
 ## Reading Data
