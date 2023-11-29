@@ -70,7 +70,7 @@ The first step is to initialize the erc725.js library with a JSON schema specifi
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json' assert { type: 'json' };
 
 // step 1 -initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
 const erc725 = new ERC725(
@@ -151,7 +151,7 @@ To get started you would need the following:
   <TabItem value="web3js" label="web3.js">
 
 ```javascript title="Load account from a private key"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -166,7 +166,7 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 <!-- prettier-ignore-start -->
 
 ```javascript title="Load account from a private key"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
@@ -321,9 +321,9 @@ You can then try to do again the **Edit our Universal Profile** guide, using thi
 <!-- prettier-ignore-start -->
 
 ```js
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json' assert { type: 'json' };
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -398,9 +398,9 @@ grantPermissions();
   <TabItem value="ethersjs" label="ethers.js">
 
 ```js
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json' assert { type: 'json' };
 import { ethers } from 'ethers';
 import Web3 from 'web3';
 

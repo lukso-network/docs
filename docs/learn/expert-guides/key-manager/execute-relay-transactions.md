@@ -67,8 +67,8 @@ To encode a transaction, we need the address of the Universal Profile smart cont
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports & Constants"
-import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import Web3 from 'web3';
 
@@ -89,8 +89,8 @@ const controllerAccount = web3.eth.accounts.wallet.add(controllerPrivateKey);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports & Constants"
-import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { ethers } from 'ethers';
 
@@ -397,8 +397,8 @@ You can find more information about the [LSP6KeyManager `executeRelayCall` here]
   <TabItem value="web3js" label="web3.js">
 
 ```javascript title="Final code"
-import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import Web3 from 'web3';
 
@@ -452,12 +452,12 @@ let encodedMessage = web3.utils.encodePacked(
   { value: chainId, type: 'uint256' },            // `0x0000000000000000000000000000000000000000000000000000000000001069`
   // e.g: nonce nb 5
   { value: nonce, type: 'uint256' },              // `0x0000000000000000000000000000000000000000000000000000000000000005`
-  // e.g: valid until 1st January 2025 at midnight (GMT). 
+  // e.g: valid until 1st January 2025 at midnight (GMT).
   // Timestamp = 1735689600
   { value: validityTimestamps, type: 'uint256' }, // `0x0000000000000000000000000000000000000000000000000000000067748580`
   // e.g: not funding the contract with any LYX (0)
   { value: msgValue, type: 'uint256' },           // `0x0000000000000000000000000000000000000000000000000000000000000000`
-  // e.g: execute(uint256,address,uint256,bytes) 
+  // e.g: execute(uint256,address,uint256,bytes)
   // send 3 LYX to address `0xcafecafecafecafeafecafecafecafeafecafecafecafeafecafecafecafe`
   { value: abiPayload, type: 'bytes' },           // `0x44c028fe0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000cafecafecafecafecafecafecafecafecafecafe00000000000000000000000000000000000000000000000029a2241af62c000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000`
 );
@@ -483,8 +483,8 @@ const executeRelayCallTransaction = await keyManager.methods
   <TabItem value="ethersjs" label="ethers.js">
 
 ```javascript title="Final code"
-import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
+import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json' assert { type: 'json' };
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 import { ethers } from 'ethers';
 

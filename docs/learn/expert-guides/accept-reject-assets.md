@@ -139,7 +139,7 @@ Then we will initialize the controller address.
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports, Constants & EOA"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
@@ -159,7 +159,7 @@ const EOA = web3.eth.accounts.wallet.add(privateKey);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports, Constants & EOA"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
@@ -252,7 +252,7 @@ await universalProfile
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Update the Universal Profile URD"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
 
@@ -286,7 +286,7 @@ await universalProfile.methods
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Update the Universal Profile URD"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
 
