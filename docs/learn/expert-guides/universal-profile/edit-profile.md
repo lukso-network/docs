@@ -195,7 +195,7 @@ Our [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) tool provi
 ```javascript title="main.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
 // reference to the previously created JSON file (LSP3Profile metadata)
-import jsonFile from './UniversalProfileMetadata.json' assert { type: 'json' };
+import jsonFile from './UniversalProfileMetadata.json';
 
 const provider = 'https://rpc.testnet.lukso.network'; // RPC provider url
 
@@ -315,7 +315,7 @@ The first step is to create an instance of the Universal Profile smart contract.
 
 ```javascript title="Create contracts instances and get the Key Manager address"
 import Web3 from 'web3';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 
@@ -390,9 +390,9 @@ import Web3 from 'web3';
 import { ERC725 } from '@erc725/erc725.js';
 import { LSPFactory } from '@lukso/lsp-factory.js';
 
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-import jsonFile from './UniversalProfileMetadata.json' assert { type: 'json' };
+import jsonFile from './UniversalProfileMetadata.json';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 

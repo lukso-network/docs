@@ -60,7 +60,7 @@ For the constants we will need the _private key_ and _the address of the vault r
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports & Constants"
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -76,7 +76,7 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports & Constants"
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(
@@ -170,7 +170,7 @@ You need to have LYXt in your EOA in order to pay for the transaction fees. Visi
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Deploying the vault"
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import Web3 from 'web3';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -201,7 +201,7 @@ await myVault
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Deploying the vault"
-import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json' assert { type: 'json' };
+import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.JsonRpcProvider(
