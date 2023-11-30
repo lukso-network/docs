@@ -52,7 +52,7 @@ As the initial step, you have to set up the Universal Profile and LSP7 Token. Bo
 import Web3 from 'web3';
 
 // Import schemas and ABI
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json' assert { type: 'json' };
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
 const web3 = new Web3(window.ethereum);
 
@@ -84,7 +84,7 @@ await myToken.methods
 import { ethers } from 'ethers';
 
 // Import schemas and ABI
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json' assert { type: 'json' };
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
 await provider.send("eth_requestAccounts", []);
 

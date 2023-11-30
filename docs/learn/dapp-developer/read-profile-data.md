@@ -74,7 +74,7 @@ The [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function allow
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
 const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
@@ -96,7 +96,7 @@ console.log(profileData);
 
 ```js
 import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
 const erc725js = new ERC725(lsp3ProfileSchema as ERC725JSONSchema[], '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {

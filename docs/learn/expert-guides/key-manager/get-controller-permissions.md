@@ -32,7 +32,7 @@ The first step is to set up both and _web3.js_ and _erc725.js_, and connect to t
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json' assert { type: 'json' };
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 import Web3 from 'web3';
 
 // setup
@@ -145,7 +145,7 @@ console.log(
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json' assert { type: 'json' };
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 import Web3 from 'web3';
 
 // setup
