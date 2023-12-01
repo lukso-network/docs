@@ -54,7 +54,7 @@ npm install @erc725/erc725.js
 
 <div>
 
-- `SupportedStandards:LSP3Profile` Verifies that the ERC725Y contract contains [LSP3UniversalProfile](../../standards/universal-profile/lsp3-profile-metadata) data keys
+- `SupportedStandards:LSP3Profile` Verifies that the ERC725Y contract contains [LSP3Profile](../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile) data keys
 - `LSP3Profile` contains the JSON file with profile descriptions and images
 - `LSP12IssuedAssets[]` contains assets the profile issued
 - `LSP5ReceivedAssets[]` contains assets the profile received
