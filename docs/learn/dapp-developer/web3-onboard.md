@@ -5,11 +5,11 @@ sidebar_position: 9
 
 # Universal Profile Integration for Web3-Onboard
 
-The [Web3-Onboard](https://onboard.blocknative.com/) library is an open-source, framework-agnostic JavaScript tool to onboard users to Web3 apps. Developers can integrate it into their dApp to handle the routing for the different extensions and wallets, simultaniously docking onto the Ethereum provider.
+The [Web3-Onboard](https://onboard.blocknative.com/) library is an open-source, framework-agnostic JavaScript tool to onboard users to Web3 apps. Developers can integrate it into their dApp to handle the routing for the different extensions and wallets, simultaneously docking onto the Ethereum provider.
 
 ![web3-onboard-view](/img/extension/web3-onboard.png)
 
-Our [Web3-Onboard configuration](https://github.com/lukso-network/web3-onboard-config) can be used to integrate the [Universal Profile Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl) into Web3-Onboard's connection module. In case the [Universal Profile Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl) is not installed, the user will be taken to its download page.
+Our [Web3-Onboard configuration](https://github.com/lukso-network/web3-onboard-config) can be used to integrate the [Universal Profile Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl) into Web3-Onboard's connection module. If the [Universal Profile Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl) is not installed, the user will be taken to its download page.
 
 ## Installation
 
@@ -21,9 +21,9 @@ npm i @web3-onboard/core @lukso/web3-onboard-config @web3-onboard/injected-walle
 
 ## Setup
 
-After installation, you can proceed to configure your extensions that you want to dock onto your dApp.
+After installation, you can proceed to configure your extension that you want to dock onto your dApp.
 
-:::caution Refferal Links
+:::caution Referral Links
 
 Be aware that anyone implementing Web3-Onboard can modify the download link to the extension.
 
@@ -31,7 +31,7 @@ Be aware that anyone implementing Web3-Onboard can modify the download link to t
 
 :::success
 
-The Web3-Onboard configuration and calls should be set up as a global `context` or `component`, acsessable to every page or component of your application layout that is interacting with the blockchain.
+The Web3-Onboard configuration and calls should be set up as a global `context` or `component`, accessible to every page or component of your application layout that is interacting with the blockchain.
 
 :::
 
