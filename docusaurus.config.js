@@ -226,7 +226,7 @@ export default {
           },
           {
             from: '/guides/browser-extension/web3-onboard',
-            to: '/learn/expert-guides/web3-onboard',
+            to: '/learn/dapp-developer/web3-onboard',
           },
           {
             from: '/guides/browser-extension/install-browser-extension',

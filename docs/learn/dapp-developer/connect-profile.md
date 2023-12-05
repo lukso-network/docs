@@ -53,6 +53,6 @@ connect();
 
 :::info
 
-If you expect your users to have multiple browser wallets or extensions, we recommend installing [Web3 Onboard](https://onboard.blocknative.com/) by following our [Web3 Onboard Configuration](../expert-guides/web3-onboard.md). The library will allow users to manage multiple browser providers in parallel.
+If you expect your users to have multiple browser wallets or extensions, we recommend installing [Web3 Onboard](https://onboard.blocknative.com/) by following our [Web3 Onboard Configuration](./web3-onboard.md). The library will allow users to manage multiple browser providers in parallel.
 
 :::
