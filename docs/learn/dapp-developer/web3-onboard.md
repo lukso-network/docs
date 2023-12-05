@@ -89,12 +89,14 @@ const injectedWallets = injectedModule({
  * interact with the Universal Profile Browser Extension
  */
 const supportedChains = [
+  // https://docs.lukso.tech/networks/mainnet/parameters
   {
     id: 42,
     token: "LYX",
     label: "LUKSO Mainnet",
     rpcUrl: "https://rpc.lukso.gateway.fm/",
   },
+  // https://docs.lukso.tech/networks/testnet/parameters
   {
     id: 4021,
     token: "LYXt",
