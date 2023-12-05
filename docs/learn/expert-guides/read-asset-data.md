@@ -66,7 +66,7 @@ If using erc725.js in a NodeJS environment you may need to install and import [`
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json' assert { type: 'json' };
+import LSP3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 import Web3 from 'web3';
 
 // Static variables
@@ -80,7 +80,7 @@ const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP5 data of the Universal Profile to get its owned assets
 const profile = new ERC725(
-  UniversalProfileSchema,
+  LSP3ProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
   provider,
   config,
@@ -106,7 +106,7 @@ If using erc725.js in a NodeJS environment you may need to install and import [`
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json' assert { type: 'json' };
+import LSP3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 import Web3 from 'web3';
 
 // Static variables
@@ -120,7 +120,7 @@ const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP1 data of the Universal Profile to get its Universal Receiver
 const profile = new ERC725(
-  UniversalProfileSchema,
+  LSP3ProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
   provider,
   config,
@@ -157,7 +157,7 @@ Using the Universal Receiver address, we can now call the `getAllRawValues()` fu
 
 ```javascript title="read_assets.js"
 // ABI for the Universal Receiver
-import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json' assert { type: 'json' };
+import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';
 
 // ...
 
@@ -198,7 +198,7 @@ In this guide, we will use the `LSP4Metadata` key to read the asset metadata.
 
 ```javascript title="read_assets.js"
 // ABIs
-import LSP4schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json' assert { type: 'json' };
+import LSP4schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
 // ...
 
@@ -230,8 +230,8 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json' assert { type: 'json' };
-import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json' assert { type: 'json' };
+import LSP3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import Web3 from 'web3';
 
 // Static variables
@@ -245,7 +245,7 @@ const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP5 data of the Universal Profile to get its owned assets
 const profile = new ERC725(
-  UniversalProfileSchema,
+  LSP3ProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
   provider,
   config,
@@ -295,10 +295,10 @@ console.log(ownedAssetsMetadata);
 ```javascript title="read_assets.js"
 // Import and network setup
 import { ERC725 } from '@erc725/erc725.js';
-import UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json' assert { type: 'json' };
-import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json' assert { type: 'json' };
+import LSP3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import Web3 from 'web3';
-import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json' assert { type: 'json' };
+import LSP1MinimalABI from './lsp1_legacy_minimal_abi.json';
 
 // Static variables
 const SAMPLE_PROFILE_ADDRESS = '0x0C03fBa782b07bCf810DEb3b7f0595024A444F4e';
@@ -311,7 +311,7 @@ const config = { ipfsGateway: IPFS_GATEWAY };
 
 // Fetch the LSP1 data of the Universal Profile to get its Universal Receiver
 const profile = new ERC725(
-  UniversalProfileSchema,
+  LSP3ProfileSchema,
   SAMPLE_PROFILE_ADDRESS,
   provider,
   config,

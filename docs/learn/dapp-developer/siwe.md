@@ -53,7 +53,7 @@ If you need further explanation on the `SiweMessage` properties, please have a l
 
 <!-- prettier-ignore-start -->
 ```js
-import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { SiweMessage } from 'siwe';
 
 const myUniversalProfileContract = new web3.eth.Contract(

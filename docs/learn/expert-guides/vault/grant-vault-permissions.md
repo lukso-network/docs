@@ -73,7 +73,7 @@ Finally, we will need a private key with the proper _permissions_, in our case [
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports, Constants & EOA initialization"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import Web3 from 'web3';
@@ -94,7 +94,7 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports, Constants & EOA initialization"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import { ethers } from 'ethers';
@@ -251,7 +251,7 @@ await universalProfile
 <!-- prettier-ignore-start -->
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import Web3 from 'web3';
@@ -307,7 +307,7 @@ await universalProfile.methods.setData(
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { encodeKey } from '@erc725/erc725.js/build/main/src/lib/utils.js';
 import { ethers } from 'ethers';

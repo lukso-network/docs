@@ -62,8 +62,8 @@ Then we will initialize the EOA that we will further use.
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Imports, Constants & EOA"
-import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json' assert { type: 'json' };
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
@@ -85,8 +85,8 @@ const EOA = web3.eth.accounts.wallet.add(privateKey);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports, Constants & EOA"
-import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json' assert { type: 'json' };
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
@@ -546,8 +546,8 @@ await updateUniversalProfileURD(universalProfileURDAddress);
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Deploy a Universal Profile URD, update its permissions and add it to the Universal Profile"
-import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json' assert { type: 'json' };
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
@@ -651,8 +651,8 @@ await updateUniversalProfileURD(universalProfileURDAddress);
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Deploy a Universal Profile URD, update its permissions and add it to the Universal Profile"
-import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json' assert { type: 'json' };
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import {
   ERC725YDataKeys,
   PERMISSIONS,
