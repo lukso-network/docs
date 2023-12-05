@@ -9,23 +9,23 @@ This page will overview the similarities and differences between the LUKSO ecosy
 
 ## What is LUKSO's Relationship to Ethereum?
 
-LUKSO is an L1 blockchain ecosystem that focuses on creating and managing user profiles, assets, and decentralized applications, introducing [unique features](./introduction.md) and standards, particularly around digital identity and creative industries. LUKSO's network is similar to Ethereum's PoS blockchain up to the Shanghai and Capella fork and uses the Ethereum Virtual Machine (EVM) for smart contract functionality. In the future, LUKSO plans to integrate upcoming forks further.
+LUKSO is an L1 blockchain ecosystem that focuses on creating and managing [user profiles](../standards/universal-profile/introduction.md), assets, and decentralized applications, introducing [unique features](./introduction.md) and standards, particularly around digital identity and creative industries. LUKSO's network is similar to Ethereum's PoS blockchain up to the Shanghai and Capella fork and uses the Ethereum Virtual Machine (EVM) for smart contract functionality. In the future, LUKSO plans to integrate upcoming forks further.
 
 To participate in the network, the Ethereum clients can be run with a [custom network configuration](https://github.com/lukso-network/network-configs). To [run a node](/networks/mainnet/running-a-node.md), operators can use the LUKSO CLI, Dappnode, Docker, or manual installation.
 
-In terms of programmability, LUKSO is similar to Ethereum's EVM. Therefore, all programming languages, developer tooling, and standards are relevant for both ecosystems. Developers building on LUKSO can write smart contracts in Solidity, use HardHat for smart contract management, and use smart contract standards already developed for Ethereum.
+In terms of programmability, LUKSO is similar to Ethereum's EVM. Therefore, all programming languages, developer tooling, and standards are relevant for both ecosystems. Developers building on LUKSO can write smart contracts in Solidity, use [Hardhat](https://hardhat.org/) for smart contract management, and use smart contract standards already developed for Ethereum.
 
 You can read more about the network and concept on our FAQ pages:
 
-- [Why did LUKSO launch as Layer 1 blockchain](../faq/lukso/general-information.md#why-did-lukso-launch-as-a-layer-1-blockchain)
-- [What are the main features of LSPs](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
-- [What is the network architecture of LUKSO](../faq/network/blockchain-architecture.md#what-is-the-network-architecture-of-lukso)
+- [Why did LUKSO launch as Layer 1 blockchain?](../faq/lukso/general-information.md#why-did-lukso-launch-as-a-layer-1-blockchain)
+- [What are the main features of LSPs?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
+- [What is the network architecture of LUKSO?](../faq/network/blockchain-architecture.md#what-is-the-network-architecture-of-lukso)
 
 ## Native assets and transactions
 
 Like Ethereum, the LUKSO blockchain has its native coin, LYX, that can be stored on any Ethereum wallet with custom network support. However, users on LUKSO do not need LYX to interact on the network. When creating a [Universal Profile](../standards/universal-profile/introduction.md) through the [Universal Profile Browser Extension](/install-up-browser-extension), users get a free monthly quota of 20.000.000 GAS, subsidized by LUKSO using a [transaction relay service](../standards/relayer-api.md). It is planned to have a landscape of transaction relay services that people can choose from to allow indirect payment. All transaction objects are equal to Ethereum.
 
-Before the mainnet started, the project's initial asset was LYXe, which is represented on the Ethereum blockchain. LYXe can be migrated to LYX using the migration service on [migrate.lukso.network](https://migrate.lukso.network/).
+Before the mainnet started, the project's initial asset was [LYXe](https://etherscan.io/token/0xA8b919680258d369114910511cc87595aec0be6D), which is represented on the Ethereum blockchain. LYXe can be migrated to LYX using the migration service on [migrate.lukso.network](https://migrate.lukso.network/).
 
 You can read more about the project's origins in the following pages and articles:
 
@@ -45,7 +45,7 @@ Check out our [Developer Tools](../tools/getting-started.md) for LSP smart contr
 
 ## Things to watch out for
 
-- Universal Profiles are abstracted smart accounts that can be controlled with different EOA keys having various permissions. Therefore, the address of the signer (controller) is decoupled from the address of the account (Universal Profile) you are interacting with. EOA signatures can still be verified off-chain. However, checking if the related EOA has the needed permissions requires an on-chain call to the [Key Manager](../standards/universal-profile/lsp6-key-manager.md) of the account. The Universal Profile Browser Extension automatically handles permissions checks when interacting with dApps. If needed, signatures can be verified manually by [retrieving the controllers](../learn/expert-guides/key-manager/get-controller-permissions.md) of an account and checking their permissions.
+- [Universal Profiles](../standards/universal-profile/introduction.md) are abstracted smart accounts that can be controlled with different accounts (either EOA or Smart Contract) having various permissions. Therefore, the address of the signer (controller) is decoupled from the address of the account (Universal Profile) you are interacting with. EOA signatures can still be verified off-chain. However, checking if the related EOA has the required [permissions](../standards/universal-profile/lsp6-key-manager#types-of-permissions) requires an on-chain call to the [Key Manager](../standards/universal-profile/lsp6-key-manager.md) of the account. The Universal Profile Browser Extension automatically handles permissions checks when interacting with dApps. If needed, signatures can be verified manually by [retrieving the controllers](../learn/expert-guides/key-manager/get-controller-permissions.md) of an account and checking their permissions.
 - As developers interact with smart contracts with different or custom functionalities, verifying that certain conditions and methods are set before interacting with them is always recommended. Such checks can be done by [detecting interfaces and metadata](../learn/dapp-developer/standard-detection.md) of the given address.
 - When doing network interactions without using a [transaction relay service](../standards/relayer-api.md), the controller of the Universal Profile has to be funded to execute network transactions on behalf of the account.
 
