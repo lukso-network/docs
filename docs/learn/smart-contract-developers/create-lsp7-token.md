@@ -16,7 +16,8 @@ You can learn about the project setup by checking the [Getting Started](./gettin
 
 :::note
 
-For the following guide, we are using `hardhat v2.19.1`, `ethers v6` and `@lukso/lsp-smart-contracts v0.13.0`.
+For the following guide, we are using `hardhat v2.19.1`, `ethers v6` and `@lukso/lsp-smart-contracts`
+.
 
 :::
 
@@ -31,7 +32,7 @@ You can modify the `mint()` function to adjust the amount of initially minted to
 
 ```solidity title="contracts/MyCustomToken.sol"
 // SPDX-License-Identifier: Apache-2.0
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 
 import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol";
 import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol";
