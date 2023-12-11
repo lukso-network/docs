@@ -35,7 +35,7 @@ When creating smart contracts representing digital assets on LUKSO, you will nee
 - `1` = NFT
 - `2` = Collection
 
-For this example we will use the `Token` token type. You can create a custom 🌄 [LSP7 Digital Asset Token](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be minted by the [`owner`](../../contracts/LSP7DigitalAsset/presets/LSP7Mintable#owner) of the smart contract.
+For this example we will use the `Token` token type. You can create a custom 🌄 [LSP7 Digital Asset Token](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be minted by the [`owner`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#owner) of the smart contract.
 
 ```solidity title="contracts/Example1/EventTicketsNFT.sol"
 // SPDX-License-Identifier: MIT
