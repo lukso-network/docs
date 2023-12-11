@@ -137,7 +137,7 @@ The data being mapped can be words that have a specific meaning for the protocol
 
 Below are some examples of the **Mapping** key type.
 
-- mapping to **words:** `SupportedStandards:LSP3UniversalProfile`, `SupportedStandards:LSP4DigitalAsset`, `SupportedStandards:LSP{N}{StandardName}`, etc...
+- mapping to **words:** `SupportedStandards:LSP3Profile`, `SupportedStandards:LSP4DigitalAsset`, `SupportedStandards:LSP{N}{StandardName}`, etc...
 - mapping to **`<mixed type>`**, like an `address`: `LSP5ReceivedAssetsMap:<address>`
 - mapping to **`<mixed type>`**, like a `bytes32`: `LSP8MetadataAddress:<bytes32>`
 
@@ -145,8 +145,8 @@ Below are some examples of the **Mapping** key type.
 
 ```json
 {
-  "name": "SupportedStandards:LSP3UniversalProfile",
-  "key": "0xeafec4d89fa9619884b60000abe425d64acd861a49b8ddf5c0b6962110481f38",
+  "name": "SupportedStandards:LSP3Profile",
+  "key": "0xeafec4d89fa9619884b600005ef83ad9559033e6e941db7d7c495acdce616347",
   "keyType": "Mapping",
   "valueType": "bytes4",
   "valueContent": "0xabe425d6"

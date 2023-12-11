@@ -74,6 +74,7 @@ await web3.eth.sendTransaction({
 })
 ```
 <!-- prettier-ignore-end -->
+
   </TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
