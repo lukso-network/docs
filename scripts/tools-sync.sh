@@ -13,7 +13,7 @@ rsync -av --progress erc725.js/docs/. ../docs/tools/erc725js --exclude technical
 
 # Pull lsp-factory repo
 
-git clone --depth 1 --branch main https://github.com/lukso-network/tools-lsp-factory.git
+git clone --depth 1 --branch develop https://github.com/lukso-network/tools-lsp-factory.git
 
 # Copy Docs
 rsync -av --progress tools-lsp-factory/docs/. ../docs/tools/lsp-factoryjs --exclude=technical-reference

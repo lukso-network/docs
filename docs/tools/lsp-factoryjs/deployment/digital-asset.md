@@ -113,7 +113,7 @@ Set the address which should own your digital asset contract by passing the `con
 
 ### Adding LSP4 Metadata
 
-[LSP7] and [LSP8] both adhere to the [LSP4 Digital Asset Metadata standard](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md). Developers can specify the LSP4Metadata by setting the `name`, `symbol`, `digitalAssetMetadata` and `creators` keys when deploying with LSPFactory.
+[LSP7] and [LSP8] both adhere to the [LSP4 Digital Asset Metadata standard](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md). Developers can specify the LSP4Metadata by setting the `name`, `symbol`, `digitalAssetMetadata` and `creators` keys when deploying with LSPFactory.
 
 ```javascript
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
@@ -128,9 +128,9 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 });
 ```
 
-The `name` and `symbol` keys are passed as deployment constructor parameters. These values will set the [`LSP4TokenName`](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol) [ERC725Y] keys directly on the contract during deployment.
+The `name` and `symbol` keys are passed as deployment constructor parameters. These values will set the [`LSP4TokenName`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol) [ERC725Y] keys directly on the contract during deployment.
 
-Addresses passed inside the `creators` array will be set under the [LSP4Creators[]](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata#lsp4creators) [ERC725Y] key.
+Addresses passed inside the `creators` array will be set under the [LSP4Creators[]](../../../standards/tokens/LSP4-Digital-Asset-Metadata#lsp4creators) [ERC725Y] key.
 
 :::warning
 LSPFactory does not set the [LSP3IssuedAssets key](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3issuedassets) on any Universal Profile when deploying a digital asset. This key will have to be updated seperately.
@@ -139,7 +139,7 @@ LSPFactory does not set the [LSP3IssuedAssets key](https://github.com/lukso-netw
 
 #### Digital Asset Metadata
 
-Further Digital Asset metadata can be added by passing the `digitalAssetMetadata` parameter. This is metadata stored as JSON on a server and referenced from the contract by the [`LSP4Metadata`](../../../standards/nft-2.0/LSP4-Digital-Asset-Metadata.md#lsp4metadata) [ERC725Y] key.
+Further Digital Asset metadata can be added by passing the `digitalAssetMetadata` parameter. This is metadata stored as JSON on a server and referenced from the contract by the [`LSP4Metadata`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) [ERC725Y] key.
 
 :::info Info
 Digital Asset Metadata can be passed as either a JSON object containing the [LSP4Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) you want to upload or a URL of your previously uploaded metadata.
@@ -632,7 +632,7 @@ Digital Asset deployment completed
 
 ```
 
-[lsp7]: ../../../standards/nft-2.0/LSP7-Digital-Asset
-[lsp8]: ../../../standards/nft-2.0/LSP8-Identifiable-Digital-Asset
+[lsp7]: ../../../standards/tokens/LSP7-Digital-Asset
+[lsp8]: ../../../standards/tokens/LSP8-Identifiable-Digital-Asset
 [erc20]: https://eips.ethereum.org/EIPS/eip-20
 [erc725y]: ../../../standards/generic-standards/lsp2-json-schema.md
