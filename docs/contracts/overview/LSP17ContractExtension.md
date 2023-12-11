@@ -3,6 +3,9 @@ title: Extendable Contracts & Extensions Contracts
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Extendable & Extension Contracts
 
 Contracts that use the LSP17 standard are called **Extendable Contracts**. Meaning they can extend their functionalities by linking **Extension Contracts** to them for specific functionalities that they do not support natively.
@@ -13,6 +16,59 @@ Contracts that use the LSP17 standard are called **Extendable Contracts**. Meani
 The list of extensions for specific functions are stored under the specific data keys under their ERC725Y storage. You can think of them as **Extension Hosts**.
 
 You can inherit the [`LSP17Extendable.sol`](../contracts/LSP17ContractExtension/LSP17Extendable.md) contract to create an extendable contract.
+
+To add an extension handler for a specific function selector, you can set the address of the extension contract under the `LSP17Extension:<bytes4-function-selector>` data key as follow: 
+- 10 bytes (= 20 hexadecimal characters): `LSP17Extension` Mapping data key prefix
+- 20 bytes (= 40 hexadecimal characters): the `bytes4` function selector right padded with 16 zero bytes.
+
+Now whenever a call is made to this function selector on the extendable contract, it will land in its `fallback` function. From there, the calldata will be forwarded to the retrieved extension contract address set above.
+
+<Tabs>
+  
+  <TabItem value="solidity" label="solidity">
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ~0.8.4;
+
+// libraries
+import {
+    LSP2Utils
+} from "@lukso/lsp-smart-contracts/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol";
+
+// constants
+import {
+    _LSP17_EXTENSION_PREFIX
+} from "@lukso/lsp-smart-contracts/contracts/LSP17ContractExtension/LSP17Constants.sol";
+
+function generateLSP17ExtensionDataKey(bytes4 extensionSelector) pure returns (bytes32) {
+    return
+        LSP2Utils.generateMappingKey(
+            _LSP17_EXTENSION_PREFIX,
+            bytes20(extensionSelector)
+        );
+}
+```
+
+  </TabItem>
+
+  <TabItem value="ethers-v6" label="ethers v6">
+
+```js
+import { ERC725YDataKeys } from "@lukso/lsp-smart-contracts";
+import { concat, zeroPadBytes } from "ethers"
+
+const extensionSelector = zeroPadBytes("0xcafecafe", 20);
+
+const dataKey = concat([
+    ERC725YDataKeys.LSP17.LSP17ExtensionPrefix,
+    extensionSelector
+]);
+```
+
+  </TabItem>
+
+</Tabs>
 
 :::warning
 
