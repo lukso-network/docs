@@ -24,7 +24,7 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 To create your custom contract based on the [LUKSO smart contracts](../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
 
 ```shell
-npm install @lukso/lsp-smart-contracts@0.13.0
+npm install @lukso/lsp-smart-contracts
 ```
 
 ## Create the Smart Contracts
@@ -35,7 +35,7 @@ When creating smart contracts representing digital assets on LUKSO, you will nee
 - `1` = NFT
 - `2` = Collection
 
-For this example we will use the `Token` token type. You can create a custom 🌄 [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be created within the smart contract.
+For this example we will use the `Token` token type. You can create a custom 🌄 [LSP7 Digital Asset Token](../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be minted by the [`owner`](../../contracts/LSP7DigitalAsset/presets/LSP7Mintable#owner) of the smart contract.
 
 ```solidity title="contracts/Example1/EventTicketsNFT.sol"
 // SPDX-License-Identifier: MIT
