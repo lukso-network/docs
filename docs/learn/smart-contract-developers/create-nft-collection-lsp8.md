@@ -27,12 +27,12 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 To create your custom contract based on the [LUKSO smart contracts](../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
 
 ```shell
-npm install @lukso/lsp-smart-contracts@0.13.0
+npm install @lukso/lsp-smart-contracts
 ```
 
 ## Create the Smart Contracts
 
-When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
+When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
 - `1` = NFT
@@ -69,7 +69,7 @@ contract BasicNFTCollection is LSP8Mintable {
             nftCollectionSymbol,      // NFT collection symbol
             contractOwner,            // owner of the NFT contract (the address that controls it, sets metadata, can transfer the ownership of the contract)
             _LSP4_TOKEN_TYPE_COLLECTION,     // type of the token is collection
-            _LSP8_TOKENID_TYPE_NUMBER // type of tokenIds is number (represented as bytes32)
+            _LSP8_TOKENID_FORMAT_NUMBER // format of each `tokenId`s is number (represented as bytes32)
         )
     {}
 }
