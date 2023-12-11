@@ -136,6 +136,114 @@ You can filter the `DataChanged` event with the following `dataKey`:
 
 </details>
 
+### Setting metadata for one or multiple `tokenId`s
+
+The function [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple data key-value pairs at once for one or multiple tokenIds.
+
+This function is flexible enough to enable to:
+
+- **case 1:** either set multiple data key-value pairs for the same tokenId.
+- **case 2:** set data key-value pairs for different tokenIds.
+
+The parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow depending on the 2 cases:
+
+**case 1: set 3 x different data key-value pairs for the same tokenId**
+
+```solidity
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.12;
+
+import {
+    ILSP8IdentifiableDigitalAsset as ILSP8
+} from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol";
+import {
+    _LSP4_METADATA_KEY
+} from "@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol";
+
+bytes32 constant _NFT_ICON_DATA_KEY = keccak256("NFTIcon");
+bytes32 constant _NFT_MARKET_PLACE_URLS__DATA_KEY = keccak256("NFTMarketplaceURLs");
+
+bytes32 constant _TOKEN_ID_TO_SET = 0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe;
+
+function setMultipleDataForSingleTokenId(
+    ILSP8 lsp8Contract,
+    bytes memory lsp4MetadataValue,
+    bytes memory nftIconValue,
+    bytes memory nftMarketPlaceURLsValue
+) {
+    bytes32[] memory tokenIdsToUpdate = new bytes32[](3);
+    bytes32[] memory dataKeysToSet = new bytes32[](3);
+    bytes[] memory dataValuesToSet = new bytes[](3);
+
+    // we are setting 3 x data key-value pairs for the same tokenid
+    tokenIdsToUpdate[0] = _TOKEN_ID_TO_SET;
+    tokenIdsToUpdate[1] = _TOKEN_ID_TO_SET;
+    tokenIdsToUpdate[2] = _TOKEN_ID_TO_SET;
+
+    dataKeysToSet[0] = _LSP4_METADATA_KEY;
+    dataKeysToSet[1] = _NFT_ICON_DATA_KEY;
+    dataKeysToSet[2] = _NFT_MARKET_PLACE_URLS__DATA_KEY;
+
+    dataValuesToSet[0] = lsp4MetadataValue;
+    dataValuesToSet[1] = nftIconValue;
+    dataValuesToSet[2] = nftMarketPlaceURLsValue;
+
+    lsp8Contract.setDataBatchForTokenIds(
+        tokenIdsToUpdate,
+        dataKeysToSet,
+        dataValuesToSet
+    );
+}
+```
+
+**case 2: set the LSP4 Metadata of 3 x different tokenIds**
+
+```solidity
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.12;
+
+import {
+    ILSP8IdentifiableDigitalAsset as ILSP8
+} from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol";
+import {
+    _LSP4_METADATA_KEY
+} from "@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol";
+
+bytes32 constant _FIRST_TOKEN_ID_TO_SET = 0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe;
+bytes32 constant _SECOND_TOKEN_ID_TO_SET = 0xbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeef;
+bytes32 constant _THIRD_TOKEN_ID_TO_SET = 0xf00df00df00df00df00df00df00df00df00df00df00df00df00df00df00df00d;
+
+function setMultipleDataForSingleTokenId(
+    ILSP8 lsp8Contract,
+    bytes memory firstTokenIdLsp4MetadataValue,
+    bytes memory secondTokenIdLsp4MetadataValue,
+    bytes memory thirdTokenIdLsp4MetadataValue
+) {
+    bytes32[] memory tokenIdsToUpdate = new bytes32[](3);
+    bytes32[] memory dataKeysToSet = new bytes32[](3);
+    bytes[] memory dataValuesToSet = new bytes[](3);
+
+    tokenIdsToUpdate[0] = _FIRST_TOKEN_ID_TO_SET;
+    tokenIdsToUpdate[1] = _SECOND_TOKEN_ID_TO_SET;
+    tokenIdsToUpdate[2] = _THIRD_TOKEN_ID_TO_SET;
+
+    // we are setting the metadata for 3 x different tokenIds
+    dataKeysToSet[0] = _LSP4_METADATA_KEY;
+    dataKeysToSet[1] = _LSP4_METADATA_KEY;
+    dataKeysToSet[2] = _LSP4_METADATA_KEY;
+
+    dataValuesToSet[0] = firstTokenIdLsp4MetadataValue;
+    dataValuesToSet[1] = secondTokenIdLsp4MetadataValue;
+    dataValuesToSet[2] = thirdTokenIdLsp4MetadataValue;
+
+    lsp8Contract.setDataBatchForTokenIds(
+        tokenIdsToUpdate,
+        dataKeysToSet,
+        dataValuesToSet
+    );
+}
+```
+
 
 ## Note on LSP7 and LSP8 implementations
 

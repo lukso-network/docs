@@ -165,36 +165,9 @@ Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-
 
 The LSP8 standard offers ways to set metadata for the whole LSP8 collection as well as metadata per specific token Id. This is done using the same `LSP4Metadata` data key, but different functions.
 
-The generic metadata and information related to the whole LSP8 collection can be updated using [`setData(bytes32,bytes)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata), passing the `bytes32` data key of [`LSP4Metadata`](./LSP4-Digital-Asset-Metadata.md#lsp4metadata) as the first argument.
+The generic metadata and information related to the whole LSP8 collection can be updated using [`setData(bytes32,bytes)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) or [`setDataBatch(bytes[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch), passing the `bytes32` data key of [`LSP4Metadata`](./LSP4-Digital-Asset-Metadata.md#lsp4metadata) as the first argument.
 
-Alternatively, the generic information and metadata specific to a `tokenId` can be set using [`setDataForTokenId`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid)
-
-Both of these functionalities are completed with the batch function [`setDataBatch(bytes[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch) and [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) to set multiple data key-value pairs at once.
-
-:::success hint
-
-The `setDataBatchForTokenIds(...)` function is flexible enough to enable to:
-
-- **case 1:** either set multiple data key-value pairs for the same tokenId.
-- **case 2:** set data key-value pairs for different tokenIds.
-
-The parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow depending on the 2 cases:
-
-**case 1: set 3 x different data key-value pairs for the same tokenId**
-
-```js
-tokenIds = [tokenId1, tokenId1, tokenId1];
-dataKeys = ['LSP4Metadata', 'NFTIcon', 'MarketplaceURLs'];
-dataValues = ['...', '...', '...'];
-```
-
-**case 2: set the LSP4 Metadata of 3 x different tokenIds**
-
-```js
-tokenIds = [tokenId1, tokenId2, tokenId3];
-dataKeys = ['LSP4Metadata', 'LSP4Metadata', 'LSP4Metadata'];
-dataValues = ['...', '...', '...'];
-```
+Alternatively, the generic information and metadata specific to a `tokenId` can be set using the [`setDataForTokenId`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid) or [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) functions.
 
 :::
 
