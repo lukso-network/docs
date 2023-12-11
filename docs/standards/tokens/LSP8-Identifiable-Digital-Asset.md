@@ -3,6 +3,9 @@ sidebar_label: 'LSP8 - Identifiable Digital Asset (NFT)'
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # LSP8 - Identifiable Digital Asset
 
 :::info Standard Document
@@ -32,13 +35,42 @@ Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)**
 
 This standard was based on **[ERC721](https://eips.ethereum.org/EIPS/eip-20)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-777)** with additional features mentioned below:
 
-### Bytes32 TokenId Type
+### Format of TokenIds
 
 The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** **lack asset representation** as they define the tokenIds **as Numbers** `(uint256)`. Each token from the NFT collection will be defined and queried based on this tokenId, which is normally incremental.
 
 ![ERC721 TokenIds Representation](/img/standards/lsp8/erc721-tokenIds.jpeg)
 
-**[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as **bytes32**. The choice of **bytes32 tokenIds** allows a wide variety of applications including numbers, contract addresses, and hashed values (ie. serial numbers).
+**[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as `bytes32`. The choice of format for the **`bytes32 tokenId`** allows a wide variety of applications including numbers, string names, contract addresses, unique bytes identifiers (e.g: serial numbers) or hashed values.
+
+Finally a LSP8 Collection contract can also contains NFTs of different formats, illustrated under the **Mixed Formats tab** below. For instance all the NFTs by default are of format `number`, but certain NFTs in the collection could be more complex and represented as their own smart contract. In this example use case, the tokenId format will be **`Mixed` with default as `address`** (= `102`).
+
+<Tabs>
+  <TabItem value="single-format" label="One Single TokenId Format">
+
+| Value |  Format   | Representation | Description                                                                                                                    |
+| :---: | :-------: | :------------: | :----------------------------------------------------------------------------------------------------------------------------- |
+|  `0`  | `uint256` |     Number     | each NFT is parsed as a **unique number**.                                                                                     |
+|  `1`  | `string`  |     String     | each NFT is parsed as a **unique name** (as a short **utf8 encoded string**, no more than 32 characters long)                  |
+|  `2`  | `address` | Smart Contract | each NFT is parsed as its **own smart contract** that can hold its own logic and metadata (_e.g [ERC725Y] compatible_).        |
+|  `3`  | `bytes32` |  Unique Bytes  | each NFT is parsed as a 32 bytes long **unique identifier**.                                                                   |
+|  `4`  | `bytes32` |  Hash Digest   | each NFT is parsed as a 32 bytes **hash digest**. This can be used as the hash of a very long string representing the tokenId. |
+
+  </TabItem>
+
+  <TabItem value="mixed-formats" label="Mixed TokenIds Formats">
+
+| Value |                     Format                     | Description                                                                                                                                                                           |
+| :---: | :--------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `100` |       `Mixed` with default as `uint256`        | Default NFT is parsed as a **unique number** with querying the `LSP8TokenIdFormat` for each `tokenId`.                                                                                |
+| `101` |        `Mixed` with default as `string`        | Default NFT is parsed as a **unique name** (as a short **utf8 encoded string**, no more than 32 characters long) with querying the `LSP8TokenIdFormat` for each `tokenId`.            |
+| `102` |       `Mixed` with default as `address`        | Default NFT is parsed as its **own smart contract** that can hold its own logic and metadata (_e.g [ERC725Y] compatible_) with querying the `LSP8TokenIdFormat` for each `tokenId`. . |
+| `103` | `Mixed` with default as `bytes32` unique bytes | Default NFT is parsed as a 32 bytes long **unique identifier** with querying the `LSP8TokenIdFormat` for each `tokenId`.                                                              |
+| `104` | `Mixed` with default as `bytes32` hash digest  | Default NFT is parsed as a 32 bytes **hash digest**with querying the `LSP8TokenIdFormat` for each `tokenId`.                                                                          |
+
+  </TabItem>
+
+</Tabs>
 
 The **bytes32 tokenId** can be interpreted as a:
 
@@ -80,7 +112,7 @@ The Metadata defined by the **ERC725Y Data Keys** can be set for **each tokenId*
 
 :::caution
 
-When LSP8 assets are transfered, the LSP8 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokenreceiver).
+When LSP8 assets are transferred, the LSP8 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#_notifytokenreceiver).
 
 **These methods will make external calls** to the [`universalReceiver(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) functions of both the sender and recipient.
 
@@ -109,11 +141,9 @@ If the sender and recipient are smart contracts that implement the LSP1 standard
 
 ### `force` mint and transfer
 
-:::success
+:::success Recommendation
 
-It is advised to set the `force` boolean to `false` when transferring or minting tokens to avoid sending them to the wrong address.
-
-For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
+It is advised to set the `force` boolean to `false` by default when transferring or minting tokens to prevent sending them to the wrong address. For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
 
 :::
 
@@ -130,6 +160,43 @@ To ensure a **safe asset transfer**, an additional boolean parameter was added t
 ![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
 
 Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
+
+## LSP8 Collection vs TokenId Metadata
+
+The LSP8 standard offers ways to set metadata for the whole LSP8 collection as well as metadata per specific token Id. This is done using the same `LSP4Metadata` data key, but different functions.
+
+The generic metadata and information related to the whole LSP8 collection can be updated using [`setData(bytes32,bytes)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata), passing the `bytes32` data key of [`LSP4Metadata`](./LSP4-Digital-Asset-Metadata.md#lsp4metadata) as the first argument.
+
+Alternatively, the generic information and metadata specific to a `tokenId` can be set using [`setDataForTokenId`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid)
+
+Both of these functionalities are completed with the batch function [`setDataBatch(bytes[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch) and [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) to set multiple data key-value pairs at once.
+
+:::success hint
+
+The `setDataBatchForTokenIds(...)` function is flexible enough to enable to:
+
+- **case 1:** either set multiple data key-value pairs for the same tokenId.
+- **case 2:** set data key-value pairs for different tokenIds.
+
+The parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow depending on the 2 cases:
+
+**case 1: set 3 x different data key-value pairs for the same tokenId**
+
+```js
+tokenIds = [tokenId1, tokenId1, tokenId1];
+dataKeys = ['LSP4Metadata', 'NFTIcon', 'MarketplaceURLs'];
+dataValues = ['...', '...', '...'];
+```
+
+**case 2: set the LSP4 Metadata of 3 x different tokenIds**
+
+```js
+tokenIds = [tokenId1, tokenId2, tokenId3];
+dataKeys = ['LSP4Metadata', 'LSP4Metadata', 'LSP4Metadata'];
+dataValues = ['...', '...', '...'];
+```
+
+:::
 
 ## References
 
