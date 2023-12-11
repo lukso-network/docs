@@ -43,7 +43,7 @@ Similar to the [Read Profile Data Guide](./read-profile-data.md), you can use th
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
 const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
@@ -65,7 +65,7 @@ console.log(isLSP3);
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import lsp9VaultSchema from '@erc725/erc725.js/schemas/LSP9Vault.json' assert { type: 'json' };
+import lsp9VaultSchema from '@erc725/erc725.js/schemas/LSP9Vault.json';
 
 const erc725js = new ERC725(
   lsp9VaultSchema,
@@ -90,7 +90,7 @@ console.log(isLSP9);
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json' assert { type: 'json' };
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
 const erc725js = new ERC725(
   lsp3ProfileSchema,
@@ -133,7 +133,7 @@ A **[Universal Profile](../../standards/universal-profile/lsp3-profile-metadata.
 <!--prettier-ignore-start-->
 
 ```javascript
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json' assert { type: 'json' };
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
 import Web3 from 'web3';
 
