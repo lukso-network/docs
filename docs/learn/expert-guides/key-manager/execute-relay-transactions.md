@@ -452,12 +452,12 @@ let encodedMessage = web3.utils.encodePacked(
   { value: chainId, type: 'uint256' },            // `0x0000000000000000000000000000000000000000000000000000000000001069`
   // e.g: nonce nb 5
   { value: nonce, type: 'uint256' },              // `0x0000000000000000000000000000000000000000000000000000000000000005`
-  // e.g: valid until 1st January 2025 at midnight (GMT). 
+  // e.g: valid until 1st January 2025 at midnight (GMT).
   // Timestamp = 1735689600
   { value: validityTimestamps, type: 'uint256' }, // `0x0000000000000000000000000000000000000000000000000000000067748580`
   // e.g: not funding the contract with any LYX (0)
   { value: msgValue, type: 'uint256' },           // `0x0000000000000000000000000000000000000000000000000000000000000000`
-  // e.g: execute(uint256,address,uint256,bytes) 
+  // e.g: execute(uint256,address,uint256,bytes)
   // send 3 LYX to address `0xcafecafecafecafeafecafecafecafeafecafecafecafeafecafecafecafe`
   { value: abiPayload, type: 'bytes' },           // `0x44c028fe0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000cafecafecafecafecafecafecafecafecafecafe00000000000000000000000000000000000000000000000029a2241af62c000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000`
 );

@@ -5,7 +5,7 @@ title: Universal Profile
 
 # Deploying a Universal Profile
 
-LSPFactory allows you to quickly deploy and configure a Universal Profile consisting of an [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account), an [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager), and an [LSP1-UniversalReceiver](../../../standards/generic-standards/lsp1-universal-receiver.md) smart contract:
+LSPFactory allows you to quickly deploy and configure a Universal Profile consisting of an [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account.md), an [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager.md), and an [LSP1-UniversalReceiver](../../../standards/generic-standards/lsp1-universal-receiver.md) smart contract:
 
 ```javascript
 await lspFactory.UniversalProfile.deploy(profileProperties [, options]);
@@ -13,21 +13,21 @@ await lspFactory.UniversalProfile.deploy(profileProperties [, options]);
 
 This will deploy the following contracts:
 
-- [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account)
-- [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager)
+- [LSP0 ERC725 Account](../../../standards/universal-profile/lsp0-erc725account.md)
+- [LSP6 Key Manager](../../../standards/universal-profile/lsp6-key-manager.md)
 - And link to a pre-deployed [LSP1 Universal Receiver](../../../standards/generic-standards/lsp1-universal-receiver.md)
 
 After, it will:
 
-- upload metadata to IPFS and set the [LSP3 Profile](../../../standards/universal-profile/lsp3-profile-metadata) metadata,
+- upload metadata to IPFS and set the [LSP3 Profile](../../../standards/universal-profile/lsp3-profile-metadata.md) metadata,
 - attach the Universal Receiver Delegate to the ERC725 Account,
 - set the Key Manager as the owner of the ERC725 Account, and
-- set all [permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) for the `controllerAddresses` except `DELEGATECALL`.
+- set all [permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions.md) for the `controllerAddresses` except `DELEGATECALL`.
 
-These smart contracts linked with some [LSP3 Profile Metadata](../../../standards/universal-profile/lsp3-profile-metadata) form a Universal Profile. The metadata is the 'face' of your profile and contains information such as your name, description, and profile image.
+These smart contracts linked with some [LSP3 Profile Metadata](../../../standards/universal-profile/lsp3-profile-metadata.md) form a Universal Profile. The metadata is the 'face' of your profile and contains information such as your name, description, and profile image.
 
 :::caution
-The deployment key passed to LSPFactory will be given `CHANGEOWNER` and `EDITPERMISSIONS` [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions) in order to carry out the Universal Profile deployment.
+The deployment key passed to LSPFactory will be given `CHANGEOWNER` and `EDITPERMISSIONS` [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#-types-of-permissions.md) in order to carry out the Universal Profile deployment.
 
 These permisisons are revoked as the final step of deployment. It is important this step is completed correctly to avoid security risks.
 
@@ -64,13 +64,13 @@ await lspFactory.UniversalProfile.deploy({
 ```
 
 :::info Info
-Profile Metadata can be passed as either a JSON object containing the [LSP3Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) you want to upload or a URL of your previously uploaded metadata.
+Profile Metadata can be passed as either a JSON object containing the [LSP3Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md) you want to upload or a URL of your previously uploaded metadata.
 :::
 
 If an LSP3MetaData object is passed, LSPFactory will process and upload your metadata to IPFS.
 
 :::info
-See [Upload Options](././universal-profile#ipfs-upload-options) for details on how to specify a custom IPFS gateway.
+See [Upload Options](././universal-profile#ipfs-upload-options.md) for details on how to specify a custom IPFS gateway.
 :::
 
 ```javascript title='Uploading an LSP3 metadata automatically'
@@ -320,13 +320,13 @@ await lspFactory.UniversalProfile.deploy({
 
 ### Uploading LSP3 metadata to IPFS
 
-You can upload your LSP3 metadata before deploying a Universal Profile using the `uploadProfileData()` method. The function uses the same [`lsp3Profile` object schema](./universal-profile#adding-lsp3-metadata) defined above when deploying a Universal Profile. Returns an object containing the IPFS upload location of your metadata and your `lsp3Metdata` as a javascript object.
+You can upload your LSP3 metadata before deploying a Universal Profile using the `uploadProfileData()` method. The function uses the same [`lsp3Profile` object schema](./universal-profile#adding-lsp3-metadata.md) defined above when deploying a Universal Profile. Returns an object containing the IPFS upload location of your metadata and your `lsp3Metdata` as a javascript object.
 
 ```javascript
 await myLSPFactory.UniversalProfile.uploadProfileData(lsp3Profile [, options]);
 ```
 
-To upload using a custom IPFS gateway, pass the `options` object. The field is the same `options` object used when deploying a Universal Profile. [Read more](./universal-profile#ipfs-upload-options).
+To upload using a custom IPFS gateway, pass the `options` object. The field is the same `options` object used when deploying a Universal Profile. [Read more](./universal-profile#ipfs-upload-options.md).
 
 The `uploadProfileData()` function is available as a static or non-static method to be called without instantiating an `LSPFactory` object.
 
