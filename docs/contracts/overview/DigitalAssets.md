@@ -3,6 +3,9 @@ title: Digital Assets (Token & NFT)
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Digital Assets
 
 The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](../../standards/universal-profile/lsp0-erc725account.md) and [Universal Receivers](../../standards/generic-standards/lsp1-universal-receiver.md).
@@ -149,6 +152,10 @@ The parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be
 
 **case 1: set 3 x different data key-value pairs for the same tokenId**
 
+<Tabs>
+  
+  <TabItem value="solidity" label="solidity">
+
 ```solidity
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.12;
@@ -196,7 +203,60 @@ function setMultipleDataForSingleTokenId(
 }
 ```
 
+  </TabItem>
+
+  <TabItem value="ethers-v6" label="ethers v6">
+
+```js
+import { ERC725YDataKeys } from "@lukso/lsp-smart-contracts";
+
+const _NFT_ICON_DATA_KEY = keccak256("NFTIcon");
+const _NFT_MARKET_PLACE_URLS__DATA_KEY = keccak256("NFTMarketplaceURLs");
+
+const _TOKEN_ID_TO_SET =
+  "0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe";
+
+async function setMultipleDataForSingleTokenId(
+    lsp8Contract,
+    lsp4MetadataValue,
+    nftIconValue,
+    nftMarketPlaceURLsValue,
+) {
+  const tokenIdsToUpdate = [
+    _TOKEN_ID_TO_SET,
+    _TOKEN_ID_TO_SET,
+    _TOKEN_ID_TO_SET,
+  ];
+
+  const dataKeysToSet = [
+    ERC725YDataKeys.LSP4.LSP4Metadata,
+    _NFT_ICON_DATA_KEY,
+    _NFT_MARKET_PLACE_URLS__DATA_KEY,
+  ];
+
+  const dataValuesToSet = [
+    lsp4MetadataValue,
+    nftIconValue,
+    nftMarketPlaceURLsValue,
+  ];
+
+  await lsp8Contract.setDataBatchForTokenIds(
+    tokenIdsToUpdate,
+    dataKeysToSet,
+    dataValuesToSet,
+  );
+}
+```
+
+  </TabItem>
+
+</Tabs>
+
 **case 2: set the LSP4 Metadata of 3 x different tokenIds**
+
+<Tabs>
+  
+  <TabItem value="solidity" label="solidity">
 
 ```solidity
 // SPDX-License-Identifier: Apache-2.0
@@ -244,6 +304,55 @@ function setMultipleDataForSingleTokenId(
 }
 ```
 
+  </TabItem>
+
+  <TabItem value="ethers-v6" label="ethers v6">
+
+```js
+import { ERC725YDataKeys } from "@lukso/lsp-smart-contracts";
+
+const _FIRST_TOKEN_ID_TO_SET =
+  "0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe";
+const _SECOND_TOKEN_ID_TO_SET =
+  "0xbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeef";
+const _THIRD_TOKEN_ID_TO_SET =
+  "0xf00df00df00df00df00df00df00df00df00df00df00df00df00df00df00df00d";
+
+async function setMultipleDataForSingleTokenId(
+    lsp8Contract,
+    firstTokenIdLsp4MetadataValue,
+    secondTokenIdLsp4MetadataValue,
+    thirdTokenIdLsp4MetadataValue,
+) {
+  const tokenIdsToUpdate = [
+    _FIRST_TOKEN_ID_TO_SET,
+    _SECOND_TOKEN_ID_TO_SET,
+    _THIRD_TOKEN_ID_TO_SET,
+  ];
+
+  const dataKeysToSet = [
+    ERC725YDataKeys.LSP4.LSP4Metadata,
+    ERC725YDataKeys.LSP4.LSP4Metadata,
+    ERC725YDataKeys.LSP4.LSP4Metadata,
+  ];
+
+  const dataValuesToSet = [
+    firstTokenIdLsp4MetadataValue,
+    secondTokenIdLsp4MetadataValue,
+    thirdTokenIdLsp4MetadataValue,
+  ];
+
+  await lsp8Contract.setDataBatchForTokenIds(
+    tokenIdsToUpdate,
+    dataKeysToSet,
+    dataValuesToSet
+  );
+}
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Note on LSP7 and LSP8 implementations
 
