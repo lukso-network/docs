@@ -62,6 +62,17 @@ The table below highlights these differences:
   </tr>
 </table>
 
+In ERC20 the fuction `transfer(address,uint256)` is used to transfer ERC20 tokens from the caller, this can only be used by the owner of the ERC20 tokens. There is also `transferFrom(address,address,uint256)` which can also be used by the ERC20 tokens operator. 
+
+In comparaison ERC721 has:
+- `safeTransferFrom(address,address,uint256,bytes)`
+- `safeTransferFrom(address,address,uint256)`
+- `transferFrom(address,address,uint256)`
+All of the above functions can be use by both the owner of the token id or by the operator of the token id in order to transfer the ERC721 token. To be mentioned, both functions `safeTransferFrom(...)` have a hook that calls the recipient contract.
+
+Looking at LSP7 & LSP8 we have unified `transfer(...)` & `transferBatch(...)` functions in both contracts. Those functions contain a hook which is executed conditionally and can be used in any of the above cases.
+
+
 ## LSP4 Digital Asset Metadata
 
 The **LSP4DigitalAssetMetadata** is a contract that sets the **Token-Metadata** (name and symbol) for the **LSP7DigitalAsset** and **LSP8IdentifiableDigitalAsset** token contracts.
