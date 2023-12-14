@@ -1,18 +1,16 @@
 ---
-id: official-partners
-title: Official Partners
+id: partners
+title: Partners
 sidebar_position: 2
 ---
 
-# Official Partners
+# Partners
 
-:::info
-Within this page you can read and learn about official services and projects that integrated the LUKSO network and related ecosystem tools.
-:::
+Here is a list of services and projects that integrated the LUKSO network and related ecosystem tools.
 
 <table>
   <tr>
-    <th>Official Partner</th>
+    <th>Logo</th>
     <th style={{ maxWidth: "30rem" }}>Description</th>
   </tr>
   <tr>
@@ -32,8 +30,7 @@ Within this page you can read and learn about official services and projects tha
   </tr>
   <tr>
     <td style={{ maxWidth: "30rem" }}><a href="https://transak.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/transak_logo.png"/></a></td>
-    <td><b>Exchange & Tooling:</b><br />Transak provides a crypto marketplace that can be utilized from developers using their API and SDK integration. <br /><br /><li><a href="/networks/mainnet/parameters#3rd-party-rpc-providers">Mainnet Parameters</a></li>
-    <li><a href="/networks/testnet/parameters#3rd-party-rpc-providers">Testnet Parameters</a></li><li><a href="https://docs.transak.com/docs/integration-options" rel="noopener noreferrer">Onramp SDK</a></li></td>
+    <td><b>Exchange & Tooling:</b><br />Transak provides a crypto marketplace that can be utilized from developers using their API and SDK integration. <br /><br /><li><a href="https://docs.transak.com/docs/integration-options" rel="noopener noreferrer">Onramp SDK</a></li></td>
   </tr>
   <tr>
     <td style={{ maxWidth: "30rem" }}><a href="https://gateway.fm/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/dappnode_logo.png"/></a></td>
@@ -43,5 +40,7 @@ Within this page you can read and learn about official services and projects tha
 </table>
 
 :::note
-If you are building on LUKSO and would like to become an official partner, please reach us at [hello@lukso.network](mailto:hello@lukso.network).
+
+If you are building on LUKSO and would like to partner with us, please reach us at [hello@lukso.network](mailto:hello@lukso.network).
+
 :::
