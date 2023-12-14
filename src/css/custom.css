@@ -119,7 +119,8 @@ html[data-theme='dark'] .faq .img {
   height: 100%;
 }
 
-.menu, .navbar__link {
+.menu,
+.navbar__link {
   font-family: var(--ifm-heading-font-family);
   font-weight: var(--ifm-font-weight-normal);
 }
@@ -150,4 +151,16 @@ html[data-theme='dark'] .faq .img {
   src: url('/static/fonts/Apax-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
+}
+
+a.imageLink {
+  display: inline-block;
+  position: relative;
+}
+
+a.imageLink img {
+  width: 100%; /* ensures image scales with anchor */
+  height: auto; /* maintain aspect ratio */
+  display: block; /* removes any default inline spacing */
+  pointer-events: none; /* disable default zoom */
 }
