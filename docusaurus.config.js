@@ -354,6 +354,10 @@ export default {
               label: 'YouTube',
               href: 'https://www.youtube.com/@LUKSOBlockchain',
             },
+            {
+              label: 'Common Ground',
+              href: 'https://app.cg/c/LUKSO/',
+            },
           ],
         },
         {
