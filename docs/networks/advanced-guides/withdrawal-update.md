@@ -8,16 +8,22 @@ import TabItem from '@theme/TabItem';
 
 # Update Validator Withdrawals
 
-:::info Key Generation
-
-The [LUKSO KeyGen GUI](https://github.com/lukso-network/tools-wagyu-key-gen#lukso-wagyu-keygen) automatically adds a withdrawal address during setup.
-
-:::
-
-The following guide will teach you how to update your plain **BLS Validator Key** to reference an **ETH1 Address** to allow your validator keys to withdraw staked LYX/LYXt and earnings. If an ETH1 Address is referenced to the BLS Key, the validator's stake can be exited to any wallet. The earnings of your validators will be automatically withdrawn regularly.
+The following guide will teach you how to update your plain **BLS Validator Key** to reference an **ETH1 Address**, so your validator keys are able to withdraw staked LYX/LYXt and earnings. If an ETH1 Address is referenced to the BLS Key, the validator's stake can be exited to any wallet. When enabled, all validator earnings above 32 LYX/LYXt will be **periodically withdrawn to your ETH1 Address every few days**.
 
 - **BLS Keys** are the backbone of the digital signature type to secure the **PoS Consensus Layer** of EVM blockchains. Every validator uses them to sign blocks and stake LYX/LYXt on the LUKSO networks.
 - **ETH1 Addresses** are the traditional Ethereum addresses from _Externally Owned Accounts_ or _Smart Contracts_ on the **Execution Layer** which can receive tokens or coins on the network.
+
+:::success Key Generation
+
+The update is only necessary for [LUKSO KeyGen CLI](https://github.com/lukso-network/tools-key-gen-cli) users. If you used the [LUKSO KeyGen GUI](https://github.com/lukso-network/tools-wagyu-key-gen#lukso-wagyu-keygen) to generate your validator keys, it automatically asked for a withdrawal address during the setup.
+
+:::
+
+:::info Withdrawal Process
+
+As LUKSO is an _EVM-based blockchain_, the withdrawal update is _similar to Ethereum_. In case you have questions about the process, please refer to the sources linked in [Further Reads](#further-reads).
+
+:::
 
 ## Check the Withdrawals Status
 
@@ -36,7 +42,7 @@ If you've never updated your validator withdrawals after the initial deposit, yo
 
 1. Open the `deposit_data.json` file of the validator
 2. Search for the `withdrawal_credentials` properties for every key
-   - If the hexadecimal number starts with `01`, withdrawals are already enabled
+   - If the hexadecimal number starts with `01`, **withdrawals are already enabled**
    - If the hexadecimal number starts with `00`, withdrawals can be enabled using this guide
 
 </div>
@@ -241,7 +247,7 @@ curl -X POST -H “Content-type: application/json” -d '[{"message": {"validato
 
 :::caution Execution Delay
 
-A maximum of 16 validator keys can update their withdrawal credentials per block. It might take several hours for the change to be included in a block, depending on the number of address updates in the queue. If the update hasn't been done after several hours, consider re-submitting the JSON file or data.
+A **maximum of 16 validator keys** can update their withdrawal credentials **per block**. It might take **several hours** for the change to be included in a block, depending on the number of address updates in the queue. If the update hasn't been done after several hours, consider re-submitting the JSON file or data.
 
 :::
 
@@ -250,3 +256,14 @@ A maximum of 16 validator keys can update their withdrawal credentials per block
    - [LUKSO Testnet Validator Withdrawals](https://explorer.consensus.testnet.lukso.network/validators/withdrawals)
 2. Scroll down to the list of **Address Changes**.
 3. Your Validator indices should show up as some of the latest entries.
+
+## Client Documentation
+
+- [Prysm Withdrawal Guide](https://docs.prylabs.network/docs/wallet/withdraw-validator)
+- [Lighthouse Exit Description](https://lighthouse-book.sigmaprime.io/voluntary-exit.html#withdrawal-of-exited-funds)
+- [Updating Teku Credentials](https://docs.teku.consensys.io/how-to/update-withdrawal-keys)
+
+## Further Reads
+
+- [Official ETH2 Book Withdrawal Explanation](https://eth2book.info/capella/part2/deposits-withdrawals/withdrawal-processing/)
+- [Official Ethereum Withdrawal FAQ](https://notes.ethereum.org/@launchpad/withdrawals-faq)
