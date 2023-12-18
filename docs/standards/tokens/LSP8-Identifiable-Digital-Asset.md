@@ -41,9 +41,9 @@ The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-
 
 ![ERC721 TokenIds Representation](/img/standards/lsp8/erc721-tokenIds.jpeg)
 
-**[LSP8-IdentifiableDigitalAsset](#)** define the tokenIds as `bytes32`. The choice of format for the **`bytes32 tokenId`** allows a wide variety of applications including numbers, string names, contract addresses, unique bytes identifiers (e.g: serial numbers) or hashed values.
+**[LSP8-IdentifiableDigitalAsset](#)** defines the tokenIds as `bytes32` to allow a wide variety of representation, including numbers, string names, smart contract addresses, byte identifiers for serial numbers, or even hashed values.
 
-Finally a LSP8 Collection contract can also contains NFTs of different formats, illustrated under the **Mixed Formats tab** below. For instance all the NFTs by default are of format `number`, but certain NFTs in the collection could be more complex and represented as their own smart contract. In this example use case, the tokenId format will be **`Mixed` with default as `address`** (= `102`).
+Finally a LSP8 Collection contract can also contains NFTs of different formats, illustrated under the **Mixed Formats tab** below. For instance all the NFTs by default are of the `number` format, but certain NFTs in the collection could be more complex and represented as their own smart contract. In this example use case, the tokenId format will be **`Mixed` with default as `address`** (Value `102`).
 
 <Tabs>
   <TabItem value="single-format" label="One Single TokenId Format">
@@ -143,7 +143,7 @@ If the sender and recipient are smart contracts that implement the LSP1 standard
 
 :::success Recommendation
 
-It is advised to set the `force` boolean to `false` by default when transferring or minting tokens to prevent sending them to the wrong address. For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
+When transferring or minting tokens, it is advised to set the `force` boolean to `false` by default to ensure tokens won't be lost if sent accidentally to the wrong EOA or contract address. For instance, if the wrong address was pasted by mistake by the user in the input field of a dApp.
 
 :::
 
@@ -165,9 +165,9 @@ Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-
 
 The LSP8 standard offers ways to set metadata for the whole LSP8 collection as well as metadata per specific token Id. This is done using the same `LSP4Metadata` data key, but different functions.
 
-The generic metadata and information related to the whole LSP8 collection can be updated using [`setData(bytes32,bytes)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) or [`setDataBatch(bytes[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch), passing the `bytes32` data key of [`LSP4Metadata`](./LSP4-Digital-Asset-Metadata.md#lsp4metadata) as the first argument.
+- The generic metadata and information related to the whole LSP8 collection can be updated using [`setData(bytes32,bytes)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) or [`setDataBatch(bytes[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch), passing the `bytes32` data key of [`LSP4Metadata`](./LSP4-Digital-Asset-Metadata.md#lsp4metadata) as the first argument.
 
-Alternatively, the generic information and metadata specific to a `tokenId` can be set using the [`setDataForTokenId`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid) or [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) functions.
+- Alternatively, the generic information and metadata specific to a `tokenId` can be set using the [`setDataForTokenId`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid) or [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) functions.
 
 :::
 

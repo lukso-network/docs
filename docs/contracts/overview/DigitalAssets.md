@@ -109,7 +109,7 @@ Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/Op
 
 A **bytes32** value is used for tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (i.e., serial numbers).
 
-### Checking if the Metadata of a `tokenId` changed
+### Checking if the Metadata of a tokenId changed
 
 Because LSP8 uses [ERC725Y](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) under the hood, the URI pointing to the metadata of a specific tokenId can be changed inside the ERC725Y storage.
 
@@ -139,18 +139,15 @@ You can filter the `DataChanged` event with the following `dataKey`:
 
 </details>
 
-### Setting metadata for one or multiple `tokenId`s
+### Setting metadata for one or multiple tokenIds
 
-The function [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple data key-value pairs at once for one or multiple tokenIds.
+The function [`setDataBatchForTokenIds(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple data key-value pairs at once for one or multiple tokenIds.
 
-This function is flexible enough to enable to:
+This function is flexible enough to enable to set one or multiple [data key-value](../../standards/lsp-background/erc725).md#erc725y-generic-data-keyvalue-store) pairs for:
 
-- **case 1:** either set multiple data key-value pairs for the same tokenId.
-- **case 2:** set data key-value pairs for different tokenIds.
+#### case 1: a single tokenId
 
-The parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow depending on the 2 cases:
-
-**case 1: set 3 x different data key-value pairs for the same tokenId**
+To set for instance 3 x data key-value pairs for the same `tokenId`, the parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow:
 
 <Tabs>
   
@@ -252,7 +249,10 @@ async function setMultipleDataForSingleTokenId(
 
 </Tabs>
 
-**case 2: set the LSP4 Metadata of 3 x different tokenIds**
+
+#### Case 2: different tokenIds
+
+To set for instance the same data key-value pair (_e.g: `LSP4Metadata`_) for 3 x different `tokenId`s, the parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow:
 
 <Tabs>
   
