@@ -32,28 +32,13 @@ npm install @lukso/lsp-smart-contracts
 
 ## Create the Smart Contracts
 
-When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different token types:
+When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
 - `1` = NFT
 - `2` = Collection
 
-```solidity title="contracts/TokenTypes.sol"
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
-
-bytes32 constant _LSP4_TOKEN_TYPE_DATA_KEY = 0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3;
-
-enum TokenType {
-    TOKEN,
-    NFT,
-    COLLECTION
-}
-```
-
-The data key value `0xe026...` is the keccak256 hash of the word `LSP4TokenType` as defined by the [LSP2 - ERC725Y JSON Schema](../../standards/generic-standards/lsp2-json-schema.md#singleton) standard.
-
-After defining the type of the asset and its 🗂️ [ERC725 data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) you can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
+For this example we will use the `Collection` token type. You can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
 
 ```solidity title="contracts/Example3/BasicNFTCollection.sol"
 // SPDX-License-Identifier: MIT
@@ -68,7 +53,10 @@ import {
 import {
     _LSP8_TOKENID_TYPE_NUMBER
 } from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol";
-import {_LSP4_TOKEN_TYPE_DATA_KEY, TokenType} from "../TokenTypes.sol";
+import {
+    _LSP4_TOKEN_TYPE_COLLECTION
+} from "@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol";
+
 
 contract BasicNFTCollection is LSP8Mintable {
     constructor(
@@ -80,12 +68,10 @@ contract BasicNFTCollection is LSP8Mintable {
             nftCollectionName,        // NFT collection name
             nftCollectionSymbol,      // NFT collection symbol
             contractOwner,            // owner of the NFT contract (the address that controls it, sets metadata, can transfer the ownership of the contract)
-            _LSP8_TOKENID_TYPE_NUMBER // type of NFT/ tokenIds
+            _LSP4_TOKEN_TYPE_COLLECTION,     // type of the token is collection
+            _LSP8_TOKENID_FORMAT_NUMBER // format of each `tokenId`s is number (represented as bytes32)
         )
-    {
-        // set token type
-        _setData(_LSP4_TOKEN_TYPE_DATA_KEY, abi.encode(TokenType.COLLECTION));
-    }
+    {}
 }
 ```
 
