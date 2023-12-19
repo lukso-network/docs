@@ -1,6 +1,7 @@
 ---
 sidebar_label: '👋🏻 Getting Started'
 sidebar_position: 1
+description: Create a Hardhat project and start building your LUKSO smart contracts
 ---
 
 # Getting started

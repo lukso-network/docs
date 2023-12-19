@@ -1,6 +1,7 @@
 ---
 sidebar_label: '🔎 Retrieve Token Type'
 sidebar_position: 6
+description: Retrieve token types and detect if an asset is a Token, an NFT, or a Collection
 ---
 
 import Tabs from '@theme/Tabs';

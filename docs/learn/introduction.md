@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Introduction'
 sidebar_position: 1
+introduction: Introduction to the LUKSO Ecosystem - why choose LUKSO?, who is LUKSO intended for?
 ---
 
 # Introduction

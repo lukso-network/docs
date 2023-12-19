@@ -1,6 +1,7 @@
 ---
 sidebar_label: '🌄 Create an LSP7 Token'
 sidebar_position: 2
+description: Learn how to create a custom LSP7 Token
 ---
 
 import Tabs from '@theme/Tabs';

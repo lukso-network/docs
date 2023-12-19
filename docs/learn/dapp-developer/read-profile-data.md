@@ -1,6 +1,7 @@
 ---
 sidebar_label: '📒 Read Profile Data'
 sidebar_position: 3
+description: Learn how to read profile data from your Universal Profile
 ---
 
 import Tabs from '@theme/Tabs';

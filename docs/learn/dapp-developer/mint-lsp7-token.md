@@ -1,6 +1,7 @@
 ---
 sidebar_label: '💽 Mint LSP7 Token'
 sidebar_position: 8
+description: Learn how to mint LSP7 tokens
 ---
 
 import Tabs from '@theme/Tabs';

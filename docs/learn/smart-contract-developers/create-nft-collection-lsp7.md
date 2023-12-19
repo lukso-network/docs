@@ -1,6 +1,7 @@
 ---
 sidebar_label: '👾 Create an NFT Collection with LSP7'
 sidebar_position: 4
+description: Learn how to create an NFT Collection using LSP7
 ---
 
 # Create an NFT Collection Using LSP7
