@@ -151,21 +151,22 @@ lukso status
 # INFO[0000] PID 39432 - Validator (validator): Stopped 🔘
 ```
 
-You can also check the connectivity of your clients by running `lukso status peers` command - this will show how many
-peers are your clients connected with.
+The status command can also be used to check the connectivity to other node machines within the network, measuring active communication channels:
 
 ```bash
 lukso status peers
 
-# INFO[0000] Execution (Geth): Outbound: 10 | Inbound: 3 🟢
-# INFO[0000] Consensus (Lighthouse): Outbound: 5 | Inbound: 8 🟢
+# INFO[0000] Execution (Geth): Outbound: 28 | Inbound: 15 🟢
+# INFO[0000] Consensus (Prysm): Outbound: 36 | Inbound: 21 🟢
 ```
 
-Please note that execution client may need additional APIs enabled in order to send peer info. You can read more on how
-to enable those [here](https://github.com/lukso-network/tools-lukso-cli#how-to-get-your-peer-count).
+:::info
 
-If you want to check any of the running clients in more detail, you can use the built-in logging command of the CLI. It
-will print out the current log messages of one client to the terminal screen.
+Both _lukso status_ commands are fetching information from your node in real-time and can change any time. In order to monitor the peers of the execution client, you may need to [enable the API's admin namespace](https://github.com/lukso-network/tools-lukso-cli?tab=readme-ov-file#status-peers) within your client configuration.
+
+:::
+
+To check running clients in more detail, you can use the built-in logging command of the CLI. It will print out the current log messages of one client.
 
 ```bash
 # Viewing the logs of the execution client
