@@ -1,7 +1,7 @@
 ---
 sidebar_label: '🛳️ Connect Web3-Onboard'
 sidebar_position: 9
-description: Use Web3-Onboard with the Universal Profile Browser Extension
+description: Use Web3-Onboard with the LUKSO Universal Profile Browser Extension
 ---
 
 # Universal Profile Integration for Web3-Onboard

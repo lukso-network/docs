@@ -1,7 +1,7 @@
 ---
 sidebar_label: '🔀 Migrate to LUKSO'
 sidebar_position: 3
-description: What to consider when building on LUKSO with LSPs(LUKSO Standard Proposals)?
+description: What to consider when building on LUKSO with LSPs (LUKSO Standard Proposals)?
 ---
 
 # Migrate to LUKSO
