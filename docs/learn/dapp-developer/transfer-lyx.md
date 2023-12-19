@@ -1,6 +1,7 @@
 ---
 sidebar_label: '💰 Transfer LYX'
 sidebar_position: 5
+description: Learn how to transfer LYX from your Universal Profile.
 ---
 
 import Tabs from '@theme/Tabs';
