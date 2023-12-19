@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: 'Where to find the Solidity sources of the LUKSO smart contracts?'
 ---
 
 # Solidity Contracts

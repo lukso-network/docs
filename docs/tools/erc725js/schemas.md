@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: Discover the Standard LUKSO LSP Schemas for allowing erc725.js to decode data written in ERC725Y smart contracts.
 ---
 
 # Schemas

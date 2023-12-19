@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: 'Discover EIP191Signer Classes: hashEthereumSignedMessage, hashDataWithIntendedValidator, signEthereumSignedMessage, signDataWithIntendedValidator, recover.'
 ---
 
 # EIP191Signer

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Universal Profile
+description: Deploy a LUKSO Universal Profile with lsp-factory.js.
 ---
 
 # Deploying a Universal Profile

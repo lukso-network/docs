@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Digital Asset
+description: Deploy a LUKSO Digital Asset with lsp-factory.js.
 ---
 
 # Deploying a Digital Asset

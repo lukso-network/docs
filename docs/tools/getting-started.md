@@ -2,6 +2,7 @@
 id: getting-started
 title: Getting Started
 sidebar_position: 1
+description: 'Overview of the main LUKSO tools: erc725.js, lsp-factory.js, eip191-signer.js.'
 ---
 
 # Getting Started

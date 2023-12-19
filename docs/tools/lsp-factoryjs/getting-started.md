@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1.1
+description: Get started with LUKSO lsp-factory.js, for easy deployments of LUKSO Universal Profiles, LSP7 - Digital Assets, and LSP8 - Identifiable Digital Assets.
 ---
 
 # Getting Started

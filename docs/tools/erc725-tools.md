@@ -1,6 +1,7 @@
 ---
 title: 🔍 ERC725 Tools
 sidebar_position: 7
+description: LUKSO ERC725 Tools - Inspector, Data Fetcher, Key Manager, ABI Encoder, LSP2 Encoder.
 ---
 
 # ERC725 Tools

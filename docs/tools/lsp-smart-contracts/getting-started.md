@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Getting started with the LUKSO lsp-smart-contracts and their corresponding GitHub repository and NPM package.
 ---
 
 # Getting Started

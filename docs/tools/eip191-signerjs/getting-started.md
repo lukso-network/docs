@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Getting started with LUKSO's eip191-signer.js, a package used for signing messages according to the EIP191 standard.
 ---
 
 # Getting Started

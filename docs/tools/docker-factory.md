@@ -1,6 +1,7 @@
 ---
 title: 🏭 Node Docker Factory
 sidebar_position: 8
+description: LUKSO Node Docker Factory - a web app to easily create custom docker-compose files to connect to the LUKSO Network.
 ---
 
 # Node Docker Factory

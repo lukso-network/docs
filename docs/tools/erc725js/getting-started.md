@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Get started with the LUKSO erc725.js package, to help you interact with ERC725Y-compliant smart contracts.
 ---
 
 # Getting Started

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: 'Discover the providers supported by LUKSO erc725.js: RPC URL, Ethereum, Web3.'
 ---
 
 # Providers

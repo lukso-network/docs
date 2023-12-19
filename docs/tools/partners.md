@@ -2,6 +2,7 @@
 id: partners
 title: Ecosystem Partners
 sidebar_position: 2
+description: Discover the LUKSO ecosystem partners and related ecosystem tools.
 ---
 
 # Ecosystem Partners

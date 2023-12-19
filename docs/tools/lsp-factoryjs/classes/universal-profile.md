@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: UniversalProfile
+description: Relevant Classes when deploying a LUKSO Universal Profile.
 ---
 
 # UniversalProfile

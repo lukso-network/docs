@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Options
+description: 'Discover how to configure LUKSO smart contracts upon deployment, by passing a contract configuration object using lsp-factory.js.'
 ---
 
 # Contract Options Object

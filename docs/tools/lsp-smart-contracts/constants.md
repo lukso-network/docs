@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: Overview of the LUKSO smart contract variables from the constants.ts file.
 ---
 
 # Constants
