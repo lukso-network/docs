@@ -1,7 +1,7 @@
 ---
 sidebar_label: '🦄 Log-in a Universal Profile'
 sidebar_position: 2
-description: Learn how to log-in a Universal Profile using SIWE (Sign-In With Ethereum)
+description: Learn how to log-in a Universal Profile using SIWE (Sign-In With Ethereum).
 ---
 
 import Tabs from '@theme/Tabs';

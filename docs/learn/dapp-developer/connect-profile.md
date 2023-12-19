@@ -1,7 +1,7 @@
 ---
 sidebar_label: '🔗 Connect a Universal Profile'
 sidebar_position: 1
-description: Learn how to connect your Universal Profile to a dApp (decentralized application)
+description: Learn how to connect your Universal Profile to a dApp (decentralized application) on LUKSO.
 ---
 
 # Connect a Universal Profile
