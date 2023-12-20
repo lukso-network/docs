@@ -121,36 +121,6 @@ Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/Op
 
 A **bytes32** value is used for tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (i.e., serial numbers).
 
-### Checking if the Metadata of a tokenId changed
-
-Because LSP8 uses [ERC725Y](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) under the hood, the URI pointing to the metadata of a specific tokenId can be changed inside the ERC725Y storage.
-
-This can be done via the functions [`setData(bytes32,bytes)`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) or [`setDataBatch(bytes32[],bytes[])`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata). 
-
-Since this function emits the [`DataChanged`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#datachanged) event, you can listen for this event in the LSP8 contract to check if the URI pointing of the tokenId metadata has changed. You can do so by filtering the first parameter `dataKey` with:
-
-```
-LSP8MetadataTokenURI:<first 20 bytes of tokenId>
-``` 
-
-If your LSP8 contract uses a specific URI for each tokenId.
-
-<details>
-    <summary>Example of filtering with <code>LSP8MetadataTokenURI:tokenId</code></summary>
-
-Using the following `tokenId` as an example: `0x1111222233334444555566667777888899990000aaaabbbbccccddddeeeeffff`
-
-`LSP8MetadataTokenURI` data key prefix = `0x0x4690256ef7e93288012f0000`
-
-You can filter the `DataChanged` event with the following `dataKey`:
-
-```
-  | LSP8MetadataTokenURI |      first 20 bytes of tokenId        |
-0x4690256ef7e93288012f00001111222233334444555566667777888899990000
-```
-
-</details>
-
 ### Setting metadata for one or multiple tokenIds
 
 The function [`setDataBatchForTokenIds(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple data key-value pairs at once for one or multiple tokenIds.
@@ -365,6 +335,15 @@ async function setMultipleDataForSingleTokenId(
   </TabItem>
 
 </Tabs>
+
+### Checking if the Metadata of a tokenId changed
+
+Since LSP8 uses [ERC725Y](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) under the hood, the URI pointing to the metadata of a specific tokenId can be changed inside the ERC725Y storage of the LSP8 contract.
+
+We have seen in the previous section [**how to set metadata for one or multiple tokenIds**](#setting-metadata-for-one-or-multiple-tokenids). 
+
+The two functions `setDataForTokenId(...)` and `setDataBatchForTokenIds(...)` emit a [`TokenIdDataChanged`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#tokeniddatachanged) event. You can listen for this event in the LSP8 contract from your dApp, filtering for the `LSP4Metadata` data key to check if the metadata of a tokenId has been changed. You can do so by filtering the first parameter with the `tokenId` and the second parameter with the [bytes32 value of the `LSP4Metadata` data key](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata).
+
 
 ## Note on LSP7 and LSP8 implementations
 

@@ -205,9 +205,9 @@ contract LSP1URDForwarderMethod1 is
         }
 
         // extract data (we only need the amount that was transfered / minted)
-        (, , uint256 amount, ) = abi.decode(
+        (, , , uint256 amount, ) = abi.decode(
             data,
-            (address, address, uint256, bytes)
+            (address, address, address, uint256, bytes)
         );
 
         // CHECK that amount is not too low
