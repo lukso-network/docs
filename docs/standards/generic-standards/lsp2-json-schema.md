@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP2 - ERC725Y JSON Schema'
 sidebar_position: 3
+description: LUKSO's LSP2 - ERC725Y JSON Schema for better abstraction on top of the storage of a smart contract.
 ---
 
 # LSP2 - ERC725Y JSON Schema

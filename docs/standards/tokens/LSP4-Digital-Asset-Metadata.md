@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP4 - Digital Asset Metadata'
 sidebar_position: 2
+description: LUKSO LSP4 - Digital Asset Metadata for defining data keys to describe a Digital Asset.
 ---
 
 # LSP4 - Digital Asset Metadata

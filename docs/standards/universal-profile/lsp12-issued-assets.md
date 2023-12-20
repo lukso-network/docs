@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP12 - Issued Assets'
 sidebar_position: 9
+description: LUKSO LSP12 - Issued Assets for keeping track of all the assets issued by a smart contract.
 ---
 
 # LSP12 - Issued Assets
