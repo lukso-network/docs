@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Peer Connections'
 sidebar_position: 3
+description: LUKSO peer connections overview.
 ---
 
 # Peer Connections

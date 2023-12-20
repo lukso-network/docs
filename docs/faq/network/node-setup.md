@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Node Setup'
 sidebar_position: 4
+description: 'LUKSO node setup and supported clients: Geth, Erigon, Prysm, Lighthouse.'
 ---
 
 # Node Setup

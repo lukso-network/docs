@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Validators'
 sidebar_position: 5
+description: 'LUKSO validators overview: validator deposit key, validator mnemonic seed, validator fee recipient address.'
 ---
 
 # Validators

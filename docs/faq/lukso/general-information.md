@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'General Information'
 sidebar_position: 1
+description: 'General information about the LUKSO ecosystem: LYXt, LYXe, and LYX, token supply, LUKSO as a Layer-1.'
 ---
 
 # General Information
