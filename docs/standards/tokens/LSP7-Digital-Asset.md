@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP7 - Digital Asset (Token)'
 sidebar_position: 3
+description: LUKSO LSP7 - Digital Asset for fungible assets.
 ---
 
 # LSP7 - Digital Asset

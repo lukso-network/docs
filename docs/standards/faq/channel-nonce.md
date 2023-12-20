@@ -1,6 +1,7 @@
 ---
 title: Multi-channel nonces
 sidebar_position: 1
+description: Learn about multi-channel nonces for the LUKSO Key Manager.
 ---
 
 # Frequently Asked Questions

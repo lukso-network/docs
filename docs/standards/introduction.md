@@ -1,6 +1,7 @@
 ---
 title: 'Introduction'
 sidebar_position: 1
+description: Introduction to LSPs (LUKSO Standars Proposals).
 ---
 
 # The LUKSO Standard Proposals (LSPs)

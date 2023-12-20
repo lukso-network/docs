@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP3 - Profile Metadata'
 sidebar_position: 4
+description: 'LUKSO LSP3-Profile-Metadata: a Metadata standard that defines specific data keys to describe a profile.'
 ---
 
 # LSP3 - Profile Metadata

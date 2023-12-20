@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP8 - Identifiable Digital Asset (NFT)'
 sidebar_position: 4
+description: LUKSO LSP8 - Identifiable Digital Asset for non-fungible assets.
 ---
 
 import Tabs from '@theme/Tabs';
