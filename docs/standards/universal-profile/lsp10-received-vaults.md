@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP10 - Received Vaults'
 sidebar_position: 8
+description: LUKSO LSP10 - Received Vaults for keeping track of all the vaults owned by a smart contract.
 ---
 
 # LSP10 - Received Vaults
