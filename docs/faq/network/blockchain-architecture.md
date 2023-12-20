@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Blockchain Architecture'
 sidebar_position: 1
+description: LUKSO blockchain architecture overview.
 ---
 
 # Blockchain Architecture

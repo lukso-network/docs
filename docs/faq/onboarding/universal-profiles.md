@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Universal Profiles'
 sidebar_position: 1
+description: 'Universal Profiles: Universal Profile Explorer, compatibility with regular wallets, and supported coins.'
 ---
 
 # Universal Profiles

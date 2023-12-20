@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Help Center'
 sidebar_position: 5
+description: LUKSO help center.
 ---
 
 # Help Center

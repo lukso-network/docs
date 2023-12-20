@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Feature Requests'
 sidebar_position: 3
+description: 'LUKSO ecosystem feature requests: developer events, hackathons, grants.'
 ---
 
 # Feature Requests
