@@ -134,10 +134,11 @@ In this way, users are **informed** about the NFT transfer and can decide how to
 
 If the sender and recipient are smart contracts that implement the LSP1 standard, the LSP8 token contract will notify them using the following `bytes32 typeIds` when calling their `universalReceiver(...)` function.
 
-| address notified       | `bytes32` typeId used                                                | description                                     |
-| ---------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
-| Token sender (`from`)  | `0xb23eae7e6d1564b295b4c3e3be402d9a2f0776c57bdf365903496f6fa481ab00` | `keccak256('LSP8Tokens_SenderNotification')`    |
-| Token recipient (`to`) | `0x0b084a55ebf70fd3c06fd755269dac2212c4d3f0f4d09079780bfa50c1b2984d` | `keccak256('LSP8Tokens_RecipientNotification')` |
+| address notified            | `bytes32` typeId used                                                | description                                     |
+| --------------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| Token sender (`from`)       | `0xb23eae7e6d1564b295b4c3e3be402d9a2f0776c57bdf365903496f6fa481ab00` | `keccak256('LSP8Tokens_SenderNotification')`    |
+| Token recipient (`to`)      | `0x0b084a55ebf70fd3c06fd755269dac2212c4d3f0f4d09079780bfa50c1b2984d` | `keccak256('LSP8Tokens_RecipientNotification')` |
+| Token Operator (`operator`) | `0x468cd1581d7bc001c3b685513d2b929b55437be34700410383d58f3aa1ea0abc` | `keccak256('LSP8Tokens_OperatorNotification')`  |
 
 ### `force` mint and transfer
 
