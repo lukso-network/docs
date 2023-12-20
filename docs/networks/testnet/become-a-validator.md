@@ -1,6 +1,7 @@
 ---
 title: Become a Validator
 sidebar_position: 3
+description: Become a LUKSO Testnet validator using the LUKSO Deposit Launchpad and deposit 32 LYX per validator.
 ---
 
 ## Become a Validator

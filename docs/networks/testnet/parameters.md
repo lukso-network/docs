@@ -1,6 +1,7 @@
 ---
 title: 'Network parameters'
 sidebar_position: 1
+description: 'Network Parameters for LUKSO Testnet: Execution Block Explorer, RPC providers, Chain ID, LUKSO Testnet faucet.'
 ---
 
 # Testnet

@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Update the Node'
 sidebar_position: 1
+description: Discover how to check your LUKSO CLI version and update it to the latest one.
 ---
 
 import Tabs from '@theme/Tabs';

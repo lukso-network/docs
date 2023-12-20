@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Update Validator Withdrawals'
 sidebar_position: 4
+description: Update the LUKSO Validator withdrawals to be able to withdraw staked LYX/ LYXt.
 ---
 
 import Tabs from '@theme/Tabs';
