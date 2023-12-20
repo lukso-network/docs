@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Switch Consensus Clients'
 sidebar_position: 3
+description: 'Learn how to switch consensus clients on LUKSO to help improve client diversity: switch from Prysm to Lighthouse or Teku.'
 ---
 
 # Switching Consensus Clients

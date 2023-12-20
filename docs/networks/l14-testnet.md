@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: Learn about LUKSO L14 Public Testnet and its purpose.
 ---
 
 # L14 Public Testnet

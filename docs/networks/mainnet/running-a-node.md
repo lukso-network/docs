@@ -1,6 +1,7 @@
 ---
 title: Running a Node
 sidebar_position: 2
+description: 'Run a Mainnet LUKSO node with one of the three options: Dappnode, LUKSO CLI, or Docker.'
 ---
 
 import Tabs from '@theme/Tabs';

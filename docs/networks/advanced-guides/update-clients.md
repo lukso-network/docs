@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Update the Clients'
 sidebar_position: 2
+description: Discover how to check for new blockchain client versions on LUKSO.
 ---
 
 # Update the Clients

@@ -1,6 +1,7 @@
 ---
 title: Running a Node
 sidebar_position: 2
+description: 'Run a Testnet LUKSO node with one of the three options: Dappnode, LUKSO CLI, or Docker.'
 ---
 
 # Running a testnet node
