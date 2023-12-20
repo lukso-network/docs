@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Staking'
 sidebar_position: 7
+description: Staking LYX on the LUKSO network.
 ---
 
 # Staking

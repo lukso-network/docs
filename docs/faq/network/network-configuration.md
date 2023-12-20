@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Network Configuration'
 sidebar_position: 2
+description: 'LUKSO network configurations: ports, minimal network speed, data traffic.'
 ---
 
 # Network Configuration

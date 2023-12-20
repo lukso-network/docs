@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Token Migration'
 sidebar_position: 1
+description: 'LUKSO LYXe to LYX migartion: LUKSO migration bridge, minimal amount of LYX that can be bridged, supported wallets for the migration.'
 ---
 
 # Token Migration

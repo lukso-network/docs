@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'UP Extension'
 sidebar_position: 4
+description: LUKSO Universal Profile Extension benefits and general information.
 ---
 
 # Universal Profile Extension

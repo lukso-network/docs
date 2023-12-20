@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Project Origins'
 sidebar_position: 6
+description: 'The project origins of LUKSO, LUKSO Genesis Deposit Contract, and the LUKSO Reversible Initial Coin Offering (rICO).'
 ---
 
 # Project Origins
