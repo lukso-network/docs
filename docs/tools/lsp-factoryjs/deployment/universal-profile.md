@@ -111,7 +111,7 @@ await lspFactory.UniversalProfile.deploy({
 };
 ```
 
-The following two examples will download the JSON file before hashing it and generating the proper [JSONURL](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL) value.
+The following two examples will download the JSON file before hashing it and generating the proper [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#VerifiableURI) value.
 
 ```javascript title='Providing a previously uploaded LSP3 metadata IPFS URL'
 await lspFactory.UniversalProfile.deploy({

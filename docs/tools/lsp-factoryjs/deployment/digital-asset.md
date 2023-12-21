@@ -181,7 +181,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
 });
 ```
 
-Alternatively `digitalAssetMetadata` can be passed as a URL where the LSP4Metadata JSON file is stored. LSPFactory will download the JSON file before hashing it and generate the [JSONURL](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL) value to be stored on the token contract's `LSP4Metadata` [ERC725Y] key.
+Alternatively `digitalAssetMetadata` can be passed as a URL where the LSP4Metadata JSON file is stored. LSPFactory will download the JSON file before hashing it and generate the [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#VerifiableURI) value to be stored on the token contract's `LSP4Metadata` [ERC725Y] key.
 
 ```javascript title='Providing a previously uploaded LSP4 metadata IPFS URL'
 await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
