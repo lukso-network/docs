@@ -20,6 +20,24 @@ As LUKSO is an EVM-based blockchain, regular EOA wallets may be used for develop
 
 :::
 
+## Profile Explorer & Management
+
+To manage the Universal Profiles funds, set the recovery, check its monthly gas usage, or explore other blockchain accounts on the network, LUKSO provides [`universalprofile.cloud`](https://universalprofile.cloud). The platform acts as the entry point into the ecosystem and is split into two services:
+
+- [`my.universalprofile.cloud`](https://my.universalprofile.cloud/): Create profiles and manage recovery
+- [`wallet.universalprofile.cloud`](https://my.universalprofile.cloud/): Explore profiles and their assets
+
+![Universal Profile Explorer](../../static/img/learn/profile_explorer.png)
+
+:::success External Integration
+
+Developers can dock onto the explorer and reference profiles and assets. Using the `?network` parameter at the end of the URL, you can further define which LUKSO blockchain the asset data is fetched from.
+
+- Profile: `wallet.universalprofile.cloud/<profile_address>?network=mainnet`
+- Asset: `wallet.universalprofile.cloud/asset/<asset_address>?network=testnet`
+
+:::
+
 ## Controller
 
 Typically, every Universal Profile has a [Key Manager](../standards/universal-profile/lsp6-key-manager.md) to control the account's permissions. The term _"controller"_ refers to a permissioned address that can either be an [Externally Owned Account (EOA) or Smart Contract](https://ethereum.org/en/developers/docs/accounts/#types-of-account). When using the [Universal Profile Browser Extension](/install-up-browser-extension), the extension's EOA is set as the initial controller of the profile.
