@@ -28,7 +28,7 @@
     "file-loader": "^6.2.0",
     "plugin-image-zoom": "^1.2.0",
     "prettier": "^3.1.1",
-    "prism-react-renderer": "^2.3.0",
+    "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.69.5",
