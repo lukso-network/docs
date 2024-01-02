@@ -33,9 +33,17 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
   - outcomes regarding code execution, or
   - additional code explanations, unnecessary for the immediate implementation.
 
+## Page Headers
+
+- Every markdown file should have a `description` set within the [Docusaurus Head Metadata](https://docusaurus.io/docs/markdown-features/head-metadata) to deliver improved descriptions within search engine entries.
+- Every documentation page must come with the [Docusaurus Markdown Header's](https://v1.docusaurus.io/docs/en/doc-markdown#markdown-headers) properties `sidebar_position` and `sidebar_label` to determine a strict order and title for the content.
+
 ## File Links
 
-- We use relative redirections that end with `.md` for all internal content within this repository. This way, link correctness can be checked within the build process of the webpage and is not affected by restructuring to subfolders in the left sidebar.
+- Internal pages within the [`docs`](./docs/) folder are referenced using relative redirections that end with `.md`. This way, link correctness can be checked within the build process of the webpage and is not affected by sidebar restructures.
+- Global pages within the [`src/pages`](./src/pages/) folder are referenced as relative link without file ending.
+
+> Upon merging, rearranging, or removing pages, a reference must be created in the _redirects register_ of the [`docusaurus.config.js`](./docusaurus.config.js) file. This way, SEO entries can be updated and links will automatically redirect users to the new page.
 
 ## LSP Naming
 
@@ -53,3 +61,20 @@ The function retrieves an array of _data keys_ for **multiple** smart contract a
 ### LSP7 - Digital Asset Example
 
 The LSP 7 Digital Asset is a token standard for fungible assets built by LUKSO. Developers can look up the LSP7DigitalAsset smart contract within the [`@lukso/lsp-factory.js`](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) library. Some features of the Digital Asset include more secure transfers, additional metadata, and token hooks.
+
+### Page Metadata
+
+```markdown
+---
+sidebar_label: 'Feature Requests'
+sidebar_position: 3
+description: 'LUKSO ecosystem feature requests: developer events, hackathons, grants.'
+---
+```
+
+### Page Links
+
+```markdown
+[Global Page](`./install-up-browser-extension`)
+[Internal Documentation Page](`../standards/indroduction.md`)
+```
