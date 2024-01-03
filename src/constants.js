@@ -1,4 +1,4 @@
-const LUKSO_NETWORK_CONFIGS = {
+export const LUKSO_NETWORK_CONFIGS = {
   mainnet: {
     chainId: '0x2A', // 42
     chainName: 'LUKSO',

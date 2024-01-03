@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LUKSO_NETWORK_CONFIGS } from '../../constants';
+import { LUKSO_NETWORK_CONFIGS } from '../../constants.js';
 
 import styles from './AddNetworkButton.module.scss';
 
