@@ -1,0 +1,30 @@
+.button {
+  tab-size: 4;
+  transition: box-shadow .3s;
+
+  box-sizing: border-box;
+  border: 0 solid #f2f2f2;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 15px 0;
+  text-transform: none;
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer;
+
+  border-radius: 50px;
+  border-width: 1px;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  background-color: #fe005b;
+  color: white;
+
+  &:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.7); 
+  }
+}

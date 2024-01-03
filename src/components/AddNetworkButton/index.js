@@ -51,7 +51,7 @@ export default function AddNetworkButton() {
 
   return (
     <button className={styles.button} onClick={addNetwork}>
-      Add LUKSO network
+      Add LUKSO Mainnet
     </button>
   );
 }

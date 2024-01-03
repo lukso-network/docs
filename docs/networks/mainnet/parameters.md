@@ -32,7 +32,7 @@ Developers can use the services of the following 3rd party providers:
 - [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io`
 - [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso.rpc.thirdweb.com`
 
-## Add LUKSO network (MetaMask...)
+## Add LUKSO Mainnet (MetaMask...)
 
 <AddNetworkButton/>
 

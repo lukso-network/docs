@@ -4,9 +4,15 @@ sidebar_position: 1
 description: 'Network Parameters for LUKSO Testnet: Execution Block Explorer, RPC providers, Chain ID, LUKSO Testnet faucet.'
 ---
 
+import AddNetworkButtonTestnet from '../../../src/components/AddNetworkButtonTestnet'
+
 # Testnet
 
 The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps and forks before they move to the mainnet.
+
+## Add LUKSO Testnet (MetaMask...)
+
+<AddNetworkButtonTestnet/>
 
 ## Network Parameters
 
