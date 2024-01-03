@@ -20,14 +20,14 @@ const RPC_URL = 'https://rpc.testnet.lukso.network';
 const erc725 = new ERC725([], '0x...', RPC_URL);
 ```
 
-## Ethereum (injected provider from extension)
+## Injected Extension Provider
 
 ```javascript
 import ERC725 from '@erc725/erc725.js';
 
-const ethereumProvider = window.ethereum;
+const browserProvider = window.lukso || window.ethereum;
 
-const erc725 = new ERC725([], '0x...', ethereumProvider);
+const erc725 = new ERC725([], '0x...', browserProvider);
 ```
 
 ## Web3 (deprecated)
