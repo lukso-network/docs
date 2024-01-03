@@ -32,6 +32,16 @@ Developers can use the services of the following 3rd party providers:
 - [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io`
 - [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso.rpc.thirdweb.com`
 
+We recommend developers to use these RPC providers over our public RPC URL as they provide better performance and stability.
+
+## IPFS Storage
+
+Developers can use the following RPC in order to fetch and store profile or asset data:
+
+- IPFS Download: `https://api.universalprofile.cloud/ipfs`
+- IPFS Upload: `api.2eff.lukso.dev`
+- Gateway Port: `443`
+
 ## Add LUKSO Mainnet (MetaMask...)
 
 <AddNetworkButton networkName="mainnet"/>
