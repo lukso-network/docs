@@ -10,10 +10,6 @@ import AddNetworkButton from '../../../src/components/AddNetworkButton'
 
 The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps and forks before they move to the mainnet.
 
-## Add LUKSO Testnet (MetaMask...)
-
-<AddNetworkButton networkName="testnet"/>
-
 ## Network Parameters
 
 | Setting                  | Value                                                                                                        |
@@ -44,3 +40,7 @@ Developers can use the services of the following 3rd party providers:
 - [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso-testnet.rpc.thirdweb.com`
 
 We recommend developers to use these RPC providers over our public RPC URL as they provide better performances.
+
+## Add LUKSO Testnet (MetaMask...)
+
+<AddNetworkButton networkName="testnet"/>
