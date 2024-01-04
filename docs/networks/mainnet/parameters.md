@@ -36,7 +36,7 @@ We recommend developers to use these RPC providers over our public RPC URL as th
 
 ## IPFS Storage
 
-We highly recommend that developers fetch and store profile or asset data using **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or or [Infura](https://docs.infura.io/networks/ipfs) for production needs, ensuring distribution and availability across the IPFS network. We do not provide an official gateway for uploading asset data. For development purposes, you may use the following RPC to fetch data:
+We highly recommend that developers fetch and store profile or asset data using **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or [Infura](https://docs.infura.io/networks/ipfs) for production needs, ensuring distribution and availability across the IPFS network. We do not provide an official gateway for uploading asset data. For development purposes, you may use the following RPC to fetch data:
 
 - IPFS Download (for development only): `https://api.universalprofile.cloud/ipfs`
 
