@@ -1,13 +1,14 @@
 ---
 sidebar_label: 'Feature Requests'
 sidebar_position: 3
+description: 'LUKSO ecosystem feature requests: developer events, hackathons, grants.'
 ---
 
 # Feature Requests
 
 ## Will there be video guides about LSPs?
 
-Yes, LUKSO is planning to create videos for LSPs both on the theoretical and practical end. They will be released over time.
+Yes, there are already several videos created for the BuildUP #2 hackathon that you can find on the [LUKSO Youtube channel](https://www.youtube.com/playlist?list=PLNzyUdu4v7bkwBuDV0gSJrrniPsx5bxK_). Additional videos will be released over time.
 
 ## Will there be re-occurring developer events?
 
@@ -15,15 +16,11 @@ Yes, developer meetings and events are planned to present our monthly tech progr
 
 ## Will there be another LUKSO Hackathon?
 
-Yes, we’re planning and preparing future hackathon projects. For official announcements, please follow our [LUKSO Twitter](https://twitter.com/lukso_io) account. You can already have a look into the developer channels on our [LUKSO Discord](https://discord.gg/lukso) in order to find teammates or project ideas.
+Yes, we’re planning and preparing future hackathon projects. For official announcements, please follow our [LUKSO Twitter](https://twitter.com/lukso_io) account. You can already have a look into the developer channels on our [LUKSO Discord](https://discord.gg/lukso) to find teammates or project ideas, and get inspired by [previous hackathon project winners](https://medium.com/lukso/buildup-2-hackathon-winners-0f784793bc43).
 
 ## Is there going to be a grants program?
 
 Yes, LUKSO is preparing to launch the grant program after the mainnet migration process is fully finalized. As you can see in the [LYX distribution](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5), there are reserves and the foundation's treasury to support grants and drive the development of the network.
-
-## Will there be Dappnode or Avado Support for LUKSO?
-
-We are collaborating with the [Dappnode](https://Dappnode.com/) team to provide official support for the LUKSO blockchain. The support will likely be available within the launch process. However, we do not have information about potential other node providers adding support.
 
 ## Will there be a Ledger integration for LUKSO?
 
@@ -35,7 +32,7 @@ Before the mainnet launch process is not fully completed, there are no active ap
 
 ## Will LUKSO be listed on additional exchanges?
 
-Other exchanges than [KuCoin](https://www.kucoin.com/de) and [Gate.io](https://www.gate.io/) may join and list LUKSO, but this is not under our sole control. While the network grows adoption by finalizing the mainnet launch process and enabling regular validators to join the network, there will be more interest in additional exchanges to list LYX.
+At the moment, LUKSO is available on [KuCoin](https://www.kucoin.com/de), [Crypto.com](https://crypto.com/), and [Gate.io](https://www.gate.io/). As the network continues to expand, additionl exchanges may consider joining. It is important to note that this decision is entirely at the discretion of the exchanges.
 
 ## Is it planned to have a video guide about setting up a node?
 

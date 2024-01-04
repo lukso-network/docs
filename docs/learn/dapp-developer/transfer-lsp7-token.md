@@ -1,6 +1,7 @@
 ---
 sidebar_label: '🪙 Transfer LSP7 Token'
 sidebar_position: 6
+description: Transfer LSP7 tokens from a Universal Profile.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -54,7 +55,7 @@ import Web3 from 'web3';
 // Import schemas and ABI
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
-const web3 = new Web3(window.ethereum);
+const web3 = new Web3(window.lukso);
 
 await web3.eth.requestAccounts();
 const accounts = await web3.eth.getAccounts();

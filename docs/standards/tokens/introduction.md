@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Introduction'
 sidebar_position: 1
+description: 'Introduction to LUKSO Tokens (LSP7-DigitalAsset ) and NFTs 2.0 (LSP8-IdentifiableDigitalAsset).'
 ---
 
 # Tokens & NFT 2.0

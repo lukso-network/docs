@@ -1,6 +1,7 @@
 ---
 title: Become a Validator
 sidebar_position: 3
+description: Become a LUKSO Mainnet validator using the LUKSO Deposit Launchpad and deposit 32 LYX per validator.
 ---
 
 # Become a validator
@@ -90,7 +91,22 @@ lukso status
 # INFO[0000] PID 39432 - Validator (validator): Running 🟢
 ```
 
-In addition to the _consensus_ and _execution_ clients, you can now further check the validator logs using the LUKSO CLI:
+The status command can also be used to check the connectivity to other node machines within the network, measuring active communication channels:
+
+```bash
+lukso status peers
+
+# INFO[0000] Execution (Geth): Outbound: 28 | Inbound: 15 🟢
+# INFO[0000] Consensus (Prysm): Outbound: 36 | Inbound: 21 🟢
+```
+
+:::info
+
+Both _lukso status_ commands are fetching information from your node in real-time and can change any time. In order to monitor the peers of the execution client, you may need to [enable the API's admin namespace](https://github.com/lukso-network/tools-lukso-cli?tab=readme-ov-file#status-peers) within your client configuration.
+
+:::
+
+To check running clients in more detail, you can use the built-in logging command of the CLI. It will print out the current log messages of one client.
 
 ```bash
 # Viewing the logs of the validator client

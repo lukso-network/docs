@@ -1,6 +1,7 @@
 ---
 title: 'Network parameters'
 sidebar_position: 1
+description: 'Network Parameters for LUKSO Mainnet: Execution Block Explorer, RPC providers, Chain ID.'
 ---
 
 import AddNetworkButton from '../../../src/components/AddNetworkButton'
@@ -31,9 +32,9 @@ Developers can use the services of the following 3rd party providers:
 - [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io`
 - [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso.rpc.thirdweb.com`
 
-## Add LUKSO network (MetaMask...)
+## Add LUKSO Mainnet (MetaMask...)
 
-<AddNetworkButton/>
+<AddNetworkButton networkName="mainnet"/>
 
 You can add LUKSO as a custom network in your existing wallet (MetaMask, Rainbow, Coinbase Wallet, Trust Wallet, etc.) with the parameters below:
 

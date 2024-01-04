@@ -1,6 +1,7 @@
 ---
 sidebar_label: '💽 Mint LSP7 Token'
 sidebar_position: 8
+description: Learn how to create Digital Assets (token) on LUKSO using the LSP7 standard.
 ---
 
 import Tabs from '@theme/Tabs';

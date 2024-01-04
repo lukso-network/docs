@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Project Timeline'
 sidebar_position: 4
+description: 'LUKSO project timeline: L14, L16, Testnet, LUKSO Mainnet.'
 ---
 
 # Project Timeline

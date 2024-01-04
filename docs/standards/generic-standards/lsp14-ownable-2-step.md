@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP14 - Ownable 2-Step'
 sidebar_position: 3
+description: "LUKSO's LSP14 - Ownable2Step: an extended version of EIP173 - Contract Ownership Standard for transferring and renouncing ownership."
 ---
 
 # LSP14 - Ownable 2-Step

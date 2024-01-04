@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Asset Migration'
 sidebar_position: 2
+description: Overview of the LUKSO asset migration from L14 Testnet.
 ---
 
 # Asset Migration

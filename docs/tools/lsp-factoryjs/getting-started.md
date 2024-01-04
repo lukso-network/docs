@@ -51,7 +51,7 @@ const myContracts = await lspFactory.UniversalProfile.deploy({
 });
 ```
 
-The key `lsp3Profile` contains the [LSP3 Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#JSONURL) of your Universal Profile. This is the "face" of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
+The key `lsp3Profile` contains the [LSP3 Profile Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) of your Universal Profile. This is the "face" of your Universal Profile and contains all the public information people will see when they view your UP like your name, description and profile image.
 
 ```javascript
 const myLSP3MetaData = {

@@ -1,6 +1,7 @@
 ---
 sidebar_label: '📑 Concepts & Glossary'
 sidebar_position: 2
+description: 'Most frequently used concepts related to the LUKSO Ecosystem: Universal Profiles, Controllers, Transaction Relay Service.'
 ---
 
 # Concepts & Glossary
@@ -9,13 +10,31 @@ sidebar_position: 2
 
 A [Universal Profile](../standards/universal-profile/introduction.md) (UP) is a smart contract-based account that acts as the center for all your blockchain interactions. UPs, such as regular wallets, are generic for various use cases and can interact directly with on-chain applications. On top of that, they feature permission and asset management, updated profile information, and let you interact as one persona through different [controllers](#controller).
 
-The [Universal Profile Browser Extension](/install-up-browser-extension) is the recommended way of interacting on LUKSO and managing Universal Profiles. The extension acts like a regular Ethereum wallet and uses the `window.ethereum` object. Developers can use their preferred libraries like [web3.js](https://web3js.readthedocs.io/) and [ethers.js](https://docs.ethers.org/) to interact with profiles like they do with other wallets.
+The [Universal Profile Browser Extension](/install-up-browser-extension) is the recommended way of interacting on LUKSO and managing Universal Profiles. The extension acts like a regular Ethereum wallet and uses the same `window.ethereum` object on [all supported browsers](/install-up-browser-extension). Alternatively, we endorse calling the equivalent `window.lukso` object. Developers can use their preferred libraries like [web3.js](https://web3js.readthedocs.io/) and [ethers.js](https://docs.ethers.org/) to interact with profiles like they do with other wallets.
 
 When [connecting](https://docs.lukso.tech/learn/dapp-developer/connect-profile.md) a profile, the extension automatically returns the address of the smart contract account. Similarly, the extension automatically verifies if the EOA controller has permission to [log-in](../learn/dapp-developer/siwe.md) or [execute transfers](../learn/dapp-developer/transfer-lyx.md).
 
 :::info Using regular wallets
 
 As LUKSO is an EVM-based blockchain, regular EOA wallets may be used for development. However, it is discouraged to use [EOAs](https://ethereum.org/en/developers/docs/accounts/#types-of-account) to onboard users, as they lack [all convenience features of LSPs](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps). If you need a more general understanding of why we build our accounts on the smart contract level, we advise you to read about the [LUKSO Ecosystem](https://medium.com/lukso/lukso-ecosystem-part-1-4c3f5d67b081).
+
+:::
+
+## Profile Explorer & Management
+
+To manage the Universal Profiles funds, set the recovery, check its monthly gas usage, or explore other blockchain accounts on the network, LUKSO provides [`universalprofile.cloud`](https://universalprofile.cloud). The platform acts as the entry point into the ecosystem and is split into two services:
+
+- [`my.universalprofile.cloud`](https://my.universalprofile.cloud/): Create profiles and manage recovery
+- [`wallet.universalprofile.cloud`](https://my.universalprofile.cloud/): Explore profiles and their assets
+
+![Universal Profile Explorer](../../static/img/learn/profile_explorer.png)
+
+:::success External Integration
+
+Developers can dock onto the explorer and reference profiles and assets. Using the `?network` parameter at the end of the URL, you can further define which LUKSO blockchain the asset data is fetched from.
+
+- Profile: `wallet.universalprofile.cloud/<profile_address>?network=mainnet`
+- Asset: `wallet.universalprofile.cloud/asset/<asset_address>?network=testnet`
 
 :::
 

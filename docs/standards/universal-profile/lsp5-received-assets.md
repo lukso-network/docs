@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP5 - Received Assets'
 sidebar_position: 5
+description: 'LUKSO LSP5 - Received Assets: a standard for referencing and keeping track of received assets.'
 ---
 
 # LSP5 - Received Assets

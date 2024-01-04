@@ -1,6 +1,7 @@
 ---
 sidebar_label: '📒 Read Profile Data'
 sidebar_position: 3
+description: Learn how to read profile data from your Universal Profile.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -232,7 +233,7 @@ console.log(profileMetaData);
 
 :::note get and fetch
 
-The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download `JSONURL` and `AssetURL` content.
+The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of a `VerifiableURI`, `JSONURL` and `AssetURL`.
 
 :::
 

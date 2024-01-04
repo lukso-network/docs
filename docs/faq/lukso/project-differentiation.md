@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Project Differentiation'
 sidebar_position: 2
+description: How does LUKSO differentiate from other projects?
 ---
 
 # Project Differentiation

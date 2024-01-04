@@ -1,6 +1,7 @@
 ---
 sidebar_label: '💰 Transfer LYX'
 sidebar_position: 5
+description: Learn how to transfer LYX from your Universal Profile.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -62,7 +63,7 @@ The Universal Profile browser extension will magically wrap all the calls intern
 ```js
 import Web3 from 'web3';
 
-const web3 = new Web3(window.ethereum);
+const web3 = new Web3(window.lukso);
 
 await web3.eth.requestAccounts();
 const accounts = await web3.eth.getAccounts();
@@ -84,7 +85,7 @@ await web3.eth.sendTransaction({
 ```js
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+const provider = new ethers.providers.Web3Provider(window.lukso);
 
 await provider.send("eth_requestAccounts", []);
 

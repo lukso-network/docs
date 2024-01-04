@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP2 - ERC725Y JSON Schema'
 sidebar_position: 3
+description: LUKSO's LSP2 - ERC725Y JSON Schema for better abstraction on top of the storage of a smart contract.
 ---
 
 # LSP2 - ERC725Y JSON Schema
@@ -24,7 +25,7 @@ The storage of a smart contract consists of multiple **storage slots**. These sl
 > In summary, smart contracts understand only two languages: bytes and uint256.
 > Take the following key-value pair, for instance. It is not easy to infer the meaning of these data keys by reading them as **bytes**.
 
-```
+```text
 (key)                                                              => (value)
 0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1 => 0x4d7920546f6b656e20322e30
 ```

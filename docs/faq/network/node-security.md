@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Security'
 sidebar_position: 6
+description: LUKSO node security considerations.
 ---
 
 # Node Security

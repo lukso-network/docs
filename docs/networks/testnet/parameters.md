@@ -1,7 +1,10 @@
 ---
 title: 'Network parameters'
 sidebar_position: 1
+description: 'Network Parameters for LUKSO Testnet: Execution Block Explorer, RPC providers, Chain ID, LUKSO Testnet faucet.'
 ---
+
+import AddNetworkButton from '../../../src/components/AddNetworkButton'
 
 # Testnet
 
@@ -37,3 +40,7 @@ Developers can use the services of the following 3rd party providers:
 - [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso-testnet.rpc.thirdweb.com`
 
 We recommend developers to use these RPC providers over our public RPC URL as they provide better performances.
+
+## Add LUKSO Testnet (MetaMask...)
+
+<AddNetworkButton networkName="testnet"/>

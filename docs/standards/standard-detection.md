@@ -1,6 +1,7 @@
 ---
 title: 'Standard Detection'
 sidebar_position: 3
+description: 'Standard Detection using interfaceId and the SupportedStandards:{StandardName} data key.'
 ---
 
 # Standard Detection

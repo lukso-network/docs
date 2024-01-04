@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP17 - Contract Extension'
 sidebar_position: 5
+description: LUKSO's LSP17 - Contract Extension for enabling smart contracts to support new functions through extensions.
 ---
 
 # LSP17 - Contract Extension

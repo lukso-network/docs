@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Node Setup'
 sidebar_position: 4
+description: 'LUKSO node setup and supported clients: Geth, Erigon, Prysm, Lighthouse.'
 ---
 
 # Node Setup
@@ -43,7 +44,7 @@ The [LUKSO Launchpad](https://deposit.mainnet.lukso.network/) will streamline th
 
 ## How can I check if my node is working fine?
 
-If you are using the LUKSO CLI, you can use the **lukso status command** to see if every one of the clients is running. You can also run the lukso logs commands to see the outputs of the specific clients. After syncing the node, you should see that the execution client's chain head is updated regularly within the execution log files.
+If you are using the LUKSO CLI, you can use the **lukso status command** to see if every one of the clients is running. You can also run the **lukso logs** and **lukso status peers** commands to see the outputs of the specific clients or their number of peers. After syncing the node, you should see that the execution client's chain head is updated regularly within the execution log files.
 
 If you are running Docker Images, you can run **docker ps** to check if all containers are running smoothly. The output should state when the blockchain client containers are up and running.
 

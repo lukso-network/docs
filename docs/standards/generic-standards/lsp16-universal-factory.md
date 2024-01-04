@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP16 - Universal Factory'
 sidebar_position: 4
+description: LUKSO's LSP16 - Universal Factory for deploying the same smart contracts to the same address across different chains.
 ---
 
 # LSP16 - Universal Factory

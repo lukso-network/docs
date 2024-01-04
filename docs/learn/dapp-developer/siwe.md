@@ -1,6 +1,7 @@
 ---
 sidebar_label: '🦄 Log-in a Universal Profile'
 sidebar_position: 2
+description: Learn how to log-in a Universal Profile using SIWE (Sign-In With Ethereum).
 ---
 
 import Tabs from '@theme/Tabs';
@@ -34,7 +35,7 @@ npm install web3 @lukso/lsp-smart-contracts siwe
 ```js
 import Web3 from 'web3';
 
-const web3 = new Web3(window.ethereum);
+const web3 = new Web3(window.lukso);
 
 // Request the user's Universal Profile address
 await web3.eth.requestAccounts();

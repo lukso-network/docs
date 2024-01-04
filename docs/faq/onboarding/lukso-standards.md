@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LUKSO Standards'
 sidebar_position: 3
+description: 'LUKSO Standard Proposals (LSPs) overview: main features of LSPs, the difference between ERC721, ERC1155, LSP7, LSP8, and LUKSO phygital assets.'
 ---
 
 # LUKSO Standard Proposals

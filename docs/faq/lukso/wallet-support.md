@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Wallet Support'
 sidebar_position: 5
+description: Difference between wallets and the LUKSO Universal Profile Browser Extension.
 ---
 
 # Wallet Support

@@ -1,6 +1,7 @@
 ---
 title: 📬 Relayer API
 sidebar_position: 9
+description: LUKSO's Transaction Relay Service API Standard.
 ---
 
 import Tabs from '@theme/Tabs';

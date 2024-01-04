@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP7 - Digital Asset (Token)'
 sidebar_position: 3
+description: LUKSO LSP7 - Digital Asset for fungible assets.
 ---
 
 # LSP7 - Digital Asset
@@ -78,14 +79,15 @@ During an **LSP7 token transfer**, as well as updating the balances, both the se
 
 ![LSP7DigitalAsset Transfer](/img/standards/lsp7/lsp7-transfer.jpeg)
 
-In this way, users are **informed** about the token transfers and can decide how to **react on the transfer**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
+In this way, users are **informed** about the token transfers and approval and can decide how to **react on the transfer or approval**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
 
 If the sender and recipient are smart contracts that implement the LSP1 standard, the LSP7 token contract will notify them using the following `bytes32 typeIds` when calling their `universalReceiver(...)` function.
 
-| address notified       | `bytes32` typeId used                                                | description                                     |
-| ---------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
-| Token sender (`from`)  | `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` | `keccak256('LSP7Tokens_SenderNotification')`    |
-| Token recipient (`to`) | `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` | `keccak256('LSP7Tokens_RecipientNotification')` |
+| address notified            | `bytes32` typeId used                                                | description                                     |
+| --------------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| Token sender (`from`)       | `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` | `keccak256('LSP7Tokens_SenderNotification')`    |
+| Token recipient (`to`)      | `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` | `keccak256('LSP7Tokens_RecipientNotification')` |
+| Token Operator (`operator`) | `0x386072cc5a58e61263b434c722725f21031cd06e7c552cfaa06db5de8a320dbc` | `keccak256('LSP7Tokens_OperatorNotification')`  |
 
 ### `force` mint and transfer
 

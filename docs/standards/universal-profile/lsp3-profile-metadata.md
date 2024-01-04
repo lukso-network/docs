@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'LSP3 - Profile Metadata'
 sidebar_position: 4
+description: 'LUKSO LSP3-Profile-Metadata: a Metadata standard that defines specific data keys to describe a profile.'
 ---
 
 # LSP3 - Profile Metadata
@@ -50,11 +51,11 @@ This data key is used to know if the contract contains some metadata to display 
   "key": "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5",
   "keyType": "Singleton",
   "valueType": "bytes",
-  "valueContent": "JSONURL"
+  "valueContent": "VerifiableURI"
 }
 ```
 
-The value attached to this data key is a [JSONURL-encoded value](../../standards/generic-standards/lsp2-json-schema.md). It represents a reference to a [JSON file that describes the Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
+The value attached to this data key is a [VerifiableURI-encoded value](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri). It represents a reference to a [JSON file that describes the Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
 
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, defining an image with different dimensions, `width` and `height`. Picture scaling is helpful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them afterward.
 
