@@ -1,7 +1,7 @@
 export const LUKSO_NETWORK_CONFIGS = {
   mainnet: {
-    chainId: '0x2A', // 42
-    chainName: 'LUKSO',
+    chainId: '42',
+    chainName: 'LUKSO Mainnet',
     nativeCurrency: {
       name: 'LYX',
       symbol: 'LYX',
@@ -11,8 +11,8 @@ export const LUKSO_NETWORK_CONFIGS = {
     blockExplorerUrls: ['https://explorer.execution.mainnet.lukso.network'],
   },
   testnet: {
-    chainId: '0x1069', // 4201
-    chainName: 'Testnet',
+    chainId: '4201',
+    chainName: 'LUKSO Testnet',
     nativeCurrency: {
       name: 'LYXt',
       symbol: 'LYXt',

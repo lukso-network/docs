@@ -21,16 +21,36 @@ export default function AddNetworkButton({ networkName }) {
     try {
       await ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: LUKSO_NETWORK_CONFIGS[networkName].chainId }],
+        params: [
+          {
+            chainId:
+              '0x' +
+              BigInt(LUKSO_NETWORK_CONFIGS[networkName].chainId).toString(16),
+          },
+        ],
       });
-      alert('Your extension is now connected to LUKSO network.');
+      alert(
+        `Your extension is now connected to LUKSO ${
+          networkName == 'mainnet' ? 'Mainnet' : 'Testnet'
+        }`,
+      );
     } catch (switchError) {
       // This error code indicates that the chain has not been added to MetaMask.
       if (switchError.code === 4902) {
         try {
           await ethereum.request({
             method: 'wallet_addEthereumChain',
-            params: [LUKSO_NETWORK_CONFIGS[networkName]],
+            params: [
+              {
+                chainId:
+                  '0x' +
+                  BigInt(LUKSO_NETWORK_CONFIGS[networkName].chainId).toString(
+                    16,
+                  ),
+                chainName: LUKSO_NETWORK_CONFIGS[networkName].chainName,
+                rpcUrls: LUKSO_NETWORK_CONFIGS[networkName].rpcUrls,
+              },
+            ],
           });
         } catch (addError) {
           alert(addError.message);
@@ -43,7 +63,7 @@ export default function AddNetworkButton({ networkName }) {
 
   return (
     <button className={styles.button} onClick={addNetwork}>
-      Add LUKSO {networkName}
+      ADD LUKSO {networkName.toUpperCase()}
     </button>
   );
 }
