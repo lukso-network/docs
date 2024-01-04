@@ -32,6 +32,20 @@ Developers can use the services of the following 3rd party providers:
 - [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io`
 - [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso.rpc.thirdweb.com`
 
+We recommend developers to use these RPC providers over our public RPC URL as they provide better performance and stability.
+
+## IPFS Storage
+
+We highly recommend that developers fetch and store profile or asset data using **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or [Infura](https://docs.infura.io/networks/ipfs) for production needs, ensuring distribution and availability across the IPFS network. We do not provide an official gateway for uploading asset data. For development purposes, you may use the following RPC to fetch data:
+
+- IPFS Download (for development only): `https://api.universalprofile.cloud/ipfs`
+
+:::caution Availability
+
+This gateway is intended for development purposes. We do not guarantee any SLA, and rate limits may apply.
+
+:::
+
 ## Add LUKSO Mainnet (MetaMask...)
 
 <AddNetworkButton networkName="mainnet"/>

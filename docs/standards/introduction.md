@@ -4,6 +4,8 @@ sidebar_position: 1
 description: Introduction to LSPs (LUKSO Standars Proposals).
 ---
 
+import LegoGallery from '@site/src/components/LegoGallery';
+
 # The LUKSO Standard Proposals (LSPs)
 
 ## High Level Overview of Universal Profiles
@@ -55,7 +57,7 @@ Change should start from the bottom to create a better user experience on the bl
 
 The following documentation describes the fundamentals of the standards and technical aspects of the LUKSO ecosystem.
 
-## LSPs Foundation
+## LUKSO Standard Proposals (LSPs)
 
 :::note
 
@@ -65,11 +67,11 @@ Meaning a LSP standard could use another one that comes after or before in order
 
 :::
 
-This section lists and describes the first ten Standards representing the foundation of **LUKSO's ecosystem**.
+This section lists and describes the LSPs Standards representing the foundation of **LUKSO's ecosystem**. They can be used as **building blocks** and combined to create new and innovative protocols or dApps on the LUKSO Blockchain.
 
-They introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, and NFT 2.0**.
+The LSPs introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, and NFT 2.0**.
 
-![lsp-roadmap](/img/standards/introduction/lsp-roadmap.jpg)
+<LegoGallery />
 
 ## Further Information
 
