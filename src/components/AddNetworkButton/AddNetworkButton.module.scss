@@ -3,11 +3,11 @@
   transition: box-shadow 0.3s;
 
   box-sizing: border-box;
-  border: 0 solid #f2f2f2;
+  border: none;
   font-size: 100%;
   font-weight: inherit;
   line-height: inherit;
-  margin: 15px 0;
+  margin: 15px 0px 30px 0px;
   text-transform: none;
   background-color: transparent;
   background-image: none;
@@ -26,5 +26,6 @@
 
   &:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.7);
+    border: 0 solid #fe005b;
   }
 }
