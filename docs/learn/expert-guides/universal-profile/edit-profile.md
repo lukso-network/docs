@@ -161,8 +161,14 @@ For the properties `profileImage` and `backgroundImage`, we will need to add the
 
 Use this [IPFS file uploader tool](https://anarkrypto.github.io/upload-files-to-ipfs-from-browser-panel/public/#) with the settings shown below in green.
 
-- Node Address: `api.2eff.lukso.dev`
+- IPFS Gateway: `api.2eff.lukso.dev`
 - API Port / Gateway Port: `443`
+
+:::caution Availability
+
+This gateway is a deprecated IPFS cluster and will be shut down soon. We do not guarantee any SLA and highly recommend developers to use **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or [Infura](https://docs.infura.io/networks/ipfs).
+
+:::
 
 ![ipfs LUKSO settings](../img/ipfs-lukso-settings.jpg)
 
