@@ -36,11 +36,15 @@ We recommend developers to use these RPC providers over our public RPC URL as th
 
 ## IPFS Storage
 
-Developers can use the following RPC in order to fetch and store profile or asset data:
+We highly recommend that developers fetch and store profile or asset data using **their own IPFS gateway** solutions like [Pinata](https://www.pinata.cloud/) for production needs, ensuring distribution and availability across the IPFS network. We do not provide an official gateway for uploading asset data. For development purposes, you may use the following RPC to fetch data:
 
-- IPFS Download: `https://api.universalprofile.cloud/ipfs`
-- IPFS Upload: `api.2eff.lukso.dev`
-- Gateway Port: `443`
+- IPFS Download (for development only): `https://api.universalprofile.cloud/ipfs`
+
+:::caution Availability
+
+This gateway is intended for development purposes. We do not guarantee any SLA, and rate limits may apply.
+
+:::
 
 ## Add LUKSO Mainnet (MetaMask...)
 
