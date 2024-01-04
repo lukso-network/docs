@@ -166,7 +166,7 @@ Use this [IPFS file uploader tool](https://anarkrypto.github.io/upload-files-to-
 
 :::caution Availability
 
-This gateway is a deprecated IPFS cluster and will be shut down soon. We do not guarantee any SLA and highly recommend developers to use **their own IPFS gateway** solutions like [Pinata](https://www.pinata.cloud/).
+This gateway is a deprecated IPFS cluster and will be shut down soon. We do not guarantee any SLA and highly recommend developers to use **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or [Infura](https://docs.infura.io/networks/ipfs).
 
 :::
 
