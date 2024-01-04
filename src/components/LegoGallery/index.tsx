@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import ThemedImage from '@theme/ThemedImage';
+import styles from './LegoGallery.module.scss';
 import clsx from 'clsx';
 
 const STANDARDS = [
@@ -120,7 +121,7 @@ const STANDARDS = [
 
 function LegoCard({ link, title, text, lightImage, darkImage }) {
   return (
-    <div className="lego-card col col--3 margin-bottom--lg">
+    <div className={`col col--3 margin-bottom--lg ${styles.legoCard}`}>
       <Link
         to={link}
         style={{
