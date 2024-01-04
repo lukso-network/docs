@@ -16,13 +16,13 @@ import TabItem from '@theme/TabItem';
     width="800"
   />
 <br/>
-<i>A <a href="https://wallet.universalprofile.cloud/0x6979474Ecb890a8EFE37daB2b9b66b32127237f7">Universal Profile</a> as seen on UniversalProfile.cloud</i>
+<i>A <a href="https://wallet.universalprofile.cloud/0x6979474Ecb890a8EFE37daB2b9b66b32127237f7?network=testnet">Universal Profile</a> as seen on UniversalProfile.cloud</i>
 <br /><br />
 </div>
 
 :::info
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/get-profile-data) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=get-profile-data%2Fget-data-keys.js).
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/fetch-profile/) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=fetch-profile%2Fget-data-keys.js).
 
 :::
 
@@ -34,7 +34,7 @@ The explorer on 🔮 [universalprofile.cloud](https://universalprofile.cloud/) i
 
 ## Setup
 
-To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js). It is able to fetch and encode profile and contract data easily. You can install it in your project using:
+To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library. It is able to fetch and encode profile and contract data easily. You can install it in your project using:
 
 ```shell
 npm install @erc725/erc725.js
@@ -50,12 +50,12 @@ npm install @erc725/erc725.js
 
 <details>
 <summary>
-<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/classes/ERC725#getdata"> erc725.js</a>  library. 👇
+<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/classes/ERC725#getdata"> erc725.js</a>  library. 👇
 </summary>
 
 <div>
 
-- `SupportedStandards:LSP3Profile` Verifies that the ERC725Y contract contains [LSP3Profile](../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile) data keys
+- `SupportedStandards:LSP3Profile` verifies that the ERC725Y contract contains [LSP3Profile](../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile) data keys
 - `LSP3Profile` contains the JSON file with profile descriptions and images
 - `LSP12IssuedAssets[]` contains assets the profile issued
 - `LSP5ReceivedAssets[]` contains assets the profile received
@@ -115,7 +115,7 @@ console.log(profileData);
   </TabItem>
 </Tabs>
 
-You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684655e4e688CCF72d88F028c62EC3B1046CC`](https://wallet.universalprofile.cloud/0xE1F684655e4e688CCF72d88F028c62EC3B1046CC).
+You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684655e4e688CCF72d88F028c62EC3B1046CC`](https://wallet.universalprofile.cloud/0xE1F684655e4e688CCF72d88F028c62EC3B1046CC?network=testnet).
 
 <details>
     <summary>Show result</summary>
@@ -165,7 +165,7 @@ You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684
 
 :::note ERC725Y JSON schemas
 
-erc725.js works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js.
+The ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js.
 
 You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
 
@@ -173,7 +173,7 @@ You can also create and load your own ERC725Y JSON schemas if you want to add cu
 
 ## Fetch the Profile Metadata
 
-If you only need the contents of the profile data JSON file you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
+If you only need the contents of the profile data JSON file, you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
 
 ```js
 // ...
@@ -239,7 +239,7 @@ The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only 
 
 ## Fetch Assets and Universal Receiver
 
-Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can also use other data keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate), like in the following example:
+Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can also use other data keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate), as described in the following example:
 
 <!-- prettier-ignore-start -->
 
@@ -272,7 +272,7 @@ console.log(universalReceiverDataKey);
   value: []
 }
 
-// Owned Assets (six individual assets)
+// Owned Assets (Six individual assets)
 {
   key: '0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b',
   name: 'LSP5ReceivedAssets[]',
@@ -286,7 +286,7 @@ console.log(universalReceiverDataKey);
   ]
 }
 
-// Universal Receiver Delegate Address 0x0...75bb
+// Universal Receiver Delegate (0x0...75bb)
 {
   key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
   name: 'LSP1UniversalReceiverDelegate',
