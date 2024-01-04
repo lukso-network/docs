@@ -1,8 +1,11 @@
 .legoCard {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.3s ease-in-out;
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+  max-width: 23%;
 }
 
 .legoCard:hover {
-  box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }
