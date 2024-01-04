@@ -1,7 +1,7 @@
 ---
 title: 'Network parameters'
 sidebar_position: 1
-description: 'Network Parameters for LUKSO Mainnet: Execution Block Explorer, RPC providers, Chain ID.'
+description: 'Network Parameters for LUKSO: Execution Block Explorer, RPC providers, Chain ID.'
 ---
 
 import AddNetworkButton from '../../../src/components/AddNetworkButton'
@@ -10,7 +10,7 @@ import AddNetworkButton from '../../../src/components/AddNetworkButton'
 
 | Setting                  | Value                                                                                                        |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| Network Name             | LUKSO Mainnet                                                                                                |
+| Network Name             | LUKSO                                                                                                        |
 | Genesis Fork Version     | 0x42000001                                                                                                   |
 | Chain ID / Network ID    | 42                                                                                                           |
 | Currency Symbol          | LYX                                                                                                          |
@@ -46,13 +46,13 @@ This gateway is intended for development purposes. We do not guarantee any SLA, 
 
 :::
 
-## Add LUKSO Mainnet to Wallets
+## Add LUKSO to Wallets
 
-You can add the LUKSO Mainnet to any of your existing wallets like [MetaMask](https://metamask.io/), [Rabby](https://rabby.io/), [Rainbow](https://rainbow.me/), [Coinbase Wallet](https://www.coinbase.com/de/wallet), [Trust Wallet](https://trustwallet.com/de), and others using the following parameters or button:
+You can add the LUKSO to any of your existing wallets like [MetaMask](https://metamask.io/), [Rabby](https://rabby.io/), [Rainbow](https://rainbow.me/), [Coinbase Wallet](https://www.coinbase.com/de/wallet), [Trust Wallet](https://trustwallet.com/de), and others using the following parameters or button:
 
 | Setting               | Value                                             |
 | --------------------- | ------------------------------------------------- |
-| Network Name          | LUKSO Mainnet                                     |
+| Network Name          | LUKSO                                             |
 | RPC URL               | https://rpc.lukso.gateway.fm                      |
 | Chain ID / Network ID | 42                                                |
 | Currency Symbol       | LYX                                               |
