@@ -376,7 +376,7 @@ export default {
       copyright: `Copyright © ${new Date().getFullYear()} LUKSO Blockchain GmbH &mdash; hello@lukso.network`,
     },
     prism: {
-      additionalLanguages: ['solidity'],
+      additionalLanguages: ['solidity', 'json'],
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
