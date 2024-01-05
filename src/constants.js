@@ -1,7 +1,7 @@
 export const LUKSO_NETWORK_CONFIGS = {
   mainnet: {
     chainId: '42',
-    chainName: 'LUKSO Mainnet',
+    chainName: 'LUKSO',
     nativeCurrency: {
       name: 'LYX',
       symbol: 'LYX',
