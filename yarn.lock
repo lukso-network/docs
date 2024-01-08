@@ -2003,6 +2003,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/module-type-aliases@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@docusaurus/module-type-aliases@npm:3.1.0"
+  dependencies:
+    "@docusaurus/react-loadable": 5.5.2
+    "@docusaurus/types": 3.1.0
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+    "@types/react-router-config": "*"
+    "@types/react-router-dom": "*"
+    react-helmet-async: "*"
+    react-loadable: "npm:@docusaurus/react-loadable@5.5.2"
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
+  checksum: 067814b4a7f2b5cae3280f184ed732b20c3460a8e4fbe1ab25bed7a6da6b0461cb71c1744bf689a6729cca4a48b07f1b5dd12ac8be2f324b8fbfcbd47d058705
+  languageName: node
+  linkType: hard
+
 "@docusaurus/plugin-client-redirects@npm:3.0.1":
   version: 3.0.1
   resolution: "@docusaurus/plugin-client-redirects@npm:3.0.1"
@@ -2330,6 +2349,26 @@ __metadata:
     react: ^18.0.0
     react-dom: ^18.0.0
   checksum: 1874e66435e986262ad06639b812d49aa5c81a29815b27d31370d055335cebdad77ee0276504497b1765c489e5c5faf9795df97e52649af931d1cf381c4afa77
+  languageName: node
+  linkType: hard
+
+"@docusaurus/types@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@docusaurus/types@npm:3.1.0"
+  dependencies:
+    "@mdx-js/mdx": ^3.0.0
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+    commander: ^5.1.0
+    joi: ^17.9.2
+    react-helmet-async: ^1.3.0
+    utility-types: ^3.10.0
+    webpack: ^5.88.1
+    webpack-merge: ^5.9.0
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 9aa554f2395031f974798b94bea8c8b32d3280d6512ae8f8052a14758507281d696b0ef7fd2c7daf7261f4216c1149ec6beeaa414745a248c83fa1b04bab3ff5
   languageName: node
   linkType: hard
 
@@ -7753,7 +7792,7 @@ __metadata:
   resolution: "lukso-docs@workspace:."
   dependencies:
     "@docusaurus/core": 3.0.1
-    "@docusaurus/module-type-aliases": 3.0.1
+    "@docusaurus/module-type-aliases": 3.1.0
     "@docusaurus/plugin-client-redirects": 3.0.1
     "@docusaurus/plugin-google-gtag": 3.0.1
     "@docusaurus/preset-classic": 3.0.1
