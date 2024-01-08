@@ -20,6 +20,80 @@ The existing tokens and NFTs standards offer limited functionalities to attach i
 
 ![LSP4 Digital Asset Metadata diagram](/img/standards/lsp4/lsp4-digital-asset-metadata-diagram.png)
 
+## Types of Digital Assets
+
+By mixing contract standards (LSP7/8), token types (Token, NFT, Collection) and metadata, you can create a wide array of Digital Assets.
+
+### With LSP7 Digital Asset (Token)
+
+<table>
+  <tr>
+    <th>Contract type</th>
+    <th><a href="#lsp4tokentype">LSP4TokenType</a></th>
+    <th>Decimals</th>
+    <th><a href="#lsp4metadata">LSP4Metadata</a></th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>LSP7</td>
+    <td>0 (Token)</td>
+    <td>\>=0</td>
+    <td>Represents the token information.</td>
+    <td>A generic token, where the <code>LSP4Metadata</code> represents the token information.</td>
+  </tr>
+  <tr>
+    <td>LSP7</td>
+    <td>1 (NFT)</td>
+    <td>0</td>
+    <td>Represents the information of a single NFT, that has multiple ownable amounts or IDs.</td>
+    <td>A single type of NFT with custom metadata and which has multiple ownable amounts or IDs.</td>
+  </tr>
+  <tr>
+    <td>LSP7</td>
+    <td>2 (Collection)</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Not compatible</td>
+  </tr>
+</table>
+
+### With LSP8 Identifiable Digital Asset (NFT)
+
+<table>
+  <tr>
+    <th>Contract type</th>
+    <th><a href="#lsp4tokentype">LSP4TokenType</a></th>
+    <th><a href="#lsp4metadata">LSP4Metadata</a></th>
+    <th>LSP8TokenIdType</th>
+    <th>LSP8MetadataTokenURI</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>LSP8</td>
+    <td>0 (Token)</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Not compatible</td>
+  </tr>
+  <tr>
+    <td>LSP8</td>
+    <td>1 (NFT)</td>
+    <td>Represents the information of a single NFT, that has multiple ownable amounts or IDs.</td>
+    <td>COULD be set for each individual token ID.</td>
+    <td>COULD be set for each individual token ID.</td>
+    <td>Each individual token ID COULD have its own custom metadata specific for the token ID, but MUST NOT be a different NFT, just different metadata per item in the NFT. <a href="./LSP8-Identifiable-Digital-Asset">See LSP8 for details</a>.</td>
+  </tr>
+  <tr>
+    <td>LSP8</td>
+    <td>2 (Collection)</td>
+    <td>Represents the information of the collection.</td>
+    <td>MUST be set for each individual token ID.</td>
+    <td>MUST be set for each individual token ID.</td>
+    <td>Each individual token ID represents its own NFT, <code>LSP8TokenIdType</code> and <code>LSP8MetadataTokenURI</code> must be set for each of them. <a href="./LSP8-Identifiable-Digital-Asset">See LSP8 for details</a>.</td>
+  </tr>
+</table>
+
 ## ERC725Y Data Keys
 
 :::tip Recommendation
@@ -74,7 +148,7 @@ The value attached to this data key represents the symbol of the digital asset.
 
 :::note References
 
-LSP4 defines 3 default token types (see table below). However, these are not restrictive. Applications and protocols can define new custom token types starting from `3`.
+LSP4 defines 3 default token types (see [table above](./LSP4-Digital-Asset-Metadata.md#types-of-digital-assets)). However, these are not restrictive. Applications and protocols can define new custom token types starting from `3`.
 
 :::
 
@@ -88,13 +162,17 @@ LSP4 defines 3 default token types (see table below). However, these are not res
 }
 ```
 
-The value attached to this data key repesents the type of token of the digital asset.
+The value attached to this data key repesents the type of token of the digital asset. The defaults values are:
 
-| Value |     Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| :---: | :----------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  `0`  |   `Token`    | Only valid for LSP7, meaning its a generic token, where the `LSP4Metadata` represents the token information.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|  `1`  |    `NFT`     | If the contract is LSP7 or LSP8, then the `LSP4Metadata` represents the information of a **single** NFT, that has multiple ownable amounts or IDs. If its an LSP8 each individual token ID COULD have its own custom metadata specific for the token ID, but MUST NOT be a different NFT, just different metadata per item in the NFT. Those COULD be set using `LSP8TokenIdType` and `LSP8MetadataTokenURI`. [See LSP8 for details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md). If its an LSP7 contract, the `decimals` function MUST return `0`. |
-|  `2`  | `Collection` | Only valid for LSP8. The `LSP4Metadata` represents the information of a the collection, and each individual token ID represents its own NFT and MUST have its own metadata set using `LSP8TokenIdType` and `LSP8MetadataTokenURI`. [See LSP8 for details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md).                                                                                                                                                                                                                                              |
+- 0 (Token)
+- 1 (NFT)
+- 2 (Collection)
+
+:::tip
+
+👉 Please refer to the [Types of Digital Assets table](./LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) to see how you can use it to create your assets.
+
+:::
 
 ### `LSP4Metadata`
 
