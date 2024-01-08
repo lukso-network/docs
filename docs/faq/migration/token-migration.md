@@ -22,15 +22,16 @@ The token migration usually takes about 10-15min for the transaction to be final
 
 If you are holding LYXe within your own wallet, it will not be migrated automatically. You have to instantiate the migration process manually. There is likely an amount of LYXe that will never migrate due to lost wallets. Some people might even keep some LYXe for sentimental reasons.
 
-Exchanges holding LYXe might migrate the asset for their customers. For these announcements, please follow their official announcement channels.
+Exchanges holding LYXe might migrate the asset for their customers. However, this is not a process controlled by LUKSO directly. The following exchanges have performed an migration already:
+
+- [KuCoin LYX Migration Announcement](https://www.kucoin.com/announcement/en-kucoin-has-completed-the-token-swap-of-lyxe-to-lyx-20230721)
+- [Gate.io LYX Migration Announcement](https://www.gate.io/article/33153)
+
+For further announcements, please follow the exchange's official announcement channels.
 
 ## What happens with LYXe being sent back to the LYXe Contract?
 
 Any LYXe accidentally sent to the [LYXe Token address](https://etherscan.io/token/0xA8b919680258d369114910511cc87595aec0be6D) on Ethereum will be [automatically sent as LYX](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5) to the sending address on the LUKSO Blockchain.
-
-## Will exchanges migrate LYXe for their users?
-
-Some exchanges will likely migrate LYXe for their users automatically. However, this is not a process controlled by LUKSO directly. Please follow their social media profiles for updates.
 
 ## Will LYXe be deprecated after the migration bridge closes?
 
@@ -38,11 +39,11 @@ Since LYXe is the official representation of LYX on Ethereum that was used to po
 
 ## Will it be possible to migrate LYX back to LYXe?
 
-The official [LUKSO Migration Bridge](https://migrate.lukso.network/) only acts as a 1-Way-Bridge to migrate LYXe to LYX.
+No, the official [LUKSO Migration Bridge](https://migrate.lukso.network/) acts as a 1-Way-Bridge to migrate LYXe to LYX. A single locking transaction on the Ethereum blockchain automatically triggers the transfer of the equal amount of LYX on the LUKSO blockchain.
 
 ## What is the minimal amount of LYX that can be bridged?
 
-You need at least 1 LYXe within your connected wallet to start the migration. You can also send comma values.
+You need at least 1 LYXe within your connected wallet to start the migration. You can send any decimal values.
 
 ## How much will it cost to migrate the LYXe?
 
@@ -54,7 +55,7 @@ Only regular EVM-compatible browser-based wallets (Externally Owned Accounts) ar
 
 ## Where will the LYX be migrated to?
 
-The LYX will be sent to the same blockchain address used during the migration. Within supported exchanges, the accounts will automatically be updated from LYXe to LYX if they have not been manually transferred to external wallets.
+The LYX will be sent to the same blockchain address (account/wallet) used during the migration. Within supported exchanges, the accounts will automatically be updated from LYXe to LYX if they have not been manually transferred to external wallets.
 
 ## How do I migrate if I have LYXe on a hardware wallet?
 
@@ -68,12 +69,24 @@ If you migrate yourself but don't have a browser-based wallet, e.g., holding you
 
 You can check your balance using the [LUKSO Mainnet Block Explorer](https://explorer.execution.testnet.lukso.network/) and searching for your address.
 
-You can also add the network to your wallet. This can be done from the migration dApp or by manually adding the RPC endpoint of one of the supported service providers like [GatewayFM](https://gateway.fm/lukso). Have a look at the [Network Properties](../../networks/mainnet/parameters.md) to see the connection details.
+If you want to see the balance within your wallet, you can add LUKSO to your wallet by manually adding the RPC endpoint as described within our official [Network Properties](../../networks/mainnet/parameters.md).
 
-## How to store LYX or LYXe?
+## How to store LYX?
 
-You can store both LYX and LYXe on any Ethereum-compatible wallet or hardware wallet. Please make sure that you can set up custom blockchain networks. Otherwise, you might not be able to see or send LYX on the LUKSO blockchain.
+You can store LYX using the [Universal Profile Browser Extension](/install-up-browser-extension) or any Ethereum-compatible wallet or hardware wallet. Further details can be found on the [Wallet Support Page](../lukso/wallet-support.md).
+
+:::caution
+
+Please ensure you can set custom blockchain networks within your blockchain wallet. Otherwise, you might not be able to see or send LYX within your wallet.
+
+:::
 
 ## Where can LYX be traded?
 
-At the current state, beginning of July 2023, there are no exchanges or services directly supporting LYX. However, as soon as exchanges migrate their token, there will be available trading. 3rd party services might even create decentralized marketplaces later on.
+You can officially trade LYX using the following platforms:
+
+- [KuCoin](https://www.kucoin.com/announcement/en-kucoin-has-completed-the-token-swap-of-lyxe-to-lyx-20230721)
+- [Gate.io](https://www.gate.io/article/33153)
+- [Ledger Live](https://support.ledger.com/hc/en-us/articles/15847276545053-Lukso-LYX-?docs=true).
+
+3rd-party services might also create decentralized marketplaces later on.
