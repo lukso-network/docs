@@ -20,16 +20,48 @@ In essence, using UniversalProfile provides a **safer environment for managing y
 
 You can download the Universal Profile Extension from the [Extension Guide](/install-up-browser-extension) section of our technical documentation. There is an official release in the Chrome Store and other platforms coming during the mainnet launch process.
 
-## Where can I find my controller keys for the Universal Profile?
+## What are the controllers of the Universal Profile?
 
-If you created a Universal Profile from the [Universal Profile Creation Tool](https://my.universalprofile.cloud/) with the Universal Profile Extension, you can back up the controller directly as a JSON file, including its private key. You can also import a Universal Profile via QR code if you wish to use it across multiple devices.
+Each Universal Profile within an extension holds a separate private key to send transactions on behalf of the user's profile. Such controllers can be exported, added, or removed. The controllers can be found within the **Controllers** window of the extension:
 
-If you created a Universal Profile using the [Universal Profile Explorer](https://universalprofile.cloud/) or [The Dematerialised Marketplace](https://thedematerialised.com/), a wallet is stored within your browser's local storage. You will also get a login link containing an encrypted private key emailed to you. The email backup is a temporary method to manage your keys for the L14 Testnet.
+![Controller Window](../../../static/img/faq/controller-window.png)
 
-## Where can I find the assets within my Universal Profile Extension?
+## How do I create a backup of my Universal Profile?
 
-The Universal Profile Extension **does not directly manage token information**. Instead, it is designed to work with various decentralized applications (dApps) that can seamlessly integrate with your Universal Profile and interact with its information and controller keys. The modularity broadens the possibilities of blockchain technology and encourages external developers to **create diverse applications** on top of Universal Profiles.
+If you lost access to the Universal Profile Browser Extension, there are multiple ways to secure your Universal Profile :
 
-## How to use your own funds while sending transactions from the Universal Profile?
+- **2FA**: You can set up 2FA while creating the profile on [UniversalProfile.cloud](https://universalprofile.cloud/). 2FA is the recommended way of backing up, creating an additional controller key on LUKSO's end that can be used to add a new controller to the profile if access to an old extension is lost. Before a controller can be added, you must provide access to email and a mobile device.
+- **Profile QR Import**: You can import any profile address into your extension. The import process will create a local controller key that needs to be signed off and added to the profile by one of your existing controllers with sufficient permissions. Within the new extension, you will receive a QR code of a transaction that can be scanned or copied. When received and executed by an existing extension, this new controller will gain permissions on the profile.
+- **File Export**: You can export the profile directly as a text file, including its private key, and store it somewhere safe. This private key will allow you to regain access to the original controller key.
+
+:::caution
+
+The Universal Profile Browser Extension currently does not feature a way to import profiles using the plain private key described in _File Export_. Therefore, we recommend setting up 2FA during creation or importing the profile into another browser extension via a QR code. Optionally, the private key of a controller (EOA) could be imported into a regular wallet to send transactions manually.
+
+:::
+
+## How to check if 2FA is set up correctly?
+
+You can check if the recovery is set up correctly using the Universal Profile Browser Extension. If you visit the Controller Menu, there need to be at least 3 Controllers:
+
+![2FA Controller](../../../static/img/faq/2fa-controller.png)
+
+- Your Universal Profile Browser Extension's Key (used for profile interactions)
+- Your Universal Receiver (used to write asset updates on the profile)
+- The Universal Recovery Key (used as a backup for the profile)
+
+If you click on the recovery controller, it must have the **Add Controller** permission. If you ever want to recover your profile, a fresh controller key will be added to this profile from a new extension setup. 2FA was completed if you see the controller and said 2FA using your e-mail and authenticator app. Please ensure that the 2FA code can be accessed correctly.
+
+## How to see and send assets from the Universal Profile?
+
+The Universal Profile Extension **does not directly manage token information**. Instead, it is designed to work with various decentralized applications (dApps) that can seamlessly integrate with your Universal Profile and interact with its information and controller keys. To see all your tokens, you can visit your profile on [UniversalProfile.cloud](https://universalprofile.cloud/). If you are logged in, you will also be able to transfer assets.
+
+![Asset Transfer](../../../static/img/faq/asset-transfer.png)
+
+## How to use own LYX for Universal Profile transactions?
 
 To use your funds to send transactions from your Universal Profile, you must send LYX or LYXt to the extension's controller key. Sending it to the controller will ensure the transaction's Gas costs are funded. You can find the address of the extension's controller key within the permission section.
+
+## How to access my Universal Profile on L14?
+
+If you created a Universal Profile using the [Universal Profile Explorer](https://universalprofile.cloud/) or [The Dematerialised Marketplace](https://thedematerialised.com/) on the L14 Testnet, the wallet is stored within your browser's local storage. You will receive a login link containing an encrypted private key via mail.
