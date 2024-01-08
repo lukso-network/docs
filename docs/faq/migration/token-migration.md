@@ -31,7 +31,7 @@ For further announcements, please follow the exchange's official announcement ch
 
 ## What happens with LYXe being sent back to the LYXe Contract?
 
-Any LYXe accidentally sent to the [LYXe Token address](https://etherscan.io/token/0xA8b919680258d369114910511cc87595aec0be6D) on Ethereum will be [automatically sent as LYX](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5) to the sending address on the LUKSO Blockchain.
+Any account that accidentally sent LYXe to the [LYXe Token address](https://etherscan.io/token/0xA8b919680258d369114910511cc87595aec0be6D) on Ethereum will [receive the equal amount of LYX](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5) on the LUKSO Blockchain.
 
 ## Will LYXe be deprecated after the migration bridge closes?
 
