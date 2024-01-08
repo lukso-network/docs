@@ -8,7 +8,15 @@ description: 'Universal Profiles: Universal Profile Explorer, compatibility with
 
 ## Is there a Universal Profile Explorer?
 
-Yes, you can find the Universal Profile Explorer at [universalprofile.cloud](https://universalprofile.cloud/).
+Yes, you can find the Universal Profile Explorer at [UniversalProfile.cloud](https://universalprofile.cloud/).
+
+## Is the Universal Profile's name unique?
+
+The profile name displayed on platforms and services is retrieved from the metadata linked to the smart contract. Such metadata, images, or descriptions can be individually set when creating or updating the Universal Profile. Therefore, multiple users can choose similar names or pictures.
+
+![Universal Profile Name](../../../static/img/faq/profile-name.png)
+
+What is unique about a Universal Profile are its address and the identicon. The address is indicated with the first four characters behind the profile name. In case the first characters of the address should be similar or identical, the identicon further helps to distinguish them. The combination of attributes was done to allow complete customization without lacking authentication.
 
 ## Why did LUKSO not launch Universal Profiles on Ethereum?
 
