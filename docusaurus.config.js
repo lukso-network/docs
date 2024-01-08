@@ -7,6 +7,7 @@ export default {
   url: 'https://docs.lukso.tech',
   baseUrl: '/',
   onBrokenLinks: 'throw',
+  onBrokenAnchors: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
   organizationName: 'lukso-network', // Usually your GitHub org/user name.
