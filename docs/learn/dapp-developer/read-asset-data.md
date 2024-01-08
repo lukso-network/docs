@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🎆 Read Asset Data'
-sidebar_position: 4
+sidebar_position: 5
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
 
@@ -8,20 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Read Digital Asset Data
-
-On the LUKSO network, [Digital Assets](../../standards/tokens/introduction.md) are made using the [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. It is kind of like [ERC-721](https://eips.ethereum.org/EIPS/eip-721) but on steroids 🚀, they unlock much more posibilities for your digital assets.
-
-In this tutorial, you will learn how to classify the Digital Asset and then, how to fetch and read their metadata. You'll see, it is not so different from what you might already be used to do.
-
-Before getting into the code, you need to be familiar with how LSP7 and 8 contracts can be used along with `LSP4TokenType` to create different digital assets. You can find all the different combinations on the [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets).
-
-Once you know what are the different options, you can learn how to:
-
-- Detect the contract type of the asset (LSP7 or LSP8)
-- Read the token type of the asset (`LSP4TokenType`)
-- Read the metadata of the token(s)
-
-Let's go 🫡
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
@@ -34,15 +20,29 @@ Let's go 🫡
 <br /><br />
 </div>
 
-:::info
+On the LUKSO network, [Digital Assets](../../standards/tokens/introduction.md) are created using the [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Identifiable Digital Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. They come with their own [ERC-721Y](../standards/lsp-background/erc7251) storage and [unlock much more posibilities](../../standards/tokens/introduction.md) for your digital assets.
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/fetch-asset) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=fetch-asset%2Fget-data-keys.js).
+In this tutorial, you will learn how to:
 
+- [Detect the Contract Type](#detect-the-contract-type)
+- [Detect the Metadata Storage](#detect-the-metadata)
+- [Interpret the Token Type](#find-lsp4tokentype-token-nft-collection)
+- [Fetch the Asset Data](#fetch-the-asset-metadata)
+
+:::success Preparation
+
+Before getting into the code, you need to be familiar with the token standards [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)), as well as knowing [how they differ based on their token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) defined by [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md).
 :::
 
 :::tip Universal Profile Explorer
 
-The explorer on 🔮 [universalprofile.cloud](https://universalprofile.cloud/) indexes all deployed Universal Profiles and their owned assets on the LUKSO network. You can try out the following examples with any Universal Profile address.
+The explorer on 🔮 [UniversalProfile.cloud](https://universalprofile.cloud/) indexes all deployed Universal Profiles and their owned assets on the LUKSO network. You can try out the following examples with any Universal Profile address.
+
+:::
+
+:::info
+
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/fetch-asset) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=fetch-asset%2Fget-data-keys.js).
 
 :::
 
@@ -62,16 +62,22 @@ There, you can read the issued and received assets. For more information, check 
 
 ## Classify the Digital Asset
 
-### Find asset type: LSP7 or LSP8
+### Detect the Contract Type
 
-Once you have an asset address, you need to check if the asset's contract is LSP7 or LSP8.
-To do so, check the contract's interfaceId.
+Once you have an address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's interfaceId using the previous [Standard Detection Guide](./standard-detection.md#interface-identification). If you are using the ⚒️ [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package. Optionally, you can also find a full list of all `interfaceID`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page to use them manually.
+
+```js
+// ...
+
+const supportsInterface = await myLSPContract.supportsInterface(
+  INTERFACE_IDS.LSP0ERC725Account,
+);
+console.log(supportsInterface); // true or false
+```
+
+### Detect the LSP4 Metadata Storage
 
 TODO:
-
-- explain how to do erc165 standard detection / link to an article that explains how
-- explain where to find the interfaceId for lsp7 and lsp8
-- add a script that shows how, at the end, it should show smtgh like "contractType: LSP7 or LSP8"
 
 ### Find LSP4TokenType: Token, NFT, Collection
 

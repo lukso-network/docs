@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🪙 Transfer LSP7 Token'
-sidebar_position: 6
+sidebar_position: 7
 description: Transfer LSP7 tokens from a Universal Profile.
 ---
 
