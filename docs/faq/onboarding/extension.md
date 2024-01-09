@@ -65,3 +65,13 @@ To use your funds to send transactions from your Universal Profile, you must sen
 ## How to access my Universal Profile on L14?
 
 If you created a Universal Profile using the [Universal Profile Explorer](https://universalprofile.cloud/) or [The Dematerialised Marketplace](https://thedematerialised.com/) on the L14 Testnet, the wallet is stored within your browser's local storage. You will receive a login link containing an encrypted private key via mail.
+
+## Why can’t I use the private key yet to recover my Universal Profile?
+
+At the moment, the option to recover an existing profile from a backup file is not available. The team is working on this feature and it will be made available soon. The idea behind this is to recover the profile from a backup file, and not directly from the private key.
+
+Currently, the private key is displayed though in the LUKSO Browser Extension. However, this is not to be used as a recovery mechanism, but rather for users who want to do development and need the private key.
+
+## “Universal Profile is not allowed by this Transaction Relay Service” Error
+
+If a user deploys a Universal Profile through Universal Page, or another 3rd party that has their own relayer, when importing the profile into the LUKSO Browser Extension, the LUKSO Relayer will not be compatible. Therefore, users should use a separate controller key that they can fund with some LYX.
