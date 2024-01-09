@@ -20,192 +20,92 @@ import TabItem from '@theme/TabItem';
 <br /><br />
 </div>
 
-On the LUKSO network, [Digital Assets](../../standards/tokens/introduction.md) are created using the [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Identifiable Digital Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. They come with their own [ERC-721Y](../standards/lsp-background/erc7251) storage and [unlock much more posibilities](../../standards/tokens/introduction.md) for your digital assets.
+On the LUKSO network, [Digital Assets](../../standards/tokens/introduction.md) are created using the [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Identifiable Digital Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. They come with their own [ERC-721Y](../../standards/lsp-background/erc725.md) storage and [unlock much more posibilities](../../standards/tokens/introduction.md) for your digital assets.
 
 In this tutorial, you will learn how to:
 
 - [Detect the Contract Type](#detect-the-contract-type)
-- [Detect the Metadata Storage](#detect-the-metadata)
-- [Interpret the Token Type](#find-lsp4tokentype-token-nft-collection)
+- [Detect the Metadata Storage](#detect-the-metadata-storage)
+- [Retrieve the Token Type](#retrieve-the-token-type)
 - [Fetch the Asset Data](#fetch-the-asset-metadata)
+
+## Setup
 
 :::success Preparation
 
-Before getting into the code, you need to be familiar with the token standards [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)), as well as knowing [how they differ based on their token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) defined by [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md).
+Before getting into the code, you need to be familiar with the token standards [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), as well as knowing [how they differ based on their token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) defined by [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md).
 :::
 
-:::tip Universal Profile Explorer
+:::info Get Asset Addresses
 
-The explorer on 🔮 [UniversalProfile.cloud](https://universalprofile.cloud/) indexes all deployed Universal Profiles and their owned assets on the LUKSO network. You can try out the following examples with any Universal Profile address.
+As every Universal Profile comes with a 📢 [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md), the owned assets can be fetched directly directly from it's contract. For more information, please check the 📒 [Read Profile Data](./read-profile-data.md#fetch-assets-and-universal-receiver) tutorial. Aditionally, 🔮 [UniversalProfile.cloud](https://universalprofile.cloud/) also shows all deployed profiles and assets as well.
 
 :::
 
-:::info
+:::info Code Examples
 
 The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/fetch-asset) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=fetch-asset%2Fget-data-keys.js).
 
 :::
 
-## Setup
-
-To easily interact with an asset you should use the ⚒️ [erc725.js](../../tools/erc725js/getting-started.md) library. It is able to fetch and encode profile and contract data easily. You can install it in your project using:
+To easily interact with an asset you should use the ⚒️ [erc725.js](../../tools/erc725js/getting-started.md) and 📃 [`lsp-smart-contracts`](../../tools/erc725js/getting-started.md) libraries. Those will not only help fetching and encoding contract data easily, but also provide all the necessary interface and metadata IDs, necessary for classifying the asset. You can install them in your project using the following command:
 
 ```shell
-npm install @erc725/erc725.js
+npm install @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
 
-## Read issued/owned assets
+## Detect the Contract Type
 
-Thanks to Universal Profiles and the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md), assets addresses can be found directly on the users' Universal Profile.
+Once you have an address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's interfaceId like in the previous [Interface Detection Guide](./standard-detection.md#interface-detection). If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package. Optionally, you can also find a full list of all `interfaceID`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
 
-There, you can read the issued and received assets. For more information, check the previous [Read Profile Data](./read-profile-data.md#fetch-assets-and-universal-receiver) tutorial.
+The ⚒️ [`erc725.js`](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js. You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
 
-## Classify the Digital Asset
-
-### Detect the Contract Type
-
-Once you have an address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's interfaceId using the previous [Standard Detection Guide](./standard-detection.md#interface-identification). If you are using the ⚒️ [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package. Optionally, you can also find a full list of all `interfaceID`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page to use them manually.
-
-```js
-// ...
-
-const supportsInterface = await myLSPContract.supportsInterface(
-  INTERFACE_IDS.LSP0ERC725Account,
-);
-console.log(supportsInterface); // true or false
-```
-
-### Detect the LSP4 Metadata Storage
-
-TODO:
-
-### Find LSP4TokenType: Token, NFT, Collection
-
-TODO: show erc725js code to get `LSP4TokenType`
-
-At this stage, you should know the digital asset type:
-
-- LSP7 - Token
-- LSP7 - NFT
-- LSP8 - NFT
-- LSP8 - Collection
-
-## Fetch Creators and Token Properties
-
-Instead of using the [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) key, you can also use other data keys like [`LSP4Creators[]`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4creators), [`LSP4CreatorsMap:<address>`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4creators), [`LSP4TokenName`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname), [`LSP4TokenSymbol`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol) or [`LSP4TokenType`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype) as described in the following example:
+To start, instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your asset address, an RPC provider (`web3`, `ethereum`, `ethers`, `RPC_URL`), and an IPFS gateway.
 
 :::caution
 
-Some of the 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) feature dynamic inputs. Make sure to exchange `<myCreatorAddress>` with the actual address (without `0x`) of one of the asset's creators you want to retrieve. In case the asset does not feature any additional creator information, the returned value of `LSP4CreatorsMap:<myCreatorAddress>` will be `0`.
+Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You can give it a try using the address of the asset shown above: [`0x0514A829C832639Afcc02D257154A9DaAD8fa21B`](https://wallet.universalprofile.cloud/asset/0x0514A829C832639Afcc02D257154A9DaAD8fa21B?network=testnet).
 
-Optionally, you can [retrieve the profile data](./read-profile-data.md) of a creator in a separate step.
 :::
 
 <!-- prettier-ignore-start -->
 
 ```js
-// ...
+import { ERC725 } from '@erc725/erc725.js';
+import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
 
-// Fetch all creators of the asset
-let assetCreatorsList = await erc725js.fetchData('LSP4Creators[]');
-console.log(assetCreatorsList);
-
-// Fetch the asset's token type
-let tokenType = await erc725js.fetchData('LSP4TokenType');
-console.log(tokenType);
-
-// Fetch the asset's token symbol
-let tokenSymbol = await erc725js.fetchData('LSP4TokenSymbol');
-console.log(tokenSymbol);
-
-// Fetch the asset's token name
-let tokenName = await erc725js.fetchData('LSP4TokenName');
-console.log(tokenName);
-
-// Fetch creator-specific information
-let creatorInformation = await erc725js.fetchData([
-  /* 
-   * for dynamic keys, it is necessary 
-   * to provide any second data key
-  */ 
-  'LSP4TokenName',
+const myAsset = new ERC725(lsp4Schema,'<myAssetAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
-    keyName: 'LSP4CreatorsMap:<address>',
-    // Sample creator address
-    dynamicKeyParts: '0x9139def55c73c12bcda9c44f12326686e3948634',
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
-]);
-console.log(creatorInformation);
+);
+
+const isLSP7 = await myAsset.supportsInterface(
+  INTERFACE_IDS.LSP7DigitalAsset);
+
+const isLSP8 = await myAsset.supportsInterface(
+  INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+);
+
+console.log(isLSP7, isLSP8); // each, true or false
 ```
 
 <!-- prettier-ignore-end -->
 
-<details>
-    <summary>Show result</summary>
+## Detect the Metadata Storage
 
-```js
-// Creator List (empty, no creators set)
-{
-  key: '0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7',
-  name: 'LSP4Creators[]',
-  value: []
-}
+:::success Check Assets Online
 
-// Token Type (not defined)
-{
-  key: '0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3',
-  name: 'LSP4TokenType',
-  value: null
-}
-
-// Token Symbol (UPT)
-{
-  key: '0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756',
-  name: 'LSP4TokenSymbol',
-  value: 'UPT'
-}
-
-// Token Name (upturn: MINT PASS [UPT0001])
-{
-  key: '0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1',
-  name: 'LSP4TokenName',
-  value: 'upturn: MINT PASS [UPT0001]'
-}
-
-// Dynamic Creator Map Retrieval
-[
-  // Additional ERC725 data key
-  {
-    key: '0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1',
-    name: 'LSP4TokenName',
-    value: 'upturn: MINT PASS [UPT0001]'
-  },
-  /*
-   * Creator Map for 0x9..8634 (empty, no data set)
-   * Key Format: '0x6de85eaf5d982b4e5da00000<myCreatorAddress>'
-   * Name Format: 'LSP4CreatorsMap:<myCreatorAddress>'
-  */
-  {
-    key: '0x6de85eaf5d982b4e5da000009139def55c73c12bcda9c44f12326686e3948634',
-    name: 'LSP4CreatorsMap:9139def55c73c12bcda9c44f12326686e3948634',
-    value: []
-  }
-]
-```
-
-</details>
-
-## Get the asset data
-
-:::tip
-
-🔍 You can inspect an asset smart contract (or any ERC725 contract) using 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector) to see all its 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store).
+You can use the 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector) tool for inspecting assets within the browser.
 
 :::
 
+After you've approved the contract type, its recommended to check if the asset actually implemented the [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) into it's storage.
+
 <details>
   <summary>
-    <a href="../../standards/tokens/LSP4-Digital-Asset-Metadata.md">LSP4 - Digital Asset Metadata</a> describes the data within <a href="../../standards/tokens/LSP7-Digital-Asset.md">LSP7</a> and <a href="../../standards/tokens/LSP8-Identifiable-Digital-Asset.md">LSP8</a> asset's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/classes/ERC725#getdata"> erc725.js</a>  library. 👇
+    <a href="../../standards/tokens/LSP4-Digital-Asset-Metadata.md">LSP4 - Digital Asset Metadata</a> describes the data within <a href="../../standards/tokens/LSP7-Digital-Asset.md">LSP7</a> and <a href="../../standards/tokens/LSP8-Identifiable-Digital-Asset.md">LSP8</a> asset's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. <br/>The following data keys can be fetched. 👇
   </summary>
 <div>
 
@@ -220,119 +120,66 @@ console.log(creatorInformation);
 </div>
 </details>
 
-To read the asset data you simply instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your asset address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
-
-The [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function allows you to get all data keys that are stored on the asset smart contract and in your provided JSON schema.
-
-<Tabs>  
-  <TabItem value="javascript" label="JavaScript">
+As shown in the previous [Metadata Detection Guide](./standard-detection.md#metadata-detection), you can get the content of the data keys directly using the `getData(...)` function of the ⚒️ [`erc725.js`](../../tools/erc725js/classes/ERC725#getdata) library.
 
 <!-- prettier-ignore-start -->
 
 ```js
-import { ERC725 } from '@erc725/erc725.js';
-import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
+// ...
 
-const erc725js = new ERC725(lsp4Schema,'<myAssetAddress>', 'https://rpc.testnet.lukso.gateway.fm',
-  {
-    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
-  },
-);
-
-// Get all data keys from the asset smart contract
-let assetData = await erc725js.getData();
-console.log(assetData);
+// Verify if the standardized data key is supported
+const supportsLSP4 = (await myAsset.getData(
+  'SupportedStandards:LSP4DigitalAsset')).value !== null;
+console.log(supportsLSP4);
 ```
 
 <!-- prettier-ignore-end -->
 
-  </TabItem>
-    <TabItem value="typescript" label="TypeScript">
+:::note Get all data keys at once
 
-<!-- prettier-ignore-start -->
-
-```js
-import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
-import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
-
-const erc725js = new ERC725(lsp4Schema as ERC725JSONSchema[],'<myAssetAddress>', 'https://rpc.testnet.lukso.gateway.fm',
-  {
-    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
-  },
-);
-
-// Get all data keys from the asset smart contract
-let assetData = await erc725js.getData();
-console.log(assetData);
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-</Tabs>
-
-You can give it a try with this asset address: [`<myAssetAddress> = 0x0514A829C832639Afcc02D257154A9DaAD8fa21B`](https://wallet.universalprofile.cloud/asset/0x0514A829C832639Afcc02D257154A9DaAD8fa21B?network=testnet).
-
-<details>
-    <summary>Show result</summary>
-
-```js
-[
-  {
-    key: '0xeafec4d89fa9619884b60000a4d96624a38f7ac2d8d9a604ecf07c12c77e480c',
-    name: 'SupportedStandards:LSP4DigitalAsset',
-    value: '0xa4d96624',
-  },
-  {
-    key: '0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1',
-    name: 'LSP4TokenName',
-    value: 'upturn: MINT PASS [UPT0001]',
-  },
-  {
-    key: '0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756',
-    name: 'LSP4TokenSymbol',
-    value: 'UPT',
-  },
-  {
-    key: '0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3',
-    name: 'LSP4TokenType',
-    value: null,
-  },
-  {
-    key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
-    name: 'LSP4Metadata',
-    value: {
-      verification: [Object],
-      url: 'ipfs://bafkreib6caqoas2x7m2phq2kyknhxncxrbz76t2gjhltefldmkynlupdzy',
-    },
-  },
-  {
-    key: '0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7',
-    name: 'LSP4Creators[]',
-    value: [],
-  },
-];
-```
-
-</details>
-
-:::note ERC725Y JSON schemas
-
-The ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js.
-
-You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
+Instead of providing a specific data key like `SupportedStandards:LSP4DigitalAsset`, you can get the **full set of data keys** by using the `getData()` function without parameters.
 
 :::
 
-### Fetch the Asset Metadata
+## Retrieve the Token Type
 
-If you only need the contents of the profile data JSON file, you can use [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
+If both, contract and metadata standard are aligned, we can continue to determine the [LSP4 Token Type](https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata/#types-of-digital-assets) in order to interpret the metadata correctly.
+
+<!-- prettier-ignore-start -->
+
+```js
+// ...
+
+const tokenType = await myAsset.getData('LSP4TokenType');
+console.log(tokenType);
+```
+
+<!-- prettier-ignore-end -->
+
+At this stage, you should know if the digital asset is a:
+
+- LSP7 - Token
+- LSP7 - NFT
+- LSP8 - NFT
+- LSP8 - Collection
+
+TODO: TokenID Type. In the case of LSP8, explain where to get this info and what it represents.
+
+## Fetch the Asset Metadata
+
+To fetch all the data contained in the asset's JSON file, you can use [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata).
+
+:::info differece between get and fetch
+
+The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI` referenced within the smart contract.
+
+:::
 
 ```js
 // ...
 
 // Download and verify the asset metadata JSON file
-let assetMetadata = await erc725js.fetchData('LSP4Metadata');
+const assetMetadata = await erc725js.fetchData('LSP4Metadata');
 console.log(assetMetadata);
 ```
 
@@ -404,15 +251,96 @@ console.log(assetMetadata);
 
 </details>
 
-:::note get and fetch
+## Fetch Creators and Token Properties
 
-The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI`.
+Instead of using the [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) key, you can also retrieve other data keys as described in the following examples:
 
+:::caution
+
+Some of the 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) feature dynamic inputs. Make sure to exchange `<myCreatorAddress>` with the actual address (without `0x`) of one of the asset's creators you want to retrieve. In case the asset does not feature any additional creator information, the returned value of `LSP4CreatorsMap:<myCreatorAddress>` will be `0`.
+
+Optionally, you can [retrieve the profile data](./read-profile-data.md) of a creator in a separate step.
 :::
 
-### TODO: LSP8TokenIdType
+<!-- prettier-ignore-start -->
 
-In the case of LSP8, explain where to get this info and what it represents.
+```js
+// ...
 
-- LSP8 NFT
-- LSP8 Collection
+// Fetch the asset's token symbol
+const tokenSymbol = await erc725js.fetchData('LSP4TokenSymbol');
+console.log(tokenSymbol);
+
+// Fetch the asset's token name
+const tokenName = await erc725js.fetchData('LSP4TokenName');
+console.log(tokenName);
+
+// Fetch all creators of the asset
+const assetCreatorsList = await erc725js.fetchData('LSP4Creators[]');
+console.log(assetCreatorsList);
+
+// Fetch creator-specific information
+const creatorInformation = await erc725js.fetchData([
+  /* 
+   * for dynamic keys, it is necessary 
+   * to provide any second data key
+  */ 
+  'LSP4TokenName',
+  {
+    keyName: 'LSP4CreatorsMap:<address>',
+    // Sample creator address
+    dynamicKeyParts: '0x9139def55c73c12bcda9c44f12326686e3948634',
+  },
+]);
+console.log(creatorInformation);
+```
+
+<!-- prettier-ignore-end -->
+
+<details>
+    <summary>Show result</summary>
+
+```js
+// Creator List (empty, no creators set)
+{
+  key: '0x114bd03b3a46d48759680d81ebb2b414fda7d030a7105a851867accf1c2352e7',
+  name: 'LSP4Creators[]',
+  value: []
+}
+
+// Token Symbol (UPT)
+{
+  key: '0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756',
+  name: 'LSP4TokenSymbol',
+  value: 'UPT'
+}
+
+// Token Name (upturn: MINT PASS [UPT0001])
+{
+  key: '0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1',
+  name: 'LSP4TokenName',
+  value: 'upturn: MINT PASS [UPT0001]'
+}
+
+// Dynamic Creator Map Retrieval
+[
+  // Additional ERC725 data key
+  {
+    key: '0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1',
+    name: 'LSP4TokenName',
+    value: 'upturn: MINT PASS [UPT0001]'
+  },
+  /*
+   * Creator Map for 0x9..8634 (empty, no data set)
+   * Key Format: '0x6de85eaf5d982b4e5da00000<myCreatorAddress>'
+   * Name Format: 'LSP4CreatorsMap:<myCreatorAddress>'
+  */
+  {
+    key: '0x6de85eaf5d982b4e5da000009139def55c73c12bcda9c44f12326686e3948634',
+    name: 'LSP4CreatorsMap:9139def55c73c12bcda9c44f12326686e3948634',
+    value: []
+  }
+]
+```
+
+</details>
