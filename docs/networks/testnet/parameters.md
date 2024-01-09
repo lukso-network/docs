@@ -14,7 +14,7 @@ The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps
 
 | Setting                  | Value                                                                                                        |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| Network Name             | Testnet                                                                                                      |
+| Network Name             | LUKSO Testnet                                                                                                |
 | Fork Version             | 0x42010001                                                                                                   |
 | Chain ID / Network ID    | 4201                                                                                                         |
 | Currency Symbol          | LYXt                                                                                                         |
@@ -53,6 +53,16 @@ This gateway is intended for development purposes. We do not guarantee any SLA, 
 
 :::
 
-## Add LUKSO Testnet (MetaMask...)
+## Add LUKSO Testnet to Wallets
+
+You can add the LUKSO Mainnet to any of your existing wallets like [MetaMask](https://metamask.io/), [Rabby](https://rabby.io/), [Rainbow](https://rainbow.me/), [Coinbase Wallet](https://www.coinbase.com/de/wallet), [Trust Wallet](https://trustwallet.com/de), and others using the following parameters or button:
+
+| Setting               | Value                                             |
+| --------------------- | ------------------------------------------------- |
+| Network Name          | LUKSO Testnet                                     |
+| RPC URL               | https://rpc.testnet.lukso.network                 |
+| Chain ID / Network ID | 4201                                              |
+| Currency Symbol       | LYXt                                              |
+| Block explorer URL    | https://explorer.execution.testnet.lukso.network/ |
 
 <AddNetworkButton networkName="testnet"/>
