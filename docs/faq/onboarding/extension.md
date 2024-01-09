@@ -70,7 +70,7 @@ If you created a Universal Profile using the [Universal Profile Explorer](https:
 
 At the moment, the option to recover an existing profile from a backup file is not available. The team is working on this feature and it will be made available soon.
 
-Currently, the private key is displayed though in the LUKSO Browser Extension. However, this is not to be used as a recovery mechanism, but rather for users who want to do development and need the private key.
+Currently, the private key of the main controller can be displayed in the LUKSO Browser Extension. However, it cannot be used as a recovery mechanism, but rather for developers who need it for development purpose.
 
 ## “Universal Profile is not allowed by this Transaction Relay Service” Error
 
