@@ -74,4 +74,4 @@ Currently, the private key of the main controller can be displayed in the LUKSO 
 
 ## “Universal Profile is not allowed by this Transaction Relay Service” Error
 
-If a user deploys a Universal Profile through Universal Page, or another 3rd party that has their own relayer, when importing the profile into the LUKSO Browser Extension, the LUKSO Relayer will not be compatible. Therefore, users should use a separate controller key that they can fund with some LYX.
+If a user deploys a Universal Profile through a 3rd party with their own relayer (such as [_Universal.Page_](https://universal.page)), when importing the profile into the LUKSO Browser Extension, the LUKSO Relayer will not be compatible. Therefore, users should use a separate controller key that they can fund with some LYX.
