@@ -83,10 +83,10 @@ Please ensure you can set custom blockchain networks within your blockchain wall
 
 ## Where can LYX be traded?
 
-You can officially trade LYX using the following platforms:
+You can trade or swap LYX using the following platforms:
 
-- [KuCoin](https://www.kucoin.com/announcement/en-kucoin-has-completed-the-token-swap-of-lyxe-to-lyx-20230721)
-- [Gate.io](https://www.gate.io/article/33153)
-- [Ledger Live](https://support.ledger.com/hc/en-us/articles/15847276545053-Lukso-LYX-?docs=true).
+- [KuCoin Exchange](https://www.kucoin.com/announcement/en-kucoin-has-completed-the-token-swap-of-lyxe-to-lyx-20230721)
+- [Gate.io Exchange](https://www.gate.io/article/33153)
+- [Ledger Live Onramp](https://support.ledger.com/hc/en-us/articles/15847276545053-Lukso-LYX-?docs=true).
 
 3rd-party services might also create decentralized marketplaces later on.
