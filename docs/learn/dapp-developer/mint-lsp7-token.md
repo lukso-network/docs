@@ -24,7 +24,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Imports and constants
 
-At this point, the `LPS7Mintable` contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
+At this point, the `LSP7Mintable` contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
 
 ```javascript
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
@@ -43,7 +43,7 @@ console.log('🔑 EOA: ', signer.address);
 
 ### Instantiate the contracts
 
-After defining the core parameters of the [`LPS7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you are able to create an instance using its _ABI_ and the _contract address_.
+After defining the core parameters of the [`LSP7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you are able to create an instance using its _ABI_ and the _contract address_.
 
 ```javascript
 let myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi, signer);
@@ -89,8 +89,9 @@ async function main() {
   console.log(mintTxn)
   await new Promise(r => setTimeout(r, 10000));
 
-  const balance = await myToken.balanceOf(signer.address)
-  console.log('🏦 Balance: ', balance.toString())
+  const balance = await myToken.balanceOf(signer.address);
+  console.log('🏦 Balance: ', balance.toString());
+  
 }
 
 main();
