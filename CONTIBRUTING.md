@@ -9,6 +9,9 @@ Welcome to our documentation guide for contributors. We've set up specific rules
 - We only use bold text for keywords or phrases instead of whole sentences, as it should only highlight the most critical information.
 - We use _simple present_ tense and _3rd person singular_ to describe functions and document APIs / ABIs.
 - We use _simple present_ in headings but do not enrich them with additional styling.
+- We use _Universal Profile_ instead of _account_ or _profile_.
+- We use _Transaction Relay Service_ instead of _transaction relayer_ or _relayer_.
+- We use either _controller_ or _private key_ instead of _controller key_.
 
 ## Word Specification
 
