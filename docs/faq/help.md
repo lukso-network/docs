@@ -31,7 +31,7 @@ You can open an issue on any open code repository of the [LUKSO Network's GitHub
 
 :::info Customer Support
 
-If you have questions regarding personal matters like the migration of LYXe, Universal Profile Browser Extension or, [UniversalProfile.cloud](https://universalprofile.cloud/) please reach out to [`support@lukso.network](mailto:support@lukso.network) directly.
+If you have questions regarding personal matters like the migration of LYXe, Universal Profile Browser Extension or, [UniversalProfile.cloud](https://universalprofile.cloud/) please reach out to [support@lukso.network](mailto:support@lukso.network) directly.
 
 :::
 
