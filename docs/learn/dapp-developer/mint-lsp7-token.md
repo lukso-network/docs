@@ -37,14 +37,14 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Imports and constants
 
-At this point, the [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
+At this point, the [`LSP7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
 
 <Tabs groupId="web3-lib">
   <TabItem value="web3js" label="web3.js">
 
 ```javascript title="web3.js"
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
-import Web3 from "web3";
+import Web3 from 'web3';
 
 const myTokenAddress = '0x...';
 
@@ -63,13 +63,12 @@ import { ethers } from 'ethers';
 
 const myTokenAddress = '0x...';
 
-await ethers.provider.send("eth_requestAccounts", []);
+await ethers.provider.send('eth_requestAccounts', []);
 const signer = ethers.provider.getSigner();
 ```
 
   </TabItem>
 </Tabs>
-
 
 ### Instantiate the contracts
 
@@ -92,7 +91,6 @@ const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
   </TabItem>
 </Tabs>
 
-
 ### Send the transaction
 
 Finally, you can send the transaction to mint some tokens.
@@ -108,14 +106,15 @@ The sample contract of this guide only allows the smart contract owner to mint a
 
 ```javascript title="web3.js"
 // mint 1 token
-const amount = web3.utils.toWei('1', 'ether');;
+const amount = web3.utils.toWei('1', 'ether');
 
-const mintTxn = await myToken.methods.mint(
-  accounts[0], // recipient address
-  amount, // token amount
-  true, // force parameter
-  '0x' // additional data
-)
+const mintTxn = await myToken.methods
+  .mint(
+    accounts[0], // recipient address
+    amount, // token amount
+    true, // force parameter
+    '0x', // additional data
+  )
   .send({ from: accounts[0] });
 
 console.log(mintTxn);
@@ -149,4 +148,3 @@ console.log('🏦 Balance: ', balance.toString());
 
   </TabItem>
 </Tabs>
-
