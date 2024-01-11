@@ -40,23 +40,81 @@ The Universal Profile Browser Extension currently does not feature a way to impo
 
 :::
 
-## How to check if 2FA is set up correctly?
+## Can I add 2FA recovery to an existing Universal Profile?
 
-You can check if the recovery is set up correctly using the Universal Profile Browser Extension. If you visit the Controller Menu, there need to be at least 3 Controllers:
+At the current state (11th January 2024), the 2FA recovery method from LUKSO can only be added during the creation of a profile on [UniversalProfile.cloud](https://universalprofile.cloud/).
+
+## How to check if 2FA recovery is set up correctly?
+
+If you ever want to recover your profile, a fresh controller key will be added to this profile from a new extension setup. You must verify multiple steps to check if this new controller key can be added to your Universal Profile by the recovery service:
+
+### 1. Verify the recovery controller in your extension
+
+If you visit the controller menu in the Universal Profile Browser Extension, there need to be at least three controllers:
+
+- The Universal Profile Browser Extension (used for profile interactions)
+- The Universal Receiver (used to write asset updates on the profile)
+- The Universal Profile Recovery (used as a backup for the profile)
+
+To confirm that the permissions of the recovery controller were adequately set up, click on the controller of the Universal Profile Recovery and verify that the **Add Controller** permission is enabled.
 
 ![2FA Controller](../../../static/img/faq/2fa-controller.png)
 
-- Your Universal Profile Browser Extension's Key (used for profile interactions)
-- Your Universal Receiver (used to write asset updates on the profile)
-- The Universal Recovery Key (used as a backup for the profile)
+:::info Controller Names
 
-If you click on the recovery controller, it must have the **Add Controller** permission. If you ever want to recover your profile, a fresh controller key will be added to this profile from a new extension setup. 2FA was completed if you see the controller and said 2FA using your e-mail and authenticator app. Please ensure that the 2FA code can be accessed correctly.
+The names of the controllers can vary, depending on the time of your Universal Profile setup.
+
+:::
+
+### 2. Verify the recovery controller on the profile explorer
+
+Next, we must check if the recovery was successfully added via the LUKSO Relay Service. **Copy the address of your Universal Profile Recovery** from the controller menu of the Universal Profile Extension and open [UniversalProfile.cloud](https://universalprofile.cloud/?network=mainnet). On the profile explorer, **input the address** of the Universal Profile Recovery **into the search bar**. If it was successfully added, it will show a recovery profile.
+
+![Recovery Search](../../../static/img/faq/recovery-search.png)
+
+:::info Recovery Name
+
+The name of the Universal Recovery controller can vary, depending on the time of your Universal Profile creation.
+
+:::
+
+:::caution
+
+If your Universal Profile Recovery controller is not showing up on [UniversalProfile.cloud](https://universalprofile.cloud/?network=mainnet), please check if you selected the correct network in the bottom left corner of the page.
+
+:::
+
+### 3. Verify the authentication code and email
+
+During the 2FA setup, you will be asked to provide an **email or web account** associated with the recovery process. Verify if you **received the recovery email** and **set up an authenticator code** using one of the supported apps. Additionally, ensure that the 2FA code for the Universal Profile Recovery **can be accessed** on your authenticator app of choice.
+
+:::danger
+
+If you've set up 2FA but one of the verification steps cannot be fulfilled, please reach out within the **SUPPORT & BUGS** category on our Discord server or contact our support at [support@lukso.network](mailto:support@lukso.network) directly.
+
+:::
 
 ## How to see and send assets from the Universal Profile?
 
 The Universal Profile Extension **does not directly manage token information**. Instead, it is designed to work with various decentralized applications (dApps) that can seamlessly integrate with your Universal Profile and interact with its information and controller keys. To see all your tokens, you can visit your profile on [UniversalProfile.cloud](https://universalprofile.cloud/). If you are logged in, you will also be able to transfer assets.
 
 ![Asset Transfer](../../../static/img/faq/asset-transfer.png)
+
+## How to get back funds from the extension's controller?
+
+There is currently no way to get back funds from the controller directly within the extension. If you want to pay for your transactions instead of using any Relay Service, we recommend only sending minimal LYX, e.g., `0.1 LYX`.
+
+However, as controller keys of your Universal Profile are regular wallet accounts, these can be imported into any other Ethereum wallet with custom network support. To get back funds from a controller, please open the Settings and reveal your private key of the related Extension controller.
+
+![Reveal Private Keys](../../../static/img/faq/reveal-private-key.png)
+
+:::caution Controller Key Export
+
+Every profile within the Universal Profile Extension has a separate controller key. Make sure to select the correct Universal Profile before proceeding. **Never share this private key with anyone**.
+
+:::
+
+After you receive your private key, import this account to an Ethereum wallet with custom network support (e.g., MetaMask). Within the wallet, [add the LUKSO network](https://docs.lukso.tech/networks/mainnet/parameters#add-lukso-to-wallets) using the official network parameters. You will see the controller's funds after the network is added and selected. You can continue copying your Universal Profile's address and sending the LYX back. The imported account can be removed from the wallet after completing this process.
 
 ## How to use own LYX for Universal Profile transactions?
 

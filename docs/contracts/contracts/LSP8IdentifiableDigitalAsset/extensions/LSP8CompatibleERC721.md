@@ -3,6 +3,12 @@
 
 # LSP8CompatibleERC721
 
+:::danger beware
+
+This contract is being deprecated and will be deleted from [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) repository. However if you want to still use/maintain it, you will sill be able to find it in the version [`0.14.0`](https://github.com/lukso-network/lsp-smart-contracts/releases/tag/lsp-smart-contracts-v0.14.0).
+
+:::
+
 :::info Standard Specifications
 
 [`LSP-8-IdentifiableDigitalAsset`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)
