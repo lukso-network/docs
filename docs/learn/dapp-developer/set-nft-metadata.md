@@ -1,7 +1,7 @@
 ---
 sidebar_label: '🎨 Set LSP8 NFT Metadata'
 sidebar_position: 9
-description: Learn how to set the metadata of a NFT part of a LSP8 Collection.
+description: Learn how to set the metadata of a NFT part of a LSP8 Identifiable Digital Asset Collection.
 ---
 
 # Set LSP8 NFT Metadata
@@ -23,7 +23,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ## Imports and constants
 
-At this point, we are preparing the `LSP8IdentifiableDigitalAsset` contract to interact with it. We will construct an instance of the contract using its _ABI_ and the _contract address_.
+Import `ethers`, the [`LSP8IdentifiableDigitalAsset`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) ABI from [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) and create an instance of this contract with the `lsp8ContractAddress`.
 
 ```javascript
 import LSP8IdentifiableDigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
@@ -31,8 +31,10 @@ import { ethers } from 'ethers';
 
 const privateKey = '0x...';
 const lsp8ContractAddress = '0x...';
+// For networks info, check: https://docs.lukso.tech/networks/testnet/parameters  
+const LUKSO_TESTNET_RPC_URL = 'https://rpc.testnet.lukso.network'
 
-const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
+const provider = new ethers.JsonRpcProvider(LUKSO_TESTNET_RPC_URL);
 
 // setup signer
 const signer = new ethers.Wallet(privateKey as string, provider);
@@ -49,13 +51,49 @@ const lsp8Contract = new ethers.Contract(lsp8ContractAddress, LSP8IdentifiableDi
 
 ### Send the transaction to set metadata for a tokenId
 
-The last step is to set the metadata for a specific `tokenId`. You can then send the transaction to set the metadata for the given NFT represented by its `tokenId`.
+The last step is to set the metadata for a specific [`tokenId`](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#format-of-tokenids). You can then send the transaction to set the metadata for the given NFT represented by its `tokenId`.
 
 Here we will use the following parameters as examples:
 
 - `tokenId`: `0x0000000000000000000000000000000000000000000000000000000000000001`
 - `dataKey`: [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
-- `metadataValue`: some placeholder value as a .
+- `metadataValue`: some placeholder value as a [`VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
+
+:::info
+
+You can use the `encodeData` function from the [_erc725.js_](../../tools/erc725js/classes/ERC725.md#encodedata) library to encode a `VerifiableURI` easily.
+
+<details>
+    <summary>Code example to encode a <code>VerifiableURI</code> using <i>erc725.js</i></summary>
+
+```js
+import { ERC725 } from '@erc725/erc725.js';
+
+const schema = [{
+    "name": "LSP4Metadata",
+    "key": "0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e",
+    "keyType": "Singleton",
+    "valueType": "bytes",
+    "valueContent": "VerifiableURI"
+  }];
+
+  const myErc725 = new ERC725(schema);
+
+  myErc725.encodeData([
+    {
+      keyName: 'LSP4Metadata',
+      value: {
+        json: nftJson,
+        url: 'ipfs://QmQTqheBLZFnQUxu5RDs8tA9JtkxfZqMBcmGd9sukXxwRm',
+      },
+    },
+  ]);
+```
+</details>
+
+You can also check the code snippet example in the LSP2 specs to learn in details the [encoding of a `VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri). 
+
+:::
 
 ```javascript
 import {ERC725YDataKeys} from "@lukso/lsp-smart-contracts";
@@ -63,7 +101,7 @@ import {ERC725YDataKeys} from "@lukso/lsp-smart-contracts";
 // change this with the actual tokenId to update metadata for
 const tokenId = "0x0000000000000000000000000000000000000000000000000000000000000001";
 
-// change this with the actual VerifiableURI of the metadata uploaded on IPFS
+// change this with the actual VerifiableURI of the metadata uploaded somewhere (S3, IPFS, etc...)
 const metadataValue = "0x..."
 
 let setTokenIdMetadataTxn = await lsp8Contract.setDataForTokenId(
@@ -83,12 +121,12 @@ import {ERC725YDataKeys} from "@lukso/lsp-smart-contracts";
 
 const privateKey = '0x...';
 const lsp8ContractAddress = '0x...';
+// For networks info, check: https://docs.lukso.tech/networks/testnet/parameters  
+const LUKSO_TESTNET_RPC_URL = 'https://rpc.testnet.lukso.network'
 
 async function main() {
 
-    const provider = new ethers.JsonRpcProvider(
-        'https://rpc.testnet.lukso.network',
-    );
+    const provider = new ethers.JsonRpcProvider(LUKSO_TESTNET_RPC_URL);
 
     const signer = new ethers.Wallet(privateKey as string, provider);
     console.log('🔑 EOA: ', signer.address);
