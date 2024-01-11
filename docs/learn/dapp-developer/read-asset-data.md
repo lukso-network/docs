@@ -24,9 +24,9 @@ On the LUKSO network, [Digital Assets](../../standards/tokens/introduction.md) a
 
 In this tutorial, you will learn how to:
 
-- [Detect the Contract Type](#detect-the-contract-type)
-- [Detect the Metadata Storage](#detect-the-metadata-storage)
-- [Retrieve the Token Type](#retrieve-the-token-type)
+- [Detect the Contract Interface](#detect-the-contract-interface)
+- [Detect the Metadata Standard](#detect-the-metadata-standard)
+- [Detect the Token Type](#detect-the-token-type)
 - [Fetch the Asset Data](#fetch-the-asset-metadata)
 
 ## Setup
@@ -54,7 +54,7 @@ To easily interact with an asset you should use the ⚒️ [erc725.js](../../too
 npm install @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
 
-## Detect the Contract Type
+## Detect the Contract Interface
 
 Once you have an address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's interfaceId like in the previous [Interface Detection Guide](./standard-detection.md#interface-detection). If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package. Optionally, you can also find a full list of all `interfaceID`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
 
@@ -93,7 +93,7 @@ console.log(isLSP7, isLSP8); // each, true or false
 
 <!-- prettier-ignore-end -->
 
-## Detect the Metadata Storage
+## Detect the Metadata Standard
 
 :::success Check Assets Online
 
@@ -141,7 +141,7 @@ Instead of providing a specific data key like `SupportedStandards:LSP4DigitalAss
 
 :::
 
-## Retrieve the Token Type
+## Detect the Token Type
 
 If both, contract and metadata standard are aligned, we can continue to determine the [LSP4 Token Type](https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata/#types-of-digital-assets) in order to interpret the metadata correctly.
 
@@ -156,18 +156,20 @@ console.log(tokenType);
 
 <!-- prettier-ignore-end -->
 
-At this stage, you should know if the digital asset is a:
+Based on this token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) can be interpreted differently: It can either represent the token information of a whole contract, or the information of a single NFT, that has multiple ownable amounts or IDs. In case your asset is an NFT, the individual information of an ID can be set. If your asset is a collection however, this individual medatada is mandatory.
+
+At this point, you should be able to identify if the digital asset is a:
 
 - LSP7 - Token
 - LSP7 - NFT
 - LSP8 - NFT
 - LSP8 - Collection
 
-TODO: TokenID Type. In the case of LSP8, explain where to get this info and what it represents.
+Based on this information, the asset metadata is fetched in different ways.
 
 ## Fetch the Asset Metadata
 
-To fetch all the data contained in the asset's JSON file, you can use [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata).
+To fetch the whole contracts JSON file, you can use the [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata) directly on the asset address.
 
 :::info differece between get and fetch
 
