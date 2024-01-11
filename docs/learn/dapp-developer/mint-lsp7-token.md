@@ -87,7 +87,8 @@ async function main() {
 
   const mintTxn = await myToken.mint(signer.address, 1, true, '0x', { gasLimit: 400_000 })
   console.log(mintTxn)
-  await new Promise(r => setTimeout(r, 10000));
+  
+  // Waiting 10sec to make sure the minting transaction has been processed
 
   const balance = await myToken.balanceOf(signer.address);
   console.log('🏦 Balance: ', balance.toString());
