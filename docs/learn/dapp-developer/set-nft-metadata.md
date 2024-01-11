@@ -10,7 +10,7 @@ In this guide you will learn how to set the metadata of a specific NFT (represen
 
 ## Setup
 
-You will need the address of an existing LSP8 NFT collection in order to follow this tutorial. This represent the LSP8 collection that includes the NFT you want to update metadata for.
+You will need the address of an existing LSP8 NFT collection in order to follow this tutorial. This represent the LSP8 collection that includes the NFT you want to update metadata for. For instance [`0x37934A275EFd47DFce671CA3CBaE34d9138CF2D2.`](https://explorer.execution.testnet.lukso.network/address/0x37934A275EFd47DFce671CA3CBaE34d9138CF2D2?tab=read_contract)
 
 The following code snippets require the installation of the following libraries:
 
