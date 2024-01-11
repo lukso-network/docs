@@ -14,12 +14,25 @@ You will need the address of an existing LSP8 NFT collection in order to follow 
 
 The following code snippets require the installation of the following libraries:
 
-- [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`ethers.js`](https://github.com/ethers-io/ethers.js/) or [`web3.js`](https://www.npmjs.com/package/web3)
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+
+<Tabs groupId="web3-lib">
+  <TabItem value="web3js" label="web3.js">
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  <TabItem value="ethersjs" label="ethers.js">
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Imports and constants
 
@@ -29,7 +42,6 @@ Import `ethers`, the [`LSP8IdentifiableDigitalAsset`](../../contracts/contracts/
 import LSP8IdentifiableDigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
 import { ethers } from 'ethers';
 
-const privateKey = '0x...';
 const lsp8ContractAddress = '0x...';
 // For networks info, check: https://docs.lukso.tech/networks/testnet/parameters  
 const LUKSO_TESTNET_RPC_URL = 'https://rpc.testnet.lukso.network'
@@ -46,7 +58,11 @@ console.log('🔑 EOA: ', signer.address);
 Create an instance of the LSP8 collection contract as shown below:
 
 ```javascript
-const lsp8Contract = new ethers.Contract(lsp8ContractAddress, LSP8IdentifiableDigitalAsset.abi, signer);
+const lsp8Contract = new ethers.Contract(
+    lsp8ContractAddress, 
+    LSP8IdentifiableDigitalAsset.abi, 
+    signer
+);
 ```
 
 ### Send the transaction to set metadata for a tokenId
