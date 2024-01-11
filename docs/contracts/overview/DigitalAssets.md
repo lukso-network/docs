@@ -12,6 +12,12 @@ The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced vers
 
 ## Comparisons with ERC20 / ERC721
 
+:::danger beware
+
+The LSP7 compatible with ERC20 contracts and LSP8 compatible with ERC721 contracts are being deprecated and will be deleted from [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) repository. However if you want to still use/maintain them, they will remain available in the version [`0.14.0`](https://github.com/lukso-network/lsp-smart-contracts/releases/tag/lsp-smart-contracts-v0.14.0).
+
+:::
+
 The interfaces of LSP7 and LSP8 have some differences compared to ERC20 and ERC721. Their functions are simpler, more straight forward and unified.
 
 **Similar function names**
