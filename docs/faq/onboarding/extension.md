@@ -58,6 +58,22 @@ The Universal Profile Extension **does not directly manage token information**. 
 
 ![Asset Transfer](../../../static/img/faq/asset-transfer.png)
 
+## How to get back funds from the extension's controller?
+
+There is currently no way to get back funds from the controller directly within the extension. If you want to pay for your transactions instead of using any Relay Service, we recommend only sending minimal LYX, e.g., `0.1 LYX`.
+
+However, as controller keys of your Universal Profile are regular wallet accounts, these can be imported into any other Ethereum wallet with custom network support. To get back funds from a controller, please open the Settings and reveal your private key of the related Extension controller.
+
+![Reveal Private Keys](../../../static/img/faq/reveal-private-key.png)
+
+:::caution Controller Key Export
+
+Every profile within the Universal Profile Extension has a separate controller key. Make sure to select the correct Universal Profile before proceeding. **Never share this private key with anyone**.
+
+:::
+
+After you receive your private key, import this account to an Ethereum wallet with custom network support (e.g., MetaMask). Within the wallet, [add the LUKSO network](https://docs.lukso.tech/networks/mainnet/parameters#add-lukso-to-wallets) using the official network parameters. You will see the controller's funds after the network is added and selected. You can continue copying your Universal Profile's address and sending the LYX back. The imported account can be removed from the wallet after completing this process.
+
 ## How to use own LYX for Universal Profile transactions?
 
 To use your funds to send transactions from your Universal Profile, you must send LYX or LYXt to the extension's controller key. Sending it to the controller will ensure the transaction's Gas costs are funded. You can find the address of the extension's controller key within the permission section.
