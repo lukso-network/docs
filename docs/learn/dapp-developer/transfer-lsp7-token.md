@@ -84,7 +84,7 @@ await myToken.methods
 ```js
 import { ethers } from 'ethers';
 
-// Import schemas and ABI
+// Import smart contract ABI
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
 await provider.send("eth_requestAccounts", []);
