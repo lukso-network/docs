@@ -159,7 +159,7 @@ console.log(tokenType);
 
 <!-- prettier-ignore-end -->
 
-Based on this token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) can be interpreted differently: it can either:
+Based on this token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) can be interpreted differently, it can either:
 
 - represent the token information of a whole contract
 - or the information of a single NFT, that has multiple ownable amounts or IDs.
