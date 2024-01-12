@@ -183,7 +183,7 @@ export default {
           },
           {
             from: '/guides/digital-assets/read-asset-data',
-            to: '/learn/expert-guides/read-asset-data',
+            to: '/learn/dapp-developer/read-asset-data',
           },
           {
             from: '/guides/vault/interact-with-contracts',
