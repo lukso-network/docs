@@ -15,39 +15,81 @@ In this guide you will mint some [LSP7 Digital Asset](../../standards/tokens/LSP
 
 The following code snippets require the installation of the following libraries:
 
-- [`ethers.js`](https://github.com/ethers-io/ethers.js/)
+- [`ethers.js`](https://github.com/ethers-io/ethers.js/) or [`web3.js`](https://www.npmjs.com/package/web3)
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+
+<Tabs groupId="web3-lib">
+  <TabItem value="web3js" label="web3.js">
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  <TabItem value="ethersjs" label="ethers.js">
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
 
+  </TabItem>
+</Tabs>
+
 ### Imports and constants
 
-At this point, the `LPS7Mintable` contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
+At this point, the [`LSP7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
 
-```javascript
+<Tabs groupId="web3-lib">
+  <TabItem value="web3js" label="web3.js">
+
+```javascript title="web3.js"
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+import Web3 from 'web3';
+
+const myTokenAddress = '0x...';
+
+const web3 = new Web3(window.lukso);
+
+await web3.eth.requestAccounts();
+const accounts = await web3.eth.getAccounts();
+```
+
+  </TabItem>
+  <TabItem value="ethersjs" label="ethers.js">
+
+```javascript title="ethers.js"
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 import { ethers } from 'ethers';
 
-const privateKey = '0x...';
 const myTokenAddress = '0x...';
-const universalProfileAddress = '0x...';
 
-const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
-
-// setup signer
-const signer = new ethers.Wallet(privateKey as string, provider);
-console.log('🔑 EOA: ', signer.address);
+await ethers.provider.send('eth_requestAccounts', []);
+const signer = ethers.provider.getSigner();
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Instantiate the contracts
 
-After defining the core parameters of the [`LPS7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you are able to create an instance using its _ABI_ and the _contract address_.
+After defining the core parameters of the [`LSP7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you are able to create an instance using its _ABI_ and the _contract address_.
 
-```javascript
-let myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi, signer);
+<Tabs groupId="web3-lib">
+  <TabItem value="web3js" label="web3.js">
+
+```javascript title="web3.js"
+const myToken = new web3.eth.Contract(LSP7Mintable.abi, myTokenAddress);
 ```
+
+  </TabItem>
+  <TabItem value="ethersjs" label="ethers.js">
+
+```javascript title="ethers.js"
+const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi);
+```
+
+  </TabItem>
+</Tabs>
 
 ### Send the transaction
 
@@ -59,39 +101,50 @@ The sample contract of this guide only allows the smart contract owner to mint a
 
 :::
 
-```javascript
-let mintTxn = await myToken.mint(signer.address, 1, true, '0x', {
-  gasLimit: 400_000,
-});
+<Tabs groupId="web3-lib">
+  <TabItem value="web3js" label="web3.js">
+
+```javascript title="web3.js"
+// mint 1 token
+const amount = web3.utils.toWei('1', 'ether');
+
+const mintTxn = await myToken.methods
+  .mint(
+    accounts[0], // recipient address
+    amount, // token amount
+    true, // force parameter
+    '0x', // additional data
+  )
+  .send({ from: accounts[0] });
+
+console.log(mintTxn);
+
+// Waiting 10sec to make sure the minting transaction has been processed
+
+const balance = await myToken.methods.balanceOf(accounts[0]);
+console.log('🏦 Balance: ', balance.toString());
 ```
 
-### Final code
+  </TabItem>
+  <TabItem value="ethersjs" label="ethers.js">
 
-```javascript
-import { ethers } from 'hardhat';
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+```javascript title="ethers.js"
+// mint 1 token
+const amount = ethers.utils.parseUnits('1', 'ether');
 
-const privateKey = '0x..';
-const myTokenAddress = '0x..';
+const mintTxn = await myToken.mint(
+  signer.address, // recipient address
+  amount, // token amount
+  true, // force parameter
+  '0x', // additional data
+);
+console.log(mintTxn);
 
-async function main() {
+// Waiting 10sec to make sure the minting transaction has been processed
 
-  const provider = new ethers.JsonRpcProvider(
-    'https://rpc.testnet.lukso.network',
-  );
-
-  const signer = new ethers.Wallet(privateKey as string, provider);
-  console.log('🔑 EOA: ', signer.address);
-
-  const myToken = new ethers.Contract(myTokenAddress, LSP7Mintable.abi, signer);
-
-  const mintTxn = await myToken.mint(signer.address, 1, true, '0x', { gasLimit: 400_000 })
-  console.log(mintTxn)
-  await new Promise(r => setTimeout(r, 10000));
-
-  const balance = await myToken.balanceOf(signer.address)
-  console.log('🏦 Balance: ', balance.toString())
-}
-
-main();
+const balance = await myToken.balanceOf(signer.address);
+console.log('🏦 Balance: ', balance.toString());
 ```
+
+  </TabItem>
+</Tabs>

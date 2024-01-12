@@ -22,7 +22,7 @@ You can download the Universal Profile Extension from the [Extension Guide](/ins
 
 ## What are the controllers of the Universal Profile?
 
-Each Universal Profile within an extension holds a separate private key to send transactions on behalf of the user's profile. Such controllers can be exported, added, or removed. The controllers can be found within the **Controllers** window of the extension:
+Each Universal Profile within an extension holds a separate private key to send transactions on behalf of the user, e.g., controlling it. Such controllers can be exported, added, or removed. The controllers can be found within the **Controllers** window of the extension:
 
 ![Controller Window](../../../static/img/faq/controller-window.png)
 
@@ -30,9 +30,9 @@ Each Universal Profile within an extension holds a separate private key to send 
 
 If you lost access to the Universal Profile Browser Extension, there are multiple ways to secure your Universal Profile :
 
-- **2FA**: You can set up 2FA while creating the profile on [UniversalProfile.cloud](https://universalprofile.cloud/). 2FA is the recommended way of backing up a Universal Profile and will add a new recovery controller to the profile, secured on LUKSO's end. This controller has permission to add new controller keys if access to an old extension is lost. For security reasons, users must provide an authentication code from a mobile device and approve via email before a new controller can be added using LUKSO's recovery service.
-- **Profile QR Import**: You can import any profile address into your extension. The import process will create a local controller key that needs to be signed off and added to the profile by one of your existing controllers with sufficient permissions. Within the new extension, you will receive a QR code of a transaction that can be scanned or copied. When received and executed by an existing extension, this new controller will gain permissions on the profile.
-- **File Export**: You can export the profile directly as a text file, including its private key, and store it somewhere safe. This private key will allow you to regain access to the original controller key.
+- **2FA**: You can set up 2FA while creating the Universal Profile on [UniversalProfile.cloud](https://universalprofile.cloud/). 2FA is the recommended way of backing up a Universal Profile and will add a new recovery controller to the profile, secured on LUKSO's end. This controller has permission to add new controllers if access to an old extension is lost. For security reasons, users must provide an authentication code from a mobile device and approve via email before a new controller can be added using LUKSO's recovery service.
+- **QR Import**: You can import any Universal Profile address into your extension. The import process will create a new local controller. Before it can can be used, the new controller needs to added to the Universal Profile by one of your existing controllers with sufficient permissions. Within the new extension, you will receive a QR code of a transaction that can be scanned or copied. When this QR code is received and the related transaction executed by an existing extension, this new controller will gain permissions on the Universal Profile.
+- **File Export**: You can export the Universal Profile directly as a text file, including the private key of the extension's controller. Make sure to store it somewhere safe. This private key will allow you to regain access to the profiles and their current controllers within the Universal Profiles.
 
 :::caution
 
@@ -42,11 +42,11 @@ The Universal Profile Browser Extension currently does not feature a way to impo
 
 ## Can I add 2FA recovery to an existing Universal Profile?
 
-At the current state (11th January 2024), the 2FA recovery method from LUKSO can only be added during the creation of a profile on [UniversalProfile.cloud](https://universalprofile.cloud/).
+At the current state (11th January 2024), the 2FA recovery method from LUKSO can only be added during the creation of a Universal Profile on [UniversalProfile.cloud](https://universalprofile.cloud/).
 
 ## How to check if 2FA recovery is set up correctly?
 
-If you ever want to recover your profile, a fresh controller key will be added to this profile from a new extension setup. You must verify multiple steps to check if this new controller key can be added to your Universal Profile by the recovery service:
+If you ever want to recover your profile, a new controller will be added to this Universal Profile from a new extension setup. You must verify multiple steps to check if this new controller can be added to your Universal Profile by the recovery service:
 
 ### 1. Verify the recovery controller in your extension
 
@@ -68,7 +68,13 @@ The names of the controllers can vary, depending on the time of your Universal P
 
 ### 2. Verify the recovery controller on the profile explorer
 
-Next, we must check if the recovery was successfully added via the LUKSO Relay Service. **Copy the address of your Universal Profile Recovery** from the controller menu of the Universal Profile Extension and open [UniversalProfile.cloud](https://universalprofile.cloud/?network=mainnet). On the profile explorer, **input the address** of the Universal Profile Recovery **into the search bar**. If it was successfully added, it will show a recovery profile.
+Next, we must check if the recovery was successfully added via the LUKSO Relay Service.
+
+1. **Copy the address of your Universal Profile Recovery** from the controller menu of the Universal Profile Extension
+2. Open the profile explorer on [UniversalProfile.cloud](https://universalprofile.cloud/?network=mainnet).
+3. **Input the address** of the Universal Profile Recovery **into the search bar**.
+
+If it was successfully added, it will show a recovery profile.
 
 ![Recovery Search](../../../static/img/faq/recovery-search.png)
 
@@ -96,7 +102,7 @@ If you've set up 2FA but one of the verification steps cannot be fulfilled, plea
 
 ## How to see and send assets from the Universal Profile?
 
-The Universal Profile Extension **does not directly manage token information**. Instead, it is designed to work with various decentralized applications (dApps) that can seamlessly integrate with your Universal Profile and interact with its information and controller keys. To see all your tokens, you can visit your profile on [UniversalProfile.cloud](https://universalprofile.cloud/). If you are logged in, you will also be able to transfer assets.
+The Universal Profile Extension **does not directly manage token information**. Instead, it is designed to work with various decentralized applications (dApps) that can seamlessly integrate with your Universal Profile and interact with its information and controllers. To see all your tokens, you can visit your profile on [UniversalProfile.cloud](https://universalprofile.cloud/). If you are logged in, you will also be able to transfer assets.
 
 ![Asset Transfer](../../../static/img/faq/asset-transfer.png)
 
@@ -104,13 +110,13 @@ The Universal Profile Extension **does not directly manage token information**. 
 
 There is currently no way to get back funds from the controller directly within the extension. If you want to pay for your transactions instead of using any Relay Service, we recommend only sending minimal LYX, e.g., `0.1 LYX`.
 
-However, as controller keys of your Universal Profile are regular wallet accounts, these can be imported into any other Ethereum wallet with custom network support. To get back funds from a controller, please open the Settings and reveal your private key of the related Extension controller.
+However, as the controllers of your Universal Profile are regular wallet accounts, these can be imported into any other Ethereum wallet with custom network support. To get back funds from a controller, please open the Settings and reveal your private key of the related Extension controller.
 
 ![Reveal Private Keys](../../../static/img/faq/reveal-private-key.png)
 
-:::caution Controller Key Export
+:::caution Controller Export
 
-Every profile within the Universal Profile Extension has a separate controller key. Make sure to select the correct Universal Profile before proceeding. **Never share this private key with anyone**.
+Every profile within the Universal Profile Extension has separate controllers. If you manage multiple Universal Profiles within the extension, make sure to select the correct controller's private key. **Never share the revealed private keys with anyone**.
 
 :::
 
@@ -118,7 +124,7 @@ After you receive your private key, import this account to an Ethereum wallet wi
 
 ## How to use own LYX for Universal Profile transactions?
 
-To use your funds to send transactions from your Universal Profile, you must send LYX or LYXt to the extension's controller key. Sending it to the controller will ensure the transaction's Gas costs are funded. You can find the address of the extension's controller key within the permission section.
+To use your funds to send transactions from your Universal Profile, you must send LYX or LYXt to the extension's controller. Sending it to the controller will ensure the transaction's Gas costs are funded. You can find the address of the extension's controller within the permission section.
 
 ## How to access my Universal Profile on L14?
 
@@ -132,4 +138,6 @@ Currently, the private key of the main controller can be displayed in the LUKSO 
 
 ## “Universal Profile is not allowed by this Transaction Relay Service” Error
 
-If a user deploys a Universal Profile through a 3rd party with their own relayer (such as [_Universal.Page_](https://universal.page)), when importing the profile into the LUKSO Browser Extension, the LUKSO Relayer will not be compatible. Therefore, users should use a separate controller key that they can fund with some LYX.
+This error occurs if a user deployed his Universal Profile through a 3rd party platform that has its own Transaction Relay Service (like [_Universal.Page_](https://universal.page)). If the externally created profile gets imported into the Universal Profile Browser Extension, it is not compatible with LUKSO's own Transaction Relay Service.
+
+To **solve this issue**, users have to add a new controller to their Universal Profile. This controller must then be funded with LYX to execute transactions without any Transaction Relay Service. Within the transaction screen of the Universal Profile Extension, users can then define the controller they want to use.
