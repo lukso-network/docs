@@ -29,8 +29,8 @@ The mainnet network configs are defined or the [`lukso-network/network-configs`]
 Developers can use the services of the following 3rd party providers:
 
 - [Gateway.fm](https://gateway.fm/) RPC URL: `https://rpc.lukso.gateway.fm`
-- [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io`
-- [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso.rpc.thirdweb.com`
+- [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io` (requires API key)
+- [Thirdweb](https://thirdweb.com/) RPC URL: `https://lukso.rpc.thirdweb.com` (requires API key)
 
 We recommend developers to use these RPC providers over our public RPC URL as they provide better performance and stability.
 
