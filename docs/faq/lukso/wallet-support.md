@@ -16,7 +16,13 @@ The Universal Profile Extension should not be classified as a wallet. While conn
 
 ## Which wallets can be used with the LUKSO network?
 
-LUKSO is an EVM-compatible network. Therefore, any Ethereum wallet that allows custom networks can be used on the LUKSO network. You can find all the parameters of the LUKSO mainnet within the [Network](../../networks/mainnet/parameters.md) section.
+LUKSO is an EVM-compatible network. Therefore, any Ethereum wallet that allows custom networks can be used on the LUKSO network. You can find all the parameters of the LUKSO mainnet within the [Network](../../networks/mainnet/parameters.md) section. The [Rabby Wallet](https://rabby.io/) provides a strong LUKSO mainnet integration.
+
+:::note Universal Profiles
+
+If you want to use LUKSO Universal Profiles and get all the benefits from using a [smart account](https://medium.com/lukso/aa-is-not-coming-aa-is-here-4d87b12ba11a), you will have to use the [LUKSO Universal Profile Extension](https://my.universalprofile.cloud).
+
+:::
 
 ## Can I use hardware wallets to store LYX?
 
