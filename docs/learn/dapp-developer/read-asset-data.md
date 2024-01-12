@@ -143,7 +143,7 @@ Instead of providing a specific data key like `SupportedStandards:LSP4DigitalAss
 
 ## Detect the Token Type
 
-If both, contract and metadata standard are aligned, we can continue to determine the [LSP4 Token Type](../../standards/tokens/LSP4-Digital-Asset-Metadata/#types-of-digital-assets) in order to interpret the metadata correctly.
+If both, contract and metadata standard are aligned, we can continue to determine the [LSP4 Token Type](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) in order to interpret the metadata correctly.
 
 <!-- prettier-ignore-start -->
 
