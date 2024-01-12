@@ -48,7 +48,7 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::
 
-To easily interact with an asset you should use the ⚒️ [erc725.js](../../tools/erc725js/getting-started.md) and 📃 [`lsp-smart-contracts`](../../tools/erc725js/getting-started.md) libraries. Those will not only help fetching and encoding contract data easily, but also provide all the necessary interface and metadata IDs, necessary for classifying the asset. You can install them in your project using the following command:
+To easily interact with an asset you are encouraged to use the ⚒️ [erc725.js](../../tools/erc725js/getting-started.md) and 📃 [lsp-smart-contracts](../../tools/erc725js/getting-started.md) libraries. Those will not only help fetching and encoding contract data easily, but also provide all the necessary interface and metadata IDs, necessary for classifying the asset. You can install them in your project using the following command:
 
 ```shell
 npm install @erc725/erc725.js @lukso/lsp-smart-contracts
@@ -56,15 +56,15 @@ npm install @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Detect the Contract Interface
 
-Once you have an address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's interfaceId like in the previous [Interface Detection Guide](./standard-detection.md#interface-detection). If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package. Optionally, you can also find a full list of all `interfaceID`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
+Once you have the address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's `interfaceId` like in the previous [Interface Detection Guide](./standard-detection.md#interface-detection). If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package's [constants](../../tools/lsp-smart-contracts/constants),. Optionally, you can also find a full list of all `interfaceId`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
 
-The ⚒️ [`erc725.js`](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js. You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
+The ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js. You can also create and load your own ERC725Y JSON schemas if you want to use custom data keys.
 
 To start, instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your asset address, an RPC provider (`web3`, `ethereum`, `ethers`, `RPC_URL`), and an IPFS gateway.
 
 :::caution
 
-Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You can give it a try using the address of the asset shown above: [`0x0514A829C832639Afcc02D257154A9DaAD8fa21B`](https://wallet.universalprofile.cloud/asset/0x0514A829C832639Afcc02D257154A9DaAD8fa21B?network=testnet).
+Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You can give it a try using the address of the testnet LSP7 asset shown above: [`0x0514A829C832639Afcc02D257154A9DaAD8fa21B`](https://wallet.universalprofile.cloud/asset/0x0514A829C832639Afcc02D257154A9DaAD8fa21B?network=testnet).
 
 :::
 
@@ -143,7 +143,7 @@ Instead of providing a specific data key like `SupportedStandards:LSP4DigitalAss
 
 ## Detect the Token Type
 
-If both, contract and metadata standard are aligned, we can continue to determine the [LSP4 Token Type](https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata/#types-of-digital-assets) in order to interpret the metadata correctly.
+If both, contract and metadata standard are aligned, we can continue to determine the [LSP4 Token Type](../../standards/tokens/LSP4-Digital-Asset-Metadata/#types-of-digital-assets) in order to interpret the metadata correctly.
 
 <!-- prettier-ignore-start -->
 
@@ -152,11 +152,21 @@ If both, contract and metadata standard are aligned, we can continue to determin
 
 const tokenType = await myAsset.getData('LSP4TokenType');
 console.log(tokenType);
+// 0 = Token
+// 1 = NFT
+// 2 = Collection
 ```
 
 <!-- prettier-ignore-end -->
 
-Based on this token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) can be interpreted differently: It can either represent the token information of a whole contract, or the information of a single NFT, that has multiple ownable amounts or IDs. In case your asset is an NFT, the individual information of an ID can be set. If your asset is a collection however, this individual medatada is mandatory.
+Based on this token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) can be interpreted differently: it can either:
+
+- represent the token information of a whole contract
+- or the information of a single NFT, that has multiple ownable amounts or IDs.
+
+<!-- TODO: the wording is a bit weird below, i think it can be written in a betetr way -->
+
+In case your asset is an NFT (`tokenType = 1`), the individual information of an ID can be set. If your asset is a collection (`tokenType = 2`) however, this individual medatada is mandatory.
 
 At this point, you should be able to identify if the digital asset is a:
 
@@ -169,7 +179,9 @@ Based on this information, the asset metadata is fetched in different ways.
 
 ## Fetch the Asset Metadata
 
-To fetch the whole contracts JSON file, you can use the [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata) directly on the asset address.
+To fetch the whole contracts JSON file, you can use the [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata) directly on the asset address. Please check on the [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata/#types-of-digital-assets) page where to fetch the metadata. In the case of a collection, you will have to fetch the `LSP4Metadata` for each token address within the collection.
+
+<!-- We might need to make it more clear for each token type how to fetch the data and get the tokenId etc. -->
 
 :::info differece between get and fetch
 
