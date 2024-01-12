@@ -77,7 +77,7 @@ const lsp8ContractAddress = '0x...';
   </TabItem>
 </Tabs>
 
-### Instantiate the LSP8 contract
+## Instantiate the LSP8 contract
 
 Create an instance of the LSP8 collection contract as shown below:
 
@@ -104,7 +104,7 @@ const lsp8Contract = new ethers.Contract(
   </TabItem>
 </Tabs>
 
-### Send the transaction to set metadata for a tokenId
+## Send the transaction to set metadata for a tokenId
 
 The last step is to set the metadata for a specific [`tokenId`](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#format-of-tokenids). You can then send the transaction to set the metadata for the given NFT represented by its `tokenId`.
 
@@ -113,6 +113,8 @@ Here we will use the following parameters as examples:
 - `tokenId`: `0x0000000000000000000000000000000000000000000000000000000000000001`
 - `dataKey`: [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 - `metadataValue`: some placeholder value as a [`VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
+
+> Note that the `tokenId` is a `bytes32` value (hex)
 
 :::info
 
