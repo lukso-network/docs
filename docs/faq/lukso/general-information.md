@@ -45,4 +45,11 @@ Please look at our official [Network Migration](https://medium.com/lukso/the-lyx
 
 - **LYXt** is the currency for developers used on our official LUKSO Testnet without monetary value. LYXt can be acquired for free using the [Testnet Faucet](https://faucet.testnet.lukso.network/). The Testnet is maintained by a set of whitelisted node operators to ensure stability.
 - **LYXe** is the LUKSO token on the Ethereum Blockchain, used to start off the LUKSO Mainnet in a distributed way. It was created in 2020 during the [rICO](https://medium.com/lukso/re-launching-the-reversible-ico-5289989ce7ed) of LUKSO and started as main token before the mainnet was released. It acted as the preliminary representation of LYX on Ethereum. However, the [distribution changed](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) and additional LYXe was burnt. You can see the LYXe token on [Etherscan](https://etherscan.io/token/0xA8b919680258d369114910511cc87595aec0be6D).
+
+:::warning Migrate LYXe to LYX
+
+The LYXe to LYX token migration is now live, you are encouraged to [migrate](https://migrate.lukso.network). ([Related article](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5))
+
+:::
+
 - **LYX** is the official coin of the LUKSO Blockchain, similar to ETH on Ethereum. People that acquired LYXe before the mainnet launch can migrate their LYXe to LYX using the [LUKSO Migration Bridge](https://migrate.lukso.network/).
