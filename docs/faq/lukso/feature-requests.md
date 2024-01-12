@@ -22,14 +22,6 @@ Yes, we’re planning and preparing future hackathon projects. For official anno
 
 Yes, LUKSO is preparing to launch the grant program after the mainnet migration process is fully finalized. As you can see in the [LYX distribution](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5), there are reserves and the foundation's treasury to support grants and drive the development of the network.
 
-## Will there be a Ledger integration for LUKSO?
-
-You can use your [Ledger](https://www.ledger.com/) to store LYXe and LYX already using the Ethereum application. In order to see your LYX however, you will have to connect the Ledger to a browser-based wallet like [MetaMask](https://metamask.io/) and add the LUKSO network using the mainnet's [Network Parameters](../../networks/mainnet/parameters.md).
-
-> MetaMask might show a _network duplication warning_. This is because the chain ID of the LUKSO mainnet (`42`) equals the Kovan testnet of Ethereum. The reference might be updated soon. It is nothing to worry about.
-
-Before the mainnet launch process is not fully completed, there are no active approaches to adding official integrations to hardware. wallets. Please note that it is not within our sole control, as external wallet providers decide which blockchains to add. If you are a developer and interested in building a Ledger-embedded app for LUKSO, please have a look into their [Developer Documentation](https://developers.ledger.com/).
-
 ## Will LUKSO be listed on additional exchanges?
 
 At the moment, LUKSO is available on [KuCoin](https://www.kucoin.com/de), [Crypto.com](https://crypto.com/), and [Gate.io](https://www.gate.io/). As the network continues to expand, additionl exchanges may consider joining. It is important to note that this decision is entirely at the discretion of the exchanges.
