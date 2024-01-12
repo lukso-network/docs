@@ -193,7 +193,7 @@ The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only 
 // ...
 
 // Download and verify the asset metadata JSON file
-const assetMetadata = await erc725js.fetchData('LSP4Metadata');
+const assetMetadata = await myAsset.fetchData('LSP4Metadata');
 console.log(assetMetadata);
 ```
 
@@ -282,19 +282,19 @@ Optionally, you can [retrieve the profile data](./read-profile-data.md) of a cre
 // ...
 
 // Fetch the asset's token symbol
-const tokenSymbol = await erc725js.fetchData('LSP4TokenSymbol');
+const tokenSymbol = await myAsset.fetchData('LSP4TokenSymbol');
 console.log(tokenSymbol);
 
 // Fetch the asset's token name
-const tokenName = await erc725js.fetchData('LSP4TokenName');
+const tokenName = await myAsset.fetchData('LSP4TokenName');
 console.log(tokenName);
 
 // Fetch all creators of the asset
-const assetCreatorsList = await erc725js.fetchData('LSP4Creators[]');
+const assetCreatorsList = await myAsset.fetchData('LSP4Creators[]');
 console.log(assetCreatorsList);
 
 // Fetch creator-specific information
-const creatorInformation = await erc725js.fetchData([
+const creatorInformation = await myAsset.fetchData([
   /* 
    * for dynamic keys, it is necessary 
    * to provide any second data key
