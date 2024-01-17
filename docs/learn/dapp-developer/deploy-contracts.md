@@ -22,25 +22,13 @@ import TabItem from '@theme/TabItem';
 
 ## Setup
 
-<Tabs groupId="web3-lib">
-
-  <TabItem value="ethersjs" label="ethers.js">
-
 ```shell
 npm install ethers
 ```
 
-  </TabItem>
-
-</Tabs>
-
 ## Deploy a contract from a Universal Profile
 
 The Universal Profile browser extension will magically wrap all the calls internally so you don't have to worry about crafting custom transactions. Simply use [`eth_sendTransaction`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction) as you always did while working with EOA.
-
-<Tabs groupId="web3-lib">
-
-  <TabItem value="ethersjs" label="ethers.js">
 
 <!-- prettier-ignore-start -->
 
@@ -63,29 +51,16 @@ const tx = await signer.sendTransaction({
 
 const receipt = await tx.wait();
 ```
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-
-</Tabs>
 
 You can utilize the ethers.js contract factory to deploy a contract by supplying its ABI and bytecode. For instance, if you're deploying an LSP7Mintable contract, you can obtain its ABI and bytecode from the `@lukso/lsp-smart-contracts` package.
 
-<Tabs groupId="web3-lib">
 
-  <TabItem value="ethersjs" label="ethers.js">
 
 ```shell
 npm install @lukso/lsp-smart-contracts
 ```
 
-  </TabItem>
 
-</Tabs>
-
-<Tabs groupId="web3-lib">
-
-  <TabItem value="ethersjs" label="ethers.js">
 
 <!-- prettier-ignore-start -->
 
@@ -113,17 +88,9 @@ const receipt = await transaction.deployTransaction.wait();
 ```
 <!-- prettier-ignore-end -->
 
-  </TabItem>
-
-</Tabs>
-
 ## Retreiving Contract Deployment Information
 
 There will be no `contractAddress` field in the transaction receipt unlike normal transactions happening with Metamask, as the browser extension wraps the transaction of deployment with a normal contract execution transaction. The contract address can be calculated using the **nonce** and the **address** of the profile, or retreived using the logs:
-
-<Tabs groupId="web3-lib">
-
-  <TabItem value="ethersjs" label="ethers.js">
 
 <!-- prettier-ignore-start -->
 
@@ -180,7 +147,3 @@ for (const log of receipt.logs) {
 }
 ```
 <!-- prettier-ignore-end -->
-
-  </TabItem>
-
-</Tabs>
