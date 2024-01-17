@@ -12,11 +12,11 @@ import TabItem from '@theme/TabItem';
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('./img/deploy-contract.png').default}
-    alt="Transfering 0.5 LYXt between two Universal Profiles"
+    alt="Deploying a contract from the Universa lProfile using the Browser Extension"
     width="400"
   />
 <br/>
-<i>Deploying a contract using the Browser Extension</i>
+<i>Deploying a contract from a Universal Profile using the Browser Extension</i>
 <br /><br />
 </div>
 
