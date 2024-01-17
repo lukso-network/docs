@@ -6,6 +6,10 @@ description: LUKSO help center.
 
 # Help Center
 
+## Where can i get help on products?
+
+If you have questions or need help with our products including the [Migration Service](https://migrate.lukso.network/), [L14 Network](https://l14.universalprofile.cloud/) and the [Universal Profile Browser Extension](/install-up-browser-extension), please visit our [Official Support Center](https://support.lukso.network/).
+
 ## How to stay up to date about LUKSO?
 
 You can follow LUKSO on [Twitter](https://twitter.com/lukso_io), read the latest article on [Medium](https://medium.com/lukso) articles, and follow the announcements on the LUKSO [Discord](https://discord.gg/lukso) server.
@@ -25,7 +29,7 @@ If you can't find an answer to your question, you can head to our [Discord](http
 
 In addition, the most frequently asked questions will be added to this list.
 
-## Where can I report regular issues for repositories and tools?
+## Where can I report issues for repositories and tools?
 
 You can open an issue on any open code repository of the [LUKSO Network's GitHub](https://github.com/lukso-network) page. We are also preparing workflows to handle global issues and improvement proposals. In case you want to give feedback to private source code, like our Universal Profile Extension, please create an issue on our global [GitHub Issue Tracker](https://github.com/lukso-network/issue-tracker).
 
