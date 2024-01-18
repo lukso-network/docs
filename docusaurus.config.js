@@ -164,6 +164,15 @@ export default {
             from: '/guides/browser-extension/install-browser-extension',
             to: '/install-up-browser-extension',
           },
+          // Support section
+          {
+            from: '/faq/lukso/wallet-support',
+            to: 'https://support.lukso.network/general/wallet-support',
+          },
+          {
+            from: '/faq/onboarding/extension',
+            to: 'https://support.lukso.network/extension/introduction',
+          },
         ],
       },
     ],
