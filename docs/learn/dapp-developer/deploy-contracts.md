@@ -16,14 +16,14 @@ import TabItem from '@theme/TabItem';
     width="400"
   />
 <br/>
-<i>Deploying a contract from a Universal Profile using the Browser Extension</i>
+<i>Deploying a contract from a Universal Profile using the Browser Extension showing the bytecode of the contract</i>
 <br /><br />
 </div>
 
 ## Setup
 
 ```shell
-npm install ethers
+npm install ethers@v5.7
 ```
 
 ## Deploy a contract from a Universal Profile
@@ -52,15 +52,11 @@ const tx = await signer.sendTransaction({
 const receipt = await tx.wait();
 ```
 
-You can utilize the ethers.js contract factory to deploy a contract by supplying its ABI and bytecode. For instance, if you're deploying an LSP7Mintable contract, you can obtain its ABI and bytecode from the `@lukso/lsp-smart-contracts` package.
-
-
+You can use the [contract factory from ethers.js](https://docs.ethers.org/v5/api/contract/contract-factory/#ContractFactory) to deploy a contract by supplying its ABI and bytecode. For instance, if you're deploying an [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you can obtain its ABI and bytecode from the `@lukso/lsp-smart-contracts` package.
 
 ```shell
-npm install @lukso/lsp-smart-contracts
+npm install @lukso/lsp-smart-contracts@v14
 ```
-
-
 
 <!-- prettier-ignore-start -->
 
@@ -88,9 +84,9 @@ const receipt = await transaction.deployTransaction.wait();
 ```
 <!-- prettier-ignore-end -->
 
-## Retreiving Contract Deployment Information
+## Retrieving Contract Deployment Information
 
-There will be no `contractAddress` field in the transaction receipt unlike normal transactions happening with Metamask, as the browser extension wraps the transaction of deployment with a normal contract execution transaction. The contract address can be calculated using the **nonce** and the **address** of the profile, or retreived using the logs:
+There will be no `contractAddress` field in the transaction `receipt` unlike normal transactions happening with Metamask. This is because the UP browser extension wraps the deployment transaction within a normal contract execution transaction. The contract address can be calculated using the **nonce** and the **address** of the profile or retrieved using the logs (code snippet below).
 
 <!-- prettier-ignore-start -->
 
