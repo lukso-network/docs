@@ -55,7 +55,7 @@ const receipt = await tx.wait();
 You can use the [contract factory from ethers.js](https://docs.ethers.org/v5/api/contract/contract-factory/#ContractFactory) to deploy a contract by supplying its ABI and bytecode. For instance, if you're deploying an [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you can obtain its ABI and bytecode from the `@lukso/lsp-smart-contracts` package.
 
 ```shell
-npm install @lukso/lsp-smart-contracts@v14
+npm install @lukso/lsp-smart-contracts@v0.14
 ```
 
 <!-- prettier-ignore-start -->
