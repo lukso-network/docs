@@ -54,7 +54,7 @@ This is just an example but you may want to set a deployment of other parameters
 
 Let's start creating an `LSP7Token.sol` file in the `contracts` folder and importing:
 
-- the [`LSP7DigitalAssetCore.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol) contract
+- the [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol) contract
 - the [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol) contract
 - the [`_LSP4_SUPPORTED_STANDARDS_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
 - the [`_LSP4_SUPPORTED_STANDARDS_VALUE`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
@@ -62,7 +62,7 @@ Let's start creating an `LSP7Token.sol` file in the `contracts` folder and impor
 - the [`_LSP8_REFERENCE_CONTRACT`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8referencecontract) constant
 
 ```typescript
-import { LSP7DigitalAssetCore } from '@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol';
+import { LSP7DigitalAsset } from '@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol';
 import { LSP4DigitalAssetMetadata } from '@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol';
 import {
   _LSP4_SUPPORTED_STANDARDS_KEY,
@@ -86,7 +86,7 @@ At deployment, we will need to set the following parameters:
 - `lsp4MetadataURI`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 
 ```typescript
-contract LSP7Token is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
+contract LSP7Token is LSP7DigitalAsset {
     constructor(
         string memory name_,
         string memory symbol_,
@@ -96,9 +96,15 @@ contract LSP7Token is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
         bool isNonDivisible_,
         uint256 totalSupply_,
         bytes memory lsp4MetadataURI_
-    ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_, lsp4TokenType_) {
-        _isNonDivisible = isNonDivisible_;
-
+    )
+        LSP7DigitalAsset(
+            name_,
+            symbol_,
+            newOwner_,
+            lsp4TokenType_,
+            isNonDivisible_
+        )
+    {
         // set SupportedStandards:LSP4DigitalAsset
         LSP4DigitalAssetMetadata._setData(
             _LSP4_SUPPORTED_STANDARDS_KEY,
@@ -120,6 +126,7 @@ contract LSP7Token is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
         // mint all tokens to the receiver of the initial tokens
         _mint(receiverOfInitialTokens_, totalSupply_, true, "");
     }
+
 }
 ```
 
@@ -154,12 +161,12 @@ contract LSP7Token is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {LSP7DigitalAssetCore} from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol";
+import {LSP7DigitalAsset} from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
 import {LSP4DigitalAssetMetadata} from "@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol";
 import {_LSP4_SUPPORTED_STANDARDS_KEY, _LSP4_SUPPORTED_STANDARDS_VALUE, _LSP4_METADATA_KEY} from "@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol";
 import {_LSP8_REFERENCE_CONTRACT} from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol";
 
-contract LSP7Token is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
+contract LSP7Token is LSP7DigitalAsset {
     constructor(
         string memory name_,
         string memory symbol_,
@@ -169,9 +176,15 @@ contract LSP7Token is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
         bool isNonDivisible_,
         uint256 totalSupply_,
         bytes memory lsp4MetadataURI_
-    ) LSP4DigitalAssetMetadata(name_, symbol_, newOwner_, lsp4TokenType_) {
-        _isNonDivisible = isNonDivisible_;
-
+    )
+        LSP7DigitalAsset(
+            name_,
+            symbol_,
+            newOwner_,
+            lsp4TokenType_,
+            isNonDivisible_
+        )
+    {
         // set SupportedStandards:LSP4DigitalAsset
         LSP4DigitalAssetMetadata._setData(
             _LSP4_SUPPORTED_STANDARDS_KEY,
@@ -206,6 +219,7 @@ contract LSP7Token is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
         LSP4DigitalAssetMetadata._setData(dataKey, dataValue);
     }
 }
+
 ```
 
 </details>
@@ -340,7 +354,7 @@ contract LSP8Token is LSP8IdentifiableDigitalAsset {
         bytes memory dataValue
     ) internal override {
         // setData on the LSP7Token
-        LSP7Token(address(uint160(uint256(tokenId)))).setData(
+        LSP7Token(payable(address(uint160(uint256(tokenId))))).setData(
             dataKey,
             dataValue
         );
@@ -353,7 +367,10 @@ contract LSP8Token is LSP8IdentifiableDigitalAsset {
         bytes32 tokenId,
         bytes32 dataKey
     ) internal view override returns (bytes memory dataValues) {
-        return LSP7Token(address(uint160(uint256(tokenId)))).getData(dataKey);
+        return
+            LSP7Token(payable(address(uint160(uint256(tokenId))))).getData(
+                dataKey
+            );
     }
 }
 ```
@@ -434,7 +451,7 @@ contract LSP8Token is LSP8IdentifiableDigitalAsset {
         bytes memory dataValue
     ) internal override {
         // setData on the LSP7Token
-        LSP7Token(address(uint160(uint256(tokenId)))).setData(
+        LSP7Token(payable(address(uint160(uint256(tokenId))))).setData(
             dataKey,
             dataValue
         );
@@ -447,7 +464,10 @@ contract LSP8Token is LSP8IdentifiableDigitalAsset {
         bytes32 tokenId,
         bytes32 dataKey
     ) internal view override returns (bytes memory dataValues) {
-        return LSP7Token(address(uint160(uint256(tokenId)))).getData(dataKey);
+        return
+            LSP7Token(payable(address(uint160(uint256(tokenId))))).getData(
+                dataKey
+            );
     }
 }
 ```
@@ -494,21 +514,28 @@ Let's start by creating a `lsp8TokenMetadata.json` file in the `metadata` folder
 ```json
 {
   "LSP4Metadata": {
-    "name": "The Dematerialised",
-    "description": "The Experiential Marketspace For Digital Goods",
-    "links": [{ "title": "Website", "url": "https://thedematerialised.com" }],
-    "icon": [],
-    "images": [
-      [
-        {
-          "width": 1024,
-          "height": 974,
-          "url": "ifps://QmS3jF9jsoG6gnyJ7wCeJ4bej2aJEnPSv527UV8KxjBDAA"
-        }
-      ]
-    ],
-    "assets": [],
-    "attributes": []
+  "name": "The Dematerialised",
+  "description": "The Experiential Marketspace For Digital Goods",
+  "links": [
+    {
+      "title": "Website",
+      "url": "https://thedematerialised.com"
+    }
+  ],
+  "icons": [],
+  "images": [
+    {
+      "width": 1024,
+      "height": 974,
+      "url": "ipfs://QmS3jF9jsoG6gnyJ7wCeJ4bej2aJEnPSv527UV8KxjBDAA",
+      "verification": {
+      "method": "keccak256(bytes)",
+      "data": "0xdd6b5fb6dc984fda0222fb6f6e96b471c0667b12f03b1e804f7b5e6ab62acdb0"
+    }
+  }
+  ],
+  "assets": [],
+  "attributes": []
   }
 }
 ```
@@ -520,27 +547,49 @@ We will do the same with the LSP7 token metadata. Let's create a `lsp7TokenMetad
   "LSP4Metadata": {
     "name": "KLxENDLESS MEDALLION Purple",
     "description": "Collaboration with Karl Largerfeld",
-    "links": [{ "title": "", "url": "" }],
-    "icon": [
+    "links": [
+      {
+        "title": "Get yours now",
+        "url": "https://thedematerialised.com/shop/karl-lagerfeld/klxendless-medallion"
+      }
+    ],
+    "icons": [
       {
         "width": 256,
         "height": 256,
-        "url": "ifps://QmS3jF9jsoG6gnyJ7wCeJ4bej2aJEnPSv527UV8KxjBDAA"
+        "url": "ipfs://QmS3jF9jsoG6gnyJ7wCeJ4bej2aJEnPSv527UV8KxjBDAA",
+        "verification": {
+        "method": "keccak256(bytes)",
+        "data": "0xdd6b5fb6dc984fda0222fb6f6e96b471c0667b12f03b1e804f7b5e6ab62acdb0"
+        }
       }
     ],
     "images": [
       [
-        {
-          "width": 1024,
-          "height": 974,
-          "url": "ifps://QmTDQGR26dSd3c4qJpmFwTh7gNRPnNbBf2Fg3gULypUag3"
+          {
+            "width": 1024,
+            "height": 974,
+            "url": "ipfs://QmUGmycxrwFec15UC41v9bvnRStK3zxR7mth72mGRcUSPD",
+            "verification": {
+            "method": "keccak256(bytes)",
+            "data": "0x951bf983a4b7bcebc5c0b00a5e783630dcb788e95ee9e44b0b7d4bde4a0b4d81"
+          }
         }
       ]
     ],
-    "assets": [],
-    "attributes": []
+    "assets": [
+      {
+        "verification": {
+          "method": "keccak256(bytes)",
+          "data": "0x88f3d704f3d534267c564019ce2b70a5733d070e71bf2c1f85b5fc487f47a46f"
+        },
+        "url": "ifps://QmTDQGR26dSd3c4qJpmFwTh7gNRPnNbBf2Fg3gULypUag3",
+        "fileType": "mp4"
+      }
+    ],
+      "attributes": [ ]
+    }
   }
-}
 ```
 
 ### Deploy the LSP8 token script
@@ -554,11 +603,13 @@ For this script we will jut need to import:
 - the `ethers` library to interact with the blockchain
 - the ERC725 library to convert the metadata to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
 - the LSP8 token metadata json file we just created
+- the LSP4 metadata schema
 
 ```typescript
 import { ethers } from 'hardhat';
-import { ERC725 } from '@erc725/erc725.js';
+import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
 import lsp8TokenMetadata from './metadata/lsp8TokenMetadata.json';
+import LSP4DigitalAsset from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 ```
 
 #### Constants
@@ -566,21 +617,10 @@ import lsp8TokenMetadata from './metadata/lsp8TokenMetadata.json';
 We will need to set:
 
 - the `lsp8TokenMetadataCID` constant that is the IPFS CID of the LSP8 token metadata file we just created
-- the `schemas` we will be using with the ERC725 library in order to convert the metadata to a verifiable uri
 
 ```typescript
 const lsp8TokenMetadataCID =
-  'ipfs://QmRiZA4TXytvijaxXtJATstnqvTLesmJWM6Ki1fM1xW2QK';
-
-const schemas = [
-  {
-    name: 'LSP4Metadata',
-    key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
-    keyType: 'Singleton',
-    valueType: 'bytes',
-    valueContent: 'VerifiableURI',
-  },
-];
+  'ipfs://QmcwYFhGP7KBo1a4EvbBxuvDf3jQ2bw1dfMEovATRJZetX"';
 ```
 
 #### Deploy the LSP8 token
@@ -596,7 +636,7 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   // convert the lsp8TokenMetadata to a verifiable uri
-  const erc725 = new ERC725(schemas, '', '', {});
+  const erc725 = new ERC725(LSP4DigitalAsset as ERC725JSONSchema, '', '', {});
   const encodeMetadata = erc725.encodeData([
     {
       keyName: 'LSP4Metadata',
@@ -609,8 +649,8 @@ async function main() {
 
   // deploy LSP8Token contract
   const lsp8Token = await LSP8Token.deploy(
-    'KLxENDLESS Medallion Purple',
-    'KLxENDLESS',
+    'MyToken0',
+    'MT0',
     // will be the owner of the LSP8Token contract
     deployer.address,
     // lsp4TokenType is address - see https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4tokentype
@@ -636,21 +676,12 @@ async function main() {
 
 ```typescript
 import { ethers } from 'hardhat';
-import { ERC725 } from '@erc725/erc725.js';
+import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
 import lsp8TokenMetadata from './metadata/lsp8TokenMetadata.json';
+import LSP4DigitalAsset from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
 const lsp8TokenMetadataCID =
-  'ipfs://QmRiZA4TXytvijaxXtJATstnqvTLesmJWM6Ki1fM1xW2QK';
-
-const schemas = [
-  {
-    name: 'LSP4Metadata',
-    key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
-    keyType: 'Singleton',
-    valueType: 'bytes',
-    valueContent: 'VerifiableURI',
-  },
-];
+  'ipfs://QmXteif98HBUivFXoTFsyWWNPjuZk44La9t3B2uLGhUoES';
 
 async function main() {
   // get LSP8Token contract factory
@@ -660,7 +691,7 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   // convert the lsp8TokenMetadata to a verifiable uri
-  const erc725 = new ERC725(schemas, '', '', {});
+  const erc725 = new ERC725(LSP4DigitalAsset as ERC725JSONSchema, '', '', {});
   const encodeMetadata = erc725.encodeData([
     {
       keyName: 'LSP4Metadata',
@@ -729,11 +760,13 @@ For this script we will just need to import:
 - the `ethers` library to interact with the blockchain
 - the ERC725 library to convert the metadata
 - the LSP7 token metadata json file
+- the LSP4 metadata schema
 
 ```typescript
 import { ethers } from 'hardhat';
-import { ERC725 } from '@erc725/erc725.js';
+import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
 import lsp7TokenMetadata from './metadata/lsp7TokenMetadata.json';
+import LSP4DigitalAsset from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 ```
 
 #### Constants
@@ -747,27 +780,16 @@ For this script, we will need to set the following constants:
 - `lsp7TokenIsNonDivisible`: whether the LSP7 token we want to mint is divisible or not
 - `lsp7TokenTotalSupply`: the total supply of the LSP7 token we want to mint
 - `lsp7TokenMetadataCID`: the IPFS CID of the LSP7 token metadata file we just created
-- `schemas`: the schemas we will be using with the ERC725 library in order to convert the metadata to a verifiable uri
 
 ```typescript
-const lsp8TokenContractAddress = '0xd2c4c2634a547F170E1e02AA9d15747845d27999';
+const lsp8TokenContractAddress = '0x567B9322500069725db0169C362dc4e939934c8b';
 const lsp7TokenName = 'KLxENDLESS MEDALLION Purple';
 const lsp7TokenSymbol = 'KLxENDLESS MEDALLION';
 const lsp7TokenType = 2;
 const lsp7TokenIsNonDivisible = true; // decimals will be 0
 const lsp7TokenSupply = 50;
 const lsp7TokenMetadataCID =
-  'ipfs://QmTRPdywbusetLCffDJX6CuXMJ7eqXduYoWVvjnTXT5xgz';
-// lsp4 metadata schema
-const schemas = [
-  {
-    name: 'LSP4Metadata',
-    key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
-    keyType: 'Singleton',
-    valueType: 'bytes',
-    valueContent: 'VerifiableURI',
-  },
-];
+  'ipfs://QmXrrkZwfKWK4yqaagoKPHhH148oXLgWoncFuh5d8ugsQL;
 ```
 
 ### Mint the LSP7 tokens
@@ -783,7 +805,7 @@ async function main() {
   );
 
   // convert the lsp4TokenMetadata to a verifiable uri
-  const erc725 = new ERC725(schemas, '', '', {});
+  const erc725 = new ERC725(LSP4DigitalAsset as ERC725JSONSchema, '', '', {});
   const encodedMetadata = erc725.encodeData(
     [
       {
@@ -836,27 +858,18 @@ async function main() {
 
 ```typescript
 import { ethers } from 'hardhat';
-import { ERC725 } from '@erc725/erc725.js';
+import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
 import lsp7TokenMetadata from './metadata/lsp7TokenMetadata.json';
+import LSP4DigitalAsset from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
-const lsp8TokenContractAddress = '0xd2c4c2634a547F170E1e02AA9d15747845d27999';
+const lsp8TokenContractAddress = '0xA962b72095F7ec4b46fF195392B014E45Fd4a4dC';
 const lsp7TokenName = 'KLxENDLESS MEDALLION Purple';
 const lsp7TokenSymbol = 'KLxENDLESS MEDALLION';
 const lsp7TokenType = 2;
 const lsp7TokenIsNonDivisible = true; // decimals will be 0
 const lsp7TokenSupply = 50;
 const lsp7TokenMetadataCID =
-  'ipfs://QmTRPdywbusetLCffDJX6CuXMJ7eqXduYoWVvjnTXT5xgz';
-// lsp4 metadata schema
-const schemas = [
-  {
-    name: 'LSP4Metadata',
-    key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
-    keyType: 'Singleton',
-    valueType: 'bytes',
-    valueContent: 'VerifiableURI',
-  },
-];
+  'ipfs://QmXrrkZwfKWK4yqaagoKPHhH148oXLgWoncFuh5d8ugsQL';
 
 async function main() {
   // get LSP8Token contract
@@ -866,7 +879,7 @@ async function main() {
   );
 
   // convert the lsp4TokenMetadata to a verifiable uri
-  const erc725 = new ERC725(schemas, '', '', {});
+  const erc725 = new ERC725(LSP4DigitalAsset as ERC725JSONSchema, '', '', {});
   const encodedMetadata = erc725.encodeData(
     [
       {
