@@ -27,76 +27,7 @@ export default {
             from: '/guides/network/switch-consensus-clients',
             to: '/networks/advanced-guides/switch-consensus-clients',
           },
-          // Smart Contracts new structure
-          {
-            from: '/standards/smart-contracts/introduction',
-            to: '/contracts/introduction',
-          },
-          {
-            from: '/standards/smart-contracts/interface-ids',
-            to: '/contracts/interface-ids',
-          },
-          {
-            from: '/standards/smart-contracts/lsp0-erc725-account',
-            to: '/contracts/contracts/LSP0ERC725Account',
-          },
-          {
-            from: '/standards/smart-contracts/lsp1-universal-receiver-delegate-up',
-            to: '/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP',
-          },
-          {
-            from: '/standards/smart-contracts/lsp1-universal-receiver-delegate-vault',
-            to: '/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault',
-          },
-          {
-            from: '/standards/smart-contracts/lsp4-digital-asset-metadata',
-            to: '/contracts/contracts/LSP4DigitalAssetMetadata',
-          },
-          {
-            from: '/contracts/smart-contracts/lsp6-key-manager',
-            to: '/contracts/contracts/LSP6KeyManager',
-          },
-          {
-            from: '/standards/smart-contracts/lsp7-digital-assets',
-            to: '/contracts/contracts/LSP7DigitalAsset',
-          },
-          {
-            from: '/standards/smart-contracts/lsp8-identifiable-digital-asset',
-            to: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
-          },
-          {
-            from: '/standards/smart-contracts/lsp9-vault',
-            to: '/contracts/contracts/LSP9Vault',
-          },
-          {
-            from: '/standards/smart-contracts/lsp14-ownable-2-step',
-            to: '/contracts/contracts/LSP14Ownable2Step',
-          },
-          {
-            from: '/standards/smart-contracts/lsp16-universal-factory',
-            to: '/contracts/contracts/LSP16UniversalFactory',
-          },
           // FAQ new Structure
-          {
-            from: '/faq/network/network',
-            to: '/faq/network/blockchain-architecture',
-          },
-          {
-            from: '/networks/faq/validator',
-            to: '/faq/network/validators',
-          },
-          {
-            from: '/faq/lukso',
-            to: '/faq/lukso/general-information',
-          },
-          {
-            from: '/faq/lukso-standard-proposal',
-            to: '/faq/onboarding/lukso-standards',
-          },
-          {
-            from: '/faq/universal-profile',
-            to: '/faq/onboarding/universal-profiles',
-          },
           {
             from: '/standards/standards-roadmap',
             to: '/standards/introduction',
