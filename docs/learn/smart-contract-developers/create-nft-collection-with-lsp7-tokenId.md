@@ -14,29 +14,29 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 ## Introduction
 
-If you have been looking at our [LSP8 token standard](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), you probably have notice that addresses could actually be tokenId. In this guide we will replicate a real world example where this could be useful.
+If you have been looking at our [LSP8 token standard](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), you probably have noticed that addresses could be used as `tokenIds`. In this guide, we will replicate a real-world example where this could be useful.
 
 ## Use Case
 
-Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYSITAL COLLECTION. As you can see the picture below, we have three medaillons of different colors.
+Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYSITAL COLLECTION. As you can see in the picture below, we have three medaillons of different colors.
 
 ![KLxENDLESS PHYSITAL COLLECTION](../../../static/img/learn/klxendless-physital-collection.png)
 
-Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the KLxENDLESS PHYSITAL collection and each medaillon sub-collection (purple, blue or gold) will be represented by an limited supply [LSP7 token](../../standards/tokens//LSP7-Digital-Asset.md).
+Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the KLxENDLESS PHYSITAL collection and each medaillon a sub-collection (purple, blue or gold) will be represented by a limited supply [LSP7 token](../../standards/tokens//LSP7-Digital-Asset.md).
 
 ## Prerequisites
 
-- Hardhat installed and initialized
+- [Hardhat installed and initialized](./getting-started.md)
 - [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package installed from npm using `npm i @lukso/lsp-smart-contracts@0.14.0` (or the latest version)
 - [@erc725/erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) package installed from npm using `npm i @erc725/erc725js` (we will use it to encode the token metadata)
 
 ## Create the LSP7 token
 
-Even though, it seems a little bit counter intuitive, we will start by creating the LSP7 token. The reason is that the LSP8 collection will be in charge of deploying the LSP7 sub-collection tokens.
+Even though it seems a little bit counter intuitive, we will start by creating the LSP7 token. The reason is that the LSP8 collection will be in charge of deploying the LSP7 sub-collection tokens.
 
 ### Specify what we need to be set at deployment
 
-In order to create the LSP7 token contract, we will need to know what we want to be set at deployment. In our case, we want to set the following:
+To create the LSP7 token contract, we will need to know what we want to be set at deployment. In our case, we want to set the following:
 
 - the name of the sub-collection
 - the symbol of the sub-collection
@@ -48,7 +48,7 @@ In order to create the LSP7 token contract, we will need to know what we want to
 - the [Token Type](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4tokentype)
 - the [LSP4 Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata)
 
-This is just an example but you may want to set a deployment other parameters such as the [LSP4 Creators array](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4creators).
+This is just an example but you may want to set a deployment of other parameters such as the [LSP4 Creators array](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4creators).
 
 ### Imports
 
@@ -221,7 +221,7 @@ For this reason, when minting a new token on the LSP8 contract (a new LSP7 token
 
 - the `name` of the LSP7 token
 - the `symbol` of the LSP7 token
-- the `lsp4TokenType` of the LSP7 token
+- the [`lsp4TokenType`](../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 token
 - the `isNonDivisible` of the LSP7 token
 - the `totalSupply` of the LSP7 token
 - the `receiver` of the initial tokens of the LSP7 token
@@ -230,9 +230,9 @@ For this reason, when minting a new token on the LSP8 contract (a new LSP7 token
 
 Let's start creating an `LSP8Token.sol` file in the `contracts` folder and import:
 
-- the [`LSP8IdentifiableDigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts.git)
-- the LSP7 token contract we just created so that we can use it in our `mint(...)` function
+- the [`LSP8IdentifiableDigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts.git) from which we will inherit the main functionalities of the LSP8
 - the [`_LSP4_METADATA_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
+- the LSP7 token contract we just created so that we can use it in our `mint(...)` function
 
 ```typescript
 import { LSP8IdentifiableDigitalAsset } from '@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol';
@@ -249,7 +249,7 @@ The constructor will be in charge of setting the following parameters:
 - `name`: the name of the LSP8 token
 - `symbol`: the symbol of the LSP8 token
 - `owner`: the owner of the LSP8 token that will be able change the contract metadata and mint new LSP7 tokens
-- `lsp4TokenType`: the token type of the LSP8 token
+- [`lsp4TokenType`](../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 token
 - `lsp8TokenIdFormat`: the [format of the tokenId](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) of the LSP8 token
 - `lsp4MetadataURI`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 
@@ -460,7 +460,7 @@ Now that we have the contracts ready to be deployed, let's create a script that 
 
 :::note
 
-Please make sure you compile your newly created contract before creating the scripts.
+Please make sure you compile your newly created contracts before creating the scripts.
 You can run `npx hardhat compile` to compile your contracts.
 Since the contracts are quite big, you may run into a compilation error. If this is the case, you should update your compiler settings in the `hardhat.config.ts` file.
 This is what we used to compile the contracts:
@@ -553,7 +553,7 @@ For this script we will jut need to import:
 
 - the `ethers` library to interact with the blockchain
 - the ERC725 library to convert the metadata to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
-- the LSP8 token metadata json file
+- the LSP8 token metadata json file we just created
 
 ```typescript
 import { ethers } from 'hardhat';
