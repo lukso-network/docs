@@ -6,7 +6,7 @@ description: Learn to enhance your Universal Profile with added functionalities 
 
 # Extend a Universal Profile Functionalities
 
-:::info Requirements
+:::info ments
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide.
 
@@ -37,7 +37,7 @@ A Universal Profile contains non-biased features, including generic execution ca
 
 To overcome this limitation, the concept of **extensions** is introduced. Extensions are essentially external contracts that act as supplementary modules to the Universal Profile. They provide a dynamic way to enhance the profile's capabilities.
 
-When a call is made to the Universal Profile for a function that isn't natively part of its primary code, the contract checks if this function exists as an extension. If found, the call is seamlessly redirected to the appropriate external contract (extension), thereby effectively expanding the functionality of the Universal Profile without altering its core, immutable code. This approach enables greater flexibility and adaptability, ensuring the Universal Profile can evolve to meet diverse requirements.
+When a call is made to the Universal Profile for a function that isn't natively part of its primary code, the contract checks if this function exists as an extension. If found, the call is seamlessly redirected to the appropriate external contract (extension), thereby effectively expanding the functionality of the Universal Profile without altering its core, immutable code. This approach enables greater flexibility and adaptability, ensuring the Universal Profile can evolve to meet diverse ments.
 
 ## Extending Functionalities
 
@@ -422,8 +422,8 @@ The contract can be compiled with any blockchain development environment like Ha
 We will use the abi and bytecode to deploy the extension contract
 
 ```js
-const SupportsInterfaceABI = require('./SupportsInterface.json').abi;
-const SupportsInterfaceBytecode = require('./SupportsInterface.json').bytecode;
+import { abi as SupportsInterfaceABI } from './SupportsInterface.json';
+import { bytecode as SupportsInterfaceBytecode } from './SupportsInterface.json';
 
 const supportsInterfaceFactory = new ethers.ContractFactory(
   SupportsInterfaceABI,
@@ -439,7 +439,7 @@ const supportsInterfaceExtensionAddress = supportsInterfaceContract.addres;
 
 ### Step 3: Encode Function Selector and Store in Universal Profile
 
-:::info Requirements
+:::info ments
 
 The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permission otherwise the call will fail. Check the [keyManager guides](../key-manager/get-controller-permissions.md) to learn more about permissions.
 
@@ -448,7 +448,7 @@ The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and
 We need to encode the function selector of `supportsInterface(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/generic-standards/lsp17-contract-extension.md) standard.
 
 ```js
-const { ERC725YDataKeys } = require('@lukso/lsp-smart-contracts');
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 const supportsInterfaceInterface = new ethers.utils.Interface(
   SupportsInterfaceABI,
