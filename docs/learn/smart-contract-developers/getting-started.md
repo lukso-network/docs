@@ -38,7 +38,8 @@ To work in the best condition possible, we will install libraries that includes 
 
 ```bash
 npm i -D dotenv
-npm i -s @lukso/lsp-smart-contracts@0.14.0
+npm i -s @lukso/lsp-smart-contracts@latest
+# Please check the package version related to the tutorial you are reading
 ```
 
 Update your `package.json` with the following:
