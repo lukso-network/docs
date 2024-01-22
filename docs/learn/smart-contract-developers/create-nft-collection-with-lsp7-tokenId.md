@@ -28,13 +28,13 @@ Each medaillon has a supply limit and each medaillon collection has its own meta
 
 - [Hardhat installed and initialized](./getting-started.md)
 - [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package installed from npm using `npm i @lukso/lsp-smart-contracts@0.14.0` (or the latest version)
-- [@erc725/erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) package installed from npm using `npm i @erc725/erc725js` (we will use it to encode the token metadata)
+- [`@erc725/erc725.js`](https://www.npmjs.com/package/@erc725/erc725.js) package installed from npm using `npm i @erc725/erc725js` (we will use it to encode the token metadata)
 
 ## Create the LSP7 token
 
 Even though it seems a little bit counter intuitive, we will start by creating the LSP7 token. The reason is that the LSP8 collection will be in charge of deploying the LSP7 sub-collection tokens.
 
-### Specify what we need to be set at deployment
+### Specify what needs to be set at deployment
 
 To create the LSP7 token contract, we will need to know what we want to be set at deployment. In our case, we want to set the following:
 
@@ -45,7 +45,7 @@ To create the LSP7 token contract, we will need to know what we want to be set a
 - the number of tokens that can be minted
 - whether the token is divisible or not
 - the total supply of the token
-- the [Token Type](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4tokentype)
+- the [Token Type](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets)
 - the [LSP4 Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata)
 
 This is just an example but you may want to set a deployment of other parameters such as the [LSP4 Creators array](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4creators).
@@ -61,31 +61,33 @@ Let's start creating an `LSP7Token.sol` file in the `contracts` folder and impor
 - the [`_LSP4_METADATA_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
 - the [`_LSP8_REFERENCE_CONTRACT`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8referencecontract) constant
 
-```typescript
+```typescript title="contracts/LSP7Token.sol"
 import { LSP7DigitalAsset } from '@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol';
 import { LSP4DigitalAssetMetadata } from '@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol';
+
 import {
   _LSP4_SUPPORTED_STANDARDS_KEY,
   _LSP4_SUPPORTED_STANDARDS_VALUE,
-  _LSP4_METADATA_KEY,
+  _LSP4_METADATA_KEY
 } from '@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol';
 import { _LSP8_REFERENCE_CONTRACT } from '@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.sol';
+<!-- prettier-ignore-end -->
 ```
 
 ### Contract
 
 At deployment, we will need to set the following parameters:
 
-- `name`: the name of the token
-- `symbol`: the symbol of the token
-- `owner`: the address that will be able to update the contract metadata (except the symbol, name and the LSP4TokenType)
-- `receiverOfInitialTokens`: the address that will receive the minted tokens at deployment
-- `[lsp4TokenType](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4tokentype): the token type of the token
-- [`isNonDivisible`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals): whether the token is divisible or not
-- `totalSupply`: the total supply of the token
-- `lsp4MetadataURI`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
+- `name_`: the name of the token
+- `symbol_`: the symbol of the token
+- `owner_`: the address that will be able to update the contract metadata (except the symbol, name and the LSP4TokenType)
+- `receiverOfInitialTokens_`: the address that will receive the minted tokens at deployment
+- `[lsp4TokenType\_](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4tokentype): the token type of the token
+- [`isNonDivisible_`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals): whether the token is divisible or not
+- `totalSupply_`: the total supply of the token
+- `lsp4MetadataURI_`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 
-```typescript
+```typescript title="contracts/LSP8Token.sol"
 contract LSP7Token is LSP7DigitalAsset {
     constructor(
         string memory name_,
@@ -487,7 +489,7 @@ This is what we used to compile the contracts:
 
 <details>
 <summary>Click to expand/collapse the script</summary>
-```typescript
+```typescript title="hardhat.config.ts"
   solidity: {
     version: "0.8.20",
     settings: {
@@ -509,40 +511,40 @@ In this part we will not cover the part where you first need to upload your JSON
 We have done it and will add them directly in the following scripts files.
 :::
 
-Let's start by creating a `lsp8TokenMetadata.json` file in the `metadata` folder and set the following metadata:
+Let's start by creating a `lsp8TokenMetadata.json` file in the `metadatas` folder and set the following metadata:
 
-```json
+```title="./metadatas/lsp8TokenMetadata.json"
 {
   "LSP4Metadata": {
-  "name": "The Dematerialised",
-  "description": "The Experiential Marketspace For Digital Goods",
-  "links": [
-    {
-      "title": "Website",
-      "url": "https://thedematerialised.com"
-    }
-  ],
-  "icons": [],
-  "images": [
-    {
-      "width": 1024,
-      "height": 974,
-      "url": "ipfs://QmS3jF9jsoG6gnyJ7wCeJ4bej2aJEnPSv527UV8KxjBDAA",
-      "verification": {
-      "method": "keccak256(bytes)",
-      "data": "0xdd6b5fb6dc984fda0222fb6f6e96b471c0667b12f03b1e804f7b5e6ab62acdb0"
-    }
-  }
-  ],
-  "assets": [],
-  "attributes": []
+    "name": "The Dematerialised",
+    "description": "The Experiential Marketspace For Digital Goods",
+    "links": [
+      {
+        "title": "Website",
+        "url": "https://thedematerialised.com"
+      }
+    ],
+    "icons": [],
+    "images": [
+      {
+        "width": 1024,
+        "height": 974,
+        "url": "ipfs://QmS3jF9jsoG6gnyJ7wCeJ4bej2aJEnPSv527UV8KxjBDAA",
+        "verification": {
+          "method": "keccak256(bytes)",
+          "data": "0xdd6b5fb6dc984fda0222fb6f6e96b471c0667b12f03b1e804f7b5e6ab62acdb0"
+        }
+      }
+    ],
+    "assets": [],
+    "attributes": []
   }
 }
 ```
 
-We will do the same with the LSP7 token metadata. Let's create a `lsp7TokenMetadata.json` file in the `metadata` folder and set the following metadata:
+We will do the same with the LSP7 token metadata. Let's create a `lsp7TokenMetadata.json` file in the `metadatas` folder and set the following metadata:
 
-```json
+```json title="./metadatas/lsp8TokenMetadata.json"
 {
   "LSP4Metadata": {
     "name": "KLxENDLESS MEDALLION Purple",
@@ -559,18 +561,18 @@ We will do the same with the LSP7 token metadata. Let's create a `lsp7TokenMetad
         "height": 256,
         "url": "ipfs://QmS3jF9jsoG6gnyJ7wCeJ4bej2aJEnPSv527UV8KxjBDAA",
         "verification": {
-        "method": "keccak256(bytes)",
-        "data": "0xdd6b5fb6dc984fda0222fb6f6e96b471c0667b12f03b1e804f7b5e6ab62acdb0"
+          "method": "keccak256(bytes)",
+          "data": "0xdd6b5fb6dc984fda0222fb6f6e96b471c0667b12f03b1e804f7b5e6ab62acdb0"
         }
       }
     ],
     "images": [
       [
-          {
-            "width": 1024,
-            "height": 974,
-            "url": "ipfs://QmUGmycxrwFec15UC41v9bvnRStK3zxR7mth72mGRcUSPD",
-            "verification": {
+        {
+          "width": 1024,
+          "height": 974,
+          "url": "ipfs://QmUGmycxrwFec15UC41v9bvnRStK3zxR7mth72mGRcUSPD",
+          "verification": {
             "method": "keccak256(bytes)",
             "data": "0x951bf983a4b7bcebc5c0b00a5e783630dcb788e95ee9e44b0b7d4bde4a0b4d81"
           }
@@ -587,9 +589,9 @@ We will do the same with the LSP7 token metadata. Let's create a `lsp7TokenMetad
         "fileType": "mp4"
       }
     ],
-      "attributes": [ ]
-    }
+    "attributes": []
   }
+}
 ```
 
 ### Deploy the LSP8 token script
@@ -605,11 +607,12 @@ For this script we will jut need to import:
 - the LSP8 token metadata json file we just created
 - the LSP4 metadata schema
 
-```typescript
+```typescript title="scripts/deployLSP8Token.ts"
 import { ethers } from 'hardhat';
+
 import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
-import lsp8TokenMetadata from './metadata/lsp8TokenMetadata.json';
 import LSP4DigitalAsset from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
+import lsp8TokenMetadata from './metadata/lsp8TokenMetadata.json';
 ```
 
 #### Constants
@@ -681,7 +684,7 @@ import lsp8TokenMetadata from './metadata/lsp8TokenMetadata.json';
 import LSP4DigitalAsset from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
 const lsp8TokenMetadataCID =
-  'ipfs://QmXteif98HBUivFXoTFsyWWNPjuZk44La9t3B2uLGhUoES';
+  'ipfs://QmcwYFhGP7KBo1a4EvbBxuvDf3jQ2bw1dfMEovATRJZetX';
 
 async function main() {
   // get LSP8Token contract factory
@@ -789,7 +792,7 @@ const lsp7TokenType = 2;
 const lsp7TokenIsNonDivisible = true; // decimals will be 0
 const lsp7TokenSupply = 50;
 const lsp7TokenMetadataCID =
-  'ipfs://QmXrrkZwfKWK4yqaagoKPHhH148oXLgWoncFuh5d8ugsQL;
+  'ipfs://QmXrrkZwfKWK4yqaagoKPHhH148oXLgWoncFuh5d8ugsQL;';
 ```
 
 ### Mint the LSP7 tokens
