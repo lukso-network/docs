@@ -1,13 +1,15 @@
 ---
 sidebar_label: '⚙️ Extend a Universal Profile Functionalities'
 sidebar_position: 4
+description: Learn to enhance your Universal Profile with added functionalities in JavaScript, covering extension deployment, interface extension, and practical use cases.
 ---
 
 # Extend a Universal Profile Functionalities
 
 :::info Requirements
 
-You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
+You will need a Universal Profile that you can control via its KeyManager to follow this guide.
+
 :arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](./create-profile.md).
 
 :::
@@ -60,15 +62,15 @@ npm install ethers@v5 @lukso/lsp-smart-contracts@v0.14
 First, we need to generate a signer. This signer will be used to interact with the blockchain. We'll use a private key of the Universal Profile controller and an RPC URL.
 
 ```js
-const { ethers } = require('ethers');
+import { ethers } from 'ethers';
 
 // RPC URL (e.g., LUKSO testnet)
-const rpcUrl = 'https://rpc.testnet.lukso.network';
+const RPC_URL = 'https://rpc.testnet.lukso.network';
 
 // Replace with your private key
 const privateKey = 'your-private-key';
 
-const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(privateKey, provider);
 ```
 
@@ -77,8 +79,7 @@ const signer = new ethers.Wallet(privateKey, provider);
 Now, we'll instantiate an instance of the Universal Profile contract.
 
 ```js
-const UniversalProfileABI =
-  require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json').abi;
+import { abi as UniversalProfileABI } from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // Replace with the address of your Universal Profile
 const universalProfileAddress = 'your-universal-profile-address';
@@ -92,7 +93,7 @@ const universalProfile = new ethers.Contract(
 
 ### Step 2: Create the Extension Contract
 
-Next, we will create a Solidity contract named `TipMe` which will inherit from `LSP17Extension` and have a function `tipMe(..)` that emits an event `Tipped`.
+Next, we will create a Solidity contract named `TipMe` which will inherit from [`LSP17Extension`](../../../contracts/contracts/LSP17ContractExtension/LSP17Extension.md) and have a function `tipMe(..)` that emits an event `Tipped`.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -189,8 +190,8 @@ The contract can be compiled with any blockchain development environment like Ha
 We will use the abi and bytecode to deploy the extension contract
 
 ```js
-const TipMeABI = require('./TipMe.json').abi;
-const TipMeBytecode = require('./TipMe.json').bytecode;
+import { abi as TipMeABI } from './TipMe.json';
+import { bytecode as TipMeBytecode } from './TipMe.json';
 
 const TipMeFactory = new ethers.ContractFactory(
   TipMeABI,
@@ -217,12 +218,15 @@ We need to encode the function selector of `tipMe(..)` and store it in the Unive
 #### Prepare data key and data value
 
 ```js
-const { ERC725YDataKeys } = require('@lukso/lsp-smart-contracts');
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
+// We get `TipMeABI` from the last step
+// import {abi as TipMeABI} from './TipMe.json';
 const tipMeInterface = new ethers.utils.Interface(TipMeABI);
 const tipMeFunctionSelector = tipMeInterface.getSighash('tipMe()');
 
 // Define the DataKey for the extension
+// according to the LSP17-ContractExtension standard
 const extensionDataKey =
   ERC725YDataKeys.LSP17.LSP17ExtensionPrefix +
   tipMeFunctionSelector.substr(2) +
@@ -288,23 +292,24 @@ The event should be emitted and the value should be seen on the Universal Profil
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
 ```js
+import { ethers } from 'ethers';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+import { abi as UniversalProfileABI } from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+import { abi as TipMeABI } from './TipMe.json';
+import { bytecode as TipMeBytecode } from './TipMe.json';
+
 async function main() {
-  const UniversalProfileABI =
-    require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json').abi;
-
-  const { ERC725YDataKeys } = require('@lukso/lsp-smart-contracts');
-
-  const { ethers } = require('ethers');
-
   // RPC URL (e.g., LUKSO testnet)
-  const rpcUrl = 'https://rpc.testnet.lukso.network';
+  const RPC_URL = 'https://rpc.testnet.lukso.network';
 
   // Make sure the address associated with this private key has the 'ADDEXTENSIONS' and 'CHANGEEXTENSIONS' permissions
 
   // Replace with your private key
   const privateKey = 'your-private-key';
 
-  const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+  const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
   const signer = new ethers.Wallet(privateKey, provider);
 
   const universalProfileAddress = 'your-universal-profile-address';
@@ -314,9 +319,6 @@ async function main() {
     UniversalProfileABI,
     signer,
   );
-
-  const TipMeABI = require('./TipMe.json').abi;
-  const TipMeBytecode = require('./TipMe.json').bytecode;
 
   const TipMeFactory = new ethers.ContractFactory(
     TipMeABI,
@@ -372,7 +374,7 @@ First, you need to create a Solidity contract that implements the supportsInterf
 pragma solidity ^0.8.0;
 
 contract InterfaceIdExtension {
-bytes4 constant DUMMY_INTERFACE_ID = 0xaabbccdd;
+    bytes4 constant DUMMY_INTERFACE_ID = 0xaabbccdd;
 
     function supportsInterface(bytes4 interfaceId) external pure returns (bool) {
         return interfaceId == DUMMY_INTERFACE_ID;
@@ -486,23 +488,24 @@ This process effectively extends the capabilities of your Universal Profile to a
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
 ```js
+import { ethers } from 'ethers';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+import { abi as UniversalProfileABI } from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+import { abi as SupportsInterfaceABI } from './SupportsInterface.json';
+import { bytecode as SupportsInterfaceBytecode } from './SupportsInterface.json';
+
 async function main() {
-  const UniversalProfileABI =
-    require('@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json').abi;
-
-  const { ERC725YDataKeys } = require('@lukso/lsp-smart-contracts');
-
-  const { ethers } = require('ethers');
-
   // RPC URL (e.g., LUKSO testnet)
-  const rpcUrl = 'https://rpc.testnet.lukso.network';
+  const RPC_URL = 'https://rpc.testnet.lukso.network';
 
   // Make sure the address associated with this private key has the 'ADDEXTENSIONS' and 'CHANGEEXTENSIONS' permissions
 
   // Replace with your private key
   const privateKey = 'your-private-key';
 
-  const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+  const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
   const signer = new ethers.Wallet(privateKey, provider);
 
   const universalProfileAddress = 'your-universal-profile-address';
@@ -512,10 +515,6 @@ async function main() {
     UniversalProfileABI,
     signer,
   );
-
-  const SupportsInterfaceABI = require('./SupportsInterface.json').abi;
-  const SupportsInterfaceBytecode =
-    require('./SupportsInterface.json').bytecode;
 
   const supportsInterfaceFactory = new ethers.ContractFactory(
     SupportsInterfaceABI,

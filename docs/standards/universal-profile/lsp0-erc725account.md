@@ -225,7 +225,7 @@ The process for renouncing ownership follows a similar structure, where an initi
 
 See the **[LSP17 - ContractExtension](../generic-standards/lsp17-contract-extension.md)** standard for more information.
 
-Check the **javascript** guides to know [**How to extend the functionalities and interfaceIds of an account**](../../learn/expert-guides/universal-profile/extend-profile-functionalities.md)
+Check the **JavaScript** guides to know [**How to extend the functionalities and interfaceIds of an account**](../../learn/expert-guides/universal-profile/extend-profile-functionalities.md)
 
 Check the [**fallback function**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#fallback) that allows calls for the extensions.
 
