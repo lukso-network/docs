@@ -54,7 +54,7 @@ This is just an example. You can adjust these parameters according to your needs
 
 Let's start creating an `LSP7SubCollection.sol` file in the `contracts/` folder and import:
 
-- the [`LSP7DigitalAsset`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol) contract
+- the [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol) contract
 - the [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol) contract
 - the [`_LSP4_SUPPORTED_STANDARDS_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
 - the [`_LSP4_SUPPORTED_STANDARDS_VALUE`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
@@ -88,7 +88,7 @@ At deployment, we will need to set the following parameters:
 - `totalSupply_`: the total supply of the token
 - `lsp4MetadataURI_`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 
-```typescript title="contracts/LSP7SubCollection.sol"
+```sol title="contracts/LSP7SubCollection.sol"
 contract LSP7SubCollection is LSP7DigitalAsset {
     constructor(
         string memory name_,
@@ -131,7 +131,7 @@ contract LSP7SubCollection is LSP7DigitalAsset {
 
 As per the [`LSP8IdentifiableDigitalAsset`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8referencecontract) standard, the `LSP8ReferenceContract` data key should only be set once and not be modifiable. For this reason, we will need to override the `_setData(...)`function.
 
-```typescript title="contracts/LSP7SubCollection.sol"
+```sol title="contracts/LSP7SubCollection.sol"
 contract LSP7SubCollection is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
     // previous code
 
@@ -152,9 +152,9 @@ contract LSP7SubCollection is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
 ### Final LSP7 Sub-collection contract
 
 <details>
-<summary>Click to expand/collapse the script...</summary>
+<summary>Click to expand/collapse the script.</summary>
 
-```typescript title="contracts/LSP7SubCollection.sol"
+```sol title="contracts/LSP7SubCollection.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -218,7 +218,7 @@ contract LSP7SubCollection is LSP7DigitalAsset {
 
 ## Create the LSP8 Collection
 
-Now that we have the LSP7 Sub-Collection, we can create the LSP8 Collection.
+Now that we have the LSP7 Sub-Collection, we can create the [LSP8 Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp8-collection-vs-tokenid-metadata).
 
 ### Specify what the LSP8 Collection will need to do
 
@@ -240,7 +240,7 @@ Let's start creating an `LSP8Collection.sol` file in the `contracts/` folder and
 - the [`LSP8IdentifiableDigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts.git) from which we will inherit the main functionalities of the LSP8
 - the `_LSP8_TOKENID_FORMAT_ADDRESS` which is the format of the tokenId of the LSP8 Collection
 - the [`_LSP4_METADATA_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
-- the LSP7 Sub-Collection contract we just created so that we can use it in our `mint(...)` function
+- the `LSP7SubCollection.sol` contract we just created so that we can use it in our `mint(...)` function
 
 ```typescript title="contracts/LSP8Collection.sol"
 import { LSP8IdentifiableDigitalAsset } from '@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol';
@@ -255,14 +255,14 @@ import { LSP7SubCollection } from './LSP7SubCollection.sol';
 
 The constructor will be in charge of setting the following parameters:
 
-- `name`: the name of the LSP8 Collection
-- `symbol`: the symbol of the LSP8 Collection
-- `owner`: the owner of the LSP8 Collection that will be able change the contract metadata and mint new LSP7 tokens
-- [`lsp4TokenType`](../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 Sub-Collection
+- `name_`: the name of the LSP8 Collection
+- `symbol_`: the symbol of the LSP8 Collection
+- `newOwner_`: the owner of the LSP8 Collection that will be able change the contract metadata and mint new LSP7 tokens
+- [`lsp4TokenType_`](../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 Sub-Collection
 - `lsp8CollectionIdFormat`: the [format of the tokenId](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8Collectionidformat) of the LSP8 Collection
-- `lsp4MetadataURI`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
+- `lsp4MetadataURI_`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 
-```typescript title="contracts/LSP8Collection.sol"
+```sol title="contracts/LSP8Collection.sol"
 contract LSP8Collection is LSP8IdentifiableDigitalAsset {
     constructor(
         string memory name_,
@@ -289,7 +289,7 @@ contract LSP8Collection is LSP8IdentifiableDigitalAsset {
 
 Now let's implement the `mint(...)` function. This function will only be callable by the owner of the contract and will be in charge of deploying the LSP7 Sub-Collections as well as minting the LSP8 tokenId that will represent the LSP7 Sub-Collection.
 
-```typescript title="contracts/LSP8Collection.sol"
+```sol title="contracts/LSP8Collection.sol"
 contract LSP8Collection is LSP8IdentifiableDigitalAsset {
 
   // previous code
@@ -329,14 +329,13 @@ contract LSP8Collection is LSP8IdentifiableDigitalAsset {
         _mint(address(this), tokenId, true, "");
     }
 }
-
 ```
 
 ### Override the `_setDataForTokenId` & `_getDataForTokenId` functions
 
 Since we are inheriting from the `LSP8IdentifiableDigitalAsset.sol` contract, we will need to override the [`setDataForTokenId`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setdatafortokenid) & [`getDataForTokenId`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatafortokenid) functions (same for the batch functions). These functions will be in charge of setting and getting the metadata of the deployed LSP7 Sub-Collection. In this particular case, it will make more sense to directly call on the [`setData(...)`](../../contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md#setData) and [`getData(...)`](../../contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md#getData) functions of the LSP7 Sub-Collection contract.
 
-```typescript title="contracts/LSP8Collection.sol"
+```sol title="contracts/LSP8Collection.sol"
 contract LSP8Collection is LSP8IdentifiableDigitalAsset {
 
     // previous code
@@ -372,9 +371,9 @@ contract LSP8Collection is LSP8IdentifiableDigitalAsset {
 ### Final LSP8 Collection contract
 
 <details>
-<summary>Click to expand/collapse the script...</summary>
+<summary>Click to expand/collapse the script.</summary>
 
-```typescript title="contracts/LSP8Collection.sol"
+```sol title="contracts/LSP8Collection.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -480,7 +479,8 @@ Since the contracts are quite big, you may run into a compilation error. If this
 This is what we used to compile the contracts:
 
 <details>
-<summary>Click to expand/collapse the script...</summary>
+
+<summary>Click to expand/collapse the script.</summary>
 ```typescript title="hardhat.config.ts"
   solidity: {
     version: "0.8.20",
@@ -491,21 +491,24 @@ This is what we used to compile the contracts:
       },
     },
   }
-````
+```
 
 </details>
+
 :::
 
 ### Create the metadata JSONs files
 
 :::note
+
 In this part we will not cover the part where you first need to upload your JSONs files on IPFS and retrieve their CIDs.
 We have done it and will add them directly in the following scripts files.
+
 :::
 
-Let's start by creating a `lsp8CollectionMetadata.json` file in the `metadatas/` folder and set the following metadata:
+Let's start by creating a `lsp8CollectionMetadata.json` file in the `metadata/` folder and set the following metadata:
 
-```json title="./metadatas/lsp8CollectionMetadata.json"
+```json title="./metadata/lsp8CollectionMetadata.json"
 {
   "LSP4Metadata": {
     "name": "The Dematerialised",
@@ -534,9 +537,9 @@ Let's start by creating a `lsp8CollectionMetadata.json` file in the `metadatas/`
 }
 ```
 
-We will do the same with the LSP7 Sub-Collection metadata. Let's create a `lsp7SubCollectionMetadata.json` file in the `metadatas` folder and set the following metadata:
+We will do the same with the LSP7 Sub-Collection metadata. Let's create a `lsp7SubCollectionMetadata.json` file in the `metadata` folder and set the following metadata:
 
-```json title="./metadatas/lsp7SubCollectionMetadata.json"
+```json title="./metadata/lsp7SubCollectionMetadata.json"
 {
   "LSP4Metadata": {
     "name": "KLxENDLESS MEDALLION Purple",
@@ -613,10 +616,13 @@ We will need to set:
 
 - the `lsp8CollectionMetadataCID` constant that is the IPFS CID of the LSP8 Collection metadata file we just created
 
+<!-- prettier-ignore-start -->
+
 ```typescript
-const lsp8CollectionMetadataCID =
-  'ipfs://QmcwYFhGP7KBo1a4EvbBxuvDf3jQ2bw1dfMEovATRJZetX"';
+const lsp8CollectionMetadataCID = 'ipfs://QmcwYFhGP7KBo1a4EvbBxuvDf3jQ2bw1dfMEovATRJZetX"';
 ```
+
+<!-- prettier-ignore-end -->
 
 #### Deploy the LSP8 Collection
 
@@ -665,13 +671,13 @@ async function main() {
 #### Final script
 
 <details>
-<summary>Click to expand/collapse the script...</summary>
+<summary>Click to expand/collapse the script.</summary>
 
 ```typescript
 import { ethers } from 'hardhat';
 import { ERC725 } from '@erc725/erc725.js';
 import LSP4DigitalAsset from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
-import lsp8CollectionMetadata from './metadatas/lsp8CollectionMetadata.json';
+import lsp8CollectionMetadata from './metadata/lsp8CollectionMetadata.json';
 
 const lsp8CollectionMetadataCID =
   'ipfs://QmcwYFhGP7KBo1a4EvbBxuvDf3jQ2bw1dfMEovATRJZetX';
@@ -729,7 +735,9 @@ main().catch((error) => {
 Let's run the script using `npx hardhat run scripts/deployLSP8Collection.ts --network <nameOfNetwork>`.
 
 :::note
+
 The deployed contract address should be printed in the console. Make sure to copy it as we will need it for the next script.
+
 :::
 
 #### Check the deployed contract
@@ -774,17 +782,19 @@ For this script, we will need to set the following constants:
 - `lsp7SubcollectionTotalSupply`: the total supply of the LSP7 tokens we want to mint
 - `lsp7SubCollectionMetadataCID`: the IPFS CID of the LSP7 Sub-Collection metadata file we just created
 
+<!-- prettier-ignore-start -->
+
 ```typescript
-const lsp8CollectionContractAddress =
-  '0x567B9322500069725db0169C362dc4e939934c8b';
+const lsp8CollectionContractAddress = '0x567B9322500069725db0169C362dc4e939934c8b';
 const lsp7SubCollectionName = 'KLxENDLESS MEDALLION Purple';
 const lsp7SubCollectionSymbol = 'KLxENDLESS MEDALLION';
 const lsp7SubCollectionType = 2;
 const lsp7SubCollectionIsNonDivisible = true; // decimals will be 0
 const lsp7SubCollectionSupply = 50; // Create 50 NFTs in the sub-collection
-const lsp7SubCollectionMetadataCID =
-  'ipfs://QmXrrkZwfKWK4yqaagoKPHhH148oXLgWoncFuh5d8ugsQL;';
+const lsp7SubCollectionMetadataCID = 'ipfs://QmXrrkZwfKWK4yqaagoKPHhH148oXLgWoncFuh5d8ugsQL;';
 ```
+
+<!-- prettier-ignore-end -->
 
 ### Mint the LSP7 Sub-Collections
 
@@ -848,7 +858,7 @@ async function main() {
 
 <details>
 
-<summary>Click to expand/collapse the script...</summary>
+<summary>Click to expand/collapse the script.</summary>
 
 ```typescript
 import { ethers } from 'hardhat';
