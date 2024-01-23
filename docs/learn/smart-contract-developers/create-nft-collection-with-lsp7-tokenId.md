@@ -240,7 +240,7 @@ Let's start creating an `LSP8Collection.sol` file in the `contracts/` folder and
 - the [`LSP8IdentifiableDigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts.git) from which we will inherit the main functionalities of the LSP8
 - the `_LSP8_TOKENID_FORMAT_ADDRESS` which is the format of the tokenId of the LSP8 Collection
 - the [`_LSP4_METADATA_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
-- the `LSP7SubCollection.sol` contract we just created so that we can use it in our `mint(...)` function
+- the `LSP7SubCollection` contract we just created so that we can use it in our `mint(...)` function
 
 ```typescript title="contracts/LSP8Collection.sol"
 import { LSP8IdentifiableDigitalAsset } from '@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol';
