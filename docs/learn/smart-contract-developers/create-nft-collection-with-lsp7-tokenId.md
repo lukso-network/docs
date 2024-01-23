@@ -595,7 +595,7 @@ Let's create a `deployLSP8Collection.ts` file in the `scripts` folder.
 For this script we will jut need to import:
 
 - the `ethers` library to interact with the blockchain
-- the [`@erc725/erc725.js`](link-to-getting-started-page-in-the-tools) library to convert the metadata to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
+- the [`@erc725/erc725.js`](./getting-started.md) library to convert the metadata to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
 - the LSP8 Collection metadata json file we just created
 - the LSP4 metadata schema
 
