@@ -619,7 +619,7 @@ We will need to set:
 <!-- prettier-ignore-start -->
 
 ```typescript
-const lsp8CollectionMetadataCID = 'ipfs://QmcwYFhGP7KBo1a4EvbBxuvDf3jQ2bw1dfMEovATRJZetX"';
+const lsp8CollectionMetadataCID = 'ipfs://QmcwYFhGP7KBo1a4EvbBxuvDf3jQ2bw1dfMEovATRJZetX';
 ```
 
 <!-- prettier-ignore-end -->
