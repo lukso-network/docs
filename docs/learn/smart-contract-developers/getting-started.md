@@ -29,9 +29,9 @@ The first thing to do is to [create a new Hardhat project](https://hardhat.org/h
 ```bash
 mkdir lukso-app
 cd lukso-app
-npx hardhat
+npx hardhat init
 # select 'Create a TypeScript project' and
-# use the default value for the rest of the setup
+# use the default values for the rest of the setup
 ```
 
 Once finished, you have a working Hardhat setup!
