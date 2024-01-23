@@ -6,9 +6,9 @@ description: Learn to enhance your Universal Profile with added functionalities 
 
 # Extend a Universal Profile Functionalities
 
-:::info ments
+:::info Requirements
 
-You will need a Universal Profile that you can control via its KeyManager to follow this guide.
+You will need a Universal Profile that you can control via its Key Manager to follow this guide.
 
 :arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](./create-profile.md).
 
@@ -19,6 +19,8 @@ This guide will teach you how to **add functionalities to your Universal Profile
 - deploying extensions to the profile
 - extending the Universal Profile with extensions
 - extending the Universal Profile interfaceIds
+
+Check out this [YouTube demo](https://www.youtube.com/watch?v=0KxkLZHFa0E) which also showcases how to add an extension to the profile.
 
 To achieve this goal, we will perform the following steps:
 
@@ -35,78 +37,43 @@ Read the standard docs about including [LSP17-ContractExtension in the Universal
 
 A Universal Profile contains non-biased features, including generic execution capabilities, the ability to attach generic information, and the ability to be notified and react to various actions. However, post-deployment, a Universal Profile, like any smart contract, becomes immutable. This immutability restricts the ability to add new functionalities into the code of the contract.
 
-To overcome this limitation, the concept of **extensions** is introduced. Extensions are essentially external contracts that act as supplementary modules to the Universal Profile. They provide a dynamic way to enhance the profile's capabilities.
+To overcome this limitation, the concept of **extensions** is introduced. Extensions are essentially external contracts that act as supplementary modules to the Universal Profile. They provide a dynamic way to enhance and extend the profile's capabilities.
 
-When a call is made to the Universal Profile for a function that isn't natively part of its primary code, the contract checks if this function exists as an extension. If found, the call is seamlessly redirected to the appropriate external contract (extension), thereby effectively expanding the functionality of the Universal Profile without altering its core, immutable code. This approach enables greater flexibility and adaptability, ensuring the Universal Profile can evolve to meet diverse ments.
+When a call is made to the Universal Profile for a function not natively supported, the contract checks if this function exists as an extension. If found, the call is seamlessly redirected to the appropriate external contract (extension), thereby effectively expanding the functionality of the Universal Profile without altering its core, immutable code. This approach enables greater flexibility and adaptability, ensuring the Universal Profile can evolve to meet diverse requirements.
 
 ## Extending Functionalities
 
 ### Setup
 
-Set up a new project with:
+Install the dependencies
 
 ```bash
-npm init
+npm install ethers@v5 @lukso/lsp-smart-contracts
 ```
 
-Then, install the dependencies
+### Step 1: Create the Extension Contract
 
-```bash
-npm install ethers@v5 @lukso/lsp-smart-contracts@v0.14
-```
+:::info
 
-### Step 1: Instantiate the Universal Profile
+Check the [Smart Contract developer Getting started section](../../smart-contract-developers/getting-started.md) to know how to create a Hardhat project.
 
-#### Generate a Signer
-
-First, we need to generate a signer. This signer will be used to interact with the blockchain. We'll use a private key of the Universal Profile controller and an RPC URL.
-
-```js
-import { ethers } from 'ethers';
-
-// RPC URL (e.g., LUKSO testnet)
-const RPC_URL = 'https://rpc.testnet.lukso.network';
-
-// Replace with your private key
-const privateKey = 'your-private-key';
-
-const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
-const signer = new ethers.Wallet(privateKey, provider);
-```
-
-#### Instantiate the Universal Profile Contract
-
-Now, we'll instantiate an instance of the Universal Profile contract.
-
-```js
-import { abi as UniversalProfileABI } from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-
-// Replace with the address of your Universal Profile
-const universalProfileAddress = 'your-universal-profile-address';
-
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfileABI,
-  signer,
-);
-```
-
-### Step 2: Create the Extension Contract
+:::
 
 Next, we will create a Solidity contract named `TipMe` which will inherit from [`LSP17Extension`](../../../contracts/contracts/LSP17ContractExtension/LSP17Extension.md) and have a function `tipMe(..)` that emits an event `Tipped`.
 
-```solidity
+```solidity title="TipMe.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@lukso/lsp-smart-contracts/contracts/LSP17ContractExtension/LSP17Extension.sol";
 
+// Contract used as an extension to have the `tipMe()` function
 contract TipMe is LSP17Extension {
     event Tipped(address tipper);
 
     function tipMe() public payable {
-      // _extendableMsgSender() is a method inherited from LSP17Extension that
-      // extract the address who initially called the Universal Profile with the tipMe selector
+      // _extendableMsgSender() is a method inherited from LSP17Extension.
+      // It extracts the address who initially called the Universal Profile with the `tipMe(..)` selector
       // `msg.sender` in this case will be the Universal Profile address/
       emit Tipped(_extendableMsgSender());
     }
@@ -118,12 +85,12 @@ contract TipMe is LSP17Extension {
 }
 ```
 
-The contract can be compiled with any blockchain development environment like Hardhat or Foundry and extract the abi and bytecode. Create `TipMe.json` in the same directory of the main file.
+The contract can be compiled with any blockchain development environment like Hardhat or Foundry to extract the ABI and bytecode from the `artifacts` or `out` folder. Create `TipMe.json` in the same directory of the main file.
 
 <details>
     <summary>The ABI and the bytecode of the contract: </summary>
 
-```json
+```json title="TipMe.json"
 {
   "abi": [
     {
@@ -185,11 +152,48 @@ The contract can be compiled with any blockchain development environment like Ha
 
 </details>
 
+### Step 2: Instantiate the Universal Profile
+
+#### Generate a Signer
+
+First, we need to generate a signer. This signer will be used to interact with the blockchain. We'll use the private key of the Universal Profile main controller and an RPC URL.
+
+```js
+import { ethers } from 'ethers';
+
+// RPC URL (e.g: LUKSO testnet)
+const RPC_URL = 'https://rpc.testnet.lukso.network';
+
+// Replace with your private key
+const privateKey = 'your-private-key';
+
+const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+const signer = new ethers.Wallet(privateKey, provider);
+```
+
+#### Instantiate the Universal Profile Contract
+
+Now, we'll create an instance of the Universal Profile contract.
+
+```js
+import { abi as UniversalProfileABI } from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+// Replace with the address of your Universal Profile
+const universalProfileAddress = 'your-universal-profile-address';
+
+const universalProfile = new ethers.Contract(
+  universalProfileAddress,
+  UniversalProfileABI,
+  signer,
+);
+```
+
 ### Step 3: Deploy the Extension Contract
 
 We will use the abi and bytecode to deploy the extension contract
 
 ```js
+// We get the ABI and bytecode from Step1 after compiling the extension contract
 import { abi as TipMeABI } from './TipMe.json';
 import { bytecode as TipMeBytecode } from './TipMe.json';
 
@@ -203,6 +207,8 @@ const tipMeContract = await TipMeFactory.deploy();
 await tipMeContract.deployTransaction.wait();
 
 const tipMeExtensionAddress = tipMeContract.addres;
+
+console.log('Contract deployed at:', tipMeExtensionAddress);
 ```
 
 ### Step 4: Encode Function Selector and Store in Universal Profile
@@ -235,7 +241,7 @@ const extensionDataKey =
 
 #### Controlling Value Forwarding to Extensions
 
-When calling an extension through a UniversalProfile, **in case value was sent along the call**, there's an option to either retain the sent value within the UniversalProfile contract or forward it to the extension contract. This choice depends on the intended purpose of the extension. In scenarios where a single extension is utilized collectively by multiple users, it might be preferable to keep the value within the UniversalProfile. Alternatively, if the extension requires funds to perform specific actions, forwarding the value might be necessary.
+When calling an extension through a UniversalProfile, **in case value was sent along the call**, there's an option to either retain the sent value within the UniversalProfile contract or forward it to the extension contract. This choice depends on the intended purpose of the extension. In scenarios where multiple users collectively use a single extension, keeping the value within the UniversalProfile might be preferable. Alternatively, forwarding the value might be necessary if the extension requires funds to perform specific actions.
 
 This behavior is controlled by appending a boolean value to the address stored under the extension's data key for a particular function selector.
 
@@ -250,7 +256,7 @@ const tx = await universalProfile.setData(
 await tx.wait();
 ```
 
-**Note**: Ensure that the function in the extension being called is marked as payable.
+> **Note**: Ensure that the function called in the extension is marked as `payable`.
 
 Conversely, to keep the value sent within the UniversalProfile, store the address as is, without appending any boolean:
 
@@ -291,12 +297,13 @@ The event should be emitted and the value should be seen on the Universal Profil
 
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
-```js
+```js title="extendingFunctionalities.js"
 import { ethers } from 'ethers';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 import { abi as UniversalProfileABI } from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
+// We get the ABI and bytecode from Step1 after compiling the extension contract
 import { abi as TipMeABI } from './TipMe.json';
 import { bytecode as TipMeBytecode } from './TipMe.json';
 
@@ -363,17 +370,23 @@ main();
 
 ## Extending InterfaceIds
 
-Extending interfaceIds is crucial for Universal Profiles, as many protocols check for support of specific interfaceIds before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existance of the `supportsInterface` function.
+Extending `interfaceIds` is crucial for Universal Profiles, as many protocols check for support of specific `interfaceIds` before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existance of the `supportsInterface` function.
 
 ### Step 1: Create a Contract Supporting a Specific InterfaceId
 
-First, you need to create a Solidity contract that implements the supportsInterface function. This function should return true for at least one specific interfaceId, in this case, a dummy interfaceId like `0xaabbccdd`.
+:::info
 
-```solidity
+Check the [Smart Contract developer Getting started section](../../smart-contract-developers/getting-started.md) to know how to create a Hardhat project.
+
+:::
+
+First, you need to create a Solidity contract that implements the [`supportsInterface(..)`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#supportsinterface) function. This function should return true for at least one specific interfaceId, in this case, a dummy interfaceId like `0xaabbccdd`.
+
+```solidity title="SupportsInterface.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract InterfaceIdExtension {
+contract SupportsInterface {
     bytes4 constant DUMMY_INTERFACE_ID = 0xaabbccdd;
 
     function supportsInterface(bytes4 interfaceId) external pure returns (bool) {
@@ -383,12 +396,12 @@ contract InterfaceIdExtension {
 }
 ```
 
-The contract can be compiled with any blockchain development environment like Hardhat or Foundry and extract the abi and bytecode. Create `SupportsInterface.json` in the same directory of the main file.
+The contract can be compiled with any blockchain development environment like Hardhat or Foundry to extract the ABI and bytecode from the `artifacts` or `out` folder. Create `SupportsInterface.json` in the same directory of the main file.
 
 <details>
     <summary>The ABI and the bytecode of the contract: </summary>
 
-```json
+```json title="SupportsInterface.json"
 {
   "abi": [
     {
@@ -422,6 +435,7 @@ The contract can be compiled with any blockchain development environment like Ha
 We will use the abi and bytecode to deploy the extension contract
 
 ```js
+// We get the ABI and bytecode from Step1 after compiling the extension contract
 import { abi as SupportsInterfaceABI } from './SupportsInterface.json';
 import { bytecode as SupportsInterfaceBytecode } from './SupportsInterface.json';
 
@@ -435,13 +449,15 @@ const supportsInterfaceContract = await supportsInterfaceFactory.deploy();
 await supportsInterfaceContract.deployTransaction.wait();
 
 const supportsInterfaceExtensionAddress = supportsInterfaceContract.addres;
+
+console.log('Contract deployed at:', tipMeExtensionAddress);
 ```
 
 ### Step 3: Encode Function Selector and Store in Universal Profile
 
-:::info ments
+:::info Requirements
 
-The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permission otherwise the call will fail. Check the [keyManager guides](../key-manager/get-controller-permissions.md) to learn more about permissions.
+The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permissions, otherwise, the call will fail. Check the [keyManager guides](../key-manager/get-controller-permissions.md) to learn more about permissions.
 
 :::
 
@@ -473,7 +489,7 @@ await tx.wait();
 
 ### Step 4: Call supportsInterface with the InterfaceId
 
-Finally, you can verify that the extension was successful by calling the supportsInterface function with the dummy interfaceId `0xaabbccdd`. The function should return true, indicating that the Universal Profile now supports this interfaceId through the extension.
+Finally, you can verify that the extension was successful by calling the `supportsInterface(..)` function with the dummy interfaceId `0xaabbccdd`. The function should return `true`, indicating that the Universal Profile now supports this interfaceId through the extension.
 
 ```js
 const result =
@@ -487,12 +503,13 @@ This process effectively extends the capabilities of your Universal Profile to a
 
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
-```js
+```js title="extendingInterfaceIds.js"
 import { ethers } from 'ethers';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 import { abi as UniversalProfileABI } from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
+// We get the ABI and bytecode from Step1 after compiling the extension contract
 import { abi as SupportsInterfaceABI } from './SupportsInterface.json';
 import { bytecode as SupportsInterfaceBytecode } from './SupportsInterface.json';
 
