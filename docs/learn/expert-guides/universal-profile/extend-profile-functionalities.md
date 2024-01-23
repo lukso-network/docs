@@ -233,6 +233,7 @@ const tipMeFunctionSelector = tipMeInterface.getSighash('tipMe()');
 
 // Define the DataKey for the extension
 // according to the LSP17-ContractExtension standard
+// erc725.js can be used to encode the key
 const extensionDataKey =
   ERC725YDataKeys.LSP17.LSP17ExtensionPrefix +
   tipMeFunctionSelector.substr(2) +
@@ -340,6 +341,8 @@ async function main() {
   const tipMeFunctionSelector = tipMeInterface.getSighash('tipMe()');
 
   // Define the DataKey for the extension
+  // according to the LSP17-ContractExtension standard
+  // erc725.js can be used to encode the key
   const extensionDataKey =
     ERC725YDataKeys.LSP17.LSP17ExtensionPrefix +
     tipMeFunctionSelector.substr(2) +
