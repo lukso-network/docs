@@ -173,6 +173,10 @@ export default {
             from: '/faq/onboarding/extension',
             to: 'https://support.lukso.network/extension/introduction',
           },
+          {
+            from: '/faq/help',
+            to: 'https://support.lukso.network',
+          },
         ],
       },
     ],
