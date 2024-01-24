@@ -6,8 +6,10 @@ description: Create a Hardhat project and start building your smart contracts fo
 
 # Getting started
 
-::: warning
+:::warning
+
 Please remember to always be careful when deploying smart contract, do not forget to process a security audit before deploying your smart contracts on production.
+
 :::
 
 Smart contract developer, welcome to the LUKSO documentation! The LUKSO ecosystem offers you a lot of [new standards](../../standards/introduction.md) and tools to build more powerful blockchain applications which are - _very important_ - standardised.
