@@ -24,6 +24,12 @@ For the following guide, we are using `hardhat v2.19.1`, `ethers v6` and `@lukso
 
 ## Create a custom LSP7 Token
 
+:::info
+
+This guide will walk you through the process of deploying a contract in the context of Hardhat. For instructions on deploying a contract within a dApp using the UniversalProfile Browser extension, please refer to the [Deploy Contracts section](../dapp-developer/deploy-contracts.md) in the dApp developers section.
+
+:::
+
 In this guide you will create a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to a specific address. To build your smart contract you will use the following LSP7 preset and extension:
 
 - [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow creating new assets on the smart contract.
