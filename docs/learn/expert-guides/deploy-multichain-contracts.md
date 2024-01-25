@@ -140,10 +140,12 @@ console.log('LSP16UniversalFactory exists: ', isLSP16FactoryDeployed);
 If `Nick Factory` doesn't exist, we'll need to deploy it:
 
 ```js title="main.js"
+// The private key should not be comitted to a public GitHub repository.
 const signer = new ethers.Wallet('<private-key>', provider);
 
 if (!isNickFactoryDeployed) {
   const fundingTx = await signer.sendTransaction({
+    // Standardized address
     to: '0x3fab184622dc19b6109349b94811493bf2a45362',
     value: ethers.parseEther('0.009'), // This value should be enough
     // Check gasLimit and gasPrice to estimate exactly the value: https://github.com/Arachnid/deterministic-deployment-proxy
@@ -199,6 +201,7 @@ const lsp16UniversalFactory = new ethers.Contract(
   signer,
 );
 
+// Dummy value
 const constructorArgument = 123;
 const encodedConstructorArg = ethers.AbiCoder.defaultAbiCoder().encode(
   ['uint256'],
@@ -211,6 +214,7 @@ const contractBytecodeWithArg =
 // On each script run, this salt should be different otherwise the deployment will fail
 // Don't use random bytes as salt, use a deterministic salt to be able to deploy on a different network
 // using the same salt, to produce the same address
+// Should be a hex string like 0x1322322... (32 bytes)
 const deploymentSalt = '<bytes32-salt>';
 
 // Precompute the address of the contract to be deployed without initialization
@@ -247,11 +251,11 @@ console.log(
 Using the `LSP16UniversalFactory`, we can also deploy initializable contracts, where a method can be called directly after deploying. We can call `setNumber(..)` after deployment within the same transaction on the `TargetContract`.
 
 ```js title="main.js"
-// contract instances amd bytecode available from the last step
+// contract instances and bytecode available from the last step
 
 // Precompute the address of the contract to be deployed with initialization
 const encodedFunctionCallForInit =
-  contractWithoutInit.interface.encodeFunctionData('setNumber', [456]);
+  contractWithoutInit.interface.encodeFunctionData('setNumber', [456]); // Dummy value
 
 const precomputedAddressWithInit = await lsp16UniversalFactory.computeAddress(
   ethers.keccak256(contractBytecodeWithArg),
@@ -288,7 +292,7 @@ console.log(
 Using the `LSP16UniversalFactory`, we can also deploy minimal proxies according to the ERC1167 standard, where a method can be called to generate a minimal proxy based on the address of an existing contract.
 
 ```js title="main.js"
-// contract instances amd bytecode available from the last step
+// contract instances and bytecode available from the last step
 
 // Precompute the address for ERC1167 proxy deployment
 const precomputedProxyAddress =
@@ -314,6 +318,7 @@ const proxyContract = new ethers.Contract(
 );
 
 const numberInProxyWithoutInit = await proxyContract.number();
+// The number will be 0, as a proxy does not have state unless its initialized
 console.log(
   'The number in proxy without initialization is: ',
   numberInProxyWithoutInit,
@@ -327,7 +332,7 @@ Using the `LSP16UniversalFactory`, we can also deploy initializable minimal prox
 ```js title="main.js"
 // Encode function call for proxy initialization
 const encodedFunctionCallForProxyInit =
-  proxyContract.interface.encodeFunctionData('setNumber', [789]);
+  proxyContract.interface.encodeFunctionData('setNumber', [789]); // Dummy value
 
 // Precompute the address for initialized ERC1167 proxy
 const precomputedInitializedProxyAddress =
@@ -364,6 +369,7 @@ The `LSP16UniversalFactory` uses a unique approach to deploying contracts with C
 
 ```js title="main.js"
 // Precompute the salt for deployment
+// Should be a hex string like 0x1322322... (32 bytes)
 const providedSalt = '<salt>'; // replace with your actual salt
 
 const precomputedProvidedSalt = await lsp16UniversalFactory.generateSalt(
@@ -391,6 +397,8 @@ The code will run, just need to:
 
 - Replace `<private-key>` with a private key containing funds.
 - Add the full bytecode when deploying the `LSP16UniversalFactory` from `Nick Factory`.
+
+> **Note:** The private key should not be comitted to a public GitHub repository.
 
 ```js title="main.js"
 import { ethers } from 'ethers';
@@ -421,6 +429,7 @@ async function main() {
   console.log('Nick Factory exists: ', isNickFactoryDeployed);
   console.log('LSP16UniversalFactory exists: ', isLSP16FactoryDeployed);
 
+  // The private key should not be comitted to a public GitHub repository
   const signer = new ethers.Wallet(
     '<private-key>',
     provider,
@@ -428,6 +437,7 @@ async function main() {
 
   if (!isNickFactoryDeployed) {
   const fundingTx = await signer.sendTransaction({
+    // Standardized address
     to: '0x3fab184622dc19b6109349b94811493bf2a45362',
     value: ethers.parseEther('0.009'), // This value should be enough
     // Check gasLimit and gasPrice to estimate exactly the value: https://github.com/Arachnid/deterministic-deployment-proxy
@@ -459,6 +469,7 @@ async function main() {
     signer,
   );
 
+  // Dummy value
   const constructorArgument = 123;
   const encodedConstructorArg = ethers.AbiCoder.defaultAbiCoder().encode(
     ['uint256'],
@@ -470,6 +481,7 @@ async function main() {
   // On each script run, this salt should be different otherwise the deployment will fail
   // Don't use random bytes as salt, use a deterministic salt to be able to deploy on a different network
   // using the same salt, to produce the same address
+  // Should be a hex string like 0x1322322... (32 bytes)
   const deploymentSalt = '<bytes32-salt>';
 
   // Precompute the address of the contract to be deployed without initialization
@@ -499,7 +511,7 @@ async function main() {
 
   // Precompute the address of the contract to be deployed with initialization
   const encodedFunctionCallForInit = contractWithoutInit.interface.encodeFunctionData('setNumber', [
-    456,
+    456, // Dummy value
   ]);
   const precomputedAddressWithInit = await lsp16UniversalFactory.computeAddress(
     ethers.keccak256(contractBytecodeWithArg),
@@ -544,11 +556,12 @@ async function main() {
 
   const proxyContract = new ethers.Contract(precomputedProxyAddress, TargetContractABI, signer);
   const numberInProxyWithoutInit = await proxyContract.number();
+  // The number will be 0, as a proxy does not have state unless its initialized
   console.log('The number in proxy without initialization is: ', numberInProxyWithoutInit);
 
   // Encode function call for proxy initialization
   const encodedFunctionCallForProxyInit = proxyContract.interface.encodeFunctionData('setNumber', [
-    789,
+    789, // Dummy value
   ]);
 
   // Precompute the address for initialized ERC1167 proxy
