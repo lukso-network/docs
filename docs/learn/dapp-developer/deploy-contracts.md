@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🏭 Deploy contracts'
-sidebar_position: 10
+sidebar_position: 11
 description: Learn how to deploy a contract from your Universal Profile.
 ---
 
