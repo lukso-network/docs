@@ -219,7 +219,7 @@ const precomputedAddressWithoutInit =
     ethers.keccak256(contractBytecodeWithArg),
     deploymentSalt,
     false, // --> boolean indicating whether the contract is initializable
-    '0x',  // --> bytes representing the initialize data
+    '0x', // --> bytes representing the initialize data
   );
 
 // Deploy contract without initialization
@@ -236,7 +236,10 @@ const contractWithoutInit = new ethers.Contract(
 );
 
 const numberInContractWithoutInit = await contractWithoutInit.number();
-console.log('The number in the non-initialized contract is: ', numberInContractWithoutInit);
+console.log(
+  'The number in the non-initialized contract is: ',
+  numberInContractWithoutInit,
+);
 ```
 
 ### Case 2: Contract with Constructor with intializable function
@@ -253,7 +256,7 @@ const encodedFunctionCallForInit =
 const precomputedAddressWithInit = await lsp16UniversalFactory.computeAddress(
   ethers.keccak256(contractBytecodeWithArg),
   deploymentSalt,
-  true,                       // --> boolean indicating whether the contract is initializable
+  true, // --> boolean indicating whether the contract is initializable
   encodedFunctionCallForInit, // --> bytes representing the initialize data
 );
 
@@ -274,7 +277,10 @@ const contractWithInit = new ethers.Contract(
 );
 
 const numberInContractWithInit = await contractWithInit.number();
-console.log('The number in the initialized contract is: ', numberInContractWithInit);
+console.log(
+  'The number in the initialized contract is: ',
+  numberInContractWithInit,
+);
 ```
 
 ### Case 3: ERC-1167 Proxy contract
@@ -290,7 +296,7 @@ const precomputedProxyAddress =
     precomputedAddressWithInit,
     deploymentSalt,
     false, // --> boolean indicating whether the contract is initializable
-    '0x',  // --> bytes representing the initialize data
+    '0x', // --> bytes representing the initialize data
   );
 
 // Deploy ERC1167 proxy
@@ -308,7 +314,10 @@ const proxyContract = new ethers.Contract(
 );
 
 const numberInProxyWithoutInit = await proxyContract.number();
-console.log('The number in proxy without initialization is: ', numberInProxyWithoutInit);
+console.log(
+  'The number in proxy without initialization is: ',
+  numberInProxyWithoutInit,
+);
 ```
 
 ### Case 4: ERC-1167 Proxy contract with initializable function
@@ -325,7 +334,7 @@ const precomputedInitializedProxyAddress =
   await lsp16UniversalFactory.computeERC1167Address(
     precomputedAddressWithInit,
     deploymentSalt,
-    true,                            // --> boolean indicating whether the contract is initializable
+    true, // --> boolean indicating whether the contract is initializable
     encodedFunctionCallForProxyInit, // --> bytes representing the initialize data
   );
 
@@ -346,7 +355,6 @@ const initializedProxyContract = new ethers.Contract(
 const numberInProxyAfterInit = await initializedProxyContract.number();
 console.log('The number in the initialized proxy is: ', numberInProxyAfterInit);
 ```
-
 
 ### Generating CREATE2 Salt
 
