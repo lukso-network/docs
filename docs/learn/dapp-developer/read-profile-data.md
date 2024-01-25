@@ -68,16 +68,16 @@ To read the profile data you simply instantiate the ⚒️ [erc725.js](https://w
 
 The [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
 
-<Tabs>  
+<Tabs>
   <TabItem value="javascript" label="JavaScript">
 
 <!-- prettier-ignore-start -->
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import lsp3UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
 
-const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
+const erc725js = new ERC725(lsp3UniversalProfileSchema, '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
     ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
@@ -97,9 +97,9 @@ console.log(profileData);
 
 ```js
 import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import lsp3UniversalProfileSchema from '@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json';
 
-const erc725js = new ERC725(lsp3ProfileSchema as ERC725JSONSchema[], '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
+const erc725js = new ERC725(lsp3UniversalProfileSchema as ERC725JSONSchema[], '<myProfileAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
     ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
