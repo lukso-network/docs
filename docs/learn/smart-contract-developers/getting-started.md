@@ -6,6 +6,12 @@ description: Create a Hardhat project and start building your smart contracts fo
 
 # Getting started
 
+:::warning
+
+Please remember to always be careful when deploying smart contract, do not forget to process a security audit before deploying your smart contracts on production.
+
+:::
+
 Smart contract developer, welcome to the LUKSO documentation! The LUKSO ecosystem offers you a lot of [new standards](../../standards/introduction.md) and tools to build more powerful blockchain applications which are - _very important_ - standardised.
 
 As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO. The following tutorial will teach you how to:
@@ -25,9 +31,9 @@ The first thing to do is to [create a new Hardhat project](https://hardhat.org/h
 ```bash
 mkdir lukso-app
 cd lukso-app
-npx hardhat
+npx hardhat init
 # select 'Create a TypeScript project' and
-# use the default value for the rest of the setup
+# use the default values for the rest of the setup
 ```
 
 Once finished, you have a working Hardhat setup!
@@ -38,7 +44,8 @@ To work in the best condition possible, we will install libraries that includes 
 
 ```bash
 npm i -D dotenv
-npm i -s @lukso/lsp-smart-contracts@0.12.1
+npm i -s @lukso/lsp-smart-contracts@latest
+# Please check the package version related to the tutorial you are reading
 ```
 
 Update your `package.json` with the following:
