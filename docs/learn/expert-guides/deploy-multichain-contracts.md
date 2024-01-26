@@ -1,12 +1,12 @@
 ---
 sidebar_label: '⛓ Deploy Multichain Contracts'
 sidebar_position: 8
-description: Learn to deploy contracts on multiple blockchains with LSP16-UniversalFactory with the same addresses.
+description: description: Learn to deploy contracts with the same addresses on multiple blockchains using LSP16-UniversalFactory.
 ---
 
 # Deploy Multichain Contracts
 
-In this guide, we will focus on deploying contracts to the same address across different blockchains using the [LSP16-UniversalFactory](../../standards/generic-standards/lsp16-universal-factory.md) standard. While this method is suitable for deploying a variety of contracts, it's important to note that for deploying Universal Profiles specifically that requires setup with several contracts, the [LSP23-LinkedContractFactory](../smart-contract-developers/deploy-up-with-lsp23.md) is recommended as it facilitates the setup and linking of several contracts more efficiently.
+In this guide, we will focus on deploying a contract at the same address across different blockchains using the [LSP16-UniversalFactory](../../standards/generic-standards/lsp16-universal-factory.md) standard. While this method is suitable for deploying a variety of contracts, it's important to note that for deploying Universal Profiles specifically that requires setup with several contracts, the [LSP23-LinkedContractFactory](../smart-contract-developers/deploy-up-with-lsp23.md) is recommended as it facilitates the setup and linking of several contracts more efficiently.
 
 ## Contract Creation
 
@@ -93,7 +93,7 @@ Once compiled using Hardhat, navigate to the `artifacts/contracts/TargetContract
 
 </details>
 
-This file is essential for the upcoming steps and should be moved to the same directory as `main.js`.
+**This file is essential for the upcoming steps and should be moved to the same directory as `main.js`.**
 
 Once you have the ABI and the bytecode of the contract to deploy, you can start writing your script. We will use the `main.js` file in a new repo.
 
@@ -157,14 +157,14 @@ if (!isNickFactoryDeployed) {
   const rawTx =
     '0xf8a58085174876e800830186a08080b853604580600e600039806000f350fe7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf31ba02222222222222222222222222222222222222222222222222222222222222222a02222222222222222222222222222222222222222222222222222222222222222';
 
-  const sentNickTx = await provider.broadcastTransaction(rawTx);
-  await sentNickTx.wait();
+  const deployNickFactoryTx = await provider.broadcastTransaction(rawTx);
+  await deployNickFactoryTx.wait();
 }
 ```
 
 ### Deployment of LSP16UniversalFactory
 
-If `LSP16UniversalFactory` doesn't exist, we'll need to deploy it:
+If `LSP16UniversalFactory` doesn't exist, we'll need to deploy it, we'll get the standardized salt and bytecode from the [LSP16-UniversalFactory specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#standardized-bytecode)
 
 ```js title="main.js"
 if (!isLSP16FactoryDeployed) {
@@ -222,8 +222,8 @@ const precomputedAddressWithoutInit =
   await lsp16UniversalFactory.computeAddress(
     ethers.keccak256(contractBytecodeWithArg),
     deploymentSalt,
-    false, // --> boolean indicating whether the contract is initializable
-    '0x', // --> bytes representing the initialize data
+    false, // --> boolean indicating if the contract should be initialized or not after deployment
+    '0x', // --> bytes representing the calldata to initialize the contract
   );
 
 // Deploy contract without initialization
@@ -260,8 +260,8 @@ const encodedFunctionCallForInit =
 const precomputedAddressWithInit = await lsp16UniversalFactory.computeAddress(
   ethers.keccak256(contractBytecodeWithArg),
   deploymentSalt,
-  true, // --> boolean indicating whether the contract is initializable
-  encodedFunctionCallForInit, // --> bytes representing the initialize data
+  true, // --> boolean indicating if the contract should be initialized or not after deployment
+  encodedFunctionCallForInit, // --> bytes representing the calldata to initialize the contract
 );
 
 // Deploy and initialize contract
@@ -299,8 +299,8 @@ const precomputedProxyAddress =
   await lsp16UniversalFactory.computeERC1167Address(
     precomputedAddressWithInit,
     deploymentSalt,
-    false, // --> boolean indicating whether the contract is initializable
-    '0x', // --> bytes representing the initialize data
+    false, // --> boolean indicating if the contract should be initialized or not after deployment
+    '0x', // --> bytes representing the calldata to initialize the contract
   );
 
 // Deploy ERC1167 proxy
@@ -339,8 +339,8 @@ const precomputedInitializedProxyAddress =
   await lsp16UniversalFactory.computeERC1167Address(
     precomputedAddressWithInit,
     deploymentSalt,
-    true, // --> boolean indicating whether the contract is initializable
-    encodedFunctionCallForProxyInit, // --> bytes representing the initialize data
+    true, // --> boolean indicating if the contract should be initialized or not after deployment
+    encodedFunctionCallForProxyInit, // --> bytes representing the calldata to initialize the contract
   );
 
 // Deploy and initialize ERC1167 proxy
@@ -363,9 +363,13 @@ console.log('The number in the initialized proxy is: ', numberInProxyAfterInit);
 
 ### Generating CREATE2 Salt
 
+:::info
+
 This section is primarily intended for advanced developers who require knowledge of the specific salt used in address generation. Developers focusing on basic deployment across multiple chains may not need this detailed information and can precompute the address of the contract to be created using the provided method of the contract.
 
-The `LSP16UniversalFactory` uses a unique approach to deploying contracts with CREATE2. Instead of using the salt directly, it combines and hashes the salt with other parameters.
+:::
+
+The `LSP16UniversalFactory` uses a unique approach to deploy contracts with CREATE2. Instead of using the salt directly, it combines and hashes the salt with other parameters.
 
 ```js title="main.js"
 // Precompute the salt for deployment
@@ -374,8 +378,8 @@ const providedSalt = '<salt>'; // replace with your actual salt
 
 const precomputedProvidedSalt = await lsp16UniversalFactory.generateSalt(
   providedSalt,
-  <boolean>,                // --> boolean indicating whether the contract is initializable
-  <empty or encoded call>,  // --> bytes representing the initialize data
+  <boolean>,                // --> boolean indicating if the contract should be initialized or not after deployment
+  <empty or encoded call>,  // --> bytes representing the calldata to initialize the contract
 );
 
 console.log('The actual salt used for deployment is: ', precomputedProvidedSalt);
@@ -447,8 +451,8 @@ async function main() {
   // Sending raw transaction specified by the Nick factory
   const rawTx =
     '0xf8a58085174876e800830186a08080b853604580600e600039806000f350fe7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf31ba02222222222222222222222222222222222222222222222222222222222222222a02222222222222222222222222222222222222222222222222222222222222222';
-  const sentNickTx = await provider.broadcastTransaction(rawTx);
-  await sentNickTx.wait();
+  const deployNickFactoryTx = await provider.broadcastTransaction(rawTx);
+  await deployNickFactoryTx.wait();
   }
 
   if (!isLSP16FactoryDeployed) {
@@ -488,8 +492,8 @@ async function main() {
   const precomputedAddressWithoutInit = await lsp16UniversalFactory.computeAddress(
     ethers.keccak256(contractBytecodeWithArg),
     deploymentSalt,
-    false,  // --> boolean indicating whether the contract is initializable
-    '0x',   // --> bytes representing the initialize data
+    false,  // --> boolean indicating if the contract should be initialized or not after deployment
+    '0x',   // --> bytes representing the calldata to initialize the contract
   );
 
   // Deploy contract without initialization
@@ -516,8 +520,8 @@ async function main() {
   const precomputedAddressWithInit = await lsp16UniversalFactory.computeAddress(
     ethers.keccak256(contractBytecodeWithArg),
     deploymentSalt,
-    true,                       // --> boolean indicating whether the contract is initializable
-    encodedFunctionCallForInit, // --> bytes representing the initialize data
+    true,                       // --> boolean indicating if the contract should be initialized or not after deployment
+    encodedFunctionCallForInit, // --> bytes representing the calldata to initialize the contract
   );
 
   // Deploy and initialize contract
@@ -543,8 +547,8 @@ async function main() {
   const precomputedProxyAddress = await lsp16UniversalFactory.computeERC1167Address(
     precomputedAddressWithInit,
     deploymentSalt,
-    false,  // --> boolean indicating whether the contract is initializable
-    '0x',   // --> bytes representing the initialize data
+    false,  // --> boolean indicating if the contract should be initialized or not after deployment
+    '0x',   // --> bytes representing the calldata to initialize the contract
   );
 
   // Deploy ERC1167 proxy
@@ -569,8 +573,8 @@ async function main() {
     await lsp16UniversalFactory.computeERC1167Address(
       precomputedAddressWithInit,
       deploymentSalt,
-      true,                             // --> boolean indicating whether the contract is initializable
-      encodedFunctionCallForProxyInit,  // --> bytes representing the initialize data
+      true,                             // --> boolean indicating if the contract should be initialized or not after deployment
+      encodedFunctionCallForProxyInit,  // --> bytes representing the calldata to initialize the contract
     );
 
   // Deploy and initialize ERC1167 proxy
