@@ -1,7 +1,7 @@
 ---
 sidebar_label: '⛓ Deploy Multichain Contracts'
 sidebar_position: 8
-description: description: Learn to deploy contracts with the same addresses on multiple blockchains using LSP16-UniversalFactory.
+description: Learn to deploy contracts with the same addresses on multiple blockchains using LSP16-UniversalFactory.
 ---
 
 # Deploy Multichain Contracts
