@@ -57,7 +57,7 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
             tokenName_,
             tokenSymbol_,
             tokenContractOwner_,
-            uint256 lsp4TokenType_,
+            lsp4TokenType_,
             isNonDivisible_
         )
     {
@@ -97,7 +97,7 @@ You are now ready to deploy your contract on the [**LUKSO Testnet network**](../
 
 ### Update hardhat config
 
-```solidity title="contracts/MyCustomToken.sol"
+```ts title="hardhat.config.ts"
 import { HardhatUserConfig } from 'hardhat/config';
 import { config as LoadEnv } from 'dotenv';
 import '@nomicfoundation/hardhat-toolbox';
