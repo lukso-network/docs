@@ -17,6 +17,12 @@ Currently, the UP Browser Extension is supported on **Chrome and Brave browsers*
 
 ### :inbox_tray: **[Download the Extension from Chrome Web Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) (Chrome / Brave)**
 
+<div style={{textAlign: 'center'}}>
+
+<img src="/img/extension/chrome-store.png" alt="screenshot of the extension in the chrome store" style={{maxWidth: '500px'}} />
+
+</div>
+
 #### Example dApps for testing the UP Browser Extension
 
 | Name                                                                | Description                                                                       | Built by  |
