@@ -8,10 +8,10 @@ description: Getting started building dApps on the LUKSO ecosystem.
 
 ## 🖥️ Get the LUKSO Universal Profile browser extension
 
-To build dApps for LUKSO, you will need:
+To build dApps for LUKSO, you will need to:
 
-- a Universal Profile (UP)
-- the [LUKSO Universal Profile browser extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn)
+- create a Universal Profile (UP)
+- install the [LUKSO Universal Profile browser extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn)
 
 The extension allows you to create, interact, manage your UP and to access the `window.lukso` object from your dApp.
 
