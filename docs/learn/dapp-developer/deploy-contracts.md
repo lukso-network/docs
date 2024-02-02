@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 ## Setup
 
 ```shell
-npm install ethers@v5.7
+npm install ethers
 ```
 
 ## Deploy a contract from a Universal Profile
@@ -35,18 +35,18 @@ The Universal Profile browser extension will magically wrap all the calls intern
 ```js
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.Web3Provider(window.lukso);
+const provider = new ethers.BrowserProvider(window.lukso);
 
 await provider.send("eth_requestAccounts", []);
 
-const signer = provider.getSigner();
+const signer = await provider.getSigner();
 const account = await signer.getAddress();
 
 // Send transaction
 const tx = await signer.sendTransaction({
     from: account,                        // The Universal Profile address
-    value: 0                              // optional, in case constructor is payable
-    data: "0x0x608060405234801561001.."   // Full bytecode of the contract to deploy + constructor args
+    value: 0,                             // optional, in case constructor is payable
+    data: "0x608060405234801561001..."   // Full bytecode of the contract to deploy + constructor args
 });
 
 const receipt = await tx.wait();
@@ -55,7 +55,7 @@ const receipt = await tx.wait();
 You can use the [contract factory from ethers.js](https://docs.ethers.org/v5/api/contract/contract-factory/#ContractFactory) to deploy a contract by supplying its ABI and bytecode. For instance, if you're deploying an [LSP7Mintable](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you can obtain its ABI and bytecode from the `@lukso/lsp-smart-contracts` package.
 
 ```shell
-npm install @lukso/lsp-smart-contracts@v0.14
+npm install @lukso/lsp-smart-contracts
 ```
 
 <!-- prettier-ignore-start -->
@@ -80,7 +80,7 @@ const transaction = await lsp7Factory.deploy(
     false
   );
           
-const receipt = await transaction.deployTransaction.wait();
+const receipt = await transaction.waitForDeployment();
 ```
 <!-- prettier-ignore-end -->
 
@@ -93,11 +93,11 @@ There will be no `contractAddress` field in the transaction `receipt` unlike nor
 ```js
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.Web3Provider(window.lukso);
+const provider = new ethers.BrowserProvider(window.lukso);
 
 await provider.send("eth_requestAccounts", []);
 
-const signer = provider.getSigner();
+const signer = await provider.getSigner();
 const account = await signer.getAddress();
 
 // Send transaction

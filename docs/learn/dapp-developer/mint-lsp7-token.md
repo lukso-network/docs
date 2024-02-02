@@ -64,7 +64,7 @@ import { ethers } from 'ethers';
 const myTokenAddress = '0x...';
 
 await ethers.provider.send('eth_requestAccounts', []);
-const signer = ethers.provider.getSigner();
+const signer = await ethers.getSigner();
 ```
 
   </TabItem>
@@ -130,7 +130,7 @@ console.log('🏦 Balance: ', balance.toString());
 
 ```javascript title="ethers.js"
 // mint 1 token
-const amount = ethers.utils.parseUnits('1', 'ether');
+const amount = ethers.parseUnits('1', 'ether');
 
 const mintTxn = await myToken.mint(
   signer.address, // recipient address
