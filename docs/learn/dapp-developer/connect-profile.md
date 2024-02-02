@@ -4,6 +4,9 @@ sidebar_position: 2
 description: Learn how to connect your Universal Profile to a dApp (decentralized application) on LUKSO.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Connect a Universal Profile
 
 To interact with a [Universal Profile](../../standards/universal-profile/introduction.md), we recommend your dApp to call the `window.lukso` object within the browser. Before a connection can be established, users have to create their Universal Profile by:
@@ -31,22 +34,47 @@ The [Universal Profile Extension](/install-up-browser-extension) automatically m
 
 :::
 
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
+
+```sh
+npm install ethers
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3">
+
+```sh
+npm install web3
+```
+
+  </TabItem>
+</Tabs>
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
+
+```js
+import { ethers } from 'ethers';
+const provider = new ethers.BrowserProvider(window.lukso);
+
+const accounts = await provider.send('eth_requestAccounts', []);
+console.log('Connected with', accounts[0]);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3">
+
 ```js
 import Web3 from 'web3';
-const web3 = new Web3(window.lukso);
+const provider = new Web3(window.lukso);
 
-async function connect() {
-  await web3.eth.requestAccounts();
-
-  try {
-    const accounts = await web3.eth.requestAccounts();
-    console.log('Connected with', accounts[0]);
-  } catch (error) {
-    // handle connection error
-  }
-}
-connect();
+const accounts = await provider.eth.requestAccounts();
+console.log('Connected with', accounts[0]);
 ```
+
+  </TabItem>
+</Tabs>
 
 <div style={{textAlign: 'center'}}>
 
@@ -58,15 +86,27 @@ connect();
 
 </div>
 
-:::info Handling Multiple Extensions
+## Handle multiple extensions
 
 If you expect your users to have multiple browser wallets or extensions, we recommend installing [Web3 Onboard](https://onboard.blocknative.com/) by following our [Web3 Onboard Configuration](./web3-onboard.md). The library will allow users to manage multiple browser providers in parallel.
 
-Alternatively, you can use a simple fallback, in case the [Universal Profile Browser Extension](/install-up-browser-extension) is not installed:
+Alternatively, you can use a simple fallback to allow regular wallet connections, if the [Universal Profile Browser Extension](/install-up-browser-extension) is not installed:
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
 
 ```js
 const providerObject = window.lukso || window.ethereum;
-const web3 = new Web3(providerObject);
+const provider = new ethers.BrowserProvider(providerObject);
 ```
 
-:::
+  </TabItem>
+  <TabItem value="web3" label="web3">
+
+```js
+const providerObject = window.lukso || window.ethereum;
+const provider = new Web3(providerObject);
+```
+
+  </TabItem>
+</Tabs>
