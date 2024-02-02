@@ -23,7 +23,7 @@ The [Universal Profile Browser Extension](https://chrome.google.com/webstore/det
 
 ## Setup
 
-The implement Sign In With Ethereum for Universal Profiles (smart accounts), you will have to install:
+To implement Sign In With Ethereum for Universal Profiles (smart accounts), you will have to install:
 
 - a **provider library** to connect to the account
 - the **SIWE library** to prepare and manage the custom messages
