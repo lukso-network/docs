@@ -44,7 +44,7 @@ As every Universal Profile comes with a 📢 [Universal Receiver](../../standard
 
 :::info Code Examples
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/fetch-asset) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=fetch-asset%2Fget-data-keys.js).
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/digital-assets) repository.
 
 :::
 

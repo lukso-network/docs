@@ -16,7 +16,7 @@ You can also use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tec
 
 :::info
 
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=metadata-detection%2Fdigital-asset-check.js).
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository.
 
 :::
 
