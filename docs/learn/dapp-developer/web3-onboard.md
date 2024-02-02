@@ -4,6 +4,9 @@ sidebar_position: 12
 description: Use Web3-Onboard with the LUKSO Universal Profile Browser Extension.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Universal Profile Integration for Web3-Onboard
 
 The [Web3-Onboard](https://onboard.blocknative.com/) library is an open-source, framework-agnostic JavaScript tool to onboard users to Web3 apps. Developers can integrate it into their dApp to handle the routing for the different extensions and wallets, simultaneously docking onto the Ethereum provider. It's the **recommended way** to interact with the Universal Profile Browser extension, **if your dApp supports different wallets**.
@@ -160,6 +163,9 @@ const web3OnboardComponent: OnboardAPI = Onboard({
 
 To set and access the Web3-Onboard wallet within your dApp, you can call the integrated `connectWallet()` method provided by the `@web3-onboard/core` library. The library will show a connection window with all supported wallets. You can then fetch the active wallet and set it as the default provider within your dApp.
 
+<Tabs>
+  <TabItem value="ethers" label="ethers">
+
 ```js
 // Trigger the connection process and screen
 const connectedWallets = await web3OnboardComponent.connectWallet();
@@ -168,6 +174,21 @@ if (connectedWallets.length > 0) {
   const provider = new ethers.BrowserProvider(connectedWallets[0].provider);
 }
 ```
+
+  </TabItem>
+  <TabItem value="web3" label="web3">
+
+```js
+// Trigger the connection process and screen
+const connectedWallets = await web3OnboardComponent.connectWallet();
+if (connectedWallets.length > 0) {
+  // If a wallet has been connected, set it as default provider
+  const provider = new Web3(connectedWallets[0].provider);
+}
+```
+
+  </TabItem>
+</Tabs>
 
 ## Disconnect
 
