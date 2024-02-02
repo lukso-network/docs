@@ -169,7 +169,7 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
+const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 const myUniversalProfileAddress = '0x...';
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 ```
@@ -408,7 +408,7 @@ const web3 = new Web3('https://rpc.testnet.lukso.network');
 const myUniversalProfileAddress = '0x...';
 
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
-const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
+const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 const erc725 = new ERC725(

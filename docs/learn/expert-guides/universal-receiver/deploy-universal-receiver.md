@@ -342,11 +342,8 @@ const addressPermissionsOldArrayLengthHex = await universalProfile[
   'getData(bytes32)'
 ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length);
 
-const addressPermissionsNewArrayLength = ethers.BigNumber.from(
-  addressPermissionsOldArrayLengthHex,
-)
-  .add(1)
-  .toNumber();
+const addressPermissionsNewArrayLength =
+  ethers.toBigInt(addressPermissionsOldArrayLengthHex) + ethers.toBigInt(1);
 
 const addressPermissionsNewArrayLengthHex =
   '0x' + addressPermissionsNewArrayLength.toString(16).padStart(32, '0');
@@ -493,11 +490,8 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     'getData(bytes32)'
   ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length);
 
-  const addressPermissionsNewArrayLength = ethers.BigNumber.from(
-    addressPermissionsOldArrayLengthHex,
-  )
-    .add(1)
-    .toNumber();
+  const addressPermissionsNewArrayLength =
+    ethers.toBigInt(addressPermissionsOldArrayLengthHex) + ethers.toBigInt(1);
 
   const addressPermissionsNewArrayLengthHex =
     '0x' + addressPermissionsNewArrayLength.toString(16).padStart(32, '0');
@@ -661,7 +655,7 @@ import { ethers } from 'ethers';
 import { ERC725 } from '@erc725/erc725.js';
 
 // constants
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
@@ -697,11 +691,8 @@ const updateUniversalProfileURD = async (universalProfileURDAddress) => {
     'getData(bytes32)'
   ](ERC725YDataKeys.LSP6['AddressPermissions[]'].length);
 
-  const addressPermissionsNewArrayLength = ethers.BigNumber.from(
-    addressPermissionsOldArrayLengthHex,
-  )
-    .add(1)
-    .toNumber();
+  const addressPermissionsNewArrayLength =
+    ethers.toBigInt(addressPermissionsOldArrayLengthHex) + ethers.toBigInt(1);
 
   const addressPermissionsNewArrayLengthHex =
     '0x' + addressPermissionsNewArrayLength.toString(16).padStart(64, '0');

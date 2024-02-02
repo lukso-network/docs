@@ -122,11 +122,11 @@ const targetContract = new web3.eth.Contract(
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Imports & Constants"
+import { ethers } from 'ethers';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import TargetContractABI from './TargetContractABI.json';
-import { ethers } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 
@@ -301,11 +301,11 @@ await universalProfile.methods
 
 
 ```typescript title="Final code"
+import { ethers } from 'ethers';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 import TargetContractABI from './TargetContractABI.json';
-import { ethers } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 
