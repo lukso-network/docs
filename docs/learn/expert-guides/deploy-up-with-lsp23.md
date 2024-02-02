@@ -1,24 +1,18 @@
 ---
 sidebar_label: '🏭 Deploying a Universal Profile and its Key Manager using LSP23'
 description: 'Learn how to deploy a Universal Profile using LSP23.'
-sidebar_position: 7
+sidebar_position: 1
 ---
 
 # Deploying a Universal Profile using LSP-23
 
-:::note
-
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../smart-contract-developers/getting-started.md) section.
-
-:::
-
 ## Introduction
 
 This guide will walk you through the steps to deploy a Universal Profile and its Key Manager using LSP23 Linked Contract Factory. We will not do a deep dive into the LSPs specifications. For more information on these specifications, please refer to the [LSP23 specification](../../standards/generic-standards/lsp23-linked-contracts-factory.md), the [Universal Profile specification](../../standards/universal-profile/introduction.md), and the [LSP6 Key Manager specification](../../standards/universal-profile/lsp6-key-manager.md).
+You will be guided on how to create a script that could be used to deploy a Universal Profile and its Key Manager. In this example, we will be framework agnostic, but if you wish to see how to use it in Hardhat, you can refer to the [LUKSO Playground](https://github.com/lukso-network/lukso-playground) repository.
 
 ## Prerequisites
 
-- [Hardhat installed and initialized](../smart-contract-developers/getting-started.md)
 - [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package installed from npm using `npm i @lukso/lsp-smart-contracts@0.14.0` (or the latest version)
 - The address of the LSP23 Linked Contracts Factory contract
 - The address of the LSP23 Post Deployment module contract
@@ -29,15 +23,12 @@ This guide will walk you through the steps to deploy a Universal Profile and its
 
 For this guide, we will use the minimal proxy versions of the contracts we will deploy (Key Manager and Universal Profile). This means that we will deploy proxies contracts that will point to their implementation contracts. It is a gas-efficient way to deploy contracts. For more information on minimal proxies, please refer to the [EIP-1167](https://eips.ethereum.org/EIPS/eip-1167) specification.
 
-Once you have initialized and installed the dependencies of your hardhat project, you can start writing your deployment script. We will use the `deploy.ts` file in the `scripts/` folder. You can remove the existing code in the file and start writing your own.
-
 ### Add the imports
 
-Add the imports of the artifacts, constants and libraries that we will use:
+Add to your file the imports of the artifacts, constants and libraries that we will use:
 
 ```typescript
-import { ethers } from 'hardhat';
-import { AbiCoder } from 'ethers';
+import { AbiCoder, Contract, ethers } from 'ethers';
 
 // import the artifacts
 import LSP23FactoryArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP23LinkedContractsFactory.json';
@@ -52,15 +43,16 @@ import { ALL_PERMISSIONS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 Below the imports section, add the addresses of the contracts that you want to use. For this guide we will use the following addresses:
 
 ```typescript
-const LSP23FactoryAddress = '0x2300000A84D25dF63081feAa37ba6b62C4c89a30';
-const LSP23PostDeploymentModuleAddress =
+const LSP23_FACTORY_ADDRESS = '0x2300000A84D25dF63081feAa37ba6b62C4c89a30';
+const LSP23_POST_DEPLOYMENT_MODULE =
   '0x000000000066093407b6704B89793beFfD0D8F00';
-const UniversalProfileImplementationAddress =
+const UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS =
   '0x3024D38EA2434BA6635003Dc1BDC0daB5882ED4F';
-const LSP6KeyManagerImplementationAddress =
+const LSP6_KEY_MANAGER_IMPLEMENTATION_ADDRESS =
   '0x2Fe3AeD98684E7351aD2D408A43cE09a738BF8a4';
 // this will be needed later so we can set the Universal Receiver to the Universal Profile (see https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver)
-const UniversalReceiverAddress = '0x7870C5B8BC9572A8001C3f96f7ff59961B23500D';
+const UNIVERSAL_RECEIVER_ADDRESS = '0x7870C5B8BC9572A8001C3f96f7ff59961B23500D';
+const MAIN_CONTROLLER = '0x3303Ce3b8644D566271DD2Eb54292d32F1458968';
 ```
 
 ### Add salt to the constants
@@ -69,8 +61,17 @@ The LSP23 Linked Contracts Factory contract uses a salt to generate the address 
 For this guide we will use the following salt:
 
 ```typescript
-const salt =
+const SALT =
   '0x5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed';
+```
+
+### Add the RPC URL and the private key
+
+Add the RPC URL and the private key of the account that will deploy the Universal Profile and its Key Manager:
+
+```typescript
+const RPC_URL = 'https://rpc.testnet.lukso.network';
+const PRIVATE_KEY = '0xYOUR_PRIVATE_KEY';
 ```
 
 ### Instantiate the contracts
@@ -79,14 +80,24 @@ Instantiate the contracts that we will be interacting with using the addresses f
 
 ```typescript
 async function main() {
-  const lsp23FactoryContract = await ethers.getContractAt(
+  // Set up the provider
+  const provider = new ethers.JsonRpcProvider(RPC_URL);
+
+  // Set up the signer
+  const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+
+  // Interacting with the LSP23Factory contract
+  const lsp23FactoryContract = new Contract(
+    LSP23_FACTORY_ADDRESS,
     LSP23FactoryArtifact.abi,
-    LSP23FactoryAddress,
+    signer,
   );
 
-  const universalProfileImplementationContract = await ethers.getContractAt(
+  // Interacting with the UniversalProfileImplementation contract
+  const universalProfileImplementationContract = new Contract(
+    UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS,
     UniversalProfileInitArtifact.abi,
-    UniversalProfileImplementationAddress,
+    signer,
   );
 }
 ```
@@ -100,19 +111,19 @@ async function main() {
   // previous code
 
   const universalProfileInitStruct = {
-    salt,
+    SALT,
     fundingAmount: 0,
-    implementationContract: UniversalProfileImplementationAddress,
+    implementationContract: UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS,
     initializationCalldata:
       universalProfileImplementationContract.interface.encodeFunctionData(
         'initialize',
-        [LSP23PostDeploymentModuleAddress],
+        [LSP23_POST_DEPLOYMENT_MODULE],
       ), // this will call the initialize() function of the Universal Profile and the the LSP23PostDeploymentModule address as owner
   };
 
   const keyManagerInitStruct = {
     fundingAmount: 0,
-    implementationContract: LSP6KeyManagerImplementationAddress,
+    implementationContract: LSP6_KEY_MANAGER_IMPLEMENTATION_ADDRESS,
     addPrimaryContractAddress: true, // this will append the primary contract address to the init calldata
     initializationCalldata: '0xc4d66de8', // initialize() function selector ( the deployed Universal Profile's address will be appended to this calldata)
     extraInitializationParams: '0x',
@@ -166,7 +177,7 @@ async function main() {
 
   const universalReceiverPermissionsKey =
     ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    UniversalReceiverAddress.slice(2);
+    UNIVERSAL_RECEIVER_ADDRESS.slice(2);
   const universalReceiverPermissionsValue =
     '0x0000000000000000000000000000000000000000000000000000000000060080'; // REENTRANCY & SUPER_SETDATA permissions
 }
@@ -186,7 +197,7 @@ async function main() {
 
   const mainControllerPermissionsKey =
     ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    mainController.slice(2);
+    MAIN_CONTROLLER.slice(2);
   // main controller will have all permissions on the Universal Profile
   const mainControllerPermissionsValue = ALL_PERMISSIONS;
 }
@@ -216,7 +227,7 @@ async function main() {
     ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
     abiCoder.encode(['uint128'], [0]).slice(34); // remove the 0x and the first 16 bytes of the index
   console.log(addressPermissionsArrayFirstElementKey);
-  const addressPermissionsArrayFirstElementValue = UniversalReceiverAddress; // first element is the Universal Receiver
+  const addressPermissionsArrayFirstElementValue = UNIVERSAL_RECEIVER_ADDRESS; // first element is the Universal Receiver
 
   const addressPermissionsArraySecondElementKey =
     ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
@@ -246,7 +257,7 @@ async function main() {
     ],
     [
       lsp3DataValue, // LSP3Metadata data value
-      UniversalReceiverAddress, // URD Address
+      UNIVERSAL_RECEIVER_ADDRESS, // URD Address
       universalReceiverPermissionsValue, // URD Permissions data value
       mainControllerPermissionsValue, // main controller permissions data value
       addressPermissionsLengthDataValue, // Address Permissions array length data value
@@ -269,7 +280,7 @@ async function main() {
     await lsp23FactoryContract.deployERC1167Proxies.staticCall(
       universalProfileInitStruct,
       keyManagerInitStruct,
-      LSP23PostDeploymentModuleAddress,
+      LSP23_POST_DEPLOYMENT_MODULE,
       initializeEncodedBytes,
     );
 
@@ -287,7 +298,7 @@ async function main() {
   const tx = await lsp23FactoryContract.deployERC1167Proxies(
     universalProfileInitStruct,
     keyManagerInitStruct,
-    LSP23PostDeploymentModuleAddress,
+    LSP23_POST_DEPLOYMENT_MODULE,
     initializeEncodedBytes,
   );
   await tx.wait(1);
@@ -302,52 +313,62 @@ Your final script should look like this:
 <summary>Click to expand/collapse the script</summary>
 
 ```typescript
-import { ethers } from 'hardhat';
-import { AbiCoder } from 'ethers';
-import LSP23FactoryArtifact from '../node_modules/@lukso/lsp-smart-contracts/artifacts/LSP23LinkedContractsFactory.json';
-import UniversalProfileInitArtifact from '../node_modules/@lukso/lsp-smart-contracts/artifacts/UniversalProfileInit.json';
+import { AbiCoder, Contract, ethers } from 'ethers';
+import LSP23FactoryArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP23LinkedContractsFactory.json';
+import UniversalProfileInitArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfileInit.json';
 import { ALL_PERMISSIONS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
-const LSP23FactoryAddress = '0x2300000A84D25dF63081feAa37ba6b62C4c89a30';
-const LSP23PostDeploymentModuleAddress =
+const LSP23_FACTORY_ADDRESS = '0x2300000A84D25dF63081feAa37ba6b62C4c89a30';
+const LSP23_POST_DEPLOYMENT_MODULE =
   '0x000000000066093407b6704B89793beFfD0D8F00';
-const UniversalProfileImplementationAddress =
+const UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS =
   '0x3024D38EA2434BA6635003Dc1BDC0daB5882ED4F';
-const LSP6KeyManagerImplementationAddress =
+const LSP6_KEY_MANAGER_IMPLEMENTATION_ADDRESS =
   '0x2Fe3AeD98684E7351aD2D408A43cE09a738BF8a4';
-const UniversalReceiverAddress = '0x7870C5B8BC9572A8001C3f96f7ff59961B23500D'; // this will be needed later so we can set the Universal Receiver to the Universal Profile (see https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver)
-const mainController = '0x3303Ce3b8644D566271DD2Eb54292d32F1458968';
-
-const salt =
+const UNIVERSAL_RECEIVER_ADDRESS = '0x7870C5B8BC9572A8001C3f96f7ff59961B23500D'; // this will be needed later so we can set the Universal Receiver to the Universal Profile (see https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver)
+const MAIN_CONTROLLER = '0x3303Ce3b8644D566271DD2Eb54292d32F1458968';
+const SALT =
   '0x5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed5eed';
 
+const RPC_URL = 'https://rpc.testnet.lukso.network';
+const PRIVATE_KEY = '0xYOUR_PRIVATE_KEY';
+
 async function main() {
-  // instantiate the contracts
-  const lsp23FactoryContract = await ethers.getContractAt(
+  // Set up the provider
+  const provider = new ethers.JsonRpcProvider(RPC_URL);
+
+  // Set up the signer
+  const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+
+  // Interacting with the LSP23Factory contract
+  const lsp23FactoryContract = new Contract(
+    LSP23_FACTORY_ADDRESS,
     LSP23FactoryArtifact.abi,
-    LSP23FactoryAddress,
+    signer,
   );
 
-  const universalProfileImplementationContract = await ethers.getContractAt(
+  // Interacting with the UniversalProfileImplementation contract
+  const universalProfileImplementationContract = new Contract(
+    UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS,
     UniversalProfileInitArtifact.abi,
-    UniversalProfileImplementationAddress,
+    signer,
   );
 
   // create the init structs
   const universalProfileInitStruct = {
-    salt,
+    SALT,
     fundingAmount: 0,
-    implementationContract: UniversalProfileImplementationAddress,
+    implementationContract: UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS,
     initializationCalldata:
       universalProfileImplementationContract.interface.encodeFunctionData(
         'initialize',
-        [LSP23PostDeploymentModuleAddress],
-      ), // this will call the `initialize(...)` function of the Universal Profile and the the LSP23PostDeploymentModuleAddress as owner
+        [LSP23_POST_DEPLOYMENT_MODULE],
+      ), // this will call the `initialize(...)` function of the Universal Profile and the the LSP23_POST_DEPLOYMENT_MODULE as owner
   };
 
   const keyManagerInitStruct = {
     fundingAmount: 0,
-    implementationContract: LSP6KeyManagerImplementationAddress,
+    implementationContract: LSP6_KEY_MANAGER_IMPLEMENTATION_ADDRESS,
     addPrimaryContractAddress: true, // this will append the primary contract address to the init calldata
     initializationCalldata: '0xc4d66de8', // `initialize(...)` function selector
     extraInitializationParams: '0x',
@@ -364,13 +385,13 @@ async function main() {
   // create the permissions data keys
   const universalReceiverPermissionsKey =
     ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    UniversalReceiverAddress.slice(2);
+    UNIVERSAL_RECEIVER_ADDRESS.slice(2);
   const universalReceiverPermissionsValue =
     '0x0000000000000000000000000000000000000000000000000000000000060080'; // REENTRNACY & SUPER_SETDATA permissions
 
   const mainControllerPermissionsKey =
     ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    mainController.slice(2);
+    MAIN_CONTROLLER.slice(2);
   const mainControllerPermissionsValue = ALL_PERMISSIONS; // main controller will have all permissions on the Universal Profile
 
   // create the AddressPermissions[] length data key and data value
@@ -384,12 +405,12 @@ async function main() {
   const addressPermissionsArrayFirstElementKey =
     ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
     abiCoder.encode(['uint'], [0]).slice(34); // remove the 0x and the first 16 bytes of the index
-  const addressPermissionsArrayFirstElementValue = UniversalReceiverAddress; // first element is the Universal Receiver
+  const addressPermissionsArrayFirstElementValue = UNIVERSAL_RECEIVER_ADDRESS; // first element is the Universal Receiver
 
   const addressPermissionsArraySecondElementKey =
     ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
     abiCoder.encode(['uint'], [1]).slice(34); // remove the 0x and the first 16 bytes of the index
-  const addressPermissionsArraySecondElementValue = mainController; // second element is the main controller
+  const addressPermissionsArraySecondElementValue = MAIN_CONTROLLER; // second element is the main controller
 
   // encode the calldata that will be used to initialize the Universal Profile
   const types = ['bytes32[]', 'bytes[]']; // types of the parameters
@@ -405,7 +426,7 @@ async function main() {
     ],
     [
       lsp3DataValue, // LSP3Metadata data value
-      UniversalReceiverAddress, // URD Address
+      UNIVERSAL_RECEIVER_ADDRESS, // URD Address
       universalReceiverPermissionsValue, // URD Permissions data value
       mainControllerPermissionsValue, // main controller permissions data value
       addressPermissionsLengthDataValue, // Address Permissions array length data value
@@ -419,7 +440,7 @@ async function main() {
     await lsp23FactoryContract.deployERC1167Proxies.staticCall(
       universalProfileInitStruct,
       keyManagerInitStruct,
-      LSP23PostDeploymentModuleAddress,
+      LSP23_POST_DEPLOYMENT_MODULE,
       initializeEncodedBytes,
     );
   console.log('Universal Profile address:', upAddress);
@@ -428,22 +449,15 @@ async function main() {
   const tx = await lsp23FactoryContract.deployERC1167Proxies(
     universalProfileInitStruct,
     keyManagerInitStruct,
-    LSP23PostDeploymentModuleAddress,
+    LSP23_POST_DEPLOYMENT_MODULE,
     initializeEncodedBytes,
   );
   await tx.wait(1);
 }
-
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
 ```
 
 </details>
 
-### Run the script
+### Conclusion
 
-You can now run the script using `npx hardhat run scripts/deploy.ts --network <networkName>`.
+This is just an example on how you could implement the deployment of a Universal Profile and its Key Manager using the LSP23 Linked Contracts Factory. You can use this script as a base to create your own deployment script that would fit more your need. You can also refer to the [LUKSO Playground](https://github.com/lukso-network/lukso-playground) repository to see how it could be implemented using Hardhat.
