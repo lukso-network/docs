@@ -215,7 +215,7 @@ To apply security measures on the server side of your application, you can use t
 ```js
 const domain = window.location.host; // Domain requesting the signing
 const uri = window.location.origin; // URI from the resource that is the subject of the signature
-const chainId = '4201'; // A specific Chain ID to which the session is bound to
+const LUKSO_TESTNET_CHAIN_ID = '4201'; // The Chain ID to which the session is bound to
 const nonce = 'm97bdsjo'; // A randomized token, at least 8 alphanumeric characters
 const issuedAt = new Date().toISOString(); // The time when the message was generated
 
@@ -227,7 +227,7 @@ By logging in you agree to the terms and conditions.
 
 URI: ${uri}
 Version: 1
-Chain ID: ${chainId}
+Chain ID: ${LUKSO_TESTNET_CHAIN_ID}
 Nonce: ${nonce}
 Issued At: ${issuedAt}
 Resources:
