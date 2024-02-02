@@ -13,7 +13,7 @@ This guide will teach you how to tranfer an existing [LSP7 Digital Asset](../../
 
 :::info
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/transfer-token/regular-transaction.js) and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=transfer-token%2Fregular-transaction.js).
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/digital-assets).
 
 The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) makes it easy to send token transactions without having to interact with the smart contract of the Universal Profile. If you are building a service or backend, you can also 👾 [execute transfers by directly calling the profile contract](https://github.com/lukso-network/lukso-playground/blob/main/transfer-token/backend-transaction.js) and preparing the calldata.
 

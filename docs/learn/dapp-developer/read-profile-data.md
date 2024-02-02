@@ -22,7 +22,7 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/fetch-profile/) repository and ⚡️ [StackBlitz](https://stackblitz.com/github/lukso-network/lukso-playground?file=fetch-profile%2Fget-data-keys.js).
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/universal-profile) repository.
 
 :::
 
