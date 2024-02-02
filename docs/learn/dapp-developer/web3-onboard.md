@@ -4,9 +4,12 @@ sidebar_position: 12
 description: Use Web3-Onboard with the LUKSO Universal Profile Browser Extension.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Universal Profile Integration for Web3-Onboard
 
-The [Web3-Onboard](https://onboard.blocknative.com/) library is an open-source, framework-agnostic JavaScript tool to onboard users to Web3 apps. Developers can integrate it into their dApp to handle the routing for the different extensions and wallets, simultaneously docking onto the Ethereum provider.
+The [Web3-Onboard](https://onboard.blocknative.com/) library is an open-source, framework-agnostic JavaScript tool to onboard users to Web3 apps. Developers can integrate it into their dApp to handle the routing for the different extensions and wallets, simultaneously docking onto the Ethereum provider. It's the **recommended way** to interact with the Universal Profile Browser extension, **if your dApp supports different wallets**.
 
 ![web3-onboard-view](/img/extension/web3-onboard.png)
 
@@ -154,13 +157,61 @@ const web3OnboardComponent: OnboardAPI = Onboard({
   appMetadata: appInfo,
   connect: connectionOptions,
 });
-
-// Calling the connect functionality,
-const connectedWallets = await web3OnboardComponent.connectWallet();
-
-// Debug
-console.log(connectedWallets);
 ```
+
+## Connect
+
+To set and access the Web3-Onboard wallet within your dApp, you can call the integrated `connectWallet()` method provided by the `@web3-onboard/core` library. The library will show a connection window with all supported wallets. You can then fetch the active wallet and set it as the default provider within your dApp.
+
+<Tabs>
+  <TabItem value="ethers" label="ethers">
+
+```js
+// Trigger the connection process and screen
+const connectedWallets = await web3OnboardComponent.connectWallet();
+if (connectedWallets.length > 0) {
+  // If a wallet has been connected, set it as default provider
+  const provider = new ethers.BrowserProvider(connectedWallets[0].provider);
+}
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3">
+
+```js
+// Trigger the connection process and screen
+const connectedWallets = await web3OnboardComponent.connectWallet();
+if (connectedWallets.length > 0) {
+  // If a wallet has been connected, set it as default provider
+  const provider = new Web3(connectedWallets[0].provider);
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Disconnect
+
+To disconnect your wallet, you have to call the `disconnectWallet()` method provided by the `@web3-onboard/core` library. This method requires specifying the wallet you wish to disconnect. You can obtain the necessary information from the state of the Web3-Onboard component, maintaining the current wallet connections.
+
+```js
+// Retrieve the current onboard state
+const onboardState = web3OnboardComponent.state.get();
+
+// Extract the current connected wallets
+const [currentWallet] = onboardState.wallets;
+
+if (currentWallet) {
+  // If there is an active connection, trigger the disconnect process
+  await web3OnboardComponent.disconnectWallet({ label: currentWallet.label });
+}
+```
+
+:::info Maintaining compatibility
+
+The Universal Profile Browser Extension only handles **one active account connection** at a time. This behavior differs from regular wallets. Therefore, the `disconnectWallet()` method should be called on every provider's `accountsChanged` and `chainChanged` events. The state updates will ensure the Web3-Onboard connection synchronizes with the extension.
+
+:::
 
 ## Sample Implementations
 
