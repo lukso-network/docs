@@ -6,7 +6,7 @@ description: Learn to deploy contracts with the same addresses on multiple block
 
 # Deploy Multichain Contracts
 
-In this guide, we will focus on deploying a contract at the same address across different blockchains using the [LSP16-UniversalFactory](../../standards/generic-standards/lsp16-universal-factory.md) standard. While this method is suitable for deploying a variety of contracts, it's important to note that for deploying Universal Profiles specifically that requires setup with several contracts, the [LSP23-LinkedContractFactory](../smart-contract-developers/deploy-up-with-lsp23.md) is recommended as it facilitates the setup and linking of several contracts more efficiently.
+In this guide, we will focus on deploying a contract at the same address across different blockchains using the [LSP16-UniversalFactory](../../standards/generic-standards/lsp16-universal-factory.md) standard. While this method is suitable for deploying a variety of contracts, it's important to note that for deploying Universal Profiles specifically that requires setup with several contracts, the [LSP23-LinkedContractFactory](./deploy-up-with-lsp23.md) is recommended as it facilitates the setup and linking of several contracts more efficiently.
 
 ## Contract Creation
 
