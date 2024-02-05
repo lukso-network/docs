@@ -87,9 +87,11 @@ import { ethers } from 'ethers';
 // Import smart contract ABI
 import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
 
+const provider = new ethers.BrowserProvider(window.lukso);
+
 await provider.send("eth_requestAccounts", []);
 
-const signer = provider.getSigner();
+const signer = await provider.getSigner();
 
 // Instanciate the token with an address
 const myToken = new ethers.Contract('0x...', LSP7Mintable.abi);

@@ -85,18 +85,18 @@ await web3.eth.sendTransaction({
 ```js
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.Web3Provider(window.lukso);
+const provider = new ethers.BrowserProvider(window.lukso);
 
 await provider.send("eth_requestAccounts", []);
 
-const signer = provider.getSigner();
+const signer = await provider.getSigner();
 const account = await signer.getAddress();
 
 // Send transaction
 const tx = await signer.sendTransaction({
     from: account,                        // The Universal Profile address
     to: '0x...',                          // Receiving address, can be a UP or EOA
-    value: ethers.utils.parseEther('0.5') // 0.5 amount in ETH, in wei unit
+    value: ethers.parseEther('0.5') // 0.5 amount in ETH, in wei unit
 });
 ```
 <!-- prettier-ignore-end -->

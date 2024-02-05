@@ -67,9 +67,11 @@ import { ethers } from 'ethers';
 // import smart contract ABI
 import LSP8IdentifiableDigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
 
-await ethers.provider.send('eth_requestAccounts', []);
+const provider = new ethers.BrowserProvider(window.lukso);
 
-const signer = provider.getSigner();
+await provider.send('eth_requestAccounts', []);
+
+const signer = await provider.getSigner();
 
 const lsp8ContractAddress = '0x...';
 ```
