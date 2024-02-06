@@ -1,6 +1,6 @@
 ---
 title: 🔍 ERC725 Tools
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # ERC725 Tools
