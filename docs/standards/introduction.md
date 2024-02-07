@@ -4,7 +4,7 @@ sidebar_position: 1
 description: Introduction to LSPs (LUKSO Standars Proposals).
 ---
 
-import LegoGallery from '@site/src/components/LegoGallery';
+import StandardsGallery from '@site/src/components/StandardsGallery';
 
 # The LUKSO Standard Proposals (LSPs)
 
@@ -71,7 +71,7 @@ This section lists and describes the LSPs Standards representing the foundation 
 
 The LSPs introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, and NFT 2.0**.
 
-<LegoGallery />
+<StandardsGallery />
 
 ## Further Information
 
