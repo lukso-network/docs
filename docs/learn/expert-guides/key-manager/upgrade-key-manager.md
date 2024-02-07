@@ -86,7 +86,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 
@@ -331,7 +331,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import LSP6KeyManager from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider('https://rpc.testnet.lukso.network');
+const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
 
 const privateKey = '0x...';
 const universalProfileAddress = '0x...';

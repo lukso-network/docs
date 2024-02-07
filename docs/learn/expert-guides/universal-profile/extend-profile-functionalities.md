@@ -48,7 +48,7 @@ When a call is made to the Universal Profile for a function not natively support
 Install the dependencies
 
 ```bash
-npm install ethers@v5 @lukso/lsp-smart-contracts
+npm install ethers @lukso/lsp-smart-contracts
 ```
 
 ### Step 1: Create the Extension Contract
@@ -167,7 +167,7 @@ const RPC_URL = 'https://rpc.testnet.lukso.network';
 // Replace with your private key
 const privateKey = 'your-private-key';
 
-const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+const provider = new ethers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(privateKey, provider);
 ```
 
@@ -228,7 +228,7 @@ import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 // We get `TipMeABI` from the last step
 // import {abi as TipMeABI} from './TipMe.json';
-const tipMeInterface = new ethers.utils.Interface(TipMeABI);
+const tipMeInterface = new ethers.Interface(TipMeABI);
 const tipMeFunctionSelector = tipMeInterface.getSighash('tipMe()');
 
 // Define the DataKey for the extension
@@ -286,7 +286,7 @@ const universalProfileWithExtension = new ethers.Contract(
 // Make sure the address associated with the private key have enough native tokens to send
 
 const tipMeTx = await universalProfileWithExtension.tipMe({
-  value: ethers.utils.parseEther('0.1'),
+  value: ethers.parseEther('0.1'),
 });
 
 await tipMeTx.wait();
@@ -317,7 +317,7 @@ async function main() {
   // Replace with your private key
   const privateKey = 'your-private-key';
 
-  const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+  const provider = new ethers.JsonRpcProvider(RPC_URL);
   const signer = new ethers.Wallet(privateKey, provider);
 
   const universalProfileAddress = 'your-universal-profile-address';
@@ -337,7 +337,7 @@ async function main() {
   const tipMeContract = await TipMeFactory.deploy();
   await tipMeContract.deployTransaction.wait();
 
-  const tipMeInterface = new ethers.utils.Interface(TipMeABI);
+  const tipMeInterface = new ethers.Interface(TipMeABI);
   const tipMeFunctionSelector = tipMeInterface.getSighash('tipMe()');
 
   // Define the DataKey for the extension
@@ -363,7 +363,7 @@ async function main() {
 
   // Calling the tipMe() function on the Universal Profile
   const tipMeTx = await universalProfileWithExtension.tipMe({
-    value: ethers.utils.parseEther('0.1'),
+    value: ethers.parseEther('0.1'),
   });
   await tipMeTx.wait();
 }
@@ -469,9 +469,7 @@ We need to encode the function selector of `supportsInterface(..)` and store it 
 ```js
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
-const supportsInterfaceInterface = new ethers.utils.Interface(
-  SupportsInterfaceABI,
-);
+const supportsInterfaceInterface = new ethers.Interface(SupportsInterfaceABI);
 const supportsInterfaceFunctionSelector = supportsInterfaceInterface.getSighash(
   'supportsInterface(bytes4)',
 );
@@ -525,7 +523,7 @@ async function main() {
   // Replace with your private key
   const privateKey = 'your-private-key';
 
-  const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+  const provider = new ethers.JsonRpcProvider(RPC_URL);
   const signer = new ethers.Wallet(privateKey, provider);
 
   const universalProfileAddress = 'your-universal-profile-address';
@@ -547,9 +545,7 @@ async function main() {
 
   const supportsInterfaceExtensionAddress = supportsInterfaceContract.addres;
 
-  const supportsInterfaceInterface = new ethers.utils.Interface(
-    SupportsInterfaceABI,
-  );
+  const supportsInterfaceInterface = new ethers.Interface(SupportsInterfaceABI);
   const supportsInterfaceFunctionSelector =
     supportsInterfaceInterface.getSighash('supportsInterface(bytes4)');
 

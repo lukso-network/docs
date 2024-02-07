@@ -28,7 +28,7 @@ import {UniversalProfile} from '@lukso/lsp-smart-contracts/contracts/UniversalPr
 - Use this typechain command:
 
 ```bash
-typechain --target ethers-v5 --out-dir types './node_modules/@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json'
+typechain --target ethers-v6 --out-dir types './node_modules/@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json'
 ```
 
 ## Deploy our custom LSP1 Delegate forwarder

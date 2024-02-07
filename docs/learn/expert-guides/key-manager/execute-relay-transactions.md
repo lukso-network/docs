@@ -97,7 +97,7 @@ import { ethers } from 'ethers';
 // This is the version relative to the LSP25 standard, defined as the number 25.
 import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 const universalProfileAddress = '0x...';
@@ -224,7 +224,7 @@ const msgValue = 0; // Amount of native tokens to fund the UP with while calling
 const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
   0, // Operation type: CALL
   recipientAddress,
-  ethers.utils.parseEther('3'), // transfer 3 LYX to recipient
+  ethers.parseEther('3'), // transfer 3 LYX to recipient
   '0x', // Data
 ]);
 ```
@@ -294,7 +294,7 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 const { chainId } = await provider.getNetwork();
 
 // prettier-ignore
-let encodedMessage = ethers.utils.solidityPack(
+let encodedMessage = ethers.solidityPacked(
   ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
   [
     // MUST be number `25`
@@ -491,7 +491,7 @@ import { ethers } from 'ethers';
 // This is the version relative to the LSP25 standard, defined as the number 25.
 import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 const universalProfileAddress = '0x...';
@@ -532,7 +532,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 const { chainId } = await provider.getNetwork();
 
 // prettier-ignore
-let encodedMessage = ethers.utils.solidityPack(
+let encodedMessage = ethers.solidityPacked(
   ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
   [
     // MUST be number `25`
