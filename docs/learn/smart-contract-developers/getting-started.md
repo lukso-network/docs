@@ -14,7 +14,7 @@ The LUKSO ecosystem offers smart contract developers a lot of [new standards](..
 The following tutorial will teach you how to:
 
 - set up a [Hardhat](https://hardhat.org/) project using TypeScript
-- configure the contract settings, [networks](../../networks/testnet/parameters) and Blockscout API
+- configure the contract settings, [networks](../../networks/testnet/parameters) and [Blockscout API](https://explorer.execution.testnet.lukso.network/api-docs)
 - utilize LSP smart contract presets using the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)
 - compile and deploy LSP-based smart contracts
 - verify smart contracts on [Blockscout](https://explorer.execution.testnet.lukso.network/)
@@ -154,9 +154,9 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-## Utilize LSP smart contract presets
+## Use LSP smart contract presets
 
-To utilize LSP smart contracts within your Hardhat project, you can install the latest version of the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package like the following:
+To use LSP smart contracts within your Hardhat project, you can install the latest version of the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package like the following:
 
 ```bash
 npm install @lukso/lsp-smart-contracts@latest
@@ -322,13 +322,13 @@ You can find ready-to-go example contracts within the [`lukso-playground`](https
 
 :::warning
 
-Please remember to always be careful when deploying smart contracts. Do not forget to process a security audit before deploying your smart contracts on production.
+Please remember to always be careful when deploying smart contracts. Do not forget to audit your code before deploying your smart contracts in production.
 
 :::
 
 ## Verify smart contracts
 
-To verify a deployed contract, you can use the blockscout API properties set up within the `hardhat.config.ts`. You have to pass a file with all the constructor arguments that you've defined when deploying the smart contract, as well as the address of the deployed smart contract. The parameters and the compiled contract code are then used to verify the payload of the deployed contract on the address.
+To verify a deployed contract, you can use the [Blockscout API](https://explorer.execution.testnet.lukso.network/api-docs) properties set up within the `hardhat.config.ts`. You have to pass a file with all the constructor arguments that you've defined when deploying the smart contract, as well as the address of the deployed smart contract. The parameters and the compiled contract code are then used to verify the payload of the deployed contract on the address.
 
 Create a new file that houses all the constructor parameters upon deployment:
 
