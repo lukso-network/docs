@@ -118,7 +118,7 @@ This is especially important if a lot of functionality is inherited, as the byte
 
 After the contract file has been successfully compiled, you are ready to create a script to deploy it's token on the [LUKSO Testnet network](../../networks/testnet/parameters). To deploy your token on chain we **recommend using a controller and address of a Universal Profile**, so your asset will be connected and fetchable from your on-chain persona. Optionally, you can also use a regular Externally Owned Account (EOA).
 
-<Tabs>
+<Tabs groupId="deployment">
   <TabItem value="up" label="Deploy with Universal Profile">
 
 ```ts title="scripts/deployMyCustomToken.ts"
@@ -261,7 +261,7 @@ You can check the deployed token address on the [Testnet Execution Explorer](htt
 
 After the token contract has been successfully deployed, you can fetch and set metadata to the [ERC725Y](../../standards/generic-standards/lsp2-json-schema/) contract storage using [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata) schema:
 
-<Tabs>
+<Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with Universal Profile">
 
 ```ts title="scripts/attachAssetMetadata.ts"
@@ -289,6 +289,12 @@ async function attachAssetMetadata(
     signer.address,
   );
 
+  // Load the Universal Profile
+  const universalProfile = await ethers.getContractAtFromArtifact(
+    LSP0Artifact,
+    process.env.UP_ADDR as string,
+  );
+
   // Set up the token contract
   const token = new ethers.Contract(
     myAssetAddress,
@@ -296,18 +302,27 @@ async function attachAssetMetadata(
     signer,
   );
 
-  // Read the current token metadata
   const metadataKey = ERC725YDataKeys.LSP4['LSP4Metadata'];
+
+  // Read the current token metadata
   const currentMetadata = await token.getData(metadataKey);
   console.log(
     'Current token metadata:',
     JSON.stringify(currentMetadata, undefined, 2),
   );
 
-  // Update the token metadata
-  const tx = await token.setData(
+  // Create the transaction payload for the contract call
+  const setDataPayload = token.interface.encodeFunctionData('setData', [
     metadataKey,
     ethers.utils.toUtf8Bytes(myMetadataURI),
+  ]);
+
+  // Update the token metadata
+  const tx = await universalProfile.connect(signer).getFunction('execute')(
+    0, // Operation type: CALL
+    myAssetAddress,
+    0, // Value is empty
+    setDataPayload,
   );
 
   // Wait for the transaction to be included in a block
@@ -315,7 +330,7 @@ async function attachAssetMetadata(
   console.log('Token metadata updated:', receipt);
 }
 
-attachAssetMetadata()
+attachAssetMetadata(CustomTokenAddress, 'https://link.to.my.metadata')
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
@@ -350,8 +365,9 @@ async function attachAssetMetadata(
     signer,
   );
 
-  // Read the current token metadata
   const metadataKey = ERC725YDataKeys.LSP4['LSP4Metadata'];
+
+  // Read the current token metadata
   const currentMetadata = await token.getData(metadataKey);
   console.log(
     'Current token metadata:',
@@ -369,7 +385,7 @@ async function attachAssetMetadata(
   console.log('Token metadata updated:', receipt);
 }
 
-attachAssetMetadata()
+attachAssetMetadata(CustomTokenAddress, 'https://link.to.my.metadata')
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
@@ -383,7 +399,7 @@ attachAssetMetadata()
 
 :::info
 
-You can only set one file as `VerifiableURI` for a token. This file will include all the data and media references. If you want to update individual properties, please get the latest contents of a contract's storage key, modify specific properties, and re-upload the full file. This can then be used to edit the storage by calling the `setData()` function.
+You can only set one file link as `VerifiableURI` for a token. This file will include all the data and media references. If you want to update individual properties, please get the latest contents of a contract's storage key, modify specific properties, and re-upload the full file. This can then be used to edit the storage by calling the `setData()` function.
 
 :::
 
