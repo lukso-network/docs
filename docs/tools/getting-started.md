@@ -18,7 +18,7 @@ sidebar_position: 1
     <td><a href="https://github.com/lukso-network/lsp-smart-contracts" target="_blank" rel="noopener noreferrer">lukso-network/lsp-smart-contracts</a></td>
   </tr>
   <tr>
-    <td><a href="./lsp-utils/getting-started">lsp-utils</a></td>
+    <td><a href="/tools/lsp-utils/getting-started">lsp-utils</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://www.npmjs.com/package/@lukso/lsp-utils" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badgen badge" src="https://img.shields.io/npm/v/@lukso/lsp-utils.svg?style=flat&label=%40lukso%2Flsp-utils"/></a></td>
     <td><a href="https://github.com/lukso-network/lsp-utils" target="_blank" rel="noopener noreferrer">lukso-network/lsp-utils</a></td>
   </tr>
