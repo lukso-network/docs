@@ -4,13 +4,16 @@ sidebar_position: 1
 description: Create a Hardhat project and start building your smart contracts for LUKSO.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Getting started building contracts
 
 The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO.
 
-The following tutorial will teach you how use LSP:
+The following tutorial will teach you how to:
 
-- set up a [HardHat](https://hardhat.org/) project using TypeScript
+- set up a [Hardhat](https://hardhat.org/) project using TypeScript
 - configure the contract settings, [networks](../../networks/testnet/parameters) and Blockscout API
 - utilize LSP smart contract presets using the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)
 - compile and deploy LSP-based smart contracts
@@ -20,20 +23,20 @@ If you need more low level information about our contracts, you can check the de
 
 ### Playground Repository
 
-Want to dive into the code directly? The [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository has a full HardHat setup, including ready-to-go network configurations, sample contracts, and scripts to deploy and verify LSP-based contracts on LUKSO networks using both EOAs or Universal Profiles.
+Want to dive into the code directly? The [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository has a full Hardhat setup, including ready-to-go network configurations, sample contracts, and scripts to deploy and verify LSP-based contracts on LUKSO networks using both EOAs or Universal Profiles.
 
 <div style={{textAlign: 'center'}}>
 
 <img
 src="/img/guides/playground_hardhat.png"
-alt="LUKSO Playground HardHat"
+alt="LUKSO Playground Hardhat"
 />
 
 </div>
 
 ## Set up a Hardhat project
 
-First, create a new folder for the HardHat repository:
+First, create a new folder for the Hardhat repository:
 
 ```bash
 mkdir lukso-hardhat-repo
@@ -44,7 +47,7 @@ Afterward, [initialize the Hardhat project](https://hardhat.org/hardhat-runner/d
 
 ```bash
 npx hardhat init
-# Proceed installing the HardHat library
+# Proceed installing the Hardhat library
 # select 'Create a TypeScript project'
 # use the default values for the rest of the setup
 # This will install the toolbox for deployment and verification
@@ -64,7 +67,7 @@ node_modules
 .env
 ```
 
-You can then go ahead to create a `.env` file within the root folder of the HardHat repository and the following contents:
+You can then go ahead to create a `.env` file within the root folder of the Hardhat repository and the following contents:
 
 ```text title=".env"
 PRIVATE_KEY=0x...
@@ -153,7 +156,7 @@ export default config;
 
 ## Utilize LSP smart contract presets
 
-To utilize LSP smart contracts within your HardHat project, you can install the latest version of the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package like the following:
+To utilize LSP smart contracts within your Hardhat project, you can install the latest version of the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package like the following:
 
 ```bash
 npm install @lukso/lsp-smart-contracts@latest
@@ -195,6 +198,87 @@ Add the `--verbose` and `--show-stack-traces` flags for further information.
 
 After the contract is compiled, you can create a deployment script to publish the contract on the blockchain.
 
+<Tabs>
+  <TabItem value="up" label="Deploy by Universal Profile">
+
+```js title="deployMyCustomToken.ts"
+import hre from 'hardhat';
+import { ethers } from 'hardhat';
+import * as dotenv from 'dotenv';
+import LSP0Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
+
+dotenv.config();
+
+async function deployContract() {
+
+  // Setup the provider
+  const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.gateway.fm');
+
+  // Setup the controller used to sign the deployment
+  const signer = new ethers.Wallet(process.env.PRIVATE_KEY as string, provider);
+  console.log('Deploying contracts with Universal Profile Controller: ', signer.address);
+
+  // Load the Universal Profile
+  const universalProfile = await ethers.getContractAtFromArtifact(
+    LSP0Artifact,
+    process.env.UP_ADDR as string,
+  );
+
+  // Create custom bytecode for the token deployment
+  const CustomTokenBytecode = hre.artifacts.readArtifactSync('MyCustomToken').bytecode;
+
+  const abiEncoder = new ethers.AbiCoder();
+
+  // Encode constructor params
+  const encodedConstructorParams = abiEncoder.encode(
+    [
+      // your custom constructor types
+    ],
+    [
+      // your custom constructor parameters
+    ],
+  );
+
+  // Add the constructor params to the Custom Token bytecode
+  const CustomTokenBytecodeWithConstructor =
+    CustomTokenBytecode + encodedConstructorParams.slice(2);
+
+  // Get the address of the custom token contract that will be created
+  const CustomTokenAddress = await universalProfile
+    .connect(signer)
+    .getFunction('execute')
+    .staticCall(
+      1, // Operation type: CREATE
+      ethers.ZeroAddress,
+      0, // Value is empty
+      CustomTokenBytecodeWithConstructor,
+    );
+
+  // Deploy the contract by the Universal Profile
+  const tx = await universalProfile.connect(signer).getFunction('execute')(
+    1, // Operation type: CREATE
+    ethers.ZeroAddress,
+    0, // Value is empty
+    CustomTokenBytecodeWithConstructor,
+  );
+
+  await tx.wait();
+
+  console.log('Deployed contract address: ', CustomTokenAddress);
+}
+
+deployContract()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+  </TabItem>
+
+  <TabItem value="eoa" label="Deploy by EOA">
+
 ```js title="deployMyCustomToken.ts"
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
@@ -220,11 +304,21 @@ deployContract()
   });
 ```
 
+  </TabItem>
+
+</Tabs>
+
 You can then continue to run the deployment script:
 
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployMyCustomToken.ts
 ```
+
+:::success Contract Examples
+
+You can find ready-to-go example contracts within the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
+
+:::
 
 :::warning
 
