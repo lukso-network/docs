@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import ThemedImage from '@theme/ThemedImage';
 import styles from './StandardsGallery.module.scss';
-import clsx from 'clsx';
 
 const STANDARDS = [
   {
@@ -15,112 +13,112 @@ const STANDARDS = [
   {
     title: '📢 LSP1',
     name: 'Universal Receiver',
-    link: './generic-standards/lsp1-universal-receiver',
+    link: '/standards/generic-standards/lsp1-universal-receiver',
 
     text: 'Notification receiver for incoming and outgoing transactions or information.',
   },
   {
     title: '🗄️ LSP2',
     name: 'ERC725Y JSON Schema',
-    link: './generic-standards/lsp2-json-schema',
+    link: '/standards/generic-standards/lsp2-json-schema',
 
     text: 'Describes ERC725Y data key-value pairs interpretation including encoding and decoding.',
   },
   {
     title: '🌐 LSP3',
     name: 'Profile Metadata',
-    link: './universal-profile/lsp3-profile-metadata',
+    link: '/standards/universal-profile/lsp3-profile-metadata',
 
     text: 'Set of ERC725Y data keys to describe a smart contract based blockchain profile.',
   },
   {
     title: '🔍 LSP4',
     name: 'Digital Asset Metadata',
-    link: './tokens/LSP4-Digital-Asset-Metadata',
+    link: '/standards/tokens/LSP4-Digital-Asset-Metadata',
 
     text: 'Describes metadata of digital assets via a set of ERC725Y data keys.',
   },
   {
     title: '📒 LSP5',
     name: 'Received Assets',
-    link: './universal-profile/lsp5-received-assets',
+    link: '/standards/universal-profile/lsp5-received-assets',
 
     text: 'Defines ERC725Y data keys storing addresses of received assets.',
   },
   {
     title: '🔐 LSP6',
     name: 'Key Manager',
-    link: './universal-profile/lsp6-key-manager',
+    link: '/standards/universal-profile/lsp6-key-manager',
 
     text: 'Contract with permissions controlled through multiple addresses.',
   },
   {
     title: '🪙 LSP7',
     name: 'Digital Asset',
-    link: './tokens/LSP7-Digital-Asset',
+    link: '/standards/tokens/LSP7-Digital-Asset',
 
     text: 'Standard for fungible or non-fungible digital assets with a unified interface.',
   },
   {
     title: '🎨 LSP8',
     name: 'Identifiable Digital Asset',
-    link: './tokens/LSP8-Identifiable-Digital-Asset',
+    link: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
 
     text: 'Interface for uniquely identifiable digital assets with specific metadata.',
   },
   {
     title: '🏦 LSP9',
     name: 'Vault',
-    link: './universal-profile/lsp9-vault',
+    link: '/standards/universal-profile/lsp9-vault',
 
     text: 'ERC725 smart contract variant representing a blockchain vault.',
   },
   {
     title: '📘 LSP10',
     name: 'Received Vaults',
-    link: './universal-profile/lsp10-received-vaults',
+    link: '/standards/universal-profile/lsp10-received-vaults',
 
     text: 'ERC725Y keys to list owned LSP9 Vaults.',
   },
   {
     title: '📗 LSP12',
     name: 'Issued Assets',
-    link: './universal-profile/lsp12-issued-assets',
+    link: '/standards/universal-profile/lsp12-issued-assets',
 
     text: 'List of issued assets by an individual or entity via ERC725Y keys.',
   },
   {
     title: '2️⃣ LSP14',
     name: 'Ownable 2 Steps',
-    link: './generic-standards/lsp14-ownable-2-step',
+    link: '/standards/generic-standards/lsp14-ownable-2-step',
 
     text: 'Module for secure two-step ownership management of smart contracts.',
   },
   {
     title: '🏭 LSP16',
     name: 'Universal Factory',
-    link: './generic-standards/lsp16-universal-factory',
+    link: '/standards/generic-standards/lsp16-universal-factory',
 
     text: 'Factory that facilitates the deployment of smart contracts at the same address across multiple chains.',
   },
   {
     title: '🧩 LSP17',
     name: 'Contract Extension',
-    link: './generic-standards/lsp17-contract-extension',
+    link: '/standards/generic-standards/lsp17-contract-extension',
 
     text: 'Extends smart contract functionalities with addable and removable plugins.',
   },
   {
     title: '🔄 LSP20',
     name: 'Call Verification',
-    link: './generic-standards/lsp20-call-verification',
+    link: '/standards/generic-standards/lsp20-call-verification',
 
     text: 'Facilitates smart contract interactions without resolving the owner first.',
   },
   {
     title: '🏭 LSP23',
     name: 'Linked Contracts Factory',
-    link: './generic-standards/lsp23-linked-contracts-factory',
+    link: '/standards/generic-standards/lsp23-linked-contracts-factory',
 
     text: 'Factory pattern standard for deploying two linked contracts across chains.',
   },
