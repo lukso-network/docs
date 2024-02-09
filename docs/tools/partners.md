@@ -46,6 +46,6 @@ Here is a list of services and projects that integrated the LUKSO network and re
 
 :::note
 
-If you are actively supporting the LUKSO ecosystem and would like to be featured on this page,<br></br> please reach out to [hello@lukso.network](mailto:hello@lukso.network).
+If you are actively supporting the LUKSO ecosystem and would like to be featured on this page,<br></br> please reach out to [growth@lukso.io](mailto:growth@lukso.io).
 
 :::
