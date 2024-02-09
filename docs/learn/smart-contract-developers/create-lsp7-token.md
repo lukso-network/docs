@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Token
 
-This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to a the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../contracts/introduction.md) of our documentation.
+This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../contracts/introduction.md) of our documentation.
 
 :::tip
 
@@ -31,7 +31,7 @@ You can find all the contracts and scripts of the guide within our [`lukso-playg
 
 :::
 
-For our sample deployment of the LSP7 token, will will use the following presets:
+For our sample deployment of the LSP7 token, we will use the following presets:
 
 - [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow creating new assets on the smart contract.
 - [`LSP7Burnable`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): allow tokens to be removed from the supply.
@@ -137,7 +137,7 @@ async function deployToken() {
   );
 
   // Setup the controller used to sign the deployment
-  const signer = new ethers.Wallet(process.env.PRIVATE_KEY as string, provider);
+  const [deployer] = await ethers.getSigners();
   console.log(
     'Deploying contracts with Universal Profile Controller: ',
     signer.address,
@@ -283,7 +283,7 @@ async function attachAssetMetadata(
   );
 
   // Setup the controller used to sign the deployment
-  const signer = new ethers.Wallet(process.env.PRIVATE_KEY as string, provider);
+  const [signer] = await ethers.getSigners();
   console.log(
     'Updating metadata with Universal Profile Controller: ',
     signer.address,
