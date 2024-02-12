@@ -245,7 +245,7 @@ deployToken()
 
 </Tabs>
 
-If you have not yet setup the LUKSO networks and private keys in HardHat, please check out the previous [Getting Started](./getting-started.md) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
+If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](./getting-started.md) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
 
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployMyCustomToken.ts
