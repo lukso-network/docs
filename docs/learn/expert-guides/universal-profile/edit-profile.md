@@ -3,6 +3,8 @@ sidebar_label: '🎀 Edit a Universal Profile'
 sidebar_position: 3
 ---
 
+import Details from '../../../../src/components/Details'
+
 # Edit a Universal Profile
 
 :::caution Disclaimer
@@ -352,7 +354,7 @@ await universalProfileContract.methods.setData(
 
 Below is the complete code snippet of this guide, with all the steps compiled together.
 
-<details>
+<Details>
     <summary><code>UniversalProfileMetadata.json</code> (example) - click to expand</summary>
 
 ```json
@@ -389,7 +391,7 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 }
 ```
 
-</details>
+</Details>
 
 ```javascript title="main.js"
 import Web3 from 'web3';
