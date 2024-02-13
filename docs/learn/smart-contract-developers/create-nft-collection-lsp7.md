@@ -14,9 +14,9 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 :::
 
-:::info
+:::tip
 
-⌨️ The full code of this example can be found in the 👾 [LUKSO-Hardhat-template](https://github.com/CJ42/LUKSO-Hardhat-template).
+The full code of this example can be found in the smart contract section of the 👾 [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
 
 :::
 
