@@ -6,6 +6,7 @@ description: Discover how to check your LUKSO CLI version and update it to the l
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Details from '../../../src/components/Details'
 
 # Update the Node
 
@@ -61,7 +62,7 @@ Afterward, you can check if your node stopped correctly.
 lukso status
 ```
 
-<details>
+<Details>
     <summary>Show how to force client shutdowns.</summary>
 
 If you have problems stopping the node processes, you can force their shutdowns using the `pkill` command.
@@ -86,7 +87,7 @@ sudo pkill lighthouse
 sudo pkill teku
 ```
 
-</details>
+</Details>
 
 <Tabs>
   <TabItem value="update-v08" label="Update from Version 0.8 or above">

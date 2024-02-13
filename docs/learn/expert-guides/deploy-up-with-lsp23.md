@@ -4,6 +4,8 @@ description: 'Learn how to deploy a Universal Profile using LSP23.'
 sidebar_position: 1
 ---
 
+import Details from '../../../src/components/Details'
+
 # Deploying a Universal Profile using LSP-23
 
 ## Introduction
@@ -309,7 +311,7 @@ async function main() {
 
 Your final script should look like this:
 
-<details>
+<Details>
 <summary>Click to expand/collapse the script</summary>
 
 ```typescript
@@ -456,7 +458,7 @@ async function main() {
 }
 ```
 
-</details>
+</Details>
 
 ### Conclusion
 
