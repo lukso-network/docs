@@ -14,13 +14,23 @@ The use of NFC within the blockchain space offers significant advantages, partic
 
 Additionally, NFC-enabled NFTs can prove participation in real-world events like concerts and meetups. By scanning an NFC chip at the event location, attendees can mint unique NFTs, which could later grant them access to exclusive content or rewards. This technology fosters a new level of interaction between creators, designers, and their communities, enhancing engagement and offering tangible to loyal supporters.
 
+## NFT Chips Types
+
+### Basic NFC Chips
+
+These chips store data like URLs. They are simple and suitable for directing users to websites or apps but offer limited functionality for secure blockchain interactions.
+
+### Advanced NFC Chips with Signing Capability
+
+Advanced NFC chips with the capability to sign messages and transactions are ideal for blockchain applications. These chips enable more than basic interactions; they can directly engage with the blockchain to perform actions like transferring or minting NFTs and interacting with generic smart contracts.
+
 ## LSPs Compatibility
 
-Typically, NFC and NFT integrations work by scanning an NFC chip, which redirects to a link or an app. This app is responsible for verifying ownership or triggering a transfer of an NFT to a user's account. Traditional setups often involve the NFT being held in an Externally Owned Account (EOA) and created according to the [ERC721] Token standard. However, for compatibility with the LUKSO ecosystem, there are important considerations to keep in mind, which involve the nature of the account holding the NFT and the token standards used.
+Typically, NFC and NFT integrations are used for verifying ownership or triggering a transfer of an NFT to a user's account. Traditional setups often involve the NFT being held in an Externally Owned Account (EOA) and created according to the [ERC721] Token standard. However, for compatibility with the LUKSO ecosystem, there are important considerations to keep in mind, which involve the nature of the account holding the NFT and the token standards used.
 
 ### Main Account
 
-In the context of LUKSO, the primary account for users is not a traditional Externally Owned Account [(EOA)], but a [UniversalProfile](../../standards/universal-profile/introduction.md), which is a smart contract-based account. This shift brings numerous advantages over EOAs, particularly in terms of flexibility and functionality. When integrating NFC with NFTs on LUKSO, it's crucial to ensure that the NFTs are compatible with smart contract accounts as recipients.
+In the context of LUKSO, the primary account for users is not a traditional Externally Owned Account [(EOA)], but a [UniversalProfile](../../standards/universal-profile/introduction.md), which is a smart contract-based account. In this context, when integrating NFC with NFTs on LUKSO, particularly NFC chips that can sign transactions, it's essential to ensure compatibility with these smart contract accounts. An advanced NFC chip can act as a controller for the UniversalProfile, enabling it to directly execute interactions such as transfers or other blockchain-based operations.
 
 ### Token Standards
 
@@ -28,12 +38,12 @@ LUKSO's ecosystem utilizes specific token standards, mainly **[LSP7-DigitalAsset
 
 ## Conclusion
 
-The NFC designed to be working on any EVM network will work on LUKSO but won't be compatible with its ecosystem, because the LUKSO ecosystem uses [different tools and standards](../migrate-to-lukso.md) than the one available on Ethereum. The only difference that needs to be made is to use the new token standards instead of [ERC721] or [ERC1155].
+The NFC designed to work on any EVM network will work on LUKSO but won't be compatible with its ecosystem, because the LUKSO ecosystem uses [different tools and standards](../migrate-to-lukso.md) than the one available on Ethereum. The only difference that needs to be made is to use the new token standards instead of [ERC721] or [ERC1155].
 
 ### Further Information
 
 - [Phygital Hackathon Project Video](https://www.youtube.com/watch?v=NZiShK34YZ8).
-- [Phygital Hackathon Project Github](https://github.com/Tuszy/phygital).
+- [Phygital Hackathon Project - GitHub](https://github.com/Tuszy/phygital).
 
 [ERC721]: https://eips.ethereum.org/EIPS/eip-721
 [ERC1155]: https://eips.ethereum.org/EIPS/eip-1155
