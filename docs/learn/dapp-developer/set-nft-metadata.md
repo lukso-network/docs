@@ -6,6 +6,7 @@ description: Learn how to set the metadata of a NFT part of a LSP8 Identifiable 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Details from '../../../src/components/Details'
 
 # Set LSP8 NFT Metadata
 
@@ -122,7 +123,7 @@ Here we will use the following parameters as examples:
 
 You can use the `encodeData` function from the [_erc725.js_](../../tools/erc725js/classes/ERC725.md#encodedata) library to encode a `VerifiableURI` easily.
 
-<details>
+<Details>
     <summary>Code example to encode a <code>VerifiableURI</code> using <i>erc725.js</i></summary>
 
 ```js
@@ -151,7 +152,7 @@ myErc725.encodeData([
 ]);
 ```
 
-</details>
+</Details>
 
 You can also check the code snippet example in the LSP2 specs to learn in details the [encoding of a `VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
 

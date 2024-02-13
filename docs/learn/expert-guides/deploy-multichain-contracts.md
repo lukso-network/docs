@@ -4,6 +4,8 @@ sidebar_position: 8
 description: Learn to deploy contracts with the same addresses on multiple blockchains using LSP16-UniversalFactory.
 ---
 
+import Details from '../../../src/components/Details'
+
 # Deploy Multichain Contracts
 
 In this guide, we will focus on deploying a contract at the same address across different blockchains using the [LSP16-UniversalFactory](../../standards/generic-standards/lsp16-universal-factory.md) standard. While this method is suitable for deploying a variety of contracts, it's important to note that for deploying Universal Profiles specifically that requires setup with several contracts, the [LSP23-LinkedContractFactory](./deploy-up-with-lsp23.md) is recommended as it facilitates the setup and linking of several contracts more efficiently.
@@ -43,7 +45,7 @@ contract TargetContract {
 
 Once compiled using Hardhat, navigate to the `artifacts/contracts/TargetContract.sol/` directory. The ABI and bytecode will be available in `TargetContract.json`.
 
-<details>
+<Details>
     <summary>The ABI and the bytecode of the contract: </summary>
 
 ```json title="artifacts/contracts/TargetContract.sol/TargetContract.json"
@@ -91,7 +93,7 @@ Once compiled using Hardhat, navigate to the `artifacts/contracts/TargetContract
 }
 ```
 
-</details>
+</Details>
 
 **This file is essential for the upcoming steps and should be moved to the same directory as `main.js`.**
 
