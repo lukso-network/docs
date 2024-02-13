@@ -37,10 +37,15 @@ Here is a list of services and projects that integrated the LUKSO network and re
     <td><b>Hardware & Nodes:</b><br />Dappnode provides physical node machines and client software images for easy validator onboarding and maintenance. <br /><br /><li><a href="https://dappnode.com/collections/all/products/lukso-home" target="_blank" rel="noopener noreferrer">LUKSO Node</a></li>
     <li><a href="https://docs.dappnode.io/docs/user/install/overview/" target="_blank" rel="noopener noreferrer">Dappnode Software</a></li>    <li><a href="https://github.com/dappnode/DAppNodePackage-lukso-geth" target="_blank" rel="noopener noreferrer">Geth Execution Image</a></li><li><a href="https://github.com/dappnode/DAppNodePackage-prysm-lukso" target="_blank" rel="noopener noreferrer">Prysm Consensus Image</a></li></td>
   </tr>
+    <tr>
+    <td style={{ maxWidth: "30rem" }}><a class="imageLink" href="https://envio.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/envio_logo.png"/></a></td>
+    <td><b>Data Indexer & Tooling</b><br />Envio is a feature-rich indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.<br /><br /><li><a href="https://docs.envio.dev/docs/getting-started" target="_blank" rel="noopener noreferrer">Quickstart</a></li>
+    <li><a href="https://docs.envio.dev/docs/hypersync/" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>    <li><a href="https://docs.envio.dev/docs/contract-import/" target="_blank" rel="noopener noreferrer">Contract Import</a></li><li><a href="https://docs.envio.dev/docs/hosted-service" target="_blank" rel="noopener noreferrer">Hosted Service</a></li></td>
+  </tr>
 </table>
 
 :::note
 
-If you are actively supporting the LUKSO ecosystem and would like to be featured on this page,<br></br> please reach out to [hello@lukso.network](mailto:hello@lukso.network).
+If you are actively supporting the LUKSO ecosystem and would like to be featured on this page,<br></br> please reach out to [growth@lukso.io](mailto:growth@lukso.io).
 
 :::

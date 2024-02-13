@@ -637,7 +637,7 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   // convert the lsp8CollectionMetadata to a verifiable uri
-  const erc725 = new ERC725(LSP4DigitalAsset as ERC725JSONSchema, '', '', {});
+  const erc725 = new ERC725(LSP4DigitalAsset as ERC725JSONSchema);
   const encodeMetadata = erc725.encodeData([
     {
       keyName: 'LSP4Metadata',
@@ -809,7 +809,7 @@ async function main() {
   );
 
   // convert the lsp4TokenMetadata to a verifiable uri
-  const erc725 = new ERC725(LSP4DigitalAsset, '', '', {});
+  const erc725 = new ERC725(LSP4DigitalAsset);
   const encodedMetadata = erc725.encodeData(
     [
       {

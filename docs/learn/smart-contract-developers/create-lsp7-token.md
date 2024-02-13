@@ -9,48 +9,65 @@ import TabItem from '@theme/TabItem';
 
 # Create an LSP7 Token
 
+This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../contracts/introduction.md) of our documentation.
+
 :::tip
 
-You can learn about the project setup by checking the [Getting Started](./getting-started.md) page.
+You can learn about the project setup and Hardhat workflow by checking the [Getting Started](./getting-started.md) section.
 
 :::
 
-:::note
-
-For the following guide, we are using `hardhat v2.19.1`, `ethers v6` and `@lukso/lsp-smart-contracts`
-.
-
-:::
-
-## Create a custom LSP7 Token
+## Create the Token
 
 :::info
 
-This guide will walk you through the process of deploying a contract in the context of Hardhat. For instructions on deploying a contract within a dApp using the UniversalProfile Browser extension, please refer to the [Deploy Contracts section](../dapp-developer/deploy-contracts.md) in the dApp developers section.
+For instructions on deploying a contract using the Universal Profile Browser Extension, please refer to the [Deploy Contracts Guide](../dapp-developer/deploy-contracts.md) for dApp developers.
 
 :::
 
-In this guide you will create a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to a specific address. To build your smart contract you will use the following LSP7 preset and extension:
+:::tip Code repository
+
+You can find all the contracts and scripts of the guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
+
+:::
+
+For our sample deployment of the LSP7 token, we will use the following presets:
 
 - [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow creating new assets on the smart contract.
 - [`LSP7Burnable`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): allow tokens to be removed from the supply.
 
-You can modify the `mint()` function to adjust the amount of initially minted tokens and their receiver as described in the [LSP7 Mintable Documentation](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint).
+You can then import them within your Solidity contract file:
 
 ```solidity title="contracts/MyCustomToken.sol"
 // SPDX-License-Identifier: Apache-2.0
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol";
 import "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol";
 
 contract CustomToken is LSP7Mintable, LSP7Burnable {
-    // for more informations, check https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md
+  // your custom token logic ...
+}
+```
+
+After inheriting, the contract **expects the mandatory parameters** related to the imported standards. In case of [`LSP7`](../../standards/tokens/LSP7-Digital-Asset), you must define default token parameters in the constructor of the smart contract, that will be set during the deployment of the contract:
+
+- the [token name and symbol](../../standards/tokens/LSP4-Digital-Asset-Metadata/#lsp4tokenname) (inherited from [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata))
+- the address of the initial token owner
+- the [token type](../../standards/tokens/LSP4-Digital-Asset-Metadata#with-lsp7-digital-asset-token) of the asset
+- the [divisibility](../../standards/tokens/LSP7-Digital-Asset/#divisible-vs-non-divisible) of token units (specific to [LSP7](../../standards/tokens/LSP7-Digital-Asset))
+
+You can specify the parameters and the mint function as seen below.
+
+```solidity title="contracts/MyCustomToken.sol"
+// ...
+
+contract CustomToken is LSP7Mintable, LSP7Burnable {
     constructor(
         string memory tokenName_,
         string memory tokenSymbol_,
         address tokenContractOwner_,
-        uint256 lsp4TokenType_, // for details see: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4tokentype
+        uint256 lsp4TokenType_,
         bool isNonDivisible_
     )
         LSP7Mintable(
@@ -62,156 +79,123 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
         )
     {
         {
-            mint(msg.sender, 20_000 * 10 ** decimals(), true, "0x"); // deployer gets 20k tokens
+            // your custom smart contract logic ...
+
+            mint(
+              msg.sender, // deployer will receive initial tokens
+              20_000 * 10 ** decimals(), // will mint 20k tokens
+              true, // force parameter
+              "0x"  // optional transaction data
+            );
         }
     }
 }
 ```
 
-Compile your smart contract:
+:::info
+
+To adjust the parameters of the mint, please have a look at the related [LSP7 function documentation](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint). You can find the **full documentation** for [LSP7](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable/#parameters-16) and other **presets** within the [Technical ABI Reference](https://docs.lukso.tech/contracts/contracts/ERC725/).
+
+:::
+
+## Compile the Token
+
+After you've set all mandatory parameters or added custom functionality, you can test and compile the smart contract:
 
 ```bash
 npx hardhat compile
 ```
 
-<!-- ### 🍭 Bonus: create a MockContract to generate the UniversalProfile type
+:::tip
 
-In order to deploy this Custom LSP7 contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract.
-To do that, you can create a `MockContract.sol` file in the `contracts/` file with the following content:
+Add the `--verbose` and `--show-stack-traces` flags to get further debugging information and gas data.
 
-```solidity title="contracts/MyCustomToken.sol"
-// SPDX-License-Identifier: Apache-2.0
-pragma solidity ^0.8.9;
-import {UniversalProfile} from '@lukso/lsp-smart-contracts/contracts/UniversalProfile.sol';
-```
-
-We are now ready to build our contracts using the command:
-
-```bash
-npm run build
-``` -->
-
-## Deploy your LSP7 Token contract on the LUKSO Testnet
-
-You are now ready to deploy your contract on the [**LUKSO Testnet network**](../../networks/testnet/parameters).
-
-### Update hardhat config
-
-```ts title="hardhat.config.ts"
-import { HardhatUserConfig } from 'hardhat/config';
-import { config as LoadEnv } from 'dotenv';
-import '@nomicfoundation/hardhat-toolbox';
-
-LoadEnv();
-
-const config: HardhatUserConfig = {
-  solidity: '0.8.9',
-  networks: {
-    luksoTestnet: {
-      url: 'https://rpc.testnet.lukso.network',
-      chainId: 4201,
-      accounts: [process.env.PRIVATE_KEY as string],
-    },
-  },
-};
-
-export default config;
-```
-
-### Create a deployment script
-
-Create a script to deploy the smart contract to the LUKSO Testnet network. You can either use a regular EOA (Externally Owned Account) or a Universal Profile.
-
-#### Deploy using a Universal Profile (Recommended)
-
-Deploy your contract using your Universal Profile. Make sure to have the [Universal Profile Browser Extension](/install-up-browser-extension) installed.
-
-:::note
-
-The `privateKey` coming from your UP extension is the private key of the EOA that controls your UP (more information about controllers can be found in the [Key Manager](../../standards/universal-profile/lsp6-key-manager.md) page). This address will need to be funded using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
+This is especially important if a lot of functionality is inherited, as the bytecode might succeed the EVM limit of 24k bytes. You can find more information about optimization settings within the [Getting Started](./getting-started.md) section.
 
 :::
-Create the script that will deploy the contract as your Universal Profile.
 
-1. Add your Universal Profile address to your `.env` file in `UP_ADDR`
-2. Load the associated UP
-3. Get the bytecode of your contract
-4. Use `staticCall` method to get the address of the contract
-5. Deploy the contract
+## Deploy the Token
 
-```ts title="scripts/deployUP.ts"
+After the contract file has been successfully compiled, you are ready to create a script to deploy it's token on the [LUKSO Testnet network](../../networks/testnet/parameters). To deploy your token on chain we **recommend using a controller and address of a Universal Profile**, so your asset will be connected and fetchable from your on-chain persona. Optionally, you can also use a regular Externally Owned Account (EOA).
+
+<Tabs groupId="deployment">
+  <TabItem value="up" label="Deploy with Universal Profile">
+
+```ts title="scripts/deployMyCustomToken.ts"
+import hre from 'hardhat';
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
-import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
-import { CustomToken__factory } from '../typechain-types';
+import LSP0Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
 
-// load env vars
+// Load the environment variables
 dotenv.config();
-const { UP_ADDR } = process.env;
 
-async function main() {
-  // load the associated UP
-  const universalProfile = await ethers.getContractAtFromArtifact(
-    UniversalProfileArtifact,
-    UP_ADDR as string,
+async function deployToken() {
+  // Setup the provider
+  const provider = new ethers.JsonRpcProvider(
+    'https://rpc.testnet.lukso.gateway.fm',
   );
 
-  /**
-   * Custom LSP7 Token
-   */
-  console.log('⏳ Deploying the custom Token');
-  const CustomTokenBytecode = CustomToken__factory.bytecode; // bytecode of the custom token without the constructor params
+  // Setup the controller used to sign the deployment
+  const [deployer] = await ethers.getSigners();
+  console.log(
+    'Deploying contracts with Universal Profile Controller: ',
+    signer.address,
+  );
 
-  // custom token constructor params
-  const tokenName = 'My Custom Token';
-  const tokenSymbol = 'MCT';
-  const tokenContractOwnerAddress = (await ethers.getSigners())[0].address;
-  const tokenType = 0; // generic token
-  const isNonDivisible = false;
+  // Load the Universal Profile used for deployment
+  const universalProfile = await ethers.getContractAtFromArtifact(
+    LSP0Artifact,
+    process.env.UP_ADDR as string,
+  );
 
-  // encode constructor params
+  // Create the plain bytecode of the contract
+  const CustomTokenBytecode =
+    hre.artifacts.readArtifactSync('MyCustomToken').bytecode;
+
   const abiEncoder = new ethers.AbiCoder();
+
+  // Encode the constructor parameters
   const encodedConstructorParams = abiEncoder.encode(
     ['string', 'string', 'address', 'uint256', 'bool'],
     [
-      tokenName,
-      tokenSymbol,
-      tokenContractOwnerAddress,
-      tokenType,
-      isNonDivisible,
+      'My Custom Token', // token name
+      'MCT', // token symbol
+      process.env.UP_ADDR, // token owner
+      0, // token type = TOKEN
+      false, // isNonDivisible?
     ],
   );
 
-  // add the constructor params to the Custom Token bytecode
+  // Generate the full bytecode of the token
   const CustomTokenBytecodeWithConstructor =
     CustomTokenBytecode + encodedConstructorParams.slice(2);
 
-  // get the address of the Custom Token contract that will be created
-  const CustomTokenAddress = await universalProfile.staticCall(
+  // Get the address of the contract that will be created
+  const CustomTokenAddress = await universalProfile
+    .connect(signer)
+    .getFunction('execute')
+    .staticCall(
+      1, // Operation type: CREATE
+      ethers.ZeroAddress,
+      0, // Value is empty
+      CustomTokenBytecodeWithConstructor,
+    );
+
+  // Deploy the contract from the Universal Profile
+  const tx = await universalProfile.connect(signer).getFunction('execute')(
     1, // Operation type: CREATE
     ethers.ZeroAddress,
     0, // Value is empty
     CustomTokenBytecodeWithConstructor,
   );
 
-  // deploy the Custom Token contract
-  const tx = await universalProfile.execute(
-    1, // Operation type: CREATE
-    ethers.ZeroAddress,
-    0, // Value is empty
-    CustomTokenBytecodeWithConstructor,
-  );
-
-  // wait for the tx to be mined
+  // Wait for the transaction to be included in a block
   await tx.wait();
-
-  console.log(
-    '✅ Custom Token successfully deployed at address: ',
-    CustomTokenAddress,
-  );
+  console.log('Custom token address: ', CustomTokenAddress);
 }
 
-main()
+deployToken()
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
@@ -219,49 +203,37 @@ main()
   });
 ```
 
-Deploy the contract:
+  </TabItem>
 
-```bash
-npx hardhat --network luksoTestnet run scripts/deployUP.ts
-```
+  <TabItem value="eoa" label="Deploy with EOA">
 
-#### Deploy using an EOA
-
-Deploying with an EOA is more straightforward, but you miss on the Universal Profile features. You will need:
-
-- an EOA (MetaMask, Coinbase wallet, ...)
-- the private key (to be copied in your `.env` file in `PRIVATE_KEY`)
-
-```ts title="scripts/deployEOA.ts"
+```ts title="scripts/deployMyCustomToken.ts"
 import { ethers } from 'hardhat';
+import * as dotenv from 'dotenv';
 
-async function main() {
-  const customToken = await ethers.getContractFactory('CustomToken');
+// Load the environment variables
+dotenv.config();
 
-  // custom token constructor params
-  const tokenName = 'My Custom Token';
-  const tokenSymbol = 'MCT';
-  const tokenContractOwnerAddress = (await ethers.getSigners())[0].address;
-  const tokenType = 0; // generic token
-  const isNonDivisible = false;
+async function deployToken() {
+  // Get the signer key of the deployer
+  const [deployer] = await ethers.getSigners();
 
-  const Token = await customToken.deploy(
-    tokenName,
-    tokenSymbol,
-    tokenContractOwnerAddress,
-    tokenType,
-    isNonDivisible,
-  );
+  // Deploy the token with its parameters
+  const customToken = await ethers.deployContract('MyCustomToken', [
+    'My Custom Token', // token name
+    'MCT', // token symbol
+    deployer.address, // contract owner
+    0, // token type = TOKEN
+    false, // isNonDivisible?
+  ]);
 
-  const token = await Token.waitForDeployment();
-  const CustomTokenAddress = await token.getAddress();
-  console.log(
-    '✅ Custom Token successfully deployed at address: ',
-    CustomTokenAddress,
-  );
+  // Wait for the transaction to be included in a block
+  await customToken.waitForDeployment();
+  const CustomTokenAddress = await customToken.getAddress();
+  console.log(`Deployed token address: ${CustomTokenAddress}`);
 }
 
-main()
+deployToken()
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
@@ -269,10 +241,38 @@ main()
   });
 ```
 
-Deploy the contract:
+  </TabItem>
+
+</Tabs>
+
+If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](./getting-started.md) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
 
 ```bash
-npx hardhat --network luksoTestnet run scripts/deployEOA.ts
+npx hardhat --network luksoTestnet run scripts/deployMyCustomToken.ts
 ```
 
-You have deployed your first LSP7 token contract on the LUKSO Testnet. You can go and check out the token on the [Execution Block Explorer](https://explorer.execution.testnet.lukso.network/) using the address you just obtained.
+:::tip
+
+You can check the deployed token address on the [Testnet Execution Explorer](https://explorer.execution.testnet.lukso.network/).
+
+:::
+
+## Verify the Token
+
+In order to verify a contract, you have to create a file with all the constructor arguments that you've set during deployment. The parameters and the compiled contract code are then compared with the payload of the deployed contract. First, create the file with all constructor parameters:
+
+```ts title="verify/myTokenParameters.ts"
+module.exports = [
+  'My Custom Token', // token name
+  'MCT', // token symbol
+  '0x...', // deployer address
+  0, // token type
+  false, // divisibility
+];
+```
+
+To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](./getting-started.md) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
+
+```bash
+npx hardhat verify <myTokenAddress> --constructor-args ./verify/myTokenParameters.ts --network luksoTestnet
+```
