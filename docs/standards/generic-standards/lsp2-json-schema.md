@@ -4,6 +4,8 @@ sidebar_position: 3
 description: LUKSO's LSP2 - ERC725Y JSON Schema for better abstraction on top of the storage of a smart contract.
 ---
 
+import Details from '../../../src/components/Details'
+
 # LSP2 - ERC725Y JSON Schema
 
 :::info Standard Document
@@ -218,7 +220,7 @@ Below is an example of a MappingWithGrouping data key:
 
 ![LSP2 mappingWithGrouping key type](/img/standards/lsp2/lsp2-key-type-mapping-with-grouping.jpeg)
 
-<details>
+<Details>
     <summary>Solidity Example</summary>
 
 Whenever you want to generate a data key of `keyType` **MappingWithGrouping**:
@@ -234,7 +236,7 @@ bytes32 dataKey = bytes32(
 );
 ```
 
-</details>
+</Details>
 
 ## `valueType` encoding
 

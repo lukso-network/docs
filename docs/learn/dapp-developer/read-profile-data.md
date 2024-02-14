@@ -6,6 +6,7 @@ description: Learn how to read profile data from your Universal Profile.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Details from '../../../src/components/Details'
 
 # Read Universal Profile Data
 
@@ -48,7 +49,7 @@ npm install @erc725/erc725.js
 
 :::
 
-<details>
+<Details>
 <summary>
 <a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/classes/ERC725#getdata"> erc725.js</a>  library. 👇
 </summary>
@@ -62,7 +63,7 @@ npm install @erc725/erc725.js
 - `LSP1UniversalReceiverDelegate` contains the address of the [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver/) smart contract
 
 </div>
-</details>
+</Details>
 
 To read the profile data you simply instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
 
@@ -117,7 +118,7 @@ console.log(profileData);
 
 You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684655e4e688CCF72d88F028c62EC3B1046CC`](https://wallet.universalprofile.cloud/0xE1F684655e4e688CCF72d88F028c62EC3B1046CC?network=testnet).
 
-<details>
+<Details>
     <summary>Show result</summary>
 
 ```js
@@ -161,7 +162,7 @@ You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684
 ];
 ```
 
-</details>
+</Details>
 
 :::note ERC725Y JSON schemas
 
@@ -183,7 +184,7 @@ const profileMetaData = await erc725js.fetchData('LSP3Profile');
 console.log(profileMetaData);
 ```
 
-<details>
+<Details>
     <summary>Show result</summary>
 
 ```js
@@ -229,7 +230,7 @@ console.log(profileMetaData);
 }
 ```
 
-</details>
+</Details>
 
 :::note get and fetch
 
@@ -261,7 +262,7 @@ console.log(universalReceiverDataKey);
 
 <!-- prettier-ignore-end -->
 
-<details>
+<Details>
     <summary>Show result</summary>
 
 ```js
@@ -294,4 +295,4 @@ console.log(universalReceiverDataKey);
 }
 ```
 
-</details>
+</Details>

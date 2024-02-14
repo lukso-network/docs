@@ -4,132 +4,342 @@ sidebar_position: 1
 description: Create a Hardhat project and start building your smart contracts for LUKSO.
 ---
 
-# Getting started
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-:::warning
+# Getting started building contracts
 
-Please remember to always be careful when deploying smart contract, do not forget to process a security audit before deploying your smart contracts on production.
+The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO.
 
-:::
+The following tutorial will teach you how to:
 
-Smart contract developer, welcome to the LUKSO documentation! The LUKSO ecosystem offers you a lot of [new standards](../../standards/introduction.md) and tools to build more powerful blockchain applications which are - _very important_ - standardised.
-
-As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO. The following tutorial will teach you how to:
-
-- set up a [Hardhat](https://hardhat.org/) installation (using TypeScript)
-- install the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package.
-- deploy it on [LUKSO Testnet](../../networks/testnet/parameters).
+- set up a [Hardhat](https://hardhat.org/) project using TypeScript
+- configure the contract settings, [networks](../../networks/testnet/parameters) and [Blockscout API](https://explorer.execution.testnet.lukso.network/api-docs)
+- utilize LSP smart contract presets using the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)
+- compile and deploy LSP-based smart contracts
+- verify smart contracts on [Blockscout](https://explorer.execution.testnet.lukso.network/)
 
 If you need more low level information about our contracts, you can check the dedicated [contracts](../../contracts/introduction.md) section.
 
-Happy coding 🧙
+### Playground Repository
 
-## Create Hardhat project
+Want to dive into the code directly? The [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository has a full Hardhat setup, including ready-to-go network configurations, sample contracts, and scripts to deploy and verify LSP-based contracts on LUKSO networks using both EOAs or Universal Profiles.
 
-The first thing to do is to [create a new Hardhat project](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) that will use TypeScript:
+<div style={{textAlign: 'center'}}>
+
+<img
+src="/img/guides/playground_hardhat.png"
+alt="LUKSO Playground Hardhat"
+/>
+
+</div>
+
+## Set up a Hardhat project
+
+First, create a new folder for the Hardhat repository:
 
 ```bash
-mkdir lukso-app
-cd lukso-app
+mkdir lukso-hardhat-repo
+cd lukso-hardhat-repo
+```
+
+Afterward, [initialize the Hardhat project](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) using TypeScript:
+
+```bash
 npx hardhat init
-# select 'Create a TypeScript project' and
+# Proceed installing the Hardhat library
+# select 'Create a TypeScript project'
 # use the default values for the rest of the setup
+# This will install the toolbox for deployment and verification
+# This will also add a gitignore file
 ```
 
-Once finished, you have a working Hardhat setup!
-
-## Install packages &amp; setup tools
-
-To work in the best condition possible, we will install libraries that includes tools, helpers and the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package.
+Once finished, you have a working Hardhat setup. To use your private keys and Universal Profile address for deployment, please set up the `dotenv` environment, so those can be stored and fetched in a private file.
 
 ```bash
-npm i -D dotenv
-npm i -s @lukso/lsp-smart-contracts@latest
-# Please check the package version related to the tutorial you are reading
+npm install -D dotenv
 ```
 
-Update your `package.json` with the following:
+After installation, we will update the `.gitignore` file, so library installations and private keys from `dotenv` are never included in any code commits within your project. Especially `dotenv` files contain sensitive values such as the private key of a blockchain account.
 
-```json title="package.json"
-"scripts": {
-  "build": "hardhat compile --force --show-stack-traces"
-},
+```text title=".gitignore"
+node_modules
+.env
 ```
 
-## Create a .env file
-
-Create a new file at the root of your project called `.env` with the following content:
-
-:::warning
-
-The `.env` file contains sensitive values such as PRIVATE_KEY. Do not commit it to your source code repository!
-
-:::
-
-:::note
-
-We will populate the values of the `.env` file later.
-
-:::
+You can then go ahead to create a `.env` file within the root folder of the Hardhat repository and the following contents:
 
 ```text title=".env"
-PRIVATE_KEY=0x....
+PRIVATE_KEY=0x...
 UP_ADDR=0x...
 ```
 
-We now have a base Hardhat setup that we can use to develop and deploy our smart contracts.
+The private key will be used to deploy the smart contracts to the network and can either be a **standalone Externally Owned Account** or a **controller of a Universal Profile**. If you want to deploy the smart contracts as a Universal Profile, you also have to provide the related address of the Universal Profile.
 
-## Get testnet LYXt
+:::danger
 
-To pay for the deployment fees, you need LYXt. You can request some from the [LUKSO Testnet faucet](https://faucet.testnet.lukso.network/)
-
-## Deploy your contracts on the LUKSO Testnet
-
-:::info
-
-By default, the deployment will be to your local network. If you want to deploy to the LUKSO Testnet, you will need to add the LUKSO Testnet network in your `hardhat.config.ts`.
+Never share your private key that you will put into the `.env` file!
 
 :::
 
+:::success
+
+To pay for the deployment fees of the accounts, you will need LYXt or LYX. For the testnet, you can request LYXt from the [LUKSO Testnet faucet](https://faucet.testnet.lukso.network/)
+
+:::
+
+We now have a base Hardhat setup that we can use to develop and deploy our smart contracts.
+
+## Configure contracts and networks
+
+By default, the deployment will be to your local network and default Solidity version. If you want to deploy and verify your smart contracts on LUKSO, you will have to
+
+- specify `solidity` compiler settings, so LSP presets match your contract version and EVM requirements
+- add the parameters of the `networks` and their related private keys
+- define the `etherscan` APIs to verify contracts on the networks
+
 ```js title="hardhat.config.ts"
-// ...
-import { NetworkUserConfig } from 'hardhat/types';
+import { HardhatUserConfig } from 'hardhat/config';
+import { config as LoadEnv } from 'dotenv';
+import '@nomicfoundation/hardhat-toolbox';
 
-import * as dotenv from 'dotenv';
-dotenv.config();
+LoadEnv();
 
-// ...
-
-function getTestnetChainConfig(): NetworkUserConfig {
-  const config: NetworkUserConfig = {
-    url: 'https://rpc.testnet.lukso.network',
-    chainId: 4201,
-  };
-
-  if (process.env.PRIVATE_KEY !== undefined) {
-    config['accounts'] = [process.env.PRIVATE_KEY];
-  }
-
-  return config;
-}
-
-// Edit the default config object so it matches this one:
 const config: HardhatUserConfig = {
   solidity: {
+    // Default compiler version for all contracts
     version: '0.8.19',
     settings: {
       optimizer: {
         enabled: true,
-        runs: 200,
+        runs: 1000,
       },
     },
   },
-  typechain: {
-    outDir: 'typechain-types',
-    target: 'ethers-v6',
-  },
   networks: {
-    luksoTestnet: getTestnetChainConfig(),
+    luksoTestnet: {
+      url: 'https://rpc.testnet.lukso.gateway.fm',
+      chainId: 4201,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+    },
+    luksoMainnet: {
+      url: 'https://rpc.lukso.gateway.fm',
+      chainId: 42,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+    },
+  },
+  etherscan: {
+    apiKey: 'no-api-key-needed',
+    customChains: [
+      {
+        network: 'luksoTestnet',
+        chainId: 4201,
+        urls: {
+          apiURL: 'https://explorer.execution.testnet.lukso.network/api',
+          browserURL: 'https://explorer.execution.testnet.lukso.network/',
+        },
+      },
+      {
+        network: 'luksoMainnet',
+        chainId: 42,
+        urls: {
+          apiURL: 'https://explorer.execution.mainnet.lukso.network/api',
+          browserURL: 'https://explorer.execution.mainnet.lukso.network/',
+        },
+      },
+    ],
   },
 };
+
+export default config;
+```
+
+## Use LSP smart contract presets
+
+To use LSP smart contracts within your Hardhat project, you can install the latest version of the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package like the following:
+
+```bash
+npm install @lukso/lsp-smart-contracts@latest
+```
+
+As the syntax of smart contracts works by **inheritance**, you can add underlying functionalities by importing predefined contracts. To create a new smart contract using LSPs, you can simply `import` the standardized and modular presets from the previously installed `@lukso/lsp-smart-contracts` library. These presets can then be combined to create complex contract deployments like Universal Profiles and Digital Assets.
+
+As an example, you can import `LSP7Mintable` to create a LSP7 contract that enables the contract owner to mint these tokens:
+
+```js title="MyCustomToken.sol"
+import { LSP7Mintable } from '@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol';
+
+// ...
+
+contract MyToken is LSP7Mintable {
+    // your custom smart contract logic ...
+}
+```
+
+:::info
+
+After inheriting from LSPs, the contract might expect mandatory parameters to fullfil the standardization. In case of `LSP7Mintable`, you must define a set of default parameters in the constructor of the smart contract, defined during the contracts deployment. You can find more information on the [Create LSP7 Token Guide](./create-lsp7-token.md).
+
+:::
+
+## Compile and deploy contracts
+
+After setting up the contract, you can compile it using the following command:
+
+```bash
+npx hardhat compile
+```
+
+:::info Debugging
+
+Add the `--verbose` and `--show-stack-traces` flags for further information.
+
+:::
+
+After the contract is compiled, you can create a deployment script to publish the contract on the blockchain.
+
+<Tabs>
+  <TabItem value="up" label="Deploy by Universal Profile">
+
+```js title="deployMyCustomToken.ts"
+import hre from 'hardhat';
+import { ethers } from 'hardhat';
+import * as dotenv from 'dotenv';
+import LSP0Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
+
+dotenv.config();
+
+async function deployContract() {
+
+  // Setup the provider
+  const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.gateway.fm');
+
+  // Setup the controller used to sign the deployment
+  const signer = new ethers.Wallet(process.env.PRIVATE_KEY as string, provider);
+  console.log('Deploying contracts with Universal Profile Controller: ', signer.address);
+
+  // Load the Universal Profile
+  const universalProfile = await ethers.getContractAtFromArtifact(
+    LSP0Artifact,
+    process.env.UP_ADDR as string,
+  );
+
+  // Create custom bytecode for the token deployment
+  const CustomTokenBytecode = hre.artifacts.readArtifactSync('MyCustomToken').bytecode;
+
+  const abiEncoder = new ethers.AbiCoder();
+
+  // Encode constructor params
+  const encodedConstructorParams = abiEncoder.encode(
+    [
+      // your custom constructor types
+    ],
+    [
+      // your custom constructor parameters
+    ],
+  );
+
+  // Add the constructor params to the Custom Token bytecode
+  const CustomTokenBytecodeWithConstructor =
+    CustomTokenBytecode + encodedConstructorParams.slice(2);
+
+  // Get the address of the custom token contract that will be created
+  const CustomTokenAddress = await universalProfile
+    .connect(signer)
+    .getFunction('execute')
+    .staticCall(
+      1, // Operation type: CREATE
+      ethers.ZeroAddress,
+      0, // Value is empty
+      CustomTokenBytecodeWithConstructor,
+    );
+
+  // Deploy the contract by the Universal Profile
+  const tx = await universalProfile.connect(signer).getFunction('execute')(
+    1, // Operation type: CREATE
+    ethers.ZeroAddress,
+    0, // Value is empty
+    CustomTokenBytecodeWithConstructor,
+  );
+
+  await tx.wait();
+
+  console.log('Deployed contract address: ', CustomTokenAddress);
+}
+
+deployContract()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+  </TabItem>
+
+  <TabItem value="eoa" label="Deploy by EOA">
+
+```js title="deployMyCustomToken.ts"
+import { ethers } from 'hardhat';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+async function deployContract() {
+  const [deployer] = await ethers.getSigners();
+  console.log('Deploying contracts with the account:', deployer.address);
+
+  const myCustomToken = await ethers.deployContract('MyCustomToken', [
+    // your custom constructor parameters
+  ]);
+
+  console.log('Deployed contract address:', await myCustomToken.getAddress());
+}
+
+deployContract()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+  </TabItem>
+
+</Tabs>
+
+You can then continue to run the deployment script:
+
+```bash
+npx hardhat --network luksoTestnet run scripts/deployMyCustomToken.ts
+```
+
+:::success Contract Examples
+
+You can find ready-to-go example contracts within the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
+
+:::
+
+:::warning
+
+Please remember to always be careful when deploying smart contracts. Do not forget to audit your code before deploying your smart contracts in production.
+
+:::
+
+## Verify smart contracts
+
+To verify a deployed contract, you can use the [Blockscout API](https://explorer.execution.testnet.lukso.network/api-docs) properties set up within the `hardhat.config.ts`. You have to pass a file with all the constructor arguments that you've defined when deploying the smart contract, as well as the address of the deployed smart contract. The parameters and the compiled contract code are then used to verify the payload of the deployed contract on the address.
+
+Create a new file that houses all the constructor parameters upon deployment:
+
+```js title="myContractParameters.ts"
+module.exports = [
+  // your custom constructor parameters ...
+];
+```
+
+You can run the verification script as on the network using the following command:
+
+```bash
+npx hardhat verify <MyContractAddress> --constructor-args ./verify/myContractParameters.ts --network luksoTestnet
 ```
