@@ -201,22 +201,19 @@ After the contract is compiled, you can create a deployment script to publish th
 <Tabs>
   <TabItem value="up" label="Deploy by Universal Profile">
 
-```js title="deployMyCustomToken.ts"
-import hre from 'hardhat';
+```js title="deployContractAsUP.ts"
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
+
 import LSP0Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
 
+// Load environment variables
 dotenv.config();
 
 async function deployContract() {
-
-  // Setup the provider
-  const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.gateway.fm');
-
-  // Setup the controller used to sign the deployment
-  const signer = new ethers.Wallet(process.env.PRIVATE_KEY as string, provider);
-  console.log('Deploying contracts with Universal Profile Controller: ', signer.address);
+  // UP controller used for deployment
+  const [deployer] = await ethers.getSigners();
+  console.log('Deploying contract with Universal Profile controller: ', deployer.address);
 
   // Load the Universal Profile
   const universalProfile = await ethers.getContractAtFromArtifact(
@@ -224,12 +221,11 @@ async function deployContract() {
     process.env.UP_ADDR as string,
   );
 
-  // Create custom bytecode for the token deployment
-  const CustomTokenBytecode = hre.artifacts.readArtifactSync('MyCustomToken').bytecode;
-
+  // Create custom bytecode for the contract deployment
+  const contractBytecode = (await ethers.getContractFactory('MyCustomContract')).bytecode;
   const abiEncoder = new ethers.AbiCoder();
 
-  // Encode constructor params
+  // Encode constructor parameters
   const encodedConstructorParams = abiEncoder.encode(
     [
       // your custom constructor types
@@ -239,32 +235,28 @@ async function deployContract() {
     ],
   );
 
-  // Add the constructor params to the Custom Token bytecode
-  const CustomTokenBytecodeWithConstructor =
-    CustomTokenBytecode + encodedConstructorParams.slice(2);
+  // Add the constructor parameters to the contract bytecode
+  const contractBytecodeWithConstructor = contractBytecode + encodedConstructorParams.slice(2);
 
-  // Get the address of the custom token contract that will be created
-  const CustomTokenAddress = await universalProfile
-    .connect(signer)
-    .getFunction('execute')
-    .staticCall(
-      1, // Operation type: CREATE
-      ethers.ZeroAddress,
-      0, // Value is empty
-      CustomTokenBytecodeWithConstructor,
-    );
-
-  // Deploy the contract by the Universal Profile
-  const tx = await universalProfile.connect(signer).getFunction('execute')(
+  // Get the address of the custom contract that will be created
+  const contractAddress = await universalProfile.execute.staticCall(
     1, // Operation type: CREATE
-    ethers.ZeroAddress,
+    ethers.ZeroAddress, // Target: 0x0 as contract will be initialized
     0, // Value is empty
-    CustomTokenBytecodeWithConstructor,
+    contractBytecodeWithConstructor, // Payload of the contract
   );
 
-  await tx.wait();
+  // Deploy the contract by the Universal Profile
+  const tx = await universalProfile.execute(
+    1, // Operation type: CREATE
+    ethers.ZeroAddress, // Target: 0x0 as contract will be initialized
+    0, // Value is empty
+    contractBytecodeWithConstructor, // Payload of the contract
+  );
 
-  console.log('Deployed contract address: ', CustomTokenAddress);
+  // Wait for the transaction to be included in a block
+  await tx.wait();
+  console.log('Contract deployed at: ', contractAddress);
 }
 
 deployContract()
@@ -279,21 +271,27 @@ deployContract()
 
   <TabItem value="eoa" label="Deploy by EOA">
 
-```js title="deployMyCustomToken.ts"
+```js title="deployContractAsEOA.ts"
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
 
+// Load environment variables
 dotenv.config();
 
 async function deployContract() {
+  // Signer used for deployment
   const [deployer] = await ethers.getSigners();
-  console.log('Deploying contracts with the account:', deployer.address);
+  console.log('Deploying contract with EOA: ', deployer.address);
 
-  const myCustomToken = await ethers.deployContract('MyCustomToken', [
+  // Deploy the contract with custom constructor parameters
+  const myCustomContract = await ethers.deployContract('MyCustomContract', [
     // your custom constructor parameters
   ]);
 
-  console.log('Deployed contract address:', await myCustomToken.getAddress());
+  // Wait for the transaction to be included in a block
+  await myCustomContract.waitForDeployment();
+  const contractAddress = await myCustomContract.getAddress();
+  console.log('Contract deployed at: ', contractAddress);
 }
 
 deployContract()
