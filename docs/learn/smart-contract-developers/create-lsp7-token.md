@@ -121,6 +121,17 @@ After the contract file has been successfully compiled, you are ready to create 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Deploy with Universal Profile">
 
+If you are deploying a contract as Universal Profile, you will have to prepare the payload of the contract deployment:
+
+1. Encode the constructor parameters
+2. Generate the full bytecode for the contract deployment
+
+:::info Address Generation
+
+You can mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall`. This address then matches the contract that will later be deployed using the same parameters.
+
+:::
+
 ```ts title="scripts/deployLSP7AsUP.ts"
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
