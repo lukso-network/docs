@@ -1,7 +1,7 @@
 ---
 sidebar_label: '🃏 Create NFT Collection where each NFT is a contract'
 description: 'Learn how to create a NFT collection where each NFT is a contract'
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # Create NFT Collection with a contract address as tokenId
