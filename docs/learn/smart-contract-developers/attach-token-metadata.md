@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip Contract Storage
 
-To bring LSP contracts to life, you can use the 🗂️ [ERC725Y storage](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) to set or modify certain data keys and values. Typically, these data keys reflect **any content** apart from the constructor parameters that have been initially set. All standardized storage keys follow the [LSP2 JSON Schema](../../standards/generic-standards/lsp2-json-schema/).
+To bring LSP contracts to life, you can use the 🗂️ [ERC725Y storage](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) to set or modify certain data keys and values. Typically, these data keys reflect **any content** apart from the constructor parameters that have been initially set. All standardized storage keys follow the [LSP2 JSON Schema](../../standards/generic-standards/lsp2-json-schema.md).
 
 :::
 
@@ -28,11 +28,11 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 ## Update metadata after deployment
 
-In the following example, we will set the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata) data key of an [LSP7 Contract](../../standards/tokens/LSP7-Digital-Asset). If you want to learn more about the contract deployment itself, please have a look at the [Getting Started](./getting-started.md) or [Create LSP7 Token](./create-lsp7-token.md) guides before you continue.
+In the following example, we will set the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) data key of an [LSP7 Contract](../../standards/tokens/LSP7-Digital-Asset.md). If you want to learn more about the contract deployment itself, please have a look at the [Getting Started](./getting-started.md) or [Create LSP7 Token](./create-lsp7-token.md) guides before you continue.
 
 ### Setup the deployment script
 
-In the first step, you will have to set up a new deployment script in Hardhat. We will create a new function for setting the [LSP4 metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata/) key, which will take the address of your [previously deployed token](./create-lsp7-token.md). If you do not have the deployed token set up within your Hardhat repository, please adjust the `getContractAt()` function and create a new token based on a contract artifact from the 🛠️ [`@lukso/lsp-smart-contracts/`](../../tools/lsp-smart-contracts/getting-started) library.
+In the first step, you will have to set up a new deployment script in Hardhat. We will create a new function for setting the [LSP4 metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) key, which will take the address of your [previously deployed token](./create-lsp7-token.md). If you do not have the deployed token set up within your Hardhat repository, please adjust the `getContractAt()` function and create a new token based on a contract artifact from the 🛠️ [`@lukso/lsp-smart-contracts/`](../../tools/lsp-smart-contracts/getting-started.md) library.
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
@@ -125,7 +125,7 @@ attachAssetMetadata('0x...' /* Your custom asset address */)
 
 ### Read the current metadata entry
 
-After setting up the structure of the script, you can use the 🛠️ [`erc725.js`](../../tools/erc725js/getting-started) library to read the current metadata of your contract. This can be used to compare or check the previous contents before proceeding with the deployment. The `erc725.js` object will later be used to encode the new contents of the [ERC725Y storage](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store).
+After setting up the structure of the script, you can use the 🛠️ [`erc725.js`](../../tools/erc725js/getting-started.md) library to read the current metadata of your contract using [`getData()`](https://docs.lukso.tech/tools/erc725js/classes/ERC725#getdata). This can be used to compare or check the previous contents before proceeding with the deployment. The `erc725.js` object will later be used to encode the new contents of the [ERC725Y storage](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store).
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
@@ -198,10 +198,12 @@ async function attachAssetMetadata(myAssetAddress: string) {
 
 ### Create the metadata transaction
 
-After you sucessfully tested the contract call by calling the [ERC725Y data key](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store), you can prepare the content by encoding the metadata and calling the `setData()` function on the contract.
+After you sucessfully tested the contract call by calling the [ERC725Y data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store), you can prepare the content by encoding the metadata. that will be passed into the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the 🗂️[ERC725](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store)-based contract.
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
+
+In order to update the metadata using your Universal Profile, the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the contract can not be called directly. Instead, you have to generate the payload of the transaction and execute it by calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function of the Universal Profile.
 
 ```ts title="scripts/attachAssetMetadataAsUP.ts"
 // Imports ...
@@ -244,6 +246,8 @@ npx hardhat --network luksoTestnet run scripts/attachAssetMetadataAsUP.ts
   </TabItem>
 
   <TabItem value="eoa" label="Update metadata with an EOA">
+
+In order to update the metadata using your EOA, you can call the [`setDataBatch()`](../../contracts/contracts/ERC725/ERC725.md#setdatabatch) function directly on the asset contract.
 
 ```ts title="scripts/attachAssetMetadatAsEOAa.ts"
 // Imports ...
@@ -303,9 +307,17 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::
 
-If you want to set the metadata of a contract right during the deployment transaction, you will have to [deploy the transaction using a Universal Profile](./getting-started.md#create-a-env-file), as a plain EOA can not execute batch calls. This example will use the previous example contract from the [Create LSP7 Token](./create-lsp7-token.md) guide. However, you can also use your custom token contract. First, set up the deployment script and load the Universal Profile:
+:::info
+
+If you want to set the metadata of a contract right during the deployment transaction, you will have to [deploy the transaction using a Universal Profile](./getting-started.md#create-a-env-file), as an EOA can not execute batch calls.
+
+:::
+
+The example will use the previous contract from the [Create LSP7 Token](./create-lsp7-token.md) guide. However, the process of deploying contracts with metadata is almost equivalent across LSPs. You just have to adjust the contract parameters, schemas, and artifacts according to your standards.
 
 ### Setup deployment script
+
+First, set up the deployment script and load the Universal Profile:
 
 ```ts title="scripts/deployTokenWithMetadataAsUP.ts"
 import { ethers } from 'hardhat';
@@ -346,12 +358,24 @@ deployTokenWithMetadata()
 
 ### Prepare the transaction payloads
 
-Next, you have to prepare the payload of the different contract calls so the batch transaction can be executed. You have to:
+Next, you have to prepare the payload of the different contract calls so the batch transaction can be executed:
 
 1. Encode the constructor parameters
 2. Generate the full bytecode for the contract deployment
 3. Encode the LSP4 metadata
 4. Generate the full bytecode for the storage update
+
+:::tip Encoding
+
+The 🛠️[`erc725.js`](../../tools/erc725js/getting-started.md) library can be used to easily encode the data of the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) and other data keys following the [LSP2 ERC725YJSON Schema](../../standards/generic-standards/lsp2-json-schema.md). The encoded value will then be passed into the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function call of the contract.
+
+:::
+
+:::info Address Generation
+
+Generating the full bytecode for the storage update requires the contract address to be called. As the contract is not yet deployed, you have to mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall`. This address then matches the contract that will later be deployed using the same parameters.
+
+:::
 
 ```ts title="scripts/deployTokenWithMetadataAsUP.ts"
 // Imports ...
@@ -410,7 +434,7 @@ async function deployTokenWithMetadata() {
 
 ### Create the batch transaction
 
-After the payloads are prepared correctly, you can execute the `executeBatch()` function on the Universal Profile. First, you have to set the transaction target to `0x0`, as the token contract will be initialized. However, when setting the metadata, you can pass the previously generated `customTokenAddress` from the pregenerated `staticCall()` using the `CREATE` operation.
+After the payloads are prepared correctly, you can execute the [`executeBatch()`](../../contracts/contracts/ERC725/ERC725.md#executebatch) function on the Universal Profile. On the first call, you have to set the transaction target to `0x0`, as the token contract will be initialized. The second call will then use the [previously generated contract address](#prepare-the-transaction-payloads) from the `staticCall` in order to set the metadata.
 
 ```ts title="scripts/deployTokenWithMetadataAsUP.ts"
 // Imports ...
@@ -454,4 +478,4 @@ Make sure that you [sucessfully compiled your contract](./getting-started.md) be
 
 :::
 
-The transaction will be signed using the configured controller key. After the deployment, you will be able to check the contract on the [Execution Explorer](https://explorer.execution.testnet.lukso.network/)
+The transaction will be signed using the configured controller key. After the deployment, you will be able to check the contract on the [Execution Explorer](https://explorer.execution.testnet.lukso.network/).
