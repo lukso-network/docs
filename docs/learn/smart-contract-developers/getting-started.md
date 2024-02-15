@@ -247,7 +247,7 @@ async function deployContract() {
   );
 
   // Add the constructor parameters to the contract bytecode
-  const contractBytecodeWithConstructor = contractBytecode + encodedConstructorParams.slice(2);
+  const contractBytecodeWithConstructor = ethers.concat([contractBytecode, encodedConstructorParams]);
 
   // Get the address of the custom contract that will be created
   const contractAddress = await universalProfile.execute.staticCall(
