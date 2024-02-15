@@ -33,7 +33,7 @@ The system requirements will depend on the clients you are running. Please refer
 
 ## Supported clients versions
 
-The LUKSO network currently supports the following clients versions
+The LUKSO network currently supports the following clients versions:
 
 | Client     | Version  | Release                                                      |
 | ---------- | -------- | ------------------------------------------------------------ |
@@ -42,6 +42,12 @@ The LUKSO network currently supports the following clients versions
 | Prysm      | v4.0.8   | https://github.com/prysmaticlabs/prysm/releases/tag/v4.0.8   |
 | Lighthouse | v4.5.0   | https://github.com/sigp/lighthouse/releases/tag/v4.5.0       |
 | Teku       | v23.11.0 | https://github.com/Consensys/teku/releases/tag/23.11.0       |
+
+:::caution
+
+Running newer versions of the clients may trigger a network fork on your node, potentially leading to validation issues, loss of funds, or even a validator slash.
+
+:::
 
 ## Starting a Node
 
