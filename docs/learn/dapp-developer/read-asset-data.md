@@ -74,7 +74,7 @@ Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You
 ```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
-import { INTERFACE_IDS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
+import { INTERFACE_IDS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants';
 
 const myAsset = new ERC725(lsp4Schema,'<myAssetAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
@@ -160,15 +160,6 @@ console.log(tokenType);
 
 <!-- prettier-ignore-end -->
 
-Based on this token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) can be interpreted differently, it can either:
-
-- represent the token information of a whole contract
-- or the information of a single NFT, that has multiple ownable amounts or IDs.
-
-<!-- TODO: the wording is a bit weird below, i think it can be written in a betetr way -->
-
-In case your asset is an NFT (`tokenType = 1`), the individual information of an ID can be set. If your asset is a collection (`tokenType = 2`) however, this individual medatada is mandatory.
-
 At this point, you should be able to identify if the digital asset is a:
 
 - LSP7 - Token
@@ -176,14 +167,18 @@ At this point, you should be able to identify if the digital asset is a:
 - LSP8 - NFT
 - LSP8 - Collection
 
-Based on this information, the asset metadata is fetched in different ways.
-
 ## Fetch the Asset Metadata
 
-As described on the different asset types of the [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) documentation, metadata can be attached:
+Based on the token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) can be interpreted differently. Metadata can be attached:
 
 - As **global token information** of the contract (Token or LSP7 NFT)
 - To each **individual token ID** (LSP8 NFT or Collection)
+
+:::tip Metadata Entries
+
+In case your asset is an NFT (`tokenType = 1`), the token-ID metadata _may_ be set on top of the contract's own metadata. However, if your asset is a collection (`tokenType = 2`), the token ID-specific medatada is _mandatory_.
+
+:::
 
 ### Global Token Information
 
@@ -191,7 +186,7 @@ To fetch the whole contract's metadata JSON file, you can use the [`fetchData('L
 
 :::info differece between get and fetch
 
-The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI` referenced within the smart contract.
+The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI` referenced within the smart contract. You can read more about `VerifiableURI` in the [BaseURI specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) of [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
 
 :::
 
@@ -272,6 +267,12 @@ console.log(assetMetadata);
 </Details>
 
 ### Token ID Metadata
+
+:::info Version Support
+
+Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata.
+
+:::
 
 To fetch the metadata of specific token IDs, you have to call the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function of the LSP8 asset directly. Therefore, install a provider library to set up the contract and import the related contract ABIs:
 
@@ -429,7 +430,7 @@ const fileUrl = 'https://api.universalprofile.cloud/ipfs/' + contentID;
 
 // Retrieve the metadata contents
 const response = await fetch(fileUrl);
-const jsonMetadata = await response.text();
+const jsonMetadata = await response.json();
 console.log(jsonMetadata);
 ```
 
