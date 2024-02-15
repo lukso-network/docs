@@ -131,8 +131,6 @@ After setting up the structure of the script, you can use the 🛠️ [`erc725.j
   <TabItem value="up" label="Update metadata with a Universal Profile">
 
 ```ts title="scripts/attachAssetMetadataAsUP.ts"
-// Imports ...
-
 async function attachAssetMetadata(myAssetAddress: string) {
   // Previous code ...
 
@@ -164,8 +162,6 @@ async function attachAssetMetadata(myAssetAddress: string) {
   <TabItem value="eoa" label="Update metadata with an EOA">
 
 ```ts title="scripts/attachAssetMetadatAsEOAa.ts"
-// Imports ...
-
 async function attachAssetMetadata(myAssetAddress: string) {
   // Previous code ...
 
@@ -206,8 +202,6 @@ After you sucessfully tested the contract call by calling the [ERC725Y data key]
 In order to update the metadata using your Universal Profile, the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the contract can not be called directly. Instead, you have to generate the payload of the transaction and execute it by calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function of the Universal Profile.
 
 ```ts title="scripts/attachAssetMetadataAsUP.ts"
-// Imports ...
-
 async function attachAssetMetadata(myAssetAddress: string) {
   // Previous code ...
 
@@ -250,8 +244,6 @@ npx hardhat --network luksoTestnet run scripts/attachAssetMetadataAsUP.ts
 In order to update the metadata using your EOA, you can call the [`setDataBatch()`](../../contracts/contracts/ERC725/ERC725.md#setdatabatch) function directly on the asset contract.
 
 ```ts title="scripts/attachAssetMetadatAsEOAa.ts"
-// Imports ...
-
 async function attachAssetMetadata(myAssetAddress: string) {
   // Previous code ...
 
@@ -378,8 +370,6 @@ Generating the full bytecode for the storage update requires the contract addres
 :::
 
 ```ts title="scripts/deployTokenWithMetadataAsUP.ts"
-// Imports ...
-
 async function deployTokenWithMetadata() {
   // Previous code ...
 
@@ -401,8 +391,10 @@ async function deployTokenWithMetadata() {
   );
 
   // Add the constructor parameters to the token bytecode
-  const tokenBytecodeWithConstructor =
-    tokenBytecode + encodedConstructorParams.slice(2);
+  const tokenBytecodeWithConstructor = ethers.concat([
+    tokenBytecode,
+    encodedConstructorParams,
+  ]);
 
   // Get the address of the custom token contract that will be created
   const customTokenAddress = await universalProfile.execute.staticCall(
@@ -437,8 +429,6 @@ async function deployTokenWithMetadata() {
 After the payloads are prepared correctly, you can execute the [`executeBatch()`](../../contracts/contracts/ERC725/ERC725.md#executebatch) function on the Universal Profile. On the first call, you have to set the transaction target to `0x0`, as the token contract will be initialized. The second call will then use the [previously generated contract address](#prepare-the-transaction-payloads) from the `staticCall` in order to set the metadata.
 
 ```ts title="scripts/deployTokenWithMetadataAsUP.ts"
-// Imports ...
-
 async function deployTokenWithMetadata() {
   // Previous code ...
 
