@@ -241,7 +241,7 @@ function executeRelayCallBatch(
 
 _Executing a batch of relay calls (= meta-transactions)._
 
-Same as [`executeRelayCall`](#executerelaycall) but execute a batch of signed calldata payloads (abi-encoded function calls) in a single transaction. The `signatures` can be from multiple controllers, not necessarely the same controller, as long as each of these controllers that signed have the right permissions related to the calldata `payload` they signed.
+Same as [`executeRelayCall`](#executerelaycall) but execute a batch of signed calldata payloads (abi-encoded function calls) in a single transaction. The `signatures` can be from multiple controllers, not necessarily the same controller, as long as each of these controllers that signed have the right permissions related to the calldata `payload` they signed.
 
 <blockquote>
 
@@ -401,7 +401,7 @@ function lsp20VerifyCall(
 
 | Name |   Type   | Description                                                                                                                                                                                                                                                                                                                                     |
 | ---- | :------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `0`  | `bytes4` | MUST return the first 3 bytes of `lsp20VerifyCall(address,uint256,bytes)` function selector if the call to the function is allowed, concatened with a byte that determines if the lsp20VerifyCallResult function should be called after the original function call. The byte that invoke the lsp20VerifyCallResult function is strictly `0x01`. |
+| `0`  | `bytes4` | MUST return the first 3 bytes of `lsp20VerifyCall(address,uint256,bytes)` function selector if the call to the function is allowed, concatenated with a byte that determines if the lsp20VerifyCallResult function should be called after the original function call. The byte that invoke the lsp20VerifyCallResult function is strictly `0x01`. |
 
 <br/>
 
