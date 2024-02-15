@@ -31,6 +31,24 @@ The system requirements will depend on the clients you are running. Please refer
 | RAM                 | 16 GB          |
 | SSD (NVMe)          | 100 GB         |
 
+## Supported clients versions
+
+The LUKSO network currently supports the following clients versions:
+
+| Client     | Version  | Release                                                      |
+| ---------- | -------- | ------------------------------------------------------------ |
+| Geth       | v1.13.5  | https://github.com/ethereum/go-ethereum/releases/tag/v1.13.5 |
+| Erigon     | v2.55.0  | https://github.com/ledgerwatch/erigon/releases/tag/v2.55.0   |
+| Prysm      | v4.0.8   | https://github.com/prysmaticlabs/prysm/releases/tag/v4.0.8   |
+| Lighthouse | v4.5.0   | https://github.com/sigp/lighthouse/releases/tag/v4.5.0       |
+| Teku       | v23.11.0 | https://github.com/Consensys/teku/releases/tag/23.11.0       |
+
+:::caution
+
+Running newer versions of the clients may trigger a network fork on your node, potentially leading to validation issues, loss of funds, or even a validator slash.
+
+:::
+
 ## Starting a Node
 
 To start your clients and contribute to the LUKSO network, you have 4 options.

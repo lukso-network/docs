@@ -60,7 +60,7 @@ You can add the LUKSO Mainnet to any of your existing wallets like [MetaMask](ht
 | Setting               | Value                                             |
 | --------------------- | ------------------------------------------------- |
 | Network Name          | LUKSO Testnet                                     |
-| RPC URL               | https://rpc.testnet.lukso.network                 |
+| RPC URL               | https://rpc.testnet.lukso.network (rate limited)  |
 | Chain ID / Network ID | 4201                                              |
 | Currency Symbol       | LYXt                                              |
 | Block explorer URL    | https://explorer.execution.testnet.lukso.network/ |
