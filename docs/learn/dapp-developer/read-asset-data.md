@@ -186,7 +186,7 @@ To fetch the whole contract's metadata JSON file, you can use the [`fetchData('L
 
 :::info differece between get and fetch
 
-The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI` referenced within the smart contract. You can read more about `VerifiableURI` in the [BaseURI specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) of [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
+The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI` referenced within the smart contract. You can read more about `VerifiableURI` in the [LSP2 specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
 
 :::
 
@@ -268,13 +268,15 @@ console.log(assetMetadata);
 
 ### Token ID Metadata
 
+If your token is an LSP8 NFT or Collection, you can fetch the metadata of specific token IDs by calling the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function of the contract.
+
 :::info Version Support
 
 Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata.
 
 :::
 
-To fetch the metadata of specific token IDs, you have to call the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function of the LSP8 asset directly. Therefore, install a provider library to set up the contract and import the related contract ABIs:
+First, install a provider library to set up the contract and import the related contract ABIs:
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers">
@@ -307,7 +309,7 @@ import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableD
 
 </Tabs>
 
-Afterwards, you can call the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function using the related provider. As token IDs are only supported on LSP8, ensure that your contract address supports the [LSP8 Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard. You can reuse the `isLSP8` variable from the [interface detection](#detect-the-contract-interface) detection above.
+Afterwards, you can call the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function using the related provider. As token IDs are only supported on LSP8, ensure that your contract address supports the [LSP8 Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard as described in the [interface detection](standard-detection.md#interface-detection) guide.
 
 :::caution
 
@@ -321,21 +323,30 @@ Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You
 ```js
 // ...
 
-if (isLSP8) {
-  const provider = new ethers.JsonRpcProvider(
-    'https://rpc.testnet.lukso.gateway.fm',
-  );
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.gateway.fm',
+);
+
+// Create contract instance
+const myAssetContract = new ethers.Contract(
+  '<myAssetAddress>',
+  lsp8Artifact.abi,
+  provider,
+);
+
+const isLSP8 = await myAssetContract.supportsInterface(
+  INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+);
+
+async function fetchTokenIdMetadata() {
+  if (!isLSP8) {
+    console.log('Asset is not an LSP8.');
+    return;
+  }
 
   // Token ID as Bytes32 value (1)
   const tokenID =
     '0x0000000000000000000000000000000000000000000000000000000000000001';
-
-  // Create contract instance
-  const myAssetContract = new ethers.Contract(
-    '<myAssetAddress>',
-    lsp8Artifact.abi,
-    provider,
-  );
 
   // Get the encoded asset metadata
   const tokenIdMetadata = await myAssetContract.getDataForTokenId(
@@ -354,6 +365,8 @@ if (isLSP8) {
   ]);
   console.log(decodedMetadata);
 }
+
+fetchTokenIdMetadata();
 ```
 
   </TabItem>
@@ -363,20 +376,28 @@ if (isLSP8) {
 ```js
 // ...
 
-if (isLSP8) {
-  const web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rpc.testnet.lukso.gateway.fm'),
-  );
+const web3 = new Web3(
+  new Web3.providers.HttpProvider('https://rpc.testnet.lukso.gateway.fm'),
+);
+// Create contract instance
+const myAssetContract = new web3.eth.Contract(
+  lsp8Artifact.abi,
+  '<myAssetAddress>',
+);
+
+const isLSP8 = await myAssetContract.supportsInterface(
+  INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+);
+
+async function fetchTokenIdMetadata() {
+  if (!isLSP8) {
+    console.log('Asset is not an LSP8.');
+    return;
+  }
 
   // Token ID as Bytes32 value (1)
   const tokenID =
     '0x0000000000000000000000000000000000000000000000000000000000000001';
-
-  // Create contract instance
-  const myAssetContract = new web3.eth.Contract(
-    lsp8Artifact.abi,
-    '<myAssetAddress>',
-  );
 
   // Get the encoded asset metadata
   const tokenIdMetadata = await myAssetContract.methods.getDataForTokenId(
@@ -396,6 +417,8 @@ if (isLSP8) {
 
   console.log(decodedMetadata);
 }
+
+fetchTokenIdMetadata();
 ```
 
   </TabItem>
@@ -421,17 +444,57 @@ if (isLSP8) {
 
 </Details>
 
-Based on the decoded metadata from the contract, you can continue retrieving the actual contents of the `Verifiable URI`. In this example, we will retrieve the file from an IPFS URL:
+### Get JSON Content
+
+Based on the decoded metadata from the contract, you can continue retrieving the actual contents of the [`Verifiable URI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri). Usually, you can retrieve the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) from the asset, indicating which file storage is used. This address can then be placed in front of the content ID to get the full link to the file:
 
 ```js
-// Prepare IPFS link to fetch
-const contentID = decodedMetadata[0].value.url.replace('ipfs://', '');
-const fileUrl = 'https://api.universalprofile.cloud/ipfs/' + contentID;
+async function fetchTokenIdMetadata() {
+  // ...
 
-// Retrieve the metadata contents
-const response = await fetch(fileUrl);
-const jsonMetadata = await response.json();
-console.log(jsonMetadata);
+  // Get the BaseURI of the storage provider
+  let tokenBaseURI = await myAsset.getData(
+    ERC725YDataKeys.LSP8['LSP8TokenMetadataBaseURI'],
+  );
+  console.log('BaseURI: ', tokenBaseURI);
+
+  // Get the contentID or file link
+  let contentID = decodedMetadata[0].value.url;
+  console.log('ContentID: ', contentID);
+}
+
+fetchTokenIdMetadata();
+```
+
+:::info
+
+The file address within the fetched and decoded `LSP4 Metadata` of the token ID might already contain the full link of the file, without using the base provider. If you are checking assets in production, please check if the content is a valid URL beforehand.
+
+:::
+
+:::caution
+
+In case the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) was not set, you will have to fall back to the gateway indicated within the `contentID`. In this example, we will use the IPFS gateway of LUKSO, as the `contentID` starts with `ipfs://`, meaning that it was uploaded using the [Interplanetary File System](https://ipfs.tech/).
+
+:::
+
+```js
+async function fetchTokenIdMetadata() {
+  //..
+
+  if (tokenBaseURI === '0x') {
+    // If no BaseURI was set, use another IPFS gateway
+    tokenBaseURI = 'https://api.universalprofile.cloud/ipfs/';
+    // Adjust the content ID to the alternative IPFS gateway
+    contentID = contentID.replace('ipfs://', '');
+  }
+  const fileUrl = tokenBaseURI + contentID;
+
+  // Retrieve the metadata contents
+  const response = await fetch(fileUrl);
+  const jsonMetadata = await response.json();
+  console.log(jsonMetadata);
+}
 ```
 
 <Details>
