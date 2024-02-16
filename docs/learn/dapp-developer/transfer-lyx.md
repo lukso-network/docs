@@ -1,6 +1,6 @@
 ---
 sidebar_label: '💰 Transfer LYX'
-sidebar_position: 7
+sidebar_position: 8
 description: Learn how to transfer LYX from your Universal Profile.
 ---
 
