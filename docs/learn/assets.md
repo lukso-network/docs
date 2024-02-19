@@ -28,7 +28,7 @@ To upload the files (assets and metadata JSON file), you have mainly two options
 
 Centralized storage solutions are user-friendly and can be a good starting point for those new to the ecosystem or participating in hackathons. However, they rely on a single point of control, which may not align with the decentralized ethos of blockchain technology.
 
-Decentralized storage solutions align with the decentralized nature of blockchain and offer benefits like _redundancy_, _censorship resistance_, and _permanent storage_, which are more complex to interact with.
+Decentralized storage solutions align with the decentralized nature of blockchain and offer benefits like _redundancy_, _censorship resistance_, and _permanent storage_. However, they might be more complex to interact with.
 
 ## Generate the JSON File
 
@@ -141,4 +141,4 @@ The encoded content will then look like the following:
 
 ## Write the value to the contract
 
-Now that you have they key to update and the value to write, you can use the [`setData()`](../contracts/contracts/ERC725.md/#setdata) to update the contract.
+Now that you have they key to update and the value to write, you can use the [`setData()`](../contracts/contracts/ERC725/ERC725.md#setdata) to update the contract.
