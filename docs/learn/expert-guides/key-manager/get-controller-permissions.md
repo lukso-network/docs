@@ -126,7 +126,7 @@ async function getPermissionedAddresses() {
 getPermissionedAddresses();
 ```
 
-<Details>
+<details>
     <summary>Show all <code>decodedPermission</code> values</summary>
 
 ```text
@@ -156,4 +156,4 @@ Decoded permission for 0x5F606b5b237623463a90F63230F9b929321dbCBa = {
 }
 ```
 
-</Details>
+</details>
