@@ -22,7 +22,7 @@ There are two different variants of modifying ERC725Y storage:
 
 :::tip Code repository
 
-You can find all the contracts, sample metadata, and scripts of the guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
+You can find all the contracts, sample metadata, and scripts of the guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground/tree/main/smart-contracts-hardhat) repository.
 
 :::
 
@@ -42,8 +42,9 @@ import { ethers, network } from 'hardhat';
 import * as dotenv from 'dotenv';
 
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
-import { ERC725 } from '@erc725/erc725.js';
 import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+import { ERC725 } from '@erc725/erc725.js';
 import LSP4DigitalAssetSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
 import { lsp4SampleMetadata } from '../consts/LSP4SampleMetadata';
@@ -85,7 +86,7 @@ attachAssetMetadata('0x...' /* Your custom asset address */)
 
   <TabItem value="eoa" label="Update metadata with an EOA">
 
-```ts title="scripts/attachAssetMetadatAsEOAa.ts"
+```ts title="scripts/attachAssetMetadataAsEOA.ts"
 import { ethers, network } from 'hardhat';
 import * as dotenv from 'dotenv';
 
@@ -125,7 +126,7 @@ attachAssetMetadata('0x...' /* Your custom asset address */)
 
 ### Read the current metadata entry
 
-After setting up the structure of the script, you can use the 🛠️ [`erc725.js`](../../tools/erc725js/getting-started.md) library to read the current metadata of your contract using [`getData()`](https://docs.lukso.tech/tools/erc725js/classes/ERC725#getdata). This can be used to compare or check the previous contents before proceeding with the deployment. The `erc725.js` object will later be used to encode the new contents of the [ERC725Y storage](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store).
+After setting up the structure of the script, you can use the 🛠️ [`erc725.js`](../../tools/erc725js/getting-started.md) library to read the current metadata of your contract using [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata). This can be used to compare or check the previous contents before proceeding with the deployment. The `erc725.js` object will later be used to encode the new contents of the [ERC725Y storage](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store).
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
@@ -161,7 +162,7 @@ async function attachAssetMetadata(myAssetAddress: string) {
 
   <TabItem value="eoa" label="Update metadata with an EOA">
 
-```ts title="scripts/attachAssetMetadatAsEOAa.ts"
+```ts title="scripts/attachAssetMetadataAsEOA.ts"
 async function attachAssetMetadata(myAssetAddress: string) {
   // Previous code ...
 
@@ -243,7 +244,7 @@ npx hardhat --network luksoTestnet run scripts/attachAssetMetadataAsUP.ts
 
 In order to update the metadata using your EOA, you can call the [`setDataBatch()`](../../contracts/contracts/ERC725/ERC725.md#setdatabatch) function directly on the asset contract.
 
-```ts title="scripts/attachAssetMetadatAsEOAa.ts"
+```ts title="scripts/attachAssetMetadataAsEOA.ts"
 async function attachAssetMetadata(myAssetAddress: string) {
   // Previous code ...
 
@@ -265,7 +266,7 @@ async function attachAssetMetadata(myAssetAddress: string) {
 Afterwards, the script is ready to be deployed:
 
 ```bash
-npx hardhat --network luksoTestnet run scripts/attachAssetMetadatAsEOAa.ts
+npx hardhat --network luksoTestnet run scripts/attachAssetMetadataAsEOA.ts
 ```
 
   </TabItem>
