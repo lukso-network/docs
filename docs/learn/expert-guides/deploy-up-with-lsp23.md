@@ -34,7 +34,7 @@ Add to your file the imports of the artifacts, constants and libraries that we w
 import { AbiCoder, Contract, ethers } from 'ethers';
 import { ERC725 } from '@erc725/erc725.js';
 
-// LSPs artifacts
+// LSPs Smart Contracts artifacts
 import LSP23FactoryArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP23LinkedContractsFactory.json';
 import UniversalProfileInitArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfileInit.json';
 
@@ -169,6 +169,7 @@ async function main() {
       method: 'keccak256(utf8)',
       data: '0x6d6d08aafb0ee059e3e4b6b3528a5be37308a5d4f4d19657d26dd8a5ae799de0',
     },
+    // this is an IPFS CID of a LSP3 Metadata example, you can use your own
     url: 'ipfs://QmPRoJsaYcNqQiUrQxE7ajTRaXwHyAU29tHqYNctBmK64w',
   };
 }
@@ -176,7 +177,7 @@ async function main() {
 
 #### Create the permissions data keys and data values
 
-In order to create all the permissions data keys and data values, we will use the `@erc725/erc725.js` library. This library is a JavaScript implementation of the ERC725Y standard. It allows you to easily encode and decode the data keys and data values of an ERC725Y contract. For more information on this library, please refer to the [ERC725Y.js](../../tools/erc725js/getting-started.md) docs.
+In order to create all the permissions data keys and data values, we will use the [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) library. This library is a JavaScript implementation to encode and decode data key and values easily from any ERC725Y contract storage.
 
 ```typescript
 async function main() {
@@ -226,7 +227,7 @@ async function main() {
         EXECUTE_RELAY_CALL: true,
       }), // Main Controller permissions data key and value
     },
-    // length of the Address Permissions array and their respective indexed keys and values
+    // Address Permissions array length = 2, and the controller addresses at each index
     {
       keyName: 'AddressPermissions[]',
       value: [UNIVERSAL_RECEIVER_ADDRESS, MAIN_CONTROLLER],
@@ -244,12 +245,11 @@ async function main() {
   // previous code
 
   const abiCoder = new AbiCoder();
-  const types = ['bytes32[]', 'bytes[]']; // types of the parameters
 
-  const initializeEncodedBytes = abiCoder.encode(types, [
-    setDataKeysAndValues.keys,
-    setDataKeysAndValues.values,
-  ]);
+  const initializeEncodedBytes = abiCoder.encode(
+    ['bytes32[]', 'bytes[]'],
+    [setDataKeysAndValues.keys, setDataKeysAndValues.values],
+  );
 }
 ```
 
