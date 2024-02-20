@@ -1,5 +1,5 @@
 ---
-sidebar_label: '💽 Attach Token Metadata'
+sidebar_label: '💽 Edit Token Metadata'
 sidebar_position: 3
 description: Learn how to set and update LSP4 Metadata of digital assets on LUKSO.
 ---
@@ -7,18 +7,14 @@ description: Learn how to set and update LSP4 Metadata of digital assets on LUKS
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Attach Token Metadata
+# Edit Token Metadata
 
-:::tip Contract Storage
+In this guide, you will learn how to edit the [metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) by updating its LSP2 data key. If you want to learn more about the contract deployment itself, please have a look at the [Getting Started](./getting-started.md) or [Create LSP7 Token](./create-lsp7-token.md) guides before you continue.
 
-To bring LSP contracts to life, you can use the 🗂️ [ERC725Y storage](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) to set or modify certain data keys and values. Typically, these data keys reflect **any content** apart from the constructor parameters that have been initially set. All standardized storage keys follow the [LSP2 JSON Schema](../../standards/generic-standards/lsp2-json-schema.md).
+You have two options to edit metadata:
 
-:::
-
-There are two different variants of modifying ERC725Y storage:
-
-- **[Updating the data key after the deployment](#update-metadata-after-deployment)** transaction (using an EOA or a Universal Profile)
-- **[Setting the data key within the initial deployment](#set-metadata-during-deployment)** transaction (using a Universal Profile)
+- **[Updating the data key after the deployment](#update-metadata-after-contract-deployment)** transaction (using an EOA or a Universal Profile)
+- **[Setting the data key within the initial deployment](#set-metadata-during-contract-deployment)** transaction (using a Universal Profile)
 
 :::tip Code repository
 
@@ -26,13 +22,11 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::
 
-## Update metadata after deployment
-
-In the following example, we will set the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) data key of an [LSP7 Contract](../../standards/tokens/LSP7-Digital-Asset.md). If you want to learn more about the contract deployment itself, please have a look at the [Getting Started](./getting-started.md) or [Create LSP7 Token](./create-lsp7-token.md) guides before you continue.
+## Update metadata after contract deployment
 
 ### Setup the deployment script
 
-In the first step, you will have to set up a new deployment script in Hardhat. We will create a new function for setting the [LSP4 metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) key, which will take the address of your [previously deployed token](./create-lsp7-token.md). If you do not have the deployed token set up within your Hardhat repository, please adjust the `getContractAt()` function and create a new token based on a contract artifact from the 🛠️ [`@lukso/lsp-smart-contracts/`](../../tools/lsp-smart-contracts/getting-started.md) library.
+In the first step, you will have to set up a new deployment script in Hardhat. We will create a new function for setting the [LSP4 metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) key, which will take the address of your [previously deployed token](./create-lsp7-token.md). If you do not have the deployed token set up within your Hardhat repository, please adjust the `getContractAt()` function and create a new token based on a contract artifact from the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library.
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
@@ -126,7 +120,7 @@ attachAssetMetadata('0x...' /* Your custom asset address */)
 
 ### Read the current metadata entry
 
-After setting up the structure of the script, you can use the 🛠️ [`erc725.js`](../../tools/erc725js/getting-started.md) library to read the current metadata of your contract using [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata). This can be used to compare or check the previous contents before proceeding with the deployment. The `erc725.js` object will later be used to encode the new contents of the [ERC725Y storage](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store).
+After setting up the structure of the script, you can use the [`erc725.js`](../../tools/erc725js/getting-started.md) library to read the current metadata of your contract using [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata). This can be used to compare or check the previous contents before proceeding with the deployment. The `erc725.js` object will later be used to encode the new contents of the [ERC725Y storage](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store).
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
@@ -195,7 +189,7 @@ async function attachAssetMetadata(myAssetAddress: string) {
 
 ### Create the metadata transaction
 
-After you sucessfully tested the contract call by calling the [ERC725Y data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store), you can prepare the content by encoding the metadata. that will be passed into the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the 🗂️[ERC725](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store)-based contract.
+After you successfully tested the contract call by calling the [ERC725Y data key](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store), you can prepare the content by encoding the metadata. that will be passed into the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the [ERC725](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store)-based contract.
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
@@ -275,7 +269,7 @@ npx hardhat --network luksoTestnet run scripts/attachAssetMetadataAsEOA.ts
 
 :::caution Contract Compilation
 
-Make sure that you [sucessfully compiled your contract](./getting-started.md) before executing the deployment script.
+Make sure that you [successfully compiled your contract](./getting-started.md) before executing the deployment script.
 
 :::
 
@@ -292,13 +286,7 @@ The newly generated `VerifiableURI` can then be encoded and used to edit the ERC
 
 :::
 
-## Set metadata during deployment
-
-:::tip Code repository
-
-You can find all the contracts, sample metadata, and scripts of the guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
-
-:::
+## Set metadata during contract deployment
 
 :::info
 
@@ -317,8 +305,9 @@ import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
 
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
-import { ERC725 } from '@erc725/erc725.js';
 import LSP0Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
+
+import { ERC725 } from '@erc725/erc725.js';
 import LSP4DigitalAssetSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
 import { lsp4SampleMetadata } from '../consts/LSP4SampleMetadata';
@@ -360,7 +349,7 @@ Next, you have to prepare the payload of the different contract calls so the bat
 
 :::tip Encoding
 
-The 🛠️[`erc725.js`](../../tools/erc725js/getting-started.md) library can be used to easily encode the data of the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) and other data keys following the [LSP2 ERC725YJSON Schema](../../standards/generic-standards/lsp2-json-schema.md). The encoded value will then be passed into the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function call of the contract.
+The [`erc725.js`](../../tools/erc725js/getting-started.md) library can be used to easily encode the data of the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) and other data keys following the [LSP2 ERC725YJSON Schema](../../standards/generic-standards/lsp2-json-schema.md). The encoded value will then be passed into the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function call of the contract.
 
 :::
 
@@ -465,7 +454,7 @@ npx hardhat --network luksoTestnet run scripts/deployTokenWithMetadataAsUP.ts
 
 :::caution Contract Compilation
 
-Make sure that you [sucessfully compiled your contract](./getting-started.md) before executing the deployment script.
+Make sure that you [successfully compiled your contract](./getting-started.md) before executing the deployment script.
 
 :::
 
