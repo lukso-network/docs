@@ -109,16 +109,20 @@ To encode the LSP4 Metadata with ease, you can use the 🛠️ [`erc725.js`](../
 import { ERC725 } from '@erc725/erc725.js';
 import LSP4DigitalAssetSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
-const LSP4JSON = { /* Your JSON */ };
+const LSP4JSON = {
+  /* Your JSON */
+};
 
-export const = encodedLSP4Metadata = ERC725.encodeData({
+const encodedLSP4Metadata = ERC725.encodeData(
+  {
     keyName: 'LSP4Metadata',
     value: {
       json: LSP4JSON,
       url: 'https://my-file-provider.com/my-file-link.json', // It can also be: ipfs://[CID]
     },
-  }, LSP4DigitalAssetSchema);
-
+  },
+  LSP4DigitalAssetSchema,
+);
 ```
 
 The encoded content will then look like the following:
