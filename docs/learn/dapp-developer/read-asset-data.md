@@ -61,7 +61,7 @@ Once you have the address of an asset, you need to check if the asset's contract
 
 The ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js. You can also create and load your own ERC725Y JSON schemas if you want to use custom data keys.
 
-To start, instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your asset address, an RPC provider (`web3`, `ethereum`, `ethers`, `RPC_URL`), and an IPFS gateway.
+To start, instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your asset address, an RPC provider (`web3`, `ethereum`, `ethers`), and an IPFS gateway.
 
 :::caution
 
@@ -74,7 +74,7 @@ Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You
 ```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
-import { INTERFACE_IDS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants';
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts';
 
 const myAsset = new ERC725(lsp4Schema,'<myAssetAddress>', 'https://rpc.testnet.lukso.gateway.fm',
   {
@@ -104,7 +104,7 @@ You can use the 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspecto
 
 After you've approved the contract type, its recommended to check if the asset actually implemented the [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) into it's storage.
 
-<Details>
+<details>
   <summary>
     <a href="../../standards/tokens/LSP4-Digital-Asset-Metadata.md">LSP4 - Digital Asset Metadata</a> describes the data within <a href="../../standards/tokens/LSP7-Digital-Asset.md">LSP7</a> and <a href="../../standards/tokens/LSP8-Identifiable-Digital-Asset.md">LSP8</a> asset's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. <br/>The following data keys can be fetched. 👇
   </summary>
@@ -119,7 +119,7 @@ After you've approved the contract type, its recommended to check if the asset a
 - `LSP4TokenName` displays the string of the asset's name
 
 </div>
-</Details>
+</details>
 
 As shown in the previous [Metadata Detection Guide](./standard-detection.md#metadata-detection), you can get the content of the data keys directly using the `getData(...)` function of the ⚒️ [`erc725.js`](../../tools/erc725js/classes/ERC725#getdata) library.
 
@@ -171,8 +171,8 @@ At this point, you should be able to identify if the digital asset is a:
 
 Based on the token type, the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) can be interpreted differently. Metadata can be attached:
 
-- As **global token information** of the contract (Token or LSP7 NFT)
-- To each **individual token ID** (LSP8 NFT or Collection)
+- As [**global token information**](#global-token-information) of the contract (Token or LSP7 NFT)
+- To each [**individual token ID**](#token-id-metadata) (LSP8 NFT or Collection)
 
 :::tip Metadata Entries
 
@@ -182,7 +182,7 @@ In case your asset is an NFT (`tokenType = 1`), the token-ID metadata _may_ be s
 
 ### Global Token Information
 
-To fetch the whole contract's metadata JSON file, you can use the [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata) of the [`erc725js`](../../tools/erc725js/getting-started.md) library directly on the asset address.
+To fetch the whole contract's metadata JSON file, you can use the [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata) of the [`erc725js`](../../tools/erc725js/getting-started.md) library.
 
 :::info differece between get and fetch
 
@@ -198,7 +198,7 @@ const assetMetadata = await myAsset.fetchData('LSP4Metadata');
 console.log(assetMetadata);
 ```
 
-<Details>
+<details>
 <summary>Show result</summary>
 
 ```js
@@ -264,64 +264,37 @@ console.log(assetMetadata);
 }
 ```
 
-</Details>
+</details>
 
 ### Token ID Metadata
 
-If your token is an LSP8 NFT or Collection, you can fetch the metadata of specific token IDs by calling the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function of the contract.
+If your token is an [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) NFT or Collection, you can fetch the metadata of specific token IDs by either:
 
-:::info Version Support
+- **calling the [`getDataForTokenId(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function**: Using this method, you retrieve individual metadata for a specific ID directly. This should be done when the tokenIDs **do not follow a numeral sequence** or have to be **created or updated individually**.
+- **reading the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) key**: Using this method, you can access all the asset data within one folder, and generate the links dynamically. This is done when the token IDs of an NFT or Collection **can be pre-determined and set up** or may be **updated as a whole**.
 
-Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata.
+:::info Order of Data Fetches
+
+Due to multiple versions of setting and fetching token IDs based on the asset conditions, returned values might be empty. Therefore, it's **recommended to first call** the [`getDataForTokenId(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) to get a specific metadata. If the individual token ID data is not set, **continue to retrieve** the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) of the [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) contract.
+
+If neither `Token ID Data` nor `Base URI` entries are set, you should fall back to the [Global Token Information](#global-token-information), potentially including a BaseURI that can be used as described within the [Get JSON Content](#get-json-content) section.
 
 :::
 
-First, install a provider library to set up the contract and import the related contract ABIs:
+To retrieve token ID metadata, you will have to make direct contract calls.Therefore, install a provider library to set up the contract and import the related contract ABIs. We will use the [`erc725.js`](../../tools/erc725js/getting-started.md) and [`lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) libraries to easily get [ERC725Y](../../standards/lsp-background/erc725.md) data keys and decode their values.
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers">
 
 ```bash
-npm install ethers
+npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
 
 ```js
 // Add the necessary imports to your JS file
 import { ethers } from 'ethers';
 import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
-```
-
-  </TabItem>
-
-  <TabItem value="web3" label="web3">
-
-```bash
-npm install web3
-```
-
-```js
-// Add the necessary imports to your JS file
-import Web3 from 'web3';
-import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
-```
-
-  </TabItem>
-
-</Tabs>
-
-Afterwards, you can call the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function using the related provider. As token IDs are only supported on LSP8, ensure that your contract address supports the [LSP8 Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard as described in the [interface detection](standard-detection.md#interface-detection) guide.
-
-:::caution
-
-Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You can give it a try using an sample LSP8 asset on the testnet: [`0x8734600968c7e7193BB9B1b005677B4edBaDcD18`](https://wallet.universalprofile.cloud/asset/0x8734600968c7e7193BB9B1b005677B4edBaDcD18?network=testnet).
-
-:::
-
-<Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
-
-```js
-// ...
+import { INTERFACE_IDS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.gateway.fm',
@@ -333,20 +306,209 @@ const myAssetContract = new ethers.Contract(
   lsp8Artifact.abi,
   provider,
 );
+```
 
-const isLSP8 = await myAssetContract.supportsInterface(
-  INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+  </TabItem>
+
+  <TabItem value="web3" label="web3">
+
+```bash
+npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
+```
+
+```js
+// Add the necessary imports to your JS file
+import Web3 from 'web3';
+import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
+import { INTERFACE_IDS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+const web3 = new Web3(
+  new Web3.providers.HttpProvider('https://rpc.testnet.lukso.gateway.fm'),
+);
+// Create contract instance
+const myAssetContract = new web3.eth.Contract(
+  lsp8Artifact.abi,
+  '<myAssetAddress>',
+);
+```
+
+  </TabItem>
+
+</Tabs>
+
+:::caution
+
+Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You can give it a try using an sample LSP8 asset on the testnet: [`0x8734600968c7e7193BB9B1b005677B4edBaDcD18`](https://wallet.universalprofile.cloud/asset/0x8734600968c7e7193BB9B1b005677B4edBaDcD18?network=testnet).
+
+:::
+
+#### Token ID Format
+
+The [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) has different [formats of token IDs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat). The format of the token ID can be a unique:
+
+- `Number` as `uint256` (`TokenIdFormat`: `0`, `100`)
+- `String` with a maximum of 32 characters (`TokenIdFormat`: `1`, `101`)
+- `Smart Contract Address` with metadata (`TokenIdFormat`: `2`, `102`)
+- `Byte Identifier` with a maximum of 32 bytes (`TokenIdFormat`: `3`, `103`)
+- `Hash Digest` with 32 bytes (`TokenIdFormat`: `4`, `104`)
+
+To call the contract, you must first prepare the token ID to match the standardized `Byte32 Hex String` based on the [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat).
+
+All [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) contracts provide a **global token ID format** that can be fetched from the [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) data storage using the [`getData()`](../../contracts/contracts/ERC725/ERC725.md#getdata) function. Its value can be interpreted as the following:
+
+- `0`, `1`, `2`, `4` means the token ID format is **equal across all NFTs**
+- `100`, `101`, `102`, `104` means the token ID is **mixed across NFTs**
+
+First convert the token ID into the correct format based on the [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat):
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
+
+```js
+// Token ID of the contract
+const myTokenId = '1';
+
+let tokenIdFormat = parseInt(
+  await myAssetContract.getData(ERC725YDataKeys.LSP8['LSP8TokenIdFormat']),
+  16,
+);
+console.log('Default Token ID Format:', tokenIdFormat);
+
+const convertTokenId = (tokenID, tokenIdFormat) => {
+  switch (tokenIdFormat) {
+    case 0:
+    case 100:
+      // uint256 - Number (Left padded)
+      return ethers.zeroPadValue('0x0' + BigInt(tokenID).toString(16), 32);
+      break;
+    case 1:
+    case 101:
+      // string - String (Right padded)
+      return ethers.encodeBytes32String(tokenID).padEnd(32, '0');
+      break;
+    case 2:
+    case 102:
+      // address - Smart Contract (Left padded)
+      return ethers.zeroPadValue(tokenID, 32);
+      break;
+    case 3:
+    case 103:
+      // bytes32 - Unique Bytes (Right padded)
+      return ethers
+        .hexlify(ethers.getBytes(tokenID).slice(0, 32))
+        .padEnd(66, '0');
+      break;
+    case 4:
+    case 104:
+      // bytes32 - Hash Digest (No padding)
+      return tokenID;
+      break;
+  }
+};
+
+let byte32TokenId = convertTokenId(tokenID, tokenIdFormat);
+
+console.log('Parsed Token ID: ', byte32TokenId);
+
+if (tokenIdFormat >= 100) {
+  // You have to retrieve it for the individual token ID
+  tokenIdFormat = parseInt(
+    await myAssetContract.getDataForTokenId(
+      byte32TokenId,
+      ERC725YDataKeys.LSP8['LSP8TokenIdFormat'],
+    ),
+    16,
+  );
+  byte32TokenId = convertTokenId(tokenID, tokenIdFormat);
+  console.log('ID-specific Format:', tokenIdFormat);
+}
+```
+
+  </TabItem>
+
+  <TabItem value="web3" label="web3">
+
+```js
+const myTokenId = '1';
+
+let tokenIdFormat = parseInt(
+  await myAssetContract.methods
+    .getData(ERC725YDataKeys.LSP8['LSP8TokenIdFormat'])
+    .call(),
+  16,
 );
 
-async function fetchTokenIdMetadata() {
+console.log('Default Token ID Format:', tokenIdFormat);
+
+const convertTokenId = (tokenID, tokenIdFormat) => {
+  switch (tokenIdFormat) {
+    case 0:
+    case 100:
+      // uint256 - Number (Left padded)
+      return Web3.utils.padLeft(Web3.utils.toHex(myTokenId), 64);
+      break;
+    case 1:
+    case 101:
+      // string - String (Right padded)
+      return Web3.utils.utf8ToHex(myTokenId).padEnd(66, '0');
+      break;
+    case 2:
+    case 102:
+      // address - Smart Contract (Left padded)
+      return Web3.utils.padLeft(myTokenId, 64);
+      break;
+    case 3:
+    case 103:
+      // bytes32 - Unique Bytes (Right padded)
+      return Web3.utils.toHex(myTokenId).padEnd(66, '0');
+      break;
+    case 4:
+    case 104:
+      // bytes32 - Hash Digest (No padding)
+      return myTokenId;
+      break;
+  }
+};
+
+let byte32TokenId = convertTokenId(tokenID, tokenIdFormat);
+
+console.log('Parsed Token ID: ', byte32TokenId);
+
+if (tokenIdFormat >= 100) {
+  // You have to retrieve it for the individual token ID
+  tokenIdFormat = parseInt(
+    await myAssetContract.getDataForTokenId(
+      byte32TokenId,
+      ERC725YDataKeys.LSP8['LSP8TokenIdFormat'],
+    ),
+    16,
+  );
+  byte32TokenId = convertTokenId(tokenID, tokenIdFormat);
+  console.log('ID-specific Format:', tokenIdFormat);
+}
+```
+
+  </TabItem>
+
+</Tabs>
+
+#### Get Data from Token ID
+
+After having the correct token ID, you can start to fetch the ID-specific metadata by calling the [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid) function. As token IDs are only supported on LSP8, ensure that your contract address supports the [LSP8 Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard as described in the [Interface Detection](standard-detection.md#interface-detection) guide.
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
+
+```js
+// ...
+async function fetchTokenIdMetadata(tokenID) {
+  const isLSP8 = await myAssetContract.supportsInterface(
+    INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+  );
   if (!isLSP8) {
     console.log('Asset is not an LSP8.');
     return;
   }
-
-  // Token ID as Bytes32 value (1)
-  const tokenID =
-    '0x0000000000000000000000000000000000000000000000000000000000000001';
 
   // Get the encoded asset metadata
   const tokenIdMetadata = await myAssetContract.getDataForTokenId(
@@ -366,7 +528,7 @@ async function fetchTokenIdMetadata() {
   console.log(decodedMetadata);
 }
 
-fetchTokenIdMetadata();
+fetchTokenIdMetadata(byte32TokenId);
 ```
 
   </TabItem>
@@ -376,28 +538,15 @@ fetchTokenIdMetadata();
 ```js
 // ...
 
-const web3 = new Web3(
-  new Web3.providers.HttpProvider('https://rpc.testnet.lukso.gateway.fm'),
-);
-// Create contract instance
-const myAssetContract = new web3.eth.Contract(
-  lsp8Artifact.abi,
-  '<myAssetAddress>',
-);
+async function fetchTokenIdMetadata(tokenID) {
+  const isLSP8 = await myAssetContract.methods.supportsInterface(
+    INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+  );
 
-const isLSP8 = await myAssetContract.supportsInterface(
-  INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
-);
-
-async function fetchTokenIdMetadata() {
   if (!isLSP8) {
     console.log('Asset is not an LSP8.');
     return;
   }
-
-  // Token ID as Bytes32 value (1)
-  const tokenID =
-    '0x0000000000000000000000000000000000000000000000000000000000000001';
 
   // Get the encoded asset metadata
   const tokenIdMetadata = await myAssetContract.methods.getDataForTokenId(
@@ -418,14 +567,14 @@ async function fetchTokenIdMetadata() {
   console.log(decodedMetadata);
 }
 
-fetchTokenIdMetadata();
+fetchTokenIdMetadata(byte32TokenId);
 ```
 
   </TabItem>
 
 </Tabs>
 
-<Details>
+<details>
 <summary>Show result</summary>
 
 ```js
@@ -442,62 +591,157 @@ fetchTokenIdMetadata();
   }
 ```
 
-</Details>
+</details>
+
+### Get Data from Base URI
+
+:::info Version Support
+
+Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata from a Base URI. For previous LSP8 collections, the Base URI may be retrievable by calling the [`fetchData`](../../tools/erc725js/classes/ERC725.md#fetchdata) function as described in the [Global Token Information](#global-token-information) section.
+
+:::
+
+If no specific metadata was set for the token ID directly, you can continue to fetch the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) and build the correct metadata link by concatinating the [formatted](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) token ID.
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
+
+```js
+// ...
+
+async function fetchBaseURI() {
+  const isLSP8 = await myAssetContract.supportsInterface(
+    INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+  );
+  if (!isLSP8) {
+    console.log('Asset is not an LSP8.');
+    return;
+  }
+
+  // Retrieve and decode the Base URI
+  const tokenBaseURI = await myAssetContract.getData(
+    ERC725YDataKeys.LSP8['LSP8TokenMetadataBaseURI'],
+  );
+
+  if (tokenBaseURI == '0x') {
+    console.log('BaseURI not set.');
+    return;
+  }
+
+  // Decode the baseURI
+  const decodedBaseURI = erc725js.decodeData([
+    {
+      keyName: 'LSP8TokenMetadataBaseURI',
+      value: tokenBaseURI,
+    },
+  ]);
+
+  // Return Base URI
+  return decodedBaseURI;
+}
+
+const baseURI = fetchBaseURI();
+console.log('BaseURI: ', baseURI);
+```
+
+  </TabItem>
+
+  <TabItem value="web3" label="web3">
+
+```js
+// ...
+
+async function fetchBaseURI() {
+  const isLSP8 = await myAssetContract.methods.supportsInterface(
+    INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
+  );
+  if (!isLSP8) {
+    console.log('Asset is not an LSP8.');
+    return;
+  }
+
+  // Retrieve and decode the Base URI
+  const tokenBaseURI = await myAssetContract.methods.getData(
+    ERC725YDataKeys.LSP8['LSP8TokenMetadataBaseURI'],
+  );
+
+  if (tokenBaseURI == '0x') {
+    console.log('BaseURI not set.');
+    return;
+  }
+
+  // Decode the baseURI
+  const decodedBaseURI = erc725js.decodeData([
+    {
+      keyName: 'LSP8TokenMetadataBaseURI',
+      value: tokenBaseURI,
+    },
+  ]);
+
+  // Create the metadata link
+  return `${decodedBaseURI}${tokenID}`;
+}
+
+const baseURI = fetchBaseURI();
+console.log('BaseURI: ', baseURI);
+```
+
+  </TabItem>
+
+</Tabs>
 
 ### Get JSON Content
 
-Based on the decoded metadata from the contract, you can continue retrieving the actual contents of the [`Verifiable URI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri). Usually, you can retrieve the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) from the asset, indicating which file storage is used. This address can then be placed in front of the content ID to get the full link to the file:
+After you retrieved the [Decoded Token ID Metadata](#get-data-from-token-id) or [Base URI](#get-data-from-base-uri) for the NFT, you can continue retrieving the actual JSON contents of the [`Verifiable URI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
+
+<Tabs groupId="data-type">
+  <TabItem value="tokenid" label="Token ID Metadata">
+
+For [`getDataFromTokenID(...)`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatafortokenid), the URL will be nested within the `value` field of the metadata. However, this link might only be partial string or content ID, instead of a full link. Therefore, you have to adjust the link to the JSON metadata before it can be fetched:
 
 ```js
-async function fetchTokenIdMetadata() {
-  // ...
+const metadataURL = decodedMetadata[0].value.url;
 
-  // Get the BaseURI of the storage provider
-  let tokenBaseURI = await myAsset.getData(
-    ERC725YDataKeys.LSP8['LSP8TokenMetadataBaseURI'],
-  );
-  console.log('BaseURI: ', tokenBaseURI);
-
-  // Get the contentID or file link
-  let contentID = decodedMetadata[0].value.url;
-  console.log('ContentID: ', contentID);
-}
-
-fetchTokenIdMetadata();
-```
-
-:::info
-
-The file address within the fetched and decoded `LSP4 Metadata` of the token ID might already contain the full link of the file, without using the base provider. If you are checking assets in production, please check if the content is a valid URL beforehand.
-
-:::
-
-:::caution
-
-In case the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) was not set, you will have to fall back to the gateway indicated within the `contentID`. In this example, we will use the IPFS gateway of LUKSO, as the `contentID` starts with `ipfs://`, meaning that it was uploaded using the [Interplanetary File System](https://ipfs.tech/).
-
-:::
-
-```js
-async function fetchTokenIdMetadata() {
-  //..
-
-  if (tokenBaseURI === '0x') {
-    // If no BaseURI was set, use another IPFS gateway
-    tokenBaseURI = 'https://api.universalprofile.cloud/ipfs/';
-    // Adjust the content ID to the alternative IPFS gateway
-    contentID = contentID.replace('ipfs://', '');
+// Build full link to JSON metadata
+function generateMetadataLink(link) {
+  // If link is a Web2 Link, it can be passed back
+  if (link.startsWith('ipfs://') || link.startsWith('ipfs://')) {
+    // Use your default IPFS Gateway address
+    return link;
   }
-  const fileUrl = tokenBaseURI + contentID;
+  // If link has custom protocoll, adjust link
+  if (link.startsWith('ipfs://')) {
+    // Use your default IPFS Gateway address
+    return `https://api.universalprofile.cloud/ipfs/${link.slice(7)}`;
+  }
 
-  // Retrieve the metadata contents
-  const response = await fetch(fileUrl);
-  const jsonMetadata = await response.json();
-  console.log(jsonMetadata);
+  // Handle other cases as needed ...
 }
+
+const metadataJsonLink = generateMetadataLink(metadataURL);
+const response = await fetch(metadataJsonLink);
+const jsonMetadata = await response.json();
+console.log('Metadata Contents: ', jsonMetadata);
 ```
 
-<Details>
+  </TabItem>
+
+  <TabItem value="baseuri" label="Base URI">
+
+For [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri), the URL will always be generated by concatinating the Base URL with the Byte32 token ID:
+
+```js
+const metadataJsonLink = `${baseURL}${byte32TokenId}`;
+const response = await fetch(metadataJsonLink);
+const jsonMetadata = await response.json();
+console.log('Metadata Contents: ', jsonMetadata);
+```
+
+  </TabItem>
+
+</Tabs>
+
+<details>
 <summary>Show result</summary>
 
 ```js
@@ -544,7 +788,7 @@ async function fetchTokenIdMetadata() {
   }
 ```
 
-</Details>
+</details>
 
 ## Fetch Creators and Token Properties
 
@@ -592,7 +836,7 @@ console.log(creatorInformation);
 
 <!-- prettier-ignore-end -->
 
-<Details>
+<details>
 
 ```js
 // Creator List (empty, no creators set)
@@ -637,4 +881,4 @@ console.log(creatorInformation);
 ]
 ```
 
-</Details>
+</details>
