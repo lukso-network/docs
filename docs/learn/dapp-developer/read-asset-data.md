@@ -416,35 +416,30 @@ If your token ID is not yet compatible to [`LSP8TokenIdFormat`](https://github.c
 const myTokenId = '1';
 
 // Convert a token ID according to LSP8TokenIdFormat
-const convertTokenId = (tokenID, tokenIdFormat) => {
+const convertTokenId = (tokenID: string, tokenIdFormat: number) => {
   switch (tokenIdFormat) {
     case 0:
     case 100:
       // uint256 - Number (Left padded)
       return ethers.zeroPadValue('0x0' + BigInt(tokenID).toString(16), 32);
-      break;
     case 1:
     case 101:
       // string - String (Right padded)
       return ethers.encodeBytes32String(tokenID).padEnd(32, '0');
-      break;
     case 2:
     case 102:
       // address - Smart Contract (Left padded)
       return ethers.zeroPadValue(tokenID, 32);
-      break;
     case 3:
     case 103:
       // bytes32 - Unique Bytes (Right padded)
       return ethers
         .hexlify(ethers.getBytes(tokenID).slice(0, 32))
         .padEnd(66, '0');
-      break;
     case 4:
     case 104:
       // bytes32 - Hash Digest (No padding)
       return tokenID;
-      break;
   }
 };
 
@@ -461,7 +456,7 @@ if (tokenIdFormat >= 100) {
     ),
     16,
   );
-  byte32TokenId = convertTokenId(tokenID, tokenIdFormat);
+  byte32TokenId = convertTokenId(myTokenId, tokenIdFormat);
   console.log(tokenIdFormat);
   // 0x0000000000000000000000000000000000000000000000000000000000000001
 }
@@ -479,33 +474,28 @@ if (tokenIdFormat >= 100) {
 const myTokenId = '1';
 
 // Convert a token ID according to LSP8TokenIdFormat
-const convertTokenId = (tokenID, tokenIdFormat) => {
+const convertTokenId = (tokenID:string, tokenIdFormat: number) => {
   switch (tokenIdFormat) {
     case 0:
     case 100:
       // uint256 - Number (Left padded)
       return Web3.utils.padLeft(Web3.utils.toHex(myTokenId), 64);
-      break;
     case 1:
     case 101:
       // string - String (Right padded)
       return Web3.utils.utf8ToHex(myTokenId).padEnd(66, '0');
-      break;
     case 2:
     case 102:
       // address - Smart Contract (Left padded)
       return Web3.utils.padLeft(myTokenId, 64);
-      break;
     case 3:
     case 103:
       // bytes32 - Unique Bytes (Right padded)
       return Web3.utils.toHex(myTokenId).padEnd(66, '0');
-      break;
     case 4:
     case 104:
       // bytes32 - Hash Digest (No padding)
       return myTokenId;
-      break;
   }
 };
 
@@ -522,7 +512,7 @@ if (tokenIdFormat >= 100) {
     ),
     16,
   );
-  byte32TokenId = convertTokenId(tokenID, tokenIdFormat);
+  byte32TokenId = convertTokenId(myTokenId, tokenIdFormat);
   console.log(tokenIdFormat);
   // 0x0000000000000000000000000000000000000000000000000000000000000001
 }
@@ -547,7 +537,7 @@ After preparing the token ID, you can start to fetch the ID-specific metadata by
 // Sample token ID (1) parsed according to LSP8TokenIDFormat
 const byte32TokenId = '<myTokenID>';
 
-async function fetchTokenIdMetadata(tokenID) {
+async function fetchTokenIdMetadata(tokenID: string) {
   // Get the encoded asset metadata
   const tokenIdMetadata = await myAssetContract.getDataForTokenId(
     tokenID,
@@ -579,7 +569,7 @@ fetchTokenIdMetadata(byte32TokenId);
 // Sample token ID (1) parsed according to LSP8TokenIDFormat
 const byte32TokenId = '<myTokenID>';
 
-async function fetchTokenIdMetadata(tokenID) {
+async function fetchTokenIdMetadata(tokenID: string) {
   const isLSP8 = await myAssetContract.methods.supportsInterface(
     INTERFACE_IDS.LSP8IdentifiableDigitalAsset,
   );
@@ -661,7 +651,7 @@ You can fetch the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/
 ```js
 // ...
 
-async function fetchBaseURI(tokenID, tokenIdFormat) {
+async function fetchBaseURI(tokenID: string, tokenIdFormat: number) {
   // Retrieve the global Base URI
   let tokenBaseURI = await myAssetContract.getData(
     ERC725YDataKeys.LSP8['LSP8TokenMetadataBaseURI'],
@@ -703,7 +693,7 @@ console.log(baseURI);
 ```js
 /// ...
 
-async function fetchBaseURI(tokenID, tokenIdFormat) {
+async function fetchBaseURI(tokenID: string, tokenIdFormat: number) {
   // Retrieve the global Base URI
   let tokenBaseURI = await myAssetContract.methods.getData(
     ERC725YDataKeys.LSP8['LSP8TokenMetadataBaseURI'],
@@ -752,6 +742,8 @@ After **retrieving and decoding** the [Token ID Metadata](#get-data-from-token-i
 If you retrieved the metadata using [`getDataFromTokenID(...)`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatafortokenid), the URL will be nested within the `value` field of the metadata. However, this link might only be partial string or content ID, instead of a full link. Therefore, you may have to adjust the link before it can be fetched:
 
 ```js
+// ...
+
 const metadataURL = decodedMetadata[0].value.url;
 
 function generateMetadataLink(link) {
@@ -782,11 +774,98 @@ console.log('Metadata Contents: ', jsonMetadata);
 
   <TabItem value="baseuri" label="Base URI">
 
-If you retrieved the metadata using [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri), the URL will always be generated by combining the Base URL with previously prepared token ID as Byte32 Hex String. You can simply concatinate them to retrieve the full link:
+If you retrieved the metadata using [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri), the URL will always be generated by combining the Base URL with previously prepared token ID as Byte32 Hex String. You can simply concatinate them to retrieve the full link. However, the token ID needs to be decoded first.
+
+<details>
+    <summary>How to decode a <code>tokenID</code> from <code>Byte32 Hex String</code> according to <code>LSP8TokenIdFormat</code></summary>
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
 
 ```js
+// ...
+
+function decodeTokenId(encodedTokenId: string, tokenIdFormat: number) {
+  switch (tokenIdFormat) {
+    // Number
+    case 0:
+    case 100:
+      return BigInt(encodedTokenId).toString();
+    // String
+    case 1:
+    case 101:
+      return ethers.toUtf8String(encodedTokenId).replace(/\0+$/, '');
+    // Address
+    case 2:
+    case 102:
+      return '0x' + encodedTokenId.slice(encodedTokenId.length - 40);
+    // Byte Value
+    case 3:
+    case 103:
+      // Extracts the non-zero portion (right padded)
+      return encodedTokenId.replace(/0+$/, '');
+    // Hash Digest
+    case 4:
+    case 104:
+      // Hash digests are not modified during encoding, so return as is
+      return encodedTokenId;
+  }
+}
+
+// Decode the token ID based on the token ID format
+const decodedTokenId = decodeTokenId(byte32TokenId, tokenIdFormat)
+```
+
+  </TabItem>
+
+  <TabItem value="web3" label="web3">
+
+```js
+// ...
+
+function decodeTokenId(encodedTokenId: string, tokenIdFormat: number) {
+  switch (tokenIdFormat) {
+    // Number
+    case 0:
+    case 100:
+      return BigInt(encodedTokenId).toString();
+    // String
+    case 1:
+    case 101:
+      return web3.utils.hexToUtf8(encodedTokenId).replace(/\0+$/, '');
+    // Address
+    case 2:
+    case 102:
+      return '0x' + encodedTokenId.slice(encodedTokenId.length - 40);
+    // Byte Value
+    case 3:
+    case 103:
+      // Extracts the non-zero portion (right padded)
+      return encodedTokenId.replace(/0+$/, '');
+    // Hash Digest
+    case 4:
+    case 104:
+      // Hash digests are not modified during encoding, so return as is
+      return encodedTokenId;
+  }
+}
+
+// Decode the token ID based on the token ID format
+const decodedTokenId = decodeTokenId(byte32TokenId, tokenIdFormat)
+```
+
+  </TabItem>
+
+</Tabs>
+
+</details>
+
+```js
+// ...
+
 // Build link to JSON metadata
-const metadataJsonLink = `${baseURL}${byte32TokenId}`;
+const baseURLlink = decodedBaseURI[0].value.url;
+const metadataJsonLink = `${baseURLlink}${decodedTokenId}`;
 
 // Fetch the URL
 const response = await fetch(metadataJsonLink);
