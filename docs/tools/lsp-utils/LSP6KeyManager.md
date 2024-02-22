@@ -41,7 +41,7 @@ createValidityTimestamp(5, 10) => `0x0000000000000000000000000000000500000000000
 
 #### Defined in
 
-LSP6KeyManager/createValidityTimestamp/createValidityTimestamp.ts:21
+[LSP6KeyManager/createValidityTimestamp/createValidityTimestamp.ts:21](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP6KeyManager/createValidityTimestamp/createValidityTimestamp.ts#L21)
 
 ---
 
@@ -106,7 +106,7 @@ decodeAllowedCalls("0x002000000002cafecafecafecafecafecafecafecafecafecafe24871b
 
 #### Defined in
 
-LSP6KeyManager/decodeAllowedCalls/decodeAllowedCalls.ts:37
+[LSP6KeyManager/decodeAllowedCalls/decodeAllowedCalls.ts:37](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP6KeyManager/decodeAllowedCalls/decodeAllowedCalls.ts#L37)
 
 ---
 
@@ -154,7 +154,7 @@ decodeAllowedERC725YDataKeys("0x0002cafe000abeefdeadbeef0000cafe") =>
 
 #### Defined in
 
-LSP6KeyManager/decodeAllowedERC725YDataKeys/decodeAllowedERC725YDataKeys.ts:27
+[LSP6KeyManager/decodeAllowedERC725YDataKeys/decodeAllowedERC725YDataKeys.ts:27](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP6KeyManager/decodeAllowedERC725YDataKeys/decodeAllowedERC725YDataKeys.ts#L27)
 
 ---
 
@@ -219,7 +219,7 @@ decodePermissions([
 
 #### Defined in
 
-LSP6KeyManager/decodePermissions/decodePermissions.ts:53
+[LSP6KeyManager/decodePermissions/decodePermissions.ts:53](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP6KeyManager/decodePermissions/decodePermissions.ts#L53)
 
 ---
 
@@ -279,7 +279,7 @@ encodeAllowedCalls(
 
 #### Defined in
 
-LSP6KeyManager/encodeAllowedCalls/encodeAllowedCalls.ts:39
+[LSP6KeyManager/encodeAllowedCalls/encodeAllowedCalls.ts:39](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP6KeyManager/encodeAllowedCalls/encodeAllowedCalls.ts#L39)
 
 ---
 
@@ -325,7 +325,7 @@ encodeAllowedERC725YDataKeys([
 
 #### Defined in
 
-LSP6KeyManager/encodeAllowedERC725YDataKeys/encodeAllowedERC725YDataKeys.ts:25
+[LSP6KeyManager/encodeAllowedERC725YDataKeys/encodeAllowedERC725YDataKeys.ts:25](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP6KeyManager/encodeAllowedERC725YDataKeys/encodeAllowedERC725YDataKeys.ts#L25)
 
 ---
 
@@ -381,4 +381,4 @@ encodePermissions([
 
 #### Defined in
 
-LSP6KeyManager/encodePermissions/encodePermissions.ts:37
+[LSP6KeyManager/encodePermissions/encodePermissions.ts:37](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP6KeyManager/encodePermissions/encodePermissions.ts#L37)

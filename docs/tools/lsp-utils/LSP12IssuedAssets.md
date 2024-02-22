@@ -36,7 +36,7 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-12-IssuedAssets.md
 
 #### Defined in
 
-LSP12IssuedAssets/addIssuedAssets/addIssuedAssets.ts:32
+[LSP12IssuedAssets/addIssuedAssets/addIssuedAssets.ts:32](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP12IssuedAssets/addIssuedAssets/addIssuedAssets.ts#L32)
 
 ---
 
@@ -73,7 +73,7 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-12-IssuedAssets.md
 
 #### Defined in
 
-LSP12IssuedAssets/authenticateIssuedAssets/authenticateIssuedAssets.ts:27
+[LSP12IssuedAssets/authenticateIssuedAssets/authenticateIssuedAssets.ts:27](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP12IssuedAssets/authenticateIssuedAssets/authenticateIssuedAssets.ts#L27)
 
 ---
 
@@ -112,7 +112,7 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-12-IssuedAssets.md
 
 #### Defined in
 
-LSP12IssuedAssets/getIssuedAssets/getIssuedAssets.ts:33
+[LSP12IssuedAssets/getIssuedAssets/getIssuedAssets.ts:33](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP12IssuedAssets/getIssuedAssets/getIssuedAssets.ts#L33)
 
 ---
 
@@ -150,4 +150,4 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-12-IssuedAssets.md
 
 #### Defined in
 
-LSP12IssuedAssets/removeIssuedAssets/removeIssuedAssets.ts:27
+[LSP12IssuedAssets/removeIssuedAssets/removeIssuedAssets.ts:27](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP12IssuedAssets/removeIssuedAssets/removeIssuedAssets.ts#L27)

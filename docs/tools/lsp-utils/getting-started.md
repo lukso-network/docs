@@ -13,6 +13,17 @@ The `@lukso/lsp-utils` package allows you to interact with the LSPs in a easier 
 - GitHub repo: http://github.com/lukso-network/lsp-utils
 - NPM: https://www.npmjs.com/package/@lukso/lsp-utils
 
+## Modules
+
+- [IPFS](./IPFS.md)
+- [LSP12IssuedAssets](./LSP12IssuedAssets.md)
+- [LSP23LinkedContractsFactory](./LSP23LinkedContractsFactory.md)
+- [LSP2ERC725YJSONSchema](./LSP2ERC725YJSONSchema.md)
+- [LSP3ProfileMetadata](./LSP3ProfileMetadata.md)
+- [LSP4DigitalAssetMetadata](./LSP4DigitalAssetMetadata.md)
+- [LSP5ReceivedAssets](./LSP5ReceivedAssets.md)
+- [LSP6KeyManager](./LSP6KeyManager.md)
+
 ## Installation
 
 ### General package
