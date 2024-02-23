@@ -746,7 +746,7 @@ If you retrieved the metadata using [`getDataFromTokenID(...)`](https://github.c
 
 const metadataURL = decodedMetadata[0].value.url;
 
-function generateMetadataLink(link) {
+function generateMetadataLink(link: string) {
   // If link is a regular Web2 Link, it can be passed back
   if (link.startsWith('https://') || link.startsWith('http://')) {
     // Use your default IPFS Gateway address
@@ -757,6 +757,9 @@ function generateMetadataLink(link) {
     // Use your default IPFS Gateway address
     return `https://api.universalprofile.cloud/ipfs/${link.slice(7)}`;
   }
+  else{
+    return null;
+  }
 
   // Handle other cases if needed ...
 }
@@ -765,9 +768,13 @@ function generateMetadataLink(link) {
 const metadataJsonLink = generateMetadataLink(metadataURL);
 
 // Fetch the URL
-const response = await fetch(metadataJsonLink);
-const jsonMetadata = await response.json();
-console.log('Metadata Contents: ', jsonMetadata);
+if (metadataJsonLink){
+  const response = await fetch(metadataJsonLink);
+  const jsonMetadata = await response.json();
+  console.log('Metadata Contents: ', jsonMetadata);
+} else {
+    console.log('Could not generate metadata link based on value.url content.');
+  }
 ```
 
   </TabItem>
