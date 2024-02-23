@@ -1,10 +1,10 @@
 ---
-sidebar_label: '🪅 Utilize IPFS Storage'
+sidebar_label: '🪅 Use IPFS Storage'
 description: 'Learn how to integrate IPFS storage solutions for dApps.'
 sidebar_position: 11
 ---
 
-# Utilize IPFS Storage
+# Use IPFS Storage
 
 This is a follow-up guide to [Working with assets](../assets.md) guide for production use-cases. If you are testing asset deployments or participating in a hackathon, please use centralized file providers to save time during deployment.
 
