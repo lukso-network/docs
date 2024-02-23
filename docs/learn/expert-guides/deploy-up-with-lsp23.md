@@ -169,7 +169,7 @@ async function main() {
       method: 'keccak256(utf8)',
       data: '0x6d6d08aafb0ee059e3e4b6b3528a5be37308a5d4f4d19657d26dd8a5ae799de0',
     },
-    // this is an IPFS CID of a LSP3 Metadata example, you can use your own
+    // this is an IPFS CID of a LSP3 Profile Metadata example, you can use your own
     url: 'ipfs://QmPRoJsaYcNqQiUrQxE7ajTRaXwHyAU29tHqYNctBmK64w',
   };
 }
