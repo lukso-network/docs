@@ -265,7 +265,7 @@ The transaction message is constructed by signing the:
 const { chainId } = await provider.getNetwork();
 
 // Encode the Message
-let encodedMessage = ethers.solidityPacked(
+const encodedMessage = ethers.solidityPacked(
   // Types of the parameters that will be encoded
   ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
   [
@@ -303,7 +303,7 @@ let encodedMessage = ethers.solidityPacked(
 );
 
 // Instanciate EIP191 Signer
-let eip191Signer = new EIP191Signer();
+const eip191Signer = new EIP191Signer();
 
 /**
  * Create signature of the transaction payload using:
@@ -311,7 +311,7 @@ let eip191Signer = new EIP191Signer();
  * - Message (LSP6 version, chain ID, noce, timestamp, value, payload)
  * - private key of the controller
  */ 
-let { signature } = await eip191Signer.signDataWithIntendedValidator(
+const { signature } = await eip191Signer.signDataWithIntendedValidator(
   keyManagerAddress,
   encodedMessage,
   controllerPrivateKey,
@@ -329,7 +329,7 @@ let { signature } = await eip191Signer.signDataWithIntendedValidator(
 const chainId = await web3.eth.getChainId();
 
 // Encode the Message
-let encodedMessage = web3.utils.encodePacked(
+const encodedMessage = web3.utils.encodePacked(
   // MUST be number `25`
   // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000019`
   { value: LSP25_VERSION, type: 'uint256' },   
@@ -362,7 +362,7 @@ let encodedMessage = web3.utils.encodePacked(
 );
 
 // Instanciate EIP191 Signer
-let eip191Signer = new EIP191Signer();
+const eip191Signer = new EIP191Signer();
 
 /**
  * Create signature of the transaction payload using:
@@ -370,7 +370,7 @@ let eip191Signer = new EIP191Signer();
  * - Message (LSP6 version, chain ID, noce, timestamp, value, payload)
  * - private key of the controller
  */ 
-let { signature } = await eip191Signer.signDataWithIntendedValidator(
+const { signature } = await eip191Signer.signDataWithIntendedValidator(
   keyManagerAddress,
   encodedMessage,
   controllerPrivateKey,
@@ -466,6 +466,9 @@ const keyManager = new ethers.Contract(
 const executeRelayCallTransaction = await keyManager
   .connect(relayControllerAccount)
   .executeRelayCall(signature, nonce, validityTimestamps, abiPayload);
+
+const receipt = await executeRelayCallTransaction.wait();
+console.log('Transaction receipt:', receipt);
 ```
 
   </TabItem>
@@ -502,6 +505,9 @@ const executeRelayCallTransaction = await keyManager.methods
     from: relayControllerAccount.address,
     gasLimit: 300_000,
   });
+
+const receipt = await executeRelayCallTransaction.wait();
+console.log('Transaction receipt:', receipt);
 ```
 
   </TabItem>
