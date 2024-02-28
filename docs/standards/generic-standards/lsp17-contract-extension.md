@@ -28,7 +28,7 @@ This standard defines a mechanism for extending a contract to support new functi
 
 The **_smart contract A_** implements 4 functions natively. Once this smart contract is deployed, no new functions can be added or changes made to the existing ones.
 
-In contrast, the **_smart contract B_**, which supports the **[LSP17 standard](#)**, does not implement any native functions but rather relies on extensions for the functionality that is needed and can add more extensions in the future.
+In contrast, the **_smart contract B_**, which supports the **[LSP17 standard](../../contracts/contracts/LSP17Extensions/Extension4337.md)**, does not implement any native functions but rather relies on extensions for the functionality that is needed and can add more extensions in the future.
 
 Thus, smart contract B has the ability **to support an unlimited number of functionalities** and can add new functions in the future if desired.
 

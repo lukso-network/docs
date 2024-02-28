@@ -6,7 +6,6 @@ description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Ass
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Details from '../../../src/components/Details'
 
 # Read Digital Asset Data
 

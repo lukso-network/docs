@@ -63,7 +63,7 @@ The implementation of the **UniversalReceiverDelegate** used by the Universal Pr
 
 This standard enables the vault to be notified of incoming transactions such as token transfers, information transfers, etc. Notifications are handy when users want to customize how their account contract reacts to certain tokens by either rejecting them or operating a specific call on each received token.
 
-The **[LSP9-Vault](#)** implements the `universalReceiver(..)` function that:
+The **[LSP9-Vault](../../standards/universal-profile/lsp9-vault.md)** implements the `universalReceiver(..)` function that:
 
 - Emits an event with the typeId and data passed to it, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
 
