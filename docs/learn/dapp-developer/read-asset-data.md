@@ -168,7 +168,7 @@ At this point, you should be able to identify if the digital asset is a:
 
 ## Fetch the Asset Metadata
 
-Based on the [token type](#detect-the-token-type), the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) can be interpreted and attached in different ways:
+Based on the [token type](#detect-the-token-type), the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) can be interpreted differently:
 
 - As [**global token information**](#global-token-information) of the contract (Token or LSP7 NFT)
 - To each [**individual token ID**](#token-id-metadata) (LSP8 NFT or Collection)
@@ -183,13 +183,10 @@ Based on the [token type](#detect-the-token-type), the information of the [LSP4 
 
 ### Global Token Information
 
-To fetch the whole JSON file of the asset's metadata, you can simply use the [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata) method of the [`erc725js`](../../tools/erc725js/getting-started.md) library. Optionally, you can call the [`getData('LSP4Metadata')`](../../contracts/contracts/ERC725/ERC725.md#getdata) function on the asset contract and decode the information manually.
+To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../tools/erc725js/getting-started.md) library:
 
-:::info differece between get and fetch
-
-The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI` referenced within the smart contract. You can read more about `VerifiableURI` in the [LSP2 Specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
-
-:::
+- [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
+- [`getData(LSP4Metadata)`](../../tools/erc725js/classes/ERC725#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../tools/erc725js/classes/ERC725.md#decodedata).
 
 ```js
 // ...
@@ -345,15 +342,9 @@ Make sure to adjust `<myAssetAddress>` with the actual address of the asset. You
 
 ### Preparing the Token IDs
 
-The [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) allows for different [Token ID Formats](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat), meaning developers can specify their token IDs as:
+The [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) allows for different [Token ID Formats](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat), meaning developers can specify their token IDs as `Number`, `String`, `Smart Contract Address`, `Byte Identifier` or `Hash Digest`.
 
-- `Number` of `uint256` (`TokenIdFormat`: `0` or `100`)
-- `String` with a maximum of 32 characters (`TokenIdFormat`: `1` or `101`)
-- `Smart Contract Address` with metadata (`TokenIdFormat`: `2` or `102`)
-- `Byte Identifier` with a maximum of 32 bytes (`TokenIdFormat`: `3` or `103`)
-- `Hash Digest` of 32 bytes (`TokenIdFormat`: `4` or `104`)
-
-To call the contract, you must first **prepare** your token IDs to match these standardized **Byte32 Hex Strings** based on the [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) standardization. The **global token ID format** can be fetched from the [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) data storage using the [`getData()`](../../contracts/contracts/ERC725/ERC725.md#getdata) function:
+To call the contract, you must first **prepare** your token IDs to match the standardized **Byte32 Hex Strings** based on the [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) standardization. The **global token ID format** can be fetched from the [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) data storage using the [`getData()`](../../contracts/contracts/ERC725/ERC725.md#getdata) function:
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers">
@@ -394,10 +385,7 @@ console.log(tokenIdFormat);
 
 </Tabs>
 
-Its value can be interpreted as the following:
-
-- `0`, `1`, `2`, `4` means the token ID format is **equal across all token IDs**
-- `100`, `101`, `102`, `104` means the token ID format is **mixed across all token IDs**
+Its value can indicate wheater the token ID format is [equal or mixed across all token IDs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat)
 
 If your token ID is not yet compatible to [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat), you have to convert it to the correct format first. Otherwise, you will be able to directly continue with fetching the metadata.
 
