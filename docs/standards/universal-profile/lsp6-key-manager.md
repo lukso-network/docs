@@ -6,7 +6,6 @@ description: LUKSO's LSP6 - Key Manager for controlling a LUKSO LSP0ERC725Accoun
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Details from '../../../src/components/Details'
 
 # LSP6 - Key Manager
 
@@ -65,7 +64,7 @@ While the Key Manager allows for a very fine-grained control over the Universal 
 
 Click on the toggles below to **learn more about the features enabled by each permission**.
 
-<Details>
+<details>
     <summary><code>CHANGEOWNER</code> - Allows changing the owner of the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000001</code>
@@ -74,9 +73,9 @@ Click on the toggles below to **learn more about the features enabled by each pe
 The `CHANGEOWNER` permission enables to change the owner of the linked ERC725Account.
 Using this permission, you can easily upgrade the [`LSP6KeyManager`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) attached to the Account by transferring ownership to a new Key Manager.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>ADDCONTROLLER</code> - Allows giving permissions to new controller addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000002</code>
@@ -92,9 +91,9 @@ The `ADDCONTROLLER` permission is needed to:
 
 ![ADD Permissions](/img/standards/lsp6/lsp6-add-permissions.jpeg)
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>EDITPERMISSIONS</code> - Allows changing existing permissions of controllers.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000004</code>
@@ -119,9 +118,9 @@ Bear in mind that the behavior of `EDITPERMISSIONS` slightly varies depending on
 
 ![EDIT Permissions](/img/standards/lsp6/lsp6-change-permissions-variants.jpeg)
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>ADDEXTENSIONS</code> - Allows adding new extension contracts on the linked ERC725Account.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000008</code>
@@ -129,9 +128,9 @@ Bear in mind that the behavior of `EDITPERMISSIONS` slightly varies depending on
 
 The `ADDEXTENSIONS` permission enables the addition of new LSP17 extension contracts for specific function selectors to be called when the account is called with a function that does not exist natively in its public interface. The `fallback` function of the linked ERC725Account will handle the call to the extension set for the function selector being called.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>CHANGEEXTENSIONS</code> - Allows editing the address for an extension contract on the linked ERC725Account.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000010</code>
@@ -139,9 +138,9 @@ The `ADDEXTENSIONS` permission enables the addition of new LSP17 extension contr
 
 The `CHANGEEXTENSIONS` permission enables editing LSP17 extension contract addresses for function selectors already set in the account. The LSP17 extension will be called when the account is called with a function that does not exist natively in its public interface. The `fallback` function of the linked ERC725Account will handle the call to the extension set for the function selector being called.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>ADDUNIVERSALRECEIVERDELEGATE</code> - Allows adding new LSP1UniversalReceiverDelegate contracts addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
@@ -153,9 +152,9 @@ See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universa
 
 > **NB** this permission also enables to set the address of the default LSP1UniversalReceiverDelegate contract under the `LSP1UniversalReceiverDelegate` data key if no address was set in the first place.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>CHANGEUNIVERSALRECEIVERDELEGATE</code> - Allows editing LSP1UniversalReceiverDelegate contracts addresses.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000040</code>
@@ -168,9 +167,9 @@ The `CHANGEUNIVERSALRECEIVERDELEGATE` permission enables two things:
 
 See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>REENTRANCY</code> - Allows reentering during an execution</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000080</code>
@@ -196,9 +195,9 @@ One of the best uses for this permission is the following scenario:
 
 In order for that interaction to happen the contract A must have the `REENTRANCY` permission.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>TRANSFERVALUE</code> - Allows to transfer native tokens from the linked ERC725Account's balance <strong>with restrictions</strong>.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000200</code>
@@ -217,9 +216,9 @@ Such restrictions can be applied using the LSP6 data `AddressPermissions:Allowed
 >
 > The caller will need the permission `CALL` to send any data along the LYX transfer.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>CALL</code> - Allows to use the linked ERC725Account to interact with contracts <strong>with restrictions</strong>.</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000800</code><br/>
@@ -232,9 +231,9 @@ The `CALL` permission enables to use the linked ERC725Account to call functions 
 
 It uses the `CALL` opcode, which allows to change states on the called contract.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>STATICCALL</code> - Allows calling other contracts through the controlled contract <strong>with restrictions</strong></summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000002000</code><br/>
@@ -246,9 +245,9 @@ It uses the [STATICCALL](https://eips.ethereum.org/EIPS/eip-214) opcode when per
 
 > **NB:** If any state is changed at a target contract through a `STATICCALL`, the call will **revert silently**.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>DELEGATECALL</code> - Allows delegate calling other contracts through the controlled contract <strong>with restrictions</strong></summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000008000</code>
@@ -262,9 +261,9 @@ This permission allows executing code and functions from other contracts in the 
 
 :::
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>DEPLOY</code> - Allows deploying other contracts through the controlled contract</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000010000</code>
@@ -276,9 +275,9 @@ Developers should provide the contract's bytecode to be deployed in the payload 
 
 > Both the `CREATE` or [`CREATE2`](https://eips.ethereum.org/EIPS/eip-1014) opcodes can be used to deploy a contract.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>SETDATA</code> - Allows setting data on the controlled contract <strong>with restrictions</strong></summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000040000</code>
@@ -298,9 +297,9 @@ A controller with permission `SETDATA` cannot set or edit data keys related to:
 
 :::
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>ENCRYPT</code>: Allows encrypting data or messages on behalf of the controlled account</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000080000</code>
@@ -308,9 +307,9 @@ A controller with permission `SETDATA` cannot set or edit data keys related to:
 
 Developers can use the `ENCRYPT` permission to encrypt data or messages, for instance for private messaging.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>DECRYPT</code>: Allows decrypting data or messages on behalf of the controlled account</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000100000</code>
@@ -318,9 +317,9 @@ Developers can use the `ENCRYPT` permission to encrypt data or messages, for ins
 
 Developers can use the `DECRYPT` permission to decrypt data or messages, for instance for private messaging.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>SIGN</code>: Allows signing on behalf of the controlled account, for example for login purposes</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000200000</code>
@@ -328,9 +327,9 @@ Developers can use the `DECRYPT` permission to decrypt data or messages, for ins
 
 The permission `SIGN` enables a controller to authenticate on behalf of the UP. It can be used primarily in Web 2.0 apps to [sign login messages](../../learn/dapp-developer/siwe.md).
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>EXECUTE_RELAY_CALL</code>: Enables a controller's signed relay calls to be executable</summary>
     <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000400000</code>
@@ -338,7 +337,7 @@ The permission `SIGN` enables a controller to authenticate on behalf of the UP. 
 
 The permission `EXECUTE_RELAY_CALL` enables a controller's signed relay calls to be executable. This permission will be checked against the controller that signed the relay call.
 
-</Details>
+</details>
 
 :::note
 
@@ -352,7 +351,7 @@ The super permissions grant the same permissions as their non-super counterparts
 
 The skip allows for cheaper transactions, whether these restrictions are set or not.
 
-<Details>
+<details>
     <summary><code>SUPER_TRANSFERVALUE</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000100</code>
@@ -360,9 +359,9 @@ The skip allows for cheaper transactions, whether these restrictions are set or 
 
 Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EOA or contract). This will also not check for [**Allowed Calls**](#allowed-calls) when transferring value to contracts.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>SUPER_CALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000400</code>
@@ -370,9 +369,9 @@ Same as `TRANSFERVALUE`, but allowing to send native tokens to any `address` (EO
 
 Same as `CALL`, but it allows interacting with any contract. This will not check if the controller has any [**Allowed Calls**](#allowed-calls) restrictions set.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>SUPER_STATICCALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000001000</code>
@@ -380,9 +379,9 @@ Same as `CALL`, but it allows interacting with any contract. This will not check
 
 Same as `STATICCALL`, but it allows interacting with any contract. This will not check if the controller has any [**Allowed Calls**](#allowed-calls) restrictions set.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>SUPER_DELEGATECALL</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000004000</code>
@@ -390,9 +389,9 @@ Same as `STATICCALL`, but it allows interacting with any contract. This will not
 
 Same as `DELEGATECALL`, but allows interacting with any contract. This will not check if the controller has any [**Allowed Calls**](#allowed-calls) restrictions set.
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><code>SUPER_SETDATA</code></summary>
      <p style={{marginBottom: '3%', marginTop: '2%', textAlign: 'center'}}>
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000020000</code>
@@ -400,7 +399,7 @@ Same as `DELEGATECALL`, but allows interacting with any contract. This will not 
 
 Same as `SETDATA`, but allowing to set any ERC725Y data keys. This will not check for [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) if caller has any restrictions.
 
-</Details>
+</details>
 
 :::caution
 
@@ -415,7 +414,7 @@ Permissions can be combined if a controller needs more than one permission. To d
 1. calculate the sum of the decimal value of each permission.
 2. convert the result back into hexadecimal.
 
-<Details>
+<details>
     <summary>Example</summary>
 
 <Tabs>
@@ -446,7 +445,7 @@ permissions: EDITPERMISSIONS + SETDATA
 
 </Tabs>
 
-</Details>
+</details>
 
 ---
 
@@ -560,7 +559,7 @@ Ensure the `bytes32` value set under the permissions are correct according to th
 
 You can restrict a controller permission (`CALL`/`TRANSFERVALUE`/etc..) to be valid with specific:
 
-<Details>
+<details>
     <summary>Call Types</summary>
 
 Below is the list of Call Types and their possible combination.
@@ -572,9 +571,9 @@ Below is the list of Call Types and their possible combination.
 | `STATICCALL`    | `0x00000004` |
 | `DELEGATECALL`  | `0x00000008` |
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary>Addresses</summary>
 
 |                   Address                    |                     Meaning                     |
@@ -582,9 +581,9 @@ Below is the list of Call Types and their possible combination.
 | `0xffffffffffffffffffffffffffffffffffffffff` |    Interaction with any address is allowed.     |
 |               Other addresses                | Interaction with a specific address is allowed. |
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary>Standards</summary>
 
 These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-165) standard to be able to detect their interfaces.
@@ -594,9 +593,9 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 |    `0xffffffff`     |    Interaction with any standard is allowed.     |
 | Specific interfaces | Interaction with a specific standard is allowed. |
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary>Functions</summary>
 
 |    Function Selector     |                     Meaning                      |
@@ -604,7 +603,7 @@ These contracts MUST implement the [ERC165](https://eips.ethereum.org/EIPS/eip-1
 |       `0xffffffff`       |    Interaction with any function is allowed.     |
 | Other function selectors | Interaction with a specific function is allowed. |
 
-</Details>
+</details>
 
 To restrict a controller to a specific set of calls, set the following data key-value pair in the [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) storage of the ERC725Account linked to the Key Manager.
 
@@ -623,7 +622,7 @@ Each entry in the CompactBytesArray is an **Allowed Call**. An Allowed Call is r
 
 If you want to have multiple different interactions, you MUST add each of the desired interaction in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) of AllowedCalls. Keep in mind that the length for each element in the [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray) must be **32** = **`0x0020`**, because the tuple `(bytes4,address,bytes4,bytes4)` makes up 32 bytes in total.
 
-<Details>
+<details>
     <summary><strong>Example 1:</strong> allow only to <code>CALL</code> a specific LSP0 at a specific address</summary>
 
 To allow a controller to only do `CALL` to any function on a LSP0ERC725Account (interface ID `0x3e89ad98`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the following value for the CompactBYytesArray of allowed calls will be used:
@@ -638,9 +637,9 @@ Where:
 - _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;
 - _Function_: **any**;
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary><strong>Example 2:</strong> allow multiple interactions of different types</summary>
 
 Consider the scenario where you want to give the following permissions to a controller:
@@ -674,7 +673,7 @@ The CompactBytesArray of allowed calls for this controller will be composed of t
 A _CompactBytesArray_ for these 3 interactions would look like this:
 `0x`**`0020`**`00000003CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`**`0020`**`00000002F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
 
-</Details>
+</details>
 
 ```json
 {
@@ -711,7 +710,7 @@ To restrict a controller to only be allowed to set the key `LSP3Profile` (`0x5ef
 - **key:** `0x4b80742de2bf866c29110000<address>`
 - **value(s):** `0x00205ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`
 
-<Details>
+<details>
     <summary>ERC725Y Data Keys: fixed-size vs dynamic-size</summary>
 
 Introduction (summary)
@@ -747,9 +746,9 @@ E.g:
 
 ![LSP6 Allowed ERC725Y Data Keys, Dynamic-Size Key](/img/standards/lsp6/lsp6_allowed_erc725y_data_keys_dynamic_key.jpeg)
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary>Combining multiple ERC725Y Data Keys</summary>
 
 If you want to have multiple different ERC725Y data keys allowed, you MUST add each of the desired data keys to a [**CompactBytesArray**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray).
@@ -762,7 +761,7 @@ E.g.:
 
 A CompactBytesArray for these 3 different ERC725Y Data Keys would look like this: `0x`**`0020`**`5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5`**`0010`**`5ef83ad9559033e6e941db7d7c495acd`**`0004`**`beefbeef`
 
-</Details>
+</details>
 
 ```json
 {
