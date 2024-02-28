@@ -7,8 +7,6 @@ description: Update the LUKSO Validator withdrawals to be able to withdraw stake
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import Details from '../../../src/components/Details'
-
 # Update Validator Withdrawals
 
 The following guide will teach you how to update your plain **BLS Validator Key** to reference an **ETH1 Address**, so your validator keys are able to withdraw staked LYX/LYXt and earnings. If an ETH1 Address is referenced to the BLS Key, the validator's stake can be exited to any wallet. When enabled, all validator earnings above 32 LYX/LYXt will be **periodically withdrawn to your ETH1 Address every few days**.
@@ -234,14 +232,14 @@ curl -X POST -H "Content-type: application/json" -d  '<MY_CONTENTS>'
 http://localhost:3500/eth/v1/beacon/pool/bls_to_execution_changes
 ```
 
-<Details>
+<details>
     <summary>Show broadcast message example</summary>
 
 ```bash
 curl -X POST -H “Content-type: application/json” -d '[{"message": {"validator_index": "7", "from_bls_pubkey": "0x89a6dc1e83570b99cfb2557f01c852ab2bf00957367d0c35a5aa0e3101c9aad33645064e5da8a1efcd5cd501eb123ad0", "to_execution_address": "0x3daee8cd2e3c18dafe13332de33972ac5cf558f3"}, "signature": "0x80e4c40a543ffb99b6fc4b66e0d37726c1739830d27c229091bf8e792ffb98cac0971274bdc815dcba1042e33a4087d809113a0293614f8533f911cb6726c2efb03cf46470bff3ecf00ed962964262470f502208f6cd50e93f56e1b71ee61fa7", "metadata": {"network_name": "lukso-devnet", "genesis_validators_root": "0xd7cc24d150c617450dfa8176ef45a01dadb885a75a1a4c32d4a6828f8f088760", "deposit_cli_version": "2.5.6"}}]' http://localhost:3500/eth/v1/beacon/pool/bls_to_execution_changes
 ```
 
-</Details>
+</details>
 
   </TabItem>
 </Tabs>
