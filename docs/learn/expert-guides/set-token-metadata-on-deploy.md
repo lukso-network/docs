@@ -182,7 +182,7 @@ async function deployTokenWithMetadata() {
 }
 ```
 
-Afterwards, the script is ready to be deployed:
+Afterwards, you are able to run the deployment script:
 
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployTokenWithMetadataAsUP.ts

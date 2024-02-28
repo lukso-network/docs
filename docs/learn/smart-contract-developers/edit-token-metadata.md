@@ -55,6 +55,9 @@ Once you have the key and value (with the encoded JSON URL in it), simply call t
 In order to update the metadata using your Universal Profile, the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the contract can not be called directly. Instead, you have to generate the payload of the transaction and execute it by calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function of the Universal Profile.
 
 ```ts title="scripts/attachAssetMetadataAsUP.ts"
+import LSP7Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAsset.json';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
+
 // As generated in the Asset guide
 const encodedLSP4Metadata = {
   keys: ['0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e'],
@@ -63,22 +66,23 @@ const encodedLSP4Metadata = {
   ],
 };
 
-// TODO: update no need to get contractAt, just need to load the ABI for the setData function
-const tokenContract = await ethers.getContractAt(
-  'MyCustomToken',
-  myAssetAddress,
-);
+const [signer] = await ethers.getSigners();
+const myAssetAddress = '0x...';
+
+// Instantiate asset
+const token = await ethers.Contract(myAssetAddress, LSP7Artifact.abi, signer);
 
 // Create the transaction payload for the contract call
-const setDataPayload = tokenContract.interface.encodeFunctionData('setData', [
+const setDataPayload = token.interface.encodeFunctionData('setData', [
   encodedLSP4Metadata.keys[0],
   encodedLSP4Metadata.values[0],
 ]);
 
-// TODO: don't use fromArtifact, just load the contract with ABI
-const universalProfile = await ethers.getContractAtFromArtifact(
-  UniversalProfileArtifact,
-  process.env.UP_ADDR as string,
+// Instantiate executing Universal Profile
+const universalProfile = new ethers.Contract(
+  process.env.UP_ADDR,
+  UniversalProfileArtifact.abi,
+  signer,
 );
 
 // Update the ERC725Y storage of the LSP4 metadata
@@ -109,12 +113,6 @@ const encodedLSP4Metadata = {
   ],
 };
 
-// TODO: update no need to get contractAt, just need to load the ABI for the setData function
-const tokenContract = await ethers.getContractAt(
-  'MyCustomToken',
-  myAssetAddress,
-);
-
 // Update the ERC725Y storage of the LSP4 metadata
 const tx = await token.setData(
   encodedLSP4Metadata.keys[0],
@@ -126,7 +124,7 @@ const receipt = await tx.wait();
 console.log('Token metadata updated:', receipt);
 ```
 
-Afterwards, the script is ready to be deployed:
+Afterwards, you are able to run the deployment script:
 
 ```bash
 npx hardhat --network luksoTestnet run scripts/attachAssetMetadataAsEOA.ts
