@@ -68,6 +68,12 @@ deployTokenWithMetadata()
   });
 ```
 
+:::caution Metadata File
+
+Make sure to exchange the `lsp4SampleMetadata` with the actual metadata of your asset. You can read more within the [Asset Preparation Guide](../assets.md).
+
+:::
+
 ### Prepare the transaction payloads
 
 Next, you have to prepare the payload of the different contract calls so the batch transaction can be executed:
