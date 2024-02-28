@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Exit Validators'
-sidebar_position: 5
+sidebar_position: 6
 description: Learn how to exit validators on the LUKSO Network.
 ---
 

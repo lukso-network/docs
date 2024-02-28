@@ -31,4 +31,4 @@ v0.0.2
 
 #### Defined in
 
-LSP23LinkedContractsFactory/deployUniversalProfile/deployUniversalProfile.ts:34
+[LSP23LinkedContractsFactory/deployUniversalProfile/deployUniversalProfile.ts:34](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP23LinkedContractsFactory/deployUniversalProfile/deployUniversalProfile.ts#L34)

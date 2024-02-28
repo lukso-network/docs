@@ -18,9 +18,9 @@ Keeping track of all the tokens that an address owns is currently unfeasible.
 
 If you want to know from which tokens you own, you need to manually import the token contract address and query the balance of your key in it each time for each token. This inconvenience brings light to the following problem: owning tokens without being aware because there are no ways of being notified about the tokens you have received in the first place.
 
-explain the problem of Etherscan. Their API is used to scan the entire network and know the tokens that each address own. Explain that LSP5 remove that by storing the addresses of the tokens you own directly inside your UP storage.
+Explorers like [Etherscan](https://etherscan.io/) are currently responsible for listing all the tokens each address owns. They do so through their API by scanning the entire network of Ethereum, including the balance on each token contract and potential interacting address. As a result, keeping track of the user's owned assets and balances relies on such centralized services.
 
-One way to solve this problem is to create generic metadata keys that would register in the smart contract storage how many different tokens you own and the address of the transferred token contracts.
+One way to solve this problem is to create generic metadata keys that would register in the smart contract storage how many different tokens you own and the address of the transferred token contracts. LSP5 removes the problem listed above by storing the addresses of the tokens you own directly inside your UP storage or any contract that implements LSP5.
 
 ## What does this standard represent?
 

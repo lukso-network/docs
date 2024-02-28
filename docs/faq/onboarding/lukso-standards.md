@@ -69,3 +69,12 @@ The LSP8 standard introduces a **standardized key-value store**, allowing metada
 ## How can I create a phygital asset on LUKSO?
 
 Creating a hybrid between a physical and a digital asset on LUKSO involves using the [LSP7](../../standards/tokens/LSP7-Digital-Asset) or [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset) token standards. These standards offer a **flexible and updatable key-value store** for the data of the digital half on the blockchain to carry and update relevant information related to its physical counterpart. The managing instance of the token can then update information about the asset's physical aspect dynamically.
+
+## How are asset creators verified using LSPs?
+
+In the blockchain world, verifying the creator of digital assets is crucial to prevent scams and ensure authenticity. There are two primary LSP standards for creator verification:
+
+- [LSP12 Issued Assets](../../standards/universal-profile/lsp12-issued-assets/)
+- and [LSP4](../../contracts/contracts/LSP4DigitalAssetMetadata/) having a [Creators List](../../standards/tokens/LSP4-Digital-Asset-Metadata/#lsp4creators)
+
+During the creation of an asset, Universal Profiles can be referenced as [LSP4Creators](../../standards/tokens/LSP4-Digital-Asset-Metadata/#lsp4creators). However, to verify the creator, these profiles must also link to the asset on their [ERC725Y data storage](../../standards/lsp-background/erc725.md#erc725y-data-representation) using the [LSP12 Issued Assets](../../standards/universal-profile/lsp12-issued-assets/) array. The cross-check ensures that creators get the recognition they deserve and users can trust the authenticity of assets. Platforms can then check if the asset is referenced on the Universal Profile, preventing impersonation and spam.
