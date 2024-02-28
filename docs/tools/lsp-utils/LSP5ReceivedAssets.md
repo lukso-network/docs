@@ -38,7 +38,7 @@ generateReceivedAssetKeys(...) => { lsp5DataKeys: BytesLike[], lsp5DataValues: B
 
 #### Defined in
 
-LSP5ReceivedAssets/generateReceivedAssetKeys/generateReceivedAssetKeys.ts:32
+[LSP5ReceivedAssets/generateReceivedAssetKeys/generateReceivedAssetKeys.ts:32](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP5ReceivedAssets/generateReceivedAssetKeys/generateReceivedAssetKeys.ts#L32)
 
 ---
 
@@ -77,4 +77,4 @@ generateSentAssetKeys(...) => { lsp5DataKeys: BytesLike[], lsp5DataValues: Bytes
 
 #### Defined in
 
-LSP5ReceivedAssets/generateSentAssetKeys/generateSentAssetKeys.ts:34
+[LSP5ReceivedAssets/generateSentAssetKeys/generateSentAssetKeys.ts:34](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP5ReceivedAssets/generateSentAssetKeys/generateSentAssetKeys.ts#L34)

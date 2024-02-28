@@ -6,7 +6,6 @@ description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Ass
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Details from '../../../src/components/Details'
 
 # Read Digital Asset Data
 
@@ -104,7 +103,7 @@ You can use the 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspecto
 
 After you've approved the contract type, its recommended to check if the asset actually implemented the [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) into it's storage.
 
-<Details>
+<details>
   <summary>
     <a href="../../standards/tokens/LSP4-Digital-Asset-Metadata.md">LSP4 - Digital Asset Metadata</a> describes the data within <a href="../../standards/tokens/LSP7-Digital-Asset.md">LSP7</a> and <a href="../../standards/tokens/LSP8-Identifiable-Digital-Asset.md">LSP8</a> asset's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. <br/>The following data keys can be fetched. 👇
   </summary>
@@ -119,7 +118,7 @@ After you've approved the contract type, its recommended to check if the asset a
 - `LSP4TokenName` displays the string of the asset's name
 
 </div>
-</Details>
+</details>
 
 As shown in the previous [Metadata Detection Guide](./standard-detection.md#metadata-detection), you can get the content of the data keys directly using the `getData(...)` function of the ⚒️ [`erc725.js`](../../tools/erc725js/classes/ERC725#getdata) library.
 
@@ -198,7 +197,7 @@ const assetMetadata = await myAsset.fetchData('LSP4Metadata');
 console.log(assetMetadata);
 ```
 
-<Details>
+<details>
 <summary>Show result</summary>
 
 ```js
@@ -264,7 +263,7 @@ console.log(assetMetadata);
 }
 ```
 
-</Details>
+</details>
 
 ## Fetch Creators and Token Properties
 
@@ -312,7 +311,7 @@ console.log(creatorInformation);
 
 <!-- prettier-ignore-end -->
 
-<Details>
+<details>
 
 ```js
 // Creator List (empty, no creators set)
@@ -357,4 +356,4 @@ console.log(creatorInformation);
 ]
 ```
 
-</Details>
+</details>

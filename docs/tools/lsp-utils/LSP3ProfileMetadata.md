@@ -51,7 +51,7 @@ getProfileMetadata(ERC725Y) =>
 
 #### Defined in
 
-LSP3ProfileMetadata/getProfileMetadata/getProfileMetadata.ts:53
+[LSP3ProfileMetadata/getProfileMetadata/getProfileMetadata.ts:53](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP3ProfileMetadata/getProfileMetadata/getProfileMetadata.ts#L53)
 
 ---
 
@@ -88,4 +88,4 @@ isProfileMetadata({ description: "", links: [], name: "", tags: [] }) => false
 
 #### Defined in
 
-LSP3ProfileMetadata/isProfileMetadata/isProfileMetadata.ts:16
+[LSP3ProfileMetadata/isProfileMetadata/isProfileMetadata.ts:16](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP3ProfileMetadata/isProfileMetadata/isProfileMetadata.ts#L16)

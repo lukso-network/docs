@@ -60,7 +60,7 @@ decodeAssetUrl("0x6f357c6a2a04850096912391bbb0966a624519e8f5d797df2a2c47425e892c
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/decodeAssetUrl/decodeAssetUrl.ts:35
+[LSP2ERC725YJSONSchema/decodeAssetUrl/decodeAssetUrl.ts:35](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/decodeAssetUrl/decodeAssetUrl.ts#L35)
 
 ---
 
@@ -122,7 +122,7 @@ decodeJsonUrl("0x6f357c6a4dade694d7dd4081f46073e99ce898a9b53cf6988452904de7db5cc
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/decodeJsonUrl/decodeJsonUrl.ts:35
+[LSP2ERC725YJSONSchema/decodeJsonUrl/decodeJsonUrl.ts:35](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/decodeJsonUrl/decodeJsonUrl.ts#L35)
 
 ---
 
@@ -166,7 +166,7 @@ encodeAssetUrl(
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/encodeAssetUrl/encodeAssetUrl.ts:25
+[LSP2ERC725YJSONSchema/encodeAssetUrl/encodeAssetUrl.ts:25](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/encodeAssetUrl/encodeAssetUrl.ts#L25)
 
 ---
 
@@ -210,7 +210,7 @@ encodeJsonUrl(
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/encodeJsonUrl/encodeJsonUrl.ts:25
+[LSP2ERC725YJSONSchema/encodeJsonUrl/encodeJsonUrl.ts:25](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/encodeJsonUrl/encodeJsonUrl.ts#L25)
 
 ---
 
@@ -253,7 +253,7 @@ generateSingletonKey(arrayDataKey, index) => `<bytes16(arrayDataKey)>:<bytes16(i
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/generateArrayElementKeyAtIndex/generateArrayElementKeyAtIndex.ts:24
+[LSP2ERC725YJSONSchema/generateArrayElementKeyAtIndex/generateArrayElementKeyAtIndex.ts:24](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/generateArrayElementKeyAtIndex/generateArrayElementKeyAtIndex.ts#L24)
 
 ---
 
@@ -299,7 +299,7 @@ generateArrayKey("RandomArrayDataKey[]") => keccak256("RandomArrayDataKey[]") = 
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/generateArrayKey/generateArrayKey.ts:22
+[LSP2ERC725YJSONSchema/generateArrayKey/generateArrayKey.ts:22](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/generateArrayKey/generateArrayKey.ts#L22)
 
 ---
 
@@ -357,7 +357,7 @@ generateMappingKey(bytes10Value, bytes20value) =>`<bytes10Value>:<0000>:<bytes20
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/generateMappingKey/generateMappingKey.ts:37
+[LSP2ERC725YJSONSchema/generateMappingKey/generateMappingKey.ts:37](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/generateMappingKey/generateMappingKey.ts#L37)
 
 ---
 
@@ -430,7 +430,7 @@ generateMappingWithGroupingKey(bytes6Value, bytes4Value, bytes20Value) => `<byte
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/generateMappingWithGroupingKey/generateMappingWithGroupingKey.ts:51
+[LSP2ERC725YJSONSchema/generateMappingWithGroupingKey/generateMappingWithGroupingKey.ts:51](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/generateMappingWithGroupingKey/generateMappingWithGroupingKey.ts#L51)
 
 ---
 
@@ -468,7 +468,7 @@ generateSingletonKey("RandomDataKey") => keccak256("RandomKeyName") = "0xb0c92ac
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/generateSingletonKey/generateSingletonKey.ts:19
+[LSP2ERC725YJSONSchema/generateSingletonKey/generateSingletonKey.ts:19](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/generateSingletonKey/generateSingletonKey.ts#L19)
 
 ---
 
@@ -508,7 +508,7 @@ isCompactBytesArray("0x0002") => false
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/isCompactBytesArray/isCompactBytesArray.ts:21
+[LSP2ERC725YJSONSchema/isCompactBytesArray/isCompactBytesArray.ts:21](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/isCompactBytesArray/isCompactBytesArray.ts#L21)
 
 ---
 
@@ -549,7 +549,7 @@ isValidArrayLengthValue("0x0000000000000000000000000000000000f60a") => false
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/isValidArrayLengthValue/isValidArrayLengthValue.ts:22
+[LSP2ERC725YJSONSchema/isValidArrayLengthValue/isValidArrayLengthValue.ts:22](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/isValidArrayLengthValue/isValidArrayLengthValue.ts#L22)
 
 ---
 
@@ -592,7 +592,7 @@ removeLastElementFromArrayAndMap(...) => { dataKeys: BytesLike[], dataValues: By
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/removeElementFromArrayAndMap/removeElementFromArrayAndMap.ts:32
+[LSP2ERC725YJSONSchema/removeElementFromArrayAndMap/removeElementFromArrayAndMap.ts:32](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/removeElementFromArrayAndMap/removeElementFromArrayAndMap.ts#L32)
 
 ---
 
@@ -638,4 +638,4 @@ removeLastElementFromArrayAndMap(...) => { dataKeys: BytesLike[], dataValues: By
 
 #### Defined in
 
-LSP2ERC725YJSONSchema/removeLastElementFromArrayAndMap/removeLastElementFromArrayAndMap.ts:22
+[LSP2ERC725YJSONSchema/removeLastElementFromArrayAndMap/removeLastElementFromArrayAndMap.ts:22](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP2ERC725YJSONSchema/removeLastElementFromArrayAndMap/removeLastElementFromArrayAndMap.ts#L22)

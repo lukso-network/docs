@@ -2,43 +2,6 @@
 sidebar_position: 4
 ---
 
-### isAssetMetadata
-
-▸ **isAssetMetadata**(`object`): object is LSP4DigitalAssetMetadataJSON
-
-Returns `true` is the passed object is an LSP3 Profile Metadata, `false` otherwise.
-
-#### Parameters
-
-| Name     | Type  | Description                       |
-| :------- | :---- | :-------------------------------- |
-| `object` | `any` | The object that is to be checked. |
-
-#### Returns
-
-object is LSP4DigitalAssetMetadataJSON
-
-**`Since`**
-
-v0.0.1
-
-**`See`**
-
-https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md
-
-**`Example`**
-
-```ts
-isAssetMetadata({ LSP4Metadata: { description: "", links: [], images: [], assets: [] icon: [] } }) => true
-isAssetMetadata({ description: "", links: [], name: "", tags: [] }) => false
-```
-
-#### Defined in
-
-LSP4DigitalAssetMetadata/isAssetMetadata/isAssetMetadata.ts:16
-
-## LSP4
-
 ### addDigitalAssetCreators
 
 ▸ **addDigitalAssetCreators**(`digitalAsset`, `newCreators`, `signer?`): `Promise`\<`void`\>
@@ -73,7 +36,7 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata
 
 #### Defined in
 
-LSP4DigitalAssetMetadata/addDigitalAssetCreators/addDigitalAssetCreators.ts:30
+[LSP4DigitalAssetMetadata/addDigitalAssetCreators/addDigitalAssetCreators.ts:30](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP4DigitalAssetMetadata/addDigitalAssetCreators/addDigitalAssetCreators.ts#L30)
 
 ---
 
@@ -110,7 +73,7 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata
 
 #### Defined in
 
-LSP4DigitalAssetMetadata/authenticateDigitalAssetCreators/authenticateDigitalAssetCreators.ts:27
+[LSP4DigitalAssetMetadata/authenticateDigitalAssetCreators/authenticateDigitalAssetCreators.ts:27](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP4DigitalAssetMetadata/authenticateDigitalAssetCreators/authenticateDigitalAssetCreators.ts#L27)
 
 ---
 
@@ -162,7 +125,7 @@ getAssetMetadata(ERC725Y) =>
 
 #### Defined in
 
-LSP4DigitalAssetMetadata/getAssetMetadata/getAssetMetadata.ts:45
+[LSP4DigitalAssetMetadata/getAssetMetadata/getAssetMetadata.ts:45](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP4DigitalAssetMetadata/getAssetMetadata/getAssetMetadata.ts#L45)
 
 ---
 
@@ -201,7 +164,44 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata
 
 #### Defined in
 
-LSP4DigitalAssetMetadata/getDigitalAssetCreators/getDigitalAssetCreators.ts:33
+[LSP4DigitalAssetMetadata/getDigitalAssetCreators/getDigitalAssetCreators.ts:33](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP4DigitalAssetMetadata/getDigitalAssetCreators/getDigitalAssetCreators.ts#L33)
+
+---
+
+### isAssetMetadata
+
+▸ **isAssetMetadata**(`object`): object is LSP4DigitalAssetMetadataJSON
+
+Returns `true` is the passed object is an LSP4 Asset Metadata, `false` otherwise.
+
+#### Parameters
+
+| Name     | Type  | Description                       |
+| :------- | :---- | :-------------------------------- |
+| `object` | `any` | The object that is to be checked. |
+
+#### Returns
+
+object is LSP4DigitalAssetMetadataJSON
+
+**`Since`**
+
+v0.0.1
+
+**`See`**
+
+https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md
+
+**`Example`**
+
+```ts
+isAssetMetadata({ LSP4Metadata: { description: "", links: [], images: [], assets: [] icon: [] } }) => true
+isAssetMetadata({ description: "", links: [], name: "", tags: [] }) => false
+```
+
+#### Defined in
+
+[LSP4DigitalAssetMetadata/isAssetMetadata/isAssetMetadata.ts:16](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP4DigitalAssetMetadata/isAssetMetadata/isAssetMetadata.ts#L16)
 
 ---
 
@@ -239,4 +239,4 @@ https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata
 
 #### Defined in
 
-LSP4DigitalAssetMetadata/removeDigitalAssetCreators/removeDigitalAssetCreators.ts:27
+[LSP4DigitalAssetMetadata/removeDigitalAssetCreators/removeDigitalAssetCreators.ts:27](https://github.com/lukso-network/lsp-utils/blob/31b2f8b/src/LSP4DigitalAssetMetadata/removeDigitalAssetCreators/removeDigitalAssetCreators.ts#L27)
