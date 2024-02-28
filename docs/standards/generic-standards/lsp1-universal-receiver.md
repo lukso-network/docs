@@ -38,7 +38,7 @@ One way to solve this problem is by creating a **standard and unified function**
 
 :::success recommendation
 
-Smart contracts implementing the [LSP1-UniversalReceiver](#) standard SHOULD **register** the **[LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
+Smart contracts implementing the [LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) standard SHOULD **register** the **[LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
 
 :::
 
@@ -81,7 +81,7 @@ See the **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-r
 
 Overriding and customizing the `universalReceiver(..)` function is an option for users to allow **different behaviours depending on the data received**. However, it's not advised to hardcode the logic of reacting to specific actions inside the function because **this logic may need to change in the future** depending on several factors (eg. the vault where the tokens are forwarded gets compromised, a new staking contract is deployed, decided to revert on specific tokens later).
 
-**[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)** is an **optional extension** to the **[LSP1-UniversalReceiver](#)** standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
+**[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)** is an **optional extension** to the **[LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver.md)** standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
 
 ![Universal Receiver Delegate contract](/img/standards/lsp1/universal-receiver-delegate.jpeg)
 

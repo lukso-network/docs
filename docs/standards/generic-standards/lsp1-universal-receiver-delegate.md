@@ -30,7 +30,7 @@ Therefore, it is advised not to hardcode how the smart contract should handle an
 
 :::success recommendation
 
-Smart contracts implementing the [LSP1-UniversalReceiverDelegate](#) standard SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1-UniversalReceiverDelegate standard.
+Smart contracts implementing the [LSP1-UniversalReceiverDelegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) standard SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1-UniversalReceiverDelegate standard.
 
 :::
 
