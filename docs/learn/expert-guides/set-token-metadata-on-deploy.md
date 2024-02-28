@@ -20,11 +20,11 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::info
 
-If you want to set the metadata of a contract right during the deployment transaction, you will have to [deploy the transaction using a Universal Profile](./getting-started.md#create-a-env-file), as an EOA can not execute batch calls.
+If you want to set the metadata of a contract right during the deployment transaction, you will have to [deploy the transaction using a Universal Profile](../smart-contract-developers/getting-started.md#create-a-env-file), as an EOA can not execute batch calls.
 
 :::
 
-The example will use the previous contract from the [Create LSP7 Token](./create-lsp7-token.md) guide. However, the process of deploying contracts with metadata is almost equivalent across LSPs. You just have to adjust the contract parameters, schemas, and artifacts according to your standards.
+The example will use the previous contract from the [Create LSP7 Token](../smart-contract-developers/create-lsp7-token.md) guide. However, the process of deploying contracts with metadata is almost equivalent across LSPs. You just have to adjust the contract parameters, schemas, and artifacts according to your standards.
 
 ### Setup deployment script
 
@@ -85,7 +85,7 @@ The [`erc725.js`](../../tools/erc725js/getting-started.md) library can be used t
 
 :::info Address Generation
 
-Generating the full bytecode for the storage update requires the contract address to be called. As the contract is not yet deployed, you have to mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall`. This address then matches the contract that will later be deployed using the same parameters.
+As the contract is not yet deployed, you have to mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall` to obtain its future address. To do so, you must pass the contract's bytecode (including the deployment parameters) as the 4th parameter to the `execute(...)` function.
 
 :::
 
@@ -184,7 +184,7 @@ npx hardhat --network luksoTestnet run scripts/deployTokenWithMetadataAsUP.ts
 
 :::caution Contract Compilation
 
-Make sure that you [successfully compiled your contract](./getting-started.md) before executing the deployment script.
+Make sure that you [successfully compiled your contract](../smart-contract-developers/getting-started.md) before executing the deployment script.
 
 :::
 
