@@ -1,6 +1,6 @@
 ---
-sidebar_label: '💽 Set Token Metadata on deployment'
-description: How to set LSP4 Metadata of digital assets on LUKSO on contract deployment.
+sidebar_label: '💽 Deploy Token with Metadata'
+description: How to set LSP4 Metadata of digital assets on contract deployment.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Edit Token Metadata
 
-In this guide, you will learn how to set the [metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) by updating its LSP2 data key when you deploy it.
+In this guide, you will learn how to set the [metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) by updating its LSP4Metadata data key when you deploy it.
 
 :::tip Code repository
 
@@ -20,11 +20,11 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::info
 
-If you want to set the metadata of a contract right during the deployment transaction, you will have to [deploy the transaction using a Universal Profile](../smart-contract-developers/getting-started.md#create-a-env-file), as an EOA can not execute batch calls.
+To set the metadata of the digital asset directly on deployment, we will do one single [`executeBatch`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#executebatch) transaction using a Universal Profile that first deploys the digital asset, and continues to set the digital asset metadata, as an EOA can not execute batch calls.
 
 :::
 
-The example will use the previous contract from the [Create LSP7 Token](../smart-contract-developers/create-lsp7-token.md) guide. However, the process of deploying contracts with metadata is almost equivalent across LSPs. You just have to adjust the contract parameters, schemas, and artifacts according to your standards.
+The example will use the previous contract from our [Create LSP7 Token Guide](../smart-contract-developers/create-lsp7-token.md). However, the process of deploying contracts with metadata is almost equivalent across LSPs. You just have to adjust the contract parameters, schemas, and import the right contract ABIs.
 
 ### Setup deployment script
 
@@ -35,7 +35,7 @@ import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
 
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
-import LSP0Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json';
 
 import { ERC725 } from '@erc725/erc725.js';
 import LSP4DigitalAssetSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
@@ -45,27 +45,18 @@ import { lsp4SampleMetadata } from '../consts/LSP4SampleMetadata';
 // Load environment variables
 dotenv.config();
 
-async function deployTokenWithMetadata() {
-  // UP controller used for deployment
-  const [deployer] = await ethers.getSigners();
-  console.log(
-    'Deploying contract with Universal Profile controller: ',
-    deployer.address,
-  );
+// UP controller used for deployment
+const [deployer] = await ethers.getSigners();
+console.log(
+  'Deploying contract with Universal Profile controller: ',
+  deployer.address,
+);
 
-  // Load the Universal Profile
-  const universalProfile = await ethers.getContractAtFromArtifact(
-    LSP0Artifact,
-    process.env.UP_ADDR as string,
-  );
-}
-
-deployTokenWithMetadata()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+// Load the Universal Profile
+const universalProfile = await ethers.getContractAtFromArtifact(
+  UniversalProfileArtifact,
+  process.env.UP_ADDR as string,
+);
 ```
 
 :::caution Metadata File
@@ -79,21 +70,22 @@ Make sure to exchange the `lsp4SampleMetadata` with the actual metadata of your 
 Next, you have to prepare the payload of the different contract calls so the batch transaction can be executed:
 
 1. Encode the constructor parameters
-2. Generate the full bytecode for the contract deployment
+2. Generate the bytecode for the contract deployment
 3. Encode the LSP4 metadata
-4. Generate the full bytecode for the storage update
+4. Generate the bytecode for setting the metadata
 
 :::tip Encoding
 
-The [`erc725.js`](../../tools/erc725js/getting-started.md) library can be used to easily encode the data of the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) and other data keys following the [LSP2 ERC725YJSON Schema](../../standards/generic-standards/lsp2-json-schema.md). The encoded value will then be passed into the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function call of the contract.
+The [`erc725.js`](../../tools/erc725js/getting-started.md) library can be used to easily encode the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) and other data keys following the [LSP2 ERC725YJSON Schema](../../standards/generic-standards/lsp2-json-schema.md) on the contract.
 
 :::
 
 :::info Address Generation
 
-As the contract is not yet deployed, you have to mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall` to obtain its future address. To do so, you must pass the contract's bytecode (including the deployment parameters) as the 4th parameter to the `execute(...)` function.
+As the contract is not yet deployed, you have to mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall` to obtain its future address. To do so, we will pass the contract's bytecode (including its deployment parameters) as the 4th parameter to the `execute(...)` function.
 
 :::
+The [`erc725.js`](../../tools/erc725js/getting-started.md) library can be used to easily encode the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) and other data keys following the [LSP2 ERC725YJSON Schema](../../standards/generic-standards/lsp2-json-on the contract.
 
 ```ts title="scripts/deployTokenWithMetadataAsUP.ts"
 async function deployTokenWithMetadata() {
@@ -143,7 +135,7 @@ async function deployTokenWithMetadata() {
   const metadataKey = ERC725YDataKeys.LSP4['LSP4Metadata'];
 
   // Create the transaction payload for setting storage data
-  const lsp4StorageBytecode = token.interface.encodeFunctionData('setData', [
+  const setLSP4MetadataPayload = token.interface.encodeFunctionData('setData', [
     metadataKey,
     encodedLSP4Metadata.values[0],
   ]);
@@ -152,7 +144,7 @@ async function deployTokenWithMetadata() {
 
 ### Create the batch transaction
 
-After the payloads are prepared correctly, you can execute the [`executeBatch()`](../../contracts/contracts/ERC725/ERC725.md#executebatch) function on the Universal Profile. On the first call, you have to set the transaction target to `0x0`, as the token contract will be initialized. The second call will then use the [previously generated contract address](#prepare-the-transaction-payloads) from the `staticCall` in order to set the metadata.
+After the payloads are prepared correctly, you can execute each of them through the [`executeBatch()`](../../contracts/contracts/ERC725/ERC725.md#executebatch) function on the Universal Profile. On the first call, you have to set the transaction target to the **zero address**, to deploy the token contract. The second call will then use the [previously generated contract address](#prepare-the-transaction-payloads) from the `staticCall` in order to set the metadata.
 
 ```ts title="scripts/deployTokenWithMetadataAsUP.ts"
 async function deployTokenWithMetadata() {
@@ -172,7 +164,7 @@ async function deployTokenWithMetadata() {
     [0, 0], // Value is empty for both operations
     [
       tokenBytecodeWithConstructor, // Payload for contract deployment
-      lsp4StorageBytecode, // Payload for setting a data key on the deployed contract
+      setLSP4MetadataPayload, // Payload for setting a data key on the deployed contract
     ],
   );
 
