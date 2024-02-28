@@ -44,7 +44,7 @@ An **ERC725Account** is a blockchain account system that can be utilized by indi
 
 - **[LSP17-ContractExtension](../generic-standards/lsp17-contract-extension.md)** enables the contract to be **extended after deployment** to support new standard and functionalities.
 
-- **[LSP20-CallVerification](#)** provides a unified and standard way for all addresses to **interact directly with the account**. This streamlines the interaction process considering the ownership setup, and enhancing accessibility and developer experience.
+- **[LSP20-CallVerification](../../standards/generic-standards/lsp20-call-verification.md)** provides a unified and standard way for all addresses to **interact directly with the account**. This streamlines the interaction process considering the ownership setup, and enhancing accessibility and developer experience.
 
 ![LSP0 modules diagram](/img/standards/lsp0/LSP0-modules-diagram.jpeg)
 
@@ -151,7 +151,7 @@ Check the **javascript** guides to know [**How to set a UniversalReceiverDelegat
 
 This standard enables the account to be notified of incoming transactions such as token transfer, vault transfer, information transfer, etc. Notifications are handy for situations where users want to customize how their account contract reacts to certain tokens by either rejecting them or operating a specific call on each token received.
 
-The **[LSP0-ERC725Account](#)** implements the `universalReceiver(..)` function that:
+The **[LSP0-ERC725Account](../../standards/universal-profile/lsp0-erc725account.md)** implements the `universalReceiver(..)` function that:
 
 Emits an [`UniversalReceiver`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver-1) event with the `typeId` and `data`, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
 
