@@ -4,8 +4,6 @@ description: 'Learn how to create a NFT collection where each NFT is a contract'
 sidebar_position: 8
 ---
 
-import Details from '../../../src/components/Details'
-
 # Create NFT Collection with a contract address as tokenId
 
 :::note
@@ -153,7 +151,7 @@ contract LSP7SubCollection is LSP7DigitalAssetCore, LSP4DigitalAssetMetadata {
 
 ### Final LSP7 Sub-collection contract
 
-<Details>
+<details>
 <summary>Click to expand/collapse the script.</summary>
 
 ```sol title="contracts/LSP7SubCollection.sol"
@@ -216,7 +214,7 @@ contract LSP7SubCollection is LSP7DigitalAsset {
 
 ```
 
-</Details>
+</details>
 
 ## Create the LSP8 Collection
 
@@ -372,7 +370,7 @@ contract LSP8Collection is LSP8IdentifiableDigitalAsset {
 
 ### Final LSP8 Collection contract
 
-<Details>
+<details>
 <summary>Click to expand/collapse the script.</summary>
 
 ```sol title="contracts/LSP8Collection.sol"
@@ -467,7 +465,7 @@ contract LSP8Collection is LSP8IdentifiableDigitalAsset {
 }
 ```
 
-</Details>
+</details>
 
 ## Scripts
 
@@ -480,7 +478,7 @@ You can run `npx hardhat compile` to compile your contracts.
 Since the contracts are quite big, you may run into a compilation error. If this is the case, you should update your compiler settings in the `hardhat.config.ts` file.
 This is what we used to compile the contracts:
 
-<Details>
+<details>
 
 <summary>Click to expand/collapse the script.</summary>
 ```typescript title="hardhat.config.ts"
@@ -495,7 +493,7 @@ This is what we used to compile the contracts:
   }
 ```
 
-</Details>
+</details>
 
 :::
 
@@ -672,7 +670,7 @@ async function main() {
 
 #### Final script
 
-<Details>
+<details>
 <summary>Click to expand/collapse the script.</summary>
 
 ```typescript
@@ -730,7 +728,7 @@ main().catch((error) => {
 });
 ```
 
-</Details>
+</details>
 
 #### Run the script
 
@@ -858,7 +856,7 @@ async function main() {
 
 #### Final script
 
-<Details>
+<details>
 
 <summary>Click to expand/collapse the script.</summary>
 
@@ -938,7 +936,7 @@ main().catch((error) => {
 });
 ```
 
-</Details>
+</details>
 
 #### Run the script
 

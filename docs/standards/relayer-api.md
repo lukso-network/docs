@@ -6,7 +6,6 @@ description: LUKSO's Transaction Relay Service API Standard.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Details from '../../src/components/Details'
 
 # Transaction Relay Service API Standard
 
@@ -44,7 +43,7 @@ Returns the available quota left for a registered Universal Profile.
 
 - `timestamp` in **seconds**. Must be now +/- 5 seconds.
 
-<Details>
+<details>
   <summary>How to generate and verify the signature.</summary>
 
 <Tabs>
@@ -107,7 +106,7 @@ const signer = ethers.utils.verifyMessage(arrayify(message), signature); // Sign
 
 To verify if the signature was signed by an authorized EOA, please refer to the [Sign-In With Ethereum](../learn/dapp-developer/siwe.md) guide.
 
-</Details>
+</details>
 
 ```json title="Request body"
 {

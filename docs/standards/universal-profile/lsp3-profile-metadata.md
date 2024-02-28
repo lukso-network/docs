@@ -4,8 +4,6 @@ sidebar_position: 4
 description: 'LUKSO LSP3-Profile-Metadata: a Metadata standard that defines specific data keys to describe a profile.'
 ---
 
-import Details from '../../../src/components/Details'
-
 # LSP3 - Profile Metadata
 
 :::info Standard Document
@@ -61,7 +59,7 @@ The value attached to this data key is a [VerifiableURI-encoded value](https://g
 
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, defining an image with different dimensions, `width` and `height`. Picture scaling is helpful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them afterward.
 
-<Details>
+<details>
     <summary>Example of JSON File linked to <code>LSP3Profile</code>data key </summary>
 
 ```json
@@ -108,7 +106,7 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
 }
 ```
 
-</Details>
+</details>
 
 ### `LSP12IssuedAssets`
 
