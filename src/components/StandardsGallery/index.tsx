@@ -125,7 +125,7 @@ const STANDARDS = [
   {
     title: '⛽ LSP25',
     name: 'Execute Relay Call',
-    link: '#',
+    link: '/contracts/contracts/LSP25ExecuteRelayCall/LSP25MultiChannelNonce/',
 
     text: 'Factory pattern standard for deploying two linked contracts across chains.',
   },

@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-1155)** tokens have a lot of limitations in terms of metadata, secure transfers, asset representation, and asset interaction. This causes problems for users seeking, **full control** over which assets they accept or not, **more complex NFT functionality**, and a **simple user experience** while creating, buying, and exchanging assets.
 
-**[LSP8-IdentifiableDigitalAsset](#)** is the standard that aims to solve all problems mentioned above by:
+**[LSP8-IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)** is the standard that aims to solve all problems mentioned above by:
 
 - Allowing more secure transfers via **force boolean parameter**.
 - More asset metadata **via [LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)**.
@@ -32,7 +32,7 @@ Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)**
 
 ### Specification
 
-**[LSP8-IdentifiableDigitalAsset](#)** is a standard that aims to describe _non-fungible_ assets. The term _Non-fungible_ means that each asset is **unique and different**. They are distinguishable from each other and therefore **not interchangeable**.
+**[LSP8-IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)** is a standard that aims to describe _non-fungible_ assets. The term _Non-fungible_ means that each asset is **unique and different**. They are distinguishable from each other and therefore **not interchangeable**.
 
 This standard was based on **[ERC721](https://eips.ethereum.org/EIPS/eip-20)** and **[ERC1155](https://eips.ethereum.org/EIPS/eip-777)** with additional features mentioned below:
 
@@ -42,7 +42,7 @@ The current NFT standards such as **[ERC721](https://eips.ethereum.org/EIPS/eip-
 
 ![ERC721 TokenIds Representation](/img/standards/lsp8/erc721-tokenIds.jpeg)
 
-**[LSP8-IdentifiableDigitalAsset](#)** defines the tokenIds as `bytes32` to allow a wide variety of representation, including numbers, string names, smart contract addresses, byte identifiers for serial numbers, or even hashed values.
+**[LSP8-IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)** defines the tokenIds as `bytes32` to allow a wide variety of representation, including numbers, string names, smart contract addresses, byte identifiers for serial numbers, or even hashed values.
 
 Finally a LSP8 Collection contract can also contains NFTs of different formats, illustrated under the **Mixed Formats tab** below. For instance all the NFTs by default are of the `number` format, but certain NFTs in the collection could be more complex and represented as their own smart contract. In this example use case, the tokenId format will be **`Mixed` with default as `address`** (Value `102`).
 
