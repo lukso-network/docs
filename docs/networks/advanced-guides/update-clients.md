@@ -42,7 +42,7 @@ lukso status
 
 ## Download new Clients
 
-Then continue to check and update your configured blockchain clients.
+Then continue to update your blockchain clients to the [latest supported versions](../mainnet/running-a-node.md#supported-clients-versions).
 
 ```bash
 # Updates all clients to the latest version
@@ -69,6 +69,39 @@ lukso install ---teku-tag v23.10.0
 ```
 
 :::
+
+After updating your clients, ensure to get the latest network configurations so they match with your installed clients:
+
+```bash
+lukso update configs
+```
+
+:::caution Configuration Mismatch
+
+If you are updating the clients to the **latest supported version without updating the network configurations**, your node may create forks, potentially resulting in the validator being excluded from the active chain branch.
+
+:::
+
+:::info
+
+The `lukso update configs` command does not overwrite any personal configurations.
+
+:::
+
+<details>
+  <summary>How to handle Prysm Configuration Errors</summary>
+
+If you updated the network configuration files but are running a Prysm client **below** Version `4.0.8`, your client may not know configuration properties that were introduced in later stages:
+
+```text
+There were some issues parsing the config from a yaml file" error="yaml: unmarshal errors:
+field DENEB_FORK_VERSION not found in type params.BeaconChainConfig
+field DENEB_FORK_EPOCH not found in type params.BeaconChainConfig
+```
+
+This won't affect your node in any way. If you are able to run newer Prysm versions, **we recommend updating** to the latest supported version.
+
+</details>
 
 ## Restart your Node
 
