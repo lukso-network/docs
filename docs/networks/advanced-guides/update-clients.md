@@ -102,7 +102,7 @@ The `lukso update configs` command does not overwrite any personal configuration
 If you updated the network configuration files but are running a Prysm client **below** Version `4.0.8`, your client may not know configuration properties that were introduced in later stages:
 
 ```text
-There were some issues parsing the config from a yaml file" error="yaml: unmarshal errors:
+There were some issues parsing the config from a yaml file error=yaml: unmarshal errors:
 field DENEB_FORK_VERSION not found in type params.BeaconChainConfig
 field DENEB_FORK_EPOCH not found in type params.BeaconChainConfig
 ```
