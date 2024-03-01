@@ -115,6 +115,14 @@ lukso update
 lukso update configs
 ```
 
+:::caution Configuration Mismatch
+
+Always ensure that you **download the network configuration files** when **installing the latest supported client versions**. If there are missing or wrong properties within the network configuration, your node may shut down after the start-up or create forks, resulting in the validator being excluded from the active chain branch.
+
+You can read more about how to handle configuration errors on the [Update Clients](./update-clients.md) page.
+
+:::
+
 :::info
 
 The `lukso update configs` command does not overwrite any personal configurations.
