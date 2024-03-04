@@ -116,7 +116,7 @@ This is especially important if a lot of functionality is inherited, as the byte
 
 ## Deploy the Token
 
-After the contract file has been successfully compiled, you are ready to create a script to deploy it's token on the [LUKSO Testnet network](../../networks/testnet/parameters). To deploy your token on chain we **recommend using a controller and address of a Universal Profile**, so your asset will be connected and fetchable from your on-chain persona. Optionally, you can also use a regular Externally Owned Account (EOA).
+After the contract file has been successfully compiled, you are ready to create a script to deploy its token on the [LUKSO Testnet network](../../networks/testnet/parameters). To deploy your token on chain we **recommend using a controller and address of a Universal Profile**, so your asset will be connected and fetchable from your on-chain persona. Optionally, you can also use a regular Externally Owned Account (EOA).
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Deploy with Universal Profile">

@@ -173,7 +173,7 @@ During **Step 6 and 7**, you will have to input hexadecimal values.
 
 :::caution Error Handling
 
-The LUKSO KeyGen CLI might show errors about given inputs no being hexadecimal or checksum values. If your inputs are correct and the JSON file is generated sucessfully, these errors can be ignored.
+The LUKSO KeyGen CLI might show errors about given inputs no being hexadecimal or checksum values. If your inputs are correct and the JSON file is generated successfully, these errors can be ignored.
 
 :::
 
