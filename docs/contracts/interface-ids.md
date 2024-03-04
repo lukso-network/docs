@@ -28,7 +28,7 @@ const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
 If you are trying to import the `INTERFACE_IDS` within a Hardhat Typescript project, use the following import syntax:
 
 ```ts
-import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/constants';
 
 // This will raise an error if you have ES Lint enabled,
 // but will allow you to import the constants in a Hardhat + Typescript based project.

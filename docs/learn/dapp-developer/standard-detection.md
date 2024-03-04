@@ -139,7 +139,7 @@ A **[Universal Profile](../../standards/universal-profile/lsp3-profile-metadata.
 
 ```javascript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
 
 // Connect to the LUKSO network
