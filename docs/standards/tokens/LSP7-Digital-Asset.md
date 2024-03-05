@@ -16,7 +16,7 @@ description: LUKSO LSP7 - Digital Asset for fungible assets.
 
 Fungible assets such as **[ERC20](https://eips.ethereum.org/EIPS/eip-20)**, **[ERC223](https://eips.ethereum.org/EIPS/eip-223)** or **[ERC777](https://eips.ethereum.org/EIPS/eip-777)** tokens have a lot of limitations in terms of metadata, secure transfers, and asset interaction. This causes problems for users seeking, **full control** over which assets they accept or not, and a **simple user experience** while creating, buying, and exchanging assets.
 
-**[LSP7-DigitalAsset](#)** is the standard that aims to solve all problems mentioned above by:
+**[LSP7-DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md)** is the standard that aims to solve all problems mentioned above by:
 
 - Allowing more secure transfers via **force boolean parameter**.
 - More asset metadata **via [LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)**.
@@ -28,7 +28,7 @@ Fungible assets such as **[ERC20](https://eips.ethereum.org/EIPS/eip-20)**, **[E
 
 ### Specification
 
-**[LSP7-DigitalAsset](#)** is a standard that aims to describe fungible assets. The term _fungible_ means that these assets are **mutually interchangeable** (*e.g., *one token has the same value as another token).
+**[LSP7-DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md)** is a standard that aims to describe fungible assets. The term _fungible_ means that these assets are **mutually interchangeable** (*e.g., *one token has the same value as another token).
 
 LSP7-DigitalAsset is an interface standard which describes a set of methods that fungible asset contracts should implement which other contracts and clients can call.
 

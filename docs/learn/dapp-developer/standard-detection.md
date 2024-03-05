@@ -4,8 +4,6 @@ sidebar_position: 6
 description: Check supported ERC725 storage keys and interfaces of LSPs (LUKSO Standard Proposals) smart contracts.
 ---
 
-import Details from '../../../src/components/Details'
-
 # Standard Detection
 
 If you want to ensure that LSP standards are implemented and working correctly before letting your application interact with smart contracts, you can check their supported ERC725 storage keys and interfaces.
@@ -63,7 +61,7 @@ console.log(isLSP3);
 
 <!-- prettier-ignore-end -->
 
-<Details>
+<details>
     <summary>Example for detecting LSP9Vault data keys</summary>
 
 <!-- prettier-ignore-start -->
@@ -90,9 +88,9 @@ console.log(isLSP9);
 
 <!-- prettier-ignore-end -->
 
-</Details>
+</details>
 
-<Details>
+<details>
     <summary>Example for detecting LSP4DigitalAsset metadata data keys</summary>
 
 ```js
@@ -115,7 +113,7 @@ let isLSP4 = await erc725js.getData('SupportedStandards:LSP4DigitalAsset');
 console.log(isLSP4);
 ```
 
-</Details>
+</details>
 
 :::note
 
@@ -141,7 +139,7 @@ A **[Universal Profile](../../standards/universal-profile/lsp3-profile-metadata.
 
 ```javascript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/constants';
 import Web3 from 'web3';
 
 // Connect to the LUKSO network
@@ -159,7 +157,7 @@ console.log(
 
 <!--prettier-ignore-end-->
 
-<Details>
+<details>
   <summary>
     Instead of using the interface ID from <code>LSP0ERC725Account</code>, you can use any of the supported IDs within the <code>lsp-smart-contracts</code> library to check <a href="../../standards/introduction">all standards used by the LSP ecosystem</a>:
   </summary>
@@ -180,7 +178,7 @@ LSP20CallVerification         LSP20CallVerifier
 LSP25ExecuteRelayCall
 ```
 
-</Details>
+</details>
 
 :::info Further Information
 

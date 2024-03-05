@@ -3,7 +3,6 @@ title: Interfaces IDs
 ---
 
 import InterfaceIdsTable from "./\_interface_ids_table.mdx";
-import Details from '../../src/components/Details'
 
 # Interfaces IDs
 
@@ -23,13 +22,13 @@ import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts';
 const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
 ```
 
-<Details>
+<details>
     <summary>Note on importing <code>INTERFACE_IDS</code> in Hardhat Typescript projects</summary>
 
 If you are trying to import the `INTERFACE_IDS` within a Hardhat Typescript project, use the following import syntax:
 
 ```ts
-import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/dist/constants.cjs.js';
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/constants';
 
 // This will raise an error if you have ES Lint enabled,
 // but will allow you to import the constants in a Hardhat + Typescript based project.
@@ -38,6 +37,6 @@ const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
 
 This is due to the current issue that it is not possible to import ES Modules in Hardhat Typescript projects.
 
-</Details>
+</details>
 
 <InterfaceIdsTable />

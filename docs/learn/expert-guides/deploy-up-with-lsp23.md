@@ -4,8 +4,6 @@ description: 'Learn how to deploy a Universal Profile using LSP23.'
 sidebar_position: 1
 ---
 
-import Details from '../../../src/components/Details'
-
 # Deploying a Universal Profile using LSP-23
 
 ## Introduction
@@ -30,14 +28,18 @@ For this guide, we will use the minimal proxy versions of the contracts we will 
 Add to your file the imports of the artifacts, constants and libraries that we will use:
 
 ```typescript
+// libs
 import { AbiCoder, Contract, ethers } from 'ethers';
+import { ERC725 } from '@erc725/erc725.js';
 
-// import the artifacts
+// LSPs Smart Contracts artifacts
 import LSP23FactoryArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP23LinkedContractsFactory.json';
 import UniversalProfileInitArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfileInit.json';
 
-// import the constants from the LSP-Smart-Contracts library
-import { ALL_PERMISSIONS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+// ERC725.js schemas
+import LSP1UniversalReceiverDelegateSchemas from '@erc725/erc725.js/schemas/LSP1UniversalReceiverDelegate.json';
+import LSP3ProfileMetadataSchemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import LSP6KeyManagerSchemas from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 ```
 
 ### Add the addresses of the contracts
@@ -113,7 +115,7 @@ async function main() {
   // previous code
 
   const universalProfileInitStruct = {
-    SALT,
+    salt: SALT,
     fundingAmount: 0,
     implementationContract: UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS,
     initializationCalldata:
@@ -133,7 +135,7 @@ async function main() {
 }
 ```
 
-### Create the Universal Profile initialisation calldata
+### Create the Universal Profile initialization calldata
 
 When deploying your Universal Profile, you might want to initialize it with some data. For example, you may want to set the Universal Profile [LSP3 Metadata](../../standards/universal-profile/lsp3-profile-metadata.md), set the Universal Receiver to the Universal Profile, give some [LSP6 permissions](../../standards/universal-profile/lsp6-key-manager#permissions.md) to some controllers, etc. For the following guide we will:
 
@@ -147,94 +149,88 @@ When deploying your Universal Profile, you might want to initialize it with some
 
 #### Create the LSP3 Metadata
 
-The LSP3 Metadata is a JSON object that contains information about the Universal Profile. For more information on the LSP3 Metadata, please refer to the [LSP3 Profile Metadata specification](../../standards/universal-profile/lsp3-profile-metadata.md). For the sake of simplicity, we will not create the JSON object in this guide but use random bytes instead:
+The LSP3 Metadata is a JSON object that contains information about the Universal Profile. For more information on the LSP3 Metadata, please refer to the [LSP3 Profile Metadata specification](../../standards/universal-profile/lsp3-profile-metadata.md). For the sake of simplicity, we will use one that we previously created and pushed to IPFS:
 
 ```typescript
 async function main() {
   // previous code
 
-  const lsp3DataKey = ERC725YDataKeys.LSP3.LSP3Profile;
-  const lsp3DataValue = ethers.randomBytes(32); // this is just a random value for the LSP3Profile
-}
-```
+  // instantiate the erc725 class
+  const erc725 = new ERC725([
+    ...LSP6KeyManagerSchemas,
+    ...LSP3ProfileMetadataSchemas,
+    ...LSP1UniversalReceiverDelegateSchemas,
+  ]);
 
-#### Create the Universal Receiver data key
-
-```typescript
-async function main() {
-  // previous code
-
-  const universalReceiverDataKey =
-    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+  const lsp3DataValue = {
+    verification: {
+      method: 'keccak256(utf8)',
+      data: '0x6d6d08aafb0ee059e3e4b6b3528a5be37308a5d4f4d19657d26dd8a5ae799de0',
+    },
+    // this is an IPFS CID of a LSP3 Profile Metadata example, you can use your own
+    url: 'ipfs://QmPRoJsaYcNqQiUrQxE7ajTRaXwHyAU29tHqYNctBmK64w',
+  };
 }
 ```
 
 #### Create the permissions data keys and data values
 
-Let's start by creating the permissions data keys and data values of the Universal Receiver. The Universal Receiver will have the [`SUPER_SETDATA` and `REENTRANCY`](../../standards/universal-profile/lsp6-key-manager#permissions) permissions. At the moment we are writing this guide, the combination of these two permissions is `0x0000000000000000000000000000000000000000000000000000000000060080` however this may change in the future. You can check if this is still the case by looking at the [ERC725 Inspection Tool](https://erc725-inspect.lukso.tech/key-manager).
+In order to create all the permissions data keys and data values, we will use the [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) library. This library is a JavaScript implementation to encode and decode data key and values easily from any ERC725Y contract storage.
 
 ```typescript
 async function main() {
   // previous code
 
-  const universalReceiverPermissionsKey =
-    ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    UNIVERSAL_RECEIVER_ADDRESS.slice(2);
-  const universalReceiverPermissionsValue =
-    '0x0000000000000000000000000000000000000000000000000000000000060080'; // REENTRANCY & SUPER_SETDATA permissions
-}
-```
-
-Now we will want after deployment to have a main controller that has all the permissions on the Universal Profile. We will start by adding this address under our previous constants:
-
-```typescript
-const mainController = '0x3303Ce3b8644D566271DD2Eb54292d32F1458968'; // this is just a random address
-```
-
-Then we will create the data key and data value for the permissions of the main controller:
-
-```typescript
-async function main() {
-  // previous code
-
-  const mainControllerPermissionsKey =
-    ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    MAIN_CONTROLLER.slice(2);
-  // main controller will have all permissions on the Universal Profile
-  const mainControllerPermissionsValue = ALL_PERMISSIONS;
-}
-```
-
-#### Create the `AddressPermissions[]` Array length data key and data value
-
-```typescript
-async function main() {
-  // previous code
-
-  const addressPermissionsLengthDataKey =
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].length;
-
-  const abiCoder = new AbiCoder(); // instantiate the abiCoder
-  const addressPermissionsLengthDataValue = abiCoder.encode(['uint256'], [2]); // Address Permissions array length
-}
-```
-
-#### Create the AddressPermissions[] array data keys and data values
-
-```typescript
-async function main() {
-  // previous code
-
-  const addressPermissionsArrayFirstElementKey =
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
-    abiCoder.encode(['uint128'], [0]).slice(34); // remove the 0x and the first 16 bytes of the index
-  console.log(addressPermissionsArrayFirstElementKey);
-  const addressPermissionsArrayFirstElementValue = UNIVERSAL_RECEIVER_ADDRESS; // first element is the Universal Receiver
-
-  const addressPermissionsArraySecondElementKey =
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
-    abiCoder.encode(['uint128'], [1]).slice(34); // remove the 0x and the first 16 bytes of the index
-  const addressPermissionsArraySecondElementValue = mainController; // second element is the main controller
+  // create the permissions data keys
+  const setDataKeysAndValues = erc725.encodeData([
+    { keyName: 'LSP3Profile', value: lsp3DataValue }, // LSP3Metadata data key and value
+    {
+      keyName: 'LSP1UniversalReceiverDelegate',
+      value: UNIVERSAL_RECEIVER_ADDRESS,
+    }, // Universal Receiver data key and value
+    {
+      keyName: 'AddressPermissions:Permissions:<address>',
+      dynamicKeyParts: [UNIVERSAL_RECEIVER_ADDRESS],
+      value: erc725.encodePermissions({
+        REENTRANCY: true,
+        SUPER_SETDATA: true,
+      }),
+    }, // Universal Receiver Delegate permissions data key and value
+    {
+      keyName: 'AddressPermissions:Permissions:<address>',
+      dynamicKeyParts: [MAIN_CONTROLLER],
+      value: erc725.encodePermissions({
+        CHANGEOWNER: true,
+        ADDCONTROLLER: true,
+        EDITPERMISSIONS: true,
+        ADDEXTENSIONS: true,
+        CHANGEEXTENSIONS: true,
+        ADDUNIVERSALRECEIVERDELEGATE: true,
+        CHANGEUNIVERSALRECEIVERDELEGATE: true,
+        REENTRANCY: false,
+        SUPER_TRANSFERVALUE: true,
+        TRANSFERVALUE: true,
+        SUPER_CALL: true,
+        CALL: true,
+        SUPER_STATICCALL: true,
+        STATICCALL: true,
+        SUPER_DELEGATECALL: false,
+        DELEGATECALL: false,
+        DEPLOY: true,
+        SUPER_SETDATA: true,
+        SETDATA: true,
+        ENCRYPT: true,
+        DECRYPT: true,
+        SIGN: true,
+        EXECUTE_RELAY_CALL: true,
+      }), // Main Controller permissions data key and value
+    },
+    // Address Permissions array length = 2, and the controller addresses at each index
+    {
+      keyName: 'AddressPermissions[]',
+      value: [UNIVERSAL_RECEIVER_ADDRESS, MAIN_CONTROLLER],
+    },
+  ]);
 }
 ```
 
@@ -246,27 +242,12 @@ Now that we have all the data keys and data values, we can encode the calldata t
 async function main() {
   // previous code
 
-  const types = ['bytes32[]', 'bytes[]']; // types of the parameters
-  const initializeEncodedBytes = abiCoder.encode(types, [
-    [
-      lsp3DataKey, // LSP3Metadata data key
-      universalReceiverDataKey, // Universal Receiver data key
-      universalReceiverPermissionsKey, // URD Permissions data key
-      mainControllerPermissionsKey, // Main Controller Permissions data key
-      addressPermissionsLengthDataKey, // Number of address with permissions data key
-      addressPermissionsArrayFirstElementKey, // Index of the first address with permissions data key
-      addressPermissionsArraySecondElementKey, // Index of the second address with permissions data key
-    ],
-    [
-      lsp3DataValue, // LSP3Metadata data value
-      UNIVERSAL_RECEIVER_ADDRESS, // URD Address
-      universalReceiverPermissionsValue, // URD Permissions data value
-      mainControllerPermissionsValue, // main controller permissions data value
-      addressPermissionsLengthDataValue, // Address Permissions array length data value
-      addressPermissionsArrayFirstElementValue, // first element of the Address Permissions array
-      addressPermissionsArraySecondElementValue, // second element of the Address Permissions array
-    ],
-  ]);
+  const abiCoder = new AbiCoder();
+
+  const initializeEncodedBytes = abiCoder.encode(
+    ['bytes32[]', 'bytes[]'],
+    [setDataKeysAndValues.keys, setDataKeysAndValues.values],
+  );
 }
 ```
 
@@ -311,14 +292,21 @@ async function main() {
 
 Your final script should look like this:
 
-<Details>
+<details>
 <summary>Click to expand/collapse the script</summary>
 
 ```typescript
 import { AbiCoder, Contract, ethers } from 'ethers';
+import { ERC725 } from '@erc725/erc725.js';
+
+// LSPs artifacts
 import LSP23FactoryArtifact from '@lukso/lsp-smart-contracts/artifacts/LSP23LinkedContractsFactory.json';
 import UniversalProfileInitArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfileInit.json';
-import { ALL_PERMISSIONS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+// ERC725.js schemas
+import LSP1UniversalReceiverDelegateSchemas from '@erc725/erc725.js/schemas/LSP1UniversalReceiverDelegate.json';
+import LSP3ProfileMetadataSchemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import LSP6KeyManagerSchemas from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
 const LSP23_FACTORY_ADDRESS = '0x2300000A84D25dF63081feAa37ba6b62C4c89a30';
 const LSP23_POST_DEPLOYMENT_MODULE =
@@ -358,7 +346,7 @@ async function main() {
 
   // create the init structs
   const universalProfileInitStruct = {
-    SALT,
+    salt: SALT,
     fundingAmount: 0,
     implementationContract: UNIVERSAL_PROFILE_IMPLEMENTATION_ADDRESS,
     initializationCalldata:
@@ -376,65 +364,78 @@ async function main() {
     extraInitializationParams: '0x',
   };
 
-  // create the lsp3 data key and value
-  const lsp3DataKey = ERC725YDataKeys.LSP3.LSP3Profile;
-  const lsp3DataValue = ethers.randomBytes(32); // this is just a random value for the LSP3Profile
+  // instantiate the erc725 class
+  const erc725 = new ERC725([
+    ...LSP6KeyManagerSchemas,
+    ...LSP3ProfileMetadataSchemas,
+    ...LSP1UniversalReceiverDelegateSchemas,
+  ]);
 
-  // create the universalReceiver data key
-  const universalReceiverDataKey =
-    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+  const lsp3DataValue = {
+    verification: {
+      method: 'keccak256(utf8)',
+      data: '0x6d6d08aafb0ee059e3e4b6b3528a5be37308a5d4f4d19657d26dd8a5ae799de0',
+    },
+    url: 'ipfs://QmPRoJsaYcNqQiUrQxE7ajTRaXwHyAU29tHqYNctBmK64w',
+  };
 
   // create the permissions data keys
-  const universalReceiverPermissionsKey =
-    ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    UNIVERSAL_RECEIVER_ADDRESS.slice(2);
-  const universalReceiverPermissionsValue =
-    '0x0000000000000000000000000000000000000000000000000000000000060080'; // REENTRNACY & SUPER_SETDATA permissions
+  const setDataKeysAndValues = erc725.encodeData([
+    { keyName: 'LSP3Profile', value: lsp3DataValue }, // LSP3Metadata data key and value
+    {
+      keyName: 'LSP1UniversalReceiverDelegate',
+      value: UNIVERSAL_RECEIVER_ADDRESS,
+    }, // Universal Receiver data key and value
+    {
+      keyName: 'AddressPermissions:Permissions:<address>',
+      dynamicKeyParts: [UNIVERSAL_RECEIVER_ADDRESS],
+      value: erc725.encodePermissions({
+        REENTRANCY: true,
+        SUPER_SETDATA: true,
+      }),
+    }, // Universal Receiver Delegate permissions data key and value
+    {
+      keyName: 'AddressPermissions:Permissions:<address>',
+      dynamicKeyParts: [MAIN_CONTROLLER],
+      value: erc725.encodePermissions({
+        CHANGEOWNER: true,
+        ADDCONTROLLER: true,
+        EDITPERMISSIONS: true,
+        ADDEXTENSIONS: true,
+        CHANGEEXTENSIONS: true,
+        ADDUNIVERSALRECEIVERDELEGATE: true,
+        CHANGEUNIVERSALRECEIVERDELEGATE: true,
+        REENTRANCY: false,
+        SUPER_TRANSFERVALUE: true,
+        TRANSFERVALUE: true,
+        SUPER_CALL: true,
+        CALL: true,
+        SUPER_STATICCALL: true,
+        STATICCALL: true,
+        SUPER_DELEGATECALL: false,
+        DELEGATECALL: false,
+        DEPLOY: true,
+        SUPER_SETDATA: true,
+        SETDATA: true,
+        ENCRYPT: true,
+        DECRYPT: true,
+        SIGN: true,
+        EXECUTE_RELAY_CALL: true,
+      }), // Main Controller permissions data key and value
+    },
+    // length of the Address Permissions array and their respective indexed keys and values
+    {
+      keyName: 'AddressPermissions[]',
+      value: [UNIVERSAL_RECEIVER_ADDRESS, MAIN_CONTROLLER],
+    },
+  ]);
 
-  const mainControllerPermissionsKey =
-    ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-    MAIN_CONTROLLER.slice(2);
-  const mainControllerPermissionsValue = ALL_PERMISSIONS; // main controller will have all permissions on the Universal Profile
-
-  // create the AddressPermissions[] length data key and data value
-  const addressPermissionsLengthDataKey =
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].length;
-
-  const abiCoder = new AbiCoder(); // instantiate the abiCoder
-  const addressPermissionsLengthDataValue = abiCoder.encode(['uint256'], [2]); // Address Permissions array length
-
-  // create the AddressPermissions[] array data keys and data values
-  const addressPermissionsArrayFirstElementKey =
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
-    abiCoder.encode(['uint'], [0]).slice(34); // remove the 0x and the first 16 bytes of the index
-  const addressPermissionsArrayFirstElementValue = UNIVERSAL_RECEIVER_ADDRESS; // first element is the Universal Receiver
-
-  const addressPermissionsArraySecondElementKey =
-    ERC725YDataKeys.LSP6['AddressPermissions[]'].index +
-    abiCoder.encode(['uint'], [1]).slice(34); // remove the 0x and the first 16 bytes of the index
-  const addressPermissionsArraySecondElementValue = MAIN_CONTROLLER; // second element is the main controller
-
-  // encode the calldata that will be used to initialize the Universal Profile
+  const abiCoder = new AbiCoder();
   const types = ['bytes32[]', 'bytes[]']; // types of the parameters
+
   const initializeEncodedBytes = abiCoder.encode(types, [
-    [
-      lsp3DataKey, // LSP3Metadata data key
-      universalReceiverDataKey, // Universal Receiver data key
-      universalReceiverPermissionsKey, // URD Permissions data key
-      mainControllerPermissionsKey, // Main Controller Permissions data key
-      addressPermissionsLengthDataKey, // Number of address with permissions data key
-      addressPermissionsArrayFirstElementKey, // Index of the first address with permissions data key
-      addressPermissionsArraySecondElementKey, // Index of the second address with permissions data key
-    ],
-    [
-      lsp3DataValue, // LSP3Metadata data value
-      UNIVERSAL_RECEIVER_ADDRESS, // URD Address
-      universalReceiverPermissionsValue, // URD Permissions data value
-      mainControllerPermissionsValue, // main controller permissions data value
-      addressPermissionsLengthDataValue, // Address Permissions array length data value
-      addressPermissionsArrayFirstElementValue, // first element of the Address Permissions array
-      addressPermissionsArraySecondElementValue, // second element of the Address Permissions array
-    ],
+    setDataKeysAndValues.keys,
+    setDataKeysAndValues.values,
   ]);
 
   // deploy the Universal Profile and its Key Manager
@@ -458,7 +459,7 @@ async function main() {
 }
 ```
 
-</Details>
+</details>
 
 ### Conclusion
 

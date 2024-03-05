@@ -6,7 +6,6 @@ description: Discover how to check your LUKSO CLI version and update it to the l
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Details from '../../../src/components/Details'
 
 # Update the Node
 
@@ -62,7 +61,7 @@ Afterward, you can check if your node stopped correctly.
 lukso status
 ```
 
-<Details>
+<details>
     <summary>Show how to force client shutdowns.</summary>
 
 If you have problems stopping the node processes, you can force their shutdowns using the `pkill` command.
@@ -87,7 +86,7 @@ sudo pkill lighthouse
 sudo pkill teku
 ```
 
-</Details>
+</details>
 
 <Tabs>
   <TabItem value="update-v08" label="Update from Version 0.8 or above">
@@ -106,17 +105,29 @@ Make sure to check the downloaded version again to ensure that the update was su
 lukso version
 ```
 
-Then continue to download the latest network configurations.
+Then continue to download the latest network configurations and [supported blockchain clients](../mainnet/running-a-node.md#supported-clients-versions):
 
-:::info
+```bash
+# Update the clients of the node directory
+lukso update
 
-The `lukso init` command will not overwrite any personal configurations.
+# Update the network configuration files
+lukso update configs
+```
+
+:::caution Configuration Mismatch
+
+Always ensure that you **download the network configuration files** when **installing the latest supported client versions**. If there are missing or wrong properties within the network configuration, your node may shut down after the start-up or create forks, resulting in the validator being excluded from the active chain branch.
+
+You can read more about how to handle configuration errors on the [Update Clients](./update-clients.md) page.
 
 :::
 
-```bash
-lukso init
-```
+:::info
+
+The `lukso update configs` command does not overwrite any personal configurations.
+
+:::
 
   </TabItem>
     <TabItem value="update-v07" label="Update from Version 0.7 or below">
@@ -159,7 +170,7 @@ lukso init
 
 #### Install the Latest Clients
 
-After the initialization is successful, we must install the updated blockchain clients.
+After the initialization is successful, you must install the updated blockchain clients.
 
 ```bash
 lukso install

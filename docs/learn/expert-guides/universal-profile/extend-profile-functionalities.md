@@ -4,8 +4,6 @@ sidebar_position: 4
 description: Learn to enhance your Universal Profile with added functionalities in JavaScript, covering extension deployment, interface extension, and practical use cases.
 ---
 
-import Details from '../../../../src/components/Details'
-
 # Extend a Universal Profile Functionalities
 
 :::info Requirements
@@ -89,7 +87,7 @@ contract TipMe is LSP17Extension {
 
 The contract can be compiled with any blockchain development environment like Hardhat or Foundry to extract the ABI and bytecode from the `artifacts` or `out` folder. Create `TipMe.json` in the same directory of the main file.
 
-<Details>
+<details>
     <summary>The ABI and the bytecode of the contract: </summary>
 
 ```json title="TipMe.json"
@@ -152,7 +150,7 @@ The contract can be compiled with any blockchain development environment like Ha
 }
 ```
 
-</Details>
+</details>
 
 ### Step 2: Instantiate the Universal Profile
 
@@ -403,7 +401,7 @@ contract SupportsInterface {
 
 The contract can be compiled with any blockchain development environment like Hardhat or Foundry to extract the ABI and bytecode from the `artifacts` or `out` folder. Create `SupportsInterface.json` in the same directory of the main file.
 
-<Details>
+<details>
     <summary>The ABI and the bytecode of the contract: </summary>
 
 ```json title="SupportsInterface.json"
@@ -433,7 +431,7 @@ The contract can be compiled with any blockchain development environment like Ha
 }
 ```
 
-</Details>
+</details>
 
 ### Step 2: Deploy the Extension Contract
 

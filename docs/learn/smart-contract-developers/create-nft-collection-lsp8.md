@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🗃 Create an NFT Collection with LSP8'
-sidebar_position: 5
+sidebar_position: 6
 description: Learn how to create an NFT Collection on LUKSO using LSP8 Identifiable Digital Asset standard.
 ---
 

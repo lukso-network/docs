@@ -6,7 +6,7 @@ const STANDARDS = [
   {
     title: '👤 LSP0',
     name: 'ERC725 Account',
-    link: './universal-profile/lsp0-erc725account',
+    link: '/standards/universal-profile/lsp0-erc725account',
 
     text: 'Blockchain account for asset ownership and use by individuals or entities.',
   },
@@ -125,7 +125,7 @@ const STANDARDS = [
   {
     title: '⛽ LSP25',
     name: 'Execute Relay Call',
-    link: '#',
+    link: '/contracts/contracts/LSP25ExecuteRelayCall/LSP25MultiChannelNonce/',
 
     text: 'Factory pattern standard for deploying two linked contracts across chains.',
   },
