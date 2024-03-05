@@ -17,7 +17,7 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::warning
 
-Currently, `erc725.js` does not support the option of adding issued assets on top of the already existing issued assets. This example shows how to add all the issued assets from scratch.
+Currently, `erc725.js` does not support adding issued assets on top of the existing ones. If you are trying to add assets to the already existing ones, please first [read all current issued assets](../dapp-developer/read-profile-data.md) from the Universal Profile and include them to list of assets you are going to set.
 
 :::
 
@@ -132,6 +132,12 @@ const myWallet = await provider.getSigner();
 
   </TabItem>
 </Tabs>
+
+:::tip Adding additional assets
+
+If you are trying to add assets to the already existing ones, please first [read all current issued assets](../dapp-developer/read-profile-data.md) from the Universal Profile and include them in the `issuedAssets` array above.
+
+:::
 
 ## Encode the data keys
 
