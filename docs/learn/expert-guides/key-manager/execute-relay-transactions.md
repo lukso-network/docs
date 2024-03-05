@@ -12,7 +12,7 @@ The [LSP6 KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) 
 
 Relayed execution enables use cases such as [Transaction Relayer Services](../../../standards/relayer-api.md) to be possible where users can send their transaction details to a third party to be executed, moving the gas cost burden away from the user who owns the Universal Profile. This is automatically done by creating a Universal Profile on [universalprofile.cloud](https://universalprofile.cloud/), where LUKSO subsidizes the onboarding and transactions based on a monthly quota.
 
-Another example would be that, Alice can send an encoded transaction which updates the [LSP3Profile](../../../standards/universal-profile/lsp3-profile-metadata.md) picture of her [Universal Profile](../../../standards/universal-profile/introduction.md) or brand to a second user, Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
+Another example would be Alice sending an encoded transaction that updates the [LSP3Profile](../../../standards/universal-profile/lsp3-profile-metadata.md) picture of her [Universal Profile](../../../standards/universal-profile/introduction.md) or brand to a second user, Bob, who executes the transaction and pays the gas cost of the transaction on behalf of Alice.
 
 To execute the transaction, the executing party needs to know:
 
@@ -57,11 +57,11 @@ npm install web3 @lukso/lsp-smart-contracts @lukso/eip191-signer.js
 
 :::info Execution Rights
 
-Even when relaying the transaction using a third-party, you will need execute permission is necessary. Otherwise, unauthorized parties would be able to send transactions to your relayer address.
+To execute relay transactions using a third-party add, you will need the [`EXECUTE_RELAY_CALL`](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager/#permissions) permission.
 
 :::
 
-After installation, we can import the contract artefacts and set up relevant constants. To encode the transaction, you need the address of the Universal Profile smart contract and the private key of a controller key with sufficient [LSP6 Permissions](../../../standards/universal-profile/lsp6-key-manager.md#permissions) to **execute** the transaction. The controller, addresses, and artifacts will then be used to setup the contract instances for the [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) and [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) you will interact with.
+After installation, we can import the contract artifacts and set up relevant constants. To encode the transaction, you need the address of the Universal Profile smart contract and the private key of a controller key with sufficient [LSP6 Permissions](../../../standards/universal-profile/lsp6-key-manager.md#permissions) to **execute** the transaction. The controller, addresses, and artifacts will then be used to set up the contract instances for the [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) and [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) you will interact with.
 
 <Tabs groupId="provider-lib">
 
@@ -74,7 +74,7 @@ import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/Unive
 import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 
-// This is the version relative to the LSP25 standard, defined as the number 25.
+// This is the version relative to the LSP25 standard, defined as 25.
 import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const provider = new ethers.JsonRpcProvider(
@@ -118,7 +118,7 @@ import UniversalProfileContract from '@lukso/lsp-smart-contracts/artifacts/Unive
 import KeyManagerContract from '@lukso/lsp-smart-contracts/artifacts/LSP6KeyManager.json';
 import { EIP191Signer } from '@lukso/eip191-signer.js';
 
-// This is the version relative to the LSP25 standard, defined as the number 25.
+// This version is relative to the LSP25 standard, defined as 25.
 import { LSP25_VERSION } from '@lukso/lsp-smart-contracts/constants';
 
 const web3 = new Web3('https://rpc.testnet.lukso.network');
@@ -151,18 +151,18 @@ const keyManager = new web3.eth.Contract(
 
 :::caution Caution when using a Private Key
 
-Never share your private key of the controller or upload it to public repositories. Anyone who possesses it can access your funds, assets, and gain control over your Universal Profile in case the controller has administrative rights!
+Never share your private controller key or upload it to public repositories. Anyone who possesses it can access your funds and assets and gain control over your Universal Profile in case the controller has administrative rights!
 
 :::
 
 ## Prepare the Relay Call
 
-After setting up both, the [Universal Profile](../../../standards/universal-profile/introduction.md) and [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) of the signing person, we can continue to prepare all the relay call parameters. These are crucial for ensuring secure and authenticated transactions. Here is what you will need:
+After setting up both the [Universal Profile](../../../standards/universal-profile/introduction.md) and [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) of the signing person, we can continue to prepare all the relay call parameters. These are crucial for ensuring secure and authenticated transactions. Here is what you will need:
 
 - **`nonce` of the controller**: This value can be retrieved by calling the [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) function on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) associated with the profile. The `nonce` of an EOA is incremented with each transaction, ensuring their uniqueness.
-- **`channelId` of the controller**: This parameter is essential to avoid `nonce` conflicts when multiple applications send transactions to the same Key Manager simultaneously. It allows for transactions to be processed in parallel without relying on the order of their arrival. Essentially, the `channelId` enables a form of transaction queuing and prioritization within the Ke yManager's operation.
-- **a `validityTimestamp` for the transaction**: This timestamp indicates the time until when the transaction is valid. Using a timestamp prevents the execution of outdated transactions that might no longer reflect the user's intent. For simplicity, a value of `0` can be used, indicating that the transaction does not have a specific expiration time. However, for relay tranactions with crucial timing, setting an appropriate `validityTimestamp` brings more security and trust.
-- **the `payload` of the transaction**: Before a transaction can be signed, you must define the actual contents and actions that should be operated from the Universal Profile. To get the payload, you will need to encode the ABI of the transaction. In this example, the transaction payload will be a basic LYX transfer.
+- **`channelId` of the controller**: This parameter is essential to avoid `nonce` conflicts when multiple applications simultaneously send transactions to the same Key Manager. It allows for transactions to be processed in parallel without relying on the order of their arrival. Essentially, the `channelId` enables a form of transaction queuing and prioritization within the Ke yManager's operation.
+- **a `validityTimestamp` for the transaction**: This timestamp indicates the time until the transaction is valid. Using a timestamp prevents the execution of outdated transactions that might no longer reflect the user's intent. For simplicity, a value of `0` can be used, indicating that the transaction does not have a specific expiration time. However, setting an appropriate `validityTimestamp` for relay transactions with crucial timing brings more security and trust.
+- **the `payload` of the transaction**: Before a transaction can be signed, you must define the actual contents and actions that should be operated from the Universal Profile. To get the payload, you must encode the ABI of the transaction. In this example, the transaction payload will be a basic LYX transfer.
 
 :::tip Additional Resources
 
@@ -235,7 +235,7 @@ const abiPayload = universalProfile.methods
 
 ## Sign the Transaction
 
-After all transaction parameters have been defined you can continue to sign the transaction message from the controller key of the Universal Profile.
+After all transaction parameters have been defined, you can continue to sign the transaction message from the controller key of the Universal Profile.
 
 :::tip Additional Resources
 
@@ -425,11 +425,11 @@ const keyManagerAddress = await universalProfile.owner();
 const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
 ```
 
-The full setup can be found within the [Prepare Relay Call](#prepare-the-relay-call) section.
+The full code setup can be found in the [Prepare Relay Call](#prepare-the-relay-call) section and is similar for both, signer and execution service.
 
 :::
 
-After receiving all necessary parameters and performing optional security checks, you can execute the transaction
+After receiving all necessary parameters and performing optional security checks, you can execute the transaction:
 
 <Tabs groupId="provider-lib">
 
