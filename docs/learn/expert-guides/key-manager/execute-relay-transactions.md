@@ -24,10 +24,7 @@ The transaction is then executed via the [`executeRelayCall`](../../../contracts
 
 ## Setup
 
-First, the transaction to be executed by a third party has to be prepared. This logic can be implemented:
-
-- **client-side** and sent to a third-party application
-- **service-side**, if the Transaction Relay Service is set up on the Universal Profile
+First, the transaction to be executed by a third party has to be prepared. We will prepare an [`executeRelayCall`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall) transaction to be executed by a third party. This logic can be implemented _client-side_ and then sent to a _third-party_ application or service, such as a _Transaction Relay Service_.
 
 You will need the following dependencies installed:
 
@@ -57,11 +54,13 @@ npm install web3 @lukso/lsp-smart-contracts @lukso/eip191-signer.js
 
 :::info Execution Rights
 
-To execute relay transactions using a third-party add, you will need the [`EXECUTE_RELAY_CALL`](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager/#permissions) permission.
+To successfully execute a relay call, the address [signing the relay transaction](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager#how-to-sign-relay-transactions) will need the [`EXECUTE_RELAY_CALL`](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager/#permissions) permission.
 
 :::
 
-After installation, we can import the contract artifacts and set up relevant constants. To encode the transaction, you need the address of the Universal Profile smart contract and the private key of a controller key with sufficient [LSP6 Permissions](../../../standards/universal-profile/lsp6-key-manager.md#permissions) to **execute** the transaction. The controller, addresses, and artifacts will then be used to set up the contract instances for the [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) and [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) you will interact with.
+To encode a transaction, we need the address of the Universal Profile smart contract and the private key of a controller key with sufficient [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager.md#permissions) to execute the transaction.
+
+First, create an instance of the [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) contract and its [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md).
 
 <Tabs groupId="provider-lib">
 
@@ -149,7 +148,7 @@ const keyManager = new web3.eth.Contract(
 
 </Tabs>
 
-:::caution Caution when using a Private Key
+:::danger Caution when using your controller's private key
 
 Never share your private controller key or upload it to public repositories. Anyone who possesses it can access your funds and assets and gain control over your Universal Profile in case the controller has administrative rights!
 
@@ -159,7 +158,7 @@ Never share your private controller key or upload it to public repositories. Any
 
 After setting up both the [Universal Profile](../../../standards/universal-profile/introduction.md) and [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) of the signing person, we can continue to prepare all the relay call parameters. These are crucial for ensuring secure and authenticated transactions. Here is what you will need:
 
-- **`nonce` of the controller**: This value can be retrieved by calling the [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) function on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) associated with the profile. The `nonce` of an EOA is incremented with each transaction, ensuring their uniqueness.
+- **`nonce` of the controller**: Can be retrieved via the [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) function on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) associated with the Universal Profile.
 - **`channelId` of the controller**: This parameter is essential to avoid `nonce` conflicts when multiple applications simultaneously send transactions to the same Key Manager. It allows for transactions to be processed in parallel without relying on the order of their arrival. Essentially, the `channelId` enables a form of transaction queuing and prioritization within the Ke yManager's operation.
 - **a `validityTimestamp` for the transaction**: This timestamp indicates the time until the transaction is valid. Using a timestamp prevents the execution of outdated transactions that might no longer reflect the user's intent. For simplicity, a value of `0` can be used, indicating that the transaction does not have a specific expiration time. However, setting an appropriate `validityTimestamp` for relay transactions with crucial timing brings more security and trust.
 - **the `payload` of the transaction**: Before a transaction can be signed, you must define the actual contents and actions that should be operated from the Universal Profile. To get the payload, you must encode the ABI of the transaction. In this example, the transaction payload will be a basic LYX transfer.
@@ -302,15 +301,9 @@ const encodedMessage = ethers.solidityPacked(
   ],
 );
 
-// Instanciate EIP191 Signer
+// Instantiate EIP191 Signer
 const eip191Signer = new EIP191Signer();
 
-/**
- * Create signature of the transaction payload using:
- * - Key Manager Address
- * - Message (LSP6 version, chain ID, noce, timestamp, value, payload)
- * - private key of the controller
- */ 
 const { signature } = await eip191Signer.signDataWithIntendedValidator(
   keyManagerAddress,
   encodedMessage,
@@ -361,15 +354,9 @@ const encodedMessage = web3.utils.encodePacked(
   { value: abiPayload, type: 'bytes' },
 );
 
-// Instanciate EIP191 Signer
+// Instantiate EIP191 Signer
 const eip191Signer = new EIP191Signer();
 
-/**
- * Create signature of the transaction payload using:
- * - Key Manager Address
- * - Message (LSP6 version, chain ID, noce, timestamp, value, payload)
- * - private key of the controller
- */ 
 const { signature } = await eip191Signer.signDataWithIntendedValidator(
   keyManagerAddress,
   encodedMessage,
@@ -403,7 +390,7 @@ To execute a previously signed transaction, the ABI payload requires the:
 
 - **signed transaction payload** of the original Universal Profile
 - **ABI payload** of the transaction
-- **nonce** of the signing controller key
+- **nonce** of the signing signing controller
 - **validity timestamps** for the execution of the relay call.
 - **Key Manager address** of the original Universal Profile
 
