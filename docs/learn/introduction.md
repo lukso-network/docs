@@ -29,7 +29,7 @@ The story of LUKSO started with [ERC725](../standards/lsp-background/erc725.md),
 ## Who is LUKSO intended for?
 
 LUKSO is intended for creative economies, where identities play a key role.
-LUKSO allows brands, creatives, and developers to dictate the distribution of wealth and influence from lifestyle activities. They can do so by having Universal Profiles (UPs), creating Digital Identities and Certificates, and by building Tokenized Communities.
+LUKSO allows brands, creatives, and developers to dictate the distribution of wealth and influence from lifestyle activities. They can do so by having Universal Profiles (UPs), creating Digital Identities and Certificates, and building Tokenized Communities.
 
 ## Why choose LUKSO?
 
@@ -39,12 +39,12 @@ LUKSO allows brands, creatives, and developers to dictate the distribution of we
 
 By integrating different LSPs in unique ways, LUKSO solves fundamental blockchain problems:
 
-- [🔓 Upgradeable security](../standards/universal-profile/lsp6-key-manager): UPs can be owned by an EOA or a custom contract such as a multisig. Therefore, users can have multiple devices and applications controlling their account, each of them with different permissions. Users can even have social recovery, such that you grant certain permissions to their account to their friends and family.
+- [🔓 Upgradeable security](../standards/universal-profile/lsp6-key-manager): Universal Profiles can be owned by an EOA or a custom contract such as a multisig. Therefore, users can have multiple devices and applications controlling their account, each of them with different permissions. Users can even have social recovery, such that they grant certain permissions of their account to their friends and family.
 - [👩‍🎤 On-chain profile](../standards/universal-profile/lsp3-profile-metadata.md): users can build their profiles onchain, adding images, tags, descriptions and links to their accounts to shape their online persona.
-- [📢 On-chain notifications](../standards/tokens/LSP7-Digital-Asset.md): users can be informed on token transfers and see which assets they own within their profile. They can even block transfers of certain assets by creating a list of allowed assets they want to accept.
+- [📢 On-chain notifications](../standards/tokens/LSP7-Digital-Asset.md): users get notified upon token transfers and they can visualize the assets that they own within their profile. They can even block transfers of certain assets by creating allow lists or block lists.
 - [📝 Updatable and flexible metadata](../standards/generic-standards/lsp2-json-schema.md): metadata can be updated, enabling dynamic NFTs that can change certain properties over time, while other properties remain immutable.
 - [💫 Extend your account over time](../standards/generic-standards/lsp17-contract-extension.md): users can extend their account over time seamlessly, with no need to redeploy the associated smart contract.
-- [⛽️ Gasless experience](./concepts.md#transaction-relay-service): UPs support Transaction Relay Services that cover the gas for users's transactions. Users won't have the burden of getting coins in order to use your application.
+- [⛽️ Gasless experience](./concepts.md#transaction-relay-service): Universal Profiles support Transaction Relay Services that cover the gas for users's transactions. Users won't have the burden of getting the native token of the chain to start interacting with your application.
 
 :::tip Seamless Onboarding
 
