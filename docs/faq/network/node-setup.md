@@ -106,4 +106,4 @@ In theory, all the network needs is one honest, properly functioning slasher to 
 
 ## How to enable the slasher within the LUKSO CLI?
 
-The LUKSO CLI is automatically running the slasher software within all Prysm nodes. In order to disable it, you can pass the `--prysm-no-slasher` flag at the end of the start command. If you are using Lighthouse and want to enable slasher, you can pass the `--lighthouse-slasher` flag.
+The LUKSO CLI automatically runs the slasher software for all validators. To disable it, pass the `--no-slasher` flag at the end of the start command. If you are operating a regular node, pass the `--prysm-slasher` or `--lighthouse-slasher` flags to enable it based on your consensus client.
