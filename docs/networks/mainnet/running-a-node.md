@@ -7,6 +7,12 @@ description: 'Run a Mainnet LUKSO node with one of the three options: Dappnode, 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::success Node operators mailing list
+
+Join the [LUKSO node operators mailing list](https://luksovalidators.substack.com/) to stay up to date with important and critical updates.
+
+:::
+
 # Running a mainnet Node
 
 Anyone is welcome to participate in the LUKSO network by running her/his own node. On this page, you will find the relevant information to configure and start your node. If you wish to [stake LYX](https://deposit.mainnet.lukso.network/en/) and run a validator node, you can check the [Become a Validator page](./become-a-validator.md).
