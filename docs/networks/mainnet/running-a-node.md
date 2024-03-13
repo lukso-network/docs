@@ -49,9 +49,15 @@ The LUKSO network currently supports the following clients versions:
 | Lighthouse | v4.6.0   | https://github.com/sigp/lighthouse/releases/tag/v4.6.0        |
 | Teku       | v24.1.1  | https://github.com/Consensys/teku/releases/tag/24.1.1         |
 
+:::Info
+
+In preparation for the [upcoming Dencun fork](https://luksovalidators.substack.com/p/preparing-for-the-dencun-fork) on LUKSO, we **highly recommend** node operators to [update their clients and network configurations](../advanced-guides/update-clients.md).
+
+:::
+
 :::caution
 
-Running newer versions of the clients may trigger a network fork on your node, potentially leading to validation issues, loss of funds, or even a validator slash.
+Running newer versions of the clients can potentially lead to validation issues, loss of funds, or even a validator slash.
 
 :::
 
