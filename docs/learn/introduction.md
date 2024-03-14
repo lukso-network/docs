@@ -16,20 +16,10 @@ Developers building on LUKSO can write smart contracts in an EVM-based language 
 - [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/).
 - [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
 
-## How did LUKSO start?
-
-The story of LUKSO started with [ERC725](../standards/lsp-background/erc725.md), a standard proposed by Fabian Vogelsteller for blockchain-based identity. ERC725 allows for self-sovereign identity. Over the years we saw the negative effects of having a centralized identity with damaging leaks and unfair selling of user data and identity. An open, portable standard for identities enables decentralized reputation, governance, and more. Users can take their identity across different dApps and platforms that support this standard.
-
-> LUKSO is the first blockchain that powers self-sovereign identities.
-
-- [What are the project's origins?](/faq/lukso/project-origins.md)
-- [LUKSO Mainnet Start Announcement](https://medium.com/lukso/genesis-validators-start-your-clients-fe01db8f3fba)
-- [The LUKSO Migration Article](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5)
-
 ## Who is LUKSO intended for?
 
 LUKSO is intended for creative economies, where identities play a key role.
-LUKSO allows brands, creatives, and developers to dictate the distribution of wealth and influence from lifestyle activities. They can do so by having Universal Profiles (UPs), creating Digital Identities and Certificates, and building Tokenized Communities.
+LUKSO allows brands, creatives and developers to dictate the distribution of wealth and influence from lifestyle activities. They can do so by having Universal Profiles (UPs), creating Digital Identities and Certificates, and building Tokenized Communities.
 
 ## Why choose LUKSO?
 
