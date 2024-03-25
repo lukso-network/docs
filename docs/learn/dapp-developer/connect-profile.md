@@ -110,3 +110,11 @@ const provider = new Web3(providerObject);
 
   </TabItem>
 </Tabs>
+
+## Create Universal Profiles
+
+:::tip Relayer API
+
+If you want to deploy Universal Profiles for your users, check out our [Relayer API](../../tools/relayer-developer.md).
+
+:::
