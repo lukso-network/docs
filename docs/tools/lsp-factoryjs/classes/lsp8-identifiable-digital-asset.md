@@ -119,7 +119,7 @@ await lspFactory.LSP8IdentifiableDigitalAsset.deploy(
         console.log(contracts.LSP8IdentifiableDigitalAsset);
       },
     },
-  },
+  }
 );
 
 /**
