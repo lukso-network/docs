@@ -176,7 +176,7 @@ await lspFactory.UniversalProfile.deploy(
         console.log(contracts);
       },
     },
-  },
+  }
 );
 
 /**
@@ -533,7 +533,7 @@ await UniversalProfile.uploadProfileData(
   },
   {
     ipfsGateway: 'https://ipfs.infura.io',
-  },
+  }
 );
 
 /**
@@ -565,7 +565,7 @@ await UniversalProfile.uploadProfileData(
       port: 5001,
       protocol: 'https',
     },
-  },
+  }
 );
 
 /**
