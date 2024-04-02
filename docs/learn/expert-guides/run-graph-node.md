@@ -6,7 +6,7 @@ sidebar_position: 12
 
 # Run Graph Node on LUKSO
 
-There are two ways to launch a Graph Node: you can use Docker to run related images, or you can compile the [Graph Node source code](https://github.com/graphprotocol/graph-node). The steps described in this document will only be run through docker.
+There are two ways to launch a [Graph Node](https://thegraph.com/): you can use Docker to run related images, or you can compile the [Graph Node source code](https://github.com/graphprotocol/graph-node). The steps described in this document will only be run through docker.
 
 > The instructions provided have been verified on MacOS systems. Adjustments may be needed for other operating systems.
 > The content of this guide is informational, based on third-party inputs. It's important to verify any information with the official Graph repositories (https://github.com/graphprotocol/graph-node/tree/master/docker).
@@ -36,7 +36,7 @@ Next, execute the `setup.sh` file. This will pull all the necessary Docker image
 ./setup.sh
 ```
 
-Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly.
+Once everything is set up, you need to modify the "Ethereum environment" inside the `docker-compose.yml` file, so that it points to the endpoint of the node you are running this Graph Node against. Note that the `setup.sh` file detects the `Host IP` and writes its value, so you'll need to modify it accordingly. Check [Networks](../../networks/mainnet/parameters.md) section for different options of rpc providers.
 
 ```title="LUKSO"
 ethereum: 'lukso-mainnet:https://42.rpc.thirdweb.com'
