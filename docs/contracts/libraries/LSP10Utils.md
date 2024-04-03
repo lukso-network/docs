@@ -5,12 +5,12 @@
 
 :::info Standard Specifications
 
-[`LSP-10-ReceivedVaults`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-10-ReceivedVaults.md)
+[`LSP-10-ReceivedVaults`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-10-ReceivedVaults.md)
 
 :::
 :::info Solidity implementation
 
-[`LSP10Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP10ReceivedVaults/LSP10Utils.sol)
+[`LSP10Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp10-contracts/contracts/LSP10Utils.sol)
 
 :::
 
