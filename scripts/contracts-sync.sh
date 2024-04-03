@@ -3,10 +3,10 @@
 # Pull lsp-smart-contracts repo
 mkdir tmpDocsSync 
 cd tmpDocsSync
-git clone --depth 1  --branch develop https://github.com/lukso-network/lsp-smart-contracts.git
+git clone --depth 1  --branch main https://github.com/lukso-network/lsp-smart-contracts.git
 
 # Copy Docs
-rsync -av --progress lsp-smart-contracts/docs/. ../docs/contracts/
+rsync -av --progress lsp-smart-contracts/packages/lsp-smart-contracts/docs/. ../docs/contracts/
 
 cd ..
 rm -rf tmpDocsSync
