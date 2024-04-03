@@ -30,7 +30,7 @@ git clone https://github.com/graphprotocol/graph-node/ \
 && cd graph-node/docker
 ```
 
-Next, execute the `setup.sh` file. This will pull all the necessary Docker images and write the necessary information in the `docker-compose.yml` file.
+Next, execute the `setup.sh` file. This will pull all the necessary Docker images and write the necessary information in the `docker-compose.yml` file. Make sure to have docker running.
 
 ```bash
 ./setup.sh
