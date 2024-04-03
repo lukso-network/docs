@@ -5,12 +5,12 @@
 
 :::info Standard Specifications
 
-[`LSP-17-ContractExtension`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-ContractExtension.md)
+[`LSP-17-ContractExtension`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md)
 
 :::
 :::info Solidity implementation
 
-[`LSP17Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17ContractExtension/LSP17Utils.sol)
+[`LSP17Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp17contractextension-contracts/contracts/LSP17Extendable.sol)
 
 :::
 
