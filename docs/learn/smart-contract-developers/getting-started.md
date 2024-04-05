@@ -118,12 +118,12 @@ const config: HardhatUserConfig = {
   },
   networks: {
     luksoTestnet: {
-      url: 'https://rpc.testnet.lukso.gateway.fm',
+      url: 'https://4201.rpc.thirdweb.com',
       chainId: 4201,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
     luksoMainnet: {
-      url: 'https://rpc.lukso.gateway.fm',
+      url: 'https://42.rpc.thirdweb.com',
       chainId: 42,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },

@@ -75,7 +75,7 @@ import { ERC725 } from '@erc725/erc725.js';
 import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts';
 
-const myAsset = new ERC725(lsp4Schema,'<myAssetAddress>', 'https://rpc.testnet.lukso.gateway.fm',
+const myAsset = new ERC725(lsp4Schema,'<myAssetAddress>', 'https://4201.rpc.thirdweb.com',
   {
     ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
@@ -294,9 +294,7 @@ import { ethers } from 'ethers';
 import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
 import { INTERFACE_IDS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
-const provider = new ethers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.gateway.fm',
-);
+const provider = new ethers.JsonRpcProvider('https://4201.rpc.thirdweb.com');
 
 // Create contract instance
 const myAssetContract = new ethers.Contract(
@@ -321,7 +319,7 @@ import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableD
 import { INTERFACE_IDS, ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 const web3 = new Web3(
-  new Web3.providers.HttpProvider('https://rpc.testnet.lukso.gateway.fm'),
+  new Web3.providers.HttpProvider('https://4201.rpc.thirdweb.com'),
 );
 // Create contract instance
 const myAssetContract = new web3.eth.Contract(
