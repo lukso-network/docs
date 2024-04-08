@@ -98,14 +98,14 @@ const supportedChains = [
     id: 42,
     token: "LYX",
     label: "LUKSO Mainnet",
-    rpcUrl: "https://rpc.lukso.gateway.fm/",
+    rpcUrl: "https://42.rpc.thirdweb.com/",
   },
   // https://docs.lukso.tech/networks/testnet/parameters
   {
     id: 4021,
     token: "LYXt",
     label: "LUKSO Testnet",
-    rpcUrl: "https://rpc.testnet.lukso.gateway.fm/",
+    rpcUrl: "https://4201.rpc.thirdweb.com/",
   },
 ];
 

@@ -53,7 +53,7 @@ You can add the LUKSO to any of your existing wallets like [MetaMask](https://me
 | Setting               | Value                                             |
 | --------------------- | ------------------------------------------------- |
 | Network Name          | LUKSO                                             |
-| RPC URL               | https://rpc.lukso.gateway.fm                      |
+| RPC URL               | https://42.rpc.thirdweb.com                       |
 | Chain ID / Network ID | 42                                                |
 | Currency Symbol       | LYX                                               |
 | Block explorer URL    | https://explorer.execution.mainnet.lukso.network/ |

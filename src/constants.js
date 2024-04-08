@@ -7,7 +7,7 @@ export const LUKSO_NETWORK_CONFIGS = {
       symbol: 'LYX',
       decimals: 18,
     },
-    rpcUrls: ['https://rpc.lukso.gateway.fm'],
+    rpcUrls: ['https://42.rpc.thirdweb.com'],
     blockExplorerUrls: ['https://explorer.execution.mainnet.lukso.network'],
   },
   testnet: {
@@ -18,7 +18,7 @@ export const LUKSO_NETWORK_CONFIGS = {
       symbol: 'LYXt',
       decimals: 18,
     },
-    rpcUrls: ['https://rpc.testnet.lukso.gateway.fm'],
+    rpcUrls: ['https://4201.rpc.thirdweb.com'],
     blockExplorerUrls: ['https://explorer.execution.testnet.lukso.network'],
   },
 };
