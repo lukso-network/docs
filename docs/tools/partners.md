@@ -14,11 +14,6 @@ Here is a list of services and projects that integrated the LUKSO network and re
     <th style={{ maxWidth: "30rem" }}>Description</th>
   </tr>
   <tr>
-    <td style={{ maxWidth: "30rem" }}><a class="imageLink" href="https://gateway.fm/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/gatewayfm_logo.png"/></a></td>
-    <td><b>Network Provider:</b><br />Gateway FM provides public RPC endpoints. <br /><br /><li><a href="/networks/mainnet/parameters#3rd-party-rpc-providers">Mainnet Parameters</a></li>
-    <li><a href="/networks/testnet/parameters#3rd-party-rpc-providers">Testnet Parameters</a></li></td>
-  </tr>
-  <tr>
     <td style={{ maxWidth: "30rem" }}><a class="imageLink" href="https://nownodes.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/nownodes_logo.png"/></a></td>
     <td><b>Network Provider:</b><br />NOWNodes provides public RPC endpoints. <br /><br /><li><a href="/networks/mainnet/parameters#3rd-party-rpc-providers">Mainnet Parameters</a></li>
     <li><a href="/networks/testnet/parameters#3rd-party-rpc-providers">Testnet Parameters</a></li></td>
@@ -33,7 +28,7 @@ Here is a list of services and projects that integrated the LUKSO network and re
     <td><b>Exchange & Tooling:</b><br />Transak provides a crypto marketplace that can be utilized from developers using their API and SDK integration. <br /><br /><li><a href="https://docs.transak.com/docs/integration-options" rel="noopener noreferrer">Onramp SDK</a></li></td>
   </tr>
   <tr>
-    <td style={{ maxWidth: "30rem" }}><a class="imageLink" href="https://gateway.fm/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/dappnode_logo.png"/></a></td>
+    <td style={{ maxWidth: "30rem" }}><a class="imageLink" href="https://dappnode.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/dappnode_logo.png"/></a></td>
     <td><b>Hardware & Nodes:</b><br />Dappnode provides physical node machines and client software images for easy validator onboarding and maintenance. <br /><br /><li><a href="https://dappnode.com/collections/all/products/lukso-home" target="_blank" rel="noopener noreferrer">LUKSO Node</a></li>
     <li><a href="https://docs.dappnode.io/docs/user/install/overview/" target="_blank" rel="noopener noreferrer">Dappnode Software</a></li>    <li><a href="https://github.com/dappnode/DAppNodePackage-lukso-geth" target="_blank" rel="noopener noreferrer">Geth Execution Image</a></li><li><a href="https://github.com/dappnode/DAppNodePackage-prysm-lukso" target="_blank" rel="noopener noreferrer">Prysm Consensus Image</a></li></td>
   </tr>
