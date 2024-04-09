@@ -159,26 +159,6 @@ For the properties `profileImage` and `backgroundImage`, we will need to add the
 - `hash`: use this **[keccak256 image hash generator](https://emn178.github.io/online-tools/keccak_256_checksum.html)**.
 - `url`: upload your images to the LUKSO IPFS Gateway.
 
-Use this [IPFS file uploader tool](https://anarkrypto.github.io/upload-files-to-ipfs-from-browser-panel/public/#) with the settings shown below in green.
-
-- IPFS Gateway: `api.2eff.lukso.dev`
-- API Port / Gateway Port: `443`
-
-:::caution Availability
-
-This gateway is a deprecated IPFS cluster and will be shut down soon. We do not guarantee any SLA and highly recommend developers to use **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or [Infura](https://docs.infura.io/networks/ipfs).
-
-:::
-
-![ipfs LUKSO settings](../img/ipfs-lukso-settings.jpg)
-
-Drag & Drop your images (you can upload multiple images at once) and _upload_ them. Once the process is completed:
-
-1. Copy the IPFS file identifier (`CID`) shown in the `hash` field marked with green below.
-2. Paste the `CID` into the `url` field in our JSON file, beginning with `ipfs://` at the start.
-
-![ipfs file upload](../img/ipfs-file-upload.jpg)
-
 Make sure to save your JSON file after you have added all your details and images.
 
 :::note
@@ -189,36 +169,13 @@ We are now ready to apply these changes to our Universal Profile. We will see ho
 
 ## Step 2 - Upload the JSON file to IPFS
 
-:::note Notice
-You should do the rest of this tutorial should be done in a **new file** (`main.js`).
+:::note Note
+In order to get started with uploading data to IPFS, you will need credentials to a pinning service.
 :::
 
-We will now start writing the main code of the tutorial.
-Create a new file, `main.js`.
-
-Our [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) tool provides convenience to upload our profile Metadata to IPFS.
-
-```javascript title="main.js"
-import { LSPFactory } from '@lukso/lsp-factory.js';
-// reference to the previously created JSON file (LSP3Profile metadata)
-import jsonFile from './UniversalProfileMetadata.json';
-
-const provider = 'https://rpc.testnet.lukso.network'; // RPC provider url
-
-const lspFactory = new LSPFactory(provider, {
-  deployKey: PRIVATE_KEY,
-  chainId: 2828, // Chain Id of the network you want to deploy to
-});
-
-async function editProfileInfo() {
-  // Step 2 - Upload our JSON file to IPFS
-  const uploadResult = await lspFactory.UniversalProfile.uploadProfileData(
-    jsonFile.LSP3Profile,
-  );
-  const lsp3ProfileIPFSUrl = uploadResult.url;
-  // ipfs://Qm...
-}
-```
+:::success Recommendation
+You can visit the **[Use IPFS Storage](../../expert-guides/utilize-ipfs-storage.md#uploading-ipfs-files)** page to utilize our tool to upload files to IPFS!
+:::
 
 ## Step 3 - Setup erc725.js and encode the LSP3Profile data
 

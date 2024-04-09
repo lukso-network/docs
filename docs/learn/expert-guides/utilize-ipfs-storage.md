@@ -60,16 +60,51 @@ const customResolver = new UrlResolver([
 
 ## Uploading IPFS Files
 
-To upload files via IPFS using Infura, set up your gateway with necessary authorization headers and [set up your Infura key and credentials](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#pinning-files) as environment variables. You will then be able to upload files directly from your application:
+:::note Notice
+The latest feature of this tool returns the content hash and URL together as `{hash, url}`.
+:::
 
-```bash
-npm install @lukso/data-provider-urlresolver
-```
+To upload files via IPFS using a local node, Infura or Pinata, set up your gateway with necessary authorization headers and [set up your keys and credentials](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#pinning-files) as environment variables. You will then be able to upload files directly from your application:
+
+**Using a local IPFS node**:
 
 ```js
 import { createReadStream } from 'fs';
 import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 
+const provider = new IPFSHttpClientUploader('http://127.0.0.1:5001/api/v0/add');
+
+const file = createReadStream('./path-to-your-file');
+
+const { url, hash } = await provider.upload(file);
+
+console.log(url, hash);
+```
+
+**Using Pinata**
+
+```js
+import { PinataUploader } from '@lukso/data-provider-pinata';
+
+const provider = new PinataUploader({
+  pinataApiKey: import.meta.env.TEST_PINATAAPIKEY,
+  pinataSecretApiKey: import.meta.env.TEST_PINATASECRETAPIKEY,
+});
+```
+
+**or**
+
+```js
+import { PinataUploader } from '@lukso/data-provider-pinata';
+
+const provider = new PinataUploader({
+  pinataJWTKey: import.meta.env.TEST_PINATAJWTKEY,
+});
+```
+
+**Using Infura**
+
+```js
 const provider = new IPFSHttpClientUploader(import.meta.env.INFURA_GATEWAY, {
   headers: {
     authorization: `Basic ${Buffer.from(
@@ -77,11 +112,16 @@ const provider = new IPFSHttpClientUploader(import.meta.env.INFURA_GATEWAY, {
     ).toString('base64')}`,
   },
 });
+```
 
+Once our provider is ready, let's use it for the upload:
+
+```js
 const file = createReadStream('./path-to-your-file');
-const url = await provider.upload(file);
 
-console.log('File URL:', url);
+const { url, hash } = await provider.upload(file);
+
+console.log(url, hash);
 ```
 
 :::info Proxy Configuration
