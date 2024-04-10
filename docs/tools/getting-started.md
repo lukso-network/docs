@@ -6,6 +6,8 @@ sidebar_position: 1
 
 # Getting Started
 
+Libraries that are actively maintained by the LUKSO team.
+
 <table>
   <tr>
     <th>Tool</th>
