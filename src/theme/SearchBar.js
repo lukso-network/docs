@@ -2,7 +2,6 @@ import React from 'react';
 import SearchBar from '@theme-original/SearchBar';
 import AskCookbook from '@cookbookdev/docsbot/react';
 
-
 export default function SearchBarWrapper(props) {
   return (
     <>
