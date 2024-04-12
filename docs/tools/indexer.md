@@ -38,7 +38,6 @@ API_KEY = [request it from us]
 **Access Control Lists (ACLs):**
 
 - `search`
-- `browse`
 
 ### Resources
 
