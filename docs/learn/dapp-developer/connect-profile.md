@@ -9,10 +9,16 @@ import TabItem from '@theme/TabItem';
 
 # Connect a Universal Profile
 
-To interact with a [Universal Profile](../../standards/universal-profile/introduction.md), we recommend your dApp to call the `window.lukso` object within the browser. Before a connection can be established, users have to create their Universal Profile by:
+To interact with a [Universal Profile](../../standards/universal-profile/introduction.md), several methods are available, each catering to different developer requirements and scenarios. Before a connection can be established, users must create their Universal Profile by:
 
 1. [Installing the Universal Profile Browser Extension](/install-up-browser-extension)
 2. [Deploying their Universal Profile](https://my.universalprofile.cloud)
+
+Below, we detail the most common approaches and explain why a developer might prefer one over the others.
+
+## Using `window.lukso`
+
+The `window.lukso` method is tailored for direct integration with the UP Browser Extension. This approach allows developers to engage directly with the UP Browser Extension without the need to consider compatibility with other extensions.
 
 :::info Wallet Compatibility
 
@@ -25,8 +31,6 @@ Alternatively to calling the `window.lukso` object, the equivalent `window.ether
 You can also create new [Universal Profiles](../../standards/universal-profile/introduction.md) by ⚒️ [deploying them programmatically](../../learn/expert-guides/universal-profile/create-profile.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
 
 :::
-
-## Connect to a dApp
 
 :::success Request Handling
 
@@ -85,6 +89,16 @@ console.log('Connected with', accounts[0]);
 />
 
 </div>
+
+## Implementing EIP-6963
+
+EIP-6963 is a standard that facilitates a more versatile connection to various wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
+
+:::info Example Implementation
+
+If you want to implement EIP-6963 or want to see UP Browser Extension in action along with other extensions, you can visit the [example dApp repository](https://github.com/lukso-network/example-eip-6963-test-dapp).
+
+:::
 
 ## Handle multiple extensions
 
