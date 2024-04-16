@@ -9,7 +9,7 @@ sidebar_position: 1.1
 Initially, `lsp-factory.js` was created to streamline the deployment of smart contracts. However, with the introduction of the [LSP23 Linked Contracts Factory](/standards/generic-standards/lsp23-linked-contracts-factory.md), it became obsolete. Currently, **`lsp-factory.js` is no longer maintained**. We recommend using the following tools instead:
 
 - For deploying Universal Profiles, utilize [LSP23](/learn/expert-guides/deploy-up-with-lsp23.md) using web3js or ethers.js code;
-- For uploading metadata to IPFS, refer ro [tools-data-providers](https://github.com/lukso-network/tools-data-providers);
+- For uploading metadata to IPFS, refer to [tools-data-providers](https://github.com/lukso-network/tools-data-providers);
 - For easier interaction with LSPs, explore the [lsp-utils library](/tools/lsp-utils/getting-started.md).
 
 :::
