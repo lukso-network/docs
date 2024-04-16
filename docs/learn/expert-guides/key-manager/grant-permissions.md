@@ -18,7 +18,7 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::note Requirements
 
-If you don't have a Universal Profile yet, please follow our previous guide to [**Create a Universal Profile**](../universal-profile/create-profile.md). To follow this guide, you must have a Universal Profile and related controller with the [`ADDCONTROLLER`](../../../standards/universal-profile/lsp6-key-manager#permissions) permission.
+To follow this guide, you must have a Universal Profile and related controller. If you don't have a Universal Profile yet, please follow our previous guide to [**Create a Universal Profile**](../universal-profile/create-profile.md).
 
 :::
 
@@ -172,7 +172,7 @@ You will need the following parameters:
 <!-- prettier-ignore-start -->
 
 ```javascript
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // Private key to sign the transaction
 const PRIVATE_KEY = '0x...';
@@ -185,7 +185,7 @@ const controller = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 // Instantiate the Universal Profile
 const myUniversalProfile = new ethers.Contract(
   myUniversalProfileAddress,
-  UniversalProfileArtefact.abi,
+  UniversalProfileArtifact.abi,
 );
 
 // Execute the transaction
@@ -198,7 +198,7 @@ await myUniversalProfile
   <TabItem value="web3js" label="web3.js">
 
 ```javascript
-import UniversalProfileArtefact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // Private key to sign the transaction
 const PRIVATE_KEY = '0x...';
@@ -208,7 +208,7 @@ const controller = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 
 // Instantiate the Universal Profile
 const myUniversalProfile = new web3.eth.Contract(
-  UniversalProfileArtefact.abi,
+  UniversalProfileArtifact.abi,
   myUniversalProfileAddress,
 );
 
@@ -254,6 +254,6 @@ If the transaction was successful, the output should match the permissions set w
 
 :::note Profile Interaction
 
-This guide's default permission was `SETDATA`. To test this storage permission in praxis, you could try to [Edit the Universal Profile](../universal-profile/edit-profile.md) using the controller of the _beneficiary address_.
+This guide's default permission was `SETDATA`. To test this storage permission in practice, you could try to [Edit the Universal Profile](../universal-profile/edit-profile.md) using the controller of the _beneficiary address_.
 
 :::
