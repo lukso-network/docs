@@ -405,7 +405,7 @@ if (currentWallet) {
 
 :::info Maintaining compatibility
 
-The Universal Profile Browser Extension only handles **one active account connection** at a time. This behavior differs from regular wallets. Therefore, the `disconnectWallet()` method should be called on every provider's `accountsChanged` and `chainChanged` events. The state updates will ensure the Web3-Onboard connection synchronizes with the extension.
+The Universal Profile Browser Extension only handles **one active account connection** at a time. This behavior differs from regular wallets. Therefore, the **Disconnect** methods should be called on every provider's `accountsChanged` and `chainChanged` events.
 
 :::
 
