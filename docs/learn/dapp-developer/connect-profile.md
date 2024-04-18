@@ -33,7 +33,36 @@ The [Universal Profile Extension](/install-up-browser-extension) automatically m
 
 :::
 
-## Provider Injection
+## Connect with EIP-6963
+
+:::info Wallet Compatability
+
+Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is the latest industry standardization, solving previous connectivity issues when having multiple wallet extensions installed at the same time.
+
+:::
+
+You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider](https://eips.ethereum.org/EIPS/eip-6963) standardization to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
+
+```js
+// Listen to installed providers
+window.addEventListener(
+    "eip6963:announceProvider",
+    (event: EIP6963AnnounceProviderEvent) => {
+      providers.push(event.detail);
+    }
+  );
+
+// Request installed providers
+window.dispatchEvent(new Event("eip6963:requestProvider"));
+```
+
+:::tip Example Implementation
+
+If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
+
+:::
+
+## Use Provider Injection
 
 You can use the `window.lukso` object, tailored for a direct integration with the UP Browser Extension. This approach allows developers to engage directly with the UP Browser Extension without the need to consider compatibility with other extensions.
 
@@ -103,29 +132,6 @@ const provider = new Web3(providerObject);
 
   </TabItem>
 </Tabs>
-
-## Provider Discovery
-
-You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
-
-```js
-// Listen to installed provider
-window.addEventListener(
-    "eip6963:announceProvider",
-    (event: EIP6963AnnounceProviderEvent) => {
-      providers.push(event.detail);
-    }
-  );
-
-// Request installed providers
-window.dispatchEvent(new Event("eip6963:requestProvider"));
-```
-
-:::tip Example Implementation
-
-If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
-
-:::
 
 ## Multi-Provider Libraries
 
