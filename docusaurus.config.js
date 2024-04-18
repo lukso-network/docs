@@ -157,8 +157,8 @@ export default {
             to: '/learn/dapp-developer/connect-profile',
           },
           {
-            from: '/guides/browser-extension/web3-onboard',
-            to: '/learn/dapp-developer/web3-onboard',
+            from: '/learn/dapp-developer/web3-onboard',
+            to: '/learn/dapp-developer/multi-provider',
           },
           {
             from: '/guides/browser-extension/install-browser-extension',
