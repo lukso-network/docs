@@ -9,26 +9,21 @@ import TabItem from '@theme/TabItem';
 
 # Connect a Universal Profile
 
-To interact with a [Universal Profile](../../standards/universal-profile/introduction.md), several methods are available, each catering to different developer requirements and scenarios. Before a connection can be established, users must create their Universal Profile by:
+There are several methods to connect to a [Universal Profile](../../standards/universal-profile/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
 
-1. [Installing the Universal Profile Browser Extension](/install-up-browser-extension)
-2. [Deploying their Universal Profile](https://my.universalprofile.cloud)
+:::note
 
-Below, we detail the most common approaches and explain why a developer might prefer one over the others.
+Every method will trigger the same connection screen of the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn).
 
-## Using `window.lukso`
+<div style={{textAlign: 'center'}}>
 
-The `window.lukso` method is tailored for direct integration with the UP Browser Extension. This approach allows developers to engage directly with the UP Browser Extension without the need to consider compatibility with other extensions.
+<img
+    src="/img/learn/up_extension_connect.png"
+    alt="Example of UP Connection Screen"
+    width="600"
+/>
 
-:::info Wallet Compatibility
-
-Alternatively to calling the `window.lukso` object, the equivalent `window.ethereum` object can be called within [supported browsers](/install-up-browser-extension), just like other Ethereum wallets.
-
-:::
-
-:::note Manual Deployment
-
-You can also create new [Universal Profiles](../../standards/universal-profile/introduction.md) by ⚒️ [deploying them programmatically](../../learn/expert-guides/universal-profile/create-profile.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
+</div>
 
 :::
 
@@ -37,6 +32,10 @@ You can also create new [Universal Profiles](../../standards/universal-profile/i
 The [Universal Profile Extension](/install-up-browser-extension) automatically manages incoming requests and returns the address of the connected [Universal Profile](../../standards/universal-profile/introduction.md). To get the conrolling EOAs of the [smart contract account](../../standards/universal-profile/lsp0-erc725account.md), you can manually [fetch it's controllers](../expert-guides/key-manager/get-controller-permissions.md).
 
 :::
+
+## Provider Injection
+
+You can use the `window.lukso` object, tailored for a direct integration with the UP Browser Extension. This approach allows developers to engage directly with the UP Browser Extension without the need to consider compatibility with other extensions.
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers">
@@ -80,31 +79,11 @@ console.log('Connected with', accounts[0]);
   </TabItem>
 </Tabs>
 
-<div style={{textAlign: 'center'}}>
+:::info Wallet Compatibility
 
-<img
-    src="/img/learn/up_extension_connect.png"
-    alt="Example of Sign-In with Ethereum screen"
-    width="400"
-/>
-
-</div>
-
-## Implementing EIP-6963
-
-EIP-6963 is a standard that facilitates a more versatile connection to various wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
-
-:::info Example Implementation
-
-If you want to implement EIP-6963 or want to see UP Browser Extension in action along with other extensions, you can visit the [example dApp repository](https://github.com/lukso-network/example-eip-6963-test-dapp).
+Alternatively to the `window.lukso`, the equivalent `window.ethereum` object can be called within [supported browsers](/install-up-browser-extension), just like other Ethereum wallets. Both follow the [EIP-1193 Ethereum Provider JavaScript API](https://eips.ethereum.org/EIPS/eip-1193). You can use a simple fallback to allow regular wallet connections, if the [Universal Profile Browser Extension](/install-up-browser-extension) is not installed:
 
 :::
-
-## Handle multiple extensions
-
-If you expect your users to have multiple browser wallets or extensions, we recommend installing [Web3 Onboard](https://onboard.blocknative.com/) by following our [Web3 Onboard Configuration](./web3-onboard.md). The library will allow users to manage multiple browser providers in parallel.
-
-Alternatively, you can use a simple fallback to allow regular wallet connections, if the [Universal Profile Browser Extension](/install-up-browser-extension) is not installed:
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers">
@@ -125,10 +104,35 @@ const provider = new Web3(providerObject);
   </TabItem>
 </Tabs>
 
-## Create Universal Profiles
+## Provider Discovery
 
-:::tip Relayer API
+You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
 
-If you want to deploy Universal Profiles for your users, check out our [Relayer API](../../tools/relayer-developer.md).
+```js
+// Listen to installed provider
+window.addEventListener(
+    "eip6963:announceProvider",
+    (event: EIP6963AnnounceProviderEvent) => {
+      providers.push(event.detail);
+    }
+  );
+
+// Request installed providers
+window.dispatchEvent(new Event("eip6963:requestProvider"));
+```
+
+:::tip Example Implementation
+
+If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
+
+:::
+
+## Multi-Provider Libraries
+
+You can use third-party libraries like [Web3Modal](https://docs.walletconnect.com/web3modal/about) from [Wallet Connect](https://walletconnect.com/) or [Web3-Onboard](https://onboard.blocknative.com/) from [Blocknative](https://www.blocknative.com/). Both libraries come with built-in UI elements and allow you to connect to various wallet extensions with ease. This method is beneficial if you want to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
+
+:::tip Example Implementation
+
+If you want to implement a _Multi-Provider Library_, you can follow our [Multi-Provider Connections Guide](./web3-onboard.md) or check out the implementation within our [dApp Boilerplate](https://boilerplate.lukso.tech/).
 
 :::
