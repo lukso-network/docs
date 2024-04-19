@@ -1,5 +1,6 @@
 ---
 sidebar_label: '💽 Deploy Token with Metadata'
+sidebar_position: 3
 description: How to set LSP4 Metadata of digital assets on contract deployment.
 ---
 
@@ -8,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Edit Token Metadata
 
-In this guide, you will learn how to set the [metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) by updating its LSP4Metadata data key when you deploy it.
+In this guide, you will learn how to set the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) by updating its LSP4Metadata data key during deployment.
 
 :::tip Code repository
 
@@ -61,7 +62,7 @@ const universalProfile = await ethers.getContractAtFromArtifact(
 
 :::caution Metadata File
 
-Make sure to exchange the `lsp4SampleMetadata` with the actual metadata of your asset. You can read more within the [Asset Preparation Guide](../assets.md).
+Make sure to exchange the `lsp4SampleMetadata` with the actual metadata of your asset. You can read more within the [Asset Preparation Guide](../assets/metadata-preparation.md).
 
 :::
 
