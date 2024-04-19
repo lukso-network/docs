@@ -29,7 +29,7 @@ Every method will trigger the same connection screen of the [Universal Profile B
 
 :::success Request Handling
 
-The [Universal Profile Extension](/install-up-browser-extension) automatically manages incoming requests and returns the address of the connected [Universal Profile](../../standards/universal-profile/introduction.md). To get the conrolling EOAs of the [smart contract account](../../standards/universal-profile/lsp0-erc725account.md), you can manually [fetch it's controllers](../expert-guides/key-manager/get-controller-permissions.md).
+The [Universal Profile Extension](/install-up-browser-extension) returns the address of the connected [Universal Profile](../../standards/universal-profile/introduction.md). Making transactions is the same as with any wallet, you just use the profile address as a `from` in your transactions.
 
 :::
 
@@ -44,21 +44,37 @@ Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is 
 You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider](https://eips.ethereum.org/EIPS/eip-6963) standardization to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
 
 ```js
-// Listen to installed providers
-window.addEventListener(
-    "eip6963:announceProvider",
-    (event: EIP6963AnnounceProviderEvent) => {
-      providers.push(event.detail);
-    }
-  );
+let providers = [];
+
+window.addEventListener("eip6963:announceProvider", (event) => {
+  providers.push(event.detail);
+});
 
 // Request installed providers
 window.dispatchEvent(new Event("eip6963:requestProvider"));
+
+...
+
+// pick a provider to instantiate (providers[n].info)
+const provider = new Web3(providers[0].provider);
+
+const accounts = await provider.eth.requestAccounts();
+console.log('Connected with', accounts[0]);
 ```
 
 :::tip Example Implementation
 
 If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
+
+:::
+
+### Multi-Provider Libraries
+
+You can use third-party libraries like [Web3Modal](https://docs.walletconnect.com/web3modal/about) from [Wallet Connect](https://walletconnect.com/) or [Web3-Onboard](https://onboard.blocknative.com/) from [Blocknative](https://www.blocknative.com/). Both libraries come with built-in UI elements and allow you to connect to various wallet extensions with ease. This method is beneficial if you want to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
+
+:::tip Example Implementation
+
+If you want to implement a _Multi-Provider Library_, you can follow our [Multi-Provider Connections Guide](./web3-onboard.md) or check out the implementation within our [dApp Boilerplate](https://boilerplate.lukso.tech/).
 
 :::
 
