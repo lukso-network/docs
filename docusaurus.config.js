@@ -164,6 +164,19 @@ export default {
             from: '/guides/browser-extension/install-browser-extension',
             to: '/install-up-browser-extension',
           },
+          // Learn: Working with Assets Section
+          {
+            from: '/learn/smart-contract-developers/retrieve-token-type',
+            to: '/learn/assets/retrieve-token-type',
+          },
+          {
+            from: '/learn/assets',
+            to: '/learn/assets/metadata-preparation',
+          },
+          {
+            from: '/learn/expert-guides/deploy-token-with-metadata',
+            to: '/learn/assets/deploy-token-with-metadata',
+          },
           // Support section
           {
             from: '/faq/lukso/wallet-support',
