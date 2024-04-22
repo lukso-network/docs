@@ -148,13 +148,3 @@ const provider = new Web3(providerObject);
 
   </TabItem>
 </Tabs>
-
-## Multi-Provider Libraries
-
-You can use third-party libraries like [Web3Modal](https://docs.walletconnect.com/web3modal/about) from [Wallet Connect](https://walletconnect.com/) or [Web3-Onboard](https://onboard.blocknative.com/) from [Blocknative](https://www.blocknative.com/). Both libraries come with built-in UI elements and allow you to connect to various wallet extensions with ease. This method is beneficial if you want to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
-
-:::tip Example Implementation
-
-If you want to implement a _Multi-Provider Library_, you can follow our [Multi-Provider Connections Guide](./web3-onboard.md) or check out the implementation within our [dApp Boilerplate](https://boilerplate.lukso.tech/).
-
-:::
