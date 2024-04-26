@@ -21,6 +21,23 @@
   --color-cta-background-blue: #6270a4;
   --ifm-heading-font-family: Apax, sans-serif;
   --ifm-font-family-base: Inter, sans-serif;
+  --ifm-heading-font-weight: 400;
+  --ifm-h2-font-size: 1.5rem;
+  /* text margins */
+  --ifm-heading-margin-top: 1rem;
+  --ifm-paragraph-margin-bottom: 2rem;
+  --ifm-leading: 2rem;
+  /* paddings */
+  --ifm-spacing-vertical: 2.2rem;
+  --ifm-spacing-horizontal: 2.2rem;
+  --ifm-alert-padding-vertical: 1rem;
+  --ifm-alert-padding-horizontal: 1.2rem;
+  --ifm-navbar-padding-vertical: calc(var(--ifm-spacing-vertical) * 0.2);
+  --ifm-navbar-padding-horizontal: calc(var(--ifm-spacing-horizontal) * 0.5);
+}
+
+.markdown {
+  --ifm-h1-vertical-rhythm-bottom: 1;
 }
 
 html[data-theme='dark'] {
@@ -48,6 +65,31 @@ html[data-theme='dark'] {
 
 .erc725 {
   width: 10px;
+}
+
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2.2rem;
+}
+
+.markdown > h2 {
+  --ifm-h2-font-size: 1.5rem;
+}
+
+.menu {
+  font-size: 0.95rem;
+}
+
+/* notification and warning boxes */
+.admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
+  margin-bottom: 2em !important;
+}
+.admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module p {
+  margin: 0 0 1rem;
+}
+
+/* main content window top padding */
+.padding-top--md {
+  padding-top: 2rem !important;
 }
 
 .header-github-link:hover {

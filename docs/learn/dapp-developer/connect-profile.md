@@ -11,9 +11,7 @@ import TabItem from '@theme/TabItem';
 
 There are several methods to connect to a [Universal Profile](../../standards/universal-profile/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
 
-:::note
-
-Every method will trigger the same connection screen of the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn).
+Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
 
 <div style={{textAlign: 'center'}}>
 
@@ -24,8 +22,6 @@ Every method will trigger the same connection screen of the [Universal Profile B
 />
 
 </div>
-
-:::
 
 :::success Request Handling
 
