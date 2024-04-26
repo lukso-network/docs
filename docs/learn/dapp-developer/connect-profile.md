@@ -74,7 +74,7 @@ You can use third-party libraries like [Web3Modal](https://docs.walletconnect.co
 
 :::tip Example Implementation
 
-If you want to implement a _Multi-Provider Library_, you can follow our [Multi-Provider Connections Guide](./web3-onboard.md) or check out the implementation within our [dApp Boilerplate](https://boilerplate.lukso.tech/).
+If you want to implement a _Multi-Provider Library_, you can follow our [Multi-Provider Connections Guide](./multi-provider.md) or check out the implementation within our [dApp Boilerplate](https://boilerplate.lukso.tech/).
 
 :::
 
