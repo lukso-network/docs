@@ -183,6 +183,14 @@ export default {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
+    announcementBar: {
+      id: 'hackathon',
+      content:
+        '🚀 &nbsp; We are excited to announce the launch of the <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a> - Secure your funding for building on LUKSO. 💪🏻',
+      backgroundColor: '#ecf0f3',
+      textColor: '#4467bb',
+      isCloseable: false,
+    },
     navbar: {
       title: 'LUKSO',
       logo: {
@@ -309,6 +317,7 @@ export default {
           title: 'About',
           items: [
             { label: 'LUKSO', href: 'https://lukso.network/' },
+            { label: 'Grants', href: 'https://lukso.network/grants' },
             { label: 'Team', href: 'https://lukso.network/people' },
             { label: 'Careers', href: 'https://jobs.lukso.network/jobs' },
             {
