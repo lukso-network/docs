@@ -12,6 +12,10 @@ descriotion: LUKSO's LSP0 - ERC725 Account.
 
 :::
 
+LSP0, the ERC725 Account standard, is at the heart of creating digital identities on the LUKSO blockchain. Think of it as a digital passport that represents you, your organization, or even your smart devices in the digital world. It is built on a combination of LUKSO standards, allowing for a wide array of functionalities — from executing transactions and storing diverse data to verifying digital signatures.
+
+An ERC725 Account overcomes the limitations of traditional blockchain accounts by enabling more secure, flexible, and user-friendly identities. Whether it is about holding assets, interacting with decentralized apps, or participating in digital governance, LSP 0 empowers users to do it all under one roof, with full control and enhanced security. It is not just an account; it is a comprehensive digital identity system designed for the future of Web3.
+
 ## Introduction
 
 [Externally Owned Accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) are the primary type of **account** in Ethereum, controlled by a private key. If the private key is **compromised**, anyone can execute transactions from the account and access any assets it holds. EOAs have no built-in mechanism for attaching any information or data, making identifying the person or entity using the account challenging. They can only perform simple interactions using the **[CALL](https://www.evm.codes/#f1)** opcode and create contracts using the **[CREATE](https://www.evm.codes/#f0)** opcode.

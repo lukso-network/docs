@@ -12,6 +12,8 @@ description: LUKSO's LSP23 Linked Contracts Factory to allow the deployment of p
 
 :::
 
+LSP 23 simplifies the deployment of interdependent smart contracts by providing a standardized way to deploy and link contracts that require knowledge of each other's details at creation. It addresses the challenge of circular dependencies in contract deployment, enabling the establishment of complex contract systems with ease. Through the use of post-deployment modules, LSP 23 also facilitates additional actions after contracts are deployed, streamlining the process and reducing potential errors. This standard is particularly beneficial for deploying contract ecosystems where components need to interact closely, ensuring seamless integration and interaction across the deployed contracts.
+
 ## Introduction
 
 Deploying smart contracts that are interdependent can be a complex process. Often, two or more contracts need each other's addresses at deployment, creating a circular dependency that can be challenging to resolve.
