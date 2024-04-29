@@ -17,7 +17,7 @@
     "prettier": "prettier \"src/**/*.js\" \"docs/**/*.md\" --check"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.8.8",
+    "@cookbookdev/docsbot": "^4.9.16",
     "@docusaurus/core": "3.2.1",
     "@docusaurus/plugin-client-redirects": "3.2.1",
     "@docusaurus/plugin-google-gtag": "3.2.1",
