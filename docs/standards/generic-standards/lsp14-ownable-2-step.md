@@ -12,6 +12,13 @@ description: "LUKSO's LSP14 - Ownable2Step: an extended version of EIP173 - Cont
 
 :::
 
+> **Goals:**
+>
+> - Secures owner management
+> - Enables ownable 2-Step verification
+
+LSP14 - Ownable2Step simplifies ownership management in smart contracts through a two-step process, enhancing security and preventing accidental loss of control. Unlike instant ownership transfer, LSP14 ensures deliberate actions by requiring the new owner's acceptance, thereby minimizing risks associated with wrong addresses or lost keys. It also incorporates LSP1's universalReceiver function, enabling notifications during ownership changes, fostering transparency and communication between the previous and new owners. This standard is crucial for maintaining control over contracts, especially in scenarios where ownership carries significant power and access to sensitive functions. Through LSP14, LUKSO enhances the safety and reliability of contract ownership transitions, supporting a more secure and user-friendly blockchain ecosystem.
+
 ## Introduction
 
 In the current [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) standard (EIP173), ownership of a contract is transferred directly in one transaction via `transferOwnership(...)`. This presents some risks. For instance if the new owner:
