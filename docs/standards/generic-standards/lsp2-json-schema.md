@@ -18,6 +18,12 @@ Our [JavaScript library **erc725.js**](../../tools/erc725js/getting-started.md) 
 
 :::
 
+> **Goal:** Introduces a JSON schema for ERC725Y data keys
+
+The LUKSO Standard Proposal 2, or LSP2, introduces a new way to structure, store and represent data stored in smart contracts through the ERC725Y JSON Schema. This innovative approach allows for the storage of structured data directly on-chain, utilizing the flexibility and accessibility of JSON formatting for ERC725Y data keys. Imagine being able to store your blockchain identity's profile information, preferences, or even configuration settings in a standardized, easily retrievable format. That's what LSP2 enables.
+
+By adopting the ERC725Y JSON Schema, developers can define clear, consistent data structures for their applications, enhancing interoperability and ease of integration across the LUKSO ecosystem. This structured approach not only simplifies data management but also paves the way for more complex and user-friendly decentralized applications. With LSP2, the potential for creating rich, interactive, and personalized user experiences on the blockchain becomes a reality, opening up a world of possibilities for developers and users alike.
+
 ## Introduction
 
 The storage of a smart contract consists of multiple **storage slots**. These slots are referenced by a **slot number** (as an **integer**) starting from slot 0. Each piece of data (= contract state) in a smart contract is stored as raw **bytes** under a specific storage slot.

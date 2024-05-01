@@ -157,8 +157,8 @@ export default {
             to: '/learn/dapp-developer/connect-profile',
           },
           {
-            from: '/guides/browser-extension/web3-onboard',
-            to: '/learn/dapp-developer/web3-onboard',
+            from: '/learn/dapp-developer/web3-onboard',
+            to: '/learn/dapp-developer/multi-provider',
           },
           {
             from: '/guides/browser-extension/install-browser-extension',
@@ -183,6 +183,14 @@ export default {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
+    announcementBar: {
+      id: 'hackathon',
+      content:
+        ' <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a>: Empowering the next wave of web3 innovators. Applications now open!',
+      backgroundColor: '#84A2E2',
+      textColor: '#1C1E21',
+      isCloseable: false,
+    },
     navbar: {
       title: 'LUKSO',
       logo: {
@@ -314,6 +322,10 @@ export default {
             {
               label: 'Privacy Policy',
               href: 'https://lukso.network/privacy',
+            },
+            {
+              label: 'LUKSO Grants Program',
+              href: 'https://lukso.network/grants',
             },
           ],
         },

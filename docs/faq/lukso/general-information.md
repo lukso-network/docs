@@ -53,3 +53,7 @@ The LYXe to LYX token migration is now live, you are encouraged to [migrate](htt
 :::
 
 - **LYX** is the official coin of the LUKSO Blockchain, similar to ETH on Ethereum. People that acquired LYXe before the mainnet launch can migrate their LYXe to LYX using the [LUKSO Migration Bridge](https://migrate.lukso.network/).
+
+## What is the LUKSO Grants Program?
+
+The LUKSO Grants Program, an initiative of the [Foundation for the New Creative Economies](https://twitter.com/LUKSOFoundation), offers funding, critical resources, and dedicated support to developers, founders, and projects. This program supports builders who leverage LUKSO's innovative smart contract standards and Universal Profiles to create the next generation of dApps. Please find more information about the program and application deadlines [here](https://lukso.network/grants).
