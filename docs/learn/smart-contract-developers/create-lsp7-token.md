@@ -85,7 +85,7 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
               msg.sender, // deployer will receive initial tokens
               20_000 * 10 ** decimals(), // will mint 20k tokens
               true, // force parameter
-              "0x"  // optional transaction data
+              ""  // optional transaction data
             );
         }
     }
@@ -174,7 +174,8 @@ async function deployToken() {
 
   // Add the constructor parameters to the token bytecode
   const tokenBytecodeWithConstructor = ethers.concat([
-    tokenBytecode + encodedConstructorParams,
+    tokenBytecode,
+    encodedConstructorParams,
   ]);
 
   // Get the address of the custom token contract that will be created
