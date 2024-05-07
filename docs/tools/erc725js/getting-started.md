@@ -37,6 +37,8 @@ There are 3 main ways to use _erc725.js_.
 
 Create an instance of `ERC725` with just a [schema](https://docs.lukso.tech/tools/erc725js/schemas): **useful for just encoding / decoding data.**
 
+This is useful if you have a lot of schema for multiple data keys, so that you can set them once on instantiation, instead of passing each schema every time you use the encoding / decoding methods.
+
 ```js
 import ERC725, { ERC725JSONSchema } from '@erc725/erc725.js';
 
