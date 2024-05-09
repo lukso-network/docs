@@ -68,8 +68,8 @@ If you want to implement _Injected Provider Discovery_ you can visit our [Exampl
 
 You can use third-party libraries to connect to various wallet extensions with ease. Here are some options:
 
-* **Web3Modal** : [Documentation](https://docs.walletconnect.com/web3modal/about)
-* **Web3-Onboard** : [Documentation](https://onboard.blocknative.com/)
+- **Web3Modal** : [Documentation](https://docs.walletconnect.com/web3modal/about)
+- **Web3-Onboard** : [Documentation](https://onboard.blocknative.com/)
 
 Both libraries come with built-in UI elements and allow you to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
 

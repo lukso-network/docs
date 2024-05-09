@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 If you want to support the Universal Profile Browser Extension alongside other wallets, you can use third-party libraries to improve the user's onboarding experience. Here are some options:
 
-- **Web3Modal** : [Documentation](https://docs.walletconnect.com/web3modal/about) 
+- **Web3Modal** : [Documentation](https://docs.walletconnect.com/web3modal/about)
 - **Web3-Onboard** : [Documentation](https://onboard.blocknative.com/)
 
 Both libraries are open-source, framework-agnostic JavaScript tools.

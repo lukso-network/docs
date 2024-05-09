@@ -12,8 +12,8 @@ LUKSO is an L1 EVM-based Blockchain running on Proof of Stake. All tools and tut
 
 Developers building on LUKSO can write smart contracts in an EVM-based language like Solidity, deploy them using [Hardhat](https://hardhat.org/), and utilize standards already developed for other Ethereum networks.
 
-* [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
-* [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
+- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
+- [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
 
 ## Who is LUKSO intended for?
 
@@ -26,9 +26,9 @@ LUKSO allows brands, creatives and developers to dictate the distribution of wea
 
 ### LSP Features
 
-* **Universal Profiles**: [Introduction](../standards/universal-profile/introduction.md)
-* **Digital Assets & NFT 2.0**: [Introduction](../standards/tokens/introduction.md)
-* **Vaults**: [LSP9-Vault](../standards/universal-profile/lsp9-vault.md)
+- **Universal Profiles**: [Introduction](../standards/universal-profile/introduction.md)
+- **Digital Assets & NFT 2.0**: [Introduction](../standards/tokens/introduction.md)
+- **Vaults**: [LSP9-Vault](../standards/universal-profile/lsp9-vault.md)
 
 By integrating different LSPs in unique ways, LUKSO solves fundamental blockchain problems:
 
@@ -57,5 +57,5 @@ The number of LSPs is constantly evolving. Even more, there are innumerable ways
 
 ### Frequently Asked Questions
 
-* [Why did LUKSO launch as Layer 1 blockchain?](../faq/lukso/general-information.md#why-did-lukso-launch-as-a-layer-1-blockchain)
-* [What is the network architecture of LUKSO?](../faq/network/blockchain-architecture.md#what-is-the-network-architecture-of-lukso)
+- [Why did LUKSO launch as Layer 1 blockchain?](../faq/lukso/general-information.md#why-did-lukso-launch-as-a-layer-1-blockchain)
+- [What is the network architecture of LUKSO?](../faq/network/blockchain-architecture.md#what-is-the-network-architecture-of-lukso)
