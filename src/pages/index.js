@@ -21,6 +21,13 @@ function Index() {
         <Headline />
         <div className={styles.cardContainer}>
           <Box
+            icon={GuidesIcon}
+            link="./learn/introduction"
+            title="LEARN"
+            className="learn"
+            content="Learn about integrating standards within contracts and dApps."
+          />
+          <Box
             icon={NetworksIcon}
             link="./networks/mainnet/parameters/"
             title="NETWORKS"
@@ -40,22 +47,6 @@ function Index() {
             title="TOOLS"
             className="tools"
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
-          />
-        </div>
-        <div className={styles.cardContainer}>
-          <Box
-            icon={GuidesIcon}
-            link="./learn/introduction"
-            title="LEARN"
-            className="learn"
-            content="Learn about integrating standards within contracts and dApps."
-          />
-          <Box
-            icon={PartnersIcon}
-            link="./tools/partners"
-            title="PARTNERS"
-            className="partners"
-            content="Check out partnered ecosystem tools and services."
           />
           <Box
             icon={FAQIcon}
