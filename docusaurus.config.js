@@ -70,7 +70,7 @@ export default {
           },
           {
             from: '/guides/universal-receiver-delegate/create-custom-urd-1',
-            to: '/learn/expert-guides/universal-receiver/create-universal-receiver',
+            to: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
           },
           {
             from: '/guides/universal-receiver-delegate/create-custom-urd-2',

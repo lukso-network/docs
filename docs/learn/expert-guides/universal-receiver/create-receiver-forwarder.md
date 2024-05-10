@@ -1,312 +1,320 @@
 ---
 sidebar_label: '⏭️ Create a LSP1 Forwarder'
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# Create s LSP1 Forwarder
+# Creating the LSP1 Forwarder
 
-:::caution Disclaimer
+In this guide, we will create a custom [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../../standards/tokens/LSP7-Digital-Asset.md), and will forward a certain percentage to another address. The use-case it answers is:
 
-This guide might contain outdated information and will be updated soon.
+> **"As a Universal Profile (UP) owner, I want to transfer part of the tokens I received to another UP"**.
 
-:::
+An example scenario could be: _"each time I receive USDT, I want to automatically transfer 20% to my wife's UP"_.
 
-In the [first part](./create-universal-receiver.md), we setup our Universal Profile and created the custom LSP1 Delegate contract. We will now deploy and test it!
+## Requirements
 
-## Generate the UniversalProfile type
+In order to follow this guide, you'll need to:
 
-In order to deploy this Custom LSP1 Delegate contract, we will interact with a UniversalProfile. We can enhance the developer experience by generating the types for a `UniversalProfile` contract. To do that, we can either:
+1. Install the [UP Browser extension](/install-up-browser-extension).
+2. Fund the main controller (EOA) of your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
+3. Setup a new Hardhat project using the [Getting started](../../smart-contract-developers/getting-started.md) guide.
 
-- Create a contract that will import it.
+## 1 - EOA permission
 
-```solidity title="contracts/MockContract.sol"
-// SPDX-License-Identifier: Apache-2.0
-pragma solidity ^0.8.9;
-import {UniversalProfile} from '@lukso/lsp-smart-contracts/contracts/UniversalProfile.sol';
+First, we will need to give the EOA that controls our UP proper permission to add / edit an Universal Receiver Delegate (called "Automation").
+
+To do that, click on the controller tab > "UP Extension" which will bring the controller information page.
+
+<div style={{textAlign: 'center'}}>
+<img
+    src="/img/guides/lsp1/ControllerSettings.png"
+    alt="Screenshot of the controller settings in the extension"
+/>
+</div>
+
+Scroll down to the "Administration & Ownership" part and check both "Add notifications & automation" and "Edit notifications & automation".
+
+<div style={{textAlign: 'center'}}>
+<img
+    src="/img/guides/lsp1/ControllerPerm.png"
+    alt="Screenshot of the controller permissions in the extension"
+/>
+</div>
+
+Confirm the changes and submit the transaction.
+
+## 2 - Environment variables
+
+In your hardhat project, create a `.env` file (if it's not already present).
+
+```text title=".env"
+PRIVATE_KEY=
+UP_ADDR=
+UP_RECEIVER=
+PERCENTAGE=
 ```
 
-- Use this typechain command:
+To fill the `PRIVATE_KEY` and `UP_ADDR` info:
 
-```bash
-typechain --target ethers-v6 --out-dir types './node_modules/@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json'
-```
+- Click on the extension
+- Click on the Settings icon ⚙️ at the top right corner, then select "reveal private keys"
+- Enter your password
+- Scroll down and copy the `privateKey` field to your `.env` file in `PRIVATE_KEY`
+- Copy the `address` field to your `.env` file in `UP_ADDR`
 
-## Deploy our custom LSP1 Delegate forwarder
+We will need to fill 2 additional parameters:
 
-As we have 2 different methods with specific requirements, we will provide both set of code. Comment the code that doesn't match your choice.
+- `UP_RECEIVER` => the address that will receive part of the tokens
+- `PERCENTAGE` => the percentage of the received tokens that will be transfered
 
-Now we can create the deploy scripts that will connect all the pieces together.
+## 3 - (Optional) Create a Custom LSP7 Token
 
-- We will connect to our UP using our "UP Extension" controller private key
-- Then, we will use our connected UP to deploy the custom LSP1 Delegate contract
-- Finally, we register it as a LSP1 Universal Receiver in our UP
+We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../../../learn/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract) and [deploy it](../../../learn/smart-contract-developers/getting-started.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
 
-and, depending on the method selected, we will also:
+## 4 - Create the Custom LSP1 Delegate Contract
 
-- grant permission to the custom LSP1 Delegate contract to call the UP (SUPER_CALL + REENTRANT) - Method 1
-- or call [`authorizeOperator()`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator) on the LSP7 token to authorize the custom LSP1 Delegate contract to spend token on the UP's behalf - Method 2
+The custom LSP1 Delegate contract can be created using 2 methods.
 
-Create a file called `deployLSP1.ts` in your `scripts/` folder with the following content:
+The first method will execute the LSP7 transfer function as the UP. In order to work, the Custom LSP1 Delegate forwarder will needs special privileges on the UP (`SUPER_CALL` + `REENTRANCY`). The advantages of this method is that it doesn't requires additional setup (`authorizeOperator` operation) and you can trace the transfer from your UP transactions' activity tab. The downside is that it will cost a bit more gas (+/- 23k) than the 2nd method.
 
-```ts title="scripts/deployLSP1.ts"
-import hre from 'hardhat';
-import { ethers } from 'hardhat';
-import * as dotenv from 'dotenv';
-import {
-  ERC725YDataKeys,
-  LSP1_TYPE_IDS,
-  PERMISSIONS,
-  OPERATION_TYPES,
-} from '@lukso/lsp-smart-contracts';
+The second method will execute the LSP7 transfer function directly from the LSP1 Delegate contract. In order to work, the custom contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (type(uint256).max). This is the main disadvantage of this method: you'll have to authorize your URD to spend your LSP7 token for an unlimited amount. And this, for all the LSP7 you want to allow. The advantage is the gas efficiency.
 
-// load env vars
-dotenv.config();
+### Method 1
 
-// You can update the value of the allowed LSP7 token
-const contractsAddr = ['0x63890ea231c6e966142288d805b9f9de7e0e5927'];
+In Hardhat, create a new file in `contracts/` folder named `LSP1URDForwarderMethod1.sol` with the following content:
 
-// Update those values in the .env file
-const { UP_ADDR, PRIVATE_KEY, UP_RECEIVER, PERCENTAGE } = process.env;
+```solidity title="contracts/LSP1URDForwarderMethod1.sol"
+// SPDX-License-Identifier: CC0-1.0
+pragma solidity ^0.8.11;
 
-async function main() {
-  // ----------
-  // BASE SETUP
-  // ----------
+// interfaces
+import { IERC725X } from "@erc725/smart-contracts/contracts/interfaces/IERC725X.sol";
+import { ILSP1UniversalReceiverDelegate } from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiverDelegate.sol";
+import { ILSP7DigitalAsset } from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol";
 
-  // setup provider
-  const provider = new ethers.JsonRpcProvider(
-    'https://rpc.testnet.lukso.network',
-  );
-  // setup signer (the browser extension controller)
-  const signer = new ethers.Wallet(PRIVATE_KEY as string, provider);
-  // load the associated UP
-  const UP = await ethers.getContractAt('UniversalProfile', UP_ADDR as string);
-  console.log('🔑 EOA: ', signer.address);
-  console.log('🆙 Universal Profile: ', await UP.getAddress());
+// modules
+import { ERC165 } from "@openzeppelin/contracts/utils/introspection/ERC165.sol";
+import { ERC165Checker } from "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-  // -----------------------------
-  // DEPLOY LSP1 Delegate contract
-  // -----------------------------
+// constants
+import { _TYPEID_LSP7_TOKENSRECIPIENT } from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/LSP7Constants.sol";
+import "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1Constants.sol";
+import "@lukso/lsp-smart-contracts/contracts/LSP0ERC725Account/LSP0Constants.sol";
 
-  console.log('⏳ Deploying the custom LSP1 Delegate forwarder');
-  // COMMENT IF YOU USE METHOD 2
-  const CustomURDBytecode = hre.artifacts.readArtifactSync(
-    'LSP1URDForwarderMethod1',
-  ).bytecode;
-  // UNCOMMENT IF YOU USE METHOD 2
-  // const CustomURDBytecode = hre.artifacts.readArtifactSync(
-  //   'LSP1URDForwarderMethod2',
-  // ).bytecode;
+// errors
+import "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1Errors.sol";
 
-  // we need to encode the constructor parameters and add them to the contract bytecode
-  const abiCoder = new ethers.AbiCoder();
-  const params = abiCoder
-    .encode(
-      ['address', 'uint256', 'address[]'],
-      [UP_RECEIVER as string, PERCENTAGE as string, contractsAddr],
-    )
-    .slice(2);
-  const fullBytecode = CustomURDBytecode + params;
+contract LSP1URDForwarderMethod1 is
+    ERC165,
+    ILSP1UniversalReceiverDelegate
+{
 
-  // get the address of the contract that will be created
-  const CustomURDAddress = await UP.connect(signer).execute.staticCall(
-    OPERATION_TYPES.CREATE,
-    ethers.ZeroAddress, // need to specify address zero for deploying contracts
-    0, // the amount of native tokens to fund the contract with when deploying it
-    fullBytecode,
-  );
+    // CHECK onlyOwner
+    modifier onlyOwner {
+        require(msg.sender == owner, "Not the owner");
+        _;
+    }
 
-  // deploy LSP1URDForwarder as the UP (signed by the browser extension controller)
-  const deployLSP1DelegateTx = await UP.connect(signer).execute(
-    OPERATION_TYPES.CREATE,
-    ethers.ZeroAddress, // need to specify address zero for deploying contracts
-    0, // the amount of native tokens to fund the contract with when deploying it
-    fullBytecode,
-  );
-  await deployLSP1DelegateTx.wait();
+    // Owner
+    address owner;
 
-  console.log(
-    '✅ Custom URD successfully deployed at address: ',
-    CustomURDAddress,
-  );
+    // Set a recipient
+    address public recipient;
 
-  // -------------------------
-  // GRANT LSP1 Delegate contract PERM - METHOD 1
-  // -------------------------
-  // COMMENT IF YOU USE METHOD 2
+    // Set a percentage to send to recipient
+    uint256 public percentage;
 
-  // we need the key to store our custom LSP1 Delegate contract address
-  // {_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX + <bytes32 typeId>}
-  console.log('⏳ Registering custom URD on the UP');
-  const URDdataKey =
-    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegatePrefix +
-    LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification.slice(2).slice(0, 40);
+    // Set a mapping of authorized LSP7 tokens
+    mapping (address => bool) allowlist;
 
-  // we will update the keys for:
-  // - the custom LSP1 Delegate with a specific TYPE_ID (with our custom LSP1 Delegate contract address)
-  // - the permission of this custom LSP1 Delegate contract (this will create a new controller in the Browser Extension)
-  const dataKeys = [
-    URDdataKey,
-    ERC725YDataKeys.LSP6['AddressPermissions:Permissions'] +
-      CustomURDAddress.slice(2),
-  ];
+    // we set the recipient & percentage & allowedAddresses of the deployer in the constructor for simplicity
+    constructor(address _recipient, uint256 _percentage, address[] memory tokenAddresses) {
+        require(_percentage < 100, "Percentage should be < 100");
+        recipient = _recipient;
+        percentage = _percentage;
+        owner = msg.sender;
 
-  // Calculate the correct permission (SUPER_CALL + REENTRANCY)
-  const permInt =
-    parseInt(PERMISSIONS.SUPER_CALL, 16) ^ parseInt(PERMISSIONS.REENTRANCY, 16);
-  const permHex = '0x' + permInt.toString(16).padStart(64, '0');
-  const dataValues = [CustomURDAddress, permHex];
+        for (uint256 i = 0; i < tokenAddresses.length; i++) {
+            allowlist[tokenAddresses[i]] = true;
+        }
+    }
 
-  // execute the tx
-  const setDataBatchTx = await UP.connect(signer).setDataBatch(
-    dataKeys,
-    dataValues,
-  );
-  await setDataBatchTx.wait();
-  console.log('✅ Custom URD has been correctly registered on the UP');
+    function addAddress(address token) public onlyOwner {
+        allowlist[token] = true;
+    }
 
-  // ----------------------------------------------------------------
-  // REGISTER LSP1 UNIVERSAL RECEIVER + AUTHORIZE OPERATOR - METHOD 2
-  // ----------------------------------------------------------------
-  // COMMENT IF YOU USE METHOD 1
+    function setRecipient(address _recipient) public onlyOwner {
+        recipient = _recipient;
+    }
 
-  // we need the key to store our custom LSP1 Delegate contract address
-  // {_LSP1_UNIVERSAL_RECEIVER_DELEGATE_PREFIX + <bytes32 typeId>}
-  console.log('⏳ Registering custom LSP1 Delegate on the UP');
-  const URDdataKey =
-    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegatePrefix +
-    LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification.slice(2).slice(0, 40);
+    function setPercentage(uint256 _percentage) public onlyOwner {
+        require(_percentage < 100, "Percentage should be < 100");
+        percentage = _percentage;
+    }
 
-  // execute the tx
-  const setDataTx = await UP.connect(signer).setData(
-    URDdataKey,
-    CustomURDAddress,
-  );
-  await setDataTx.wait();
-  console.log(
-    '✅ Custom LSP1 Delegate has been correctly registered on the UP',
-  );
+    function removeAddress(address token) public onlyOwner {
+        allowlist[token] = false;
+    }
 
-  console.log('⏳ Authorizing Custom LSP1 Delegate contract on Custom Token');
-  // we only authorize the first contract in the contractsAddr array, but feel free to add a loop :)
-  const CustomToken = await ethers.getContractAt(
-    'CustomToken',
-    contractsAddr[0] as string,
-  );
+    function getAddressStatus(address token) public view returns (bool) {
+        return allowlist[token];
+    }
 
-  // Create the function call by encoding the function to be called and the params
-  const authBytes = CustomToken.interface.encodeFunctionData(
-    'authorizeOperator',
-    [CustomURDAddress, ethers.MaxUint256, '0x'], // we authorize CustomURDAddress to spend ethers.MaxUint256
-  );
-  // Execute the function call as the UP
-  const authTxWithBytes = await UP.connect(signer).execute(
-    OPERATION_TYPES.CALL,
-    await CustomToken.getAddress(),
-    0,
-    authBytes,
-  );
-  await authTxWithBytes.wait();
-  console.log(
-    '✅ LSP1 Delegate contract authorized on Custom Token for UP ',
-    await UP.getAddress(),
-  );
+    function universalReceiver(
+        address notifier,
+        uint256 value,
+        bytes32 typeId,
+        bytes memory data
+    ) public virtual returns (bytes memory) {
+        // CHECK that the caller is an ERC725Account (e.g: a UniversalProfile)
+        // by checking it supports the LSP0 interface
+        // by checking its interface support
+        if (
+            !ERC165Checker.supportsERC165InterfaceUnchecked(
+                msg.sender,
+                _INTERFACEID_LSP0
+            )
+        ) {
+            return "Caller is not a LSP0";
+        }
+
+        // CHECK that notifier is a contract with a `balanceOf` method
+        // and that msg.sender (the UP) has a positive balance
+        if (notifier.code.length > 0) {
+            try ILSP7DigitalAsset(notifier).balanceOf(msg.sender) returns (
+                uint256 balance
+            ) {
+                if (balance == 0) {
+                    return "LSP1: balance is zero";
+                }
+            } catch {
+                return "LSP1: `balanceOf(address)` function not found";
+            }
+        }
+
+        // CHECK that the address of the LSP7 is whitelisted
+        if (!allowlist[notifier]) {
+            return "Token not in allowlist";
+        }
+
+        // extract data (we only need the amount that was transfered / minted)
+        (, , , uint256 amount, ) = abi.decode(
+            data,
+            (address, address, address, uint256, bytes)
+        );
+
+        // CHECK that amount is not too low
+        if (amount < 100) {
+            return "Amount is too low (< 100)";
+        } else {
+            uint256 tokensToTransfer = (amount * percentage) / 100;
+
+            bytes memory encodedTx = abi.encodeCall(
+                ILSP7DigitalAsset.transfer,
+                msg.sender,
+                recipient,
+                tokensToTransfer,
+                true,
+                ""
+            );
+            IERC725X(msg.sender).execute(0, notifier, 0, encodedTx);
+            return "";
+        }
+    }
+
+    // --- Overrides
+
+    /**
+     * @inheritdoc ERC165
+     */
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view virtual override returns (bool) {
+        return
+            interfaceId == _INTERFACEID_LSP1_DELEGATE ||
+            super.supportsInterface(interfaceId);
+    }
 }
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
 ```
 
-We can now deploy our custom LSP1 Delegate contract by running:
+This code is commented enough to be self explanatory, but let's dive a bit more into some interesting bits.
+
+#### Creation of the transaction
+
+When all the verification passed in the `universalReceiver` function, we calculate the amount of token to transfer (`tokensToTransfer`) and create the transaction that will be executed:
+
+```solidity title="Create the transaction"
+bytes memory encodedTx = abi.encodeCall(
+    ILSP7DigitalAsset.transfer,
+    msg.sender,
+    recipient,
+    tokensToTransfer,
+    true,
+    ""
+);
+```
+
+The `encodeCall` function takes the function that will be called as 1st parameter, and its parameters as the following ones. Here, we target the `transfer` method of the LSP7 token that we received (e.g., the notifier), and we need 4 additional parameters:
+
+- the `from` (msg.sender => the UP that received tokens)
+- the `to` (recipient => the address that will receives part of the tokens)
+- the `amount` (tokensToTransfer => a percentage of the total amount received)
+- the `allowNonLSP1Recipient` boolean that indicates if we can transfer to any address, or if it has to be a LSP1 enabled one
+- the `data` (no additional data)
+
+#### Execution of the transaction
+
+Directly after creating our encoded transaction, we can execute it using the following line:
+
+```solidity title="Execute the transaction"
+IERC725X(msg.sender).execute(0, notifier, 0, encodedTx);
+```
+
+As we know from the `// CHECK that the caller is a LSP0 (UniversalProfile)` test, the `msg.sender` is a Universal Profile which extends `ERC725XCore`. We can then explicitly convert `msg.sender` as a ERC725X contract, then call the `execute` function on it. This means that we "run the execute function as the Universal Profile". The parameters are:
+
+- the `operationType` (0 => CALL operation)
+- the `target` (notifier => our LSP7 contract)
+- the `value` (in native token) (0 => nothing is sent)
+- the `data` (our encoded transaction)
+
+### Method 2
+
+In Hardhat, copy the `contracts/LSP1URDForwarderMethod1.sol` file to `contracts/LSP1URDForwarderMethod2.sol` (see command below) and change the following:
 
 ```bash
-npx hardhat run scripts/deployLSP1.ts --network luksoTestnet
+cp contracts/LSP1URDForwarderMethod1 contracts/LSP1URDForwarderMethod2.sol
 ```
 
-## Test our custom LSP1 Delegate forwarder
+```solidity title="Change constructor name"
+// ...
+contract LSP1URDForwarderMethod2 is
+    ERC165,
+    ILSP1UniversalReceiverDelegate
+{
+// ...
+```
 
-Now that all the pieces are connected, we can try it out!
+```solidity title="Change implementation"
+// ...
+        // CHECK if amount is not too low
+        if (amount < 100) {
+            return "Amount is too low (< 100)";
+        } else {
+            uint256 tokensToTransfer = (amount * percentage) / 100;
 
-The expected behaviour is that **everytime the UP on which the custom LSP1 Delegate contract has been set receives an allowed token (either through `transfer` or `mint`), it will automatically send a percentage to the specified receiver.**
+            ILSP7DigitalAsset(notifier).transfer(msg.sender, recipient, tokensToTransfer, true, "");
+            return "";
+        }
+// ...
+```
 
-Here are the test data:
+Let's explain what changed.
 
-- I set up the custom LSP1 Delegate contract on a test UP (neo: `0xD62940E95A7A4a760c96B1Ec1434092Ac2C4855E`)
-- I created a custom LSP7 token named "My USDC" with symbol "MUSDC" (LSP7: `0x63890ea231c6e966142288d805b9f9de7e0e5927` / owner neo / 20k pre-minted to neo)
-- The custom LSP1 Delegate contract will send 20% of the received (transfer or mint) MUSDC
-- The recipient will be another test UP (karasu: `0xe5B9B2C3f72bA13fF43A6CfC6205b5147F0BEe84`)
-- The custom LSP1 Delegate contract is deployed at address `0x4f614ebd07b81b42373b136259915b74565fedf5`
+### Execution of the transaction
 
-Let's go to [the test dapp](https://up-test-dapp.lukso.tech/) and connect with neo's profile.
-
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/TestConnectNeo.png"
-    alt="TestConnectNeo"
-/>
-</div>
-
-Click on "Refresh tokens" to see our `MUSDC` balance.
-
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/TestRefreshTokens.png"
-    alt="TestRefreshTokens"
-/>
-<img
-    src="/img/guides/lsp1/TestPreMint.png"
-    alt="TestPreMint"
-/>
-</div>
-
-Use the "Mint" box to mint an additional 10k `MUSDC` to ourself (to neo's UP). This should trigger the custom LSP1 Delegate forwarder and send 20% of 10k (= 2k) to karasu.
-
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/TestMintTx.png"
-    alt="TestMintTx"
-/>
-</div>
-
-We will then disconnect neo's profile from the test dapp.
-
-:::note
-
-There is a bug currently on the test dapp where the `disconnect` button doesn't work properly. In order to disconnect from the dapp, we need to remove the connection from the "connections" tab by clicking the ❌ icon on the right.
-
-:::
-
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/TestDisconnectNeo.png"
-    alt="TestDisconnectNeo"
-/>
-</div>
-
-We connect karasu's profile to the test dapp
-
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/TestConnectKarasu.png"
-    alt="TestConnectKarasu"
-/>
-</div>
-
-... click on "Refresh tokens" and ...
-
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/TestSuccess.png"
-    alt="TestSuccess"
-/>
-</div>
-
-... Success 🎉 ! Our custom LSP1 Delegate forwarder worked as expected!
+In this method, we're directly calling the `transfer` method of the notifier (the LSP7 token) as the URD. Of course, in order for this to work, the custom URD needs to be authorized to spend the token of the UP on his behalf (using `authorizeOperator`).
 
 ## Congratulations 🥳
 
-You now have a fully functional custom LSP1 Delegate contract that will automatically forward a certain amount of the allowed received tokens to another UP!
+You now have a custom LSP1 Delegate forwarder contract that we will register on our Universal Profile in the [second part of this guide](./deploy-receiver-forwarder.md)!
