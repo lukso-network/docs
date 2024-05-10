@@ -19,13 +19,6 @@ function Index() {
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
         <Headline />
-        <CallToActionButton
-          bgColor="#6270A4"
-          color="#ffffff"
-          link="./learn/introduction"
-          text="START BUILDING WITH LUKSO STANDARDS"
-        />
-        <br />
         <div className={styles.cardContainer}>
           <Box
             icon={NetworksIcon}

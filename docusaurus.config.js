@@ -228,19 +228,8 @@ export default {
           label: 'FAQ',
         },
         {
-          to: '/install-up-browser-extension',
-          label: 'UP Browser Extension',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/lukso-network/LIPs/tree/main/LSPs',
-          label: 'LSPs',
-          position: 'right',
-          target: '_blank',
-        },
-        {
-          href: 'https://support.lukso.network',
-          label: 'Support',
+          href: 'https://support.lukso.network/contact-us',
+          label: 'Contact Us',
           position: 'right',
         },
         {
