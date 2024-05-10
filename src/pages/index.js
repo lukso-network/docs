@@ -28,19 +28,20 @@ function Index() {
             content="Learn about integrating standards within contracts and dApps."
           />
           <Box
-            icon={NetworksIcon}
-            link="./networks/mainnet/parameters/"
-            title="NETWORKS"
-            className="networks"
-            content="Participate as node operator or interact on LUKSO's networks."
-          />
-          <Box
             icon={StandardsIcon}
             link="./standards/introduction"
             title="STANDARDS"
             className="standards"
             content="Discover new smart contract standards that will change the way we interact with Blockchain."
           />
+          <Box
+            icon={NetworksIcon}
+            link="./networks/mainnet/parameters/"
+            title="NETWORKS"
+            className="networks"
+            content="Participate as node operator or interact on LUKSO's networks."
+          />
+
           <Box
             icon={ToolsIcon}
             link="./tools/getting-started"
