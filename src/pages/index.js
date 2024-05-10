@@ -35,19 +35,18 @@ function Index() {
             content="Discover new smart contract standards that will change the way we interact with Blockchain."
           />
           <Box
-            icon={NetworksIcon}
-            link="./networks/mainnet/parameters/"
-            title="NETWORKS"
-            className="networks"
-            content="Participate as node operator or interact on LUKSO's networks."
-          />
-
-          <Box
             icon={ToolsIcon}
             link="./tools/getting-started"
             title="TOOLS"
             className="tools"
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
+          />
+          <Box
+            icon={NetworksIcon}
+            link="./networks/mainnet/parameters/"
+            title="NETWORKS"
+            className="networks"
+            content="Participate as node operator or interact on LUKSO's networks."
           />
           <Box
             icon={FAQIcon}
