@@ -55,6 +55,13 @@ function Index() {
             className="faq"
             content="Read frequently asked questions about the project and network."
           />
+          <Box
+            icon={PartnersIcon}
+            link="./tools/partners"
+            title="INTEGRATIONS"
+            className="partners"
+            content="Check out partnered ecosystem tools and services."
+          />
         </div>
       </div>
     </Layout>
