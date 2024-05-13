@@ -60,7 +60,7 @@ function Index() {
             link="./tools/partners"
             title="INTEGRATIONS"
             className="partners"
-            content="Check out partnered ecosystem tools and services."
+            content="Check out LUKSO ecosystem tools and services."
           />
         </div>
       </div>
