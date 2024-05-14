@@ -63,7 +63,7 @@ If the keyType is Array and you pass an integer as a value it will encode only t
 
 Additionally, the `totalArrayLength` parameter must be explicitly provided to ensure integrity when encoding subsets or modifying existing array elements. Its value specifies the total length of the array **after the operation is completed**, not just the size of the encoded subset.
 
-**When to Use `totalArrayLength`**
+**When to use `totalArrayLength`**
 
 - **Adding Elements:** When adding new elements to an array, `totalArrayLength` should equal the sum of the current array's length plus the number of new elements added.
 - **Modifying Elements:** If modifying elements within an existing array without changing the total number of elements, `totalArrayLength` should match the previous length of the array.
@@ -95,6 +95,20 @@ After the `data` is encoded, the object is ready to be stored in smart contracts
     <summary>Encode a <code>VerifiableURI</code> with JSON and uploaded URL</summary>
 
 ```javascript title="Encode a VerifiableURI with JSON and uploaded URL"
+import ERC725 from '@erc725/erc725.js';
+
+const schemas = [
+  {
+    name: 'LSP3Profile',
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    keyType: 'Singleton',
+    valueType: 'bytes',
+    valueContent: 'VerifiableURI',
+  },
+];
+
+const myErc725 = new ERC725(schemas);
+
 myErc725.encodeData([
   {
     keyName: 'LSP3Profile',
@@ -131,7 +145,8 @@ myErc725.encodeData([
 
 myErc725.encodeData([
   {
-    keyName: '5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    keyName:
+      '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
     value: {
       json: profileJson,
       url: 'ipfs://QmQTqheBLZFnQUxu5RDs8tA9JtkxfZqMBcmGd9sukXxwRm',
@@ -146,7 +161,21 @@ myErc725.encodeData([
 */
 ```
 
-```javascript
+```javascript title="encode a Singleton data key of valueContent Address"
+import ERC725 from '@erc725/erc725.js';
+
+const schemas = [
+  {
+    name: 'LSP1UniversalReceiverDelegate',
+    key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
+    keyType: 'Singleton',
+    valueType: 'address',
+    valueContent: 'Address',
+  },
+];
+
+const myErc725 = new ERC725(schemas);
+
 myErc725.encodeData([
   {
     keyName: 'LSP1UniversalReceiverDelegate',
@@ -167,6 +196,20 @@ myErc725.encodeData([
     <summary>Encode a <code>VerifiableURI</code> with hash function, hash and uploaded URL</summary>
 
 ```javascript title="Encode a VerifiableURI with hash function, hash and uploaded URL"
+import ERC725 from '@erc725/erc725.js';
+
+const schemas = [
+  {
+    name: 'LSP3Profile',
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    keyType: 'Singleton',
+    valueType: 'bytes',
+    valueContent: 'VerifiableURI',
+  },
+];
+
+const myErc725 = new ERC725(schemas);
+
 myErc725.encodeData([
   {
     keyName: 'LSP3Profile',
@@ -193,6 +236,8 @@ myErc725.encodeData([
     <summary>Encode dynamic keys</summary>
 
 ```javascript title="Encode dynamic keys"
+import ERC725 from '@erc725/erc725.js';
+
 const schemas = [
   {
     name: 'DynamicKey:<address>',
@@ -251,9 +296,37 @@ myErc725.encodeData(
 </details>
 
 <details>
-    <summary>Encode multiple keys at once</summary>
+    <summary>Encode multiple data keys at once</summary>
 
 ```javascript title="Encode multiple keys at once"
+import ERC725 from '@erc725/erc725.js';
+
+const schemas = [
+  {
+    name: 'LSP3Profile',
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    keyType: 'Singleton',
+    valueType: 'bytes',
+    valueContent: 'VerifiableURI',
+  },
+  {
+    name: 'LSP1UniversalReceiverDelegate',
+    key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
+    keyType: 'Singleton',
+    valueType: 'address',
+    valueContent: 'Address',
+  },
+  {
+    name: 'LSP12IssuedAssets[]',
+    key: '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
+    keyType: 'Array',
+    valueType: 'address',
+    valueContent: 'Address',
+  },
+];
+
+const myErc725 = new ERC725(schemas);
+
 myErc725.encodeData([
   {
     keyName: 'LSP3Profile',
@@ -303,6 +376,20 @@ myErc725.encodeData([
     <summary>Encode array length only</summary>
 
 ```javascript title="Encode the length of an array"
+import ERC725 from '@erc725/erc725.js';
+
+const schemas = [
+  {
+    name: 'LSP12IssuedAssets[]',
+    key: '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
+    keyType: 'Array',
+    valueType: 'address',
+    valueContent: 'Address',
+  },
+];
+
+const myErc725 = new ERC725(schemas);
+
 myErc725.encodeData([
   {
     keyName: 'LSP12IssuedAssets[]',
@@ -325,6 +412,8 @@ myErc725.encodeData([
     <summary>Encode a subset of array elements</summary>
 
 ```javascript title="Encode a subset of array elements"
+import ERC725 from '@erc725/erc725.js';
+
 const schemas = [
   {
     name: 'AddressPermissions[]',
@@ -334,6 +423,8 @@ const schemas = [
     valueContent: 'Address',
   },
 ];
+
+const myErc725 = new ERC725(schemas);
 
 myErc725.encodeData(
   [
@@ -406,6 +497,8 @@ The hash must be retrievable from the ERC725Y contract via the [getData](#getdat
 #### Example
 
 ```javascript title="Encode the key name"
+import ERC725 from '@erc725/erc725.js';
+
 ERC725.encodeKeyName('LSP3Profile');
 // '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'
 
@@ -464,6 +557,10 @@ After the `value` is encoded, the hex string can be used to be stored inside the
 #### Examples
 
 ```javascript
+import ERC725 from '@erc725/erc725.js';
+
+const myErc725 = new ERC725();
+
 myErc725.encodeValueType('uint256', 5);
 // '0x0000000000000000000000000000000000000000000000000000000000000005'
 
@@ -498,6 +595,8 @@ myERC725.encodeValueType('bytes[CompactBytesArray]', [
 This method is also available as a static method.
 
 ```javascript
+import ERC725 from '@erc725/erc725.js';
+
 ERC725.encodeValueType('string', 'Hello');
 // '0x48656c6c6f'
 ```
