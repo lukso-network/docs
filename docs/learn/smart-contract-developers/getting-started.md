@@ -118,12 +118,12 @@ const config: HardhatUserConfig = {
   },
   networks: {
     luksoTestnet: {
-      url: 'https://rpc.testnet.lukso.gateway.fm',
+      url: 'https://4201.rpc.thirdweb.com',
       chainId: 4201,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
     luksoMainnet: {
-      url: 'https://rpc.lukso.gateway.fm',
+      url: 'https://42.rpc.thirdweb.com',
       chainId: 42,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
@@ -212,7 +212,7 @@ You can mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.
 
 :::
 
-```js title="deployContractAsUP.ts"
+```ts title="deployContractAsUP.ts"
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';
 
@@ -224,7 +224,10 @@ dotenv.config();
 async function deployContract() {
   // UP controller used for deployment
   const [deployer] = await ethers.getSigners();
-  console.log('Deploying contract with Universal Profile controller: ', deployer.address);
+  console.log(
+    'Deploying contract with Universal Profile controller: ',
+    deployer.address,
+  );
 
   // Load the Universal Profile
   const universalProfile = await ethers.getContractAtFromArtifact(
@@ -233,7 +236,8 @@ async function deployContract() {
   );
 
   // Create custom bytecode for the contract deployment
-  const contractBytecode = (await ethers.getContractFactory('MyCustomContract')).bytecode;
+  const contractBytecode = (await ethers.getContractFactory('MyCustomContract'))
+    .bytecode;
   const abiEncoder = new ethers.AbiCoder();
 
   // Encode constructor parameters
@@ -247,7 +251,10 @@ async function deployContract() {
   );
 
   // Add the constructor parameters to the contract bytecode
-  const contractBytecodeWithConstructor = ethers.concat([contractBytecode, encodedConstructorParams]);
+  const contractBytecodeWithConstructor = ethers.concat([
+    contractBytecode,
+    encodedConstructorParams,
+  ]);
 
   // Get the address of the custom contract that will be created
   const contractAddress = await universalProfile.execute.staticCall(

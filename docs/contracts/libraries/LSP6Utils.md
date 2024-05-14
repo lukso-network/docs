@@ -5,12 +5,12 @@
 
 :::info Standard Specifications
 
-[`LSP-6-KeyManager`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-6-KeyManager.md)
+[`LSP-6-KeyManager`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
 
 :::
 :::info Solidity implementation
 
-[`LSP6Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP6KeyManager/LSP6Utils.sol)
+[`LSP6Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp6-contracts/contracts/LSP6KeyManager.sol)
 
 :::
 

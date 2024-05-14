@@ -12,6 +12,13 @@ description: LUKSO's LSP16 - Universal Factory for deploying the same smart cont
 
 :::
 
+> **Goals:**
+>
+> - Multi-chain compatibility
+> - CREATE2 opcode for the deployment of various contracts
+
+LSP16 introduces a universal factory for deploying smart contracts using the CREATE2 opcode, ensuring consistent contract addresses across multiple blockchains. This standard allows for the deployment of various contract types, including initializable contracts, with initialization data included in the deployment process to prevent address squatting. By leveraging the Nick Factory for deployment, LSP16 enables a decentralized way to replicate contract addresses on any chain, facilitating multi-chain identity and asset management. This approach offers significant advantages, such as ensuring that assets sent across chains reach their intended contract by maintaining consistent contract addresses. LSP16 is a cornerstone for building interoperable and scalable blockchain applications, offering developers a reliable tool for multi-chain deployment and management.
+
 ## Introduction
 
 The use of different blockchain networks has brought with it a unique challenge: ensuring that an entity or user controlling an address on one chain can have the same control on another chain. For Externally Owned Accounts, this is known, as possesing the private key of the address means control over it regardless of the chain.

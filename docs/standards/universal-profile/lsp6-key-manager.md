@@ -15,6 +15,17 @@ import TabItem from '@theme/TabItem';
 
 :::
 
+> **Goals:**
+>
+> - Enables control via multiple permissioned addresses called “controllers”
+> - Allows multiple controllers to interact with LSP 0 ERC 725 Account
+
+LSP6 - Key Manager, acts as the brain behind Universal Profiles, enabling sophisticated access control and interactions. Imagine having a digital identity that can interact with other contracts, manage assets, or even delegate actions without exposing your main account. This is where the Key Manager shines, serving as a permissioned gateway.
+
+Here's how it works: You have a Universal Profile, essentially a smart contract account on the blockchain. This account can hold assets, manage permissions, and interact with other contracts. However, by itself, it's like a locked treasure chest. The Key Manager is the key to this chest, allowing specific actions to be performed by those you trust.
+
+For instance, you can set permissions for different addresses, allowing them to perform specific actions such as sending transactions, managing assets, or setting data within your Universal Profile. This flexibility means you can have secure, controlled interactions on the blockchain, paving the way for more complex and secure applications.
+
 ## Introduction
 
 An [LSP0ERC725Account](./../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md) on its own comes with limited usability. Since it is an **owned contract**, only the account's owner can write data into it or use it to interact with other smart contracts.

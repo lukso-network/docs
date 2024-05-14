@@ -5,12 +5,12 @@
 
 :::info Standard Specifications
 
-[`LSP-1-UniversalReceiver`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-1-UniversalReceiver.md)
+[`LSP-1-UniversalReceiver`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md)
 
 :::
 :::info Solidity implementation
 
-[`LSP1Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP1UniversalReceiver/LSP1Utils.sol)
+[`LSP1Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol)
 
 :::
 

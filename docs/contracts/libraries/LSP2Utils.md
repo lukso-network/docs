@@ -5,12 +5,12 @@
 
 :::info Standard Specifications
 
-[`LSP-2-ERC725YJSONSchema`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-2-ERC725YJSONSchema.md)
+[`LSP-2-ERC725YJSONSchema`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md)
 
 :::
 :::info Solidity implementation
 
-[`LSP2Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol)
+[`LSP2Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp2-contracts/contracts/LSP2Utils.sol)
 
 :::
 
