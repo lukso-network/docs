@@ -55,9 +55,9 @@ const schemas: ERC725JSONSchema[] = [
 const erc725 = new ERC725(schemas);
 ```
 
-### Option 2: connect a contract to fetch + decode data from
+### Option 2: connect a contract to fetch + decode data from it
 
-Same as option 1 where you can pass an ERC725Y contract address, an RPC URL and some additional confits (IPFS gateway): **useful to fetch and decode data automatically from a contract deployed on a network**.
+Same as option 1 where you can pass an ERC725Y contract address, an RPC URL and some additional configs (IPFS gateway): **useful to fetch and decode data automatically from a contract deployed on a network**.
 
 ```js
 import ERC725, { ERC725JSONSchema } from '@erc725/erc725.js';

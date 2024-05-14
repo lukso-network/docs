@@ -45,21 +45,23 @@ _Example 2: input `1122334455` encoded as `bytes4` --> will encode as `0x42e576f
 
 An array of objects containing the following properties:
 
-| Name                          | Type                                           | Description                                                                                                                                                      |
-| :---------------------------- | :--------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `keyName`                     | string                                         | Can be either the named key (i.e. `LSP3Profile`, `LSP12IssuedAssetsMap:<address>`) or the hashed key (with or without `0x` prefix, i.e. `0x5ef...` or `5ef...`). |
-| `dynamicKeyParts` (optional)  | string or <br/> string[&nbsp;]                 | The dynamic parts of the `keyName` that will be used for encoding the key.                                                                                       |
-| `value`                       | string or <br/> string[&nbsp;] <br/> JSON todo | The value that should be encoded. Can be a string, an array of string or a JSON...                                                                               |
-| `startingIndex` (optional)    | number                                         | Starting index for `Array` types to encode a subset of elements. Defaults t `0`.                                                                                 |
-| `totalArrayLength` (optional) | number                                         | Parameter for `Array` types, specifying the total length when encoding a subset of elements. Defaults to the number of elements in the `value` field.            |
+| Name                          | Type                                      | Description                                                                                                                                                      |
+| :---------------------------- | :---------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `keyName`                     | string                                    | Can be either the named key (i.e. `LSP3Profile`, `LSP12IssuedAssetsMap:<address>`) or the hashed key (with or without `0x` prefix, i.e. `0x5ef...` or `5ef...`). |
+| `dynamicKeyParts` (optional)  | string or <br/> string[&nbsp;]            | The dynamic parts of the `keyName` that will be used for encoding the key.                                                                                       |
+| `value`                       | string or <br/> string[&nbsp;] <br/> JSON | The value that should be encoded. Can be a string, an array of string or a JSON...                                                                               |
+| `startingIndex` (optional)    | number                                    | Starting index for `Array` types to encode a subset of elements. Defaults to `0`.                                                                                |
+| `totalArrayLength` (optional) | number                                    | Parameter for `Array` types, specifying the total length when encoding a subset of elements. Defaults to the number of elements in the `value` field.            |
 
 The `keyName` also supports dynamic keys for [`Mapping`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#mapping) and [`MappingWithGrouping`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#mapping). Therefore, you can use variables in the key name such as `LSP12IssuedAssetsMap:<address>`. In that case, the value should also set the `dynamicKeyParts` property:
 
 - `dynamicKeyParts`: string or string[&nbsp;] which holds the variables that needs to be encoded.
 
-:::info Handling array subsets
+:::info Handling keyType `Array`.
 
-The `totalArrayLength` parameter must be explicitly provided to ensure integrity when encoding subsets or modifying existing array elements. Its value specifies the total length of the array **after the operation is completed**, not just the size of the encoded subset.
+If the keyType is Array and you pass an integer as a value it will encode only the data key for the Array length. See the example below.
+
+Additionally, the `totalArrayLength` parameter must be explicitly provided to ensure integrity when encoding subsets or modifying existing array elements. Its value specifies the total length of the array **after the operation is completed**, not just the size of the encoded subset.
 
 **When to Use `totalArrayLength`**
 
@@ -264,32 +266,32 @@ myErc725.encodeData([
     },
   },
   {
+    keyName: 'LSP1UniversalReceiverDelegate',
+    value: '0x1183790f29BE3cDfD0A102862fEA1a4a30b3AdAb',
+  },
+  {
     keyName: 'LSP12IssuedAssets[]',
     value: [
       '0xD94353D9B005B3c0A9Da169b768a31C57844e490',
       '0xDaea594E385Fc724449E3118B2Db7E86dFBa1826',
     ],
   },
-  {
-    keyName: 'LSP1UniversalReceiverDelegate',
-    value: '0x1183790f29BE3cDfD0A102862fEA1a4a30b3AdAb',
-  },
 ]);
 /**
 {
   keys: [
-    '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
-    '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
-    '0x7c8c3416d6cda87cd42c71ea1843df2800000000000000000000000000000000',
-    '0x7c8c3416d6cda87cd42c71ea1843df2800000000000000000000000000000001',
-    '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
+    '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5', // LSP3Profile -> data key
+    '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47', // LSP1UniversalReceiverDelegate -> data key
+    '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd', // LSP12IssuedAssets[] -> data key for `LSP12IssuedAssets[].length`
+    '0x7c8c3416d6cda87cd42c71ea1843df2800000000000000000000000000000000', // LSP12IssuedAssets[0] -> data key for index 0
+    '0x7c8c3416d6cda87cd42c71ea1843df2800000000000000000000000000000001', // LSP12IssuedAssets[1] -> data key for index 1
   ],
   values: [
-    '0x6f357c6a820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455a4c6a7452504466573834554178',
-    '0x00000000000000000000000000000002',
-    '0xd94353d9b005b3c0a9da169b768a31c57844e490',
-    '0xdaea594e385fc724449e3118b2db7e86dfba1826',
-    '0x1183790f29be3cdfd0a102862fea1a4a30b3adab',
+    '0x6f357c6a820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455 a4c6a7452504466573834554178', // LSP3Profile -> value as VerifiableURI
+    '0x1183790f29be3cdfd0a102862fea1a4a30b3adab', // LSP1UniversalReceiverDelegate -> value as Address
+    '0x00000000000000000000000000000002', // LSP12IssuedAssets[].length = 2
+    '0xd94353d9b005b3c0a9da169b768a31c57844e490', // LSP12IssuedAssets[0] -> Address stored at index 0
+    '0xdaea594e385fc724449e3118b2db7e86dfba1826', // LSP12IssuedAssets[1] -> Address stored at index 1
   ],
 }
 */
@@ -298,21 +300,19 @@ myErc725.encodeData([
 </details>
 
 <details>
-    <summary>Encode array length</summary>
-
-If the key is of type Array and you pass an integer as a value (for instance, the array length), it will be encoded accordingly.
+    <summary>Encode array length only</summary>
 
 ```javascript title="Encode the length of an array"
 myErc725.encodeData([
   {
-    keyName: 'LSP3IssuedAssets[]',
+    keyName: 'LSP12IssuedAssets[]',
     value: 5,
   },
 ]);
 /**
 {
   keys: [
-    '0x3a47ab5bd3a594c3a8995f8fa58d0876c96819ca4516bd76100c92462f2f9dc0',
+    '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
   ],
   values: ['0x00000000000000000000000000000005'],
 }
@@ -352,14 +352,14 @@ myErc725.encodeData(
 /**
 {
   keys: [
-    '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3',
-    '0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000015', 
-    '0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000016',
+    '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3', // LSP12IssuedAssets[] -> data key for `LSP12IssuedAssets[].length`
+    '0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000015', // LSP12IssuedAssets[21] -> data key for index 21
+    '0xdf30dba06db6a30e65354d9a64c6098600000000000000000000000000000016', // LSP12IssuedAssets[22] -> data key for index 22
   ],
   values: [
-    '0x00000000000000000000000000000017',
-    '0x983abc616f2442bab7a917e6bb8660df8b01f3bf',
-    '0x56ecbc104136d00eb37aa0dce60e075f10292d81',
+    '0x00000000000000000000000000000017', // LSP12IssuedAssets[].length = 23
+    '0x983abc616f2442bab7a917e6bb8660df8b01f3bf', // LSP12IssuedAssets[21] -> Address stored at index 21
+    '0x56ecbc104136d00eb37aa0dce60e075f10292d81', // LSP12IssuedAssets[22] -> Address stored at index 22
   ],
 }
 */
