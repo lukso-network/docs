@@ -110,7 +110,7 @@ npm i @lukso/lsp-utils
 - Then import the `generateLSP4JSON` to generate the JSON
 
 ```js
-import { generateLSP4JSON } from '@lukso/lsp-utils/dist/lib/es6';
+import { generateLSP4JSON } from '@lukso/lsp-utils';
 ```
 
 Example:
