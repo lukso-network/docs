@@ -21,6 +21,7 @@ The following ports will need to be opened to run the blockchain node correctly:
 | ERIGON     | Execution Chain Data Channel              | 30303 | X   |     |
 | ERIGON     | Execution Chain Discovery                 | 30303 |     | X   |
 | LIGHTHOUSE | Beacon Communication and Data             | 9000  | X   | X   |
+| TEKU       | Beacon Communication and Data             | 9000  | X   | X   |
 | PRYSM      | Beacon Gossip, Requests, and Responses    | 13000 | X   |     |
 | PRYSM      | Beacon Discovery, Requests, Data Exchange | 12000 |     | X   |
 
@@ -30,6 +31,7 @@ You can find more information about firewall and port settings within the specif
 - [Prysm Port Specification](https://docs.prylabs.network/docs/prysm-usage/p2p-host-ip#configure-your-firewall)
 - [Geth Port Specification](https://github.com/ethereum/go-ethereum#configuration)
 - [Erigon Port Specification](https://github.com/ledgerwatch/erigon#default-ports-and-firewalls)
+- [Teku Port Specification](https://docs.teku.consensys.io/how-to/find-and-connect/improve-connectivity)
 
 ## Do the LUKSO mainnet and testnet use different ports?
 
