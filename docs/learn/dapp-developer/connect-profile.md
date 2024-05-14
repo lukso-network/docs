@@ -66,7 +66,12 @@ If you want to implement _Injected Provider Discovery_ you can visit our [Exampl
 
 ### Multi-Provider Libraries
 
-You can use third-party libraries like [Web3Modal](https://docs.walletconnect.com/web3modal/about) from [Wallet Connect](https://walletconnect.com/) or [Web3-Onboard](https://onboard.blocknative.com/) from [Blocknative](https://www.blocknative.com/). Both libraries come with built-in UI elements and allow you to connect to various wallet extensions with ease. This method is beneficial if you want to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
+You can use third-party libraries to connect to various wallet extensions with ease. Here are some options:
+
+- **Web3Modal** : [Documentation](https://docs.walletconnect.com/web3modal/about)
+- **Web3-Onboard** : [Documentation](https://onboard.blocknative.com/)
+
+Both libraries come with built-in UI elements and allow you to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
 
 :::tip Example Implementation
 

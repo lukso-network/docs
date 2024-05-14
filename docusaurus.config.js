@@ -70,7 +70,7 @@ export default {
           },
           {
             from: '/guides/universal-receiver-delegate/create-custom-urd-1',
-            to: '/learn/expert-guides/universal-receiver/create-universal-receiver',
+            to: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
           },
           {
             from: '/guides/universal-receiver-delegate/create-custom-urd-2',
@@ -236,19 +236,8 @@ export default {
           label: 'FAQ',
         },
         {
-          to: '/install-up-browser-extension',
-          label: 'UP Browser Extension',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/lukso-network/LIPs/tree/main/LSPs',
-          label: 'LSPs',
-          position: 'right',
-          target: '_blank',
-        },
-        {
-          href: 'https://support.lukso.network',
-          label: 'Support',
+          href: 'https://support.lukso.network/contact-us',
+          label: 'Contact Us',
           position: 'right',
         },
         {
