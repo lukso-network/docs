@@ -5790,6 +5790,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
+  languageName: node
+  linkType: hard
+
 "cmdk-react17@npm:^1.0.0":
   version: 1.0.0
   resolution: "cmdk-react17@npm:1.0.0"
@@ -9338,7 +9345,7 @@ __metadata:
     "@docusaurus/types": 3.2.1
     "@mdx-js/react": 3.0.0
     "@svgr/webpack": ^8.1.0
-    clsx: ^2.1.0
+    clsx: ^2.1.1
     docusaurus-plugin-sass: ^0.2.5
     file-loader: ^6.2.0
     plugin-image-zoom: ^1.2.0
