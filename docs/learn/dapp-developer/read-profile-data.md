@@ -50,7 +50,7 @@ npm install @erc725/erc725.js
 
 <details>
 <summary>
-<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/classes/ERC725#getdata"> erc725.js</a>  library. 👇
+<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/methods#getdata"> erc725.js</a>  library. 👇
 </summary>
 
 <div>
@@ -66,7 +66,7 @@ npm install @erc725/erc725.js
 
 To read the profile data you simply instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
 
-The [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
+The [`getData()`](../../tools/erc725js/methods.md#getdata) function allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
 
 <Tabs>  
   <TabItem value="javascript" label="JavaScript">
@@ -173,7 +173,7 @@ You can also create and load your own ERC725Y JSON schemas if you want to add cu
 
 ## Fetch the Profile Metadata
 
-If you only need the contents of the profile data JSON file, you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
+If you only need the contents of the profile data JSON file, you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/methods.md#fetchdata). This will download the JSON file and verify its hash automatically.
 
 ```js
 // ...
@@ -233,7 +233,7 @@ console.log(profileMetaData);
 
 :::note get and fetch
 
-The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI`.
+The [`getData(...)`](../../tools/erc725js/methods#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/methods#fetchdata) will download and decode the content of `VerifiableURI`.
 
 :::
 

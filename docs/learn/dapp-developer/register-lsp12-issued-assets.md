@@ -148,7 +148,7 @@ Please be careful when updating existing issued assets. Incorrect usage of `star
 
 :::info
 
-You can read more about the `encodeData` function of [`erc725.js`](../../tools/erc725js/getting-started.md) within the related [ERC725 Documentation](../../tools/erc725js/classes/ERC725#encodedata).
+You can read more about the `encodeData` function of [`erc725.js`](../../tools/erc725js/getting-started.md) within the related [ERC725 Documentation](../../tools/erc725js/methods#encodedata).
 
 :::
 

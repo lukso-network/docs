@@ -56,7 +56,7 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 :::tip
 
-You can use the [`encodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/classes/ERC725#decodepermissions) functions from the [_erc725.js_](../../../../tools/erc725js/getting-started) tool to easily **encode and decode permissions values** or **combine multiple permissions together**.
+You can use the [`encodePermissions(...)`](../../../../tools/erc725js/methods#encodepermissions) and [`decodePermissions(...)`](../../../../tools/erc725js/methods#decodepermissions) functions from the [_erc725.js_](../../../../tools/erc725js/getting-started) tool to easily **encode and decode permissions values** or **combine multiple permissions together**.
 
 :::
 
@@ -464,7 +464,7 @@ permissions: EDITPERMISSIONS + SETDATA
 
 :::tip
 
-The convenience function [`getData(...)`](../../tools/erc725js/classes/ERC725.md#getdata) from [_erc725.js_](../../../../tools/erc725js/getting-started) will return you the whole list of controllers when providing the `AddressPermission[]` array data key as a parameter.
+The convenience function [`getData(...)`](../../tools/erc725js/methods.md#getdata) from [_erc725.js_](../../../../tools/erc725js/getting-started) will return you the whole list of controllers when providing the `AddressPermission[]` array data key as a parameter.
 
 :::
 
