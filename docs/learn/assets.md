@@ -213,7 +213,7 @@ const json = generateLSP4JSON(
 
 Now the JSON can be uploaded to IPFS.
 
-Other utility functions can be used to prepare the JSON to be converted to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata), such as creating the hash and encoding it as VerifiableURI. 
+Other utility functions can be used to prepare the JSON to be converted to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata), such as creating the hash and encoding it as VerifiableURI.
 
 Check all functions related to metadata generating in [lsp-utils docs](https://docs.lukso.tech/tools/lsp-utils/LSP4DigitalAssetMetadata).
 
