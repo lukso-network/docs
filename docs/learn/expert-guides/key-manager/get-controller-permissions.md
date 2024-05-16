@@ -67,13 +67,13 @@ async function getPermissionedAddresses() {
 
 :::tip
 
-If you want to retrieve a controller address individually, you can use the [`AddressPermissions[index]`](/standards/universal-profile/lsp6-key-manager/#permissions) within the [`getData()`](../../../tools/erc725js/classes/ERC725/#getdata) function of the contract or 🛠️[`erc725.js`](../../../tools/erc725js/getting-started.md) library.
+If you want to retrieve a controller address individually, you can use the [`AddressPermissions[index]`](/standards/universal-profile/lsp6-key-manager/#permissions) within the [`getData()`](../../../tools/erc725js/methods/#getdata) function of the contract or 🛠️[`erc725.js`](../../../tools/erc725js/getting-started.md) library.
 
 :::
 
 ## Get the Controller Permissions
 
-After queriying all controller addresses, you can retrieve the permissions of each controller by querying the dynamic [`AddressPermissions:Permissions:<address>`](../../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions) key of the 🗂️[ERC725Y data storage](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store). You can do this again using the [`getData(...)`](../../../tools/erc725js/classes/ERC725#getdata) functions of the 🛠️[`erc725.js`](../../../tools/erc725js/getting-started.md) library.
+After queriying all controller addresses, you can retrieve the permissions of each controller by querying the dynamic [`AddressPermissions:Permissions:<address>`](../../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions) key of the 🗂️[ERC725Y data storage](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store). You can do this again using the [`getData(...)`](../../../tools/erc725js/methods#getdata) functions of the 🛠️[`erc725.js`](../../../tools/erc725js/getting-started.md) library.
 
 ```js
 async function getPermissionedAddresses() {
@@ -103,7 +103,7 @@ async function getPermissionedAddresses() {
 
 ## Decode Controller Permissions
 
-Permission are encoded as a [`BitArray`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#BitArray). After queriying their values, you can decode them by calling the and [`decodePermissions(...)`](../../../tools/erc725js/classes/ERC725#decodepermissions) function of the 🛠️[`erc725.js`](../../../tools/erc725js/getting-started.md) library:
+Permission are encoded as a [`BitArray`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#BitArray). After queriying their values, you can decode them by calling the and [`decodePermissions(...)`](../../../tools/erc725js/methods#decodepermissions) function of the 🛠️[`erc725.js`](../../../tools/erc725js/getting-started.md) library:
 
 ```js
 async function getPermissionedAddresses() {
