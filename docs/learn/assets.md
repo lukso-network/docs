@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🖼️ Working with assets'
-sidebar_position: 6
+sidebar_position: 4
 description: Learn how to prepare and use assets for LUKSO Universal Profiles and digital assets (LSP7 / LSP8).
 ---
 
