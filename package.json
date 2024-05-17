@@ -18,11 +18,11 @@
     "prettier:fix": "prettier \"src/**/*.js\" \"docs/**/*.md\" --write"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.11.3",
-    "@docusaurus/core": "3.2.1",
-    "@docusaurus/plugin-client-redirects": "3.2.1",
-    "@docusaurus/plugin-google-gtag": "3.2.1",
-    "@docusaurus/preset-classic": "3.2.1",
+    "@cookbookdev/docsbot": "^4.14.1",
+    "@docusaurus/core": "3.3.2",
+    "@docusaurus/plugin-client-redirects": "3.3.2",
+    "@docusaurus/plugin-google-gtag": "3.3.2",
+    "@docusaurus/preset-classic": "3.3.2",
     "@mdx-js/react": "3.0.0",
     "@svgr/webpack": "^8.1.0",
     "clsx": "^2.1.0",
@@ -37,8 +37,8 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.2.1",
-    "@docusaurus/types": "3.2.1"
+    "@docusaurus/module-type-aliases": "3.3.2",
+    "@docusaurus/types": "3.3.2"
   },
   "browserslist": {
     "production": [
