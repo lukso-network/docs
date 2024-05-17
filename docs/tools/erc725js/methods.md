@@ -524,8 +524,6 @@ myErc725.encodeKeyName('LSP3Profile');
 
 ---
 
-### encodeArrayKey (TBD)
-
 ### encodeValueType
 
 ```js
@@ -914,7 +912,7 @@ Available `valueContent` are:
 | :------------- | :--------------------------------------------------------------------------------------- | :------------------------------------------- |
 | `decodedValue` | `string` or <br/> `URLDataWithHash` or <br/> `number` or <br/> `boolean` or <br/> `null` | A value decoded according to `valueContent`. |
 
-### Examples
+#### Examples
 
 ```javascript title="decodeValueContent example"
 erc725js.decodeValueContent(
@@ -1097,7 +1095,7 @@ The name(s) (or the encoded name(s) as schema key) of the element(s) in the smar
 
 :::
 
-### All-Keys Example
+#### All-Keys Example
 
 ```javascript title="Receiving all keys from the schema"
 import ERC725 from '@erc725/erc725.js';
@@ -1653,7 +1651,7 @@ ERC725.supportsInterface('LSP0ERC725Account', {
 
 ---
 
-## External Data Source utilities (`VerifiableURI` and `JSONURI`)
+## External Sources - `VerifiableURI`
 
 ### encodeDataSourceWithHash
 
@@ -2301,7 +2299,7 @@ When using the `mapPermission` method, if the permission is not known, the funct
 | :--- | :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 |      | `string` or `null` | A bytes32 hex string representing the `permissionName`. Or `null` if the input is not a known permission name or a valid 32-byte hex string. |
 
-### Example
+#### Example
 
 ```javascript title="mapPermission example"
 erc725js.mapPermissions('CHANGEOWNER');
