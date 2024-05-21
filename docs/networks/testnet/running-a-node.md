@@ -12,7 +12,7 @@ Running a testnet node is very similar to running a mainnet node. Therefore, we 
 
 :::
 
-:::Info
+:::info
 
 In preparation for the [upcoming Dencun fork](https://luksovalidators.substack.com/p/preparing-for-the-dencun-fork) on LUKSO, we **highly recommend** node operators to [update their clients and network configurations](../advanced-guides/update-clients.md) based on the [latest supported clients](../mainnet/running-a-node.md#supported-clients-versions).
 

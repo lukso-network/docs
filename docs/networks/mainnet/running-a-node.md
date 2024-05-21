@@ -49,7 +49,7 @@ The LUKSO network currently supports the following clients versions:
 | Lighthouse | v5.1.3  | https://github.com/sigp/lighthouse/releases/tag/v5.1.3       |
 | Teku       | v24.4.0 | https://github.com/Consensys/teku/releases/tag/24.4.0        |
 
-:::Info
+:::info
 
 In preparation for the [upcoming Dencun fork](https://luksovalidators.substack.com/p/preparing-for-the-dencun-fork) on LUKSO, we **highly recommend** node operators to [update their clients and network configurations](../advanced-guides/update-clients.md).
 
