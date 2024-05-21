@@ -101,13 +101,13 @@ To ensure the authenticity of the images, please generate the hash of the upload
 
 Such JSON can be generated manually or using tools, such as [`@lukso/lsp-utils`](https://github.com/lukso-network/lsp-utils). To generate the JSON from predefined fields:
 
-- Install the `@lukso/lsp-utils` library
+1. Install the `@lukso/lsp-utils` library
 
 ```bash
 npm i @lukso/lsp-utils
 ```
 
-- Then import the `generateLSP4JSON` to generate the JSON
+2. Import the `generateLSP4JSON` to generate the JSON
 
 ```js
 import { generateLSP4JSON } from '@lukso/lsp-utils';
@@ -127,12 +127,12 @@ const links = [
 
 const attributes = [
   { key: 'trait', value: 'rare', type: 'string' },
-  { key: 'level', value: '5', type: 5 },
+  { key: 'level', value: '5', type: 'number' },
 ];
 
 const hashVerification = {
   method: 'keccak256(bytes)',
-  data: '0x1234567890abcdef',
+  data: '0x6216ef2b4777755faa239eaf3c37c6e5bdf073b20d8b86a2bb5d214ff70194c2',
 };
 
 const icons = {
@@ -140,13 +140,13 @@ const icons = {
     {
       width: 200,
       height: 200,
-      url: 'ipfs://example/icon1.png',
+      url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
       verification: hashVerification,
     },
     {
       width: 400,
       height: 400,
-      url: 'ipfs://example/icon2.png',
+      url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
       verification: hashVerification,
     },
   ],
@@ -161,18 +161,18 @@ const images = {
         {
           width: 1200,
           height: 1200,
-          url: 'ipfs://example/image1.png',
+          url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
           verification: hashVerification,
         },
         {
           width: 800,
           height: 600,
-          url: 'ipfs://example/image2.png',
+          url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
           verification: hashVerification,
         },
       ],
-      lsp7images: [{ address: '0x1234567890abcdef' }],
-      lsp8images: [{ address: '0x0987654321fedcba', tokenId: '0x456' }],
+      lsp7images: [],
+      lsp8images: [],
     },
   ],
 };
@@ -180,18 +180,13 @@ const images = {
 const assets = {
   assets: [
     {
-      url: 'ipfs://example/asset1.json',
-      fileType: 'json',
-      verification: hashVerification,
-    },
-    {
-      url: 'ipfs://example/asset2.png',
+      url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
       fileType: 'image/png',
       verification: hashVerification,
     },
   ],
-  lsp7assets: [{ address: '0x1234567890abcdef' }],
-  lsp8assets: [{ address: '0x0987654321fedcba', tokenId: '0x456' }],
+  lsp7assets: [],
+  lsp8assets: [],
 };
 
 const json = generateLSP4JSON(
