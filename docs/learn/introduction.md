@@ -6,14 +6,7 @@ description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKS
 
 # Introduction
 
-LUKSO is an L1 EVM-based Blockchain running on Proof of Stake. All tools and tutorials for Ethereum also work well for LUKSO, as the network has equal functionality and is up to date with the [Dencun](https://ethereum.org/en/history/) update. To participate in the network, the Ethereum clients can be run with a [custom network configuration](https://github.com/lukso-network/network-configs). To [run a node](/networks/mainnet/running-a-node.md), operators can use the LUKSO CLI, Dappnode, Docker, or manual installation.
-
-### Developer Resources
-
-Developers building on LUKSO can write smart contracts in an EVM-based language like Solidity, deploy them using [Hardhat](https://hardhat.org/), and utilize standards already developed for other Ethereum networks.
-
-- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
-- [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
+LUKSO is an L1 EVM-based Blockchain. All tools and tutorials for Ethereum also work well for LUKSO.
 
 ## Who is LUKSO intended for?
 
@@ -22,13 +15,16 @@ LUKSO allows brands, creatives and developers to dictate the distribution of wea
 
 ## Why choose LUKSO?
 
-[LSPs](/standards/introduction.md) (LUKSO Standard Proposals) are the building blocks of LUKSO. They are used to to build blockchain-based applications that offer an enhanced user experience, and allow for more flexibility and interaction. LSPs are part of the more general LIPs used to discuss protocol specifications and client API improvements.
+[LSPs](/standards/introduction.md) (LUKSO Standard Proposals) are the building blocks of LUKSO. They are used to to build blockchain-based applications that offer an enhanced user experience, and allow for more flexibility and interaction.
+
+### Developer Resources
+
+Developers building on LUKSO can write smart contracts in an EVM-based language like Solidity, deploy them using [Hardhat](https://hardhat.org/), and utilize standards already developed for other Ethereum networks.
+
+- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
+- [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
 
 ### LSP Features
-
-- **Universal Profiles**: [Introduction](../standards/universal-profile/introduction.md)
-- **Digital Assets & NFT 2.0**: [Introduction](../standards/tokens/introduction.md)
-- **Vaults**: [LSP9-Vault](../standards/universal-profile/lsp9-vault.md)
 
 By integrating different LSPs in unique ways, LUKSO solves fundamental blockchain problems:
 
@@ -42,11 +38,12 @@ By integrating different LSPs in unique ways, LUKSO solves fundamental blockchai
 :::tip Seamless Onboarding
 
 Currently, users are subsidized with the [Transaction Relay Service](./concepts.md#transaction-relay-service) from LUKSO.
+
 :::
 
 ## What can be built on LUKSO?
 
-The number of LSPs is constantly evolving. Even more, there are innumerable ways one can connect the LSPs and create innovative dApps. The following list contains several potential use cases. Please bear in mind that those represent only the tip of the iceberg.
+The following list contains several potential use cases. Please bear in mind that those represent only the tip of the iceberg.
 
 - social media applications
 - content publishing platforms
@@ -54,8 +51,3 @@ The number of LSPs is constantly evolving. Even more, there are innumerable ways
 - tokenized communities for creatives
 - marketplaces and outlets
 - ... 🪄
-
-### Frequently Asked Questions
-
-- [Why did LUKSO launch as Layer 1 blockchain?](../faq/lukso/general-information.md#why-did-lukso-launch-as-a-layer-1-blockchain)
-- [What is the network architecture of LUKSO?](../faq/network/blockchain-architecture.md#what-is-the-network-architecture-of-lukso)
