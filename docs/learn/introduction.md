@@ -8,6 +8,10 @@ description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKS
 
 LUKSO is an L1 EVM-based Blockchain. All tools and tutorials for Ethereum also work well for LUKSO.
 
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7Ds8rYyzJ5A?si=UQ4XYHDoyIoFbfnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## Who is LUKSO intended for?
 
 LUKSO is intended for creative economies, where identities play a key role.

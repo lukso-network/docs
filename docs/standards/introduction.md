@@ -31,8 +31,7 @@ Meaning a LSP standard could use another one that comes after or before in order
 ## High Level Overview of Universal Profiles
 
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/_qmkcGvx9Dg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Vw4JE64hsO8?si=mfPTXg4tAA-Z_NRj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 **👉 📺 If you want to have a presentation that goes more in depth, [watch Fabian's Presentation from ETHCC6 2023](https://www.youtube.com/live/MKFB_pGse4A?si=Yuo_sYRrhrtAYycG&t=312).**
