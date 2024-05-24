@@ -13,11 +13,11 @@ If you want to set up your own workflow for uploading and retrieving files using
 - [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers)
 - [`service-ipfs-proxy`](https://github.com/lukso-network/service-ipfs-proxy)
 
-To use IPFS as a file service through _Pinata_ and _Infura_, you will have to:
+To use IPFS as a file service through _Pinata_ and _Infura_, _Csacade_ you will have to:
 
-1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/) and [Infura](https://www.infura.io/) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
-2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura and Pinata and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
-3. **Upload your File Content**: Utilize the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret.
+1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/) and [Infura](https://www.infura.io/), [Cascade](https://cascade.pastel.network) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
+2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura, Pinata, Cascade and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
+3. **Upload your File Content**: Utilize the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret. And also by using cascade api key, you can upload to Cascade protocol directly.
 
 This approach offers flexibility in how you upload and manage your asset data. While direct uploads to Infura are possible, the recommended method involves using the proxy to ensure reliability and ease of use.
 
@@ -82,6 +82,14 @@ const file = createReadStream('./path-to-your-file');
 const url = await provider.upload(file);
 
 console.log('File URL:', url);
+```
+
+**Using Cascade**
+
+```js
+import { CascadeUploader } from '@lukso/data-provider-cascade';
+
+const provider = new CascadeUploader(import.meta.env.CASCADE_API_KEY);
 ```
 
 :::info Proxy Configuration
