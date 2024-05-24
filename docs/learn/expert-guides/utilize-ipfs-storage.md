@@ -13,7 +13,7 @@ If you want to set up your own workflow for uploading and retrieving files using
 - [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers)
 - [`service-ipfs-proxy`](https://github.com/lukso-network/service-ipfs-proxy)
 
-To use IPFS as a file service through _Pinata_, _Infura_ and _Csacade_ you will have to:
+To use IPFS as a file service through _Pinata_, _Infura_ and _Cascade_ you will have to:
 
 1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/), [Infura](https://www.infura.io/) and [Cascade](https://cascade.pastel.network) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
 2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura, Pinata, Cascade and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
