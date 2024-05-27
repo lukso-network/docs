@@ -11,9 +11,7 @@ import TabItem from '@theme/TabItem';
 
 There are several methods to connect to a [Universal Profile](../../standards/universal-profile/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
 
-:::note
-
-Every method will trigger the same connection screen of the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn).
+Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
 
 <div style={{textAlign: 'center'}}>
 
@@ -24,8 +22,6 @@ Every method will trigger the same connection screen of the [Universal Profile B
 />
 
 </div>
-
-:::
 
 :::success Request Handling
 
@@ -70,7 +66,12 @@ If you want to implement _Injected Provider Discovery_ you can visit our [Exampl
 
 ### Multi-Provider Libraries
 
-You can use third-party libraries like [Web3Modal](https://docs.walletconnect.com/web3modal/about) from [Wallet Connect](https://walletconnect.com/) or [Web3-Onboard](https://onboard.blocknative.com/) from [Blocknative](https://www.blocknative.com/). Both libraries come with built-in UI elements and allow you to connect to various wallet extensions with ease. This method is beneficial if you want to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
+You can use third-party libraries to connect to various wallet extensions with ease. Here are some options:
+
+- **Web3Modal** : [Documentation](https://docs.walletconnect.com/web3modal/about)
+- **Web3-Onboard** : [Documentation](https://onboard.blocknative.com/)
+
+Both libraries come with built-in UI elements and allow you to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
 
 :::tip Example Implementation
 
@@ -130,6 +131,12 @@ Alternatively to the `window.lukso`, the equivalent `window.ethereum` object can
 
 :::
 
+## Handle multiple extensions
+
+If you expect your users to have multiple browser wallets or extensions, we recommend installing [Web3 Onboard](https://onboard.blocknative.com/) by following our [Web3 Onboard Configuration](./multi-provider.md). The library will allow users to manage multiple browser providers in parallel.
+
+Alternatively, you can use a simple fallback to allow regular wallet connections, if the [Universal Profile Browser Extension](/install-up-browser-extension) is not installed:
+
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers">
 
@@ -148,13 +155,3 @@ const provider = new Web3(providerObject);
 
   </TabItem>
 </Tabs>
-
-## Multi-Provider Libraries
-
-You can use third-party libraries like [Web3Modal](https://docs.walletconnect.com/web3modal/about) from [Wallet Connect](https://walletconnect.com/) or [Web3-Onboard](https://onboard.blocknative.com/) from [Blocknative](https://www.blocknative.com/). Both libraries come with built-in UI elements and allow you to connect to various wallet extensions with ease. This method is beneficial if you want to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
-
-:::tip Example Implementation
-
-If you want to implement a _Multi-Provider Library_, you can follow our [Multi-Provider Connections Guide](./web3-onboard.md) or check out the implementation within our [dApp Boilerplate](https://boilerplate.lukso.tech/).
-
-:::

@@ -84,11 +84,11 @@ const erc725 = new ERC725(
 
 :::info
 
-More permissions are available in erc725.js. See the API docs for [`encodePermissions(...)`](../../../tools/erc725js/classes/ERC725.md#encodepermissions) function for a complete list.
+More permissions are available in erc725.js. See the API docs for [`encodePermissions(...)`](../../../tools/erc725js/methods.md#encodepermissions) function for a complete list.
 
 :::
 
-We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../tools/erc725js/classes/ERC725#encodepermissions).
+We can now use erc725.js to create the permissions for a specific 3rd party `address`. The library provide convenience functions for us, such as [`encodePermissions`](../../../tools/erc725js/methods#encodepermissions).
 
 ### 2.1 - Create the permission
 

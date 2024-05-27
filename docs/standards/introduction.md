@@ -8,11 +8,30 @@ import StandardsGallery from '@site/src/components/StandardsGallery';
 
 # The LUKSO Standard Proposals (LSPs)
 
+Discover the LSPs, the standards that represent the foundation of **LUKSO's ecosystem**. They can be used as **building blocks** and combined to create new and innovative protocols or dApps on the LUKSO Blockchain.
+
+The LSPs introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, and NFT 2.0**.
+
+<StandardsGallery />
+
+The current **blockchain experience** comes with many limitations, not necessarily because of the complexity but due to the broken infrastructure represented by the old underlying tools and standards used to operate on the network.
+
+Change should start from the bottom to create a better user experience on the blockchain, from fundamental pieces to the top. Topics related to **identity**, **assets representation**, **relay execution** and **smart contract interaction** require standardization. Such standards should be flexible enough to support and allow more potential use cases in the future.
+
+The following documentation describes the fundamentals of the standards and technical aspects of the LUKSO ecosystem.
+
+:::note
+
+The LSP standards are **not order-dependent**. They can be related to each other in a **backward or forward** order.
+
+Meaning a LSP standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](../standards/universal-profile/lsp0-erc725account.md)** uses **[LSP1 - UniversalReceiver](../standards/generic-standards/lsp1-universal-receiver-delegate.md)**, **[LSP2 - ERC725YJSONSchema](../standards/generic-standards/lsp2-json-schema.md)** and could use **[LSP3 - ProfileMetadata](../standards/universal-profile/lsp3-profile-metadata.md)**, etc.
+
+:::
+
 ## High Level Overview of Universal Profiles
 
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/_qmkcGvx9Dg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Vw4JE64hsO8?si=mfPTXg4tAA-Z_NRj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 **👉 📺 If you want to have a presentation that goes more in depth, [watch Fabian's Presentation from ETHCC6 2023](https://www.youtube.com/live/MKFB_pGse4A?si=Yuo_sYRrhrtAYycG&t=312).**
@@ -48,30 +67,6 @@ Feel free to join the [LUKSO **Discord server**](https://discord.com/channels/35
 Our team and community members look forward to helping you understand the standards.
 
 :::
-
-## Introduction
-
-The current **blockchain experience** comes with many limitations, not necessarily because of the complexity but due to the broken infrastructure represented by the old underlying tools and standards used to operate on the network.
-
-Change should start from the bottom to create a better user experience on the blockchain, from fundamental pieces to the top. Topics related to **identity**, **assets representation**, **relay execution** and **smart contract interaction** require standardization. Such standards should be flexible enough to support and allow more potential use cases in the future.
-
-The following documentation describes the fundamentals of the standards and technical aspects of the LUKSO ecosystem.
-
-## LUKSO Standard Proposals (LSPs)
-
-:::note
-
-The LSP standards are **not order-dependent**. They can be related to each other in a **backward or forward** order.
-
-Meaning a LSP standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](../standards/universal-profile/lsp0-erc725account.md)** uses **[LSP1 - UniversalReceiver](../standards/generic-standards/lsp1-universal-receiver-delegate.md)**, **[LSP2 - ERC725YJSONSchema](../standards/generic-standards/lsp2-json-schema.md)** and could use **[LSP3 - ProfileMetadata](../standards/universal-profile/lsp3-profile-metadata.md)**, etc.
-
-:::
-
-This section lists and describes the LSPs Standards representing the foundation of **LUKSO's ecosystem**. They can be used as **building blocks** and combined to create new and innovative protocols or dApps on the LUKSO Blockchain.
-
-The LSPs introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, and NFT 2.0**.
-
-<StandardsGallery />
 
 ## Further Information
 

@@ -10,6 +10,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr auto;
   grid-gap: 16px;
+  justify-self: center;
 
   a {
     max-width: 300px;
