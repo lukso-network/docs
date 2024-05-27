@@ -111,7 +111,7 @@ const erc725 = new ERC725(
 
 ## Encode Permissions
 
-To create the permissions for a specific third-party address, [`erc725.js`](../../../tools/erc725js/getting-started.md) provides the [`encodePermissions`](../../../tools/erc725js/classes/ERC725#encodepermissions) function. As input, it will take an object of all permissions that will be set or updated for the address. In this example, we will create the permission to `SETDATA`, so that the _beneficiary address_ can edit the Universal Profile storage.
+To create the permissions for a specific third-party address, [`erc725.js`](../../../tools/erc725js/getting-started.md) provides the [`encodePermissions`](../../../tools/erc725js/methods.md#encodepermissions) function. As input, it will take an object of all permissions that will be set or updated for the address. In this example, we will create the permission to `SETDATA`, so that the _beneficiary address_ can edit the Universal Profile storage.
 
 ```js
 // Create the permissions for the beneficiary address
@@ -122,7 +122,7 @@ const beneficiaryPermissions = erc725.encodePermissions({
 
 :::success Permission Selection
 
-The full list of available permissions can be found within the [Permissions API Documentation](../../../tools/erc725js/classes/ERC725.md#encodepermissions).
+The full list of available permissions can be found within the [Permissions API Documentation](../../../tools/erc725js/methods.md#encodepermissions).
 
 :::
 
