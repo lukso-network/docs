@@ -120,7 +120,7 @@ Here we will use the following parameters as examples:
 
 :::info
 
-You can use the `encodeData` function from the [_erc725.js_](../../tools/erc725js/classes/ERC725.md#encodedata) library to encode a `VerifiableURI` easily.
+You can use the `encodeData` function from the [_erc725.js_](../../tools/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
 
 <details>
     <summary>Code example to encode a <code>VerifiableURI</code> using <i>erc725.js</i></summary>

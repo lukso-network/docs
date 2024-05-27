@@ -234,7 +234,7 @@ To set up the erc725.js library, we will need the following:
 
 Once our erc725.js is initialized, we can encode the `LSP3Profile` data to generate a key and a value.
 
-To do so, we use the [`encodeData()`](../../../tools/erc725js/classes/ERC725.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
+To do so, we use the [`encodeData()`](../../../tools/erc725js/methods.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
 
 - `keyName`: `LSP3Profile`, the name of the key we want to encode.
 - `value`: an object with:

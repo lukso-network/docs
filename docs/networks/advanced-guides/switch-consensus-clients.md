@@ -157,7 +157,7 @@ If you are setting up a node for the testnet, add the `--testnet` flag to the st
 lukso start
 
 # Starting the Mainnet Validator
-lukso start --validator --transaction-fee-recipient "0x1234"
+lukso start --validator --transaction-fee-recipient "0x1234..."
 ```
 
 :::note

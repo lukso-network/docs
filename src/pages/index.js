@@ -19,20 +19,13 @@ function Index() {
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
         <Headline />
-        <CallToActionButton
-          bgColor="#6270A4"
-          color="#ffffff"
-          link="./learn/introduction"
-          text="START BUILDING WITH LUKSO STANDARDS"
-        />
-        <br />
         <div className={styles.cardContainer}>
           <Box
-            icon={NetworksIcon}
-            link="./networks/mainnet/parameters/"
-            title="NETWORKS"
-            className="networks"
-            content="Participate as node operator or interact on LUKSO's networks."
+            icon={GuidesIcon}
+            link="./learn/introduction"
+            title="LEARN"
+            className="learn"
+            content="Learn about integrating standards within contracts and dApps."
           />
           <Box
             icon={StandardsIcon}
@@ -48,21 +41,12 @@ function Index() {
             className="tools"
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
           />
-        </div>
-        <div className={styles.cardContainer}>
           <Box
-            icon={GuidesIcon}
-            link="./learn/introduction"
-            title="LEARN"
-            className="learn"
-            content="Learn about integrating standards within contracts and dApps."
-          />
-          <Box
-            icon={PartnersIcon}
-            link="./tools/partners"
-            title="PARTNERS"
-            className="partners"
-            content="Check out partnered ecosystem tools and services."
+            icon={NetworksIcon}
+            link="./networks/mainnet/parameters/"
+            title="NETWORKS"
+            className="networks"
+            content="Participate as node operator or interact on LUKSO's networks."
           />
           <Box
             icon={FAQIcon}
@@ -70,6 +54,13 @@ function Index() {
             title="FAQ"
             className="faq"
             content="Read frequently asked questions about the project and network."
+          />
+          <Box
+            icon={PartnersIcon}
+            link="./tools/partners"
+            title="INTEGRATIONS"
+            className="partners"
+            content="Check out LUKSO ecosystem tools and services."
           />
         </div>
       </div>

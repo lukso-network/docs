@@ -14,13 +14,9 @@ Yes, there are already several videos created for the BuildUP #2 hackathon that 
 
 Yes, developer meetings and events are planned to present our monthly tech progress and move into a more transparent development process. You can now find and discuss weekly tech updates within the official [LUKSO Discord](https://discord.gg/lukso) server.
 
-## Will there be another LUKSO Hackathon?
+## Are there financial support opportunities available for developers?
 
-Yes, we’re planning and preparing future hackathon projects. For official announcements, please follow our [LUKSO Twitter](https://twitter.com/lukso_io) account. You can already have a look into the developer channels on our [LUKSO Discord](https://discord.gg/lukso) to find teammates or project ideas, and get inspired by [previous hackathon project winners](https://medium.com/lukso/buildup-2-hackathon-winners-0f784793bc43).
-
-## Is there going to be a grants program?
-
-Yes, LUKSO is preparing to launch the grant program after the mainnet migration process is fully finalized. As you can see in the [LYX distribution](https://medium.com/lukso/the-lyxe-migration-process-374053e5ddf5), there are reserves and the foundation's treasury to support grants and drive the development of the network.
+Yes, developers have several options for financial support when building on LUKSO. The [LUKSO Grants Program](https://lukso.network/grants) offers funding through periodic application cycles. Furthermore, developers can participate in regular hackathons, including the [BuildUP hackathon series](https://app.buidlbox.io/lukso/build-up-2). Stay tuned for opportunities to engage and receive support on [Twitter](https://twitter.com/lukso_io) and [Discord](https://discord.gg/lukso).
 
 ## Will LUKSO be listed on additional exchanges?
 

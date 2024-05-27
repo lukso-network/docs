@@ -1,30 +1,75 @@
 ---
-sidebar_label: '📢 Deploy Universal Receiver'
-sidebar_position: 2
+sidebar_label: '📢 Create & Deploy Universal Receiver'
+sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Implement LSP1
+# Universal Receiver
 
-:::caution Disclaimer
+The [Universal Receiver](../../../standards/generic-standards/lsp1-universal-receiver.md) is a powerful tool that enables any smart contract or wallet to identify incoming transactions and automatically initiate customized responses.
 
-This guide might contain outdated information and will be updated soon.
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aE00rHVAWbw?si=XAcF8Kbn549E7RWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
+### Advantages
+
+- **Flexibility**: The Universal Receiver offers flexibility in assigning customized responses to external contracts.
+- **Customization**: These responses can be assigned to external contracts, known as [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md), which can have their own unique mechanisms for various purposes.
+
+A Universal Profile contract can host multiple Universal Receiver Delegate (URD) smart contracts. This enables an active digital presence on the blockchain, where interactions are managed and responded to based on your own predefined rules.
+
+To delegate incoming Universal Receiver notifications to a specific smart contract, simply set a [ERC725Y](../../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) data key on your Universal Profile. This will instruct your profile to forward notifications to the designated contract.
+
+The _data key_ field uses the following formats to store URD contracts:
+
+### Singleton Format
+
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate",
+  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
+  "keyType": "Singleton",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+:::warning
+Setting a new default Universal Receiver Delegate (URD) contract will replace the default delegate contract, which can be found [here](../../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md).
 :::
 
-:::note
+### Mapping Format
 
-Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](../universal-profile/create-profile.md)** or the **[Browser Extension](/install-up-browser-extension)** can skip this guide, as this contract is already deployed and set for their profiles.
+This format allows Universal Profiles to host multiple Universal Receiver Delegate contracts:
 
-:::
+```json
+{
+  "name": "LSP1UniversalReceiverDelegate:<bytes32>",
+  "key": "0x0cfc51aec37c55a4d0b10000<bytes32>",
+  "keyType": "Mapping",
+  "valueType": "address",
+  "valueContent": "Address"
+}
+```
+
+This way, different Universal Receiver Delegate contracts can be assigned for certain type IDs (bytes32) that are sent along the Universal Receiver call from a notifying smart contract.
+
+## Getting Started
 
 This guide will teach you how to deploy and set the default implementation of the **[Universal Receiver Delegate](../../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md)** (URD) used by the Universal Profile. This contract will register the addresses of the **[received assets](../../../standards/universal-profile/lsp5-received-assets.md)** and **[vaults](../../../standards/universal-profile/lsp10-received-vaults.md)** and will remove them on a balance equal to 0. This contract requires the [**`SUPER_SETDATA` Permission**](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions) to interact with the profile through the KeyManager.
 
 ![UniversalReceiverDelegate setting data keys on profile](/img/standards/lsp1delegate/token-transfer-4.jpg)
 
 ## Setup
+
+:::note
+
+Users deploying their Universal Profiles using the guides that utilize **[lsp-factory](../universal-profile/create-profile.md)** or the **[Browser Extension](/install-up-browser-extension)** can skip this guide, as this contract is already deployed and set for their profiles.
+
+:::
 
 Make sure you have the following dependencies installed before beginning this tutorial:
 
@@ -53,9 +98,11 @@ npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
 
 ## Step 1 - Imports, constants and EOA
 
-For beginners we need to get the _ABIs_ of the contracts that we will use and the _bytecode_ of the `LSP1UniversalReceiverDelegateUP`.  
-After that we need to store the address of our Universal Profile.  
-Then we will initialize the EOA that we will further use.
+We need to;
+
+1. Get the _ABIs_ of the contracts that we will use and the _bytecode_ of the `LSP1UniversalReceiverDelegateUP`.
+2. Store the address of our Universal Profile.
+3. Initialize the EOA that we will further use.
 
 <Tabs>
   

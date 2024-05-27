@@ -12,6 +12,14 @@ description: 'LUKSO LSP5 - Received Assets: a standard for referencing and keepi
 
 :::
 
+> **Goal:** Keeps track of digital assets
+
+LSP5 - Received Assets enables smart contracts including Universal Profiles to automatically track and manage the assets they own and received, such as tokens and NFTs.
+
+Traditionally, keeping track of owned assets on the blockchain is cumbersome, requiring manual additions and checks or reliance on external services to scan the entire network. LSP5 simplifies this by providing a standardized way to list all assets associated with a Universal Profile directly in its smart contract storage. This is achieved through specific data keys within the ERC725Y data key-value store, allowing for a dynamic and efficient way to manage and reference assets.
+
+By integrating with the LSP1-UniversalReceiverDelegate, this process is automated, ensuring that any new assets received by the Universal Profile are immediately recognized and accessible. This standard not only enhances the usability of Universal Profiles by providing a clear overview of owned assets but also lays the foundation for more complex interactions and functionalities within the LUKSO ecosystem.
+
 ## Introduction
 
 Keeping track of all the tokens that an address owns is currently unfeasible.

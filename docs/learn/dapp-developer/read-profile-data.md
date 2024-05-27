@@ -7,115 +7,106 @@ description: Learn how to read profile data from your Universal Profile.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Read Universal Profile Data
+# Read Data from your Universal Profile
 
-<div style={{textAlign: 'center', color: 'grey'}}>
-  <img
-    src={require('/img/learn/up_view.png').default}
-    alt="Universal Profile example on universalprofile.cloud"
-    width="800"
-  />
-<br/>
-<i>A <a href="https://wallet.universalprofile.cloud/0x6979474Ecb890a8EFE37daB2b9b66b32127237f7?network=testnet">Universal Profile</a> as seen on UniversalProfile.cloud</i>
-<br /><br />
-</div>
-
-:::info
-
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/universal-profile) repository.
-
-:::
-
-:::tip Universal Profile Explorer
-
-The explorer on 🔮 [universalprofile.cloud](https://universalprofile.cloud/) indexes all deployed Universal Profiles on the LUKSO network. You can try out the following examples with any Universal Profile address.
-
-:::
-
-## Setup
-
-To easily interact with a profile you should use the ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library. It is able to fetch and encode profile and contract data easily. You can install it in your project using:
+## Install [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library
 
 ```shell
 npm install @erc725/erc725.js
 ```
 
-## Get all profile data keys
+## Create erc725 instance
 
-:::tip
+:::info How is data stored on a Universal Profile
 
-🔍 You can inspect a profile smart contract (or any ERC725 contract) using 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector) to see all its 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store).
+Each data on a Universal Profile is stored into a generic key-value [ERC725Y](https://github.com/ethereum/ercs/blob/master/ERCS/erc-725.md#erc725y) store which allows storing an unlimited amount of data in the smart contract.
 
+ERC725Y standardizes a mapping of data keys to data values in order to have the ability to add or remove data across time without the need of redeploying the contract. It gives flexibility to the contract storage. On the smart contract, data keys are represented as bytes32 values and data values under these keys are stored as bytes.
+
+[LSP2 - ERC725YJSONSchema](../../standards/generic-standards/lsp2-json-schema) is the standard used by the LSPs to organize how the data should be represented as bytes32/bytes pairs.
 :::
 
+The parameters to provide to the erc725 instance are:
+
+- [Schema](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas): specifies which data keys will be used to retrieve data from the Universal Profile.
+- Univeral Profile address: the address of the Universal Profile you want to retrieve data from.
+- Optional only for retrieving decoded data: RPC provider (web3, ethereum, ethers) or plain RPC url of [mainnet](../../networks/mainnet/parameters.md) or [testnet](../../networks/testnet/parameters.md) networks.
+
 <details>
-<summary>
-<a href="../../standards/universal-profile/lsp3-profile-metadata">LSP3 - Profile Metadata</a> describes the data in the Universal Profile contract's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. You can get the content of these data keys directly using the ⚒️ <a href="../../tools/erc725js/classes/ERC725#getdata"> erc725.js</a>  library. 👇
-</summary>
+    <summary>Show code for creating an erc725 instance to read data from a Universal Profile</summary>
 
-<div>
+<Tabs>
 
-- `SupportedStandards:LSP3Profile` verifies that the ERC725Y contract contains [LSP3Profile](../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile) data keys
-- `LSP3Profile` contains the JSON file with profile descriptions and images
-- `LSP12IssuedAssets[]` contains assets the profile issued
-- `LSP5ReceivedAssets[]` contains assets the profile received
-- `LSP1UniversalReceiverDelegate` contains the address of the [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver/) smart contract
-
-</div>
-</details>
-
-To read the profile data you simply instantiate the ⚒️ [erc725.js](https://www.npmjs.com/package/@erc725/erc725.js) library with your profile address, an RPC provider (`web3`, `ethereum`, `ethers`) or plain RPC URL, and an IPFS gateway. You can find RPC URLs for LUKSO networks on the network pages: [mainnet](../../networks/mainnet/parameters.md) / [testnet](../../networks/testnet/parameters.md).
-
-The [`getData()`](../../tools/erc725js/classes/ERC725.md#getdata) function allows you to get all data keys that are stored on the profile smart contract and in your provided JSON schema.
-
-<Tabs>  
   <TabItem value="javascript" label="JavaScript">
 
 <!-- prettier-ignore-start -->
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import profileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
-const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://4201.rpc.thirdweb.com',
+const erc725js = new ERC725(
+  profileSchema,
+  "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e", // Universal Profile address
+  "https://rpc.testnet.lukso.network",
   {
     ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
 );
-
-// Get all profile data keys of the smart contract
-const profileData = await erc725js.getData();
-console.log(profileData);
 ```
 
 <!-- prettier-ignore-end -->
 
   </TabItem>
-    <TabItem value="typescript" label="TypeScript">
+  <TabItem value="typescript" label="TypeScript">
 
 <!-- prettier-ignore-start -->
 
-```js
+```ts
 import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import profileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
-const erc725js = new ERC725(lsp3ProfileSchema as ERC725JSONSchema[], '<myProfileAddress>', 'https://4201.rpc.thirdweb.com',
+const erc725js = new ERC725(
+  profileSchema as ERC725JSONSchema[], 
+  "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e", // Universal Profile address
+  "https://rpc.testnet.lukso.network",
   {
     ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
 );
-
-// Get all profile data keys of the smart contract
-const profileData = await erc725js.getData();
-console.log(profileData);
 ```
-
 <!-- prettier-ignore-end -->
 
   </TabItem>
 </Tabs>
+</details>
 
-You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684655e4e688CCF72d88F028c62EC3B1046CC`](https://wallet.universalprofile.cloud/0xE1F684655e4e688CCF72d88F028c62EC3B1046CC?network=testnet).
+## Retrieve encoded data
+
+#### Get all profile data
+
+`await erc725js.getData()`
+
+<details>
+    <summary>Show code snippet</summary>
+
+```js
+import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
+import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
+
+const erc725js = new ERC725(
+  profileSchema as ERC725JSONSchema[],
+  "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
+  "https://rpc.testnet.lukso.network",
+  {
+  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
+  }
+);
+
+const encodedProfileData = await erc725js.getData();
+```
+
+</details>
 
 <details>
     <summary>Show result</summary>
@@ -131,9 +122,8 @@ You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684
     key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
     name: 'LSP3Profile',
     value: {
-      hashFunction: 'keccak256(utf8)',
-      hash: '0x9b54d921f8365353667cabc331aa0c1dd42f173a6b7d871f7d94ac2cf226eafa',
-      url: 'ipfs://QmaXQSZFoUPM43kND6EUPSnJF7NjpkW9LwW6J9vRki5QDh',
+      verification: [Object],
+      url: 'ipfs://QmPNk4GXUDVSpkMYS9ySLj4r7WJYNBLG986GFPqfRJPL8E',
     },
   },
   {
@@ -144,154 +134,197 @@ You can give it a try with this profile address: [`<myProfileAddress> = 0xE1F684
   {
     key: '0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b',
     name: 'LSP5ReceivedAssets[]',
-    value: [
-      '0x5a44c7c0E47d1BeCEF166874Cd0b1be8f4090f64',
-      '0x303aE9B19ee9B6FDa8c710b7F74b0582bbCC7b81',
-      '0x2Bc3bfFf67094B4416623bDe626fd5f904b590d1',
-      '0x48e37a167A3eE426389dc6E1Dc2d440E86C3737F',
-      '0xDB9183ddA773285d5A4C5b1067A78c9F64Fb26E6',
-      '0x778b47Bd998A5D0cc645Ff0c548096ea50628C83',
-    ],
+    value: [],
   },
   {
     key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
     name: 'LSP1UniversalReceiverDelegate',
-    value: '0x0000000000F49F9818D746b4b999A9E449F675bb',
+    value: '0x7870C5B8BC9572A8001C3f96f7ff59961B23500D',
   },
 ];
 ```
 
 </details>
 
-:::note ERC725Y JSON schemas
+#### Get specific profile data
 
-The ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js.
-
-You can also create and load your own ERC725Y JSON schemas if you want to add custom data keys to the profile.
-
-:::
-
-## Fetch the Profile Metadata
-
-If you only need the contents of the profile data JSON file, you can use [`fetchData('LSP3Profile')`](../../tools/erc725js/classes/ERC725.md#fetchdata). This will download the JSON file and verify its hash automatically.
-
-```js
-// ...
-
-// Download and verify the profile metadata JSON file
-const profileMetaData = await erc725js.fetchData('LSP3Profile');
-console.log(profileMetaData);
-```
+`await myErc725.getData(['LSP3Profile', 'LSP1UniversalReceiverDelegate'])`
 
 <details>
-    <summary>Show result</summary>
+    <summary>Main data keys for retrieving specific data</summary>
+
+- `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile)
+- `LSP3Profile` used to retrieve VerifiableURI encoded value. VerifiableURI is a reference to a JSON file that describes the Universal Profile meta data.
+- `LSP12IssuedAssets[]` used to retrieve assets the Universal Profile issued.
+- `LSP5ReceivedAssets[]` used to retrieve assets the Universal Profile received.
+- `LSP1UniversalReceiverDelegate` used to retrieve the [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver/) smart contract address set on the Universal Profile.
+
+Find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso.tech/data-fetcher) tool or in the [erc725 repo](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas).
+
+</details>
+
+In the above example, we retrieve encoded `LSP3Profile` and `LSP1UniversalReceiverDelegate` from a Universal Profile.
+
+<details>
+    <summary>Show code snippet</summary>
 
 ```js
-{
-  "key": "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5",
-  "name": "LSP3Profile",
-  "value": {
-    "LSP3Profile": {
-      "name": "johann",
-      "description": "I'm a 40 y-old dad of 3. Technology enthusiast, skater, guitarist but mostly curious.",
-      "tags": [
-        "profile"
-      ],
-      "links": [
-        {
-          "title": "...",
-          "url": "..."
-        },
-        ...
-      ],
-      "profileImage": [
-        {
-          "width": 1512,
-          "height": 1998,
-          "hashFunction": "keccak256(bytes)",
-          "hash": "0x...",
-          "url": "ipfs://..."
-        },
-        ...
-      ],
-      "backgroundImage": [
-        {
-          "width": 1512,
-          "height": 1998,
-          "hashFunction": "keccak256(bytes)",
-          "hash": "0x...",
-          "url": "ipfs://..."
-        },
-        ...
-      ]
-    }
+import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
+import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
+
+const erc725js = new ERC725(
+  profileSchema as ERC725JSONSchema[],
+  "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
+  "https://rpc.testnet.lukso.network",
+  {
+  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
   }
-}
+);
+
+  const specificProfileData = await erc725js.getData([
+    "LSP3Profile",
+    "LSP1UniversalReceiverDelegate",
+  ]);
 ```
 
 </details>
-
-:::note get and fetch
-
-The [`getData(...)`](../../tools/erc725js/classes/ERC725#getdata) function only retrieves the data keys values from the smart contract. In comparison, [`fetchData(...)`](../../tools/erc725js/classes/ERC725#fetchdata) will download and decode the content of `VerifiableURI`.
-
-:::
-
-## Fetch Assets and Universal Receiver
-
-Instead of using the [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata) key, you can also use other data keys like [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets), [`LSP5ReceivedAssets[]`](../../standards/universal-profile/lsp5-received-assets), or [`LSP1UniversalReceiverDelegate`](../../standards/generic-standards/lsp1-universal-receiver-delegate), as described in the following example:
-
-<!-- prettier-ignore-start -->
-
-```js
-// ...
-
-// Fetch all of the profile's issued assets
-const issuedAssetsDataKey = await erc725js.fetchData('LSP12IssuedAssets[]');
-console.log(issuedAssetsDataKey);
-
-// Fetch all owned assets of the profile
-const receivedAssetsDataKey = await erc725js.fetchData('LSP5ReceivedAssets[]');
-console.log(receivedAssetsDataKey);
-
-// Fetch the profile's universal receiver
-const universalReceiverDataKey = await erc725js.fetchData('LSP1UniversalReceiverDelegate');
-console.log(universalReceiverDataKey);
-```
-
-<!-- prettier-ignore-end -->
 
 <details>
     <summary>Show result</summary>
 
 ```js
-// Issued Assets (empty, no current assets)
-{
-  key: '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
-  name: 'LSP12IssuedAssets[]',
-  value: []
-}
-
-// Owned Assets (Six individual assets)
-{
-  key: '0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b',
-  name: 'LSP5ReceivedAssets[]',
-  value: [
-    '0x5a44c7c0E47d1BeCEF166874Cd0b1be8f4090f64',
-    '0x303aE9B19ee9B6FDa8c710b7F74b0582bbCC7b81',
-    '0x2Bc3bfFf67094B4416623bDe626fd5f904b590d1',
-    '0x48e37a167A3eE426389dc6E1Dc2d440E86C3737F',
-    '0xDB9183ddA773285d5A4C5b1067A78c9F64Fb26E6',
-    '0x778b47Bd998A5D0cc645Ff0c548096ea50628C83'
-  ]
-}
-
-// Universal Receiver Delegate (0x0...75bb)
-{
-  key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
-  name: 'LSP1UniversalReceiverDelegate',
-  value: '0x0000000000F49F9818D746b4b999A9E449F675bb'
-}
+[
+  {
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    name: 'LSP3Profile',
+    value: {
+      verification: {
+        method: 'keccak256(utf8)',
+        data: '0x598c2707d6bd256489e5de43f60f532f6541c6785c94f85a348e9bcbd7bdf4d6',
+      },
+      url: 'ipfs://QmPNk4GXUDVSpkMYS9ySLj4r7WJYNBLG986GFPqfRJPL8E',
+    },
+  },
+  {
+    key: '0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47',
+    name: 'LSP1UniversalReceiverDelegate',
+    value: '0x7870C5B8BC9572A8001C3f96f7ff59961B23500D',
+  },
+];
 ```
 
 </details>
+
+## Retrieve decoded data
+
+#### Get all profile metadata (name, photos...)
+
+Example to retrieve the content of the JSON file from the verifiable URI stored on the smart contract. It will download the JSON file and verify its hash automatically.
+
+<details>
+    <summary>Show code snippet</summary>
+
+```js
+import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
+import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
+
+const erc725js = new ERC725(
+  profileSchema as ERC725JSONSchema[],
+  "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
+  "https://rpc.testnet.lukso.network",
+  {
+  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
+  }
+);
+
+  const decodedProfileMetadata = await erc725js.fetchData([
+    "LSP3Profile",
+  ]);
+```
+
+</details>
+
+<details>
+    <summary>Show result</summary>
+
+```js
+[
+  {
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    name: 'LSP3Profile',
+    value: {
+      LSP3Profile: {
+        name: 'testname',
+        description: '',
+        tags: ['profile'],
+        links: [],
+        profileImage: [[Object], [Object], [Object], [Object], [Object]],
+        backgroundImage: [],
+      },
+    },
+  },
+];
+```
+
+</details>
+
+#### Get issued and received assets
+
+<details>
+    <summary>Show code snippet</summary>
+
+```js
+import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
+import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
+
+const erc725js = new ERC725(
+  profileSchema as ERC725JSONSchema[],
+  "0xFF7E89acaBce3ed97Ed528288D3b8F113557A8c8",
+  "https://rpc.testnet.lukso.network",
+  {
+  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
+  }
+);
+
+  const decodedIssuedAndRetrievedAssetAddresses = await erc725js.fetchData([
+    "LSP12IssuedAssets[]","LSP5ReceivedAssets[]"
+  ]);
+
+```
+
+</details>
+
+<details>
+    <summary>Show result</summary>
+
+```js
+[
+  {
+    key: '0x7c8c3416d6cda87cd42c71ea1843df28ac4850354f988d55ee2eaa47b6dc05cd',
+    name: 'LSP12IssuedAssets[]',
+    value: [],
+  },
+  {
+    key: '0x6460ee3c0aac563ccbf76d6e1d07bada78e3a9514e6382b736ed3f478ab7b90b',
+    name: 'LSP5ReceivedAssets[]',
+    value: [
+      '0xc3B1c63b598Ee41a4BfCE56ecCA802dCD5D5241F',
+      '0xFc4D463F888D0097f596aac83cBe70F5C2F5641d',
+      '0x74770d4568DBb5E466c45D128cB3A535EB7291eC',
+      '0x6dA30e7a8064eAbcA9220AB088514Fc8a131E719',
+      '0x85134C7bb2Aa2ee019e64d654B289F738344B2ee',
+      '0xB9dE32D8CaAcf5D2d1f30e3006553e25D46b569F',
+      '0xD1FBFC22B2424be1E32d3Ee1dCB5306439F0f2A9',
+      '0x8b08eeb9183081De7e2D4ae49fAD4afb56E31Ab4',
+      '0x0428AFd3F122a65D023A6863F691e49fcc7B0f44',
+      '0x50875607ca35c840Bc55ac6D0ce1c3C9c61D65a5',
+    ],
+  },
+];
+```
+
+</details>
+
+## Take advantage of our ERC725 inspect tool
+
+🔍 You can retrieve encoded Universal Profile data easily with our [ERC725 Inspect](https://erc725-inspect.lukso.tech/data-fetcher) tool. You only have to paste your Universal Profile address and choose the data key to retrieve data from.

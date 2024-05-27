@@ -6,14 +6,24 @@ description: Getting started building dApps on the LUKSO ecosystem.
 
 # Getting started building dApps
 
-## Get the Universal Profile Browser Extension
+## Interact with Universal Profiles
 
-To build dApps for LUKSO, you will need to:
+When building dApps on LUKSO, you are interacting with [Universal Profiles](../../standards/universal-profile/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). Before a connection can be established, users must create their Universal Profile by:
 
-- create a [Universal Profile (UP)](../../standards/universal-profile/introduction.md)
-- install the [LUKSO Universal Profile browser extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn)
+1. [Installing the Universal Profile Browser Extension](/install-up-browser-extension)
+2. [Deploying their Universal Profile](https://my.universalprofile.cloud)
 
-The extension allows you to create, interact, manage your UP and to access the `window.lukso` object from your dApp.
+:::note Manual Deployment
+
+You can also create new [Universal Profiles](../../standards/universal-profile/introduction.md) by ⚒️ [deploying them programmatically](../../learn/expert-guides/universal-profile/create-profile.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
+
+:::
+
+:::tip Relayer API
+
+If you want to deploy Universal Profiles for your users, please check out our [Relayer API](../../tools/relayer-developer.md).
+
+:::
 
 ## Code Repositories
 
@@ -43,4 +53,10 @@ src="/img/guides/playground_dapp.png"
 alt="LUKSO Playground dApp"
 />
 
+</div>
+
+## Kickstart Your Development Journey: Accessing Resources & Tools
+
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kJ5_6LN6mZc?si=7NWn-odkk8KmSDLz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
