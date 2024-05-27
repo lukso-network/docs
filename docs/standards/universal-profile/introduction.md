@@ -19,6 +19,10 @@ Building an identity on top of keys is almost impossible because keys are likely
 
 Blockchain-based accounts can change the way of interacting on-chain, allowing the usage of multiple components together. Used in combination with a Controller (see **[LSP6 - Key Manager](./lsp6-key-manager.md)**), they could allow any entity to execute or set some data on your profile directly or via relay execution. Finally, developers could use contracts for social recovery if keys are lost. All these components together can enhance the blockchain experience.
 
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rzYT1_p2Mqk?si=2HSFAcfHU8qnkelV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ## Universal Profile Architecture
 
 The diagram below shows the standard architecture used by LUKSO for Universal Profile.

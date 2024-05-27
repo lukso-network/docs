@@ -18,27 +18,27 @@
     "prettier:fix": "prettier \"src/**/*.js\" \"docs/**/*.md\" --write"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.8.8",
-    "@docusaurus/core": "3.2.1",
-    "@docusaurus/plugin-client-redirects": "3.2.1",
-    "@docusaurus/plugin-google-gtag": "3.2.1",
-    "@docusaurus/preset-classic": "3.2.1",
+    "@cookbookdev/docsbot": "^4.14.1",
+    "@docusaurus/core": "3.3.2",
+    "@docusaurus/plugin-client-redirects": "3.3.2",
+    "@docusaurus/plugin-google-gtag": "3.3.2",
+    "@docusaurus/preset-classic": "3.3.2",
     "@mdx-js/react": "3.0.0",
     "@svgr/webpack": "^8.1.0",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "docusaurus-plugin-sass": "^0.2.5",
     "file-loader": "^6.2.0",
     "plugin-image-zoom": "^1.2.0",
     "prettier": "^3.2.5",
     "prism-react-renderer": "^2.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.74.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.77.2",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.2.1",
-    "@docusaurus/types": "3.2.1"
+    "@docusaurus/module-type-aliases": "3.3.2",
+    "@docusaurus/types": "3.3.2"
   },
   "browserslist": {
     "production": [

@@ -54,3 +54,9 @@ alt="LUKSO Playground dApp"
 />
 
 </div>
+
+## Kickstart Your Development Journey: Accessing Resources & Tools
+
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kJ5_6LN6mZc?si=7NWn-odkk8KmSDLz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>

@@ -120,7 +120,7 @@ After you've approved the contract type, its recommended to check if the asset a
 </div>
 </details>
 
-As shown in the previous [Metadata Detection Guide](./standard-detection.md#metadata-detection), you can get the content of the data keys directly using the `getData(...)` function of the ⚒️ [`erc725.js`](../../tools/erc725js/classes/ERC725#getdata) library.
+As shown in the previous [Metadata Detection Guide](./standard-detection.md#metadata-detection), you can get the content of the data keys directly using the `getData(...)` function of the ⚒️ [`erc725.js`](../../tools/erc725js/methods#getdata) library.
 
 <!-- prettier-ignore-start -->
 
@@ -185,8 +185,8 @@ Based on the [token type](#detect-the-token-type), the information of the [LSP4 
 
 To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../tools/erc725js/getting-started.md) library:
 
-- [`fetchData('LSP4Metadata')`](../../tools/erc725js/classes/ERC725.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
-- [`getData(LSP4Metadata)`](../../tools/erc725js/classes/ERC725#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../tools/erc725js/classes/ERC725.md#decodedata).
+- [`fetchData('LSP4Metadata')`](../../tools/erc725js/methods.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
+- [`getData(LSP4Metadata)`](../../tools/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../tools/erc725js/methods.md#decodedata).
 
 ```js
 // ...
@@ -621,7 +621,7 @@ After retrieving the metadata from the contract, you can continue to [retrieve t
 
 :::caution Version Support
 
-Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata from a Base URI. For previous LSP8 assets, the Base URI may be retrievable by calling the [`fetchData`](../../tools/erc725js/classes/ERC725.md#fetchdata) function as described in the [Global Token Information](#global-token-information) section.
+Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata from a Base URI. For previous LSP8 assets, the Base URI may be retrievable by calling the [`fetchData`](../../tools/erc725js/methods.md#fetchdata) function as described in the [Global Token Information](#global-token-information) section.
 
 :::
 
