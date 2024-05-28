@@ -10,6 +10,10 @@ import TabItem from '@theme/TabItem';
 
 The [Universal Receiver](../../../standards/generic-standards/lsp1-universal-receiver.md) is a powerful tool that enables any smart contract or wallet to identify incoming transactions and automatically initiate customized responses.
 
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aE00rHVAWbw?si=XAcF8Kbn549E7RWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ### Advantages
 
 - **Flexibility**: The Universal Receiver offers flexibility in assigning customized responses to external contracts.
