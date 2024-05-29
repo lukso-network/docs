@@ -1686,9 +1686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cookbookdev/docsbot@npm:^4.14.1":
-  version: 4.14.1
-  resolution: "@cookbookdev/docsbot@npm:4.14.1"
+"@cookbookdev/docsbot@npm:^4.17.4":
+  version: 4.17.4
+  resolution: "@cookbookdev/docsbot@npm:4.17.4"
   dependencies:
     "@headlessui/react": ^1.7.18
     "@headlessui/tailwindcss": ^0.2.0
@@ -1739,7 +1739,7 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: a7f4cdb371397e53f92cadbc035e182e8bfec4f4dbf50430b0818327b7a9a96048517a683a60904c3b20558d2fe94993b979f07be5cf932f51228d689a40d29c
+  checksum: beee261866a05824e741e9d44573ea8fbaefc72a6b88981a78bec1e6263e22b76db9c9b95a00102de6878ab611a61b90a5edddb8888d4552f4321a1451423579
   languageName: node
   linkType: hard
 
@@ -9208,7 +9208,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lukso-docs@workspace:."
   dependencies:
-    "@cookbookdev/docsbot": ^4.14.1
+    "@cookbookdev/docsbot": ^4.17.4
     "@docusaurus/core": 3.3.2
     "@docusaurus/module-type-aliases": 3.3.2
     "@docusaurus/plugin-client-redirects": 3.3.2
