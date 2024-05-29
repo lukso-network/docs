@@ -147,8 +147,8 @@ function StandardCard({ link, title, name, text }) {
           <h4 className="flex items-center font-jakarta">
             <div className={styles.standardName}>{name}</div>
           </h4>
+          <p className="mb-0 text-sm text-zinc-400">{text}</p>
         </Link>
-        <p className="mb-0 text-sm text-zinc-400">{text}</p>
       </div>
     </div>
   );
@@ -156,10 +156,32 @@ function StandardCard({ link, title, name, text }) {
 
 export default function StandardsGallery() {
   return (
-    <div className="row flex flex-col items-center justify-between">
-      {STANDARDS.map((standard) => (
-        <StandardCard {...standard} key={standard.title} />
-      ))}
+    <div className="container">
+      <div className="row flex flex-col items-center justify-between">
+        {STANDARDS.slice(0, 4).map((standard) => (
+          <StandardCard {...standard} key={standard.title} />
+        ))}
+      </div>
+      <div className="row flex flex-col items-center justify-between">
+        {STANDARDS.slice(4, 8).map((standard) => (
+          <StandardCard {...standard} key={standard.title} />
+        ))}
+      </div>
+      <div className="row flex flex-col items-center justify-between">
+        {STANDARDS.slice(8, 12).map((standard) => (
+          <StandardCard {...standard} key={standard.title} />
+        ))}
+      </div>
+      <div className="row flex flex-col items-center justify-between">
+        {STANDARDS.slice(12, 15).map((standard) => (
+          <StandardCard {...standard} key={standard.title} />
+        ))}
+      </div>
+      <div className="row flex flex-col items-center justify-between">
+        {STANDARDS.slice(15).map((standard) => (
+          <StandardCard {...standard} key={standard.title} />
+        ))}
+      </div>
     </div>
   );
 }

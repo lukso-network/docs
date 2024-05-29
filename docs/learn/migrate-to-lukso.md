@@ -18,15 +18,3 @@ This page will overview the differences between building on the LSP ecosystem in
 ## Deploying Ethereum Contracts to LUKSO
 
 As LUKSO is EVM compatible, all smart contracts written for Ethereum can easily be ported over and redeployed. The main difference is that developers must connect to a [LUKSO node or RPC endpoint](../networks/mainnet/parameters) instead of an Ethereum node.
-
-:::success Developer Libraries
-
-If you want to do LSP smart contract deployments, interactions, or data retrievals, please check our [developer tools](../tools/getting-started.md), delivering all necessary functionality from ABIs to decoding and fetching.
-
-:::
-
-You can read more about smart contract development in the following guides and pages:
-
-- [LSP smart contract development](../learn/smart-contract-developers/getting-started.md)
-- [Technical LSP documentation](../contracts/introduction.md)
-- [LSPs on GitHub](https://github.com/lukso-network/LIPs/)
