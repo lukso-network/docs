@@ -18,7 +18,7 @@
     "prettier:fix": "prettier \"src/**/*.js\" \"docs/**/*.md\" --write"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.14.1",
+    "@cookbookdev/docsbot": "^4.17.4",
     "@docusaurus/core": "3.3.2",
     "@docusaurus/plugin-client-redirects": "3.3.2",
     "@docusaurus/plugin-google-gtag": "3.3.2",
