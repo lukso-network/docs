@@ -99,7 +99,145 @@ To ensure the authenticity of the images, please generate the hash of the upload
 
 </details>
 
-When you metadata file is ready, upload it (centralised or decentralised storage).
+Such JSON can be generated manually or using tools, such as [`@lukso/lsp-utils`](https://github.com/lukso-network/lsp-utils). To generate the JSON from predefined fields:
+
+1. Install the `@lukso/lsp-utils` library
+
+```bash
+npm i @lukso/lsp-utils
+```
+
+2. Import the `generateLSP4JSON` to generate the JSON
+
+```js
+import { generateLSP4JSON } from '@lukso/lsp-utils';
+```
+
+Example:
+
+```js
+const name = 'Test NFT';
+
+const description = 'This is a test NFT collection';
+
+const links = [
+  { title: 'Website', url: 'https://example.com' },
+  { title: 'Twitter', url: 'https://twitter.com/example' },
+];
+
+const attributes = [
+  { key: 'trait', value: 'rare', type: 'string' },
+  { key: 'level', value: '5', type: 'number' },
+];
+
+const hashVerification = {
+  method: 'keccak256(bytes)',
+  data: '0x6216ef2b4777755faa239eaf3c37c6e5bdf073b20d8b86a2bb5d214ff70194c2',
+};
+
+const icons = {
+  icons: [
+    {
+      width: 200,
+      height: 200,
+      url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
+      verification: hashVerification,
+    },
+    {
+      width: 400,
+      height: 400,
+      url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
+      verification: hashVerification,
+    },
+  ],
+  lsp7images: [],
+  lsp8images: [],
+};
+
+const images = {
+  imageFields: [
+    {
+      images: [
+        {
+          width: 1200,
+          height: 1200,
+          url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
+          verification: hashVerification,
+        },
+        {
+          width: 800,
+          height: 600,
+          url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
+          verification: hashVerification,
+        },
+      ],
+      lsp7images: [],
+      lsp8images: [],
+    },
+  ],
+};
+
+const assets = {
+  assets: [
+    {
+      url: 'ipfs://QmWE3VGALUgQk1unq765vNbCf3zEYfBwtq1eAtQXLoi3vh',
+      fileType: 'image/png',
+      verification: hashVerification,
+    },
+  ],
+  lsp7assets: [],
+  lsp8assets: [],
+};
+
+const json = generateLSP4JSON(
+  name,
+  description,
+  links,
+  attributes,
+  icons,
+  images,
+  assets,
+);
+//
+// {
+//  links: ...
+//  description:...
+// }
+//
+```
+
+Now the JSON can be uploaded to IPFS.
+
+Other utility functions can be used to prepare the JSON to be converted to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata), such as creating the hash and encoding it as VerifiableURI.
+
+Check all functions related to metadata generating in [lsp-utils docs](../tools/lsp-utils/LSP4DigitalAssetMetadata.md).
+
+```js
+import { generateLSP4JSONWithHash } from '@lukso/lsp-utils';
+import { generateLSP4JSONVerifiableURI } from '@lukso/lsp-utils';
+
+const { json, hash } = generateLSP4JSONWithHash(
+  name,
+  description,
+  links,
+  attributes,
+  icons,
+  images,
+  assets,
+);
+
+const verifiableURI = generateLSP4JSONVerifiableURI(
+  name,
+  description,
+  links,
+  attributes,
+  icons,
+  images,
+  assets,
+);
+```
+
+The `generateLSP4JSONVerifiableURI` will return you directly what needs to be set in the smart contract, but it is slightly more expensive than uploading the JSON to IPFS and encoding the link, as the function encode the JSON as a base64 link.
 
 ## Encode the LSP4 Metadata
 
