@@ -1,5 +1,5 @@
 ---
-sidebar_label: '💽 Deploy Token with Metadata'
+sidebar_label: '- Deploy Token with Metadata'
 description: How to set LSP4 Metadata of digital assets on contract deployment.
 ---
 

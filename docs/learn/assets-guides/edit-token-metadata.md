@@ -1,5 +1,5 @@
 ---
-sidebar_label: '💽 Edit Token Metadata'
+sidebar_label: '- Edit Token Metadata'
 sidebar_position: 3
 description: Learn how to update LSP4 Metadata of digital assets on LUKSO.
 ---

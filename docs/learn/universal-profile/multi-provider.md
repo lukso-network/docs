@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🛳️ Multi-Provider Connection'
+sidebar_label: '- Multi-Provider Connection'
 sidebar_position: 3
 description: Use Wallet Connect or Web3-Onboard with the LUKSO Universal Profile Browser Extension.
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🎆 Read Asset Data'
+sidebar_label: '- Read Asset Data'
 sidebar_position: 7
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
@@ -24,10 +24,19 @@ On the LUKSO network, [Digital Assets](../../standards/tokens/introduction.md) a
 
 In this tutorial, you will learn how to:
 
-- [Detect the Contract Interface](#detect-the-contract-interface)
-- [Detect the Metadata Standard](#detect-the-metadata-standard)
-- [Detect the Token Type](#detect-the-token-type)
-- [Fetch the Asset Data](#fetch-the-asset-metadata)
+- [Read Digital Asset Data](#read-digital-asset-data)
+  - [Setup](#setup)
+  - [Detect the Contract Interface](#detect-the-contract-interface)
+  - [Detect the Metadata Standard](#detect-the-metadata-standard)
+  - [Detect the Token Type](#detect-the-token-type)
+  - [Fetch the Asset Metadata](#fetch-the-asset-metadata)
+    - [Global Token Information](#global-token-information)
+    - [Token ID Metadata](#token-id-metadata)
+    - [Preparing the Token IDs](#preparing-the-token-ids)
+    - [Get Data from Token ID](#get-data-from-token-id)
+    - [Get Data from Base URI](#get-data-from-base-uri)
+    - [Get the JSON Content](#get-the-json-content)
+  - [Fetch Creators and Token Properties](#fetch-creators-and-token-properties)
 
 ## Setup
 
