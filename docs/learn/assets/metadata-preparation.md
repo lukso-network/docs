@@ -24,7 +24,7 @@ To add metadata to your contract, you have to follow these steps:
 4. Encode the LSP4 Metadata JSON file URL as a `VerifiableURI`.
 5. Write the reference to the JSON file on the contract.
 
-## File Uploads
+## 1 - File Uploads
 
 :::tip Storage Solution
 
@@ -39,7 +39,7 @@ To upload the files (assets and metadata JSON file), you have mainly two options
 | Centralized Storage   | Centralized storage solutions are user-friendly and can be a good starting point for those new to the ecosystem or participating in hackathons. However, they rely on a single point of control, which may not align with the decentralized ethos of blockchain technology. | [AWS S3](https://aws.amazon.com/s3/), [Google Cloud](https://cloud.google.com/storage?hl=en), [Dropbox](https://www.dropbox.com/), etc. |
 | Decentralized Storage | Decentralized storage solutions align with the decentralized nature of blockchain and offer benefits like _redundancy_, _censorship resistance_, and _permanent storage_. However, they might be more complex to interact with.                                             | [IPFS](https://ipfs.tech/), [Arweave](https://www.arweave.org/), [Filecoin](https://filecoin.io/), etc.                                 |
 
-## Generate the JSON File
+## 2 - Generate the JSON File
 
 After uploading the media files, you can attach their links to a JSON File in the following structure:
 
@@ -102,7 +102,7 @@ After uploading the media files, you can attach their links to a JSON File in th
 
 </details>
 
-The JSON content is then used as input for encoding the metadata according to the [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standardization. After you filled your metadata file will content, upload it to a preferred storage solution.
+The JSON content is then used as input for encoding the metadata according to the [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standard. After you filled your metadata file with content, upload it to a preferred storage solution.
 
 :::info Data Verification
 
@@ -113,7 +113,7 @@ To ensure the authenticity of the images, please **generate the hash** of the up
 
 :::
 
-## Encode the LSP4 Metadata
+## 3 - Encode the LSP4 Metadata
 
 :::tip Convenience Tool
 
@@ -160,7 +160,7 @@ The encoded content will then look like the following:
 
 </details>
 
-## Adding the Metadata
+## 4 - Adding the Metadata
 
 After you retrieved the key and value of your [ERC725Y](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) data key, you can call the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the asset to update it's metadata on the contract.
 

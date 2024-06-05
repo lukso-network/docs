@@ -71,10 +71,8 @@ import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
 const myAsset = new ERC725(
   lsp4Schema,
-  // Your Asset Address
-  '<myAssetAddress>',
-  // LUKSO Testnet RPC
-  'https://4201.rpc.thirdweb.com',
+  '<myAssetAddress>', // Your Asset Address
+  'https://4201.rpc.thirdweb.com', // LUKSO Testnet RPC
   {},
 );
 
