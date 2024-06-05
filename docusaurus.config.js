@@ -209,13 +209,13 @@ export default {
           type: 'doc',
           docId: 'learn/introduction',
           position: 'left',
-          label: 'Learn',
+          label: 'Tutorials',
         },
         {
           type: 'doc',
           docId: 'tools/getting-started',
           position: 'left',
-          label: 'Tools',
+          label: 'Libraries',
         },
         {
           type: 'doc',
