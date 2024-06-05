@@ -22,7 +22,7 @@ function Index() {
         <div className={styles.cardContainer}>
           <Box
             icon={GuidesIcon}
-            link="./learn/introduction"
+            link="./tutorials/introduction"
             title="LEARN"
             className="learn"
             content="Learn about integrating standards within contracts and dApps."

@@ -69,7 +69,7 @@ We will need to fill 2 additional parameters:
 
 ## 3 - (Optional) Create a Custom LSP7 Token
 
-We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../../../learn/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract) and [deploy it](../../../learn/smart-contract-developers/getting-started.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
+We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../../../tutorials/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract) and [deploy it](../../../tutorials/smart-contract-developers/getting-started.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
 
 ## 4 - Create the Custom LSP1 Delegate Contract
 

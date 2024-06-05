@@ -16,7 +16,7 @@ Connecting to the [Universal Profile Browser Extension](https://chromewebstore.g
 <div style={{textAlign: 'center'}}>
 
 <img
-    src="/img/learn/up_extension_connect.png"
+    src="/img/tutorials/up_extension_connect.png"
     alt="Example of UP Connection Screen"
     width="600"
 />

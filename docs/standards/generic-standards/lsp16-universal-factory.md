@@ -47,7 +47,7 @@ This multi-chain compatibility eliminates the **risk of asset loss** due to mism
 
 Check the [**LSP16UniversalFactory contract functions**](../../contracts/contracts/LSP16UniversalFactory/LSP16UniversalFactory.md) to know how to deploy contracts at the same address across different chains.
 
-Check the **JavaScript** guides to know [**How to deploy contracts at the same address across different chains.**](../../learn/expert-guides/deploy-multichain-contracts.md)
+Check the **JavaScript** guides to know [**How to deploy contracts at the same address across different chains.**](../../tutorials/expert-guides/deploy-multichain-contracts.md)
 
 :::
 

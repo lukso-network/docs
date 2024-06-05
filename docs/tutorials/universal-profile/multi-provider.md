@@ -25,7 +25,7 @@ Both libraries are open-source, framework-agnostic JavaScript tools.
     <th style={{ minWidth: "25rem" }}>Description</th>
   </tr>
   <tr>
-    <td><img src="/img/learn/web3_onboard_view.png" /></td>
+    <td><img src="/img/tutorials/web3_onboard_view.png" /></td>
     <td style={{ minWidth: "25rem" }}><li>Customizable Connection Window</li>
     <li>Remains connection on Page Refresh</li>
     <li>Lists supported <a href="https://eips.ethereum.org/EIPS/eip-1193">EIP-1193</a> Extensions</li>
@@ -43,7 +43,7 @@ Both libraries are open-source, framework-agnostic JavaScript tools.
     <th style={{ minWidth: "25rem" }}>Description</th>
   </tr>
   <tr>
-    <td><img src="/img/learn/web3_modal_view.png" /></td>
+    <td><img src="/img/tutorials/web3_modal_view.png" /></td>
     <td style={{ minWidth: "25rem" }}><li>Customizable Connection Window</li>
     <li>Permanently Visible Connector Element</li>
     <li>Uses <a href="https://www.npmjs.com/package/@lukso/web3-onboard-config">Custom Configuration Packages</a></li>

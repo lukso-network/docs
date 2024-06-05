@@ -21,7 +21,7 @@ You can learn about the project setup and Hardhat workflow by checking the [Gett
 
 :::info
 
-For instructions on deploying a contract using the Universal Profile Browser Extension, please refer to the [Deploy Contracts Guide](../dapp-developer/deploy-contracts.md) for dApp developers.
+For instructions on deploying a contract using the Universal Profile Browser Extension, please refer to the [Deploy Contracts Guide](../universal-profile/deploy-contracts.md) for dApp developers.
 
 :::
 

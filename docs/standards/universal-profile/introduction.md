@@ -8,7 +8,7 @@ description: Introduction to LUKSO's Universal Profiles.
 
 :::success Useful Tip
 
-The [Learn Section](../../learn/introduction.md) will take you through the process of creating a Universal Profile and deploying it on the [LUKSO Testnet](../../networks/testnet/parameters.md).  
+The [Learn Section](../../tutorials/introduction.md) will take you through the process of creating a Universal Profile and deploying it on the [LUKSO Testnet](../../networks/testnet/parameters.md).  
 You can also browse the already deployed Universal Profiles on [universalprofile.cloud](https://universalprofile.cloud/).
 
 :::
@@ -53,7 +53,7 @@ The **[LSP0 - ERC725Account](./lsp0-erc725account.md)** standard represents a bl
 
 :::tip
 
-The guide [Connect Your Universal Profile to a dApp](../../learn/dapp-developer/connect-profile.md) may interest you.
+The guide [Connect Your Universal Profile to a dApp](../../tutorials/universal-profile/connect-profile.md) may interest you.
 
 :::
 

@@ -8,7 +8,7 @@ description: LUKSO tools and services overview.
 
 ## I am a developer. Where do I start?
 
-If you are a developer and want to use the LUKSO Blockchain, you can start by experimenting with the [Public Testnet](../../networks/testnet/parameters.md) and reading the [developer's guides](../../learn/expert-guides/universal-profile/create-profile.md). Please join our [Discord](https://discord.gg/lukso) and get in touch if you have ideas for the new digital lifestyle economy!
+If you are a developer and want to use the LUKSO Blockchain, you can start by experimenting with the [Public Testnet](../../networks/testnet/parameters.md) and reading the [developer's guides](../../tutorials/expert-guides/universal-profile/create-profile.md). Please join our [Discord](https://discord.gg/lukso) and get in touch if you have ideas for the new digital lifestyle economy!
 
 ## Are there any sample projects to look at?
 

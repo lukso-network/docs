@@ -25,6 +25,6 @@ There are two types of **LSP** standards used to interact with smart contracts o
 
 :::tip
 
-See the **[LSP Detection Guide](../learn/dapp-developer/standard-detection.md)** to lean how to check standardized metadata storage and interfaces.
+See the **[LSP Detection Guide](../tutorials/standard-detection.md)** to lean how to check standardized metadata storage and interfaces.
 
 :::

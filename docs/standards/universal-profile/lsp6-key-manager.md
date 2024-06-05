@@ -336,7 +336,7 @@ Developers can use the `DECRYPT` permission to decrypt data or messages, for ins
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000200000</code>
     </p>
 
-The permission `SIGN` enables a controller to authenticate on behalf of the UP. It can be used primarily in Web 2.0 apps to [sign login messages](../../learn/dapp-developer/siwe.md).
+The permission `SIGN` enables a controller to authenticate on behalf of the UP. It can be used primarily in Web 2.0 apps to [sign login messages](../../tutorials/universal-profile/siwe.md).
 
 </details>
 
@@ -850,7 +850,7 @@ To mitigate such risks, adding an optional validity timestamp to the signature c
 
 You can use our library [**eip191-signer.js**](https://github.com/lukso-network/tools-eip191-signer) to make it easier to sign an _EIP191 Execute Relay Call transaction_.
 
-See also our [step by step Javascript guide](../../learn/expert-guides/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
+See also our [step by step Javascript guide](../../tutorials/expert-guides/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
 
 :::
 

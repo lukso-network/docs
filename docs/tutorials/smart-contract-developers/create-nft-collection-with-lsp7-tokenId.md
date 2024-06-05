@@ -20,7 +20,7 @@ If you have been looking at the [LSP8 token standard](../../standards/tokens/LSP
 
 Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYGITAL COLLECTION. As you can see in the picture below, we have three medalions of different colours.
 
-![KLxENDLESS PHYSITAL COLLECTION](../../../static/img/learn/klxendless-physital-collection.png)
+![KLxENDLESS PHYSITAL COLLECTION](../../../static/img/tutorials/klxendless-physital-collection.png)
 
 Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the whole KLxENDLESS PHYSITAL collection and each medaillon will be a sub-collection (purple, blue or gold) will with a limited supply of NFTs [(Non-divisible LSP7 token)](../../standards/tokens//LSP7-Digital-Asset.md).
 
@@ -748,7 +748,7 @@ By pasting the address of the contract, you should see that it supports:
 - [ERC725Y](../../standards/generic-standards/lsp2-json-schema.md)
 - [LSP8IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)
 
-![Inspect tool](../../../static/img/learn/inspect-tool-lsp8.png)
+![Inspect tool](../../../static/img/tutorials/inspect-tool-lsp8.png)
 
 ### Mint the LSP7 Sub-Collections script
 
@@ -950,7 +950,7 @@ By pasting the address of the contract, you should see that it supports:
 - [ERC725Y](../../standards/generic-standards/lsp2-json-schema.md)
 - [LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md)
 
-![Inspect tool](../../../static/img/learn/inspect-tool-lsp7.png)
+![Inspect tool](../../../static/img/tutorials/inspect-tool-lsp7.png)
 
 ## Conclusion
 
