@@ -9,66 +9,26 @@ import TabItem from '@theme/TabItem';
 
 # Retrieve Token Type
 
-To detect if an asset is a **Token**, an **NFT** or a **Collection**, the 📄 [LSP4 Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) standard defines a data key `LSP4TokenType` where this information is stored. The token type can be retrieved by querying this data key from the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the digital asset contract.
+To detect if an asset is a **Token**, an **NFT** or a **Collection**, we can check the value stored in the [`LSP4TokenType`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) data key.
 
-```js
-{
-  "name": "LSP4TokenType",
+This guide show you how to retrieve the token type of a deployed token contract using the [`getData(...)`](../../contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md#getdata) function, passing the `LSP4TokenType` data key as a parameter.
 
-  // The key is the keccak256 hash of the word « LSP4TokenType »
-  "key": "0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3",
+We will show you example with 3 different libraries: _erc725.js_, _web3.js_ and _ethers.js_
 
-  "keyType": "Singleton",
-  "valueType": "uint256",
-  "valueContent": "Number"
-}
-```
+## Introduction
 
-:::tip Type Declaration
+Token Types are beneficial because of the wide range of asset use cases. The [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) can both be used as NFTs.
 
-You can find the different Token Types and their values within the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) documentation.
+- LSP7 can be used for building NFTs where each individual items have the same metadata, and users are allowed to mint multiple NFTs at once.
+- In comparison, LSP8 is mainly used for NFTs with unique properties per item (like phygitals, dynamic NFTs or unique collections like [Chillwhales](https://www.chillwhales.com/)).
 
-:::
-
-:::caution Setting Types
-
-The `LSP4TokenType` is not changeable and it is set during the token's initialization.
-
-:::
-
-:::info Utilizing Types
-
-Types are beneficial because of the wide range of asset use cases. The [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) can both be used as NFTs. LSP7 can be used for building NFTs where individual items are not unique, and users are allowed to mint larger quantities. In comparison, LSP8 is mainly used for Phygitals or NFTs with unique properties per item.
-
-:::
-
-## Smart Contract Implementation
-
-When creating digital assets using [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), the token type is defined under the `LSP4TokenType` data key.
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
-// The keccak256 hash of the word `LSP4TokenType`
-bytes32 constant _LSP4_TOKEN_TYPE_DATA_KEY = 0xe0261fa95db2eb3b5439bd033cda66d56b96f92f243a8228fd87550ed7bdfdb3;
-enum TokenType {
-    TOKEN,     // `0` = Token
-    NFT,       // `1` = NFT
-    COLLECTION // `2` = Collection
-}
-```
-
-After defining the token type of the asset, you can create a custom [LSP7 Digital Asset Collection](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8 Identifiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md). During deployment, the token type is then written to the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the smart contract.
-
-## Token Type Retrieval
-
-You can retrieve the token type of a deployed contract by calling it's [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage.
-
-### Installation
+## Installation
 
 :::tip Convenience Tools
 
-You can use the ⚒️ [`erc725.js`](../../tools/erc725js/getting-started.md) library, which automatically decodes [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage keys for you. If you are using a regular contract instance from Ethers or Web3, you can fetch the data keys from the [`lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library.
+You can use the ⚒️ [`erc725.js`](../../tools/erc725js/getting-started.md) library, which automatically decodes [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage keys for you.
+
+If you are using a regular contract instance from Ethers or Web3, you can use the data keys from the [`lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library by importing the `ERC725YDataKeys` constant.
 
 :::
 
@@ -98,9 +58,9 @@ npm install web3 @lukso/lsp-smart-contracts
 
 </Tabs>
 
-### Contract Calls
+## Retrieve the Token Type
 
-After setting up the contract, retrieving it's token type is as simple as one contract call.
+After setting up the contract, retrieving its token type is as simple as making one contract call to the `getData(...)` function.
 
 <Tabs groupId="provider-lib">
   <TabItem value="erc725.js" label="erc725.js" default>
@@ -132,8 +92,10 @@ console.log(tokenType);
 ```js
 import { ethers } from 'ethers';
 
-// Import Token ABI (can be LSP7 or LSP8) & Data Keys
-import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
+// Import LSP4 Token ABI. LSP4 is inherited by both LSP7 and LSP8.
+// LSP4 represents the metadata storage of the token contract and contains the functions to get and set data.
+// Since we are only using the `getData(...)` function, we only need the LSP4 ABI.
+import LSP4Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 // Connect provider to LUKSO Testnet
@@ -142,7 +104,7 @@ const provider = new ethers.JsonRpcProvider('https://4201.rpc.thirdweb.com');
 // Create contract instance
 const myAssetContract = new ethers.Contract(
   '<myAssetAddress>',
-  lsp8Artifact.abi,
+  LSP4Artifact.abi,
   provider,
 );
 
@@ -163,8 +125,10 @@ console.log(tokenType);
 ```js
 import Web3 from 'web3';
 
-// Import Token ABI (can be LSP7 or LSP8) & Data Keys
-import lsp8Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
+// Import LSP4 Token ABI. LSP4 is inherited by both LSP7 and LSP8.
+// LSP4 represents the metadata storage of the token contract and contains the functions to get and set data.
+// Since we are only using the `getData(...)` function, we only need the LSP4 ABI.
+import LSP4Artifact from '@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json';
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 // Connect provider to LUKSO Testnet
@@ -174,7 +138,7 @@ const web3 = new Web3(
 
 // Create contract instance
 const myAssetContract = new web3.eth.Contract(
-  lsp8Artifact.abi,
+  LSP4Artifact.abi,
   '<myAssetAddress>',
 );
 
