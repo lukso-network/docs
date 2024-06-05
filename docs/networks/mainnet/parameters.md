@@ -29,6 +29,7 @@ The mainnet network configs are defined or the [`lukso-network/network-configs`]
 Developers can use the services of the following 3rd party providers:
 
 - [Thirdweb](https://thirdweb.com/) RPC URL: `https://42.rpc.thirdweb.com`
+- [SigmaCore](https://sigmacore.io) RPC URL: `https://rpc.lukso.sigmacore.io` (increased-limit packages available)
 - [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io` (requires API key)
 - [Envio](https://envio.dev/) RPC URL: `https://lukso.rpc.hypersync.xyz` (optimized read-only)
 
