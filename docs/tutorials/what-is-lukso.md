@@ -11,12 +11,15 @@ description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKS
 
 <blockquote>
 
-<h3>The current **Blockchain User Experience** comes with many limitations...</h3>
-<h3>...not necessarily because of the complexity but due to the broken infrastructure.</h3>
+<h3>The current **Blockchain** experience comes with many limitations.</h3>
 
-<h3>Represented by the old underlying <strong>Standards</strong> and <strong>Tools</strong> used to operate on the network.</h3>
+<h3>Not necessarily because of the complexity, but due to the broken infrastructure.</h3>
 
-<h3>Change should start from the bottom to create a better user experience on the blockchain, from fundamental pieces to the top.</h3>
+<h3>Represented by the old underlying **Standards** and **Tools** to operate on the network.</h3>
+
+<h3>Change should start from the bottom. Starting from:</h3>
+
+<h3>Fundamental **🧱 Building Blocks** ➡ to **🧩 dApps** ➡ to create better **✨ User Experiences**.</h3>
 
 </blockquote>
 
