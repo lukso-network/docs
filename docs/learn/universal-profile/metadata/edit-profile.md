@@ -36,7 +36,7 @@ A complete _"ready to use"_ JS file is available at the end in the [**Final Code
 
 :::
 
-![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
+![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../../universal-profile/img/edit-profile.png)
 
 ## Introduction
 

@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
-    src={require('./img/deploy-contract.png').default}
+    src={require('../img/deploy-contract.png').default}
     alt="Deploying a contract from the Universal Profile using the Browser Extension"
     width="400"
   />

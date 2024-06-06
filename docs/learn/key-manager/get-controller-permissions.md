@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🎮 Get Controller Permissions'
+sidebar_label: 'Get Controller Permissions'
 sidebar_position: 1
 ---
 
