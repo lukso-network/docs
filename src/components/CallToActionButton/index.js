@@ -16,6 +16,7 @@ export default function CallToActionButton({
         style={{ backgroundColor: bgColor, maxWidth: '400px', display: 'flex' }}
         className={styles.ctaButton}
         href={link}
+        target={target}
       >
         <Icon
           icon={icon}
