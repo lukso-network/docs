@@ -41,6 +41,23 @@ function Index() {
             className="tools"
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
           />
+        </div>
+        <div className={styles.cardContainer} style={{ marginTop: '2em' }}>
+          <CallToActionButton
+            text="Discover LUKSO & LSP Standards"
+            color="white"
+            link="standards/introduction"
+            bgColor="#ff005b"
+            icon="mdi:lego"
+          />
+          <CallToActionButton
+            text="Download 🆙 Browser Extension"
+            link="install-up-browser-extension"
+            color="white"
+            icon="material-symbols:extension"
+          />
+        </div>
+        <div className={styles.cardContainer}>
           <Box
             icon={NetworksIcon}
             link="./networks/mainnet/parameters/"
