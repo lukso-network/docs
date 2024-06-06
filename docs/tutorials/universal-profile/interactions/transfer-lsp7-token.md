@@ -9,40 +9,59 @@ import TabItem from '@theme/TabItem';
 
 # Transfer LSP7 Token
 
-This guide will teach you how to tranfer an existing [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) across [Universal Profiles](../../standards/universal-profile/lsp0-erc725account.md).
+<div style={{textAlign: 'center', color: 'grey'}}>
+  <img
+    src={require('../img/transfer-lsp7-tokens.png').default}
+    alt="Transfering 1,000 CHILL tokens between two Universal Profiles"
+    width="400"
+  />
+<br/>
+<i>Transfering 1,000 CHILL tokens between two Universal Profiles.</i>
+<br /><br />
+</div>
 
 :::info
 
 The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/digital-assets).
 
-The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) makes it easy to send token transactions without having to interact with the smart contract of the Universal Profile. If you are building a service or backend, you can also 👾 [execute transfers by directly calling the profile contract](https://github.com/lukso-network/lukso-playground/blob/main/transfer-token/backend-transaction.js) and preparing the calldata.
-
 :::
 
-## Setup
+This guide will teach you how to transfer an existing [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) across [Universal Profiles](../../standards/universal-profile/lsp0-erc725account.md).
 
-The following code snippets require to install a web3 provider like web3 or ethers, as well as using smart contract schemas. The 📃 [@lukso/lsp-smart-contracts](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) library is the most convenient way to interact with LSP-based smart contracts.
+## Setup Dependencies
+
+The following code snippets require the installation of the following libraries:
+
+- [`ethers.js`](https://github.com/ethers-io/ethers.js/) or [`web3.js`](https://www.npmjs.com/package/web3)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs groupId="web3-lib">
   <TabItem value="web3js" label="web3.js">
 
-```shell title="Install the dependencies"
+```shell
 npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
   <TabItem value="ethersjs" label="ethers.js">
 
-```shell title="Install the dependencies"
+```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
 </Tabs>
 
-### Sending LSP7 Tokens from a Universal Profile
+## Code Examples
 
-As the initial step, you have to set up the Universal Profile and LSP7 Token. Both require an ABI that can be imported from the `@lukso/lsp-smart-contracts` library. After setting up the contracts, you can set up the parameters for the [LSP7 token transfer](https://docs.lukso.tech/contracts/contracts/LSP7DigitalAsset/#transfer).
+Create an instance of your Universal Profile and the LSP7 Token you want to transfer.
+
+You will need:
+
+- the `address` of the 🆙 obtained from the guide **Login to UP**) and LSP7 Token contract.
+- use the `UniversalProfile` and `LSP7DigitalAsset` ABIs imported from the `@lukso/lsp-smart-contracts` library
+
+After setting up the contracts, you can set up the parameters for the LSP7 token [`transfer(...)`](https://docs.lukso.tech/contracts/contracts/LSP7DigitalAsset/#transfer) function.
 
 <Tabs groupId="web3-lib">
   <TabItem value="web3js" label="web3.js">
