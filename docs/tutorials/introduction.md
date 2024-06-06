@@ -1,33 +1,36 @@
 ---
-sidebar_label: 'Introduction'
+sidebar_label: 'Building on LUKSO'
 description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKSO intended for?
 ---
 
-# Introduction
-
-LUKSO is an L1 EVM-based Blockchain. All tools and tutorials for Ethereum also work well for LUKSO.
+# Building on LUKSO
 
 <div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7Ds8rYyzJ5A?si=UQ4XYHDoyIoFbfnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kJ5_6LN6mZc?si=7NWn-odkk8KmSDLz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-## Who is LUKSO intended for?
+## What can be built on LUKSO?
 
-LUKSO is intended for creative economies, where identities play a key role.
-LUKSO allows brands, creatives and developers to dictate the distribution of wealth and influence from lifestyle activities. They can do so by having Universal Profiles (UPs), creating Digital Identities and Certificates, and building Tokenized Communities.
+The following list contains several potential use cases. Please bear in mind that those represent only the tip of the iceberg.
 
-## Why choose LUKSO?
+- social media applications
+- content publishing platforms
+- identity and reputation systems
+- tokenized communities for creatives
+- marketplaces and outlets
+- ... 🪄
 
-[LSPs](/standards/introduction.md) (LUKSO Standard Proposals) are the building blocks of LUKSO. They are used to to build blockchain-based applications that offer an enhanced user experience, and allow for more flexibility and interaction.
+## Developer Resources
 
-### Developer Resources
+LUKSO is an L1 EVM-based Blockchain. All tools and tutorials for Ethereum also work for LUKSO by default.
 
-Developers building on LUKSO can write smart contracts in an EVM-based language like Solidity, deploy them using [Hardhat](https://hardhat.org/), and utilize standards already developed for other Ethereum networks.
+Developers building on LUKSO can write smart contracts in an EVM-based smart contract language like (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
 
-- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
+- [Awesome LUKSO, a comprehensive list of awesome LUKSO resources!](https://github.com/lukso-network/awesome-lukso)
 - [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
+- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
 
-### LSP Features
+## LSP Features
 
 By integrating different LSPs in unique ways, LUKSO solves fundamental blockchain problems:
 
@@ -43,14 +46,3 @@ By integrating different LSPs in unique ways, LUKSO solves fundamental blockchai
 Currently, users are subsidized with the [Transaction Relay Service](./concepts.md#transaction-relay-service) from LUKSO.
 
 :::
-
-## What can be built on LUKSO?
-
-The following list contains several potential use cases. Please bear in mind that those represent only the tip of the iceberg.
-
-- social media applications
-- content publishing platforms
-- identity and reputation systems
-- tokenized communities for creatives
-- marketplaces and outlets
-- ... 🪄

@@ -10,6 +10,10 @@ import StandardsGallery from '@site/src/components/StandardsGallery';
 
 Discover the LSPs, the standards that represent the foundation of **LUKSO's ecosystem**. They can be used as **building blocks** and combined to create new and innovative protocols or dApps on the LUKSO Blockchain.
 
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7Ds8rYyzJ5A?si=UQ4XYHDoyIoFbfnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 The LSPs introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, and NFT 2.0**.
 
 <StandardsGallery />
@@ -29,10 +33,6 @@ Meaning a LSP standard could use another one that comes after or before in order
 :::
 
 ## High Level Overview of Universal Profiles
-
-<div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Vw4JE64hsO8?si=mfPTXg4tAA-Z_NRj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
 
 **👉 📺 If you want to have a presentation that goes more in depth, [watch Fabian's Presentation from ETHCC6 2023](https://www.youtube.com/live/MKFB_pGse4A?si=Yuo_sYRrhrtAYycG&t=312).**
 
