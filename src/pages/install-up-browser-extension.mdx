@@ -1,6 +1,8 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CallToActionButton from '../components/CallToActionButton';
+
 # Install the Universal Profile (UP) Browser Extension
 
 :::danger
@@ -15,11 +17,33 @@ Currently, the UP Browser Extension is supported on **Chrome and Brave browsers*
 
 :::
 
-### :inbox_tray: **[Download the Extension from Chrome Web Store](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) (Chrome / Brave)**
+<div className="row" style={{ marginBottom: '2em' }}>
+  <div className="col">
+    <CallToActionButton
+      text="Download for Chrome / Brave"
+      color="white"
+      link="https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
+      icon="fa6-brands:chrome"
+    />
+  </div>
+  <div className="col">
+    <CallToActionButton
+      text="Download for Edge"
+      color="white"
+      bgColor="#303846"
+      link="https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
+      icon="mingcute:edge-fill"
+    />
+  </div>
+</div>
 
 <div style={{textAlign: 'center'}}>
 
-<img src="/img/extension/chrome-store.png" alt="screenshot of the extension in the chrome store" style={{maxWidth: '500px'}} />
+<img
+  src="/img/extension/chrome-store.png"
+  alt="screenshot of the extension in the chrome store"
+  style={{ maxWidth: '500px' }}
+/>
 
 </div>
 
