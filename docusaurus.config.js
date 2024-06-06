@@ -256,6 +256,11 @@ export default {
           label: 'FAQ',
         },
         {
+          href: 'https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn',
+          position: 'right',
+          label: '🆙 Extension',
+        },
+        {
           href: 'https://support.lukso.network/contact-us',
           label: 'Contact Us',
           position: 'right',
