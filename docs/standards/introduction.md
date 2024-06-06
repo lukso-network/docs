@@ -14,15 +14,19 @@ Discover the LSPs, the standards that represent the foundation of **LUKSO's ecos
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7Ds8rYyzJ5A?si=UQ4XYHDoyIoFbfnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-The LSPs introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, and NFT 2.0**.
+:::info
+
+**👉 📺 [Watch Fabian's Presentation from ETHCC6 2023](https://www.youtube.com/live/MKFB_pGse4A?si=Yuo_sYRrhrtAYycG&t=312) for a an high-level overview! 🦅**
+
+:::
+
+The LSPs introduce new concepts like **blockchain-based accounts** (_e.g: **Universal Profiles**_), **Digital Assets, NFT 2.0** and **Permissions Management**. This section describes the fundamentals of the standards, their technical aspects and their applications and use cases across the LUKSO ecosystem.
+
+The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. People, groups, and organizations can use them to build blockchain-based applications that aim to maximize the user experience, allow more flexibility and interaction, and open doors to innovation.
+
+The use of smart contracts and standards like the LSPs can mitigate some centralization risks by allowing for decentralized ownership and control of accounts and assets.
 
 <StandardsGallery />
-
-The current **blockchain experience** comes with many limitations, not necessarily because of the complexity but due to the broken infrastructure represented by the old underlying tools and standards used to operate on the network.
-
-Change should start from the bottom to create a better user experience on the blockchain, from fundamental pieces to the top. Topics related to **identity**, **assets representation**, **relay execution** and **smart contract interaction** require standardization. Such standards should be flexible enough to support and allow more potential use cases in the future.
-
-The following documentation describes the fundamentals of the standards and technical aspects of the LUKSO ecosystem.
 
 :::note
 
@@ -32,27 +36,11 @@ Meaning a LSP standard could use another one that comes after or before in order
 
 :::
 
-## High Level Overview of Universal Profiles
-
-**👉 📺 If you want to have a presentation that goes more in depth, [watch Fabian's Presentation from ETHCC6 2023](https://www.youtube.com/live/MKFB_pGse4A?si=Yuo_sYRrhrtAYycG&t=312).**
-
-:::success Implementation
-
-See the [Contracts Implementation](../contracts/introduction.md) section for the Solidity implementation of these standards.
-
-:::
-
-The **LUKSO Standards Proposals (LSPs)** represent the **main building blocks** of the LUKSO ecosystem. People, groups, and organizations can use them to build blockchain-based applications that aim to maximize the user experience, allow more flexibility and interaction, and open doors to innovation.
-
-The use of smart contracts and standards like the LSPs can mitigate some centralization risks by allowing for decentralized ownership and control of accounts and assets.
-
-:::info
+## Smart Contracts in Solidity
 
 The **[default implementation of these standards in Solidity](../contracts/introduction.md)** is available as Open Source Software. They can be used as a base by developers to build their applications.
 
-Developers wishing to understand the logic behind the standards and their tradeoffs within are well-advised to read these documents alongside the Solidity code itself.
-
-:::
+> See the [Contracts](../contracts/introduction.md) section for the Solidity implementation of these standards and their ABI docs.
 
 :::info Questions? Want to learn more?
 
@@ -68,7 +56,13 @@ Our team and community members look forward to helping you understand the standa
 
 :::
 
-## Further Information
+## LSP Standard Specifications
+
+See [LUKSO Improvement Proposals - LIPs (GitHub)](https://github.com/lukso-network/LIPs) if you are looking for the design and formal specifications of each LSP Standards.
+
+Developers wishing to understand the logic behind the standards and their tradeoffs within are well-advised to read these documents alongside the Solidity code itself.
+
+## Further Resources
 
 - [The New Standard for Blockchain Accounts and NFT 2.0 (YouTube)](https://www.youtube.com/watch?v=7u0WGAS1k_Q)
 - [Tech Time with Fabian Ep.1 - LUKSO NFT's 2.0 Explained (YouTube)](https://www.youtube.com/watch?v=Nx5D9QWNIhI)
@@ -76,8 +70,4 @@ Our team and community members look forward to helping you understand the standa
 - [Fabian Vogelsteller talks at NFT.NYC 2021 about the new Standards (YouTube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)
 - [Developer DAO - Dev & Tell | Yamen - LUKSO Network (YouTube)](https://www.youtube.com/watch?v=1OeBpJIstSQ)
 - [LUKSO Build 🆙 #1 Hackathon (YouTube)](https://www.youtube.com/watch?v=veHqhpgGDr4)
-
-## References
-
-- [LUKSO Improvement Proposals - LIPs (GitHub)](https://github.com/lukso-network/LIPs)
-- [ERC-725 Alliance website](https://erc725alliance.org/)
+- [ERC725 Alliance website](https://erc725alliance.org/)
