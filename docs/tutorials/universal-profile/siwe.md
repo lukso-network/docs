@@ -209,8 +209,7 @@ if (isValidSignature === '0x1626ba7e') {
 
 To apply security measures on the server side of your application, you can use the **raw message format** below to authenticate users based on their Ethereum wallet signatures. The standardized format enables a non-custodial authentication mechanism where users prove ownership of their Ethereum address without revealing any sensitive information:
 
-<details>
-    <summary>Raw SIWE message format</summary>
+## Raw SIWE message format
 
 ```js
 const domain = window.location.host; // Domain requesting the signing
@@ -233,8 +232,6 @@ Issued At: ${issuedAt}
 Resources:
 - https://terms.website.com`;
 ```
-
-</details>
 
 One practical application of the raw SIWI message is to generate _JSON Web Tokens_ after verifying the user's signature. This approach ensures that only the rightful owner of an Ethereum address can obtain a session token, enhancing the security and privacy of your Web3-based application. You can get additional guidance on the following resources:
 

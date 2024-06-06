@@ -85,11 +85,11 @@ export default {
           },
           {
             from: '/learn/expert-guides/vault/create-a-vault',
-            to: '/tutorials/expert-guides/vault/create-a-vault',
+            to: '/tutorials/vault/create-a-vault',
           },
           {
             from: '/learn/expert-guides/vault/edit-vault-data',
-            to: '/tutorials/expert-guides/vault/edit-vault-data',
+            to: '/tutorials/vault/edit-vault-data',
           },
           {
             from: '/learn/expert-guides/accept-reject-assets',
@@ -97,7 +97,7 @@ export default {
           },
           {
             from: '/learn/expert-guides/vault/grant-vault-permissions',
-            to: '/tutorials/expert-guides/vault/grant-vault-permissions',
+            to: '/tutorials/vault/grant-vault-permissions',
           },
           {
             from: '/learn/dapp-developer/mint-lsp7-token',
@@ -125,7 +125,7 @@ export default {
           },
           {
             from: '/learn/expert-guides/vault/interact-with-contracts',
-            to: '/tutorials/expert-guides/vault/interact-with-contracts',
+            to: '/tutorials/interact-with-contracts',
           },
           {
             from: '/learn/dapp-developer/transfer-lsp7-token',

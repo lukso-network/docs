@@ -1,6 +1,6 @@
 ---
-sidebar_label: '🎀 Edit a Universal Profile'
-sidebar_position: 3
+sidebar_label: '- Edit a Universal Profile'
+sidebar_position: 6
 ---
 
 # Edit a Universal Profile
@@ -36,7 +36,7 @@ A complete _"ready to use"_ JS file is available at the end in the [**Final Code
 
 :::
 
-![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
+![Universal Profile with pictures and infos on wallet.universalprofile.cloud](./img/edit-profile.png)
 
 ## Introduction
 
@@ -60,7 +60,7 @@ We can add (or edit) any pieces of informations related to our UP by the followi
 2. Upload the file to IPFS.
 3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
 
-![LSP3Profile Metadata as JSON file on IPFS (diagram)](../img/profile-metadata-ipfs-explained.jpeg)
+![LSP3Profile Metadata as JSON file on IPFS (diagram)](./img/profile-metadata-ipfs-explained.jpeg)
 
 :::info Learn More
 **IPFS is just one place among many** where you can store your Universal Profile metadata.<br/>
@@ -170,14 +170,14 @@ This gateway is a deprecated IPFS cluster and will be shut down soon. We do not 
 
 :::
 
-![ipfs LUKSO settings](../img/ipfs-lukso-settings.jpg)
+![ipfs LUKSO settings](./img/ipfs-lukso-settings.jpg)
 
 Drag & Drop your images (you can upload multiple images at once) and _upload_ them. Once the process is completed:
 
 1. Copy the IPFS file identifier (`CID`) shown in the `hash` field marked with green below.
 2. Paste the `CID` into the `url` field in our JSON file, beginning with `ipfs://` at the start.
 
-![ipfs file upload](../img/ipfs-file-upload.jpg)
+![ipfs file upload](./img/ipfs-file-upload.jpg)
 
 Make sure to save your JSON file after you have added all your details and images.
 
