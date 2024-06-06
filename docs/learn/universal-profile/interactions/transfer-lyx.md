@@ -24,9 +24,13 @@ import TabItem from '@theme/TabItem';
 
 The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/transfer-lyx) repository.
 
-The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) makes it easy to send LYX transaction without having to interact with the smart contract of the Universal Profile. If you are building a service or backend, you can also 👾 [execute transfers by directly calling the profile contract](https://github.com/lukso-network/lukso-playground/blob/main/transfer-lyx/backend-transaction.js).
-
 :::
+
+The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) magically wraps all the calls internally so you don't have to craft custom transactions.
+
+This makes it easy to send transaction like LYX transfer (= native token transfers). Simply use [`eth_sendTransaction`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction) as you always did while working with wallets and smart accounts that used EOAs.
+
+No need to make contract calls to instruct the smart contract of the Universal Profile what to do. The Browser Extension handles all of that behind the scene for you!
 
 ## Setup
 
@@ -50,9 +54,7 @@ npm install ethers
 
 </Tabs>
 
-## Transfer LYX from a Universal Profile
-
-The Universal Profile browser extension will magically wrap all the calls internally so you don't have to worry about crafting custom transactions. Simply use [`eth_sendTransaction`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction) as you always did while working with EOA.
+## Code Examples
 
 <Tabs groupId="web3-lib">
   
