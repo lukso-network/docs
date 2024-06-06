@@ -256,7 +256,7 @@ export default {
           label: 'FAQ',
         },
         {
-          href: 'https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn',
+          href: 'install-up-browser-extension',
           position: 'right',
           label: '🆙 Extension',
         },
