@@ -22,7 +22,7 @@ In this guide, we will learn how to use our Universal Profile to interact with a
 
 ## Introduction
 
-We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../../contracts/contracts/LSP0ERC725Account#execute) function.
+We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../contracts/contracts/LSP0ERC725Account#execute) function.
 
 This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from our UP. The `_data` parameter is handy when the `_to` recipient is a smart contract.
 
@@ -42,15 +42,15 @@ Suppose a smart contract `targetContract` was deployed on the network and we wan
 
 To complete this guide, we will need:
 
-- an EOA with some LYX for gas fees and the required [permissions](../../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
-- the `UniversalProfile` and `KeyManager` contracts ABIs from the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) npm package.
+- an EOA with some LYX for gas fees and the required [permissions](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
+- the `UniversalProfile` and `KeyManager` contracts ABIs from the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) npm package.
 - the address of our Universal Profile.
 - the `targetContract` ABI.
 - the address of the Target Contract.
 
 :::info
 
-The chosen EOA needs to have [**CALL Permission**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**Allowed Calls**](../../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Permission**](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
+The chosen EOA needs to have [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**Allowed Calls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
 
 :::
 
@@ -212,7 +212,7 @@ const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
 
 ### Send the execute calldata
 
-The final step is to pass the encoded calldata to the Universal Profile. Since we are calling from an EOA that is a [controller](../../../standards/universal-profile/lsp6-key-manager.md#introduction) on the UP, the Key Manager will authorize the transaction.
+The final step is to pass the encoded calldata to the Universal Profile. Since we are calling from an EOA that is a [controller](../../standards/universal-profile/lsp6-key-manager.md#introduction) on the UP, the Key Manager will authorize the transaction.
 
 <Tabs>
   

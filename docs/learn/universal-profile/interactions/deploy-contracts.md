@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Deploy contracts'
-sidebar_position: 11
+sidebar_label: 'Deploy contracts from UP'
+sidebar_position: 12
 description: Learn how to deploy a contract from your Universal Profile.
 ---
 
@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 npm install ethers
 ```
 
-## Deploy a contract from a Universal Profile
+## Deploy a contract from a UP
 
 The Universal Profile browser extension will magically wrap all the calls internally so you don't have to worry about crafting custom transactions. Simply use [`eth_sendTransaction`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction) as you always did while working with EOA.
 
@@ -84,7 +84,7 @@ const receipt = await transaction.waitForDeployment();
 ```
 <!-- prettier-ignore-end -->
 
-## Retrieving Contract Deployment Information
+## Retrieve Contract Deployment Infos
 
 There will be no `contractAddress` field in the transaction `receipt` unlike normal transactions happening with Metamask. This is because the UP browser extension wraps the deployment transaction within a normal contract execution transaction. The contract address can be calculated using the **nonce** and the **address** of the profile or retrieved using the logs (code snippet below).
 

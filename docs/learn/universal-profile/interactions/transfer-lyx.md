@@ -32,7 +32,7 @@ This makes it easy to send transaction like LYX transfer (= native token transfe
 
 No need to make contract calls to instruct the smart contract of the Universal Profile what to do. The Browser Extension handles all of that behind the scene for you!
 
-## Setup
+## Setup Dependencies
 
 <Tabs groupId="web3-lib">
   
