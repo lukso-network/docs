@@ -40,9 +40,9 @@ Currently, the UP Browser Extension is supported on **Chrome and Brave browsers*
 <div style={{textAlign: 'center'}}>
 
 <img
-  src="/img/extension/chrome-store.png"
-  alt="screenshot of the extension in the chrome store"
-  style={{ maxWidth: '500px' }}
+src="/img/extension/chrome-store.png"
+alt="screenshot of the extension in the chrome store"
+style={{ maxWidth: '500px' }}
 />
 
 </div>
