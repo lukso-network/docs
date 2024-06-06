@@ -42,14 +42,7 @@ function Index() {
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
           />
         </div>
-        <div className={styles.cardContainer} style={{ marginTop: '2em' }}>
-          <CallToActionButton
-            text="Discover LUKSO & LSP Standards"
-            color="white"
-            link="standards/introduction"
-            bgColor="#ff005b"
-            icon="mdi:lego"
-          />
+        <div style={{ marginTop: '2em' }}>
           <CallToActionButton
             text="Download 🆙 Browser Extension"
             link="install-up-browser-extension"
