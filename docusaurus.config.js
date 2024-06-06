@@ -220,7 +220,7 @@ export default {
       items: [
         {
           type: 'doc',
-          docId: 'tutorials/introduction',
+          docId: 'tutorials/what-is-lukso',
           position: 'left',
           label: 'Learn',
         },
