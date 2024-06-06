@@ -19,6 +19,14 @@ function Index() {
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
         <Headline />
+        <div style={{ marginTop: '4em' }}>
+          <CallToActionButton
+            text="Download 🆙 Browser Extension"
+            link="install-up-browser-extension"
+            color="white"
+            icon="material-symbols:extension"
+          />
+        </div>
         <div className={styles.cardContainer}>
           <Box
             icon={GuidesIcon}
@@ -40,14 +48,6 @@ function Index() {
             title="TOOLS"
             className="tools"
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
-          />
-        </div>
-        <div style={{ marginTop: '2em' }}>
-          <CallToActionButton
-            text="Download 🆙 Browser Extension"
-            link="install-up-browser-extension"
-            color="white"
-            icon="material-symbols:extension"
           />
         </div>
         <div className={styles.cardContainer}>
