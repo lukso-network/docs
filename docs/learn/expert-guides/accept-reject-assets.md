@@ -1,5 +1,5 @@
 ---
-sidebar_label: '✋🏼 Accept & Reject Assets'
+sidebar_label: 'Accept & Reject Assets'
 sidebar_position: 7
 ---
 

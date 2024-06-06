@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📋 Vault Execution'
+sidebar_label: 'Vault Execution'
 sidebar_position: 4
 ---
 

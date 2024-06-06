@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📄 Edit Vault Data'
+sidebar_label: 'Edit Vault Data'
 sidebar_position: 3
 ---
 
