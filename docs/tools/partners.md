@@ -1,10 +1,10 @@
 ---
 id: partners
-title: Ecosystem Partners
+title: Integrations
 sidebar_position: 2
 ---
 
-# Ecosystem Partners
+# Integrations
 
 A list of services and projects that integrated the LUKSO network or deliver ecosystem tools.
 
