@@ -222,13 +222,13 @@ export default {
           type: 'doc',
           docId: 'tutorials/introduction',
           position: 'left',
-          label: 'Tutorials',
+          label: 'Learn',
         },
         {
           type: 'doc',
           docId: 'tools/getting-started',
           position: 'left',
-          label: 'Libraries',
+          label: 'Tools',
         },
         {
           type: 'doc',

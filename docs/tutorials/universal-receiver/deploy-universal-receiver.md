@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📢 Create & Deploy Universal Receiver'
+sidebar_label: 'Create & Deploy Universal Receiver'
 sidebar_position: 1
 ---
 

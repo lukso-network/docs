@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🔩 Deploy a LSP1 Forwarder'
+sidebar_label: 'Deploy a LSP1 Forwarder'
 sidebar_position: 3
 ---
 

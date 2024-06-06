@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🔗 Using NFC on LUKSO'
+sidebar_label: '🟨 Using NFC on LUKSO'
 description: 'Learn how NFC technology can be used on LUKSO blockchain for innovative applications.'
 sidebar_position: 10
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_label: '👝 Create a Vault'
+sidebar_label: 'Create a Vault'
 sidebar_position: 2
 ---
 

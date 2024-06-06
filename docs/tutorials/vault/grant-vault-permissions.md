@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📋 Grant Vault Permissions'
+sidebar_label: 'Grant Vault Permissions'
 sidebar_position: 2
 ---
 

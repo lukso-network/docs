@@ -1,5 +1,5 @@
 ---
-sidebar_label: '- Set LSP8 NFT Metadata'
+sidebar_label: 'Set LSP8 NFT Metadata'
 sidebar_position: 11
 description: Learn how to set the metadata of a NFT part of a LSP8 Identifiable Digital Asset Collection.
 ---

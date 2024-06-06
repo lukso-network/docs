@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🪅 Use IPFS Storage'
+sidebar_label: '📤 Use IPFS Storage'
 description: 'Learn how to integrate IPFS storage solutions for dApps.'
 sidebar_position: 11
 ---
