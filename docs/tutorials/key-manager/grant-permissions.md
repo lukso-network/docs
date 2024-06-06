@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🫡 Grant Permissions'
+sidebar_label: 'Grant Permissions'
 sidebar_position: 4
 ---
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🔀 Transfer LYX'
+sidebar_label: 'Transfer LYX'
 sidebar_position: 8
 description: Learn how to transfer LYX from your Universal Profile.
 ---
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
-    src={require('./img/transfer-lyx.png').default}
+    src={require('../img/transfer-lyx.png').default}
     alt="Transfering 0.5 LYXt between two Universal Profiles"
     width="400"
   />

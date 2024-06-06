@@ -1,5 +1,5 @@
 ---
-sidebar_label: '➡️ Execute Relay Transactions'
+sidebar_label: 'Execute Relay Transactions'
 sidebar_position: 2
 ---
 

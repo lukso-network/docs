@@ -1,5 +1,5 @@
 ---
-sidebar_label: '- Interact with Contracts'
+sidebar_label: 'Interact with Contracts'
 sidebar_position: 11
 ---
 
@@ -18,7 +18,7 @@ In this guide, we will learn how to use our Universal Profile to interact with a
 
 **Interaction flow**:
 
-![Guide - Interact with other contracts using a Universal Profile](./img/interact-with-contracts-using-universal-profile-flow.jpg)
+![Guide - Interact with other contracts using a Universal Profile](../img/interact-with-contracts-using-universal-profile-flow.jpg)
 
 ## Introduction
 
