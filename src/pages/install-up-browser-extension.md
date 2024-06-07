@@ -5,17 +5,25 @@ import CallToActionButton from '../components/CallToActionButton';
 
 # Install the Universal Profile (UP) Browser Extension
 
-:::danger
+:::warning
 
 The UP Browser Extension is in a **BETA Phase**.
 
 :::
 
-:::info
+<div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
 
-Currently, the UP Browser Extension is supported on **Chrome and Brave browsers**.
+  <div className="col">
+    <img src="/img/extension/up-extension-showcase-1.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+  
+  </div>
 
-:::
+  <div className="col">
+    <img src="/img/extension/up-extension-showcase-2.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+  
+  </div>
+
+</div>
 
 <div className="row" style={{ marginBottom: '2em' }}>
   <div className="col">
@@ -38,20 +46,58 @@ Currently, the UP Browser Extension is supported on **Chrome and Brave browsers*
 </div>
 
 <div style={{textAlign: 'center'}}>
-
-<img
-src="/img/extension/chrome-store.png"
-alt="screenshot of the extension in the chrome store"
-style={{ maxWidth: '500px' }}
-/>
+  <img src="/img/extension/chrome-store.png" alt="screenshot of the extension in the chrome store" style={{ maxWidth: '500px' }} />
 
 </div>
 
-#### Example dApps for testing the UP Browser Extension
+---
 
-| Name                                                                | Description                                                                       | Built by  |
-| ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------- |
-| [up-test-dapp.lukso.tech](https://up-test-dapp.lukso.tech)          | LUKSO Demo App                                                                    | LUKSO     |
-| [examples.lukso.tech](https://examples.lukso.tech)                  | LSP Implementation Examples                                                       | LUKSO     |
-| [universal.page](https://universal.page/)                           | Create a customizable website to showcase and sell digital assets on LUKSO        | Community |
-| [relayer-frontend.vercel.app](https://relayer-frontend.vercel.app/) | A relayer where you can use your staking rewards to pay for your transaction fees | Community |
+# Example dApps for testing the UP Browser Extension
+
+<div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
+
+  <div className="col" style={{ marginBottom: '2em' }}>
+    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    
+    <a href="https://up-test-dapp.lukso.tech">
+      <h3>UP Test dApp</h3>
+    </a>
+
+    <i>LUKSO Demo App</i>
+
+  </div>
+
+  <div className="col" style={{ marginBottom: '2em' }}>
+    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    
+    <a href="https://examples.lukso.tech">
+      <h3>dApps Examples</h3>
+    </a>
+
+    <i>LSP Implementation Examples</i>
+
+  </div>
+
+  <div className="col" style={{ marginBottom: '2em' }}>
+    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    
+    <a href="https://tsx.app">
+      <h3>Txs.App</h3>
+    </a>
+
+    <i>Examine transactions happening in realtime in the LUKSO Network in a more user-friendly way!</i>
+
+  </div>
+
+  <div className="col" style={{ marginBottom: '2em' }}>
+    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+
+    <a href="https://universal.page/">
+      <h3>ERC725 Inspect</h3>
+    </a>
+
+    <i>Analyse the information and metadata in the storage of your UP, Token or NFT.</i>
+
+  </div>
+
+</div>
