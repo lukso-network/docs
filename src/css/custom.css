@@ -83,7 +83,8 @@ html[data-theme='dark'] {
 .admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
   margin-bottom: 2em !important;
 }
-.admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module p {
+.admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module
+  p {
   margin: 0 0 1rem;
 }
 
@@ -209,4 +210,8 @@ a.imageLink img {
   height: auto; /* maintain aspect ratio */
   display: block; /* removes any default inline spacing */
   pointer-events: none; /* disable default zoom */
+}
+
+table.lsp-features td {
+  vertical-align: top !important;
 }

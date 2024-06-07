@@ -34,12 +34,20 @@ Developers building on LUKSO can write smart contracts in an EVM-based smart con
 
 By integrating different LSPs in unique ways, LUKSO solves fundamental blockchain problems:
 
-- [🔓 Upgradeable security](../standards/universal-profile/lsp6-key-manager): Universal Profiles can be owned by an EOA or a custom contract such as a multisig. Therefore, users can have multiple devices and applications controlling their account, each of them with different permissions. Users can even have social recovery, such that they grant certain permissions of their account to their friends and family.
-- [👩‍🎤 On-chain profile](../standards/universal-profile/lsp3-profile-metadata.md): users can build their profiles onchain, adding images, tags, descriptions and links to their accounts to shape their online persona.
-- [📢 On-chain notifications](../standards/generic-standards/lsp1-universal-receiver.md): users get notified upon token transfers and they can visualize the assets that they own within their profile. They can even block transfers of certain assets by creating allow lists or block lists.
-- [📝 Updatable and flexible metadata](../standards/generic-standards/lsp2-json-schema.md): metadata can be updated, enabling dynamic NFTs that can change certain properties over time, while other properties remain immutable.
-- [💫 Extend your account over time](../standards/generic-standards/lsp17-contract-extension.md): users can extend their account over time seamlessly, with no need to redeploy the associated smart contract.
-- [⛽️ Gasless experience](./concepts.md#transaction-relay-service): Universal Profiles support Transaction Relay Services that cover the gas for users's transactions. Users won't have the burden of getting the native token of the chain to start interacting with your application.
+<table class="lsp-features">
+    <tr>
+        <td><h3>[🔓 Upgradeable security](../standards/universal-profile/lsp6-key-manager)</h3>Universal Profiles can be owned by any EOA or smart contract (_e.g: multisig_). And users can control their accounts through multiple devices and applications, each of them with different permissions.<br /> This also allow the creation of services like social recovery, through family, friends or trustless dApps.</td>
+        <td><h3>[👩‍🎤 On-chain profile](../standards/universal-profile/lsp3-profile-metadata.md)</h3>Users can build their profiles onchain, adding images, tags, descriptions and links to their accounts to shape their online persona.</td>
+    </tr>
+    <tr>
+        <td><h3>[📢 On-chain notifications](../standards/generic-standards/lsp1-universal-receiver.md)</h3>Users get notified upon token transfers and they can visualize the assets that they own within their profile. They can even block transfers of certain assets by creating allow lists or block lists.</td>
+        <td><h3>[📝 Updatable and flexible metadata](../standards/generic-standards/lsp2-json-schema.md)</h3>Metadata can be updated, enabling dynamic NFTs that can change certain properties over time, while other properties remain immutable.</td>
+    </tr>
+    <tr>
+        <td><h3>[💫 Extend your account over time](../standards/generic-standards/lsp17-contract-extension.md)</h3>Users can extend their account over time seamlessly, with no need to redeploy the associated smart contract.</td>
+        <td><h3>[⛽️ Gasless experience](./concepts.md#transaction-relay-service)</h3>Universal Profiles support Transaction Relay Services that cover the gas for users's transactions. Users won't have the burden of getting the native token of the chain to start interacting with your application.</td>
+    </tr>
+</table>
 
 :::tip Seamless Onboarding
 
