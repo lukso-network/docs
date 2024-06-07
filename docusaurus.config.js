@@ -184,6 +184,19 @@ export default {
             from: '/faq/help',
             to: 'https://support.lukso.network',
           },
+          // Learn: Working with Assets Section
+          {
+            from: '/learn/smart-contract-developers/retrieve-token-type',
+            to: '/learn/assets/retrieve-token-type',
+          },
+          {
+            from: '/learn/assets',
+            to: '/learn/assets/metadata-preparation',
+          },
+          {
+            from: '/learn/expert-guides/deploy-token-with-metadata',
+            to: '/learn/assets/deploy-token-with-metadata',
+          },
         ],
       },
     ],
@@ -241,6 +254,11 @@ export default {
           docId: 'faq/lukso/general-information',
           position: 'left',
           label: 'FAQ',
+        },
+        {
+          href: 'https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn',
+          position: 'right',
+          label: '🆙 Extension',
         },
         {
           href: 'https://support.lukso.network/contact-us',

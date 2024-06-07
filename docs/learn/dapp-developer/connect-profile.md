@@ -31,7 +31,7 @@ The [Universal Profile Extension](/install-up-browser-extension) returns the add
 
 ## Connect with EIP-6963
 
-:::info Wallet Compatability
+:::info Wallet Compatibility
 
 Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is the latest industry standardization, solving previous connectivity issues when having multiple wallet extensions installed at the same time.
 
