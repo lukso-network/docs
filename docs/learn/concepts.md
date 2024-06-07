@@ -12,7 +12,7 @@ A [Universal Profile](../standards/universal-profile/introduction.md) (UP) is a 
 
 The [Universal Profile Browser Extension](/install-up-browser-extension) is the recommended way of interacting on LUKSO and managing Universal Profiles. The extension acts like a regular Ethereum wallet and uses the same `window.ethereum` object on [all supported browsers](/install-up-browser-extension). Alternatively, we endorse calling the equivalent `window.lukso` object. Developers can use their preferred libraries like [web3.js](https://web3js.readthedocs.io/) and [ethers.js](https://docs.ethers.org/) to interact with profiles like they do with other wallets.
 
-When [connecting](https://docs.lukso.tech/learn/dapp-developer/connect-profile.md) a profile, the extension automatically returns the address of the smart contract account. Similarly, the extension automatically verifies if the EOA controller has permission to [log-in](../learn/dapp-developer/siwe.md) or [execute transfers](../learn/dapp-developer/transfer-lyx.md).
+When [connecting](https://docs.lukso.tech/learn/universal-profile/connect-profile.md) a profile, the extension automatically returns the address of the smart contract account. Similarly, the extension automatically verifies if the EOA controller has permission to [log-in](../learn/universal-profile/siwe.md) or [execute transfers](../learn/universal-profile/transfer-lyx.md).
 
 :::info Using regular wallets
 

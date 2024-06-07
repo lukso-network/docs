@@ -166,6 +166,6 @@ After you retrieved the key and value of your [ERC725Y](../../standards/lsp-back
 
 :::tip Sample Implementation
 
-You can follow our [Deploy Token With Metadata](./deploy-token-with-metadata.md) and [Set NFT Metadata](../dapp-developer/set-nft-metadata.md) Guides to set or update contract metadata.
+You can follow our [Deploy Token With Metadata](./deploy-token-with-metadata.md) and [Set NFT Metadata](../digital-assets/set-nft-metadata.md) Guides to set or update contract metadata.
 
 :::

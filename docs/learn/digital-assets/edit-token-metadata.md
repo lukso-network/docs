@@ -1,5 +1,5 @@
 ---
-sidebar_label: '💽 Edit Token Metadata'
+sidebar_label: 'Edit Token Metadata'
 sidebar_position: 3
 description: Learn how to update LSP4 Metadata of digital assets on LUKSO.
 ---
@@ -46,7 +46,7 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::info Contract Deployment
 
-If you want to learn more about the contract deployment itself, please have a look at the [Getting Started](./getting-started.md) or [Create LSP7 Token](./create-lsp7-token.md) guides before you continue.
+If you want to learn more about the contract deployment itself, please have a look at the [Create LSP7 Token](../smart-contract-developers/create-lsp7-token.md) guides before you continue.
 
 :::
 

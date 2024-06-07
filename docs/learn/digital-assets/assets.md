@@ -1,12 +1,12 @@
 ---
-sidebar_label: '🖼️ Working with assets'
+sidebar_label: 'Working with assets'
 sidebar_position: 4
 description: Learn how to prepare and use assets for LUKSO Universal Profiles and digital assets (LSP7 / LSP8).
 ---
 
 # Working with assets
 
-When creating/editing Universal Profiles or Digital Assets, you will need to upload assets (such as images, icons, videos, etc.) and [metadata JSON files](../standards/tokens/LSP4-Digital-Asset-Metadata.md). This can be tricky, but this guide will help you get through this process.
+When creating/editing Universal Profiles or Digital Assets, you will need to upload assets (such as images, icons, videos, etc.) and [metadata JSON files](../../standards/tokens/LSP4-Digital-Asset-Metadata.md). This can be tricky, but this guide will help you get through this process.
 
 ## Asset upload flow
 
@@ -32,7 +32,7 @@ Decentralized storage solutions align with the decentralized nature of blockchai
 
 ## Generate the JSON File
 
-After uploading the media files, you can attach their links to a JSON file in the below structure. The JSON content is then used as input for encoding the metadata according to [LSP4](../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata).
+After uploading the media files, you can attach their links to a JSON file in the below structure. The JSON content is then used as input for encoding the metadata according to [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata).
 
 :::tip Data Verification
 
@@ -210,7 +210,7 @@ Now the JSON can be uploaded to IPFS.
 
 Other utility functions can be used to prepare the JSON to be converted to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata), such as creating the hash and encoding it as VerifiableURI.
 
-Check all functions related to metadata generating in [lsp-utils docs](../tools/lsp-utils/LSP4DigitalAssetMetadata.md).
+Check all functions related to metadata generating in [lsp-utils docs](../../tools/lsp-utils/LSP4DigitalAssetMetadata.md).
 
 ```js
 import { generateLSP4JSONWithHash } from '@lukso/lsp-utils';
@@ -241,7 +241,7 @@ The `generateLSP4JSONVerifiableURI` will return you directly what needs to be se
 
 ## Encode the LSP4 Metadata
 
-To encode the LSP4 Metadata with ease, you can use the 🛠️ [`erc725.js`](../tools/erc725js/getting-started.md) library. The tool provides all necessary LSP Schemas and the `encodeData()` function.
+To encode the LSP4 Metadata with ease, you can use the 🛠️ [`erc725.js`](../../tools/erc725js/getting-started.md) library. The tool provides all necessary LSP Schemas and the `encodeData()` function.
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -283,4 +283,4 @@ The encoded content will then look like the following:
 
 ## Write the value to the contract
 
-Now that you have they key to update and the value to write, you can use the [`setData()`](../contracts/contracts/ERC725/ERC725.md#setdata) to update the contract.
+Now that you have they key to update and the value to write, you can use the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) to update the contract.

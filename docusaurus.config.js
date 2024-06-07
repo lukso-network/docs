@@ -100,8 +100,8 @@ export default {
             to: '/learn/expert-guides/vault/grant-vault-permissions',
           },
           {
-            from: '/guides/digital-assets/mint-lsp7-digital-asset',
-            to: '/learn/dapp-developer/mint-lsp7-token',
+            from: '/learn/dapp-developer/mint-lsp7-token',
+            to: '/learn/universal-profile/mint-lsp7-token',
           },
           {
             from: '/guides/digital-assets/create-lsp7-digital-asset',
@@ -112,32 +112,32 @@ export default {
             to: '/learn/expert-guides/key-manager/get-controller-permissions',
           },
           {
-            from: '/guides/universal-profile/transfer-lyx',
-            to: '/learn/dapp-developer/transfer-lyx',
+            from: '/learn/dapp-developer/transfer-lyx',
+            to: '/learn/universal-profile/transfer-lyx',
           },
           {
             from: '/guides/key-manager/give-permissions',
             to: '/learn/expert-guides/key-manager/grant-permissions',
           },
           {
-            from: '/guides/digital-assets/read-asset-data',
-            to: '/learn/dapp-developer/read-asset-data',
+            from: '/learn/dapp-developer/read-asset-data',
+            to: '/learn/digital-assets/read-asset-data',
           },
           {
             from: '/guides/vault/interact-with-contracts',
             to: '/learn/expert-guides/vault/interact-with-contracts',
           },
           {
-            from: '/guides/digital-assets/transfer-lsp7-digital-asset',
-            to: '/learn/dapp-developer/transfer-lsp7-token',
+            from: '/learn/universal-profile/transfer-lsp7-digital-asset',
+            to: '/learn/universal-profile/transfer-lsp7-token',
           },
           {
             from: '/guides/universal-profile/edit-profile',
             to: '/learn/expert-guides/universal-profile/edit-profile',
           },
           {
-            from: '/guides/universal-profile/check-if-address-is-universal-profile',
-            to: '/learn/dapp-developer/standard-detection',
+            from: '/learn/dapp-developer/standard-detection',
+            to: '/learn/standard-detection',
           },
           {
             from: '/contracts/getting-started',
@@ -156,16 +156,16 @@ export default {
             to: '/learn/expert-guides/universal-profile/create-profile',
           },
           {
-            from: '/guides/universal-profile/interact-with-contracts',
-            to: '/learn/expert-guides/interact-with-contracts',
+            from: '/learn/expert-guides/interact-with-contracts',
+            to: '/learn/universal-profile/interact-with-contracts',
           },
           {
-            from: '/guides/browser-extension/interact-with-dapp',
-            to: '/learn/dapp-developer/connect-profile',
+            from: '/learn/dapp-developer/connect-profile',
+            to: '/learn/universal-profile/connect-profile',
           },
           {
-            from: '/learn/dapp-developer/web3-onboard',
-            to: '/learn/dapp-developer/multi-provider',
+            from: '/learn/dapp-developer/multi-provider',
+            to: '/learn/universal-profile/multi-provider',
           },
           {
             from: '/guides/browser-extension/install-browser-extension',

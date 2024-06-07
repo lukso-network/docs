@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🎆 Read Asset Data'
+sidebar_label: 'Read Asset Data'
 sidebar_position: 7
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
@@ -24,10 +24,19 @@ On the LUKSO network, [Digital Assets](../../standards/tokens/introduction.md) a
 
 In this tutorial, you will learn how to:
 
-- [Detect the Contract Interface](#detect-the-contract-interface)
-- [Detect the Metadata Standard](#detect-the-metadata-standard)
-- [Detect the Token Type](#detect-the-token-type)
-- [Fetch the Asset Data](#fetch-the-asset-metadata)
+- [Read Digital Asset Data](#read-digital-asset-data)
+  - [Setup](#setup)
+  - [Detect the Contract Interface](#detect-the-contract-interface)
+  - [Detect the Metadata Standard](#detect-the-metadata-standard)
+  - [Detect the Token Type](#detect-the-token-type)
+  - [Fetch the Asset Metadata](#fetch-the-asset-metadata)
+    - [Global Token Information](#global-token-information)
+    - [Token ID Metadata](#token-id-metadata)
+    - [Preparing the Token IDs](#preparing-the-token-ids)
+    - [Get Data from Token ID](#get-data-from-token-id)
+    - [Get Data from Base URI](#get-data-from-base-uri)
+    - [Get the JSON Content](#get-the-json-content)
+  - [Fetch Creators and Token Properties](#fetch-creators-and-token-properties)
 
 ## Setup
 
@@ -38,7 +47,7 @@ Before getting into the code, you need to be familiar with the token standards [
 
 :::info Get Asset Addresses
 
-As every Universal Profile comes with a 📢 [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md), the owned assets can be fetched directly directly from it's contract. For more information, please check the 📒 [Read Profile Data](./read-profile-data.md#fetch-assets-and-universal-receiver) tutorial. Aditionally, 🔮 [UniversalProfile.cloud](https://universalprofile.cloud/) also shows all deployed profiles and assets as well.
+As every Universal Profile comes with a 📢 [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md), the owned assets can be fetched directly directly from it's contract. For more information, please check the 📒 [Read Profile Data](../universal-profile/read-profile-data.md#fetch-assets-and-universal-receiver) tutorial. Aditionally, 🔮 [UniversalProfile.cloud](https://universalprofile.cloud/) also shows all deployed profiles and assets as well.
 
 :::
 
@@ -56,7 +65,7 @@ npm install @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Detect the Contract Interface
 
-Once you have the address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's `interfaceId` like in the previous [Interface Detection Guide](./standard-detection.md#interface-detection). If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package's [constants](../../tools/lsp-smart-contracts/constants),. Optionally, you can also find a full list of all `interfaceId`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
+Once you have the address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's `interfaceId` like in the previous [Interface Detection Guide](../standard-detection.md#interface-detection). If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package's [constants](../../tools/lsp-smart-contracts/constants),. Optionally, you can also find a full list of all `interfaceId`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
 
 The ⚒️ [erc725.js](https://npmjs.com/package/@erc725/erc725.js) library works with [ERC725Y JSON schemas](../../standards/generic-standards/lsp2-json-schema). These schemas are JSON structures that tell developers and programs how to decode and encode 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). You need to load the required schemas of the data keys you want to fetch when initializing the `ERC725` class. The most common schemas are [available](../../tools/erc725js/schemas.md) in erc725.js. You can also create and load your own ERC725Y JSON schemas if you want to use custom data keys.
 
@@ -120,7 +129,7 @@ After you've approved the contract type, its recommended to check if the asset a
 </div>
 </details>
 
-As shown in the previous [Metadata Detection Guide](./standard-detection.md#metadata-detection), you can get the content of the data keys directly using the `getData(...)` function of the ⚒️ [`erc725.js`](../../tools/erc725js/methods#getdata) library.
+As shown in the previous [Metadata Detection Guide](../standard-detection.md#metadata-detection), you can get the content of the data keys directly using the `getData(...)` function of the ⚒️ [`erc725.js`](../../tools/erc725js/methods#getdata) library.
 
 <!-- prettier-ignore-start -->
 
@@ -926,7 +935,7 @@ Instead of using the [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-
 
 Some of the 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) feature dynamic inputs. Make sure to exchange `<myCreatorAddress>` with the actual address (without `0x`) of one of the asset's creators you want to retrieve. In case the asset does not feature any additional creator information, the returned value of `LSP4CreatorsMap:<myCreatorAddress>` will be `0`.
 
-Optionally, you can [retrieve the profile data](./read-profile-data.md) of a creator in a separate step.
+Optionally, you can [retrieve the profile data](../universal-profile/read-profile-data.md) of a creator in a separate step.
 :::
 
 <!-- prettier-ignore-start -->
