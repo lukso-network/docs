@@ -1,5 +1,5 @@
 ---
-id: partners
+id: integrations
 title: 🔮 Integrations
 sidebar_position: 2
 ---

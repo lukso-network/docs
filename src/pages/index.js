@@ -67,7 +67,7 @@ function Index() {
           />
           <Box
             icon={PartnersIcon}
-            link="./tools/partners"
+            link="./tools/integrations"
             title="INTEGRATIONS"
             className="partners"
             content="Check out LUKSO ecosystem tools and services."
