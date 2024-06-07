@@ -7,6 +7,7 @@
   background-color: var(--color-cta-background-blue);
   border-radius: 40px;
   padding: 10px 20px;
+  max-width: 400px;
 
   display: block;
 
@@ -17,6 +18,7 @@
     transform: scale(1.05);
     border: #8d9da9 solid 1px;
     text-decoration: none;
+    color: white;
   }
 
   color: white;
