@@ -60,7 +60,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**execute functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#execute) provided by **ERC725X** that allows the contract to execute multiple operations.
 
-Check the **javascript** guides to know [**How to Send native tokens**](../../learn/dapp-developer/transfer-lyx.md) or [**How to Call other contract's function**](../../learn/expert-guides/interact-with-contracts.md) using the execute function.
+Check the **javascript** guides to know [**How to Send native tokens**](../../learn/universal-profile/transfer-lyx.md) or [**How to Call other contract's function**](../../learn/universal-profile/interact-with-contracts.md) using the execute function.
 
 :::
 
@@ -106,7 +106,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
-Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/expert-guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/dapp-developer/read-profile-data).
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/expert-guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/universal-profile/read-profile-data).
 
 :::
 

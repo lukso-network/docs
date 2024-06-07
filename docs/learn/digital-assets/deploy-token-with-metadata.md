@@ -61,7 +61,7 @@ const universalProfile = await ethers.getContractAtFromArtifact(
 
 :::caution Metadata File
 
-Make sure to exchange the `lsp4SampleMetadata` with the actual metadata of your asset. You can read more within the [Asset Preparation Guide](../assets.md).
+Make sure to exchange the `lsp4SampleMetadata` with the actual metadata of your asset. You can read more within the [Asset Preparation Guide](../digital-assets/assets.md).
 
 :::
 
