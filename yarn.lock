@@ -2434,6 +2434,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iconify/react@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@iconify/react@npm:5.0.1"
+  dependencies:
+    "@iconify/types": ^2.0.0
+  peerDependencies:
+    react: ">=16"
+  checksum: 98e3e21f8424ee9179b2e626889cde717ea14897469e38aed79b070dfd986700ff43b8d0239920759bd27490443cf987ffb8a39cce3db605b10311edbcaa0846
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@iconify/types@npm:2.0.0"
+  checksum: 029f58542c160e9d4a746869cf2e475b603424d3adf3994c5cc8d0406c47e6e04a3b898b2707840c1c5b9bd5563a1660a34b110d89fce43923baca5222f4e597
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -9215,6 +9233,7 @@ __metadata:
     "@docusaurus/plugin-google-gtag": 3.3.2
     "@docusaurus/preset-classic": 3.3.2
     "@docusaurus/types": 3.3.2
+    "@iconify/react": ^5.0.1
     "@mdx-js/react": 3.0.0
     "@svgr/webpack": ^8.1.0
     clsx: ^2.1.1
