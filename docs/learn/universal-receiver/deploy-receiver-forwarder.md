@@ -38,7 +38,7 @@ Now we can create the deploy scripts that will connect all the pieces together.
 and, depending on the method selected, we will also:
 
 - grant permission to the custom LSP1 Delegate contract to call the UP (SUPER_CALL + REENTRANT) - Method 1
-- or call [`authorizeOperator()`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator) on the LSP7 token to authorize the custom LSP1 Delegate contract to spend token on the UP's behalf - Method 2
+- or call [`authorizeOperator()`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator) on the LSP7 token to authorize the custom LSP1 Delegate contract to spend token on the UP's behalf - Method 2
 
 Create a file called `deployLSP1.ts` in your `scripts/` folder with the following content:
 

@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 
 # Create an NFT Collection Using LSP8
 
-This tutorial explains how to create a collection of unique Digital Assets based on the [LSP8-Identifiable-Digital-Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard.
+This tutorial explains how to create a collection of unique Digital Assets based on the [LSP8-Identifiable-Digital-Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard.
 
 :::note
 
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../smart-contract-developers/getting-started.md) section.
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](./getting-started.md) section.
 
 :::
 
@@ -29,7 +29,7 @@ The full code of this example can be found in the smart contract section of the 
 
 ## Setup
 
-To create your custom contract based on the [LUKSO smart contracts](../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
+To create your custom contract based on the [LUKSO smart contracts](../../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
 
 ```shell
 npm install @lukso/lsp-smart-contracts
@@ -37,13 +37,13 @@ npm install @lukso/lsp-smart-contracts
 
 ## Create the Smart Contracts
 
-When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
+When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
 - `1` = NFT
 - `2` = Collection
 
-For this example we will use the `Collection` token type. You can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
+For this example we will use the `Collection` token type. You can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
 
 ```solidity title="contracts/Example3/BasicNFTCollection.sol"
 // SPDX-License-Identifier: MIT

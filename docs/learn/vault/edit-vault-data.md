@@ -14,7 +14,7 @@ This guide might contain outdated information and will be updated soon.
 
 :::
 
-This guide will teach you how to set data to an **[LSP9Vault](../../../contracts/contracts/LSP9Vault/LSP9Vault.md)** contract through a UniversalProfile owned by an LSP6KeyManager. Any data can be attached to the vault, and since it supports the **[LSP1-UniversalReceiver](../../../standards/generic-standards/lsp1-universal-receiver.md)** standard, we will set the [**Universal Receiver Delegate**](../../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md) address inside the storage.
+This guide will teach you how to set data to an **[LSP9Vault](../../contracts/contracts/LSP9Vault/LSP9Vault.md)** contract through a UniversalProfile owned by an LSP6KeyManager. Any data can be attached to the vault, and since it supports the **[LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver.md)** standard, we will set the [**Universal Receiver Delegate**](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.md) address inside the storage.
 
 ## Setting Data (Universal Receiver Delegate)
 
@@ -221,14 +221,14 @@ const vaultURDAddress = await deployVaultURD();
 
 ## Step 3 - Setting the URD address in the storage
 
-The Vault's owner could be an **EOA**, or any **other smart contract**. In our case, we will suppose that the Vault's owner is a [Universal Profile](../../../standards/universal-profile/introduction.md) that is controlled by a Key Manager.
+The Vault's owner could be an **EOA**, or any **other smart contract**. In our case, we will suppose that the Vault's owner is a [Universal Profile](../../standards/universal-profile/introduction.md) that is controlled by a Key Manager.
 
 ### Create the contract instances
 
 Firstly we need to create instances for the following contracts:
 
-- [**Vault**](../../../standards/universal-profile/lsp9-vault.md)
-- [**Universal Profile**](../../../standards/universal-profile/lsp0-erc725account.md)
+- [**Vault**](../../standards/universal-profile/lsp9-vault.md)
+- [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md)
 
 <Tabs>
   <TabItem value="web3js" label="web3.js">
@@ -552,6 +552,6 @@ await updateVaultURD(vaultURDAddress);
 
 ## Reading Data
 
-The **LSP9Vault** contract is an **ERC725** contract, so it shares the same way to read data as Universal Profiles and other ERC725 contracts by using **[erc725.js](../../../tools/erc725js/getting-started.md)**.
+The **LSP9Vault** contract is an **ERC725** contract, so it shares the same way to read data as Universal Profiles and other ERC725 contracts by using **[erc725.js](../../tools/erc725js/getting-started.md)**.
 
-You can refer to the **[Read Profile Data Guide](../../universal-profile/read-profile-data)** to learn how to **fetch data** like received or issued assets from [ERC725Y Storage](../../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). However, please note that the **Universal Profile** address has to be exchanged with the **Vault's** address.
+You can refer to the **[Read Profile Data Guide](../universal-profile/metadata/read-profile-data)** to learn how to **fetch data** like received or issued assets from [ERC725Y Storage](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store). However, please note that the **Universal Profile** address has to be exchanged with the **Vault's** address.

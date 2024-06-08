@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Mint LSP7 Token
 
-In this guide you will mint some [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) tokens as an EOA contract owner.
+In this guide you will mint some [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) tokens as an EOA contract owner.
 
 ## Setup
 
@@ -37,7 +37,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Imports and constants
 
-At this point, the [`LSP7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
+At this point, the [`LSP7 Mintable`](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract is being prepared for the following interaction. You construct an instance of a contract, using its _ABI_ and the _contract address_.
 
 <Tabs groupId="web3-lib">
   <TabItem value="web3js" label="web3.js">
@@ -72,7 +72,7 @@ const signer = await ethers.getSigner();
 
 ### Instantiate the contracts
 
-After defining the core parameters of the [`LSP7 Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you are able to create an instance using its _ABI_ and the _contract address_.
+After defining the core parameters of the [`LSP7 Mintable`](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) contract, you are able to create an instance using its _ABI_ and the _contract address_.
 
 <Tabs groupId="web3-lib">
   <TabItem value="web3js" label="web3.js">
@@ -97,7 +97,7 @@ Finally, you can send the transaction to mint some tokens.
 
 :::warning
 
-The sample contract of this guide only allows the smart contract owner to mint assets. Custom [LSP7](../../standards/tokens/LSP7-Digital-Asset.md) implementations might implement different permission sets.
+The sample contract of this guide only allows the smart contract owner to mint assets. Custom [LSP7](../../../standards/tokens/LSP7-Digital-Asset.md) implementations might implement different permission sets.
 
 :::
 

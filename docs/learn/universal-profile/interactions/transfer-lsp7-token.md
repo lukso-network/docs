@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Transfer LSP7 Token
 
-This guide will teach you how to tranfer an existing [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) across [Universal Profiles](../../standards/universal-profile/lsp0-erc725account.md).
+This guide will teach you how to tranfer an existing [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) across [Universal Profiles](../../../standards/universal-profile/lsp0-erc725account.md).
 
 :::info
 

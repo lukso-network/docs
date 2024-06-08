@@ -11,11 +11,11 @@ import TabItem from '@theme/TabItem';
 
 :::success Asset Authenticity
 
-Within the [LSP4 Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md), Universal Profiles can be referenced as creators. To **authenticate the creators** of an asset, their Universal Profiles must list the asset's address under the [LSP12 Issued Assets](../../standards/universal-profile/lsp12-issued-assets.md). Services can then validate the **on-chain cross-link** to prove authenticity.
+Within the [LSP4 Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md), Universal Profiles can be referenced as creators. To **authenticate the creators** of an asset, their Universal Profiles must list the asset's address under the [LSP12 Issued Assets](../../../standards/universal-profile/lsp12-issued-assets.md). Services can then validate the **on-chain cross-link** to prove authenticity.
 
 :::
 
-In this guide you will learn how to set or update digital assets (either [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8 Identifiable Digital Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)) within the list of LSP12 Issued Assets of a Universal Profile.
+In this guide you will learn how to set or update digital assets (either [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8 Identifiable Digital Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)) within the list of LSP12 Issued Assets of a Universal Profile.
 
 :::info Code Examples
 
@@ -55,7 +55,7 @@ npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
 
 ## Imports and constants
 
-Import `web3.js`/`ethers`, the [`UniversalProfile`](../../contracts/contracts/UniversalProfile.md) ABI from [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) and create an instance of this contract with the `UNIVERSAL_PROFILE_ADDRESS`.
+Import `web3.js`/`ethers`, the [`UniversalProfile`](../../../contracts/contracts/UniversalProfile.md) ABI from [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) and create an instance of this contract with the `UNIVERSAL_PROFILE_ADDRESS`.
 
 <Tabs groupId="web3-lib">
   <TabItem value="ethersjs" label="ethers.js" default>
@@ -135,7 +135,7 @@ const accounts = await web3.eth.getAccounts();
 
 ## Encode the data keys
 
-After setting up the array of assets, you can use the [`erc725.js`](../../tools/erc725js/getting-started.md) library to encode the [`LSP12IssuedAssets[]`](../../standards/universal-profile/lsp12-issued-assets/) data keys. There are two ways to encode data:
+After setting up the array of assets, you can use the [`erc725.js`](../../../tools/erc725js/getting-started.md) library to encode the [`LSP12IssuedAssets[]`](../../../standards/universal-profile/lsp12-issued-assets/) data keys. There are two ways to encode data:
 
 - **Set the full issued assets list**: If you want to initially set issued assets on a Universal Profile or re-set all elements, you can encode the data without defining optional length or index parameters. Therefore, the issued assets will only consist of the asset addresses you provide in your array of assets.
 - **add, update, or remove existing issued assets**: If the Universal Profile already has issued assets, and you want to add, update, or remove certain assets, you can provide the `startingIndex` and `totalArrayLength` parameters. Therefore, your prepared array only represents a subset of all the issued assets listed in your Universal Profile.
@@ -148,7 +148,7 @@ Please be careful when updating existing issued assets. Incorrect usage of `star
 
 :::info
 
-You can read more about the `encodeData` function of [`erc725.js`](../../tools/erc725js/getting-started.md) within the related [ERC725 Documentation](../../tools/erc725js/methods#encodedata).
+You can read more about the `encodeData` function of [`erc725.js`](../../../tools/erc725js/getting-started.md) within the related [ERC725 Documentation](../../../tools/erc725js/methods#encodedata).
 
 :::
 

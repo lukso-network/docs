@@ -23,14 +23,14 @@ Each data on a Universal Profile is stored into a generic key-value [ERC725Y](ht
 
 ERC725Y standardizes a mapping of data keys to data values in order to have the ability to add or remove data across time without the need of redeploying the contract. It gives flexibility to the contract storage. On the smart contract, data keys are represented as bytes32 values and data values under these keys are stored as bytes.
 
-[LSP2 - ERC725YJSONSchema](../../standards/generic-standards/lsp2-json-schema) is the standard used by the LSPs to organize how the data should be represented as bytes32/bytes pairs.
+[LSP2 - ERC725YJSONSchema](../../../standards/generic-standards/lsp2-json-schema) is the standard used by the LSPs to organize how the data should be represented as bytes32/bytes pairs.
 :::
 
 The parameters to provide to the erc725 instance are:
 
 - [Schema](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas): specifies which data keys will be used to retrieve data from the Universal Profile.
 - Univeral Profile address: the address of the Universal Profile you want to retrieve data from.
-- Optional only for retrieving decoded data: RPC provider (web3, ethereum, ethers) or plain RPC url of [mainnet](../../networks/mainnet/parameters.md) or [testnet](../../networks/testnet/parameters.md) networks.
+- Optional only for retrieving decoded data: RPC provider (web3, ethereum, ethers) or plain RPC url of [mainnet](../../../networks/mainnet/parameters.md) or [testnet](../../../networks/testnet/parameters.md) networks.
 
 <details>
     <summary>Show code for creating an erc725 instance to read data from a Universal Profile</summary>
@@ -153,11 +153,11 @@ const encodedProfileData = await erc725js.getData();
 <details>
     <summary>Main data keys for retrieving specific data</summary>
 
-- `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile)
+- `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](../../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile)
 - `LSP3Profile` used to retrieve VerifiableURI encoded value. VerifiableURI is a reference to a JSON file that describes the Universal Profile meta data.
 - `LSP12IssuedAssets[]` used to retrieve assets the Universal Profile issued.
 - `LSP5ReceivedAssets[]` used to retrieve assets the Universal Profile received.
-- `LSP1UniversalReceiverDelegate` used to retrieve the [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver/) smart contract address set on the Universal Profile.
+- `LSP1UniversalReceiverDelegate` used to retrieve the [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver/) smart contract address set on the Universal Profile.
 
 Find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso.tech/data-fetcher) tool or in the [erc725 repo](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas).
 

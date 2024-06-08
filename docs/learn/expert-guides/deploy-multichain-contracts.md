@@ -16,8 +16,6 @@ Proceed to the next section if you already have an ABI and bytecode ready for de
 
 :::
 
-Begin by visiting the [Getting Started](../smart-contract-developers/getting-started.md) section of smart contracts for guidance on setting up Hardhat, the development environment where the contract will be created and compiled.
-
 Here is a basic contract example to deploy:
 
 ```solidity title="contracts/TargetContract.sol"

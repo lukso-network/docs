@@ -30,7 +30,7 @@ This guide is also very similar to the guide: [**Interact with contract using a 
 
 To complete this mini-guide, we will need:
 
-- an EOA with some LYX for gas fees and the required [**permissions**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
+- an EOA with some LYX for gas fees and the required [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
 - the `UniversalProfile` and `LSP9Vault` contracts ABIs from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.
 - the address of the Universal Profile.
 - the address of the LSP9 Vault.
@@ -39,7 +39,7 @@ To complete this mini-guide, we will need:
 
 :::info
 
-The chosen EOA needs to have [**CALL Permission**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Pemrission**](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
+The chosen EOA needs to have [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Pemrission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
 
 :::
 
@@ -252,7 +252,7 @@ const vaultCalldata = vault.interface.encodeFunctionData('execute', [
 
 ## Step 4 - Execute the calldata through the UP
 
-The final step is to execute the encoded calldata through the Universal Profile. Since we are calling from a UP's controller address (with proper [**permissions**](../../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize the transaction.
+The final step is to execute the encoded calldata through the Universal Profile. Since we are calling from a UP's controller address (with proper [**permissions**](../../standards/universal-profile/lsp6-key-manager.md#permissions)), the Key Manager will authorize the transaction.
 
 <Tabs>
   
@@ -394,4 +394,4 @@ await universalProfile
 
 </Tabs>
 
-In the code snippet above, we interacted with `myCoolfunction(..)` function on the **targetContract** contract through the Vault's [execute](../../../contracts/contracts/LSP9Vault/LSP9Vault.md#execute) function. The call was encoded and executed through the Universal Profile.
+In the code snippet above, we interacted with `myCoolfunction(..)` function on the **targetContract** contract through the Vault's [execute](../../contracts/contracts/LSP9Vault/LSP9Vault.md#execute) function. The call was encoded and executed through the Universal Profile.

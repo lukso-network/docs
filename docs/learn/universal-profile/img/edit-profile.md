@@ -14,7 +14,6 @@ This guide might contain outdated information and will be updated soon.
 :::info Requirements
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
-:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../create-profile.md).
 
 :::
 
@@ -36,7 +35,7 @@ A complete _"ready to use"_ JS file is available at the end in the [**Final Code
 
 :::
 
-![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../../universal-profile/img/edit-profile.png)
+![Universal Profile with pictures and infos on wallet.universalprofile.cloud](..//img/edit-profile.png)
 
 ## Introduction
 
@@ -301,7 +300,7 @@ Now that our updated data is encoded, we are ready to set it in our Universal Pr
 
 We will need to interact with the smart contracts from an externally owned account (EOA).
 
-The first step is to load our EOA using our private key from [previous steps](./create-profile#step-1---create-an-eoa).
+The first step is to load our EOA using our private key.
 
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';

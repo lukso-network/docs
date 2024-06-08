@@ -14,7 +14,6 @@ This guide might contain outdated information and will be updated soon.
 :::info Requirements
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
-:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../create-profile.md).
 
 :::
 

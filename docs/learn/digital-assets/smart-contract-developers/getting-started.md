@@ -9,17 +9,17 @@ import TabItem from '@theme/TabItem';
 
 # Getting started building contracts
 
-The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO.
+The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../../standards/introduction.md) and [tools](../../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO.
 
 The following tutorial will teach you how to:
 
 - set up a [Hardhat](https://hardhat.org/) project using TypeScript
-- configure the contract settings, [networks](../../networks/testnet/parameters) and [Blockscout API](https://explorer.execution.testnet.lukso.network/api-docs)
+- configure the contract settings, [networks](../../../networks/testnet/parameters) and [Blockscout API](https://explorer.execution.testnet.lukso.network/api-docs)
 - utilize LSP smart contract presets using the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)
 - compile and deploy LSP-based smart contracts
 - verify smart contracts on [Blockscout](https://explorer.execution.testnet.lukso.network/)
 
-If you need more low level information about our contracts, you can check the dedicated [contracts](../../contracts/introduction.md) section.
+If you need more low level information about our contracts, you can check the dedicated [contracts](../../../contracts/introduction.md) section.
 
 ### Playground Repository
 
@@ -208,7 +208,7 @@ If you are deploying a contract as Universal Profile, you will have to prepare t
 
 :::info Address Generation
 
-You can mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall`. This address then matches the contract that will later be deployed using the same parameters.
+You can mimic calling the [`execute()`](../../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall`. This address then matches the contract that will later be deployed using the same parameters.
 
 :::
 

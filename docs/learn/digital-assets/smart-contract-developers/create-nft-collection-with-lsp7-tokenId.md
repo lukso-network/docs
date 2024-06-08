@@ -14,7 +14,7 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 ## Introduction
 
-If you have been looking at the [LSP8 token standard](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), you probably noticed that addresses could be used as `tokenIds`. In this guide, we will replicate a real-world example where this could be useful to represent an NFT / `tokenId` as a smart contract with its own metadata.
+If you have been looking at the [LSP8 token standard](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), you probably noticed that addresses could be used as `tokenIds`. In this guide, we will replicate a real-world example where this could be useful to represent an NFT / `tokenId` as a smart contract with its own metadata.
 
 ## Use Case
 
@@ -22,7 +22,7 @@ Let's take the example of [The Dematerialised](https://thedematerialised.com), a
 
 ![KLxENDLESS PHYSITAL COLLECTION](../../../../static/img/learn/klxendless-physital-collection.png)
 
-Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the whole KLxENDLESS PHYSITAL collection and each medaillon will be a sub-collection (purple, blue or gold) will with a limited supply of NFTs [(Non-divisible LSP7 token)](../../standards/tokens//LSP7-Digital-Asset.md).
+Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the whole KLxENDLESS PHYSITAL collection and each medaillon will be a sub-collection (purple, blue or gold) will with a limited supply of NFTs [(Non-divisible LSP7 token)](../../../standards/tokens//LSP7-Digital-Asset.md).
 
 ## Prerequisites
 
@@ -40,12 +40,12 @@ To create the LSP7 Sub-Collection contract, we will need to know the parameters 
 
 - the name of the sub-collection
 - the symbol of the sub-collection
-- the address of the [`owner()`](../../../docs/contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) that will control the sub-collection contract (in our case this will the LSP8 collection contract)
+- the address of the [`owner()`](../../../../docs/contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) that will control the sub-collection contract (in our case this will the LSP8 collection contract)
 - the initial receiver of the tokens that will be minted at deployment (could be the token creator)
 - the number of tokens that will be minted at deployment
 - whether the token is divisible or not
 - the total supply of the token
-- the [Token Type](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets)
+- the [Token Type](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets)
 - the [LSP4 Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata)
 
 This is just an example. You can adjust these parameters according to your needs or define other deployment parameters such as the [LSP4 Creators array](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4creators).
@@ -56,9 +56,9 @@ Let's start creating an `LSP7SubCollection.sol` file in the `contracts/` folder 
 
 - the [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol) contract
 - the [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol) contract
-- the [`_LSP4_SUPPORTED_STANDARDS_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
-- the [`_LSP4_SUPPORTED_STANDARDS_VALUE`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
-- the [`_LSP4_METADATA_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
+- the [`_LSP4_SUPPORTED_STANDARDS_KEY`](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
+- the [`_LSP4_SUPPORTED_STANDARDS_VALUE`](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
+- the [`_LSP4_METADATA_KEY`](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
 - the [`_LSP8_REFERENCE_CONTRACT`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8referencecontract) constant
 
 <!-- prettier-ignore-start -->
@@ -83,10 +83,10 @@ At deployment, we will need to set the following parameters:
 - `symbol_`: the symbol of the token
 - `owner_`: the address that will be able to update the contract metadata (except the symbol, name and the LSP4TokenType)
 - `receiverOfInitialTokens_`: the address that will receive the minted tokens at deployment
-- [`lsp4TokenType_`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype): the token type of the token
-- [`isNonDivisible_`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals): whether the token is divisible or not
+- [`lsp4TokenType_`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype): the token type of the token
+- [`isNonDivisible_`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals): whether the token is divisible or not
 - `totalSupply_`: the total supply of the token
-- `lsp4MetadataURI_`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
+- `lsp4MetadataURI_`: the [LSP4 Metadata](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 
 ```sol title="contracts/LSP7SubCollection.sol"
 contract LSP7SubCollection is LSP7DigitalAsset {
@@ -218,7 +218,7 @@ contract LSP7SubCollection is LSP7DigitalAsset {
 
 ## Create the LSP8 Collection
 
-Now that we have the LSP7 Sub-Collection, we can create the [LSP8 Collection](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp8-collection-vs-tokenid-metadata).
+Now that we have the LSP7 Sub-Collection, we can create the [LSP8 Collection](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp8-collection-vs-tokenid-metadata).
 
 ### Specify what the LSP8 Collection will need to do
 
@@ -228,7 +228,7 @@ For this reason, when minting a new token on the LSP8 contract (a new LSP7 Sub-c
 
 - the `name` of the LSP7 Sub-Collection
 - the `symbol` of the LSP7 Sub-Collection
-- the [`lsp4TokenType`](../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 Sub-Collection
+- the [`lsp4TokenType`](../../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 Sub-Collection
 - the `isNonDivisible` of the LSP7 Sub-Collection
 - the `totalSupply` of the LSP7 Sub-Collection
 - the `receiver` of the initial tokens of the LSP7 Sub-Collection
@@ -239,7 +239,7 @@ Let's start creating an `LSP8Collection.sol` file in the `contracts/` folder and
 
 - the [`LSP8IdentifiableDigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts.git) from which we will inherit the main functionalities of the LSP8
 - the `_LSP8_TOKENID_FORMAT_ADDRESS` which is the format of the tokenId of the LSP8 Collection
-- the [`_LSP4_METADATA_KEY`](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
+- the [`_LSP4_METADATA_KEY`](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant
 - the `LSP7SubCollection` contract we just created so that we can use it in our `mint(...)` function
 
 ```typescript title="contracts/LSP8Collection.sol"
@@ -258,9 +258,9 @@ The constructor will be in charge of setting the following parameters:
 - `name_`: the name of the LSP8 Collection
 - `symbol_`: the symbol of the LSP8 Collection
 - `newOwner_`: the owner of the LSP8 Collection that will be able change the contract metadata and mint new LSP7 tokens
-- [`lsp4TokenType_`](../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 Sub-Collection
+- [`lsp4TokenType_`](../../../standards/tokens/LSP7-Digital-Asset.md##lsp4tokentype) of the LSP7 Sub-Collection
 - `lsp8CollectionIdFormat`: the [format of the tokenId](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8Collectionidformat) of the LSP8 Collection
-- `lsp4MetadataURI_`: the [LSP4 Metadata](../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
+- `lsp4MetadataURI_`: the [LSP4 Metadata](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
 
 ```sol title="contracts/LSP8Collection.sol"
 contract LSP8Collection is LSP8IdentifiableDigitalAsset {
@@ -333,7 +333,7 @@ contract LSP8Collection is LSP8IdentifiableDigitalAsset {
 
 ### Override the `_setDataForTokenId` & `_getDataForTokenId` functions
 
-Since we are inheriting from the `LSP8IdentifiableDigitalAsset.sol` contract, we will need to override the [`setDataForTokenId`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setdatafortokenid) & [`getDataForTokenId`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatafortokenid) functions (same for the batch functions). These functions will be in charge of setting and getting the metadata of the deployed LSP7 Sub-Collection. In this particular case, it will make more sense to directly call on the [`setData(...)`](../../contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md#setData) and [`getData(...)`](../../contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md#getData) functions of the LSP7 Sub-Collection contract.
+Since we are inheriting from the `LSP8IdentifiableDigitalAsset.sol` contract, we will need to override the [`setDataForTokenId`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#setdatafortokenid) & [`getDataForTokenId`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatafortokenid) functions (same for the batch functions). These functions will be in charge of setting and getting the metadata of the deployed LSP7 Sub-Collection. In this particular case, it will make more sense to directly call on the [`setData(...)`](../../../contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md#setData) and [`getData(...)`](../../../contracts/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.md#getData) functions of the LSP7 Sub-Collection contract.
 
 ```sol title="contracts/LSP8Collection.sol"
 contract LSP8Collection is LSP8IdentifiableDigitalAsset {
@@ -745,8 +745,8 @@ The deployed contract address should be printed in the console. Make sure to cop
 If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector).
 By pasting the address of the contract, you should see that it supports:
 
-- [ERC725Y](../../standards/generic-standards/lsp2-json-schema.md)
-- [LSP8IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)
+- [ERC725Y](../../../standards/generic-standards/lsp2-json-schema.md)
+- [LSP8IdentifiableDigitalAsset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)
 
 ![Inspect tool](../../../../static/img/learn/inspect-tool-lsp8.png)
 
@@ -947,12 +947,10 @@ Let's run the script using `npx hardhat run scripts/mintLSP7SubCollections.ts --
 If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector).
 By pasting the address of the contract, you should see that it supports:
 
-- [ERC725Y](../../standards/generic-standards/lsp2-json-schema.md)
-- [LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md)
+- [ERC725Y](../../../standards/generic-standards/lsp2-json-schema.md)
+- [LSP7DigitalAsset](../../../standards/tokens/LSP7-Digital-Asset.md)
 
-![Inspect tool](../../../static/img/learn/inspect-tool-lsp7.png)
-
-> > > > > > > > dfb87de26 (chore: re-organise sidebar and section for tutorials and Learn):docs/tutorials/digital-assets/smart-contract-developers/create-nft-collection-with-lsp7-tokenId.md
+![Inspect tool](../../../../static/img/learn/inspect-tool-lsp7.png)
 
 ## Conclusion
 

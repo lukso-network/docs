@@ -28,11 +28,11 @@ Make sure not to grant the 3rd party address the **SUPER Permissions**. Otherwis
 
 :::
 
-Check the guide of **[granting permissions to 3rd Parties](../../../learn/expert-guides/key-manager/grant-permissions.md)**, and make sure to grant the 3rd party address the **CALL Permission**.
+Check the guide of **[granting permissions to 3rd Parties](../key-manager/grant-permissions.md)**, and make sure to grant the 3rd party address the **CALL Permission**.
 
 ## Use AllowedCalls permission for the 3rd Parties
 
-In this guide, after granting the 3rd party the permission **CALL**, we will need to **allow the address of the 3rd party** to interact with the **Vault address**. We will be using the [AllowedCalls permission](../../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) from the Key Manager.
+In this guide, after granting the 3rd party the permission **CALL**, we will need to **allow the address of the 3rd party** to interact with the **Vault address**. We will be using the [AllowedCalls permission](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) from the Key Manager.
 
 ## Setup
 
@@ -64,9 +64,9 @@ npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
 
 ## Step 1 - Imports, Constants & EOA
 
-For this guide we will firstly need and import the _ABIs_ for the Universal Profile & Key Manager contracts. Also we will import the `ERC725YDataKeys` to retrieve the data key for [AllowedCalls permission](../../../standards/universal-profile/lsp6-key-manager.md#allowed-calls).  
+For this guide we will firstly need and import the _ABIs_ for the Universal Profile & Key Manager contracts. Also we will import the `ERC725YDataKeys` to retrieve the data key for [AllowedCalls permission](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls).  
 As constants we will need to store the addresses for the Universal Profile, Vault & the restricted third party.  
-Finally, we will need a private key with the proper _permissions_, in our case [**ADDCONTROLLER permission**](../../../standards/universal-profile/lsp6-key-manager.md#permissions).
+Finally, we will need a private key with the proper _permissions_, in our case [**ADDCONTROLLER permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions).
 
 <Tabs>
   
@@ -118,7 +118,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
 ## Step 2 - Create UP contract instance
 
-At this point we will create instance for the [**Universal Profile**](../../../standards/universal-profile/lsp0-erc725account.md) contract.
+At this point we will create instance for the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract.
 
 <Tabs>
   
@@ -148,7 +148,7 @@ const universalProfile = new ethers.Contract(
 
 </Tabs>
 
-## Step 3 - Generate the data key-value pair for [`AllowedCalls`](../../../standards/universal-profile/lsp6-key-manager.md#allowed-calls)
+## Step 3 - Generate the data key-value pair for [`AllowedCalls`](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls)
 
 Now we need to generate a data key & a data value for the **Allowed Calls** that we want for the _Third Party address_. After we do that, we will update the _Allowed Calls data key_ with the encoded **Allowed Calls**
 
