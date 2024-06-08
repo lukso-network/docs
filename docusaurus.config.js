@@ -101,7 +101,7 @@ export default {
           },
           {
             from: '/learn/digital-assets/mint-lsp7-token',
-            to: '/learn/universal-profile/interactions/mint-lsp7-token',
+            to: '/learn/universal-profile/interactions/interact-with-contracts',
           },
           {
             from: '/learn/smart-contract-developerss/create-lsp7-token',

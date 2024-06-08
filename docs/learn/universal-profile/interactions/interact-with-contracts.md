@@ -8,54 +8,31 @@ import TabItem from '@theme/TabItem';
 
 # Interact with other contracts
 
-:::caution Disclaimer
+<div style={{textAlign: 'center', color: 'grey'}}>
+  <img
+    src={require('../img/interact-with-contracts.png').default}
+    alt="`Examples of interacting with contracts, like minting tokens or refining burntpix."
+    width="1200"
+  />
+<br/>
+<i>Examples of interacting with contracts, like minting tokens or refining burntpix.</i>
+<br /><br />
+</div>
 
-This guide might contain outdated information and will be updated soon.
+In this guide, you will learn how to use your Universal Profile to interact with any other smart contract.
 
-:::
+You will see from the examples below that **there is no difference with writing the code for interacting with regular EOA-based wallet _vs_ using Universal Profile**. The code is the same! Simply:
 
-In this guide, we will learn how to use our Universal Profile to interact with any other smart contract (like if we were using a regular Externally Owned Account).
-
-**Interaction flow**:
-
-![Guide - Interact with other contracts using a Universal Profile](../img/interact-with-contracts-using-universal-profile-flow.jpg)
-
-## Introduction
-
-We have seen in the previous example how to send LYX from our UP via the [`execute(...)`](../../contracts/contracts/LSP0ERC725Account#execute) function.
-
-This function offers a fourth parameter: `_data`, that provides a lot of flexibility when interacting from our UP. The `_data` parameter is handy when the `_to` recipient is a smart contract.
-
-If you want to call a specific smart contract that was deployed on the network by the Universal Profile, the parameters of the `execute(...)` function will be as follow:
-
-- `_operation`: `0` (for `CALL`).
-- `_to`: the `address` of the smart contract we want to interact with.
-- `_value_`: empty (0).
-- `_data`: the ABI-encoded function name and arguments, to be run at the `_to` contract address.
-
-Suppose a smart contract `targetContract` was deployed on the network and we want our UP to call the function `myCoolFunction` on this contract. We will have to:
-
-1. [ABI-encode](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-encodeabi) the function call with the parameters we want to pass.
-2. Pass the encoded calldata as argument `_data` of the `execute(...)` function.
+1. create an instance of the contract you want to interact with.
+2. call the function you want on this contract.
+3. use the 🆙 address as `{ from: "0x..." }` in the transaction options.
 
 ## Setup
 
-To complete this guide, we will need:
+To complete this guide, we will need some initial constants values and install some dependencies
 
-- an EOA with some LYX for gas fees and the required [permissions](../../standards/universal-profile/lsp6-key-manager.md#permissions) for the interaction.
-- the `UniversalProfile` and `KeyManager` contracts ABIs from the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) npm package.
-- the address of our Universal Profile.
-- the `targetContract` ABI.
-- the address of the Target Contract.
-
-:::info
-
-The chosen EOA needs to have [**CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#permissions) together with [**Allowed Calls**](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Permission**](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)
-
-:::
-
-Make sure you have the following dependencies installed before beginning this tutorial:
-
+- the address of the contract we want to interact with.
+- the ABI of the contract we want to interact with.
 - Either [`web3.js`](https://github.com/web3/web3.js) or [`ethers.js`](https://github.com/ethers-io/ethers.js/)
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
@@ -63,7 +40,7 @@ Make sure you have the following dependencies installed before beginning this tu
   
   <TabItem value="web3js" label="web3.js">
 
-```shell title="Install the dependencies"
+```shell
 npm install web3 @lukso/lsp-smart-contracts
 ```
 
@@ -71,7 +48,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```shell title="Install the dependencies"
+```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
 
@@ -79,269 +56,182 @@ npm install ethers @lukso/lsp-smart-contracts
 
 </Tabs>
 
-## Step 1 - Create the contracts instances
+## Interactions Examples
 
-The first step is to create instances of our Universal Profile, Key Manager contracts and the Target Contract.
+Below you will find some examples to perform the following:
 
-- Create an Universal Profile contract instance from `universalProfileAddress`.
-- Create a Target Contract instance from the `targetContractAddress`.
+- Mint a free NFT and see it appear in your wallet on [_universalprofile.cloud_](https://my.universalprofile.cloud).
+- Execute a swap on UniversalSwap.io
+- Refine a BurntPix
 
-:::caution
-
-Save the Target Contract ABI in a separate JSON and import it in the main file.  
-You can quickly compile and get a contract's ABI in [Remix IDE](https://remix.ethereum.org/).
-
-:::
+### Example 1 - Mint some Tokens
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Imports & Constants"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
+```typescript title="mintTokens.ts"
+import Web3 from 'web3';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+
+const TOKEN_CONTRACT_ADDRESS = '0x...';
+
+const web3 = new Web3(window.lukso);
+
+await web3.eth.requestAccounts();
+const accounts = await web3.eth.getAccounts();
+const universalProfile = accounts[0];
+
+const myToken = new web3.eth.Contract(LSP7Mintable.abi, TOKEN_CONTRACT_ADDRESS);
+
+// mint 100 tokens
+const amount = web3.utils.toWei('100', 'ether');
+
+const mintTxn = await myToken.methods
+  .mint(
+    universalProfile, // recipient address
+    amount, // token amount
+    true, // force parameter
+    '0x', // additional data
+  )
+  .send({ from: universalProfile });
+
+console.log(mintTxn);
+
+// Waiting 10sec to make sure the minting transaction has been processed
+
+const balance = await myToken.methods.balanceOf(accounts[0]);
+console.log('🏦 Balance: ', balance.toString());
+```
+
+  </TabItem>
+  
+  <TabItem value="ethersjs" label="ethers.js">
+
+```typescript title="mintTokens.ts"
+import { ethers } from 'ethers';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+
+const TOKEN_CONTRACT_ADDRESS = '0x...';
+
+await ethers.provider.send('eth_requestAccounts', []);
+const universalProfile = await ethers.getSigner();
+
+const myToken = new ethers.Contract(TOKEN_CONTRACT_ADDRESS, LSP7Mintable.abi);
+
+// mint 100 tokens
+const amount = ethers.parseUnits('100', 'ether');
+
+const mintTxn = await myToken.mint(
+  universalProfile.address, // recipient address
+  amount, // token amount
+  true, // force parameter
+  '0x', // additional data
+  {
+    from: universalProfile,
+  },
+);
+console.log(mintTxn);
+
+// Waiting 10sec to make sure the minting transaction has been processed
+
+const balance = await myToken.balanceOf(signer.address);
+console.log('🏦 Balance: ', balance.toString());
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Example 2 - Refine a BurntPix
+
+<Tabs>
+  
+  <TabItem value="web3js" label="web3.js">
+
+```typescript title="refineBurntPix.ts"
 import Web3 from 'web3';
 
-const web3 = new Web3('https://rpc.testnet.lukso.network');
+// Constants:
+//  - BurntPix Registry contract to interact with
+const BURNT_PIX_REGISTRY_ADDRESS = "0x3983151E0442906000DAb83c8b1cF3f2D2535F82";
 
-const universalProfileAddress = '0x...';
-const universalProfile = new web3.eth.Contract(
-  UniversalProfile.abi,
-  universalProfileAddress,
+//  - bytes32 ID of the BurntPix to refine
+const BURNT_PIX_ID "0x0000000000000000000000000a3c1ed77de72af03acfaeab282a06e6fbeed5a8";
+
+// 1. Connect to UP Browser Extension
+const provider = new Web3(window.lukso);
+
+const accounts = await provider.eth.requestAccounts();
+const universalProfile = accounts[0];
+
+const refineFunctionABI = {
+  "inputs": [
+    {
+      "internalType": "bytes32",
+      "name": "tokenId",
+      "type": "bytes32"
+    },
+    {
+      "internalType": "uint256",
+      "name": "iterations",
+      "type": "uint256"
+    }
+  ],
+  "name": "refine",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+}
+// 2. Create an instance of the BurntPix Registry contract
+const burntPixRegistry = new web3.eth.Contract(
+  BURNT_PIX_REGISTRY_ADDRESS,
+  [ refineFunctionABI ],
 );
 
-const targetContractAddress = '0x...';
-const targetContract = new web3.eth.Contract(
-  TargetContractABI,
-  targetContractAddress,
-);
+// Perform 500 iteration to refine a specific Burnt Pix
+await contract.methods.refine(BURNT_PIX_ID, "500").send({
+  from: universalProfile,
+  gasPrice: web3.utils.fromWei("1000000000", 'gwei'),
+  gasLimit: 15_000_000,
+});
 ```
 
   </TabItem>
-
+  
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Imports & Constants"
+```typescript title="refineBurntPix.ts"
 import { ethers } from 'ethers';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
 
-const provider = new ethers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.network',
+// Constants:
+//  - BurntPix Registry contract to interact with
+const BURNT_PIX_REGISTRY_ADDRESS = "0x3983151E0442906000DAb83c8b1cF3f2D2535F82";
+
+//  - bytes32 ID of the BurntPix to refine
+const BURNT_PIX_ID "0x0000000000000000000000000a3c1ed77de72af03acfaeab282a06e6fbeed5a8";
+
+// 1. Connect to UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
+
+const accounts = await provider.send('eth_requestAccounts', []);
+const universalProfile = accounts[0];
+
+// 2. Create an instance of the BurntPix Registry contract
+const burntPixRegistry = new ethers.Contract(
+  BURNT_PIX_REGISTRY_ADDRESS,
+  ["function refine(bytes32 tokenId, uint256 iterations) external"]
 );
 
-const universalProfileAddress = '0x...';
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfile.abi,
-  provider,
-);
-
-const targetContractAddress = '0x...';
-const targetContract = new ethers.Contract(
-  targetContractAddress,
-  TargetContractABI,
-  provider,
-);
+// Perform 500 iteration to refine a specific Burnt Pix
+await contract.refine(BURNT_PIX_ID, "500", {
+  from: universalProfile,
+  gasPrice: ethers.formatUnits("1", 'gwei'),
+  gasLimit: 15_000_000,
+});
 ```
 
   </TabItem>
 
 </Tabs>
-
-## Step 2 - Encode the calldatas
-
-We need to create a calldata that will be executed on the Target Contract.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Target calldata"
-// 1. encode the calldata to be run at the targetContract
-// assuming targetContract is a Contract instance
-const targetCalldata = targetContract.methods
-  .myCoolfunction('dummyParameter')
-  .encodeABI();
 ```
-
-  </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Target calldata"
-// 1. encode the calldata to be run at the targetContract
-// assuming targetContract is a Contract instance
-const targetCalldata = targetContract.interface.encodeFunctionData(
-  'myCoolfunction',
-  ['dummyParameter'],
-);
-```
-
-  </TabItem>
-
-</Tabs>
-
-## Step 3 - Execute the calldata
-
-### Load the EOA
-
-Like in other guides, an important step is to load our EOA that is a controller for our Universal Profile.
-
-<Tabs>
-
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Setup EOA"
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Setup EOA"
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
-```
-
-  </TabItem>
-
-</Tabs>
-
-### Send the execute calldata
-
-The final step is to pass the encoded calldata to the Universal Profile. Since we are calling from an EOA that is a [controller](../../standards/universal-profile/lsp6-key-manager.md#introduction) on the UP, the Key Manager will authorize the transaction.
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-<!-- prettier-ignore-start -->
-
-```typescript title="Send transaction"
-await universalProfile.methods
-  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata)
-  .send({
-    from: EOA.address,
-    gasLimit: 300_000,
-  });
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-<!-- prettier-ignore-start -->
-
-```typescript title="Send transaction"
-await universalProfile
-  .connect(EOA)
-  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata);
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-
-</Tabs>
-
-## Final Code
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-<!-- prettier-ignore-start -->
-
-```typescript title="Final code"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
-import Web3 from 'web3';
-
-const web3 = new Web3('https://rpc.testnet.lukso.network');
-
-const universalProfileAddress = '0x...';
-const universalProfile = new web3.eth.Contract(
-  UniversalProfile.abi,
-  universalProfileAddress,
-);
-
-const targetContractAddress = '0x...';
-const targetContract = new web3.eth.Contract(
-  TargetContractABI,
-  targetContractAddress,
-);
-
-// 1. encode the calldata to be run on the UP
-const targetCalldata = targetContract.methods
-  .myCoolfunction('dummyParameter')
-  .encodeABI();
-
-const OPERATION_CALL = 0;
-
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
-
-// 2. execute the calldata through the UP
-await universalProfile.methods
-  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata)
-  .send({
-    from: EOA.address,
-    gasLimit: 300_000,
-  });
-```
-
-  </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-
-```typescript title="Final code"
-import { ethers } from 'ethers';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import TargetContractABI from './TargetContractABI.json';
-
-const provider = new ethers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.network',
-);
-
-const universalProfileAddress = '0x...';
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfile.abi,
-  provider,
-);
-
-const targetContractAddress = '0x...';
-const targetContract = new ethers.Contract(
-  targetContractAddress,
-  TargetContractABI,
-  provider,
-);
-
-// 1. encode the calldata to be run on the UP,
-const targetCalldata = targetContract.interface.encodeFunctionData(
-  'myCoolfunction',
-  ['dummyParameter'],
-);
-
-const OPERATION_CALL = 0;
-
-const PRIVATE_KEY = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(PRIVATE_KEY).connect(provider);
-
-// 2. execute the calldata through the UP
-await universalProfile
-  .connect(EOA)
-  .execute(OPERATION_CALL, targetContract.address, 0, targetCalldata);
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-
-</Tabs>
