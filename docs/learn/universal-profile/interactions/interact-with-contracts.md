@@ -66,6 +66,15 @@ Below you will find some examples to perform the following:
 
 ### Example 1 - Mint some Tokens
 
+<div style={{textAlign: 'center', color: 'grey'}}>
+  <img
+    src={require('../img/mint-tokens.png').default}
+    alt="`Examples of minting tokens."
+    width="400"
+  />
+<br/>
+</div>
+
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
@@ -144,6 +153,15 @@ console.log('🏦 Balance: ', balance.toString());
 </Tabs>
 
 ### Example 2 - Refine a BurntPix
+
+<div style={{textAlign: 'center', color: 'grey'}}>
+  <img
+    src={require('../img/refine-burntpix.png').default}
+    alt="`Examples of refining a burntpix NFT."
+    width="400"
+  />
+<br/>
+</div>
 
 <Tabs>
   
