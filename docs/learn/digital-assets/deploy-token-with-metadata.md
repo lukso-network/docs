@@ -24,7 +24,7 @@ To set the metadata of the digital asset directly on deployment, we will do one 
 
 :::
 
-The example will use the previous contract from our [Create LSP7 Token Guide](../smart-contract-developers/create-lsp7-token.md). However, the process of deploying contracts with metadata is almost equivalent across LSPs. You just have to adjust the contract parameters, schemas, and import the right contract ABIs.
+The example will use the previous contract from our [Create LSP7 Token Guide](./smart-contract-developers/create-lsp7-token.md). However, the process of deploying contracts with metadata is almost equivalent across LSPs. You just have to adjust the contract parameters, schemas, and import the right contract ABIs.
 
 ### Setup deployment script
 
@@ -179,11 +179,5 @@ Afterwards, you are able to run the deployment script:
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployTokenWithMetadataAsUP.ts
 ```
-
-:::caution Contract Compilation
-
-Make sure that you [successfully compiled your contract](../smart-contract-developers/getting-started.md) before executing the deployment script.
-
-:::
 
 The transaction will be signed using the configured controller key. After the deployment, you will be able to check the contract on the [Execution Explorer](https://explorer.execution.testnet.lukso.network/).
