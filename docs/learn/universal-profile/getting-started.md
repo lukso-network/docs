@@ -56,7 +56,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles](../.
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <CallToActionButton
     color="white"
-    link="/tutorials/universal-profile/connect-profile"
+    link="/learn/universal-profile/connect-profile"
     text="3 - Get started building! 🫡"
   />
 </div>

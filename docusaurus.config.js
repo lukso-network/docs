@@ -256,7 +256,7 @@ export default {
           label: 'FAQ',
         },
         {
-          href: '/install-up-browser-extension',
+          to: '/install-up-browser-extension',
           position: 'right',
           label: '🆙 Extension',
         },
