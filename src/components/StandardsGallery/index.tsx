@@ -29,7 +29,7 @@ const STANDARDS = [
     name: 'Profile Metadata',
     link: '/standards/universal-profile/lsp3-profile-metadata',
 
-    text: 'Set of ERC725Y data keys to describe a smart contract based blockchain profile.',
+    text: 'Set of ERC725Y data keys describing a smart contract based blockchain profile.',
   },
   {
     title: '🔍 LSP4',
@@ -133,7 +133,7 @@ const STANDARDS = [
 
 function StandardCard({ link, title, name, text }) {
   return (
-    <div className={`col col--3 margin-bottom--lg ${styles.legoCard}`}>
+    <div className={`col col--4 margin-bottom--lg ${styles.legoCard}`}>
       <div>
         <Link
           to={link}
@@ -141,12 +141,12 @@ function StandardCard({ link, title, name, text }) {
             borderWidth: '1px',
           }}
         >
-          <h3 className="flex items-center font-jakarta">
+          <h2 className="flex items-center font-jakarta">
             <div>{title}</div>
-          </h3>
-          <h4 className="flex items-center font-jakarta">
+          </h2>
+          <h3 className="flex items-center font-jakarta">
             <div className={styles.standardName}>{name}</div>
-          </h4>
+          </h3>
           <p className="mb-0 text-sm text-zinc-400">{text}</p>
         </Link>
       </div>
@@ -158,17 +158,22 @@ export default function StandardsGallery() {
   return (
     <div className="container">
       <div className="row flex flex-col items-center justify-between">
-        {STANDARDS.slice(0, 4).map((standard) => (
+        {STANDARDS.slice(0, 3).map((standard) => (
           <StandardCard {...standard} key={standard.title} />
         ))}
       </div>
       <div className="row flex flex-col items-center justify-between">
-        {STANDARDS.slice(4, 8).map((standard) => (
+        {STANDARDS.slice(3, 6).map((standard) => (
           <StandardCard {...standard} key={standard.title} />
         ))}
       </div>
       <div className="row flex flex-col items-center justify-between">
-        {STANDARDS.slice(8, 12).map((standard) => (
+        {STANDARDS.slice(6, 9).map((standard) => (
+          <StandardCard {...standard} key={standard.title} />
+        ))}
+      </div>
+      <div className="row flex flex-col items-center justify-between">
+        {STANDARDS.slice(9, 12).map((standard) => (
           <StandardCard {...standard} key={standard.title} />
         ))}
       </div>
