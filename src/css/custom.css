@@ -83,7 +83,8 @@ html[data-theme='dark'] {
 .admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
   margin-bottom: 2em !important;
 }
-.admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module p {
+.admonition_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module
+  p {
   margin: 0 0 1rem;
 }
 
@@ -127,7 +128,7 @@ html[data-theme='dark'] .tools .img {
   background-image: url('../../static/img/icons/icon-tools-gradient-dark.png') !important;
 }
 
-html[data-theme='dark'] .partners .img {
+html[data-theme='dark'] .integrations .img {
   background-image: url('../../static/img/icons/icon-partners-gradient-dark.png') !important;
 }
 
