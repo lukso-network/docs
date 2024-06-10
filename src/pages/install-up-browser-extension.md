@@ -57,7 +57,7 @@ The UP Browser Extension is in a **BETA Phase**.
 <div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    <img src="/img/example-dapp-up-test-dapp.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
     
     <a href="https://up-test-dapp.lukso.tech">
       <h3>UP Test dApp</h3>
@@ -68,7 +68,7 @@ The UP Browser Extension is in a **BETA Phase**.
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    <img src="/img/example-dapps.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
     
     <a href="https://examples.lukso.tech">
       <h3>dApps Examples</h3>
@@ -79,7 +79,7 @@ The UP Browser Extension is in a **BETA Phase**.
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    <img src="/img/example-dapp-tsx-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
     
     <a href="https://tsx.app">
       <h3>Txs.App</h3>
@@ -90,9 +90,9 @@ The UP Browser Extension is in a **BETA Phase**.
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
 
-    <a href="https://universal.page/">
+    <a href="http://erc725-inspect.lukso.tech/">
       <h3>ERC725 Inspect</h3>
     </a>
 
