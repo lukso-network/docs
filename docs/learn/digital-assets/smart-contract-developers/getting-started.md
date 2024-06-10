@@ -116,11 +116,6 @@ const config: HardhatUserConfig = {
       chainId: 4201,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
-    luksoMainnet: {
-      url: 'https://42.rpc.thirdweb.com',
-      chainId: 42,
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-    },
   },
   etherscan: {
     apiKey: 'no-api-key-needed',
@@ -131,14 +126,6 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: 'https://explorer.execution.testnet.lukso.network/api',
           browserURL: 'https://explorer.execution.testnet.lukso.network/',
-        },
-      },
-      {
-        network: 'luksoMainnet',
-        chainId: 42,
-        urls: {
-          apiURL: 'https://explorer.execution.mainnet.lukso.network/api',
-          browserURL: 'https://explorer.execution.mainnet.lukso.network/',
         },
       },
     ],
@@ -155,7 +142,7 @@ export default config;
 To use LSP smart contracts within your Hardhat project, you can install the latest version of the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package like the following:
 
 ```bash
-npm install @lukso/lsp-smart-contracts@latest
+npm install @lukso/lsp-smart-contracts
 ```
 
 As the syntax of smart contracts works by **inheritance**, you can add underlying functionalities by importing predefined contracts. To create a new smart contract using LSPs, you can simply `import` the standardized and modular presets from the previously installed `@lukso/lsp-smart-contracts` library. These presets can then be combined to create complex contract deployments like Universal Profiles and Digital Assets.
