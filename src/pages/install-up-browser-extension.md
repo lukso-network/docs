@@ -81,7 +81,7 @@ The UP Browser Extension is in a **BETA Phase**.
   <div className="col" style={{ marginBottom: '2em' }}>
     <img src="/img/example-dapp-tsx-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
     
-    <a href="https://tsx.app">
+    <a href="https://txs.app">
       <h3>Txs.App</h3>
     </a>
 
@@ -92,7 +92,7 @@ The UP Browser Extension is in a **BETA Phase**.
   <div className="col" style={{ marginBottom: '2em' }}>
     <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
 
-    <a href="http://erc725-inspect.lukso.tech/">
+    <a href="https://erc725-inspect.lukso.tech/">
       <h3>ERC725 Inspect</h3>
     </a>
 
