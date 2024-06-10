@@ -211,3 +211,7 @@ a.imageLink img {
   display: block; /* removes any default inline spacing */
   pointer-events: none; /* disable default zoom */
 }
+
+table.lsp-features td {
+  vertical-align: top !important;
+}
