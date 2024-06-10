@@ -133,24 +133,21 @@ const STANDARDS = [
 
 function StandardCard({ link, title, name, text }) {
   return (
-    <div className={`col col--4 margin-bottom--lg ${styles.legoCard}`}>
-      <div>
-        <Link
-          to={link}
-          style={{
-            borderWidth: '1px',
-          }}
-        >
-          <h2 className="flex items-center font-jakarta">
-            <div>{title}</div>
-          </h2>
-          <h3 className="flex items-center font-jakarta">
-            <div className={styles.standardName}>{name}</div>
-          </h3>
-          <p className="mb-0 text-sm text-zinc-400">{text}</p>
-        </Link>
-      </div>
-    </div>
+    <Link
+      className={`col col--4 margin-bottom--lg ${styles.legoCard}`}
+      to={link}
+      style={{
+        borderWidth: '1px',
+      }}
+    >
+      <h2 className="flex items-center font-jakarta">
+        <div>{title}</div>
+      </h2>
+      <h3 className="flex items-center font-jakarta">
+        <div className={styles.standardName}>{name}</div>
+      </h3>
+      <p className="mb-0 text-sm text-zinc-400">{text}</p>
+    </Link>
   );
 }
 
