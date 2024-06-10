@@ -9,13 +9,15 @@ export default function CallToActionButton({
   link,
   text,
   icon,
+  target,
 }) {
   return (
     <div className={styles.ctaContainer}>
       <a
-        style={{ backgroundColor: bgColor, maxWidth: '400px', display: 'flex' }}
+        style={{ backgroundColor: bgColor, display: 'flex' }}
         className={styles.ctaButton}
         href={link}
+        target={target}
       >
         <Icon
           icon={icon}

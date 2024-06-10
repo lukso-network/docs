@@ -4,14 +4,62 @@ sidebar_position: 1
 description: Getting started building dApps on the LUKSO ecosystem.
 ---
 
-# Getting started building dApps
+import CallToActionButton from '@site/src/components/CallToActionButton';
 
-## Interact with Universal Profiles
+# Getting started building dApps with 🆙
 
-When building dApps on LUKSO, you are interacting with [Universal Profiles](../../standards/universal-profile/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). Before a connection can be established, users must create their Universal Profile by:
+When building dApps on LUKSO, you are interacting with [Universal Profiles](../../standards/universal-profile/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
 
-1. [Installing the Universal Profile Browser Extension](/install-up-browser-extension)
-2. [Deploying their Universal Profile](https://my.universalprofile.cloud)
+<div style={{ display: 'flex', justifyContent: 'center', marginTop: '2em' }}>
+  <CallToActionButton
+    color="white"
+    target="_blank"
+    link="/install-up-browser-extension"
+    text="1 - Installing the Universal Profile Browser Extension 🧩"
+  />
+</div>
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: '3em',
+  }}
+>
+  <p style={{ marginBottom: 0 }}>⬇</p>
+</div>
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
+>
+  <CallToActionButton
+    color="white"
+    target="_blank"
+    link="https://my.universalprofile.cloud"
+    text="2 - Create your Universal Profile 🆙"
+  />
+</div>
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: '3em',
+  }}
+>
+  <p style={{ marginBottom: 0 }}>⬇</p>
+</div>
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <CallToActionButton
+    color="white"
+    link="/learn/universal-profile/connect-profile"
+    text="3 - Get started building! 🫡"
+  />
+</div>
 
 :::note Manual Deployment
 
@@ -36,8 +84,8 @@ The [`tools-dapp-boilerplate`](https://github.com/lukso-network/tools-dapp-boile
 <div style={{textAlign: 'center'}}>
 
 <img
-src="https://github.com/lukso-network/tools-dapp-boilerplate/raw/main/img/front_page.png"
-alt="LUKSO Boilerplate"
+  src="https://github.com/lukso-network/tools-dapp-boilerplate/raw/main/img/front_page.png"
+  alt="LUKSO Boilerplate"
 />
 
 </div>
@@ -48,15 +96,6 @@ The [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repo
 
 <div style={{textAlign: 'center'}}>
 
-<img
-src="/img/guides/playground_dapp.png"
-alt="LUKSO Playground dApp"
-/>
+<img src="/img/guides/playground_dapp.png" alt="LUKSO Playground dApp" />
 
-</div>
-
-## Kickstart Your Development Journey: Accessing Resources & Tools
-
-<div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kJ5_6LN6mZc?si=7NWn-odkk8KmSDLz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>

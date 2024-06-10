@@ -197,6 +197,11 @@ export default {
             from: '/learn/expert-guides/deploy-token-with-metadata',
             to: '/learn/assets/deploy-token-with-metadata',
           },
+          // Tools
+          {
+            from: '/tools/partners',
+            to: '/tools/integrations',
+          },
         ],
       },
     ],
@@ -220,7 +225,7 @@ export default {
       items: [
         {
           type: 'doc',
-          docId: 'learn/introduction',
+          docId: 'learn/what-is-lukso',
           position: 'left',
           label: 'Learn',
         },
@@ -256,7 +261,7 @@ export default {
           label: 'FAQ',
         },
         {
-          href: '/install-up-browser-extension',
+          to: '/install-up-browser-extension',
           position: 'right',
           label: '🆙 Extension',
         },

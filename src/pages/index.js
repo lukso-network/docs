@@ -30,7 +30,7 @@ function Index() {
         <div className={styles.cardContainer}>
           <Box
             icon={GuidesIcon}
-            link="./learn/introduction"
+            link="./learn/what-is-lukso"
             title="LEARN"
             className="learn"
             content="Learn about integrating standards within contracts and dApps."
@@ -67,7 +67,7 @@ function Index() {
           />
           <Box
             icon={PartnersIcon}
-            link="./tools/partners"
+            link="./tools/integrations"
             title="INTEGRATIONS"
             className="partners"
             content="Check out LUKSO ecosystem tools and services."
