@@ -50,21 +50,12 @@ npx hardhat init
 # Proceed installing the Hardhat library
 # select 'Create a TypeScript project'
 # use the default values for the rest of the setup
-# This will install the toolbox for deployment and verification
-# This will also add a gitignore file
 ```
 
 Once finished, you have a working Hardhat setup. To use your private keys and Universal Profile address for deployment, please set up the `dotenv` environment, so those can be stored and fetched in a private file.
 
 ```bash
 npm install -D dotenv
-```
-
-After installation, we will update the `.gitignore` file, so library installations and private keys from `dotenv` are never included in any code commits within your project. Especially `dotenv` files contain sensitive values such as the private key of a blockchain account.
-
-```text title=".gitignore"
-node_modules
-.env
 ```
 
 You can then go ahead to create a `.env` file within the root folder of the Hardhat repository and the following contents:
@@ -97,6 +88,9 @@ By default, the deployment will be to your local network and default Solidity ve
 - specify `solidity` compiler settings, so LSP presets match your contract version and EVM requirements
 - add the parameters of the `networks` and their related private keys
 - define the `etherscan` APIs to verify contracts on the networks
+
+<details>
+<summary>Final Hardhat config file from the [Playground repo](https://github.com/lukso-network/lukso-playground)</summary>
 
 ```js title="hardhat.config.ts"
 import { HardhatUserConfig } from 'hardhat/config';
@@ -154,6 +148,8 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
+</details>
+
 ## Use LSP smart contract presets
 
 To use LSP smart contracts within your Hardhat project, you can install the latest version of the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package like the following:
@@ -189,12 +185,6 @@ After setting up the contract, you can compile it using the following command:
 ```bash
 npx hardhat compile
 ```
-
-:::info Debugging
-
-Add the `--verbose` and `--show-stack-traces` flags for further information.
-
-:::
 
 After the contract is compiled, you can create a deployment script to publish the contract on the blockchain.
 
@@ -333,12 +323,6 @@ npx hardhat --network luksoTestnet run scripts/deployMyCustomToken.ts
 :::success Contract Examples
 
 You can find ready-to-go example contracts within the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
-
-:::
-
-:::warning
-
-Please remember to always be careful when deploying smart contracts. Do not forget to audit your code before deploying your smart contracts in production.
 
 :::
 
