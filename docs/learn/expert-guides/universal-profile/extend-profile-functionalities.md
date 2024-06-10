@@ -57,12 +57,6 @@ npm install ethers @lukso/lsp-smart-contracts
 
 ### Step 1: Create the Extension Contract
 
-:::info
-
-Check the [Smart Contract developer Getting started section](../../smart-contract-developers/getting-started.md) to know how to create a Hardhat project.
-
-:::
-
 Next, we will create a Solidity contract named `TipMe` which will inherit from [`LSP17Extension`](../../../contracts/contracts/LSP17ContractExtension/LSP17Extension.md) and have a function `tipMe(..)` that emits an event `Tipped`.
 
 ```solidity title="TipMe.sol"
@@ -219,7 +213,7 @@ console.log('Contract deployed at:', tipMeExtensionAddress);
 
 :::info Requirements
 
-The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permission otherwise the call will fail. Check the [keyManager guides](../key-manager/get-controller-permissions.md) to learn more about permissions.
+The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permission otherwise the call will fail. Check the [keyManager guides](../../key-manager/get-controller-permissions.md) to learn more about permissions.
 
 :::
 
@@ -381,12 +375,6 @@ Extending `interfaceIds` is crucial for Universal Profiles, as many protocols ch
 
 ### Step 1: Create a Contract Supporting a Specific InterfaceId
 
-:::info
-
-Check the [Smart Contract developer Getting started section](../../smart-contract-developers/getting-started.md) to know how to create a Hardhat project.
-
-:::
-
 First, you need to create a Solidity contract that implements the [`supportsInterface(..)`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#supportsinterface) function. This function should return true for at least one specific interfaceId, in this case, a dummy interfaceId like `0xaabbccdd`.
 
 ```solidity title="SupportsInterface.sol"
@@ -464,7 +452,7 @@ console.log('Contract deployed at:', tipMeExtensionAddress);
 
 :::info Requirements
 
-The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permissions, otherwise, the call will fail. Check the [keyManager guides](../key-manager/get-controller-permissions.md) to learn more about permissions.
+The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permissions, otherwise, the call will fail. Check the [keyManager guides](../../key-manager/get-controller-permissions.md) to learn more about permissions.
 
 :::
 

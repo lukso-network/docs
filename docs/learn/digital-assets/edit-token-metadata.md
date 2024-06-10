@@ -46,13 +46,13 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::info Contract Deployment
 
-If you want to learn more about the contract deployment itself, please have a look at the [Create LSP7 Token](../smart-contract-developers/create-lsp7-token.md) guides before you continue.
+If you want to learn more about the contract deployment itself, please have a look at the [Create LSP7 Token](./smart-contract-developers/create-lsp7-token.md) guides before you continue.
 
 :::
 
 ## Setup
 
-First, you have to prepare all imports and constants to send the transaction. In this example, we will update the metadata of a [previously deployed LSP7 token](../smart-contract-developers/create-lsp7-token.md) using our default [Hardhat setup](../smart-contract-developers/getting-started.md).
+First, you have to prepare all imports and constants to send the transaction.
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">

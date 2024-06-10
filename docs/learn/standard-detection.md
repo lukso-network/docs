@@ -1,6 +1,5 @@
 ---
-sidebar_label: '👮 Standard Detection'
-sidebar_position: 6
+sidebar_label: '🔍 Standard Detection'
 description: Check supported ERC725 storage keys and interfaces of LSPs (LUKSO Standard Proposals) smart contracts.
 ---
 
@@ -38,7 +37,7 @@ You can verify if a contract contains a specific set of ERC725Y keys (= **metada
 
 :::
 
-Similar to the [Read Profile Data Guide](./universal-profile/read-profile-data.md), you can use the [`getData()`](../tools/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
 
 <!-- prettier-ignore-start -->
 

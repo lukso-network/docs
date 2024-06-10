@@ -47,7 +47,7 @@ Before getting into the code, you need to be familiar with the token standards [
 
 :::info Get Asset Addresses
 
-As every Universal Profile comes with a 📢 [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md), the owned assets can be fetched directly directly from it's contract. For more information, please check the 📒 [Read Profile Data](../universal-profile/read-profile-data.md#fetch-assets-and-universal-receiver) tutorial. Aditionally, 🔮 [UniversalProfile.cloud](https://universalprofile.cloud/) also shows all deployed profiles and assets as well.
+As every Universal Profile comes with a 📢 [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md), the owned assets can be fetched directly directly from it's contract. For more information, please check the 📒 [Read Profile Data](../universal-profile/metadata/read-profile-data.md#fetch-assets-and-universal-receiver) tutorial. Aditionally, 🔮 [UniversalProfile.cloud](https://universalprofile.cloud/) also shows all deployed profiles and assets as well.
 
 :::
 
@@ -935,7 +935,7 @@ Instead of using the [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-
 
 Some of the 🗂️ [ERC725Y data keys](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) feature dynamic inputs. Make sure to exchange `<myCreatorAddress>` with the actual address (without `0x`) of one of the asset's creators you want to retrieve. In case the asset does not feature any additional creator information, the returned value of `LSP4CreatorsMap:<myCreatorAddress>` will be `0`.
 
-Optionally, you can [retrieve the profile data](../universal-profile/read-profile-data.md) of a creator in a separate step.
+Optionally, you can [retrieve the profile data](../universal-profile/metadata/read-profile-data.md) of a creator in a separate step.
 :::
 
 <!-- prettier-ignore-start -->
