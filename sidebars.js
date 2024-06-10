@@ -137,7 +137,7 @@ module.exports = {
   ],
   toolsSidebar: [
     'tools/getting-started',
-    'tools/partners',
+    'tools/integrations',
     {
       type: 'category',
       label: '📜 erc725.js',

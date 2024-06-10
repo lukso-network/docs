@@ -197,6 +197,11 @@ export default {
             from: '/learn/expert-guides/deploy-token-with-metadata',
             to: '/learn/assets/deploy-token-with-metadata',
           },
+          // Tools
+          {
+            from: '/tools/partners',
+            to: '/tools/integrations',
+          },
         ],
       },
     ],
