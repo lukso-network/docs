@@ -1,0 +1,28 @@
+.dappCard {
+  width: auto;
+  height: 100%;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.12));
+  overflow: hidden;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dappCardImage {
+  transition: all 300ms ease-out;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+.dappCard:hover .dappCardImage {
+  transform: scale(1.07);
+}
+
+.dappsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 27px;
+  grid-auto-rows: 1fr;
+}

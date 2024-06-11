@@ -13,6 +13,7 @@ import ToolsIcon from '../../static/img/icons/icon-tools-gradient.png';
 import PartnersIcon from '../../static/img/icons/icon-partners-gradient.png';
 import GuidesIcon from '../../static/img/icons/icon-guides-gradient.png';
 import FAQIcon from '../../static/img/icons/icon-faq-gradient.png';
+import DappsGallery from '../components/DappsGallery';
 
 function Index() {
   return (
@@ -74,6 +75,7 @@ function Index() {
           />
         </div>
       </div>
+      <DappsGallery />
     </Layout>
   );
 }
