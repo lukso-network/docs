@@ -44,14 +44,6 @@ export default {
             to: '/learn/digital-assets/smart-contract-developers/getting-started',
           },
           {
-            from: '/learn/smart-contract-developers/getting-started',
-            to: '/learn/digital-assets/smart-contract-developers/getting-started',
-          },
-          {
-            from: '/learn/smart-contract-developers/getting-started',
-            to: '/learn/digital-assets/smart-contract-developers/getting-started',
-          },
-          {
             from: '/standards/nft-2.0/LSP4-Digital-Asset-Metadata',
             to: '/standards/tokens/LSP4-Digital-Asset-Metadata',
           },
@@ -146,10 +138,6 @@ export default {
           {
             from: '/guides/getting-started',
             to: '/learn/introduction',
-          },
-          {
-            from: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
-            to: '/learn/universal-receiver/deploy-universal-receiver',
           },
           {
             from: '/guides/universal-profile/create-profile',
