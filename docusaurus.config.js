@@ -27,37 +27,8 @@ export default {
       {
         redirects: [
           {
-            from: '/guides/network/update-the-node',
-            to: '/networks/advanced-guides/update-the-node',
-          },
-          {
-            from: '/guides/network/switch-consensus-clients',
-            to: '/networks/advanced-guides/switch-consensus-clients',
-          },
-          // FAQ new Structure
-          {
-            from: '/standards/standards-roadmap',
-            to: '/standards/introduction',
-          },
-          {
             from: '/learn/smart-contract-developers/getting-started',
             to: '/learn/digital-assets/smart-contract-developers/getting-started',
-          },
-          {
-            from: '/standards/nft-2.0/LSP4-Digital-Asset-Metadata',
-            to: '/standards/tokens/LSP4-Digital-Asset-Metadata',
-          },
-          {
-            from: '/standards/nft-2.0/LSP7-Digital-Asset',
-            to: '/standards/tokens/LSP7-Digital-Asset',
-          },
-          {
-            from: '/standards/nft-2.0/LSP8-Identifiable-Digital-Asset',
-            to: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
-          },
-          {
-            from: '/standards/nft-2.0/introduction',
-            to: '/standards/tokens/introduction',
           },
           {
             from: '/learn/expert-guides/key-manager/execute-relay-transactions',
@@ -124,24 +95,12 @@ export default {
             to: '/learn/universal-profile/interactions/transfer-lsp7-token',
           },
           {
-            from: '/guides/universal-profile/edit-profile',
-            to: '/learn/expert-guides/universal-profile/edit-profile',
-          },
-          {
             from: '/learn/dapp-developer/standard-detection',
             to: '/learn/standard-detection',
           },
           {
             from: '/contracts/getting-started',
             to: '/learn/digital-assets/smart-contract-developers/getting-started',
-          },
-          {
-            from: '/guides/getting-started',
-            to: '/learn/introduction',
-          },
-          {
-            from: '/guides/universal-profile/create-profile',
-            to: '/learn/expert-guides/universal-profile/create-profile',
           },
           {
             from: '/learn/universal-profile/interact-with-contracts',
@@ -154,10 +113,6 @@ export default {
           {
             from: '/learn/universal-profile/multi-provider',
             to: '/learn/universal-profile/connect-profile/multi-provider',
-          },
-          {
-            from: '/guides/browser-extension/install-browser-extension',
-            to: '/install-up-browser-extension',
           },
           // Support section
           {
