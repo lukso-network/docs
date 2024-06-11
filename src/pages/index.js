@@ -74,8 +74,8 @@ function Index() {
             content="Check out LUKSO ecosystem tools and services."
           />
         </div>
+        <DappsGallery />
       </div>
-      <DappsGallery />
     </Layout>
   );
 }
