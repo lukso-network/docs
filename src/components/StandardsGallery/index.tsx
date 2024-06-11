@@ -140,11 +140,9 @@ function StandardCard({ link, title, name, text }) {
         borderWidth: '1px',
       }}
     >
-      <h2 className="flex items-center font-jakarta">
-        <div>{title}</div>
-      </h2>
-      <h3 className="flex items-center font-jakarta">
-        <div className={styles.standardName}>{name}</div>
+      <h2 className="flex items-center font-jakarta">{title}</h2>
+      <h3 className={`flex items-center font-jakarta ${styles.standardName}`}>
+        {name}
       </h3>
       <p className="mb-0 text-sm text-zinc-400">{text}</p>
     </Link>
