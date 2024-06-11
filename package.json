@@ -19,10 +19,10 @@
   },
   "dependencies": {
     "@cookbookdev/docsbot": "^4.17.4",
-    "@docusaurus/core": "3.3.2",
-    "@docusaurus/plugin-client-redirects": "3.3.2",
-    "@docusaurus/plugin-google-gtag": "3.3.2",
-    "@docusaurus/preset-classic": "3.3.2",
+    "@docusaurus/core": "latest",
+    "@docusaurus/plugin-client-redirects": "latest",
+    "@docusaurus/plugin-google-gtag": "latest",
+    "@docusaurus/preset-classic": "latest",
     "@iconify/react": "^5.0.1",
     "@mdx-js/react": "3.0.0",
     "@svgr/webpack": "^8.1.0",
@@ -38,8 +38,8 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.3.2",
-    "@docusaurus/types": "3.3.2"
+    "@docusaurus/module-type-aliases": "latest",
+    "@docusaurus/types": "latest"
   },
   "browserslist": {
     "production": [
