@@ -1939,6 +1939,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/module-type-aliases@npm:3.4.0":
+  version: 3.4.0
+  resolution: "@docusaurus/module-type-aliases@npm:3.4.0"
+  dependencies:
+    "@docusaurus/types": 3.4.0
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+    "@types/react-router-config": "*"
+    "@types/react-router-dom": "*"
+    react-helmet-async: "*"
+    react-loadable: "npm:@docusaurus/react-loadable@6.0.0"
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
+  checksum: d2054c07455cb19bbb48aa8d00c9409066172716bf0a00780b9044975c1250c65de6eb25368392085f2f52f9d882ee8c9285ae65bc2e6e7bbaefa5ebb7866edd
+  languageName: node
+  linkType: hard
+
 "@docusaurus/plugin-client-redirects@npm:3.3.2":
   version: 3.3.2
   resolution: "@docusaurus/plugin-client-redirects@npm:3.3.2"
@@ -2256,6 +2274,26 @@ __metadata:
     react: ^18.0.0
     react-dom: ^18.0.0
   checksum: 6da53038547d94cf5e2a8b14224972f83e1779e45453fcaf237e4e2b5f4c380534a04332cfa2029ceaae72e3d4a93a544d2b07c0bd280a365cb2b77516620628
+  languageName: node
+  linkType: hard
+
+"@docusaurus/types@npm:3.4.0":
+  version: 3.4.0
+  resolution: "@docusaurus/types@npm:3.4.0"
+  dependencies:
+    "@mdx-js/mdx": ^3.0.0
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+    commander: ^5.1.0
+    joi: ^17.9.2
+    react-helmet-async: ^1.3.0
+    utility-types: ^3.10.0
+    webpack: ^5.88.1
+    webpack-merge: ^5.9.0
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: a3d50dd22db201711894ac73bfc9816ea4c01962063a91cdb7933597c621a794a85aa322d4c0bc8cacf9029902cdfc5a9c027b603fa9197bc4cd1917270b5da2
   languageName: node
   linkType: hard
 
@@ -9228,7 +9266,7 @@ __metadata:
   dependencies:
     "@cookbookdev/docsbot": ^4.17.4
     "@docusaurus/core": 3.3.2
-    "@docusaurus/module-type-aliases": 3.3.2
+    "@docusaurus/module-type-aliases": 3.4.0
     "@docusaurus/plugin-client-redirects": 3.3.2
     "@docusaurus/plugin-google-gtag": 3.3.2
     "@docusaurus/preset-classic": 3.3.2
