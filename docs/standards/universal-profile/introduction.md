@@ -53,7 +53,7 @@ The **[LSP0 - ERC725Account](./lsp0-erc725account.md)** standard represents a bl
 
 :::tip
 
-The guide [Connect Your Universal Profile to a dApp](../../learn/universal-profile/connect-profile/connect-profile.md) may interest you.
+The guide [Connect Your Universal Profile to a dApp](../../learn/universal-profile/connect-profile.md) may interest you.
 
 :::
 
