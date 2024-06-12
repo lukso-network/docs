@@ -110,6 +110,10 @@ export default {
             from: '/learn/dapp-developer/connect-profile',
             to: '/learn/universal-profile/connect-profile',
           },
+          {
+            from: '/learn/universal-profile/connect-profile/multi-provider',
+            to: '/learn/universal-profile/connect-profile',
+          },
           // Support section
           {
             from: '/faq/lukso/wallet-support',
