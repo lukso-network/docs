@@ -151,7 +151,7 @@ When transferring or minting tokens, it is advised to set the `force` boolean to
 
 It is expected in the LUKSO's ecosystem to use **smart contract based accounts** to interact on the blockchain. This includes sending and receiving tokens. EOAs can receive tokens, but should be used mainly to control these accounts, not to interact on the network or hold tokens.
 
-To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)``](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) and `_mint(...)` functions:
+To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) and [`_mint(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_mint) functions:
 
 - If set to `false`, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
 
