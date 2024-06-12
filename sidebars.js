@@ -85,6 +85,7 @@ module.exports = {
   ],
   contractsSidebar: [
     'contracts/introduction',
+    'contracts/deployed-contracts',
     // divider for the main smart contracts
     { type: 'html', value: '<hr/>', defaultStyle: false },
     {
