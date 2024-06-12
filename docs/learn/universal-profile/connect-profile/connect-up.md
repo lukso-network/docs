@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Connect a Universal Profile'
-sidebar_position: 2
+sidebar_label: 'Connect UP with Providers'
+sidebar_position: 1
 description: Learn how to connect your Universal Profile to a dApp (decentralized application) on LUKSO.
 ---
 
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Connect a Universal Profile
 
-There are several methods to connect to a [Universal Profile](../../standards/universal-profile/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
+There are several methods to connect to a [Universal Profile](../../../standards/universal-profile/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
 
 Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
 
@@ -25,7 +25,7 @@ Connecting to the [Universal Profile Browser Extension](https://chromewebstore.g
 
 :::success Request Handling
 
-The [Universal Profile Extension](/install-up-browser-extension) returns the address of the connected [Universal Profile](../../standards/universal-profile/introduction.md). Making transactions is the same as with any wallet, you just use the profile address as a `from` in your transactions.
+The [Universal Profile Extension](/install-up-browser-extension) returns the address of the connected [Universal Profile](../../../standards/universal-profile/introduction.md). Making transactions is the same as with any wallet, you just use the profile address as a `from` in your transactions.
 
 :::
 
@@ -266,13 +266,6 @@ const injectedWallets = injectedModule({
  * interact with the Universal Profile Browser Extension
  */
 const supportedChains = [
-  // https://docs.lukso.tech/networks/mainnet/parameters
-  {
-    id: 42,
-    token: "LYX",
-    label: "LUKSO Mainnet",
-    rpcUrl: "https://42.rpc.thirdweb.com/",
-  },
   // https://docs.lukso.tech/networks/testnet/parameters
   {
     id: 4021,

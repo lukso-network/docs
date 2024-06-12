@@ -108,11 +108,11 @@ export default {
           },
           {
             from: '/learn/dapp-developer/connect-profile',
-            to: '/learn/universal-profile/connect-profile',
+            to: '/learn/universal-profile/connect-profile/connect-up',
           },
           {
             from: '/learn/universal-profile/connect-profile/multi-provider',
-            to: '/learn/universal-profile/connect-profile',
+            to: '/learn/universal-profile/connect-profile/connect-up',
           },
           // Support section
           {
