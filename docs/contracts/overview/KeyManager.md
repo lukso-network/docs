@@ -8,7 +8,7 @@ The Key Manager uses the concept of permissions to _authorize_ any addresses (dA
 
 But why should you give anybody access to your smart contract? What is the intention behind doing this? How does the Key Manager enables that?
 
-As we will see, the Key Manager brings a different insight into the concept of ownership and permissions. 
+As we will see, the Key Manager brings a different insight into the concept of ownership and permissions.
 
 Let's illustrate with some examples. A Key Manager can be used with different setups. For intance:
 
@@ -17,7 +17,7 @@ Let's illustrate with some examples. A Key Manager can be used with different se
 
 ## Example with a Universal Profile
 
-To illustrate, in the case of Universal Profile and the browser extension, you can define your EOA / private keys (hold within your device, like in the Browser Extension) to be **the address with all the permissions** to do anything (the main admin account). 
+To illustrate, in the case of Universal Profile and the browser extension, you can define your EOA / private keys (hold within your device, like in the Browser Extension) to be **the address with all the permissions** to do anything (the main admin account).
 
 Afterwards, you can grant partial access to dApp and protocol (more specifically the smart contract addresses behind them), so that they can use your Universal Profile to interact on your behalf. This catalyze interactions on the blockchain, where your Universal Profile can do more and operate automatically in controlled manner, without requiring the main profile owner to have to do everything.
 
@@ -25,7 +25,7 @@ Afterwards, you can grant partial access to dApp and protocol (more specifically
 
 :::note
 
-If controller has `SETDATA` permission but has no `AllowedERC725YDataKeys`, controller will not be able to use the `SETDATA` permission at all. 
+If controller has `SETDATA` permission but has no `AllowedERC725YDataKeys`, controller will not be able to use the `SETDATA` permission at all.
 
 :::
 
@@ -37,25 +37,25 @@ A _Specific Data Key_ must have the length of 32 bytes. Setting a _Specific Data
 
 #### Dynamic Data Keys
 
-A _Dynamic Data Key_ can have any length between 0 and 32 (except 0 and 32). Setting a _Dynamic Data Key_ in the [Allowed ERC725Y Data Keys](../../standards/universal-profile/lsp6-key-manager.md#allowed-erc725y-data-keys) will allow the controller to modify the data value of any data key that starts exactly with that  _Dynamic Data Key_.
+A _Dynamic Data Key_ can have any length between 0 and 32 (except 0 and 32). Setting a _Dynamic Data Key_ in the [Allowed ERC725Y Data Keys](../../standards/universal-profile/lsp6-key-manager.md#allowed-erc725y-data-keys) will allow the controller to modify the data value of any data key that starts exactly with that _Dynamic Data Key_.
 
 Example:
 
 Dynamic Data Key - `0xcafe0000cafe0000beef0000beef`
 
-|                              Data key                               | Can modify data value? |
-| :------------------------------------------------------------------ | :--------------------- |
-| `0xcafe0000cafe0000beef0000beef000000000000000000000000000000000000`|           ✅           |
-| `0xcafe0000cafe0000beef0000beef000000000000000000000000000000000123`|           ✅           |
-| `0xcafe0000cafe0000beef0000beefcafecafecafecafecafecafecafecafecafe`|           ✅           |
-| `0x0000000000000000000000000000cafecafecafecafecafecafecafecafecafe`|           ❌           |
-| `0x000000000000000000000000000000000000cafe0000cafe0000beef0000beef`|           ❌           |
+| Data key                                                             | Can modify data value? |
+| :------------------------------------------------------------------- | :--------------------- |
+| `0xcafe0000cafe0000beef0000beef000000000000000000000000000000000000` | ✅                     |
+| `0xcafe0000cafe0000beef0000beef000000000000000000000000000000000123` | ✅                     |
+| `0xcafe0000cafe0000beef0000beefcafecafecafecafecafecafecafecafecafe` | ✅                     |
+| `0x0000000000000000000000000000cafecafecafecafecafecafecafecafecafe` | ❌                     |
+| `0x000000000000000000000000000000000000cafe0000cafe0000beef0000beef` | ❌                     |
 
 ### Allowed Calls
 
 :::note
 
-If controller has `CALL` permission but has no `AllowedCalls`, controller will not be able to use the `CALL` permission at all. 
+If controller has `CALL` permission but has no `AllowedCalls`, controller will not be able to use the `CALL` permission at all.
 
 :::
 
@@ -68,9 +68,9 @@ Supposedly we have the following `AllowedCalls`:
 
 It can be decoded as:
 
-| Allowed Calls     |
-| :------------ | :- | :- |
-| First allowed call | **Call Types** - `0x00000002` (Call) <br/> **Address** - `0xcafecafecafecafecafecafecafecafecafecafe` <br/> **Standard** - `0x24871b3d` (LSP0) <br/> **Function** - `0x7f23690c` (`setData(bytes32,bytes)`) | - This allowed call permits the controller to use the function `setData(bytes32,bytes)` in the contract deployed at address `0xcafecafecafecafecafecafecafecafecafecafe`. <br/> - When calling that function the operation type has to be `CALL` with no value being sent. <br/> - The address `0xcafecafecafecafecafecafecafecafecafecafe` has to return true to `ERC165.supportsInterface(0x24871b3d)`. | 
+| Allowed Calls       |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| First allowed call  | **Call Types** - `0x00000002` (Call) <br/> **Address** - `0xcafecafecafecafecafecafecafecafecafecafe` <br/> **Standard** - `0x24871b3d` (LSP0) <br/> **Function** - `0x7f23690c` (`setData(bytes32,bytes)`)                                 | - This allowed call permits the controller to use the function `setData(bytes32,bytes)` in the contract deployed at address `0xcafecafecafecafecafecafecafecafecafecafe`. <br/> - When calling that function the operation type has to be `CALL` with no value being sent. <br/> - The address `0xcafecafecafecafecafecafecafecafecafecafe` has to return true to `ERC165.supportsInterface(0x24871b3d)`.                    |
 | Second allowed call | **Call Types** - `0x00000003` (Transfervalue & Call) <br/> **Address** - `0xcafecafecafecafecafecafecafecafecafecafe` <br/> **Standard** - `0x24871b3d` (LSP0) <br/> **Function** - `0x44c028fe` (`execute(uint256,address,uint256,bytes)`) | - This allowed call permits the controller to use the function `execute(uint256,address,uint256,bytes)` in the contract deployed at address `0xcafecafecafecafecafecafecafecafecafecafe`. <br/> - When calling that function the operation type has to be `CALL`, you can send value as well. <br/> - The address `0xcafecafecafecafecafecafecafecafecafecafe` has to return true to `ERC165.supportsInterface(0x24871b3d)`. |
 
 ## Sequential relay calls in the same channel
@@ -88,11 +88,13 @@ One of the requirements for executing a relay call is that **the latest nonce (f
 Given the example above, the on-chain nonce is 4 and we are executing the relay calls.
 
 **If the first relay call pass ✅**
+
 - First relay call: nonce was 4 -> incremented to 5
 - Second relay call: nonce was 5 -> incremented to 6
 - Third relay call: nonce was 6 -> incremented to 7
 
 **If the first relay call fails ❌**
+
 - **First relay call reverts ❌** nonce was 4 -> nonce remains 4
 - Second relay call: nonce on-chain is 4 -> nonce used to sign was 5 = reverts ❌ with [`InvalidRelayNonce`](../contracts//LSP6KeyManager/LSP6KeyManager.md#invalidrelaynonce)
 - Third relay call: nonce on-chain is 5 -> nonce used to sign was 6 = reverts ❌ with [`InvalidRelayNonce`](../contracts//LSP6KeyManager/LSP6KeyManager.md#invalidrelaynonce)

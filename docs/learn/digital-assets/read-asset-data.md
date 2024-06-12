@@ -468,7 +468,7 @@ if (tokenIdFormat >= 100) {
 const myTokenId = '1';
 
 // Convert a token ID according to LSP8TokenIdFormat
-const convertTokenId = (tokenID:string, tokenIdFormat: number) => {
+const convertTokenId = (tokenID: string, tokenIdFormat: number) => {
   switch (tokenIdFormat) {
     case 0:
     case 100:
@@ -750,8 +750,7 @@ function generateMetadataLink(link: string) {
   if (link.startsWith('ipfs://')) {
     // Use your default IPFS Gateway address
     return `https://api.universalprofile.cloud/ipfs/${link.slice(7)}`;
-  }
-  else{
+  } else {
     return null;
   }
 
@@ -762,13 +761,13 @@ function generateMetadataLink(link: string) {
 const metadataJsonLink = generateMetadataLink(metadataURL);
 
 // Fetch the URL
-if (metadataJsonLink){
+if (metadataJsonLink) {
   const response = await fetch(metadataJsonLink);
   const jsonMetadata = await response.json();
   console.log('Metadata Contents: ', jsonMetadata);
 } else {
-    console.log('Could not generate metadata link based on value.url content.');
-  }
+  console.log('Could not generate metadata link based on value.url content.');
+}
 ```
 
   </TabItem>
@@ -814,7 +813,7 @@ function decodeTokenId(encodedTokenId: string, tokenIdFormat: number) {
 }
 
 // Decode the token ID based on the token ID format
-const decodedTokenId = decodeTokenId(byte32TokenId, tokenIdFormat)
+const decodedTokenId = decodeTokenId(byte32TokenId, tokenIdFormat);
 ```
 
   </TabItem>
@@ -852,7 +851,7 @@ function decodeTokenId(encodedTokenId: string, tokenIdFormat: number) {
 }
 
 // Decode the token ID based on the token ID format
-const decodedTokenId = decodeTokenId(byte32TokenId, tokenIdFormat)
+const decodedTokenId = decodeTokenId(byte32TokenId, tokenIdFormat);
 ```
 
   </TabItem>

@@ -19,7 +19,7 @@ import {ContractCardsGallery} from '@site/src/components/ContractCardsGallery';
 
 In this section, you will find all the documentation and resources related to the `@lukso/lsp-smart-contracts`, the reference contract implementations in Solidity of the **[LUKSO Standard Proposals](../standards/introduction.md)**.
 
-The `@lukso/lsp-smart-contracts` codebase is modular, with each LSP standard and features implemented in separate contracts. This allows smart contract developers to _"pick and choose"_ the contracts for the requirements and behaviors they need for their protocols and applications. 
+The `@lukso/lsp-smart-contracts` codebase is modular, with each LSP standard and features implemented in separate contracts. This allows smart contract developers to _"pick and choose"_ the contracts for the requirements and behaviors they need for their protocols and applications.
 
 This modular design also helps in making the codebase easier to navigate and understand for developers using it.
 
@@ -52,19 +52,17 @@ pnpm add @lukso/lsp-smart-contracts
 
 </Tabs>
 
-
 ## Overview
 
 Overall the contracts can be divided by their usage.
 
 <ContractCardsGallery />
 
-
 ## Types of contracts
 
 :::info
 
-If you are using base contracts and are deploying proxies for your application, it is recommended to use a factory pattern to deploy and initialize the proxies to avoid potential front-running issues. 
+If you are using base contracts and are deploying proxies for your application, it is recommended to use a factory pattern to deploy and initialize the proxies to avoid potential front-running issues.
 
 The **LSP16 Universal Factory** or **LSP23 Linked Contract Deployment** can help you achieve this.
 
@@ -77,7 +75,6 @@ The `@lukso/lsp-smart-contracts` repository contains two types of contracts:
 | **Standard contracts** | One contract deployed per user. Deployed and initialized via a `constructor`.                                               | `LSP0ERC725Account.sol`     |
 | **Base contracts**     | Deploy one contract for all users. To be used as base contract behind proxies. Initialized via a `initalize(...)` function. | `LSP0ERC725AccountInit.sol` |
 
-
 ## LSP Recipes
 
 Some of the LSP standards do not have a contract implementation as they represent **Metadata-Standards** to be used in the implementation contracts.
@@ -85,7 +82,6 @@ Some of the LSP standards do not have a contract implementation as they represen
 Each contracts are not just related to one specific section. They could be used in different fashion and combination, with the **Universal Profile**, **Digital Asset**, and **NFT 2.0** contracts.
 
 For instance, the **Universal Profile Browser extension** comprises a set of contracts allow a better representation of the identity on the blockchain and better control over it.
-
 
 ## Further Information
 

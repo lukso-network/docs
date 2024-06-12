@@ -485,8 +485,9 @@ await tx.wait();
 Finally, you can verify that the extension was successful by calling the `supportsInterface(..)` function with the dummy interfaceId `0xaabbccdd`. The function should return `true`, indicating that the Universal Profile now supports this interfaceId through the extension.
 
 ```js
-const result =
-  await universalProfile.callStatic.supportsInterface('0xaabbccdd');
+const result = await universalProfile.callStatic.supportsInterface(
+  '0xaabbccdd',
+);
 console.log('Supports Dummy InterfaceId:', result);
 ```
 
@@ -554,8 +555,9 @@ async function main() {
 
   await tx.wait();
 
-  const result =
-    await universalProfile.callStatic.supportsInterface('0xaabbccdd');
+  const result = await universalProfile.callStatic.supportsInterface(
+    '0xaabbccdd',
+  );
   console.log('Supports Dummy InterfaceId:', result);
 }
 

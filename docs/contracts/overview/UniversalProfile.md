@@ -5,10 +5,11 @@ sidebar_position: 1
 # Universal Profile
 
 The `UniversalProfile.sol` smart contract is a combination of two LSP standards:
+
 - **[LSP0-ERC725Account Standard](../../standards/universal-profile/lsp0-erc725account)** that also contains some LSP3Profile metadata, giving a "face and uniqueness" to the smart contract based account.
 - **[LSP3-UniversalProfile-Metadata Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)**
 
-The LSP3 Profile Metadata enables to give a "face" to the smart contract based account, making it distinguishable and unique from others Universal Profiles. 
+The LSP3 Profile Metadata enables to give a "face" to the smart contract based account, making it distinguishable and unique from others Universal Profiles.
 
 A `UniversalProfile` as a smart contract can be used as a _blockchain-based account_ by humans, machines, organizations, or even other smart contracts.
 
@@ -21,14 +22,14 @@ A `UniversalProfile` has all the basic functionalities of an _Externally Owned A
 - [`universalReceiver(...)`](#universalreceiver): brings notification of incoming calls and assets.
 - [`setData(...)`](#setdata): offers to set information in the account storage.
 
-All ownable functions such as [`execute(..)`](../contracts/UniversalProfile.md#execute), [`executeBatch(..)`](../contracts/UniversalProfile.md#executebatch), [`setData(..)`](../contracts/UniversalProfile.md#setdata), [`setDataBatch(..)`](../contracts/UniversalProfile.md#setdatabatch), [`transferOwnership(..)`](../contracts/UniversalProfile.md#transferownership), and [`renounceOwnership(..)`](../contracts/UniversalProfile.md#renounceownership) can be called by the owner 
+All ownable functions such as [`execute(..)`](../contracts/UniversalProfile.md#execute), [`executeBatch(..)`](../contracts/UniversalProfile.md#executebatch), [`setData(..)`](../contracts/UniversalProfile.md#setdata), [`setDataBatch(..)`](../contracts/UniversalProfile.md#setdatabatch), [`transferOwnership(..)`](../contracts/UniversalProfile.md#transferownership), and [`renounceOwnership(..)`](../contracts/UniversalProfile.md#renounceownership) can be called by the owner
 
 The contract also includes the [LSP20-CallVerification](../../standards/universal-profile/lsp0-erc725account.md#lsp20---call-verification) at its core. Meaning if the contract is owned by an other contract, LSP20 enables to interact with the contract directly without having to resolve through its owner first. This allows seamless integrations with other contracts, protocols and dApps, as the contract can be called directly, making the developer experience easier.
 
 To illustrate, if an other address than the owner calls the [`execute(..)`](../contracts/UniversalProfile.md#execute) function, the account contract will:
 
-1. Forward the call to the owner. 
-2. The execution of the function will only continue if the owner returns the `LSP20 MAGIC VALUE`, indicating that the caller is allowed to execute the function. 
+1. Forward the call to the owner.
+2. The execution of the function will only continue if the owner returns the `LSP20 MAGIC VALUE`, indicating that the caller is allowed to execute the function.
 
 The magic value can also determine if there should be any post-execution check on the owner. This same behavior applies to other ownable functions as well.
 
@@ -57,7 +58,7 @@ the validation failed, but check the `bytes` returned by the extension through [
 
 Be aware of [phantom functions](https://media.dedaub.com/phantom-functions-and-the-billion-dollar-no-op-c56f062ae49f) for functions in extensions with the `0x00000000` selector.
 
-For example, a contract might perform some kind of validation in an extension (_e.g: checking for permissions_), and expect the function to revert if the user is not authorized. 
+For example, a contract might perform some kind of validation in an extension (_e.g: checking for permissions_), and expect the function to revert if the user is not authorized.
 
 However, since the function's selector is `0x00000000` and the LSP0 account doesn't have this extension registered, the `fallback` function will `return` instead of reverting, giving the contract the impression that the user is authorized.
 
@@ -67,7 +68,7 @@ In such case, make sure to double that an extension is registered first for the 
 
 :::
 
-## Adding metadata 
+## Adding metadata
 
 Unlike private keys and EOAs that cannot hold any metadata, a UniversalProfile is a blockchain based account that can have any info attached to it.
 
@@ -76,4 +77,3 @@ You can do so using the [`setData(bytes32,bytes)`](../contracts/UniversalProfile
 ### Updating your `LSP3Profile` metadata.
 
 The [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata.md#lsp3profile) data key has a special meaning. It enables you to edit your profile details
-
