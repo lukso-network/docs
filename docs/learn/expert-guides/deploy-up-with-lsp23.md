@@ -4,7 +4,7 @@ description: 'Learn how to deploy a Universal Profile using LSP23.'
 sidebar_position: 1
 ---
 
-# Deploying a Universal Profile using LSP-23
+# Deploying a Universal Profile using LSP23 Factory
 
 ## Introduction
 
