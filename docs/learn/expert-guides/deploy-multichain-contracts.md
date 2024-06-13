@@ -432,25 +432,22 @@ async function main() {
   console.log('LSP16UniversalFactory exists: ', isLSP16FactoryDeployed);
 
   // The private key should not be comitted to a public GitHub repository
-  const signer = new ethers.Wallet(
-    '<private-key>',
-    provider,
-  );
+  const signer = new ethers.Wallet('<private-key>', provider);
 
   if (!isNickFactoryDeployed) {
-  const fundingTx = await signer.sendTransaction({
-    // Standardized address
-    to: '0x3fab184622dc19b6109349b94811493bf2a45362',
-    value: ethers.parseEther('0.009'), // This value should be enough
-    // Check gasLimit and gasPrice to estimate exactly the value: https://github.com/Arachnid/deterministic-deployment-proxy
-  });
-  await fundingTx.wait();
+    const fundingTx = await signer.sendTransaction({
+      // Standardized address
+      to: '0x3fab184622dc19b6109349b94811493bf2a45362',
+      value: ethers.parseEther('0.009'), // This value should be enough
+      // Check gasLimit and gasPrice to estimate exactly the value: https://github.com/Arachnid/deterministic-deployment-proxy
+    });
+    await fundingTx.wait();
 
-  // Sending raw transaction specified by the Nick factory
-  const rawTx =
-    '0xf8a58085174876e800830186a08080b853604580600e600039806000f350fe7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf31ba02222222222222222222222222222222222222222222222222222222222222222a02222222222222222222222222222222222222222222222222222222222222222';
-  const deployNickFactoryTx = await provider.broadcastTransaction(rawTx);
-  await deployNickFactoryTx.wait();
+    // Sending raw transaction specified by the Nick factory
+    const rawTx =
+      '0xf8a58085174876e800830186a08080b853604580600e600039806000f350fe7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf31ba02222222222222222222222222222222222222222222222222222222222222222a02222222222222222222222222222222222222222222222222222222222222222';
+    const deployNickFactoryTx = await provider.broadcastTransaction(rawTx);
+    await deployNickFactoryTx.wait();
   }
 
   if (!isLSP16FactoryDeployed) {
@@ -459,7 +456,7 @@ async function main() {
       data:
         '0xfaee762dee0012026f5380724e9744bdc5dd26ecd8f584fe9d72a4170d01c049' + // Standardized Salt
         '60806040523480156100105...', // Standardized Bytecode
-        // Copy the full bytecode from https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#standardized-bytecode
+      // Copy the full bytecode from https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#standardized-bytecode
     });
 
     await lsp16Tx.wait();
@@ -478,7 +475,8 @@ async function main() {
     [constructorArgument],
   );
 
-  const contractBytecodeWithArg = targetContractBytecode + encodedConstructorArg.substring(2);
+  const contractBytecodeWithArg =
+    targetContractBytecode + encodedConstructorArg.substring(2);
 
   // On each script run, this salt should be different otherwise the deployment will fail
   // Don't use random bytes as salt, use a deterministic salt to be able to deploy on a different network
@@ -487,12 +485,13 @@ async function main() {
   const deploymentSalt = '<bytes32-salt>';
 
   // Precompute the address of the contract to be deployed without initialization
-  const precomputedAddressWithoutInit = await lsp16UniversalFactory.computeAddress(
-    ethers.keccak256(contractBytecodeWithArg),
-    deploymentSalt,
-    false,  // --> boolean indicating if the contract should be initialized or not after deployment
-    '0x',   // --> bytes representing the calldata to initialize the contract
-  );
+  const precomputedAddressWithoutInit =
+    await lsp16UniversalFactory.computeAddress(
+      ethers.keccak256(contractBytecodeWithArg),
+      deploymentSalt,
+      false, // --> boolean indicating if the contract should be initialized or not after deployment
+      '0x', // --> bytes representing the calldata to initialize the contract
+    );
 
   // Deploy contract without initialization
   const deployTxWithoutInit = await lsp16UniversalFactory.deployCreate2(
@@ -507,29 +506,33 @@ async function main() {
     signer,
   );
 
-
   const numberInContractWithoutInit = await contractWithoutInit.number();
-  console.log('The number in the non-initialized contract is: ', numberInContractWithoutInit);
+  console.log(
+    'The number in the non-initialized contract is: ',
+    numberInContractWithoutInit,
+  );
 
   // Precompute the address of the contract to be deployed with initialization
-  const encodedFunctionCallForInit = contractWithoutInit.interface.encodeFunctionData('setNumber', [
-    456, // Dummy value
-  ]);
+  const encodedFunctionCallForInit =
+    contractWithoutInit.interface.encodeFunctionData('setNumber', [
+      456, // Dummy value
+    ]);
   const precomputedAddressWithInit = await lsp16UniversalFactory.computeAddress(
     ethers.keccak256(contractBytecodeWithArg),
     deploymentSalt,
-    true,                       // --> boolean indicating if the contract should be initialized or not after deployment
+    true, // --> boolean indicating if the contract should be initialized or not after deployment
     encodedFunctionCallForInit, // --> bytes representing the calldata to initialize the contract
   );
 
   // Deploy and initialize contract
-  const deployAndInitTx = await lsp16UniversalFactory.deployCreate2AndInitialize(
-    contractBytecodeWithArg,
-    deploymentSalt,
-    encodedFunctionCallForInit,
-    0,   // --> Value to be sent to the constructor
-    0,   // --> Value to be sent to the initialize function
-  );
+  const deployAndInitTx =
+    await lsp16UniversalFactory.deployCreate2AndInitialize(
+      contractBytecodeWithArg,
+      deploymentSalt,
+      encodedFunctionCallForInit,
+      0, // --> Value to be sent to the constructor
+      0, // --> Value to be sent to the initialize function
+    );
   await deployAndInitTx.wait();
 
   const contractWithInit = new ethers.Contract(
@@ -539,15 +542,19 @@ async function main() {
   );
 
   const numberInContractWithInit = await contractWithInit.number();
-  console.log('The number in the initialized contract is: ', numberInContractWithInit);
+  console.log(
+    'The number in the initialized contract is: ',
+    numberInContractWithInit,
+  );
 
   // Precompute the address for ERC1167 proxy deployment
-  const precomputedProxyAddress = await lsp16UniversalFactory.computeERC1167Address(
-    precomputedAddressWithInit,
-    deploymentSalt,
-    false,  // --> boolean indicating if the contract should be initialized or not after deployment
-    '0x',   // --> bytes representing the calldata to initialize the contract
-  );
+  const precomputedProxyAddress =
+    await lsp16UniversalFactory.computeERC1167Address(
+      precomputedAddressWithInit,
+      deploymentSalt,
+      false, // --> boolean indicating if the contract should be initialized or not after deployment
+      '0x', // --> bytes representing the calldata to initialize the contract
+    );
 
   // Deploy ERC1167 proxy
   const deployProxyTx = await lsp16UniversalFactory.deployERC1167Proxy(
@@ -556,31 +563,40 @@ async function main() {
   );
   await deployProxyTx.wait();
 
-  const proxyContract = new ethers.Contract(precomputedProxyAddress, TargetContractABI, signer);
+  const proxyContract = new ethers.Contract(
+    precomputedProxyAddress,
+    TargetContractABI,
+    signer,
+  );
   const numberInProxyWithoutInit = await proxyContract.number();
   // The number will be 0, as a proxy does not have state unless its initialized
-  console.log('The number in proxy without initialization is: ', numberInProxyWithoutInit);
+  console.log(
+    'The number in proxy without initialization is: ',
+    numberInProxyWithoutInit,
+  );
 
   // Encode function call for proxy initialization
-  const encodedFunctionCallForProxyInit = proxyContract.interface.encodeFunctionData('setNumber', [
-    789, // Dummy value
-  ]);
+  const encodedFunctionCallForProxyInit =
+    proxyContract.interface.encodeFunctionData('setNumber', [
+      789, // Dummy value
+    ]);
 
   // Precompute the address for initialized ERC1167 proxy
   const precomputedInitializedProxyAddress =
     await lsp16UniversalFactory.computeERC1167Address(
       precomputedAddressWithInit,
       deploymentSalt,
-      true,                             // --> boolean indicating if the contract should be initialized or not after deployment
-      encodedFunctionCallForProxyInit,  // --> bytes representing the calldata to initialize the contract
+      true, // --> boolean indicating if the contract should be initialized or not after deployment
+      encodedFunctionCallForProxyInit, // --> bytes representing the calldata to initialize the contract
     );
 
   // Deploy and initialize ERC1167 proxy
-  const deployAndInitProxyTx = await lsp16UniversalFactory.deployERC1167ProxyAndInitialize(
-    precomputedAddressWithInit,
-    deploymentSalt,
-    encodedFunctionCallForProxyInit,
-  );
+  const deployAndInitProxyTx =
+    await lsp16UniversalFactory.deployERC1167ProxyAndInitialize(
+      precomputedAddressWithInit,
+      deploymentSalt,
+      encodedFunctionCallForProxyInit,
+    );
   await deployAndInitProxyTx.wait();
 
   const initializedProxyContract = new ethers.Contract(
@@ -589,7 +605,10 @@ async function main() {
     signer,
   );
   const numberInProxyAfterInit = await initializedProxyContract.number();
-  console.log('The number in the initialized proxy is: ', numberInProxyAfterInit);
+  console.log(
+    'The number in the initialized proxy is: ',
+    numberInProxyAfterInit,
+  );
 }
 
 main();

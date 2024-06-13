@@ -23,9 +23,8 @@ The interfaces of LSP7 and LSP8 have some differences compared to ERC20 and ERC7
 **Similar function names**
 
 Both functions in LSP7 and LSP8 have the same name (`transfer`) to transfer assets. This is easier compared to ERC20 and ERC721 that use different naming (`transfer` for ERC20 vs `transferFrom` in ERC721 to transfer tokens as the token owner).
- 
-The table below highlights these differences:
 
+The table below highlights these differences:
 
 <table>
   <tr>
@@ -71,9 +70,10 @@ The table below highlights these differences:
   </tr>
 </table>
 
-In ERC20 the function `transfer(address,uint256)` is used to transfer ERC20 tokens from the caller, this can only be used by the holder of the ERC20 tokens. There is also `transferFrom(address,address,uint256)` which can also be used by the ERC20 tokens operator. 
+In ERC20 the function `transfer(address,uint256)` is used to transfer ERC20 tokens from the caller, this can only be used by the holder of the ERC20 tokens. There is also `transferFrom(address,address,uint256)` which can also be used by the ERC20 tokens operator.
 
 In comparison ERC721 has:
+
 - `safeTransferFrom(address,address,uint256,bytes)`
 - `safeTransferFrom(address,address,uint256)`
 - `transferFrom(address,address,uint256)`
@@ -81,7 +81,6 @@ In comparison ERC721 has:
 All of the above functions can be used by both the owner of the token id or by the operator of the token id in order to transfer the ERC721 token. To be mentioned, both functions `safeTransferFrom(...)` have a hook that calls the recipient contract.
 
 Looking at LSP7 & LSP8 we have unified `transfer(...)` & `transferBatch(...)` functions in both contracts. Those functions contain a hook which is executed conditionally and can be used in any of the above cases.
-
 
 ## LSP4 Digital Asset Metadata
 
@@ -94,6 +93,7 @@ Since it uses **[ERC725Y General Data Key/Value Store](https://eips.ethereum.org
 The **LSP7DigitalAsset** contract represents digital assets for fungible tokens where minting and transferring are specified with an amount of tokens. Their functions were inspired from **[ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)** and **[ERC1155](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/ERC1155.sol)** with more upgraded features.
 
 An LSP7 can serves as:
+
 - a **Divisible Token Contract** when `isNonDivisible` bool is set to `false` in the [`constructor(...)`](#constructor)
 - otherwise serves as a **Non-Divisible Token Contract**.
 
@@ -193,19 +193,19 @@ function setMultipleDataForSingleTokenId(
   <TabItem value="ethers-v6" label="ethers v6">
 
 ```js
-import { ERC725YDataKeys } from "@lukso/lsp-smart-contracts";
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
-const _NFT_ICON_DATA_KEY = keccak256("NFTIcon");
-const _NFT_MARKET_PLACE_URLS__DATA_KEY = keccak256("NFTMarketplaceURLs");
+const _NFT_ICON_DATA_KEY = keccak256('NFTIcon');
+const _NFT_MARKET_PLACE_URLS__DATA_KEY = keccak256('NFTMarketplaceURLs');
 
 const _TOKEN_ID_TO_SET =
-  "0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe";
+  '0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe';
 
 async function setMultipleDataForSingleTokenId(
-    lsp8Contract,
-    lsp4MetadataValue,
-    nftIconValue,
-    nftMarketPlaceURLsValue,
+  lsp8Contract,
+  lsp4MetadataValue,
+  nftIconValue,
+  nftMarketPlaceURLsValue,
 ) {
   const tokenIdsToUpdate = [
     _TOKEN_ID_TO_SET,
@@ -236,7 +236,6 @@ async function setMultipleDataForSingleTokenId(
   </TabItem>
 
 </Tabs>
-
 
 #### Case 2: different tokenIds
 
@@ -297,20 +296,20 @@ function setMultipleDataForSingleTokenId(
   <TabItem value="ethers-v6" label="ethers v6">
 
 ```js
-import { ERC725YDataKeys } from "@lukso/lsp-smart-contracts";
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 const _FIRST_TOKEN_ID_TO_SET =
-  "0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe";
+  '0xcafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe';
 const _SECOND_TOKEN_ID_TO_SET =
-  "0xbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeef";
+  '0xbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeef';
 const _THIRD_TOKEN_ID_TO_SET =
-  "0xf00df00df00df00df00df00df00df00df00df00df00df00df00df00df00df00d";
+  '0xf00df00df00df00df00df00df00df00df00df00df00df00df00df00df00df00d';
 
 async function setMultipleDataForSingleTokenId(
-    lsp8Contract,
-    firstTokenIdLsp4MetadataValue,
-    secondTokenIdLsp4MetadataValue,
-    thirdTokenIdLsp4MetadataValue,
+  lsp8Contract,
+  firstTokenIdLsp4MetadataValue,
+  secondTokenIdLsp4MetadataValue,
+  thirdTokenIdLsp4MetadataValue,
 ) {
   const tokenIdsToUpdate = [
     _FIRST_TOKEN_ID_TO_SET,
@@ -333,7 +332,7 @@ async function setMultipleDataForSingleTokenId(
   await lsp8Contract.setDataBatchForTokenIds(
     tokenIdsToUpdate,
     dataKeysToSet,
-    dataValuesToSet
+    dataValuesToSet,
   );
 }
 ```
@@ -346,10 +345,9 @@ async function setMultipleDataForSingleTokenId(
 
 Since LSP8 uses [ERC725Y](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) under the hood, the URI pointing to the metadata of a specific tokenId can be changed inside the ERC725Y storage of the LSP8 contract.
 
-We have seen in the previous section [**how to set metadata for one or multiple tokenIds**](#setting-metadata-for-one-or-multiple-tokenids). 
+We have seen in the previous section [**how to set metadata for one or multiple tokenIds**](#setting-metadata-for-one-or-multiple-tokenids).
 
 The two functions `setDataForTokenId(...)` and `setDataBatchForTokenIds(...)` emit a [`TokenIdDataChanged`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#tokeniddatachanged) event. You can listen for this event in the LSP8 contract from your dApp, filtering for the `LSP4Metadata` data key to check if the metadata of a tokenId has been changed. You can do so by filtering the first parameter with the `tokenId` and the second parameter with the [bytes32 value of the `LSP4Metadata` data key](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata).
-
 
 ## Note on LSP7 and LSP8 implementations
 
