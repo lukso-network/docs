@@ -10,7 +10,7 @@ const {
   LSP1UniversalReceiverDelegateUP,
 } = CONTRACT_VERSIONS;
 
-const BaseContractsRows = () => {
+export const BaseContractsTable = () => {
   const baseContracts = [
     UniversalProfileInit,
     LSP6KeyManagerInit,
@@ -23,37 +23,50 @@ const BaseContractsRows = () => {
     LSP1UniversalReceiverDelegateUP,
   });
 
-  return baseContracts.map((baseContract, index) => {
-    return baseContract.versions.map(({ version, address, releaseurl }) => (
-      <>
+  return (
+    <table>
+      <thead>
         <tr>
-          <td>
-            <code>{baseContractNames[index]}</code>
-          </td>
-          <td>
-            <code>
-              <a href={releaseurl} target="_blank">
-                {version}
-              </a>
-            </code>
-          </td>
-          <td>
-            <code>
-              <a
-                href={`https://explorer.execution.mainnet.lukso.network/address/${address}`}
-                target="_blank"
-              >
-                {address}
-              </a>
-            </code>
-          </td>
+          <th>Contract</th>
+          <th>Version</th>
+          <th>Address</th>
         </tr>
-      </>
-    ));
-  });
+      </thead>
+      <tbody>
+        {baseContracts.map((baseContract, index) => {
+          return baseContract.versions.map(
+            ({ version, address, releaseurl }) => (
+              <tr>
+                <td>
+                  <code>{baseContractNames[index]}</code>
+                </td>
+                <td>
+                  <code>
+                    <a href={releaseurl} target="_blank">
+                      {version}
+                    </a>
+                  </code>
+                </td>
+                <td>
+                  <code>
+                    <a
+                      href={`https://explorer.execution.mainnet.lukso.network/address/${address}`}
+                      target="_blank"
+                    >
+                      {address}
+                    </a>
+                  </code>
+                </td>
+              </tr>
+            ),
+          );
+        })}
+      </tbody>
+    </table>
+  );
 };
 
-export default function DeployedContractsTable() {
+export const FactoryContractsTable = () => {
   const { address: lsp23Address } = LSP23LinkedContractsFactory;
   const { address: postDeploymentModuleAddress } =
     UniversalProfileInitPostDeploymentModule;
@@ -62,9 +75,8 @@ export default function DeployedContractsTable() {
     <table>
       <thead>
         <tr>
-          <td>Contract</td>
-          <td>Version</td>
-          <td>Address</td>
+          <th>Contract</th>
+          <th>Address</th>
         </tr>
       </thead>
       <tbody>
@@ -72,7 +84,6 @@ export default function DeployedContractsTable() {
           <td>
             <code>LSP23LinkedContractsFactory</code>
           </td>
-          <td>none</td>
           <td>
             <a
               href={`https://explorer.execution.mainnet.lukso.network/address/${lsp23Address}`}
@@ -86,7 +97,6 @@ export default function DeployedContractsTable() {
           <td>
             <code>UniversalProfilePostDeploymentModule</code>
           </td>
-          <td>none</td>
           <td>
             <a
               href={`https://explorer.execution.mainnet.lukso.network/address/${postDeploymentModuleAddress}`}
@@ -96,8 +106,7 @@ export default function DeployedContractsTable() {
             </a>
           </td>
         </tr>
-        <BaseContractsRows />
       </tbody>
     </table>
   );
-}
+};
