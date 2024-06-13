@@ -252,7 +252,7 @@ const erc725js = new ERC725(
 
 </details>
 
- #### Get issued and received assets:
+#### Get issued and received assets:
 
 ```js
 import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
