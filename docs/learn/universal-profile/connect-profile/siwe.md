@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'UP Log-in & SIWE'
-sidebar_position: 4
+sidebar_position: 2
 description: Learn how to log-in a Universal Profile using SIWE (Sign-In With Ethereum).
 ---
 
