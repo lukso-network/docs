@@ -13,6 +13,15 @@ This feature is currently in private beta. If you are interested, please [contac
 
 If you are building on LUKSO, you can request a developer access to our relayer to create Universal Profiles for your users.
 
+## Request access
+
+Please fill out [this form](https://forms.gle/rhWA25m3jjuPNPva9) to request access to our relayer.
+
+## API Documentation
+
+- Testnet: [https://relayer-api.testnet.lukso.network/](https://relayer-api.testnet.lukso.network/docs#/)
+- Mainnet: [https://relayer-api.mainnet.lukso.network/](https://relayer-api.mainnet.lukso.network/docs#/)
+
 ## Features
 
 ### Deploy Universal Profiles
@@ -39,12 +48,3 @@ If your project has already created Universal Profiles (UP) for your users, you 
 
 - Developer may also provide a `User ID`, to register a Universal Profile for an already created User.
   - For example a Developer may build a platform where enterprise users can deploy Universal Profiles for their organisation, we can attach multiple Universal Profiles per organisation
-
-## Request access
-
-Please fill out [this form](https://forms.gle/rhWA25m3jjuPNPva9) to request access to our relayer.
-
-## API Documentation
-
-- Testnet: [https://relayer-api.testnet.lukso.network/](https://relayer-api.testnet.lukso.network/docs#/)
-- Mainnet: [https://relayer-api.mainnet.lukso.network/](https://relayer-api.mainnet.lukso.network/docs#/)
