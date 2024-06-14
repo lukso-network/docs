@@ -17,15 +17,15 @@
 }
 
 .dappCard:hover .dappCardImage {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .dappsContainer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 27px;
   grid-auto-rows: 1fr;
   width: 65%;
-  margin-top: 2%;
+  //margin-top: 2%;
   margin-bottom: 2%;
 }
