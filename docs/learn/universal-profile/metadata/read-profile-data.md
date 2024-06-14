@@ -32,16 +32,13 @@ The parameters to provide to the erc725 instance are:
 - Univeral Profile address: the address of the Universal Profile you want to retrieve data from.
 - Optional only for retrieving decoded data: RPC provider (web3, ethereum, ethers) or plain RPC url of [mainnet](../../../networks/mainnet/parameters.md) or [testnet](../../../networks/testnet/parameters.md) networks.
 
-<details>
-    <summary>Show code for creating an erc725 instance to read data from a Universal Profile</summary>
-
 <Tabs>
 
   <TabItem value="javascript" label="JavaScript">
 
 <!-- prettier-ignore-start -->
 
-```js
+```js title="Creating an erc725 instance to read data from a Universal Profile"
 import { ERC725 } from '@erc725/erc725.js';
 import profileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
@@ -50,7 +47,7 @@ const erc725js = new ERC725(
   "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e", // Universal Profile address
   "https://rpc.testnet.lukso.network",
   {
-    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs/',
   },
 );
 ```
@@ -62,7 +59,7 @@ const erc725js = new ERC725(
 
 <!-- prettier-ignore-start -->
 
-```ts
+```ts title="Creating an erc725 instance to read data from a Universal Profile"
 import { ERC725, ERC725JSONSchema } from '@erc725/erc725.js';
 import profileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
@@ -71,7 +68,7 @@ const erc725js = new ERC725(
   "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e", // Universal Profile address
   "https://rpc.testnet.lukso.network",
   {
-    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs/',
   },
 );
 ```
@@ -79,7 +76,6 @@ const erc725js = new ERC725(
 
   </TabItem>
 </Tabs>
-</details>
 
 ## Retrieve encoded data
 
@@ -87,10 +83,7 @@ const erc725js = new ERC725(
 
 `await erc725js.getData()`
 
-<details>
-    <summary>Show code snippet</summary>
-
-```js
+```js title="Get the encoded profile data"
 import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
 import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
 
@@ -99,14 +92,12 @@ const erc725js = new ERC725(
   "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
   "https://rpc.testnet.lukso.network",
   {
-  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
+  ipfsGateway: "https://api.universalprofile.cloud/ipfs/",
   }
 );
 
 const encodedProfileData = await erc725js.getData();
 ```
-
-</details>
 
 <details>
     <summary>Show result</summary>
@@ -150,8 +141,7 @@ const encodedProfileData = await erc725js.getData();
 
 `await myErc725.getData(['LSP3Profile', 'LSP1UniversalReceiverDelegate'])`
 
-<details>
-    <summary>Main data keys for retrieving specific data</summary>
+Main data keys for retrieving specific data:
 
 - `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](../../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile)
 - `LSP3Profile` used to retrieve VerifiableURI encoded value. VerifiableURI is a reference to a JSON file that describes the Universal Profile meta data.
@@ -161,14 +151,7 @@ const encodedProfileData = await erc725js.getData();
 
 Find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso.tech/data-fetcher) tool or in the [erc725 repo](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas).
 
-</details>
-
-In the above example, we retrieve encoded `LSP3Profile` and `LSP1UniversalReceiverDelegate` from a Universal Profile.
-
-<details>
-    <summary>Show code snippet</summary>
-
-```js
+```js title="Get data of the LSP3Profile and LSP1UniversalReceiverDelegate data keys"
 import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
 import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
 
@@ -177,17 +160,15 @@ const erc725js = new ERC725(
   "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
   "https://rpc.testnet.lukso.network",
   {
-  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
+    ipfsGateway: "https://api.universalprofile.cloud/ipfs/",
   }
 );
 
-  const specificProfileData = await erc725js.getData([
-    "LSP3Profile",
-    "LSP1UniversalReceiverDelegate",
-  ]);
+const specificProfileData = await erc725js.getData([
+  "LSP3Profile",
+  "LSP1UniversalReceiverDelegate",
+]);
 ```
-
-</details>
 
 <details>
     <summary>Show result</summary>
@@ -217,14 +198,9 @@ const erc725js = new ERC725(
 
 ## Retrieve decoded data
 
-#### Get all profile metadata (name, photos...)
-
 Example to retrieve the content of the JSON file from the verifiable URI stored on the smart contract. It will download the JSON file and verify its hash automatically.
 
-<details>
-    <summary>Show code snippet</summary>
-
-```js
+```js title="Get all profile metadata"
 import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
 import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
 
@@ -233,7 +209,7 @@ const erc725js = new ERC725(
   "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
   "https://rpc.testnet.lukso.network",
   {
-  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
+  ipfsGateway: "https://api.universalprofile.cloud/ipfs/",
   }
 );
 
@@ -241,8 +217,6 @@ const erc725js = new ERC725(
     "LSP3Profile",
   ]);
 ```
-
-</details>
 
 <details>
     <summary>Show result</summary>
@@ -268,12 +242,7 @@ const erc725js = new ERC725(
 
 </details>
 
-#### Get issued and received assets
-
-<details>
-    <summary>Show code snippet</summary>
-
-```js
+```js title="Get issued and received assets"
 import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
 import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
 
@@ -282,7 +251,7 @@ const erc725js = new ERC725(
   "0xFF7E89acaBce3ed97Ed528288D3b8F113557A8c8",
   "https://rpc.testnet.lukso.network",
   {
-  ipfsGateway: "https://api.universalprofile.cloud/ipfs",
+  ipfsGateway: "https://api.universalprofile.cloud/ipfs/",
   }
 );
 
@@ -291,8 +260,6 @@ const erc725js = new ERC725(
   ]);
 
 ```
-
-</details>
 
 <details>
     <summary>Show result</summary>
