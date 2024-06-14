@@ -13,6 +13,8 @@ import ToolsIcon from '../../static/img/icons/icon-tools-gradient.png';
 import PartnersIcon from '../../static/img/icons/icon-partners-gradient.png';
 import GuidesIcon from '../../static/img/icons/icon-guides-gradient.png';
 import FAQIcon from '../../static/img/icons/icon-faq-gradient.png';
+import DappsGallery from '../components/DappsGallery';
+import SeparatorWithTitle from '../components/SeperatorWithTitle';
 
 function Index() {
   return (
@@ -73,6 +75,8 @@ function Index() {
             content="Check out LUKSO ecosystem tools and services."
           />
         </div>
+        <SeparatorWithTitle title={'Projects building on LUKSO'} />
+        <DappsGallery />
       </div>
     </Layout>
   );
