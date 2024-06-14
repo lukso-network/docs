@@ -1,6 +1,6 @@
 @media (min-width: 997px) {
   .legoCard {
-    max-width: 23%;
+    max-width: 31%;
   }
 }
 
@@ -9,6 +9,10 @@
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 0.5rem;
   margin-left: 1rem;
+
+  h3 {
+    margin: 1em 0;
+  }
 }
 
 .legoCard:hover {

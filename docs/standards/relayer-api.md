@@ -13,6 +13,12 @@ import TabItem from '@theme/TabItem';
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cpoczP3Y7Hk?si=iiYiBDaMG0vn9i_r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
+:::success Relayer API
+
+To access our Relayer API, see our [**Relayer Developer Access**](../tools/relayer-developer.md) page.
+
+:::
+
 ## POST `/execute`
 
 Executes a signed transaction on behalf of a Universal Profile using [`executeRelayCall()`](../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
@@ -138,5 +144,5 @@ Quota systems could also use a Pay As You Go model, in which case totalQuota and
 
 ## Resources
 
-- [LSP-15-TransactionRelayerAPI (GitHub)](https://github.com/lukso-network/LIPs/pull/133)
+- [LSP-15-TransactionRelayerAPI (GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-15-TransactionRelayServiceAPI.md)
 - [Mock relayer repository (GitHub)](https://github.com/lukso-network/tools-mock-relayer)

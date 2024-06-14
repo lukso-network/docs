@@ -73,7 +73,9 @@ import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 const provider = new IPFSHttpClientUploader(import.meta.env.INFURA_GATEWAY, {
   headers: {
     authorization: `Basic ${Buffer.from(
-      `${import.meta.env.INFURA_API_KEY_NAME}:${import.meta.env.INFURA_API_KEY}`,
+      `${import.meta.env.INFURA_API_KEY_NAME}:${
+        import.meta.env.INFURA_API_KEY
+      }`,
     ).toString('base64')}`,
   },
 });
