@@ -13,11 +13,11 @@ If you want to set up your own workflow for uploading and retrieving files using
 - [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers)
 - [`service-ipfs-proxy`](https://github.com/lukso-network/service-ipfs-proxy)
 
-To use IPFS as a file service through _Pinata_ and _Infura_, you will have to:
+To use IPFS as a file service through _Pinata_, _Infura_, and Sense you will have to:
 
-1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/) and [Infura](https://www.infura.io/) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
-2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura and Pinata and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
-3. **Upload your File Content**: Utilize the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret.
+1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/),  [Infura](https://www.infura.io/), [Sense](https://sense.pastel.network) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
+2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura, Pinata, Sense and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
+3. **Upload your File Content**: Utilize the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret. And also by using Sense API key, you can upload to Sense protocol directly.
 
 This approach offers flexibility in how you upload and manage your asset data. While direct uploads to Infura are possible, the recommended method involves using the proxy to ensure reliability and ease of use.
 
@@ -84,6 +84,13 @@ const file = createReadStream('./path-to-your-file');
 const url = await provider.upload(file);
 
 console.log('File URL:', url);
+```
+
+*Using Sense**
+
+```js
+import { SenseUploader } from '@lukso/data-provider-sense';
+const provider = new SenseUploader(import.meta.env.SENSE_API_KEY);
 ```
 
 :::info Proxy Configuration
