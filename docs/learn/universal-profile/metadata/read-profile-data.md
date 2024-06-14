@@ -156,19 +156,18 @@ import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
 import profileSchema from "@erc725/erc725.js/schemas/LSP3ProfileMetadata.json";
 
 const erc725js = new ERC725(
-profileSchema as ERC725JSONSchema[],
-"0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
-"https://rpc.testnet.lukso.network",
-{
-ipfsGateway: "https://api.universalprofile.cloud/ipfs/",
-}
+  profileSchema as ERC725JSONSchema[],
+  "0x03B2689E4843ca56B2A933e7eC1E1ee6C3e6982e",
+  "https://rpc.testnet.lukso.network",
+  {
+    ipfsGateway: "https://api.universalprofile.cloud/ipfs/",
+  }
 );
 
 const specificProfileData = await erc725js.getData([
-"LSP3Profile",
-"LSP1UniversalReceiverDelegate",
+  "LSP3Profile",
+  "LSP1UniversalReceiverDelegate",
 ]);
-
 ```
 
 <details>
