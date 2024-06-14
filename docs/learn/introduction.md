@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Building on LUKSO'
+sidebar_label: '🧱 Building on LUKSO'
 description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKSO intended for?
 ---
 
