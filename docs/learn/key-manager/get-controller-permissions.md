@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'Get Controller Permissions'
+sidebar_label: 'Get List of Permissioned Addresses'
 sidebar_position: 1
 ---
 
-# Get Controller Permissions
+# Get List of Permissioned Addresses
 
 :::tip Code repository
 
@@ -11,10 +11,13 @@ You can find the scripts of this guide within our [`lukso-playground`](https://g
 
 :::
 
-In this guide, you will learn how to retrieve the list of controller addresses that have some permissions on a Universal Profile. This will involve 2 steps:
+This guide shows how to retrieve the list of addresses that have some permissions on a Universal Profile. We commonly call these addresses **controllers**.
 
-- **retrieve all controller addresses** of a Universal Profile
-- **retrieve the permissions** of each controller address
+Alongside each controller, Ww will also retrieve their associated permissions. All of this will involve 3 steps:
+
+1. **retrieve all controller addresses** of a Universal Profile
+2. **retrieve the encoded permissions** of each controller.
+3. **decode these permissions** in a human readable way
 
 ![Get controller addresses](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
 
@@ -26,7 +29,7 @@ We will use the [`erc725.js`](../../tools/erc725js/getting-started.md) library t
 npm install @erc725/erc725.js
 ```
 
-## Step 1 - Instantiate erc725.js connected to the UP
+## Step 1 - Instantiate erc725.js
 
 First let's initialize _erc725.js_ and connect it to a specific Universal Profile address on LUKSO Testnet. This will enable us to query its storage easily.
 
