@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Upgrade LSP6 Key Manager'
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';

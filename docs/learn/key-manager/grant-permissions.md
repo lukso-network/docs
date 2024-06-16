@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Grant Permissions'
-sidebar_position: 4
+sidebar_label: 'Grant Permissions to an address'
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';

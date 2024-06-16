@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Get List of Permissioned Addresses'
+sidebar_label: 'Get List of Permissioned addresses'
 sidebar_position: 1
 ---
 
