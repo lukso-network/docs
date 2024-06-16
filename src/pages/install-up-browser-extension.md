@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 
 import CallToActionButton from '../components/CallToActionButton';
 
-# Install the Universal Profile (🆙) Browser Extension
+# Install the Universal Profile 🆙 Browser Extension
 
 :::warning
 
@@ -11,7 +11,7 @@ The UP Browser Extension is in a **BETA Phase**.
 
 :::
 
-The UP Browser Extension is your smart account on LUSKO directly accessible from your web browser. It represents your Universal Profile that can be used seamlessly across multiple dApps.
+Universal Profile is your smart account on LUSKO, directly accessible via the UP Browser Extension from your web browser. It represents your Universal Profile that can be used seamlessly across multiple dApps.
 
 Unlike traditional wallets, it prioritizes a profile-centric approach, giving you all the features of a web3 wallet but with enhanced ease of use and security.
 
