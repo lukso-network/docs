@@ -61,10 +61,6 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 The function retrieves an array of _data keys_ for **multiple** smart contract addresses if the read-in result of the last call returned `true.` Otherwise, the function will return `false` as the given addresses do not appear to be [LSP0 ERC725 Accounts](./docs/standards/universal-profile/lsp0-erc725account.md).
 
-### LSP7 - Digital Asset Example
-
-The LSP 7 Digital Asset is a token standard for fungible assets built by LUKSO. Developers can look up the LSP7DigitalAsset smart contract within the [`@lukso/lsp-factory.js`](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) library. Some features of the Digital Asset include more secure transfers, additional metadata, and token hooks.
-
 ### Page Metadata
 
 ```markdown

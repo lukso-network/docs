@@ -10,7 +10,7 @@ description: Learn to enhance your Universal Profile with added functionalities 
 
 You will need a Universal Profile that you can control via its Key Manager to follow this guide.
 
-:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](./create-profile.md).
+:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Deploy a Universal Profile**](../deploy-up-with-lsp23.md).
 
 :::
 
