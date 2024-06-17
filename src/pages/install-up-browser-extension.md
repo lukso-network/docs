@@ -11,13 +11,13 @@ The UP Browser Extension is in a **BETA Phase**.
 
 :::
 
-Universal Profile is your smart account on LUSKO, directly accessible via the UP Browser Extension from your web browser. It represents your Universal Profile that can be used seamlessly across multiple dApps.
+The Universal Profile, your smart account on LUSKO, is conveniently accessible via the UP Browser Extension from your web browser. It is designed to be user-friendly and can be used seamlessly across multiple dApps
 
-Unlike traditional wallets, it prioritizes a profile-centric approach, giving you all the features of a web3 wallet but with enhanced ease of use and security.
+Unlike traditional wallets, it prioritizes a profile-centric approach, giving you all the features of a Web3 wallet but with enhanced ease of use and security.
 
-Customizable and extensible, your Universal Profile keeps your digital assets like tokens and NFTs organized and manageable effortlessly. It also simplifies and secures the management of permissions granted to dApps, making your blockchain interactions safer and more controlled.
+Customizable and extensible, your Universal Profile effortlessly keeps your digital assets like tokens and NFTs organized and manageable. It also simplifies and secures the management of permissions granted to dApps, making your blockchain interactions safer and more controlled.
 
-Universal Profile makes interacting with the blockchain safe and simple. With the UP Browser Extension, navigating the web3 digital landscape has never been easier, safer and more intuitive than ever before.
+Universal Profile makes interacting with the blockchain safe and straightforward. With the UP Browser Extension, navigating the web3 digital landscape has never been easier, safer and more intuitive than ever before.
 
 <div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
 
