@@ -11,15 +11,6 @@ rsync -av --progress erc725.js/docs/. ../docs/tools/erc725js --exclude technical
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Pull lsp-factory repo
-
-git clone --depth 1 --branch develop https://github.com/lukso-network/tools-lsp-factory.git
-
-# Copy Docs
-rsync -av --progress tools-lsp-factory/docs/. ../docs/tools/lsp-factoryjs --exclude=technical-reference
-
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # Pull eip191-signer repo
 
 git clone --depth 1 --branch develop https://github.com/lukso-network/tools-eip191-signer
