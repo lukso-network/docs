@@ -188,14 +188,14 @@ export default {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    announcementBar: {
-      id: 'hackathon',
-      content:
-        ' <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a>: Empowering the next wave of Web3 innovators. Applications now open!',
-      backgroundColor: '#84A2E2',
-      textColor: '#1C1E21',
-      isCloseable: false,
-    },
+    // announcementBar: {
+    //   id: 'hackathon',
+    //   content:
+    //     ' <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a>: Empowering the next wave of Web3 innovators. Applications now open!',
+    //   backgroundColor: '#84A2E2',
+    //   textColor: '#1C1E21',
+    //   isCloseable: false,
+    // },
     navbar: {
       title: 'LUKSO',
       logo: {
