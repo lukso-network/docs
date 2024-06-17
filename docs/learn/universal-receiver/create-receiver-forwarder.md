@@ -13,63 +13,33 @@ An example scenario could be: _"each time I receive USDT, I want to automaticall
 
 ## Requirements
 
-In order to follow this guide, you'll need to:
+:::success Tips
+
+If you want to follow this guide using not an existing token, but a new token that you want to create and deploy yourself, check our guide [**"Create a Custom LSP7 Token"**](../digital-assets/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract).
+
+:::
+
+In order to follow this guide, you will need the followings:
 
 1. Install the [UP Browser extension](/install-up-browser-extension).
-2. Fund the main controller (EOA) of your UP (You can find this address in the extension if you click on the controller tab > "UP Extension") using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
-3. Setup a new Hardhat project.
+2. Fund the main EOA controller of your 🆙 (See **[Step 1](#step-1---enable-your-controller-to-add-a-universal-receiver) bullet point 3** to retrieve its address) using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
+3. The address of the LSP7 token that you want to use to forward of portion of the amount received.
 
-## 1 - EOA permission
+## Step 1 - Enable your controller to Add & Edit a Universal Receiver
 
-First, we will need to give the EOA that controls our UP proper permission to add / edit an Universal Receiver Delegate (called "Automation").
+First, we will need to enable adding a Universal Receiver for the main controller of our UP. To do that:
 
-To do that, click on the controller tab > "UP Extension" which will bring the controller information page.
+1. Open the UP Browser Extension in your web browser.
+2. Click on the **"Controller"** tab.
+3. Select **"UP Extension"** which.
 
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/ControllerSettings.png"
-    alt="Screenshot of the controller settings in the extension"
-/>
-</div>
+This will bring the controller information page that you see below. From there:
 
-Scroll down to the "Administration & Ownership" part and check both "Add notifications & automation" and "Edit notifications & automation".
+4. Scroll down to the **"Administration & Ownership"** part
+5. Toggle ON the **"Add notifications & automation"** + **"Edit notifications & automation"** permission.
+6. Confirm the changes and submit the transaction.
 
-<div style={{textAlign: 'center'}}>
-<img
-    src="/img/guides/lsp1/ControllerPerm.png"
-    alt="Screenshot of the controller permissions in the extension"
-/>
-</div>
-
-Confirm the changes and submit the transaction.
-
-## 2 - Environment variables
-
-In your hardhat project, create a `.env` file (if it's not already present).
-
-```text title=".env"
-PRIVATE_KEY=
-UP_ADDR=
-UP_RECEIVER=
-PERCENTAGE=
-```
-
-To fill the `PRIVATE_KEY` and `UP_ADDR` info:
-
-- Click on the extension
-- Click on the Settings icon ⚙️ at the top right corner, then select "reveal private keys"
-- Enter your password
-- Scroll down and copy the `privateKey` field to your `.env` file in `PRIVATE_KEY`
-- Copy the `address` field to your `.env` file in `UP_ADDR`
-
-We will need to fill 2 additional parameters:
-
-- `UP_RECEIVER` => the address that will receive part of the tokens
-- `PERCENTAGE` => the percentage of the received tokens that will be transfered
-
-## 3 - (Optional) Create a Custom LSP7 Token
-
-We can start fresh with a brand new LSP7 Token, or we can use an already existing one. If you want to deploy a new one, you can follow the "Create a Custom LSP7 Token" [Guide](../digital-assets/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract) and [deploy it](../digital-assets/smart-contract-developers/getting-started.md#deploy-our-lsp7-token-contract-on-lukso-testnet).
+![Animation to show how to enable adding and editing Universal Receiver Delegate in UP Browser Extension](/img/learn/enable-add-edit-urd-permissions.gif)
 
 ## 4 - Create the Custom LSP1 Delegate Contract
 
