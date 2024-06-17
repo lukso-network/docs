@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Grant Permissions to an address'
 sidebar_position: 2
+description: Learn how to give some permissions to an address to perform specific actions on a Universal Profile on LUKSO.
 ---
 
 import Tabs from '@theme/Tabs';

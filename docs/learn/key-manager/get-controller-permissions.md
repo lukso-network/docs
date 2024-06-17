@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Get List of Permissioned addresses'
 sidebar_position: 1
+description: Learn how to retrieve the list of controller addresses and their associated permissions from a Universal Profile on LUKSO.
 ---
 
 # Get List of Permissioned Addresses
@@ -13,9 +14,9 @@ You can find the scripts of this guide within our [`lukso-playground`](https://g
 
 This guide shows how to retrieve the list of addresses that have some permissions on a Universal Profile. We commonly call these addresses **controllers**.
 
-Alongside each controller, Ww will also retrieve their associated permissions. All of this will involve 3 steps:
+Alongside each controller, we will also retrieve their associated permissions. All of this will involve 3 steps:
 
-1. **retrieve all controller addresses** of a Universal Profile
+1. **retrieve all controller addresses** of a Universal Profile.
 2. **retrieve the encoded permissions** of each controller.
 3. **decode these permissions** in a human readable way
 
@@ -88,7 +89,7 @@ If you want to retrieve a controller address individually, you can use the [`Add
 
 Now that we have all the controller's addresses, You can retrieve the permissions of each individual controller by querying the data key [`AddressPermissions:Permissions:<controller-address>`](../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions). This involves 2 steps:
 
-1. Get the raw encoded `bytes32` permission for the controller
+1. Get the raw encoded `bytes32` permission for the controller.
 2. Decode this permission value to get an object listing which permissions are set or not for this controller.
 
 ### 3.1 - Get the encoded permission of the controller.
@@ -144,7 +145,7 @@ async function getPermissionedAddresses() {
 
 The `value` above `0x0000...0008` in the object does not give us a lot of information. This is because **permissions are encoded as a [`BitArray`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#BitArray)**.
 
-Luckily, we don't need to understand the complexity behind the scene to understand the permissions that are set. After retrieving these encoded permission values, we can use again the [`decodePermissions(...)`](../../tools/erc725js/methods#decodepermissions) function from the 🛠️[`erc725.js`](../../tools/erc725js/getting-started.md) library to decode them easily.
+Luckily, we don't need to understand the complexity behind the scene to understand the permissions that are set. After retrieving these encoded permission values, we can use again the [`decodePermissions(...)`](../../tools/erc725js/methods#decodepermissions) function from the [_erc725.js_](../../tools/erc725js/getting-started.md) library to decode them easily.
 
 The function returns an object showing which permissions the controller has with `true` or `false`.
 
