@@ -178,6 +178,10 @@ export default {
             from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
             to: '/learn/expert-guides/deploy-up-with-lsp23',
           },
+          {
+            from: '/learn/expert-guides/universal-profile/create-profile',
+            to: '/learn/expert-guides/deploy-up-with-lsp23',
+          },
         ],
       },
     ],

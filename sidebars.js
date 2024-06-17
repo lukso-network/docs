@@ -184,7 +184,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: '🏭 lsp-factory.js',
+      label: '🏭 lsp-factory.js (deprecated)',
       collapsed: true,
       items: [
         {
