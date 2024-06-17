@@ -195,7 +195,7 @@ You should do the rest of this tutorial should be done in a **new file** (`main.
 We will now start writing the main code of the tutorial.
 Create a new file, `main.js`.
 
-Our [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) tool provides convenience to upload our profile Metadata to IPFS.
+<!-- TODO: don't use lsp-factory anymore-->
 
 ```javascript title="main.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';

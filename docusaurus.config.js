@@ -145,6 +145,39 @@ export default {
             from: '/tools/partners',
             to: '/tools/integrations',
           },
+          // lsp-factory deprecation
+          {
+            from: '/tools/lsp-factoryjs/deployment/universal-profile',
+            to: '/learn/expert-guides/deploy-up-with-lsp23',
+          },
+          {
+            from: '/tools/lsp-factoryjs/deployment/digital-asset',
+            to: '/learn/digital-assets/smart-contract-developers/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/universal-profile',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp4-digital-asset-metadata',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp7-digital-asset',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
+            to: '/learn/expert-guides/deploy-up-with-lsp23',
+          },
         ],
       },
     ],

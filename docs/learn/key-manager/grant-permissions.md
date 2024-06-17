@@ -188,11 +188,9 @@ The first step is to load this main controller address as an EOA using its priva
 The private key can be obtained depending on how you created your Universal Profile:
 
 - UP created with our **Create a Universal Profile guide**: you should have provided the private key and known it.
-- UP created with the _lsp-factory.js_: this is the private key given in the `controllerAddresses` field in the method [`lspFactory.UniversalProfile.deploy(...)`](../../tools/lsp-factoryjs/classes/universal-profile#deploy)
 - UP created via the Browser extension: click on the _Settings_ icon (top right) > and _Export Private Key_
 
 <Tabs>
-  
   <TabItem value="web3js" label="web3.js">
 
 ```javascript title="Load account from a private key"

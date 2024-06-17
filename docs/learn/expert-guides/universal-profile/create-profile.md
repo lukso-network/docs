@@ -20,12 +20,6 @@ To easiest way to create a Universal Profile is through the Universal Profile Br
 - install the 🖥️ [Universal Profile Browser Extension](/install-up-browser-extension)
 - and ✨ [create a Universal Profile](https://my.universalprofile.cloud)
 
-However, if you want to create a profile programmatically you should use the ⚒️[lsp-factory.js](../../../tools/lsp-factoryjs/deployment/universal-profile.md). You can install it in your project using:
-
-```shell
-npm install @lukso/lsp-factory.js
-```
-
 ## Introduction
 
 ### Owned Contracts
@@ -65,23 +59,6 @@ For more details, see [LSP6 - Key Manager Standard](../../../standards/universal
 ### Contracts Overview
 
 ![Universal Profile: overview of deployed contracts](../img/universal-profile-overview.jpeg)
-
-The [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) library will help us quickly deploy and set up a Universal Profile with just a few lines of code.
-
-Under the hood, lsp-factory.js performs the following:
-
-1. Deploy the Universal Profile contracts:
-   - [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) (UP) is the core smart contract representing a Universal Profile.
-   - [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md) (KM) is the contract that acts as the **owner of a Universal Profile** <br/> to enable other addresses to interact with the UP.
-2. Link a previously deployed [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) (URD) smart contract with the deployed UP. The URD reacts to events, such as tokens received or transferred.
-3. Set all the permissions for provided EOA addresses so that they can act on the UP.
-
-> :arrow_right: &nbsp; [See lsp-factory.js docs for more details](../../../tools/lsp-factoryjs/getting-started)
-
-:::info Learn More
-The figure above is your default setup for Universal Profile. However, _using a Key Manager as an owner is optional_.<br/>
-You can create a Universal Profile without a Key Manager (or a Universal Receiver Delegate linked to it).
-:::
 
 ## Create an EOA
 
@@ -175,23 +152,6 @@ However, your private key should never be hardcoded in your code.
 :warning: **ALWAYS ensure that your private key is stored securely** and never exposed.
 
 :::
-
-### Setup the lsp-factory.js
-
-Import and set up your lsp-factory.js tool. It will give you access to a `.deploy(...)` method that you will use to create your Universal Profile.
-
-```javascript title="main.js"
-import { LSPFactory } from '@lukso/lsp-factory.js';
-
-const PRIVATE_KEY = '0x...'; // add the private key of your EOA here
-const myEOA = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-
-// initialize the LSPFactory with the Testnet chain RPC endpoint, chainId and your EOA's private key which will deploy the UP smart contracts
-const lspFactory = new LSPFactory('https://rpc.testnet.lukso.network', {
-  deployKey: PRIVATE_KEY,
-  chainId: 4201,
-});
-```
 
 ### Additional Resources
 
