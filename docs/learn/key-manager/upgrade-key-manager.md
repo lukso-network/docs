@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Upgrade LSP6 Key Manager'
-sidebar_position: 3
+sidebar_position: 4
+description: This tutorial shows how you can upgrade the `owner()` of a Universal Profile. For instance upgrading the Key Manager with a better one.
 ---
 
 import Tabs from '@theme/Tabs';
