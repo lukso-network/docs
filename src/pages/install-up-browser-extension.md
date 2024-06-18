@@ -5,7 +5,7 @@ import CallToActionButton from '../components/CallToActionButton';
 
 # Install the Universal Profile 🆙 Browser Extension
 
-:::warning
+:::info
 
 The UP Browser Extension is in a **BETA Phase**.
 
@@ -33,7 +33,7 @@ Universal Profile makes interacting with the blockchain safe and straightforward
 
 </div>
 
-<div className="row" style={{ marginBottom: '5em' }}>
+<div className="row" style={{ marginBottom: '3em' }}>
   <div className="col">
     <CallToActionButton
       text="Download for Chrome / Brave"
