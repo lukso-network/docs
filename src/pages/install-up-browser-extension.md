@@ -5,7 +5,7 @@ import CallToActionButton from '../components/CallToActionButton';
 
 # Install the Universal Profile 🆙 Browser Extension
 
-:::warning
+:::info
 
 The UP Browser Extension is in a **BETA Phase**.
 
