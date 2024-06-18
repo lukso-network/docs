@@ -24,9 +24,9 @@ A `UniversalProfile` has all the basic functionalities of an _Externally Owned A
 
 All ownable functions such as [`execute(..)`](../contracts/UniversalProfile.md#execute), [`executeBatch(..)`](../contracts/UniversalProfile.md#executebatch), [`setData(..)`](../contracts/UniversalProfile.md#setdata), [`setDataBatch(..)`](../contracts/UniversalProfile.md#setdatabatch), [`transferOwnership(..)`](../contracts/UniversalProfile.md#transferownership), and [`renounceOwnership(..)`](../contracts/UniversalProfile.md#renounceownership) can be called by the owner
 
-The contract also includes the [LSP20-CallVerification](../../standards/universal-profile/lsp0-erc725account.md#lsp20---call-verification) at its core. Meaning if the contract is owned by an other contract, LSP20 enables to interact with the contract directly without having to resolve through its owner first. This allows seamless integrations with other contracts, protocols and dApps, as the contract can be called directly, making the developer experience easier.
+The contract also includes the [LSP20-CallVerification](../../standards/universal-profile/lsp0-erc725account.md#lsp20---call-verification) at its core. Meaning if the contract is owned by another contract, LSP20 enables to interact with the contract directly without having to resolve through its owner first. This allows seamless integrations with other contracts, protocols and dApps, as the contract can be called directly, making the developer experience easier.
 
-To illustrate, if an other address than the owner calls the [`execute(..)`](../contracts/UniversalProfile.md#execute) function, the account contract will:
+To illustrate, if another address than the owner calls the [`execute(..)`](../contracts/UniversalProfile.md#execute) function, the account contract will:
 
 1. Forward the call to the owner.
 2. The execution of the function will only continue if the owner returns the `LSP20 MAGIC VALUE`, indicating that the caller is allowed to execute the function.
