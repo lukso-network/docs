@@ -33,14 +33,14 @@ This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contra
 
 In order to follow this guide, you will need the followings:
 
-1. Downloaded and installed the [UP Browser extension](/install-up-browser-extension).
+1. Download and install the [UP Browser extension](/install-up-browser-extension).
 2. Fund the main EOA controller of your 🆙 (See **[Step 1](#step-1---enable-your-controller-to-add-a-universal-receiver) bullet point 3** to retrieve its address) using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
 3. The address of the LSP7 token that you want to use to forward of portion of the amount received.
 4. Installed the v0.14.0 [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) library.
 5. The [_erc725.js_](../../tools/erc725js/getting-started.md) library to encode the data key / value to register our LSP1 Forwarder.
 
 ```bash
-npm i @lukso/lsp-smart-contracts@v0.14.0
+npm i @lukso/lsp-smart-contracts@v0.14.0 @erc725/erc725.js
 ```
 
 ## Step 1 - Enable your controller to Add & Edit a Universal Receiver
@@ -440,21 +440,17 @@ In this method, we're directly calling the `transfer` method of the notifier (th
 
 </Tabs>
 
-## Step 3 - Compile & Deploy our LSP1 Forwarder contract
+## Step 3 - Deploy our LSP1 Forwarder
 
 Now that we have created our custom LSP1 Delegate Forwarder contract, we will deploy it on LUKSO Testnet.
 
-We will use a script in Hardhat to deploy our LSP1 Forwarder contract. We will use our main controller address (by exporting its private key from the UP Browser Extension and adding it in a `.env` file).
-
-### 3.1 - Compile the contract
-
-This will generate its artifacts, including its ABI and bytecode.
+Let's first compile our contract to generate its ABI and bytecode.
 
 ```bash
 hardhat compile
 ```
 
-### 3.2 - Deploy the contract
+We will use a script in Hardhat to deploy our LSP1 Forwarder contract. We will use our main controller address (by exporting its private key from the UP Browser Extension and adding it in a `.env` file).
 
 Create the following file under the `scripts/` folder in your Hardhat project.
 
@@ -512,9 +508,11 @@ We can now deploy our custom LSP1 Delegate contract by running:
 npx hardhat run scripts/deployLSP1Forwarder.ts --network luksoTestnet
 ```
 
-## Step 4 - Register our LSP1 Forwarder
+## Step 4 - Setup our LSP1 Forwarder
 
-Now that you have deployed a custom LSP1 Delegate forwarder contract, we will register it on our Universal Profile for when received LSP7 token transfers.
+Now that you have deployed a custom LSP1 Delegate forwarder contract, we will register it on our Universal Profile and set it up.
+
+### 4.1 - Register on the UP
 
 We will register this LSP1 Forwarder for the LSP1 Type Id [`LSP7Tokens_RecipientNotification`](../../contracts/type-ids.md#lsp7tokens_recipientnotification). This type Id is used to notify the Universal Profile that it received some new tokens.
 
@@ -566,7 +564,7 @@ await setDataTx.wait();
 console.log('✅ Custom LSP1 Delegate has been correctly registered on the UP');
 ```
 
-## Step 5 - Complete the LSP1 Forwarder setup
+### 4.2 - Setup permissions / operator
 
 Depending on the method selected, we will either:
 
@@ -677,7 +675,7 @@ console.log(
 
 </Tabs>
 
-## Final Step - 🧪 Test our custom LSP1 Delegate Forwarder
+## 🧪 Testing our LSP1 Forwarder
 
 Now that all the pieces are connected, we can try it out!
 
