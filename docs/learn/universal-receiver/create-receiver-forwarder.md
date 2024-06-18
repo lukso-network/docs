@@ -7,7 +7,7 @@ description: This smart contract tutorial guides you on how to create a LSP1 Del
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Creating the LSP1 Forwarder
+# Create a LSP1 Forwarder
 
 In this guide, we will create a custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract. This contract will be called each time the associated UP receives a [LSP7 token](../../standards/tokens/LSP7-Digital-Asset.md), and will forward a certain percentage to another address.
 
@@ -17,7 +17,7 @@ The use-case it answers is:
 
 An example scenario could be: _"each time I receive USDT, I want to automatically transfer 20% to my wife's UP"_.
 
-## Requirements
+## Setup & Requirements
 
 :::success Tips
 
@@ -25,11 +25,22 @@ If you want to follow this guide using not an existing token, but a new token th
 
 :::
 
+:::info
+
+This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contracts`] package.
+
+:::
+
 In order to follow this guide, you will need the followings:
 
-1. Install the [UP Browser extension](/install-up-browser-extension).
+1. Downloaded and installed the [UP Browser extension](/install-up-browser-extension).
 2. Fund the main EOA controller of your 🆙 (See **[Step 1](#step-1---enable-your-controller-to-add-a-universal-receiver) bullet point 3** to retrieve its address) using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
 3. The address of the LSP7 token that you want to use to forward of portion of the amount received.
+4. Installed the v0.14.0 [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) library.
+
+```bash
+npm i @lukso/lsp-smart-contracts@v0.14.0
+```
 
 ## Step 1 - Enable your controller to Add & Edit a Universal Receiver
 
@@ -234,7 +245,7 @@ contract LSP1URDForwarderMethod1 is
 
 **Creation of the transaction**
 
-When all the verification passed in the `universalReceiver` function, we calculate the amount of token to transfer (`tokensToTransfer`) and create the transaction that will be executed:
+When all the verifications passed in the `universalReceiver` function, we calculate the amount of token to transfer (`tokensToTransfer`) and create the transaction that will be executed:
 
 ```solidity title="Create the transaction"
 bytes memory encodedTx = abi.encodeCall(
