@@ -9,7 +9,10 @@
   padding: 10px 20px;
   max-width: 500px;
 
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
   transition: all 200ms ease-out 10ms;
 
