@@ -33,8 +33,8 @@ Universal Profile makes interacting with the blockchain safe and straightforward
 
 </div>
 
-<div className="row" style={{ marginBottom: '2em' }}>
-  <div className="col">
+<div className="row" >
+  <div className="col" style={{ margin: '2em 0' }}>
     <CallToActionButton
       text="Download for Chrome / Brave"
       color="white"
@@ -42,7 +42,7 @@ Universal Profile makes interacting with the blockchain safe and straightforward
       icon="fa6-brands:chrome"
     />
   </div>
-  <div className="col">
+  <div className="col" style={{ margin: '2em 0' }}>
     <CallToActionButton
       text="Download for Edge"
       color="white"
