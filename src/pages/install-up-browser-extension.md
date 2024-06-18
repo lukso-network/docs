@@ -65,46 +65,46 @@ Universal Profile makes interacting with the blockchain safe and straightforward
 <div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapp-up-test-dapp.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
-    
     <a href="https://up-test-dapp.lukso.tech">
-      <h3>UP Test dApp</h3>
-    </a>
+      <img src="/img/example-dapp-up-test-dapp.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
+    
+        <h3>UP Test dApp</h3>
 
-    <i>LUKSO Demo App</i>
+        <i>LUKSO Demo App</i>
+    </a>
 
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapps.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
-    
     <a href="https://examples.lukso.tech">
-      <h3>dApps Examples</h3>
-    </a>
-
-    <i>LSP Implementation Examples</i>
-
-  </div>
-
-  <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapp-tsx-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+      <img src="/img/example-dapps.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
     
-    <a href="https://txs.app">
-      <h3>Txs.App</h3>
-    </a>
+      <h3>dApps Examples</h3>
 
-    <i>Examine transactions happening in realtime in the LUKSO Network in a more user-friendly way!</i>
+      <i>LSP Implementation Examples</i>
+    </a>
 
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    <a href="https://txs.app">
+      <img src="/img/example-dapp-tsx-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
+    
+      <h3>Txs.App</h3>
 
-    <a href="https://erc725-inspect.lukso.tech/">
-      <h3>ERC725 Inspect</h3>
+      <i>Examine transactions happening in realtime in the LUKSO Network in a more user-friendly way!</i>
     </a>
 
-    <i>Analyse the information and metadata in the storage of your UP, Token or NFT.</i>
+  </div>
+
+  <div className="col" style={{ marginBottom: '2em' }}>
+    <a href="https://erc725-inspect.lukso.tech/">
+      <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
+
+      <h3>ERC725 Inspect</h3>
+
+      <i>Analyse the information and metadata in the storage of your UP, Token or NFT.</i>
+    </a>
 
   </div>
 
