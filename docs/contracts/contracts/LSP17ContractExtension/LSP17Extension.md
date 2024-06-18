@@ -115,7 +115,6 @@ function _extendableMsgValue() internal view returns (uint256);
 Returns the original `msg.value` sent to the extendable contract.
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

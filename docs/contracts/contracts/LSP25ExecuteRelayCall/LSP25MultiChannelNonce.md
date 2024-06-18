@@ -145,7 +145,6 @@ The "idx" is a 256bits (unsigned) integer, where:
 | `0`  | `bool` | true if the nonce is the latest nonce for the `signer`, false otherwise. |
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
