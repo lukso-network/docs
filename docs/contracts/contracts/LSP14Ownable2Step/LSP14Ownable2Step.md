@@ -531,6 +531,7 @@ Reverts when only the owner is allowed to call the function.
 | `callerAddress` | `address` | The address that tried to make the call. |
 
 <br/>
+
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
