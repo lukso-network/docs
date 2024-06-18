@@ -53,7 +53,7 @@ The custom LSP1 Delegate contract can be created using 2 methods of interaction 
 
 ### Two Design Options
 
-In order to transfer a portion of the tokens received to an other address, we can instruct the LSP1 Forwarder contract to re-call the LSP7 [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function:
+In order to transfer a portion of the tokens received to another address, we can instruct the LSP1 Forwarder contract to re-call the LSP7 [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function:
 
 - **method 1:** via the [**`execute(...)` function of the 🆙**](../../contracts/contracts/UniversalProfile/UniversalProfile.md#execute).
 - **method 2:** directly on the LSP7 contract **after having authorized the LSP1 Forwarder as an operator via [`authorizeOperator(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)**.
