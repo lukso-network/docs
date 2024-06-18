@@ -195,7 +195,7 @@ You should do the rest of this tutorial should be done in a **new file** (`main.
 We will now start writing the main code of the tutorial.
 Create a new file, `main.js`.
 
-Our [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) tool provides convenience to upload our profile Metadata to IPFS.
+<!-- TODO: don't use lsp-factory anymore-->
 
 ```javascript title="main.js"
 import { LSPFactory } from '@lukso/lsp-factory.js';
@@ -300,7 +300,7 @@ Now that our updated data is encoded, we are ready to set it in our Universal Pr
 
 We will need to interact with the smart contracts from an externally owned account (EOA).
 
-The first step is to load our EOA using our private key from [previous steps](./create-profile#step-1---create-an-eoa).
+The first step is to load our EOA using our private key from [the deployment step](../deploy-up-with-lsp23.md).
 
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';

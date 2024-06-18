@@ -145,20 +145,57 @@ export default {
             from: '/tools/partners',
             to: '/tools/integrations',
           },
+          // lsp-factory deprecation
+          {
+            from: '/tools/lsp-factoryjs/deployment/universal-profile',
+            to: '/learn/expert-guides/deploy-up-with-lsp23',
+          },
+          {
+            from: '/tools/lsp-factoryjs/deployment/digital-asset',
+            to: '/learn/digital-assets/smart-contract-developers/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/universal-profile',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp4-digital-asset-metadata',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp7-digital-asset',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
+            to: '/tools/lsp-factoryjs/getting-started',
+          },
+          {
+            from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
+            to: '/learn/expert-guides/deploy-up-with-lsp23',
+          },
+          {
+            from: '/learn/expert-guides/universal-profile/create-profile',
+            to: '/learn/expert-guides/deploy-up-with-lsp23',
+          },
         ],
       },
     ],
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    announcementBar: {
-      id: 'hackathon',
-      content:
-        ' <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a>: Empowering the next wave of Web3 innovators. Applications now open!',
-      backgroundColor: '#84A2E2',
-      textColor: '#1C1E21',
-      isCloseable: false,
-    },
+    // announcementBar: {
+    //   id: 'hackathon',
+    //   content:
+    //     ' <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a>: Empowering the next wave of Web3 innovators. Applications now open!',
+    //   backgroundColor: '#84A2E2',
+    //   textColor: '#1C1E21',
+    //   isCloseable: false,
+    // },
     navbar: {
       title: 'LUKSO',
       logo: {

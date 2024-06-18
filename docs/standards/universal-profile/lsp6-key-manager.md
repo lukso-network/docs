@@ -350,12 +350,6 @@ The permission `EXECUTE_RELAY_CALL` enables a controller's signed relay calls to
 
 </details>
 
-:::note
-
-When deployed with our [**lsp-factory.js** tool](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started), the Universal Profile owner will have all the permissions above set by default.
-
-:::
-
 ### SUPER Permissions
 
 The super permissions grant the same permissions as their non-super counterparts, with the difference being that the checks on restrictions for [**Allowed Calls**](#allowed-calls) and [**Allowed ERC725Y Data Keys**](#allowed-erc725y-data-keys) are _skipped_.
