@@ -27,7 +27,7 @@ If you want to follow this guide using not an existing token, but a new token th
 
 :::info
 
-This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contracts`] package.
+This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) package.
 
 :::
 
@@ -97,7 +97,7 @@ pragma solidity ^0.8.11;
 
 // interfaces
 import { IERC725X } from "@erc725/smart-contracts/contracts/interfaces/IERC725X.sol";
-import { ILSP1UniversalReceiverDelegate } from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiverDelegate.sol";
+import { ILSP1UniversalReceiverDelegate as ILSP1Delegate } from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiverDelegate.sol";
 import { ILSP7DigitalAsset } from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol";
 
 // modules
@@ -113,10 +113,7 @@ import "@lukso/lsp-smart-contracts/contracts/LSP0ERC725Account/LSP0Constants.sol
 // errors
 import "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1Errors.sol";
 
-contract LSP1URDForwarder is
-    ERC165,
-    ILSP1UniversalReceiverDelegate
-{
+contract LSP1Forwarder is ERC165, ILSP1Delegate {
 
     // CHECK onlyOwner
     modifier onlyOwner {
@@ -169,7 +166,7 @@ contract LSP1URDForwarder is
         return allowlist[token];
     }
 
-    function universalReceiver(
+    function universalReceiverDelegate(
         address notifier,
         uint256 value,
         bytes32 typeId,
@@ -294,7 +291,7 @@ pragma solidity ^0.8.11;
 
 // interfaces
 import { IERC725X } from "@erc725/smart-contracts/contracts/interfaces/IERC725X.sol";
-import { ILSP1UniversalReceiverDelegate } from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiverDelegate.sol";
+import { ILSP1UniversalReceiverDelegate as ILSP1Delegate } from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiverDelegate.sol";
 import { ILSP7DigitalAsset } from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol";
 
 // modules
@@ -310,10 +307,7 @@ import "@lukso/lsp-smart-contracts/contracts/LSP0ERC725Account/LSP0Constants.sol
 // errors
 import "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1Errors.sol";
 
-contract LSP1URDForwarder is
-    ERC165,
-    ILSP1UniversalReceiverDelegate
-{
+contract LSP1Forwarder is ERC165, ILSP1Delegate {
 
     // CHECK onlyOwner
     modifier onlyOwner {
@@ -366,7 +360,7 @@ contract LSP1URDForwarder is
         return allowlist[token];
     }
 
-    function universalReceiver(
+    function universalReceiverDelegate(
         address notifier,
         uint256 value,
         bytes32 typeId,
@@ -471,7 +465,7 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-We will use a script in Hardhat to deploy our LSP1 Forwarder contract. We will use our main controller address by exporting its private key from the UP Browser Extension. Create the following `.env` file and add the main controller private key exported from the 🆙 Browser Extension:
+We will use a Hardhat script to deploy our LSP1 Forwarder contract. We will use our main controller address by exporting its private key from the UP Browser Extension. Create the following `.env` file and add the main controller private key exported from the 🆙 Browser Extension:
 
 ```txt title=".env"
 PRIVATE_KEY=""
