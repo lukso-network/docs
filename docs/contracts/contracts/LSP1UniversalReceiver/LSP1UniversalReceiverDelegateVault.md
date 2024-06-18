@@ -233,7 +233,6 @@ Reverts when EOA calls the [`universalReceiver(..)`](#universalreceiver) functio
 | `caller` | `address` | The address of the EOA |
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
