@@ -26,6 +26,19 @@
   gap: 27px;
   grid-auto-rows: 1fr;
   width: 65%;
-  //margin-top: 2%;
   margin-bottom: 2%;
+  justify-self: center;
+
+  @media (max-width: 960px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 1rem 1rem;
+  }
+
+  @media (max-width: 670px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 1rem 1rem;
+  }
 }
