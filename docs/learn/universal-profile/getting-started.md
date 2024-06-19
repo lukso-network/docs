@@ -15,7 +15,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles](../.
     color="white"
     target="_blank"
     link="/install-up-browser-extension"
-    text="1 - Installing the Universal Profile Browser Extension 🧩"
+    text="1 - Install the Universal Profile Browser Extension 🧩"
   />
 </div>
 
@@ -57,7 +57,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles](../.
   <CallToActionButton
     color="white"
     link="/learn/universal-profile/connect-profile/connect-up"
-    text="3 - Get started building! 🫡"
+    text="3 - Start building! 🫡"
   />
 </div>
 
