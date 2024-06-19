@@ -146,7 +146,7 @@ module.exports = {
     },
   ],
   toolsSidebar: [
-    'tools/getting-started',
+    'tools/lukso-libraries',
     'tools/integrations',
     {
       type: 'category',

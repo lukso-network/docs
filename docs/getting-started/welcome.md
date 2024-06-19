@@ -10,8 +10,6 @@ import PartnersIcon from '../../static/img/icons/icon-partners-gradient.png';
 
 import styles from '../../src/pages/index.module.scss';
 
-import Layout from '@theme/Layout';
-
 # Getting Started on LUKSO
 
 ## Welcome to LUKSO!
