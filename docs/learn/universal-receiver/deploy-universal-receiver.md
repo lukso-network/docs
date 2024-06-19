@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Universal Receiver
 
-The [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md) is a powerful tool that enables any smart contract or wallet to identify incoming transactions and automatically initiate customized responses.
+The [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md) is a powerful tool that enables any smart contract or dApp to identify specific incoming transactions and automatically initiate customized responses.
 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aE00rHVAWbw?si=XAcF8Kbn549E7RWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -23,39 +23,16 @@ A Universal Profile contract can host multiple Universal Receiver Delegate (URD)
 
 To delegate incoming Universal Receiver notifications to a specific smart contract, simply set a [ERC725Y](../../standards/universal-profile/lsp0-erc725account#erc725y---generic-key-value-store) data key on your Universal Profile. This will instruct your profile to forward notifications to the designated contract.
 
-The _data key_ field uses the following formats to store URD contracts:
+You can a Universal Receiver Delegate contracts using one of the following _data keys_:
 
-### Singleton Format
+- `LSP1UniversalReceiverDelegate` to set the **default** one.
+- `LSP1UniversalReceiverDelegate:<bytes32>` to set a specific one related to the mapped `<bytes32> typeId`.
 
-```json
-{
-  "name": "LSP1UniversalReceiverDelegate",
-  "key": "0x0cfc51aec37c55a4d0b1a65c6255c4bf2fbdf6277f3cc0730c45b828b6db8b47",
-  "keyType": "Singleton",
-  "valueType": "address",
-  "valueContent": "Address"
-}
-```
+This way, different Universal Receiver Delegate contracts can be assigned for certain type IDs (bytes32) that are sent along the Universal Receiver call from a notifying smart contract. This allows to host multiple Universal Receiver Delegate contracts.
 
 :::warning
 Setting a new default Universal Receiver Delegate (URD) contract will replace the default delegate contract, which can be found [here](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md).
 :::
-
-### Mapping Format
-
-This format allows Universal Profiles to host multiple Universal Receiver Delegate contracts:
-
-```json
-{
-  "name": "LSP1UniversalReceiverDelegate:<bytes32>",
-  "key": "0x0cfc51aec37c55a4d0b10000<bytes32>",
-  "keyType": "Mapping",
-  "valueType": "address",
-  "valueContent": "Address"
-}
-```
-
-This way, different Universal Receiver Delegate contracts can be assigned for certain type IDs (bytes32) that are sent along the Universal Receiver call from a notifying smart contract.
 
 ## Getting Started
 

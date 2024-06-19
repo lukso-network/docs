@@ -7,7 +7,7 @@ sidebar_position: 2
 # 🔮 Integrations
 
 > ⛓️ **Looking to integrate LUKSO? or already integrating?**<br/>
-> Feel free to reach out to [growth@lukso.io](mailto:growth@lukso.io) if you are looking to be featured on this page
+> Feel free to reach out to [growth@lukso.io](mailto:growth@lukso.io) if you are looking to be featured on this page.
 
 A list of services and projects that integrated the LUKSO network or deliver ecosystem tools.
 
@@ -41,7 +41,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://sigmacore.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/sigmacore_logo.jpeg"/></a></td>
-      <td>Universal Network Solutions, powered by Sigmatic</td>
+      <td>Universal Network Solutions, powered by Sigmatic.</td>
     </tr>
   </tbody>
 </table>
@@ -51,14 +51,27 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 <table>
   <thead>
     <tr>
-      <th></th>
+      <th>&nbsp;</th>
       <th>Description & Features</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a href="https://docs.api3.org/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/api3_logo.jpeg"/></a></td>
-      <td>API3 builds solutions that bridge the gap between off-chain data and on-chain applications with maximum security and minimal latency.<br></br></td>
+      <td>API3 builds solutions that bridge the gap between off-chain data and on-chain applications with maximum security and minimal latency.</td>
+    </tr>
+    <tr>
+      <td style={{ maxWidth: "20rem" }}>
+        <a href="https://docs.diadata.org/" target="_blank" rel="noopener noreferrer"><img src="https://cms3.diadata.org/wp-content/uploads/2023/03/Token.png"/></a>
+      </td>
+      <td>
+        <a href="https://www.diadata.org/" target="_blank" rel="noopener noreferrer">DIA</a> is a cross-chain oracle provider that directly aggregates market data from a wide range of sources. Its first-party data sourcing is thorough, enabling unparalleled transparency and customizability for resilient price feeds for 20,000+ assets including ERC20s, NFTs, RWAs, LSTs, BRC20s and more.<br/><br/>The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
+        The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
+        <ul>
+          <li><a href="https://docs.diadata.org/introduction/dia-technical-structure/data-delivery-methods/integrated-l1-l2-networks/lukso-price-oracles#how-to-access-dia-oracles" target="_blank" rel="noopener noreferrer">Access DIA oracles on LUKSO</a></li>
+          <li><a href="https://t.me/DIABDteam" target="_blank" rel="noopener noreferrer">Request a new oracle</a></li>
+        </ul>
+      </td> 
     </tr>
   </tbody>
 </table>
@@ -68,15 +81,22 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 <table>
   <thead>
     <tr>
-      <th></th>
+      <th>&nbsp;</th>
       <th>Description & Features</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://envio.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/envio_logo.png"/></a></td>
-      <td><b>Data Indexer & Tooling</b><br />Envio is a feature-rich indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.<br /><br /><li><a href="https://docs.envio.dev/docs/getting-started" target="_blank" rel="noopener noreferrer">Quickstart</a></li>
-      <li><a href="https://docs.envio.dev/docs/hypersync/" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>    <li><a href="https://docs.envio.dev/docs/contract-import/" target="_blank" rel="noopener noreferrer">Contract Import</a></li><li><a href="https://docs.envio.dev/docs/hosted-service" target="_blank" rel="noopener noreferrer">Hosted Service</a></li></td>
+      <td>
+      Envio is a feature-rich indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.
+        <ul>
+          <li><a href="https://docs.envio.dev/docs/getting-started" target="_blank" rel="noopener noreferrer">Quickstart</a></li>
+          <li><a href="https://docs.envio.dev/docs/hypersync/" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>
+          <li><a href="https://docs.envio.dev/docs/contract-import/" target="_blank" rel="noopener noreferrer">Contract Import</a></li>
+          <li><a href="https://docs.envio.dev/docs/hosted-service" target="_blank" rel="noopener noreferrer">Hosted Service</a></li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -86,7 +106,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 <table>
   <thead>
     <tr>
-      <th></th>
+      <th>&nbsp;</th>
       <th>Description & Features</th>
     </tr>
   </thead>
@@ -103,7 +123,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 <table>
   <thead>
     <tr>
-      <th></th>
+      <th>&nbsp;</th>
       <th>Description & Features</th>
     </tr>
   </thead>
@@ -122,7 +142,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a href="https://stakingverse.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/stakingverse_logo.jpeg"/></a></td>
-      <td>Ready to earn rewards? We partner with the best teams to bring you cutting-edge solutions for the best blockchains, such as LUKSO and Ethereum. Jump into our pools...</td>
+      <td>Ready to earn rewards? We partner with the best teams to bring you cutting-edge solutions for the best blockchains, such as LUKSO and Ethereum.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a href="https://universal.page/vault" target="_blank" rel="noopener noreferrer"><img src="/img/tools/universalpage_logo.png"/></a></td>
@@ -136,21 +156,27 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 <table>
   <thead>
     <tr>
-      <th></th>
+      <th>&nbsp;</th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://www.cookbook.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/cookbook_dev.png"/></a></td>
+      <td style={{ maxWidth: "20rem" }}>
+        <a class="imageLink" href="https://www.cookbook.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/cookbook_dev.png"/></a>
+      </td>
       <td>
         Cookbook provides bundled smart contract libraries that can be directly used within Visual Studio Code, Foundry, Harthat, or Remix. Their webpage also features a ChatGPT integration to help learn and deploy LSPs.
-        <li><a href="https://www.cookbook.dev/libraries/LSP-Contracts" target="_blank" rel="noopener noreferrer">Cookbook LSP Libraries</a></li>
-        <li><a href="https://marketplace.visualstudio.com/items?itemName=cookbookdev.vscode-cookbook" target="_blank" rel="noopener noreferrer">Visual Studio Code Extension</a></li>
+        <ul>
+          <li><a href="https://www.cookbook.dev/libraries/LSP-Contracts" target="_blank" rel="noopener noreferrer">Cookbook LSP Libraries</a></li>
+          <li><a href="https://marketplace.visualstudio.com/items?itemName=cookbookdev.vscode-cookbook" target="_blank" rel="noopener noreferrer">Visual Studio Code Extension</a></li>
+        </ul>
       </td>
     </tr>
     <tr>
-      <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://portal.thirdweb.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/thirdweb_logo.png"/></a></td>
+      <td style={{ maxWidth: "20rem" }}>
+        <a class="imageLink" href="https://portal.thirdweb.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/thirdweb_logo.png"/></a>
+      </td>
       <td>
         Thirdweb provides a toolkit suite that includes public network endpoints, statistics, and several SDK integrations with plug-and-play components and hooks. Within the contract explorer, developers can search and deploy LSPs using their SDK or non-code web interface.
         <ul>
