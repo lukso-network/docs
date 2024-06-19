@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Getting started building contracts
 
-The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../../standards/introduction.md) and [tools](../../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO.
+The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../../standards/introduction.md) and [tools](../../../tools/lukso-libraries) to build **powerful, modular, and standardized** blockchain applications. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO.
 
 The following tutorial will teach you how to:
 

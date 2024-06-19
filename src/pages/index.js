@@ -46,7 +46,7 @@ function Index() {
           />
           <Box
             icon={ToolsIcon}
-            link="./tools/getting-started"
+            link="./tools/lukso-libraries"
             title="TOOLS"
             className="tools"
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."

@@ -175,10 +175,6 @@ export default {
             to: '/tools/lsp-factoryjs/getting-started',
           },
           {
-            from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
-            to: '/tools/lsp-factoryjs/getting-started',
-          },
-          {
             from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
             to: '/learn/expert-guides/deploy-up-with-lsp23',
           },
