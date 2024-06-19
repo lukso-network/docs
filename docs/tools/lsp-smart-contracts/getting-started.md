@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Getting Started
+# Getting Started with lsp-smart-contracts
 
 - [GitHub: `lukso-network/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts)
 - [NPM: `@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)

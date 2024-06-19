@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Getting Started
+# Getting Started with ERC725.js
 
 :::caution
 This package is currently in the early stages of development. Feel free to [report issues or feature requests](https://github.com/ERC725Alliance/erc725.js/issues) through the Github repository.

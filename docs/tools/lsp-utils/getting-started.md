@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Getting Started
+# Getting Started with LSP-Utils
 
 :::caution
 This package is currently in the early stages of development. Please use it for testing or experimentation purposes only.
