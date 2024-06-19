@@ -45,20 +45,39 @@ However, the [Universal Profile Browser Extension](/install-up-browser-extensio
 | **📢 Notification and Reactivity**             | The 🆙 can be customized to react differently based on different events it receives. For instance, the default implementation automatically register new received assets.                                                                                                                                                                                                              |
 | **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Universal Profile, using a system of extensions. <br/><br/>See our guide [**Extending Universal Profile functionalities**](./expert-guides/universal-profile/extend-profile-functionalities.md) for more details.                                                       |
 
-Universal Profiles can be controlled through multiple EOAs (and their associated private keys), where each private keys can granted multiple level of [permissions](../standards/universal-profile/lsp6-key-manager#types-of-permissions) to allow or restrict to do specific actions.
+Universal Profiles can be controlled through multiple EOAs (and their associated private keys), where each private key can be allowed or restricted to specific actions via permissions.
 
-These private keys (named [**controllers**](../learn/key-manager/get-controller-permissions.md)) can live on multiple devices (laptop, desktop, mobile, hardware wallet like ledger). They can also represent EOAs that are other 🆙, or dapps protocols (defi trading app, gaming app), that is granted specific access on the Universal Profile. For instance, dApps could be permissioned as follow:
+These [**controllers**](../learn/key-manager/get-controller-permissions.md) can be on multiple devices (laptop, desktop, mobile, hardware wallet like ledger) and represent:
 
-- a defi app can transfer only a specific token to a specific pool for trading.
-- a music dApp can only specific the list of music playlist in the Universal Profile's storage.
-- a family member can be granted recovery access for trusted third party recovery.
+- EOAs or other 🆙
+- dapps protocols (defi trading app, gaming app), granted specific access to the Universal Profile.
+
+Some real-life examples for a user's Universal Profile could be:
+
+- A defi app can transfer only a specific token to a particular pool for trading.
+- A music dApp can only update a list of music playlists in the Universal Profile's storage.
+- A family member can be granted recovery access for trusted third-party recovery.
 
 ## From ERCs → to LSPs
 
-When building smart contracts and protocols on LUKSO, developers are encouraged to leverage the LSPs (**L**UKSO **S**tandards **P**roposals) to build applications and protocols that offer more flexible use cases and a better experience.
+:::info
 
-For instance, instead of using ERC20/721 to build Tokens or NFT contracts, builders are encourage to use the LSP7 and LSP8 Token standards. These provide features such as customizable and dynamic metadata, automatic notification on token transfers and pluggable extensions.
+For more details on the different functions and features between ERC20 and LSP7 or ERC721 and LSP8, check the [**Contracts > Digital Assets**](../contracts/overview/DigitalAssets.md) section.
 
-For more details on the different functions and features between ERC20 and LSP7, or ERC721 and LSP8, check the [**Contracts > Digital Assets**](../contracts/overview/DigitalAssets.md) section.
+:::
 
-As developers interact with smart contracts with different or custom functionalities, verifying that certain conditions and methods are set before interacting with them is always recommended. Such checks can be done by detecting interfaces and metadata of the given address
+When building smart contracts and protocols on LUKSO, developers are encouraged to leverage the LSPs (**L**UKSO **S**tandards **P**roposals) to develop applications and protocols that offer more flexible use cases and a better experience.
+
+For instance, instead of using ERC20/721 to build Tokens or NFT contracts, builders are encouraged to use the LSP7 and LSP8 Token standards. These provide features such as customizable and dynamic metadata, automatic notification on token transfers and pluggable extensions.
+
+Below is a summary of the benefits of using LSP7/8 over ERC20/721.
+
+| Feature                                        | Benefits                                                                                                                                                                                                                                      |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **🔘 Unified function signatures**             | Both LSP7 and LSP8 use the same `transfer(...)` signature with the same parameter. The only exception is that LSP7 transfer a `uint256` amount while LSP8 transfer a `bytes32` token ID.                                                      |
+| **🗄️ Dynamic Metadata**                        | Like Universal Profile, Digital Assets like LSP7 and LSP8 can hold as many metadata as they want, allowing to storing various information and create systems such as dynamic NFTs.                                                            |
+| **📢 Notify on Transfer**                      | Sender & Receiver are notified on each token transfer, allowing them to react accordingly based on the type of token they sent / received.                                                                                                    |
+| **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Digital Asset, using a system of extensions.                                                                                   |
+| **✋🏻 Safety to prevent accidental transfers**  | The `transfer(...)` function of LSP7 and LSP8 contain a [`bool force`](../standards/tokens/LSP7-Digital-Asset#force-mint-and-transfer) parameter that can prevent accidental transfer to addresses that cannot hold or re-transfer the token. |
+
+As developers interact with smart contracts with different or custom functionalities, verifying certain conditions and methods are set before interacting with them is always recommended. Such checks can be done by detecting interfaces and metadata of the given address
