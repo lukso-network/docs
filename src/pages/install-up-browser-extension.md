@@ -6,6 +6,7 @@ import CallToActionButton from '../components/CallToActionButton';
 # Install the Universal Profile 🆙 Browser Extension
 
 :::info
+:::info
 
 The UP Browser Extension is in a **BETA Phase**.
 
@@ -42,6 +43,8 @@ Universal Profile makes interacting with the blockchain safe and straightforward
       icon="fa6-brands:chrome"
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
 
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
+
     />
 
   </div>
@@ -52,6 +55,7 @@ Universal Profile makes interacting with the blockchain safe and straightforward
       bgColor="#303846"
       link="https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
       icon="mingcute:edge-fill"
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
     />
   </div>
