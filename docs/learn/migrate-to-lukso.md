@@ -66,11 +66,13 @@ For more details on the different functions and features between ERC20 and LSP7 
 
 :::
 
-When building smart contracts and protocols on LUKSO, developers are encouraged to leverage the LSPs (**L**UKSO **S**tandards **P**roposals) to develop applications and protocols that offer more flexible use cases and a better experience.
+Developers are encouraged to leverage the LSPs (**L**UKSO **S**tandards **P**roposals) to develop smart contracts, protocols and applications on LUKSO. The LSPs offer flexible functionalities that can:
 
-For instance, instead of using ERC20/721 to build Tokens or NFT contracts, builders are encouraged to use the LSP7 and LSP8 Token standards. These provide features such as customizable and dynamic metadata, automatic notification on token transfers and pluggable extensions.
+- enable more complex and various features.
+- be tailored to suit different use cases.
+- bring a better experience to end dApp users.
 
-Below is a summary of the benefits of using LSP7/8 over ERC20/721.
+To illustrate, builders can use the LSP7 and LSP8 Token standards instead of using ERC20/721 to develop Tokens or NFTs. The benefits offered by the LUKSO Token standards are summarized in the table below:
 
 | Feature                                        | Benefits                                                                                                                                                                                                                                      |
 | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
