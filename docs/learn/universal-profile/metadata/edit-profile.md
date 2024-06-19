@@ -1,6 +1,7 @@
 ---
-sidebar_label: 'Edit a Universal Profile'
-sidebar_position: 6
+sidebar_label: 'Edit Profile Data'
+sidebar_position: 2
+description: Learn how to edit the LSP3Profile Metadata of a Universal Profile using web3.js or ethers.js.
 ---
 
 # Edit a Universal Profile

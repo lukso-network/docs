@@ -1,6 +1,6 @@
 ---
-sidebar_label: '⚙️ Extend a Universal Profile Functionalities'
-sidebar_position: 4
+sidebar_label: '⚙️ Extend Functionalities'
+sidebar_position: 3
 description: Learn to enhance your Universal Profile with added functionalities in JavaScript, covering extension deployment, interface extension, and practical use cases.
 ---
 

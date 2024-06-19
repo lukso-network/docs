@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Register Issued Assets'
-sidebar_position: 6
+sidebar_position: 3
 description: Learn how to register Issued Assets under an Universal Profile.
 ---
 

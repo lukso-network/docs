@@ -1,10 +1,10 @@
 ---
-sidebar_label: ' 🛠️ Integrating EIP-4337'
+sidebar_label: ' 🛠️ Integrate EIP-4337'
 description: 'Learn how to integrate the EIP-4337 extension into your Universal Profile.'
-sidebar_position: 9
+sidebar_position: 2
 ---
 
-# Integrating EIP-4337 into your Universal Profile
+# Integrate EIP-4337 into your Universal Profile
 
 :::info
 This guide assumes that you are already familiar with the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) standard and [Universal Profiles](../../standards/introduction.md).
