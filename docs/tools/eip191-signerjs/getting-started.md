@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Getting Started
+# Getting Started with EIP191-signer.js
 
 - [GitHub Repository](https://github.com/lukso-network/tools-eip191-signer)
 - [NPM Package](https://www.npmjs.com/package/@lukso/eip191-signer.js)

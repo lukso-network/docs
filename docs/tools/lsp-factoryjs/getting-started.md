@@ -2,7 +2,7 @@
 sidebar_position: 1.1
 ---
 
-# Getting Started
+# Getting Started with lsp-factory.js
 
 :::warning Deprecation notice
 
