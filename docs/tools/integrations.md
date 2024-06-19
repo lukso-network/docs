@@ -60,6 +60,13 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
       <td style={{ maxWidth: "20rem" }}><a href="https://docs.api3.org/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/api3_logo.jpeg"/></a></td>
       <td>API3 builds solutions that bridge the gap between off-chain data and on-chain applications with maximum security and minimal latency.<br></br></td>
     </tr>
+    <tr>
+      <td style={{ maxWidth: "20rem" }}><a href="https://docs.diadata.org/" target="_blank" rel="noopener noreferrer"><img src="https://cms3.diadata.org/wp-content/uploads/2023/03/Token.png"/></a></td>
+      <td><a href="https://www.diadata.org/" target="_blank" rel="noopener noreferrer">DIA</a> is a cross-chain oracle provider that directly aggregates market data from a wide range of sources. Its first-party data sourcing is thorough, enabling unparalleled transparency and customizability for resilient price feeds for 20,000+ assets including ERC20s, NFTs, RWAs, LSTs, BRC20s and more.
+        <br/><br/>The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
+        <br/>
+        <li><a href="https://docs.diadata.org/introduction/dia-technical-structure/data-delivery-methods/integrated-l1-l2-networks/lukso-price-oracles#how-to-access-dia-oracles" target="_blank" rel="noopener noreferrer">Access DIA oracles on LUKSO</a></li>    <li><a href="https://t.me/DIABDteam" target="_blank" rel="noopener noreferrer">Request a new oracle</a></li></td>
+    </tr>
   </tbody>
 </table>
 
