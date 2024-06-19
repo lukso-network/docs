@@ -27,7 +27,7 @@ The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps
 | Faucet                   | [https://faucet.testnet.lukso.network](https://faucet.testnet.lukso.network)                         |
 | Launchpad                | [https://deposit.testnet.lukso.network](https://deposit.testnet.lukso.network)                       |
 | Checkpoints              | [https://checkpoints.testnet.lukso.network](https://checkpoints.testnet.lukso.network)               |
-| Blockscout API           | `https://explorer.execution.mainnet.lukso.network/api`                                               |
+| Blockscout API           | `https://api.explorer.execution.testnet.lukso.network/api`                                           |
 
 The testnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/testnet/shared) repo.
 
