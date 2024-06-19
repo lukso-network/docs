@@ -66,7 +66,6 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
       </td>
       <td>
         <a href="https://www.diadata.org/" target="_blank" rel="noopener noreferrer">DIA</a> is a cross-chain oracle provider that directly aggregates market data from a wide range of sources. Its first-party data sourcing is thorough, enabling unparalleled transparency and customizability for resilient price feeds for 20,000+ assets including ERC20s, NFTs, RWAs, LSTs, BRC20s and more.<br/><br/>The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
-        The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
         <ul>
           <li><a href="https://docs.diadata.org/introduction/dia-technical-structure/data-delivery-methods/integrated-l1-l2-networks/lukso-price-oracles#how-to-access-dia-oracles" target="_blank" rel="noopener noreferrer">Access DIA oracles on LUKSO</a></li>
           <li><a href="https://t.me/DIABDteam" target="_blank" rel="noopener noreferrer">Request a new oracle</a></li>
