@@ -1,10 +1,10 @@
 ---
-id: getting-started
-title: Getting Started
+id: lukso-libraries
+title: LUKSO Libraries
 sidebar_position: 1
 ---
 
-# Getting Started
+# LUKSO Libraries
 
 Libraries that are actively maintained by the LUKSO team.
 

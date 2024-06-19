@@ -145,6 +145,10 @@ export default {
             from: '/tools/partners',
             to: '/tools/integrations',
           },
+          {
+            from: '/tools/getting-started',
+            to: '/tools/lukso-libraries',
+          },
           // lsp-factory deprecation
           {
             from: '/tools/lsp-factoryjs/deployment/universal-profile',
@@ -211,7 +215,7 @@ export default {
         },
         {
           type: 'doc',
-          docId: 'tools/getting-started',
+          docId: 'tools/lukso-libraries',
           position: 'left',
           label: 'Tools',
         },
