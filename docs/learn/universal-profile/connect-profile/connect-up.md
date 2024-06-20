@@ -152,9 +152,6 @@ After the installation, you can proceed to configure the library to support the 
 // Import the necessary components
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react';
 
-// Import the project ID from https://cloud.walletconnect.com
-const projectId = 'YOUR_PROJECT_ID';
-
 // Setup the Metadata
 const walletConnectMetadata = {
   name: 'Example dApp',
@@ -190,10 +187,9 @@ const walletConnectChainImages = {
 const walletConnectInstance = createWeb3Modal({
   ethersConfig: walletConnectConfig,
   chains: supportedChains,
-  projectId,
+  'YOUR_PROJECT_ID', // Import the project ID from https://cloud.walletconnect.com
   chainImages: walletConnectChainImages,
-  // OPTIONAL: Only show wallets that are installed by the user
-  featuredWalletIds: ['NONE'],
+  featuredWalletIds: ['NONE'], // OPTIONAL: Only show wallets that are installed by the user
 });
 ```
 
@@ -213,7 +209,6 @@ The Web3-Onboard configuration and calls should be set up as a global `context` 
 :::
 
 ```js
-// Import the necessary components
 import Onboard, { OnboardAPI } from "@web3-onboard/core";
 import { ConnectModalOptions } from "@web3-onboard/core/dist/types";
 import injectedModule from "@web3-onboard/injected-wallets";
@@ -222,28 +217,17 @@ import luksoModule from "@lukso/web3-onboard-config";
 // Initialize the LUKSO provider from this library
 const luksoProvider = luksoModule();
 
-// Define the download link for the extension
-const UP_BROWSER_EXTENSION_URL =
-  "https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl";
-
 // Set up the injected wallet interface
 const injectedWallets = injectedModule({
-  /**
-   * Add custom wallets here that you want
-   * to inject into Web3-Onboard
-   */
+  // Add custom wallets here that you want to inject into Web3-Onboard
   custom: [luksoProvider],
 
   // OPTIONAL: Add sorting for supported wallets
   sort: (wallets) => {
     const sorted = wallets.reduce<any[]>((sorted, wallet) => {
-      /**
-       * Universal Profiles will be placed at the
-       * top of the wallet connection screen
-       *
-       * Add other injected wallet names here
-       * to adjust their order
-       */
+
+      // Universal Profiles will be placed at the top of the wallet connection screen
+      // Add other injected wallet names here to adjust their order
       if (wallet.label === "Universal Profiles") {
         sorted.unshift(wallet);
       } else {
@@ -254,53 +238,27 @@ const injectedWallets = injectedModule({
     return sorted;
   },
 
-  /**
-   * OPTIONAL: Specify wallets that should still be displayed
-   * in the list, even when unavailable in the browser
-   */
+  // OPTIONAL: Specify wallets that should still be displayed in the list,
+  // even when unavailable in the browser
   displayUnavailable: ["Universal Profiles"],
 });
 
-/**
- * Define at least one blockchain network that is able to
- * interact with the Universal Profile Browser Extension
- */
-const supportedChains = [
-  // https://docs.lukso.tech/networks/testnet/parameters
-  {
-    id: 4021,
-    token: "LYXt",
-    label: "LUKSO Testnet",
-    rpcUrl: "https://4201.rpc.thirdweb.com/",
-  },
-];
+// Define the download link for the extension
+const UP_BROWSER_EXTENSION_URL =
+  "https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn?hl";
 
-/**
- * OPTIONAL: Set up the app description of the
- * Web3-Onboard connection window
- */
+// OPTIONAL: Set up the app description of the Web3-Onboard connection window
 const appInfo = {
   name: "My LUKSO App",
-  /**
-   * Pictures can either be a valid
-   * Image URL or SVG as string
-   *
-   * The icon shows behind the extension picture
-   * on the right side, while the connection
-   * is being established
-   */
+  // Pictures can either be a valid image URL or SVG as string.
+  // The icon shows behind the extension picture on the right side while connecting
   icon: "/my_app_icon.svg",
-  /**
-   * The logo shows left of the wallet list,
-   * indicating the used app
-   */
+  // The logo shows left of the wallet list, indicating the used app
   logo: "<svg> ... </svg>",
   description: "My LUKSO App using Web3-Onboard",
   recommendedInjectedWallets: [
-    /**
-     * Add other injected wallets and their download links
-     * to directly take users to the installation screen
-     */
+    // Add other injected wallets and their download links
+    // to take users directly to the installation screen
     {
       name: "Universal Profiles",
       url: UP_BROWSER_EXTENSION_URL,
@@ -317,7 +275,14 @@ const connectionOptions: ConnectModalOptions = {
 // Create the Web3-Onboard Component
 const web3OnboardComponent: OnboardAPI = Onboard({
   wallets: [injectedWallets],
-  chains: supportedChains,
+
+  // Define at least one network to interact with using the Universal Profile Browser Extension
+  chains: [{
+    id: 4021,
+    token: "LYXt",
+    label: "LUKSO Testnet", // https://docs.lukso.tech/networks/testnet/parameters
+    rpcUrl: "https://4201.rpc.thirdweb.com/",
+  }],,
 
   // OPTIONAL COMPONENTS:
   appMetadata: appInfo,
@@ -341,6 +306,7 @@ To set and access the Wallet Connect provider within your dApp, you can call the
 ```js
 // Trigger the connection process and screen
 await walletConnectInstance.open();
+
 // Subscribe to provider events, to track the connection
 walletConnectInstance.subscribeProvider(
   ({ provider, address, isConnected, error }) => {
@@ -363,6 +329,7 @@ walletConnectInstance.subscribeProvider(
 ```js
 // Trigger the connection process and screen
 await walletConnectInstance.open();
+
 // Subscribe to provider events, to track the connection
 walletConnectInstance.subscribeProvider(
   ({ provider, address, isConnected, error }) => {
@@ -393,6 +360,7 @@ To set and access the Web3-Onboard provider within your dApp, you can call the i
 ```js
 // Trigger the connection process and screen
 const connectedWallets = await web3OnboardComponent.connectWallet();
+
 if (connectedWallets.length > 0) {
   // If a wallet has been connected, set it as default provider
   const provider = new ethers.BrowserProvider(connectedWallets[0].provider);
@@ -405,6 +373,7 @@ if (connectedWallets.length > 0) {
 ```js
 // Trigger the connection process and screen
 const connectedWallets = await web3OnboardComponent.connectWallet();
+
 if (connectedWallets.length > 0) {
   // If a wallet has been connected, set it as default provider
   const provider = new Web3(connectedWallets[0].provider);

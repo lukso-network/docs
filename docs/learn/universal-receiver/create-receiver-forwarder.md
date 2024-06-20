@@ -487,10 +487,6 @@ const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 
-// constants
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-const TOKEN_RECIPIENT = '0x...';
-const PERCENTAGE = '0x...';
 // You can update the value of the allowed LSP7 token
 const MY_USDC_TOKEN = '0x63890ea231c6e966142288d805b9f9de7e0e5927';
 
@@ -509,8 +505,8 @@ const lsp1ForwarderFactory = new ethers.ContractFactory(
 );
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 console.log(
@@ -548,8 +544,8 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 // including the instance of the `lsp1Forwarder` contract.
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
@@ -563,11 +559,8 @@ const { keys, values } = erc725.encodeData([
   },
 ]);
 
-// Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -604,8 +597,8 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 // including the instance of the `lsp1Forwarder` contract.
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
@@ -622,10 +615,8 @@ const { keys, values } = erc725.encodeData([
 ]);
 
 // Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -651,16 +642,14 @@ import LSP7DigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAs
 const MY_USDC_TOKEN = '0x63890ea231c6e966142288d805b9f9de7e0e5927';
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
 // Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -682,10 +671,7 @@ const authTxWithBytes = await universalProfile.execute(
   authBytes,
 );
 await authTxWithBytes.wait();
-console.log(
-  '✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡',
-  UNIVERSAL_PROFILE_ADDRESS,
-);
+console.log('✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡');
 ```
 
 </TabItem>
