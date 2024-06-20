@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ## Introduction
 
-This guide will walk you through the steps to deploy a Universal Profile and its Key Manager using LSP23 Linked Contract Factory. We will not do a deep dive into the LSPs specifications. For more information on these specifications, please refer to the [LSP23 specification](../../standards/generic-standards/lsp23-linked-contracts-factory.md), the [Universal Profile specification](../../standards/universal-profile/introduction.md), and the [LSP6 Key Manager specification](../../standards/universal-profile/lsp6-key-manager.md).
+This guide will walk you through the steps to deploy a Universal Profile and its Key Manager using LSP23 Linked Contract Factory. We will not do a deep dive into the LSPs specifications. For more information on these specifications, please refer to the [LSP23 specification](../../../standards/generic-standards/lsp23-linked-contracts-factory.md), the [Universal Profile specification](../../../standards/universal-profile/introduction.md), and the [LSP6 Key Manager specification](../../../standards/universal-profile/lsp6-key-manager.md).
 You will be guided on how to create a script that could be used to deploy a Universal Profile and its Key Manager. In this example, we will be framework agnostic, but if you wish to see how to use it in Hardhat, you can refer to the [LUKSO Playground](https://github.com/lukso-network/lukso-playground) repository.
 
 ## Prerequisites
@@ -137,19 +137,19 @@ async function main() {
 
 ### Create the Universal Profile initialization calldata
 
-When deploying your Universal Profile, you might want to initialize it with some data. For example, you may want to set the Universal Profile [LSP3 Metadata](../../standards/universal-profile/lsp3-profile-metadata.md), set the Universal Receiver to the Universal Profile, give some [LSP6 permissions](../../standards/universal-profile/lsp6-key-manager#permissions.md) to some controllers, etc. For the following guide we will:
+When deploying your Universal Profile, you might want to initialize it with some data. For example, you may want to set the Universal Profile [LSP3 Metadata](../../../standards/universal-profile/lsp3-profile-metadata.md), set the Universal Receiver to the Universal Profile, give some [LSP6 permissions](../../../standards/universal-profile/lsp6-key-manager#permissions.md) to some controllers, etc. For the following guide we will:
 
-- set the Universal Profile [`LSP3Profile`](../../standards/universal-profile/lsp3-profile-metadata.md) Metadata
-- set the [Universal Receiver](../../standards/generic-standards/lsp1-universal-receiver.md) to the Universal Profile
-- give some permissions to the Universal Receiver ([`SUPER_SETDATA` and `REENTRANCY`](../../standards/universal-profile/lsp6-key-manager#permissions))
+- set the Universal Profile [`LSP3Profile`](../../../standards/universal-profile/lsp3-profile-metadata.md) Metadata
+- set the [Universal Receiver](../../../standards/generic-standards/lsp1-universal-receiver.md) to the Universal Profile
+- give some permissions to the Universal Receiver ([`SUPER_SETDATA` and `REENTRANCY`](../../../standards/universal-profile/lsp6-key-manager#permissions))
 - give all permissions to the main controller
-  set the [`AddressPermissions[]`](../../standards/universal-profile/lsp6-key-manager.md#permissions) length data key
-- set the [`AddressPermissions[]`](../../standards/universal-profile/lsp6-key-manager.md#permissions) array data key
+  set the [`AddressPermissions[]`](../../../standards/universal-profile/lsp6-key-manager.md#permissions) length data key
+- set the [`AddressPermissions[]`](../../../standards/universal-profile/lsp6-key-manager.md#permissions) array data key
 - set the [`AddressPermissions:Permissions:<address>`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#addresspermissionspermissionsaddress) data keys
 
 #### Create the LSP3 Metadata
 
-The LSP3 Metadata is a JSON object that contains information about the Universal Profile. For more information on the LSP3 Metadata, please refer to the [LSP3 Profile Metadata specification](../../standards/universal-profile/lsp3-profile-metadata.md). For the sake of simplicity, we will use one that we previously created and pushed to IPFS:
+The LSP3 Metadata is a JSON object that contains information about the Universal Profile. For more information on the LSP3 Metadata, please refer to the [LSP3 Profile Metadata specification](../../../standards/universal-profile/lsp3-profile-metadata.md). For the sake of simplicity, we will use one that we previously created and pushed to IPFS:
 
 ```typescript
 async function main() {
@@ -175,7 +175,7 @@ async function main() {
 
 #### Create the permissions data keys and data values
 
-In order to create all the permissions data keys and data values, we will use the [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) library. This library is a JavaScript implementation to encode and decode data key and values easily from any ERC725Y contract storage.
+In order to create all the permissions data keys and data values, we will use the [`@erc725/erc725.js`](../../../tools/erc725js/getting-started.md) library. This library is a JavaScript implementation to encode and decode data key and values easily from any ERC725Y contract storage.
 
 ```typescript
 async function main() {

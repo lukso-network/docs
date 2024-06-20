@@ -1,6 +1,6 @@
 ---
-sidebar_label: '⚙️ Extend a Universal Profile Functionalities'
-sidebar_position: 4
+sidebar_label: '⚙️ Extend Functionalities'
+sidebar_position: 3
 description: Learn to enhance your Universal Profile with added functionalities in JavaScript, covering extension deployment, interface extension, and practical use cases.
 ---
 
@@ -10,7 +10,7 @@ description: Learn to enhance your Universal Profile with added functionalities 
 
 You will need a Universal Profile that you can control via its Key Manager to follow this guide.
 
-:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Deploy a Universal Profile**](../deploy-up-with-lsp23.md).
+:arrow_left: If you don't have a Universal Profile yet, follow our previous guide [**Deploy a Universal Profile**](../advanced-guides/deploy-up-with-lsp23.md).
 
 :::
 

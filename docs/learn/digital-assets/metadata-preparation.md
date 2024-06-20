@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Metadata Preparation'
-sidebar_position: 1
+sidebar_position: 2
 description: Learn how to prepare and use assets for LUKSO Universal Profiles and digital assets (LSP7 / LSP8).
 ---
 

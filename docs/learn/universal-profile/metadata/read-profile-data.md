@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Read Profile Data'
-sidebar_position: 5
+sidebar_position: 1
 description: Learn how to read profile data from your Universal Profile.
 ---
 

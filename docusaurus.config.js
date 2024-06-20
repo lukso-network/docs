@@ -71,7 +71,7 @@ export default {
             to: '/learn/universal-profile/interactions/interact-with-contracts',
           },
           {
-            from: '/learn/smart-contract-developerss/create-lsp7-token',
+            from: '/learn/smart-contract-developers/create-lsp7-token',
             to: '/learn/digital-assets/smart-contract-developers/create-lsp7-token',
           },
           {
@@ -103,10 +103,6 @@ export default {
             to: '/learn/standard-detection',
           },
           {
-            from: '/contracts/getting-started',
-            to: '/learn/digital-assets/smart-contract-developers/getting-started',
-          },
-          {
             from: '/learn/universal-profile/interact-with-contracts',
             to: '/learn/universal-profile/interactions/interact-with-contracts',
           },
@@ -118,31 +114,18 @@ export default {
             from: '/learn/universal-profile/connect-profile/multi-provider',
             to: '/learn/universal-profile/connect-profile/connect-up',
           },
-          // Support section
-          {
-            from: '/faq/lukso/wallet-support',
-            to: 'https://support.lukso.network/general/wallet-support',
-          },
-          {
-            from: '/faq/onboarding/extension',
-            to: 'https://support.lukso.network/extension/introduction',
-          },
-          {
-            from: '/faq/help',
-            to: 'https://support.lukso.network',
-          },
           // Learn: Working with Assets Section
           {
             from: '/learn/smart-contract-developerss/retrieve-token-type',
-            to: '/learn/assets/retrieve-token-type',
+            to: '/learn/digital-assets/retrieve-token-type',
           },
           {
             from: '/learn/assets',
-            to: '/learn/assets/metadata-preparation',
+            to: '/learn/digital-assets/assets',
           },
           {
             from: '/learn/expert-guides/deploy-token-with-metadata',
-            to: '/learn/assets/deploy-token-with-metadata',
+            to: '/learn/digital-assets/deploy-token-with-metadata',
           },
           // Tools
           {
@@ -152,7 +135,7 @@ export default {
           // lsp-factory deprecation
           {
             from: '/tools/lsp-factoryjs/deployment/universal-profile',
-            to: '/learn/expert-guides/deploy-up-with-lsp23',
+            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
           },
           {
             from: '/tools/lsp-factoryjs/deployment/digital-asset',
@@ -180,11 +163,15 @@ export default {
           },
           {
             from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
-            to: '/learn/expert-guides/deploy-up-with-lsp23',
+            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
           },
           {
             from: '/learn/expert-guides/universal-profile/create-profile',
-            to: '/learn/expert-guides/deploy-up-with-lsp23',
+            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
+          },
+          {
+            from: '/learn/expert-guides/deploy-up-with-lsp23',
+            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
           },
         ],
       },

@@ -1,6 +1,7 @@
 ---
-sidebar_label: 'Edit a Universal Profile'
-sidebar_position: 6
+sidebar_label: 'Edit Profile Data'
+sidebar_position: 2
+description: Learn how to edit the LSP3Profile Metadata of a Universal Profile using web3.js or ethers.js.
 ---
 
 # Edit a Universal Profile
@@ -300,7 +301,7 @@ Now that our updated data is encoded, we are ready to set it in our Universal Pr
 
 We will need to interact with the smart contracts from an externally owned account (EOA).
 
-The first step is to load our EOA using our private key from [the deployment step](../deploy-up-with-lsp23.md).
+The first step is to load our EOA using our private key from [the deployment step](../advanced-guides/deploy-up-with-lsp23.md).
 
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';

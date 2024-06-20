@@ -1,20 +1,20 @@
 ---
-sidebar_label: ' 🛠️ Integrating EIP-4337'
+sidebar_label: ' 🛠️ Integrate EIP-4337'
 description: 'Learn how to integrate the EIP-4337 extension into your Universal Profile.'
-sidebar_position: 9
+sidebar_position: 2
 ---
 
-# Integrating EIP-4337 into your Universal Profile
+# Integrate EIP-4337 into your Universal Profile
 
 :::info
-This guide assumes that you are already familiar with the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) standard and [Universal Profiles](../../standards/introduction.md).
+This guide assumes that you are already familiar with the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) standard and [Universal Profiles](../../../standards/introduction.md).
 :::
 
 ## Prerequisites for Integration
 
 ### Key Manager
 
-The Universal Profile contract must be owned by a [KeyManager](../../standards/universal-profile/lsp6-key-manager.md) contract.
+The Universal Profile contract must be owned by a [KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) contract.
 
 ### Bundlers
 
@@ -26,7 +26,7 @@ The [`EntryPoint`](https://eips.ethereum.org/EIPS/eip-4337#required-entry-point-
 
 ### Have a controller with the 4337 Extension Permission
 
-The controller of the Universal Profile that will use the 4337 extension must have the [`_4337_PERMISSION`](https://github.com/lukso-network/lsp-smart-contracts/blob/0a951df15f282840ef89499da94e6ab47380d5dd/contracts/LSP17Extensions/Extension4337.sol#L33) permission in order to use it. To learn more about permissions, refer to the [LSP6 standard](../../standards/universal-profile/lsp6-key-manager#permissions).
+The controller of the Universal Profile that will use the 4337 extension must have the [`_4337_PERMISSION`](https://github.com/lukso-network/lsp-smart-contracts/blob/0a951df15f282840ef89499da94e6ab47380d5dd/contracts/LSP17Extensions/Extension4337.sol#L33) permission in order to use it. To learn more about permissions, refer to the [LSP6 standard](../../../standards/universal-profile/lsp6-key-manager#permissions).
 
 ### Deployment of the 4337 Extension
 
