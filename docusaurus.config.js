@@ -71,7 +71,7 @@ export default {
             to: '/learn/universal-profile/interactions/interact-with-contracts',
           },
           {
-            from: '/learn/smart-contract-developerss/create-lsp7-token',
+            from: '/learn/smart-contract-developers/create-lsp7-token',
             to: '/learn/digital-assets/smart-contract-developers/create-lsp7-token',
           },
           {
@@ -103,10 +103,6 @@ export default {
             to: '/learn/standard-detection',
           },
           {
-            from: '/contracts/getting-started',
-            to: '/learn/digital-assets/smart-contract-developers/getting-started',
-          },
-          {
             from: '/learn/universal-profile/interact-with-contracts',
             to: '/learn/universal-profile/interactions/interact-with-contracts',
           },
@@ -117,19 +113,6 @@ export default {
           {
             from: '/learn/universal-profile/connect-profile/multi-provider',
             to: '/learn/universal-profile/connect-profile/connect-up',
-          },
-          // Support section
-          {
-            from: '/faq/lukso/wallet-support',
-            to: 'https://support.lukso.network/general/wallet-support',
-          },
-          {
-            from: '/faq/onboarding/extension',
-            to: 'https://support.lukso.network/extension/introduction',
-          },
-          {
-            from: '/faq/help',
-            to: 'https://support.lukso.network',
           },
           // Learn: Working with Assets Section
           {
@@ -184,6 +167,10 @@ export default {
           },
           {
             from: '/learn/expert-guides/universal-profile/create-profile',
+            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
+          },
+          {
+            from: '/learn/expert-guides/deploy-up-with-lsp23',
             to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
           },
         ],
