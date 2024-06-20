@@ -47,6 +47,10 @@ export default {
             to: '/learn/universal-receiver/create-receiver-forwarder',
           },
           {
+            from: '/learn/universal-receiver/deploy-receiver-forwarder',
+            to: '/learn/universal-receiver/create-receiver-forwarder',
+          },
+          {
             from: '/learn/expert-guides/vault/create-a-vault',
             to: '/learn/vault/create-a-vault',
           },
