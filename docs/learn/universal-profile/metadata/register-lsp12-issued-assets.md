@@ -37,14 +37,14 @@ The following code snippets require the installation of the following libraries:
 - [`@erc725/erc725.js`](https://github.com/ERC725Alliance/erc725.js/)
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethersjs" label="ethers.js" default>
+  <TabItem value="ethers" label="ethers" default>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
 ```
 
   </TabItem>
-    <TabItem value="web3js" label="web3.js">
+    <TabItem value="web3" label="web3">
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
@@ -58,7 +58,7 @@ npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
 Import `web3.js`/`ethers`, the [`UniversalProfile`](../../../contracts/contracts/UniversalProfile.md) ABI from [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) and create an instance of this contract with the `UNIVERSAL_PROFILE_ADDRESS`.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethersjs" label="ethers.js" default>
+  <TabItem value="ethers" label="ethers" default>
 
 ```javascript
 import { ethers } from 'ethers';
@@ -95,7 +95,7 @@ const myWallet = await provider.getSigner();
 ```
 
   </TabItem>
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```javascript
 import Web3 from 'web3';
@@ -245,7 +245,7 @@ const { keys: lsp12DataKeys, values: lsp12Values } = erc725.encodeData([
 Create an instance of the Universal Profile contract to read or set the issued assets on:
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethersjs" label="ethers.js" default>
+  <TabItem value="ethers" label="ethers" default>
 
 ```javascript
 const myUPContract = new ethers.Contract(
@@ -256,7 +256,7 @@ const myUPContract = new ethers.Contract(
 ```
 
   </TabItem>
-    <TabItem value="web3js" label="web3.js">
+    <TabItem value="web3" label="web3">
 
 ```javascript
 const myUPContract = new web3.eth.Contract(
@@ -273,14 +273,14 @@ const myUPContract = new web3.eth.Contract(
 Next, use the `setDataBatch(...)` function of the Universal Profile to initially set or update multiple data keys.
 
 <Tabs groupId="web3-lib">
-    <TabItem value="ethersjs" label="ethers.js" default>
+    <TabItem value="ethers" label="ethers" default>
 
 ```javascript
 await myUPContract.setDataBatch(lsp12DataKeys, lsp12Values);
 ```
 
   </TabItem>
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```javascript
 await myUPContract.methods

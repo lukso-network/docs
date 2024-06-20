@@ -336,7 +336,7 @@ const web3OnboardComponent: OnboardAPI = Onboard({
 To set and access the Wallet Connect provider within your dApp, you can call the integrated `open()` method provided by the `createWeb3Modal` instance. The library will show a connection window with all supported wallets. You can then fetch the active account and set it as the default provider within your dApp.
 
 <Tabs groupId="provider-lib">
-<TabItem value="ethersjs" label="ethers.js" default>
+<TabItem value="ethers" label="ethers" default>
 
 ```js
 // Trigger the connection process and screen
@@ -358,7 +358,7 @@ walletConnectInstance.subscribeProvider(
 ```
 
   </TabItem>
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```js
 // Trigger the connection process and screen
@@ -388,7 +388,7 @@ walletConnectInstance.subscribeProvider(
 To set and access the Web3-Onboard provider within your dApp, you can call the integrated `connectWallet()` method provided by the `@web3-onboard/core` library. The library will show a connection window with all supported wallets. You can then fetch the active account and set it as the default provider within your dApp.
 
 <Tabs groupId="provider-lib">
-<TabItem value="ethersjs" label="ethers.js" default>
+<TabItem value="ethers" label="ethers" default>
 
 ```js
 // Trigger the connection process and screen
@@ -400,7 +400,7 @@ if (connectedWallets.length > 0) {
 ```
 
   </TabItem>
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```js
 // Trigger the connection process and screen
@@ -506,16 +506,14 @@ Alternatively to the `window.lukso`, the equivalent `window.ethereum` object can
   <TabItem value="ethers" label="ethers">
 
 ```js
-const providerObject = window.lukso || window.ethereum;
-const provider = new ethers.BrowserProvider(providerObject);
+const provider = new ethers.BrowserProvider(window.lukso || window.ethereum);
 ```
 
   </TabItem>
   <TabItem value="web3" label="web3">
 
 ```js
-const providerObject = window.lukso || window.ethereum;
-const provider = new Web3(providerObject);
+const provider = new Web3(window.lukso || window.ethereum);
 ```
 
   </TabItem>

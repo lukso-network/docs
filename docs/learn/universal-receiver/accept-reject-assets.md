@@ -110,7 +110,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
@@ -118,7 +118,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
@@ -136,7 +136,7 @@ Then we will initialize the controller address.
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Imports, Constants & EOA"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -156,7 +156,7 @@ const EOA = web3.eth.accounts.wallet.add(privateKey);
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```typescript title="Imports, Constants & EOA"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -186,7 +186,7 @@ At this point we need to create an instance of the [**Universal Profile**](../..
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
@@ -198,7 +198,7 @@ const universalProfile = new web3.eth.Contract(
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
@@ -218,7 +218,7 @@ Finally, we need to send the transaction that will update the URD of the Univers
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Update the Universal Profile data"
 // Update the profile data
@@ -232,7 +232,7 @@ await universalProfile.methods
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```typescript title="Update the Universal Profile data"
 // Update the profile data
@@ -249,7 +249,7 @@ await universalProfile
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Update the Universal Profile URD"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -283,7 +283,7 @@ await universalProfile.methods
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```typescript title="Update the Universal Profile URD"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';

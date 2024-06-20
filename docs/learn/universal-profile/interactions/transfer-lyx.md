@@ -36,7 +36,7 @@ No need to make contract calls to instruct the smart contract of the Universal P
 
 <Tabs groupId="web3-lib">
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```shell
 npm install web3@v1
@@ -44,7 +44,7 @@ npm install web3@v1
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```shell
 npm install ethers
@@ -58,7 +58,7 @@ npm install ethers
 
 <Tabs groupId="web3-lib">
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 <!-- prettier-ignore-start -->
 
@@ -80,7 +80,7 @@ await web3.eth.sendTransaction({
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 <!-- prettier-ignore-start -->
 

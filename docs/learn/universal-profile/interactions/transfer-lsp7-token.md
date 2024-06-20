@@ -36,14 +36,14 @@ The following code snippets require the installation of the following libraries:
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
@@ -64,7 +64,7 @@ You will need:
 After setting up the contracts, you can set up the parameters for the LSP7 token [`transfer(...)`](https://docs.lukso.tech/contracts/contracts/LSP7DigitalAsset/#transfer) function.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 <!-- prettier-ignore-start -->
 
@@ -96,7 +96,7 @@ await myToken.methods
 <!-- prettier-ignore-end -->
 
   </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 <!-- prettier-ignore-start -->
 
