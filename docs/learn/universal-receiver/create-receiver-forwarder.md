@@ -243,11 +243,13 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
 }
 ```
 
-**Creation of the transaction**
+Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md#universalreceiverdelegate) function.
 
-When all the verifications passed in the `universalReceiver` function, we calculate the amount of token to transfer (`tokensToTransfer`) and create the transaction that will be executed:
+**Encoding the callback to the token contract**
 
-```solidity title="Create the transaction"
+Once all verifications have passed and the amount of tokens to re-transfer (`tokensToTransfer`) has been calculated (according to the percentage set), the encoded function call back to the token [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) is created.
+
+```solidity
 bytes memory encodedTx = abi.encodeCall(
     ILSP7DigitalAsset.transfer,
     msg.sender,
@@ -258,28 +260,28 @@ bytes memory encodedTx = abi.encodeCall(
 );
 ```
 
-The `encodeCall` function takes the function that will be called as 1st parameter, and its parameters as the following ones. Here, we target the `transfer` method of the LSP7 token that we received (e.g., the notifier), and we need 4 additional parameters:
+Here, we `encodeCall` to target the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) method of the LSP7 token that we received (e.g., the notifier). The 4 parameters being encoded for the function call are:
 
-- the `from` (msg.sender => the UP that received tokens)
-- the `to` (recipient => the address that will receives part of the tokens)
-- the `amount` (tokensToTransfer => a percentage of the total amount received)
-- the `allowNonLSP1Recipient` boolean that indicates if we can transfer to any address, or if it has to be a LSP1 enabled one
-- the `data` (no additional data)
+- `from`: (`msg.sender`) = this UP that received the tokens.
+- `to`: (`recipient`) = the address that will receives the percentage of tokens.
+- `amount`: (`tokensToTransfer`) = the calculated percentage of the total amount received.
+- `allowNonLSP1Recipient`: boolean indicating if we can transfer to any address, or if it has to be a LSP1 enabled one.
+- `data`: no additional data
 
-**Execution of the transaction**
+**Executing the call**
 
-Directly after creating our encoded transaction, we can execute it using the following line:
+Directly after creating our encoded function call, we execute it via the UP by passing it in the `data` parameter of the [`execute(...)`](../../contracts/contracts/UniversalProfile.md#execute) function.
 
-```solidity title="Execute the transaction"
+```solidity
 IERC725X(msg.sender).execute(0, notifier, 0, encodedTx);
 ```
 
-As we know from the `// CHECK that the caller is a LSP0 (UniversalProfile)` test, the `msg.sender` is a Universal Profile which extends `ERC725XCore`. We can then explicitly convert `msg.sender` as a ERC725X contract, then call the `execute` function on it. This means that we "run the execute function as the Universal Profile". The parameters are:
+We know from the `if` check under the comment `// CHECK that the caller is a LSP0 (UniversalProfile)` that `msg.sender` is a Universal Profile. We can then safely explicitly convert `msg.sender` as an ERC725X contract and call the [`execute(...)`](../../contracts/contracts/UniversalProfile.md#execute) function on it. This means _"we run the execute function as the Universal Profile"_. The parameters are:
 
-- the `operationType` (0 = CALL operation)
-- the `target` (notifier = our LSP7 contract)
-- the `value` (in native token) (0 = nothing is sent)
-- the `data` (our encoded transaction)
+- `operationType`: 0 = CALL operation
+- `target`: notifier = our LSP7 contract
+- `value`: 0 = no LYX are sent
+- `data`: our encoded call to the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 contract created previously
 
 </TabItem>
 
@@ -429,7 +431,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
 }
 ```
 
-In this method, we're directly calling the `transfer` method of the notifier (the LSP7 token) as the URD. Of course, in order for this to work, the custom URD needs to be authorized to spend the token of the UP on his behalf (using `authorizeOperator`).
+In this method, we are directly calling the `transfer(...)` method of the notifier (the LSP7 token) as the LSP1 Forwarder. In order for this to work, the LSP1 Forwarder needs to have been authorized as an operator to spend the token of the UP on his behalf (via [`authorizeOperator(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)).
 
   </TabItem>
 
@@ -454,7 +456,7 @@ const config: HardhatUserConfig = {
   networks: {
     luksoTestnet: {
       live: true,
-      url: 'https://rpc.testnet.lukso.network',
+      url: '**https**://rpc.testnet.lukso.network',
       chainId: 4201,
       saveDeployments: true,
     },
