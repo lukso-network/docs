@@ -18,7 +18,7 @@ To edit an LSP7 Digital Asset metadata, you will need to:
 3. generate an encoded value based on the URL to the metadata JSON file
 4. write that value in the smart contract key-value store
 
-For steps 1 to 3, there is a dedicated [Asset Preparation Guide](../assets/metadata-preparation.md). Once your assets are uploaded and the URL to your metadata JSON file is ready and encoded, come back here.
+For steps 1 to 3, there is a dedicated [Asset Preparation Guide](../digital-assets/metadata-preparation.md). Once your assets are uploaded and the URL to your metadata JSON file is ready and encoded, come back here.
 
 <details>
     <summary>Show encoded LSP4 Object</summary>

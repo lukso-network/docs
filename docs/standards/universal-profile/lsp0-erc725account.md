@@ -106,7 +106,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
-Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/expert-guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/universal-profile/metadata/read-profile-data).
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/universal-profile/metadata/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/universal-profile/metadata/read-profile-data).
 
 :::
 
@@ -229,7 +229,7 @@ The process for renouncing ownership follows a similar structure, where an initi
 
 See the **[LSP17 - ContractExtension](../generic-standards/lsp17-contract-extension.md)** standard for more information.
 
-Check the **JavaScript** guides to know [**How to extend the functionalities and interfaceIds of an account**](../../learn/expert-guides/universal-profile/extend-profile-functionalities.md)
+Check the **JavaScript** guides to know [**How to extend the functionalities and interfaceIds of an account**](../../learn/universal-profile/advanced-guides/extend-profile-functionalities.md)
 
 Check the [**fallback function**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#fallback) that allows calls for the extensions.
 

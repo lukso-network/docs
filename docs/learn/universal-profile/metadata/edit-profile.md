@@ -301,7 +301,7 @@ Now that our updated data is encoded, we are ready to set it in our Universal Pr
 
 We will need to interact with the smart contracts from an externally owned account (EOA).
 
-The first step is to load our EOA using our private key from [the deployment step](../deploy-up-with-lsp23.md).
+The first step is to load our EOA using our private key from [the deployment step](../advanced-guides/deploy-up-with-lsp23.md).
 
 ```javascript title="Load account from a private key"
 import Web3 from 'web3';
