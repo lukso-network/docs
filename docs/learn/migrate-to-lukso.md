@@ -14,9 +14,9 @@ For more information regarding the network and standards, see the [Introduction]
 
 :::
 
-## Migrating from other EVM Chains
+## Migrating from other EVM Chain
 
-As LUKSO is an EVM-compatible chain ("Ethereum twin"), any smart contract written for Ethereum (compiling to EVM bytecode) can be re-deployed on LUKSO. You only need to set up your application to connect to a [LUKSO RPC endpoint](../networks/mainnet/parameters) to deploy it on the LUKSO chain.
+As LUKSO is an EVM-compatible chain (_"Ethereum twin"_), any smart contract written for Ethereum (compiling to EVM bytecode) can be re-deployed on LUKSO. You only need to set up your application to connect to a [LUKSO RPC endpoint](../networks/mainnet/parameters) to deploy it on the LUKSO chain.
 
 Developers are encouraged to use the LSP standards to leverage their features and improve the features and overall experience of their protocols. Therefore, some codebases might require to be adjusted to convert ERC interactions to LSP interactions. The section below provides more details.
 
@@ -76,7 +76,7 @@ To illustrate, builders can use the LSP7 and LSP8 Token standards instead of usi
 
 | Feature                                        | Benefits                                                                                                                                                                                                                                      |
 | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **🔘 Unified function signatures**             | Both LSP7 and LSP8 use the same `transfer(...)` signature with the same parameter. The only exception is that LSP7 transfer a `uint256` amount while LSP8 transfer a `bytes32` token ID.                                                      |
+| **🔘 Similar function signatures**             | Both LSP7 and LSP8 use the same `transfer(...)` signature with the same parameter. The only exception is that LSP7 transfer a `uint256` amount while LSP8 transfer a `bytes32` token ID.                                                      |
 | **🗄️ Dynamic Metadata**                        | Like Universal Profile, Digital Assets like LSP7 and LSP8 can hold as many metadata as they want, allowing to storing various information and create systems such as dynamic NFTs.                                                            |
 | **📢 Notify on Transfer**                      | Sender & Receiver are notified on each token transfer, allowing them to react accordingly based on the type of token they sent / received.                                                                                                    |
 | **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Digital Asset, using a system of extensions.                                                                                   |
