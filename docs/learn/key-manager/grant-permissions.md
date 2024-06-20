@@ -72,7 +72,7 @@ The first step is to initialize the erc725.js library with a JSON schema specifi
 import { ERC725 } from '@erc725/erc725.js';
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
-// step 1 -initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
+// step 1 - initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
 const erc725 = new ERC725(
   LSP6Schema,
   myUniversalProfileAddress,
@@ -147,6 +147,21 @@ To get started you would need the following:
 - The address of the Universal Profile that you want to interact with.
 
 <Tabs>
+
+  <TabItem value="ethers" label="ethers">
+
+```javascript title="Load account from a private key"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { ethers } from 'ethers';
+
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
+const myUniversalProfileAddress = '0x...';
+const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
+```
+
+  </TabItem>
   
   <TabItem value="web3" label="web3">
 
@@ -158,23 +173,6 @@ const web3 = new Web3('https://rpc.testnet.lukso.network');
 const myUniversalProfileAddress = '0x...';
 const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 ```
-
-  </TabItem>
-
-  <TabItem value="ethers" label="ethers">
-
-<!-- prettier-ignore-start -->
-
-```javascript title="Load account from a private key"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ethers } from 'ethers';
-
-const provider = new ethers.JsonRpcProvider('https://rpc.testnet.lukso.network');
-const myUniversalProfileAddress = '0x...';
-const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
-```
-
-<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -192,18 +190,18 @@ The private key can be obtained depending on how you created your Universal Prof
 - UP created via the Browser extension: click on the _Settings_ icon (top right) > and _Export Private Key_
 
 <Tabs>
-  <TabItem value="web3" label="web3">
-
-```javascript title="Load account from a private key"
-const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
-```
-
-  </TabItem>
-
   <TabItem value="ethers" label="ethers">
 
 ```javascript title="Load account from a private key"
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```javascript title="Load account from a private key"
+const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
 ```
 
   </TabItem>
@@ -217,18 +215,6 @@ The next steps is to create an instance of our UP smart contract to interact wit
 You will need the address of your Universal Profile.
 
 <Tabs>
-  
-  <TabItem value="web3" label="web3">
-
-```js
-// step 1 - create instance of UniversalProfile contract
-const myUniversalProfile = new web3.eth.Contract(
-  UniversalProfile.abi,
-  myUniversalProfileAddress,
-);
-```
-
-  </TabItem>
 
   <TabItem value="ethers" label="ethers">
 
@@ -237,6 +223,18 @@ const myUniversalProfile = new web3.eth.Contract(
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
+);
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```js
+// step 1 - create instance of UniversalProfile contract
+const myUniversalProfile = new web3.eth.Contract(
+  UniversalProfile.abi,
+  myUniversalProfileAddress,
 );
 ```
 
@@ -253,38 +251,25 @@ We can easily access the data key-value pair from the encoded data obtained by e
 We will then encode this permission data keys in a `setData(...)` payload and interact via the Key Manager.
 
 <Tabs>
-  
-  <TabItem value="web3" label="web3">
 
-<!-- prettier-ignore-start -->
+  <TabItem value="ethers" label="ethers">
 
 ```js
 // step 3.3 - send the transaction
-await myUniversalProfile.methods.setData(
-  data.keys,
-  data.values,
-).send({
+await myUniversalProfile.connect(account).setData(data.keys, data.values);
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```js
+// step 3.3 - send the transaction
+await myUniversalProfile.methods.setData(data.keys, data.values).send({
   from: myEOA.address,
   gasLimit: 300_000,
 });
 ```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-
-  <TabItem value="ethers" label="ethers">
-
-<!-- prettier-ignore-start -->
-
-```js
-// step 3.3 - send the transaction
-await myUniversalProfile
-  .connect(account)
-  .setData(data.keys, data.values);
-```
-
-<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -313,85 +298,6 @@ You can then try to do again the **Edit our Universal Profile** guide, using thi
 ## Final code
 
 <Tabs>
-  
-  <TabItem value="web3" label="web3">
-
-<!-- prettier-ignore-start -->
-
-```js
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725 } from '@erc725/erc725.js';
-import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
-import Web3 from 'web3';
-
-const web3 = new Web3('https://rpc.testnet.lukso.network');
-const myUniversalProfileAddress = '0x...';
-
-const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
-const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
-
-const erc725 = new ERC725(
-  LSP6Schema,
-  myUniversalProfileAddress,
-  web3.currentProvider,
-);
-
-async function grantPermissions() {
-  // step 1 - create instance of UP contract
-  const myUniversalProfile = new web3.eth.Contract(
-    UniversalProfile.abi,
-    myUniversalProfileAddress,
-  );
-
-  // step 2 - setup the permissions of the beneficiary address
-  const beneficiaryAddress = '0xcafecafecafecafecafecafecafecafecafecafe'; // EOA address of an exemplary person
-  const beneficiaryPermissions = erc725.encodePermissions({
-    SETDATA: true,
-  });
-
-  // step 3.1 - encode the data key-value pairs of the permissions to be set
-  const addressPermissionsArray = await erc725.getData('AddressPermissions[]');
-  const controllers = addressPermissionsArray.value;
-
-  const data = erc725.encodeData([
-    // the permission of the beneficiary address
-    {
-      keyName: 'AddressPermissions:Permissions:<address>',
-      dynamicKeyParts: beneficiaryAddress,
-      value: beneficiaryPermissions,
-    },
-    // the new list controllers addresses (= addresses with permissions set on the UP)
-    // + the incremented `AddressPermissions[]` array length
-    {
-      keyName: 'AddressPermissions[]',
-      value: [...controllers, beneficiaryAddress],
-    },
-  ]);
-
-  // step 3.3 - send the transaction
-  await myUniversalProfile.methods.setDataBatch(
-    data.keys,
-    data.values,
-  ).send({
-    from: myEOA.address,
-    gasLimit: 300_000,
-  });
-
-  const result = await myUniversalProfile.methods['getData(bytes32)'](
-    data.keys[0],
-  ).call();
-  console.log(
-    `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
-    erc725.decodePermissions(result),
-  );
-}
-
-grantPermissions();
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
 
   <TabItem value="ethers" label="ethers">
 
@@ -455,6 +361,78 @@ async function grantPermissions() {
   const result = await myUniversalProfile.['getData(bytes32)'](
     data.keys[0],
   );
+  console.log(
+    `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
+    erc725.decodePermissions(result),
+  );
+}
+
+grantPermissions();
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```js
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { ERC725 } from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+import Web3 from 'web3';
+
+const web3 = new Web3('https://rpc.testnet.lukso.network');
+const myUniversalProfileAddress = '0x...';
+
+const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
+const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
+
+const erc725 = new ERC725(
+  LSP6Schema,
+  myUniversalProfileAddress,
+  web3.currentProvider,
+);
+
+async function grantPermissions() {
+  // step 1 - create instance of UP contract
+  const myUniversalProfile = new web3.eth.Contract(
+    UniversalProfile.abi,
+    myUniversalProfileAddress,
+  );
+
+  // step 2 - setup the permissions of the beneficiary address
+  const beneficiaryAddress = '0xcafecafecafecafecafecafecafecafecafecafe'; // EOA address of an exemplary person
+  const beneficiaryPermissions = erc725.encodePermissions({
+    SETDATA: true,
+  });
+
+  // step 3.1 - encode the data key-value pairs of the permissions to be set
+  const addressPermissionsArray = await erc725.getData('AddressPermissions[]');
+  const controllers = addressPermissionsArray.value;
+
+  const data = erc725.encodeData([
+    // the permission of the beneficiary address
+    {
+      keyName: 'AddressPermissions:Permissions:<address>',
+      dynamicKeyParts: beneficiaryAddress,
+      value: beneficiaryPermissions,
+    },
+    // the new list controllers addresses (= addresses with permissions set on the UP)
+    // + the incremented `AddressPermissions[]` array length
+    {
+      keyName: 'AddressPermissions[]',
+      value: [...controllers, beneficiaryAddress],
+    },
+  ]);
+
+  // step 3.3 - send the transaction
+  await myUniversalProfile.methods.setDataBatch(data.keys, data.values).send({
+    from: myEOA.address,
+    gasLimit: 300_000,
+  });
+
+  const result = await myUniversalProfile.methods['getData(bytes32)'](
+    data.keys[0],
+  ).call();
   console.log(
     `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
     erc725.decodePermissions(result),

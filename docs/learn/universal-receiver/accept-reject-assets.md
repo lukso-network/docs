@@ -109,19 +109,19 @@ Make sure you have the following dependencies installed before beginning this tu
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
-  
-  <TabItem value="web3" label="web3">
-
-```shell title="Install the dependencies"
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
 
   <TabItem value="ethers" label="ethers">
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```shell title="Install the dependencies"
+npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
@@ -135,26 +135,6 @@ After that we need to store the address of our Universal Profile and the new URD
 Then we will initialize the controller address.
 
 <Tabs>
-  
-  <TabItem value="web3" label="web3">
-
-```typescript title="Imports, Constants & EOA"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
-import Web3 from 'web3';
-
-// constants
-const web3 = new Web3('https://rpc.testnet.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
-
-// setup your EOA
-const privateKey = '0x...';
-const EOA = web3.eth.accounts.wallet.add(privateKey);
-```
-
-  </TabItem>
 
   <TabItem value="ethers" label="ethers">
 
@@ -177,6 +157,26 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 ```
 
   </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```typescript title="Imports, Constants & EOA"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import Web3 from 'web3';
+
+// constants
+const web3 = new Web3('https://rpc.testnet.lukso.network');
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+const universalProfileAddress = '0x...';
+const universalProfileURDAddress = '0x...';
+
+// setup your EOA
+const privateKey = '0x...';
+const EOA = web3.eth.accounts.wallet.add(privateKey);
+```
+
+  </TabItem>
 
 </Tabs>
 
@@ -185,18 +185,6 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 At this point we need to create an instance of the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract:
 
 <Tabs>
-  
-  <TabItem value="web3" label="web3">
-
-```typescript title="Contract instance for the Universal Profile"
-// create an instance of the Universal Profile
-const universalProfile = new web3.eth.Contract(
-  UniversalProfile.abi,
-  universalProfileAddress,
-);
-```
-
-  </TabItem>
 
   <TabItem value="ethers" label="ethers">
 
@@ -205,6 +193,18 @@ const universalProfile = new web3.eth.Contract(
 const universalProfile = new ethers.Contract(
   universalProfileAddress,
   UniversalProfile.abi,
+);
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```typescript title="Contract instance for the Universal Profile"
+// create an instance of the Universal Profile
+const universalProfile = new web3.eth.Contract(
+  UniversalProfile.abi,
+  universalProfileAddress,
 );
 ```
 
@@ -217,6 +217,17 @@ const universalProfile = new ethers.Contract(
 Finally, we need to send the transaction that will update the URD of the Universal Profile.
 
 <Tabs>
+
+  <TabItem value="ethers" label="ethers">
+
+```typescript title="Update the Universal Profile data"
+// Update the profile data
+await universalProfile
+  .connect(EOA)
+  .setData(URD_DATA_KEY, universalProfileURDAddress);
+```
+
+  </TabItem>
   
   <TabItem value="web3" label="web3">
 
@@ -232,22 +243,44 @@ await universalProfile.methods
 
   </TabItem>
 
+</Tabs>
+
+### Final code
+
+<Tabs>
+
   <TabItem value="ethers" label="ethers">
 
-```typescript title="Update the Universal Profile data"
-// Update the profile data
+```typescript title="Update the Universal Profile URD"
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import { ethers } from 'ethers';
+
+// constants
+const provider = new ethers.providers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
+const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
+const universalProfileAddress = '0x...';
+const universalProfileURDAddress = '0x...';
+
+// setup your EOA
+const privateKey = '0x...'; // your EOA private key (controller address)
+const EOA = new ethers.Wallet(privateKey).connect(provider);
+
+// create an instance of the Universal Profile
+const universalProfile = new ethers.Contract(
+  universalProfileAddress,
+  UniversalProfile.abi,
+);
+
+// execute the executeCalldata on the Key Manager
 await universalProfile
   .connect(EOA)
   .setData(URD_DATA_KEY, universalProfileURDAddress);
 ```
 
   </TabItem>
-
-</Tabs>
-
-### Final code
-
-<Tabs>
   
   <TabItem value="web3" label="web3">
 
@@ -283,39 +316,6 @@ await universalProfile.methods
 
   </TabItem>
 
-  <TabItem value="ethers" label="ethers">
-
-```typescript title="Update the Universal Profile URD"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
-import { ethers } from 'ethers';
-
-// constants
-const provider = new ethers.providers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.network',
-);
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
-
-// setup your EOA
-const privateKey = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(privateKey).connect(provider);
-
-// create an instance of the Universal Profile
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfile.abi,
-);
-
-// execute the executeCalldata on the Key Manager
-await universalProfile
-  .connect(EOA)
-  .setData(URD_DATA_KEY, universalProfileURDAddress);
-```
-
-  </TabItem>
-
 </Tabs>
 
 ## Accepting specific Assets
@@ -324,7 +324,7 @@ To accept specific assets, you should differentiate between the different assets
 
 Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)** section and replace the solidity code with the one written below.
 
-```sol title="Solidity Code snippet of the Custom URD that accept specific assets"
+```solidity title="Solidity Code snippet of the Custom URD that accept specific assets"
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 

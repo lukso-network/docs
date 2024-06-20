@@ -36,17 +36,17 @@ The following code snippets require the installation of the following libraries:
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs groupId="web3-lib">
+  <TabItem value="ethers" label="ethers">
+
+```shell
+npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
   <TabItem value="web3" label="web3">
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-  <TabItem value="ethers" label="ethers.js">
-
-```shell
-npm install ethers @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
@@ -64,9 +64,34 @@ You will need:
 After setting up the contracts, you can set up the parameters for the LSP7 token [`transfer(...)`](https://docs.lukso.tech/contracts/contracts/LSP7DigitalAsset/#transfer) function.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3" label="web3">
+  <TabItem value="ethers" label="ethers">
 
-<!-- prettier-ignore-start -->
+```js
+import { ethers } from 'ethers';
+
+// Import smart contract ABI
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+
+const provider = new ethers.BrowserProvider(window.lukso);
+
+await provider.send('eth_requestAccounts', []);
+
+const signer = await provider.getSigner();
+
+// Instanciate the token with an address
+const myToken = new ethers.Contract('0x...', LSP7Mintable.abi);
+
+await myToken.transfer(
+  signer.getAddress(), // sender address
+  '0x...', // recipient's address
+  15, // amount of tokens
+  false, // force flag
+  '0x', // data
+);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3">
 
 ```js
 import Web3 from 'web3';
@@ -93,38 +118,6 @@ await myToken.methods
   .send({ from: accounts[0] });
 ```
 
-<!-- prettier-ignore-end -->
-
   </TabItem>
-  <TabItem value="ethers" label="ethers.js">
-
-<!-- prettier-ignore-start -->
-
-```js
-import { ethers } from 'ethers';
-
-// Import smart contract ABI
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
-
-const provider = new ethers.BrowserProvider(window.lukso);
-
-await provider.send("eth_requestAccounts", []);
-
-const signer = await provider.getSigner();
-
-// Instanciate the token with an address
-const myToken = new ethers.Contract('0x...', LSP7Mintable.abi);
-
-await myToken.transfer(
-  signer.getAddress(), // sender address
-  '0x...', // recipient's address
-  15, // amount of tokens
-  false, // force flag
-  '0x', // data
-);
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
+  
 </Tabs>
