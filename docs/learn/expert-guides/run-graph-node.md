@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🌐 Setting Up a Graph Node on LUKSO'
+sidebar_label: '🌐 Setup a Graph Node on LUKSO'
 description: 'A step-by-step guide to setting up a Graph Node on LUKSO using Docker.'
 sidebar_position: 12
 ---

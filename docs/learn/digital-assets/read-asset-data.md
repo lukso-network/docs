@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Read Asset Data'
-sidebar_position: 7
+sidebar_position: 1
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
 
