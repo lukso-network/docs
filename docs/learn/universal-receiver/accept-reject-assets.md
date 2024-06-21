@@ -8,35 +8,33 @@ import TabItem from '@theme/TabItem';
 
 # Accept & Reject Assets
 
-:::caution Disclaimer
-
-This guide might contain outdated information and will be updated soon.
-
-:::
-
-Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function on his profile is called.
+Each user can create a **Universal Receiver Delegate** contract with some **custom logic**, which can run automatically on calls to the **[`universalReceiver(..)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function of the user's Universal Profile based on specific typeIds.
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
 
-## Rejecting all Assets
+## Reject any Assets
 
-In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) is the parameter that will give us more context on the call being made.
+To **reject any assets** received by the Universal Profile, we need to create a Universal Receiver Delegate contract that reverts when there is an asset transfer (LSP7 & LSP8). The [`typeId`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) parameter will give us more context on the call being made.
 
-_e.g._
+| 📢 Type ID to notify when receiving an LSP7 token 🪙                 |
+| :------------------------------------------------------------------- |
+| `TYPEID_LSP7_TOKENSRECIPIENT`                                        |
+| `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` |
 
-- If `typeId` is **`0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` \_TYPEID_LSP7_TOKENSRECIPIENT**, then we know that we are receiving a LSP7 Token.
+| 📢 Type ID to notify when receiving an LSP8 NFT 🖼️                   |
+| :------------------------------------------------------------------- |
+| `TYPEID_LSP8_TOKENSRECIPIENT`                                        |
+| `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` |
 
-- If `typeId` is **`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT**, then we know that we are receiving a LSP8 Token.
+### 1 - Deploy contract via Remix
 
-### Deploy contract through Remix
-
-The first step is to navigate to **[Remix's website](https://remix.ethereum.org/)** and create a new solidity file under the **contracts** folder.
+1. First go to the **[Remix's website](https://remix.ethereum.org/)**. Create a new solidity file `UniversalReceiverDelegate.sol` under the **contracts** folder.
 
 ![Creating Universal Receiver Delegate in Remix](/img/guides/lsp1/remix-creating-file.jpeg)
 
-After creating the **UniversalReceiverDelegate.sol** file, copy the code snippet below inside the file created. This code snippet will be responsible for rejecting all LSP7 & LSP8 assets being transferred to your profile.
+2. Copy the code snippet below inside the file. It contains the logic for rejecting any LSP7 & LSP8 assets being transferred to the Universal Profile.
 
-```sol title="UniversalReceiverDelegate.sol - Solidity Code snippet of the URD that reject all assets"
+```solidity title="UniversalReceiverDelegate.sol - Solidity Code snippet of the URD that reject any assets"
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
@@ -85,23 +83,31 @@ Please make sure to unlock MetaMask and disable Browser Extension while doing th
 
 :::
 
-After copying the code, navigate to the **Solidity Compiler** tab and press the Compile UniversalReceiverDelegate.sol button. Then navigate to the **Deploy & Run Transactions** tab and choose _Injected Provider_ as the environment.
+3. Go to the **Solidity Compiler** tab and press the **"Compile `UniversalReceiverDelegate.sol`"** button.
+4. Then navigate to the **Deploy & Run Transactions** tab and choose _Injected Provider_ as the environment.
 
 ![Compiling contract in Remix](/img/guides/lsp1/remix-compiling-contract.jpeg)
 
 You should be connected to LUKSO Testnet in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
+If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](../../networks/testnet/parameters.md).
 
 ![Connect to LUKSO Testnet in Remix](/img/guides/lsp1/remix-connect-testnet.jpg)
 
-After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT_ section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed, you can copy the contract address to be used later when setting the address inside the storage.
+5. Select the **`CustomUniversalReceiverDelegate`** in the dropdown list of contracts and click on the **deploy** button.
+
+You will have to confirm the transaction and wait until the transaction has been validated on the network.
+
+6. Once the contract deployed, copy and save the contract address. This address will be used in the next section.
 
 ![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
 
-### Set the address of the URD in the UP's storage
+### 2 - Set the URD's address on the 🆙
 
 After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage.
 
-### Install dependencies
+We will do that via a custom script using web3.js or ether.js.
+
+### 2.1 - Install dependencies
 
 Make sure you have the following dependencies installed before beginning this tutorial:
 
