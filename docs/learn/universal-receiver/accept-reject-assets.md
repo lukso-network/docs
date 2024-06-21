@@ -26,6 +26,12 @@ To **reject any assets** received by the Universal Profile, we need to create a 
 | `TYPEID_LSP8_TOKENSRECIPIENT`                                        |
 | `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` |
 
+:::success TypeIds available
+
+A full list of LSP1 TypeIds that can be filtered from the `UniversalReceiver` event can be found under the [**contract > Universal Receiver TypeIds**](../../contracts/type-ids.md)
+
+:::
+
 ### 1 - Deploy contract via Remix
 
 1. First go to the **[Remix's website](https://remix.ethereum.org/)**. Create a new solidity file `UniversalReceiverDelegate.sol` under the **contracts** folder.
@@ -307,7 +313,7 @@ Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)**
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-// This code is only used for guides puprose, it is working but not verified nor audited.
+// This code is only used for guides and demonstration purpose
 
 // modules
 import {LSP1UniversalReceiverDelegateUP} from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";
@@ -361,4 +367,12 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 }
 ```
 
-The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is 0. It will also reject assets that are not allowed.
+
+Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+
+:::info
+
+A similar mapping example that list allowed assets can be found in the guide [**Create an LSP1 Forwarder**](./create-receiver-forwarder.md)
+
+:::
