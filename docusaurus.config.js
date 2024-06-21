@@ -39,7 +39,6 @@ export default {
             from: '/learn/smart-contract-developers/retrieve-token-type',
             to: '/learn/digital-assets/retrieve-token-type',
           },
-
           // Learn/Expert guides
           {
             from: '/learn/expert-guides/deploy-token-with-metadata',
@@ -47,21 +46,20 @@ export default {
           },
           {
             from: '/learn/expert-guides/key-manager/execute-relay-transactions',
-            to: '/learn/key-manager/execute-relay-transactions',
+            to: '/learn/universal-profile/key-manager/execute-relay-transactions',
           },
           {
             from: '/learn/expert-guides/key-manager/upgrade-key-manager',
-            to: '/learn/key-manager/upgrade-key-manager',
+            to: '/learn/universal-profile/key-manager/upgrade-key-manager',
           },
           {
             from: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
-            to: '/learn/universal-receiver/deploy-universal-receiver',
+            to: '/learn/universal-profile/universal-receiver/deploy-universal-receiver',
           },
           {
             from: '/learn/expert-guides/universal-receiver/create-receiver-forwarder',
-            to: '/learn/universal-receiver/create-receiver-forwarder',
+            to: '/learn/universal-profile/universal-receiver/create-receiver-forwarder',
           },
-
           {
             from: '/learn/expert-guides/vault/create-a-vault',
             to: '/learn/vault/create-a-vault',
@@ -72,28 +70,24 @@ export default {
           },
           {
             from: '/learn/expert-guides/accept-reject-assets',
-            to: '/learn/universal-receiver/accept-reject-assets',
+            to: '/learn/universal-profile/universal-receiver/accept-reject-assets',
           },
           {
             from: '/learn/expert-guides/vault/grant-vault-permissions',
             to: '/learn/vault/grant-vault-permissions',
           },
-
           {
             from: '/learn/expert-guides/key-manager/get-controller-permissions',
-            to: '/learn/key-manager/get-controller-permissions',
+            to: '/learn/universal-profile/key-manager/get-controller-permissions',
           },
-
           {
             from: '/learn/expert-guides/key-manager/grant-permissions',
-            to: '/learn/key-manager/grant-permissions',
+            to: '/learn/universal-profile/key-manager/grant-permissions',
           },
-
           {
             from: '/learn/expert-guides/vault/interact-with-contracts',
             to: '/learn/vault/interact-with-contracts',
           },
-
           // Learn/Universal Profile
           {
             from: '/learn/universal-profile/transfer-lsp7-token',
@@ -111,7 +105,6 @@ export default {
             from: '/learn/universal-profile/connect-profile/multi-provider',
             to: '/learn/universal-profile/connect-profile/connect-up',
           },
-
           // Learn/dApp Developer
           {
             from: '/learn/dapp-developer/standard-detection',
@@ -138,7 +131,24 @@ export default {
           // Learn/Universal Receiver
           {
             from: '/learn/universal-receiver/deploy-receiver-forwarder',
-            to: '/learn/universal-receiver/create-receiver-forwarder',
+            to: '/learn/universal-profile/universal-receiver/create-receiver-forwarder',
+          },
+          // Learn/Expert Guides
+          {
+            from: '/learn/expert-guides/deploy-multichain-contracts',
+            to: '/learn/other-guides/deploy-multichain-contracts',
+          },
+          {
+            from: '/learn/expert-guides/NFC-NFT',
+            to: '/learn/other-guides/NFC-NFT',
+          },
+          {
+            from: '/learn/expert-guides/run-graph-node',
+            to: '/learn/other-guides/run-graph-node',
+          },
+          {
+            from: '/learn/expert-guides/utilize-ipfs-storage',
+            to: '/learn/other-guides/utilize-ipfs-storage',
           },
           // Tools
           {
