@@ -30,14 +30,14 @@ To implement Sign In With Ethereum for Universal Profiles (smart accounts), you 
 - the **LSP smart contracts library** to verify the signature of the profile's controller.
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts siwe
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts siwe
@@ -49,7 +49,7 @@ npm install web3 @lukso/lsp-smart-contracts siwe
 ## Get the Universal Profile address
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 import { ethers } from 'ethers';
@@ -59,7 +59,7 @@ const accounts = await provider.send('eth_requestAccounts', []);
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from 'web3';
@@ -82,7 +82,7 @@ If you need further explanation on the `SiweMessage` properties, please have a l
 :::
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 <!-- prettier-ignore-start -->
 ```js
@@ -122,7 +122,7 @@ const hashedMessage = ethers.hashMessage(siweMessage);
 <!-- prettier-ignore-end -->
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 <!-- prettier-ignore-start -->
 ```js
@@ -167,7 +167,7 @@ Your dApp has now received a message signed by the controller address of the Uni
 To check the signature, you can use the [`isValidSignature(...)`](../../../contracts/contracts/UniversalProfile.md#isvalidsignature) method of the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standardization. If the signature is valid, the method will return the magic value `0x1626ba7e`, indicating a successful verification.
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 // Execute the contract verification call
@@ -185,7 +185,7 @@ if (isValidSignature === '0x1626ba7e') {
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 // Execute the contract verification call

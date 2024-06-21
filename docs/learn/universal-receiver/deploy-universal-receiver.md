@@ -49,7 +49,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
   
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
@@ -57,7 +57,7 @@ npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
@@ -77,7 +77,7 @@ We need to;
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Imports, Constants & EOA"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
@@ -102,7 +102,7 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```typescript title="Imports, Constants & EOA"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
@@ -140,7 +140,7 @@ At this step we will create an instance of the Universal profile URD that we wil
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Contract instance of the Universal Profile URD"
 // create a LSP1UniversalReceiverDelegateUP Contract Factory
@@ -152,7 +152,7 @@ let universalProfileURDFactory = new ethers.ContractFactory(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Contract instance of the Universal Profile URD"
 // create an instance of the LSP1UniversalReceiverDelegateUP
@@ -171,7 +171,7 @@ Send the deployment transaction to get a newly deployed URD.
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Send the transaction for deploying a new Universal Profile URD"
 // deploy the Universal Receiver Delegate UP contract
@@ -182,7 +182,7 @@ const universalProfileURD = await universalProfileURDFactory
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Send the transaction for deploying a new Universal Profile URD"
 // deploy the Universal Receiver Delegate UP contract
@@ -205,7 +205,7 @@ await universalProfileURD
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Deploy a Universal Receiver Delegate for the Universal Profile"
 const deployUniversalProfileURD = async () => {
@@ -229,7 +229,7 @@ const universalProfileURDAddress = await deployUniversalProfileURD();
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Deploy a Universal Receiver Delegate for the Universal Profile"
 const deployUniversalProfileURD = async () => {
@@ -274,7 +274,7 @@ Firstly we need to create an instance for the [**Universal Profile**](../../stan
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
@@ -286,7 +286,7 @@ const universalProfile = new ethers.Contract(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
@@ -306,7 +306,7 @@ Generate _Data Keys & Values_ for [**adding a URD**](../../standards/generic-sta
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Encode Data Keys & Values for updating the URD and its permissions"
 import { ERC725 } from '@erc725/erc725.js';
@@ -350,7 +350,7 @@ const dataValues = [
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Encode Data Keys & Values for updating the URD and its permissions"
 import { ERC725 } from '@erc725/erc725.js';
@@ -403,7 +403,7 @@ Lastly, we need to send the transaction that will update the URD and its permiss
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Update the data on the Universal Profile"
 // update the Universal Profile data
@@ -412,7 +412,7 @@ await universalProfile.connect(EOA).setDataBatch(dataKeys, dataValues);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Update the data on the Universal Profile"
 // update the Universal Profile data
@@ -430,7 +430,7 @@ await universalProfile.methods.setDataBatch(dataKeys, dataValues).send({
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
 import { ERC725 } from '@erc725/erc725.js';
@@ -487,7 +487,7 @@ await updateUniversalProfileURD(universalProfileURDAddress);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Update the URD of the Universal Profile and its permissions"
 import { ERC725 } from '@erc725/erc725.js';
@@ -555,7 +555,7 @@ await updateUniversalProfileURD(universalProfileURDAddress);
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Deploy a Universal Profile URD, update its permissions and add it to the Universal Profile"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';
@@ -648,7 +648,7 @@ await updateUniversalProfileURD(universalProfileURDAddress);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Deploy a Universal Profile URD, update its permissions and add it to the Universal Profile"
 import LSP1UniversalReceiverDelegateUP from '@lukso/lsp-smart-contracts/artifacts/LSP1UniversalReceiverDelegateUP.json';

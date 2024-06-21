@@ -40,7 +40,7 @@ npm install @erc725/erc725.js
 ```
 
   </TabItem>
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```bash
 npm install ethers @lukso/lsp-smart-contracts
@@ -48,7 +48,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```bash
 npm install web3 @lukso/lsp-smart-contracts
@@ -85,7 +85,7 @@ console.log(tokenType);
 ```
 
   </TabItem>
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 import { ethers } from 'ethers';
@@ -118,7 +118,7 @@ console.log(tokenType);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from 'web3';

@@ -34,7 +34,7 @@ You will need the following dependencies installed:
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts @lukso/eip191-signer.js
@@ -42,7 +42,7 @@ npm install ethers @lukso/lsp-smart-contracts @lukso/eip191-signer.js
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts @lukso/eip191-signer.js
@@ -64,7 +64,7 @@ First, create an instance of the [Universal Profile](../../standards/universal-p
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers" default>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}} default>
 
 ```typescript
 import { ethers } from 'ethers';
@@ -108,7 +108,7 @@ const keyManager = new ethers.Contract(
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```typescript
 import Web3 from 'web3';
@@ -176,7 +176,7 @@ The _channel ID_, _validity timestamp_, and _transaction payload_ can have vario
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript
 // ...
@@ -200,7 +200,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
   </TabItem>
 
-    <TabItem value="web3" label="web3">
+    <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript
 // ...
@@ -251,7 +251,7 @@ The transaction message is constructed by signing the:
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript
 //...
@@ -309,7 +309,7 @@ const { signature } = await eip191Signer.signDataWithIntendedValidator(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript
 // ...
@@ -414,7 +414,7 @@ After receiving all necessary parameters and performing optional security checks
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```javascript
 import { ethers } from 'ethers';
@@ -454,7 +454,7 @@ console.log('Transaction receipt:', receipt);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```javascript
 import Web3 from 'web3';

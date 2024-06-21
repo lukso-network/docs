@@ -38,7 +38,7 @@ To complete this guide, we will need some initial constants values and install s
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
@@ -46,7 +46,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts
@@ -77,7 +77,7 @@ Below you will find some examples to perform the following:
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="mintTokens.ts"
 import { ethers } from 'ethers';
@@ -112,7 +112,7 @@ console.log('🏦 Balance: ', balance.toString());
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="mintTokens.ts"
 import Web3 from 'web3';
@@ -165,7 +165,7 @@ console.log('🏦 Balance: ', balance.toString());
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="refineBurntPix.ts"
 import { ethers } from 'ethers';
@@ -199,7 +199,7 @@ await contract.refine(BURNT_PIX_ID, "500", {
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="refineBurntPix.ts"
 import Web3 from 'web3';
