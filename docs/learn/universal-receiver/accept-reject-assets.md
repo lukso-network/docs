@@ -95,19 +95,17 @@ If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](../
 
 5. Select the **`CustomUniversalReceiverDelegate`** in the dropdown list of contracts and click on the **deploy** button.
 
-You will have to confirm the transaction and wait until the transaction has been validated on the network.
+6. You will have to confirm the transaction and wait until the transaction has been validated on the network.
 
-6. Once the contract deployed, copy and save the contract address. This address will be used in the next section.
+7. Once the contract deployed, copy and save the contract address. This address will be used in the next section.
 
 ![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
 
-### 2 - Set the URD's address on the 🆙
+You have successfully deployed your **CustomUniversalReceiverDelegate** contract on LUKSO Testnet! 🙌🏻
 
-After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage.
+We now need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage. We will do that **via a custom script in step 2** using web3.js or ether.js.
 
-We will do that via a custom script using web3.js or ether.js.
-
-### 2.1 - Install dependencies
+### 2 - Install dependencies for script
 
 Make sure you have the following dependencies installed before beginning this tutorial:
 
@@ -134,71 +132,31 @@ npm install ethers @lukso/lsp-smart-contracts
 
 </Tabs>
 
-### Imports, constants and EOA
+### 3 - Create instance of the 🆙
 
-First, we need to get the _ABI_ for the Universal Profile contract.
-After that we need to store the address of our Universal Profile and the new URD address.  
-Then we will initialize the controller address.
+First we need to create an instance of the [`UniversalProfile`](../../contracts/contracts/UniversalProfile.md) contract. We will need:
+
+- the `UniversalProfile` ABI from the [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) package.
+- the Universal Profile's address, retrieved by [connecting to the UP Browser Extension](../universal-profile/connect-profile/connect-up.md)
 
 <Tabs>
   
   <TabItem value="web3js" label="web3.js">
 
-```typescript title="Imports, Constants & EOA"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+```typescript title="Create instance of Universal Profile"
 import Web3 from 'web3';
-
-// constants
-const web3 = new Web3('https://rpc.testnet.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
-
-// setup your EOA
-const privateKey = '0x...';
-const EOA = web3.eth.accounts.wallet.add(privateKey);
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Imports, Constants & EOA"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
-import { ethers } from 'ethers';
 
-// constants
-const provider = new ethers.providers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.network',
-);
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
+// connect to the UP Browser Extension
+const provider = new Web3(window.lukso);
 
-// setup your EOA
-const privateKey = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(privateKey).connect(provider);
-```
+// Retrieve address of the Universal Profile
+const accounts = await provider.eth.requestAccounts();
 
-  </TabItem>
-
-</Tabs>
-
-### Create UP contract instance
-
-At this point we need to create an instance of the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract:
-
-<Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
-
-```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
-  universalProfileAddress,
+  accounts[0], // Universal Profile address
 );
 ```
 
@@ -206,19 +164,25 @@ const universalProfile = new web3.eth.Contract(
 
   <TabItem value="ethersjs" label="ethers.js">
 
-```typescript title="Contract instance for the Universal Profile"
+```typescript title="Create instance of Universal Profile"
+import { ethers } from 'ethers';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+// connect to the UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
+
+// Retrieve address of the Universal Profile
+const accounts = await provider.send('eth_requestAccounts', []);
+
 // create an instance of the Universal Profile
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfile.abi,
-);
+const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
 ```
 
   </TabItem>
 
 </Tabs>
 
-### Setup the LSP1 Universal Receiver Delegate
+### 4 - Setup the LSP1 Universal Receiver Delegate
 
 Finally, we need to send the transaction that will update the URD of the Universal Profile.
 
@@ -227,12 +191,18 @@ Finally, we need to send the transaction that will update the URD of the Univers
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Update the Universal Profile data"
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+// code from step 2.2 ...
+
 // Update the profile data
 await universalProfile.methods
-  .setData(URD_DATA_KEY, universalProfileURDAddress)
+  .setData(
+    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+    '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  )
   .send({
-    from: EOA.address,
-    gasLimit: 600_000,
+    from: accounts[0],
   });
 ```
 
@@ -241,10 +211,18 @@ await universalProfile.methods
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Update the Universal Profile data"
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+// code from step 2.2 ...
+
 // Update the profile data
-await universalProfile
-  .connect(EOA)
-  .setData(URD_DATA_KEY, universalProfileURDAddress);
+await universalProfile.setData(
+  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+  '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  {
+    from: accounts[0],
+  },
+);
 ```
 
   </TabItem>
@@ -258,66 +236,59 @@ await universalProfile
   <TabItem value="web3js" label="web3.js">
 
 ```typescript title="Update the Universal Profile URD"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-// constants
-const web3 = new Web3('https://rpc.testnet.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
+// connect to the UP Browser Extension
+const provider = new Web3(window.lukso);
 
-// setup your EOA
-const privateKey = '0x...';
-const EOA = web3.eth.accounts.wallet.add(privateKey);
+// Retrieve address of the Universal Profile
+const accounts = await provider.eth.requestAccounts();
 
 // create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
-  universalProfileAddress,
+  accounts[0], // Universal Profile address
 );
 
-// execute the executeCalldata on the Key Manager
+// Update the profile data
 await universalProfile.methods
-  .setData(URD_DATA_KEY, universalProfileURDAddress)
+  .setData(
+    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+    '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  )
   .send({
-    from: EOA.address,
-    gasLimit: 600_000,
+    from: accounts[0],
   });
 ```
 
-  </TabItem>
+</TabItem>
 
   <TabItem value="ethersjs" label="ethers.js">
 
 ```typescript title="Update the Universal Profile URD"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-// constants
-const provider = new ethers.providers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.network',
-);
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
+// connect to the UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
 
-// setup your EOA
-const privateKey = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(privateKey).connect(provider);
+// Retrieve address of the Universal Profile
+const accounts = await provider.send('eth_requestAccounts', []);
 
 // create an instance of the Universal Profile
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfile.abi,
-);
+const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
 
-// execute the executeCalldata on the Key Manager
-await universalProfile
-  .connect(EOA)
-  .setData(URD_DATA_KEY, universalProfileURDAddress);
+// Update the profile data
+await universalProfile.setData(
+  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+  '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  {
+    from: accounts[0],
+  },
+);
 ```
 
   </TabItem>
