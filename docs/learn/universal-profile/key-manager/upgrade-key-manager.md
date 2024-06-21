@@ -17,8 +17,8 @@ This article is a WIP
 
 :::info Requirements
 
-You will need a Universal Profile that you can control via its [KeyManager](../../standards/universal-profile/lsp6-key-manager.md) to follow this guide.
-If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../universal-profile/getting-started.md).
+You will need a Universal Profile that you can control via its [KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) to follow this guide.
+If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../../universal-profile/getting-started.md).
 
 :::
 
@@ -60,7 +60,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
 Create a JavaScript file and add the following imports on the top of the file:
 
-- `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission.
+- `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) permission.
 - `universalProfileAddress`: address of your Universal Profile.
 
 <Tabs>
@@ -101,7 +101,7 @@ const universalProfileAddress = '0x...';
 
 ## Step 2 - Initialize the controller account
 
-In order to send any transaction on the blockchain you need an EOA. In our case that account MUST have [**`CHANGEOWNER`**](../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the Universal Profile that will have its LSP6 Key Manager upgraded.
+In order to send any transaction on the blockchain you need an EOA. In our case that account MUST have [**`CHANGEOWNER`**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the Universal Profile that will have its LSP6 Key Manager upgraded.
 
 <Tabs>
   
@@ -194,7 +194,7 @@ const newKeyManager = await new ethers.ContractFactory(
 
 ### Step 5.1 - Transfer Ownership to your new Key Manager
 
-Create a calldata for the [`transferOwnership(address)`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
+Create a calldata for the [`transferOwnership(address)`](../../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
 
 <Tabs>
   
@@ -224,7 +224,7 @@ await universalProfile
 
 ### Step 5.2 - Accept Ownership from your new Key Manager
 
-Create a calldata for the [`acceptOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
+Create a calldata for the [`acceptOwnership()`](../../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
 
 <!-- prettier-ignore-start -->
 

@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 
 # Create a LSP1 Forwarder
 
-This guide will teach you how to create a basic custom [Universal Receiver Delegate](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract for the following use-case:
+This guide will teach you how to create a basic custom [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract for the following use-case:
 
 > **"As a Universal Profile (UP) owner, I want to transfer part of the tokens I received to another UP"**.
 
-We will this contract an **LSP1 Forwarder**. Every time our 🆙 will receive a specific [LSP7 token](../../standards/tokens/LSP7-Digital-Asset.md), this contract will automatically transfer a certain percentage to another address we have defined.
+We will this contract an **LSP1 Forwarder**. Every time our 🆙 will receive a specific [LSP7 token](../../../standards/tokens/LSP7-Digital-Asset.md), this contract will automatically transfer a certain percentage to another address we have defined.
 
 An example scenario could be: _"each time I receive USDT, I want to automatically transfer 20% to my wife's UP"_.
 
@@ -21,13 +21,13 @@ An example scenario could be: _"each time I receive USDT, I want to automaticall
 
 :::success Tips
 
-If you want to follow this guide using not an existing token, but a new token that you want to create and deploy yourself, check our guide [**"Create a Custom LSP7 Token"**](../digital-assets/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract).
+If you want to follow this guide using not an existing token, but a new token that you want to create and deploy yourself, check our guide [**"Create a Custom LSP7 Token"**](../../digital-assets/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract).
 
 :::
 
 :::info
 
-This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) package.
+This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) package.
 
 :::
 
@@ -36,8 +36,8 @@ In order to follow this guide, you will need the followings:
 1. Download and install the [UP Browser extension](/install-up-browser-extension).
 2. Fund the main EOA controller of your 🆙 (See **[Step 1](#step-1---enable-your-controller-to-add-a-universal-receiver) bullet point 3** to retrieve its address) using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
 3. The address of the LSP7 token that you want to use to forward of portion of the amount received.
-4. The v0.14.0 [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) library installed.
-5. The [_erc725.js_](../../tools/erc725js/getting-started.md) library installed to encode the data key / value to register our LSP1 Forwarder.
+4. The v0.14.0 [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) library installed.
+5. The [_erc725.js_](../../../tools/erc725js/getting-started.md) library installed to encode the data key / value to register our LSP1 Forwarder.
 6. The [`dotenv`](https://www.npmjs.com/package/dotenv) package to load our main EOA controller private key into our script.
 
 ```bash
@@ -66,14 +66,14 @@ We can make our LSP1 Forwarder contract to perform this action in 2 different wa
 
 ### Two Design Options
 
-To re-transfer a portion of the tokens received, we can instruct the LSP1 Forwarder contract to re-call the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 Token contract in 2 ways:
+To re-transfer a portion of the tokens received, we can instruct the LSP1 Forwarder contract to re-call the [`transfer(...)`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 Token contract in 2 ways:
 
-- **method 1:** via the [**`execute(...)` function of the 🆙**](../../contracts/contracts/UniversalProfile/UniversalProfile.md#execute).
-- **method 2:** directly on the LSP7 contract **after having authorized the LSP1 Forwarder as an operator via [`authorizeOperator(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)**.
+- **method 1:** via the [**`execute(...)` function of the 🆙**](../../../contracts/contracts/UniversalProfile/UniversalProfile.md#execute).
+- **method 2:** directly on the LSP7 contract **after having authorized the LSP1 Forwarder as an operator via [`authorizeOperator(...)`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)**.
 
-For method 1 to work, the LSP1 Forwarder contract will need the permissions [`SUPER_CALL` + `REENTRANCY`](../../standards/universal-profile/lsp6-key-manager.md#permissions) on the UP.
+For method 1 to work, the LSP1 Forwarder contract will need the permissions [`SUPER_CALL` + `REENTRANCY`](../../../standards/universal-profile/lsp6-key-manager.md#permissions) on the UP.
 
-For method 2 to work, the LSP1 Forwarder contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (`type(uint256).max`).
+For method 2 to work, the LSP1 Forwarder contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (`type(uint256).max`).
 
 Both methods have their advantages and disadvantages, as summarized below.
 
@@ -445,7 +445,7 @@ Let's first compile our contract to generate its ABI and bytecode.
 hardhat compile
 ```
 
-Setup the [LUKSO Testnet network](../../networks/testnet/parameters.md) in your `hardhat.config.ts`.
+Setup the [LUKSO Testnet network](../../../networks/testnet/parameters.md) in your `hardhat.config.ts`.
 
 ```ts title="hardhat.config.ts"
 // ...
@@ -531,9 +531,9 @@ Now that we have deployed our custom LSP1 Forwarder contract, we will register i
 
 ### 4.1 - Register on the UP
 
-We will register this LSP1 Forwarder for the LSP1 Type Id [`LSP7Tokens_RecipientNotification`](../../contracts/type-ids.md#lsp7tokens_recipientnotification). This type Id is used to notify the Universal Profile that it received some new tokens.
+We will register this LSP1 Forwarder for the LSP1 Type Id [`LSP7Tokens_RecipientNotification`](../../../contracts/type-ids.md#lsp7tokens_recipientnotification). This type Id is used to notify the Universal Profile that it received some new tokens.
 
-To do that, use the [`LSP1UniversalReceiverDelegate:<bytes32>`](../../standards/generic-standards/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-mapping) Mapping data key, where the `<bytes32>` part will be the type Id. The _erc725.js_ library will enable us to do that easily.
+To do that, use the [`LSP1UniversalReceiverDelegate:<bytes32>`](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-mapping) Mapping data key, where the `<bytes32>` part will be the type Id. The _erc725.js_ library will enable us to do that easily.
 
 ```ts
 import ethers from 'ethers';
@@ -583,10 +583,10 @@ console.log('✅ Custom LSP1 Delegate has been correctly registered on the UP');
 
 Depending on the design / method selected in [step 2](#step-2---create-lsp1-forwarder-contract-in-solidity), we will have to setup our LSP1 Forwarder contract differently:
 
-| Method                                                               | Setup Required                                                                                                                                                                                                                                                              |
-| :------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Method 1:** via 🆙 `execute(...)` function                         | **Grant the permissions `SUPER_CALL` + `REENTRANCY`** to the LSP1 Forwarder contract so that it can re-call the 🆙.                                                                                                                                                         |
-| **Method 2:** via `authorizeOperator(...)` on LSP7 Token contract 🪙 | **Authorize the address of the LSP1 Forwarder contract as an operator**, to spend tokens on behalf of the UP. This using the [`authorizeOperator()`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator) function on the LSP7 token contract. |
+| Method                                                               | Setup Required                                                                                                                                                                                                                                                                 |
+| :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Method 1:** via 🆙 `execute(...)` function                         | **Grant the permissions `SUPER_CALL` + `REENTRANCY`** to the LSP1 Forwarder contract so that it can re-call the 🆙.                                                                                                                                                            |
+| **Method 2:** via `authorizeOperator(...)` on LSP7 Token contract 🪙 | **Authorize the address of the LSP1 Forwarder contract as an operator**, to spend tokens on behalf of the UP. This using the [`authorizeOperator()`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator) function on the LSP7 token contract. |
 
 <Tabs>
   <TabItem value="method1" label="Method 1 - Set Permissions for LSP1 Forwarder">

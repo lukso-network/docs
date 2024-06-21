@@ -14,13 +14,13 @@ This guide might contain outdated information and will be updated soon.
 
 :::
 
-Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function on his profile is called.
+Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function on his profile is called.
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
 
 ## Rejecting all Assets
 
-In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) is the parameter that will give us more context on the call being made.
+In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) is the parameter that will give us more context on the call being made.
 
 _e.g._
 
@@ -99,7 +99,7 @@ After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT
 
 ### Set the address of the URD in the UP's storage
 
-After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage.
+After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage.
 
 ### Install dependencies
 
@@ -182,7 +182,7 @@ const EOA = new ethers.Wallet(privateKey).connect(provider);
 
 ### Create UP contract instance
 
-At this point we need to create an instance of the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract:
+At this point we need to create an instance of the [**Universal Profile**](../../../standards/universal-profile/lsp0-erc725account.md) contract:
 
 <Tabs>
   
@@ -381,4 +381,4 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 }
 ```
 
-The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.

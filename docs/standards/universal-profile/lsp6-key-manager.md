@@ -844,7 +844,7 @@ To mitigate such risks, adding an optional validity timestamp to the signature c
 
 You can use our library [**eip191-signer.js**](https://github.com/lukso-network/tools-eip191-signer) to make it easier to sign an _EIP191 Execute Relay Call transaction_.
 
-See also our [step by step Javascript guide](../../learn/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
+See also our [step by step Javascript guide](../../learn/universal-profile/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
 
 :::
 
