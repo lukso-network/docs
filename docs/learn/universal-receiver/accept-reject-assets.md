@@ -297,11 +297,13 @@ await universalProfile.setData(
 
 ## Accepting specific Assets
 
-To accept specific assets, you should differentiate between the different assets being transferred to you. One way to do it is to have a mapping inside the URD contract that states if the asset being transferred **is allowed to be received or not**. Only the owner should be allowed to add these asset addresses. For simplicity, the owner could be the EOA address deploying the contract.
+To accept specific assets, you should differentiate between the different assets being transferred to you.
+
+One way to do it is to have a mapping inside the URD contract that states if the asset being transferred **is allowed to be received or not**. Only the owner should be allowed to add these asset addresses. For simplicity, the owner could be the EOA address deploying the contract.
 
 Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)** section and replace the solidity code with the one written below.
 
-```sol title="Solidity Code snippet of the Custom URD that accept specific assets"
+```solidity title="Solidity Code snippet of the Custom URD that accept specific assets"
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
@@ -332,16 +334,17 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
     function setAllowedAssets(address assets) public onlyOwner {
         allowedAssets[assets] = true;
     }
+
     /**
-    * @dev Reverts when the asset being transferred is not allowed. If allowed, the address of the asset
-    * will be registered inside the storage, and removed when balance of the asset equal 0, according to
-    * the LSP5-ReceivedAssers standard.
-    *
-    * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
-    * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.
-    * @param typeId The typeId representing the context of the call to the universalReceiver function on the UniversalProfile.
-    * @param typeId The data sent to the universalReceiver function on the UniversalProfile.
-    */
+     * @dev Reverts when the asset being transferred is not allowed. If allowed, the address of the asset
+     * will be registered inside the storage, and removed when balance of the asset equal 0, according to
+     * the LSP5-ReceivedAssers standard.
+     *
+     * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
+     * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.
+     * @param typeId The typeId representing the context of the call to the universalReceiver function on the UniversalProfile.
+     * @param typeId The data sent to the universalReceiver function on  the UniversalProfile.
+     */
     function universalReceiverDelegate(
         address caller,
         uint256 value,
@@ -358,4 +361,4 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 }
 ```
 
-The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
