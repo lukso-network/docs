@@ -26,9 +26,24 @@ export default {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
+          // Learn/Smart Contract Developer
           {
             from: '/learn/smart-contract-developers/getting-started',
             to: '/learn/digital-assets/smart-contract-developers/getting-started',
+          },
+          {
+            from: '/learn/smart-contract-developers/create-lsp7-token',
+            to: '/learn/digital-assets/smart-contract-developers/create-lsp7-token',
+          },
+          {
+            from: '/learn/smart-contract-developers/retrieve-token-type',
+            to: '/learn/digital-assets/retrieve-token-type',
+          },
+
+          // Learn/Expert guides
+          {
+            from: '/learn/expert-guides/deploy-token-with-metadata',
+            to: '/learn/digital-assets/deploy-token-with-metadata',
           },
           {
             from: '/learn/expert-guides/key-manager/execute-relay-transactions',
@@ -46,10 +61,7 @@ export default {
             from: '/learn/expert-guides/universal-receiver/create-receiver-forwarder',
             to: '/learn/universal-receiver/create-receiver-forwarder',
           },
-          {
-            from: '/learn/universal-receiver/deploy-receiver-forwarder',
-            to: '/learn/universal-receiver/create-receiver-forwarder',
-          },
+
           {
             from: '/learn/expert-guides/vault/create-a-vault',
             to: '/learn/vault/create-a-vault',
@@ -66,66 +78,67 @@ export default {
             from: '/learn/expert-guides/vault/grant-vault-permissions',
             to: '/learn/vault/grant-vault-permissions',
           },
-          {
-            from: '/learn/digital-assets/mint-lsp7-token',
-            to: '/learn/universal-profile/interactions/interact-with-contracts',
-          },
-          {
-            from: '/learn/smart-contract-developers/create-lsp7-token',
-            to: '/learn/digital-assets/smart-contract-developers/create-lsp7-token',
-          },
+
           {
             from: '/learn/expert-guides/key-manager/get-controller-permissions',
             to: '/learn/key-manager/get-controller-permissions',
+          },
+
+          {
+            from: '/learn/expert-guides/key-manager/grant-permissions',
+            to: '/learn/key-manager/grant-permissions',
+          },
+
+          {
+            from: '/learn/expert-guides/vault/interact-with-contracts',
+            to: '/learn/vault/interact-with-contracts',
+          },
+
+          // Learn/Universal Profile
+          {
+            from: '/learn/universal-profile/transfer-lsp7-token',
+            to: '/learn/universal-profile/interactions/transfer-lsp7-token',
           },
           {
             from: '/learn/universal-profile/transfer-lyx',
             to: '/learn/universal-profile/interactions/transfer-lyx',
           },
           {
-            from: '/learn/expert-guides/key-manager/grant-permissions',
-            to: '/learn/key-manager/grant-permissions',
-          },
-          {
-            from: '/learn/dapp-developer/read-asset-data',
-            to: '/learn/digital-assets/read-asset-data',
-          },
-          {
-            from: '/learn/expert-guides/vault/interact-with-contracts',
-            to: '/learn/vault/interact-with-contracts',
-          },
-          {
-            from: '/learn/universal-profile/transfer-lsp7-token',
-            to: '/learn/universal-profile/interactions/transfer-lsp7-token',
-          },
-          {
-            from: '/learn/dapp-developer/standard-detection',
-            to: '/learn/standard-detection',
-          },
-          {
             from: '/learn/universal-profile/interact-with-contracts',
             to: '/learn/universal-profile/interactions/interact-with-contracts',
-          },
-          {
-            from: '/learn/dapp-developer/connect-profile',
-            to: '/learn/universal-profile/connect-profile/connect-up',
           },
           {
             from: '/learn/universal-profile/connect-profile/multi-provider',
             to: '/learn/universal-profile/connect-profile/connect-up',
           },
-          // Learn: Working with Assets Section
+
+          // Learn/dApp Developer
           {
-            from: '/learn/smart-contract-developerss/retrieve-token-type',
-            to: '/learn/digital-assets/retrieve-token-type',
+            from: '/learn/dapp-developer/standard-detection',
+            to: '/learn/standard-detection',
+          },
+
+          {
+            from: '/learn/dapp-developer/connect-profile',
+            to: '/learn/universal-profile/connect-profile/connect-up',
+          },
+          {
+            from: '/learn/dapp-developer/read-asset-data',
+            to: '/learn/digital-assets/read-asset-data',
+          },
+          // Learn/Digital Assets
+          {
+            from: '/learn/digital-assets/mint-lsp7-token',
+            to: '/learn/universal-profile/interactions/interact-with-contracts',
           },
           {
             from: '/learn/assets',
             to: '/learn/digital-assets/assets',
           },
+          // Learn/Universal Receiver
           {
-            from: '/learn/expert-guides/deploy-token-with-metadata',
-            to: '/learn/digital-assets/deploy-token-with-metadata',
+            from: '/learn/universal-receiver/deploy-receiver-forwarder',
+            to: '/learn/universal-receiver/create-receiver-forwarder',
           },
           // Tools
           {
