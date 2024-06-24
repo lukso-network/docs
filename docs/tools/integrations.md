@@ -29,19 +29,19 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
   <tbody>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://portal.thirdweb.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/thirdweb_logo.png"/></a></td>
-      <td>Full-stack, open-source web3 development platform. Frontend, backend, and onchain tools to build complete web3 apps — on every EVM chain.</td>
+      <td><a href="https://thirdweb.com/dashboard" target="_blank">Thirdweb</a> provides a toolkit suite that includes public network endpoints, statistics, and several SDK integrations with plug-and-play components and hooks.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://nownodes.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/nownodes_logo.png"/></a></td>
-      <td>NOWNodes provides public RPC endpoints.</td>
+      <td><a href="https://nownodes.io/lukso-lyx" target="_blank">NOWNodes</a> provides public RPC endpoints.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://envio.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/envio_logo.png"/></a></td>
-      <td>Indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.</td>
+      <td><a href="https://docs.envio.dev/docs/overview-hyperrpc" target="_blank">Envio</a> is a indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://sigmacore.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/sigmacore_logo.jpeg"/></a></td>
-      <td>Universal Network Solutions, powered by Sigmatic.</td>
+      <td>SigmaCore RPC endpoint is powered by <a href="https://sigmatic.io/" target="_blank">Sigmatic</a>.</td>
     </tr>
   </tbody>
 </table>
@@ -58,7 +58,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
   <tbody>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://docs.api3.org/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/api3_logo.jpeg"/></a></td>
-      <td>API3 builds solutions that bridge the gap between off-chain data and on-chain applications with maximum security and minimal latency.</td>
+      <td><a href="https://api3.org/" target="_blank">API3</a> builds solutions that bridge the gap between off-chain data and on-chain applications with maximum security and minimal latency.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}>
@@ -112,7 +112,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 <tbody>
   <tr>
     <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://transak.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/transak_logo.png"/></a></td>
-    <td>Crypto on-ramp marketplace that can be integrated easily by developers using their API and SDK, to enable to purchase crypto easily on a website and UI.</td>
+    <td><a href="https://docs.transak.com/docs/transak-on-ramp" target="_blank">Transak</a> is a crypto on-ramp marketplace that can be integrated easily by developers using their API and SDK, to enable to purchase crypto easily on a website and UI.</td>
   </tr>
 </tbody>
 </table>
@@ -130,7 +130,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://dappnode.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/dappnode_logo.png"/></a></td>
       <td>
-        Dappnode provides physical node machines and client software images for easy validator onboarding and maintenance.
+        <a href="https://docs.dappnode.io/" target="_blank">Dappnode</a> provides physical node machines and client software images for easy validator onboarding and maintenance.
         <ul>
           <li><a href="https://dappnode.com/collections/all/products/lukso-home" target="_blank" rel="noopener noreferrer">LUKSO Node</a></li>
           <li><a href="https://docs.dappnode.io/docs/user/staking/lukso/solo" target="_blank" rel="noopener noreferrer">Dappnode Software</a></li>
@@ -141,11 +141,11 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://stakingverse.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/stakingverse_logo.jpeg"/></a></td>
-      <td>Ready to earn rewards? We partner with the best teams to bring you cutting-edge solutions for the best blockchains, such as LUKSO and Ethereum.</td>
+      <td><a href="https://stakingverse.io/services" target="_blank">Stakingverse</a> brings you cutting-edge staking solutions for the best blockchains, such as LUKSO and Ethereum.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://universal.page/vault" target="_blank" rel="noopener noreferrer"><img src="/img/tools/universalpage_logo.png"/></a></td>
-      <td><strong>Universal.Page</strong> provides staking solutions through their Staking Vault.</td>
+      <td><a href="https://universal.page/" target="_blank">Universal.Page</a> provides staking solutions through their Staking Vault.</td>
     </tr>
   </tbody>
 </table>
@@ -165,7 +165,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
         <a class="imageLink" href="https://www.cookbook.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/cookbook_dev.png"/></a>
       </td>
       <td>
-        Cookbook provides bundled smart contract libraries that can be directly used within Visual Studio Code, Foundry, Harthat, or Remix. Their webpage also features a ChatGPT integration to help learn and deploy LSPs.
+        <a href="https://www.cookbook.dev/search" target="_blank">Cookbook</a> provides bundled smart contract libraries that can be directly used within Visual Studio Code, Foundry, Harthat, or Remix. Their webpage also features a ChatGPT integration to help learn and deploy LSPs.
         <ul>
           <li><a href="https://www.cookbook.dev/libraries/LSP-Contracts" target="_blank" rel="noopener noreferrer">Cookbook LSP Libraries</a></li>
           <li><a href="https://marketplace.visualstudio.com/items?itemName=cookbookdev.vscode-cookbook" target="_blank" rel="noopener noreferrer">Visual Studio Code Extension</a></li>
@@ -177,7 +177,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
         <a class="imageLink" href="https://portal.thirdweb.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/thirdweb_logo.png"/></a>
       </td>
       <td>
-        Thirdweb provides a toolkit suite that includes public network endpoints, statistics, and several SDK integrations with plug-and-play components and hooks. Within the contract explorer, developers can search and deploy LSPs using their SDK or non-code web interface.
+        <a href="https://thirdweb.com/dashboard" target="_blank">Thirdweb</a> provides a toolkit suite that includes public network endpoints, statistics, and several SDK integrations with plug-and-play components and hooks. Within the contract explorer, developers can search and deploy LSPs using their SDK or non-code web interface.
         <ul>
           <li><a href="https://thirdweb.com/0x4251811EC025992E76B4BC6752aDCd6EB3965F8D" target="_blank" rel="noopener noreferrer">Deployed LSP Contracts</a></li>
         </ul>
