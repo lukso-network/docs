@@ -1,17 +1,17 @@
 ---
 id: integrations
-title: 🔮 Integrations
+title: 🪢 Integrations
 sidebar_position: 2
 ---
 
-# 🔮 Integrations
+# 🪢 Integrations
 
 > ⛓️ **Looking to integrate LUKSO? or already integrating?**<br/>
 > Feel free to reach out to [growth@lukso.io](mailto:growth@lukso.io) if you are looking to be featured on this page.
 
 A list of services and projects that integrated the LUKSO network or deliver ecosystem tools.
 
-## RPC Providers
+## RPC Providers 🔏
 
 :::info List of RPC URLs
 
@@ -46,7 +46,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
   </tbody>
 </table>
 
-## Oracles
+## Oracles 🔮
 
 <table>
   <thead>
@@ -57,15 +57,15 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
   </thead>
   <tbody>
     <tr>
-      <td style={{ maxWidth: "20rem" }}><a href="https://docs.api3.org/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/api3_logo.jpeg"/></a></td>
+      <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://docs.api3.org/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/api3_logo.jpeg"/></a></td>
       <td>API3 builds solutions that bridge the gap between off-chain data and on-chain applications with maximum security and minimal latency.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}>
-        <a href="https://docs.diadata.org/" target="_blank" rel="noopener noreferrer"><img src="https://cms3.diadata.org/wp-content/uploads/2023/03/Token.png"/></a>
+        <a class="imageLink" href="https://docs.diadata.org/" target="_blank" rel="noopener noreferrer"><img src="https://cms3.diadata.org/wp-content/uploads/2023/03/Token.png"/></a>
       </td>
       <td>
-        <a href="https://www.diadata.org/" target="_blank" rel="noopener noreferrer">DIA</a> is a cross-chain oracle provider that directly aggregates market data from a wide range of sources. Its first-party data sourcing is thorough, enabling unparalleled transparency and customizability for resilient price feeds for 20,000+ assets including ERC20s, NFTs, RWAs, LSTs, BRC20s and more.<br/><br/>The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
+        <a class="imageLink" href="https://www.diadata.org/" target="_blank" rel="noopener noreferrer">DIA</a> is a cross-chain oracle provider that directly aggregates market data from a wide range of sources. Its first-party data sourcing is thorough, enabling unparalleled transparency and customizability for resilient price feeds for 20,000+ assets including ERC20s, NFTs, RWAs, LSTs, BRC20s and more.<br/><br/>The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
         <ul>
           <li><a href="https://docs.diadata.org/introduction/dia-technical-structure/data-delivery-methods/integrated-l1-l2-networks/lukso-price-oracles#how-to-access-dia-oracles" target="_blank" rel="noopener noreferrer">Access DIA oracles on LUKSO</a></li>
           <li><a href="https://t.me/DIABDteam" target="_blank" rel="noopener noreferrer">Request a new oracle</a></li>
@@ -75,7 +75,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
   </tbody>
 </table>
 
-## Data Indexing
+## Data Indexing 🗂️
 
 <table>
   <thead>
@@ -100,7 +100,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
   </tbody>
 </table>
 
-## On Ramp Providers
+## On Ramp Providers 💳
 
 <table>
   <thead>
@@ -117,7 +117,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 </tbody>
 </table>
 
-## Staking Services
+## Staking Services 🪙
 
 <table>
   <thead>
@@ -140,17 +140,17 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
       </td>
     </tr>
     <tr>
-      <td style={{ maxWidth: "20rem" }}><a href="https://stakingverse.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/stakingverse_logo.jpeg"/></a></td>
+      <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://stakingverse.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/stakingverse_logo.jpeg"/></a></td>
       <td>Ready to earn rewards? We partner with the best teams to bring you cutting-edge solutions for the best blockchains, such as LUKSO and Ethereum.</td>
     </tr>
     <tr>
-      <td style={{ maxWidth: "20rem" }}><a href="https://universal.page/vault" target="_blank" rel="noopener noreferrer"><img src="/img/tools/universalpage_logo.png"/></a></td>
+      <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://universal.page/vault" target="_blank" rel="noopener noreferrer"><img src="/img/tools/universalpage_logo.png"/></a></td>
       <td><strong>Universal.Page</strong> provides staking solutions through their Staking Vault.</td>
     </tr>
   </tbody>
 </table>
 
-## Toolings
+## Toolings 🔧
 
 <table>
   <thead>
