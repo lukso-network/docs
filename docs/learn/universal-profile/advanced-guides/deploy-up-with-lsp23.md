@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🏭 Deploy Universal Profile + its Key Manager with LSP23 Factory'
+sidebar_label: '🏭 Deploy 🆙 with LSP23 Factory'
 description: 'Learn how to deploy a Universal Profile using LSP23.'
 sidebar_position: 1
 ---

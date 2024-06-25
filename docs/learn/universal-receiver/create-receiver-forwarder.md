@@ -89,9 +89,17 @@ Select one of the two tabs below to see the Solidity implementation of each desi
 The code is commented enough to be self explanatory, but let's dive a bit more into some interesting bits.
 
 <Tabs>
-  <TabItem value="method1" label="via UP `execute(...)`">
+  <TabItem value="method1" label="via UP execute(...) call (recommended)">
 
-```solidity title="LSP1URDForwarder.sol"
+:::success Tips
+
+This method leverages the [Key Manager's permissions](../key-manager/grant-permissions.md) instead of token operator approval.
+
+It is the **recommended method**, making managing which tokens the LSP1 Forwarder can re-transfer easier.
+
+:::
+
+```solidity title="LSP1URDForwarder.sol" showLineNumbers
 // SPDX-License-Identifier: CC0-1.0
 pragma solidity ^0.8.11;
 
@@ -172,9 +180,8 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
         bytes32 typeId,
         bytes memory data
     ) public virtual returns (bytes memory) {
-        // CHECK that the caller is an ERC725Account (e.g: a UniversalProfile)
-        // by checking it supports the LSP0 interface
-        // by checking its interface support
+        // CHECK that the caller is an a UniversalProfile
+        // by checking it supports the LSP0ERC725Account interface
         if (
             !ERC165Checker.supportsERC165InterfaceUnchecked(
                 msg.sender,
@@ -215,7 +222,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
         } else {
             uint256 tokensToTransfer = (amount * percentage) / 100;
 
-            bytes memory encodedTx = abi.encodeCall(
+            bytes memory tokenTransferCalldata = abi.encodeCall(
                 ILSP7DigitalAsset.transfer,
                 msg.sender,
                 recipient,
@@ -223,16 +230,11 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
                 true,
                 ""
             );
-            IERC725X(msg.sender).execute(0, notifier, 0, encodedTx);
+            IERC725X(msg.sender).execute(0, notifier, 0, tokenTransferCalldata);
             return "";
         }
     }
 
-    // --- Overrides
-
-    /**
-     * @inheritdoc ERC165
-     */
     function supportsInterface(
         bytes4 interfaceId
     ) public view virtual override returns (bool) {
@@ -243,49 +245,46 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
 }
 ```
 
-**Creation of the transaction**
+Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md#universalreceiverdelegate) function. The flow works as follow:
 
-When all the verifications passed in the `universalReceiver` function, we calculate the amount of token to transfer (`tokensToTransfer`) and create the transaction that will be executed:
+1. (lines 83-90) We first verify that the caller `msg.sender` is a Universal Profile.
+2. (lines 94-103) We checked that we are being notified by a smart contract. If we manage to call the `balanceOf(address)` function, we assume it is an LSP7 Token contract.
+3. (lines 107-109) We then ensure that this token is in our list of tokens to transfer some percentage of to another address.
+4. (lines 112-121) The LSP7 Token contract sent us in the notification `data` (function param line 79) the amount of tokens that were transferred.
 
-```solidity title="Create the transaction"
-bytes memory encodedTx = abi.encodeCall(
-    ILSP7DigitalAsset.transfer,
-    msg.sender,
-    recipient,
-    tokensToTransfer,
-    true,
-    ""
-);
-```
+   1. (line 112) We extract **only** this `amount` from the `data` received . The other infos in the data are not necessary so not used.
+   2. (line 121) We calculate the proportion to re-transfer (local variable `tokensToTransfer`,) according to the `percentage` set (state variable line 37).
 
-The `encodeCall` function takes the function that will be called as 1st parameter, and its parameters as the following ones. Here, we target the `transfer` method of the LSP7 token that we received (e.g., the notifier), and we need 4 additional parameters:
+5. (line 123-129) We encode a call to the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 Token contract, using the Solidity built-in function `encodeCall`. The 4 parameters being encoded for the function call are:
 
-- the `from` (msg.sender => the UP that received tokens)
-- the `to` (recipient => the address that will receives part of the tokens)
-- the `amount` (tokensToTransfer => a percentage of the total amount received)
-- the `allowNonLSP1Recipient` boolean that indicates if we can transfer to any address, or if it has to be a LSP1 enabled one
-- the `data` (no additional data)
+   - `from`: (`msg.sender`) = this UP that received the tokens.
+   - `to`: (`recipient`) = the address that will receives the percentage of tokens.
+   - `amount`: (`tokensToTransfer`) = the calculated percentage of the total amount received.
+   - `allowNonLSP1Recipient`: indicates if we can transfer to any address (`true`), or if it must be an LSP1 enabled one (`false`).
+   - `data`: no additional data
 
-**Execution of the transaction**
-
-Directly after creating our encoded transaction, we can execute it using the following line:
-
-```solidity title="Execute the transaction"
-IERC725X(msg.sender).execute(0, notifier, 0, encodedTx);
-```
-
-As we know from the `// CHECK that the caller is a LSP0 (UniversalProfile)` test, the `msg.sender` is a Universal Profile which extends `ERC725XCore`. We can then explicitly convert `msg.sender` as a ERC725X contract, then call the `execute` function on it. This means that we "run the execute function as the Universal Profile". The parameters are:
-
-- the `operationType` (0 = CALL operation)
-- the `target` (notifier = our LSP7 contract)
-- the `value` (in native token) (0 = nothing is sent)
-- the `data` (our encoded transaction)
+6. (line 131) After having saved this abi-encoded calldata, we execute this call via the UP. This is done by using the [`execute(...)`](../../contracts/contracts/UniversalProfile.md#execute) function on the 🆙 (**a generic execution function**). We know from step 1 that the `msg.sender` is a Universal Profile. So we can safely explicitly cast `msg.sender` to an `ERC725X` contract to use the [`execute(...)`](../../contracts/contracts/UniversalProfile.md#execute) function. The parameters passed are:
+   - `operationType`: 0 = CALL operation
+   - `target`: the `notifier` (function parameter, line 76) = our LSP7 contract
+   - `value`: 0 = no LYX are sent
+   - `data`: the `tokenTransferCalldata` variable. This is our encoded call to the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 token, generated in step 5.
 
 </TabItem>
 
   <TabItem value="method2" label="using LSP1 Forwarder as an operator">
 
-```solidity title="LSP1URDForwarder.sol"
+:::info Notice
+
+For this method to work, the LSP1 Forwarder needs to be authorized as an operator (via [`authorizeOperator(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)) to spend tokens on behalf of the 🆙.
+
+It can be cumbersome to manage, as the `LSP1Forwarder` contract would need to be approved as an operator for every single token we want to allow to re-transfer. This would require multiple `authorizeOperator(...)` calls to multiple token contracts, creating more transactions that can be gas-expensive.
+(can be mitigated by grouping these in an [`executeBatch(...)`](../../contracts/contracts/UniversalProfile.md#executebatch)).
+
+In comparison, the first design (via `UP.execute(...)` call) is easier to manage, as the LSP1Forwarder can be [granted permission once](../key-manager/grant-permissions.md) for multiple tokens via one single `setData(...)` call.
+
+:::
+
+```solidity title="LSP1URDForwarder.sol" showLineNumbers
 // SPDX-License-Identifier: CC0-1.0
 pragma solidity ^0.8.11;
 
@@ -368,7 +367,6 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
     ) public virtual returns (bytes memory) {
         // CHECK that the caller is an ERC725Account (e.g: a UniversalProfile)
         // by checking it supports the LSP0 interface
-        // by checking its interface support
         if (
             !ERC165Checker.supportsERC165InterfaceUnchecked(
                 msg.sender,
@@ -414,11 +412,6 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
         }
     }
 
-    // --- Overrides
-
-    /**
-     * @inheritdoc ERC165
-     */
     function supportsInterface(
         bytes4 interfaceId
     ) public view virtual override returns (bool) {
@@ -429,7 +422,23 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
 }
 ```
 
-In this method, we're directly calling the `transfer` method of the notifier (the LSP7 token) as the URD. Of course, in order for this to work, the custom URD needs to be authorized to spend the token of the UP on his behalf (using `authorizeOperator`).
+:::info Notice
+
+See our notice above the code snippet for the [**main drawbacks of the method**](#solidity-code)
+
+:::
+
+Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md#universalreceiverdelegate) function. The flow works as follow:
+
+1. (lines 83-90) We first verify that the caller `msg.sender` is a Universal Profile.
+2. (lines 94-103) We checked that we are being notified by a smart contract. If we manage to call the `balanceOf(address)` function, we assume it is an LSP7 Token contract.
+3. (lines 107-109) We then ensure that this token is in our list of tokens to transfer some percentage of to another address.
+4. (lines 112-121) The LSP7 Token contract sent us in the notification `data` (function param line 79) the amount of tokens that were transferred.
+
+   1. (line 112) We extract **only** this `amount` from the `data` received . The other infos in the data are not necessary so not used.
+   2. (line 121) We calculate the proportion to re-transfer (local variable `tokensToTransfer`,) according to the `percentage` set (state variable line 37).
+
+5. (line 123) Since we allowed the LSP1 Forwarder as an operator, we directly call the `transfer(...)` function on the LSP7 token contract (the `notifier`, passed as function parameter in line 76).
 
   </TabItem>
 
@@ -454,7 +463,7 @@ const config: HardhatUserConfig = {
   networks: {
     luksoTestnet: {
       live: true,
-      url: 'https://rpc.testnet.lukso.network',
+      url: '**https**://rpc.testnet.lukso.network',
       chainId: 4201,
       saveDeployments: true,
     },
@@ -487,10 +496,6 @@ const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 
-// constants
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-const TOKEN_RECIPIENT = '0x...';
-const PERCENTAGE = '0x...';
 // You can update the value of the allowed LSP7 token
 const MY_USDC_TOKEN = '0x63890ea231c6e966142288d805b9f9de7e0e5927';
 
@@ -509,8 +514,8 @@ const lsp1ForwarderFactory = new ethers.ContractFactory(
 );
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 console.log(
@@ -548,8 +553,8 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 // including the instance of the `lsp1Forwarder` contract.
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
@@ -563,11 +568,8 @@ const { keys, values } = erc725.encodeData([
   },
 ]);
 
-// Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -604,8 +606,8 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 // including the instance of the `lsp1Forwarder` contract.
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
@@ -622,10 +624,8 @@ const { keys, values } = erc725.encodeData([
 ]);
 
 // Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -651,16 +651,14 @@ import LSP7DigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAs
 const MY_USDC_TOKEN = '0x63890ea231c6e966142288d805b9f9de7e0e5927';
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
 // Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -682,10 +680,7 @@ const authTxWithBytes = await universalProfile.execute(
   authBytes,
 );
 await authTxWithBytes.wait();
-console.log(
-  '✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡',
-  UNIVERSAL_PROFILE_ADDRESS,
-);
+console.log('✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡');
 ```
 
 </TabItem>

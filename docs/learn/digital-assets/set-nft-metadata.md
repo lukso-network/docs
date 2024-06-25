@@ -124,10 +124,7 @@ Here we will use the following parameters as examples:
 
 You can use the `encodeData` function from the [_erc725.js_](../../tools/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
 
-<details>
-    <summary>Code example to encode a <code>VerifiableURI</code> using <i>erc725.js</i></summary>
-
-```js
+```js title="encodeVerifiableURI.ts"
 import { ERC725 } from '@erc725/erc725.js';
 
 const schema = [
@@ -152,8 +149,6 @@ myErc725.encodeData([
   },
 ]);
 ```
-
-</details>
 
 You can also check the code snippet example in the LSP2 specs to learn in details the [encoding of a `VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
 

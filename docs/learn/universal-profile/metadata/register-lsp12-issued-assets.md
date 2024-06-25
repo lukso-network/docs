@@ -240,12 +240,12 @@ const { keys: lsp12DataKeys, values: lsp12Values } = erc725.encodeData([
   </TabItem>
 </Tabs>
 
-## Instantiate the Universal Profile contract
+## Set Data on the Universal Profile
 
-Create an instance of the Universal Profile contract to read or set the issued assets on:
+Create an instance of the Universal Profile contract to set the issued assets on. We use the `setDataBatch(...)` function to initially set or update multiple data keys.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers" default>
+    <TabItem value="ethers" label="ethers" default>
 
 ```javascript
 const myUPContract = new ethers.Contract(
@@ -253,29 +253,7 @@ const myUPContract = new ethers.Contract(
   UniversalProfileArtifact.abi,
   myWallet,
 );
-```
 
-  </TabItem>
-    <TabItem value="web3" label="web3">
-
-```javascript
-const myUPContract = new web3.eth.Contract(
-  UniversalProfileArtifact.abi,
-  UNIVERSAL_PROFILE_ADDRESS,
-);
-```
-
-  </TabItem>
-</Tabs>
-
-## Set data batch
-
-Next, use the `setDataBatch(...)` function of the Universal Profile to initially set or update multiple data keys.
-
-<Tabs groupId="web3-lib">
-    <TabItem value="ethers" label="ethers" default>
-
-```javascript
 await myUPContract.setDataBatch(lsp12DataKeys, lsp12Values);
 ```
 
@@ -283,6 +261,11 @@ await myUPContract.setDataBatch(lsp12DataKeys, lsp12Values);
   <TabItem value="web3" label="web3">
 
 ```javascript
+const myUPContract = new web3.eth.Contract(
+  UniversalProfileArtifact.abi,
+  UNIVERSAL_PROFILE_ADDRESS,
+);
+
 await myUPContract.methods
   .setDataBatch(lsp12DataKeys, lsp12Values)
   .send({ from: myWallet.address, gas: 1_000_000 });

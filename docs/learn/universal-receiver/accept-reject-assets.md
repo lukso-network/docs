@@ -8,35 +8,39 @@ import TabItem from '@theme/TabItem';
 
 # Accept & Reject Assets
 
-:::caution Disclaimer
-
-This guide might contain outdated information and will be updated soon.
-
-:::
-
-Each user can create its own **custom Universal Receiver Delegate** contract that holds its own logic to be executed once the **[`universalReceiver(..)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function on his profile is called.
+Each user can create a **Universal Receiver Delegate** contract with some **custom logic**, which can run automatically on calls to the **[`universalReceiver(..)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function of the user's Universal Profile based on specific typeIds.
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
 
-## Rejecting all Assets
+## Reject any Assets
 
-In order to **reject all the assets** that are being transferred to the profile, we need to create a Universal Receiver Delegate contract that reverts when it's the case of asset transfer (LSP7 & LSP8). The [`typeId`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) is the parameter that will give us more context on the call being made.
+To **reject any assets** received by the Universal Profile, we need to create a Universal Receiver Delegate contract that reverts when there is an asset transfer (LSP7 & LSP8). The [`typeId`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) parameter will give us more context on the call being made.
 
-_e.g._
+| 📢 Type ID to notify when receiving an LSP7 token 🪙                 |
+| :------------------------------------------------------------------- |
+| `TYPEID_LSP7_TOKENSRECIPIENT`                                        |
+| `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` |
 
-- If `typeId` is **`0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` \_TYPEID_LSP7_TOKENSRECIPIENT**, then we know that we are receiving a LSP7 Token.
+| 📢 Type ID to notify when receiving an LSP8 NFT 🖼️                   |
+| :------------------------------------------------------------------- |
+| `TYPEID_LSP8_TOKENSRECIPIENT`                                        |
+| `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` |
 
-- If `typeId` is **`0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` \_TYPEID_LSP8_TOKENSRECIPIENT**, then we know that we are receiving a LSP8 Token.
+:::success TypeIds available
 
-### Deploy contract through Remix
+A full list of LSP1 TypeIds that can be filtered from the `UniversalReceiver` event can be found under the [**contract > Universal Receiver TypeIds**](../../contracts/type-ids.md)
 
-The first step is to navigate to **[Remix's website](https://remix.ethereum.org/)** and create a new solidity file under the **contracts** folder.
+:::
+
+### 1 - Deploy contract via Remix
+
+1. First go to the **[Remix's website](https://remix.ethereum.org/)**. Create a new solidity file `UniversalReceiverDelegate.sol` under the **contracts** folder.
 
 ![Creating Universal Receiver Delegate in Remix](/img/guides/lsp1/remix-creating-file.jpeg)
 
-After creating the **UniversalReceiverDelegate.sol** file, copy the code snippet below inside the file created. This code snippet will be responsible for rejecting all LSP7 & LSP8 assets being transferred to your profile.
+2. Copy the code snippet below inside the file. It contains the logic for rejecting any LSP7 & LSP8 assets being transferred to the Universal Profile.
 
-```sol title="UniversalReceiverDelegate.sol - Solidity Code snippet of the URD that reject all assets"
+```solidity title="UniversalReceiverDelegate.sol - Solidity Code snippet of the URD that reject any assets"
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
@@ -85,23 +89,29 @@ Please make sure to unlock MetaMask and disable Browser Extension while doing th
 
 :::
 
-After copying the code, navigate to the **Solidity Compiler** tab and press the Compile UniversalReceiverDelegate.sol button. Then navigate to the **Deploy & Run Transactions** tab and choose _Injected Provider_ as the environment.
+3. Go to the **Solidity Compiler** tab and press the **"Compile `UniversalReceiverDelegate.sol`"** button.
+4. Then navigate to the **Deploy & Run Transactions** tab and choose _Injected Provider_ as the environment.
 
 ![Compiling contract in Remix](/img/guides/lsp1/remix-compiling-contract.jpeg)
 
 You should be connected to LUKSO Testnet in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
+If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](../../networks/testnet/parameters.md).
 
 ![Connect to LUKSO Testnet in Remix](/img/guides/lsp1/remix-connect-testnet.jpg)
 
-After choosing the **CustomUniversalReceiverDelegate** contract in the _CONTRACT_ section and deploying, you'll confirm the transaction and wait until the transaction is confirmed and the contract is deployed on the network. Once deployed, you can copy the contract address to be used later when setting the address inside the storage.
+5. Select the **`CustomUniversalReceiverDelegate`** in the dropdown list of contracts and click on the **deploy** button.
+
+6. You will have to confirm the transaction and wait until the transaction has been validated on the network.
+
+7. Once the contract deployed, copy and save the contract address. This address will be used in the next section.
 
 ![Deploy and Copy the address in Remix](/img/guides/lsp1/remix-deploy-copy-address.jpeg)
 
-### Set the address of the URD in the UP's storage
+You have successfully deployed your **CustomUniversalReceiverDelegate** contract on LUKSO Testnet! 🙌🏻
 
-After deploying the contract, we need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage.
+We now need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage. We will do that **via a custom script in step 2** using web3.js or ether.js.
 
-### Install dependencies
+### 2 - Install dependencies for script
 
 Make sure you have the following dependencies installed before beginning this tutorial:
 
@@ -128,83 +138,49 @@ npm install web3 @lukso/lsp-smart-contracts
 
 </Tabs>
 
-### Imports, constants and EOA
+### 3 - Create instance of the 🆙
 
-First, we need to get the _ABI_ for the Universal Profile contract.
-After that we need to store the address of our Universal Profile and the new URD address.  
-Then we will initialize the controller address.
+First we need to create an instance of the [`UniversalProfile`](../../contracts/contracts/UniversalProfile.md) contract. We will need:
+
+- the `UniversalProfile` ABI from the [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) package.
+- the Universal Profile's address, retrieved by [connecting to the UP Browser Extension](../universal-profile/connect-profile/connect-up.md)
 
 <Tabs>
 
   <TabItem value="ethers" label="ethers">
 
-```typescript title="Imports, Constants & EOA"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+```typescript title="Create instance of Universal Profile"
 import { ethers } from 'ethers';
-
-// constants
-const provider = new ethers.providers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.network',
-);
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
-
-// setup your EOA
-const privateKey = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(privateKey).connect(provider);
-```
-
-  </TabItem>
-  
-  <TabItem value="web3" label="web3">
-
-```typescript title="Imports, Constants & EOA"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
-import Web3 from 'web3';
 
-// constants
-const web3 = new Web3('https://rpc.testnet.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
+// connect to the UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
 
-// setup your EOA
-const privateKey = '0x...';
-const EOA = web3.eth.accounts.wallet.add(privateKey);
-```
+// Retrieve address of the Universal Profile
+const accounts = await provider.send('eth_requestAccounts', []);
 
-  </TabItem>
-
-</Tabs>
-
-### Create UP contract instance
-
-At this point we need to create an instance of the [**Universal Profile**](../../standards/universal-profile/lsp0-erc725account.md) contract:
-
-<Tabs>
-
-  <TabItem value="ethers" label="ethers">
-
-```typescript title="Contract instance for the Universal Profile"
 // create an instance of the Universal Profile
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfile.abi,
-);
+const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
 ```
 
   </TabItem>
   
   <TabItem value="web3" label="web3">
 
-```typescript title="Contract instance for the Universal Profile"
+```typescript title="Create instance of Universal Profile"
+import Web3 from 'web3';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+// connect to the UP Browser Extension
+const provider = new Web3(window.lukso);
+
+// Retrieve address of the Universal Profile
+const accounts = await provider.eth.requestAccounts();
+
 // create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
-  universalProfileAddress,
+  accounts[0], // Universal Profile address
 );
 ```
 
@@ -212,7 +188,7 @@ const universalProfile = new web3.eth.Contract(
 
 </Tabs>
 
-### Setup the LSP1 Universal Receiver Delegate
+### 4 - Setup the LSP1 Universal Receiver Delegate
 
 Finally, we need to send the transaction that will update the URD of the Universal Profile.
 
@@ -220,24 +196,38 @@ Finally, we need to send the transaction that will update the URD of the Univers
 
   <TabItem value="ethers" label="ethers">
 
-```typescript title="Update the Universal Profile data"
+```typescript title="Update the Universal Profile's URD"
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+// code from step 2.2 ...
+
 // Update the profile data
-await universalProfile
-  .connect(EOA)
-  .setData(URD_DATA_KEY, universalProfileURDAddress);
+await universalProfile.setData(
+  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+  '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  {
+    from: accounts[0],
+  },
+);
 ```
 
   </TabItem>
   
   <TabItem value="web3" label="web3">
 
-```typescript title="Update the Universal Profile data"
+```typescript title="Update the Universal Profile's URD"
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+// code from step 2.2 ...
+
 // Update the profile data
 await universalProfile.methods
-  .setData(URD_DATA_KEY, universalProfileURDAddress)
+  .setData(
+    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+    '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  )
   .send({
-    from: EOA.address,
-    gasLimit: 600_000,
+    from: accounts[0],
   });
 ```
 
@@ -252,32 +242,27 @@ await universalProfile.methods
   <TabItem value="ethers" label="ethers">
 
 ```typescript title="Update the Universal Profile URD"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import { ethers } from 'ethers';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-// constants
-const provider = new ethers.providers.JsonRpcProvider(
-  'https://rpc.testnet.lukso.network',
-);
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
+// connect to the UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
 
-// setup your EOA
-const privateKey = '0x...'; // your EOA private key (controller address)
-const EOA = new ethers.Wallet(privateKey).connect(provider);
+// Retrieve address of the Universal Profile
+const accounts = await provider.send('eth_requestAccounts', []);
 
 // create an instance of the Universal Profile
-const universalProfile = new ethers.Contract(
-  universalProfileAddress,
-  UniversalProfile.abi,
-);
+const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
 
-// execute the executeCalldata on the Key Manager
-await universalProfile
-  .connect(EOA)
-  .setData(URD_DATA_KEY, universalProfileURDAddress);
+// Update the profile data
+await universalProfile.setData(
+  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+  '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  {
+    from: accounts[0],
+  },
+);
 ```
 
   </TabItem>
@@ -285,32 +270,30 @@ await universalProfile
   <TabItem value="web3" label="web3">
 
 ```typescript title="Update the Universal Profile URD"
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
 import Web3 from 'web3';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-// constants
-const web3 = new Web3('https://rpc.testnet.lukso.network');
-const URD_DATA_KEY = ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate;
-const universalProfileAddress = '0x...';
-const universalProfileURDAddress = '0x...';
+// connect to the UP Browser Extension
+const provider = new Web3(window.lukso);
 
-// setup your EOA
-const privateKey = '0x...';
-const EOA = web3.eth.accounts.wallet.add(privateKey);
+// Retrieve address of the Universal Profile
+const accounts = await provider.eth.requestAccounts();
 
 // create an instance of the Universal Profile
 const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
-  universalProfileAddress,
+  accounts[0], // Universal Profile address
 );
 
-// execute the executeCalldata on the Key Manager
+// Update the profile data
 await universalProfile.methods
-  .setData(URD_DATA_KEY, universalProfileURDAddress)
+  .setData(
+    ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+    '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  )
   .send({
-    from: EOA.address,
-    gasLimit: 600_000,
+    from: accounts[0],
   });
 ```
 
@@ -320,7 +303,9 @@ await universalProfile.methods
 
 ## Accepting specific Assets
 
-To accept specific assets, you should differentiate between the different assets being transferred to you. One way to do it is to have a mapping inside the URD contract that states if the asset being transferred **is allowed to be received or not**. Only the owner should be allowed to add these asset addresses. For simplicity, the owner could be the EOA address deploying the contract.
+To accept specific assets, you should differentiate between the different assets being transferred to you.
+
+One way to do it is to have a mapping inside the URD contract that states if the asset being transferred **is allowed to be received or not**. Only the owner should be allowed to add these asset addresses. For simplicity, the owner could be the EOA address deploying the contract.
 
 Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)** section and replace the solidity code with the one written below.
 
@@ -328,7 +313,7 @@ Repeat the deployment steps in **[Rejecting all Assets](#rejecting-all-assets)**
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-// This code is only used for guides puprose, it is working but not verified nor audited.
+// This code is only used for guides and demonstration purpose
 
 // modules
 import {LSP1UniversalReceiverDelegateUP} from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";
@@ -355,16 +340,17 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
     function setAllowedAssets(address assets) public onlyOwner {
         allowedAssets[assets] = true;
     }
+
     /**
-    * @dev Reverts when the asset being transferred is not allowed. If allowed, the address of the asset
-    * will be registered inside the storage, and removed when balance of the asset equal 0, according to
-    * the LSP5-ReceivedAssers standard.
-    *
-    * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
-    * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.
-    * @param typeId The typeId representing the context of the call to the universalReceiver function on the UniversalProfile.
-    * @param typeId The data sent to the universalReceiver function on the UniversalProfile.
-    */
+     * @dev Reverts when the asset being transferred is not allowed. If allowed, the address of the asset
+     * will be registered inside the storage, and removed when balance of the asset equal 0, according to
+     * the LSP5-ReceivedAssers standard.
+     *
+     * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
+     * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.
+     * @param typeId The typeId representing the context of the call to the universalReceiver function on the UniversalProfile.
+     * @param typeId The data sent to the universalReceiver function on  the UniversalProfile.
+     */
     function universalReceiverDelegate(
         address caller,
         uint256 value,
@@ -381,4 +367,12 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 }
 ```
 
-The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is equal to 0. It will also reject assets that are not allowed. Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is 0. It will also reject assets that are not allowed.
+
+Since this code will need **[SUPER_SETDATA Permission](../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+
+:::info
+
+A similar mapping example that list allowed assets can be found in the guide [**Create an LSP1 Forwarder**](./create-receiver-forwarder.md)
+
+:::
