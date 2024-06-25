@@ -39,13 +39,16 @@ You can verify if a contract contains a specific set of ERC725Y keys (= **metada
 
 Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
 
-<!-- prettier-ignore-start -->
+### Example - Detect Universal Profile data keys
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
-const erc725js = new ERC725(lsp3ProfileSchema, '<myProfileAddress>', 'https://4201.rpc.thirdweb.com',
+const erc725js = new ERC725(
+  lsp3ProfileSchema,
+  '0x70DACA6E328dfBc8801b8efa4de9e579cC151b86', // Universal Profile contract address
+  'https://4201.rpc.thirdweb.com',
   {
     ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
   },
@@ -58,12 +61,34 @@ const isLSP3 = await erc725js.getData('SupportedStandards:LSP3Profile');
 console.log(isLSP3);
 ```
 
-<!-- prettier-ignore-end -->
+### Example - Detect Digital Asset data keys
 
-<details>
-    <summary>Example for detecting LSP9Vault data keys</summary>
+```js
+import { ERC725 } from '@erc725/erc725.js';
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 
-<!-- prettier-ignore-start -->
+const erc725js = new ERC725(
+  lsp3ProfileSchema,
+  '0xF860E9B7fC187D58132216849f1f5DBfd02fcb8C', // Digital Asset contract address
+  'https://4201.rpc.thirdweb.com',
+  {
+    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
+  },
+);
+
+// Fetch the supported storage standard of LSP4
+let isLSP4 = await erc725js.getData('SupportedStandards:LSP4DigitalAsset');
+
+// Verify if the standard is supported (value !== null)
+console.log(isLSP4);
+```
+
+<!--
+Commenting temporarily until Vault Standard becomes more stable and is re-worked.
+DO NOT REMOVE this code example please 🙏🏻🧉
+-->
+
+<!-- ### Example - Detect Vault data keys
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -83,36 +108,7 @@ let isLSP9 = await erc725js.getData('SupportedStandards:LSP9Vault');
 
 // Verify if the standard is supported (value !== null)
 console.log(isLSP9);
-```
-
-<!-- prettier-ignore-end -->
-
-</details>
-
-<details>
-    <summary>Example for detecting LSP4DigitalAsset metadata data keys</summary>
-
-```js
-import { ERC725 } from '@erc725/erc725.js';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
-
-const erc725js = new ERC725(
-  lsp3ProfileSchema,
-  '0x6395b330F063F96579aA8F7b59f2584fb9b6c3a5',
-  'https://4201.rpc.thirdweb.com',
-  {
-    ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
-  },
-);
-
-// Fetch the supported storage standard of LSP4
-let isLSP4 = await erc725js.getData('SupportedStandards:LSP4DigitalAsset');
-
-// Verify if the standard is supported (value !== null)
-console.log(isLSP4);
-```
-
-</details>
+``` -->
 
 :::note
 

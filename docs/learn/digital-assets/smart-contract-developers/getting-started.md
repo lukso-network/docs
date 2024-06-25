@@ -83,14 +83,12 @@ We now have a base Hardhat setup that we can use to develop and deploy our smart
 
 ## Configure contracts and networks
 
-By default, the deployment will be to your local network and default Solidity version. If you want to deploy and verify your smart contracts on LUKSO, you will have to
+To deploy and verify your smart contracts on LUKSO Testnet, add the following in your [`hardhat.config.ts`](https://github.com/lukso-network/lukso-playground) file:
 
-- specify `solidity` compiler settings, so LSP presets match your contract version and EVM requirements
-- add the parameters of the `networks` and their related private keys
-- define the `etherscan` APIs to verify contracts on the networks
-
-<details>
-<summary>Final Hardhat config file from the [Playground repo](https://github.com/lukso-network/lukso-playground)</summary>
+- `solidity` version and compiler settings.
+- LUKSO Testnet under the `networks`.
+- a `.env` file with the `PRIVATE_KEY` used to deploy.
+- the `etherscan` APIs to verify contracts on [Blockscout](https://explorer.testnet.lukso.network).
 
 ```js title="hardhat.config.ts"
 import { HardhatUserConfig } from 'hardhat/config';
@@ -101,8 +99,7 @@ LoadEnv();
 
 const config: HardhatUserConfig = {
   solidity: {
-    // Default compiler version for all contracts
-    version: '0.8.19',
+    version: '0.8.19', // Default compiler version
     settings: {
       optimizer: {
         enabled: true,
@@ -134,8 +131,6 @@ const config: HardhatUserConfig = {
 
 export default config;
 ```
-
-</details>
 
 ## Use LSP smart contract presets
 
