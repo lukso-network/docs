@@ -44,7 +44,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
@@ -52,7 +52,7 @@ npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
@@ -70,7 +70,7 @@ Finally, we will need a private key with the proper _permissions_, in our case [
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Imports, Constants & EOA initialization"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -91,7 +91,7 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Imports, Constants & EOA initialization"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -122,7 +122,7 @@ At this point we will create instance for the [**Universal Profile**](../../stan
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Universal Profile contract instance"
 // create an instance of the UP
@@ -134,7 +134,7 @@ const universalProfile = new web3.eth.Contract(
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Universal Profile contract instance"
 // create an instance of the UP
@@ -154,7 +154,7 @@ Now we need to generate a data key & a data value for the **Allowed Calls** that
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Data key & value for updating the Allowed Calls of a Controller address"
 const allowedCallsDataKey = // constructing the data key of allowed addresses
@@ -178,7 +178,7 @@ const allowedCallsDataValue = encodeKey(allowedCallsSchema, [
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Data key & value for updating the Allowed Calls of a Controller address"
 const allowedCallsDataKey = // constructing the data key of allowed addresses
@@ -210,7 +210,7 @@ Finally we will send a transaction that will update the Universal Profile Allowe
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 <!-- prettier-ignore-start -->
 
@@ -229,7 +229,7 @@ await universalProfile.methods.setData(
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Set the data key on the Universal Profile"
 // Set the AllowedCalls data key on the Universal Profile
@@ -246,7 +246,7 @@ await universalProfile
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 <!-- prettier-ignore-start -->
 
@@ -304,7 +304,7 @@ await universalProfile.methods.setData(
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Setting Allowed Addresses for the 3rd party address"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
