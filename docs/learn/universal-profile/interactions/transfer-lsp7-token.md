@@ -36,17 +36,17 @@ The following code snippets require the installation of the following libraries:
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
-
-```shell
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3">
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
@@ -64,35 +64,7 @@ You will need:
 After setting up the contracts, you can set up the parameters for the LSP7 token [`transfer(...)`](https://docs.lukso.tech/contracts/contracts/LSP7DigitalAsset/#transfer) function.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
-
-```js
-import Web3 from 'web3';
-
-// Import schemas and ABI
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
-
-const web3 = new Web3(window.lukso);
-
-await web3.eth.requestAccounts();
-const accounts = await web3.eth.getAccounts();
-
-// Instantiate the token with an address
-const myToken = new web3.eth.Contract(LSP7Mintable.abi, '0x...');
-
-await myToken.methods
-  .transfer(
-    accounts[0], // sender address
-    '0x...', // receiving address
-    15, // token amount
-    false, // force parameter
-    '0x', // additional data
-  )
-  .send({ from: accounts[0] });
-```
-
-  </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+    <TabItem value="ethers" label="ethers">
 
 ```js
 import { ethers } from 'ethers';
@@ -121,4 +93,33 @@ await myToken.transfer(
 ```
 
   </TabItem>
+  <TabItem value="web3" label="web3">
+
+```js
+import Web3 from 'web3';
+
+// Import schemas and ABI
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+
+const web3 = new Web3(window.lukso);
+
+await web3.eth.requestAccounts();
+const accounts = await web3.eth.getAccounts();
+
+// Instantiate the token with an address
+const myToken = new web3.eth.Contract(LSP7Mintable.abi, '0x...');
+
+await myToken.methods
+  .transfer(
+    accounts[0], // sender address
+    '0x...', // receiving address
+    15, // token amount
+    false, // force parameter
+    '0x', // additional data
+  )
+  .send({ from: accounts[0] });
+```
+
+  </TabItem>
+
 </Tabs>

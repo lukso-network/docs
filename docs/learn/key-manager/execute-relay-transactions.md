@@ -202,15 +202,15 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
     <TabItem value="web3" label="web3">
 
-<!-- prettier-ignore-start -->
-
 ```typescript
 // ...
 
 const channelId = 0;
 
 // Retrieve the nonce of the EOA controller
-const nonce = await keyManager.methods.getNonce(controllerAccount.address, channelId).call();
+const nonce = await keyManager.methods
+  .getNonce(controllerAccount.address, channelId)
+  .call();
 
 const validityTimestamps = 0; // No validity timestamp set
 const msgValue = 0; // Amount of native tokens to fund the UP with while calling
@@ -225,8 +225,6 @@ const abiPayload = universalProfile.methods
   )
   .encodeABI();
 ```
-
-<!-- prettier-ignore-end -->
 
   </TabItem>
 
@@ -251,8 +249,6 @@ The transaction message is constructed by signing the:
 - Amount of native tokens to fund the UP with while calling (`msgValue`)
 - The ABI Payload of operations that will be executed (`abiPayload`)
 
-<!-- prettier-ignore-start -->
-
 <Tabs groupId="provider-lib">
 
   <TabItem value="ethers" label="ethers">
@@ -270,34 +266,34 @@ const encodedMessage = ethers.solidityPacked(
   [
     // MUST be number `25`
     // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000019`
-    LSP25_VERSION,    
+    LSP25_VERSION,
 
     // e.g: `4201` for LUKSO Testnet
     // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000001069`
-    chainId,      
+    chainId,
 
     // e.g: nonce number 5 of the signing controller that wants to execute the payload
     // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000005`
-    nonce,          
-                      
+    nonce,
+
     // e.g: valid until 1st January 2025 at midnight (GMT).
     // Timestamp = 1735689600
     // Encoded value: `0x0000000000000000000000000000000000000000000000000000000067748580`
-    validityTimestamps,      
+    validityTimestamps,
 
     // e.g: not funding the contract with any LYX (0)
     // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000000`
-    msgValue,    
-           
+    msgValue,
+
     // e.g: send 3 LYX to address 0xcafecafecafecafecafecafecafecafecafecafe
     // by calling execute(uint256,address,uint256,bytes)
-    // Encoded value: `0x44c028fe00000000000000000000000000000000000000000000000000000000        
-    //                 00000000000000000000000000000000cafecafecafecafecafecafecafecafeca 
-    //                 fecafecafecafe00000000000000000000000000000000000000000000000029a2 
+    // Encoded value: `0x44c028fe00000000000000000000000000000000000000000000000000000000
+    //                 00000000000000000000000000000000cafecafecafecafecafecafecafecafeca
+    //                 fecafecafecafe00000000000000000000000000000000000000000000000029a2
     //                 241af62c0000000000000000000000000000000000000000000000000000000000
     //                 000000008000000000000000000000000000000000000000000000000000000000
     //                 00000000`
-    abiPayload,         
+    abiPayload,
   ],
 );
 
@@ -325,15 +321,15 @@ const chainId = await web3.eth.getChainId();
 const encodedMessage = web3.utils.encodePacked(
   // MUST be number `25`
   // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000019`
-  { value: LSP25_VERSION, type: 'uint256' },   
+  { value: LSP25_VERSION, type: 'uint256' },
 
   // e.g: `4201` for LUKSO Testnet
   // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000001069`
-  { value: chainId, type: 'uint256' },            
+  { value: chainId, type: 'uint256' },
 
   // e.g: nonce number 5 of the signing controller that wants to execute the payload
   // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000005`
-  { value: nonce, type: 'uint256' }, 
+  { value: nonce, type: 'uint256' },
 
   // e.g: not funding the contract with any LYX (0)
   // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000000`
@@ -341,13 +337,13 @@ const encodedMessage = web3.utils.encodePacked(
 
   // e.g: not funding the contract with any LYX (0)
   // Encoded value: `0x0000000000000000000000000000000000000000000000000000000000000000`
-  { value: msgValue, type: 'uint256' },   
+  { value: msgValue, type: 'uint256' },
 
   // e.g: send 3 LYX to address 0xcafecafecafecafecafecafecafecafecafecafe
   // by calling execute(uint256,address,uint256,bytes)
-  // Encoded value: `0x44c028fe00000000000000000000000000000000000000000000000000000000        
-  //                 00000000000000000000000000000000cafecafecafecafecafecafecafecafeca 
-  //                 fecafecafecafe00000000000000000000000000000000000000000000000029a2 
+  // Encoded value: `0x44c028fe00000000000000000000000000000000000000000000000000000000
+  //                 00000000000000000000000000000000cafecafecafecafecafecafecafecafeca
+  //                 fecafecafecafe00000000000000000000000000000000000000000000000029a2
   //                 241af62c0000000000000000000000000000000000000000000000000000000000
   //                 000000008000000000000000000000000000000000000000000000000000000000
   //                 00000000`
@@ -367,8 +363,6 @@ const { signature } = await eip191Signer.signDataWithIntendedValidator(
   </TabItem>
 
 </Tabs>
-
-<!-- prettier-ignore-end -->
 
 After the signature has been generated, it can be sent to the third party to execute the transaction using [`executeRelayCall`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall) on the Key Manager of the profile. To verify all transaction parts, the third-party will need the following parameters:
 

@@ -37,19 +37,19 @@ To complete this guide, we will need some initial constants values and install s
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
 
-```shell
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
@@ -76,8 +76,38 @@ Below you will find some examples to perform the following:
 </div>
 
 <Tabs>
+
+  <TabItem value="ethers" label="ethers">
+
+```typescript title="mintTokens.ts"
+import { ethers } from 'ethers';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+
+const TOKEN_CONTRACT_ADDRESS = '0x...';
+
+await ethers.provider.send('eth_requestAccounts', []);
+const universalProfile = await ethers.getSigner();
+
+const myToken = new ethers.Contract(TOKEN_CONTRACT_ADDRESS, LSP7Mintable.abi);
+
+const mintTxn = await myToken.mint(
+  universalProfile.address, // recipient address
+  ethers.parseUnits('100', 'ether'), // token amount (mint 100 tokens)
+  true, // force parameter
+  '0x', // additional data
+  {
+    from: universalProfile,
+  },
+);
+console.log(mintTxn);
+
+const balance = await myToken.balanceOf(signer.address);
+console.log('🏦 Balance: ', balance.toString());
+```
+
+  </TabItem>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="mintTokens.ts"
 import Web3 from 'web3';
@@ -110,37 +140,6 @@ console.log('🏦 Balance: ', balance.toString());
 ```
 
   </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="mintTokens.ts"
-import { ethers } from 'ethers';
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
-
-await ethers.provider.send('eth_requestAccounts', []);
-const universalProfile = await ethers.getSigner();
-
-const myToken = new ethers.Contract(
-  '0x6E872Eb9942db637cd82ad7C33C2206eACB81181', // Token contract address
-  LSP7Mintable.abi,
-);
-
-const mintTxn = await myToken.mint(
-  universalProfile.address, // recipient address
-  ethers.parseUnits('100', 'ether'), // token amount (mint 100 tokens)
-  true, // force parameter
-  '0x', // additional data
-  {
-    from: universalProfile,
-  },
-);
-console.log(mintTxn);
-
-const balance = await myToken.balanceOf(signer.address);
-console.log('🏦 Balance: ', balance.toString());
-```
-
-  </TabItem>
 
 </Tabs>
 
@@ -156,8 +155,42 @@ console.log('🏦 Balance: ', balance.toString());
 </div>
 
 <Tabs>
+
+  <TabItem value="ethers" label="ethers">
+
+```typescript title="refineBurntPix.ts"
+import { ethers } from 'ethers';
+
+// Constants:
+//  - BurntPix Registry contract to interact with
+const BURNT_PIX_REGISTRY_ADDRESS = "0x3983151E0442906000DAb83c8b1cF3f2D2535F82";
+
+//  - bytes32 ID of the BurntPix to refine
+const BURNT_PIX_ID "0x0000000000000000000000000a3c1ed77de72af03acfaeab282a06e6fbeed5a8";
+
+// 1. Connect to UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
+
+const accounts = await provider.send('eth_requestAccounts', []);
+const universalProfile = accounts[0];
+
+// 2. Create an instance of the BurntPix Registry contract
+const burntPixRegistry = new ethers.Contract(
+  BURNT_PIX_REGISTRY_ADDRESS,
+  ["function refine(bytes32 tokenId, uint256 iterations) external"]
+);
+
+// Perform 500 iteration to refine a specific Burnt Pix
+await contract.refine(BURNT_PIX_ID, "500", {
+  from: universalProfile,
+  gasPrice: ethers.formatUnits("1", 'gwei'),
+  gasLimit: 15_000_000,
+});
+```
+
+  </TabItem>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="refineBurntPix.ts"
 import Web3 from 'web3';
@@ -169,72 +202,16 @@ const accounts = await provider.eth.requestAccounts();
 const universalProfile = accounts[0];
 
 // 2. Create an instance of the BurntPix Registry contract
-const burntPixRegistry = new web3.eth.Contract(
-  '0x3983151E0442906000DAb83c8b1cF3f2D2535F82', // BurntPix Registry contract address
-  [
-    // ABI of the `refine(bytes32,uint256)` function
-    {
-      inputs: [
-        {
-          internalType: 'bytes32',
-          name: 'tokenId',
-          type: 'bytes32',
-        },
-        {
-          internalType: 'uint256',
-          name: 'iterations',
-          type: 'uint256',
-        },
-      ],
-      name: 'refine',
-      outputs: [],
-      stateMutability: 'nonpayable',
-      type: 'function',
-    },
-  ],
-);
-
-await contract.methods
-  .refine(
-    '0x0000000000000000000000000a3c1ed77de72af03acfaeab282a06e6fbeed5a8', // bytes32 tokenId of the BurntPix to refine
-    '500', // Perform 500 iteration to refine
-  )
-  .send({
-    from: universalProfile,
-    gasPrice: web3.utils.fromWei('10000000000', 'gwei'),
-    gasLimit: 15_000_000,
-  });
-```
-
-  </TabItem>
-  
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="refineBurntPix.ts"
-import { ethers } from 'ethers';
-
-// 1. Connect to UP Browser Extension
-const provider = new ethers.BrowserProvider(window.lukso);
-
-const accounts = await provider.send('eth_requestAccounts', []);
-const universalProfile = accounts[0];
-
-// 2. Create an instance of the BurntPix Registry contract
-const burntPixRegistry = new ethers.Contract(
-  '0x3983151E0442906000DAb83c8b1cF3f2D2535F82', // BurntPix Registry contract address
-  ['function refine(bytes32 tokenId, uint256 iterations) external'],
-);
+const burntPixRegistry = new web3.eth.Contract(BURNT_PIX_REGISTRY_ADDRESS, [
+  refineFunctionABI,
+]);
 
 // Perform 500 iteration to refine a specific Burnt Pix
-await contract.refine(
-  '0x0000000000000000000000000a3c1ed77de72af03acfaeab282a06e6fbeed5a8', // bytes32 tokenId of the BurntPix to refine
-  '500', // Perform 500 iteration to refine
-  {
-    from: universalProfile,
-    gasPrice: ethers.formatUnits('10', 'gwei'),
-    gasLimit: 15_000_000,
-  },
-);
+await contract.methods.refine(BURNT_PIX_ID, '500').send({
+  from: universalProfile,
+  gasPrice: web3.utils.fromWei('1000000000', 'gwei'),
+  gasLimit: 15_000_000,
+});
 ```
 
   </TabItem>

@@ -39,7 +39,37 @@ Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is 
 
 You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider](https://eips.ethereum.org/EIPS/eip-6963) standardization to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
 
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers">
+
 ```js
+import { ethers } from 'ethers';
+
+let providers = [];
+
+window.addEventListener("eip6963:announceProvider", (event) => {
+  providers.push(event.detail);
+});
+
+// Request installed providers
+window.dispatchEvent(new Event("eip6963:requestProvider"));
+
+...
+
+// pick a provider to instantiate (providers[n].info)
+const provider = new ethers.BrowserProvider(providers[0].provider);
+
+const accounts = await provider.eth.requestAccounts();
+console.log('Connected with', accounts[0]);
+```
+
+  </TabItem>
+
+  <TabItem value="web3" label="web3">
+
+```js
+import Web3 from "web3";
+
 let providers = [];
 
 window.addEventListener("eip6963:announceProvider", (event) => {
@@ -58,6 +88,9 @@ const accounts = await provider.eth.requestAccounts();
 console.log('Connected with', accounts[0]);
 ```
 
+  </TabItem>
+</Tabs>
+
 :::tip Example Implementation
 
 If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
@@ -73,7 +106,7 @@ You can use third-party libraries to connect to various wallet extensions with e
 
 Both libraries come with built-in UI elements and allow you to support multiple extensions without them all supporting [EIP-6963](https://eips.ethereum.org/EIPS/eip-6963).
 
-<Tabs groupId="wallet-lib">
+<Tabs groupId="provider-lib">
 <TabItem value="walletconnect" label="Wallet Connect" default>
 
 <table>
@@ -120,7 +153,7 @@ You can check out the implementation of both libraries within our [dApp Boilerpl
 
 ### Installation
 
-<Tabs groupId="wallet-lib">
+<Tabs groupId="provider-lib">
 <TabItem value="walletconnect" label="Wallet Connect" default>
 
 You can install the Web3 Modal using [different configurations](https://docs.walletconnect.com/web3modal/javascript/about). The default package utilizes the Ethers.js library, which will be used in this example:
@@ -145,7 +178,7 @@ npm i @web3-onboard/core @lukso/web3-onboard-config @web3-onboard/injected-walle
 
 After the installation, you can proceed to configure the library to support the LUKSO network and your dApp.
 
-<Tabs groupId="wallet-lib">
+<Tabs groupId="provider-lib">
 <TabItem value="walletconnect" label="Wallet Connect" default>
 
 ```js
@@ -295,13 +328,13 @@ const web3OnboardComponent: OnboardAPI = Onboard({
 
 ### Connect
 
-<Tabs groupId="wallet-lib">
+<Tabs groupId="provider-lib">
 <TabItem value="walletconnect" label="Wallet Connect">
 
 To set and access the Wallet Connect provider within your dApp, you can call the integrated `open()` method provided by the `createWeb3Modal` instance. The library will show a connection window with all supported wallets. You can then fetch the active account and set it as the default provider within your dApp.
 
 <Tabs groupId="provider-lib">
-<TabItem value="ethersjs" label="ethers.js" default>
+<TabItem value="ethers" label="ethers" default>
 
 ```js
 // Trigger the connection process and screen
@@ -324,7 +357,7 @@ walletConnectInstance.subscribeProvider(
 ```
 
   </TabItem>
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```js
 // Trigger the connection process and screen
@@ -355,7 +388,7 @@ walletConnectInstance.subscribeProvider(
 To set and access the Web3-Onboard provider within your dApp, you can call the integrated `connectWallet()` method provided by the `@web3-onboard/core` library. The library will show a connection window with all supported wallets. You can then fetch the active account and set it as the default provider within your dApp.
 
 <Tabs groupId="provider-lib">
-<TabItem value="ethersjs" label="ethers.js" default>
+<TabItem value="ethers" label="ethers" default>
 
 ```js
 // Trigger the connection process and screen
@@ -368,7 +401,7 @@ if (connectedWallets.length > 0) {
 ```
 
   </TabItem>
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```js
 // Trigger the connection process and screen
@@ -388,7 +421,7 @@ if (connectedWallets.length > 0) {
 
 ### Disconnect
 
-<Tabs groupId="wallet-lib">
+<Tabs groupId="provider-lib">
 <TabItem value="walletconnect" label="Wallet Connect">
 
 To disconnect your wallet, you have to call the `disconnect()` method provided by the `createWeb3Modal` instance.
@@ -475,16 +508,14 @@ Alternatively to the `window.lukso`, the equivalent `window.ethereum` object can
   <TabItem value="ethers" label="ethers">
 
 ```js
-const providerObject = window.lukso || window.ethereum;
-const provider = new ethers.BrowserProvider(providerObject);
+const provider = new ethers.BrowserProvider(window.lukso || window.ethereum);
 ```
 
   </TabItem>
   <TabItem value="web3" label="web3">
 
 ```js
-const providerObject = window.lukso || window.ethereum;
-const provider = new Web3(providerObject);
+const provider = new Web3(window.lukso || window.ethereum);
 ```
 
   </TabItem>

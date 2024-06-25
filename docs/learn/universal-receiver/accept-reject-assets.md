@@ -119,19 +119,19 @@ Make sure you have the following dependencies installed before beginning this tu
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
 
-```shell title="Install the dependencies"
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```shell title="Install the dependencies"
+npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
@@ -146,8 +146,26 @@ First we need to create an instance of the [`UniversalProfile`](../../contracts/
 - the Universal Profile's address, retrieved by [connecting to the UP Browser Extension](../universal-profile/connect-profile/connect-up.md)
 
 <Tabs>
+
+  <TabItem value="ethers" label="ethers">
+
+```typescript title="Create instance of Universal Profile"
+import { ethers } from 'ethers';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+// connect to the UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
+
+// Retrieve address of the Universal Profile
+const accounts = await provider.send('eth_requestAccounts', []);
+
+// create an instance of the Universal Profile
+const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
+```
+
+  </TabItem>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Create instance of Universal Profile"
 import Web3 from 'web3';
@@ -164,24 +182,6 @@ const universalProfile = new web3.eth.Contract(
   UniversalProfile.abi,
   accounts[0], // Universal Profile address
 );
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Create instance of Universal Profile"
-import { ethers } from 'ethers';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-
-// connect to the UP Browser Extension
-const provider = new ethers.BrowserProvider(window.lukso);
-
-// Retrieve address of the Universal Profile
-const accounts = await provider.send('eth_requestAccounts', []);
-
-// create an instance of the Universal Profile
-const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
 ```
 
   </TabItem>
@@ -193,10 +193,29 @@ const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
 Finally, we need to send the transaction that will update the URD of the Universal Profile.
 
 <Tabs>
-  
-  <TabItem value="web3js" label="web3.js">
 
-```typescript title="Update the Universal Profile data"
+  <TabItem value="ethers" label="ethers">
+
+```typescript title="Update the Universal Profile's URD"
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+// code from step 2.2 ...
+
+// Update the profile data
+await universalProfile.setData(
+  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
+  '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
+  {
+    from: accounts[0],
+  },
+);
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
+
+```typescript title="Update the Universal Profile's URD"
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
 
 // code from step 2.2 ...
@@ -214,12 +233,27 @@ await universalProfile.methods
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+</Tabs>
 
-```typescript title="Update the Universal Profile data"
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+### Final code
 
-// code from step 2.2 ...
+<Tabs>
+
+  <TabItem value="ethers" label="ethers">
+
+```typescript title="Update the Universal Profile URD"
+import { ethers } from 'ethers';
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+// connect to the UP Browser Extension
+const provider = new ethers.BrowserProvider(window.lukso);
+
+// Retrieve address of the Universal Profile
+const accounts = await provider.send('eth_requestAccounts', []);
+
+// create an instance of the Universal Profile
+const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
 
 // Update the profile data
 await universalProfile.setData(
@@ -232,14 +266,8 @@ await universalProfile.setData(
 ```
 
   </TabItem>
-
-</Tabs>
-
-### Final code
-
-<Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Update the Universal Profile URD"
 import Web3 from 'web3';
@@ -267,34 +295,6 @@ await universalProfile.methods
   .send({
     from: accounts[0],
   });
-```
-
-</TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-```typescript title="Update the Universal Profile URD"
-import { ethers } from 'ethers';
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts/constants.js';
-import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-
-// connect to the UP Browser Extension
-const provider = new ethers.BrowserProvider(window.lukso);
-
-// Retrieve address of the Universal Profile
-const accounts = await provider.send('eth_requestAccounts', []);
-
-// create an instance of the Universal Profile
-const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
-
-// Update the profile data
-await universalProfile.setData(
-  ERC725YDataKeys.LSP1.LSP1UniversalReceiverDelegate, // URD Data Key from `@lukso/lsp-smart-contracts` package
-  '0x...', // address of the Universal Receiver Delegate contract deployed in step 1
-  {
-    from: accounts[0],
-  },
-);
 ```
 
   </TabItem>

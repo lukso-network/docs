@@ -50,7 +50,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
@@ -58,7 +58,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
@@ -82,7 +82,7 @@ You can quickly compile and get a contract's ABI in [**Remix IDO**](https://remi
 
 <Tabs>
 
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -102,7 +102,7 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -135,7 +135,7 @@ Further we will create instances for our contracts
 
 <Tabs>
 
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Contracts instances"
 // Create Universal Profile contract instance
@@ -154,7 +154,7 @@ const targetContract = new web3.eth.Contract(
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Contracts instances"
 // Create Universal Profile contract instance
@@ -188,7 +188,7 @@ Encoding the calldata that will be be executed on the Target Contract.
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Target calldata"
 // 1. encode the calldata to be run at the targetContract
@@ -200,7 +200,7 @@ const targetCalldata = targetContract.methods
 
   </TabItem>
   
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Target calldata"
 // 1. encode the calldata to be run at the targetContract
@@ -221,7 +221,7 @@ Encoding the calldata that will be be executed on the Vault. This calldata will 
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Vault calldata"
 // 2. encode the calldata to be run on the Vault,
@@ -233,7 +233,7 @@ const vaultCalldata = await vault.methods
 
   </TabItem>
   
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Vault calldata"
 // 2. encode the calldata to be run on the Vault,
@@ -256,7 +256,7 @@ The final step is to execute the encoded calldata through the Universal Profile.
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Send transaction"
 // Execute the calldata through the Universal Profile
@@ -268,7 +268,7 @@ await universalProfile.methods.execute(0, vaultAddress, 0, vaultCalldata).send({
 
   </TabItem>
   
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Send transaction"
 // Execute the calldata through the Universal Profile
@@ -285,7 +285,7 @@ await universalProfile
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3">
 
 ```typescript title="Interacting with other contracts through the vault"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -336,7 +336,7 @@ await universalProfile.methods.execute(0, vaultAddress, 0, vaultCalldata).send({
 
   </TabItem>
   
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Interacting with other contracts through the vault"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
