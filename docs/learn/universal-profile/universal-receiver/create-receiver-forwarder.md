@@ -245,7 +245,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
 }
 ```
 
-Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md#universalreceiverdelegate) function. The flow works as follow:
+Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md#universalreceiverdelegate) function. The flow works as follow:
 
 1. (lines 83-90) We first verify that the caller `msg.sender` is a Universal Profile.
 2. (lines 94-103) We checked that we are being notified by a smart contract. If we manage to call the `balanceOf(address)` function, we assume it is an LSP7 Token contract.
@@ -255,7 +255,7 @@ Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../.
    1. (line 112) We extract **only** this `amount` from the `data` received . The other infos in the data are not necessary so not used.
    2. (line 121) We calculate the proportion to re-transfer (local variable `tokensToTransfer`,) according to the `percentage` set (state variable line 37).
 
-5. (line 123-129) We encode a call to the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 Token contract, using the Solidity built-in function `encodeCall`. The 4 parameters being encoded for the function call are:
+5. (line 123-129) We encode a call to the [`transfer(...)`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 Token contract, using the Solidity built-in function `encodeCall`. The 4 parameters being encoded for the function call are:
 
    - `from`: (`msg.sender`) = this UP that received the tokens.
    - `to`: (`recipient`) = the address that will receives the percentage of tokens.
@@ -263,11 +263,11 @@ Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../.
    - `allowNonLSP1Recipient`: indicates if we can transfer to any address (`true`), or if it must be an LSP1 enabled one (`false`).
    - `data`: no additional data
 
-6. (line 131) After having saved this abi-encoded calldata, we execute this call via the UP. This is done by using the [`execute(...)`](../../contracts/contracts/UniversalProfile.md#execute) function on the 🆙 (**a generic execution function**). We know from step 1 that the `msg.sender` is a Universal Profile. So we can safely explicitly cast `msg.sender` to an `ERC725X` contract to use the [`execute(...)`](../../contracts/contracts/UniversalProfile.md#execute) function. The parameters passed are:
+6. (line 131) After having saved this abi-encoded calldata, we execute this call via the UP. This is done by using the [`execute(...)`](../../../contracts/contracts/UniversalProfile.md#execute) function on the 🆙 (**a generic execution function**). We know from step 1 that the `msg.sender` is a Universal Profile. So we can safely explicitly cast `msg.sender` to an `ERC725X` contract to use the [`execute(...)`](../../../contracts/contracts/UniversalProfile.md#execute) function. The parameters passed are:
    - `operationType`: 0 = CALL operation
    - `target`: the `notifier` (function parameter, line 76) = our LSP7 contract
    - `value`: 0 = no LYX are sent
-   - `data`: the `tokenTransferCalldata` variable. This is our encoded call to the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 token, generated in step 5.
+   - `data`: the `tokenTransferCalldata` variable. This is our encoded call to the [`transfer(...)`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 token, generated in step 5.
 
 </TabItem>
 
@@ -275,10 +275,10 @@ Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../.
 
 :::info Notice
 
-For this method to work, the LSP1 Forwarder needs to be authorized as an operator (via [`authorizeOperator(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)) to spend tokens on behalf of the 🆙.
+For this method to work, the LSP1 Forwarder needs to be authorized as an operator (via [`authorizeOperator(...)`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)) to spend tokens on behalf of the 🆙.
 
 It can be cumbersome to manage, as the `LSP1Forwarder` contract would need to be approved as an operator for every single token we want to allow to re-transfer. This would require multiple `authorizeOperator(...)` calls to multiple token contracts, creating more transactions that can be gas-expensive.
-(can be mitigated by grouping these in an [`executeBatch(...)`](../../contracts/contracts/UniversalProfile.md#executebatch)).
+(can be mitigated by grouping these in an [`executeBatch(...)`](../../../contracts/contracts/UniversalProfile.md#executebatch)).
 
 In comparison, the first design (via `UP.execute(...)` call) is easier to manage, as the LSP1Forwarder can be [granted permission once](../key-manager/grant-permissions.md) for multiple tokens via one single `setData(...)` call.
 
@@ -428,7 +428,7 @@ See our notice above the code snippet for the [**main drawbacks of the method**]
 
 :::
 
-Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md#universalreceiverdelegate) function. The flow works as follow:
+Let's dive in some of the details of the [`universalReceiverDelegate(...)`](../../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md#universalreceiverdelegate) function. The flow works as follow:
 
 1. (lines 83-90) We first verify that the caller `msg.sender` is a Universal Profile.
 2. (lines 94-103) We checked that we are being notified by a smart contract. If we manage to call the `balanceOf(address)` function, we assume it is an LSP7 Token contract.
@@ -496,10 +496,6 @@ const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.lukso.network',
 );
 
-// constants
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-const TOKEN_RECIPIENT = '0x...';
-const PERCENTAGE = '0x...';
 // You can update the value of the allowed LSP7 token
 const MY_USDC_TOKEN = '0x63890ea231c6e966142288d805b9f9de7e0e5927';
 
@@ -518,8 +514,8 @@ const lsp1ForwarderFactory = new ethers.ContractFactory(
 );
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 console.log(
@@ -557,8 +553,8 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 // including the instance of the `lsp1Forwarder` contract.
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
@@ -572,11 +568,8 @@ const { keys, values } = erc725.encodeData([
   },
 ]);
 
-// Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -613,8 +606,8 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 // including the instance of the `lsp1Forwarder` contract.
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
@@ -631,10 +624,8 @@ const { keys, values } = erc725.encodeData([
 ]);
 
 // Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -660,16 +651,14 @@ import LSP7DigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP7DigitalAs
 const MY_USDC_TOKEN = '0x63890ea231c6e966142288d805b9f9de7e0e5927';
 
 const lsp1Forwarder = await lsp1ForwarderFactory.deploy(
-  TOKEN_RECIPIENT as string,
-  PERCENTAGE as string,
+  '0xd33D2Cd7035e508043983283CD8E870dfAbEA844', // Token recipient
+  '20', // Percentage % of token to re-transfer to Token Recipient
   [MY_USDC_TOKEN],
 );
 
 // Create an instance of our Universal Profile
-const UNIVERSAL_PROFILE_ADDRESS = '0x...';
-
 const universalProfile = new ethers.Contract(
-  UNIVERSAL_PROFILE_ADDRESS,
+  '0x...', // Universal Profile address
   UniversalProfile.abi,
   signer,
 );
@@ -691,10 +680,7 @@ const authTxWithBytes = await universalProfile.execute(
   authBytes,
 );
 await authTxWithBytes.wait();
-console.log(
-  '✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡',
-  UNIVERSAL_PROFILE_ADDRESS,
-);
+console.log('✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡');
 ```
 
 </TabItem>

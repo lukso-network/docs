@@ -21,20 +21,21 @@ The following code snippets require the installation of the following libraries:
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
-
-```shell
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
+  <TabItem value="web3" label="web3">
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+
 </Tabs>
 
 ## Imports and constants
@@ -42,24 +43,7 @@ npm install ethers @lukso/lsp-smart-contracts
 Import `web3.js`/`ethers`, the [`LSP8IdentifiableDigitalAsset`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) ABI from [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) and create an instance of this contract with the `lsp8ContractAddress`.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
-
-```javascript
-import Web3 from 'web3';
-
-// import smart contract ABI
-import LSP8IdentifiableDigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
-
-const web3 = new Web3(window.lukso);
-
-await web3.eth.requestAccounts();
-const accounts = await web3.eth.getAccounts();
-
-const lsp8ContractAddress = '0x...';
-```
-
-  </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```javascript
 import { ethers } from 'ethers';
@@ -77,6 +61,24 @@ const lsp8ContractAddress = '0x...';
 ```
 
   </TabItem>
+  <TabItem value="web3" label="web3">
+
+```javascript
+import Web3 from 'web3';
+
+// import smart contract ABI
+import LSP8IdentifiableDigitalAsset from '@lukso/lsp-smart-contracts/artifacts/LSP8IdentifiableDigitalAsset.json';
+
+const web3 = new Web3(window.lukso);
+
+await web3.eth.requestAccounts();
+const accounts = await web3.eth.getAccounts();
+
+const lsp8ContractAddress = '0x...';
+```
+
+  </TabItem>
+
 </Tabs>
 
 ## Instantiate the LSP8 contract
@@ -84,22 +86,22 @@ const lsp8ContractAddress = '0x...';
 Create an instance of the LSP8 collection contract as shown below:
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
-
-```javascript
-const myToken = new web3.eth.Contract(
-  LSP8IdentifiableDigitalAsset.abi,
-  lsp8ContractAddress,
-);
-```
-
-  </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers">
 
 ```javascript
 const lsp8Contract = new ethers.Contract(
   lsp8ContractAddress,
   LSP8IdentifiableDigitalAsset.abi,
+);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3">
+
+```javascript
+const myToken = new web3.eth.Contract(
+  LSP8IdentifiableDigitalAsset.abi,
+  lsp8ContractAddress,
 );
 ```
 
@@ -122,10 +124,7 @@ Here we will use the following parameters as examples:
 
 You can use the `encodeData` function from the [_erc725.js_](../../tools/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
 
-<details>
-    <summary>Code example to encode a <code>VerifiableURI</code> using <i>erc725.js</i></summary>
-
-```js
+```js title="encodeVerifiableURI.ts"
 import { ERC725 } from '@erc725/erc725.js';
 
 const schema = [
@@ -151,14 +150,36 @@ myErc725.encodeData([
 ]);
 ```
 
-</details>
-
 You can also check the code snippet example in the LSP2 specs to learn in details the [encoding of a `VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
 
 :::
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
+
+  <TabItem value="ethers" label="ethers">
+
+```javascript
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+// import and instantiate contract from previous steps
+
+// change this with the actual tokenId to update metadata for
+const tokenId =
+  '0x0000000000000000000000000000000000000000000000000000000000000001';
+
+// change this with the actual VerifiableURI of the metadata uploaded somewhere (S3, IPFS, etc...)
+const metadataValue = '0x...';
+
+await lsp8Contract.setDataForTokenId(
+  tokenId,
+  ERC725YDataKeys.LSP4['LSP4Metadata'],
+  metadataValue,
+);
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3">
 
 ```javascript
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
@@ -182,26 +203,5 @@ await lsp8Contract.methods
 ```
 
   </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
 
-```javascript
-import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
-
-// import and instantiate contract from previous steps
-
-// change this with the actual tokenId to update metadata for
-const tokenId =
-  '0x0000000000000000000000000000000000000000000000000000000000000001';
-
-// change this with the actual VerifiableURI of the metadata uploaded somewhere (S3, IPFS, etc...)
-const metadataValue = '0x...';
-
-await lsp8Contract.setDataForTokenId(
-  tokenId,
-  ERC725YDataKeys.LSP4['LSP4Metadata'],
-  metadataValue,
-);
-```
-
-  </TabItem>
 </Tabs>

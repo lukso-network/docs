@@ -38,8 +38,8 @@ First let's initialize _erc725.js_ and connect it to a specific Universal Profil
 import { ERC725 } from '@erc725/erc725.js';
 
 // This contains the schemas of the data keys:
-// - AddressPermissions[] -> contains the list of controllers
-// - `AddressPermission:Permissions:<controller-address>
+// - AddressPermissions[] -> list of controllers
+// - `AddressPermission:Permissions:<controller-address> -> permission of a specific controller
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
 // Sample Profile Address
