@@ -432,22 +432,6 @@ To execute a previously signed transaction, the relayer will need all the follow
 
 The relayer can now call the [`executeRelayCall`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall) function on the Key Manager (`keyManagerAddress`) of the profile, passing all these informations as function arguments.
 
-:::info Additional Safety measures
-
-In case the user **does not provide** the _Key Manager address_ or _nonce_ or you want to proceed with **additional safety checks**, you can retrieve or cross-check the values by using the _Universal Profile address_ and the _EOA controller_ that was used to signed into the service:
-
-```js
-// Call the Universal Profile contract to get the Key Manager
-const keyManagerAddress = await universalProfile.owner();
-
-// Retrieve the nonce of the EOA controller
-const nonce = await keyManager.getNonce(controllerAccount.address, channelId);
-```
-
-The full code setup can be found in the [Prepare Relay Call](#prepare-the-relay-call) section and is similar for both, signer and execution service.
-
-:::
-
 <Tabs groupId="provider-lib">
 
   <TabItem value="ethers" label="ethers" default>
