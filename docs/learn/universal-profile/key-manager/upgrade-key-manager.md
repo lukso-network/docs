@@ -38,7 +38,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
@@ -46,7 +46,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
@@ -65,7 +65,7 @@ Create a JavaScript file and add the following imports on the top of the file:
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -82,7 +82,7 @@ const universalProfileAddress = '0x...';
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -105,7 +105,7 @@ In order to send any transaction on the blockchain you need an EOA. In our case 
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Initialise EOA"
 const account = new ethers.Wallet(privateKey).connect(provider);
@@ -113,7 +113,7 @@ const account = new ethers.Wallet(privateKey).connect(provider);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Initialise EOA"
 const account = web3.eth.accounts.wallet.add(privateKey);
@@ -129,7 +129,7 @@ In order to transfer ownership of your Universal Profile, you need to initialize
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Create an instance of the old Key Manager"
 const universalProfile = new ethers.Contract(
@@ -140,7 +140,7 @@ const universalProfile = new ethers.Contract(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Create an instance of the old Key Manager"
 const universalProfile = new web3.eth.Contract(
@@ -159,7 +159,7 @@ Deploy a new LSP6 Key Manager with the latest updates.
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Deploy a new Key Manager"
 const newKeyManager = await new ethers.ContractFactory(
@@ -172,7 +172,7 @@ const newKeyManager = await new ethers.ContractFactory(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Deploy a new Key Manager"
 const newKeyManager = new web3.eth.Contract(LSP6KeyManager.abi);
@@ -200,7 +200,7 @@ Create a calldata for the [`transferOwnership(address)`](../../../contracts/cont
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
 await universalProfile
@@ -210,7 +210,7 @@ await universalProfile
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
 await universalProfile.methods.transferOwnership(newKeyManager.address).send({
@@ -230,7 +230,7 @@ Create a calldata for the [`acceptOwnership()`](../../../contracts/contracts/LSP
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const acceptOwnershipCalldata = new ethers.Interface(
@@ -242,7 +242,7 @@ await newKeyManager.connect(account).execute(acceptOwnershipCalldata);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const acceptOwnershipCalldata = new web3.eth.Contract(
@@ -272,7 +272,7 @@ The upgrade has been completed successfully.
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="upgrade-lsp6.js"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -322,7 +322,7 @@ await upgradeLSP6();
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript title="upgrade-lsp6.js"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';

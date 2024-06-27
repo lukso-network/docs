@@ -40,7 +40,7 @@ Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is 
 You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider](https://eips.ethereum.org/EIPS/eip-6963) standardization to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 import { ethers } from 'ethers';
@@ -65,7 +65,7 @@ console.log('Connected with', accounts[0]);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from "web3";
@@ -334,7 +334,7 @@ const web3OnboardComponent: OnboardAPI = Onboard({
 To set and access the Wallet Connect provider within your dApp, you can call the integrated `open()` method provided by the `createWeb3Modal` instance. The library will show a connection window with all supported wallets. You can then fetch the active account and set it as the default provider within your dApp.
 
 <Tabs groupId="provider-lib">
-<TabItem value="ethers" label="ethers" default>
+<TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
 
 ```js
 // Trigger the connection process and screen
@@ -357,7 +357,7 @@ walletConnectInstance.subscribeProvider(
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 // Trigger the connection process and screen
@@ -388,7 +388,7 @@ walletConnectInstance.subscribeProvider(
 To set and access the Web3-Onboard provider within your dApp, you can call the integrated `connectWallet()` method provided by the `@web3-onboard/core` library. The library will show a connection window with all supported wallets. You can then fetch the active account and set it as the default provider within your dApp.
 
 <Tabs groupId="provider-lib">
-<TabItem value="ethers" label="ethers" default>
+<TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
 
 ```js
 // Trigger the connection process and screen
@@ -401,7 +401,7 @@ if (connectedWallets.length > 0) {
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 // Trigger the connection process and screen
@@ -457,14 +457,14 @@ if (currentWallet) {
 You can use the `window.lukso` object, tailored for a direct integration with the UP Browser Extension. This approach allows developers to engage directly with the UP Browser Extension without the need to consider compatibility with other extensions.
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```sh
 npm install ethers
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```sh
 npm install web3
@@ -474,7 +474,7 @@ npm install web3
 </Tabs>
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 import { ethers } from 'ethers';
@@ -485,7 +485,7 @@ console.log('Connected with', accounts[0]);
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from 'web3';
@@ -505,14 +505,14 @@ Alternatively to the `window.lukso`, the equivalent `window.ethereum` object can
 :::
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 const provider = new ethers.BrowserProvider(window.lukso || window.ethereum);
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 const provider = new Web3(window.lukso || window.ethereum);

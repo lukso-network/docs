@@ -21,14 +21,14 @@ The following code snippets require the installation of the following libraries:
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts
@@ -43,7 +43,7 @@ npm install web3 @lukso/lsp-smart-contracts
 Import `web3.js`/`ethers`, the [`LSP8IdentifiableDigitalAsset`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) ABI from [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) and create an instance of this contract with the `lsp8ContractAddress`.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```javascript
 import { ethers } from 'ethers';
@@ -61,7 +61,7 @@ const lsp8ContractAddress = '0x...';
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 import Web3 from 'web3';
@@ -86,7 +86,7 @@ const lsp8ContractAddress = '0x...';
 Create an instance of the LSP8 collection contract as shown below:
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```javascript
 const lsp8Contract = new ethers.Contract(
@@ -96,7 +96,7 @@ const lsp8Contract = new ethers.Contract(
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 const myToken = new web3.eth.Contract(
@@ -156,7 +156,7 @@ You can also check the code snippet example in the LSP2 specs to learn in detail
 
 <Tabs groupId="web3-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```javascript
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
@@ -179,7 +179,7 @@ await lsp8Contract.setDataForTokenId(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
