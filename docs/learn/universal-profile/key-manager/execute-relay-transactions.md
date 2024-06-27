@@ -46,7 +46,7 @@ You will need the following dependencies to follow this guide:
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts @lukso/eip191-signer.js
@@ -54,7 +54,7 @@ npm install ethers @lukso/lsp-smart-contracts @lukso/eip191-signer.js
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts @lukso/eip191-signer.js
@@ -70,7 +70,7 @@ First, create an instance of the [Universal Profile](../../../standards/universa
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers" default>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}} default>
 
 ```typescript
 import { ethers } from 'ethers';
@@ -102,7 +102,7 @@ const keyManager = new ethers.Contract(
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3"attributes={{className: "tab_web3"}} >
 
 ```typescript
 import Web3 from 'web3';
@@ -149,8 +149,8 @@ The first step will therefore be to ABI-encode an [`execute(...)`](../../../cont
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers" default>
-  
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}default>
+
 ```ts
 // Generate the payload of the transaction
 const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
@@ -163,7 +163,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```ts
 // Generate the payload of the transaction
@@ -203,7 +203,7 @@ function executeRelayCall(
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript
 // initiate contract instances from Step 2
@@ -227,7 +227,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
   </TabItem>
 
-    <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```typescript
 // initiate contract instances from Step 2
@@ -281,7 +281,7 @@ The transaction message is constructed by encoding and signing the following:
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 :::danger Caution when using your controller's private key
 
@@ -345,7 +345,7 @@ const { signature } = await eip191Signer.signDataWithIntendedValidator(
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 :::danger Caution when using your controller's private key
 
@@ -434,7 +434,7 @@ The relayer can now call the [`executeRelayCall`](../../../contracts/contracts/L
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers" default>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}default >
 
 ```javascript
 import { ethers } from 'ethers';
@@ -474,7 +474,7 @@ console.log('Transaction receipt:', receipt);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```javascript
 import Web3 from 'web3';
