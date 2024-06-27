@@ -118,6 +118,6 @@ Choose your path below:
   </tr>
 </tbody></table>
 
-## Finally, join the Community
+## Join the Community
 
 If you need anything else, then either [contact the team building LUKSO](https://support.lukso.network) or ask the [Developer Community on Discord](https://discord.com/channels/359064931246538762/585786253992132609) are happy to help.
