@@ -213,7 +213,7 @@ console.log('Contract deployed at:', tipMeExtensionAddress);
 
 :::info Requirements
 
-The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permission otherwise the call will fail. Check the [keyManager guides](../../key-manager/get-controller-permissions.md) to learn more about permissions.
+The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permission otherwise the call will fail. Check the [keyManager guides](../key-manager/get-controller-permissions.md) to learn more about permissions.
 
 :::
 
@@ -452,7 +452,7 @@ console.log('Contract deployed at:', tipMeExtensionAddress);
 
 :::info Requirements
 
-The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permissions, otherwise, the call will fail. Check the [keyManager guides](../../key-manager/get-controller-permissions.md) to learn more about permissions.
+The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and `CHANGEEXTENSIONS` permissions, otherwise, the call will fail. Check the [keyManager guides](../../universal-profile/key-manager/get-controller-permissions.md) to learn more about permissions.
 
 :::
 

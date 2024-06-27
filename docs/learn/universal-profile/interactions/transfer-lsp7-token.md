@@ -78,15 +78,17 @@ await provider.send('eth_requestAccounts', []);
 
 const signer = await provider.getSigner();
 
-// Instanciate the token with an address
-const myToken = new ethers.Contract('0x...', LSP7Mintable.abi);
+const myToken = new ethers.Contract(
+  '0xF860E9B7fC187D58132216849f1f5DBfd02fcb8C', // Token contract address
+  LSP7Mintable.abi,
+);
 
 await myToken.transfer(
   signer.getAddress(), // sender address
-  '0x...', // recipient's address
+  '0x48AC443777DC66798510f687cf0b449721195Ea9', // recipient's address (EOA or contract)
   15, // amount of tokens
-  false, // force flag
-  '0x', // data
+  true, // force flag, false to only allow contract with a Universal Receiver, true for any address
+  '0x', // any additional data to send alongside the transfer
 );
 ```
 
@@ -119,5 +121,5 @@ await myToken.methods
 ```
 
   </TabItem>
-  
+
 </Tabs>

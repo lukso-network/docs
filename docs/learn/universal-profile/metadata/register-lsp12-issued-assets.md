@@ -240,9 +240,9 @@ const { keys: lsp12DataKeys, values: lsp12Values } = erc725.encodeData([
   </TabItem>
 </Tabs>
 
-## Instantiate the Universal Profile contract
+## Set Data on the Universal Profile
 
-Create an instance of the Universal Profile contract to read or set the issued assets on:
+Create an instance of the Universal Profile contract to set the issued assets on. We use the `setDataBatch(...)` function to initially set or update multiple data keys.
 
 <Tabs groupId="web3-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
@@ -253,6 +253,8 @@ const myUPContract = new ethers.Contract(
   UniversalProfileArtifact.abi,
   myWallet,
 );
+
+await myUPContract.setDataBatch(lsp12DataKeys, lsp12Values);
 ```
 
   </TabItem>

@@ -473,14 +473,9 @@ Now that we have the contracts ready to be deployed, let's create a script that 
 
 :::note
 
-Please make sure you compile your newly created contracts before creating the scripts.
-You can run `npx hardhat compile` to compile your contracts.
-Since the contracts are quite big, you may run into a compilation error. If this is the case, you should update your compiler settings in the `hardhat.config.ts` file.
-This is what we used to compile the contracts:
+Please make sure you compile your newly created contracts before creating the scripts with `npx hardhat compile`.
+Since the contracts are quite big, you may run into a compilation error. If this is the case, update your compiler settings in `hardhat.config.ts` with different optimizer settings. We used the following value to compile the contracts:
 
-<details>
-
-<summary>Click to expand/collapse the script.</summary>
 ```typescript title="hardhat.config.ts"
   solidity: {
     version: "0.8.20",
@@ -492,8 +487,6 @@ This is what we used to compile the contracts:
     },
   }
 ```
-
-</details>
 
 :::
 
@@ -507,6 +500,9 @@ We have done it and will add them directly in the following scripts files.
 :::
 
 Let's start by creating a `lsp8CollectionMetadata.json` file in the `metadata/` folder and set the following metadata:
+
+<details>
+  <summary>Click to see the <code>lsp8CollectionMetadata.json</code> file</summary>
 
 ```json title="./metadata/lsp8CollectionMetadata.json"
 {
@@ -537,7 +533,12 @@ Let's start by creating a `lsp8CollectionMetadata.json` file in the `metadata/` 
 }
 ```
 
+</details>
+
 We will do the same with the LSP7 Sub-Collection metadata. Let's create a `lsp7SubCollectionMetadata.json` file in the `metadata` folder and set the following metadata:
+
+<details>
+  <summary>Click to see the <code>lsp7SubCollectionMetadata.json</code> file</summary>
 
 ```json title="./metadata/lsp7SubCollectionMetadata.json"
 {
@@ -588,6 +589,8 @@ We will do the same with the LSP7 Sub-Collection metadata. Let's create a `lsp7S
   }
 }
 ```
+
+</details>
 
 ### Deploy the LSP8 Collection script
 
