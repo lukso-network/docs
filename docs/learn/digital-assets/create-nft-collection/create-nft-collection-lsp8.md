@@ -1,6 +1,6 @@
 ---
-sidebar_label: '🗃 Create an NFT Collection with LSP8'
-sidebar_position: 6
+sidebar_label: '🗃 Collection with LSP8'
+sidebar_position: 3
 description: Learn how to create an NFT Collection on LUKSO using LSP8 Identifiable Digital Asset standard.
 ---
 
@@ -13,7 +13,7 @@ This tutorial explains how to create a collection of unique Digital Assets based
 
 :::note
 
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](./getting-started.md) section.
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../getting-started.md) section.
 
 :::
 
@@ -26,14 +26,6 @@ The full code of this example can be found in the smart contract section of the 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DMpeMswK12w?si=DqttxMJIv6c4H0FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-
-## Setup
-
-To create your custom contract based on the [LUKSO smart contracts](../../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
-
-```shell
-npm install @lukso/lsp-smart-contracts
-```
 
 ## Create the Smart Contracts
 
@@ -111,11 +103,7 @@ deployLSP8Collection().catch((error) => {
 });
 ```
 
-If you get issues related to `typechain-types`, you need to generate the types with:
 
-```
-npx hardhat typechain
-```
 
 <!-- prettier-ignore-end -->
 
@@ -127,7 +115,7 @@ npx hardhat run --network luksoTestnet scripts/deploy.ts
 
 :::tip
 
-The [Create a deploy script](./create-lsp7-token#create-a-deploy-script.md) section of the Create LSP7 Token guide gives more details and information about how to deploy the contracts.
+The [Create a deploy script](../create-lsp7-token#create-a-deploy-script.md) section of the Create LSP7 Token guide gives more details and information about how to deploy the contracts.
 
 :::
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🌄 Create an LSP7 Token'
+sidebar_label: '🪙 Create a Token'
 sidebar_position: 2
 description: Learn how to create a custom Digital Asset (token) on LUKSO using LSP7 standard.
 ---
@@ -7,9 +7,9 @@ description: Learn how to create a custom Digital Asset (token) on LUKSO using L
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create an LSP7 Token
+# 🪙 Create an LSP7 Token
 
-This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../../contracts/introduction.md) of our documentation.
+This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../contracts/introduction.md) of our documentation.
 
 :::tip
 
@@ -19,26 +19,14 @@ You can learn about the project setup and Hardhat workflow by checking the [Gett
 
 ## Create the Token
 
-:::info
-
-For instructions on deploying a contract using the Universal Profile Browser Extension, please refer to the [Deploy Contracts Guide](../../universal-profile/interactions/deploy-contracts.md) for dApp developers.
-
-:::
-
-:::tip Code repository
-
-You can find all the contracts and scripts of the guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
-
-:::
-
 For our sample deployment of the LSP7 token, we will use the following presets:
 
-- [`LSP7Mintable`](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow creating new assets on the smart contract.
-- [`LSP7Burnable`](../../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): allow tokens to be removed from the supply.
+- [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow creating new assets on the smart contract.
+- [`LSP7Burnable`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): allow tokens to be removed from the supply.
 
 You can then import them within your Solidity contract file:
 
-```solidity title="contracts/MyCustomToken.sol"
+```solidity title="contracts/Token/MyCustomToken.sol"
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.9;
 
@@ -59,7 +47,7 @@ After inheriting, the contract **expects the mandatory parameters** related to t
 
 You can specify the parameters and the mint function as seen below.
 
-```solidity title="contracts/MyCustomToken.sol"
+```solidity title="contracts/Token/MyCustomToken.sol"
 // ...
 
 contract CustomToken is LSP7Mintable, LSP7Burnable {
@@ -94,29 +82,19 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
 
 :::info
 
-To adjust the parameters of the mint, please have a look at the related [LSP7 function documentation](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint). You can find the **full documentation** for [LSP7](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable/#parameters-16) and other **presets** within the [Technical ABI Reference](https://docs.lukso.tech/contracts/contracts/ERC725/).
-
-:::
-
-## Compile the Token
-
-After you've set all mandatory parameters or added custom functionality, you can test and compile the smart contract:
-
-```bash
-npx hardhat compile
-```
-
-:::tip
-
-Add the `--verbose` and `--show-stack-traces` flags to get further debugging information and gas data.
-
-This is especially important if a lot of functionality is inherited, as the bytecode might succeed the EVM limit of 24k bytes. You can find more information about optimization settings within the [Getting Started](./getting-started.md) section.
+To adjust the parameters of the mint, please have a look at the related [LSP7 function documentation](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint). You can find the **full documentation** for [LSP7](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable/#parameters-16) and other **presets** within the [Technical ABI Reference](https://docs.lukso.tech/contracts/contracts/ERC725/).
 
 :::
 
 ## Deploy the Token
 
-After the contract file has been successfully compiled, you are ready to create a script to deploy its token on the [LUKSO Testnet network](../../../../networks/testnet/parameters). To deploy your token on chain we **recommend using a controller and address of a Universal Profile**, so your asset will be connected and fetchable from your on-chain persona. Optionally, you can also use a regular Externally Owned Account (EOA).
+:::info
+
+For instructions on deploying a contract using the Universal Profile Browser Extension, please refer to the [Deploy Contracts Guide](../universal-profile/interactions/deploy-contracts.md) for dApp developers.
+
+:::
+
+To deploy your token on chain we **recommend using a controller and address of a Universal Profile**, so your asset will be connected and fetchable from your on-chain persona. Optionally, you can also use a regular Externally Owned Account (EOA).
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Deploy with Universal Profile">
@@ -128,7 +106,7 @@ If you are deploying a contract as Universal Profile, you will have to prepare t
 
 :::info Address Generation
 
-You can mimic calling the [`execute()`](../../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall`. This address then matches the contract that will later be deployed using the same parameters.
+You can mimic calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile using `staticCall`. This address then matches the contract that will later be deployed using the same parameters.
 
 :::
 
@@ -253,7 +231,7 @@ deployToken()
 If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](./getting-started.md) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
 
 ```bash
-npx hardhat --network luksoTestnet run scripts/deployMyCustomToken.ts
+npx hardhat --network luksoTestnet run scripts/deployLSP7AsUP.ts
 ```
 
 :::tip
@@ -279,5 +257,5 @@ module.exports = [
 To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](./getting-started.md) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
 
 ```bash
-npx hardhat verify <myTokenAddress> --constructor-args ./verify/myTokenParameters.ts --network luksoTestnet
+npx hardhat verify <myTokenAddress> --constructor-args ./verify/myCustomToken.ts --network luksoTestnet
 ```

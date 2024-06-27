@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Read Asset Data'
-sidebar_position: 1
+sidebar_label: '📑 Read Asset Data'
+sidebar_position: 5
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Read Digital Asset Data
+# 📑 Read Digital Asset Data
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img

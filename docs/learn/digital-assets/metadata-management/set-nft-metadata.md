@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Set LSP8 NFT Metadata
 
-In this guide you will learn how to set the metadata of a specific NFT (represented by its `bytes32 tokenId`) part of a [LSP8 Identifiable Digital Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) collection.
+In this guide you will learn how to set the metadata of a specific NFT (represented by its `bytes32 tokenId`) part of a [LSP8 Identifiable Digital Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) collection.
 
 ## Setup
 
@@ -122,7 +122,7 @@ Here we will use the following parameters as examples:
 
 :::info
 
-You can use the `encodeData` function from the [_erc725.js_](../../tools/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
+You can use the `encodeData` function from the [_erc725.js_](../../../tools/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
 
 ```js title="encodeVerifiableURI.ts"
 import { ERC725 } from '@erc725/erc725.js';

@@ -1,6 +1,6 @@
 ---
-sidebar_label: '👾 Create an NFT Collection with LSP7'
-sidebar_position: 5
+sidebar_label: '👾 Collection with LSP7'
+sidebar_position: 4
 description: Learn how to create an NFT Collection on LUKSO using LSP7 Digital Asset standard.
 ---
 
@@ -10,7 +10,7 @@ This tutorial explores how to create a collection of [digital assets](../../../s
 
 :::note
 
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](./getting-started.md) section.
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../getting-started.md) section.
 
 :::
 
