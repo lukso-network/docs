@@ -6,10 +6,6 @@ description: LUKSO tools and services overview.
 
 # Tools and Services
 
-## I am a developer. Where do I start?
-
-If you are a developer and want to use the LUKSO Blockchain, you can start by experimenting with the [Public Testnet](../../networks/testnet/parameters.md) and reading the [developer's guides](../../learn/expert-guides/universal-profile/create-profile.md). Please join our [Discord](https://discord.gg/lukso) and get in touch if you have ideas for the new digital lifestyle economy!
-
 ## Are there any sample projects to look at?
 
 If you want to experiment with simple code snippets for LSPs, please look at the [LUKSO Playground](https://up-test-dapp.lukso.tech). The project can be used right in the browser or cloned locally. You can also play with our [Sample dApps](https://examples.lukso.tech), covering token and NFT creation, simple contract interactions, and a Forum prototype.

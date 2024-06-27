@@ -3,13 +3,21 @@ import TabItem from '@theme/TabItem';
 
 import CallToActionButton from '../components/CallToActionButton';
 
-# Install the Universal Profile (UP) Browser Extension
+# Install the Universal Profile 🆙 Browser Extension
 
 :::warning
 
 The UP Browser Extension is in a **BETA Phase**.
 
 :::
+
+The Universal Profile, your smart account on LUSKO, is conveniently accessible via the UP Browser Extension from your web browser. It is designed to be user-friendly and can be used seamlessly across multiple dApps
+
+Unlike traditional wallets, it prioritizes a profile-centric approach, giving you all the features of a Web3 wallet but with enhanced ease of use and security.
+
+Customizable and extensible, your Universal Profile effortlessly keeps your digital assets like tokens and NFTs organized and manageable. It also simplifies and secures the management of permissions granted to dApps, making your blockchain interactions safer and more controlled.
+
+Universal Profile makes interacting with the blockchain safe and straightforward. With the UP Browser Extension, navigating the web3 digital landscape has never been easier, safer and more intuitive than ever before.
 
 <div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
 
@@ -25,8 +33,8 @@ The UP Browser Extension is in a **BETA Phase**.
 
 </div>
 
-<div className="row" style={{ marginBottom: '2em' }}>
-  <div className="col">
+<div className="row" >
+  <div className="col" style={{ margin: '2em 0' }}>
     <CallToActionButton
       text="Download for Chrome / Brave"
       color="white"
@@ -34,7 +42,7 @@ The UP Browser Extension is in a **BETA Phase**.
       icon="fa6-brands:chrome"
     />
   </div>
-  <div className="col">
+  <div className="col" style={{ margin: '2em 0' }}>
     <CallToActionButton
       text="Download for Edge"
       color="white"
@@ -57,46 +65,46 @@ The UP Browser Extension is in a **BETA Phase**.
 <div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapp-up-test-dapp.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
-    
     <a href="https://up-test-dapp.lukso.tech">
-      <h3>UP Test dApp</h3>
-    </a>
+      <img src="/img/example-dapp-up-test-dapp.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
+    
+        <h3>UP Test dApp</h3>
 
-    <i>LUKSO Demo App</i>
+        <i>LUKSO Demo App</i>
+    </a>
 
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapps.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
-    
     <a href="https://examples.lukso.tech">
-      <h3>dApps Examples</h3>
-    </a>
-
-    <i>LSP Implementation Examples</i>
-
-  </div>
-
-  <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapp-tsx-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+      <img src="/img/example-dapps.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
     
-    <a href="https://txs.app">
-      <h3>Txs.App</h3>
-    </a>
+      <h3>dApps Examples</h3>
 
-    <i>Examine transactions happening in realtime in the LUKSO Network in a more user-friendly way!</i>
+      <i>LSP Implementation Examples</i>
+    </a>
 
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px' }} />
+    <a href="https://txs.app">
+      <img src="/img/example-dapp-tsx-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
+    
+      <h3>Txs.App</h3>
 
-    <a href="https://erc725-inspect.lukso.tech/">
-      <h3>ERC725 Inspect</h3>
+      <i>Examine transactions happening in realtime in the LUKSO Network in a more user-friendly way!</i>
     </a>
 
-    <i>Analyse the information and metadata in the storage of your UP, Token or NFT.</i>
+  </div>
+
+  <div className="col" style={{ marginBottom: '2em' }}>
+    <a href="https://erc725-inspect.lukso.tech/">
+      <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
+
+      <h3>ERC725 Inspect</h3>
+
+      <i>Analyse the information and metadata in the storage of your UP, Token or NFT.</i>
+    </a>
 
   </div>
 

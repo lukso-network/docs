@@ -9,7 +9,6 @@ Live URL: <https://docs.lukso.tech/>
 
 **When the docs pages are built, documentation of the following repositories will be pulled in from the respective repos and updated automatically:**
 
-- [lsp-factory.js](https://github.com/lukso-network/tools-lsp-factory/tree/develop/docs)
 - [erc725.js](https://github.com/ERC725Alliance/erc725.js/tree/develop/docs)
 
 **NOTE:**
