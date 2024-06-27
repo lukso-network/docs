@@ -27,6 +27,7 @@ The setup will use Pinata as a file provider. Pinata is an IPFS pinning service 
 
 - [IPFS Network Documentation](https://docs.ipfs.tech/)
 - [Pinata Developer Documentation](https://docs.pinata.cloud/introduction)
+- [Pastel Network Documentation](https://docs.pastel.network/sense-protocol/master)
 
 :::
 
@@ -86,12 +87,86 @@ const url = await provider.upload(file);
 console.log('File URL:', url);
 ```
 
-*Using Sense**
+**Using Sense**
+
+To upload files via IPFS using Sense Protocol, please setup api key and add thata as environment variables. 
 
 ```js
 import { SenseUploader } from '@lukso/data-provider-sense';
 const provider = new SenseUploader(import.meta.env.SENSE_API_KEY);
 ```
+
+React Example
+
+```js
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { SenseUploader } from "@lukso/data-provider-sense";
+import { urlResolver } from "./shared";
+
+export interface Props {
+  apiKey: string;
+}
+
+export default function UploadLocal({ apiKey }: Props) {
+  const provider = useMemo(
+    () => new SenseUploader(apiKey),
+    []
+  );
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [url, setUrl] = useState("");
+  const [hash, setHash] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  const upload = useCallback(async () => {
+    const file = fileInput?.current?.files?.item(0) as File;
+    const formData = new FormData();
+    formData.append("file", file); // FormData keys are called fields
+    const { hash, url } = await provider.upload(file);
+    setUrl(url);
+    setHash(hash);
+    const destination = urlResolver.resolveUrl(url);
+    setImageUrl(destination);
+  }, []);
+
+  return (
+    <div>
+      <input ref={fileInput} type="file" accept="image/*" />
+      <button onClick={upload}>Upload</button>
+      <div className="url">{url}</div>
+      <div>
+        <img className="image" src={imageUrl} alt="uploaded image" />
+      </div>
+    </div>
+  );
+}
+```
+
+Can use above component like following.
+```js
+<Upload client:only="react" apiKey="import.meta.env.SENSE_API_KEY" />
+```
+
+API endpoint example
+
+```js
+import type { APIContext } from "astro";
+import { SenseUploader } from "@lukso/data-provider-sense";
+
+export async function POST({ request }: APIContext) {
+  const formData = await request.formData();
+  const file = formData.get("file");
+
+  const provider = new SenseUploader(
+    import.meta.env.SENSE_API_KEY
+  );
+
+  const { hash, url } = await provider.upload(file);
+  return new Response(JSON.stringify({ Hash: url }), {
+    headers: { contentType: "application/json" },
+  });
+}
+```
+
 
 :::info Proxy Configuration
 
