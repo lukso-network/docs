@@ -13,7 +13,7 @@ For more detailed information on any topic please use search or check out our [L
 
 ## What is LUKSO?
 
-LUKSO is layer 1, Ethereum twin blockchain. It uses a proof-of-stake consensus algorithm, making it fundamentally the same as Ethereum at a network level but with some innovative differences, particularly in how developers build applications on the network and the building blocks you use.
+LUKSO is a Layer 1 EVM chain, Ethereum twin blockchain. It is fundamentally the same as Ethereum at a network level but with some innovative differences, particularly in how developers build applications on the network and the building blocks you use.
 
 Here are the top 3 reasons why LUKSO is different to any other blockchain:
 
