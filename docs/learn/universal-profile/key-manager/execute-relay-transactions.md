@@ -24,9 +24,9 @@ Another example use case would be Alice sending an encoded transaction that upda
 
 :::success Did you know?
 
-Users who created their 🆙 via [_universalprofile.cloud_](https://universalprofile.cloud) **benefit from a monthly gas quota paid by LUKSO**. ⛽️ ❌
+Users who created their 🆙 via [_universalprofile.cloud_](https://universalprofile.cloud) **benefit from a monthly gas quota paid by LUKSO**. ⛽️ ✅
 
-This aims to help onboard new users to web3! 💪🏻 ✅
+This aims to help onboard new users to web3! 💪🏻
 
 :::
 
@@ -196,7 +196,7 @@ function executeRelayCall(
 
 | Parameter           |                                                                                                                                                                                                                                                                                                                                                                     |
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `nonce`             | The nonce of the address (= controller) that will sign the relay. Retrieved via [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md)                                                                                                                 |
+| `nonce`             | The nonce of the address (= controller) that will sign the `executeRelayCall`. Retrieved via [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md)                                                                                                    |
 | `channelId`         | The channel where the call will be registered after execution. Define to execute the call either in parallel (across different channels) of other relay calls, or require it to be executed after another call. <br/> <br/> 📓 See [**"Out of order execution"**](../../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution) for more details |
 | `validityTimestamp` | Define the time interval during which the payload can be executed. Use a value of `0` to make the transaction always valid for an undefinite period of time. <br/> <br/> 📓 See section [**Contracts > Execute Relay Calls > Validity Timestamps**](../../../contracts/overview/ExecuteRelayCall.md#validity-timestamps) for more details.                          |
 | `payload`           | The actual function being called (as an abi-encoded calldata from [**step 2**](#step-2---encode-the-calldata)) on the Universal Profile contract. In this example, the transaction payload will be a basic LYX transfer.                                                                                                                                            |
@@ -412,7 +412,7 @@ After the signature has been generated, it can be sent to the third party to be 
 
 :::info
 
-This logic must be implemented on the _relayer-side_ and the transaction sent to the network to be executed.
+This logic must be implemented on the _relayer-side_ where the transaction will be sent to the network to be executed.
 
 :::
 
