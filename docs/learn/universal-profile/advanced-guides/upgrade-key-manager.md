@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Upgrade Key Manager'
+sidebar_label: '📐 Upgrade Key Manager'
 sidebar_position: 4
 description: This advanced tutorial shows how you can upgrade the `owner()` of a Universal Profile. For instance upgrading the Key Manager with a better one.
 ---
@@ -7,15 +7,13 @@ description: This advanced tutorial shows how you can upgrade the `owner()` of a
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<<<<<<< HEAD
-
 # Upgrade Key Manager
 
 :::danger Warning
 
 This guide is an **advanced guide**. It is intended for developers who are looking to upgrade the Key Manager of their Universal Profile to a new one. For instance, if a new Key Manager with enhanced features.
 
-For normal user using the [UP Browser Extension](../../../../src/pages/install-up-browser-extension.md), their UP is currently setup with a basic Key Manager already deployed for them on profile creation. **It is therefore not recommended to follow this guide as this could affect the functionality of their UP, making it not possible to interact with it via the Browser Extension**.
+For normal user using the UP Browser Extension, their UP is currently setup with a basic Key Manager already deployed for them on profile creation. **It is therefore not recommended to follow this guide as this could affect the functionality of their UP, making it not possible to interact with it via the Browser Extension**.
 
 :::
 
