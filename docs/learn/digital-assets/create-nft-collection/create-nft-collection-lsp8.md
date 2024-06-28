@@ -37,7 +37,7 @@ When creating smart contracts representing digital assets on LUKSO, you need to 
 
 For this example we will use the `Collection` token type. You can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
 
-```solidity title="contracts/Example3/BasicNFTCollection.sol"
+```solidity title="contracts/BasicNFTCollection.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 

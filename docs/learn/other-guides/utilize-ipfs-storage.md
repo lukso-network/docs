@@ -6,7 +6,7 @@ sidebar_position: 11
 
 # Use IPFS Storage
 
-This is a follow-up guide to [Working with Assets](../digital-assets/metadata-preparation.md) guide for production use-cases. If you are testing asset deployments or participating in a hackathon, please use centralized file providers to save time during deployment.
+This is a follow-up guide to [Working with Assets](../digital-assets/metadata-management/metadata-preparation.md) guide for production use-cases. If you are testing asset deployments or participating in a hackathon, please use centralized file providers to save time during deployment.
 
 If you want to set up your own workflow for uploading and retrieving files using a **decentralized file storage**, you can integrate IPFS on LUKSO by using the following repositories:
 

@@ -22,8 +22,6 @@ Token Types are beneficial because of the wide range of asset use cases. The [LS
 - LSP7 can be used for building NFTs where each individual items have the same metadata, and users are allowed to mint multiple NFTs at once.
 - In comparison, LSP8 is mainly used for NFTs with unique properties per item (like phygitals, dynamic NFTs or unique collections like [Chillwhales](https://www.chillwhales.com/)).
 
-## Installation
-
 :::tip Convenience Tools
 
 You can use the ⚒️ [`erc725.js`](../../tools/erc725js/getting-started.md) library, which automatically decodes [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage keys for you.
@@ -31,32 +29,6 @@ You can use the ⚒️ [`erc725.js`](../../tools/erc725js/getting-started.md) li
 If you are using a regular contract instance from Ethers or Web3, you can use the data keys from the [`lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library by importing the `ERC725YDataKeys` constant.
 
 :::
-
-<Tabs groupId="provider-lib">
-  <TabItem value="erc725.js" label="erc725.js" default>
-
-```bash
-npm install @erc725/erc725.js
-```
-
-  </TabItem>
-  <TabItem value="ethers" label="ethers">
-
-```bash
-npm install ethers @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-
-  <TabItem value="web3" label="web3">
-
-```bash
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-
-</Tabs>
 
 ## Retrieve the Token Type
 

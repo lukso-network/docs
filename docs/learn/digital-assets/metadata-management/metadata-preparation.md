@@ -8,7 +8,7 @@ description: Learn how to prepare and use assets for LUKSO Universal Profiles an
 
 :::info LSP4 Metadata
 
-When creating or editing Universal Profiles or Digital Assets, you will first need to upload assets such as images, icons, videos, etc. These assets can then be linked within the [Metadata JSON File](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) that will be attached to the smart contract.
+When creating or editing Universal Profiles or Digital Assets, you will first need to upload assets such as images, icons, videos, etc. These assets can then be linked within the [Metadata JSON File](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) that will be attached to the smart contract.
 
 :::
 
@@ -102,7 +102,7 @@ After uploading the media files, you can attach their links to a JSON File in th
 
 </details>
 
-The JSON content is then used as input for encoding the metadata according to the [LSP4](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standard. After you filled your metadata file with content, upload it to a preferred storage solution.
+The JSON content is then used as input for encoding the metadata according to the [LSP4](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standard. After you filled your metadata file with content, upload it to a preferred storage solution.
 
 :::info Data Verification
 
@@ -117,7 +117,7 @@ To ensure the authenticity of the images, please **generate the hash** of the up
 
 :::tip Convenience Tool
 
-You can use the 🛠️ [`erc725.js`](../../tools/erc725js/getting-started.md) library
+You can use the 🛠️ [`erc725.js`](../../../tools/erc725js/getting-started.md) library
 to encode the LSP4 Metadata. The tool provides all necessary LSP schemas as well as the `encodeData()` function.
 
 :::
@@ -144,10 +144,7 @@ const encodedLSP4Metadata = ERC725.encodeData(
 
 The encoded content will then look like the following:
 
-<details>
-  <summary>LSP4 Encoded Contract Metadata</summary>
-
-```js
+```js title="LSP4 Encoded Contract Metadata" wordWrap=inherit
 {
   keys: [
     '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e'
@@ -158,14 +155,12 @@ The encoded content will then look like the following:
 }
 ```
 
-</details>
-
 ## 4 - Adding the Metadata
 
-After you retrieved the key and value of your [ERC725Y](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) data key, you can call the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the asset to update it's metadata on the contract.
+After you retrieved the key and value of your [ERC725Y](../../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) data key, you can call the [`setData()`](../../../contracts/contracts/ERC725/ERC725.md#setdata) function of the asset to update it's metadata on the contract.
 
 :::tip Sample Implementation
 
-You can follow our [Deploy Token With Metadata](./deploy-token-with-metadata.md) and [Set NFT Metadata](../digital-assets/set-nft-metadata.md) Guides to set or update contract metadata.
+You can follow our [Deploy Token With Metadata](./deploy-token-with-metadata.md) and [Set NFT Metadata](./set-nft-metadata.md) Guides to set or update contract metadata.
 
 :::

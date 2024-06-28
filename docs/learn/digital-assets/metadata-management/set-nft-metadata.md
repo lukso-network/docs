@@ -15,32 +15,9 @@ In this guide you will learn how to set the metadata of a specific NFT (represen
 
 You will need the address of an existing LSP8 NFT collection in order to follow this tutorial. This represent the LSP8 collection that includes the NFT you want to update metadata for. For instance [`0x37934A275EFd47DFce671CA3CBaE34d9138CF2D2.`](https://explorer.execution.testnet.lukso.network/address/0x37934A275EFd47DFce671CA3CBaE34d9138CF2D2?tab=read_contract)
 
-The following code snippets require the installation of the following libraries:
-
-- [`ethers.js`](https://github.com/ethers-io/ethers.js/) or [`web3.js`](https://www.npmjs.com/package/web3)
-- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
-
-<Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers">
-
-```shell
-npm install ethers @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-  <TabItem value="web3" label="web3">
-
-```shell
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-
-</Tabs>
-
 ## Imports and constants
 
-Import `web3.js`/`ethers`, the [`LSP8IdentifiableDigitalAsset`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) ABI from [`@lukso/lsp-smart-contracts`](../../contracts/introduction.md) and create an instance of this contract with the `lsp8ContractAddress`.
+Import `web3.js`/`ethers`, the [`LSP8IdentifiableDigitalAsset`](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) ABI from [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) and create an instance of this contract with the `lsp8ContractAddress`.
 
 <Tabs groupId="web3-lib">
   <TabItem value="ethers" label="ethers">
@@ -108,24 +85,19 @@ const myToken = new web3.eth.Contract(
   </TabItem>
 </Tabs>
 
-## Send the transaction to set metadata for a tokenId
+## Encode the Metadata
 
-The last step is to set the metadata for a specific [`tokenId`](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#format-of-tokenids). You can then send the transaction to set the metadata for the given NFT represented by its `tokenId`.
+The next step is to encode the metadata. To do so, we need:
 
-Here we will use the following parameters as examples:
+- a JSON file that contains all the metadata of the specific NFT. This metadata has the same format as the `LSP4Metadata`.
+- the IPFS url where this JSON file has been uploaded
 
-- `tokenId`: `0x0000000000000000000000000000000000000000000000000000000000000001`
-- `dataKey`: [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
-- `metadataValue`: some placeholder value as a [`VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
-
-> Note that the `tokenId` is a `bytes32` value (hex)
-
-:::info
-
-You can use the `encodeData` function from the [_erc725.js_](../../../tools/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
+The value will be encoded as a `VerifiableURI`. We will use the `encodeData` function from the [_erc725.js_](../../../tools/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
 
 ```js title="encodeVerifiableURI.ts"
 import { ERC725 } from '@erc725/erc725.js';
+
+import NFTMetadataJSON from './NFTMetadata.json';
 
 const schema = [
   {
@@ -143,7 +115,7 @@ myErc725.encodeData([
   {
     keyName: 'LSP4Metadata',
     value: {
-      json: nftJson,
+      json: NFTMetadataJSON,
       url: 'ipfs://QmQTqheBLZFnQUxu5RDs8tA9JtkxfZqMBcmGd9sukXxwRm',
     },
   },
@@ -152,7 +124,17 @@ myErc725.encodeData([
 
 You can also check the code snippet example in the LSP2 specs to learn in details the [encoding of a `VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
 
-:::
+## Send the transaction to set metadata for a tokenId
+
+The last step is to set the metadata for a specific [`tokenId`](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#format-of-tokenids). You can then send the transaction to set the metadata for the given NFT represented by its `tokenId`.
+
+Here we will use the following parameters as examples:
+
+- `tokenId`: `0x0000000000000000000000000000000000000000000000000000000000000001`
+- `dataKey`: [`LSP4Metadata`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata)
+- `metadataValue`: some placeholder value as a [`VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri).
+
+> Note that the `tokenId` is a `bytes32` value (hex)
 
 <Tabs groupId="web3-lib">
 

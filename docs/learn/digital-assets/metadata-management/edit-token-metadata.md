@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Edit Token Metadata
 
-In this guide, you will learn how to edit the [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md).
+In this guide, you will learn how to edit the [`LSP4Metadata`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md).
 
 To edit an LSP7 Digital Asset metadata, you will need to:
 
@@ -18,7 +18,7 @@ To edit an LSP7 Digital Asset metadata, you will need to:
 3. generate an encoded value based on the URL to the metadata JSON file
 4. write that value in the smart contract key-value store
 
-For steps 1 to 3, there is a dedicated [Asset Preparation Guide](../digital-assets/metadata-preparation.md). Once your assets are uploaded and the URL to your metadata JSON file is ready and encoded, come back here.
+For steps 1 to 3, there is a dedicated [Asset Preparation Guide](metadata-preparation.md). Once your assets are uploaded and the URL to your metadata JSON file is ready and encoded, come back here.
 
 <details>
     <summary>Show encoded LSP4 Object</summary>
@@ -46,7 +46,7 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::info Contract Deployment
 
-If you want to learn more about the contract deployment itself, please have a look at the [Create LSP7 Token](./smart-contract-developers/create-lsp7-token.md) guides before you continue.
+If you want to learn more about the contract deployment itself, please have a look at the [Create LSP7 Token](../create-lsp7-token.md) guides before you continue.
 
 :::
 
@@ -119,14 +119,14 @@ const token = await ethers.Contract(myAssetAddress, LSP7Artifact.abi, signer);
 
 </Tabs>
 
-## Execute the metadata update
+## Set data on token
 
-Once you have the data key and value (with the encoded VerifiableURI in it), simply call the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the Token contract.
+Once you have the data key and value (with the encoded VerifiableURI in it), simply call the [`setData()`](../../../contracts/contracts/ERC725/ERC725.md#setdata) function of the Token contract.
 
 <Tabs groupId="deployment">
   <TabItem value="up" label="Update metadata with a Universal Profile">
 
-In order to update the metadata using your Universal Profile, the [`setData()`](../../contracts/contracts/ERC725/ERC725.md#setdata) function of the contract can not be called directly. Instead, you have to generate the payload of the transaction and execute it by calling the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function of the Universal Profile.
+In order to update the metadata using your Universal Profile, the [`setData()`](../../../contracts/contracts/ERC725/ERC725.md#setdata) function of the contract can not be called directly. Instead, you have to generate the payload of the transaction and execute it by calling the [`execute()`](../../../contracts/contracts/ERC725/ERC725.md#execute) function of the Universal Profile.
 
 ```ts title="scripts/attachAssetMetadataAsUP.ts"
 // ...
@@ -154,7 +154,7 @@ console.log('Token metadata updated: ', receipt);
 
   <TabItem value="eoa" label="Update metadata with an EOA">
 
-In order to update the metadata using your EOA, you can call the [`setDataBatch()`](../../contracts/contracts/ERC725/ERC725.md#setdatabatch) function directly on the asset contract.
+In order to update the metadata using your EOA, you can call the [`setDataBatch()`](../../../contracts/contracts/ERC725/ERC725.md#setdatabatch) function directly on the asset contract.
 
 ```ts title="scripts/attachAssetMetadataAsEOA.ts"
 // Update the ERC725Y storage of the LSP4 metadata

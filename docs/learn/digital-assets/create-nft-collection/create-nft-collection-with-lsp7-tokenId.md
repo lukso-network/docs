@@ -12,6 +12,12 @@ This guide builds on top of a Hardhat project using TypeScript as described in t
 
 :::
 
+:::tip
+
+The full code of this example can be found in the smart contract section of the 👾 [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
+
+:::
+
 ## Introduction
 
 If you have been looking at the [LSP8 token standard](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md), you probably noticed that addresses could be used as `tokenIds`. In this guide, we will replicate a real-world example where this could be useful to represent an NFT / `tokenId` as a smart contract with its own metadata.
@@ -23,12 +29,6 @@ Let's take the example of [The Dematerialised](https://thedematerialised.com), a
 ![KLxENDLESS PHYSITAL COLLECTION](../../../../static/img/learn/klxendless-physital-collection.png)
 
 Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the whole KLxENDLESS PHYSITAL collection and each medaillon will be a sub-collection (purple, blue or gold) will with a limited supply of NFTs [(Non-divisible LSP7 token)](../../../standards/tokens//LSP7-Digital-Asset.md).
-
-## Prerequisites
-
-- [Hardhat installed and initialized](../getting-started.md)
-- [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package installed from npm using `npm i @lukso/lsp-smart-contracts` (or the latest version)
-- [`@erc725/erc725.js`](https://www.npmjs.com/package/@erc725/erc725.js) package installed from npm using `npm i @erc725/erc725.js` (we will use it to encode the token metadata)
 
 ## Create the LSP7 Sub-Collection
 

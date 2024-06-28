@@ -57,12 +57,6 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::
 
-To easily interact with an asset you are encouraged to use the ⚒️ [erc725.js](../../tools/erc725js/getting-started.md) and 📃 [lsp-smart-contracts](../../tools/erc725js/getting-started.md) libraries. Those will not only help fetching and encoding contract data easily, but also provide all the necessary interface and metadata IDs, necessary for classifying the asset. You can install them in your project using the following command:
-
-```shell
-npm install @erc725/erc725.js @lukso/lsp-smart-contracts
-```
-
 ## Detect the Contract Interface
 
 Once you have the address of an asset, you need to check if the asset's contract is LSP7 or LSP8. To do so, check the contract's `interfaceId` like in the previous [Interface Detection Guide](../standard-detection.md#interface-detection). If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the `interfaceId`'s directly from the package's [constants](../../tools/lsp-smart-contracts/constants),. Optionally, you can also find a full list of all `interfaceId`'s on the [Contracts](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
@@ -292,10 +286,6 @@ To get token ID metadata, you will have to make direct contract calls.Therefore,
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers">
-
-```bash
-npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
-```
 
 ```js
 // Add the necessary imports to your JS file

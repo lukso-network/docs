@@ -9,21 +9,15 @@ import TabItem from '@theme/TabItem';
 
 # Getting started building contracts
 
-The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications. As LUKSO is an EVM-based Blockchain, all tools and tutorials for Ethereum also work well for LUKSO.
+The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications.
 
-The following tutorial will teach you how to:
-
-- set up a [Hardhat](https://hardhat.org/) project using TypeScript
-- configure the contract settings, [networks](../../../networks/testnet/parameters) and [Blockscout API](https://explorer.execution.testnet.lukso.network/api-docs)
-- utilize LSP smart contract presets using the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts)
-- compile and deploy LSP-based smart contracts
-- verify smart contracts on [Blockscout](https://explorer.execution.testnet.lukso.network/)
+This page will guide you through setting up your development environment to build on LUKSO.
 
 If you need more low level information about our contracts, you can check the dedicated [contracts](../../contracts/introduction.md) section.
 
 ### Playground Repository
 
-Want to dive into the code directly? The [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository has a full Hardhat setup, including ready-to-go network configurations, sample contracts, and scripts to deploy and verify LSP-based contracts on LUKSO networks using both EOAs or Universal Profiles.
+In the following guides, we will use the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository with a full Hardhat setup, including ready-to-go network configurations, sample contracts, and scripts to deploy and verify LSP-based contracts on LUKSO.
 
 <div style={{textAlign: 'center'}}>
 
@@ -80,7 +74,7 @@ To pay for the deployment fees of the accounts, you will need LYXt or LYX. For t
 
 We now have a base Hardhat setup that we can use to develop and deploy our smart contracts.
 
-### Run locally
+## Run locally
 
 Run the TypeScript code of one file within the terminal using `bun`.
 

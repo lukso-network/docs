@@ -24,14 +24,6 @@ The full code of this example can be found in the smart contract section of the 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DMpeMswK12w?si=DqttxMJIv6c4H0FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-## Setup
-
-To create your custom contract based on the [LUKSO smart contracts](../../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
-
-```shell
-npm install @lukso/lsp-smart-contracts
-```
-
 ## Create the Smart Contracts
 
 When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
