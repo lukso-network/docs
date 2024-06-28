@@ -16,11 +16,11 @@ For more information regarding the network and standards, see the [Introduction]
 
 ## Migrating from other EVM Chain
 
-As LUKSO is an EVM-compatible chain (_"Ethereum twin"_), any smart contract written for Ethereum (compiling to EVM bytecode) can be re-deployed on LUKSO. You only need to set up your application to connect to a [LUKSO RPC endpoint](../networks/mainnet/parameters) to deploy it on the LUKSO chain.
+LUKSO is EVM-compatible, so any Ethereum smart contract can be redeployed on LUKSO by connecting to a [LUKSO RPC endpoint](../networks/mainnet/parameters).
 
-Developers are encouraged to use the LSP standards to leverage their features and improve the features and overall experience of their protocols. Therefore, some codebases might require to be adjusted to convert ERC interactions to LSP interactions. The section below provides more details.
+Developers are encouraged to use LSP standards to enhance the experience using their projects. Some codebases may need adjustments to convert ERC interactions to LSP interactions. More details are provided below.
 
-## From Wallets → to 🆙
+## From Wallets to 🆙
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
@@ -29,13 +29,13 @@ Developers are encouraged to use the LSP standards to leverage their features an
     width="1200"
   />
 <br/>
-<i>3 x different dApps (UniversalProfile.cloud, Universal.Page and UniversalSwaps.io), that same Universal Profile's information shared across each dApp.</i>
+<i>3 x different dApps (UniversalProfile.cloud, Universal.Page and UniversalSwaps.io) using the same Universal Profile data.</i>
 <br /><br />
 </div>
 
-Any traditional web3 wallet (Metamask, etc.) can interact with dApps on LUKSO. [Add LUKSO the list of networks](../networks/testnet/parameters.md) in your wallet and switch to the LUKSO chain. You can start holding assets (LYX, tokens, and NFTs), transfer them, and deploy and interact with smart contracts.
+Any traditional web3 wallet (_e.g: Metamask_) can interact with LUKSO dApps. Simply [add the LUKSO network in your wallet](../networks/testnet/parameters.md) and switch to the LUKSO chain. You can start holding assets (LYX, tokens, and NFTs), transfer them, and deploy and interact with smart contracts.
 
-However, the [Universal Profile Browser Extension](/install-up-browser-extension) provides a richer user experience for interacting with dApps and additional features. [Universal Profiles](../standards/universal-profile/introduction.md) (known as 🆙) are smart contract accounts that come with many benefits for users.
+However, the [Universal Profile Browser Extension](/install-up-browser-extension) provides more features and a better user experience when interacting with dApps. Universal Profiles (known as 🆙) are smart contract accounts that offer many benefits.
 
 | Feature                                        | Benefits                                                                                                                                                                                                                                                                                                                                                                               |
 | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
