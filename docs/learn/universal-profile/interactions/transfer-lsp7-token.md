@@ -36,17 +36,17 @@ The following code snippets require the installation of the following libraries:
 - [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
-
-```shell
-npm install web3 @lukso/lsp-smart-contracts
-```
-
-  </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
 ```
 
   </TabItem>
@@ -64,9 +64,36 @@ You will need:
 After setting up the contracts, you can set up the parameters for the LSP7 token [`transfer(...)`](https://docs.lukso.tech/contracts/contracts/LSP7DigitalAsset/#transfer) function.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
-<!-- prettier-ignore-start -->
+```js
+import { ethers } from 'ethers';
+
+// Import smart contract ABI
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+
+const provider = new ethers.BrowserProvider(window.lukso);
+
+await provider.send('eth_requestAccounts', []);
+
+const signer = await provider.getSigner();
+
+const myToken = new ethers.Contract(
+  '0xF860E9B7fC187D58132216849f1f5DBfd02fcb8C', // Token contract address
+  LSP7Mintable.abi,
+);
+
+await myToken.transfer(
+  signer.getAddress(), // sender address
+  '0x48AC443777DC66798510f687cf0b449721195Ea9', // recipient's address (EOA or contract)
+  15, // amount of tokens
+  true, // force flag, false to only allow contract with a Universal Receiver, true for any address
+  '0x', // any additional data to send alongside the transfer
+);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from 'web3';
@@ -93,38 +120,6 @@ await myToken.methods
   .send({ from: accounts[0] });
 ```
 
-<!-- prettier-ignore-end -->
-
   </TabItem>
-  <TabItem value="ethersjs" label="ethers.js">
 
-<!-- prettier-ignore-start -->
-
-```js
-import { ethers } from 'ethers';
-
-// Import smart contract ABI
-import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
-
-const provider = new ethers.BrowserProvider(window.lukso);
-
-await provider.send("eth_requestAccounts", []);
-
-const signer = await provider.getSigner();
-
-// Instanciate the token with an address
-const myToken = new ethers.Contract('0x...', LSP7Mintable.abi);
-
-await myToken.transfer(
-  signer.getAddress(), // sender address
-  '0x...', // recipient's address
-  15, // amount of tokens
-  false, // force flag
-  '0x', // data
-);
-```
-
-<!-- prettier-ignore-end -->
-
-  </TabItem>
 </Tabs>

@@ -106,7 +106,7 @@ See the **[ERC725](../lsp-background//erc725.md)** standard for more information
 
 Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
-Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/expert-guides/universal-profile/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/universal-profile/metadata/read-profile-data).
+Check the **javascript** guides to know [**How to Edit a Profile (setData)**](../../learn/universal-profile/metadata/edit-profile.md) or [**How to Read from a Profile (getData)**](../../learn/universal-profile/metadata/read-profile-data).
 
 :::
 
@@ -149,7 +149,7 @@ See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.
 
 Check the [**universalReceiver functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) provided by **LSP1** that allows notifying about incoming/ outgoing transactions.
 
-Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../learn/universal-receiver/deploy-universal-receiver.md) or [**How to set your own UniversalReceiverDelegate**](../../learn/universal-receiver/accept-reject-assets.md).
+Check the **javascript** guides to know [**How to set a UniversalReceiverDelegate built by LUKSO**](../../learn/universal-profile/universal-receiver/deploy-universal-receiver.md) or [**How to set your own UniversalReceiverDelegate**](../../learn/universal-profile/universal-receiver/accept-reject-assets.md).
 
 :::
 
@@ -195,7 +195,7 @@ See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)**
 
 Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md) allowing 2 step ownership transfers.
 
-Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../learn/key-manager/upgrade-key-manager.md).
+Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../learn/universal-profile/key-manager/upgrade-key-manager.md).
 
 :::
 
@@ -229,7 +229,7 @@ The process for renouncing ownership follows a similar structure, where an initi
 
 See the **[LSP17 - ContractExtension](../generic-standards/lsp17-contract-extension.md)** standard for more information.
 
-Check the **JavaScript** guides to know [**How to extend the functionalities and interfaceIds of an account**](../../learn/expert-guides/universal-profile/extend-profile-functionalities.md)
+Check the **JavaScript** guides to know [**How to extend the functionalities and interfaceIds of an account**](../../learn/universal-profile/advanced-guides/extend-profile-functionalities.md)
 
 Check the [**fallback function**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#fallback) that allows calls for the extensions.
 

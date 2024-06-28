@@ -9,7 +9,7 @@ import { BaseContractsTable, FactoryContractsTable } from "../../src/components/
 
 :::success Deployment Guides
 
-Check our guide [**_🏭 Deploy Universal Profile + its Key Manager with LSP23 Factory_**](../learn/expert-guides/deploy-up-with-lsp23.md) if you are looking for a script to deploy with the LSP23 Factory using _ethers.js_.
+Check our guide [**_🏭 Deploy Universal Profile + its Key Manager with LSP23 Factory_**](../learn/universal-profile/advanced-guides/deploy-up-with-lsp23.md) if you are looking for a script to deploy with the LSP23 Factory using _ethers.js_.
 
 :::
 
