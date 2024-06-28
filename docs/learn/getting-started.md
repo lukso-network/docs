@@ -94,30 +94,38 @@ With these two elements in place, you are ready to explore the [LUKSO ecosystem]
 
 Choose your path below:
 
-<table><thead>
-  <tr>
-    <th>**dApp Developers**</th>
-    <th>**Smart Contract Developers**</th>
-    <th>**Validators**</th>
-  </tr></thead>
+<table>
+<thead>
+<tr>
+<th>**dApp Developers**</th>
+<th>**Smart Contract Developers**</th>
+<th>**Validators**</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-    <td>Check out our <a href="https://github.com/lukso-network/tools-dapp-boilerplate" target="_blank" rel="noopener noreferrer">BOILERPLATE</a> - clone this repo to have a fully functioning dApp in minutes.</td>
-    <td>Explore our <a href="https://github.com/lukso-network/lukso-playground" target="_blank" rel="noopener noreferrer">PLAYGROUND repo</a> - it allows you to see how to fetch profile and asset information, encode data, change permissions etc.</td>
-    <td>Learn more about how to run a <a href="https://docs.lukso.tech/networks/testnet/running-a-node" target="_blank" rel="noopener noreferrer">node</a> or become a <a href="https://docs.lukso.tech/networks/testnet/become-a-validator" target="_blank" rel="noopener noreferrer">validator</a> on our testnet. <br></br></td>
-  </tr>
-  <tr>
-    <td>Create an NFT using our LSP7 by <a href="https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/create-lsp7-token/" target="_blank" rel="noopener noreferrer">following this guide.</a></td>
-    <td>Check out our <a href="https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/getting-started" target="_blank" rel="noopener noreferrer">guide for building smart contracts</a> on LUKSO. </td>
-    <td>See our <a href="https://docs.lukso.tech/networks/mainnet/parameters" target="_blank" rel="noopener noreferrer">Mainnet Parameters</a>. </td>
-  </tr>
-  <tr>
-    <td>Read more about our <a href="https://docs.lukso.tech/standards/introduction" target="_blank" rel="noopener noreferrer">STANDARDS</a>.</td>
-    <td>Explore our <a href="https://docs.lukso.tech/networks/mainnet/parameters" target="_blank" rel="noopener noreferrer">Oracles and other external integrations</a>. </td>
-    <td>See which <a href="https://docs.lukso.tech/networks/mainnet/running-a-node#supported-clients-versions" target="_blank" rel="noopener noreferrer">clients are supported.</a></td>
-  </tr>
-</tbody></table>
+<tr>
+<td>Check out our <a href="https://github.com/lukso-network/tools-dapp-boilerplate" target="_blank" rel="noopener noreferrer">BOILERPLATE</a> - clone this repo to have a fully functioning dApp in minutes.</td>
+<td>Create an NFT using <a href="https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/create-lsp7-token/" target="_blank" rel="noopener noreferrer"> this guide.</a></td>
+<td>Learn more about how to run a <a href="https://docs.lukso.tech/networks/testnet/running-a-node" target="_blank" rel="noopener noreferrer">node</a> or become a <a href="https://docs.lukso.tech/networks/testnet/become-a-validator" target="_blank" rel="noopener noreferrer">validator</a> on our testnet. </td>
+</tr>
+<tr>
+<td>Explore our <a href="https://github.com/lukso-network/lukso-playground" target="_blank" rel="noopener noreferrer">PLAYGROUND repo</a> - it allows you to see how to fetch profile and asset information, encode data, change permissions etc.</td>
+<td>Check out our <a href="https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/getting-started" target="_blank" rel="noopener noreferrer">guide for building smart contracts</a> on LUKSO.</td>
+<td>See our <a href="https://docs.lukso.tech/networks/mainnet/parameters" target="_blank" rel="noopener noreferrer">Mainnet Parameters</a>.</td>
+</tr>
+<tr>
+<td>Read more about our <a href="https://docs.lukso.tech/standards/introduction" target="_blank" rel="noopener noreferrer">STANDARDS</a>.</td>
+<td>&nbsp;</td>
+<td>See which <a href="https://docs.lukso.tech/networks/mainnet/running-a-node#supported-clients-versions" target="_blank" rel="noopener noreferrer">clients are supported.</a></td>
+</tr>
+<tr>
+<td>Explore our <a href="https://docs.lukso.tech/networks/mainnet/parameters" target="_blank" rel="noopener noreferrer">Oracles and other external integrations</a>.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
 
 ## Join the Community
 
-If you need anything else, then either [contact the team building LUKSO](https://support.lukso.network) or ask the [Developer Community on Discord](https://discord.com/channels/359064931246538762/585786253992132609) are happy to help.
+If you need anything else, then either [contact the team building LUKSO](https://support.lukso.network/contact-us) or ask the [Developer Community on Discord](https://discord.com/channels/359064931246538762/585786253992132609) are happy to help.

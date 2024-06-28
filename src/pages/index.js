@@ -19,74 +19,73 @@ import SeparatorWithTitle from '../components/SeperatorWithTitle';
 function Index() {
   return (
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
-      <div>
+      <div className={styles.container}>
         <Headline />
-        <div className={styles.ctacontainer}>
-          <div style={{ marginTop: '4em' }}>
-            <CallToActionButton
-              text="👉 Getting Started 👈"
-              link="/learn/getting-started"
-              color="white"
-            />
+        <div style={{ marginTop: '3em' }}>
+          <CallToActionButton
+            text="🏁 Getting Started 🏁"
+            link="/learn/getting-started"
+            color="white"
+            icon="material-symbols:keyboard-double-arrow-right"
+          />
 
-            <div style={{ marginTop: '4em' }}>
-              <CallToActionButton
-                text="Download 🆙 Browser Extension"
-                link="install-up-browser-extension"
-                color="white"
-                icon="material-symbols:extension"
-              />
-            </div>
-          </div>
-          <div className={styles.cardContainer}>
-            <Box
-              icon={GuidesIcon}
-              link="./learn/getting-started"
-              title="LEARN"
-              className="learn"
-              content="Learn about integrating standards within contracts and dApps."
-            />
-            <Box
-              icon={StandardsIcon}
-              link="./standards/introduction"
-              title="STANDARDS"
-              className="standards"
-              content="Discover new smart contract standards that will change the way we interact with Blockchain."
-            />
-            <Box
-              icon={ToolsIcon}
-              link="./tools/getting-started"
-              title="TOOLS"
-              className="tools"
-              content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
+          <div style={{ marginTop: '3em' }}>
+            <CallToActionButton
+              text="Download 🆙 Browser Extension"
+              link="install-up-browser-extension"
+              color="white"
+              icon="material-symbols:extension"
             />
           </div>
-          <div className={styles.cardContainer}>
-            <Box
-              icon={NetworksIcon}
-              link="./networks/mainnet/parameters/"
-              title="NETWORKS"
-              className="networks"
-              content="Participate as node operator or interact on LUKSO's networks."
-            />
-            <Box
-              icon={FAQIcon}
-              link="./faq/lukso/general-information"
-              title="FAQ"
-              className="faq"
-              content="Read frequently asked questions about the project and network."
-            />
-            <Box
-              icon={PartnersIcon}
-              link="./tools/integrations"
-              title="INTEGRATIONS"
-              className="partners"
-              content="Check out LUKSO ecosystem tools and services."
-            />
-          </div>
-          <SeparatorWithTitle title={'Projects building on LUKSO'} />
-          <DappsGallery />
         </div>
+        <div className={styles.cardContainer}>
+          <Box
+            icon={GuidesIcon}
+            link="./learn/getting-started"
+            title="LEARN"
+            className="learn"
+            content="Learn about integrating standards within contracts and dApps."
+          />
+          <Box
+            icon={StandardsIcon}
+            link="./standards/introduction"
+            title="STANDARDS"
+            className="standards"
+            content="Discover new smart contract standards that will change the way we interact with Blockchain."
+          />
+          <Box
+            icon={ToolsIcon}
+            link="./tools/getting-started"
+            title="TOOLS"
+            className="tools"
+            content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
+          />
+        </div>
+        <div className={styles.cardContainer}>
+          <Box
+            icon={NetworksIcon}
+            link="./networks/mainnet/parameters/"
+            title="NETWORKS"
+            className="networks"
+            content="Participate as node operator or interact on LUKSO's networks."
+          />
+          <Box
+            icon={FAQIcon}
+            link="./faq/lukso/general-information"
+            title="FAQ"
+            className="faq"
+            content="Read frequently asked questions about the project and network."
+          />
+          <Box
+            icon={PartnersIcon}
+            link="./tools/integrations"
+            title="INTEGRATIONS"
+            className="partners"
+            content="Check out LUKSO ecosystem tools and services."
+          />
+        </div>
+        <SeparatorWithTitle title={'Projects building on LUKSO'} />
+        <DappsGallery />
       </div>
     </Layout>
   );
