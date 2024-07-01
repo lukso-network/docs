@@ -113,12 +113,6 @@ Finally, run the deploy script:
 npx hardhat run --network luksoTestnet scripts/deploy.ts
 ```
 
-:::tip
-
-The [Create a deploy script](../create-lsp7-token#create-a-deploy-script.md) section of the Create LSP7 Token guide gives more details and information about how to deploy the contracts.
-
-:::
-
 ## View your NFT Collection
 
 You can now use the contract address to check the deployment on the [testnet execution block explorer](https://explorer.execution.testnet.lukso.network/)

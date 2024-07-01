@@ -7,13 +7,17 @@ description: Create a Hardhat project and start building your smart contracts fo
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Getting started building contracts
+# Getting started building Tokens & NFTs
 
 The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications.
 
-This page will guide you through setting up your development environment to build on LUKSO.
+This page will guide you in setting up your development environment to build and deploy tokens and NFTs on LUKSO.
 
-If you need more low level information about our contracts, you can check the dedicated [contracts](../../contracts/introduction.md) section.
+:::info
+
+For more low level information about the Tokens Contracts (LSP7 and LSP8), see the dedicated [contracts](../../contracts/introduction.md) section.
+
+:::
 
 ### Playground Repository
 
@@ -28,6 +32,12 @@ alt="LUKSO Playground Hardhat"
 
 </div>
 
+:::info
+
+**This repository uses the [bun](https://bun.sh) toolkit to manage packages and run scripts. Make sure to [install it](https://bun.sh/docs/installation) first.**
+
+:::
+
 ## Clone the Playground Repository
 
 First, clone the playground repository and navigate into the smart-contracts-hardhat folder:
@@ -36,14 +46,6 @@ First, clone the playground repository and navigate into the smart-contracts-har
 git clone https://github.com/lukso-network/lukso-playground.git
 cd lukso-playground/smart-contracts-hardhat
 ```
-
-Once navigated, you have a working Hardhat setup.
-
-:::info
-
-**This repository uses the [bun](https://bun.sh) toolkit to manage packages and run scripts. Make sure to [install it](https://bun.sh/docs/installation) first.**
-
-:::
 
 To install all the dependencies, run the below command:
 
