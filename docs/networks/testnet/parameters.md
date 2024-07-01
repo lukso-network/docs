@@ -4,7 +4,8 @@ sidebar_position: 1
 description: 'Network Parameters for LUKSO Testnet: Execution Block Explorer, RPC providers, Chain ID, LUKSO Testnet faucet.'
 ---
 
-import AddNetworkButton from '../../../src/components/AddNetworkButton'
+import AddNetworkButton from '@site/src/components/AddNetworkButton'
+import CopyToClipboard from '@site/src/components/CopyToClipboard'
 
 # Testnet
 
@@ -28,6 +29,7 @@ The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps
 | Launchpad                | [https://deposit.testnet.lukso.network](https://deposit.testnet.lukso.network)                       |
 | Checkpoints              | [https://checkpoints.testnet.lukso.network](https://checkpoints.testnet.lukso.network)               |
 | Blockscout API           | `https://api.explorer.execution.testnet.lukso.network/api`                                           |
+| Test                     | <CopyToClipboard />                                                                                  |
 
 The testnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/testnet/shared) repo.
 

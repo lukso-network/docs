@@ -4,7 +4,7 @@ sidebar_position: 1
 description: 'Network Parameters for LUKSO: Execution Block Explorer, RPC providers, Chain ID.'
 ---
 
-import AddNetworkButton from '../../../src/components/AddNetworkButton'
+import AddNetworkButton from '@site/src/components/AddNetworkButton'
 
 # Network Parameters
 

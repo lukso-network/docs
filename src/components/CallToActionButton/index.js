@@ -21,7 +21,9 @@ export default function CallToActionButton({
       >
         <Icon
           icon={icon}
-          style={{ width: '1.75em', height: '1.75em', marginRight: '0.5em' }}
+          height="1.75em"
+          width="1.75em"
+          style={{ marginRight: '0.5em' }}
         />
         <strong style={{ color: color }}>{text}</strong>
       </a>
