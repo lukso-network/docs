@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🔍 Standard Detection'
+sidebar_label: '🕵🏽 Standard Detection'
 description: Check supported ERC725 storage keys and interfaces of LSPs (LUKSO Standard Proposals) smart contracts.
 ---
 

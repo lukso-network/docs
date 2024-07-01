@@ -21,18 +21,27 @@ function Index() {
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
         <Headline />
-        <div style={{ marginTop: '4em' }}>
+        <div style={{ marginTop: '3em' }}>
           <CallToActionButton
-            text="Download 🆙 Browser Extension"
-            link="install-up-browser-extension"
+            text="🏁 Getting Started 🏁"
+            link="/learn/getting-started"
             color="white"
-            icon="material-symbols:extension"
+            icon="material-symbols:keyboard-double-arrow-right"
           />
+
+          <div style={{ marginTop: '3em' }}>
+            <CallToActionButton
+              text="Download 🆙 Browser Extension"
+              link="install-up-browser-extension"
+              color="white"
+              icon="material-symbols:extension"
+            />
+          </div>
         </div>
         <div className={styles.cardContainer}>
           <Box
             icon={GuidesIcon}
-            link="./learn/what-is-lukso"
+            link="./learn/getting-started"
             title="LEARN"
             className="learn"
             content="Learn about integrating standards within contracts and dApps."

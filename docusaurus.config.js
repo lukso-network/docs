@@ -26,6 +26,12 @@ export default {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
+          //Learn home
+          {
+            from: '/learn/what-is-lukso',
+            to: '/learn/getting-started',
+          },
+
           // Learn/Smart Contract Developer
           {
             from: '/learn/smart-contract-developers/getting-started',
@@ -215,7 +221,7 @@ export default {
       items: [
         {
           type: 'doc',
-          docId: 'learn/what-is-lukso',
+          docId: 'learn/getting-started',
           position: 'left',
           label: 'Learn',
         },
