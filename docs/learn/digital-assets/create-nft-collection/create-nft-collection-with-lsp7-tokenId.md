@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🃏 Create NFT Collection where each NFT is a contract'
+sidebar_label: '🃏 Collection of Subcollections'
 description: 'Learn how to create a NFT collection where each NFT is a contract'
 sidebar_position: 9
 ---
@@ -8,7 +8,13 @@ sidebar_position: 9
 
 :::note
 
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](./getting-started.md) section.
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../getting-started.md) section.
+
+:::
+
+:::tip
+
+The full code of this example can be found in the smart contract section of the 👾 [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
 
 :::
 
@@ -18,17 +24,11 @@ If you have been looking at the [LSP8 token standard](../../../standards/tokens/
 
 ## Use Case
 
-Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYGITAL COLLECTION. As you can see in the picture below, we have three medalions of different colours.
+Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYGITAL COLLECTION. As you can see in the picture below, we have three medalions of different colours.s
 
 ![KLxENDLESS PHYSITAL COLLECTION](../../../../static/img/learn/klxendless-physital-collection.png)
 
 Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the whole KLxENDLESS PHYSITAL collection and each medaillon will be a sub-collection (purple, blue or gold) will with a limited supply of NFTs [(Non-divisible LSP7 token)](../../../standards/tokens//LSP7-Digital-Asset.md).
-
-## Prerequisites
-
-- [Hardhat installed and initialized](./getting-started.md)
-- [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) package installed from npm using `npm i @lukso/lsp-smart-contracts` (or the latest version)
-- [`@erc725/erc725.js`](https://www.npmjs.com/package/@erc725/erc725.js) package installed from npm using `npm i @erc725/erc725.js` (we will use it to encode the token metadata)
 
 ## Create the LSP7 Sub-Collection
 
@@ -601,7 +601,7 @@ Let's create a `deployLSP8Collection.ts` file in the `scripts` folder.
 For this script we will jut need to import:
 
 - the `ethers` library to interact with the blockchain
-- the [`@erc725/erc725.js`](./getting-started.md) library to convert the metadata to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
+- the [`@erc725/erc725.js`](../getting-started.md) library to convert the metadata to [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
 - the LSP8 Collection metadata json file we just created
 - the LSP4 metadata schema
 

@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Retrieve Token Type'
-sidebar_position: 4
+sidebar_label: '🗃️ Retrieve Token Type'
+sidebar_position: 5
 description: Retrieve LUKSO LSP token types and detect if an asset is a Token, an NFT, or a collection.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Retrieve Token Type
+# 🗃️ Retrieve Token Type
 
 To detect if an asset is a **Token**, an **NFT** or a **Collection**, we can check the value stored in the [`LSP4TokenType`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) data key.
 
@@ -21,8 +21,6 @@ Token Types are beneficial because of the wide range of asset use cases. The [LS
 
 - LSP7 can be used for building NFTs where each individual items have the same metadata, and users are allowed to mint multiple NFTs at once.
 - In comparison, LSP8 is mainly used for NFTs with unique properties per item (like phygitals, dynamic NFTs or unique collections like [Chillwhales](https://www.chillwhales.com/)).
-
-## Installation
 
 :::tip Convenience Tools
 

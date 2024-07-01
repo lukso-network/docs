@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Deploy Token with Metadata'
+sidebar_label: 'Deploy Token + Metadata with 🆙'
 description: How to set LSP4 Metadata of digital assets on contract deployment.
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Deploy Token with Metadata
+# Deploy Token + Metadata with 🆙
 
 :::tip Code repository
 
@@ -25,10 +25,10 @@ Feel free to use the bytecode of any custom or extended token contract you have 
 
 In this guide, you will learn how to:
 
-1. Use your Universal Profile to deploy an [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) contract.
-2. Set the [metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of the token while deploying it.
+1. Use your Universal Profile to deploy an [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) contract.
+2. Set the [metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of the token while deploying it.
 
-We will achieve this in a single transaction using the [`executeBatch`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#executebatch) function on the Universal Profile. The batch will contain the two actions defined above that will run successively.
+We will achieve this in a single transaction using the [`executeBatch`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#executebatch) function on the Universal Profile. The batch will contain the two actions defined above that will run successively.
 
 ## 1 - Connect to your Universal Profile
 
@@ -104,7 +104,7 @@ The next step in the batch is to set metadata on the token contract. But you mig
 
 To know the future token contract address, we have to mimic deploying the contract from the UP but use `staticCall` to not dispatch the transaction and obtain the returned value: **this will be the future token contract address**.
 
-Call the [`execute()`](../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile with `staticCall` to obtain the address the token contract will be deployed at. To do so, we will pass the contract's bytecode (including its deployment parameters) as the 4th parameter.
+Call the [`execute()`](../../../contracts/contracts/ERC725/ERC725.md#execute) function on the Universal Profile with `staticCall` to obtain the address the token contract will be deployed at. To do so, we will pass the contract's bytecode (including its deployment parameters) as the 4th parameter.
 
 ```ts
 // Get the address of the custom token contract that will be created
@@ -123,7 +123,7 @@ The next steps are:
 1. Encode the token metadata.
 2. Generate the payload to call `setData` on the token contract.
 
-We will use the [`erc725.js`](../../tools/erc725js/getting-started.md) library to encode easily the value we want to set for the `LSP4Metadata` on the token contract.
+We will use the [`erc725.js`](../../../tools/erc725js/getting-started.md) library to encode easily the value we want to set for the `LSP4Metadata` on the token contract.
 
 ```ts
 import { ethers } from 'ethers';
@@ -156,7 +156,7 @@ const setLSP4MetadataPayload = token.interface.encodeFunctionData('setData', [
 
 ## 3 - Deploy + Set Metadata in one transaction with `executeBatch`
 
-After having encoded both payloads, you can execute each of them through the [`executeBatch()`](../../contracts/contracts/ERC725/ERC725.md#executebatch) function on the Universal Profile.
+After having encoded both payloads, you can execute each of them through the [`executeBatch()`](../../../contracts/contracts/ERC725/ERC725.md#executebatch) function on the Universal Profile.
 
 On the first call, you have to set the transaction target to the **zero address**, to deploy the token contract. The second call will then use the [previously generated contract address](#prepare-the-transaction-payloads) from the `staticCall` in order to set the metadata.
 

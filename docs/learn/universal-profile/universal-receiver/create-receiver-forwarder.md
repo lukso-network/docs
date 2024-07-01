@@ -21,7 +21,7 @@ An example scenario could be: _"each time I receive USDT, I want to automaticall
 
 :::success Tips
 
-If you want to follow this guide using not an existing token, but a new token that you want to create and deploy yourself, check our guide [**"Create a Custom LSP7 Token"**](../../digital-assets/smart-contract-developers/getting-started.md#create-a-custom-lsp7-token-contract).
+If you want to follow this guide using not an existing token, but a new token that you want to create and deploy yourself, check our guide [**"Create a Custom LSP7 Token"**](../../digital-assets/create-lsp7-token.md).
 
 :::
 

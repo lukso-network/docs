@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Read Asset Data'
-sidebar_position: 1
+sidebar_label: '📑 Read Asset Data'
+sidebar_position: 5
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Read Digital Asset Data
+# 📑 Read Digital Asset Data
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
@@ -56,12 +56,6 @@ As every Universal Profile comes with a 📢 [Universal Receiver](../../standard
 The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/digital-assets) repository.
 
 :::
-
-To easily interact with an asset you are encouraged to use the ⚒️ [erc725.js](../../tools/erc725js/getting-started.md) and 📃 [lsp-smart-contracts](../../tools/erc725js/getting-started.md) libraries. Those will not only help fetching and encoding contract data easily, but also provide all the necessary interface and metadata IDs, necessary for classifying the asset. You can install them in your project using the following command:
-
-```shell
-npm install @erc725/erc725.js @lukso/lsp-smart-contracts
-```
 
 ## Detect the Contract Interface
 
@@ -292,10 +286,6 @@ To get token ID metadata, you will have to make direct contract calls.Therefore,
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
-
-```bash
-npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
-```
 
 ```js
 // Add the necessary imports to your JS file

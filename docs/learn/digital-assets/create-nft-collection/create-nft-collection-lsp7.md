@@ -1,6 +1,6 @@
 ---
-sidebar_label: '👾 Create an NFT Collection with LSP7'
-sidebar_position: 5
+sidebar_label: '👾 Collection with LSP7'
+sidebar_position: 4
 description: Learn how to create an NFT Collection on LUKSO using LSP7 Digital Asset standard.
 ---
 
@@ -10,7 +10,7 @@ This tutorial explores how to create a collection of [digital assets](../../../s
 
 :::note
 
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](./getting-started.md) section.
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../getting-started.md) section.
 
 :::
 
@@ -23,16 +23,6 @@ The full code of this example can be found in the smart contract section of the 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DMpeMswK12w?si=DqttxMJIv6c4H0FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-
-## Setup
-
-To create your custom contract based on the [LUKSO smart contracts](../../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
-
-```shell
-npm install @lukso/lsp-smart-contracts
-```
-
-## Create the Smart Contracts
 
 When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
@@ -118,9 +108,7 @@ deployAndCreateTickets().catch((error) => {
 ```
 <!-- prettier-ignore-end -->
 
-## Check Your NFT Collection
-
-You can now check out your NFT collection on the [execution block explorer](https://explorer.execution.testnet.lukso.network/) using the address output to the web console during deployment.
+You can now check out the NFT collection contract on the [execution block explorer](https://explorer.execution.testnet.lukso.network/) by pasting the address logged on the console to the search field of the block explorer.
 
 ## References
 

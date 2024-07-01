@@ -1,6 +1,6 @@
 ---
-sidebar_label: '🗃 Create an NFT Collection with LSP8'
-sidebar_position: 6
+sidebar_label: '🗃 Collection with LSP8'
+sidebar_position: 3
 description: Learn how to create an NFT Collection on LUKSO using LSP8 Identifiable Digital Asset standard.
 ---
 
@@ -13,7 +13,7 @@ This tutorial explains how to create a collection of unique Digital Assets based
 
 :::note
 
-This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](./getting-started.md) section.
+This guide builds on top of a Hardhat project using TypeScript as described in the [Getting Started](../getting-started.md) section.
 
 :::
 
@@ -27,16 +27,6 @@ The full code of this example can be found in the smart contract section of the 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DMpeMswK12w?si=DqttxMJIv6c4H0FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-## Setup
-
-To create your custom contract based on the [LUKSO smart contracts](../../../contracts/introduction.md), you will need the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. Go ahead and add it to your project:
-
-```shell
-npm install @lukso/lsp-smart-contracts
-```
-
-## Create the Smart Contracts
-
 When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
@@ -45,7 +35,7 @@ When creating smart contracts representing digital assets on LUKSO, you need to 
 
 For this example we will use the `Collection` token type. You can create a custom 🌄 [LSP8 Identfiable Digital Asset Collection](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) that extends [LSP8Mintable](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md) so that new assets can be created within the smart contract.
 
-```solidity title="contracts/Example3/BasicNFTCollection.sol"
+```solidity title="contracts/BasicNFTCollection.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -80,8 +70,6 @@ contract BasicNFTCollection is LSP8Mintable {
 }
 ```
 
-## Deploy the Smart Contract
-
 The contract is ready, it's time to deploy it. You can easily do it with hardhat deployment script.
 
 <!-- prettier-ignore-start -->
@@ -111,11 +99,7 @@ deployLSP8Collection().catch((error) => {
 });
 ```
 
-If you get issues related to `typechain-types`, you need to generate the types with:
 
-```
-npx hardhat typechain
-```
 
 <!-- prettier-ignore-end -->
 
@@ -125,15 +109,7 @@ Finally, run the deploy script:
 npx hardhat run --network luksoTestnet scripts/deploy.ts
 ```
 
-:::tip
-
-The [Create a deploy script](./create-lsp7-token#create-a-deploy-script.md) section of the Create LSP7 Token guide gives more details and information about how to deploy the contracts.
-
-:::
-
-## View your NFT Collection
-
-You can now use the contract address to check the deployment on the [testnet execution block explorer](https://explorer.execution.testnet.lukso.network/)
+You can now check out the NFT collection contract on the [execution block explorer](https://explorer.execution.testnet.lukso.network/) by pasting the address logged on the console to the search field of the block explorer.
 
 <!-- TODO: add link to NFT marketplaces / dapp that can read such NFTs -->
 
