@@ -153,23 +153,17 @@ import { ethers } from 'ethers';
 import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // Path to generated artifact for your Custom Token Contract
-import MyCustomToken from "./path/to/artifacts/MyCustomToken.json";
+import MyCustomToken from './path/to/artifacts/MyCustomToken.json';
 
 // Connect to UP Browser Extension and get the UP address
 const provider = new ethers.BrowserProvider(window.lukso);
-await provider.send("eth_requestAccounts", []);
+await provider.send('eth_requestAccounts', []);
 const account = await deployer.getAddress();
 
-console.log(
-  'Deploying contract from Universal Profile: ',
-  account,
-);
+console.log('Deploying contract from Universal Profile: ', account);
 
 // Create instance of the Universal Profile
-const universalProfile = new ethers.Contract(
-  UniversalProfileArtifact,
-  account,
-);
+const universalProfile = new ethers.Contract(UniversalProfileArtifact, account);
 
 const abiEncoder = new ethers.AbiCoder();
 
