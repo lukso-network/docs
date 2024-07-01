@@ -27,8 +27,6 @@ The full code of this example can be found in the smart contract section of the 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DMpeMswK12w?si=DqttxMJIv6c4H0FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-## Create the Smart Contracts
-
 When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
@@ -72,8 +70,6 @@ contract BasicNFTCollection is LSP8Mintable {
 }
 ```
 
-## Deploy the Smart Contract
-
 The contract is ready, it's time to deploy it. You can easily do it with hardhat deployment script.
 
 <!-- prettier-ignore-start -->
@@ -113,9 +109,7 @@ Finally, run the deploy script:
 npx hardhat run --network luksoTestnet scripts/deploy.ts
 ```
 
-## View your NFT Collection
-
-You can now use the contract address to check the deployment on the [testnet execution block explorer](https://explorer.execution.testnet.lukso.network/)
+You can now check out the NFT collection contract on the [execution block explorer](https://explorer.execution.testnet.lukso.network/) by pasting the address logged on the console to the search field of the block explorer.
 
 <!-- TODO: add link to NFT marketplaces / dapp that can read such NFTs -->
 

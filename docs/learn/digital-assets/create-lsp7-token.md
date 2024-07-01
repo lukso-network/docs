@@ -94,8 +94,6 @@ Want to deploy token contracts from your 🆙? Have a look at our [Deploy Contra
 
 :::
 
-To deploy your token on chain we **recommend using a controller and address of a Universal Profile**, so your asset will be connected and fetchable from your on-chain persona. Optionally, you can also use a regular Externally Owned Account (EOA).
-
 ```ts title="scripts/deployLSP7AsEOA.ts"
 import { ethers } from 'hardhat';
 import * as dotenv from 'dotenv';

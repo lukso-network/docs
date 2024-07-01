@@ -57,7 +57,6 @@ You can then go ahead to create a `.env` file within the root folder of the Hard
 
 ```text title=".env"
 PRIVATE_KEY=0x...
-UP_ADDR=0x...
 ```
 
 The private key will be used to deploy the smart contracts to the network and can either be a **standalone Externally Owned Account** or a **controller of a Universal Profile**. If you want to deploy the smart contracts as a Universal Profile, you also have to provide the related address of the Universal Profile.
@@ -70,7 +69,7 @@ Never share your private key that you will put into the `.env` file!
 
 :::success
 
-To pay for the deployment fees of the accounts, you will need LYXt or LYX. For the testnet, you can request LYXt from the [LUKSO Testnet faucet](https://faucet.testnet.lukso.network/)
+To pay for the gas deployment fees, you will need LYXt. You can request LYXt from the [LUKSO Testnet faucet](https://faucet.testnet.lukso.network/).
 
 :::
 

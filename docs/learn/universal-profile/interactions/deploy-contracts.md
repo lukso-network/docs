@@ -143,3 +143,73 @@ for (const log of receipt.logs) {
 }
 ```
 <!-- prettier-ignore-end -->
+
+## Examples
+
+### Deploy an LSP7 Token
+
+```ts
+import { ethers } from 'ethers';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+// Path to generated artifact for your Custom Token Contract
+import MyCustomToken from "./path/to/artifacts/MyCustomToken.json";
+
+// Connect to UP Browser Extension and get the UP address
+const provider = new ethers.BrowserProvider(window.lukso);
+await provider.send("eth_requestAccounts", []);
+const account = await deployer.getAddress();
+
+console.log(
+  'Deploying contract from Universal Profile: ',
+  account,
+);
+
+// Create instance of the Universal Profile
+const universalProfile = new ethers.Contract(
+  UniversalProfileArtifact,
+  account,
+);
+
+const abiEncoder = new ethers.AbiCoder();
+
+// Encode constructor parameters
+const encodedConstructorParams = abiEncoder.encode(
+  ['string', 'string', 'address', 'uint256', 'bool'],
+  [
+    'My Custom Token', // token name
+    'MCT', // token symbol
+    accounts, // token owner (our UP)
+    0, // token type = TOKEN
+    false, // isNonDivisible?
+  ],
+);
+
+// Add the constructor parameters to the token bytecode
+const tokenBytecodeWithConstructor = ethers.concat([
+  MyCustomToken.bytecode,
+  encodedConstructorParams,
+]);
+
+// Get the address of the custom token contract that will be created
+// https://docs.lukso.tech/contracts/contracts/ERC725/#execute
+const customTokenAddress = await universalProfile.execute.staticCall(
+  1, // Operation type: CREATE
+  ethers.ZeroAddress, // Target: 0x0 as contract will be initialized
+  0, // Value is empty
+  tokenBytecodeWithConstructor, // Payload of the contract
+);
+
+// Deploy the contract by the Universal Profile
+// https://docs.lukso.tech/contracts/contracts/ERC725/#execute
+const tx = await universalProfile.execute(
+  1, // Operation type: CREATE
+  ethers.ZeroAddress, // Target: 0x0000...0000 as contract will be initialized
+  0, // Value is empty
+  tokenBytecodeWithConstructor, // Payload of the contract
+);
+
+// Wait for the transaction to be included in a block
+await tx.wait();
+console.log('🪙 Token contract deployed by 🆙 at: ', customTokenAddress);
+```
