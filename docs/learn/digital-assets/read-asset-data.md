@@ -285,7 +285,7 @@ If neither _Token ID Metadata_ nor _Base URI_ are set, you should fall back and 
 To get token ID metadata, you will have to make direct contract calls.Therefore, install a provider library, set up the contract, and import the related contract ABIs. Its also recommended to use the [`erc725.js`](../../tools/erc725js/getting-started.md) and [`lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) libraries to easily get [ERC725Y](../../standards/lsp-background/erc725.md) data keys and decode their values.
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 // Add the necessary imports to your JS file
@@ -305,7 +305,7 @@ const myAssetContract = new ethers.Contract(
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```bash
 npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
@@ -344,7 +344,7 @@ The [LSP8](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) allows for
 To call the contract, you must first **prepare** your token IDs to match the standardized **Byte32 Hex Strings** based on the [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) standardization. The **global token ID format** can be fetched from the [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) data storage using the [`getData()`](../../contracts/contracts/ERC725/ERC725.md#getdata) function:
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 // ...
@@ -361,7 +361,7 @@ console.log(tokenIdFormat);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 // ...
@@ -390,7 +390,7 @@ If your token ID is not yet compatible to [`LSP8TokenIdFormat`](https://github.c
     <summary>How to convert a <code>tokenID</code> to a <code>Byte32 Hex String</code> according to <code>LSP8TokenIdFormat</code></summary>
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 // ...
@@ -448,7 +448,7 @@ if (tokenIdFormat >= 100) {
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 // ...
@@ -513,7 +513,7 @@ if (tokenIdFormat >= 100) {
 After preparing the token ID, you can start to fetch the ID-specific metadata by calling [`getDataForTokenId()`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md#getdatafortokenid):
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 // ...
@@ -545,7 +545,7 @@ fetchTokenIdMetadata(byte32TokenId);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 // ...
@@ -630,7 +630,7 @@ You can fetch the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/
 - **mixed across all token IDs**: To fetch the individual Base URI, use the [`getDataFromTokenID(...)`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatafortokenid) function using a specific token ID. This has to be done if the [`LSP8TokenIDFormat`](#preparing-the-token-ids) is `100, 101, 102, or 104`.
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 // ...
@@ -672,7 +672,7 @@ console.log(baseURI);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 /// ...
@@ -770,7 +770,7 @@ If you retrieved the metadata using [`LSP8TokenMetadataBaseURI`](https://github.
     <summary>How to decode a <code>tokenID</code> from <code>Byte32 Hex String</code> according to <code>LSP8TokenIdFormat</code></summary>
 
 <Tabs groupId="provider-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 // ...
@@ -808,7 +808,7 @@ const decodedTokenId = decodeTokenId(byte32TokenId, tokenIdFormat);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 // ...

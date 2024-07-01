@@ -1,33 +1,27 @@
 ---
-sidebar_label: 'Upgrade LSP6 Key Manager'
+sidebar_label: '📐 Upgrade Key Manager'
 sidebar_position: 4
-description: This tutorial shows how you can upgrade the `owner()` of a Universal Profile. For instance upgrading the Key Manager with a better one.
+description: This advanced tutorial shows how you can upgrade the `owner()` of a Universal Profile. For instance upgrading the Key Manager with a better one.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Upgrade the LSP6 Key Manager
+# Upgrade Key Manager
 
-:::caution
+:::danger Warning
 
-This article is a WIP
+This guide is an **advanced guide**. It is intended for developers who are looking to upgrade the Key Manager of their Universal Profile to a new one. For instance, if a new Key Manager with enhanced features.
 
-:::
-
-:::info Requirements
-
-You will need a Universal Profile that you can control via its [KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) to follow this guide.
-If you don't have a Universal Profile yet, follow our previous guide [**Create a Universal Profile**](../../universal-profile/getting-started.md).
+For normal user using the UP Browser Extension, their UP is currently setup with a basic Key Manager already deployed for them on profile creation. **It is therefore not recommended to follow this guide as this could affect the functionality of their UP, making it not possible to interact with it via the Browser Extension**.
 
 :::
 
-In this guide, we will learn how to upgrade the LSP6 Key Manager of your Universal Profile to the latest version available.
+This advanced guide shows how to upgrade the [`LSP6KeyManager`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) of your UP, which is the [`owner()`](../../../contracts/contracts/UniversalProfile.md#owner) of the [`UniversalProfile`](../../../contracts/contracts/UniversalProfile.md). We will:
 
-By the end of this guide, you will know how to:
-
-- Deploy a new LSP6 Key Manager with the last updates.
-- Upgrade your Key Manager by changing the owner of your UP from your old to your new Key Manager.
+1. Deploy a new `LSP6KeyManager` contract on LUKSO Testnet.
+2. Upgrade by transferring ownership of the UniversalProfile to the newly deployed `LSP6KeyManager`.
+3. Confirm the upgrade by accepting ownership via the new Key Manager.
 
 ## Setup
 
@@ -38,7 +32,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
@@ -46,7 +40,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
@@ -56,7 +50,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
 </Tabs>
 
-## Step 1 - Set up the constants and imports
+## Step 1 - Set up constants and imports
 
 Create a JavaScript file and add the following imports on the top of the file:
 
@@ -65,7 +59,7 @@ Create a JavaScript file and add the following imports on the top of the file:
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -82,7 +76,7 @@ const universalProfileAddress = '0x...';
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Imports & Constants"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -99,13 +93,13 @@ const universalProfileAddress = '0x...';
 
 </Tabs>
 
-## Step 2 - Initialize the controller account
+## Step 2 - Initialize the controller
 
-In order to send any transaction on the blockchain you need an EOA. In our case that account MUST have [**`CHANGEOWNER`**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the Universal Profile that will have its LSP6 Key Manager upgraded.
+> **Requirement:** the EOA controller that we will use MUST have the [**`CHANGEOWNER`**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the UP
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Initialise EOA"
 const account = new ethers.Wallet(privateKey).connect(provider);
@@ -113,7 +107,7 @@ const account = new ethers.Wallet(privateKey).connect(provider);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Initialise EOA"
 const account = web3.eth.accounts.wallet.add(privateKey);
@@ -129,7 +123,7 @@ In order to transfer ownership of your Universal Profile, you need to initialize
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Create an instance of the old Key Manager"
 const universalProfile = new ethers.Contract(
@@ -140,7 +134,7 @@ const universalProfile = new ethers.Contract(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Create an instance of the old Key Manager"
 const universalProfile = new web3.eth.Contract(
@@ -153,13 +147,13 @@ const universalProfile = new web3.eth.Contract(
 
 </Tabs>
 
-## Step 4 - Deploy the new LSP6 Key Manager
+## Step 4 - Deploy the new Key Manager
 
 Deploy a new LSP6 Key Manager with the latest updates.
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Deploy a new Key Manager"
 const newKeyManager = await new ethers.ContractFactory(
@@ -172,7 +166,7 @@ const newKeyManager = await new ethers.ContractFactory(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Deploy a new Key Manager"
 const newKeyManager = new web3.eth.Contract(LSP6KeyManager.abi);
@@ -200,7 +194,7 @@ Create a calldata for the [`transferOwnership(address)`](../../../contracts/cont
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
 await universalProfile
@@ -210,7 +204,7 @@ await universalProfile
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Transfer ownership of the Universal Profile from the old Key Manager to the new one"
 await universalProfile.methods.transferOwnership(newKeyManager.address).send({
@@ -230,7 +224,7 @@ Create a calldata for the [`acceptOwnership()`](../../../contracts/contracts/LSP
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const acceptOwnershipCalldata = new ethers.Interface(
@@ -242,7 +236,7 @@ await newKeyManager.connect(account).execute(acceptOwnershipCalldata);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js title="Accept ownership of the Universal Profile via the new Key Manager"
 const acceptOwnershipCalldata = new web3.eth.Contract(
@@ -272,7 +266,7 @@ The upgrade has been completed successfully.
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js title="upgrade-lsp6.js"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -322,7 +316,7 @@ await upgradeLSP6();
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript title="upgrade-lsp6.js"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';

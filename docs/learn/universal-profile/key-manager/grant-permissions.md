@@ -46,7 +46,7 @@ When granting permissions to a new address, we need to update three data keys in
 
 <Tabs>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell title="Install the dependencies"
 npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
@@ -54,7 +54,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
   </TabItem>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell title="Install the dependencies"
 npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
@@ -148,7 +148,7 @@ To get started you would need the following:
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```javascript title="Load account from a private key"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -163,7 +163,7 @@ const PRIVATE_KEY = '0x...'; // your EOA private key (previously created)
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript title="Load account from a private key"
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -190,7 +190,7 @@ The private key can be obtained depending on how you created your Universal Prof
 - UP created via the Browser extension: click on the _Settings_ icon (top right) > and _Export Private Key_
 
 <Tabs>
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```javascript title="Load account from a private key"
 const myEOA = new ethers.Wallet(privateKey).connect(provider);
@@ -198,7 +198,7 @@ const myEOA = new ethers.Wallet(privateKey).connect(provider);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript title="Load account from a private key"
 const myEOA = web3.eth.accounts.wallet.add(PRIVATE_KEY);
@@ -216,7 +216,7 @@ You will need the address of your Universal Profile.
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js
 // step 1 - create instance of UniversalProfile contract
@@ -228,7 +228,7 @@ const universalProfile = new ethers.Contract(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 // step 1 - create instance of UniversalProfile contract
@@ -252,7 +252,7 @@ We will then encode this permission data keys in a `setData(...)` payload and in
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js
 // step 3.3 - send the transaction
@@ -261,7 +261,7 @@ await myUniversalProfile.connect(account).setData(data.keys, data.values);
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 // step 3.3 - send the transaction
@@ -299,7 +299,7 @@ You can then try to do again the **Edit our Universal Profile** guide, using thi
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -372,7 +372,7 @@ grantPermissions();
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';

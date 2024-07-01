@@ -37,14 +37,14 @@ The following code snippets require the installation of the following libraries:
 - [`@erc725/erc725.js`](https://github.com/ERC725Alliance/erc725.js/)
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers" default>
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts @erc725/erc725.js
 ```
 
   </TabItem>
-    <TabItem value="web3" label="web3">
+    <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
@@ -58,7 +58,7 @@ npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
 Import `web3.js`/`ethers`, the [`UniversalProfile`](../../../contracts/contracts/UniversalProfile.md) ABI from [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) and create an instance of this contract with the `UNIVERSAL_PROFILE_ADDRESS`.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers" default>
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
 
 ```javascript
 import { ethers } from 'ethers';
@@ -95,7 +95,7 @@ const myWallet = await provider.getSigner();
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 import Web3 from 'web3';
@@ -245,7 +245,7 @@ const { keys: lsp12DataKeys, values: lsp12Values } = erc725.encodeData([
 Create an instance of the Universal Profile contract to set the issued assets on. We use the `setDataBatch(...)` function to initially set or update multiple data keys.
 
 <Tabs groupId="web3-lib">
-    <TabItem value="ethers" label="ethers" default>
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
 
 ```javascript
 const myUPContract = new ethers.Contract(
@@ -258,14 +258,33 @@ await myUPContract.setDataBatch(lsp12DataKeys, lsp12Values);
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+    <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 const myUPContract = new web3.eth.Contract(
   UniversalProfileArtifact.abi,
   UNIVERSAL_PROFILE_ADDRESS,
 );
+```
 
+  </TabItem>
+</Tabs>
+
+## Set data batch
+
+Next, use the `setDataBatch(...)` function of the Universal Profile to initially set or update multiple data keys.
+
+<Tabs groupId="web3-lib">
+    <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
+
+```javascript
+await myUPContract.setDataBatch(lsp12DataKeys, lsp12Values);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
+
+```javascript
 await myUPContract.methods
   .setDataBatch(lsp12DataKeys, lsp12Values)
   .send({ from: myWallet.address, gas: 1_000_000 });

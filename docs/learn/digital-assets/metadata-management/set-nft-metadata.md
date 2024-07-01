@@ -15,12 +15,35 @@ In this guide you will learn how to set the metadata of a specific NFT (represen
 
 You will need the address of an existing LSP8 NFT collection in order to follow this tutorial. This represent the LSP8 collection that includes the NFT you want to update metadata for. For instance [`0x37934A275EFd47DFce671CA3CBaE34d9138CF2D2.`](https://explorer.execution.testnet.lukso.network/address/0x37934A275EFd47DFce671CA3CBaE34d9138CF2D2?tab=read_contract)
 
+The following code snippets require the installation of the following libraries:
+
+- [`ethers.js`](https://github.com/ethers-io/ethers.js/) or [`web3.js`](https://www.npmjs.com/package/web3)
+- [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts/)
+
+<Tabs groupId="web3-lib">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
+
+```shell
+npm install ethers @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts
+```
+
+  </TabItem>
+
+</Tabs>
+
 ## Imports and constants
 
 Import `web3.js`/`ethers`, the [`LSP8IdentifiableDigitalAsset`](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) ABI from [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) and create an instance of this contract with the `lsp8ContractAddress`.
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```javascript
 import { ethers } from 'ethers';
@@ -38,7 +61,7 @@ const lsp8ContractAddress = '0x...';
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 import Web3 from 'web3';
@@ -63,7 +86,7 @@ const lsp8ContractAddress = '0x...';
 Create an instance of the LSP8 collection contract as shown below:
 
 <Tabs groupId="web3-lib">
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```javascript
 const lsp8Contract = new ethers.Contract(
@@ -73,7 +96,7 @@ const lsp8Contract = new ethers.Contract(
 ```
 
   </TabItem>
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 const myToken = new web3.eth.Contract(
@@ -138,7 +161,7 @@ Here we will use the following parameters as examples:
 
 <Tabs groupId="web3-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```javascript
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
@@ -161,7 +184,7 @@ await lsp8Contract.setDataForTokenId(
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
