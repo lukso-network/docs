@@ -9,11 +9,24 @@ import TabItem from '@theme/TabItem';
 
 # Execute Batch Transactions
 
-A Universal Profile contains a function called `executeBatch(...)` to perform batch transaction. With some thinking, we will see that this function can enables a countless number of creative use cases. Below are some useful and simple example code snippets covered, around transferring LYX, tokens and NFTs to one or multiple different addresses.
+<div style={{textAlign: 'center', color: 'grey'}}>
+  <img
+    src={require('../img/execute-batch-mix-lyx-tokens-nft-different-addresses.png').default}
+    alt="Complex batch transfer interactions are possible with Universal Profile"
+    width="800"
+  />
+<br/>
+<i>Universal Profiles support natively batch transactions to perform complex transfer scenarios. Like transferring LYX or multiple tokens and NFTs to different recipient addresses.</i>
+<br /><br />
+</div>
+
+A Universal Profile contains a function called [`executeBatch(...)`](../../../contracts/contracts/UniversalProfile.md#executebatch) to perform batch transaction. With some thinking, we will see that this function can enables a countless number of creative use cases. Below are some useful and simple example code snippets covered, around transferring LYX, tokens and NFTs to one or multiple different addresses.
 
 ## Transfer Examples
 
 ### Transfer LYX to different recipients
+
+![Transfer LYX to multiple addresses](../img/execute-batch-transfer-lyx-different-addresses.png)
 
 <Tabs>
 
@@ -103,6 +116,8 @@ await upContract.methods
 </Tabs>
 
 ### Transfer 3 x tokens to the same recipient
+
+![Transfer multiple tokens to the same address](../img/execute-batch-transfer-multiple-tokens-same-address.png)
 
 <Tabs>
 
@@ -279,6 +294,8 @@ await upContract.methods
 </Tabs>
 
 ### Transfer different NFTs to the same recipient
+
+![Transfer multiple NFTs to the same address](../img/execute-batch-transfer-nfts-same-recipient.png)
 
 <Tabs>
 
@@ -463,11 +480,13 @@ await upContract
 
 ### Mixing LYX, Tokens, NFT and recipient addresses
 
-Below is an example where the transaction transfer three different assets to three different addresses. For instance where from our 🆙:
+![Illustration transfer LYX, tokens and NFT to different recipients](../img/execute-batch-mix-lyx-tokens-nft-different-addresses.png)
 
-- we are sending LYX to Alice.
-- we are sending some LSP7 tokens to Bob.
-- we are sending an LSP8 NFT to Carol.
+This example shows how to transfer three different assets to different addresses in a single transaction. For instance, from our 🆙, we can:
+
+- send LYX to Alice.
+- send some LSP7 tokens to Bob.
+- send an LSP8 NFT to Carol.
 
 <Tabs>
 
