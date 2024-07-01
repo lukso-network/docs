@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Interact with Contracts'
-sidebar_position: 11
+sidebar_position: 3
+description: This guide shows how to interact with any smart contracts programmatically from a dApp using the UP Browser Extension and ethers.js (or web3.js).
 ---
 
 import Tabs from '@theme/Tabs';
