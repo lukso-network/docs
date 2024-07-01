@@ -7,9 +7,7 @@ import CallToActionButton from '@site/src/components/CallToActionButton';
 
 # Welcome to LUKSO
 
-The purpose of this section is to teach you the bare minimum, so that you can start coding as soon as possible to try out everything LUKSO has to offer.
-
-For more detailed information on any topic please use search or check out our [LEARN section](../learn/introduction.md).
+The purpose of this section is to teach you the least amount possible to get you coding and try out everything LUKSO has to offer.
 
 ## What is LUKSO?
 
@@ -66,7 +64,7 @@ Here are the top 3 reasons why LUKSO is different to any other blockchain:
 </tbody>
 </table>
 
-Learn more about the unique LUKSO Standard Proposals (LSPs) in the [LUKSO STANDARDS section](../standards/introduction.md).
+To learn more about the building blocks of LUKSO check out [the standards](../standards/introduction.md).
 
 ## Where should I start?
 
@@ -104,22 +102,22 @@ Choose your path below:
 </thead>
 <tbody>
 <tr>
-<td>Check out our [BOILERPLATE](https://github.com/lukso-network/tools-dapp-boilerplate) - clone this repo to have a fully functioning dApp in minutes.</td>
+<td>Check out our [boilerplate dapp](https://github.com/lukso-network/tools-dapp-boilerplate) - clone this repo to have a fully functioning dApp in minutes.</td>
 <td>Create an NFT using [this guide](../learn/digital-assets/smart-contract-developers/create-lsp7-token).</td>
-<td>Learn more about how to run a [node](https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/create-lsp7-token/)or become a [validator](https://docs.lukso.tech/networks/testnet/become-a-validatorvalidator) on our testnet. </td>
+<td>Learn more about how to run a [node](https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/create-lsp7-token/) or become a [validator](https://docs.lukso.tech/networks/testnet/become-a-validatorvalidator) on our testnet. </td>
 </tr>
 <tr>
-<td>Explore our [PLAYGROUND repo](https://github.com/lukso-network/lukso-playground) - it allows you to see how to fetch profile and asset information, encode data, change permissions etc.</td>
+<td>Explore our [playground repo](https://github.com/lukso-network/lukso-playground) - it allows you to see how to fetch profile and asset information, encode data, change permissions etc.</td>
 <td>Check out our [guide for building smart contracts](../learn/digital-assets/smart-contract-developers/getting-started) on LUKSO.</td>
-<td>See our [Mainnet Parameters](../networks/mainnet/).</td>
+<td>See our [mainnet parameters](../networks/mainnet/parameters.md).</td>
 </tr>
 <tr>
-<td>Read more about our [STANDARDS](../standards/introduction.md).</td>
+<td>Read more about LUKSO [standards](../standards/introduction.md) to learn more about the building blocks.</td>
 <td>&nbsp;</td>
 <td>See which [clients are supported](../networks/mainnet/running-a-node#supported-clients-versions).</td>
 </tr>
 <tr>
-<td>Explore our [Oracles and other external integrations](../networks/mainnet/parameters.md).</td>
+<td>Explore our [oracles and other external integrations](../tools/integrations).</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
