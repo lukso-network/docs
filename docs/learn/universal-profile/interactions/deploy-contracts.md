@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Deploy contracts from UP'
-sidebar_position: 12
+sidebar_position: 4
 description: Learn how to deploy a contract from your Universal Profile.
 ---
 

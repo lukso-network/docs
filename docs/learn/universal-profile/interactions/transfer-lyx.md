@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Transfer LYX'
-sidebar_position: 8
-description: Learn how to transfer LYX from your Universal Profile.
+sidebar_position: 1
+description: Learn how to write a simple dApp code to transfer LYX from your Universal Profile Browser Extension programmatically.
 ---
 
 import Tabs from '@theme/Tabs';

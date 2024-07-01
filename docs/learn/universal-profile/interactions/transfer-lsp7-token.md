@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Transfer LSP7 Token'
-sidebar_position: 10
-description: Transfer LSP7 tokens from a Universal Profile.
+sidebar_position: 2
+description: Learn how to transfer LSP7 tokens from a Universal Profile to any address on the LUKSO Blockchain, using the UP Browser Extension.
 ---
 
 import Tabs from '@theme/Tabs';
