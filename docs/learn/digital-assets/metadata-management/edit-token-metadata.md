@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Edit Token Metadata'
-sidebar_position: 3
+sidebar_label: 'Set LSP7 Token Metadata'
+sidebar_position: 2
 description: Learn how to update LSP4 Metadata of digital assets on LUKSO.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Edit Token Metadata
+# Set LSP7 Token Metadata
 
 In this guide, you will learn how to edit the [`LSP4Metadata`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md).
 
