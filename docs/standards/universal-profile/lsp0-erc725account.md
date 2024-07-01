@@ -195,8 +195,6 @@ See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)**
 
 Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md) allowing 2 step ownership transfers.
 
-Check the **javascript** guides to know [**How to transferOwnership of a Profile**](../../learn/universal-profile/key-manager/upgrade-key-manager.md).
-
 :::
 
 An account that holds valuable assets and represents your digital identity should be secure to prevent mistakes that may result in losing it. Therefore, a safe and secure ownership management system should be in place for this account.

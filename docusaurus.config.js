@@ -56,7 +56,7 @@ export default {
           },
           {
             from: '/learn/expert-guides/key-manager/upgrade-key-manager',
-            to: '/learn/universal-profile/key-manager/upgrade-key-manager',
+            to: '/learn/universal-profile/advanced-guides/upgrade-key-manager',
           },
           {
             from: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',

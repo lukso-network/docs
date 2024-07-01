@@ -40,7 +40,7 @@ npm install @erc725/erc725.js
 ```
 
   </TabItem>
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```bash
 npm install ethers @lukso/lsp-smart-contracts
@@ -48,7 +48,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```bash
 npm install web3 @lukso/lsp-smart-contracts
@@ -85,7 +85,7 @@ console.log(tokenType);
 ```
 
   </TabItem>
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
 import { ethers } from 'ethers';
@@ -106,10 +106,16 @@ const myAssetContract = new ethers.Contract(
   provider,
 );
 
-// Retrieve the token type
-const tokenType = await myAssetContract.getData(
+// Retrieve the token type (this will be abi-encoded)
+const tokenTypeEncoded = await myAssetContract.getData(
   ERC725YDataKeys.LSP4.LSP4TokenType,
 );
+
+// Decode from abi-encoded uint256 to a number
+// e.g: 0x0000...0002 -> 2
+const abiCoder = ethers.AbiCoder.defaultAbiCoder();
+
+const tokenType = abiCoder.decode(['uint256'], tokenTypeEncoded);
 console.log(tokenType);
 // 0 = Token
 // 1 = NFT
@@ -118,7 +124,7 @@ console.log(tokenType);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from 'web3';
@@ -141,9 +147,13 @@ const myAssetContract = new web3.eth.Contract(
 );
 
 // Retrieve the token type
-const tokenType = await myAssetContract.methods.getData(
+const tokenTypeValue = await myAssetContract.methods.getData(
   ERC725YDataKeys.LSP4.LSP4TokenType,
 );
+
+// Decode from abi-encoded uint256 to a number
+// e.g: 0x0000...0002 -> 2
+const tokenType = web3.eth.abi.decodeParameter('uint256', tokenTypeValue);
 console.log(tokenType);
 // 0 = Token
 // 1 = NFT
