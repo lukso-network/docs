@@ -104,22 +104,22 @@ Choose your path below:
 </thead>
 <tbody>
 <tr>
-<td>Check out our <a href="https://github.com/lukso-network/tools-dapp-boilerplate" target="_blank" rel="noopener noreferrer">BOILERPLATE</a> - clone this repo to have a fully functioning dApp in minutes.</td>
-<td>Create an NFT using <a href="https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/create-lsp7-token/" target="_blank" rel="noopener noreferrer"> this guide.</a></td>
-<td>Learn more about how to run a <a href="https://docs.lukso.tech/networks/testnet/running-a-node" target="_blank" rel="noopener noreferrer">node</a> or become a <a href="https://docs.lukso.tech/networks/testnet/become-a-validator" target="_blank" rel="noopener noreferrer">validator</a> on our testnet. </td>
+<td>Check out our [BOILERPLATE](https://github.com/lukso-network/tools-dapp-boilerplate) - clone this repo to have a fully functioning dApp in minutes.</td>
+<td>Create an NFT using [this guide](../learn/digital-assets/smart-contract-developers/create-lsp7-token).</td>
+<td>Learn more about how to run a [node](https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/create-lsp7-token/)or become a [validator](https://docs.lukso.tech/networks/testnet/become-a-validatorvalidator) on our testnet. </td>
 </tr>
 <tr>
-<td>Explore our <a href="https://github.com/lukso-network/lukso-playground" target="_blank" rel="noopener noreferrer">PLAYGROUND repo</a> - it allows you to see how to fetch profile and asset information, encode data, change permissions etc.</td>
-<td>Check out our <a href="https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/getting-started" target="_blank" rel="noopener noreferrer">guide for building smart contracts</a> on LUKSO.</td>
-<td>See our <a href="https://docs.lukso.tech/networks/mainnet/parameters" target="_blank" rel="noopener noreferrer">Mainnet Parameters</a>.</td>
+<td>Explore our [PLAYGROUND repo](https://github.com/lukso-network/lukso-playground) - it allows you to see how to fetch profile and asset information, encode data, change permissions etc.</td>
+<td>Check out our [guide for building smart contracts](../learn/digital-assets/smart-contract-developers/getting-started) on LUKSO.</td>
+<td>See our [Mainnet Parameters](../networks/mainnet/).</td>
 </tr>
 <tr>
-<td>Read more about our <a href="https://docs.lukso.tech/standards/introduction" target="_blank" rel="noopener noreferrer">STANDARDS</a>.</td>
+<td>Read more about our [STANDARDS](../standards/introduction.md).</td>
 <td>&nbsp;</td>
-<td>See which <a href="https://docs.lukso.tech/networks/mainnet/running-a-node#supported-clients-versions" target="_blank" rel="noopener noreferrer">clients are supported.</a></td>
+<td>See which [clients are supported](../networks/mainnet/running-a-node#supported-clients-versions).</td>
 </tr>
 <tr>
-<td>Explore our <a href="https://docs.lukso.tech/networks/mainnet/parameters" target="_blank" rel="noopener noreferrer">Oracles and other external integrations</a>.</td>
+<td>Explore our [Oracles and other external integrations](../networks/mainnet/parameters.md).</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
