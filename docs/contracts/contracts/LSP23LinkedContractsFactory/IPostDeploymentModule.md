@@ -51,7 +51,6 @@ Executes post-deployment logic for the primary and secondary contracts.
 | `calldataToPostDeploymentModule` |  `bytes`  | Calldata to be passed for the post-deployment execution. |
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

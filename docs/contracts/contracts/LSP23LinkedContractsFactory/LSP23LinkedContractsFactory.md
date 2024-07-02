@@ -401,7 +401,6 @@ Reverts when the deployment & intialization of the secondary contract has failed
 | `errorData` | `bytes` | Potentially information about why the deployment & intialization have failed. |
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

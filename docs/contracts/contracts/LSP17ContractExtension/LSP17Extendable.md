@@ -123,7 +123,6 @@ If there is an extension for the function selector being called, it calls the ex
 `CALL` opcode, passing the `msg.data` appended with the 20 bytes of the [`msg.sender`](#msg.sender) and 32 bytes of the `msg.value`.
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->

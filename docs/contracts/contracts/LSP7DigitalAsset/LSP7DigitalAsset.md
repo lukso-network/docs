@@ -1914,7 +1914,6 @@ error OwnableCannotSetZeroAddressAsOwner();
 Reverts when trying to set `address(0)` as the contract owner when deploying the contract, initializing it or transferring ownership of the contract.
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
