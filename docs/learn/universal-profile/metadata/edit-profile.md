@@ -6,12 +6,6 @@ description: Learn how to edit the LSP3Profile Metadata of a Universal Profile u
 
 # Edit a Universal Profile
 
-:::caution Disclaimer
-
-This guide might contain outdated information and will be updated soon.
-
-:::
-
 :::info Requirements
 
 You will need a Universal Profile that you can control via its KeyManager to follow this guide. <br/>
@@ -27,8 +21,8 @@ This guide will teach you how to **customize our Universal Profile** programmati
 To achieve this goal, we will perform the following steps:
 
 1. Create a JSON file that contains our profile details (`LSP3Profile` metadata).
-2. Upload this JSON file to [IPFS] using our [lsp-factory.js](../../../tools/lsp-factoryjs/getting-started.md) tool.
-3. Encode + set our new [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) metadata key in our profile with our [erc725.js] library and web3.js.
+2. Upload this JSON file to [IPFS] using our [tools-data-providers](https://github.com/lukso-network/tools-data-providers) library.
+3. Encode + set our new [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) metadata key in our profile with our [erc725.js](../../../tools/erc725js/getting-started.md) library and `web3.js`.
 
 :::tip
 
