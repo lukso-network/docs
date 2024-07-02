@@ -9,6 +9,35 @@ import TabItem from '@theme/TabItem';
 
 # Read Data from your Universal Profile
 
+## Introduction
+
+A Universal Profile is a smart contract that uses a generic key-value store (ERC725Y) as a storage design. The structure makes it possible to attach any piece of information to our Universal Profile by setting any particular **value** to any specific **key**.
+
+A set of ERC725Y data keys is defined as an **ERC725Y schema**. The schema is an array of keys, where an object represents each key. Each of the objects describes the key `name`, the `keyType` (_e.g., singleton, array, mapping_), and the type of the data it contains (`valueType`).
+
+A schema lets us know which ERC725Y data keys we can set and **which information we can retrieve and edit from our Universal Profile**.
+
+![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/lsp2/ERC725Y-JSON-Schema-explained.jpeg)
+
+> For more details, see: [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#specification)
+
+One of the main ERC725Y data keys of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key. It is a standardized key that refers to the **metadata of the Universal Profile**. This metadata takes the form of a reference to a JSON file.
+
+This guide will store our Universal Profile metadata on [IPFS], a distributed file storage.
+
+We can add (or edit) any pieces of informations related to our UP by the following steps:
+
+1. Create a new JSON file with new or updated info.
+2. Upload the file to IPFS.
+3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
+
+![LSP3Profile Metadata as JSON file on IPFS (diagram)](../img/profile-metadata-ipfs-explained.jpeg)
+
+:::info Learn More
+**IPFS is just one place among many** where you can store your Universal Profile metadata.<br/>
+You can use other file storage options to store your JSON file (_e.g., [Swarm](https://www.ethswarm.org/), [Storj](https://www.storj.io/index.html), Google Drive, or a private FTP server_).
+:::
+
 :::success 💡 Tips
 
 Take advantage of our [ERC725 inspect](https://erc725-inspect.lukso.tech) tool!
