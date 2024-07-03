@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Deploy Token + Metadata with 🆙'
 description: How to set LSP4 Metadata of digital assets on contract deployment.
-sidebar_position: 4
+sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs';
