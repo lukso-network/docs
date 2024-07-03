@@ -25,7 +25,7 @@ The gas price mainly causes issues for Geth, as the execution client is using a 
 
 :::caution Recommended Gas Price
 
-Due to many nodes still running older Geth clients and the network occupation remaining low, reducing the minimal gas price to a value between **0.1** and **1 Gwei** is _recommended_ to prevent validators from not receiving transaction rewards. Based on the [Network Explorer](https://explorer.execution.mainnet.lukso.network/), the gas price currently levels off between 0.4 and 2.5 Gwei.
+Due to many nodes still running older Geth clients and the network occupation remaining low, reducing the minimal gas price to a value between **0.1** and **1 Gwei** is _recommended_ to prevent validators from not receiving transaction rewards. Based on the [Network Explorer](https://explorer.lukso.network), the gas price currently levels off between 0.4 and 2.5 Gwei.
 
 :::
 

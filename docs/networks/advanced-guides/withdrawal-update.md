@@ -55,8 +55,8 @@ If you've never updated your validator withdrawals after the initial deposit, yo
 
 1. Open the deposit file of your validator and copy the `pubkey` element of the specific validator key
 2. Search for your validator by entering its public key into the search bar of the related consensus explorer:
-   - [LUKSO Mainnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/)
-   - [LUKSO Testnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/)
+   - [LUKSO Mainnet Consensus Explorer](https://explorer.lukso.network)
+   - [LUKSO Testnet Consensus Explorer](https://explorer.consensus.testnet.lukso.network/)
 3. View the validator’s details and open the **Withdrawals** section
    - If you see withdrawals, the withdrawal credentials are working correctly
    - If the withdrawal section is greyed out, you can enable them by following this guide
@@ -77,8 +77,8 @@ To update your withdrawals, you have to specify the on-chain indices for each of
 
 1.  Open the deposit file of your validator and copy the `pubkey` element of a validator key.
 2.  Search for your validator by entering its public key into the search bar of the related consensus explorer:
-    - [LUKSO Mainnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/)
-    - [LUKSO Testnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/)
+    - [LUKSO Mainnet Consensus Explorer](https://explorer.lukso.network/)
+    - [LUKSO Testnet Consensus Explorer](https://explorer.consensus.testnet.lukso.network/)
 3.  Copy the validator index property
 
 The steps need to be repeated for every validator key.
@@ -253,7 +253,7 @@ A **maximum of 16 validator keys** can update their withdrawal credentials **per
 :::
 
 1. Open the Validator Withdrawal Page of the related network:
-   - [LUKSO Mainnet Validator Withdrawals](https://explorer.consensus.mainnet.lukso.network/validators/withdrawals)
+   - [LUKSO Mainnet Validator Withdrawals](https://explorer.lukso.network/withdrawals)
    - [LUKSO Testnet Validator Withdrawals](https://explorer.consensus.testnet.lukso.network/validators/withdrawals)
 2. Scroll down to the list of **Address Changes**.
 3. Your Validator indices should show up as some of the latest entries.
