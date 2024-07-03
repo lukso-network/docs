@@ -123,7 +123,7 @@ export default {
           },
           {
             from: '/learn/dapp-developer/read-asset-data',
-            to: '/learn/digital-assets/read-asset-data',
+            to: '/learn/digital-assets/metadata-management/read-asset-data',
           },
           // Learn/Digital Assets
           {
