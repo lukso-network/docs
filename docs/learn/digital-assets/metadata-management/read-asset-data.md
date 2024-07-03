@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📑 Read Asset Data'
+sidebar_label: 'Fetch Asset Metadata'
 sidebar_position: 5
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
@@ -26,16 +26,16 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 <br /><br />
 </div>
 
-On LUKSO, [Digital Assets](../../standards/tokens/introduction.md) are created using the [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Identifiable Digital Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. The data of each digital asset lives in its own [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage. This tutorial teaches you how to fetch and read this data.
+On LUKSO, [Digital Assets](../../../standards/tokens/introduction.md) are created using the [LSP7 - Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Identifiable Digital Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. The data of each digital asset lives in its own [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage. This tutorial teaches you how to fetch and read this data.
 
 :::info Preparation
 
 Before following this guide, it is recommended to be a bit familiar with the token standards:
 
-- [LSP4 - Digital Asset Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md).
-- [LSP7 - Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md).
-- [LSP8 - Digital Identifiable Asset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
-- [How digital assets differ based on their LSP4 Token Type](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets).
+- [LSP4 - Digital Asset Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md).
+- [LSP7 - Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md).
+- [LSP8 - Digital Identifiable Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
+- [How digital assets differ based on their LSP4 Token Type](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets).
 
 :::
 
@@ -61,13 +61,13 @@ npm i @lukso/lsp-smart-contracts @erc725/erc725.js
 
 :::info
 
-If you are using the 📃 [lsp-smart-contracts](../../tools/lsp-smart-contracts/getting-started) library, you can fetch the list of `interfaceId` directly from the package's [constants](../../tools/lsp-smart-contracts/constants) called `INTERFACE_IDS`.
+If you are using the 📃 [lsp-smart-contracts](../../../tools/lsp-smart-contracts/getting-started) library, you can fetch the list of `interfaceId` directly from the package's [constants](../../../tools/lsp-smart-contracts/constants) called `INTERFACE_IDS`.
 
 Optionally, you can also find a full list of interface IDs on the [Contracts > Interface ID](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
 
 :::
 
-First, we need to check if the contract is a digital asset, as either an LSP7 or an LSP8 smart contract. To do so, we will do the same way as shown in the [**Interface Detection**](../standard-detection.md#interface-detection) guide: call the `supportsInterface(bytes4)` function in te smart contract, checking for various interface IDs.
+First, we need to check if the contract is a digital asset, as either an LSP7 or an LSP8 smart contract. To do so, we will do the same way as shown in the [**Interface Detection**](../../standard-detection.md#interface-detection) guide: call the `supportsInterface(bytes4)` function in te smart contract, checking for various interface IDs.
 
 <Tabs groupId="web3-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
@@ -155,19 +155,19 @@ console.log(isLSP7, isLSP8); // each, true or false
 
 ## Fetch the Asset Metadata
 
-LSP4 - Digital Asset Metadata describes the data within <a href="../../standards/tokens/LSP7-Digital-Asset.md">LSP7</a> and <a href="../../standards/tokens/LSP8-Identifiable-Digital-Asset.md">LSP8</a> asset's <a href="../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. <br/>The following data keys can be fetched. 👇
+LSP4 - Digital Asset Metadata describes the data within <a href="../../../standards/tokens/LSP7-Digital-Asset.md">LSP7</a> and <a href="../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md">LSP8</a> asset's <a href="../../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store">ERC725Y data storage</a>. <br/>The following data keys can be fetched. 👇
 
-| 🗄️ Data Key                           | Value contained inside this data key                                                                                                                                                        |
-| :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `SupportedStandards:LSP4DigitalAsset` | An hex literal value that confirms that this ERC725Y contract contains the metadata keys related to the [LSP4DigitalAsset](../../standards/tokens/LSP4-Digital-Asset-Metadata.md) standard. |
-| `LSP4Metadata`                        | The JSON file with asset descriptions and images.                                                                                                                                           |
-| `LSP4Creators[]`                      | An array of all creators of the asset.                                                                                                                                                      |
-| `LSP4CreatorsMap:<address>`           | A mapping of creator-specific information.                                                                                                                                                  |
-| `LSP4TokenType`                       | The asset's token type (encoded as a `uint256` number).                                                                                                                                     |
-| `LSP4TokenSymbol`                     | The utf8 hex characters of the string representing the asset's symbol.                                                                                                                      |
-| `LSP4TokenName`                       | The utf8 hex characters of the string representing the asset's name.                                                                                                                        |
+| 🗄️ Data Key                           | Value contained inside this data key                                                                                                                                                           |
+| :------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SupportedStandards:LSP4DigitalAsset` | An hex literal value that confirms that this ERC725Y contract contains the metadata keys related to the [LSP4DigitalAsset](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) standard. |
+| `LSP4Metadata`                        | The JSON file with asset descriptions and images.                                                                                                                                              |
+| `LSP4Creators[]`                      | An array of all creators of the asset.                                                                                                                                                         |
+| `LSP4CreatorsMap:<address>`           | A mapping of creator-specific information.                                                                                                                                                     |
+| `LSP4TokenType`                       | The asset's token type (encoded as a `uint256` number).                                                                                                                                        |
+| `LSP4TokenSymbol`                     | The utf8 hex characters of the string representing the asset's symbol.                                                                                                                         |
+| `LSP4TokenName`                       | The utf8 hex characters of the string representing the asset's name.                                                                                                                           |
 
-To retrieve and decode the value stored under this data keys, we will use [erc725.js](../../tools/erc725js/getting-started.md) and instantiate the class with:
+To retrieve and decode the value stored under this data keys, we will use [erc725.js](../../../tools/erc725js/getting-started.md) and instantiate the class with:
 
 1. the LSP4 Schema that defines the data keys above and how to decode them.
 2. the address of your digital asset.
@@ -191,9 +191,9 @@ const erc725js = new ERC725(
 
 We can fetch the digital asset data in three ways:
 
-1. using [`getData()`](../../tools/erc725js/methods#getdata) without parameters. This will fetch the value of all data keys at once.
+1. using [`getData()`](../../../tools/erc725js/methods#getdata) without parameters. This will fetch the value of all data keys at once.
 2. using `getData("DataKeyName")` to fetch the value of a specific data key. For instance `getData("LSP4Metadata")`.
-3. using [`fetchData('LSP4Metadata')`](../../tools/erc725js/methods.md#fetchdata). This will decode the `VerifiableURI` to extract the link of the JSON metadata file and fetch its content from IPFS (or any other storage service).
+3. using [`fetchData('LSP4Metadata')`](../../../tools/erc725js/methods.md#fetchdata). This will decode the `VerifiableURI` to extract the link of the JSON metadata file and fetch its content from IPFS (or any other storage service).
 
 ### Asset Name and Symbol
 
@@ -223,10 +223,10 @@ console.log(tokenSymbol);
 
 ### Global Token Information
 
-To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../tools/erc725js/getting-started.md) library:
+To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../../tools/erc725js/getting-started.md) library:
 
-- [`fetchData('LSP4Metadata')`](../../tools/erc725js/methods.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
-- [`getData(LSP4Metadata)`](../../tools/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../tools/erc725js/methods.md#decodedata).
+- [`fetchData('LSP4Metadata')`](../../../tools/erc725js/methods.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
+- [`getData(LSP4Metadata)`](../../../tools/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../../tools/erc725js/methods.md#decodedata).
 
 ```ts
 // Download and verify the asset metadata JSON file
@@ -324,7 +324,7 @@ console.log(assetCreatorsList);
 
 If one of the creator contains the `LSP0ERC725Account` interface ID (`0x...`), it is likely to be a Universal Profile! 🆙
 
-Follow the guide [**Read Profile Data**](../universal-profile/metadata/read-profile-data.md) to retrieve the profile infos!
+Follow the guide [**Read Profile Data**](../../universal-profile/metadata/read-profile-data.md) to retrieve the profile infos!
 
 :::
 
@@ -359,7 +359,7 @@ console.log(creatorInformation);
 
 ## Interpret Data based on Token Type
 
-If both, contract and metadata standard are aligned, Finally we need to determine the [LSP4 Token Type](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) in order to interpret the metadata correctly.
+If both, contract and metadata standard are aligned, Finally we need to determine the [LSP4 Token Type](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) in order to interpret the metadata correctly.
 
 At this point, you should be able to identify if the digital asset is a:
 
@@ -368,7 +368,7 @@ At this point, you should be able to identify if the digital asset is a:
 - LSP8 - NFT
 - LSP8 - Collection
 
-Based on the [token type](#detect-the-token-type), the information of the [LSP4 Digital Metadata](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) can be interpreted differently:
+Based on the [token type](#detect-the-token-type), the information of the [LSP4 Digital Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#types-of-digital-assets) can be interpreted differently:
 
 - As [**global token information**](#global-token-information) of the contract (Token or LSP7 NFT)
 - To each [**individual token ID**](#token-id-metadata) (LSP8 NFT or Collection)
