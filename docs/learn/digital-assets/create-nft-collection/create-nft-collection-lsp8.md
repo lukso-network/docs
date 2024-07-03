@@ -72,36 +72,28 @@ contract BasicNFTCollection is LSP8Mintable {
 
 The contract is ready, it's time to deploy it. You can easily do it with hardhat deployment script.
 
-<!-- prettier-ignore-start -->
-
 ```js title="scripts/deploy.ts"
-import { ethers } from "hardhat";
+import { ethers } from 'ethers';
+import BasicNFTCollectionArtifacts from './artifacts/BasicNFTCollection.json';
 
-import {BasicNFTCollection, BasicNFTCollection__factory} from "../typechain-types";
+const accounts = await ethers.getSigners();
+const deployer = accounts[0];
 
-async function deployLSP8Collection() {
-  const accounts = await ethers.getSigners();
-  const deployer = accounts[0];
+const contractFactory = await new ethers.ContractFactory(
+  BasicNFTCollectionArtifacts.abi,
+  BasicNFTCollectionArtifacts.bytecode,
+  deployer,
+);
 
-  const nftCollection: BasicNFTCollection = await new BasicNFTCollection__factory(deployer).deploy(
-      "NFT Collection Name", // collection name
-      "NFT", // collection symbol
-      deployer.address
-  );
-  const nftCollectionAddress = await nftCollection.getAddress()
-  console.log("NFT Collection deployed to:", nftCollectionAddress)
-  console.log("Check the block explorer to see the deployed contract")
-}
-
-deployLSP8Collection().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+const nftCollection = contractFactory.deploy(
+  'NFT Collection Name', // collection name
+  'NFT', // collection symbol
+  deployer.address,
+);
+const nftCollectionAddress = await nftCollection.getAddress();
+console.log('NFT Collection deployed to:', nftCollectionAddress);
+console.log('Check the block explorer to see the deployed contract');
 ```
-
-
-
-<!-- prettier-ignore-end -->
 
 Finally, run the deploy script:
 
