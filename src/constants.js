@@ -8,7 +8,7 @@ export const LUKSO_NETWORK_CONFIGS = {
       decimals: 18,
     },
     rpcUrls: ['https://42.rpc.thirdweb.com'],
-    blockExplorerUrls: ['https://explorer.lukso.network'],
+    blockExplorerUrls: ['https://explorer.lukso.network/'],
   },
   testnet: {
     chainId: '4201',
