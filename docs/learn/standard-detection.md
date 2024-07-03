@@ -3,6 +3,9 @@ sidebar_label: '🕵🏽 Standard Detection'
 description: Check supported ERC725 storage keys and interfaces of LSPs (LUKSO Standard Proposals) smart contracts.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Standard Detection
 
 If you want to ensure that LSP standards are implemented and working correctly before letting your application interact with smart contracts, you can check their supported ERC725 storage keys and interfaces.
@@ -40,6 +43,10 @@ You can verify if a contract contains a specific set of ERC725Y keys (= **metada
 Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
 
 ### Example - Detect Universal Profile data keys
+
+<!-- For web3.js + ethers.js, we do not need to import the schema from erc725.js -->
+<!-- We simply: import { SupportedStandards } from "@lukso/lsp-smart-contracts", then use SupportedStandards.LSP3Profile, or SupportedStandards.LSP4DigitalAsset -->
+<!-- Then pass these as parameter to `getData(...)` -->
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
@@ -130,7 +137,35 @@ A **[Universal Profile](../standards/universal-profile/lsp3-profile-metadata.md)
 
 :::
 
-<!--prettier-ignore-start-->
+<Tabs groupId="web3-lib">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
+
+```javascript
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts/constants';
+import { ethers } from 'ethers';
+
+// Connect to the LUKSO network
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
+
+// Create an instance of the Universal Profile
+const myUPContract = new ethers.Contract(
+  '<myContractAddress>',
+  UniversalProfile.abi,
+  provider,
+);
+
+const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
+console.log(
+  // true or false
+  await myUPContract.supportsInterface(LSP0_INTERFACE_ID),
+);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```javascript
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -141,7 +176,10 @@ import Web3 from 'web3';
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Create an instance of the Universal Profile
-const myUPContract = new web3.eth.Contract(UniversalProfile.abi, '<myContractAddress>');
+const myUPContract = new web3.eth.Contract(
+  UniversalProfile.abi,
+  '<myContractAddress>',
+);
 
 const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
 console.log(
@@ -150,7 +188,9 @@ console.log(
 );
 ```
 
-<!--prettier-ignore-end-->
+  </TabItem>
+
+</Tabs>
 
 <details>
   <summary>
