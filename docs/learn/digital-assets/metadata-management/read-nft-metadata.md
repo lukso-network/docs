@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Read LSP8 NFT Metadata'
-sidebar_position: 5
+sidebar_position: 4
 description: Learn how to read the metadata specific to a LSP8 NFT.
 ---
 

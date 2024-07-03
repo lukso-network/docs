@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Fetch Asset Metadata'
-sidebar_position: 5
+sidebar_position: 1
 description: Learn how to read Digital Asset (LSP7) and Identifiable Digital Assets (NFT/LSP8) data from their smart contracts.
 ---
 
