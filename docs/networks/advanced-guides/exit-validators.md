@@ -34,7 +34,7 @@ After the setup is completed, the validator exit credential is submitted to the 
 A maximum of 16 validator keys can exit per block. Depending on the number of exits in the queue, the change might take several hours to be included in a block. If the exit is not showing up after several hours, consider re-doing the exit within the terminal.
 
 1. Open the Validator withdrawal page of the related network:
-   - [LUKSO Mainnet Validator withdrawals](https://explorer.lukso.network/withdrawals)
+   - [LUKSO Mainnet Validator withdrawals](https://explorer.consensus.mainnet.lukso.network/validators/withdrawals)
    - [LUKSO Testnet Validator withdrawals](https://explorer.consensus.testnet.lukso.network/validators/withdrawals)
 2. Input your validator's public key or index as described in the [withdrawal Update Guide](./withdrawal-update.md)
 3. If the exit has been successfully submitted, the page will show an estimated exit time
