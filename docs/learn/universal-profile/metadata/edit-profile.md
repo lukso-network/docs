@@ -20,15 +20,9 @@ This guide will teach you how to **customize our Universal Profile** programmati
 
 To achieve this goal, we will perform the following steps:
 
-1. Create a JSON file that contains our profile details (`LSP3Profile` metadata).
+1. Create a JSON file that contains your profile details (`LSP3Profile` metadata).
 2. Upload this JSON file to [IPFS] using our [tools-data-providers](https://github.com/lukso-network/tools-data-providers) library.
-3. Encode + set our new [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) metadata key in our profile with our [erc725.js](../../../tools/erc725js/getting-started.md) library and `web3.js`.
-
-:::tip
-
-A complete _"ready to use"_ JS file is available at the end in the [**Final Code**](#final-code) section. If you want to run the code as standalone JavaScript files within the terminal or the browser, you can open the [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
-
-:::
+3. Set your new [profile metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key to your Universal Profile with our [erc725.js](../../../tools/erc725js/getting-started.md) library and `web3.js`.
 
 ![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
 
@@ -54,7 +48,7 @@ npm install web3 @lukso/lsp-factory.js @lukso/lsp-smart-contracts @erc725/erc725
 Complete "ready to use" JSON and JS files are available at the end in the [**Final Code**](#final-code) section.
 :::
 
-We will start by creating a **new JSON file** that will contain our `LSP3Profile` metadata.
+We will start by creating a **new JSON file** that will contain our [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) metadata.
 
 Use the JSON template file below, and follow **steps 1.1 and 1.2** to fill the blank fields marked with dots.
 
@@ -73,6 +67,7 @@ Use the JSON template file below, and follow **steps 1.1 and 1.2** to fill the b
     ],
     "tags": ["...", "..."], // tags related to the profile
     "profileImage": [
+      // You can upload the same image in different quality
       {
         "width": 640, // in pixels
         "height": 609, // in pixels
@@ -111,7 +106,7 @@ For editing the properties `profileImage` and `backgroundImage`, see **Step 1.2*
 :::caution
 Image sizes should be written as numbers, not as strings.
 
-The **max image width** allowed on [universalprofile.cloud](https://universalprofile.cloud) is: `profileImage <= 800px`, `backgroundImage <= 1800px`
+The **max image width** supported by [universalprofile.cloud](https://universalprofile.cloud) is: `profileImage <= 800px`, `backgroundImage <= 1800px`
 :::
 
 :::info
