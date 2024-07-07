@@ -47,7 +47,7 @@ console.log('Connected to 🆙 at address: ', universalProfile.address);
 const universalProfile = new Contract(
   universalProfile,
   UniversalProfileArtifact.abi,
-  signer,
+  universalProfile,
 );
 ```
 
