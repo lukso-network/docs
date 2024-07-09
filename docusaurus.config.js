@@ -48,7 +48,7 @@ export default {
           // Learn/Expert guides
           {
             from: '/learn/expert-guides/deploy-token-with-metadata',
-            to: '/learn/digital-assets/metadata-management/deploy-token-with-metadata',
+            to: '/learn/universal-profile/interactions/deploy-token-with-metadata',
           },
           {
             from: '/learn/expert-guides/key-manager/execute-relay-transactions',
@@ -110,6 +110,10 @@ export default {
           {
             from: '/learn/universal-profile/connect-profile/multi-provider',
             to: '/learn/universal-profile/connect-profile/connect-up',
+          },
+          {
+            from: '/learn/digital-assets/metadata-management/deploy-token-with-metadata',
+            to: '/learn/universal-profile/interactions/deploy-token-with-metadata',
           },
           // Learn/dApp Developer
           {
