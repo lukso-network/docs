@@ -7,7 +7,7 @@ sidebar_position: 6
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Deploy Token + Metadata with 🆙
+# Deploy a Token with Metadata
 
 :::tip Code repository
 
