@@ -42,7 +42,7 @@ You can verify if a contract contains a specific set of [ERC725Y](../standards/g
 
 Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
 
-### Example - Detect Universal Profile data keys
+### Example - Detect LSP3 Profile data keys
 
 <!-- For web3.js + ethers.js, we do not need to import the schema from erc725.js -->
 <!-- We simply: import { SupportedStandards } from "@lukso/lsp-smart-contracts", then use SupportedStandards.LSP3Profile, or SupportedStandards.LSP4DigitalAsset -->
@@ -68,10 +68,11 @@ const myUPContract = new ethers.Contract(
   provider,
 );
 
-const isLSP3 = await myUPContract.getData('SupportedStandards.LSP3Profile');
+const result = await myUPContract.getData('SupportedStandards.LSP3Profile');
 
-// Verify if the standard is supported (value !== null)
-console.log(isLSP3);
+// Verify if the metadata standard is supported
+const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
+console.log(supportsLSP3Metadata); // true or false
 ```
 
   </TabItem>
@@ -91,10 +92,11 @@ const myUPContract = new web3.eth.Contract(
   '<myContractAddress>',
 );
 
-const isLSP3 = await myUPContract.getData('SupportedStandards.LSP3Profile');
+const result = await myUPContract.getData('SupportedStandards.LSP3Profile');
 
-// Verify if the standard is supported (value !== null)
-console.log(isLSP3);
+// Verify if the metadata standard is supported
+const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
+console.log(supportsLSP3Metadata); // true or false
 ```
 
   </TabItem>
@@ -103,6 +105,7 @@ console.log(isLSP3);
 ```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import { SupportedStandards } from '@lukso/lsp-smart-contracts';
 
 const erc725js = new ERC725(
   lsp3ProfileSchema,
@@ -113,22 +116,25 @@ const erc725js = new ERC725(
   },
 );
 
-// Fetch the supported storage standard of LSP3
-const isLSP3 = await erc725js.getData('SupportedStandards:LSP3Profile');
+const result = await erc725js.getData('SupportedStandards:LSP3Profile');
 
-// Verify if the standard is supported (value !== null)
-console.log(isLSP3);
+// Verify if the metadata standard is supported
+const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
+console.log(supportsLSP3Metadata); // true or false
 ```
 
   </TabItem>
 
 </Tabs>
 
-### Example - Detect Digital Asset data keys
+### Example - Detect LSP4 Digital Asset data keys
+
+<!-- prettier-ignore-start -->
 
 ```js
 import { ERC725 } from '@erc725/erc725.js';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
+import { SupportedStandards } from '@lukso/lsp-smart-contracts';
 
 const erc725js = new ERC725(
   lsp3ProfileSchema,
@@ -139,12 +145,14 @@ const erc725js = new ERC725(
   },
 );
 
-// Fetch the supported storage standard of LSP4
-let isLSP4 = await erc725js.getData('SupportedStandards:LSP4DigitalAsset');
+let result = await erc725js.getData('SupportedStandards:LSP4DigitalAsset');
 
-// Verify if the standard is supported (value !== null)
-console.log(isLSP4);
+// Verify if the metadata standard is supported
+const supportsLSP4Metadata = result == SupportedStandards.LSP4DigitalAsset.value;
+console.log(supportsLSP4Metadata); // true or false
 ```
+
+<!-- prettier-ignore-end -->
 
 <!--
 Commenting temporarily until Vault Standard becomes more stable and is re-worked.
