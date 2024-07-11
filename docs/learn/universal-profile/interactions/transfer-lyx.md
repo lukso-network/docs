@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Transfer LYX'
-sidebar_position: 8
-description: Learn how to transfer LYX from your Universal Profile.
+sidebar_position: 1
+description: Learn how to write a simple dApp code to transfer LYX from your Universal Profile Browser Extension programmatically.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -36,7 +36,7 @@ No need to make contract calls to instruct the smart contract of the Universal P
 
 <Tabs groupId="web3-lib">
   
-  <TabItem value="ethers" label="ethers">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers
@@ -44,7 +44,7 @@ npm install ethers
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3@v1
@@ -58,7 +58,7 @@ npm install web3@v1
 
 <Tabs groupId="web3-lib">
 
- <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js
 import { ethers } from 'ethers';
@@ -80,7 +80,7 @@ const tx = await signer.sendTransaction({
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from 'web3';

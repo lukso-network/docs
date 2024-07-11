@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Get List of Permissioned addresses'
+sidebar_label: 'Get List of Controllers'
 sidebar_position: 1
 description: Learn how to retrieve the list of controller addresses and their associated permissions from a Universal Profile on LUKSO.
 ---

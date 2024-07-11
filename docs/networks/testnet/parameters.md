@@ -4,7 +4,7 @@ sidebar_position: 1
 description: 'Network Parameters for LUKSO Testnet: Execution Block Explorer, RPC providers, Chain ID, LUKSO Testnet faucet.'
 ---
 
-import AddNetworkButton from '../../../src/components/AddNetworkButton'
+import AddNetworkButton from '@site/src/components/AddNetworkButton'
 
 # Testnet
 

@@ -26,14 +26,20 @@ export default {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
+          //Learn home
+          {
+            from: '/learn/what-is-lukso',
+            to: '/learn/getting-started',
+          },
+
           // Learn/Smart Contract Developer
           {
             from: '/learn/smart-contract-developers/getting-started',
-            to: '/learn/digital-assets/smart-contract-developers/getting-started',
+            to: '/learn/digital-assets/getting-started',
           },
           {
             from: '/learn/smart-contract-developers/create-lsp7-token',
-            to: '/learn/digital-assets/smart-contract-developers/create-lsp7-token',
+            to: '/learn/digital-assets/create-lsp7-token',
           },
           {
             from: '/learn/smart-contract-developers/retrieve-token-type',
@@ -42,7 +48,7 @@ export default {
           // Learn/Expert guides
           {
             from: '/learn/expert-guides/deploy-token-with-metadata',
-            to: '/learn/digital-assets/deploy-token-with-metadata',
+            to: '/learn/digital-assets/metadata-management/deploy-token-with-metadata',
           },
           {
             from: '/learn/expert-guides/key-manager/execute-relay-transactions',
@@ -50,7 +56,7 @@ export default {
           },
           {
             from: '/learn/expert-guides/key-manager/upgrade-key-manager',
-            to: '/learn/universal-profile/key-manager/upgrade-key-manager',
+            to: '/learn/universal-profile/advanced-guides/upgrade-key-manager',
           },
           {
             from: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
@@ -117,7 +123,7 @@ export default {
           },
           {
             from: '/learn/dapp-developer/read-asset-data',
-            to: '/learn/digital-assets/read-asset-data',
+            to: '/learn/digital-assets/metadata-management/read-asset-data',
           },
           // Learn/Digital Assets
           {
@@ -126,7 +132,7 @@ export default {
           },
           {
             from: '/learn/assets',
-            to: '/learn/digital-assets/assets',
+            to: '/learn/digital-assets/metadata-management/metadata-preparation',
           },
           // Learn/Universal Receiver
           {
@@ -162,7 +168,7 @@ export default {
           },
           {
             from: '/tools/lsp-factoryjs/deployment/digital-asset',
-            to: '/learn/digital-assets/smart-contract-developers/getting-started',
+            to: '/learn/digital-assets/getting-started',
           },
           {
             from: '/tools/lsp-factoryjs/classes/universal-profile',
@@ -174,10 +180,6 @@ export default {
           },
           {
             from: '/tools/lsp-factoryjs/classes/lsp7-digital-asset',
-            to: '/tools/lsp-factoryjs/getting-started',
-          },
-          {
-            from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
             to: '/tools/lsp-factoryjs/getting-started',
           },
           {
@@ -219,7 +221,7 @@ export default {
       items: [
         {
           type: 'doc',
-          docId: 'learn/what-is-lukso',
+          docId: 'learn/getting-started',
           position: 'left',
           label: 'Learn',
         },

@@ -50,7 +50,7 @@ export const BaseContractsTable = () => {
                 <td>
                   <code>
                     <a
-                      href={`https://explorer.execution.mainnet.lukso.network/address/${address}`}
+                      href={`https://explorer.lukso.network/address/${address}`}
                       target="_blank"
                     >
                       {address}
@@ -86,7 +86,7 @@ export const FactoryContractsTable = () => {
           </td>
           <td>
             <a
-              href={`https://explorer.execution.mainnet.lukso.network/address/${lsp23Address}`}
+              href={`https://explorer.lukso.network/address/${lsp23Address}`}
               target="_blank"
             >
               <code>{lsp23Address}</code>
@@ -99,7 +99,7 @@ export const FactoryContractsTable = () => {
           </td>
           <td>
             <a
-              href={`https://explorer.execution.mainnet.lukso.network/address/${postDeploymentModuleAddress}`}
+              href={`https://explorer.lukso.network/address/${postDeploymentModuleAddress}`}
               target="_blank"
             >
               <code>{postDeploymentModuleAddress}</code>

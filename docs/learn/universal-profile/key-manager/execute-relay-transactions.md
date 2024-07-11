@@ -24,9 +24,9 @@ Another example use case would be Alice sending an encoded transaction that upda
 
 :::success Did you know?
 
-Users who created their 🆙 via [_universalprofile.cloud_](https://universalprofile.cloud) **benefit from a monthly gas quota paid by LUKSO**. ⛽️ ❌
+Users who created their 🆙 via [_universalprofile.cloud_](https://universalprofile.cloud) **benefit from a monthly gas quota paid by LUKSO**. ⛽️ ✅
 
-This aims to help onboard new users to web3! 💪🏻 ✅
+This aims to help onboard new users to web3! 💪🏻
 
 :::
 
@@ -46,7 +46,7 @@ You will need the following dependencies to follow this guide:
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers @lukso/lsp-smart-contracts @lukso/eip191-signer.js
@@ -54,7 +54,7 @@ npm install ethers @lukso/lsp-smart-contracts @lukso/eip191-signer.js
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```shell
 npm install web3 @lukso/lsp-smart-contracts @lukso/eip191-signer.js
@@ -70,7 +70,7 @@ First, create an instance of the [Universal Profile](../../../standards/universa
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers" default>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}} default>
 
 ```typescript
 import { ethers } from 'ethers';
@@ -102,7 +102,7 @@ const keyManager = new ethers.Contract(
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3"attributes={{className: "tab_web3"}} >
 
 ```typescript
 import Web3 from 'web3';
@@ -149,8 +149,8 @@ The first step will therefore be to ABI-encode an [`execute(...)`](../../../cont
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers" default>
-  
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}default>
+
 ```ts
 // Generate the payload of the transaction
 const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
@@ -163,7 +163,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```ts
 // Generate the payload of the transaction
@@ -196,14 +196,14 @@ function executeRelayCall(
 
 | Parameter           |                                                                                                                                                                                                                                                                                                                                                                     |
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `nonce`             | The nonce of the address (= controller) that will sign the relay. Retrieved via [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md)                                                                                                                 |
+| `nonce`             | The nonce of the address (= controller) that will sign the `executeRelayCall`. Retrieved via [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md)                                                                                                    |
 | `channelId`         | The channel where the call will be registered after execution. Define to execute the call either in parallel (across different channels) of other relay calls, or require it to be executed after another call. <br/> <br/> 📓 See [**"Out of order execution"**](../../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution) for more details |
 | `validityTimestamp` | Define the time interval during which the payload can be executed. Use a value of `0` to make the transaction always valid for an undefinite period of time. <br/> <br/> 📓 See section [**Contracts > Execute Relay Calls > Validity Timestamps**](../../../contracts/overview/ExecuteRelayCall.md#validity-timestamps) for more details.                          |
 | `payload`           | The actual function being called (as an abi-encoded calldata from [**step 2**](#step-2---encode-the-calldata)) on the Universal Profile contract. In this example, the transaction payload will be a basic LYX transfer.                                                                                                                                            |
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript
 // initiate contract instances from Step 2
@@ -227,7 +227,7 @@ const abiPayload = universalProfile.interface.encodeFunctionData('execute', [
 
   </TabItem>
 
-    <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```typescript
 // initiate contract instances from Step 2
@@ -281,7 +281,7 @@ The transaction message is constructed by encoding and signing the following:
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 :::danger Caution when using your controller's private key
 
@@ -345,7 +345,7 @@ const { signature } = await eip191Signer.signDataWithIntendedValidator(
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 :::danger Caution when using your controller's private key
 
@@ -412,7 +412,7 @@ After the signature has been generated, it can be sent to the third party to be 
 
 :::info
 
-This logic must be implemented on the _relayer-side_ and the transaction sent to the network to be executed.
+This logic must be implemented on the _relayer-side_ where the transaction will be sent to the network to be executed.
 
 :::
 
@@ -434,7 +434,7 @@ The relayer can now call the [`executeRelayCall`](../../../contracts/contracts/L
 
 <Tabs groupId="provider-lib">
 
-  <TabItem value="ethers" label="ethers" default>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}default >
 
 ```javascript
 import { ethers } from 'ethers';
@@ -474,7 +474,7 @@ console.log('Transaction receipt:', receipt);
 
   </TabItem>
 
-  <TabItem value="web3" label="web3">
+<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```javascript
 import Web3 from 'web3';

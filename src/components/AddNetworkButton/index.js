@@ -49,6 +49,8 @@ export default function AddNetworkButton({ networkName }) {
                   ),
                 chainName: LUKSO_NETWORK_CONFIGS[networkName].chainName,
                 rpcUrls: LUKSO_NETWORK_CONFIGS[networkName].rpcUrls,
+                blockExplorerUrls:
+                  LUKSO_NETWORK_CONFIGS[networkName].blockExplorerUrls,
                 nativeCurrency: {
                   name: 'LYX',
                   symbol: 'LYX',

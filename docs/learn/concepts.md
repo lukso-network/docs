@@ -1,5 +1,5 @@
 ---
-sidebar_label: '📑 Concepts & Glossary'
+sidebar_label: '📘 Concepts & Glossary'
 description: 'Most frequently used concepts related to the LUKSO Ecosystem: Universal Profiles, Controllers, Transaction Relay Service.'
 ---
 
