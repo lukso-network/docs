@@ -26,6 +26,13 @@ To achieve this goal, we will perform the following steps:
 
 ![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
 
+## Install the dependencies
+
+For this guide, we will use the [tools-data-providers], [erc725.js] and [lsp-smart-contracts] libraries:
+
+```shell
+npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js @lukso/data-provider-ipfs-http-client
+```
 
 ## Create a new LSP3Profile JSON file
 
@@ -83,6 +90,21 @@ Be as creative as you want to make your Universal Profile as unique as possible!
 The JSON file for [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) accepts an array of images so that you have pictures of different sizes and dimensions. This way, client interfaces can know which files to pick based on the container size in their interface.
 :::
 
+:::note Notice
+In this guide, we will use [local IPFS Node provider](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages) from our [IPFS Provider Tool](https://github.com/lukso-network/tools-data-providers). [Other providers](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages) supported by this tool including Pinata, Infura, Cascade or Sense Protocol.
+:::
+
+```js
+import { createReadStream } from 'fs';
+import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
+
+const provider = new IPFSHttpClientUploader('http://127.0.0.1:5001/api/v0/add');
+
+const file = createReadStream('./test-image.png');
+
+const { url, hash } = await provider.upload(file);
+```
+
 For the properties `profileImage` and `backgroundImage`, we will need to add the following information:
 
 - `hash`: use this **[keccak256 image hash generator](https://emn178.github.io/online-tools/keccak_256_checksum.html)**.
@@ -94,42 +116,26 @@ Image sizes should be written as numbers, not as strings.
 The **max image width** supported by [universalprofile.cloud](https://universalprofile.cloud) is: `profileImage <= 800px`, `backgroundImage <= 1800px`
 :::
 
-We are now ready to apply these changes to our Universal Profile. We will see how in the next section :arrow_down:
-
-## Install the dependencies
-
-For this guide, we will use the [erc725.js] and [lsp-smart-contracts] libraries:
-
-```shell
-npm install web3 @lukso/lsp-smart-contracts @erc725/erc725.js
-```
-
+We are now ready to apply these changes to our Universal Profile. We will see how in the next section. :arrow_down:
 
 ## Upload the JSON file to IPFS
 
-:::note Notice
-You should do the rest of this tutorial should be done in a **new file** (`main.js`).
-:::
-
 ```javascript title="main.js"
-import { LSPFactory } from '@lukso/lsp-factory.js';
+import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 // reference to the previously created JSON file (LSP3Profile metadata)
-import jsonFile from './UniversalProfileMetadata.json';
+import jsonFile from './LSP3Metadata.json';
+
+const ipfsProvider = new IPFSHttpClientUploader(
+  'http://127.0.0.1:5001/api/v0/add',
+);
 
 const provider = 'https://4201.rpc.thirdweb.com'; // RPC provider url
 
-const lspFactory = new LSPFactory(provider, {
-  deployKey: PRIVATE_KEY,
-  chainId: 2828, // Chain Id of the network you want to deploy to
-});
-
 async function editProfileInfo() {
   // Step 2 - Upload our JSON file to IPFS
-  const uploadResult = await lspFactory.UniversalProfile.uploadProfileData(
+  const { lsp3ProfileIPFSUrl, lsp3ProfileIPFSHash } = await ipfsProvider.upload(
     jsonFile.LSP3Profile,
   );
-  const lsp3ProfileIPFSUrl = uploadResult.url;
-  // ipfs://Qm...
 }
 ```
 
@@ -165,11 +171,11 @@ import { ERC725 } from '@erc725/erc725.js';
 
 const web3 = new Web3('https://4201.rpc.thirdweb.com');
 
-// Step 1 - Create a new LSP3Profile JSON file
+// Create a new LSP3Profile JSON file
 // ...
 
 async function editProfileInfo() {
-  // Step 2 - Upload our JSON file to IPFS
+  // Upload our JSON file to IPFS
   // ...
 
   // Step 3.1 - Setup erc725.js
@@ -307,33 +313,29 @@ Below is the complete code snippet of this guide, with all the steps compiled to
 ```javascript title="main.js"
 import Web3 from 'web3';
 import { ERC725 } from '@erc725/erc725.js';
-import { LSPFactory } from '@lukso/lsp-factory.js';
+import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 import jsonFile from './LSP3ProfileMetadata.json';
 
 const web3 = new Web3('https://4201.rpc.thirdweb.com');
+const provider = 'https://4201.rpc.thirdweb.com'; // RPC provider url
+
+const ipfsProvider = new IPFSHttpClientUploader(
+  'http://127.0.0.1:5001/api/v0/add',
+);
 
 // Constants
 const PRIVATE_KEY = '0x...';
 const profileAddress = '0x...';
 
-// Create a new LSP3Profile JSON file
-
-const provider = 'https://4201.rpc.thirdweb.com'; // RPC provider url
-
-const lspFactory = new LSPFactory(provider, {
-  deployKey: PRIVATE_KEY,
-  chainId: 2828, // Chain Id of the network you want to deploy to
-});
-
 async function editProfileInfo() {
-  // Upload the JSON file to IPFS
-  const uploadResult = await lspFactory.UniversalProfile.uploadProfileData(
+  // Upload the JSON file to IPFS and obtain the hash and url values
+  const { lsp3ProfileIPFSUrl, lsp3ProfileIPFSHash } = await ipfsProvider.upload(
     jsonFile.LSP3Profile,
   );
-  const lsp3ProfileIPFSUrl = uploadResult.url;
+
   // 'ipfs://QmYCQTe5r5ZeVTbtpZMZXSQP2NxXdgJFVZb61Dk3gFP5VX'
 
   // Setup erc725.js and the schema
@@ -356,8 +358,7 @@ async function editProfileInfo() {
     keyName: 'LSP3Profile',
     value: {
       hashFunction: 'keccak256(utf8)',
-      // hash our LSP3 metadata JSON file
-      hash: web3.utils.keccak256(JSON.stringify(uploadResult.json)),
+      hash: lsp3ProfileIPFSHash,
       url: lsp3ProfileIPFSUrl,
     },
   });
@@ -386,8 +387,7 @@ You can now check your UP on the [profile explorer](https://universalprofile.clo
 
 `https://wallet.universalprofile.cloud/[UP ADDRESS]?network=testnet`
 
-<!-- add up to date picture of wallet.universalprofile.cloud -->
-
 [erc725.js]: ../../../tools/erc725js/getting-started
 [ipfs]: https://ipfs.io/
 [lsp-smart-contracts]: ../../../tools/lsp-smart-contracts/getting-started.md
+[tools-data-providers]: https://github.com/lukso-network/tools-data-providers
