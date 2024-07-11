@@ -44,93 +44,95 @@ Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profi
 
 ### Example 1 - Detect LSP3 Profile data keys
 
-<Tabs groupId="web3-lib">
+  <Tabs groupId="web3-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
-    ```javascript
-    import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-    import { SupportedStandards } from '@lukso/lsp-smart-contracts';
-    import { ethers } from 'ethers';
+```typescript
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { SupportedStandards } from '@lukso/lsp-smart-contracts';
+import { ethers } from 'ethers';
 
-    // Connect to the LUKSO network
-    const provider = new ethers.JsonRpcProvider(
-      'https://rpc.testnet.lukso.network',
-    );
+// Connect to the LUKSO network
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
 
-    // Create an instance of the Universal Profile
-    const myUPContract = new ethers.Contract(
-      '<myContractAddress>',
-      UniversalProfile.abi,
-      provider,
-    );
+// Create an instance of the Universal Profile
+const myUPContract = new ethers.Contract(
+  '<myContractAddress>',
+  UniversalProfile.abi,
+  provider,
+);
 
-    const result = await myUPContract.getData(SupportedStandards.LSP3Profile.key);
+const result = await myUPContract.getData(SupportedStandards.LSP3Profile.key);
 
-    // Verify if the metadata standard is supported
-    const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
-    console.log(supportsLSP3Metadata); // true or false
-    ```
+// Verify if the metadata standard is supported
+const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
+
+console.log(supportsLSP3Metadata); // true or false
+```
 
   </TabItem>
+  <TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
-<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
+```js
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import { SupportedStandards } from '@lukso/lsp-smart-contracts';
+import Web3 from 'web3';
 
-    ```javascript
-    import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-    import { SupportedStandards } from '@lukso/lsp-smart-contracts';
-    import Web3 from 'web3';
+// Connect to the LUKSO network
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
-    // Connect to the LUKSO network
-    const web3 = new Web3('https://rpc.testnet.lukso.network');
+// Create an instance of the Universal Profile
+const myUPContract = new web3.eth.Contract(
+  '<myContractAddress>',
+  UniversalProfile.abi,
+);
 
-    // Create an instance of the Universal Profile
-    const myUPContract = new web3.eth.Contract(
-      '<myContractAddress>',
-      UniversalProfile.abi,
-    );
+const result = await myUPContract.methods
+  .getData(SupportedStandards.LSP3Profile.key)
+  .call();
 
-    const result = await myUPContract.methods
-      .getData(SupportedStandards.LSP3Profile.key)
-      .call();
+// Verify if the metadata standard is supported
+const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
 
-    // Verify if the metadata standard is supported
-    const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
-    console.log(supportsLSP3Metadata); // true or false
-    ```
+console.log(supportsLSP3Metadata); // true or false
+```
 
   </TabItem>
   
   <TabItem value="erc725.js" label="erc725.js"  attributes={{className: "tab_erc725"}}>
 
-    ```javascript
-    import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
-    import { SupportedStandards } from '@lukso/lsp-smart-contracts';
-    import { ERC725 } from '@erc725/erc725.js';
+```js
+import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import { SupportedStandards } from '@lukso/lsp-smart-contracts';
+import { ERC725 } from '@erc725/erc725.js';
 
-    const erc725js = new ERC725(
-      '<myContractAddress>', // Universal Profile contract address
-      lsp3ProfileSchema,
-      'https://rpc.testnet.lukso.network',
-    );
+const erc725js = new ERC725(
+  '<myContractAddress>', // Universal Profile contract address
+  lsp3ProfileSchema,
+  'https://rpc.testnet.lukso.network',
+);
 
-    const result = await erc725js.getData('SupportedStandards:LSP3Profile');
+const result = await erc725js.getData('SupportedStandards:LSP3Profile');
 
-    // Verify if the metadata standard is supported
-    const supportsLSP3Metadata =
-    result.value == SupportedStandards.LSP3Profile.value;
-    console.log(supportsLSP3Metadata); // true or false
-    ```
+// Verify if the metadata standard is supported
+const supportsLSP3Metadata =
+  result.value == SupportedStandards.LSP3Profile.value;
+
+console.log(supportsLSP3Metadata); // true or false
+```
 
   </TabItem>
 
-</Tabs>
+  </Tabs>
 
 ### Example 2 - Detect LSP4 Digital Asset data keys
 
-<Tabs groupId="web3-lib">
+  <Tabs groupId="web3-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
-    ```javascript
+    ```js
     import lsp4Schema from '@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json';
     import { SupportedStandards } from '@lukso/lsp-smart-contracts';
     import { ethers } from 'ethers';
@@ -151,13 +153,14 @@ Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profi
 
     // Verify if the metadata standard is supported
     const supportsLSP4DigitalAsset = result == SupportedStandards.LSP4DigitalAsset.value;
+
     console.log(supportsLSP4DigitalAsset); // true or false
     ```
 
   </TabItem>
   <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
-```javascript
+```js
 import lsp4Schema from '@lukso/lsp-smart-contracts/artifacts/LSP4DigitalAssetMetadata.json';
 import { SupportedStandards } from '@lukso/lsp-smart-contracts';
 import Web3 from 'web3';
@@ -178,14 +181,14 @@ const result = await myUPContract.methods
 // Verify if the metadata standard is supported
 const supportsLSP4DigitalAsset =
   result == SupportedStandards.LSP4DigitalAsset.value;
+
 console.log(supportsLSP4DigitalAsset); // true or false
 ```
 
-</TabItem>
+  </TabItem>
+  <TabItem value="erc725.js" label="erc725.js" attributes={{className: "tab_erc725"}}>
 
-<TabItem value="erc725.js" label="erc725.js" attributes={{className: "tab_erc725"}}>
-
-```javascript
+```js
 import lsp4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
 import { SupportedStandards } from '@lukso/lsp-smart-contracts';
 import { ERC725 } from '@erc725/erc725.js';
@@ -201,6 +204,7 @@ let result = await erc725js.getData('SupportedStandards:LSP4DigitalAsset');
 // Verify if the metadata standard is supported
 const supportsLSP4Metadata =
   result == SupportedStandards.LSP4DigitalAsset.value;
+
 console.log(supportsLSP4Metadata); // true or false
 ```
 
