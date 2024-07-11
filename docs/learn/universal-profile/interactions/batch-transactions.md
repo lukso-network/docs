@@ -9,6 +9,12 @@ import TabItem from '@theme/TabItem';
 
 # Execute Batch Transactions
 
+:::tip Code repository
+
+All the contracts, sample metadata, and scripts of this guide are available in the [`lukso-playground`](https://github.com/lukso-network/lukso-playground/tree/main/smart-contracts-hardhat) repository.
+
+:::
+
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('../img/execute-batch-mix-lyx-tokens-nft-different-addresses.png').default}
@@ -652,3 +658,146 @@ await upContract.methods
 </TabItem>
 
 </Tabs>
+
+## Contract Deployment Examples
+
+The [`executeBatch`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#executebatch) function is also useful to perform any action on a contract after deploying it from a 🆙.
+
+### Deploy a Token + Set Metadata
+
+:::info Info
+
+For demonstration purpose, the code below deploys a `LSP7Mintable`, a preset token contract available in the `@lukso/lsp-smart-contracts` package.
+
+Feel free to use the bytecode of any custom or extended token contract you have created. You can then adjust any extra constructor parameters as per your needs.
+
+:::
+
+This code shows how to set the [metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of a [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) contract while deploying it. The batch will contain two actions that will run successively:
+
+1. deploy the token contract with some deployment parameters (token name, symbol, etc...).
+
+For this, we will encode the constructor parameters used when deploying the token contract. and then generate the bytecode for the contract deployment.
+
+2. set the metadata on the token contract.
+
+For this we will first encode the `LSP4Metadata` using the [`erc725.js`](../../../tools/erc725js/getting-started.md) library. We will then generate the payload to call `setData` on the token contract using this encoded parameter.
+
+> _"How can we set the token metadata if we don't know the deployed token address yet?"_
+>
+> We have to mimic deploying the contract from the UP using `staticCall`. This will not dispatch the transaction return **the future token contract address**.
+>
+> The second call in the [`executeBatch()`](../../../contracts/contracts/ERC725/ERC725.md#executebatch) function will then use the [previously generated contract address](#prepare-the-transaction-payloads) from the `staticCall` in order to set the metadata.
+
+```ts showLineNumbers
+import { ethers } from 'ethers';
+
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+import LSP7Mintable from '@lukso/lsp-smart-contracts/artifacts/LSP7Mintable.json';
+
+import { ERC725 } from '@erc725/erc725.js';
+import LSP4DigitalAssetSchema from '@erc725/erc725.js/schemas/LSP4DigitalAsset.json';
+
+// link to the JSON metadata file of the digital asset
+import { lsp4SampleMetadata } from './LSP4SampleMetadata';
+
+// UP controller used for deployment
+// Connect to your Universal Profile from your dApp
+const provider = new ethers.BrowserProvider(window.lukso);
+const universalProfile = await ethers.getSigner();
+console.log(
+  'Deploying contract with Universal Profile: ',
+  universalProfile.address,
+);
+
+// Create an instance of the Universal Profile
+const universalProfile = new Contract(
+  universalProfile.address, // address of the Universal Profile
+  UniversalProfileArtifact.abi, // Smart Contract ABI
+  universalProfile, // provider connected to that will run transactions
+);
+
+// highlight-start
+// Create custom bytecode for the token deployment
+const tokenBytecode = LSP7Mintable.bytecode;
+const abiEncoder = new ethers.AbiCoder();
+
+// Encode constructor parameters
+const encodedConstructorParams = abiEncoder.encode(
+  ['string', 'string', 'address', 'uint256', 'bool'],
+  [
+    'My Custom Token', // token name
+    'MCT', // token symbol
+    universalProfile.address, // token owner
+    0, // token type = TOKEN
+    false, // isNonDivisible?
+  ],
+);
+
+// Add the constructor parameters to the token bytecode
+const tokenBytecodeWithConstructor = ethers.concat([
+  tokenBytecode,
+  encodedConstructorParams,
+]);
+
+// Get the address of the custom token contract that will be created
+// https://docs.lukso.tech/contracts/contracts/ERC725/#execute
+const customTokenAddress = await universalProfile.execute.staticCall(
+  1, // Operation type: CREATE
+  ethers.ZeroAddress, // Target: 0x0 as contract will be initialized
+  0, // Value is empty
+  tokenBytecodeWithConstructor, // Payload of the contract
+);
+
+// Encode the metadata for deployment
+// https://docs.lukso.tech/tools/erc725js/classes/ERC725#encodedata
+const encodedLSP4Metadata = ERC725.encodeData(
+  [
+    {
+      keyName: 'LSP4Metadata',
+      value: {
+        json: lsp4SampleMetadata,
+        url: 'ipfs://...',
+      },
+    },
+  ],
+  LSP4DigitalAssetSchema,
+);
+
+// Set up the token contract
+const token = new ethers.Interface(LSP7Mintable.abi);
+
+// Get the ERC725Y data key of LSP4
+const metadataKey = ERC725YDataKeys.LSP4['LSP4Metadata'];
+
+// Create the transaction payload for setting storage data
+// https://docs.lukso.tech/contracts/contracts/ERC725/#setdata
+const setLSP4MetadataPayload = token.interface.encodeFunctionData('setData', [
+  encodedLSP4Metadata.keys[0], // LSP4Metadata data key
+  encodedLSP4Metadata.values[0], // value as an encoded VerifiableURI
+]);
+
+// Deploy the contract by the Universal Profile
+// https://docs.lukso.tech/contracts/contracts/ERC725/#executebatch
+const tx = await universalProfile.executeBatch(
+  [
+    // Array of Operation types
+    1, // Operation type: CREATE (Contract deployment)
+    0, // Operation type: CALL (Set storage key on contract)
+  ],
+  [
+    ethers.ZeroAddress, // 0x0 as contract will be initialized
+    customTokenAddress, // Contract address after deployment
+  ],
+  [0, 0], // Value is empty for both operations
+  [
+    tokenBytecodeWithConstructor, // Payload for contract deployment
+    setLSP4MetadataPayload, // Payload for setting a data key on the deployed contract
+  ],
+);
+
+// Wait for the transaction to be included in a block
+await tx.wait();
+console.log('Token deployed at: ', customTokenAddress);
+```
