@@ -248,9 +248,11 @@ You are in no way limited to the tools we provide. If you are a pro user, you ca
 Additionally, some clients support LUKSO out of the box. This means that you don't need to prepare your chain configurations beforehand and can simply use all the tools provided by that client. The list of these clients (with their respective guides) includes:
 
 Execution layer clients:
+
 - [Besu](https://besu.hyperledger.org/public-networks/reference/cli/options#network) Example command: `besu --network=lukso` (basic network flag, you should consider adding more flags, e.g. `--data-path=<PATH>`)
 
 Consensus layer clients:
+
 - [Teku](https://docs.teku.consensys.io/reference/cli#network) Example command: `teku --network=lukso` (You should consider adding more flags, e.g. `--data-base-path=<PATH>`)
 
 :::caution
@@ -260,7 +262,7 @@ It should be noted that a full PoS node consists of both execution and consensus
 :::
 
 :::info Configurations of all LUKSO networks
- 
+
 👉 [https://github.com/lukso-network/network-configs](https://github.com/lukso-network/network-configs)
 
 :::
