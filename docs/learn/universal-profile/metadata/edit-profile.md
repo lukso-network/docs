@@ -130,7 +130,7 @@ For the properties `profileImage` and `backgroundImage`, we will need to add the
 - `hash`: the keccak hash of the image file
 - `url`: the url of the image uploaded to IPFS.
 
-Both `hash` and `url` values can be obtained from using our IPFS library. 
+Both `hash` and `url` values can be obtained from using our IPFS library.
 
 ```js
 import { createReadStream } from 'fs';
@@ -150,7 +150,7 @@ Image sizes should be written as numbers, not as strings. The **max image widths
 
 ### Upload JSON Metadata to IPFS
 
-Same as the image, we need to gather the `hash` and `url` values of the uploaded JSON Metadata. 
+Same as the image, we need to gather the `hash` and `url` values of the uploaded JSON Metadata.
 
 ```javascript
 import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
