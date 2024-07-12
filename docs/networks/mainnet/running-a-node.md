@@ -245,6 +245,11 @@ Difficulty: Advanced 🌶️🌶️🌶️🌶️
 
 You are in no way limited to the tools we provide. If you are a pro user, you can download and run the Erigon, Geth, Lighthouse, Prysm or any other clients in your preferred setup. Please refer to the LUKSO [network configuration](https://github.com/lukso-network/network-configs/) repository to configure and start your node.
 
+Additionaly, some client support LUKSO out of the box - this means that you don't need to prepare your chain configs beforehand and simply use all the tools provided by that client. List of said clients (with their respective guides) includes:
+
+- [Besu](https://besu.hyperledger.org/public-networks/reference/cli/options#network)
+- [Teku](https://docs.teku.consensys.io/reference/cli#network)
+
 :::info LUKSO Network configuration
 
 👉 [https://github.com/lukso-network/network-configs](https://github.com/lukso-network/network-configs)
