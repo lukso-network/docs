@@ -245,7 +245,7 @@ Difficulty: Advanced 🌶️🌶️🌶️🌶️
 
 You are in no way limited to the tools we provide. If you are a pro user, you can download and run the Erigon, Geth, Lighthouse, Prysm or any other clients in your preferred setup. Please refer to the LUKSO Mainnet [network configuration](https://github.com/lukso-network/network-configs/tree/main/mainnet) repository to configure and start your node.
 
-Additionally, some clients support LUKSO out of the box. This means that you don't need to prepare your chain configurations beforehand and can simply use all the tools provided by that client. The list of these clients (with their respective guides) includes:
+Additionally, some clients support LUKSO out of the box. This means you don't need to prepare your chain configurations beforehand and can use all the tools provided by that client. The list of these clients (with their respective guides) includes:
 
 Execution layer clients:
 
