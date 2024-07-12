@@ -211,7 +211,7 @@ To check running clients in more detail, you can use the built-in logging comman
 # Viewing the logs of the execution client
 lukso logs execution
 
-# Viewing the logs of the conselnsus client
+# Viewing the logs of the consensus client
 lukso logs consensus
 ```
 
