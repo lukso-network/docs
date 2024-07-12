@@ -1,6 +1,6 @@
 ---
 sidebar_label: '💰 Migrate ERC20 to LSP7'
-sidebar_position: 3
+sidebar_position: 7
 description: Learn how to migrate your ERC20 token to the LSP7 Digital Asset standard on LUKSO.
 ---
 
@@ -10,7 +10,7 @@ description: Learn how to migrate your ERC20 token to the LSP7 Digital Asset sta
 
 ## Smart Contract Building
 
-Usually, to create an ERC20 token, [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package will be used, and ERC20 will be inherited.
+Usually, to create an ERC20 token, `ERC20` is imported from [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package, and inherited.
 
 ```solidity title="ERC20 Token"
 // SPDX-License-Identifier: MIT
@@ -25,7 +25,9 @@ contract MyERC20Token is ERC20 {
 }
 ```
 
-For LSP7, [@lukso/lsp7-contracts](https://www.npmjs.com/package/@lukso/lsp7-contracts) package will be used, and LSP7 will be inherited.
+To create an LSP7 token, `LSP7` is imported from [@lukso/lsp7-contracts](https://www.npmjs.com/package/@lukso/lsp7-contracts) package, and inherited.
+
+The constructor arguments definitions can be found explained in the [constructor API](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#constructor) section.
 
 ```solidity title="LSP7 Token"
 // SPDX-License-Identifier: Apache-2.0
@@ -59,6 +61,12 @@ contract MyLSP7Token is LSP7DigitalAsset {
 
 ## Interacting with Contracts
 
+:::info
+
+To check function definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section.
+
+:::
+
 To interact with LSP7DigitalAsset contract, different functions should be called. This is a table comparing function definitions:
 
 | ERC20 Function                                           | LSP7 Equivalent                                                                     |
@@ -78,19 +86,21 @@ To interact with LSP7DigitalAsset contract, different functions should be called
 | `transferFrom(address from, address to, uint256 amount)` | `transfer(address from, address to, uint256 amount, bool force, bytes memory data)` |
 | _No equivalent_                                          | `batchCalls(bytes[] memory data)`                                                   |
 
-To check function definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section
-
 ## dApps and Indexers
 
-To track the events of a LSP7DigitalAsset contract, different event definitions should be used for listening. This is a table comparing event definitions:
+:::info
+
+To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section.
+
+:::
+
+The table below shows the different event definitions that should be used to track activity on an LSP7-DigitalAsset contract.
 
 | ERC20 Event                                                               | LSP7 Event                                                                                                                                   |
 | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Transfer(address indexed from, address indexed to, uint256 value)`       | `Transfer(address indexed operator, address indexed from, address indexed to, uint256 amount, bool force, bytes data)`                       |
 | `Approval(address indexed owner, address indexed spender, uint256 value)` | `OperatorAuthorizationChanged(address indexed operator, address indexed tokenOwner, uint256 indexed amount, bytes operatorNotificationData)` |
 | _No equivalent_                                                           | `OperatorRevoked(address indexed operator, address indexed tokenOwner, bool indexed notified, bytes operatorNotificationData)`               |
-
-To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section
 
 ## Metadata Management
 
@@ -104,7 +114,7 @@ const name = await token.name();
 const symbol = await token.symbol();
 ```
 
-In LSP7, the name and symbol of the token will be retrieved with getData function, since the LSP7 uses a generic metadata key value store:
+In LSP7, the token name and symbol can be retrieved with [getData](../../contracts/contracts/ERC725/ERC725.md#getdata) function, since LSP7 uses a generic metadata key value store:
 
 ```javascript
 // LSP7
@@ -119,6 +129,12 @@ const symbol = ethers.toUtf8String(symbolValue);
 ```
 
 ### Extended Token Metadata
+
+:::info
+
+To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../digital-assets/metadata-management/metadata-preparation.md) section.
+
+:::
 
 LSP7 allows for more flexible and extensive metadata storage. You can store a JSON object containing additional token information:
 
@@ -190,5 +206,3 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
     }
 }
 ```
-
-To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../digital-assets/metadata-management/metadata-preparation.md) section.

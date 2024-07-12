@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🖼️ Migrate ERC721 to LSP8'
-sidebar_position: 4
+sidebar_position: 8
 description: Learn how to migrate your ERC721 token to the LSP8 Identifiable Digital Asset standard on LUKSO.
 ---
 
@@ -10,7 +10,7 @@ description: Learn how to migrate your ERC721 token to the LSP8 Identifiable Dig
 
 ## Smart Contract Building
 
-Usually, to create an ERC721 token, [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package will be used, and ERC721 will be inherited.
+Usually, to create an ERC721 token, `ERC721` is imported from [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package, and inherited.
 
 ```solidity title="ERC721 Token"
 // SPDX-License-Identifier: MIT
@@ -25,7 +25,9 @@ contract MyERC721Token is ERC721 {
 }
 ```
 
-For LSP8, [@lukso/lsp8-contracts](https://www.npmjs.com/package/@lukso/lsp8-contracts) package will be used, and LSP8 will be inherited.
+To create an LSP8 NFT, `LSP8` is imported from [@lukso/lsp8-contracts](https://www.npmjs.com/package/@lukso/lsp8-contracts) package, and inherited.
+
+The constructor arguments definitions can be found explained in the [constructor API](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#constructor) section.
 
 ```js
 // SPDX-License-Identifier: Apache-2.0
@@ -60,6 +62,12 @@ contract MyLSP8Token is LSP8IdentifiableDigitalAsset {
 
 ## Interacting with Contracts
 
+:::info
+
+To check function definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
+
+:::
+
 To interact with LSP8IdentifiableDigitalAsset contract, different functions should be called. This is a table comparing function definitions:
 
 | ERC721 Function                                               | LSP8 Equivalent                                                                      |
@@ -77,11 +85,15 @@ To interact with LSP8IdentifiableDigitalAsset contract, different functions shou
 | _No equivalent_                                               | `revokeOperator(address operator, bytes32 tokenId, bool notify, bytes memory data)`  |
 | _No equivalent_                                               | `batchCalls(bytes[] memory data)`                                                    |
 
-To check function definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section
-
 ## dApps and Indexers
 
-To track the events of a LSP8IdentifiableDigitalAsset contract, different event definitions should be used for listening. This is a table comparing event definitions:
+:::info
+
+To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
+
+:::
+
+The table below shows the different event definitions that should be used to track activity on an LSP8-IdentifiableDigitalAsset contract.
 
 | ERC721 Event                                                                         | LSP8 Event                                                                                                                                      |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -89,8 +101,6 @@ To track the events of a LSP8IdentifiableDigitalAsset contract, different event 
 | `Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)` | `OperatorAuthorizationChanged(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bytes operatorNotificationData)`   |
 | `ApprovalForAll(address indexed owner, address indexed operator, bool approved)`     | _No direct equivalent_                                                                                                                          |
 | _No equivalent_                                                                      | `OperatorRevoked(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bool notified, bytes operatorNotificationData)` |
-
-To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section
 
 ## Metadata Management
 
@@ -105,7 +115,7 @@ const symbol = await token.symbol();
 const tokenURI = await token.tokenURI(tokenId);
 ```
 
-In LSP8, the name and symbol of the token will be retrieved with getData function, since the LSP8 uses a generic metadata key value store:
+In LSP8, the token name and symbol can be retrieved with [getData](../../contracts/contracts/ERC725/ERC725.md#getdata) function, since LSP8 uses a generic metadata key value store:
 
 ```javascript
 // LSP8
@@ -120,6 +130,12 @@ const symbol = ethers.toUtf8String(symbolValue);
 ```
 
 ### Extended Token Metadata
+
+:::info
+
+To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../digital-assets/metadata-management/metadata-preparation.md) section.
+
+:::
 
 LSP8 allows for more flexible and extensive metadata storage directly on-chain. You can store a JSON object containing information about the whole NFT contract and for each individual tokenId.
 
