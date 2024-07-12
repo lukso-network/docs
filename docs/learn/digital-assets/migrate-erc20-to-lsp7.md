@@ -53,6 +53,12 @@ contract MyLSP7Token is LSP7DigitalAsset {
 
 ## Behavior
 
+Below are the function signatures of the transfer functions for ERC20 and LSP7, respectively.
+
+ERC20: `function transferFrom(address from, address to, uint256 amount);`
+
+LSP7: `function transfer(address from, address to, uint256 amount, bool force, bytes data);`
+
 - For LSP7, **mint and transfer functions will have a `force` additional field**. For full compatibility with ERC20 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) in LSP7DigitalAsset for more info).
 
 - For LSP7, **mint, transfer, and burn functions will have `data` as an additional field**. For full compatibility with ERC20 behavior, set this to empty bytes. This data will only be relevant when the recipient is a smart contract address supporting the LSP1 interfaceId (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) in LSP7DigitalAsset for more info), where the data will be sent and the recipient can act on it (e.g., reject the transfer, forward the tokens to a vault, etc.).

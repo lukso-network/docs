@@ -52,7 +52,13 @@ contract MyLSP8Token is LSP8IdentifiableDigitalAsset {
 
 ## Behavior
 
-- For LSP8, the tokenId is represented as `bytes32` in contrast with ERC20 where its represented as `uint256`. This design decision allow for more representation of tokenIds.
+- For LSP8, the tokenId is represented as `bytes32` in contrast with ERC721 where its represented as `uint256`. This design decision allow for more representation of tokenIds.
+
+Below are the function signatures of the transfer functions for ERC721 and LSP8, respectively.
+
+ERC721: `function transferFrom(address from, address to, uint256 tokenId);`
+
+LSP8: `function transfer(address from, address to, bytes32 tokenId, bool force, bytes data);`
 
 - For LSP8, **mint and transfer functions will have a `force` additional field**. For full compatibility with ERC721 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) in LSP8IdentifiableDigitalAsset for more info).
 
