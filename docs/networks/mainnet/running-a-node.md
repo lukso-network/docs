@@ -249,11 +249,23 @@ Additionally, some clients support LUKSO out of the box. This means you don't ne
 
 Execution layer clients:
 
-- [Besu](https://besu.hyperledger.org/public-networks/reference/cli/options#network) Example command: `besu --network=lukso` (basic network flag, you should consider adding more flags, e.g. `--data-path=<PATH>`)
+- [Besu](https://besu.hyperledger.org/public-networks/reference/cli/options#network) Example command:
+
+```bash
+besu --network=lukso`
+```
+
+You should consider adding more flags, e.g. `--data-path=<PATH>`
 
 Consensus layer clients:
 
-- [Teku](https://docs.teku.consensys.io/reference/cli#network) Example command: `teku --network=lukso` (You should consider adding more flags, e.g. `--data-base-path=<PATH>`)
+- [Teku](https://docs.teku.consensys.io/reference/cli#network) Example command:
+
+```bash
+teku --network=lukso
+```
+
+You should consider adding more flags, e.g. `--data-base-path=<PATH>`
 
 :::caution
 
