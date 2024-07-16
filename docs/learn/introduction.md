@@ -13,78 +13,18 @@ description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKS
 
 ### Comparing Universal Profiles to other Wallets
 
-<table>
-  <tr>
-    <th></th>
-    <th>Gnosis SAFE</th>
-    <th>Base Smart Contract Account</th>
-    <th>EIP 6900 Modular Smart Contract account</th>
-    <th>Universal Profiles</th>
-  </tr>
-  <tr>
-    <td>Standardised</td>
-    <td>🔶</td>
-    <td>❌</td>
-    <td>✅</td>
-    <td>✅</td>
-  </tr>
-  <tr>
-    <td>Generic Information Storage</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>✅ Through ERC725Y</td>
-  </tr>
-  <tr>
-    <td>Notification and Reactability</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>✅ Through LSP1</td>
-  </tr>
-  <tr>
-    <td>Extensibility</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅ Through LSP17</td>
-  </tr>
-  <tr>
-    <td>Upgradeable Security</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅ Through LSP14</td>
-  </tr>
-  <tr>
-    <td>Permission system</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>✅ Through LSP6</td>
-  </tr>
-  <tr>
-    <td>Multisig</td>
-    <td>✅</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>🔶 Can behave as multisig if controlled by a multisig</td>
-  </tr>
-  <tr>
-    <td>Pre and post execution</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅ Through LSP20</td>
-  </tr>
-  <tr>
-    <td>Multi purpose</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>❌</td>
-    <td>✅ Can be a DAO, Organisation, Brand, AI, Robot, etc</td>
-  </tr>
-</table>
+|                                | Gnosis SAFE | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                       |
+|--------------------------------|-------------|-----------------------------|----------------------------------------|------------------------------------------|
+| Standardised                   | 🔶          | ❌                          | ✅                                      | ✅                                       |
+| Generic Information Storage    | ❌          | ❌                          | ❌                                      | ✅ Through ERC725Y                       |
+| Notification and Reactability  | ❌          | ❌                          | ❌                                      | ✅ Through LSP1                          |
+| Extensibility                  | ✅          | ✅                          | ✅                                      | ✅ Through LSP17                         |
+| Upgradeable Security           | ✅          | ✅                          | ✅                                      | ✅ Through LSP14                         |
+| Permission system              | ❌          | ❌                          | ❌                                      | ✅ Through LSP6                          |
+| Multisig                       | ✅          | ❌                          | ❌                                      | 🔶 Can behave as multisig if controlled by a multisig |
+| Pre and post execution         | ✅          | ✅                          | ✅                                      | ✅ Through LSP20                         |
+| Multi purpose                  | ❌          | ❌                          | ❌                                      | ✅ Can be a DAO, Organisation, Brand, AI, Robot, etc |
+
 
 ## Key Benefits of LUKSO
 
@@ -117,7 +57,7 @@ By integrating different LSPs in unique ways, LUKSO solves fundamental blockchai
 
 LUKSO is an L1 EVM-based Blockchain. All tools and tutorials for Ethereum also work for LUKSO by default.
 
-Developers building on LUKSO can write smart contracts in an EVM-based smart contract language like (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
+Developers building on LUKSO can write smart contracts in any EVM-based smart contract languages (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
 
 - [Awesome LUKSO, a comprehensive list of awesome LUKSO resources!](https://github.com/lukso-network/awesome-lukso)
 - [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
