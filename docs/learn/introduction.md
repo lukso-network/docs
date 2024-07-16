@@ -13,18 +13,17 @@ description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKS
 
 ### Comparing Universal Profiles to other Wallets
 
-|                                | Gnosis SAFE | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                       |
-|--------------------------------|-------------|-----------------------------|----------------------------------------|------------------------------------------|
-| Standardised                   | 🔶          | ❌                          | ✅                                      | ✅                                       |
-| Generic Information Storage    | ❌          | ❌                          | ❌                                      | ✅ Through ERC725Y                       |
-| Notification and Reactability  | ❌          | ❌                          | ❌                                      | ✅ Through LSP1                          |
-| Extensibility                  | ✅          | ✅                          | ✅                                      | ✅ Through LSP17                         |
-| Upgradeable Security           | ✅          | ✅                          | ✅                                      | ✅ Through LSP14                         |
-| Permission system              | ❌          | ❌                          | ❌                                      | ✅ Through LSP6                          |
-| Multisig                       | ✅          | ❌                          | ❌                                      | 🔶 Can behave as multisig if controlled by a multisig |
-| Pre and post execution         | ✅          | ✅                          | ✅                                      | ✅ Through LSP20                         |
-| Multi purpose                  | ❌          | ❌                          | ❌                                      | ✅ Can be a DAO, Organisation, Brand, AI, Robot, etc |
-
+|                               | Gnosis SAFE | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                                    |
+| ----------------------------- | ----------- | --------------------------- | --------------------------------------- | ----------------------------------------------------- |
+| Standardised                  | 🔶          | ❌                          | ✅                                      | ✅                                                    |
+| Generic Information Storage   | ❌          | ❌                          | ❌                                      | ✅ Through ERC725Y                                    |
+| Notification and Reactability | ❌          | ❌                          | ❌                                      | ✅ Through LSP1                                       |
+| Extensibility                 | ✅          | ✅                          | ✅                                      | ✅ Through LSP17                                      |
+| Upgradeable Security          | ✅          | ✅                          | ✅                                      | ✅ Through LSP14                                      |
+| Permission system             | ❌          | ❌                          | ❌                                      | ✅ Through LSP6                                       |
+| Multisig                      | ✅          | ❌                          | ❌                                      | 🔶 Can behave as multisig if controlled by a multisig |
+| Pre and post execution        | ✅          | ✅                          | ✅                                      | ✅ Through LSP20                                      |
+| Multi purpose                 | ❌          | ❌                          | ❌                                      | ✅ Can be a DAO, Organisation, Brand, AI, Robot, etc  |
 
 ## Key Benefits of LUKSO
 
