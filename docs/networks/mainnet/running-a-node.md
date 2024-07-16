@@ -252,7 +252,7 @@ Execution layer clients:
 - [Besu](https://besu.hyperledger.org/public-networks/reference/cli/options#network) Example command:
 
 ```bash
-besu --network=lukso`
+besu --network=lukso
 ```
 
 You should consider adding more flags, e.g. `--data-path=<PATH>`
