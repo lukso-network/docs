@@ -11,9 +11,9 @@ The purpose of this section is to teach you the least amount possible to get you
 
 ## What is LUKSO?
 
-LUKSO is a Layer 1 EVM chain, Ethereum twin blockchain. It is fundamentally the same as Ethereum at a network level but with some innovative differences, particularly in how developers build applications on the network and the building blocks you use.
+LUKSO is a Layer 1 EVM chain that uses the same consensus as Ethereum. It is fundamentally the same as Ethereum at a network level but with some innovative differences.
 
-Here are the top 3 reasons why LUKSO is different to any other blockchain:
+Here are the _top 3_ reasons why LUKSO is different to any other blockchain:
 
 <table><thead>
   <tr>
@@ -64,11 +64,13 @@ Here are the top 3 reasons why LUKSO is different to any other blockchain:
 </tbody>
 </table>
 
-To learn more about the building blocks of LUKSO check out [the standards](../standards/introduction.md).
+:::info
+**To learn more about the main building blocks of LUKSO check out the [**L**UKSO **S**tandards **P**roposals (**LSPs**)](../standards/introduction.md).**
+:::
 
 ## Where should I start?
 
-Download the 🆙 browser extension using the link below:
+### First:
 
 <CallToActionButton
     color="white"
@@ -77,7 +79,7 @@ Download the 🆙 browser extension using the link below:
     text="Install the Universal Profile Browser Extension 🧩"
   />
 
-Then create your first Universal Profile below:
+### and then:
 
 <CallToActionButton
 color="white"
@@ -86,7 +88,9 @@ link="https://my.universalprofile.cloud"
 text="Create your Universal Profile 🆙"
 />
 
-With these two elements in place, you are ready to explore the [LUKSO ecosystem](https://www.lukso.network/ecosystem).
+:::info
+**You are ready to explore the [LUKSO ecosystem](https://www.lukso.network/ecosystem).**
+:::
 
 ## Ready to build?
 
