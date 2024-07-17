@@ -47,13 +47,25 @@ An LSP0-ERC725Account can work standalone and doesn't require a Key Manager or a
 
 ## Adding profile information
 
+:::info How is data stored on a Universal Profile?
+
+Each data on a Universal Profile is stored into a generic key-value [ERC725Y](../lsp-background/erc725.md#erc725y-data-representation) store which allows storing an unlimited amount of data in the smart contract.
+
+ERC725Y standardizes a mapping of data keys to data values in order to have the ability to add or remove data across time without the need of redeploying the contract. It gives flexibility to the contract storage. On the smart contract, data keys are represented as bytes32 values and data values under these keys are stored as bytes.
+
+:::
+
+[LSP2 - ERC725YJSONSchema](../../../standards/generic-standards/lsp2-json-schema) is the standard used by the LSPs to organize how the data should be represented as `bytes32 => bytes` data key / value pairs.
+
+:::
+
 The **[LSP0 - ERC725Account](./lsp0-erc725account.md)** standard represents a blockchain-based account that does not contain any metadata describing the account. It's important to standardize specific data keys to give the account a unique character and look like a typical **Web2 profile**.
 
 **[LSP3 - Profile Metadata](./lsp3-profile-metadata.md)** is a standard used to add profile information by setting its defined data keys in the account storage. The combination of these two standards forms a **Universal Profile**.
 
 :::tip
 
-The guide [Connect Your Universal Profile to a dApp](../../learn/universal-profile/connect-profile/connect-up.md) may interest you.
+The guide [Edit Profile Data](../../learn/universal-profile/metadata/edit-profile.md) may interest you.
 
 :::
 

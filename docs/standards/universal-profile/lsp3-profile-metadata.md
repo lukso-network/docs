@@ -45,6 +45,13 @@ This data key is used to know if the contract contains some metadata to display 
 
 ### `LSP3Profile`
 
+This standardised data key exists to store the metadata that represent the profile metadata of any kind of contract (e.g: a Universal Profile, a Vault, etc...). This is useful when one might want to represent a specific contract with some form of "branding" to give a profile-like aspect to the smart contract.
+
+For instance, the metadata could represent the following in these scenarios:
+
+- a **Universal Profile**: to represent an individual, a brand, a company or a DAO.
+- a digital **Vault**: to represent a saving account, a safe contains high value NFTs, or a list of items about to be put on auction by an auction house.
+
 ```json
 {
   "name": "LSP3Profile",
@@ -57,10 +64,12 @@ This data key is used to know if the contract contains some metadata to display 
 
 The value attached to this data key is a [VerifiableURI-encoded value](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri). It represents a reference to a [JSON file that describes the Profile MetaData](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile). The file can be stored on a centralized or decentralized storage.
 
+![LSP3Profile Metadata as JSON file on IPFS (diagram)](../../learn/universal-profile/img/profile-metadata-ipfs-explained.jpeg)
+
 Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept an array of images, defining an image with different dimensions, `width` and `height`. Picture scaling is helpful for client interfaces to download and serve the images with the most suitable dimensions instead of re-scale them afterward.
 
 <details>
-    <summary>Example of JSON File linked to <code>LSP3Profile</code>data key </summary>
+    <summary>Example of JSON File linked to <code>LSP3Profile</code> data key </summary>
 
 ```json
 {
