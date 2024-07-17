@@ -123,6 +123,19 @@ The JSON file for [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/mai
 In this guide, we will use [local IPFS Node provider](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages) from our [IPFS Provider Tool](https://github.com/lukso-network/tools-data-providers). [Other providers](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages) supported by this tool including Pinata, Infura, Cascade and Sense.
 :::
 
+:::info Learn More
+**IPFS is just one place among many** where you can store your Universal Profile metadata.<br/>
+You can use other file storage options (_e.g., [Swarm](https://www.ethswarm.org/), [Storj](https://www.storj.io/index.html), Google Drive, or a private FTP server_).
+:::
+
+This guide will store our Universal Profile metadata on [IPFS]. We can add edit our UP metadata by:
+
+1. Creating a new JSON file with new or updated info (**☑️ done in the previous step**).
+2. Uploading the file to IPFS.
+3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
+
+![LSP3Profile Metadata as JSON file on IPFS (diagram)](../img/profile-metadata-ipfs-explained.jpeg)
+
 ### Upload image to IPFS
 
 For the properties `profileImage` and `backgroundImage`, we will need to add the following information:
