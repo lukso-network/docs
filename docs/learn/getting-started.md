@@ -65,7 +65,7 @@ Here are the _top 3_ reasons why LUKSO is different to any other blockchain:
 </table>
 
 :::info
-**To learn more about the building blocks of LUKSO check out [the standards](../standards/introduction.md).**
+**To learn more about the main building blocks of LUKSO check out the [**L**UKSO **S**tandards **P**roposals (**LSPs**)](../standards/introduction.md).**
 :::
 
 ## Where should I start?
