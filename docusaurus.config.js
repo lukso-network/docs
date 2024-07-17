@@ -47,10 +47,6 @@ export default {
           },
           // Learn/Expert guides
           {
-            from: '/learn/expert-guides/deploy-token-with-metadata',
-            to: '/learn/digital-assets/metadata-management/deploy-token-with-metadata',
-          },
-          {
             from: '/learn/expert-guides/key-manager/execute-relay-transactions',
             to: '/learn/universal-profile/key-manager/execute-relay-transactions',
           },
@@ -111,6 +107,10 @@ export default {
             from: '/learn/universal-profile/connect-profile/multi-provider',
             to: '/learn/universal-profile/connect-profile/connect-up',
           },
+          {
+            from: '/learn/universal-profile/interactions/deploy-token-with-metadata',
+            to: '/learn/universal-profile/interactions/batch-transactions',
+          },
           // Learn/dApp Developer
           {
             from: '/learn/dapp-developer/standard-detection',
@@ -123,7 +123,7 @@ export default {
           },
           {
             from: '/learn/dapp-developer/read-asset-data',
-            to: '/learn/digital-assets/read-asset-data',
+            to: '/learn/digital-assets/metadata-management/read-asset-data',
           },
           // Learn/Digital Assets
           {

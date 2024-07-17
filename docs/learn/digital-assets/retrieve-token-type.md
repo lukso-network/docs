@@ -1,6 +1,6 @@
 ---
-sidebar_label: '🗃️ Retrieve Token Type'
-sidebar_position: 5
+sidebar_label: '🔍 Detect Token Type'
+sidebar_position: 6
 description: Retrieve LUKSO LSP token types and detect if an asset is a Token, an NFT, or a collection.
 ---
 

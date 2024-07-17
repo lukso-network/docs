@@ -61,52 +61,45 @@ contract EventTicketsNFT is LSP7Mintable {
 }
 ```
 
-Next you define the deployment script.
+Next define the deployment script.
 
-<!-- prettier-ignore-start -->
-```js title="scripts/mintTickets.ts"
-import { ethers } from "hardhat";
+```ts title="scripts/deployAndMintTickets.ts"
+import { ethers } from 'ethers';
+import EventTicketsNFTArtifacts from './artifacts/EventTickets.json';
 
-// typechain should generate new types for you on every compilation 
-// otherwise you can always: npx hardhat typechain 
-import {
-    EventTicketsNFT,
-    EventTicketsNFT__factory
-} from "../typechain-types";
+const accounts = await ethers.getSigners();
+const deployer = accounts[0];
 
-async function deployAndCreateTickets() {
-    const accounts = await ethers.getSigners();
-    const deployer = accounts[0];
+const contractFactory = new ethers.ContractFactory(
+  EventTicketsNFTArtifacts.abi,
+  EventTicketsNFTArtifacts.bytecode,
+  deployer,
+);
 
-    const luksoMeetupTickets: EventTicketsNFT = await new EventTicketsNFT__factory(
-        deployer
-    ).deploy(
-        "LUKSO Meetup #2",
-        "MUP2",
-        deployer.address,
-    )
+const luksoMeetupTickets = await contractFactory.deploy(
+  'LUKSO Meetup #2',
+  'MUP2',
+  deployer.address,
+);
 
-    // create 100 entry tickets.
-    // Give them to the deployer initially, who will distribute them afterwards.
-    await luksoMeetupTickets.mint(
-        deployer.address, // recipient
-        100, // amount
-        true, // force sending to an EOA
-        "0x" // data
-    );
-    const luksoMeetupTicketsAddress = await luksoMeetupTickets.getAddress()
-    console.log("NFT Collection deployed to:", luksoMeetupTicketsAddress)
-    console.log("Check the block explorer to see the deployed contract")
-    
-}
-
-deployAndCreateTickets().catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
-  });
-
+// create 100 entry tickets.
+// Give them to the deployer initially, who will distribute them afterwards.
+await luksoMeetupTickets.mint(
+  deployer.address, // recipient
+  100, // amount
+  true, // force sending to an EOA
+  '0x', // data
+);
+const luksoMeetupTicketsAddress = await luksoMeetupTickets.getAddress();
+console.log('NFT Collection deployed to:', luksoMeetupTicketsAddress);
+console.log('Check the block explorer to see the deployed contract');
 ```
-<!-- prettier-ignore-end -->
+
+Finally, run the deploy script:
+
+```sh
+npx hardhat run --network luksoTestnet scripts/deployAndMintTickets.ts
+```
 
 You can now check out the NFT collection contract on the [execution block explorer](https://explorer.execution.testnet.lukso.network/) by pasting the address logged on the console to the search field of the block explorer.
 
