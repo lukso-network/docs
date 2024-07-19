@@ -1,6 +1,6 @@
 ---
 sidebar_label: '📘 Glossary'
-description: 'Most frequently used concepts related to the LUKSO Ecosystem: Universal Profiles, Controllers, Transaction Relay Service.'
+description: 'Most frequently used terminology related to the LUKSO Ecosystem: Universal Profiles, Controllers, Transaction Relay Service.'
 ---
 
 # Glossary
@@ -29,3 +29,5 @@ Highlight any word and click `Ask Cookbook` in the Navbar for its definition.
 | Account Abstraction                                                                                | Account abstraction is abstracting away smart contract execution from storing funds. With a smart contract account, you can program it to do all sorts of things. You can set up automatic payments, create multi-signature wallets that require multiple people to approve transactions, or even add security features like daily spending limits. It's like having a customizable, programmable bank account on the blockchain. |
 
                                                                                                                                                                                                                                                                                                                                 |
+
+-m
