@@ -773,8 +773,8 @@ A CompactBytesArray for these 3 different ERC725Y Data Keys would look like this
   "name": "AddressPermissions:AllowedERC725YDataKeys:<address>",
   "key": "0x4b80742de2bf866c29110000<address>",
   "keyType": "MappingWithGrouping",
-  "valueType": "bytes32[CompactBytesArray]",
-  "valueContent": "Bytes32"
+  "valueType": "bytes[CompactBytesArray]",
+  "valueContent": "Bytes"
 }
 ```
 
