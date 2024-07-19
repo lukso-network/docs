@@ -1,20 +1,31 @@
 ---
-sidebar_label: '📘 Concepts & Glossary'
+sidebar_label: '📘 Glossary'
 description: 'Most frequently used concepts related to the LUKSO Ecosystem: Universal Profiles, Controllers, Transaction Relay Service.'
 ---
 
-# Concepts & Glossary
+# Glossary
 
-## Introducing ChefGPT
+:::info
+At LUKSO docs, use [ChefGPT](https://www.cookbook.dev/) for quick term explanations.
 
-At LUKSO we have replaced our manually updated glossary page with AI integration called [ChefGPT](https://www.cookbook.dev/) to ensure it’s always up to date. This AI solution dynamically adapts to new terms and industry changes, providing accurate and real-time information.
-
-**Simply highlight any word, on any page and click the Ask Cookbook button in the Navbar to get it's definition.**
-
-Try it out on the following terms:
-
-- LSP
-- Universal Profile
-- ERC725Y
+Highlight any word and click `Ask Cookbook` in the Navbar for its definition.
 
 ![ChefGPT Example](../../static/img/chefgpt.gif)
+:::
+
+## Top Searched-for Terminology
+
+| Topic                                                                                              | TL;DR                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [NFTs on LUKSO](../standards/tokens/LSP8-Identifiable-Digital-Asset.md)                            | NFTs on LUKSO are very similar to ERC-721 standard on Ethereum. The main difference is that the metadata attached can be extended over time.                                                                                                                                                                                                                                                                                      |
+| [Tokens on LUKSO](../standards/tokens/LSP7-Digital-Asset.md)                                       | Tokens on LUKSO are defined by the LSP7 standard and extend what you know of ERC20 token on Ethereum. In particular with things like Batch Transfers, Hook, Data URI and improved interoperability.                                                                                                                                                                                                                               |
+| Controllers                                                                                        | Controllers are like little programs that are given specific permissions to do things to and with your Universal Profile.                                                                                                                                                                                                                                                                                                         |
+| [ERC725X](../standards/generic-standards/lsp2-json-schema.md)                                      | ERC725X is a standard that defines your Universal Profile works and how it can be used to manage your online identity and assets. It's like a set of rules that everyone agrees on, making it easier for different applications and platforms to understand and interact with your profile.                                                                                                                                       |
+| [ERC725Y](../standards/lsp-background/erc725#erc725x)                                              | ERC725Y is like the basic tool that lets you store information, while LSP2 is like the set of rules that makes sure everyone stores and retrieves this information in an organized and understandable way.                                                                                                                                                                                                                        |
+| [LYXt](../../docs/faq/lukso/general-information.md#whats-the-difference-between-lyxt-lyxe-and-lyx) | LYXt is the token for developers to use on our testnet. It can always be acquired by anyone for free.                                                                                                                                                                                                                                                                                                                             |
+| [LYXe](../../docs/faq/lukso/general-information.md#whats-the-difference-between-lyxt-lyxe-and-lyx) | LYXe is the token that was deployed on Ethereum before LUKSO Mainnet was launched. It was launched to allow people to invest in LUKSO pre-launch.                                                                                                                                                                                                                                                                                 |
+| [Key Manager](../standards/universal-profile/lsp6-key-manager.md)                                  | The Key Manager is essentially a place where you can manage permissions that other _things_ have on your Universal Profile. _Things_ could be other people's profiles, dapps, extensions....anything.                                                                                                                                                                                                                             |
+| [Metadata](../standards/universal-profile/lsp3-profile-metadata.md)                                | This typically refers to the additional data that is stored against a token or NFT. The difference on LUKSO is it can be extended. <br></br> For example, imagine you've bought a house and have the deed as an NFT on LUKSO. Well now, as rennovations are carried out, they can be continually added to the NFT for history.                                                                                                    |
+| Account Abstraction                                                                                | Account abstraction is abstracting away smart contract execution from storing funds. With a smart contract account, you can program it to do all sorts of things. You can set up automatic payments, create multi-signature wallets that require multiple people to approve transactions, or even add security features like daily spending limits. It's like having a customizable, programmable bank account on the blockchain. |
+
+                                                                                                                                                                                                                                                                                                                                |
