@@ -1,5 +1,5 @@
 ---
-sidebar_label: '💰 Migrate ERC20 to LSP7'
+sidebar_label: 'Migrate from ERC20 to LSP7'
 sidebar_position: 7
 description: Learn how to migrate your ERC20 token to the LSP7 Digital Asset standard on LUKSO.
 ---

@@ -1,7 +1,7 @@
 ---
-sidebar_label: '🪙 Create a Token'
+sidebar_label: 'Basic LSP7 Token'
 sidebar_position: 2
-description: Learn how to create a custom Digital Asset (token) on LUKSO using LSP7 standard.
+description: Learn how to create your own basic fungible token on LUKSO using the LSP7 Digital Asset standard.
 ---
 
 import Tabs from '@theme/Tabs';

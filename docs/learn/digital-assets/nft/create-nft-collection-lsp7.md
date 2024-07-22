@@ -1,6 +1,6 @@
 ---
 sidebar_label: '👾 Collection with LSP7'
-sidebar_position: 4
+sidebar_position: 2
 description: Learn how to create an NFT Collection on LUKSO using LSP7 Digital Asset standard.
 ---
 

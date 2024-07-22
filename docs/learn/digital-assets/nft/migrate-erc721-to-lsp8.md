@@ -1,6 +1,6 @@
 ---
-sidebar_label: '🖼️ Migrate ERC721 to LSP8'
-sidebar_position: 8
+sidebar_label: 'Migrate from ERC721 to LSP8'
+sidebar_position: 6
 description: Learn how to migrate your ERC721 token to the LSP8 Identifiable Digital Asset standard on LUKSO.
 ---
 
