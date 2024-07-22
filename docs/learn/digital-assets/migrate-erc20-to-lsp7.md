@@ -10,6 +10,12 @@ import Erc20LSP7Table from '@site/src/components/Erc20LSP7Table';
 
 [LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC20](https://eips.ethereum.org/EIPS/eip-20), as described in the [standard section](../../standards/tokens/LSP7-Digital-Asset.md). For migrating from ERC20 to LSP7, developers need to be aware of several key differences.
 
+:::info
+
+If you need more details about the interface differences between ERC20 and LSP7, please visit our [contract overview](../../contracts/overview/DigitalAssets/#comparisons-with-erc20--erc721) page.
+
+:::
+
 ## Smart Contract Building
 
 Usually, to create an ERC20 token, `ERC20` is imported from [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package, and inherited.
@@ -78,18 +84,6 @@ To check function definitions and explanations of behavior and each parameter, c
 To interact with LSP7DigitalAsset contract, different functions should be called. This is a table comparing function definitions:
 
 <Erc20LSP7Table/>
-
-| ERC20 Function                                           | LSP7 Equivalent                                                                     |
-| -------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `approve(address spender, uint256 amount)`               | `authorizeOperator(address spender, uint256 amount, bytes memory data)`             |
-| `allowance(address owner, address spender)`              | `authorizedAmountFor(address spender, address owner)`                               |
-| _No equivalent_                                          | `getOperatorsOf(address owner)`                                                     |
-| _No equivalent_                                          | `revokeOperator(address spender, bytes memory data)`                                |
-| _No equivalent_                                          | `increaseAllowance(address spender, uint256 addedAmount, bytes memory data)`        |
-| _No equivalent_                                          | `decreaseAllowance(address spender, uint256 subtractedAmount, bytes memory data)`   |
-| `transfer(address to, uint256 amount)`                   | `transfer(address from, address to, uint256 amount, bool force, bytes memory data)` |
-| `transferFrom(address from, address to, uint256 amount)` | `transfer(address from, address to, uint256 amount, bool force, bytes memory data)` |
-| _No equivalent_                                          | `batchCalls(bytes[] memory data)`                                                   |
 
 ## dApps and Indexers
 

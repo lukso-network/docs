@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default function Erc20LSP7Table() {
+export default function Erc721LSP8Table() {
   return (
     <table width="100%">
       <thead>
         <tr>
-          <th>ERC20 Function</th>
-          <th>LSP7 Equivalent</th>
+          <th>ERC721 Function</th>
+          <th>LSP8 Equivalent</th>
         </tr>
       </thead>
       <tbody>
@@ -30,37 +30,29 @@ export default function Erc20LSP7Table() {
         </tr>
         <tr style={{ backgroundColor: '#dcfce7' }}>
           <td>
-            <code>decimals()</code>
+            <code>balanceOf(address owner)</code>
           </td>
           <td>
-            <code>decimals()</code>
-          </td>
-        </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
-          <td>
-            <code>totalSupply()</code>
-          </td>
-          <td>
-            <code>totalSupply()</code>
+            <code>balanceOf(address tokenOwner)</code>
           </td>
         </tr>
         <tr style={{ backgroundColor: '#dcfce7' }}>
           <td>
-            <code>balanceOf(address account)</code>
+            <code>ownerOf(uint256 tokenId)</code>
           </td>
           <td>
-            <code>balanceOf(address account)</code>
+            <code>tokenOwnerOf(bytes32 tokenId)</code>
           </td>
         </tr>
         <tr style={{ backgroundColor: '#dcfce7' }}>
           <td>
-            <code>approve(address spender, uint256 amount)</code>
+            <code>approve(address to, uint256 tokenId)</code>
           </td>
           <td>
             <code>
-              authorizeOperator(address spender,
+              authorizeOperator(address operator,
               <br />
-              uint256 amount,
+              bytes32 tokenId,
               <br />
               bytes memory data)
             </code>
@@ -68,67 +60,37 @@ export default function Erc20LSP7Table() {
         </tr>
         <tr style={{ backgroundColor: '#dcfce7' }}>
           <td>
-            <code>allowance(address owner, address spender)</code>
+            <code>getApproved(uint256 tokenId)</code>
+          </td>
+          <td>
+            <code>getOperatorsOf(bytes32 tokenId)</code>
+          </td>
+        </tr>
+        <tr style={{ backgroundColor: '#dcfce7' }}>
+          <td>
+            <code>setApprovalForAll(address operator, bool approved) </code>
+          </td>
+          <td>
+            <i>
+              No direct equivalent, use <b>authorizeOperator</b> for each token
+            </i>
+          </td>
+        </tr>
+        <tr style={{ backgroundColor: '#dcfce7' }}>
+          <td>
+            <code>isApprovedForAll(address owner, address operator)</code>
           </td>
           <td>
             <code>
-              authorizedAmountFor(address spender,
+              isOperatorFor(address operator,
               <br />
-              address owner)
+              bytes32 tokenId)
             </code>
           </td>
         </tr>
         <tr style={{ backgroundColor: '#dcfce7' }}>
           <td>
-            <i>No equivalent</i>
-          </td>
-          <td>
-            <code>getOperatorsOf(address owner)</code>
-          </td>
-        </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
-          <td>
-            <i>No equivalent</i>
-          </td>
-          <td>
-            <code>
-              revokeOperator(address spender,
-              <br />
-              bytes memory data)
-            </code>
-          </td>
-        </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
-          <td>
-            <i>No equivalent</i>
-          </td>
-          <td>
-            <code>
-              increaseAllowance(address spender,
-              <br />
-              uint256 addedAmount,
-              <br />
-              bytes memory data)
-            </code>
-          </td>
-        </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
-          <td>
-            <i>No equivalent</i>
-          </td>
-          <td>
-            <code>
-              decreaseAllowance(address spender,
-              <br />
-              uint256 subtractedAmount,
-              <br />
-              bytes memory data)
-            </code>
-          </td>
-        </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
-          <td>
-            <code>transfer(address to, uint256 amount)</code>
+            <code>transferFrom(address from, address to, uint256 tokenId)</code>
           </td>
           <td>
             <code>
@@ -136,9 +98,9 @@ export default function Erc20LSP7Table() {
               <br />
               address to,
               <br />
-              uint256 amount,
+              bytes32 tokenId,
               <br />
-              bool force
+              bool force,
               <br />
               bytes memory data)
             </code>
@@ -146,7 +108,9 @@ export default function Erc20LSP7Table() {
         </tr>
         <tr style={{ backgroundColor: '#dcfce7' }}>
           <td>
-            <code>transferFrom(address from, address to, uint256 amount)</code>
+            <code>
+              safeTransferFrom(address from, address to, uint256 tokenId)
+            </code>
           </td>
           <td>
             <code>
@@ -154,9 +118,25 @@ export default function Erc20LSP7Table() {
               <br />
               address to,
               <br />
-              uint256 amount,
+              bytes32 tokenId,
               <br />
-              bool force
+              bool force,
+              <br />
+              bytes memory data)
+            </code>
+          </td>
+        </tr>
+        <tr style={{ backgroundColor: '#dcfce7' }}>
+          <td>
+            <i>No equivalent</i>
+          </td>
+          <td>
+            <code>
+              revokeOperator(address operator,
+              <br />
+              bytes32 tokenId,
+              <br />
+              bool notify,
               <br />
               bytes memory data)
             </code>
