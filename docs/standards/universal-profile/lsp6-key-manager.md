@@ -637,10 +637,10 @@ To allow a controller to only do `CALL` to any function on a LSP0ERC725Account (
 Where:
 
 - _element length_: `0x0020` (= 32 bytes)
-- _Permission_: **CALL**, **0x00000002**;
-- _Standard_: **LSP0 interface ID = `0x3e89ad98`**;
+- _Call Type_: **CALL**, **0x00000002**;
 - _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;
-- _Function_: **any**;
+- _Standard_: **LSP0 interface ID = `0x3e89ad98`**;
+- _Function_: **any = `0xffffffff`**;
 
 </details>
 
@@ -651,32 +651,32 @@ Consider the scenario where you want to give the following permissions to a cont
 
 - allow to `CALL` any functions (as well as transferring value `TRANSFERVALUE`) to a LSP0 contract deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`.
 - allow to `CALL` only the `transfer(address,address,uint256,bool,bytes)` function on the contract deployed at address `0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`.
-- allow to do `STATICCALL`s to any functions on the contract deployed at address `0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`.
+- allow to `TRANSFERVALUE`s while calling any functions on the contract deployed at address `0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`.
 
 The CompactBytesArray of allowed calls for this controller will be composed of the following entries:
 
 - `AllowedCalls[0]` = the 1st value in the CompactBytesArray will be **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`**.
 
-  - _Permission_: **CALL and TRANSFERVALUE**, **0x00000003**;
-  - _Standard_: **LSP0 interface ID = `0x3e89ad98`**;
+  - _Call Type_: **CALL and TRANSFERVALUE**, **0x00000003**;
   - _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;
-  - _Function_: **any**;
+  - _Standard_: **LSP0 interface ID = `0x3e89ad98`**;
+  - _Function_: **any = `0xffffffff`**;
 
 - AllowedCalls[1] = the 2nd value in the CompactBytesArray will be **`0x002000000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**.
 
-  - _Permission_: **CALL**, **0x00000002**;
-  - _Standard_: **any**;
+  - _Call Type_: **CALL**, **0x00000002**;
   - _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;
+  - _Standard_: **any = `0xffffffff`**;
   - _Function_: **transfer(address,address,uint256,bool,bytes), `0x760d9bba`**;
 
 - AllowedCalls[2] = the 3rd value in the CompactBytesArray will be **`0x002000000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`**
-  - _Permission_: **STATICCALL**, **0x00000004**;
-  - _Standard_: **any**;
+  - _Call Type_: **TRANSFERVALUE**, **0x00000001**;
   - _Address_: **`0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f`**;
-  - _Function_: **any**;
+  - _Standard_: **any = `0xffffffff`**;
+  - _Function_: **any = `0xffffffff`**;
 
 A _CompactBytesArray_ for these 3 interactions would look like this:
-`0x`**`0020`**`00000003CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`**`0020`**`00000002F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000004d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
+`0x`**`0020`**`00000003CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`**`0020`**`00000002F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**`0020`**`00000001d3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9fffffffffffffffff`
 
 </details>
 
