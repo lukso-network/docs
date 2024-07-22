@@ -1,15 +1,15 @@
 ---
-title: ⛓ Deployed Contracts
+title: ⛓ Deployed Base Contracts
 description: List of base implementation and factory contracts addresses deployed on LUKSO Mainnet.
 ---
 
-import { BaseContractsTable, FactoryContractsTable } from "../../src/components/DeployedContractsTable"
+import { BaseContractsTable, FactoryContractsTable } from "@site/src/components/DeployedContractsTable"
 
-# Deployed Contracts on LUKSO Mainnet
+# Deployed Base Contracts on LUKSO Mainnet
 
 :::success Deployment Guides
 
-Check our guide [**_🏭 Deploy Universal Profile + its Key Manager with LSP23 Factory_**](../learn/expert-guides/deploy-up-with-lsp23.md) if you are looking for a script to deploy with the LSP23 Factory using _ethers.js_.
+Check our guide [**_🏭 Deploy Universal Profile + its Key Manager with LSP23 Factory_**](../learn/universal-profile/advanced-guides/deploy-up-with-lsp23.md) if you are looking for a script to deploy with the LSP23 Factory using _ethers.js_.
 
 :::
 

@@ -32,7 +32,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
@@ -40,7 +40,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
@@ -57,7 +57,7 @@ For the constants we will need the _private key_ and _the address of the vault r
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Imports & Constants"
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
@@ -73,7 +73,7 @@ const myEOA = web3.eth.accounts.wallet.add(privateKey);
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Imports & Constants"
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
@@ -99,7 +99,7 @@ Create instance for `LSP9Vault`, that is needed in order to deploy the contract.
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Contract instance"
 // create an instance of the LSP9Vault contract
@@ -108,7 +108,7 @@ let myVault = new web3.eth.Contract(LSP9Vault.abi);
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Contract instance"
 // create an factory for the LSP9Vault contract
@@ -128,7 +128,7 @@ Finally send the **contract deployment** transaction.
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Sending contract deployment transaction"
 // deploy the vault contract
@@ -146,7 +146,7 @@ await myVault
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Sending contract deployment transaction"
 // deploy the vault contract
@@ -167,7 +167,7 @@ You need to have LYXt in your EOA in order to pay for the transaction fees. Visi
 
 <Tabs>
   
-  <TabItem value="web3js" label="web3.js">
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```typescript title="Deploying the vault"
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';
@@ -198,7 +198,7 @@ await myVault
 
   </TabItem>
 
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers.js">
 
 ```typescript title="Deploying the vault"
 import LSP9Vault from '@lukso/lsp-smart-contracts/artifacts/LSP9Vault.json';

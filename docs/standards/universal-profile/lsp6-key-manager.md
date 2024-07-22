@@ -773,8 +773,8 @@ A CompactBytesArray for these 3 different ERC725Y Data Keys would look like this
   "name": "AddressPermissions:AllowedERC725YDataKeys:<address>",
   "key": "0x4b80742de2bf866c29110000<address>",
   "keyType": "MappingWithGrouping",
-  "valueType": "bytes32[CompactBytesArray]",
-  "valueContent": "Bytes32"
+  "valueType": "bytes[CompactBytesArray]",
+  "valueContent": "Bytes"
 }
 ```
 
@@ -844,7 +844,7 @@ To mitigate such risks, adding an optional validity timestamp to the signature c
 
 You can use our library [**eip191-signer.js**](https://github.com/lukso-network/tools-eip191-signer) to make it easier to sign an _EIP191 Execute Relay Call transaction_.
 
-See also our [step by step Javascript guide](../../learn/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
+See also our [step by step Javascript guide](../../learn/universal-profile/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
 
 :::
 
@@ -896,11 +896,20 @@ Since the Key Manager offers **relay execution** via signed message, it's import
 
 - Signed messages with sequential nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
 
-Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice.
+Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice. It allows for transactions to be processed:
 
-Signed messages should be executed sequentially if signed on the same channel and should be executed independently if signed on different channel.
+- either in parallel without relying on the order of their arrival.
+- or enforce their order in a queue, sequentially.
 
-- Message signed with nonce 4 on channel 1 can't be executed before the message signed with nonce 3 on channel 1 but can be executed before the message signed with nonce 3 on channel 2.
+Therefore, if a sequence of signed messages must be executed sequentially, they must be signed on the same channel.
+
+Alternatively, it they should be executed independently, they should be signed across different channels.
+
+> _Example:_
+> A message signed with nonce 4 on channel 1:
+>
+> - ❌ can't be executed before the message signed with nonce 3 on channel 1.
+> - ✅ can be executed before the message signed with nonce 3 on channel 2.
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-multi-channel-nonce.jpeg)
 

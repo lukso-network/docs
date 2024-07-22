@@ -215,3 +215,47 @@ a.imageLink img {
 table.lsp-features td {
   vertical-align: top !important;
 }
+
+.tab_ethers[aria-selected='true'] {
+  border-bottom-color: #2434a1;
+}
+
+.tab_ethers {
+  color: #2434a1;
+}
+
+.tab_ethers:before {
+  content: url('/static/img/learn/ethersjs-logo.png');
+  position: relative; /*or absolute*/
+  z-index: 100000; /*a number that's more than the modal box*/
+  margin-right: 1em;
+}
+
+.tab_web3[aria-selected='true'] {
+  border-bottom-color: #f06922;
+}
+
+.tab_web3 {
+  color: #f06922;
+}
+
+.tab_web3:before {
+  content: url('/static/img/learn/web3js-logo.png');
+  position: relative; /*or absolute*/
+  z-index: 100000; /*a number that's more than the modal box*/
+  margin-right: 1em;
+}
+.tab_erc725[aria-selected='true'] {
+  border-bottom-color: #fa1c52;
+}
+
+.tab_erc725 {
+  color: #fa1c52;
+}
+
+.tab_erc725:before {
+  content: url('/static/img/learn/LUKSO_icon.png');
+  position: relative; /*or absolute*/
+  z-index: 100000; /*a number that's more than the modal box*/
+  margin-right: 1em;
+}

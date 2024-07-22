@@ -10,14 +10,12 @@ import CallToActionButton from '@site/src/components/CallToActionButton';
 
 When building dApps on LUKSO, you are interacting with [Universal Profiles](../../standards/universal-profile/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
 
-<div style={{ display: 'flex', justifyContent: 'center', marginTop: '2em' }}>
-  <CallToActionButton
+<CallToActionButton
     color="white"
     target="_blank"
     link="/install-up-browser-extension"
-    text="1 - Installing the Universal Profile Browser Extension 🧩"
+    text="1 - Install the Universal Profile Browser Extension 🧩"
   />
-</div>
 
 <div
   style={{
@@ -26,22 +24,15 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles](../.
     fontSize: '3em',
   }}
 >
-  <p style={{ marginBottom: 0 }}>⬇</p>
+  <p>⬇</p>
 </div>
 
-<div
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-  }}
->
-  <CallToActionButton
+<CallToActionButton
     color="white"
     target="_blank"
     link="https://my.universalprofile.cloud"
     text="2 - Create your Universal Profile 🆙"
   />
-</div>
 
 <div
   style={{
@@ -50,20 +41,18 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles](../.
     fontSize: '3em',
   }}
 >
-  <p style={{ marginBottom: 0 }}>⬇</p>
+  <p>⬇</p>
 </div>
 
-<div style={{ display: 'flex', justifyContent: 'center' }}>
-  <CallToActionButton
+<CallToActionButton
     color="white"
     link="/learn/universal-profile/connect-profile/connect-up"
-    text="3 - Get started building! 🫡"
+    text="3 - Start building! 🫡"
   />
-</div>
 
 :::note Manual Deployment
 
-You can also create new [Universal Profiles](../../standards/universal-profile/introduction.md) by ⚒️ [deploying them programmatically](../expert-guides/deploy-up-with-lsp23.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
+You can also create new [Universal Profiles](../../standards/universal-profile/introduction.md) by ⚒️ [deploying them programmatically](./advanced-guides/deploy-up-with-lsp23.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
 
 :::
 

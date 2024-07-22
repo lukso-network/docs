@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Node Setup'
 sidebar_position: 4
-description: 'LUKSO node setup and supported clients: Geth, Erigon, Prysm, Lighthouse.'
+description: 'LUKSO node setup and supported clients: Geth, Erigon, Nethermind, Besu, Prysm, Lighthouse, Teku.'
 ---
 
 # Node Setup
@@ -18,9 +18,15 @@ Currently, LUKSO officially supports Geth, Erigon, Lighthouse, and Prysm. All cl
 
 - **[Erigon](https://github.com/ledgerwatch/erigon)** is an Ethereum execution client that aims to offer a more efficient and faster alternative to Geth. It's written in Go and includes several optimizations to reduce the amount of data stored and improve processing speed. However, these optimizations can make Erigon more complex to maintain and update.
 
+- **[Nethermind](https://github.com/NethermindEth/nethermind)** is an Ethereum execution client built on .NET framework and developed by Nethermind. Its plugin system makes it especially easy to configure and use it. Combining this with a very stable runtime, this makes it a great client to use on the network.
+
+- **[Besu](https://github.com/hyperledger/besu)** is an Ethereum execution client written in Java and developed by Hyperledger. It supports both public and private networks, offering features like Proof of Authority and Proof of Work consensus, advanced privacy options, and robust monitoring tools.
+
 - **[Prysm](https://github.com/prysmaticlabs/prysm)** is an Ethereum consensus client written in Go and developed by Prysmatic Labs. Validators widely use it. Performance-wise, Prysm leverages optimized processes and data structures, offering a smooth experience for validators. The client had rigorous testing and auditing processes to ensure the client was secure against potential threats. It also comes with an excellent user-friendly terminal interface.
 
 - **[Lighthouse](https://github.com/sigp/lighthouse)** is an Ethereum consensus client written in Rust and developed by Sigma Prime. From a security perspective, Lighthouse leverages Rust's safety features and undergoes regular security audits to protect against potential vulnerabilities. Regarding efficiency, Lighthouse is designed to perform well even on low-spec hardware, making it accessible to a wide range of users with different skill levels.
+
+- **[Teku](https://github.com/Consensys/teku)** is an Ethereum consensus client written in Java and developed by Consensys. It provides users with a similar experience of running a node as with using other clients, but with additional features, such as external key management (using tools like [Web3signer](https://github.com/Consensys/web3signer)).
 
 ## Should I run an archive or a full node?
 
@@ -32,7 +38,13 @@ If you are running a validator, it's the default and recommended option to go wi
 
 ## Can the LUKSO CLI run as an archive node?
 
-By default, the LUKSO CLI is running as a full node. However, you can modify the configuration files and pass any flags to the execution clients by adding the `--geth-[parameter]` or `--erigon-[parameter]` flags to the start command.
+By default, the LUKSO CLI is running as a full node. However, you can modify the configuration files and pass any flags to the clients by adding the `--[client-name]-[parameter]` flags to the start command. For example:
+
+```sh
+--geth-http.addr=localhost # same as running: geth --http.addr=localhost
+--erigon-ws.port=8080 # same as running: erigon --ws.port=8080
+--lighthouse-target-peers=70 # same as running: lighthouse --target-peers=70
+```
 
 ## How much storage does my node need?
 

@@ -43,10 +43,12 @@ The LUKSO network currently supports the following clients versions:
 
 **Execution Clients**
 
-| Client | Version  | Release                                                       |
-| ------ | -------- | ------------------------------------------------------------- |
-| Geth   | v1.13.15 | https://github.com/ethereum/go-ethereum/releases/tag/v1.13.15 |
-| Erigon | v2.59.3  | https://github.com/ledgerwatch/erigon/releases/tag/v2.59.3    |
+| Client     | Version  | Release                                                         |
+| ---------- | -------- | --------------------------------------------------------------- |
+| Geth       | v1.13.15 | https://github.com/ethereum/go-ethereum/releases/tag/v1.13.15   |
+| Erigon     | v2.59.3  | https://github.com/ledgerwatch/erigon/releases/tag/v2.59.3      |
+| Nethermind | v1.26.0  | https://github.com/NethermindEth/nethermind/releases/tag/1.26.0 |
+| Besu       | v24.7.0  | https://github.com/hyperledger/besu/releases/tag/24.7.0         |
 
 **Consensus Clients**
 
@@ -242,9 +244,37 @@ We also created a "docker factory" web interface which allows you to generate yo
 
 Difficulty: Advanced 🌶️🌶️🌶️🌶️
 
-You are in no way limited to the tools we provide. If you are a pro user, you can download and run the Erigon, Geth, Lighthouse, Prysm or any other clients in your preferred setup. Please refer to the LUKSO [network configuration](https://github.com/lukso-network/network-configs/) repository to configure and start your node.
+You are in no way limited to the tools we provide. If you are a pro user, you can download and run the Erigon, Geth, Lighthouse, Prysm or any other clients in your preferred setup. Please refer to the LUKSO Mainnet [network configuration](https://github.com/lukso-network/network-configs/tree/main/mainnet) repository to configure and start your node.
 
-:::info LUKSO Network configuration
+Additionally, some clients support LUKSO out of the box. This means you don't need to prepare your chain configurations beforehand and can use all the tools provided by that client. The list of these clients (with their respective guides) includes:
+
+Execution layer clients:
+
+- [Besu](https://besu.hyperledger.org/public-networks/reference/cli/options#network) Example command:
+
+```bash
+besu --network=lukso
+```
+
+You should consider adding more flags, e.g. `--data-path=<PATH>`
+
+Consensus layer clients:
+
+- [Teku](https://docs.teku.consensys.io/reference/cli#network) Example command:
+
+```bash
+teku --network=lukso
+```
+
+You should consider adding more flags, e.g. `--data-base-path=<PATH>`
+
+:::caution
+
+It should be noted that a full PoS node consists of both execution and consensus layer processes. Both must be running in order to correctly add the third process, the validator.
+
+:::
+
+:::info Configurations of all LUKSO networks
 
 👉 [https://github.com/lukso-network/network-configs](https://github.com/lukso-network/network-configs)
 

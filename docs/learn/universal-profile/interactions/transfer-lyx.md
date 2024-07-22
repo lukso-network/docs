@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Transfer LYX'
-sidebar_position: 8
-description: Learn how to transfer LYX from your Universal Profile.
+sidebar_position: 1
+description: Learn how to write a simple dApp code to transfer LYX from your Universal Profile Browser Extension programmatically.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -36,18 +36,18 @@ No need to make contract calls to instruct the smart contract of the Universal P
 
 <Tabs groupId="web3-lib">
   
-  <TabItem value="web3js" label="web3.js">
-
-```shell
-npm install web3@v1
-```
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```shell
 npm install ethers
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
+
+```shell
+npm install web3@v1
 ```
 
   </TabItem>
@@ -57,10 +57,30 @@ npm install ethers
 ## Code Examples
 
 <Tabs groupId="web3-lib">
-  
-  <TabItem value="web3js" label="web3.js">
 
-<!-- prettier-ignore-start -->
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { ethers } from 'ethers';
+
+const provider = new ethers.BrowserProvider(window.lukso);
+
+await provider.send('eth_requestAccounts', []);
+
+const signer = await provider.getSigner();
+const account = await signer.getAddress();
+
+// Send transaction
+const tx = await signer.sendTransaction({
+  from: account, // The Universal Profile address
+  to: '0x...', // Receiving address, can be a UP or EOA
+  value: ethers.parseEther('0.5'), // 0.5 amount in ETH, in wei unit
+});
+```
+
+  </TabItem>
+  
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```js
 import Web3 from 'web3';
@@ -71,37 +91,11 @@ await web3.eth.requestAccounts();
 const accounts = await web3.eth.getAccounts();
 
 await web3.eth.sendTransaction({
-    from: accounts[0],                      // The Universal Profile address
-    to: '0x...',                            // receiving address, can be a UP or EOA
-    value: web3.utils.toWei('0.5', 'ether') // 0.5 amount in ETH, in wei unit
-})
-```
-<!-- prettier-ignore-end -->
-
-  </TabItem>
-
-  <TabItem value="ethersjs" label="ethers.js">
-
-<!-- prettier-ignore-start -->
-
-```js
-import { ethers } from 'ethers';
-
-const provider = new ethers.BrowserProvider(window.lukso);
-
-await provider.send("eth_requestAccounts", []);
-
-const signer = await provider.getSigner();
-const account = await signer.getAddress();
-
-// Send transaction
-const tx = await signer.sendTransaction({
-    from: account,                        // The Universal Profile address
-    to: '0x...',                          // Receiving address, can be a UP or EOA
-    value: ethers.parseEther('0.5') // 0.5 amount in ETH, in wei unit
+  from: accounts[0], // The Universal Profile address
+  to: '0x...', // receiving address, can be a UP or EOA
+  value: web3.utils.toWei('0.5', 'ether'), // 0.5 amount in ETH, in wei unit
 });
 ```
-<!-- prettier-ignore-end -->
 
   </TabItem>
 
