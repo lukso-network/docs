@@ -61,7 +61,6 @@ module.exports = {
       ],
     },
     'learn/standard-detection',
-    { type: 'html', value: '<hr/>', defaultStyle: false },
     'learn/concepts',
   ],
   contractsSidebar: [
