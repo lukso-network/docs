@@ -4,6 +4,8 @@ sidebar_position: 7
 description: Learn how to migrate your ERC20 token to the LSP7 Digital Asset standard on LUKSO.
 ---
 
+import Erc20LSP7Table from '@site/src/components/Erc20LSP7Table';
+
 # 🪙 Migrate ERC20 to LSP7
 
 [LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC20](https://eips.ethereum.org/EIPS/eip-20), as described in the [standard section](../../standards/tokens/LSP7-Digital-Asset.md). For migrating from ERC20 to LSP7, developers need to be aware of several key differences.
@@ -75,13 +77,10 @@ To check function definitions and explanations of behavior and each parameter, c
 
 To interact with LSP7DigitalAsset contract, different functions should be called. This is a table comparing function definitions:
 
+<Erc20LSP7Table/>
+
 | ERC20 Function                                           | LSP7 Equivalent                                                                     |
 | -------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `name()`                                                 | `getData(bytes32 dataKey)` with `dataKey = keccak256('LSP4TokenName')`              |
-| `symbol()`                                               | `getData(bytes32 dataKey)` with `dataKey = keccak256('LSP4TokenSymbol')`            |
-| `decimals()`                                             | `decimals()`                                                                        |
-| `totalSupply()`                                          | `totalSupply()`                                                                     |
-| `balanceOf(address account)`                             | `balanceOf(address account)`                                                        |
 | `approve(address spender, uint256 amount)`               | `authorizeOperator(address spender, uint256 amount, bytes memory data)`             |
 | `allowance(address owner, address spender)`              | `authorizedAmountFor(address spender, address owner)`                               |
 | _No equivalent_                                          | `getOperatorsOf(address owner)`                                                     |
