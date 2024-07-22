@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Node Setup'
 sidebar_position: 4
-description: 'LUKSO node setup and supported clients: Geth, Erigon, Nethermind, Prysm, Lighthouse, Teku.'
+description: 'LUKSO node setup and supported clients: Geth, Erigon, Nethermind, Besu, Prysm, Lighthouse, Teku.'
 ---
 
 # Node Setup
@@ -19,6 +19,8 @@ Currently, LUKSO officially supports Geth, Erigon, Lighthouse, and Prysm. All cl
 - **[Erigon](https://github.com/ledgerwatch/erigon)** is an Ethereum execution client that aims to offer a more efficient and faster alternative to Geth. It's written in Go and includes several optimizations to reduce the amount of data stored and improve processing speed. However, these optimizations can make Erigon more complex to maintain and update.
 
 - **[Nethermind](https://github.com/NethermindEth/nethermind)** is an Ethereum execution client built on .NET framework and developed by Nethermind. Its plugin system makes it especially easy to configure and use it. Combining this with a very stable runtime, this makes it a great client to use on the network.
+
+- **[Besu](https://github.com/hyperledger/besu)** is an Ethereum execution client written in Java and developed by Hyperledger. It supports both public and private networks, offering features like Proof of Authority and Proof of Work consensus, advanced privacy options, and robust monitoring tools.
 
 - **[Prysm](https://github.com/prysmaticlabs/prysm)** is an Ethereum consensus client written in Go and developed by Prysmatic Labs. Validators widely use it. Performance-wise, Prysm leverages optimized processes and data structures, offering a smooth experience for validators. The client had rigorous testing and auditing processes to ensure the client was secure against potential threats. It also comes with an excellent user-friendly terminal interface.
 

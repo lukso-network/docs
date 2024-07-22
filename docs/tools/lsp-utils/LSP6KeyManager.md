@@ -49,13 +49,13 @@ createValidityTimestamp(5, 10) => `0x0000000000000000000000000000000500000000000
 
 ▸ **decodeAllowedCalls**(`allowedCalls`): `Object`
 
-Decode AllowedCalls encoded as `{ "valueType": "bytes32[CompactBytesArray]" }`.
+Decode AllowedCalls encoded as `{ "valueType": "bytes[CompactBytesArray]" }`.
 
 #### Parameters
 
-| Name           | Type        | Description                                                                 |
-| :------------- | :---------- | :-------------------------------------------------------------------------- |
-| `allowedCalls` | `BytesLike` | A list of allowed calls as `{ "valueType": "bytes32[CompactBytesArray]" }`. |
+| Name           | Type        | Description                                                               |
+| :------------- | :---------- | :------------------------------------------------------------------------ |
+| `allowedCalls` | `BytesLike` | A list of allowed calls as `{ "valueType": "bytes[CompactBytesArray]" }`. |
 
 #### Returns
 
@@ -227,7 +227,7 @@ decodePermissions([
 
 ▸ **encodeAllowedCalls**(`allowedInteractions`, `allowedAddresses`, `allowedStandards`, `allowedFunctions`): `string`
 
-Enocde a list of data keys as `{ "valueType": "bytes32[CompactBytesArray]" }`. The result can be user for `AddressPermissions:AllowedCalls:<address>`
+Encode a list of data keys as `{ "valueType": "(bytes4,address,bytes4,bytes4)[CompactBytesArray]" }`. The result can be used for `AddressPermissions:AllowedCalls:<address>`
 
 #### Parameters
 
@@ -242,7 +242,7 @@ Enocde a list of data keys as `{ "valueType": "bytes32[CompactBytesArray]" }`. T
 
 `string`
 
-The compacted array of allowed calls as `{ "valueType": "bytes32[CompactBytesArray]" }`.
+The compacted array of allowed calls as `{ "valueType": "(bytes4,address,bytes4,bytes4)[CompactBytesArray]" }`.
 
 **`Since`**
 

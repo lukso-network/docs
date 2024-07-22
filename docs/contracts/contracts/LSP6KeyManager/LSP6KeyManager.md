@@ -657,7 +657,7 @@ Retrieve the permission required to set some AllowedCalls for a controller.
 | ---------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
 | `controlledContract`                     | `address` | The address of the ERC725Y contract from which to fetch the value of `dataKey`.             |
 | `dataKey`                                | `bytes32` | A data key ion the format `AddressPermissions:AllowedCalls:<controller-address>`.           |
-| `dataValue`                              |  `bytes`  | The updated value for the `dataKey`. MUST be a bytes32[CompactBytesArray] of Allowed Calls. |
+| `dataValue`                              |  `bytes`  | The updated value for the `dataKey`. MUST be a `bytes[CompactBytesArray]` of Allowed Calls. |
 | `hasBothAddControllerAndEditPermissions` |  `bool`   | -                                                                                           |
 
 #### Returns
@@ -1537,13 +1537,13 @@ error InvalidEncodedAllowedERC725YDataKeys(bytes value, string context);
 
 _Error when reading the Allowed ERC725Y Data Keys. Reason: `context`, Allowed ERC725Y Data Keys value read: `value`._
 
-Reverts when `value` is not encoded properly as a `bytes32[CompactBytesArray]`. The `context` string provides context on when this error occurred (\_e.g: when fetching the `AllowedERC725YDataKeys` to verify the permissions of a controller, or when validating the `AllowedERC725YDataKeys` when setting them for a controller).
+Reverts when `value` is not encoded properly as a `bytes[CompactBytesArray]`. The `context` string provides context on when this error occurred (\_e.g: when fetching the `AllowedERC725YDataKeys` to verify the permissions of a controller, or when validating the `AllowedERC725YDataKeys` when setting them for a controller).
 
 #### Parameters
 
 | Name      |   Type   | Description                                                |
 | --------- | :------: | ---------------------------------------------------------- |
-| `value`   | `bytes`  | The value that is not a valid `bytes32[CompactBytesArray]` |
+| `value`   | `bytes`  | The value that is not a valid `bytes[CompactBytesArray]` |
 | `context` | `string` | A brief description of where the error occurred.           |
 
 <br/>

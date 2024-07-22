@@ -59,7 +59,7 @@ If controller has `CALL` permission but has no `AllowedCalls`, controller will n
 
 :::
 
-Key Manager allows for restricting controller addresses to be able to call specific functions on specific addresses which should be of a specific standard. In order to achieve such functionallity one could encode a set of type calls, addresses, standards and functions to [`bytes32[CompactBytesArray]`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytesncompactbytesarray), and store them under the [Allowed Calls](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) data key.
+Key Manager allows for restricting controller addresses to be able to call specific functions on specific addresses which should be of a specific standard. In order to achieve such functionallity one could encode a set of type calls, addresses, standards and functions to [`bytes[CompactBytesArray]`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytesncompactbytesarray), and store them under the [Allowed Calls](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) data key.
 
 _E.g._
 

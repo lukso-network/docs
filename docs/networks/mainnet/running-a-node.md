@@ -48,6 +48,7 @@ The LUKSO network currently supports the following clients versions:
 | Geth       | v1.13.15 | https://github.com/ethereum/go-ethereum/releases/tag/v1.13.15   |
 | Erigon     | v2.59.3  | https://github.com/ledgerwatch/erigon/releases/tag/v2.59.3      |
 | Nethermind | v1.26.0  | https://github.com/NethermindEth/nethermind/releases/tag/1.26.0 |
+| Besu       | v24.7.0  | https://github.com/hyperledger/besu/releases/tag/24.7.0         |
 
 **Consensus Clients**
 
@@ -252,7 +253,7 @@ Execution layer clients:
 - [Besu](https://besu.hyperledger.org/public-networks/reference/cli/options#network) Example command:
 
 ```bash
-besu --network=lukso`
+besu --network=lukso
 ```
 
 You should consider adding more flags, e.g. `--data-path=<PATH>`
