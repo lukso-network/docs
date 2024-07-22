@@ -1,52 +1,27 @@
 ---
-sidebar_label: '📘 Concepts & Glossary'
-description: 'Most frequently used concepts related to the LUKSO Ecosystem: Universal Profiles, Controllers, Transaction Relay Service.'
+sidebar_label: '📘 Glossary'
+description: 'Most frequently used terminology related to the LUKSO Ecosystem: Universal Profiles, Controllers, Transaction Relay Service.'
 ---
 
-# Concepts & Glossary
+# Glossary
 
-## Universal Profile
+:::info
+At LUKSO docs, use [ChefGPT](https://www.cookbook.dev/) for quick term explanations.
 
-A [Universal Profile](../standards/universal-profile/introduction.md) (UP) is a smart contract-based account that acts as the center for all your blockchain interactions. UPs, such as regular wallets, are generic for various use cases and can interact directly with on-chain applications. On top of that, they feature permission and asset management, updated profile information, and let you interact as one persona through different [controllers](#controller).
+Highlight any word and click `Ask Cookbook` in the Navbar for its definition.
 
-The [Universal Profile Browser Extension](/install-up-browser-extension) is the recommended way of interacting on LUKSO and managing Universal Profiles. The extension acts like a regular Ethereum wallet and uses the same `window.ethereum` object on [all supported browsers](/install-up-browser-extension). Alternatively, we endorse calling the equivalent `window.lukso` object. Developers can use their preferred libraries like [web3.js](https://web3js.readthedocs.io/) and [ethers.js](https://docs.ethers.org/) to interact with profiles like they do with other wallets.
-
-When [connecting](../learn/universal-profile/connect-profile/connect-up.md) a profile, the extension automatically returns the address of the smart contract account. Similarly, the extension automatically verifies if the EOA controller has permission to [log-in](../learn/universal-profile/connect-profile/siwe.md) or [execute transfers](../learn/universal-profile/interactions/transfer-lyx.md).
-
-:::info Using regular wallets
-
-As LUKSO is an EVM-based blockchain, regular EOA wallets may be used for development. However, it is discouraged to use [EOAs](https://ethereum.org/en/developers/docs/accounts/#types-of-account) to onboard users, as they lack [all convenience features of LSPs](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps). If you need a more general understanding of why we build our accounts on the smart contract level, we advise you to read about the [LUKSO Ecosystem](https://medium.com/lukso/lukso-ecosystem-part-1-4c3f5d67b081).
-
+![ChefGPT Example](../../static/img/chefgpt.gif)
 :::
 
-## Profile Explorer & Management
+## Commonly Searched Terms
 
-To manage the Universal Profiles funds, set the recovery, check its monthly gas usage, or explore other blockchain accounts on the network, LUKSO provides [`universalprofile.cloud`](https://universalprofile.cloud). The platform acts as the entry point into the ecosystem and is split into two services:
-
-- [`my.universalprofile.cloud`](https://my.universalprofile.cloud/): Create profiles and manage recovery
-- [`wallet.universalprofile.cloud`](https://my.universalprofile.cloud/): Explore profiles and their assets
-
-![Universal Profile Explorer](../../static/img/learn/profile_explorer.png)
-
-:::success External Integration
-
-Developers can dock onto the explorer and reference profiles and assets. Using the `?network` parameter at the end of the URL, you can further define which LUKSO blockchain the asset data is fetched from.
-
-- Profile: `wallet.universalprofile.cloud/<profile_address>?network=mainnet`
-- Asset: `wallet.universalprofile.cloud/asset/<asset_address>?network=testnet`
-
-:::
-
-## Controller
-
-Typically, every Universal Profile has a [Key Manager](../standards/universal-profile/lsp6-key-manager.md) to control the account's permissions. The term _"controller"_ refers to a permissioned address that can either be an [Externally Owned Account (EOA) or Smart Contract](https://ethereum.org/en/developers/docs/accounts/#types-of-account). When using the [Universal Profile Browser Extension](/install-up-browser-extension), the extension's EOA is set as the initial controller of the profile.
-
-The [permissions](../standards/universal-profile/lsp6-key-manager.md#permissions) allow controllers to perform specific actions on the Universal Profile. The Key Manager then checks if the transaction from a calling address has the matching permission to be executed.
-
-## Transaction Relay Service
-
-The LUKSO blockchain has its native coin, LYX, used for gas fee payments to execute on-chain transactions. However, users on LUKSO do not need LYX to interact on the network. Instead of directly paying for the gas, users can send their signed transactions to a [Transaction Relay Service](../standards/relayer-api.md). The relay service will then execute the transaction on their behalf and cover the associated gas cost.
-
-Payment to the relayer can be handled in different ways. One option is an on-chain payment where the fees are deducted directly from an on-chain balance. Alternatively, users can set up an off-chain agreement with the relayer service via a subscription model that gives them a monthly allowance for relayed transactions. This flexibility allows users to choose the method that best suits their needs.
-
-On LUKSO, users currently get a free monthly quota of 20.000.000 GAS when creating a [Universal Profile](../standards/universal-profile/introduction.md) through the [Universal Profile Browser Extension](/install-up-browser-extension). For now, the onboarding is subsidized by LUKSO directly. In the future, multiple third parties will offer different relay services, evolving into a competitive relay ecosystem with various business models.
+| Topic                                                                                              | TL;DR                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Controllers                                                                                        | Controllers are like little programs that are given specific permissions to do things to and with your Universal Profile.                                                                                                                                                                                                                                                                                                         |
+| [Key Manager](../standards/universal-profile/lsp6-key-manager.md)                                  | The Key Manager is essentially a place where you can manage permissions that other _things_ have on your Universal Profile. _Things_ could be other people's profiles, dapps, extensions....anything.                                                                                                                                                                                                                             |
+| [ERC725X](../standards/generic-standards/lsp2-json-schema.md)                                      | ERC725X is a standard that defines how your Universal Profile works and how it can be used to manage your online identity and assets. It's like a set of rules that everyone agrees on, making it easier for different applications and platforms to understand and interact with your profile.                                                                                                                                   |
+| [ERC725Y](../standards/lsp-background/erc725#erc725x)                                              | ERC725Y is the basic tool that lets you store information, while LSP2 is the set of rules that makes sure everyone stores and retrieves this information in an organized and understandable way.                                                                                                                                                                                                                                  |
+| [LYXt](../../docs/faq/lukso/general-information.md#whats-the-difference-between-lyxt-lyxe-and-lyx) | LYXt is the token for developers to use on our testnet. It can always be acquired by anyone for free.                                                                                                                                                                                                                                                                                                                             |
+| [LYXe](../../docs/faq/lukso/general-information.md#whats-the-difference-between-lyxt-lyxe-and-lyx) | LYXe is the token that was deployed on Ethereum before LUKSO Mainnet was launched. It allowed people to invest in LUKSO pre-launch.                                                                                                                                                                                                                                                                                               |
+| [Metadata](../standards/universal-profile/lsp3-profile-metadata.md)                                | This typically refers to the additional data that is stored against a token or NFT. The difference on LUKSO is it can be extended. <br></br> For example, imagine you've bought a house and have the deed as an NFT on LUKSO. Well now, as rennovations are carried out, they can be continually added to the NFT for history.                                                                                                    |
+| Account Abstraction                                                                                | Account abstraction is abstracting away smart contract execution from storing funds. With a smart contract account, you can program it to do all sorts of things. You can set up automatic payments, create multi-signature wallets that require multiple people to approve transactions, or even add security features like daily spending limits. It's like having a customizable, programmable bank account on the blockchain. |
