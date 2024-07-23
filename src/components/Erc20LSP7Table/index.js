@@ -10,7 +10,7 @@ export default function Erc20LSP7Table() {
         </tr>
       </thead>
       <tbody>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>name()</code>
           </td>
@@ -19,7 +19,7 @@ export default function Erc20LSP7Table() {
             <code>dataKey = keccak256('LSP4TokenName')</code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>symbol()</code>
           </td>
@@ -52,7 +52,7 @@ export default function Erc20LSP7Table() {
             <code>balanceOf(address account)</code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>approve(address spender, uint256 amount)</code>
           </td>
@@ -66,7 +66,7 @@ export default function Erc20LSP7Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>allowance(address owner, address spender)</code>
           </td>
@@ -78,7 +78,7 @@ export default function Erc20LSP7Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -86,7 +86,7 @@ export default function Erc20LSP7Table() {
             <code>getOperatorsOf(address owner)</code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -98,7 +98,7 @@ export default function Erc20LSP7Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -112,7 +112,7 @@ export default function Erc20LSP7Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -126,7 +126,7 @@ export default function Erc20LSP7Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>transfer(address to, uint256 amount)</code>
           </td>
@@ -144,7 +144,7 @@ export default function Erc20LSP7Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>transferFrom(address from, address to, uint256 amount)</code>
           </td>
@@ -162,7 +162,7 @@ export default function Erc20LSP7Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>

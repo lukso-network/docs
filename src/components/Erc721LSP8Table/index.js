@@ -10,7 +10,7 @@ export default function Erc721LSP8Table() {
         </tr>
       </thead>
       <tbody>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>name()</code>
           </td>
@@ -19,7 +19,7 @@ export default function Erc721LSP8Table() {
             <code>dataKey = keccak256('LSP4TokenName')</code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>symbol()</code>
           </td>
@@ -36,7 +36,7 @@ export default function Erc721LSP8Table() {
             <code>balanceOf(address tokenOwner)</code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>ownerOf(uint256 tokenId)</code>
           </td>
@@ -44,7 +44,7 @@ export default function Erc721LSP8Table() {
             <code>tokenOwnerOf(bytes32 tokenId)</code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>approve(address to, uint256 tokenId)</code>
           </td>
@@ -58,7 +58,7 @@ export default function Erc721LSP8Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>getApproved(uint256 tokenId)</code>
           </td>
@@ -66,7 +66,7 @@ export default function Erc721LSP8Table() {
             <code>getOperatorsOf(bytes32 tokenId)</code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>setApprovalForAll(address operator, bool approved) </code>
           </td>
@@ -76,7 +76,7 @@ export default function Erc721LSP8Table() {
             </i>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>isApprovedForAll(address owner, address operator)</code>
           </td>
@@ -88,7 +88,7 @@ export default function Erc721LSP8Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>transferFrom(address from, address to, uint256 tokenId)</code>
           </td>
@@ -106,7 +106,7 @@ export default function Erc721LSP8Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <code>
               safeTransferFrom(address from, address to, uint256 tokenId)
@@ -126,7 +126,7 @@ export default function Erc721LSP8Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -142,7 +142,7 @@ export default function Erc721LSP8Table() {
             </code>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
