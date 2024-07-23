@@ -259,3 +259,7 @@ table.lsp-features td {
   z-index: 100000; /*a number that's more than the modal box*/
   margin-right: 1em;
 }
+
+#guides-links li {
+    list-style-type: "\1f517" !important
+}

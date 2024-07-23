@@ -7,7 +7,7 @@ import CallToActionButton from '@site/src/components/CallToActionButton';
 
 # Welcome to LUKSO
 
-The purpose of this section is to teach you the least amount possible to get you coding and try out everything LUKSO has to offer.
+The purpose of this section is to get you started coding quickly and try out everything LUKSO has to offer.
 
 ## What is LUKSO?
 
@@ -15,82 +15,132 @@ LUKSO is a Layer 1 EVM chain that uses the same consensus as Ethereum. It is fun
 
 Here are the _top 3_ reasons why LUKSO is different to any other blockchain:
 
-<table><thead>
-  <tr>
-    <th>**Universal Profiles**</th>
-    <th>**NFT 2.0**</th>
-    <th>**Cultural Currencies**</th>
-  </tr></thead>
-<tbody>
-  <tr>
-    <td>Smart contract based user or creator profiles are the essential foundation for the New Creative Economy.</td>
-    <td>Flexible NFTs that are extensible and directly composable with Universal Profiles.</td>
-    <td>Extensible Token that move us beyond DeFi. The future of blockchain is social.</td>
-  </tr>
-  <tr>
-    <td>
-      <ul>
-      <li>Visual</li>
-      <li>Upgradeable</li>
-      <li>Security</li>
-      <li>Gas-less</li>
-      <li>Smart</li>
-      <li>Extensible</li>
-      </ul>
-    </td>
-    <td>
-      <ul>
-        <li>Authentic</li>
-        <li>Safer</li>
-        <li>Unlimited Metadata</li>
-        <li>Updatable</li>
-        <li>Better IDs</li>
-        <li>Iteratable</li>
-        <li>Batch Transfers</li>
-      </ul>
-    </td>
-    <td>
-      <ul>
-        <li>Safer</li>
-        <li>Token Icons</li>
-        <li>Updatable</li>
-        <li>Batch Transfers</li>
-        <li>Extensible</li>
-        <li>Notifying</li>
-        <li>Unified</li>
-      </ul>
-    </td>
-  </tr>
-</tbody>
+<table>
+    <thead>
+        <tr>
+            <th>**Universal Profiles**</th>
+            <th>**Tokens**</th>
+            <th>**NFTs**</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Smart contract based user or creator profiles are the essential foundation for the New Creative Economy.</td>
+            <td>Extensible Token that move us beyond DeFi. The future of blockchain is social.</td>
+            <td>Flexible NFTs that are extensible and directly composable with Universal Profiles.</td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li>Visual</li>
+                    <li>Upgradeable</li>
+                    <li>Security</li>
+                    <li>Gas-less</li>
+                    <li>Smart</li>
+                    <li>Extensible</li>
+                </ul>
+            </td>
+            <td>
+            <ul>
+                <li>Safer</li>
+                <li>Token Icons</li>
+                <li>Updatable</li>
+                <li>Batch Transfers</li>
+                <li>Extensible</li>
+                <li>Notifying</li>
+                <li>Unified</li>
+            </ul>
+            </td>
+                        <td>
+            <ul>
+                <li>Authentic</li>
+                <li>Safer</li>
+                <li>Unlimited Metadata</li>
+                <li>Updatable</li>
+                <li>Better IDs</li>
+                <li>Iteratable</li>
+                <li>Batch Transfers</li>
+            </ul>
+            </td>
+        </tr>
+        <tr id="guides-links">
+            <td>
+            <ul>
+                <li><a href="../learn/universal-profile/getting-started"> Create a Universal Profile</a></li>
+                <li><a href="../standards/universal-profile/lsp0-erc725account"> Universal Profile Specification</a></li>
+            </ul>
+            </td>
+            <td>
+            <ul>
+                <li><a href="../learn/digital-assets/create-lsp7-token"> Create a Token</a></li>
+                <li><a href="../standards/tokens/LSP7-Digital-Asset"> LSP7 Specification</a></li>
+            </ul>
+            </td>
+            <td>
+            <ul>
+                <li><a href="../learn/digital-assets/create-nft-collection/create-nft-collection-lsp8"> Create a NFT Collection</a></li>
+                <li><a href="../standards/tokens/LSP8-Identifiable-Digital-Asset"> LSP8 Specification</a></li>
+            </ul>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
-:::info
-**To learn more about the main building blocks of LUKSO check out the [**L**UKSO **S**tandards **P**roposals (**LSPs**)](../standards/introduction.md).**
+:::success Learn more about the LSPs 🧱
+To learn more about the main building blocks of LUKSO check out the [**L**UKSO **S**tandards **P**roposals (**LSPs**)](../standards/introduction.md) page.
 :::
 
 ## Where should I start?
 
-### First:
+<div>
+
+<CallToActionButton style={{
+    display: 'inline-block !important'
+  }}
+icon="material-symbols:counter-1"
+color="white"
+target="\_blank"
+link="https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
+text="Install the Universal Profile Browser Extension 🧩"
+/>
+
+<div
+  style={{
+    display: 'inline-block',
+    justifyContent: 'center',
+    fontSize: '3em',
+  }}
+>
+  <p>⬇</p>
+</div>
 
 <CallToActionButton
-    color="white"
-    target="_blank"
-    link="https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
-    text="Install the Universal Profile Browser Extension 🧩"
-  />
-
-### and then:
-
-<CallToActionButton
+icon="material-symbols:counter-2"
 color="white"
 target="blank"
 link="https://my.universalprofile.cloud"
 text="Create your Universal Profile 🆙"
 />
 
-:::info
-**You are ready to explore the [LUKSO ecosystem](https://www.lukso.network/ecosystem).**
-:::
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: '3em',
+  }}
+>
+  <p>⬇</p>
+</div>
+
+</div>
+
+<CallToActionButton
+icon="material-symbols:counter-3"
+color="white"
+target="blank"
+link="https://www.lukso.network/ecosystem"
+text="Explore the Ecosystem 🌐"
+/>
 
 ## Ready to build?
 
