@@ -261,5 +261,5 @@ table.lsp-features td {
 }
 
 #guides-links li {
-    list-style-type: "\1f517" !important
+  list-style-type: '\1f517' !important;
 }
