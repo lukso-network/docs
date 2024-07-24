@@ -23,6 +23,7 @@
     "@docusaurus/plugin-client-redirects": "latest",
     "@docusaurus/plugin-google-gtag": "latest",
     "@docusaurus/preset-classic": "latest",
+    "@docusaurus/theme-mermaid": "latest",
     "@iconify/react": "^5.0.1",
     "@mdx-js/react": "3.0.0",
     "@svgr/webpack": "^8.1.0",

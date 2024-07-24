@@ -114,3 +114,42 @@ This function can be useful if you want to create a behaviour in your extension 
 
 - your extended contract received a specific amount of native tokens (_e.g: `_extendableMsgValue() == 1 ether`_).
 - your extended contract did not receive any native tokens at all (_e.g: `_extendableMsgValue() == 0`_).
+
+## Difference between Inheriting and Extending
+
+The code of a smart contract can be either inherited or extended by an extendable smart contract.
+
+The idea of inheriting a Solidity contract is that the code or the function inherited will be included natively in the contract, so whenever someone calls the logic, it will be executed directly.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant InheritedContract
+    User ->> InheritedContract: Call Function
+    InheritedContract-->>InheritedContract: Execute Logic
+    InheritedContract -->> User: Return
+```
+
+Extending means the logic is borrowed from somewhere else. Whenever someone calls the extended smart contract, this contract calls the extension, and lets the logic execute from the extension.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant ExtendableContract
+    participant Extension
+    User ->> ExtendableContract: Call Function
+    ExtendableContract ->> Extension: Forward Call
+    Extension -->> Extension: Execute Logic
+    Extension -->> ExtendableContract: Return
+    ExtendableContract -->> User: Return
+```
+
+### Differences
+
+1. **Flexibility:** Extensions are useful when a functionality is needed but the behavior is not certain. The extension can be changed later to a newer version that modifies the logic. With inheriting, the implementation logic is fixed permanently.
+
+2. **Event Emission:** If event emission on the core contract is important, inheriting is the better choice. When extending functionality, the logic is triggered from the extension, and all events are emitted there. This could be problematic for dApps that require events to be on the same smart contract, not on a potentially changeable extension.
+
+3. **Contract Size Limit:** Extensions are useful when a smart contract is expected to have many functionalities, but the smart contract cannot include all the logic due to a contract size limit. It works as a router; when called with a function, it checks its extension and calls it.
+
+4. **Context Changing:** When the logic is implemented by inheriting, `msg.sender` will be the caller and `msg.value` will be the value sent. In the case of extending, the `msg.sender` in the function in the extension will be the extended contract. The function can still have access to the original initiator caller by using it from the extra appended calldata. But in case of the function being executed is calling another function, when inherited the caller will be the original contract, but in the case of extension, the caller will be the extension. This could be problematic or require different structural adjustments.
