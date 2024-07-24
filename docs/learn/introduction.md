@@ -7,7 +7,7 @@ description: Overview of the benefits of using LUKSO Standard Proposals(LSPs)
 
 :::info
 
-This page overviews the benefits of using the LSP standards and outlines the differences between building on LUKSO and other EVM chains.
+This page overviews the benefits of using the LUKSO Standard Proposals(LSPs) and outlines the differences between building on LUKSO and other EVM chains.
 
 :::
 
