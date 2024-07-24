@@ -514,4 +514,3 @@ console.log('Transaction receipt:', receipt);
   </TabItem>
 
 </Tabs>
-````
