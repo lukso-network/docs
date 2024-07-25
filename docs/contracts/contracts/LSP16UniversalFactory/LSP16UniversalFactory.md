@@ -433,7 +433,6 @@ error InvalidValueSum();
 Reverts when `msg.value` sent to [`deployCreate2AndInitialize(..)`](#deploycreate2andinitialize) function is not equal to the sum of the `initializeCalldataMsgValue` and `constructorMsgValue`
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
