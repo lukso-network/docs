@@ -19,6 +19,10 @@ export default {
       'data-domain': 'docs.lukso.tech',
     },
   ],
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   plugins: [
     'docusaurus-plugin-sass',
     'plugin-image-zoom',

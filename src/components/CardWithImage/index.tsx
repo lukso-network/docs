@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 export default function CardWithImage({ CardData }) {
   return (
-    <div>
+    <div class="cardwithimage">
       {CardData.map((item, index) => (
         <Card sx={{ maxWidth: 345 }} key={index}>
           <CardMedia
@@ -22,7 +22,7 @@ export default function CardWithImage({ CardData }) {
               <ul>
                 {item.cardContent.map((link, index) => (
                   <li key={index}>
-                    [{link.linkText}]({link.linkPath})
+                    <a href={link.linkPath}>{link.linkText}</a>
                   </li>
                 ))}
               </ul>

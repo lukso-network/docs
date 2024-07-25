@@ -18,13 +18,12 @@
     "prettier:fix": "prettier \"src/**/*.js\" \"docs/**/*.md\" --write"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.18.11",
+    "@cookbookdev/docsbot": "^4.21.1",
     "@docusaurus/core": "latest",
     "@docusaurus/plugin-client-redirects": "latest",
     "@docusaurus/plugin-google-gtag": "latest",
     "@docusaurus/preset-classic": "latest",
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
+    "@docusaurus/theme-mermaid": "latest",
     "@iconify/react": "^5.0.1",
     "@mdx-js/react": "3.0.0",
     "@mui/icons-material": "^5.16.4",
