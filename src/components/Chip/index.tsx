@@ -6,7 +6,7 @@ export default function ColorChips({ label }) {
   return (
     <Stack direction="row" spacing={1} sx={{ margin: '4px' }}>
       <Chip
-        sx={{ backgroundColor: '#fcd7e4', fontWeight: 'bold' }}
+        sx={{ backgroundColor: '#feebf2', fontWeight: 'bold' }}
         label={label}
       />
     </Stack>
