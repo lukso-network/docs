@@ -2,9 +2,17 @@ import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function CustomAccordion({ accordionData }) {
+type AccordionData = {
+  summary: string; // summary or heading of the accordion line
+  details: string; // any html data you want to see appearing in the dropdown.
+};
+
+type Props = AccordionData[];
+
+export default function CustomAccordion(accordionData: Props) {
   return (
     <div>
       {accordionData.map((item, index) => (
@@ -22,12 +30,3 @@ export default function CustomAccordion({ accordionData }) {
     </div>
   );
 }
-
-// example of data that should be added to the top of the markdown page
-//
-// const accordionData = [
-//   {
-//     summary: <summary or heading of the accordion line>,
-//     details: <whatever data you want to appear in the drop down></whatever>
-//   },
-// ];
