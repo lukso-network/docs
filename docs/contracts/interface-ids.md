@@ -4,6 +4,7 @@ title: Interfaces IDs
 
 import InterfaceIdsTable from "./\_interface_ids_table.mdx";
 
+
 # Interfaces IDs
 
 :::caution
@@ -37,5 +38,7 @@ const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
 
     This is due to the current issue that it is not possible to import ES Modules in Hardhat Typescript projects.
 </details>
+
+
 
 <InterfaceIdsTable />

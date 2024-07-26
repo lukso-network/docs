@@ -2,11 +2,11 @@
 sidebar_label: '🏎️ Quick Start'
 description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKSO intended for?
 ---
-{/* prettier-ignore */}
 
 import CallToActionButton from '@site/src/components/CallToActionButton';
 import CardWithImage from '@site/src/components/CardWithImage';
 import Chip from '@site/src/components/Chip';
+
 
 import DappDevIcon from '../../static/img/learn/DappDevIcon.png';
 import ValidatorIcon from '../../static/img/learn/ValidatorIcon.png';
@@ -68,6 +68,7 @@ export const CardData = [
   },
 ];
 
+
 # Quick Start
 
 ## What is LUKSO?
@@ -99,7 +100,7 @@ LUKSO is a Layer 1 EVM chain that uses the same consensus as Ethereum. It is fun
     </tr>
     <tr>
       <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-        <div class="chip-container">
+        <div className="chip-container">
           <Chip label="Visual" />
           <Chip label="Upgradeable" />
           <Chip label="Security" />
@@ -109,7 +110,7 @@ LUKSO is a Layer 1 EVM chain that uses the same consensus as Ethereum. It is fun
         </div>
       </td>
       <td>
-        <div class="chip-container">
+        <div className="chip-container">
           <Chip label="Safer" />
           <Chip label="Token Icons" />
           <Chip label="Unlimited Metadata" />
@@ -120,7 +121,7 @@ LUKSO is a Layer 1 EVM chain that uses the same consensus as Ethereum. It is fun
         </div>
       </td>
       <td>
-        <div class="chip-container">
+        <div className="chip-container">
           <Chip label="Authentic" />
           <Chip label="Safer" />
           <Chip label="Unlimited Metadata" />
@@ -134,59 +135,58 @@ LUKSO is a Layer 1 EVM chain that uses the same consensus as Ethereum. It is fun
   </tbody>
 </table>
 
-:::success Learn more about the LSPs 🧱
+:::success
+Learn more about the LSPs 🧱
 To learn more about the main building blocks of LUKSO check out the [LUKSO Standard Proposals (**LSPs**)](../standards/introduction.md) page.
 :::
 
 ## How do I start?
 
 <div>
+  <CallToActionButton
+    style={{
+      display: 'inline-block !important',
+    }}
+    icon="material-symbols:counter-1"
+    color="white"
+    target="_blank"
+    link="https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
+    text="Install the Universal Profile Browser Extension 🧩"
+  />
 
-<CallToActionButton
-  style={{
-    display: 'inline-block !important',
-  }}
-  icon="material-symbols:counter-1"
-  color="white"
-  target="\_blank"
-  link="https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
-  text="Install the Universal Profile Browser Extension 🧩"
-/>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      fontSize: '3em',
+    }}
+  >
+    <p>⬇</p>
+  </div>
 
-<div
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-    fontSize: '3em',
-  }}
->
-  <p>⬇</p>
-</div>
+  <CallToActionButton
+    icon="material-symbols:counter-2"
+    color="white"
+    target="_blank"
+    link="https://my.universalprofile.cloud"
+    text="Create your Universal Profile 🆙"
+  />
 
-<CallToActionButton
-  icon="material-symbols:counter-2"
-  color="white"
-  target="blank"
-  link="https://my.universalprofile.cloud"
-  text="Create your Universal Profile 🆙"
-/>
-
-<div
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-    fontSize: '3em',
-  }}
->
-  <p>⬇</p>
-</div>
-
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      fontSize: '3em',
+    }}
+  >
+    <p>⬇</p>
+  </div>
 </div>
 
 <CallToActionButton
   icon="material-symbols:counter-3"
   color="white"
-  target="blank"
+  target="_blank"
   link="https://www.lukso.network/ecosystem"
   text="Explore the Ecosystem 🌐"
 />
