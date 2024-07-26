@@ -4,11 +4,10 @@ import Stack from '@mui/material/Stack';
 
 export default function ColorChips({ label }) {
   return (
-    <Stack direction="row" spacing={1} sx={{ margin: '4px' }}>
-      <Chip
-        sx={{ backgroundColor: '#feebf2', fontWeight: 'bold' }}
-        label={label}
-      />
-    </Stack>
+    <Chip
+      sx={{ backgroundColor: '#feebf2' }}
+      label={label}
+      variant="outlined"
+    />
   );
 }
