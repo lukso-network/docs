@@ -43,12 +43,12 @@ The LUKSO network currently supports the following clients versions:
 
 **Execution Clients**
 
-| Client     | Version  | Release                                                         |
-| ---------- | -------- | --------------------------------------------------------------- |
-| Geth       | v1.14.7  | https://github.com/ethereum/go-ethereum/releases/tag/v1.14.7    |
-| Erigon     | v2.60.4  | https://github.com/ledgerwatch/erigon/releases/tag/v2.60.4      |
-| Nethermind | v1.27.0  | https://github.com/NethermindEth/nethermind/releases/tag/1.27.0 |
-| Besu       | v24.7.0  | https://github.com/hyperledger/besu/releases/tag/24.7.0         |
+| Client     | Version | Release                                                         |
+| ---------- | ------- | --------------------------------------------------------------- |
+| Geth       | v1.14.7 | https://github.com/ethereum/go-ethereum/releases/tag/v1.14.7    |
+| Erigon     | v2.60.4 | https://github.com/ledgerwatch/erigon/releases/tag/v2.60.4      |
+| Nethermind | v1.27.0 | https://github.com/NethermindEth/nethermind/releases/tag/1.27.0 |
+| Besu       | v24.7.0 | https://github.com/hyperledger/besu/releases/tag/24.7.0         |
 
 **Consensus Clients**
 
