@@ -1693,9 +1693,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cookbookdev/docsbot@npm:^4.21.1":
-  version: 4.21.1
-  resolution: "@cookbookdev/docsbot@npm:4.21.1"
+"@cookbookdev/docsbot@npm:^4.21.5":
+  version: 4.21.5
+  resolution: "@cookbookdev/docsbot@npm:4.21.5"
   dependencies:
     "@headlessui/react": ^1.7.18
     "@headlessui/tailwindcss": ^0.2.0
@@ -1749,7 +1749,7 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: 1dc66de74e891de195d5f3d6dfb142f87bede701e2a8a0501ace10879295b38bcef82efcd8b6eabf908ab16268fbddbf1138f0f762bc86e7d4b0817dd864a62f
+  checksum: ab5dc6b35770bb2fb2a6949540700f7edd86f7f2c62d226cc5be577d7555f20de7b0a80c1a86a7da8a49f6ab1f75fd0121cfc13f032bd62c6897fa029d8530b3
   languageName: node
   linkType: hard
 
@@ -2465,14 +2465,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/react@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@iconify/react@npm:5.0.1"
+"@iconify/react@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@iconify/react@npm:5.0.2"
   dependencies:
     "@iconify/types": ^2.0.0
   peerDependencies:
     react: ">=16"
-  checksum: 98e3e21f8424ee9179b2e626889cde717ea14897469e38aed79b070dfd986700ff43b8d0239920759bd27490443cf987ffb8a39cce3db605b10311edbcaa0846
+  checksum: daf8c8146068a35b91c43b719ea3e93355d0b5c28756373db3bede5f171ffa800225eca77a84509bea5f7a20b283bbdda4b418cecef76975b73b8a533f7e8910
   languageName: node
   linkType: hard
 
@@ -9674,7 +9674,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lukso-docs@workspace:."
   dependencies:
-    "@cookbookdev/docsbot": ^4.21.1
+    "@cookbookdev/docsbot": ^4.21.5
     "@docusaurus/core": latest
     "@docusaurus/module-type-aliases": latest
     "@docusaurus/plugin-client-redirects": latest
@@ -9682,7 +9682,7 @@ __metadata:
     "@docusaurus/preset-classic": latest
     "@docusaurus/theme-mermaid": latest
     "@docusaurus/types": latest
-    "@iconify/react": ^5.0.1
+    "@iconify/react": ^5.0.2
     "@mdx-js/react": 3.0.0
     "@svgr/webpack": ^8.1.0
     clsx: ^2.1.1
