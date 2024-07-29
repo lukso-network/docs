@@ -116,13 +116,29 @@ const provider = new IPFSHttpClientUploader(import.meta.env.INFURA_GATEWAY, {
 ### Cascade
 
 ```js
+import { createReadStream } from 'fs';
+import { CascadeUploader } from '@lukso/data-provider-cascade';
+
 const provider = new CascadeUploader(import.meta.env.CASCADE_API_KEY);
+
+const file = createReadStream('./path-to-your-file');
+
+const { result_id, ipfs_url } = await provider.uploadToCascade(file);
+console.log(result_id, ipfs_url);
 ```
 
 ### Sense
 
 ```js
+import { createReadStream } from 'fs';
+import { SenseUploader } from '@lukso/data-provider-sense';
+
 const provider = new SenseUploader(import.meta.env.SENSE_API_KEY);
+
+const file = createReadStream('./path-to-your-file');
+
+const { result_id, ipfs_url } = await provider.uploadToSense(file);
+console.log(result_id, ipfs_url);
 ```
 
 :::info Proxy Configuration
