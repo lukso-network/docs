@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Cascade And Sense Support For NFTS at LUKSO network'
-sidebar_position: 1
+sidebar_label: 'Cascade And Sense Support For NFTs'
+sidebar_position: 6
 description: 'Introduction to implementation cascade and sense protocol of nfts at LUKSO network'
 ---
 
@@ -8,7 +8,7 @@ description: 'Introduction to implementation cascade and sense protocol of nfts 
 
 :::success Useful Tip
 
-The [guide section](../../learn/smart-contract-developers/create-lsp7-token.md) will walk you through uploading images and metadata to Cascade and Sense protocol on [LUKSO Testnet](../../networks/testnet/parameters.md).
+The [guide section](../create-lsp7-token.md) will walk you through uploading images and metadata to Cascade and Sense protocol on [LUKSO Testnet](../../../networks/testnet/parameters.md).
 
 :::
 
