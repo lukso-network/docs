@@ -14,7 +14,7 @@ The [guide section](../../learn/smart-contract-developers/create-lsp7-token.md) 
 
 ## Introduction
 
-[Cascade](https://cascade.pastel.network) is a protocol that allows users to store data permanently in a highly redundant, distributed fashion with a single upfront fee. 
+[Cascade](https://cascade.pastel.network) is a protocol that allows users to store data permanently in a highly redundant, distributed fashion with a single upfront fee.
 
 [Sense](https://sense.pastel.network) is a lightweight protocol on the Pastel Network, built to assess the relative rareness of a given NFT against near-duplicate meta-data. Sense can recognize even the most subtle similarities between two digital collectibles, even if one has been transformed. The protocol goes beyond the standard “digital fingerprint” approach to establishing the rareness of an NFT, and actually looks at the rareness of the pixel patterns in data. While digital fingerprints do allow users to verify that an NFT was created by a particular creator, this is a fairly weak form of rareness. Sense solves this problem by assigning a ‘Relative Rareness Score’ to quantify how rare an NFT is relative to all NFTs in the underlying dataset.
 
@@ -23,6 +23,7 @@ The [guide section](../../learn/smart-contract-developers/create-lsp7-token.md) 
 To upload files to Cascade and Sense protocol, you need gateway api key.
 
 ### Upload files to Cascade Protocol
+
 You can use CascadeUploader of `@lukso/data-provider-cascade` library to upload files to Cascade Protocol and retrieve result id and ipfs link.
 
 ```
@@ -45,8 +46,8 @@ if (result) {
 }
 ```
 
-
 ### Upload files to Sense Protocol
+
 You can use SenseUploader of `@lukso/data-provider-sense` library to upload files to Sense Protocol and retrieve result id and ipfs link.
 
 ```

@@ -15,7 +15,7 @@ If you want to set up your own workflow for uploading and retrieving files using
 
 To use IPFS as a file service through _Pinata_, _Infura_, and Sense you will have to:
 
-1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/),  [Infura](https://www.infura.io/), [Sense](https://sense.pastel.network) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
+1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/), [Infura](https://www.infura.io/), [Sense](https://sense.pastel.network) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
 2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura, Pinata, Sense and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
 3. **Upload your File Content**: Utilize the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret. And also by using Sense API key, you can upload to Sense protocol directly.
 
@@ -144,7 +144,7 @@ console.log(result_id, ipfs_url);
 
 **Using Sense**
 
-To upload files via IPFS using Sense Protocol, please setup api key and add thata as environment variables. 
+To upload files via IPFS using Sense Protocol, please setup api key and add thata as environment variables.
 
 ```js
 import { SenseUploader } from '@lukso/data-provider-sense';
@@ -197,6 +197,7 @@ export default function UploadLocal({ apiKey }: Props) {
 ```
 
 Can use above component like following.
+
 ```js
 <Upload client:only="react" apiKey="import.meta.env.SENSE_API_KEY" />
 ```
@@ -221,7 +222,6 @@ export async function POST({ request }: APIContext) {
   });
 }
 ```
-
 
 :::info Proxy Configuration
 
