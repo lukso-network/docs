@@ -1867,7 +1867,6 @@ reverts when there is no extension for the function selector being called with
 | `functionSelector` | `bytes4` | -           |
 
 <br/>
-
 <!-- GLOBAL LINKS -->
 
 <!-- prettier-ignore-start -->
