@@ -13,11 +13,17 @@ If you want to set up your own workflow for uploading and retrieving files using
 - [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers)
 - [`service-ipfs-proxy`](https://github.com/lukso-network/service-ipfs-proxy)
 
-To use IPFS as a file service through _Pinata_, _Infura_, and Sense you will have to:
+To use IPFS as a file service through _Pinata_, _Infura_, _Cascade_ and _Sense_ you will have to:
 
-1. **Setup your Gateway Account**: Register at [Pinata](https://www.pinata.cloud/), [Infura](https://www.infura.io/), [Sense](https://sense.pastel.network) and ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
-2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura, Pinata, Sense and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
-3. **Upload your File Content**: Utilize the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret. And also by using Sense API key, you can upload to Sense protocol directly.
+1. **Setup your Gateway Account**: Register with [Pinata](https://www.pinata.cloud/), [Infura](https://www.infura.io/), or one the two other storage solutions integrated with LUKSO that provide additional benefits:
+
+- [Sense](https://sense.pastel.network)
+- [Cascade](https://cascade.pastel.network)
+
+Ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
+
+1. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura, Pinata, Sense and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
+2. **Upload your File Content**: Use the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret. And also by using Sense or Cascade API key, you can upload to Sense protocol directly.
 
 This approach offers flexibility in how you upload and manage your asset data. While direct uploads to Infura are possible, the recommended method involves using the proxy to ensure reliability and ease of use.
 
@@ -45,7 +51,7 @@ After setting up the accounts and configuring the proxy, you can install the URL
 npm install @lukso/data-provider-urlresolver
 ```
 
-```js
+```ts
 import { UrlResolver } from '@lukso/data-provider-urlresolver';
 
 // Example to resolve standard IPFS URL
@@ -67,7 +73,7 @@ You can use our [tools-data-providers] library to upload files to IPFS. [The sup
 
 Here's how you can upload a file with using a local IPFS node:
 
-```js
+```ts
 import { createReadStream } from 'fs';
 import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 
@@ -84,7 +90,7 @@ Alternatively, here's how we can create providers for other [supported services]
 
 ### Pinata
 
-```js
+```ts
 const provider = new PinataUploader({
   pinataApiKey: import.meta.env.TEST_PINATAAPIKEY,
   pinataSecretApiKey: import.meta.env.TEST_PINATASECRETAPIKEY,
@@ -101,7 +107,7 @@ const provider = new PinataUploader({
 
 ### Infura
 
-```js
+```ts
 // import.meta.env.VAR is the new way of importing environment within vite and astro and
 // equivalent to the old process.env.VAR
 //
@@ -116,7 +122,7 @@ const provider = new IPFSHttpClientUploader(import.meta.env.INFURA_GATEWAY, {
 
 ### Cascade
 
-```js
+```ts
 import { createReadStream } from 'fs';
 import { CascadeUploader } from '@lukso/data-provider-cascade';
 
@@ -128,9 +134,18 @@ const { result_id, ipfs_url } = await provider.uploadToCascade(file);
 console.log(result_id, ipfs_url);
 ```
 
+**Using Cascade**
+
+````js
+import { CascadeUploader } from '@lukso/data-provider-cascade';
+
+
+const provider = new CascadeUploader(import.meta.env.CASCADE_API_KEY);
+```
+
 ### Sense
 
-```js
+```ts
 import { createReadStream } from 'fs';
 import { SenseUploader } from '@lukso/data-provider-sense';
 
@@ -140,20 +155,20 @@ const file = createReadStream('./path-to-your-file');
 
 const { result_id, ipfs_url } = await provider.uploadToSense(file);
 console.log(result_id, ipfs_url);
-```
+````
 
 **Using Sense**
 
 To upload files via IPFS using Sense Protocol, please setup api key and add thata as environment variables.
 
-```js
+```ts
 import { SenseUploader } from '@lukso/data-provider-sense';
 const provider = new SenseUploader(import.meta.env.SENSE_API_KEY);
 ```
 
 React Example
 
-```js
+```ts
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { SenseUploader } from "@lukso/data-provider-sense";
 import { urlResolver } from "./shared";
@@ -204,21 +219,19 @@ Can use above component like following.
 
 API endpoint example
 
-```js
-import type { APIContext } from "astro";
-import { SenseUploader } from "@lukso/data-provider-sense";
+```ts
+import type { APIContext } from 'astro';
+import { SenseUploader } from '@lukso/data-provider-sense';
 
 export async function POST({ request }: APIContext) {
   const formData = await request.formData();
-  const file = formData.get("file");
+  const file = formData.get('file');
 
-  const provider = new SenseUploader(
-    import.meta.env.SENSE_API_KEY
-  );
+  const provider = new SenseUploader(import.meta.env.SENSE_API_KEY);
 
   const { hash, url } = await provider.upload(file);
   return new Response(JSON.stringify({ Hash: url }), {
-    headers: { contentType: "application/json" },
+    headers: { contentType: 'application/json' },
   });
 }
 ```
