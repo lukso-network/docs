@@ -76,6 +76,10 @@ First, we need to check if the contract is a digital asset, as either an LSP7 or
 import { ethers } from 'ethers';
 import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts';
 
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.testnet.lukso.network',
+);
+
 const myAsset = new ethers.Contract('<myAssetAddress>', [
   {
     inputs: [
@@ -96,6 +100,7 @@ const myAsset = new ethers.Contract('<myAssetAddress>', [
     stateMutability: 'view',
     type: 'function',
   },
+  provider,
 ]);
 
 const isLSP7 = await myAsset.supportsInterface(INTERFACE_IDS.LSP7DigitalAsset);
@@ -111,8 +116,10 @@ console.log(isLSP7, isLSP8); // each, true or false
     <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
 
 ```ts
-import web3 from 'web3';
+import Web3 from 'web3';
 import { INTERFACE_IDS } from '@lukso/lsp-smart-contracts';
+
+const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 const myAsset = new web3.eth.Contract(
   [

@@ -61,30 +61,85 @@ const customResolver = new UrlResolver([
 
 ## Uploading IPFS Files
 
-To upload files via IPFS using Infura, set up your gateway with necessary authorization headers and [set up your Infura key and credentials](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#pinning-files) as environment variables. You will then be able to upload files directly from your application:
+You can use our [tools-data-providers] library to upload files to IPFS. [The supported services](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages) by this library includes Pinata, Infura, Cascade, and Sense.
 
-```bash
-npm install @lukso/data-provider-urlresolver
-```
+### Local IPFS Node
+
+Here's how you can upload a file with using a local IPFS node:
 
 ```js
 import { createReadStream } from 'fs';
 import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 
+const provider = new IPFSHttpClientUploader('http://127.0.0.1:5001/api/v0/add');
+
+const file = createReadStream('./path-to-your-file');
+
+const { url, hash } = await provider.upload(file);
+
+console.log(url, hash);
+```
+
+Alternatively, here's how we can create providers for other [supported services](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages).
+
+### Pinata
+
+```js
+const provider = new PinataUploader({
+  pinataApiKey: import.meta.env.TEST_PINATAAPIKEY,
+  pinataSecretApiKey: import.meta.env.TEST_PINATASECRETAPIKEY,
+});
+```
+
+or
+
+```js
+const provider = new PinataUploader({
+  pinataJWTKey: import.meta.env.TEST_PINATAJWTKEY,
+});
+```
+
+### Infura
+
+```js
+// import.meta.env.VAR is the new way of importing environment within vite and astro and
+// equivalent to the old process.env.VAR
+//
 const provider = new IPFSHttpClientUploader(import.meta.env.INFURA_GATEWAY, {
   headers: {
     authorization: `Basic ${Buffer.from(
-      `${import.meta.env.INFURA_API_KEY_NAME}:${
-        import.meta.env.INFURA_API_KEY
-      }`,
+      `${import.meta.env.INFURA_API_KEY_NAME}:${import.meta.env.INFURA_API_KEY}`,
     ).toString('base64')}`,
   },
 });
+```
+
+### Cascade
+
+```js
+import { createReadStream } from 'fs';
+import { CascadeUploader } from '@lukso/data-provider-cascade';
+
+const provider = new CascadeUploader(import.meta.env.CASCADE_API_KEY);
 
 const file = createReadStream('./path-to-your-file');
-const url = await provider.upload(file);
 
-console.log('File URL:', url);
+const { result_id, ipfs_url } = await provider.uploadToCascade(file);
+console.log(result_id, ipfs_url);
+```
+
+### Sense
+
+```js
+import { createReadStream } from 'fs';
+import { SenseUploader } from '@lukso/data-provider-sense';
+
+const provider = new SenseUploader(import.meta.env.SENSE_API_KEY);
+
+const file = createReadStream('./path-to-your-file');
+
+const { result_id, ipfs_url } = await provider.uploadToSense(file);
+console.log(result_id, ipfs_url);
 ```
 
 **Using Sense**

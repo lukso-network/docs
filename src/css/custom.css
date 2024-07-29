@@ -245,3 +245,17 @@ table.lsp-features td {
   z-index: 100000; /*a number that's more than the modal box*/
   margin-right: 1em;
 }
+.tab_erc725[aria-selected='true'] {
+  border-bottom-color: #fa1c52;
+}
+
+.tab_erc725 {
+  color: #fa1c52;
+}
+
+.tab_erc725:before {
+  content: url('/static/img/learn/LUKSO_icon.png');
+  position: relative; /*or absolute*/
+  z-index: 100000; /*a number that's more than the modal box*/
+  margin-right: 1em;
+}
