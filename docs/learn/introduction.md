@@ -52,16 +52,7 @@ The table below highlights the benefits of LSP features:
 
 ### UP Compared to Other Wallets
 
-<div style={{textAlign: 'center', color: 'grey'}}>
-  <img
-    src={require('../../static/img/learn/profile-metadata-same-across-dapps.png').default}
-    alt="`Examples of interacting with contracts, like minting tokens or refining burntpix."
-    width="1200"
-  />
-<br/>
-<i>3 x different dApps (UniversalProfile.cloud, Universal.Page and UniversalSwaps.io) using the same Universal Profile data.</i>
-<br /><br />
-</div>
+Below you can find the comparison between Universal Profiles and other smart contract accounts:
 
 |                                | Gnosis SAFE | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                                                                                           |
 | ------------------------------ | ----------- | --------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -96,8 +87,6 @@ Interested to migrate? Visit our guides:
   :::
 
 ## Building on LUKSO
-
-### Kickstart Your Journey
 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kJ5_6LN6mZc?si=7NWn-odkk8KmSDLz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
