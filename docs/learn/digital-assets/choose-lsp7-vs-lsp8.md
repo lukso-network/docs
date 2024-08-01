@@ -10,7 +10,58 @@ This page provides guidance on which standard and combination to choose for your
 
 ## Available Options
 
+There are 4 x main popular combination of LSP7 / LSP8 + the `LSP4TokenType`.
+
+<table id="token-nft-combinations">
+    <tr>  
+        <th rowspan="2">Description</th>
+        <th colspan="2">Standard</th>
+        <th colspan="3">LSP4 Token Type</th>
+    </tr>
+    <tr>
+        <th>LSP7</th>
+        <th>LSP8</th>
+        <th>(0) Token</th>
+        <th>(1) NFT</th>
+        <th>(2) Collection</th>
+    </tr>
+    <tr>
+        <td>Fungible Token</td>
+        <td>✓</td>
+        <td></td>
+        <td>✓</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>_"NFT-like"_ digital item with multiple ownable quantities</td>
+        <td>✓</td>
+        <td></td>
+        <td></td>
+        <td>✓</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>A collection of unique items</td>
+        <td></td>
+        <td>✓</td>
+        <td>✓</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>An _"umbrella"_ collection containing multiple sub-collections</td>
+        <td></td>
+        <td>✓</td>
+        <td></td>
+        <td></td>
+        <td>✓</td>
+    </tr>
+</table>
+
 ## Fungible Token
+
+![LSP7 Token Type Token (0)](/img/learn/lsp7-token-type-token.png)
 
 ### Characteristics
 
@@ -27,7 +78,11 @@ This page provides guidance on which standard and combination to choose for your
 - a reward token.
 - a utility token.
 
+---
+
 ## Multiple Ownable Digital Items
+
+![LSP7 Token Type NFT (1)](/img/learn/lsp7-token-type-nft.png)
 
 ### Characteristics
 
@@ -41,7 +96,11 @@ This page provides guidance on which standard and combination to choose for your
 - a contract with 500 x digital t-shirts.
 - a contract with 1000 x digital tickets.
 
+---
+
 ## Standard NFT Collection
+
+![LSP8 Token Type NFT (1)](/img/learn/lsp8-token-type-nft.png)
 
 ### Characteristics
 
@@ -52,15 +111,18 @@ This page provides guidance on which standard and combination to choose for your
   - `setDataForTokenId(...)` for each NFT.
   - by setting the `LSP8MetadataBaseURI` and appending the `tokenId` to the base URI.
 
-\_\_
-
 ### Example Use Cases
 
 - a collection of unique watches with their serial number.
 - a collection of unique digital art pieces.
 
+---
+
 ## Collection of Sub-Collections
+
+![LSP8 Token Type Collection (2)](/img/learn/lsp8-token-type-collection.png)
 
 ### Characteristics
 
-### Example Use Cases
+- Each tokenId is a of `LSP8TokenIdFormat` of `Address`.
+- Each sub-collection is a smart contract that can be either an LSP7 or LSP8
