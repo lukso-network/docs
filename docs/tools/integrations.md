@@ -139,9 +139,16 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
         </ul>  
       </td>
     </tr>
-    <tr>
-      <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://stakingverse.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/stakingverse_logo.jpeg"/></a></td>
-      <td><a href="https://stakingverse.io/services" target="_blank">Stakingverse</a> brings you cutting-edge staking solutions for the best blockchains, such as LUKSO and Ethereum.</td>
+   <tr>
+      <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://stakingverse.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/stakingverse_logo.png"/></a></td>
+      <td>
+        <a href="https://stakingverse.io/" target="_blank">Stakingverse</a> Offers the following staking services for the LUKSO blockchain:
+        <ul>
+          <li><a href="https://app.stakingverse.io/" target="_blank" rel="noopener noreferrer">Non-custodial staking pool</a></li>
+          <li><a href="https://stakingverse.io/services" target="_blank" rel="noopener noreferrer">Set up service for home validators</a></li>
+          <li><a href="https://stakingverse.io/services" target="_blank" rel="noopener noreferrer">Consultation service for node operators</a></li>
+        </ul>  
+      </td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://universal.page/vault" target="_blank" rel="noopener noreferrer"><img src="/img/tools/universalpage_logo.png"/></a></td>
