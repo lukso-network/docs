@@ -241,7 +241,7 @@ function generateMappingWithGroupingKey(
 ) internal pure returns (bytes32);
 ```
 
-Generate a data key of key type MappingWithGrouping that map a `keyPrefix` to another `mapPrefix` to a specific `subMapKey`. As:
+Generate a data key of key type MappingWithGrouping that map a `keyPrefix` to an other `mapPrefix` to a specific `subMapKey`. As:
 
 ```
 keyPrefix:mapPrefix:0000:subMapKey

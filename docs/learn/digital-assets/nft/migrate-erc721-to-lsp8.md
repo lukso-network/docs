@@ -4,9 +4,17 @@ sidebar_position: 6
 description: Learn how to migrate your ERC721 token to the LSP8 Identifiable Digital Asset standard on LUKSO.
 ---
 
+import Erc721LSP8Table from '@site/src/components/Erc721LSP8Table';
+
 # 🖼️ Migrate ERC721 to LSP8
 
 [LSP8IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC721](https://eips.ethereum.org/EIPS/eip-721), as described in the [standard section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md). For migrating from ERC721 to LSP8, developers need to be aware of several key differences.
+
+:::info
+
+If you need more details about the interface differences between ERC721 and LSP8, please visit our [contract overview](../../contracts/overview/DigitalAssets/#comparisons-with-erc20--erc721) page.
+
+:::
 
 ## Smart Contract Building
 
@@ -76,20 +84,7 @@ To check function definitions and explanations of behavior and each parameter, c
 
 To interact with LSP8IdentifiableDigitalAsset contract, different functions should be called. This is a table comparing function definitions:
 
-| ERC721 Function                                               | LSP8 Equivalent                                                                      |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `name()`                                                      | `getData(bytes32 dataKey)` with `dataKey = keccak256('LSP4TokenName')`               |
-| `symbol()`                                                    | `getData(bytes32 dataKey)` with `dataKey = keccak256('LSP4TokenSymbol')`             |
-| `balanceOf(address owner)`                                    | `balanceOf(address tokenOwner)`                                                      |
-| `ownerOf(uint256 tokenId)`                                    | `tokenOwnerOf(bytes32 tokenId)`                                                      |
-| `approve(address to, uint256 tokenId)`                        | `authorizeOperator(address operator, bytes32 tokenId, bytes memory data)`            |
-| `getApproved(uint256 tokenId)`                                | `getOperatorsOf(bytes32 tokenId)`                                                    |
-| `setApprovalForAll(address operator, bool approved)`          | _No direct equivalent_ (Use `authorizeOperator` for each token)                      |
-| `isApprovedForAll(address owner, address operator)`           | `isOperatorFor(address operator, bytes32 tokenId)`                                   |
-| `transferFrom(address from, address to, uint256 tokenId)`     | `transfer(address from, address to, bytes32 tokenId, bool force, bytes memory data)` |
-| `safeTransferFrom(address from, address to, uint256 tokenId)` | `transfer(address from, address to, bytes32 tokenId, bool force, bytes memory data)` |
-| _No equivalent_                                               | `revokeOperator(address operator, bytes32 tokenId, bool notify, bytes memory data)`  |
-| _No equivalent_                                               | `batchCalls(bytes[] memory data)`                                                    |
+<Erc721LSP8Table/>
 
 ## dApps and Indexers
 

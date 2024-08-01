@@ -16,7 +16,6 @@ module.exports = {
     'learn/getting-started',
     'learn/introduction',
     'learn/migrate-to-lukso',
-    'learn/concepts',
     { type: 'html', value: '<hr/>', defaultStyle: false }, // -----
     {
       type: 'category',
@@ -62,6 +61,7 @@ module.exports = {
       ],
     },
     'learn/standard-detection',
+    'learn/concepts',
   ],
   contractsSidebar: [
     'contracts/introduction',

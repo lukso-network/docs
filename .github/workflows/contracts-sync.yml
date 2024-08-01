@@ -15,25 +15,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull Smart Contracts docs
-        run: npm run docs:contracts:sync
+      # Temporarily disabling this workflow
+      - name: Show temporary disable message
+        run: echo "🕰️ Workflow temporarily disabled..."
 
-      - name: Check if there are changes
-        id: contracts_docs_changes
-        run: |
-          if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
-          then
-            echo '::set-output name=changed::0'
-          else
-            echo '::set-output name=changed::1'
-          fi
+      # - name: Pull Smart Contracts docs
+      #   run: npm run docs:contracts:sync
 
-      - name: Create Pull Request
-        if: steps.contracts_docs_changes.outputs.changed == 1
-        uses: peter-evans/create-pull-request@v3
-        with:
-          draft: false
-          branch: contracts-docs-sync
-          delete-branch: true
-          title: '[Auto-Sync] Update Smart Contracts Technical Docs'
-          body: Update changes from `@lukso/lsp-smart-contracts` repository (contract ABIs docs & interface IDs)
+      # - name: Check if there are changes
+      #   id: contracts_docs_changes
+      #   run: |
+      #     if [[ -z "$(git status --porcelain $STATUS_ARGS $PATHSPEC)" ]];
+      #     then
+      #       echo '::set-output name=changed::0'
+      #     else
+      #       echo '::set-output name=changed::1'
+      #     fi
+
+      # - name: Create Pull Request
+      #   if: steps.contracts_docs_changes.outputs.changed == 1
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     draft: false
+      #     branch: contracts-docs-sync
+      #     delete-branch: true
+      #     title: '[Auto-Sync] Update Smart Contracts Technical Docs'
+      #     body: Update changes from `@lukso/lsp-smart-contracts` repository (contract ABIs docs & interface IDs)
