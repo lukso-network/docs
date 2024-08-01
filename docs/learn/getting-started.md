@@ -107,8 +107,8 @@ Choose your path below:
 <tbody>
 <tr>
 <td>Check out our [boilerplate dapp](https://github.com/lukso-network/tools-dapp-boilerplate) - clone this repo to have a fully functioning dApp in minutes.</td>
-<td>Learn how to [create a Token](../learn/digital-assets/create-lsp7-token.md) or an [NFT contract](../learn/digital-assets/create-nft-collection/create-nft-collection-lsp8.md).</td>
-<td>Learn more about how to run a [node](https://docs.lukso.tech/learn/digital-assets/smart-contract-developers/create-lsp7-token/) or become a [validator](https://docs.lukso.tech/networks/testnet/become-a-validatorvalidator) on our testnet. </td>
+<td>Learn how to [create a Token](../learn/digital-assets/token/create-lsp7-token.md) or an [NFT contract](../learn/digital-assets/nft/create-nft-collection-lsp8.md).</td>
+<td>Learn more about how to run a [node](../networks/testnet/running-a-node.md) or become a [validator](../networks/testnet/become-a-validator.md) on our testnet. </td>
 </tr>
 <tr>
 <td>Explore our [playground repo](https://github.com/lukso-network/lukso-playground) - it allows you to see how to fetch profile and asset information, encode data, change permissions etc.</td>

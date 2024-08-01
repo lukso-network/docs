@@ -8,7 +8,7 @@ description: 'Introduction to LUKSO Tokens (LSP7-DigitalAsset ) and NFTs 2.0 (LS
 
 :::success Useful Tip
 
-The [guide section](../../learn/digital-assets/create-lsp7-token.md) will walk you through creating and deploying an LSP7 token or an LSP8 NFT on the [LUKSO Testnet](../../networks/testnet/parameters.md).
+The [guide section](../../learn/digital-assets/token/create-lsp7-token.md) will walk you through creating and deploying an LSP7 token or an LSP8 NFT on the [LUKSO Testnet](../../networks/testnet/parameters.md).
 
 Check the [profile explorer](https://universalprofile.cloud/) to browse the deployed digital assets.
 

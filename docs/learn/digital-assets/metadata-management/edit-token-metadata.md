@@ -46,7 +46,7 @@ You can find all the contracts, sample metadata, and scripts of the guide within
 
 :::info Contract Deployment
 
-If you want to learn more about the contract deployment itself, please have a look at the [Create LSP7 Token](../create-lsp7-token.md) guides before you continue.
+If you want to learn more about the contract deployment itself, please have a look at the [Create LSP7 Token](../../digital-assets/token/create-lsp7-token.md) guides before you continue.
 
 :::
 

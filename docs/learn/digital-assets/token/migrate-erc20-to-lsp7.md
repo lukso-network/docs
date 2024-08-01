@@ -1,5 +1,5 @@
 ---
-sidebar_label: '💰 Migrate ERC20 to LSP7'
+sidebar_label: 'Migrate from ERC20 to LSP7'
 sidebar_position: 7
 description: Learn how to migrate your ERC20 token to the LSP7 Digital Asset standard on LUKSO.
 ---
@@ -8,11 +8,11 @@ import Erc20LSP7Table from '@site/src/components/Erc20LSP7Table';
 
 # 🪙 Migrate ERC20 to LSP7
 
-[LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC20](https://eips.ethereum.org/EIPS/eip-20), as described in the [standard section](../../standards/tokens/LSP7-Digital-Asset.md). For migrating from ERC20 to LSP7, developers need to be aware of several key differences.
+[LSP7DigitalAsset](../../../standards/tokens/LSP7-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC20](https://eips.ethereum.org/EIPS/eip-20), as described in the [standard section](../../../standards/tokens/LSP7-Digital-Asset.md). For migrating from ERC20 to LSP7, developers need to be aware of several key differences.
 
 :::info
 
-If you need more details about the interface differences between ERC20 and LSP7, please visit our [contract overview](../../contracts/overview/DigitalAssets/#comparisons-with-erc20--erc721) page.
+If you need more details about the interface differences between ERC20 and LSP7, please visit our [contract overview](../../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page.
 
 :::
 
@@ -35,7 +35,7 @@ contract MyERC20Token is ERC20 {
 
 To create an LSP7 token, `LSP7` is imported from [@lukso/lsp7-contracts](https://www.npmjs.com/package/@lukso/lsp7-contracts) package, and inherited.
 
-The constructor arguments definitions can be found explained in the [constructor API](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#constructor) section.
+The constructor arguments definitions can be found explained in the [constructor API](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#constructor) section.
 
 ```solidity title="LSP7 Token"
 // SPDX-License-Identifier: Apache-2.0
@@ -67,17 +67,17 @@ ERC20: `function transferFrom(address from, address to, uint256 amount);`
 
 LSP7: `function transfer(address from, address to, uint256 amount, bool force, bytes data);`
 
-- For LSP7, **mint and transfer functions will have a `force` additional field**. For full compatibility with ERC20 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) in LSP7DigitalAsset for more info).
+- For LSP7, **mint and transfer functions will have a `force` additional field**. For full compatibility with ERC20 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) in LSP7DigitalAsset for more info).
 
-- For LSP7, **mint, transfer, and burn functions will have `data` as an additional field**. For full compatibility with ERC20 behavior, set this to empty bytes. This data will only be relevant when the recipient is a smart contract address supporting the LSP1 interfaceId (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) in LSP7DigitalAsset for more info), where the data will be sent and the recipient can act on it (e.g., reject the transfer, forward the tokens to a vault, etc.).
+- For LSP7, **mint, transfer, and burn functions will have `data` as an additional field**. For full compatibility with ERC20 behavior, set this to empty bytes. This data will only be relevant when the recipient is a smart contract address supporting the LSP1 interfaceId (Check [LSP1UniversalReceiver section](../../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) in LSP7DigitalAsset for more info), where the data will be sent and the recipient can act on it (e.g., reject the transfer, forward the tokens to a vault, etc.).
 
-- **LSP7 metadata is generic**, in contrast to ERC20 where the metadata is limited to name and symbol. The [generic key-value store](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) in LSP7 allows for storing any possible data.
+- **LSP7 metadata is generic**, in contrast to ERC20 where the metadata is limited to name and symbol. The [generic key-value store](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) in LSP7 allows for storing any possible data.
 
 ## Interacting with Contracts
 
 :::info
 
-To check function definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section.
+To check function definitions and explanations of behavior and each parameter, check [API Reference](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section.
 
 :::
 
@@ -89,7 +89,7 @@ To interact with LSP7DigitalAsset contract, different functions should be called
 
 :::info
 
-To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section.
+To check event definitions and explanations of behavior and each parameter, check [API Reference](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md) section.
 
 :::
 
@@ -113,7 +113,7 @@ const name = await token.name();
 const symbol = await token.symbol();
 ```
 
-In LSP7, the token name and symbol can be retrieved with [getData](../../contracts/contracts/ERC725/ERC725.md#getdata) function, since LSP7 uses a generic metadata key value store:
+In LSP7, the token name and symbol can be retrieved with [getData](../../../contracts/contracts/ERC725/ERC725.md#getdata) function, since LSP7 uses a generic metadata key value store:
 
 ```javascript
 // LSP7
@@ -131,7 +131,7 @@ const symbol = ethers.toUtf8String(symbolValue);
 
 :::info
 
-To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../digital-assets/metadata-management/metadata-preparation.md) section.
+To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../../digital-assets/metadata-management/metadata-preparation.md) section.
 
 :::
 
