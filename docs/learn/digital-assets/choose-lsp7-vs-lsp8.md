@@ -59,6 +59,24 @@ There are 4 x main popular combination of LSP7 / LSP8 + the `LSP4TokenType`.
     </tr>
 </table>
 
+```mermaid
+flowchart TD
+  Start{"LSP4TokenType"}
+  LSP7Token("LSP7 Token (e.g., Dollar, Euro)")
+  LSP8Decision{"LSP7 or LSP8 NFT"}
+  LSP8NFT("LSP8 NFT (e.g., mixed collection)")
+  NFT("NFT (e.g., watch collection)")
+  XYZ("XYZ (e.g., t-shirt collection)")
+  supportsInterface("supportsInterface")
+
+  Start -->|"0"| LSP7Token
+  Start -->|"1"| LSP8Decision
+  Start -->|"2"| LSP8NFT
+  LSP8Decision --> supportsInterface
+  supportsInterface -->|"LSP7"| XYZ
+  supportsInterface -->|"LSP8"| NFT
+```
+
 ## Fungible Token
 
 ![LSP7 Token Type Token (0)](/img/learn/lsp7-token-type-token.png)
