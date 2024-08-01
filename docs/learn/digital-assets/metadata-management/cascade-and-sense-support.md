@@ -8,7 +8,7 @@ description: 'Introduction to implementation cascade and sense protocol of nfts 
 
 :::success Useful Tip
 
-The [guide section](../create-lsp7-token.md) will walk you through uploading images and metadata to Cascade and Sense protocol on [LUKSO Testnet](../../../networks/testnet/parameters.md).
+The [guide section](../../digital-assets/token/create-lsp7-token.md) will walk you through uploading images and metadata to Cascade and Sense protocol on [LUKSO Testnet](../../../networks/testnet/parameters.md).
 
 :::
 

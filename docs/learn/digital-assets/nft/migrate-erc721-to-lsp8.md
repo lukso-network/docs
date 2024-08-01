@@ -8,11 +8,11 @@ import Erc721LSP8Table from '@site/src/components/Erc721LSP8Table';
 
 # 🖼️ Migrate ERC721 to LSP8
 
-[LSP8IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC721](https://eips.ethereum.org/EIPS/eip-721), as described in the [standard section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md). For migrating from ERC721 to LSP8, developers need to be aware of several key differences.
+[LSP8IdentifiableDigitalAsset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC721](https://eips.ethereum.org/EIPS/eip-721), as described in the [standard section](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md). For migrating from ERC721 to LSP8, developers need to be aware of several key differences.
 
 :::info
 
-If you need more details about the interface differences between ERC721 and LSP8, please visit our [contract overview](../../contracts/overview/DigitalAssets/#comparisons-with-erc20--erc721) page.
+If you need more details about the interface differences between ERC721 and LSP8, please visit our [contract overview](../../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page.
 
 :::
 
@@ -35,7 +35,7 @@ contract MyERC721Token is ERC721 {
 
 To create an LSP8 NFT, `LSP8` is imported from [@lukso/lsp8-contracts](https://www.npmjs.com/package/@lukso/lsp8-contracts) package, and inherited.
 
-The constructor arguments definitions can be found explained in the [constructor API](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#constructor) section.
+The constructor arguments definitions can be found explained in the [constructor API](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#constructor) section.
 
 ```js
 // SPDX-License-Identifier: Apache-2.0
@@ -68,17 +68,17 @@ ERC721: `function transferFrom(address from, address to, uint256 tokenId);`
 
 LSP8: `function transfer(address from, address to, bytes32 tokenId, bool force, bytes data);`
 
-- For LSP8, **mint and transfer functions will have a `force` additional field**. For full compatibility with ERC721 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) in LSP8IdentifiableDigitalAsset for more info).
+- For LSP8, **mint and transfer functions will have a `force` additional field**. For full compatibility with ERC721 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) in LSP8IdentifiableDigitalAsset for more info).
 
-- For LSP8, **mint, transfer, and burn functions will have `data` as an additional field**. For full compatibility with ERC721 behavior, set this to empty bytes. This data will only be relevant when the recipient is a smart contract address supporting the LSP1 interfaceId (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks)in LSP8IdentifiableDigitalAsset for more info), where the data will be sent and the recipient can act on it (e.g., reject the transfer, forward the tokens to a vault, etc.).
+- For LSP8, **mint, transfer, and burn functions will have `data` as an additional field**. For full compatibility with ERC721 behavior, set this to empty bytes. This data will only be relevant when the recipient is a smart contract address supporting the LSP1 interfaceId (Check [LSP1UniversalReceiver section](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks)in LSP8IdentifiableDigitalAsset for more info), where the data will be sent and the recipient can act on it (e.g., reject the transfer, forward the tokens to a vault, etc.).
 
-- **LSP8 metadata is generic**, in contrast to ERC721 where the metadata is limited to name and symbol and tokenURI. The [generic key-value store](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) in LSP8 allows for storing any possible data.
+- **LSP8 metadata is generic**, in contrast to ERC721 where the metadata is limited to name and symbol and tokenURI. The [generic key-value store](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) in LSP8 allows for storing any possible data.
 
 ## Interacting with Contracts
 
 :::info
 
-To check function definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
+To check function definitions and explanations of behavior and each parameter, check [API Reference](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
 
 :::
 
@@ -90,7 +90,7 @@ To interact with LSP8IdentifiableDigitalAsset contract, different functions shou
 
 :::info
 
-To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
+To check event definitions and explanations of behavior and each parameter, check [API Reference](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
 
 :::
 
@@ -116,7 +116,7 @@ const symbol = await token.symbol();
 const tokenURI = await token.tokenURI(tokenId);
 ```
 
-In LSP8, the token name and symbol can be retrieved with [getData](../../contracts/contracts/ERC725/ERC725.md#getdata) function, since LSP8 uses a generic metadata key value store:
+In LSP8, the token name and symbol can be retrieved with [getData](../../../contracts/contracts/ERC725/ERC725.md#getdata) function, since LSP8 uses a generic metadata key value store:
 
 ```javascript
 // LSP8
@@ -134,7 +134,7 @@ const symbol = ethers.toUtf8String(symbolValue);
 
 :::info
 
-To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../digital-assets/metadata-management/metadata-preparation.md) section.
+To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../../digital-assets/metadata-management/metadata-preparation.md) section.
 
 :::
 

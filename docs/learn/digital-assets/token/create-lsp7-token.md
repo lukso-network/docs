@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 
 # 🪙 Create a LSP7 Token
 
-This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../contracts/introduction.md) of our documentation.
+This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../../contracts/introduction.md) of our documentation.
 
 :::tip
 
-You can learn about the project setup and Hardhat workflow by checking the [Getting Started](./getting-started.md) section.
+You can learn about the project setup and Hardhat workflow by checking the [Getting Started](../../getting-started.md) section.
 
 :::
 
@@ -21,8 +21,8 @@ You can learn about the project setup and Hardhat workflow by checking the [Gett
 
 For our sample deployment of the LSP7 token, we will use the following presets:
 
-- [`LSP7Mintable`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow the contract [`owner`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#owner) to mint new tokens.
-- [`LSP7Burnable`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): allow any token holders to burn tokens.
+- [`LSP7Mintable`](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md): allow the contract [`owner`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#owner) to mint new tokens.
+- [`LSP7Burnable`](../../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): allow any token holders to burn tokens.
 
 You can then import them within your Solidity contract file:
 
@@ -38,12 +38,12 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
 }
 ```
 
-After inheriting, the contract **expects the mandatory parameters** related to the imported standards. In case of [`LSP7`](../../../../standards/tokens/LSP7-Digital-Asset), you must define default token parameters in the constructor of the smart contract, that will be set during the deployment of the contract:
+After inheriting, the contract **expects the mandatory parameters** related to the imported standards. In case of [`LSP7`](../../../standards/tokens/LSP7-Digital-Asset.md), you must define default token parameters in the constructor of the smart contract, that will be set during the deployment of the contract:
 
-- the [token name and symbol](../../../../standards/tokens/LSP4-Digital-Asset-Metadata/#lsp4tokenname) (inherited from [LSP4](../../../../standards/tokens/LSP4-Digital-Asset-Metadata))
+- the [token name and symbol](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) (inherited from [LSP4](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md))
 - the address of the initial token owner
-- the [token type](../../../../standards/tokens/LSP4-Digital-Asset-Metadata#with-lsp7-digital-asset-token) of the asset
-- the [divisibility](../../../../standards/tokens/LSP7-Digital-Asset/#divisible-vs-non-divisible) of token units (specific to [LSP7](../../../../standards/tokens/LSP7-Digital-Asset))
+- the [token type](../../../standards/tokens/LSP4-Digital-Asset-Metadata#with-lsp7-digital-asset-token) of the asset
+- the [divisibility](../../../standards/tokens/LSP7-Digital-Asset#divisible-vs-non-divisible) of token units (specific to [LSP7](../../../standards/tokens/LSP7-Digital-Asset))
 
 You can specify the parameters and the mint function as seen below.
 
@@ -82,7 +82,7 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
 
 :::info
 
-To adjust the parameters of the mint, please have a look at the related [LSP7 function documentation](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint). You can find the **full documentation** for [LSP7](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable/#parameters-16) and other **presets** within the [Technical ABI Reference](https://docs.lukso.tech/contracts/contracts/ERC725/).
+To adjust the parameters of the mint, please have a look at the related [LSP7 function documentation](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint). You can find the **full documentation** for [LSP7](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable#parameters-16) and other **presets** within the [Technical ABI Reference](https://docs.lukso.tech/contracts/contracts/ERC725/).
 
 :::
 
@@ -90,7 +90,7 @@ To adjust the parameters of the mint, please have a look at the related [LSP7 fu
 
 :::success
 
-Want to deploy token contracts from your 🆙? Have a look at our [Deploy Contracts from UP](../universal-profile/interactions/deploy-contracts.md) guide on how to deploy any contract using the Universal Profile Browser Extension!
+Want to deploy token contracts from your 🆙? Have a look at our [Deploy Contracts from UP](../../universal-profile/interactions/deploy-contracts.md) guide on how to deploy any contract using the Universal Profile Browser Extension!
 
 :::
 
@@ -129,7 +129,7 @@ deployToken()
   });
 ```
 
-If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](./getting-started.md) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
+If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](../../getting-started.md) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
 
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployLSP7AsUP.ts
@@ -155,7 +155,7 @@ module.exports = [
 ];
 ```
 
-To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](./getting-started.md) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
+To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](../../getting-started.md) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
 
 ```bash
 npx hardhat verify <myTokenAddress> --constructor-args ./verify/myCustomToken.ts --network luksoTestnet
