@@ -111,6 +111,10 @@ To ensure the authenticity of the images, please **generate the hash** of the up
 - Define **the used hash function** within the `"method"` element
 - Add and **generated hexadecimal hash** within the `"data"` element
 
+:::info Cascade and Sense Support
+
+To implement Cascade and Sense support, you can reference [this](./cascade-and-sense-support.md).
+
 :::
 
 ## 3 - Encode the LSP4 Metadata
