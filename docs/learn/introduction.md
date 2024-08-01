@@ -1,15 +1,11 @@
 ---
 sidebar_label: '🌏 Overview'
-description: Overview of the benefits of using LUKSO Standard Proposals(LSPs)
+description: Overview of the benefits of using LUKSO Standard Proposals (LSPs)
 ---
 
 # 🌏 Overview
 
-:::info
-
-This page overviews the benefits of using the LUKSO Standard Proposals(LSPs) and outlines the differences between building on LUKSO and other EVM chains.
-
-:::
+This page highlights the benefits of using the LUKSO Standard Proposals (LSPs) and outlines the differences between building on LUKSO compared to other EVM chains.
 
 ## Why New Standards?
 
@@ -40,7 +36,7 @@ By integrating different LSPs in unique ways, LUKSO solves fundamental blockchai
 
 ## Key Benefits
 
-The table below highlights the benefits of LSP features:
+The table below highlights the features of the LSPs and their benefits:
 
 | Feature                                        | Benefits                                                                                                                                                                                                                                                                                                                                                                               |
 | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
