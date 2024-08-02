@@ -260,6 +260,28 @@ table.lsp-features td {
   margin-right: 1em;
 }
 
+#guides-links li {
+  list-style-type: '\1f517' !important;
+}
+
+div.cardwithimage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: center;
+  gap: 10px 10px;
+  flex-wrap: wrap;
+}
+
+.chip-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 10px 10px;
+  flex-wrap: wrap;
+}
+
 #token-nft-combinations td {
   text-align: center;
 }

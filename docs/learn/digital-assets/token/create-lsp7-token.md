@@ -13,7 +13,7 @@ This guide will walk you through the process of creating and deploying a custom 
 
 :::tip
 
-You can learn about the project setup and Hardhat workflow by checking the [Getting Started](../../getting-started.md) section.
+You can learn about the project setup and Hardhat workflow by checking the [Getting Started](../../getting-started.mdx) section.
 
 :::
 
@@ -129,7 +129,7 @@ deployToken()
   });
 ```
 
-If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](../../getting-started.md) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
+If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](../../getting-started.mdx) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
 
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployLSP7AsUP.ts
@@ -155,7 +155,7 @@ module.exports = [
 ];
 ```
 
-To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](../../getting-started.md) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
+To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](../../getting-started.mdx) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
 
 ```bash
 npx hardhat verify <myTokenAddress> --constructor-args ./verify/myCustomToken.ts --network luksoTestnet

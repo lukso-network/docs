@@ -1,0 +1,202 @@
+---
+sidebar_label: '🏎️ Quick Start'
+description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKSO intended for?
+---
+
+import CallToActionButton from '@site/src/components/CallToActionButton';
+import CardWithImage from '@site/src/components/CardWithImage';
+import Chip from '@site/src/components/Chip';
+
+import DappDevIcon from '../../static/img/learn/DappDevIcon.png';
+import ValidatorIcon from '../../static/img/learn/ValidatorIcon.png';
+import SmartContractDevIcon from '../../static/img/learn/SmartContractDevIcon.png';
+
+export const CardData = [
+  {
+    image: DappDevIcon,
+    imageTitle: 'Dapp Developer Icon',
+    cardHeading: 'Dapp Developer',
+    cardContent: [
+      {
+        linkText: 'Fork our boilerplate dapp',
+        linkPath: 'https://github.com/lukso-network/tools-dapp-boilerplate',
+      },
+      {
+        linkText: 'Explore code examples in our playground repository',
+        linkPath: 'https://github.com/lukso-network/lukso-playground',
+      },
+    ],
+  },
+  {
+    image: ValidatorIcon,
+    imageTitle: 'Validator Icon',
+    cardHeading: 'Validators',
+    cardContent: [
+      {
+        linkText: 'Run a node for LUKSO',
+        linkPath: '../../networks/mainnet/running-a-node',
+      },
+      {
+        linkText: 'Become a Validator',
+        linkPath: '../../networks/mainnet/become-a-validator',
+      },
+      {
+        linkText: 'Checkout the Network Parameters',
+        linkPath: '../../networks/mainnet/parameters',
+      },
+    ],
+  },
+  {
+    image: SmartContractDevIcon,
+    imageTitle: 'Smart Contract Developer Icon',
+    cardHeading: 'Smart Contract Developer',
+    cardContent: [
+      {
+        linkText: 'Get started with Tokens and NFTs',
+        linkPath: '../learn/digital-assets/getting-started',
+      },
+      {
+        linkText: 'Create a token',
+        linkPath: '../learn/digital-assets/create-lsp7-token',
+      },
+      {
+        linkText: 'Migrate ERC20 a token to LSP7',
+        linkPath: '../learn/digital-assets/migrate-erc20-to-lsp7',
+      },
+    ],
+  },
+];
+
+# Quick Start
+
+## What is LUKSO?
+
+LUKSO is a Layer 1 EVM chain that uses the same consensus as Ethereum. It is fundamentally the same as Ethereum at a network level but with some innovative differences.
+
+<table>
+  <thead>
+    <tr>
+      <th>🆙 **Universal Profiles** 🆙</th>
+      <th>🪙 **Tokens** 🪙</th>
+      <th>🌅 **NFTs** 🌅</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+        Smart contract based profiles are the essential foundation for a better
+        web3 experience.
+      </td>
+      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+        Extensible Token that move us beyond DeFi. The future of blockchain is
+        social.
+      </td>
+      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+        Flexible NFTs that are extensible and directly composable with Universal
+        Profiles.
+      </td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+        <div className="chip-container">
+          <Chip label="Visual" />
+          <Chip label="Upgradeable" />
+          <Chip label="Security" />
+          <Chip label="Gas-less" />
+          <Chip label="Smart" />
+          <Chip label="Extensible" />
+        </div>
+      </td>
+      <td>
+        <div className="chip-container">
+          <Chip label="Safer" />
+          <Chip label="Token Icons" />
+          <Chip label="Unlimited Metadata" />
+          <Chip label="Updatable" />
+          <Chip label="Extensible" />
+          <Chip label="Notifying" />
+          <Chip label="Unified" />
+        </div>
+      </td>
+      <td>
+        <div className="chip-container">
+          <Chip label="Authentic" />
+          <Chip label="Safer" />
+          <Chip label="Unlimited Metadata" />
+          <Chip label="Updatable" />
+          <Chip label="Better IDs" />
+          <Chip label="Iteratable" />
+          <Chip label="Batch Transfers" />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+:::success
+Learn more about the LSPs 🧱
+To learn more about the main building blocks of LUKSO check out the [LUKSO Standard Proposals (**LSPs**)](../standards/introduction.md) page.
+:::
+
+## How do I start?
+
+<div>
+  <CallToActionButton
+    style={{
+      display: 'inline-block !important',
+    }}
+    icon="material-symbols:counter-1"
+    color="white"
+    target="_blank"
+    link="https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
+    text="Install the Universal Profile Browser Extension 🧩"
+  />
+
+{' '}
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: '3em',
+  }}
+>
+  <p>⬇</p>
+</div>
+
+{' '}
+
+<CallToActionButton
+  icon="material-symbols:counter-2"
+  color="white"
+  target="_blank"
+  link="https://my.universalprofile.cloud"
+  text="Create your Universal Profile 🆙"
+/>
+
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      fontSize: '3em',
+    }}
+  >
+    <p>⬇</p>
+  </div>
+</div>
+
+<CallToActionButton
+  icon="material-symbols:counter-3"
+  color="white"
+  target="_blank"
+  link="https://www.lukso.network/ecosystem"
+  text="Explore the Ecosystem 🌐"
+/>
+
+## Ready to build?
+
+<CardWithImage CardData={CardData} />
+
+## Join the Community
+
+If you need anything else, then either [contact the team building LUKSO](https://support.lukso.network/contact-us) or ask the [Developer Community on Discord](https://discord.com/channels/359064931246538762/585786253992132609) are happy to help.
