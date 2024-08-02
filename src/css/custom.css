@@ -281,3 +281,7 @@ div.cardwithimage {
   gap: 10px 10px;
   flex-wrap: wrap;
 }
+
+#token-nft-combinations td {
+  text-align: center;
+}

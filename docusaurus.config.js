@@ -43,7 +43,7 @@ export default {
           },
           {
             from: '/learn/smart-contract-developers/create-lsp7-token',
-            to: '/learn/digital-assets/create-lsp7-token',
+            to: '/learn/digital-assets/token/create-lsp7-token',
           },
           {
             from: '/learn/smart-contract-developers/retrieve-token-type',
@@ -133,6 +133,10 @@ export default {
           {
             from: '/learn/digital-assets/mint-lsp7-token',
             to: '/learn/universal-profile/interactions/interact-with-contracts',
+          },
+          {
+            from: '/learn/digital-assets/create-lsp7-token',
+            to: '/learn/digital-assets/token/create-lsp7-token',
           },
           {
             from: '/learn/assets',
