@@ -4,22 +4,22 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-type CardData = {
-  image: string;
-  imageTitle: string;
-  cardHeading: string;
-  cardContent: Array<{
-    linkPath: string;
-    linkText: string;
+type Props = {
+  CardData: Array<{
+    image: string;
+    imageTitle: string;
+    cardHeading: string;
+    cardContent: Array<{
+      linkPath: string;
+      linkText: string;
+    }>;
   }>;
 };
 
-type Props = CardData[];
-
-export default function CardWithImage(cardData: Props) {
+export default function CardWithImage({ CardData }: Props) {
   return (
     <div className="cardwithimage">
-      {cardData.map((item, index) => (
+      {CardData.map((item, index) => (
         <Card sx={{ maxWidth: 345 }} key={index}>
           <CardMedia
             sx={{ height: 140 }}
