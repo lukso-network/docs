@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './DappsGallery.module.scss';
 //image imports
 import UniversalSwaps from '../../../static/img/universalswaps.png';
-import Stakingverse from '../../../static/img/tools/stakingverse_logo.jpeg';
+import Stakingverse from '../../../static/img/tools/stakingverse_logo.png';
 import UniversalPage from '../../../static/img/tools/universalpage_logo.png';
 import Commonground from '../../../static/img/cg.png';
 import LSP8 from '../../../static/img/lsp8app.png';
@@ -19,7 +19,7 @@ const dapps = [
     name: 'Stakingverse',
     imageUrl: Stakingverse,
     link: 'https://stakingverse.io/',
-    backgroundColor: '#324f6d',
+    backgroundColor: '#1E1E1E',
   },
   {
     name: 'Commonground',
