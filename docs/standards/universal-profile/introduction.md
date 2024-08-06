@@ -57,8 +57,6 @@ ERC725Y standardizes a mapping of data keys to data values in order to have the 
 
 [LSP2 - ERC725YJSONSchema](../../../standards/generic-standards/lsp2-json-schema) is the standard used by the LSPs to organize how the data should be represented as `bytes32 => bytes` data key / value pairs.
 
-:::
-
 The **[LSP0 - ERC725Account](./lsp0-erc725account.md)** standard represents a blockchain-based account that does not contain any metadata describing the account. It's important to standardize specific data keys to give the account a unique character and look like a typical **Web2 profile**.
 
 **[LSP3 - Profile Metadata](./lsp3-profile-metadata.md)** is a standard used to add profile information by setting its defined data keys in the account storage. The combination of these two standards forms a **Universal Profile**.
