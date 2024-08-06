@@ -206,6 +206,11 @@ export default {
             from: '/learn/expert-guides/deploy-up-with-lsp23',
             to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
           },
+          //Standards
+          {
+            from: '/standards/nft-2.0/introduction',
+            to: '/standards/tokens/introduction',
+          },
         ],
       },
     ],

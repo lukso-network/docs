@@ -114,6 +114,10 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://transak.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/transak_logo.png"/></a></td>
     <td><a href="https://docs.transak.com/docs/transak-on-ramp" target="_blank">Transak</a> is a crypto on-ramp marketplace that can be integrated easily by developers using their API and SDK, to enable to purchase crypto easily on a website and UI.</td>
   </tr>
+    <tr>
+    <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://ramp.network/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/ramp-network-logo.png"/></a></td>
+    <td><a href="https://docs.ramp.network/" target="_blank">Ramp Network</a> is a fiat-to-crypto and crypto-to-fiat gateway for web3 applications. It supports local payment methods globally, ensuring fast and secure transactions.​</td>
+  </tr>
 </tbody>
 </table>
 

@@ -21,6 +21,8 @@
 
   transition: all 200ms ease-out 10ms;
 
+  color: white;
+
   &:hover {
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
@@ -28,8 +30,6 @@
     text-decoration: none;
     color: white;
   }
-
-  color: white;
 
   a:hover {
     color: white !important;
