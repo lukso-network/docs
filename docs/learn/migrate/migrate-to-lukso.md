@@ -1,5 +1,5 @@
 ---
-sidebar_label: '⛓ EVM to LUKSO'
+sidebar_label: '⛓ From other EVM Chains'
 sidebar_position: 1
 description: What to consider when building on LUKSO with LSPs (LUKSO Standard Proposals)?
 ---
