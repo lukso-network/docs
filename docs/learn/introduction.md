@@ -78,8 +78,8 @@ The benefits offered by the LUKSO Token standards are summarized in the table be
 :::success
 Interested to migrate? Visit our guides:
 
-- [Migrate ERC20 to LSP7](./digital-assets/token/migrate-erc20-to-lsp7.md)
-- [Migrate ERC721 to LSP8](./digital-assets/nft/migrate-erc721-to-lsp8.md)
+- [Migrate ERC20 to LSP7](./migrate/migrate-erc20-to-lsp7.md)
+- [Migrate ERC721 to LSP8](./migrate/migrate-erc721-to-lsp8.md)
   :::
 
 ## Building on LUKSO

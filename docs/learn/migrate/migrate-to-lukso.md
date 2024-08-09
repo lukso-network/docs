@@ -10,7 +10,7 @@ description: What to consider when building on LUKSO with LSPs (LUKSO Standard P
 
 This page gives an overview the differences between building on LUKSO vs other EVM chains.
 
-For more information regarding the network and standards, see the [Introduction](../../standards/introduction.md) and [Concepts & Glossary](../learn/concepts.md) pages.
+For more information regarding the network and standards, see the [Introduction](../../standards/introduction.md) and [Concepts & Glossary](../concepts.md) pages.
 
 :::
 
@@ -40,14 +40,14 @@ However, the [Universal Profile Browser Extension](/install-up-browser-extensio
 | Feature                                        | Benefits                                                                                                                                                                                                                                                                                                                                                                               |
 | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **🗄️ Metadata in one place**                   | When using traditional web3 wallets, a user has to fill in its same infos again every time it creates a new account on a new dApp (_e.g: username, biography, social media accounts_) <br/> <br/>Universal Profile stores user data in one single place (the 🆙 contract storage). This allows any dApp to retrieve the same information, and makes dApp onboarding easier and faster. |
-| **⛽️ Gas-Less transactions**                  | Universal Profiles enable gas-less transactions. The relayer pay the gas fees and does not require the user to hold native tokens to pay for the transaction fee. <br/> <br/>Without a [Transaction Relay Service](../../standards/relayer-api.md), the [controller](./concepts.md#controller) of the Universal Profile must be funded to execute transactions.                        |
+| **⛽️ Gas-Less transactions**                  | Universal Profiles enable gas-less transactions. The relayer pay the gas fees and does not require the user to hold native tokens to pay for the transaction fee. <br/> <br/>Without a [Transaction Relay Service](../../standards/relayer-api.md), the [controller](../concepts.md#controller) of the Universal Profile must be funded to execute transactions.                       |
 | **🔑 Multi-Control through permissions**       | Universal Profiles can be controlled by multiple EOAs with various permission levels. Controllers can be on different devices or represent dApps, each with specific access rights, such as token transfers, playlist management, or account recovery.                                                                                                                                 |
 | **📢 Notification and Reactivity**             | The 🆙 can be customized to react differently based on different events it receives. For instance, the default implementation automatically register new received assets.                                                                                                                                                                                                              |
-| **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Universal Profile, using a system of extensions. <br/><br/>See our guide [**Extending Universal Profile functionalities**](./universal-profile/advanced-guides/extend-profile-functionalities.md) for more details.                                                     |
+| **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Universal Profile, using a system of extensions. <br/><br/>See our guide [**Extending Universal Profile functionalities**](../universal-profile/advanced-guides/extend-profile-functionalities.md) for more details.                                                    |
 
 Universal Profiles can be controlled through multiple EOAs (and their associated private keys), where each private key can be allowed or restricted to specific actions via permissions.
 
-These [**controllers**](./universal-profile/key-manager/get-controller-permissions.md) can be on multiple devices (laptop, desktop, mobile, hardware wallet like ledger) and represent:
+These [**controllers**](../universal-profile/key-manager/get-controller-permissions.md) can be on multiple devices (laptop, desktop, mobile, hardware wallet like ledger) and represent:
 
 - EOAs or other 🆙
 - dapps protocols (defi trading app, gaming app), granted specific access to the Universal Profile.
