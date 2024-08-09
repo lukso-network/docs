@@ -38,7 +38,7 @@ LUKSO's ecosystem utilizes specific token standards, mainly **[LSP7-DigitalAsset
 
 ## Conclusion
 
-The NFC designed to work on any EVM network will work on LUKSO but won't be compatible with its ecosystem, because the LUKSO ecosystem uses [different tools and standards](../migrate-to-lukso.md) than the one available on Ethereum. The only difference that needs to be made is to use the new token standards instead of [ERC721](https://eips.ethereum.org/EIPS/eip-721) or [ERC1155](https://eips.ethereum.org/EIPS/eip-1155).
+The NFC designed to work on any EVM network will work on LUKSO but won't be compatible with its ecosystem, because the LUKSO ecosystem uses [different tools and standards](../migrate/migrate-to-lukso.md) than the one available on Ethereum. The only difference that needs to be made is to use the new token standards instead of [ERC721](https://eips.ethereum.org/EIPS/eip-721) or [ERC1155](https://eips.ethereum.org/EIPS/eip-1155).
 
 ### Further Information
 
