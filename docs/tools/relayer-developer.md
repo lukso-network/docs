@@ -29,7 +29,7 @@ Please fill out [this form](https://forms.gle/rhWA25m3jjuPNPva9) to request acce
 You can deploy Universal Profiles for users by providing either:
 
 - OPTION 1: a list of controller addresses (`lsp6ControllerAddress`) and metadata (`lsp3Profile`)
-- OPTION 2: a `salt` and `postDeploymentCallData`
+- OPTION 2: a `salt` and [`postDeploymentCallData`](../learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata)
 
 In this process, you might need to use the [`up_import`](../standards/rpc-api#up_import) RPC call from the [Universal Profile Extension](/install-up-browser-extension) in order to add the deployed UP to the browser extension.
 
@@ -86,7 +86,7 @@ const VerfiableURI =  verfiableUriIdentifier + verificationMethod.substring(2) +
 0x00006f357c6a0020820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455a4c6a7452504466573834554178
 ```
 
-ℹ️ More info on [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
+ℹ️ More info on [`VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
 
 </details>
 
@@ -103,7 +103,7 @@ To be able to deploy a UP on the same address across different chains.
 const salt = '0x' + crypto.randomBytes(32).toString('hex');
 ```
 
-```javascript title="postDeploymentCallData: Call data which will be executed on the ERC725Account contract after deployment. Should contain the encoded setData transaction to set required permission setting and LSP3 Profile Data"
+```javascript title="postDeploymentCallData: Calldata which will be executed on the ERC725Account contract after deployment. Should contain the encoded setDataBatch transaction to set the initial permissions and LSP3 Profile Data"
 
 generatePostDeploymentCallData(
     lsp6Controllers: string[],
@@ -128,7 +128,7 @@ generatePostDeploymentCallData(
       });
     }
 
-    const erc725js = new ERC725(LSP6Schema as ERC725JSONSchema[]);
+    const erc725js = new ERC725(LSP6Schema);
     const { keys, values } = erc725js.encodeData(permissionData);
 
     if (lsp3Profile) {
