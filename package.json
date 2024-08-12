@@ -28,7 +28,7 @@
     "@emotion/styled": "^11.13.0",
     "@iconify/react": "^5.0.1",
     "@mdx-js/react": "3.0.1",
-    "@mui/icons-material": "^5.16.4",
+    "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.4",
     "@svgr/webpack": "^8.1.0",
     "clsx": "^2.1.1",
