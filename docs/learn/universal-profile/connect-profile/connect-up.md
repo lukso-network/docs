@@ -31,6 +31,12 @@ The [Universal Profile Extension](/install-up-browser-extension) returns the add
 
 ## Connect with EIP-6963
 
+:::tip Example Implementation
+
+If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
+
+:::
+
 :::info Wallet Compatibility
 
 Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is the latest industry standardization, solving previous connectivity issues when having multiple wallet extensions installed at the same time.
@@ -91,11 +97,17 @@ console.log('Connected with', accounts[0]);
   </TabItem>
 </Tabs>
 
-:::tip Example Implementation
+Since the Universal Profile Browser Extension is compatible with EIP-6963 Multi Injected Provider, it works out of the box with tools like [Wagmi](https://wagmi.sh/react/api/connectors/injected) or [RainbowKit](https://www.rainbowkit.com/docs/introduction). If you use Wagmi or RainbowKit, the 🆙 extension will appear in the list of available wallets. See the example image below with RainbowKit.
 
-If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
+<div style={{textAlign: 'center'}}>
 
-:::
+<img
+    src="/img/learn/up-extension-wallets-list-rainbowkit.png"
+    alt="When using RainbowKit, the UP Browser Extension will show up in the list of wallets."
+    width="600"
+/>
+
+</div>
 
 ## Multi-Provider Libraries
 
