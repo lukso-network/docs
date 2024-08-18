@@ -9,9 +9,9 @@ import {ContractCardsGallery} from '@site/src/components/ContractCardsGallery';
 
 # Smart Contracts
 
-> The smart contracts are public and open source on [GitHub](https://github.com/lukso-network/lsp-smart-contracts). <a href="https://github.com/lukso-network/lsp-smart-contracts" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="github badge" src="https://img.shields.io/github/v/release/lukso-network/lsp-smart-contracts?logo=github&label=Github"/></a>
+> The smart contracts are public and open source on [GitHub](https://github.com/lukso-network/lsp-smart-contracts). <a href="https://github.com/lukso-network/lsp-smart-contracts" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="github badge" class="shield-badge" src="https://img.shields.io/github/v/release/lukso-network/lsp-smart-contracts?logo=github&label=Github"/></a>
 >
-> They are available as a npm package [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts). <a href="https://www.npmjs.com/package/@lukso/lsp-smart-contracts" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badge" src="https://img.shields.io/npm/v/@lukso/lsp-smart-contracts.svg?style=flat&label=NPM&logo=npm"/></a>
+> They are available as a npm package [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts). <a href="https://www.npmjs.com/package/@lukso/lsp-smart-contracts" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badge" class="shield-badge" src="https://img.shields.io/npm/v/@lukso/lsp-smart-contracts.svg?style=flat&label=NPM&logo=npm"/></a>
 
 <br/>
 

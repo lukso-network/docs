@@ -365,6 +365,9 @@ export default {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    zoom: {
+      selector: '.markdown img:not(.shield-badge)',
+    },
   },
   presets: [
     [
