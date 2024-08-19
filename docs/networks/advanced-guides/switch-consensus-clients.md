@@ -1,10 +1,10 @@
 ---
-sidebar_label: 'Switch Consensus Clients'
+sidebar_label: 'Switch Between Clients'
 sidebar_position: 3
 description: 'Learn how to switch consensus clients on LUKSO to help improve client diversity: switch from Prysm to Lighthouse or Teku.'
 ---
 
-# Switching Consensus Clients
+# Switch Between Clients
 
 Having a variety of clients in a blockchain network and improving our client diversity is critically important.
 
