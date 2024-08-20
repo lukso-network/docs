@@ -8,6 +8,12 @@ import Erc721LSP8Table from '@site/src/components/Erc721LSP8Table';
 
 # 🖼️ Migrate ERC721 to LSP8
 
+> 👇🏻 Hands on 📽️ Solidity Workshop Video for the [**Oxford Blockchain Society**](https://x.com/oxfordblocksoc) in March 2024.
+
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2WH1kI5iWJs?si=G8YNdmyL38us-2iP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 [LSP8IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC721](https://eips.ethereum.org/EIPS/eip-721), as described in the [standard section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md). For migrating from ERC721 to LSP8, developers need to be aware of several key differences.
 
 :::info
@@ -16,7 +22,7 @@ If you need more details about the interface differences between ERC721 and LSP8
 
 :::
 
-## Smart Contract Building
+## Comparison of Solidity code
 
 Usually, to create an ERC721 token, `ERC721` is imported from [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package, and inherited.
 

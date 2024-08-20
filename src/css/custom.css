@@ -34,6 +34,13 @@
   --ifm-alert-padding-horizontal: 1.2rem;
   --ifm-navbar-padding-vertical: calc(var(--ifm-spacing-vertical) * 0.2);
   --ifm-navbar-padding-horizontal: calc(var(--ifm-spacing-horizontal) * 0.5);
+  /* snippets */
+  --docusaurus-highlighted-code-line-bg: rgba(161, 243, 153, 0.261);
+  /* If you have a different syntax highlighting theme for dark mode. */
+  [data-theme='dark'] {
+    /* Color which works with dark mode syntax highlighting theme */
+    --docusaurus-highlighted-code-line-bg: rgba(161, 243, 153, 0.261);
+  }
 }
 
 .markdown {
@@ -255,6 +262,31 @@ table.lsp-features td {
 
 .tab_erc725:before {
   content: url('/static/img/learn/LUKSO_icon.png');
+  position: relative; /*or absolute*/
+  z-index: 100000; /*a number that's more than the modal box*/
+  margin-right: 1em;
+}
+
+.tab_javascript[aria-selected='true'] {
+  border-bottom-color: #f1dd30;
+}
+.tab_javascript {
+  color: #1e1e1e;
+}
+.tab_javascript:before {
+  content: url('/static/img/learn/javascript-logo.png');
+  position: relative; /*or absolute*/
+  z-index: 100000; /*a number that's more than the modal box*/
+  margin-right: 1em;
+}
+.tab_solidity[aria-selected='true'] {
+  border-bottom-color: #4a4a4a;
+}
+.tab_solidity {
+  color: #1e1e1e;
+}
+.tab_solidity:before {
+  content: url('/static/img/learn/solidity-logo.png');
   position: relative; /*or absolute*/
   z-index: 100000; /*a number that's more than the modal box*/
   margin-right: 1em;
