@@ -150,7 +150,7 @@ To interact with the LSP8IdentifiableDigitalAsset contract, different functions 
 
 :::info
 
-To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
+To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#events) section.
 
 :::
 
@@ -169,7 +169,7 @@ Services like dApps and Indexers can use different events from LSP8 to listen to
 
 <div style={{display: "flex", justifyContent: "space-between"}}>
 
-<div style={{width: "64%"}}>
+<div style={{width: "58%"}}>
 
 **ERC721**
 
@@ -181,7 +181,7 @@ const tokenURI = await token.tokenURI(tokenId);
 
 </div>
 
-<div style={{width: "34%"}}>
+<div style={{width: "41.3%"}}>
 
 **How to retrieve?**
 
@@ -192,7 +192,7 @@ In ERC721, the name, symbol, and tokenURI of a token can be retrieved by calling
 
 <div style={{display: "flex", justifyContent: "space-between"}}>
 
-<div style={{width: "64%"}}>
+<div style={{width: "58%"}}>
 
 **LSP8**
 
@@ -211,11 +211,11 @@ const symbol = ethers.toUtf8String(symbolValue);
 
 </div>
 
-<div style={{width: "34%"}}>
+<div style={{width: "41.3%"}}>
 
 **How to retrieve?**
 
-In LSP8, the token name and symbol can be retrieved with [`getData(bytes32)`](../../contracts/contracts/ERC725/ERC725.md#getdata). They are stored in the generic metadata key-value store under the data keys [`LSP4TokenName`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol).
+In LSP8, the token name, symbol and base URI can be retrieved with [`getData(bytes32)`](../../contracts/contracts/ERC725/ERC725.md#getdata). They are stored in the generic metadata key-value store under the data keys [`LSP4TokenName`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname), [`LSP4TokenSymbol`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol) and [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri).
 
 Once you have fetched the raw hex encoded value, you will need to decode it into a human readable string.
 
@@ -291,7 +291,7 @@ const [name, symbol] = ERC725.decodeData([
 
 </Tabs>
 
-### Extended Token Metadata
+### Extended Collection Metadata
 
 :::success Tutorial 🎥
 
@@ -299,11 +299,16 @@ See the [**Metadata Management**](../digital-assets/metadata-management/edit-tok
 
 :::
 
-LSP8 allows for more flexible and extensible metadata. You can store a JSON object containing information about the whole NFT contract and for each individual tokenId. The [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) is a JSON object that can contain many information about the token, including:
+[LSP8 allows for more flexible and extensible metadata](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp8-collection-vs-tokenid-metadata). You can store a JSON object containing information about:
+
+- the whole NFT Collection contract
+- and for each individual NFT `tokenId`.
+
+The [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) is a JSON object that can contain many information about the token, including:
 
 - 🌐 **official link to websites** (_e.g: project website, social medias, community channels, etc..._).
 - 🖼️ **images** (token icon and backgrounds) to display the token in dApps, explorers, or decentralised exchanges.
-- 🏷️ **custom attributes** (can be displayed as badges on UIs).
+- 🏷️ **custom attributes** (for each specific NFTs for instance, can be displayed as badges on UIs).
 
 ```javascript
 const metadataKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4Metadata'));
@@ -374,7 +379,7 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
 }
 ```
 
-### Token-specific Metadata
+### NFT-specific Metadata
 
 LSP8 allows you to set and retrieve metadata for individual tokens using the [`setDataForTokenId(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid) and [`getDataForTokenId(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdatafortokenid) functions. This is particularly useful for NFTs where each token might have unique properties.
 

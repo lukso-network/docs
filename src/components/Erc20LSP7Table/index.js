@@ -10,7 +10,7 @@ export default function Erc20LSP7Table() {
         </tr>
       </thead>
       <tbody>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">name()</pre>
           </td>
@@ -22,7 +22,7 @@ export default function Erc20LSP7Table() {
             </pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">symbol()</pre>
           </td>
@@ -58,7 +58,7 @@ export default function Erc20LSP7Table() {
             <pre language="solidity">balanceOf(address account)</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">
               allowance(address owner, address spender)
@@ -75,7 +75,7 @@ export default function Erc20LSP7Table() {
             </pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -83,7 +83,7 @@ export default function Erc20LSP7Table() {
             <pre language="solidity">getOperatorsOf(address owner)</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">
               approve(address spender, uint256 amount)
@@ -103,7 +103,7 @@ export default function Erc20LSP7Table() {
             </pre>
             <a href="../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator">
               🔍 Function details
-            </a>{' '}
+            </a>
             <br />
             <a
               href="https://explorer.execution.mainnet.lukso.network/tx/0xdb96632f0fe300bf1f9e27ff67835b6bd2fc94a4470a2896a85de54a5de49175"
@@ -131,7 +131,7 @@ export default function Erc20LSP7Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -171,7 +171,7 @@ export default function Erc20LSP7Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">transfer(address to, uint256 amount)</pre>
           </td>
@@ -199,7 +199,7 @@ export default function Erc20LSP7Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">
               transferFrom(
@@ -237,7 +237,7 @@ export default function Erc20LSP7Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -266,7 +266,7 @@ export default function Erc20LSP7Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>

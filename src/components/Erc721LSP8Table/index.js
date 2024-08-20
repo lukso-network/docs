@@ -10,7 +10,7 @@ export default function Erc721LSP8Table() {
         </tr>
       </thead>
       <tbody>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">name()</pre>
           </td>
@@ -22,7 +22,7 @@ export default function Erc721LSP8Table() {
             </pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">symbol()</pre>
           </td>
@@ -42,7 +42,7 @@ export default function Erc721LSP8Table() {
             <pre language="solidity">balanceOf(address tokenOwner)</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">ownerOf(uint256 tokenId)</pre>
           </td>
@@ -50,7 +50,7 @@ export default function Erc721LSP8Table() {
             <pre language="solidity">tokenOwnerOf(bytes32 tokenId)</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">approve(address to, uint256 tokenId)</pre>
           </td>
@@ -70,7 +70,7 @@ export default function Erc721LSP8Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">getApproved(uint256 tokenId)</pre>
           </td>
@@ -81,7 +81,7 @@ export default function Erc721LSP8Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">
               setApprovalForAll(address operator, bool approved)
@@ -93,7 +93,7 @@ export default function Erc721LSP8Table() {
             </i>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">
               isApprovedForAll(address owner, address operator)
@@ -113,7 +113,7 @@ export default function Erc721LSP8Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">
               transferFrom(
@@ -146,7 +146,7 @@ export default function Erc721LSP8Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <pre language="solidity">
               safeTransferFrom(
@@ -182,7 +182,7 @@ export default function Erc721LSP8Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -204,7 +204,7 @@ export default function Erc721LSP8Table() {
             </a>
           </td>
         </tr>
-        <tr style={{ backgroundColor: 'transparent' }}>
+        <tr>
           <td>
             <i>No equivalent</i>
           </td>
@@ -215,8 +215,10 @@ export default function Erc721LSP8Table() {
               instance:
               <ol>
                 <li>Transfer an NFT to an address.</li>
-                <li>Authorize an operator for a specific token.</li>
-                <li>Update the token contract metadata.</li>
+                <li>
+                  Authorize an operator for a specific <code>tokenId</code>.
+                </li>
+                <li>Update the NFT metadata.</li>
                 <li>etc...</li>
               </ol>
             </p>
