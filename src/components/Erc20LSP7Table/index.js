@@ -103,7 +103,9 @@ export default function Erc20LSP7Table() {
             </pre>
             <ul>
               <li>
-                <a href="#">🔍 Function details</a>
+                <a href="../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator">
+                  🔍 Function details
+                </a>
               </li>
               <li>
                 <a
@@ -131,7 +133,9 @@ export default function Erc20LSP7Table() {
             </pre>
             <ul>
               <li>
-                <a href="#">🔍 Function details</a>
+                <a href="../../contracts/contracts/LSP7DigitalAsset/#revokeoperator">
+                  🔍 Function details
+                </a>
               </li>
               <li>
                 <a href="#">🔀 Example Transaction</a>
@@ -156,7 +160,9 @@ export default function Erc20LSP7Table() {
             </pre>
             <ul>
               <li>
-                <a href="#">🔍 Function details</a>
+                <a href="../../contracts/contracts/LSP7DigitalAsset/#increaseallowance">
+                  🔍 Function details
+                </a>
               </li>
               <li>
                 <a href="#">🔀 Example Transaction</a>
@@ -181,7 +187,9 @@ export default function Erc20LSP7Table() {
             </pre>
             <ul>
               <li>
-                <a href="#">🔍 Function details</a>
+                <a href="../../contracts/contracts/LSP7DigitalAsset/#decreaseallowance">
+                  🔍 Function details
+                </a>
               </li>
               <li>
                 <a href="#">🔀 Example Transaction</a>
@@ -214,7 +222,9 @@ export default function Erc20LSP7Table() {
             </p>
             <ul>
               <li>
-                <a href="#">🔍 Function details</a>
+                <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
+                  🔍 Function details
+                </a>
               </li>
               <li>
                 <a href="#">🔀 Example Transaction</a>
@@ -257,7 +267,9 @@ export default function Erc20LSP7Table() {
             </p>
             <ul>
               <li>
-                <a href="#">🔍 Function details</a>
+                <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
+                  🔍 Function details
+                </a>
               </li>
               <li>
                 <a href="#">🔀 Example Transaction</a>
@@ -291,7 +303,9 @@ export default function Erc20LSP7Table() {
             </p>
             <ul>
               <li>
-                <a href="#">🔍 Function details</a>
+                <a href="../../contracts/contracts/LSP7DigitalAsset/#transferbatch">
+                  🔍 Function details
+                </a>
               </li>
               <li>
                 <a href="#">🔀 Example Transaction</a>
@@ -314,6 +328,16 @@ export default function Erc20LSP7Table() {
                 <li>Update the token contract metadata.</li>
                 <li>etc...</li>
               </ol>
+              <ul>
+                <li>
+                  <a href="../../contracts/contracts/LSP7DigitalAsset/#batchcalls">
+                    🔍 Function details
+                  </a>
+                </li>
+                <li>
+                  <a href="#">🔀 Example Transaction</a>
+                </li>
+              </ul>
             </p>
           </td>
         </tr>
