@@ -19,9 +19,9 @@ import Erc20LSP7Table from '@site/src/components/Erc20LSP7Table';
 
 [LSP7DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC20](https://eips.ethereum.org/EIPS/eip-20), as described in the [standard section](../../standards/tokens/LSP7-Digital-Asset.md). For migrating from ERC20 to LSP7, developers need to be aware of several key differences.
 
-:::info
+:::info Resources
 
-If you need more details about the interface differences between ERC20 and LSP7, please visit our [contract overview](../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page.
+See the [contract overview](../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page for the interface differences between ERC20 and LSP7.
 
 :::
 
@@ -44,7 +44,7 @@ contract MyERC20Token is ERC20 {
 }
 ```
 
-To create an LSP7 token, we should instead import `LSP7DigitalAsset` from [@lukso/lsp7-contracts](https://www.npmjs.com/package/@lukso/lsp7-contracts) package, and replace it in the inheritance.
+To create an LSP7 token, we should instead import `LSP7DigitalAsset` from the [`@lukso/lsp7-contracts`](https://www.npmjs.com/package/@lukso/lsp7-contracts) package, and replace it in the inheritance.
 
 To deploy an `LSP7DigitalAsset` we can use the same [`constructor`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#constructor) parameters. but we also need to specify 2 extra parameters (_explanations of params provided in the code comments below_).
 
@@ -120,13 +120,15 @@ There are 3 main differences for LSP7 to note
 
 - **Additional `force` parameter**: for the [`mint(...)`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#mint) and [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#ransfer) functions.
 
-For full compatibility with ERC20 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) in LSP7DigitalAsset for more info).
+For full compatibility with ERC20 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the [**LSP1UniversalReceiver** interfaceId](../../contracts/interface-ids.md).
+
+> See the [**LSP7 Standard > `force` mint and transfer**](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks#force-mint-and-transfer) section for more details.
 
 - **Additional `data` field**: for the `mint(...)`, `transfer(...)`, and [`burn(...)`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md#burn) functions.
 
 For full compatibility with ERC20 behavior, set this to empty bytes `""`. This data is only relevant when the recipient is a smart contract that supports the LSP1 interfaceId, where the data will be sent and the recipient can act on it (_e.g., reject the transfer, forward the tokens to a vault, etc..._).
 
-> Check the [**LSP7 > LSP1 Token Hooks**](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) section in the LSP7DigitalAsset standard page for more details.
+> See the [**LSP7 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) section for more details.
 
 - **LSP7 metadata is generic**: via a [flexible data key / value store](<(../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdatabatch).
 
@@ -164,20 +166,39 @@ Services like dApps and Indexers can use different events from LSP7 to listen to
 
 ### Basic Token Information
 
-In ERC20, the name and symbol of a token can be retrieved by calling their own function:
+<div style={{display: "flex", justifyContent: "space-between"}}>
+
+<div style={{width: "64%"}}>
+
+**ERC20**
 
 ```javascript
-// ERC20
 const name = await token.name();
 const symbol = await token.symbol();
 ```
 
-In LSP7, the token name and symbol can be retrieved with [getData](../../contracts/contracts/ERC725/ERC725.md#getdata) function. They are stored encoded in the generic metadata key-value store under the data keys [`LSP4TokenName`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol). Once the raw hex encoded value fetched, you will need to decode it into a human readable string. See the code sample below.
+</div>
+
+<div style={{width: "34%"}}>
+
+**How to retrieve?**
+
+In ERC20, the name and symbol of a token can be retrieved by calling their own function.
+
+</div>
+</div>
+
+<div style={{display: "flex", justifyContent: "space-between"}}>
+
+<div style={{width: "64%"}}>
+
+**LSP7**
 
 ```javascript
-// LSP7
-const nameKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4TokenName'));
-const symbolKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4TokenSymbol'));
+import { keccak256, toUtf8Bytes } from 'ethers';
+
+const nameKey = keccak256(toUtf8Bytes('LSP4TokenName'));
+const symbolKey = keccak256(toUtf8Bytes('LSP4TokenSymbol'));
 
 const nameValue = await token.getData(nameKey);
 const symbolValue = await token.getData(symbolKey);
@@ -185,6 +206,19 @@ const symbolValue = await token.getData(symbolKey);
 const name = ethers.toUtf8String(nameValue);
 const symbol = ethers.toUtf8String(symbolValue);
 ```
+
+</div>
+
+<div style={{width: "34%"}}>
+
+**How to retrieve?**
+
+In LSP7, the token name and symbol can be retrieved with [`getData(bytes32)`](../../contracts/contracts/ERC725/ERC725.md#getdata). They are stored in the generic metadata key-value store under the data keys [`LSP4TokenName`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol).
+
+Once you have fetched the raw hex encoded value, you will need to decode it into a human readable string.
+
+</div>
+</div>
 
 You can import the list of data keys related to each individual LSP standard from one of our library. There are 2 options:
 
@@ -340,8 +374,4 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
         ]
     }
 }
-```
-
-```
-
 ```
