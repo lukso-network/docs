@@ -64,7 +64,7 @@ contract MyLSP8Token is LSP8IdentifiableDigitalAsset {
         string memory symbol, // Symbol of the token
         address tokenOwner, // Owner able to add extensions and change metadata
         // highlight-next-line
-        uint256 lsp4TokenType_, // 1 if representing an NFT, 2 if representing an advanced collection of multiple NFTs
+        uint256 lsp4TokenType_, // 1 if NFT, 2 if an advanced collection of multiple NFTs
         // highlight-next-line
         uint256 lsp8TokenIdFormat_ // 0 for compatibility with ERC721, check LSP8 specs for other values
     ) LSP8IdentifiableDigitalAsset(name, symbol, tokenOwner, lsp4TokenType_, lsp8TokenIdFormat_) {
