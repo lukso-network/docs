@@ -6,6 +6,10 @@ description: 'Run a Mainnet LUKSO node with one of the three options: Dappnode, 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import discordIcon from '../../../static/img/icons/discord.png'
+import githubIcon from '../../../static/img/icons/github.png'
+import protocolGuildIcon from '../../../static/img/icons/protocol-guild.png'
+import bookIcon from '../../../static/img/icons/book.png'
 
 :::success Node operators mailing list
 
@@ -43,12 +47,12 @@ The LUKSO network currently supports the following clients versions:
 
 **Execution Clients**
 
-| Client     | Version | Release                                                         |
-| ---------- | ------- | --------------------------------------------------------------- |
-| Geth       | v1.14.7 | https://github.com/ethereum/go-ethereum/releases/tag/v1.14.7    |
-| Erigon     | v2.60.4 | https://github.com/ledgerwatch/erigon/releases/tag/v2.60.4      |
-| Nethermind | v1.27.0 | https://github.com/NethermindEth/nethermind/releases/tag/1.27.0 |
-| Besu       | v24.7.0 | https://github.com/hyperledger/besu/releases/tag/24.7.0         |
+| Client     | Version | Release                                                         | Github   |
+| ---------- | ------- | --------------------------------------------------------------- |---       |
+| Geth       | v1.14.7 | https://github.com/ethereum/go-ethereum/releases/tag/v1.14.7    |          |
+| Erigon     | v2.60.4 | https://github.com/ledgerwatch/erigon/releases/tag/v2.60.4      |          |
+| Nethermind | v1.27.0 | https://github.com/NethermindEth/nethermind/releases/tag/1.27.0 |          |
+| Besu       | v24.7.0 | https://github.com/hyperledger/besu/releases/tag/24.7.0         |          |
 
 **Consensus Clients**
 
@@ -57,6 +61,101 @@ The LUKSO network currently supports the following clients versions:
 | Prysm      | v5.0.4  | https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.4 |
 | Lighthouse | v5.2.1  | https://github.com/sigp/lighthouse/releases/tag/v5.2.1     |
 | Teku       | v24.6.1 | https://github.com/Consensys/teku/releases/tag/24.6.1      |
+
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Github</th>
+    <th>Docs</th>
+    <th>Chat</th>
+    <th>Status</th>
+    <th>Support</th>
+    <th>Language</th>
+    <th>Donate</th>
+  </tr>
+  <tr>
+    <td><a href="https://geth.ethereum.org/">Geth</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ethereum/go-ethereum"><img style={{verticalAlign: 'middle'}} src={githubIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://geth.ethereum.org/docs"><img style={{verticalAlign: 'middle'}} src={bookIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/nthXNEv"><img style={{verticalAlign: 'middle'}} src={discordIcon}/></a></td>
+    <td>Alpha</td>
+    <td>Windows, Linux, ARM</td>
+    <td><a href="https://go.dev/">Golang</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://erigon.tech/">Erigon</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ledgerwatch/erigon"><img style={{verticalAlign: 'middle'}} src={githubIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://erigon.gitbook.io/erigon"><img style={{verticalAlign: 'middle'}} src={bookIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon?tab=readme-ov-file#erigon-discord-server"><img style={{verticalAlign: 'middle'}} src={discordIcon}/></a></td>
+    <td>Alpha</td>
+    <td>Windows, Linux, ARM</td>
+    <td><a href="https://go.dev/">Golang</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://www.hyperledger.org/projects/besu">Besu</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/hyperledger/besu"><img style={{verticalAlign: 'middle'}} src={githubIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://besu.hyperledger.org/"><img style={{verticalAlign: 'middle'}} src={bookIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/hyperledger"><img style={{verticalAlign: 'middle'}} src={discordIcon}/></a></td>
+    <td>Alpha</td>
+    <td>Windows, Linux, ARM</td>
+    <td><a href="https://www.java.com/">Java</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://www.nethermind.io/nethermind-client">Nethermind</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/NethermindEth/nethermind"><img style={{verticalAlign: 'middle'}} src={githubIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.nethermind.io/"><img style={{verticalAlign: 'middle'}} src={bookIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/PaCMRFdvWT"><img style={{verticalAlign: 'middle'}} src={discordIcon}/></a></td>
+    <td>Alpha</td>
+    <td>Windows, Linux, ARM</td>
+    <td><a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# </a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Github</th>
+    <th>Docs</th>
+    <th>Chat</th>
+    <th>Status</th>
+    <th>Support</th>
+    <th>Language</th>
+    <th>Donate</th>
+  </tr>
+  <tr>
+    <td><a href="https://prysmaticlabs.com/">Prysm</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/prysmaticlabs/prysm"><img style={{verticalAlign: 'middle'}} src={githubIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.prylabs.network/docs/getting-started"><img style={{verticalAlign: 'middle'}} src={bookIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/prysmaticlabs"><img style={{verticalAlign: 'middle'}} src={discordIcon}/></a></td>
+    <td>Alpha</td>
+    <td>Windows, Linux, ARM</td>
+    <td><a href="https://go.dev/">Golang</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://lighthouse.sigmaprime.io/">Lighthouse</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/sigp/lighthouse"><img style={{verticalAlign: 'middle'}} src={githubIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://lighthouse-book.sigmaprime.io/"><img style={{verticalAlign: 'middle'}} src={bookIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/cyAszAh"><img style={{verticalAlign: 'middle'}} src={discordIcon}/></a></td>
+    <td>Alpha</td>
+    <td>Windows, Linux, ARM</td>
+    <td><a href="https://www.rust-lang.org/">Rust</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://consensys.io/teku">Teku</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/Consensys/teku"><img style={{verticalAlign: 'middle'}} src={githubIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.teku.consensys.io/"><img style={{verticalAlign: 'middle'}} src={bookIcon}/></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/consensys"><img style={{verticalAlign: 'middle'}} src={discordIcon}/></a></td>
+    <td>Alpha</td>
+    <td>Windows, Linux, ARM</td>
+    <td><a href="https://www.java.com/">Java</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+</table>
 
 :::info
 
