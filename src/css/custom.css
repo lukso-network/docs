@@ -317,3 +317,8 @@ div.cardwithimage {
 #token-nft-combinations td {
   text-align: center;
 }
+
+table#erc20-to-lsp7-table pre {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}

@@ -80,7 +80,11 @@ contract MyLSP7Token is LSP7DigitalAsset {
 
 Below are the function signatures of the transfer functions for ERC20 and LSP7, respectively.
 
-ERC20:
+<div style={{display: "flex", justifyContent: "space-between"}}>
+
+<div style={{width: "48%"}}>
+
+**ERC20**
 
 ```solidity
 function transferFrom(
@@ -90,7 +94,11 @@ function transferFrom(
 ) external;
 ```
 
-LSP7:
+</div>
+
+<div style={{width: "48%"}}>
+
+**LSP7**
 
 ```solidity
 function transfer(
@@ -101,8 +109,12 @@ function transfer(
     bool force,
     // highlight-next-line
     bytes data
-);
+) external;
 ```
+
+</div>
+
+</div>
 
 There are 3 main differences for LSP7 to note
 
@@ -162,8 +174,6 @@ const symbol = await token.symbol();
 
 In LSP7, the token name and symbol can be retrieved with [getData](../../contracts/contracts/ERC725/ERC725.md#getdata) function. They are stored encoded in the generic metadata key-value store under the data keys [`LSP4TokenName`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname) and [`LSP4TokenSymbol`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol). Once the raw hex encoded value fetched, you will need to decode it into a human readable string. See the code sample below.
 
-You can import the list of data keys related to each individual LSP standard from one of our library. There are 2 options:
-
 ```javascript
 // LSP7
 const nameKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4TokenName'));
@@ -176,47 +186,55 @@ const name = ethers.toUtf8String(nameValue);
 const symbol = ethers.toUtf8String(symbolValue);
 ```
 
+You can import the list of data keys related to each individual LSP standard from one of our library. There are 2 options:
+
 <Tabs>
 
-<TabItem value="javascript" label="Javascript" attributes={{className: "tab_javascript"}}>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
-For dApp developers, you can import the data keys from the `@lukso/lsp-smart-contracts`:
-
-Or you can obtain the full schema with all the definitions from our [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) librarie. **This library will also help you to [encode easily](../../tools/erc725js/methods.md#encodedata) data key value pairs.**
+For dApp developers, you can import the data keys from the `@lukso/lsp-smart-contracts` and use them directly in your scripts via _ethers.js_ or _web3.js_.
 
 ```javascript
-// LSP7
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
 const nameKey = ERC725YDataKeys.LSP4.LSP4TokenName;
 const symbolKey = ERC725YDataKeys.LSP4.LSP4TokenSymbol;
 
-const nameValue = await token.getData(nameKey);
-const symbolValue = await token.getData(symbolKey);
+const nameValue = await token.getData(nameKey); // 0x555020417374726f20373235
+const symbolValue = await token.getData(symbolKey); // 0x5550373235
 
-const name = ethers.toUtf8String(nameValue);
-const symbol = ethers.toUtf8String(symbolValue);
+const name = ethers.toUtf8String(nameValue); // UP Astro 725
+const symbol = ethers.toUtf8String(symbolValue); // UP725
 ```
+
+</TabItem>
+
+<TabItem value="erc725.js" label="erc725.js" attributes={{className: "tab_erc725"}}>
+
+You can also obtain the full schema with all the definitions from our [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) librarie. **This library will also help you to [encode easily](../../tools/erc725js/methods.md#encodedata) data key value pairs.**
 
 You can also import the [full schema definition](../../tools/erc725js/schemas.md) of the LSP4 Metadata from `@erc725/erc725.js`. The library can also provide convenience for fetching, encoding and decoding.
 
+<!-- prettier-ignore-start -->
+
 ```javascript title="Example of decoding using the LSP4 schema and erc725.js"
-// LSP7
 import { ERC725 } from '@erc725/erc725.js';
 import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAssetMetadata.json';
 
 const nameKey = LSP4Schema.find((schema) => schema.name == 'LSP4TokenName').key;
-const symbolKey = LSP4Schema.find(
-  (schema) => schema.name == 'LSP4TokenSymbol',
-).key;
+const symbolKey = LSP4Schema.find((schema) => schema.name == 'LSP4TokenSymbol').key;
+
+const nameValue = await token.getData(nameKey); // 0x555020417374726f20373235
+const symbolValue = await token.getData(symbolKey); // 0x5550373235
 
 const [name, symbol] = ERC725.decodeData([
   {
     keyName: 'LSP4TokenName',
-    value: '0x555020417374726f20373235', // obtained via `await token.getData(nameKey)`
+    value: nameValue,
   },
   {
     keyName: 'LSP4TokenSymbol',
-    value: '0x5550373235', // obtained via `await token.getData(symbolKey)`
+    value: symbolValue,
   },
 ]);
 /**
@@ -235,9 +253,7 @@ const [name, symbol] = ERC725.decodeData([
 */
 ```
 
-</TabItem>
-
-<TabItem value="solidity" label="Solidity" attributes={{className: "tab_solidity"}}>
+<!-- prettier-ignore-end -->
 
 </TabItem>
 
@@ -324,4 +340,8 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
         ]
     }
 }
+```
+
+```
+
 ```
