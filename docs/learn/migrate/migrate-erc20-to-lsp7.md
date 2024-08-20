@@ -245,7 +245,7 @@ const symbol = ethers.toUtf8String(symbolValue); // UP725
 
 <TabItem value="erc725.js" label="erc725.js" attributes={{className: "tab_erc725"}}>
 
-You can also obtain the full schema with all the definitions from our [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) librarie. **This library will also help you to [encode easily](../../tools/erc725js/methods.md#encodedata) data key value pairs.**
+You can also obtain the full schema with all the definitions from our [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) library. **This library will also help you to [encode easily](../../tools/erc725js/methods.md#encodedata) data key value pairs.**
 
 You can also import the [full schema definition](../../tools/erc725js/schemas.md) of the LSP4 Metadata from `@erc725/erc725.js`. The library can also provide convenience for fetching, encoding and decoding.
 

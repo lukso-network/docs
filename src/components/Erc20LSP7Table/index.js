@@ -101,21 +101,16 @@ export default function Erc20LSP7Table() {
               <br />
               );
             </pre>
-            <ul>
-              <li>
-                <a href="../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator">
-                  🔍 Function details
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://explorer.execution.mainnet.lukso.network/tx/0xdb96632f0fe300bf1f9e27ff67835b6bd2fc94a4470a2896a85de54a5de49175"
-                  target="_blank"
-                >
-                  🔀 Example Transaction
-                </a>
-              </li>
-            </ul>
+            <a href="../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator">
+              🔍 Function details
+            </a>{' '}
+            <br />
+            <a
+              href="https://explorer.execution.mainnet.lukso.network/tx/0xdb96632f0fe300bf1f9e27ff67835b6bd2fc94a4470a2896a85de54a5de49175"
+              target="_blank"
+            >
+              🔀 Example Transaction
+            </a>
           </td>
         </tr>
         <tr>
@@ -131,16 +126,9 @@ export default function Erc20LSP7Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <ul>
-              <li>
-                <a href="../../contracts/contracts/LSP7DigitalAsset/#revokeoperator">
-                  🔍 Function details
-                </a>
-              </li>
-              <li>
-                <a href="#">🔀 Example Transaction</a>
-              </li>
-            </ul>
+            <a href="../../contracts/contracts/LSP7DigitalAsset/#revokeoperator">
+              🔍 Function details
+            </a>
           </td>
         </tr>
         <tr style={{ backgroundColor: 'transparent' }}>
@@ -158,16 +146,9 @@ export default function Erc20LSP7Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <ul>
-              <li>
-                <a href="../../contracts/contracts/LSP7DigitalAsset/#increaseallowance">
-                  🔍 Function details
-                </a>
-              </li>
-              <li>
-                <a href="#">🔀 Example Transaction</a>
-              </li>
-            </ul>
+            <a href="../../contracts/contracts/LSP7DigitalAsset/#increaseallowance">
+              🔍 Function details
+            </a>
           </td>
         </tr>
         <tr>
@@ -185,16 +166,9 @@ export default function Erc20LSP7Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <ul>
-              <li>
-                <a href="../../contracts/contracts/LSP7DigitalAsset/#decreaseallowance">
-                  🔍 Function details
-                </a>
-              </li>
-              <li>
-                <a href="#">🔀 Example Transaction</a>
-              </li>
-            </ul>
+            <a href="../../contracts/contracts/LSP7DigitalAsset/#decreaseallowance">
+              🔍 Function details
+            </a>
           </td>
         </tr>
         <tr style={{ backgroundColor: 'transparent' }}>
@@ -220,16 +194,9 @@ export default function Erc20LSP7Table() {
               Pass the <code>msg.sender</code> address as <code>from</code>{' '}
               parameter.
             </p>
-            <ul>
-              <li>
-                <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
-                  🔍 Function details
-                </a>
-              </li>
-              <li>
-                <a href="#">🔀 Example Transaction</a>
-              </li>
-            </ul>
+            <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
+              🔍 Function details
+            </a>
           </td>
         </tr>
         <tr style={{ backgroundColor: 'transparent' }}>
@@ -265,16 +232,9 @@ export default function Erc20LSP7Table() {
               Use <code>msg.sender</code> as an operator and use a different{' '}
               <code>from</code> address to transfer tokens from.
             </p>
-            <ul>
-              <li>
-                <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
-                  🔍 Function details
-                </a>
-              </li>
-              <li>
-                <a href="#">🔀 Example Transaction</a>
-              </li>
-            </ul>
+            <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
+              🔍 Function details
+            </a>
           </td>
         </tr>
         <tr style={{ backgroundColor: 'transparent' }}>
@@ -301,16 +261,9 @@ export default function Erc20LSP7Table() {
                 </a>
               </i>
             </p>
-            <ul>
-              <li>
-                <a href="../../contracts/contracts/LSP7DigitalAsset/#transferbatch">
-                  🔍 Function details
-                </a>
-              </li>
-              <li>
-                <a href="#">🔀 Example Transaction</a>
-              </li>
-            </ul>
+            <a href="../../contracts/contracts/LSP7DigitalAsset/#transferbatch">
+              🔍 Function details
+            </a>
           </td>
         </tr>
         <tr style={{ backgroundColor: 'transparent' }}>
@@ -328,16 +281,9 @@ export default function Erc20LSP7Table() {
                 <li>Update the token contract metadata.</li>
                 <li>etc...</li>
               </ol>
-              <ul>
-                <li>
-                  <a href="../../contracts/contracts/LSP7DigitalAsset/#batchcalls">
-                    🔍 Function details
-                  </a>
-                </li>
-                <li>
-                  <a href="#">🔀 Example Transaction</a>
-                </li>
-              </ul>
+              <a href="../../contracts/contracts/LSP7DigitalAsset/#batchcalls">
+                🔍 Function details
+              </a>
             </p>
           </td>
         </tr>

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Erc721LSP8Table() {
   return (
-    <table width="100%">
+    <table id="erc721-to-lsp8-table" width="100%">
       <thead>
         <tr>
           <th>ERC721 Function</th>
@@ -10,65 +10,82 @@ export default function Erc721LSP8Table() {
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
-            <code>name()</code>
+            <pre language="solidity">name()</pre>
           </td>
           <td>
-            <code>getData(bytes32 dataKey)</code> with <br />{' '}
-            <code>dataKey = keccak256('LSP4TokenName')</code>
+            <pre language="javascript">
+              const dataKey = keccak256('LSP4TokenName')
+              <br />
+              getData(bytes32 dataKey)
+            </pre>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
-            <code>symbol()</code>
+            <pre language="solidity">symbol()</pre>
           </td>
           <td>
-            <code>getData(bytes32 dataKey)</code> with <br />{' '}
-            <code>dataKey = keccak256('LSP4TokenSymbol')</code>
+            <pre language="javascript">
+              const dataKey = keccak256('LSP4TokenSymbol')
+              <br />
+              getData(bytes32 dataKey)
+            </pre>
           </td>
         </tr>
         <tr style={{ backgroundColor: '#dcfce7' }}>
           <td>
-            <code>balanceOf(address owner)</code>
+            <pre language="solidity">balanceOf(address owner)</pre>
           </td>
           <td>
-            <code>balanceOf(address tokenOwner)</code>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>ownerOf(uint256 tokenId)</code>
-          </td>
-          <td>
-            <code>tokenOwnerOf(bytes32 tokenId)</code>
+            <pre language="solidity">balanceOf(address tokenOwner)</pre>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
-            <code>approve(address to, uint256 tokenId)</code>
+            <pre language="solidity">ownerOf(uint256 tokenId)</pre>
           </td>
           <td>
-            <code>
-              authorizeOperator(address operator,
+            <pre language="solidity">tokenOwnerOf(bytes32 tokenId)</pre>
+          </td>
+        </tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
+          <td>
+            <pre language="solidity">approve(address to, uint256 tokenId)</pre>
+          </td>
+          <td>
+            <pre language="solidity">
+              authorizeOperator(
               <br />
-              bytes32 tokenId,
+              {'  '}address operator,
               <br />
-              bytes memory data)
-            </code>
+              {'  '}bytes32 tokenId,
+              <br />
+              {'  '}bytes memory data
+              <br />)
+            </pre>
+            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#authorizeoperator">
+              🔍 Function details
+            </a>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
-            <code>getApproved(uint256 tokenId)</code>
+            <pre language="solidity">getApproved(uint256 tokenId)</pre>
           </td>
           <td>
-            <code>getOperatorsOf(bytes32 tokenId)</code>
+            <pre language="solidity">getOperatorsOf(bytes32 tokenId)</pre>
+            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#getoperatorsof">
+              🔍 Function details
+            </a>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
-            <code>setApprovalForAll(address operator, bool approved) </code>
+            <pre language="solidity">
+              setApprovalForAll(address operator, bool approved)
+            </pre>
           </td>
           <td>
             <i>
@@ -76,78 +93,139 @@ export default function Erc721LSP8Table() {
             </i>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
-            <code>isApprovedForAll(address owner, address operator)</code>
+            <pre language="solidity">
+              isApprovedForAll(address owner, address operator)
+            </pre>
           </td>
           <td>
-            <code>
-              isOperatorFor(address operator,
+            <pre language="solidity">
+              isOperatorFor(
               <br />
-              bytes32 tokenId)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>transferFrom(address from, address to, uint256 tokenId)</code>
-          </td>
-          <td>
-            <code>
-              transfer(address from,
+              {'  '}address operator,
               <br />
-              address to,
-              <br />
-              bytes32 tokenId,
-              <br />
-              bool force,
-              <br />
-              bytes memory data)
-            </code>
+              {'  '}bytes32 tokenId
+              <br />)
+            </pre>
+            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#isoperatorfor">
+              🔍 Function details
+            </a>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
-            <code>
-              safeTransferFrom(address from, address to, uint256 tokenId)
-            </code>
+            <pre language="solidity">
+              transferFrom(
+              <br />
+              {'  '}address from,
+              <br />
+              {'  '}address to,
+              <br />
+              {'  '}uint256 tokenId
+              <br />)
+            </pre>
           </td>
           <td>
-            <code>
-              transfer(address from,
+            <pre language="solidity">
+              transfer(
               <br />
-              address to,
+              {'  '}address from,
               <br />
-              bytes32 tokenId,
+              {'  '}address to,
               <br />
-              bool force,
+              {'  '}bytes32 tokenId,
               <br />
-              bytes memory data)
-            </code>
+              {'  '}bool force,
+              <br />
+              {'  '}bytes memory data
+              <br />)
+            </pre>
+            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer">
+              🔍 Function details
+            </a>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
+          <td>
+            <pre language="solidity">
+              safeTransferFrom(
+              <br />
+              {'  '}address from,
+              <br />
+              {'  '}address to,
+              <br />
+              {'  '}uint256 tokenId
+              <br />)
+            </pre>
+          </td>
+          <td>
+            <pre language="solidity">
+              transfer(
+              <br />
+              {'  '}address from,
+              <br />
+              {'  '}address to,
+              <br />
+              {'  '}bytes32 tokenId,
+              <br />
+              {'  '}bool force,
+              <br />
+              {'  '}bytes memory data
+              <br />)
+            </pre>
+            <p style={{ marginBottom: '1rem' }}>
+              Set <code>force = false</code> for safe transfer behavior
+            </p>
+            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer">
+              🔍 Function details
+            </a>
+          </td>
+        </tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
             <i>No equivalent</i>
           </td>
           <td>
-            <code>
-              revokeOperator(address operator,
+            <pre language="solidity">
+              revokeOperator(
               <br />
-              bytes32 tokenId,
+              {'  '}address operator,
               <br />
-              bool notify,
+              {'  '}bytes32 tokenId,
               <br />
-              bytes memory data)
-            </code>
+              {'  '}bool notify,
+              <br />
+              {'  '}bytes memory data
+              <br />)
+            </pre>
+            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#revokeoperator">
+              🔍 Function details
+            </a>
           </td>
         </tr>
-        <tr>
+        <tr style={{ backgroundColor: 'transparent' }}>
           <td>
             <i>No equivalent</i>
           </td>
           <td>
-            <code>batchCalls(bytes[] memory data)</code>
+            <pre language="solidity">batchCalls(bytes[] memory data)</pre>
+            <p style={{ marginBottom: '1rem' }}>
+              Allows to pass multiple calls into a single transaction. For
+              instance:
+              <ol>
+                <li>Transfer an NFT to an address.</li>
+                <li>Authorize an operator for a specific token.</li>
+                <li>Update the token contract metadata.</li>
+                <li>etc...</li>
+              </ol>
+            </p>
+            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#batchcalls">
+              🔍 Function details
+            </a>
+            {/* <li>
+                <a href="#">🔀 Example Transaction</a>
+              </li> */}
           </td>
         </tr>
       </tbody>
