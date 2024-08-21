@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Create a LSP1 Forwarder'
+sidebar_label: 'Create a Token Forwarder'
 sidebar_position: 2
 description: This smart contract tutorial guides you on how to create a LSP1 Delegate contract that forwards portion of received tokens automatically to any address.
 ---
@@ -7,7 +7,7 @@ description: This smart contract tutorial guides you on how to create a LSP1 Del
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create a LSP1 Forwarder
+# Create a Token Forwarder
 
 This guide will teach you how to create a basic custom [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract for the following use-case:
 

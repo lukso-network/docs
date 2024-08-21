@@ -1,24 +1,35 @@
 ---
-sidebar_label: '🌅 ERC721 to LSP8'
+sidebar_label: '🖼️ ERC721 to LSP8'
 sidebar_position: 3
 description: Learn how to migrate your ERC721 token to the LSP8 Identifiable Digital Asset standard on LUKSO.
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 import Erc721LSP8Table from '@site/src/components/Erc721LSP8Table';
 
 # 🖼️ Migrate ERC721 to LSP8
 
+> 👇🏻 Hands on 📽️ Solidity Workshop Video for the [**Oxford Blockchain Society**](https://x.com/oxfordblocksoc) from March 2024.
+
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2WH1kI5iWJs?si=G8YNdmyL38us-2iP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 [LSP8IdentifiableDigitalAsset](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) is a new token standard that offers a wider range of functionality compared to [ERC721](https://eips.ethereum.org/EIPS/eip-721), as described in the [standard section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md). For migrating from ERC721 to LSP8, developers need to be aware of several key differences.
 
-:::info
+:::info Resources
 
-If you need more details about the interface differences between ERC721 and LSP8, please visit our [contract overview](../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page.
+See the [contract overview](../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page for the interface differences between ERC721 and LSP8.
 
 :::
 
-## Smart Contract Building
+## Comparisons
 
-Usually, to create an ERC721 token, `ERC721` is imported from [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package, and inherited.
+### Solidity code
+
+Usually, to create an ERC721 token, we import and inherit the `ERC721` contract from the [@openzeppelin/contracts](https://www.npmjs.com/package/@openzeppelin/contracts) package.
 
 ```solidity title="ERC721 Token"
 // SPDX-License-Identifier: MIT
@@ -33,48 +44,97 @@ contract MyERC721Token is ERC721 {
 }
 ```
 
-To create an LSP8 NFT, `LSP8` is imported from [@lukso/lsp8-contracts](https://www.npmjs.com/package/@lukso/lsp8-contracts) package, and inherited.
+To create an LSP8 token, we should instead import `LSP8IdentifiableDigitalAsset` from the [`@lukso/lsp8-contracts`](https://www.npmjs.com/package/@lukso/lsp8-contracts) package, and replace it in the inheritance.
 
-The constructor arguments definitions can be found explained in the [constructor API](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#constructor) section.
+To deploy an `LSP8IdentifiableDigitalAsset` we can use the same [`constructor`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#constructor) parameters, but we also need to specify 2 extra parameters (_explanations of params provided in the code comments below_).
 
-```js
+- the `lsp4TokenType_`.
+- the `lsp8TokenIdFormat_`.
+
+```solidity title="LSP8 Token"
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.15;
 
 import "@lukso/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol";
 
+// highlight-next-line
 contract MyLSP8Token is LSP8IdentifiableDigitalAsset {
     constructor(
         string memory name, // Name of the token
         string memory symbol, // Symbol of the token
         address tokenOwner, // Owner able to add extensions and change metadata
-        uint256 lsp4TokenType_, // 1 if representing an NFT, 2 if representing an advanced collection of multiple NFTs
+        // highlight-next-line
+        uint256 lsp4TokenType_, // 1 if NFT, 2 if an advanced collection of multiple NFTs
+        // highlight-next-line
         uint256 lsp8TokenIdFormat_ // 0 for compatibility with ERC721, check LSP8 specs for other values
     ) LSP8IdentifiableDigitalAsset(name, symbol, tokenOwner, lsp4TokenType_, lsp8TokenIdFormat_) {
-        // Your constructor logic
-        bytes32 tokenId = bytes32(uint256(1));
-        _mint(tokenOwner, tokenId, true, "");
+        // _mint(to, tokenId, force, data)
+        // force: should be set to true to allow EOA to receive tokens
+        // data: only relevant if the `to` is a smart contract supporting LSP1.
+        _mint(tokenOwner, bytes32(uint256(1)), true, "");
     }
 }
 ```
 
-## Behavior
-
-- For LSP8, the tokenId is represented as `bytes32` in contrast with ERC721 where its represented as `uint256`. This design decision allow for more representation of tokenIds.
+### Functions & Behaviors
 
 Below are the function signatures of the transfer functions for ERC721 and LSP8, respectively.
 
-ERC721: `function transferFrom(address from, address to, uint256 tokenId);`
+<div style={{display: "flex", justifyContent: "space-between"}}>
 
-LSP8: `function transfer(address from, address to, bytes32 tokenId, bool force, bytes data);`
+<div style={{width: "48%"}}>
 
-- For LSP8, **mint and transfer functions will have a `force` additional field**. For full compatibility with ERC721 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the LSP1 interfaceId. (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) in LSP8IdentifiableDigitalAsset for more info).
+**ERC721**
 
-- For LSP8, **mint, transfer, and burn functions will have `data` as an additional field**. For full compatibility with ERC721 behavior, set this to empty bytes. This data will only be relevant when the recipient is a smart contract address supporting the LSP1 interfaceId (Check [LSP1UniversalReceiver section](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks)in LSP8IdentifiableDigitalAsset for more info), where the data will be sent and the recipient can act on it (e.g., reject the transfer, forward the tokens to a vault, etc.).
+```solidity
+function transferFrom(
+    address from,
+    address to,
+    uint256 tokenId
+) external;
+```
 
-- **LSP8 metadata is generic**, in contrast to ERC721 where the metadata is limited to name and symbol and tokenURI. The [generic key-value store](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) in LSP8 allows for storing any possible data.
+</div>
 
-## Interacting with Contracts
+<div style={{width: "48%"}}>
+
+**LSP8**
+
+```solidity
+function transfer(
+    address from,
+    address to,
+    bytes32 tokenId,
+    // highlight-next-line
+    bool force,
+    // highlight-next-line
+    bytes data
+) external;
+```
+
+</div>
+
+</div>
+
+There are 4 main differences for LSP8 to note:
+
+- **TokenId representation**: In LSP8, the `tokenId` is represented as `bytes32` instead of `uint256` in ERC721. This allows for more flexible token identification schemes.
+
+- **Additional `force` parameter**: for the [`mint(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint) and [`transfer(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) functions.
+
+For full compatibility with ERC721 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the [**LSP1UniversalReceiver** interfaceId](../../contracts/interface-ids.md).
+
+> See the [**LSP8 Standard > `force` mint and transfer**](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks#force-mint-and-transfer) section for more details.
+
+- **Additional `data` field**: for the `mint(...)`, `transfer(...)`, and [`burn(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.md#burn) functions.
+
+For full compatibility with ERC721 behavior, set this to empty bytes `""`. This data is only relevant when the recipient is a smart contract that supports the LSP1 interfaceId, where the data will be sent and the recipient can act on it (_e.g., reject the transfer, forward the tokens to a vault, etc..._).
+
+> See the [**LSP8 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) section for more details.
+
+- **LSP8 metadata is generic**: via a [flexible data key / value store](<(../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdatabatch).
+
+### Interact with the Token Contract
 
 :::info
 
@@ -82,46 +142,65 @@ To check function definitions and explanations of behavior and each parameter, c
 
 :::
 
-To interact with LSP8IdentifiableDigitalAsset contract, different functions should be called. This is a table comparing function definitions:
+To interact with the LSP8IdentifiableDigitalAsset contract, different functions should be called. This is a table comparing the different function definitions:
 
 <Erc721LSP8Table/>
 
-## dApps and Indexers
+### Events
 
 :::info
 
-To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md) section.
+To check event definitions and explanations of behavior and each parameter, check [API Reference](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#events) section.
 
 :::
 
-The table below shows the different event definitions that should be used to track activity on an LSP8-IdentifiableDigitalAsset contract.
+Services like dApps and Indexers can use different events from LSP8 to listen to activities. The table below shows the different event definitions that should be used to track activity on an LSP8-IdentifiableDigitalAsset contract.
 
-| ERC721 Event                                                                         | LSP8 Event                                                                                                                                      |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Transfer(address indexed from, address indexed to, uint256 indexed tokenId)`        | `Transfer(address operator, address indexed from, address indexed to, bytes32 indexed tokenId, bool force, bytes data)`                         |
-| `Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)` | `OperatorAuthorizationChanged(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bytes operatorNotificationData)`   |
-| `ApprovalForAll(address indexed owner, address indexed operator, bool approved)`     | _No direct equivalent_                                                                                                                          |
-| _No equivalent_                                                                      | `OperatorRevoked(address indexed operator, address indexed tokenOwner, bytes32 indexed tokenId, bool notified, bytes operatorNotificationData)` |
+| ERC721 Event                                                                                                                       | LSP8 Event                                                                                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <pre lang="solidity">Transfer(<br/> address indexed from,<br/> address indexed to,<br/> uint256 indexed tokenId<br/>);</pre>       | <pre lang="solidity">Transfer(<br/> address operator,<br/> address indexed from,<br/> address indexed to,<br/> bytes32 indexed tokenId,<br/> bool force,<br/> bytes data<br/>)</pre>                    |
+| <pre lang="solidity">Approval(<br/> address indexed owner,<br/> address indexed approved,<br/> uint256 indexed tokenId<br/>)</pre> | <pre lang="solidity">OperatorAuthorizationChanged(<br/> address indexed operator,<br/> address indexed tokenOwner,<br/> bytes32 indexed tokenId,<br/> bytes operatorNotificationData<br/>);</pre>       |
+| <pre lang="solidity">ApprovalForAll(<br/> address indexed owner,<br/> address indexed operator,<br/> bool approved<br/>)</pre>     | _No direct equivalent_                                                                                                                                                                                  |
+| _No equivalent_                                                                                                                    | <pre lang="solidity">OperatorRevoked(<br/> address indexed operator,<br/> address indexed tokenOwner,<br/> bytes32 indexed tokenId,<br/> bool notified,<br/> bytes operatorNotificationData<br/>)</pre> |
 
 ## Metadata Management
 
 ### Basic Token Information
 
-In ERC721, the name, symbol and the tokenURI of a tokenId can be retrieved by calling their own function:
+<div style={{display: "flex", justifyContent: "space-between"}}>
+
+<div style={{width: "58%"}}>
+
+**ERC721**
 
 ```javascript
-// ERC721
 const name = await token.name();
 const symbol = await token.symbol();
 const tokenURI = await token.tokenURI(tokenId);
 ```
 
-In LSP8, the token name and symbol can be retrieved with [getData](../../contracts/contracts/ERC725/ERC725.md#getdata) function, since LSP8 uses a generic metadata key value store:
+</div>
+
+<div style={{width: "41.3%"}}>
+
+**How to retrieve?**
+
+In ERC721, the name, symbol, and tokenURI of a token can be retrieved by calling their own functions.
+
+</div>
+</div>
+
+<div style={{display: "flex", justifyContent: "space-between"}}>
+
+<div style={{width: "58%"}}>
+
+**LSP8**
 
 ```javascript
-// LSP8
-const nameKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4TokenName'));
-const symbolKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4TokenSymbol'));
+import { keccak256, toUtf8Bytes } from 'ethers';
+
+const nameKey = keccak256(toUtf8Bytes('LSP4TokenName'));
+const symbolKey = keccak256(toUtf8Bytes('LSP4TokenSymbol'));
 
 const nameValue = await token.getData(nameKey);
 const symbolValue = await token.getData(symbolKey);
@@ -130,19 +209,108 @@ const name = ethers.toUtf8String(nameValue);
 const symbol = ethers.toUtf8String(symbolValue);
 ```
 
-### Extended Token Metadata
+</div>
 
-:::info
+<div style={{width: "41.3%"}}>
 
-To learn more about setting and creating the LSP4Metadata JSON, check the [metadata](../digital-assets/metadata-management/metadata-preparation.md) section.
+**How to retrieve?**
+
+In LSP8, the token name, symbol and base URI can be retrieved with [`getData(bytes32)`](../../contracts/contracts/ERC725/ERC725.md#getdata). They are stored in the generic metadata key-value store under the data keys [`LSP4TokenName`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokenname), [`LSP4TokenSymbol`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokensymbol) and [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri).
+
+Once you have fetched the raw hex encoded value, you will need to decode it into a human readable string.
+
+</div>
+</div>
+
+You can import the list of data keys related to each individual LSP standard from one of our library. There are 2 options:
+
+<Tabs>
+
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+For dApp developers, you can import the data keys from the `@lukso/lsp-smart-contracts` and use them directly in your scripts via _ethers.js_ or _web3.js_.
+
+```javascript
+import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
+
+const nameKey = ERC725YDataKeys.LSP4.LSP4TokenName;
+const symbolKey = ERC725YDataKeys.LSP4.LSP4TokenSymbol;
+
+const nameValue = await token.getData(nameKey); // 0x4c5350382050726f66696c65
+const symbolValue = await token.getData(symbolKey); // 0x4c5350382050726f66696c65
+
+const name = ethers.toUtf8String(nameValue); // Cool NFT
+const symbol = ethers.toUtf8String(symbolValue); // COOL
+```
+
+</TabItem>
+
+<TabItem value="erc725.js" label="erc725.js" attributes={{className: "tab_erc725"}}>
+
+You can also obtain the [full schema definition](../../tools/erc725js/schemas.md) of the LSP4 Metadata from [`@erc725/erc725.js`](../../tools/erc725js/getting-started.md) library. **This library will also help you to [encode easily](../../tools/erc725js/methods.md#encodedata) data key value pairs.**
+
+```javascript
+import { ERC725 } from '@erc725/erc725.js';
+import LSP4Schema from '@erc725/erc725.js/schemas/LSP4DigitalAssetMetadata.json';
+
+const nameKey = LSP4Schema.find((schema) => schema.name == 'LSP4TokenName').key;
+const symbolKey = LSP4Schema.find(
+  (schema) => schema.name == 'LSP4TokenSymbol',
+).key;
+
+const nameValue = await token.getData(nameKey); // 0x4c5350382050726f66696c65
+const symbolValue = await token.getData(symbolKey); // 0x4c5350382050726f66696c65
+
+const [name, symbol] = ERC725.decodeData([
+  {
+    keyName: 'LSP4TokenName',
+    value: nameValue,
+  },
+  {
+    keyName: 'LSP4TokenSymbol',
+    value: symbolValue,
+  },
+]);
+/**
+[
+  {
+    name: 'LSP4TokenName',
+    key: '0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1',
+    value: "Cool NFT",
+  },
+  {
+    name: 'LSP4TokenSymbol',
+    key: '0x2f0a68ab07768e01943a599e73362a0e17a63a72e94dd2e384d2c1d4db932756',
+    value: "COOL",
+  },
+]
+*/
+```
+
+</TabItem>
+
+</Tabs>
+
+### Extended Collection Metadata
+
+:::success Tutorial 🎥
+
+See the [**Metadata Management**](../digital-assets/metadata-management/edit-token-metadata.md) guide + video for how to create and set the JSON metadata for your LSP8 Token.
 
 :::
 
-LSP8 allows for more flexible and extensive metadata storage directly on-chain. You can store a JSON object containing information about the whole NFT contract and for each individual tokenId.
+[LSP8 allows for more flexible and extensible metadata](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp8-collection-vs-tokenid-metadata). You can store a JSON object containing information about:
 
-#### For the NFT contract
+- the whole NFT Collection contract
+- and for each individual NFT `tokenId`.
 
-```js
+The [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) is a JSON object that can contain many information about the token, including:
+
+- 🌐 **official link to websites** (_e.g: project website, social medias, community channels, etc..._).
+- 🖼️ **images** (token icon and backgrounds) to display the token in dApps, explorers, or decentralised exchanges.
+- 🏷️ **custom attributes** (for each specific NFTs for instance, can be displayed as badges on UIs).
+
+```javascript
 const metadataKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4Metadata'));
 const storedMetadata = await token.getData(metadataKey);
 const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
@@ -151,21 +319,36 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
 
 {
     LSP4Metadata: {
-        description: 'A unique digital artwork.',
+        description: 'A unique digital artwork collection.',
         links: [
-            { title: 'Artist Website', url: 'https://artist.com' },
-            { title: 'Gallery', url: 'https://gallery.com/artwork' }
+            { title: 'Website', url: 'https://myawesomenft.com' },
+            { title: 'Twitter', url: 'https://twitter.com/myawesomenft' }
         ],
-        images: [
+        icon: [
             {
-                width: 1024,
-                height: 1024,
-                url: 'ipfs://QmW4wM4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
+                width: 256,
+                height: 256,
+                url: 'ipfs://QmW5cF4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
                 verification: {
                     method: 'keccak256(bytes)',
-                    data: '0xa9399df007997de92a820c6c2ec1cb2d3f5aa5fc1adf294157de563eba39bb6e',
+                    data: '0x01299df007997de92a820c6c2ec1cb2d3f5aa5fc1adf294157de563eba39bb6f',
                 }
             }
+        ],
+        images: [
+            [
+                {
+                    width: 1024,
+                    height: 974,
+                    url: 'ipfs://QmW4wM4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
+                    verification: {
+                        method: 'keccak256(bytes)',
+                        data: '0xa9399df007997de92a820c6c2ec1cb2d3f5aa5fc1adf294157de563eba39bb6e',
+                    }
+                },
+                // ... more image sizes
+            ],
+            // ... more images
         ],
         assets: [{
             verification: {
@@ -182,12 +365,12 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
                 type: "string"
             },
             {
-                key: 'Year',
-                value: 2023,
+                key: 'Edition',
+                value: 1,
                 type: "number"
             },
             {
-                key: 'Unique',
+                key: 'Original',
                 value: true,
                 type: "boolean"
             }
@@ -196,58 +379,41 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
 }
 ```
 
-#### For each individual tokenId
+### NFT-specific Metadata
 
-```js
+LSP8 allows you to set and retrieve metadata for individual tokens using the [`setDataForTokenId(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid) and [`getDataForTokenId(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdatafortokenid) functions. This is particularly useful for NFTs where each token might have unique properties.
 
+```javascript
+// Setting token-specific metadata
+const tokenId = '0x1234...'; // your token ID in bytes32 format
 const metadataKey = ethers.keccak256(ethers.toUtf8Bytes('LSP4Metadata'));
-const storedMetadata = await token.getDataForTokenId(metadataKey);
-const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
-// JSON Stored:
+const metadataValue = ethers.toUtf8Bytes(JSON.stringify({
+    // Your token-specific metadata here
+}));
 
+await token.setDataForTokenId(tokenId, metadataKey, metadataValue);
+
+// Retrieving token-specific metadata
+const storedMetadata = await token.getDataForTokenId(tokenId, metadataKey);
+const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
+
+// Example of token-specific metadata
 {
     LSP4Metadata: {
-        description: 'A unique digital artwork.',
-        links: [
-            { title: 'Artist Website', url: 'https://artist.com' },
-            { title: 'Gallery', url: 'https://gallery.com/artwork' }
-        ],
-        images: [
-            {
-                width: 1024,
-                height: 1024,
-                url: 'ipfs://QmW4wM4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
-                verification: {
-                    method: 'keccak256(bytes)',
-                    data: '0xa9399df007997de92a820c6c2ec1cb2d3f5aa5fc1adf294157de563eba39bb6e',
-                }
-            }
-        ],
-        assets: [{
-            verification: {
-                method: 'keccak256(bytes)',
-                data: '0x98fe032f81c43426fbcfb21c780c879667a08e2a65e8ae38027d4d61cdfe6f55',
-            },
-            url: 'ipfs://QmPJESHbVkPtSaHntNVY5F6JDLW8v69M2d6khXEYGUMn7N',
-            fileType: 'json'
-        }],
+        description: 'Unique NFT #1234',
+        image: 'ipfs://QmYourImageCID',
         attributes: [
             {
-                key: 'Artist',
-                value: 'Jane Doe',
-                type: "string"
+                trait_type: 'Rarity',
+                value: 'Legendary'
             },
             {
-                key: 'Year',
-                value: 2023,
-                type: "number"
-            },
-            {
-                key: 'Unique',
-                value: true,
-                type: "boolean"
+                trait_type: 'Power Level',
+                value: 9000
             }
         ]
     }
 }
 ```
+
+This feature allows for much more flexible and dynamic NFTs compared to the static `tokenURI` approach in ERC721.
