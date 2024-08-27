@@ -93,6 +93,6 @@ The deployed [implementation code can be found here](https://github.com/lukso-ne
 1. **Social Media Dapps**: Build decentralized social platforms with follower/following functionality.
 2. **Content Curation**: Create personalized content feeds based on followed addresses.
 3. **Reputation Systems**: Develop trust or influence metrics based on follower counts and relationships.
-4. **Decentralized Identity**: Enhance digital identities with social graph information.
+4. **Follow protocols**: Allow addresses of protocols to be followed, and protocols to react on following addresses.
 
 LSP26 Follower System provides a robust foundation for building social features into blockchain applications. By standardizing how following relationships are managed on-chain, it opens up new possibilities for decentralized social interactions and user-centric experiences in the Web3 ecosystem.
