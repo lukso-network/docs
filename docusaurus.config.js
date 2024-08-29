@@ -217,14 +217,14 @@ export default {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    // announcementBar: {
-    //   id: 'hackathon',
-    //   content:
-    //     ' <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a>: Empowering the next wave of Web3 innovators. Applications now open!',
-    //   backgroundColor: '#84A2E2',
-    //   textColor: '#1C1E21',
-    //   isCloseable: false,
-    // },
+    announcementBar: {
+      id: 'testnet_hardfork',
+      content:
+        ' <a target="_blank" rel="noopener noreferrer" href="https://luksovalidators.substack.com/p/c4eadd3d-1a98-483a-a1b2-e63a296791c1?postPreview=paid&updated=2024-08-29T08%3A31%3A41.647Z&audience=everyone&free_preview=false&freemail=true">Hard Fork on LUKSO Testnet</a>: We ask all Testnet node operators and validators to implement the Dencun hard fork on their LUKSO Testnet nodes.',
+      backgroundColor: '#84A2E2',
+      textColor: '#1C1E21',
+      isCloseable: false,
+    },
     navbar: {
       title: 'LUKSO',
       logo: {
