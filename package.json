@@ -29,7 +29,7 @@
     "@iconify/react": "^5.0.1",
     "@mdx-js/react": "3.0.1",
     "@mui/icons-material": "^5.16.4",
-    "@mui/material": "^5.16.4",
+    "@mui/material": "^6.0.1",
     "@svgr/webpack": "^8.1.0",
     "clsx": "^2.1.1",
     "docusaurus-plugin-sass": "^0.2.5",
