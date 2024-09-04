@@ -24,9 +24,9 @@ Token Types are beneficial because of the wide range of asset use cases. The [LS
 
 :::tip Convenience Tools
 
-You can use the ⚒️ [`erc725.js`](../../tools/erc725js/getting-started.md) library, which automatically decodes [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage keys for you.
+You can use the ⚒️ [`erc725.js`](../../tools/libraries/erc725js/getting-started.md) library, which automatically decodes [ERC725Y](../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage keys for you.
 
-If you are using a regular contract instance from Ethers or Web3, you can use the data keys from the [`lsp-smart-contracts`](../../tools/lsp-smart-contracts/getting-started.md) library by importing the `ERC725YDataKeys` constant.
+If you are using a regular contract instance from Ethers or Web3, you can use the data keys from the [`lsp-smart-contracts`](../../tools/libraries/lsp-smart-contracts/getting-started.md) library by importing the `ERC725YDataKeys` constant.
 
 :::
 

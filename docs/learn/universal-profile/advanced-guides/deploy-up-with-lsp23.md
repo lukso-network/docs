@@ -175,7 +175,7 @@ async function main() {
 
 #### Create the permissions data keys and data values
 
-In order to create all the permissions data keys and data values, we will use the [`@erc725/erc725.js`](../../../tools/erc725js/getting-started.md) library. This library is a JavaScript implementation to encode and decode data key and values easily from any ERC725Y contract storage.
+In order to create all the permissions data keys and data values, we will use the [`@erc725/erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library. This library is a JavaScript implementation to encode and decode data key and values easily from any ERC725Y contract storage.
 
 ```typescript
 async function main() {

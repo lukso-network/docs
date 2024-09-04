@@ -22,7 +22,7 @@ This guide shows you how to easily retrieve the list of owned asset, by fetching
 
 ## Using erc725.js
 
-The [erc725.js](../../../tools/erc725js/getting-started.md) enable us to do that easily.
+The [erc725.js](../../../tools/libraries/erc725js/getting-started.md) enable us to do that easily.
 
 ```bash
 npm i @erc725/erc725.js

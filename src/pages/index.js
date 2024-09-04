@@ -55,7 +55,7 @@ function Index() {
           />
           <Box
             icon={ToolsIcon}
-            link="./tools/getting-started"
+            link="./tools/libraries/getting-started"
             title="TOOLS"
             className="tools"
             content="Explore tools that help you to interact with Universal Profiles and NFT2.0."

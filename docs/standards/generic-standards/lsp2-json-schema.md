@@ -14,7 +14,7 @@ description: LUKSO's LSP2 - ERC725Y JSON Schema for better abstraction on top of
 
 :::success Recommendation
 
-Our [JavaScript library **erc725.js**](../../tools/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema without manually going through all the encoding complexity.
+Our [JavaScript library **erc725.js**](../../tools/libraries/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema without manually going through all the encoding complexity.
 
 :::
 

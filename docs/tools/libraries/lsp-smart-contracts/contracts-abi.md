@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Contracts ABI
 
-You can import the [LUKSO smart contracts](../../contracts/introduction.md) ABIs from the `/artifacts` folder:
+You can import the [LUKSO smart contracts](../../../contracts/introduction.md) ABIs from the `/artifacts` folder:
 
 <!-- prettier-ignore-start -->
 

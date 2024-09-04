@@ -17,6 +17,6 @@ npm install @lukso/lsp-smart-contracts
 
 :::tip
 
-You can find more information and examples on our [smart contract implementation page](../../contracts/introduction.md).
+You can find more information and examples on our [smart contract implementation page](../../../contracts/introduction.md).
 
 :::

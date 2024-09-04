@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 This guide will teach you how to grant [permissions](../../../standards/universal-profile/lsp6-key-manager.md#address-permissions) to any address so they can interact with your 🆙. You will learn:
 
-- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../tools/erc725js/getting-started.md).
+- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../tools/libraries/erc725js/getting-started.md).
 - How to set permissions for a third party `address` on your Universal Profile
 
 ![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpeg)
@@ -40,8 +40,8 @@ These permissions are stored in the Universal Profile. **We need to update thre
 
 To follow this guide, we will need the following libraries and packages:
 
-- [`erc725.js`](../../../tools/erc725js/getting-started.md) to encode the permissions
-- The [`lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) package to get the [Universal Profile's ABI](../../../standards/universal-profile/introduction.md)
+- [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) to encode the permissions
+- The [`lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) package to get the [Universal Profile's ABI](../../../standards/universal-profile/introduction.md)
 - `web3.js` or `ethers.js` to interact with our `UniversalProfile` smart contract.
 
 <Tabs>
@@ -84,7 +84,7 @@ const erc725 = new ERC725(
 
 :::success Permissions List
 
-More permissions are available in _erc725.js_. See the [`encodePermissions(...)`](../../../tools/erc725js/methods.md#encodepermissions) function for a complete list.
+More permissions are available in _erc725.js_. See the [`encodePermissions(...)`](../../../tools/libraries/erc725js/methods.md#encodepermissions) function for a complete list.
 
 To learn about what each permission enables, see the [**Standards > LSP6 Key Manager > Permissions**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) section.
 
@@ -92,7 +92,7 @@ To learn about what each permission enables, see the [**Standards > LSP6 Key Man
 
 Let's consider in our example that we want to grant the permission `SUPER_SETDATA` to a `beneficiaryAddress`, so that it can edit any of the Universal Profile metadata.
 
-To do so, we will use the [`encodePermissions(..)`](../../../tools/erc725js/methods#encodepermissions) function, a convenience function from the _erc725.js_ library to encode permissions as their raw `bytes32` value. The function takes as an input will an object of all permissions that will be set.
+To do so, we will use the [`encodePermissions(..)`](../../../tools/libraries/erc725js/methods#encodepermissions) function, a convenience function from the _erc725.js_ library to encode permissions as their raw `bytes32` value. The function takes as an input will an object of all permissions that will be set.
 
 ```ts
 // Create the permissions for our future controller

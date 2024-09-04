@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # 🪙 Create a LSP7 Token
 
-This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../../contracts/introduction.md) of our documentation.
+This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../../contracts/introduction.md) of our documentation.
 
 :::tip
 

@@ -1,6 +1,6 @@
 ---
 title: 📑 Indexer access
-sidebar_position: 10
+sidebar_position: 1
 ---
 
 # Indexer developer access
