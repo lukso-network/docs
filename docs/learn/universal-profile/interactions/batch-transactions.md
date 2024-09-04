@@ -681,7 +681,7 @@ For this, we will encode the constructor parameters used when deploying the toke
 
 2. set the metadata on the token contract.
 
-For this we will first encode the `LSP4Metadata` using the [`erc725.js`](../../../tools/erc725js/getting-started.md) library. We will then generate the payload to call `setData` on the token contract using this encoded parameter.
+For this we will first encode the `LSP4Metadata` using the [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library. We will then generate the payload to call `setData` on the token contract using this encoded parameter.
 
 > _"How can we set the token metadata if we don't know the deployed token address yet?"_
 >

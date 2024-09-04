@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 :::success Relayer API
 
-To access our Relayer API, see our [**Relayer Developer Access**](../tools/relayer-developer.md) page.
+To access our Relayer API, see our [**Relayer Developer Access**](../tools/services/relayer-developer.md) page.
 
 :::
 

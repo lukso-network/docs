@@ -1,10 +1,10 @@
 ---
 id: getting-started
-title: Getting Started
-sidebar_position: 1
+title: 📖 Introduction
+sidebar_position: 0
 ---
 
-# Getting Started
+# Libraries
 
 Libraries that are actively maintained by the LUKSO team.
 
@@ -15,7 +15,7 @@ Libraries that are actively maintained by the LUKSO team.
     <th>Repository</th>
   </tr>
   <tr>
-    <td><a href="/tools/lsp-smart-contracts/getting-started">lsp-smart-contracts</a></td>
+    <td><a href="/tools/libraries/lsp-smart-contracts/getting-started">lsp-smart-contracts</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://www.npmjs.com/package/@lukso/lsp-smart-contracts" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badge" class="shield-badge" src="https://img.shields.io/npm/v/@lukso/lsp-smart-contracts.svg?style=flat&label=%40lukso%2Flsp-smart-contracts"/></a></td>
     <td><a href="https://github.com/lukso-network/lsp-smart-contracts" target="_blank" rel="noopener noreferrer">lukso-network/lsp-smart-contracts</a></td>
   </tr>
@@ -25,7 +25,7 @@ Libraries that are actively maintained by the LUKSO team.
     <td><a href="https://github.com/lukso-network/lsp-utils" target="_blank" rel="noopener noreferrer">lukso-network/lsp-utils</a></td>
   </tr>
   <tr>
-    <td><a href="/tools/erc725js/getting-started">erc725.js</a></td>
+    <td><a href="/tools/libraries/erc725js/getting-started">erc725.js</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://www.npmjs.com/package/@erc725/erc725.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badge" class="shield-badge" src="https://img.shields.io/npm/v/@erc725/erc725.js.svg?style=flat&label=%40erc725%2Ferc725.js"/></a></td>
     <td><a href="https://github.com/ERC725Alliance/erc725.js" target="_blank" rel="noopener noreferrer">ERC725Alliance/erc725.js</a></td>
   </tr>

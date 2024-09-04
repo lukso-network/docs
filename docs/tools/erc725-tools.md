@@ -1,9 +1,23 @@
 ---
-title: 🔍 Inspector Tools
-sidebar_position: 8
+title: 🔍 Explorers & Debug Tools
+sidebar_position: 4
 ---
 
-# ERC725 Tools
+# 🔍 Explorers & Debug Tools
+
+## Block Explorers
+
+LUKSO uses the open-source [Blockscout Explorer](https://github.com/blockscout/blockscout) fork to inspect blockchain and transaction data.
+
+LUKSO Mainnet
+
+- [LUKSO Mainnet Execution Explorer](https://explorer.lukso.network/)
+- [LUKSO Mainnet Consensus Explorer](https://explorer.consensus.mainnet.lukso.network/)
+
+LUKSO Testnet
+
+- [LUKSO Testnet Execution Explorer](https://explorer.execution.testnet.lukso.network)
+- [LUKSO Testnet Consensus Explorer](https://explorer.consensus.testnet.lukso.network)
 
 ## ERC725 Inspect
 

@@ -58,7 +58,7 @@ You can also create new [Universal Profiles](../../standards/universal-profile/i
 
 :::tip Relayer API
 
-If you want to deploy Universal Profiles for your users, please check out our [Relayer API](../../tools/relayer-developer.md).
+If you want to deploy Universal Profiles for your users, please check out our [Relayer API](../../tools/services/relayer-developer.md).
 
 :::
 

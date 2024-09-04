@@ -135,7 +135,7 @@ const accounts = await web3.eth.getAccounts();
 
 ## Encode the data keys
 
-After setting up the array of assets, you can use the [`erc725.js`](../../../tools/erc725js/getting-started.md) library to encode the [`LSP12IssuedAssets[]`](../../../standards/universal-profile/lsp12-issued-assets/) data keys. There are two ways to encode data:
+After setting up the array of assets, you can use the [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library to encode the [`LSP12IssuedAssets[]`](../../../standards/universal-profile/lsp12-issued-assets/) data keys. There are two ways to encode data:
 
 - **Set the full issued assets list**: If you want to initially set issued assets on a Universal Profile or re-set all elements, you can encode the data without defining optional length or index parameters. Therefore, the issued assets will only consist of the asset addresses you provide in your array of assets.
 - **add, update, or remove existing issued assets**: If the Universal Profile already has issued assets, and you want to add, update, or remove certain assets, you can provide the `startingIndex` and `totalArrayLength` parameters. Therefore, your prepared array only represents a subset of all the issued assets listed in your Universal Profile.
@@ -148,7 +148,7 @@ Please be careful when updating existing issued assets. Incorrect usage of `star
 
 :::info
 
-You can read more about the `encodeData` function of [`erc725.js`](../../../tools/erc725js/getting-started.md) within the related [ERC725 Documentation](../../../tools/erc725js/methods#encodedata).
+You can read more about the `encodeData` function of [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) within the related [ERC725 Documentation](../../../tools/libraries/erc725js/methods#encodedata).
 
 :::
 

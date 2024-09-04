@@ -169,6 +169,91 @@ export default {
             from: '/tools/partners',
             to: '/tools/integrations',
           },
+          {
+            from: '/tools/eip191-signerjs/getting-started',
+            to: '/tools/libraries/eip191-signerjs/getting-started',
+          },
+          {
+            from: '/tools/erc725js/getting-started',
+            to: '/tools/libraries/erc725js/getting-started',
+          },
+          {
+            from: '/tools/erc725js/methods',
+            to: '/tools/libraries/erc725js/methods',
+          },
+          {
+            from: '/tools/erc725js/providers',
+            to: '/tools/libraries/erc725js/providers',
+          },
+          {
+            from: '/tools/erc725js/schemas',
+            to: '/tools/libraries/erc725js/schemas',
+          },
+          {
+            from: '/tools/lsp-smart-contracts/constants',
+            to: '/tools/libraries/lsp-smart-contracts/constants',
+          },
+          {
+            from: '/tools/lsp-smart-contracts/contracts-abi',
+            to: '/tools/libraries/lsp-smart-contracts/contracts-abi',
+          },
+          {
+            from: '/tools/lsp-smart-contracts/getting-started',
+            to: '/tools/libraries/lsp-smart-contracts/getting-started',
+          },
+          {
+            from: '/tools/lsp-smart-contracts/solidity-contracts',
+            to: '/tools/libraries/lsp-smart-contracts/solidity-contracts',
+          },
+          {
+            from: '/tools/lsp-utils/getting-started',
+            to: '/tools/libraries/lsp-utils/getting-started',
+          },
+          {
+            from: '/tools/lsp-utils/IPFS',
+            to: '/tools/libraries/lsp-utils/IPFS',
+          },
+          {
+            from: '/tools/lsp-utils/LSP3ProfileMetadata',
+            to: '/tools/libraries/lsp-utils/LSP3ProfileMetadata',
+          },
+          {
+            from: '/tools/lsp-utils/LSP4DigitalAssetMetadata',
+            to: '/tools/libraries/lsp-utils/LSP4DigitalAssetMetadata',
+          },
+          {
+            from: '/tools/lsp-utils/LSP5ReceivedAssets',
+            to: '/tools/libraries/lsp-utils/LSP5ReceivedAssets',
+          },
+          {
+            from: '/tools/lsp-utils/LSP6KeyManager',
+            to: '/tools/libraries/lsp-utils/LSP6KeyManager',
+          },
+          {
+            from: '/tools/lsp-utils/LSP12IssuedAssets',
+            to: '/tools/libraries/lsp-utils/LSP12IssuedAssets',
+          },
+          {
+            from: '/tools/lsp-utils/LSP23LinkedContractsFactory',
+            to: '/tools/libraries/lsp-utils/LSP23LinkedContractsFactory',
+          },
+          {
+            from: '/tools/docker-factory',
+            to: '/tools/services/docker-factory',
+          },
+          {
+            from: '/tools/getting-started',
+            to: '/tools/libraries/getting-started',
+          },
+          {
+            from: '/tools/indexer',
+            to: '/tools/services/indexer',
+          },
+          {
+            from: '/tools/relayer-developer',
+            to: '/tools/services/relayer-developer',
+          },
+
           // lsp-factory deprecation
           {
             from: '/tools/lsp-factoryjs/deployment/universal-profile',
@@ -179,20 +264,24 @@ export default {
             to: '/learn/digital-assets/getting-started',
           },
           {
+            from: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/libraries/lsp-factoryjs/getting-started',
+          },
+          {
             from: '/tools/lsp-factoryjs/classes/universal-profile',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/libraries/lsp-factoryjs/getting-started',
           },
           {
             from: '/tools/lsp-factoryjs/classes/lsp4-digital-asset-metadata',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/libraries/lsp-factoryjs/getting-started',
           },
           {
             from: '/tools/lsp-factoryjs/classes/lsp7-digital-asset',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/libraries/lsp-factoryjs/getting-started',
           },
           {
             from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/libraries/lsp-factoryjs/getting-started',
           },
           {
             from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
@@ -240,7 +329,7 @@ export default {
         },
         {
           type: 'doc',
-          docId: 'tools/getting-started',
+          docId: 'tools/libraries/getting-started',
           position: 'left',
           label: 'Tools',
         },
