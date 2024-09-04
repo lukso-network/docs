@@ -8,8 +8,8 @@ sidebar_position: 1
 This package is currently in the early stages of development. Feel free to [report issues or feature requests](https://github.com/ERC725Alliance/erc725.js/issues) through the Github repository.
 :::
 
-<a href="https://github.com/ERC725Alliance/erc725.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="github badge" class="shield-badge" src="https://img.shields.io/github/v/release/ERC725Alliance/erc725.js?logo=github&label=Github"/></a>
-<a href="https://www.npmjs.com/package/@erc725/erc725.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badge" class="shield-badge" src="https://img.shields.io/npm/v/@erc725/erc725.js.svg?style=flat&label=NPM&logo=npm"/></a>
+<a href="https://github.com/ERC725Alliance/erc725.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="github badge" src="https://img.shields.io/github/v/release/ERC725Alliance/erc725.js?logo=github&label=Github"/></a>
+<a href="https://www.npmjs.com/package/@erc725/erc725.js" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm badge" src="https://img.shields.io/npm/v/@erc725/erc725.js.svg?style=flat&label=NPM&logo=npm"/></a>
 
 <br/><br/>
 
