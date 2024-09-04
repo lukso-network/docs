@@ -9,9 +9,17 @@ import {ContractCardsGallery} from '@site/src/components/ContractCardsGallery';
 
 # Smart Contracts
 
+**Welcome to the LUKSO Smart Contracts documentation!**
+
+You will find on this page all the documentation and resources related to the `@lukso/lsp-smart-contracts`, the reference implementation in Solidity of the **[LSPs (LUKSO Standard Proposals)](../standards/introduction.md)**.
+
+Each LSP standard and features are implemented in separate contracts under their own package. This allows developers to *"pick and choose"* the contracts for the requirements and behaviours they need for their protocols and applications. The `@lukso/lsp-smart-contracts` package also contains all the LSPs implementations listed below.
+
+This modular design also helps in making the codebase easier to navigate and understand for developers using it.
+
 <div style={{display: "flex", justifyContent: "space-between"}}>
 
-<div style={{width: "46%"}}>
+<div style={{width: "**46**%"}}>
 
 | Package                                                                                    | Version                                                                                                                                                                                                                                                                                            |
 | :----------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,14 +58,6 @@ import {ContractCardsGallery} from '@site/src/components/ContractCardsGallery';
 </div>
 
 </div>
-
-**Welcome to the LUKSO Smart Contracts documentation!**
-
-In this section, you will find all the documentation and resources related to the `@lukso/lsp-smart-contracts`, the reference contract implementations in Solidity of the **[LUKSO Standard Proposals](../standards/introduction.md)**.
-
-The `@lukso/lsp-smart-contracts` codebase is modular, with each LSP standard and features implemented in separate contracts. This allows smart contract developers to _"pick and choose"_ the contracts for the requirements and behaviors they need for their protocols and applications.
-
-This modular design also helps in making the codebase easier to navigate and understand for developers using it.
 
 ## Installation
 
