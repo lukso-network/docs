@@ -32,7 +32,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Metadata Detection
 
-You can verify if a contract contains a specific set of [ERC725Y](../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) keys by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](../tools/erc725js/getting-started.md) library.
+You can verify if a contract contains a specific set of [ERC725Y](../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) keys by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](../tools/libraries/erc725js/getting-started.md) library.
 
 :::note Example
 
@@ -40,7 +40,7 @@ You can verify if a contract contains a specific set of [ERC725Y](../standards/l
 
 :::
 
-Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/libraries/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
 
 ### Example 1 - Detect LSP3 Profile data keys
 

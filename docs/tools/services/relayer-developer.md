@@ -1,6 +1,6 @@
 ---
 title: ⛽️ Relayer access
-sidebar_position: 10
+sidebar_position: 2
 ---
 
 # Relayer developer access
@@ -29,9 +29,9 @@ Please fill out [this form](https://forms.gle/rhWA25m3jjuPNPva9) to request acce
 You can deploy Universal Profiles for users by providing either:
 
 - OPTION 1: a list of controller addresses (`lsp6ControllerAddress`) and metadata (`lsp3Profile`)
-- OPTION 2: a `salt` and [`postDeploymentCallData`](../learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata)
+- OPTION 2: a `salt` and [`postDeploymentCallData`](../../learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata)
 
-In this process, you might need to use the [`up_import`](../standards/rpc-api#up_import) RPC call from the [Universal Profile Extension](/install-up-browser-extension) in order to add the deployed UP to the browser extension.
+In this process, you might need to use the [`up_import`](../../standards/rpc-api#up_import) RPC call from the [Universal Profile Extension](/install-up-browser-extension) in order to add the deployed UP to the browser extension.
 
 <details>
   <summary>OPTION 1: lsp6ControllerAddress & lsp3Profile</summary>

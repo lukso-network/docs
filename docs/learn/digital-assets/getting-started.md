@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Getting started building Tokens & NFTs
 
-The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/getting-started.md) to build **powerful, modular, and standardized** blockchain applications.
+The LUKSO ecosystem offers smart contract developers a lot of [new standards](../../standards/introduction.md) and [tools](../../tools/libraries/getting-started.md) to build **powerful, modular, and standardized** blockchain applications.
 
 This page will guide you in setting up your development environment to build and deploy tokens and NFTs on LUKSO.
 
