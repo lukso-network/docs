@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP26 - Follower System'
-sidebar_position: 8
+sidebar_position: 10
 title: 'LSP26 - Follower System'
 description: LUKSO's LSP26 Follower System for managing on-chain following relationships between addresses.
 ---

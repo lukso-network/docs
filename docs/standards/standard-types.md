@@ -3,13 +3,7 @@ title: 'Types of LSPs Standards'
 description: 'Discover the different type of LUKSO Standards Proposals: smart contracts interfaces and standardised metadata keys.'
 ---
 
-# Standard Detection
-
-:::caution
-
-The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** data key is not the most secure way to check for a standard, as they could be set manually.
-
-:::
+# Types of LSPs Standards
 
 There are two types of **LSP** standards used to interact with smart contracts on the LUKSO blockchain.
 

@@ -1,6 +1,6 @@
 ---
-title: 📬 Relayer API
-sidebar_position: 9
+title: LSP15 - Transaction Relayer API
+sidebar_position: 6
 description: LUKSO's Transaction Relay Service API Standard.
 ---
 
@@ -12,6 +12,12 @@ import TabItem from '@theme/TabItem';
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cpoczP3Y7Hk?si=iiYiBDaMG0vn9i_r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
+
+:::caution
+
+This standard is for an API off-chain to create a relay service. For the on-chain part on how to construct message for relay transactions, see [LSP25 Execute Relay Call](./lsp25-execute-relay-call.md).
+
+:::
 
 :::success Relayer API
 

@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP1 - Universal Receiver'
-sidebar_position: 1
+sidebar_position: 3
 description: LUKSO LSP1 Universal Receiver Delegate.
 ---
 

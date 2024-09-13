@@ -8,11 +8,15 @@ import TabItem from '@theme/TabItem';
 
 # Standard Detection
 
-If you want to ensure that LSP standards are implemented and working correctly before letting your application interact with smart contracts, you can check their supported ERC725 storage keys and interfaces.
+:::caution
+
+The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** data key is not the most secure way to check for a standard, as they could be set manually.
+
+:::
 
 :::tip
 
-You can also use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) to fetch and check standards of smart contract addresses within the browser.
+Use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) to check standards interfaces and metadata of smart contract addresses easily.
 
 :::
 
@@ -21,6 +25,8 @@ You can also use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tec
 ⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository.
 
 :::
+
+If you want to ensure that LSP standards are implemented and working correctly before letting your application interact with smart contracts, you can check their supported ERC725 storage keys and interfaces.
 
 ## Setup
 

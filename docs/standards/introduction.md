@@ -29,9 +29,7 @@ The use of smart contracts and standards like the LSPs can mitigate some central
 
 :::note
 
-The LSP standards are **not order-dependent**. They can be related to each other in a **backward or forward** order.
-
-Meaning a LSP standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](../standards/universal-profile/lsp0-erc725account.md)** uses **[LSP1 - UniversalReceiver](../standards/generic-standards/lsp1-universal-receiver-delegate.md)**, **[LSP2 - ERC725YJSONSchema](../standards/generic-standards/lsp2-json-schema.md)** and could use **[LSP3 - ProfileMetadata](../standards/universal-profile/lsp3-profile-metadata.md)**, etc.
+LSPs are **not order-dependent**. They can be related to each other in a **backward or forward** order. Meaning a standard could use another one that comes after or before in order. For example **[LSP0 - ERC725Account](../standards/universal-profile/lsp0-erc725account.md)** uses **[LSP1 - UniversalReceiver](../standards/generic-standards/lsp1-universal-receiver-delegate.md)**, **[LSP2 - ERC725YJSONSchema](../standards/generic-standards/lsp2-json-schema.md)** and could use **[LSP3 - ProfileMetadata](../standards/universal-profile/lsp3-profile-metadata.md)**, etc.
 
 :::
 

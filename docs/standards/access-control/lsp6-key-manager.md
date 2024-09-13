@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP6 - Key Manager'
-sidebar_position: 6
+sidebar_position: 1
 description: LUKSO's LSP6 - Key Manager for controlling a LUKSO LSP0ERC725Account.
 ---
 

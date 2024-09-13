@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP20 - Call Verification'
-sidebar_position: 6
+sidebar_position: 8
 description: LUKSO's LSP20 - Call Verification for delegating the the verification of a function call to another smart contract.
 ---
 

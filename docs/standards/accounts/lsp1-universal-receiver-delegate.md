@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP1 - Universal Receiver Delegate'
-sidebar_position: 2
+sidebar_position: 4
 description: LUKSO LSP1 Universal Receiver for notifying upon incoming transactions.
 ---
 

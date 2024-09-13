@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP23 - Linked Contracts Factory'
-sidebar_position: 7
+sidebar_position: 2
 description: LUKSO's LSP23 Linked Contracts Factory to allow the deployment of primary and secondary smart contracts that are linked together.
 ---
 

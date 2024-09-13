@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP9 - Vault'
-sidebar_position: 7
+sidebar_position: 5
 description: LUKSO LSP9 - Vault for holding assets and interacting with other smart contracts.
 ---
 

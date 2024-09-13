@@ -16,13 +16,7 @@ const Contracts_AccountsInteraction = [
     description:
       'Allows to react on transfers and informations received (token transfers, notifications, etc...)',
   },
-  {
-    name: '🌐 LSP3 Profile Metadata',
-    url: '/contracts/overview/UniversalProfile',
-    urlABI: '',
-    description:
-      'Add information to an account or a vault, such as a profile/cover image, external links, attributes, etc...',
-  },
+
   {
     name: '🏦 LSP9 Vault',
     url: '',
@@ -51,6 +45,14 @@ const Contracts_AccountsInteraction = [
     description:
       'Add Meta Transactions on your contract to enable gas-less transactions and more easily onboard new users.',
   },
+  // TODO: add the contract ABI for the follower system
+  // {
+  //   name: '🔍 LSP26 Follower System',
+  //   url: '#',
+  //   urlABI: '#',
+  //   description:
+  //     '...',
+  // },
 ];
 
 const Contracts_DigitalAssets = [
@@ -98,6 +100,16 @@ const Contracts_OwnershipAccessControl = [
     urlABI: '/contracts/contracts/LSP14Ownable2Step/',
     description:
       'A module to allow secure owner management of a smart contract using a 2-steps process for transferring and renouncing ownership.',
+  },
+];
+
+const Contracts_Metadata = [
+  {
+    name: '🌐 LSP3 Profile Metadata',
+    url: '/contracts/overview/UniversalProfile',
+    urlABI: '',
+    description:
+      'Add information to an account or a vault, such as a profile/cover image, external links, attributes, etc...',
   },
 ];
 
