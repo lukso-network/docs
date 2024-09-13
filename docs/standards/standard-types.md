@@ -1,7 +1,6 @@
 ---
-title: 'Standard Detection'
-sidebar_position: 3
-description: 'Standard Detection using interfaceId and the SupportedStandards:{StandardName} data key.'
+title: 'Types of LSPs Standards'
+description: 'Discover the different type of LUKSO Standards Proposals: smart contracts interfaces and standardised metadata keys.'
 ---
 
 # Standard Detection

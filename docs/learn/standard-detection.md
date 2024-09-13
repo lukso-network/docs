@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🕵🏽 Standard Detection'
-description: Check supported ERC725 storage keys and interfaces of LSPs (LUKSO Standard Proposals) smart contracts.
+description: Learn how to detect different smart contract interfaces and a set of metadata keys related to the LSP (LUKSO Standards Proposals) using ERC165 interface Ids and the 'SupportedStandards:{StandardName}' data key.
 ---
 
 import Tabs from '@theme/Tabs';
