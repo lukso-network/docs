@@ -67,7 +67,8 @@ const myUPContract = new ethers.Contract(
 const result = await myUPContract.getData(SupportedStandards.LSP3Profile.key);
 
 // Verify if the metadata standard is supported
-const supportsLSP3Metadata = result == SupportedStandards.LSP3Profile.value;
+const supportsLSP3Metadata =
+  result.value == SupportedStandards.LSP3Profile.value;
 
 console.log(supportsLSP3Metadata); // true or false
 ```
