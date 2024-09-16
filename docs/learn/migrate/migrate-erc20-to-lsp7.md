@@ -130,7 +130,7 @@ For full compatibility with ERC20 behavior, set this to empty bytes `""`. This d
 
 > See the [**LSP7 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) section for more details.
 
-- **LSP7 metadata is generic**: via a [flexible data key / value store](<(../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdatabatch).
+- **LSP7 metadata is generic**: via a [flexible data key / value store](<(../../standards/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdatabatch).
 
 ERC20 metadata is limited to `name()` and `symbol()`. LSP7 allows to store any data after deployment without limitations.
 

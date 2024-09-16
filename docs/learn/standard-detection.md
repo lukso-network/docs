@@ -38,7 +38,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Metadata Detection
 
-You can verify if a contract contains a specific set of [ERC725Y](../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) keys by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](../tools/libraries/erc725js/getting-started.md) library.
+You can verify if a contract contains a specific set of [ERC725Y](../standards/erc725#erc725y-generic-data-keyvalue-store) keys by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](../tools/libraries/erc725js/getting-started.md) library.
 
 :::note Example
 
@@ -46,7 +46,7 @@ You can verify if a contract contains a specific set of [ERC725Y](../standards/l
 
 :::
 
-Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/libraries/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/libraries/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/metadata/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/accounts/lsp9-vault).
 
 ### Example 1 - Detect LSP3 Profile data keys
 
@@ -262,7 +262,7 @@ Calling this function will return `true` if the contract implements this specifi
 
 :::note Example
 
-A **[Universal Profile](../standards/universal-profile/lsp3-profile-metadata.md)** is a contract based on [LSP0 - ERC725Account](../standards/universal-profile/lsp0-erc725account.md). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+A **[Universal Profile](../standards/metadata/lsp3-profile-metadata.md)** is a contract based on [LSP0 - ERC725Account](../standards/accounts/lsp0-erc725account.md). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 :::
 

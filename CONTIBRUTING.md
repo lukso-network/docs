@@ -59,7 +59,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ### Name Conventions
 
-The function retrieves an array of _data keys_ for **multiple** smart contract addresses if the read-in result of the last call returned `true.` Otherwise, the function will return `false` as the given addresses do not appear to be [LSP0 ERC725 Accounts](./docs/standards/universal-profile/lsp0-erc725account.md).
+The function retrieves an array of _data keys_ for **multiple** smart contract addresses if the read-in result of the last call returned `true.` Otherwise, the function will return `false` as the given addresses do not appear to be [LSP0 ERC725 Accounts](./docs/standards/accounts/lsp0-erc725account.md).
 
 ### Page Metadata
 

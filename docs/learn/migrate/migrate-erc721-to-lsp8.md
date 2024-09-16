@@ -132,7 +132,7 @@ For full compatibility with ERC721 behavior, set this to empty bytes `""`. This 
 
 > See the [**LSP8 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) section for more details.
 
-- **LSP8 metadata is generic**: via a [flexible data key / value store](<(../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdatabatch).
+- **LSP8 metadata is generic**: via a [flexible data key / value store](<(../../standards/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdatabatch).
 
 ### Interact with the Token Contract
 

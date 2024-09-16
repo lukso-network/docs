@@ -15,7 +15,7 @@ description: LUKSO's LSP26 Follower System for managing on-chain following relat
 
 ## Introduction
 
-LSP26 introduces a Follower System that allows any address — whether it's a smart contract account like an [ERC725Account](../universal-profile/lsp0-erc725account.md), or even an Externally Owned Account (EOA) — to participate in a decentralized social graph.
+LSP26 introduces a Follower System that allows any address — whether it's a smart contract account like an [ERC725Account](../accounts/lsp0-erc725account.md), or even an Externally Owned Account (EOA) — to participate in a decentralized social graph.
 
 ## What does this standard represent?
 
@@ -67,7 +67,7 @@ The LSP26 Follower System is implemented as a smart contract with the following 
 
 ## LSP1 Integration
 
-LSP26 integrates with [LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md) to notify addresses when they are followed or unfollowed:
+LSP26 integrates with [LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md) to notify addresses when they are followed or unfollowed:
 
 - When following: Calls `universalReceiver` with `typeId`: `keccak256('LSP26FollowerSystem_FollowNotification')`
 - When unfollowing: Calls `universalReceiver` with `typeId`: `keccak256('LSP26FollowerSystem_UnfollowNotification')`

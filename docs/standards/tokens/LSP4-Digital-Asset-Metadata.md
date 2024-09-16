@@ -98,7 +98,7 @@ By mixing contract standards (LSP7/8), token types (Token, NFT, Collection) and 
 
 :::tip Recommendation
 
-Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
+Make sure to understand the **[ERC725Y Generic Key/Value Store](../erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../metadata/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 
 :::
 
@@ -190,7 +190,7 @@ The value attached to this data key is a [`VerifiableURI`](https://github.com/lu
 
 ### `LSP4Creators`
 
-This data key refers to the **address(es)** of the **creator(s)** of the digital asset. It can help to check the **asset authenticity** when combined with **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
+This data key refers to the **address(es)** of the **creator(s)** of the digital asset. It can help to check the **asset authenticity** when combined with **[LSP12-IssuedAssets](../metadata/lsp12-issued-assets.md)**.
 
 ```json
 {

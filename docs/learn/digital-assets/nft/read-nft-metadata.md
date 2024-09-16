@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Read LSP8 NFT Metadata
 
-If your digital asset contract is an [LSP8](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) NFT or Collection, you can fetch the metadata of specific token IDs.
+If your digital asset contract is an [LSP8](/standards/tokens/LSP8-Identifiable-Digital-Asset.md) NFT or Collection, you can fetch the metadata of specific token IDs.
 
 There are two different ways to retrieve the metadata of a `tokenId` based on the configuration of the contract.
 
@@ -30,7 +30,7 @@ If neither _Token ID Metadata_ nor _Base URI_ are set, you should fall back and 
 We will need the following dependencies to follow this guide:
 
 - [`lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) to import the LSP8 contract ABI.
-- [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) to easily get [ERC725Y](../../../standards/lsp-background/erc725.md) data keys and decode their values.
+- [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) to easily get [ERC725Y](/standards/erc725.md) data keys and decode their values.
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
@@ -104,7 +104,7 @@ const myAssetContract = new web3.eth.Contract(
 
 The [LSP8](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) allows for different [Token ID Formats](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat), meaning developers can specify their token IDs as `Number`, `String`, `Smart Contract Address`, `Byte Identifier` or `Hash Digest`.
 
-To call the contract, you **must first prepare your token IDs** to match the standardized **Byte32 Hex Strings** based on the [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) standardization. The **global token ID format** can be fetched from the [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) data storage using the [`getData()`](../../../contracts/contracts/ERC725/ERC725.md#getdata) function:
+To call the contract, you **must first prepare your token IDs** to match the standardized **Byte32 Hex Strings** based on the [`LSP8TokenIdFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) standardization. The **global token ID format** can be fetched from the [ERC725Y](/standards/erc725.md#erc725y-generic-data-keyvalue-store) data storage using the [`getData()`](../../../contracts/contracts/ERC725/ERC725.md#getdata) function:
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
@@ -391,7 +391,7 @@ Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](..
 
 You can fetch the [`LSP8TokenMetadataBaseURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenmetadatabaseuri) and build the correct metadata link by concatinating the [formatted](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat) token ID. Based on the [`LSP8TokenIDFormat`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#lsp8tokenidformat), the Base URI can either be:
 
-- **equal across all token IDs**: To fetch the global Base URI, use the [`getData(...)`](../../../contracts/contracts/ERC725/ERC725.md#getdata) function of the asset to receive the [ERC725Y data storage](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store). This applies if the [`LSP8TokenIDFormat`](#preparing-the-token-ids) is `0, 1, 2, or 4`.
+- **equal across all token IDs**: To fetch the global Base URI, use the [`getData(...)`](../../../contracts/contracts/ERC725/ERC725.md#getdata) function of the asset to receive the [ERC725Y data storage](/standards/erc725.md#erc725y-generic-data-keyvalue-store). This applies if the [`LSP8TokenIDFormat`](#preparing-the-token-ids) is `0, 1, 2, or 4`.
 - **mixed across all token IDs**: To fetch the individual Base URI, use the [`getDataFromTokenID(...)`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md#getdatafortokenid) function using a specific token ID. This has to be done if the [`LSP8TokenIDFormat`](#preparing-the-token-ids) is `100, 101, 102, or 104`.
 
 <Tabs groupId="provider-lib">

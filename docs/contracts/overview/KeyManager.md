@@ -29,15 +29,15 @@ If controller has `SETDATA` permission but has no `AllowedERC725YDataKeys`, cont
 
 :::
 
-Key Manager allows for restricting controller addresses to change only specific or dynamic data keys. In order to achieve such functionallity one could encode a set of data keys to [`bytes[CompactBytesArray]`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray), and store them under the [Allowed ERC725Y Data Keys](../../standards/universal-profile/lsp6-key-manager.md#allowed-erc725y-data-keys) data key.
+Key Manager allows for restricting controller addresses to change only specific or dynamic data keys. In order to achieve such functionallity one could encode a set of data keys to [`bytes[CompactBytesArray]`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytescompactbytesarray), and store them under the [Allowed ERC725Y Data Keys](/standards/access-control/lsp6-key-manager.md#allowed-erc725y-data-keys) data key.
 
 #### Specific Data Keys
 
-A _Specific Data Key_ must have the length of 32 bytes. Setting a _Specific Data Key_ in the [Allowed ERC725Y Data Keys](../../standards/universal-profile/lsp6-key-manager.md#allowed-erc725y-data-keys) will allow the controller to only modify the data value of that _Specific Data Key_.
+A _Specific Data Key_ must have the length of 32 bytes. Setting a _Specific Data Key_ in the [Allowed ERC725Y Data Keys](/standards/access-control/lsp6-key-manager.md#allowed-erc725y-data-keys) will allow the controller to only modify the data value of that _Specific Data Key_.
 
 #### Dynamic Data Keys
 
-A _Dynamic Data Key_ can have any length between 0 and 32 (except 0 and 32). Setting a _Dynamic Data Key_ in the [Allowed ERC725Y Data Keys](../../standards/universal-profile/lsp6-key-manager.md#allowed-erc725y-data-keys) will allow the controller to modify the data value of any data key that starts exactly with that _Dynamic Data Key_.
+A _Dynamic Data Key_ can have any length between 0 and 32 (except 0 and 32). Setting a _Dynamic Data Key_ in the [Allowed ERC725Y Data Keys](/standards/access-control/lsp6-key-manager.md#allowed-erc725y-data-keys) will allow the controller to modify the data value of any data key that starts exactly with that _Dynamic Data Key_.
 
 Example:
 
@@ -59,7 +59,7 @@ If controller has `CALL` permission but has no `AllowedCalls`, controller will n
 
 :::
 
-Key Manager allows for restricting controller addresses to be able to call specific functions on specific addresses which should be of a specific standard. In order to achieve such functionallity one could encode a set of type calls, addresses, standards and functions to [`bytes[CompactBytesArray]`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytesncompactbytesarray), and store them under the [Allowed Calls](../../standards/universal-profile/lsp6-key-manager.md#allowed-calls) data key.
+Key Manager allows for restricting controller addresses to be able to call specific functions on specific addresses which should be of a specific standard. In order to achieve such functionallity one could encode a set of type calls, addresses, standards and functions to [`bytes[CompactBytesArray]`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#bytesncompactbytesarray), and store them under the [Allowed Calls](../../standards/access-control/lsp6-key-manager.md#allowed-calls) data key.
 
 _E.g._
 

@@ -24,7 +24,7 @@ const STANDARDS = [
   {
     title: '🌐 LSP3',
     name: 'Profile Metadata',
-    link: '/standards/accounts/lsp3-profile-metadata',
+    link: '/standards/metadata/lsp3-profile-metadata',
     text: 'Set of ERC725Y data keys describing a smart contract based blockchain profile.',
   },
   {
@@ -90,7 +90,7 @@ const STANDARDS = [
   {
     title: '📬 LSP15',
     name: 'Transaction Relayer API',
-    link: '/standards/accounts/lsp15-transaction-relayer-api.md',
+    link: '/standards/accounts/lsp15-transaction-relayer-api',
     text: 'A standard set of API methods to create a service that acts as a relayer and dispatch transactions on behalf of users.',
   },
   {

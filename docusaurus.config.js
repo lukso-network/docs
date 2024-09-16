@@ -30,7 +30,7 @@ export default {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          //Learn home
+          // Learn home
           {
             from: '/learn/what-is-lukso',
             to: '/learn/getting-started',
@@ -295,10 +295,94 @@ export default {
             from: '/learn/expert-guides/deploy-up-with-lsp23',
             to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
           },
-          //Standards
+          // Standards
+          {
+            from: '/standards/standard-detection',
+            to: '/standards/standard-types',
+          },
+          {
+            from: '/standards/erc725',
+            to: '/standards/erc725',
+          },
+          {
+            from: '/standards/metadata/lsp2-json-schema',
+            to: '/standards/metadata/lsp2-json-schema',
+          },
+          {
+            from: '/standards/generic-standards/lsp3-profile-metadata',
+            to: '/standards/metadata/lsp3-profile-metadata',
+          },
+          {
+            from: '/standards/generic-standards/lsp5-received-assets',
+            to: '/standards/metadata/lsp5-received-assets',
+          },
+          {
+            from: '/standards/generic-standards/lsp10-received-vaults',
+            to: '/standards/metadata/lsp10-received-vaults',
+          },
+          {
+            from: '/standards/generic-standards/lsp12-issued-assets',
+            to: '/standards/metadata/lsp12-issued-assets',
+          },
           {
             from: '/standards/nft-2.0/introduction',
             to: '/standards/tokens/introduction',
+          },
+          {
+            from: '/standards/access-control/lsp6-key-manager',
+            to: '/standards/access-control/lsp6-key-manager',
+          },
+          {
+            from: '/standards/access-control/lsp14-ownable-2-step',
+            to: '/standards/access-control/lsp14-ownable-2-step',
+          },
+          {
+            from: '/standards/accounts/introduction',
+            to: '/standards/accounts/introduction',
+          },
+          {
+            from: '/standards/accounts/lsp0-erc725account',
+            to: '/standards/accounts/lsp0-erc725account',
+          },
+          {
+            from: '/standards/accounts/lsp1-universal-receiver',
+            to: '/standards/accounts/lsp1-universal-receiver',
+          },
+          {
+            from: '/standards/accounts/lsp1-universal-receiver-delegate',
+            to: '/standards/accounts/lsp1-universal-receiver-delegate',
+          },
+          {
+            from: '/standards/accounts/lsp9-vault',
+            to: '/standards/accounts/lsp9-vault',
+          },
+          {
+            from: '/standards/accounts/lsp17-contract-extension',
+            to: '/standards/accounts/lsp17-contract-extension',
+          },
+          {
+            from: '/standards/accounts/lsp20-call-verification',
+            to: '/standards/accounts/lsp20-call-verification',
+          },
+          {
+            from: '/standards/faq/channel-nonce',
+            to: '/standards/accounts/lsp25-execute-relay-call',
+          },
+          {
+            from: '/standards/generic-standards/lsp26-follower-system',
+            to: '/standards/accounts/lsp26-follower-system',
+          },
+          {
+            from: '/standards/accounts/lsp15-transaction-relayer-api',
+            to: '/standards/accounts/lsp15-transaction-relayer-api',
+          },
+          {
+            from: '/standards/factories/lsp16-universal-factory',
+            to: '/standards/factories/lsp16-universal-factory',
+          },
+          {
+            from: '/standards/factories/lsp16-universal-factory',
+            to: '/standards/factories/lsp23-linked-contracts-factory',
           },
         ],
       },

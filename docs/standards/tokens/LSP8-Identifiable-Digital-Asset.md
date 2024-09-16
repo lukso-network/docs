@@ -87,7 +87,7 @@ The **bytes32 tokenId** can be interpreted as a:
 
 ![LSP8 Address TokenIds Representation](/img/standards/lsp8/lsp8-tokenId-address.jpeg)
 
-TokenIds represented as **smart contract address** allow the creation of more **complex NFTs**. When each tokenId is a contract that have its own **[ERC725Y](../lsp-background//erc725.md#erc725y---generic-data-keyvalue-store)** storage. For instance in a video game, by changing the features and metadata of the tokenId based on the **game rules**.
+TokenIds represented as **smart contract address** allow the creation of more **complex NFTs**. When each tokenId is a contract that have its own **[ERC725Y](../erc725.md#erc725y---generic-data-keyvalue-store)** storage. For instance in a video game, by changing the features and metadata of the tokenId based on the **game rules**.
 
 ![LSP8 Game Nested NFTs TokenIds Representation](/img/standards/lsp8/lsp8-game.jpeg)
 
@@ -95,7 +95,7 @@ TokenIds represented as **smart contract address** allow the creation of more **
 
 :::tip Recommendation
 
-To mark the **asset authenticity**, it's advised to use a combination between **[LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)** and **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
+To mark the **asset authenticity**, it's advised to use a combination between **[LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)** and **[LSP12-IssuedAssets](../metadata/lsp12-issued-assets.md)**.
 
 :::
 
@@ -127,11 +127,11 @@ During an **ERC721 token transfer**, the ownership of the tokenId is changed fro
 
 ![ERC721 Transfer](/img/standards/lsp8/erc721-transfer.jpeg)
 
-During an **LSP8 token transfer**, as well as updating the tokenId ownership, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
+During an **LSP8 token transfer**, as well as updating the tokenId ownership, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../accounts/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
 
 ![LSP8 Transfer](/img/standards/lsp8/lsp8-transfer.jpeg)
 
-In this way, users are **informed** about the NFT transfer and can decide how to **react on the transfer**, either by accepting or rejecting the NFT, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
+In this way, users are **informed** about the NFT transfer and can decide how to **react on the transfer**, either by accepting or rejecting the NFT, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../accounts/lsp1-universal-receiver-delegate.md)**.
 
 If the sender and recipient are smart contracts that implement the LSP1 standard, the LSP8 token contract will notify them using the following `bytes32 typeIds` when calling their `universalReceiver(...)` function.
 
@@ -153,15 +153,15 @@ It is expected in the LUKSO's ecosystem to use **smart contract based accounts**
 
 To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#transfer) and [`_mint(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_mint) functions:
 
-- If set to `false`, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
+- If set to `false`, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard.
 
 ![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
 
-- If set to `true`, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
+- If set to `true`, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
 
 ![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
 
-Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
+Implementing the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
 
 ## LSP8 Collection vs TokenId Metadata
 

@@ -748,8 +748,8 @@ The deployed contract address should be printed in the console. Make sure to cop
 If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector).
 By pasting the address of the contract, you should see that it supports:
 
-- [ERC725Y](../../../standards/generic-standards/lsp2-json-schema.md)
-- [LSP8IdentifiableDigitalAsset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)
+- [ERC725Y](/standards/metadata/lsp2-json-schema.md)
+- [LSP8IdentifiableDigitalAsset](/standards/tokens/LSP8-Identifiable-Digital-Asset.md)
 
 ![Inspect tool](../../../../static/img/learn/inspect-tool-lsp8.png)
 
@@ -950,7 +950,7 @@ Let's run the script using `npx hardhat run scripts/mintLSP7SubCollections.ts --
 If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector).
 By pasting the address of the contract, you should see that it supports:
 
-- [ERC725Y](../../../standards/generic-standards/lsp2-json-schema.md)
+- [ERC725Y](../../../standards/metadata/lsp2-json-schema.md)
 - [LSP7DigitalAsset](../../../standards/tokens/LSP7-Digital-Asset.md)
 
 ![Inspect tool](../../../../static/img/learn/inspect-tool-lsp7.png)

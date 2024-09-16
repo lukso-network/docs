@@ -26,7 +26,7 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::
 
-This guide will teach you how to transfer an existing [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) across [Universal Profiles](../../../standards/universal-profile/lsp0-erc725account.md).
+This guide will teach you how to transfer an existing [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) across [Universal Profiles](../../../standards/accounts/lsp0-erc725account.md).
 
 ## Setup Dependencies
 

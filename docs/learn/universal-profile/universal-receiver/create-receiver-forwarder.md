@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Create a Token Forwarder
 
-This guide will teach you how to create a basic custom [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract for the following use-case:
+This guide will teach you how to create a basic custom [Universal Receiver Delegate](../../../standards/accounts/lsp1-universal-receiver-delegate.md) contract for the following use-case:
 
 > **"As a Universal Profile (UP) owner, I want to transfer part of the tokens I received to another UP"**.
 
@@ -71,7 +71,7 @@ To re-transfer a portion of the tokens received, we can instruct the LSP1 Forwar
 - **method 1:** via the [**`execute(...)` function of the 🆙**](../../../contracts/contracts/UniversalProfile/UniversalProfile.md#execute).
 - **method 2:** directly on the LSP7 contract **after having authorized the LSP1 Forwarder as an operator via [`authorizeOperator(...)`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)**.
 
-For method 1 to work, the LSP1 Forwarder contract will need the permissions [`SUPER_CALL` + `REENTRANCY`](../../../standards/universal-profile/lsp6-key-manager.md#permissions) on the UP.
+For method 1 to work, the LSP1 Forwarder contract will need the permissions [`SUPER_CALL` + `REENTRANCY`](../../../standards/access-control/lsp6-key-manager.md#permissions) on the UP.
 
 For method 2 to work, the LSP1 Forwarder contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (`type(uint256).max`).
 
@@ -538,7 +538,7 @@ Now that we have deployed our custom LSP1 Forwarder contract, we will register i
 
 We will register this LSP1 Forwarder for the LSP1 Type Id [`LSP7Tokens_RecipientNotification`](../../../contracts/type-ids.md#lsp7tokens_recipientnotification). This type Id is used to notify the Universal Profile that it received some new tokens.
 
-To do that, use the [`LSP1UniversalReceiverDelegate:<bytes32>`](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-mapping) Mapping data key, where the `<bytes32>` part will be the type Id. The _erc725.js_ library will enable us to do that easily.
+To do that, use the [`LSP1UniversalReceiverDelegate:<bytes32>`](../../../standards/accounts/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-mapping) Mapping data key, where the `<bytes32>` part will be the type Id. The _erc725.js_ library will enable us to do that easily.
 
 ```ts
 import ethers from 'ethers';
