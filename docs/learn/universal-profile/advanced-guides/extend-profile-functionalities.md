@@ -35,7 +35,7 @@ To achieve this goal, we will perform the following steps:
 
 :::info
 
-Read the standard docs about including [LSP17-ContractExtension in the Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md#lsp17---contract-extension).
+Read the standard docs about including [LSP17-ContractExtension in the Universal Profile](../../../standards/accounts/lsp0-erc725account.md#lsp17---contract-extension).
 
 :::
 
@@ -217,7 +217,7 @@ The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and
 
 :::
 
-We need to encode the function selector of `tipMe(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/generic-standards/lsp17-contract-extension.md) standard.
+We need to encode the function selector of `tipMe(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/accounts/lsp17-contract-extension.md) standard.
 
 #### Prepare data key and data value
 
@@ -456,7 +456,7 @@ The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and
 
 :::
 
-We need to encode the function selector of `supportsInterface(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/generic-standards/lsp17-contract-extension.md) standard.
+We need to encode the function selector of `supportsInterface(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/accounts/lsp17-contract-extension.md) standard.
 
 ```js
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';

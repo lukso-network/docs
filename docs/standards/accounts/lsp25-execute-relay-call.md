@@ -1,7 +1,7 @@
 ---
-title: Multi-channel nonces
-sidebar_position: 1
-description: Learn about multi-channel nonces for the LUKSO Key Manager.
+title: LSP25 - Execute Relay Call
+sidebar_position: 9
+description: Learn about meta transactions using the LSP25 Execute Relay Call standards and how to use multi-channel nonces to dispatch transactions that are order independant or not.
 ---
 
 # Frequently Asked Questions

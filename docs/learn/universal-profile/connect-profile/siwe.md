@@ -162,7 +162,7 @@ const hashedMessage = web3.eth.accounts.hashMessage(siweMessage);
 
 ## Verify the signature
 
-Your dApp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the [`SIGN`](../../../standards/universal-profile/lsp6-key-manager.md#permissions) permission for this Universal Profile.
+Your dApp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the [`SIGN`](../../../standards/access-control/lsp6-key-manager.md#permissions) permission for this Universal Profile.
 
 To check the signature, you can use the [`isValidSignature(...)`](../../../contracts/contracts/UniversalProfile.md#isvalidsignature) method of the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standardization. If the signature is valid, the method will return the magic value `0x1626ba7e`, indicating a successful verification.
 

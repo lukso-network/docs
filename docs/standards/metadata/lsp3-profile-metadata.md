@@ -14,18 +14,18 @@ description: 'LUKSO LSP3-Profile-Metadata: a Metadata standard that defines spec
 
 ## Introduction
 
-The implementation of the **[LSP0-ERC725Account](./lsp0-erc725account.md)** standard does not contain any metadata describing the account.
+The implementation of the **[LSP0-ERC725Account](../accounts/lsp0-erc725account.md)** standard does not contain any metadata describing the account.
 
 **LSP3-Profile-Metadata** is a Metadata standard that defines specific data keys to describe a profile. A Universal Profile combines the following two standards.
 
-- **[LSP0-ERC725Account](./lsp0-erc725account.md)**: an interface for a smart contract-based account.
-- **LSP3-Profile-Metadata**: a set of predefined [ERC725Y](lsp0-erc725account.md#erc725y---generic-key-value-store) Data keys to describe the profile.
+- **[LSP0-ERC725Account](../accounts/lsp0-erc725account.md)**: an interface for a smart contract-based account.
+- **LSP3-Profile-Metadata**: a set of predefined [ERC725Y](../accounts/lsp0-erc725account.md#erc725y---generic-key-value-store) Data keys to describe the profile.
 
 ## ERC725Y Data Keys
 
 :::tip Recommendation
 
-Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
+Make sure to understand the **[ERC725Y Generic Key/Value Store](../erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../metadata/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 
 :::
 
@@ -161,4 +161,4 @@ See the [LSP5 - Received Assets](./lsp5-received-assets.md) standard page for mo
 }
 ```
 
-If the Universal Profile is used with the **[LSP6-KeyManager](./lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this data key.
+If the Universal Profile is used with the **[LSP6-KeyManager](../access-control/lsp6-key-manager.md)** and **[LSP1-UniversalReceiverDelegate](../accounts/lsp1-universal-receiver-delegate.md)**, the received assets will be automatically registered in the storage. To know how many different assets you have, you can query this data key.

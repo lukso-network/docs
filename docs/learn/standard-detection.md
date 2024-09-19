@@ -1,6 +1,6 @@
 ---
 sidebar_label: '🕵🏽 Standard Detection'
-description: Check supported ERC725 storage keys and interfaces of LSPs (LUKSO Standard Proposals) smart contracts.
+description: Learn how to detect different smart contract interfaces and a set of metadata keys related to the LSP (LUKSO Standards Proposals) using ERC165 interface Ids and the 'SupportedStandards:{StandardName}' data key.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,11 +8,15 @@ import TabItem from '@theme/TabItem';
 
 # Standard Detection
 
-If you want to ensure that LSP standards are implemented and working correctly before letting your application interact with smart contracts, you can check their supported ERC725 storage keys and interfaces.
+:::caution
+
+The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** data key is not the most secure way to check for a standard, as they could be set manually.
+
+:::
 
 :::tip
 
-You can also use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) to fetch and check standards of smart contract addresses within the browser.
+Use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) to check standards interfaces and metadata of smart contract addresses easily.
 
 :::
 
@@ -21,6 +25,8 @@ You can also use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tec
 ⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository.
 
 :::
+
+If you want to ensure that LSP standards are implemented and working correctly before letting your application interact with smart contracts, you can check their supported ERC725 storage keys and interfaces.
 
 ## Setup
 
@@ -32,7 +38,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Metadata Detection
 
-You can verify if a contract contains a specific set of [ERC725Y](../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) keys by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](../tools/libraries/erc725js/getting-started.md) library.
+You can verify if a contract contains a specific set of [ERC725Y](../standards/erc725#erc725y-generic-data-keyvalue-store) keys by checking the value stored under the ERC725Y storage key `SupportedStandards:{StandardName}` using the [erc725.js](../tools/libraries/erc725js/getting-started.md) library.
 
 :::note Example
 
@@ -40,7 +46,7 @@ You can verify if a contract contains a specific set of [ERC725Y](../standards/l
 
 :::
 
-Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/libraries/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/universal-profile/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/universal-profile/lsp9-vault).
+Similar to the [Read Profile Data Guide](./universal-profile/metadata/read-profile-data.md), you can use the [`getData()`](../tools/libraries/erc725js/methods.md#getdata) function to check if the contract has a specific metadata standard like [LSP3 Profile](../standards/metadata/lsp3-profile-metadata), [LSP4 Digital Asset](../standards/tokens/LSP4-Digital-Asset-Metadata) or a [LSP9 Vault](../standards/accounts/lsp9-vault).
 
 ### Example 1 - Detect LSP3 Profile data keys
 
@@ -256,7 +262,7 @@ Calling this function will return `true` if the contract implements this specifi
 
 :::note Example
 
-A **[Universal Profile](../standards/universal-profile/lsp3-profile-metadata.md)** is a contract based on [LSP0 - ERC725Account](../standards/universal-profile/lsp0-erc725account.md). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
+A **[Universal Profile](../standards/metadata/lsp3-profile-metadata.md)** is a contract based on [LSP0 - ERC725Account](../standards/accounts/lsp0-erc725account.md). Therefore, the contract MUST implement the functions defined in the [ERC725Account interface](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#interface-cheat-sheet).
 
 :::
 

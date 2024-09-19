@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::success Asset Authenticity
 
-Within the [LSP4 Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md), Universal Profiles can be referenced as creators. To **authenticate the creators** of an asset, their Universal Profiles must list the asset's address under the [LSP12 Issued Assets](../../../standards/universal-profile/lsp12-issued-assets.md). Services can then validate the **on-chain cross-link** to prove authenticity.
+Within the [LSP4 Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md), Universal Profiles can be referenced as creators. To **authenticate the creators** of an asset, their Universal Profiles must list the asset's address under the [LSP12 Issued Assets](../../../standards/metadata/lsp12-issued-assets.md). Services can then validate the **on-chain cross-link** to prove authenticity.
 
 :::
 
@@ -135,7 +135,7 @@ const accounts = await web3.eth.getAccounts();
 
 ## Encode the data keys
 
-After setting up the array of assets, you can use the [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library to encode the [`LSP12IssuedAssets[]`](../../../standards/universal-profile/lsp12-issued-assets/) data keys. There are two ways to encode data:
+After setting up the array of assets, you can use the [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library to encode the [`LSP12IssuedAssets[]`](../../../standards/metadata/lsp12-issued-assets/) data keys. There are two ways to encode data:
 
 - **Set the full issued assets list**: If you want to initially set issued assets on a Universal Profile or re-set all elements, you can encode the data without defining optional length or index parameters. Therefore, the issued assets will only consist of the asset addresses you provide in your array of assets.
 - **add, update, or remove existing issued assets**: If the Universal Profile already has issued assets, and you want to add, update, or remove certain assets, you can provide the `startingIndex` and `totalArrayLength` parameters. Therefore, your prepared array only represents a subset of all the issued assets listed in your Universal Profile.

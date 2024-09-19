@@ -8,7 +8,7 @@ description: Learn how to prepare and use assets for LUKSO Universal Profiles an
 
 :::info LSP4 Metadata
 
-When creating or editing Universal Profiles or Digital Assets, you will first need to upload assets such as images, icons, videos, etc. These assets can then be linked within the [Metadata JSON File](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) that will be attached to the smart contract.
+When creating or editing Universal Profiles or Digital Assets, you will first need to upload assets such as images, icons, videos, etc. These assets can then be linked within the [Metadata JSON File](/standards/tokens/LSP4-Digital-Asset-Metadata.md) that will be attached to the smart contract.
 
 :::
 
@@ -102,7 +102,7 @@ After uploading the media files, you can attach their links to a JSON File in th
 
 </details>
 
-The JSON content is then used as input for encoding the metadata according to the [LSP4](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standard. After you filled your metadata file with content, upload it to a preferred storage solution.
+The JSON content is then used as input for encoding the metadata according to the [LSP4](/standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standard. After you filled your metadata file with content, upload it to a preferred storage solution.
 
 :::info Data Verification
 
@@ -161,7 +161,7 @@ The encoded content will then look like the following:
 
 ## 4 - Adding the Metadata
 
-After you retrieved the key and value of your [ERC725Y](../../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) data key, you can call the [`setData()`](../../../contracts/contracts/ERC725/ERC725.md#setdata) function of the asset to update it's metadata on the contract.
+After you retrieved the key and value of your [ERC725Y](/standards/erc725#erc725y-generic-data-keyvalue-store) data key, you can call the [`setData()`](../../../contracts/contracts/ERC725/ERC725.md#setdata) function of the asset to update it's metadata on the contract.
 
 :::tip Sample Implementation
 

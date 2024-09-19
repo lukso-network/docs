@@ -36,7 +36,7 @@ The storage of a smart contract consists of multiple **storage slots**. These sl
 0xdeba1e292f8ba88238e10ab3c7f88bd4be4fac56cad5194b6ecceaf653468af1 => 0x4d7920546f6b656e20322e30
 ```
 
-Using **slot numbers** and **raw bytes** makes the contract storage very hard to handle. [ERC725Y](../universal-profile/lsp0-erc725account.md#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However, with such low-level languages, it is difficult for humans to understand the data in the storage.
+Using **slot numbers** and **raw bytes** makes the contract storage very hard to handle. [ERC725Y](../accounts/lsp0-erc725account.md#erc725y---generic-key-value-store) solves part of the problem through a more flexible storage layout, where data is addressed via `bytes32` keys. However, with such low-level languages, it is difficult for humans to understand the data in the storage.
 
 The main problem around smart contract storage also arises when data is stored differently, depending on individual use cases and application needs. No standard schema defines "what the data stored under a specific data key represents".
 
@@ -214,7 +214,7 @@ You must take into consideration the fact that if you choose the same value to h
 
 A data key of type **MappingWithGrouping** is similar to the **[Mapping](#mapping)** data key type, except that sub-types can be added to the main mapping data key.
 
-For instance, it can be used to differentiate various types from the primary mapping data key, like different types of permissions (see [LSP6 - Key Manager](../universal-profile/lsp6-key-manager.md)).
+For instance, it can be used to differentiate various types from the primary mapping data key, like different types of permissions (see [LSP6 - Key Manager](../access-control/lsp6-key-manager.md)).
 
 Below is an example of a MappingWithGrouping data key:
 
@@ -252,7 +252,7 @@ bytes32 dataKey = bytes32(
 
 :::success Recommendation
 
-Watch our following video for an overview of how static types (`uintM`, `bytesN`, `bool`), `bytes` and `string` are encoded in the [ERC725Y](../lsp-background/erc725.md#erc725y-data-representation) storage of a smart contract using the LSP2 standard.
+Watch our following video for an overview of how static types (`uintM`, `bytesN`, `bool`), `bytes` and `string` are encoded in the [ERC725Y](../erc725.md#erc725y-data-representation) storage of a smart contract using the LSP2 standard.
 
 :::
 

@@ -1,6 +1,5 @@
 ---
 title: 🆙 RPC API
-sidebar_position: 10
 description: LUKSO's RPC API supported methods.
 ---
 
@@ -122,7 +121,7 @@ Add a custom relayer.
 
 ##### 1. `relayer` - Object
 
-Object containing the new relayer properties. To find more information about custom relayers, you can read the [Transaction Relay Service API](./relayer-api.md).
+Object containing the new relayer properties. To find more information about custom relayers, you can read the [Transaction Relay Service API](../standards/accounts/lsp15-transaction-relayer-api.md).
 
 | Name       | Type   | Description                   |
 | :--------- | :----- | :---------------------------- |

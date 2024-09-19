@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP1 - Universal Receiver'
-sidebar_position: 1
+sidebar_position: 3
 description: LUKSO LSP1 Universal Receiver Delegate.
 ---
 
@@ -46,7 +46,7 @@ One way to solve this problem is by creating a **standard and unified function**
 
 :::success recommendation
 
-Smart contracts implementing the [LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver-delegate.md) standard SHOULD **register** the **[LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
+Smart contracts implementing the [LSP1-UniversalReceiver](../../standards/accounts/lsp1-universal-receiver-delegate.md) standard SHOULD **register** the **[LSP1UniversalReceiver InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1 standard.
 
 :::
 
@@ -71,7 +71,7 @@ In this way, instead of **listening to all the events of the token contrats on t
 As well as emitting an event, the `universalReceiver(...)` function can implement **custom logic** to make the contract behave differently based on the data received. Some ideas include:
 
 - Reverting on calls to completely disallow the smart contract from receiving assets, information, etc. :x:
-- Registering the received assets inside the contract storage (see [LSP5 - Received Assets](../universal-profile/lsp5-received-assets.md)). :heavy_plus_sign:
+- Registering the received assets inside the contract storage (see [LSP5 - Received Assets](../metadata/lsp5-received-assets.md)). :heavy_plus_sign:
 - Disallowing receiving specific tokens from specific token contract addresses, for instance (e.g: spam tokens).
 - Forwarding all the received assets to an external vault or a staking contract.
 - Forwarding specific tokens in a contract behind a protocol or dApp (e.g: liquidity or lending pool to earn interest).
@@ -83,13 +83,13 @@ As well as emitting an event, the `universalReceiver(...)` function can implemen
 
 :::info
 
-See the **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)** standard for more details.
+See the **[LSP1-UniversalReceiverDelegate](../accounts/lsp1-universal-receiver-delegate.md)** standard for more details.
 
 :::
 
 Overriding and customizing the `universalReceiver(..)` function is an option for users to allow **different behaviours depending on the data received**. However, it's not advised to hardcode the logic of reacting to specific actions inside the function because **this logic may need to change in the future** depending on several factors (eg. the vault where the tokens are forwarded gets compromised, a new staking contract is deployed, decided to revert on specific tokens later).
 
-**[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)** is an **optional extension** to the **[LSP1-UniversalReceiver](../../standards/generic-standards/lsp1-universal-receiver.md)** standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
+**[LSP1-UniversalReceiverDelegate](../accounts/lsp1-universal-receiver-delegate.md)** is an **optional extension** to the **[LSP1-UniversalReceiver](../../standards/accounts/lsp1-universal-receiver.md)** standard. As well as notifying a contract about the incoming and outgoing transactions by emitting an event, it can delegate the call to an external contract that can **handle and react to specific calls** with its custom logic.
 
 ![Universal Receiver Delegate contract](/img/standards/lsp1/universal-receiver-delegate.jpeg)
 

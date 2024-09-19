@@ -8,7 +8,7 @@ import CallToActionButton from '@site/src/components/CallToActionButton';
 
 # Getting started building dApps with 🆙
 
-When building dApps on LUKSO, you are interacting with [Universal Profiles](../../standards/universal-profile/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
+When building dApps on LUKSO, you are interacting with [Universal Profiles](../../standards/accounts/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
 
 <CallToActionButton
     color="white"
@@ -52,7 +52,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles](../.
 
 :::note Manual Deployment
 
-You can also create new [Universal Profiles](../../standards/universal-profile/introduction.md) by ⚒️ [deploying them programmatically](./advanced-guides/deploy-up-with-lsp23.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
+You can also create new [Universal Profiles](../../standards/accounts/introduction.md) by ⚒️ [deploying them programmatically](./advanced-guides/deploy-up-with-lsp23.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/accounts/lsp15-transaction-relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
 
 :::
 

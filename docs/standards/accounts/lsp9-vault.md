@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP9 - Vault'
-sidebar_position: 7
+sidebar_position: 5
 description: LUKSO LSP9 - Vault for holding assets and interacting with other smart contracts.
 ---
 
@@ -44,14 +44,14 @@ The following `operationType` COULD exist:
 This substandard enables the vault to hold arbitrary data through a generic data key/value store. It gives flexibility to the contract storage by allowing to attach any information to the contract and update it easily.
 
 :::info
-The data keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** standard.
+The data keys and values are constructed according to the **[LSP2-ERC725YJSONSchema](../metadata/lsp2-json-schema.md)** standard.
 :::
 
 ### LSP1 - UniversalReceiver
 
 :::info
 
-See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
+See the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard for more information.
 
 :::
 
@@ -63,7 +63,7 @@ The implementation of the **UniversalReceiverDelegate** used by the Universal Pr
 
 This standard enables the vault to be notified of incoming transactions such as token transfers, information transfers, etc. Notifications are handy when users want to customize how their account contract reacts to certain tokens by either rejecting them or operating a specific call on each received token.
 
-The **[LSP9-Vault](../../standards/universal-profile/lsp9-vault.md)** implements the `universalReceiver(..)` function that:
+The **[LSP9-Vault](../../standards/accounts/lsp9-vault.md)** implements the `universalReceiver(..)` function that:
 
 - Emits an event with the typeId and data passed to it, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
 
@@ -97,7 +97,7 @@ The **[LSP9-Vault](../../standards/universal-profile/lsp9-vault.md)** implements
 
 :::info
 
-See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)** standard for more information.
+See the **[LSP14 - Ownable2Step](../access-control/lsp14-ownable-2-step.md)** standard for more information.
 
 :::
 
@@ -111,7 +111,7 @@ This standard allows for the **LSP9 - Vault** contract's ownership to be control
 
 Developers could use the vault to hold assets and, as mentioned before, could be used to restrict third parties to only operate on the assets and metadata of the vault and not the Universal Profile. The Universal Profile's metadata and assets are safe if the third party tries to act maliciously.
 
-**1.** The **protocol** should be allowed to only talk to the vault A1 through [AllowedAddresses permission](./lsp6-key-manager#address-permissions).
+**1.** The **protocol** should be allowed to only talk to the vault A1 through [AllowedAddresses permission](../access-control/lsp6-key-manager#address-permissions).
 
 ![LSP9 vault allowed in profile](/img/standards/lsp9/vault-flow.jpeg)
 

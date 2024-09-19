@@ -1,6 +1,6 @@
 ---
-title: 📬 Relayer API
-sidebar_position: 9
+title: LSP15 - Transaction Relayer API
+sidebar_position: 6
 description: LUKSO's Transaction Relay Service API Standard.
 ---
 
@@ -13,15 +13,21 @@ import TabItem from '@theme/TabItem';
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cpoczP3Y7Hk?si=iiYiBDaMG0vn9i_r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
+:::caution
+
+This standard is for an API off-chain to create a relay service. For the on-chain part on how to construct message for relay transactions, see [LSP25 Execute Relay Call](./lsp25-execute-relay-call.md).
+
+:::
+
 :::success Relayer API
 
-To access our Relayer API, see our [**Relayer Developer Access**](../tools/services/relayer-developer.md) page.
+To access our Relayer API, see our [**Relayer Developer Access**](../../tools/services/relayer-developer.md) page.
 
 :::
 
 ## POST `/execute`
 
-Executes a signed transaction on behalf of a Universal Profile using [`executeRelayCall()`](../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
+Executes a signed transaction on behalf of a Universal Profile using [`executeRelayCall()`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 - Use signed message provided in request for authentication.
 - Calculate and return the transaction hash in response.
@@ -47,7 +53,7 @@ Executes a signed transaction on behalf of a Universal Profile using [`executeRe
 
 Returns the available quota left for a registered Universal Profile.
 
-- `signature` is the message value signed by a controller key with the [`SIGN` permission](./universal-profile/lsp6-key-manager#permissions) of the Universal Profile. The hash to sign should be calculated as [EIP-712](https://eips.ethereum.org/EIPS/eip-712) hash where the message is `keccack256(address, timestamp)`. Make sure that no matter the language or platform timestamp is of type `int`, `int256`, `uint` or `uint256`. In the backend the message is reconstructed using [soliditysha3()](https://web3js.readthedocs.io/en/v1.7.4/web3-utils.html#soliditysha3) to verify the signature.
+- `signature` is the message value signed by a controller key with the [`SIGN` permission](../access-control/lsp6-key-manager#permissions) of the Universal Profile. The hash to sign should be calculated as [EIP-712](https://eips.ethereum.org/EIPS/eip-712) hash where the message is `keccack256(address, timestamp)`. Make sure that no matter the language or platform timestamp is of type `int`, `int256`, `uint` or `uint256`. In the backend the message is reconstructed using [soliditysha3()](https://web3js.readthedocs.io/en/v1.7.4/web3-utils.html#soliditysha3) to verify the signature.
 
 [Web3.js](https://web3js.readthedocs.io/en/v1.8.0/web3-eth-accounts.html?#sign) and [ethers.js](https://docs.ethers.io/v5/api/signer/#Signer-signMessage) both automatically hash when using their native sign functions. This may need to be done manually if using a different library.
 
@@ -114,7 +120,7 @@ const signer = ethers.utils.verifyMessage(arrayify(message), signature); // Sign
 </TabItem>
 </Tabs>
 
-To verify if the signature was signed by an authorized EOA, please refer to the [Sign-In With Ethereum](../learn/universal-profile/connect-profile/siwe.md) guide.
+To verify if the signature was signed by an authorized EOA, please refer to the [Sign-In With Ethereum](../../learn/universal-profile/connect-profile/siwe.md) guide.
 
 </details>
 

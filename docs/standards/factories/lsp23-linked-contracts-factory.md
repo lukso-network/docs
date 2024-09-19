@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP23 - Linked Contracts Factory'
-sidebar_position: 7
+sidebar_position: 2
 description: LUKSO's LSP23 Linked Contracts Factory to allow the deployment of primary and secondary smart contracts that are linked together.
 ---
 
@@ -42,7 +42,7 @@ You can find the [`IPostDeploymentModule`](../../contracts/contracts/LSP23Linked
 
 ## Example
 
-The deployment process for a [`Universal Profile`](../universal-profile/introduction.md) and its associated [`Key Manager`](../universal-profile/lsp6-key-manager.md) involves a series of steps that ensure proper integration and ownership assignment between the two contracts. The `Universal Profile` serves as the primary contract, while the `Key Manager` functions as the secondary contract. Both contracts require each other's addresses during deployment.
+The deployment process for a [`Universal Profile`](../accounts/introduction.md) and its associated [`Key Manager`](../access-control/lsp6-key-manager.md) involves a series of steps that ensure proper integration and ownership assignment between the two contracts. The `Universal Profile` serves as the primary contract, while the `Key Manager` functions as the secondary contract. Both contracts require each other's addresses during deployment.
 
 Using, `LSP23`, the deployment flow is outlined as follows:
 

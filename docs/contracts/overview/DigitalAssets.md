@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Digital Assets
 
-The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](../../standards/universal-profile/lsp0-erc725account.md) and [Universal Receivers](../../standards/generic-standards/lsp1-universal-receiver.md).
+The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](/standards/accounts/lsp0-erc725account.md) and [Universal Receivers](/standards/accounts/lsp1-universal-receiver.md).
 
 ## Comparisons with ERC20 / ERC721
 
@@ -131,7 +131,7 @@ A **bytes32** value is used for tokenId to allow many uses of token identificati
 
 The function [`setDataBatchForTokenIds(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple data key-value pairs at once for one or multiple tokenIds.
 
-This function is flexible enough to enable to set one or multiple [data key-value](../../standards/lsp-background/erc725).md#erc725y-generic-data-keyvalue-store) pairs for:
+This function is flexible enough to enable to set one or multiple [data key-value](/standards/erc725).md#erc725y-generic-data-keyvalue-store) pairs for:
 
 #### case 1: a single tokenId
 
@@ -343,7 +343,7 @@ async function setMultipleDataForSingleTokenId(
 
 ### Checking if the Metadata of a tokenId changed
 
-Since LSP8 uses [ERC725Y](../../standards/lsp-background/erc725#erc725y-generic-data-keyvalue-store) under the hood, the URI pointing to the metadata of a specific tokenId can be changed inside the ERC725Y storage of the LSP8 contract.
+Since LSP8 uses [ERC725Y](/standards/erc725#erc725y-generic-data-keyvalue-store) under the hood, the URI pointing to the metadata of a specific tokenId can be changed inside the ERC725Y storage of the LSP8 contract.
 
 We have seen in the previous section [**how to set metadata for one or multiple tokenIds**](#setting-metadata-for-one-or-multiple-tokenids).
 

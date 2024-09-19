@@ -20,7 +20,7 @@ An ERC725 Account overcomes the limitations of traditional blockchain accounts b
 
 [Externally Owned Accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) are the primary type of **account** in Ethereum, controlled by a private key. If the private key is **compromised**, anyone can execute transactions from the account and access any assets it holds. EOAs have no built-in mechanism for attaching any information or data, making identifying the person or entity using the account challenging. They can only perform simple interactions using the **[CALL](https://www.evm.codes/#f1)** opcode and create contracts using the **[CREATE](https://www.evm.codes/#f0)** opcode.
 
-These issues can be addressed by the **[ERC725](../lsp-background/erc725.md)** standard, which provides more operations to execute and a flexible way to attach data for the contract even after it has been deployed.
+These issues can be addressed by the **[ERC725](../erc725.md)** standard, which provides more operations to execute and a flexible way to attach data for the contract even after it has been deployed.
 
 However, for a smart contract-based account to be viable in the long term, it should have much more functionalities than the ability to execute and to attach data. The features that makes a smart contract an account are:
 
@@ -36,19 +36,19 @@ An **ERC725Account** is a blockchain account system that can be utilized by indi
 
 - **[ERC165](https://eips.ethereum.org/EIPS/eip-165)** allows to register and detect the standard interfaces and standards that the contract implements, or will implement in the future.
 
-- **[ERC725X](../lsp-background/erc725.md#erc725x---generic-executor)** is a generic executor that enables calling external contracts with different operations such as [**CALL**](https://www.evm.codes/#f1), [**STATICCALL**](https://eips.ethereum.org/EIPS/eip-214) and [**DELEGATECALL**](https://eips.ethereum.org/EIPS/eip-7). It also allows deploying new contracts with [**CREATE**](https://www.evm.codes/#f0) or [**CREATE2**](https://eips.ethereum.org/EIPS/eip-1014), or transferring value to any address (EOA or smart contracts).
+- **[ERC725X](../erc725.md#erc725x---generic-executor)** is a generic executor that enables calling external contracts with different operations such as [**CALL**](https://www.evm.codes/#f1), [**STATICCALL**](https://eips.ethereum.org/EIPS/eip-214) and [**DELEGATECALL**](https://eips.ethereum.org/EIPS/eip-7). It also allows deploying new contracts with [**CREATE**](https://www.evm.codes/#f0) or [**CREATE2**](https://eips.ethereum.org/EIPS/eip-1014), or transferring value to any address (EOA or smart contracts).
 
-- **[ERC725Y](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** is a generic key-value store that enables it to **attach any information** to the smart contract even after it's been deployed.
+- **[ERC725Y](../erc725.md#erc725y---generic-data-keyvalue-store)** is a generic key-value store that enables it to **attach any information** to the smart contract even after it's been deployed.
 
 - **[ERC1271](https://eips.ethereum.org/EIPS/eip-1271)** helps to **verify the validity** of a message and signature.
 
-- **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** enables **notifications about incoming or outgoing transactions** and adds custom handling and behavior based on these transactions.
+- **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** enables **notifications about incoming or outgoing transactions** and adds custom handling and behavior based on these transactions.
 
-- **[LSP14-Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)** enables a **secure ownership management** system.
+- **[LSP14-Ownable2Step](../access-control/lsp14-ownable-2-step.md)** enables a **secure ownership management** system.
 
-- **[LSP17-ContractExtension](../generic-standards/lsp17-contract-extension.md)** enables the contract to be **extended after deployment** to support new standard and functionalities.
+- **[LSP17-ContractExtension](../accounts/lsp17-contract-extension.md)** enables the contract to be **extended after deployment** to support new standard and functionalities.
 
-- **[LSP20-CallVerification](../../standards/generic-standards/lsp20-call-verification.md)** provides a unified and standard way for all addresses to **interact directly with the account**. This streamlines the interaction process considering the ownership setup, and enhancing accessibility and developer experience.
+- **[LSP20-CallVerification](../../standards/accounts/lsp20-call-verification.md)** provides a unified and standard way for all addresses to **interact directly with the account**. This streamlines the interaction process considering the ownership setup, and enhancing accessibility and developer experience.
 
 ![LSP0 modules diagram](/img/standards/lsp0/LSP0-modules-diagram.jpeg)
 
@@ -56,7 +56,7 @@ An **ERC725Account** is a blockchain account system that can be utilized by indi
 
 :::tip
 
-See the **[ERC725](../lsp-background//erc725.md)** standard for more information.
+See the **[ERC725](../erc725.md)** standard for more information.
 
 Check the [**execute functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#execute) provided by **ERC725X** that allows the contract to execute multiple operations.
 
@@ -102,7 +102,7 @@ The following types of calls (operation types) are available:
 
 :::tip
 
-See the **[ERC725](../lsp-background//erc725.md)** standard for more information.
+See the **[ERC725](../erc725.md)** standard for more information.
 
 Check the [**setData functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata) provided by **ERC725Y** that allows attaching data to the contract.
 
@@ -145,7 +145,7 @@ When the owner is a smart contract, the `isValidSignature(..)` function will be 
 
 :::tip
 
-See the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard for more information.
+See the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard for more information.
 
 Check the [**universalReceiver functions**](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) provided by **LSP1** that allows notifying about incoming/ outgoing transactions.
 
@@ -155,7 +155,7 @@ Check the **javascript** guides to know [**How to set a UniversalReceiverDelegat
 
 This standard enables the account to be notified of incoming transactions such as token transfer, vault transfer, information transfer, etc. Notifications are handy for situations where users want to customize how their account contract reacts to certain tokens by either rejecting them or operating a specific call on each token received.
 
-The **[LSP0-ERC725Account](../../standards/universal-profile/lsp0-erc725account.md)** implements the `universalReceiver(..)` function that:
+The **[LSP0-ERC725Account](../../standards/accounts/lsp0-erc725account.md)** implements the `universalReceiver(..)` function that:
 
 Emits an [`UniversalReceiver`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver-1) event with the `typeId` and `data`, as well as additional parameters such as the amount sent to the function, the caller of the function, and the return value of the delegate contracts.
 
@@ -191,7 +191,7 @@ The **UniversalReceiverDelegate** contracts **provides optional interactions** t
 
 :::tip
 
-See the **[LSP14 - Ownable2Step](../generic-standards/lsp14-ownable-2-step.md)** standard for more information.
+See the **[LSP14 - Ownable2Step](../access-control/lsp14-ownable-2-step.md)** standard for more information.
 
 Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md) allowing 2 step ownership transfers.
 
@@ -199,7 +199,7 @@ Check the [**LSP14 functions**](../../contracts/contracts/LSP14Ownable2Step/LSP1
 
 An account that holds valuable assets and represents your digital identity should be secure to prevent mistakes that may result in losing it. Therefore, a safe and secure ownership management system should be in place for this account.
 
-**LSP14-Ownable2Step** is a standard that allows for the ownership of an account to be transferred or renounced through a 2-step process, making it more resistant to phishing attacks. This standard allows for any address, such as an EOA or smart contract, to be the owner of the account. The owner can be a **voting contract**, or a **multisig**, or a **KeyManager** that allow for permission-based access control. (Check **[LSP6-KeyManager](../universal-profile/lsp6-key-manager.md)**)
+**LSP14-Ownable2Step** is a standard that allows for the ownership of an account to be transferred or renounced through a 2-step process, making it more resistant to phishing attacks. This standard allows for any address, such as an EOA or smart contract, to be the owner of the account. The owner can be a **voting contract**, or a **multisig**, or a **KeyManager** that allow for permission-based access control. (Check **[LSP6-KeyManager](../access-control/lsp6-key-manager.md)**)
 
 ![ERC725Y key-value store vs standard contract storage](/img/standards/lsp0/LSP0-Owner.jpeg)
 
@@ -225,7 +225,7 @@ The process for renouncing ownership follows a similar structure, where an initi
 
 :::tip
 
-See the **[LSP17 - ContractExtension](../generic-standards/lsp17-contract-extension.md)** standard for more information.
+See the **[LSP17 - ContractExtension](./lsp17-contract-extension.md)** standard for more information.
 
 Check the **JavaScript** guides to know [**How to extend the functionalities and interfaceIds of an account**](../../learn/universal-profile/advanced-guides/extend-profile-functionalities.md)
 
@@ -235,7 +235,7 @@ Check the [**fallback function**](../../contracts/contracts/LSP0ERC725Account/LS
 
 Once a smart contract based account is deployed on the blockchain, it is not possible to modify the contract to add new native functions or change the behavior of existing ones. This can be a limitation for these accounts, that may need to support new use cases, functions, and standards that may be adopted in the future.
 
-**[LSP17-ContractExtension](../generic-standards/lsp17-contract-extension.md)** defines a mechanism for extending a contract to support new standard and functions through the use of **extensions**.
+**[LSP17-ContractExtension](./lsp17-contract-extension.md)** defines a mechanism for extending a contract to support new standard and functions through the use of **extensions**.
 
 #### Support New Functions
 

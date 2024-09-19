@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Create an NFT Collection Using LSP8
 
-This tutorial explains how to create a collection of unique Digital Assets based on the [LSP8-Identifiable-Digital-Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard.
+This tutorial explains how to create a collection of unique Digital Assets based on the [LSP8-Identifiable-Digital-Asset](/standards/tokens/LSP8-Identifiable-Digital-Asset.md) standard.
 
 :::note
 
@@ -27,7 +27,7 @@ The full code of this example can be found in the smart contract section of the 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DMpeMswK12w?si=DqttxMJIv6c4H0FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
+When creating smart contracts representing digital assets on LUKSO, you need to specify the type of token you are deploying. This is done by setting the `LSP4TokenType` data key stored in the 🗂️ [ERC725Y](../../../standards/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
 - `1` = NFT

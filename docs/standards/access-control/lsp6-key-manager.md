@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'LSP6 - Key Manager'
-sidebar_position: 6
+sidebar_position: 1
 description: LUKSO's LSP6 - Key Manager for controlling a LUKSO LSP0ERC725Account.
 ---
 
@@ -157,9 +157,9 @@ The `CHANGEEXTENSIONS` permission enables editing LSP17 extension contract addre
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
     </p>
 
-The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific [Type IDs](../generic-standards/lsp1-universal-receiver.md#what-does-this-standard-represent) when no contracts extension was initially set up for a specific Type ID.
+The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific [Type IDs](../accounts/lsp1-universal-receiver.md#what-does-this-standard-represent) when no contracts extension was initially set up for a specific Type ID.
 
-See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
+See [**LSP1 Universal Receiver > extension**](../accounts/lsp1-universal-receiver.md#extension) for more details.
 
 > **NB** this permission also enables to set the address of the default LSP1UniversalReceiverDelegate contract under the `LSP1UniversalReceiverDelegate` data key if no address was set in the first place.
 
@@ -176,7 +176,7 @@ The `CHANGEUNIVERSALRECEIVERDELEGATE` permission enables two things:
 1. edit the address of the default LSP1UniversalReceiverDelegate contract (linked under the `LSP1UniversalReceiverDelegate` data key).
 2. edit the addresses of the LSP1UniversalReceiverDelegate extension contracts linked to specific Type IDs.
 
-See [**LSP1 Universal Receiver > extension**](../generic-standards/lsp1-universal-receiver.md#extension) for more details.
+See [**LSP1 Universal Receiver > extension**](../accounts/lsp1-universal-receiver.md#extension) for more details.
 
 </details>
 
@@ -467,7 +467,7 @@ You can obtain the list of controllers that have some permissions on the linked 
 - **key:** `0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3`
 - **value return:** the total number of address that have some permissions set (= array length)
 
-Each controller can be retrieved by accessing each index in the array (see [LSP2 > Array docs](../generic-standards/lsp2-json-schema.md#array) and [LSP2 > Array Standard specs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#array) for more detailed instructions).
+Each controller can be retrieved by accessing each index in the array (see [LSP2 > Array docs](../metadata/lsp2-json-schema.md#array) and [LSP2 > Array Standard specs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#array) for more detailed instructions).
 
 ```json
 {
@@ -913,7 +913,7 @@ Alternatively, it they should be executed independently, they should be signed a
 
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-multi-channel-nonce.jpeg)
 
-Learn more about **[Multi-channel nonces](../faq/channel-nonce.md)** usecases and its internal construction.
+Learn more about **[Multi-channel nonces](../accounts/lsp25-execute-relay-call.md)** usecases and its internal construction.
 
 ## References
 

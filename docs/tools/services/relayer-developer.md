@@ -31,7 +31,7 @@ You can deploy Universal Profiles for users by providing either:
 - OPTION 1: a list of controller addresses (`lsp6ControllerAddress`) and metadata (`lsp3Profile`)
 - OPTION 2: a `salt` and [`postDeploymentCallData`](../../learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata)
 
-In this process, you might need to use the [`up_import`](../../standards/rpc-api#up_import) RPC call from the [Universal Profile Extension](/install-up-browser-extension) in order to add the deployed UP to the browser extension.
+In this process, you might need to use the [`up_import`](../rpc-api.md#up_import) RPC call from the [Universal Profile Extension](/install-up-browser-extension) in order to add the deployed UP to the browser extension.
 
 <details>
   <summary>OPTION 1: lsp6ControllerAddress & lsp3Profile</summary>

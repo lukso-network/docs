@@ -30,7 +30,7 @@ Typically, NFC and NFT integrations are used for verifying ownership or triggeri
 
 ### Main Account
 
-In the context of LUKSO, the primary account for users is not a traditional Externally Owned Account ([EOA](https://ethereum.org/developers/docs/accounts)), but a [UniversalProfile](../../standards/universal-profile/introduction.md), which is a smart contract-based account. In this context, when integrating NFC with NFTs on LUKSO, particularly NFC chips that can sign transactions, it's essential to ensure compatibility with these smart contract accounts. An advanced NFC chip can act as a controller for the UniversalProfile, enabling it to directly execute interactions such as transfers or other blockchain-based operations.
+In the context of LUKSO, the primary account for users is not a traditional Externally Owned Account ([EOA](https://ethereum.org/developers/docs/accounts)), but a [UniversalProfile](../../standards/accounts/introduction.md), which is a smart contract-based account. In this context, when integrating NFC with NFTs on LUKSO, particularly NFC chips that can sign transactions, it's essential to ensure compatibility with these smart contract accounts. An advanced NFC chip can act as a controller for the UniversalProfile, enabling it to directly execute interactions such as transfers or other blockchain-based operations.
 
 ### Token Standards
 
