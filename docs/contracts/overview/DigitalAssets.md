@@ -366,6 +366,10 @@ The smart contracts packages for `@lukso/lsp7-contracts` and `@lukso/lsp8-contra
 
 If your token contract uses the proxy pattern with initialize functions, use the `InitAbstract` version of these extension contracts (\_e.g: `LSP7Burnable` -> `LSP7BurnableInitAbstract`).
 
+## Custom logic for transfers
+
+The LSP7 and LSP8 implementations implement a `_beforeTokenTransfer` and `_afterTokenTransfer` function that enable to specify custom logic that can run before or after the token transfer has happen (= before or after the balances in the contract state have been updated).
+
 ## Note on LSP7 and LSP8 implementations
 
 `LSP7DigitalAsset.sol` and `LSP8IdentifiableDigitalAsset.sol` are `abstract` contracts that are not deployable as they are, because they do not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_). You can either:
