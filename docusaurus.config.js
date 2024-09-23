@@ -96,8 +96,8 @@ export default {
           },
           // Learn/Universal Profile
           {
-            from: '/learn/universal-profile/transfer-lsp7-token',
-            to: '/learn/universal-profile/interactions/transfer-lsp7-token',
+            from: '/learn/universal-profile/interactions/transfer-lsp7-token',
+            to: '/learn/universal-profile/interactions/transfer-tokens-and-nfts',
           },
           {
             from: '/learn/universal-profile/transfer-lyx',
