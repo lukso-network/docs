@@ -349,6 +349,23 @@ We have seen in the previous section [**how to set metadata for one or multiple 
 
 The two functions `setDataForTokenId(...)` and `setDataBatchForTokenIds(...)` emit a [`TokenIdDataChanged`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#tokeniddatachanged) event. You can listen for this event in the LSP8 contract from your dApp, filtering for the `LSP4Metadata` data key to check if the metadata of a tokenId has been changed. You can do so by filtering the first parameter with the `tokenId` and the second parameter with the [bytes32 value of the `LSP4Metadata` data key](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata).
 
+## Extensions
+
+The smart contracts packages for `@lukso/lsp7-contracts` and `@lukso/lsp8-contracts` include token extensions (similarly to OpenZeppelin contracts) that enables to include functionalities for building your token through inheritance.
+
+**LSP7 Tokens extensions:**
+
+- [`LSP7Burnable.sol`](../contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md): exposes a public `burn(...)` function that allows any token holder or operator to burn any amount of tokens.
+- [`LSP7CappedSupply.sol`](../contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.md): enable to specify a maximum supply on deployment / initialization, which cap the maximum amount of tokens that can be minted.
+
+**LSP8 NFTs extensions:**
+
+- [`LSP8Burnable.sol](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.md)`: exposes a public `burn(...)` function that allows any NFT holder or operator to burn a specific NFT tokenId.
+- [`LSP8CappedSupply.sol](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.md)`: enable to specify a maximum supply on deployment / initialization, which cap the maximum amount of NFT that can be minted in the collection.
+- [`LSP8Enumerable.sol](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md)`: functionality to enumerate the list of NFTs in a collection.
+
+If your token contract uses the proxy pattern with initialize functions, use the `InitAbstract` version of these extension contracts (\_e.g: `LSP7Burnable` -> `LSP7BurnableInitAbstract`).
+
 ## Note on LSP7 and LSP8 implementations
 
 `LSP7DigitalAsset.sol` and `LSP8IdentifiableDigitalAsset.sol` are `abstract` contracts that are not deployable as they are, because they do not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_). You can either:
