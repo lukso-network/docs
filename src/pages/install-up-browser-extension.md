@@ -86,7 +86,7 @@ Universal Profile makes interacting with the blockchain safe and straightforward
 
   <div className="col" style={{ marginBottom: '2em' }}>
     <a href="https://txs.app">
-      <img src="/img/example-dapp-tsx-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
+      <img src="/img/example-dapp-txs-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
     
       <h3>Txs.App</h3>
 
