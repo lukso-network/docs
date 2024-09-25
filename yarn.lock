@@ -1723,10 +1723,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cookbookdev/docsbot@npm:^4.21.9":
-  version: 4.21.9
-  resolution: "@cookbookdev/docsbot@npm:4.21.9"
+"@cookbookdev/docsbot@npm:^4.21.23":
+  version: 4.21.23
+  resolution: "@cookbookdev/docsbot@npm:4.21.23"
   dependencies:
+    "@cookbookdev/sonner": 1.5.1
     "@headlessui/react": ^1.7.18
     "@headlessui/tailwindcss": ^0.2.0
     "@monaco-editor/react": ^4.6.0
@@ -1760,7 +1761,7 @@ __metadata:
     framer-motion: ^6.5.1
     idb: ^8.0.0
     jszip: ^3.10.1
-    nanoid: ^5.0.5
+    nanoid: 3.3.7
     posthog-js: ^1.136.8
     prop-types: ^15.8.1
     react-complex-tree: ^2.3.7
@@ -1772,7 +1773,6 @@ __metadata:
     remark-parse: ^11.0.0
     remark-rehype: ^11.1.0
     solc: ^0.8.25
-    sonner: ^1.4.41
     styled-components: ^6.1.8
     swr: ^2.2.5
     tailwind-merge: ^2.2.1
@@ -1782,7 +1782,17 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: a6bd6ed9213392212a73405bf7160fbd8e323121975ed7aac5bf96d9f081843926aa28054e23bb7288cc0f3359556fa8179704875be12e8ac7f6489d27d6230e
+  checksum: 18b0665f073a26cf96af1abb3e68a717c3527290b207b1a22107f2fe9d690eb111fd57b1b6b1cc700f63397a512b0ac68f32cdcf0812aaa513996cb65c6455ea
+  languageName: node
+  linkType: hard
+
+"@cookbookdev/sonner@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@cookbookdev/sonner@npm:1.5.1"
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 658774d5055f47e1ccb64f97e9affc149bba6042b15318cd861ce790550041c9a3c96605b773a7853e32af0980d37eabd6db1077d0b2a103495ea9d025d4ff4e
   languageName: node
   linkType: hard
 
@@ -10477,7 +10487,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lukso-docs@workspace:."
   dependencies:
-    "@cookbookdev/docsbot": ^4.21.9
+    "@cookbookdev/docsbot": ^4.21.23
     "@docusaurus/core": latest
     "@docusaurus/module-type-aliases": latest
     "@docusaurus/plugin-client-redirects": latest
@@ -11946,21 +11956,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.7":
+"nanoid@npm:3.3.7, nanoid@npm:^3.3.7":
   version: 3.3.7
   resolution: "nanoid@npm:3.3.7"
   bin:
     nanoid: bin/nanoid.cjs
   checksum: d36c427e530713e4ac6567d488b489a36582ef89da1d6d4e3b87eded11eb10d7042a877958c6f104929809b2ab0bafa17652b076cdf84324aa75b30b722204f2
-  languageName: node
-  linkType: hard
-
-"nanoid@npm:^5.0.5":
-  version: 5.0.7
-  resolution: "nanoid@npm:5.0.7"
-  bin:
-    nanoid: bin/nanoid.js
-  checksum: 25ab0b0cf9082ae6747f0f55cec930e6c1cc5975103aa3a5fda44be5720eff57d9b25a8a9850274bfdde8def964b49bf03def71c6aa7ad1cba32787819b79f60
   languageName: node
   linkType: hard
 
@@ -14570,16 +14571,6 @@ __metadata:
   bin:
     solcjs: solc.js
   checksum: e3eaeac76e60676377b357af8f3919d4c8c6a74b74112b49279fe8c74a3dfa1de8afe4788689fc307453bde336edc8572988d2cf9e909f84d870420eb640400c
-  languageName: node
-  linkType: hard
-
-"sonner@npm:^1.4.41":
-  version: 1.5.0
-  resolution: "sonner@npm:1.5.0"
-  peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
-  checksum: 0b0f911785b74209a44fe85fe5b0cf3bd440c78271285026dc1290bb6e8c6296c92a01a0f72646d18312654c138838aeadd15a55c20954a193cb65ccf84f51e3
   languageName: node
   linkType: hard
 
