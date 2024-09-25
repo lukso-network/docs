@@ -2276,7 +2276,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.13.0":
+"@emotion/react@npm:^11.13.3":
   version: 11.13.3
   resolution: "@emotion/react@npm:11.13.3"
   dependencies:
@@ -10454,7 +10454,7 @@ __metadata:
     "@docusaurus/preset-classic": latest
     "@docusaurus/theme-mermaid": latest
     "@docusaurus/types": latest
-    "@emotion/react": ^11.13.0
+    "@emotion/react": ^11.13.3
     "@emotion/styled": ^11.13.0
     "@iconify/react": ^5.0.1
     "@mdx-js/react": 3.0.1
