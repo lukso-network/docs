@@ -2132,14 +2132,14 @@ __metadata:
   linkType: hard
 
 "@docusaurus/plugin-client-redirects@npm:latest":
-  version: 3.4.0
-  resolution: "@docusaurus/plugin-client-redirects@npm:3.4.0"
+  version: 3.5.2
+  resolution: "@docusaurus/plugin-client-redirects@npm:3.5.2"
   dependencies:
-    "@docusaurus/core": 3.4.0
-    "@docusaurus/logger": 3.4.0
-    "@docusaurus/utils": 3.4.0
-    "@docusaurus/utils-common": 3.4.0
-    "@docusaurus/utils-validation": 3.4.0
+    "@docusaurus/core": 3.5.2
+    "@docusaurus/logger": 3.5.2
+    "@docusaurus/utils": 3.5.2
+    "@docusaurus/utils-common": 3.5.2
+    "@docusaurus/utils-validation": 3.5.2
     eta: ^2.2.0
     fs-extra: ^11.1.1
     lodash: ^4.17.21
@@ -2147,7 +2147,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: ebeff632ca5bf82a115459026c401759e3631442197d892f808e5608dacdfbcb13592b4a9c8b3718c8f25c6fac3471ceeafa4fd2f10f73ffe4b6693b7a3e29f9
+  checksum: 040aa829e819a43cb8d30f6c776c27a303080a4cb2fc2c398266fe9ecbd006dc53c6dd862ebcf4f74d0547042c4df6c4bbf080b3702be6df18c95b95c3e38f1d
   languageName: node
   linkType: hard
 
