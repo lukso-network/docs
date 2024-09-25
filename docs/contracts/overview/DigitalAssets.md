@@ -368,7 +368,7 @@ If your token contract uses the proxy pattern with initialize functions, use the
 
 ## Custom logic for transfers
 
-The LSP7 and LSP8 implementations implement a `_beforeTokenTransfer` and `_afterTokenTransfer` function that enable to specify custom logic that can run before or after the token transfer has happen (= before or after the balances in the contract state have been updated).
+The LSP7 and LSP8 implementations provide the `_beforeTokenTransfer` and `_afterTokenTransfer` function that offer the ability to specify custom logic that can run before or after the token transfer has happen (= before or after the balances in the contract state have been updated).
 
 ## Note on LSP7 and LSP8 implementations
 

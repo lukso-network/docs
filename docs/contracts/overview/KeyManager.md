@@ -101,14 +101,16 @@ Given the example above, the on-chain nonce is 4 and we are executing the relay 
 
 ## Implement custom permissions
 
-The permission system of the Key Manager is versatile enough with the permission system so that permissions can be extended (from the default one). The `bytes32` permission range is large enough to enable to create custom permissions, that can be specific for some application use cases.
+> **Note:** although custom permissions can be created, this might not prevent from collisions where third party applications may treat the same custom permission differently.
+
+The permission system of the Key Manager is versatile enough to allow new custom permissions to be created, for specific application use cases, aside from the default ones. This is possible thanks to `bytes32` type used for the permissions, the range being large enough to fit up to 256 permissions ([since there are 256 bits in 32 bytes](../../standards/access-control/lsp6-key-manager#address-permissions)).
 
 For instance, some data keys could be very sensitive for some specific dApp (_e.g: if on a decentralised social media you store the :up: user settings under a specific data key._) and a developer might not necessarily want to use the **Allowed ERC725Y Data Keys** for this specific data key.
 
 As mentioned in comment in the Key Manager's code, you can extend the verification logic to implement custom permissions.
 https://github.com/lukso-network/lsp-smart-contracts/blob/8f0cfb2c573c44702d3155375b2d935b043416b3/contracts/LSP6KeyManager/LSP6Modules/LSP6SetDataModule.sol#L263-L275
 
-This can be done simply overriding the function. Below is an example to create a Key Manager that controls a token contract and requires a specific permission to update the `LSP4Metadata`.
+This can be done by simply overriding some of the functions in the Key Manager that check for permissions depending on the action being performed (the action being defined by the calldata sent and the function being called, like `setData(...)`, `execute(...)`, etc...). Below is an example of how to create a Key Manager that controls a token contract and requires a specific permission to update the `LSP4Metadata`.
 
 ```solidity
 // SPDX-License-Identifier: Apache-2.0
@@ -177,7 +179,7 @@ contract LSP6TokenManager is
 }
 ```
 
-As you can see from the Solidity code snippet above, since the Key Manager is broken down in multiple modules for each types of permissions (`LSP6SetDataModule`, `LSP6OwnershipModule`), it's relatively easy to create a specific implementation by-reusing the same code and implement custom permissions check based on each implementation on top.
+As you can see from the Solidity code snippet above, since the Key Manager is broken down in multiple modules for each set of permissions related to specific type of actions (`LSP6SetDataModule`, `LSP6OwnershipModule`), it is relatively easy to create a specific implementation by-reusing the same code and implement custom permissions check on top based on the examples above.
 
 ## Further Reading
 
