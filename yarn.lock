@@ -2465,7 +2465,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:3.4.0, @docusaurus/types@npm:latest":
+"@docusaurus/types@npm:3.4.0":
   version: 3.4.0
   resolution: "@docusaurus/types@npm:3.4.0"
   dependencies:
@@ -2485,7 +2485,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:3.5.2":
+"@docusaurus/types@npm:3.5.2, @docusaurus/types@npm:latest":
   version: 3.5.2
   resolution: "@docusaurus/types@npm:3.5.2"
   dependencies:
