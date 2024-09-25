@@ -29,12 +29,12 @@ LUKSO Testnet
 
 </div>
 
-## Tsx.app
+## Txs.app
 
-[Tsx.app](https://tsx.app) is a web app that deconstruct transactions on the LUKSO network. It displays interactions between Universal Profiles and smart contracts in plain human readable way, instead of using hex addresses and calldatas.
+[Txs.app](https://txs.app) is a web app that deconstruct transactions on the LUKSO network. It displays interactions between Universal Profiles and smart contracts in plain human readable way, instead of using hex addresses and calldatas.
 
 <div style={{textAlign: 'center'}}>
 
-![Tsx.app](/img/example-dapp-tsx-app.png)
+![Txs.app](/img/example-dapp-txs-app.png)
 
 </div>
