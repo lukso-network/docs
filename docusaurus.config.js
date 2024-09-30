@@ -37,7 +37,7 @@ export default {
           },
           {
             from: '/standards/universal-profile/lsp0-erc725account',
-            to: '/standards/accounts/introduction',
+            to: '/standards/accounts/lsp0-erc725account',
           },
           {
             from: '/standards/universal-profile/lsp6-key-manager',
