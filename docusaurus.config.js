@@ -35,7 +35,38 @@ export default {
             from: '/learn/what-is-lukso',
             to: '/learn/getting-started',
           },
-
+          {
+            from: '/standards/universal-profile/lsp0-erc725account',
+            to: '/standards/accounts/lsp0-erc725account',
+          },
+          {
+            from: '/standards/universal-profile/lsp6-key-manager',
+            to: '/standards/access-control/lsp6-key-manager',
+          },
+          {
+            from: '/standards/generic-standards/lsp1-universal-receiver',
+            to: '/standards/accounts/lsp1-universal-receiver',
+          },
+          {
+            from: '/standards/universal-profile/introduction',
+            to: '/standards/accounts/introduction',
+          },
+          {
+            from: '/standards/generic-standards/lsp1-universal-receiver-delegate',
+            to: '/standards/accounts/lsp1-universal-receiver-delegate',
+          },
+          {
+            from: '/standards/nft-2.0/LSP8-Identifiable-Digital-Asset',
+            to: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
+          },
+          {
+            from: '/standards/nft-2.0/LSP7-Digital-Asset',
+            to: '/standards/tokens/LSP7-Digital-Asset',
+          },
+          {
+            from: '/standards/lsp-background/erc725',
+            to: '/standards/erc725',
+          },
           // Learn/Smart Contract Developer
           {
             from: '/learn/smart-contract-developers/getting-started',
@@ -379,10 +410,6 @@ export default {
           {
             from: '/standards/factories/lsp16-universal-factory',
             to: '/standards/factories/lsp16-universal-factory',
-          },
-          {
-            from: '/standards/factories/lsp16-universal-factory',
-            to: '/standards/factories/lsp23-linked-contracts-factory',
           },
         ],
       },
