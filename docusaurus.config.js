@@ -269,8 +269,8 @@ export default {
             to: '/tools/libraries/lsp-utils/LSP23LinkedContractsFactory',
           },
           {
-            from: '/tools/docker-factory',
-            to: '/tools/services/docker-factory',
+            from: '/tools/rpc-api',
+            to: '/tools/services/rpc-api',
           },
           {
             from: '/tools/getting-started',
@@ -418,9 +418,9 @@ export default {
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
     announcementBar: {
-      id: 'testnet_hardfork',
+      id: 'mainnet_hardfork',
       content:
-        ' <a target="_blank" rel="noopener noreferrer" href="https://luksovalidators.substack.com/p/lukso-dencun-hard-fork-testnet">Hard Fork on LUKSO Testnet</a>: We ask all Testnet node operators and validators to implement the Dencun hard fork on their LUKSO Testnet nodes.',
+        '🔊 <a target="_blank" rel="noopener noreferrer" href="https://luksovalidators.substack.com/p/lukso-dencun-hard-fork-mainnet"> Hard Fork on LUKSO Mainnet</a>: We ask all Mainnet node operators and validators to implement the Dencun hard fork on their LUKSO Mainnet nodes.',
       backgroundColor: '#84A2E2',
       textColor: '#1C1E21',
       isCloseable: false,

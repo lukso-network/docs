@@ -1,6 +1,6 @@
 ---
 title: 🏭 Node Docker Factory
-sidebar_position: 3
+sidebar_position: 6
 ---
 
 # Node Docker Factory
