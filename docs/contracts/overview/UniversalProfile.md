@@ -1,4 +1,5 @@
 ---
+title: 🆙 Universal Profile
 sidebar_position: 1
 ---
 

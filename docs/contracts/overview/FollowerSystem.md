@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Follower System'
-sidebar_position: 9
+sidebar_label: '🔂 Follower System'
+sidebar_position: 8
 description: How to interact with and implement the LUKSO LSP26 Follower System in your dApps and smart contracts.
 ---
 

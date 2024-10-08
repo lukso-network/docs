@@ -1,4 +1,5 @@
 ---
+title: 🔊 Universal Receiver
 sidebar_position: 3
 ---
 
