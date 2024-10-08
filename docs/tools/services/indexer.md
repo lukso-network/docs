@@ -1,9 +1,9 @@
 ---
-title: 📑 Indexer access
+title: 📑 Indexer API
 sidebar_position: 1
 ---
 
-# Indexer developer access
+# Indexer API
 
 :::info 🔓 Private Beta access
 
