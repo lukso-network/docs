@@ -44,6 +44,19 @@ const result = await provider.uploadToCascade(file);
 if (result) {
   console.log(result.ipfs_url);
 }
+
+// upload folder
+const results = await provider.uploadFolderToCascade("./examples");
+
+if (results.length > 0) {
+  for (const result of results) {
+    if (result) {
+      console.log("File Name:", result.file_name);
+      console.log("IPFS Url:", result.ipfs_url);
+      console.log("Result Id:", result.result_id);
+    }
+  }
+}
 ```
 
 ### Upload files to Sense Protocol
@@ -67,6 +80,19 @@ const result = await provider.uploadToSense(file);
 
 if (result) {
   console.log(result.ipfs_url);
+}
+
+// upload folder
+const results = await provider.uploadFolderToSense("./examples");
+
+if (results.length > 0) {
+  for (const result of results) {
+    if (result) {
+      console.log("File Name:", result.file_name);
+      console.log("IPFS Url:", result.ipfs_url);
+      console.log("Result Id:", result.result_id);
+    }
+  }
 }
 ```
 
