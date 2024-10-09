@@ -34,6 +34,10 @@ As for features, these standards are just representing **incremental tokenIds** 
 
 ![Tokens & NFT Standards LSP4, LSP7 and LSP8](/img/standards/LUKSO-Tokens-NFT-Standards.jpeg)
 
+## Random Notes taken from other places
+
+Their functions are simpler, more straight forward and unified.
+
 ## References
 
 - [NFT NYC - Building Blocks for the New Creative Economy (Fabian Vogelsteller, Youtube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)
