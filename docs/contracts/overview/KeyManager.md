@@ -3,8 +3,6 @@ title: 🔐 Key Manager
 sidebar_position: 2
 ---
 
-import VerticalTabs from "@site/src/components/VerticalTabs";
-
 # Key Manager
 
 The Key Manager uses the concept of [permissions](/docs/standards/access-control/lsp6-key-manager.md#permissions) to _authorize_ any addresses (dApps, protocols, devices, etc…) to do certain specific actions on the contract it is linked to. But why should you give anybody access to your smart contract? What is the intention behind doing this?
