@@ -15,10 +15,7 @@ import TabItem from '@theme/TabItem';
 
 :::
 
-> **Goals:**
->
-> - Enables control via multiple permissioned addresses called “controllers”
-> - Allows multiple controllers to interact with LSP 0 ERC 725 Account
+> **Goal:** allow multiple permissioned addresses to control and interact with a smart contract.
 
 LSP6 - Key Manager, acts as the brain behind Universal Profiles, enabling sophisticated access control and interactions. Imagine having a digital identity that can interact with other contracts, manage assets, or even delegate actions without exposing your main account. This is where the Key Manager shines, serving as a permissioned gateway.
 
@@ -800,120 +797,61 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 ## Types of Execution
 
-There are 3 ways to interact with the ERC725Account linked with the Key Manager.
+Since the LSP6 Key Manager incorporate the [LSP20 Call Verification](../accounts/lsp20-call-verification.md) and the [LSP25 Execute Relay Call](../accounts/lsp25-execute-relay-call.md) standards, it allows to interact with the linked target contract in multiple ways.
 
-- **direct execution**: the controller is the caller (`msg.sender`) and sends a **payload** to the Key Manager directly (= abi-encoded function call on the linked ERC725Account) to the KeyManager via [`execute(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#execute).
-- **relay execution**: a controller **A** signs a payload and an executor `address` **B** (_e.g. a relay service_) executes the payload on behalf of the signer via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
-- **LSP20-CallVerification execution**: Interaction with the ERC725Account can be done directly, in accordance with the LSP20-CallVerification standard. The LSP6 Key Manager supports this standard, allowing anyone to call the LSP0ERC725Account. If the caller is not the owner of the ERC725Account, the call will be forwarded to the LSP20 functions of the Key Manager. These functions will verify the necessary permissions and emit the relevant event.
+Let's give some context to understand the different types of execution flow and the roles of each actor based on that.
 
-The main difference between direct vs relay vs LSP20-CallVerification execution is that with direct execution, the controller address is the actual address making the request + paying the gas cost of the execution. With relay execution, a signer address (a controller) can interact with the ERC725Account without paying a gas fee. And with LSP20-CallVerification execution, calls can be made directly to the ERC725Account, with permissions verified by the LSP20 functions of the Key Manager.
+- **Alice**: an **end user** who want to interact with a smart contract on-chain (or any dApp).
+- **Bob**: an entity that act as a **relayer**, to send transactions of other users on their behalf and pay for their gas fees.
+
+> **Note:** _"relayer"_ is a generic term that can refer to either Bob acting as:
+>
+> - an individual (dispatching transactions to the network using its own private key)
+> - a business through a relayer service that he runs (where he might hold multiple private keys within its infrastructure that all dispatch transactions).
+
+There are 3 ways to interact with the contract linked with the Key Manager.
+
+| Interaction type                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                    | Characteristics                                                                                                                                                                                                                                                                                                                                                                                                                |
+| :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Direct execution** <br/> _via Key Manager_                                                                       | The end user (Alice) sends the **payload** directly to the Key Manager via [`execute(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#execute)                                                                                                                                                                                                                                                | Caller = end user (Alice). <br/><span style={{color: "red"}}>**👎🏻 Alice pays for the gas fees.**</span>                                                                                                                                                                                                                                                                                                                        |
+| **Relay execution** <br/> _via Key Manager_                                                                        | The end user (Alice) signs a **payload** using the LSP25 signature format. <br/> A relayer (Bob) dispatches the transaction for the user to the Key Manager via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).                                                                                                                                        | Caller = relayer (Bob). <br/> The signer is the end user (Alice). <br/><span style={{color: "green"}}>**👍🏻 Alice does not pay for the gas fees (this method allows Alice to offload her gas fees to Bob).**</span>                                                                                                                                                                                                             |
+| **Direct execution** <br/> _on the target contract (e.g: a 🆙)_ <br/><br/> **verified via LSP20-CallVerification** | The end user (Alice) interacts directly with the target contract (_e.g., a Universal Profile_) by calling any of its public functions. This bypasses the Key Manager, sending the call directly to the contract. The contract will forward the call to the Key Manager’s [`lsp20VerifyCall`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#lsp20verifycall) function for permission verification. | Caller = end user (Alice). <br/> <span style={{ color: "red"}}>**👎🏻 Alice pays for the gas fees.**</span> <br/> <span style={{ color: "green"}}>**👍🏻 User can call the function directly on the contract without going through the Key Manager.**</span> <br/> <span style={{ color: "blue"}}>**👌🏻 Simplifies interaction. No need to abi-encode function call first and send the encoded payload to the Key Manager.**</span> |
+
+> **Note:** the **payload** corresponds to the abi-encoded function call on the contract linked to the Key Manager.
+>
+> _Example: if the contract linked to the Key Manager is a Universal Profile, the payload can be the abi-encoded function call of `setData`, `setDataBatch`, `execute`, `executeBatch`, `transferOwnership` or `acceptOwnership`_
+
+In all cases, whether the end user interacts directly or via relayer, it must have the right permissions on the contract linked to the Key Manager for the action it is trying to perform (_e.g: permission `SETDATA` + relevant Allowed Data Keys if doing `setData` or `setDataBatch`, permission `SUPER_TRANSFERVALUE` if trying to send native tokens out of the contract, etc..._).
+
+### Direct & Relay execution via the Key Manager
+
+:::info
+
+When signing relay calls with the LSP25 signature format, make sure to use the Key Manager's address as the 3rd parameter (_LSP25 Implementation address_) of the data to sign. See [**Standards > LSP25 > Parameters to generate a LSP25 signature**](../accounts/lsp25-execute-relay-call#parameters-to-generate-a-lsp25-signature) for more details.
+
+:::
+
+:::success
+
+See our Learn section for a Key Manager guide on [**How to sign and execute relay transactions**](../../learn/universal-profile/key-manager/execute-relay-transactions.md)
+
+:::
+
+In the case of direct execution, the user (being a permissioned address) is the caller (`msg.sender`) and call the `execute(...)` function on the Key Manager.
+
+In the case of relay execution, the permissioned address **A** signs a payload and the relay service **B** executes the payload on behalf of the signer via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 ![Direct vs Relay Execution](/img/standards/lsp6/lsp6-direct-vs-relay-execution.jpeg)
 
-### Gas-Less Transactions
-
-:::info Best Practices
-
-While gas-less transactions / relay-execution is a very convenient way of using your Universal Profile to surf the blockchain, it comes with its risks.
-
-- A relay call does not enforce a gas price to execute a transaction, meaning a Relay Service can potentially send your transaction with a lower gas price in order to cut costs which might take a long time to execute.
-- A Relay Service can also frontrun your transaction.
-
-**Best practices:**
-
-- Make sure to only use audited, transparent, community trusted Relay Services that have passed the test of time.
-- Stay away from Relay Services that try to acquire users by offering cheaper prices. In the end any Relay Service must have a business model in order to work. If it does not profit from users it profits from other ways, might be shady or not.
-
-:::
-
-Relay execution enables users to interact with smart contracts on the blockchain **without needing native tokens** to pay for transaction fees. This allows a better onboarding experience for users new to cryptocurrencies and blockchain.
-
-Relay execution minimizes **UX friction** for dapps, including removing the need for users to worry about gas fee, or any complex steps needed to operate on blockchains (KYC, seedphrases, gas).
-
-Dapps can then leverage the relay execution features to create their own business model around building their own **relay service**, smart contracts solution on top of the Key Manager to pay with their tokens, or agree with users on payment methods including subscriptions, ads, etc ..
-
 ![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-relay-execution.jpeg)
 
-An essential aspect to consider in relay execution is the time validity of the execution signature. It's sometimes beneficial to limit the execution to be valid within a specific time frame to prevent potential security risks. For example, if a user signs a relay transaction and the signature is stolen or compromised, the attacker could potentially use this signature indefinitely if there's no validity period set.
+### Direct execution to the target contract thanks to LSP20
 
-To mitigate such risks, adding an optional validity timestamp to the signature could mark the start date and expiry date of its effectiveness. Once the timestamp has passed, the signature is no longer valid, rendering the relay transaction unusable.
+Since the LSP6 Key Manager supports the LSP20 standard, interaction with the linked contract (like an ERC725Account owned by a Key Manager in the case of the UP Browser Extension) can be done directly, in accordance with the LSP20-CallVerification standard.
 
-### How to sign relay transactions?
+The call will be forwarded to the LSP20 functions of the Key Manager and the LSP20 functions will verify the necessary permissions and emit the relevant event.
 
-:::tip
-
-You can use our library [**eip191-signer.js**](https://github.com/lukso-network/tools-eip191-signer) to make it easier to sign an _EIP191 Execute Relay Call transaction_.
-
-See also our [step by step Javascript guide](../../learn/universal-profile/key-manager/execute-relay-transactions.md) to sign and execute relay transactions via the Key Manager.
-
-:::
-
-#### Overview
-
-To obtain a valid signature that can be used by anyone to execute a relayed transaction (= meta transaction) on behalf of someone else, we must do the following:
-
-1. Gather 5 things:
-
-   - 1. the **payload** (an abi-encoded function call) to be executed on the linked account.
-   - 2. the **chain id** of the blockchain where the `payload` will be executed.
-   - 3. the address of the [`LSP6KeyManager`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) smart contract where the **payload** will be executed.
-   - 4. the Key Manager **nonce** of the controller.
-   - 5. the `validityTimestamps`, composed of 2 x `uint128` concatenated together, where:
-
-        4.1. the left-side `uint128` corresponds to the timestamp from which the relay call is valid from.
-
-        4.2. the right-side `uint128` corresponds to the timestamp from which the relay call is valid until.
-
-2. Once you have gathered these 5 information, you must **concatenate them all together**.
-
-3. Then you must get the `keccak256` hash of this data.
-
-4. After that you can sign the data to obtain a valid signature ready to be used via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
-
-#### Details
-
-The relay transactions are signed using the [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00). The relay call data that you want to sign **MUST** be the _keccak256 hash digest_ of the following elements _(bytes values)_ concatenated together.
-
-```javascript
-0x19 <0x00> <KeyManager address> <LSP25_VERSION> <chainId> <nonce> <validityTimestamps> <value> <payload>
-```
-
-| Message elements     | Details                                                                                                                                                                                                                                                   |
-| :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `0x19`               | Byte used to ensure that the _relay call signed data_ is not a valid RLP.                                                                                                                                                                                 |
-| `0x00`               | The [**version 0 of EIP191**](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md#version-0x00).                                                                                                                                                 |
-| `KeyManager address` | The address of the Key Manager that will execute the relay call.                                                                                                                                                                                          |
-| `LSP25_VERSION`      | The `uint256` number **25** that defines the current version of the LSP25 Execute Relay Call standard.                                                                                                                                                    |
-| `chainId`            | The chain id of the blockchain where the Key Manager is deployed, as `uint256`.                                                                                                                                                                           |
-| `nonce`              | The unique [**nonce**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#getnonce) for the payload.                                                                                                                                |
-| `validityTimestamps` | Two `uint128` timestamps concatenated, the first timestamp determines from when the payload can be executed, the second timestamp delimits the end of the validity of the payload. If `validityTimestamps` is 0, the checks of the timestamps are skipped |
-| `value`              | The amount of **native tokens** that will be transferred to the [**ERC725 Account**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md) linked to the Key Manager that will execute the relay call.                             |
-| `payload`            | The payload that will be exeuted.                                                                                                                                                                                                                         |
-
-### Out of order execution
-
-Since the Key Manager offers **relay execution** via signed message, it's important to provide security measurements to ensure that the signed message can't be repeated once executed. **[Nonces](https://www.techtarget.com/searchsecurity/definition/nonce#:~:text=A%20nonce%20is%20a%20random,to%20as%20a%20cryptographic%20nonce.)** exist to solve this problem, but with the following drawback:
-
-- Signed messages with sequential nonces should be **executed in order**, meaning a signed message with nonce 4 can't be executed before the signed message with nonce 3. This is a critical problem which can limit the usage of relay execution.
-
-Here comes the **Multi-channel** nonces which provide the ability to execute signed message **with**/**without** a specific order depending on the signer choice. It allows for transactions to be processed:
-
-- either in parallel without relying on the order of their arrival.
-- or enforce their order in a queue, sequentially.
-
-Therefore, if a sequence of signed messages must be executed sequentially, they must be signed on the same channel.
-
-Alternatively, it they should be executed independently, they should be signed across different channels.
-
-> _Example:_
-> A message signed with nonce 4 on channel 1:
->
-> - ❌ can't be executed before the message signed with nonce 3 on channel 1.
-> - ✅ can be executed before the message signed with nonce 3 on channel 2.
-
-![LSP6 Key Manager Relay Service](/img/standards/lsp6/lsp6-multi-channel-nonce.jpeg)
-
-Learn more about **[Multi-channel nonces](../accounts/lsp25-execute-relay-call.md)** usecases and its internal construction.
+![Permission verified via LSP20 interaction](/img/standards/lsp20/LSP20-example-LSP6.jpeg)
 
 ## References
 

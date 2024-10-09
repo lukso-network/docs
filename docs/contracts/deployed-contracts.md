@@ -1,11 +1,11 @@
 ---
-title: ⛓ Deployed Base Contracts
+title: ⛓ Deployed Implementation Contracts
 description: List of base implementation and factory contracts addresses deployed on LUKSO Mainnet.
 ---
 
 import { BaseContractsTable, FactoryContractsTable } from "@site/src/components/DeployedContractsTable"
 
-# Deployed Base Contracts on LUKSO Mainnet
+# Deployed Implementation Contracts on LUKSO Mainnet
 
 :::success Deployment Guides
 
