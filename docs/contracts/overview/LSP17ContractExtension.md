@@ -1,5 +1,5 @@
 ---
-title: ⚙️ Extendable & Extensions Contracts
+title: ⚙️ Extendable & Extension Contracts
 sidebar_position: 6
 ---
 
