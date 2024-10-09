@@ -6,19 +6,25 @@ sidebar_position: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Digital Assets
+# LSP7 Digital Asset
 
-The **Digital Asset (Token and NFT 2.0)** contracts are the newest advanced version of the existing token standards. They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](/standards/accounts/lsp0-erc725account.md) and [Universal Receivers](/standards/accounts/lsp1-universal-receiver.md).
+The **LSP7 Digital Asset** contract is the newest advanced version of the existing ERC token standards, such as ERC20 and ERC1155.
 
-## Comparisons with ERC20 / ERC721
+They come with many features that enhance the security and the overall user experience and compatibility with [ERC725Accounts](/standards/accounts/lsp0-erc725account.md) and [Universal Receivers](/standards/accounts/lsp1-universal-receiver.md).
 
-:::danger beware
+An LSP7 Digital Asset uses
 
-The LSP7 compatible with ERC20 contracts and LSP8 compatible with ERC721 contracts are being deprecated and will be deleted from [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) repository. However if you want to still use/maintain them, they will remain available in the version [`0.14.0`](https://github.com/lukso-network/lsp-smart-contracts/releases/tag/lsp-smart-contracts-v0.14.0).
+## Comparisons with ERC20
+
+:::danger Deprecation of `LSP7CompatibleERC20`
+
+The `LSP7CompatibleERC20` contracts have been deprecated and deleted from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) package since version `0.15.0`, because of their unsafe nature and [security considerations (See PR #845 for more details)](https://github.com/lukso-network/lsp-smart-contracts/pull/845#issuecomment-1888671461).
+
+They are not recommended to be used. However, if you want to still use them, they remain available in the version [`0.14.0`](https://github.com/lukso-network/lsp-smart-contracts/releases/tag/lsp-smart-contracts-v0.14.0).
 
 :::
 
-The interfaces of LSP7 and LSP8 have some differences compared to ERC20 and ERC721. Their functions are simpler, more straight forward and unified.
+The interface of LSP7 has some differences compared to ERC20.
 
 **Similar function names**
 
@@ -45,28 +51,6 @@ The table below highlights these differences:
     <td>Approving an operator to spend tokens on behalf of the owner.</td>
     <td><code>approve(address,uint256)</code></td>
     <td><code>authorizeOperator(address,uint256)</code></td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <th>ERC721</th>
-    <th>LSP8</th>
-  </tr>
-  <tr>
-    <td>Transferring tokens as an owner.</td>
-    <td rowspan="2">
-        <code>transferFrom(address,address,uint256)</code><br/>
-        <code>safeTransferFrom(address,address,uint256)</code><br/>
-        <code>safeTransferFrom(address,address,uint256,bytes)</code>
-    </td>
-    <td rowspan="2"><code>transfer(address,address,bytes32,bool,bytes)</code></td>
-  </tr>
-  <tr>
-    <td>Transferring tokens as an operator.</td>
-  </tr>
-  <tr>
-    <td>Approving an operator to spend tokens on behalf of the owner.</td>
-    <td><code>approve(address,uint256)</code></td>
-    <td><code>authorizeOperator(address,bytes32)</code></td>
   </tr>
 </table>
 
