@@ -27,14 +27,6 @@ They are not recommended to be used. However, if you want to still use them, the
 
 :::
 
-The interface of LSP8 has some differences compared to ERC721.
-
-**Similar function names**
-
-Both functions in LSP7 and LSP8 have the same name (`transfer`) to transfer assets. This is easier compared to ERC20 and ERC721 that use different naming (`transfer` for ERC20 vs `transferFrom` in ERC721 to transfer tokens as the token owner).
-
-The table below highlights these differences:
-
 <table>
   <tr>
     <th>Description</th>
@@ -60,8 +52,6 @@ The table below highlights these differences:
   </tr>
 </table>
 
-In ERC20 the function `transfer(address,uint256)` is used to transfer ERC20 tokens from the caller, this can only be used by the holder of the ERC20 tokens. There is also `transferFrom(address,address,uint256)` which can also be used by the ERC20 tokens operator.
-
 In comparison ERC721 has:
 
 - `safeTransferFrom(address,address,uint256,bytes)`
@@ -71,6 +61,18 @@ In comparison ERC721 has:
 All of the above functions can be used by both the owner of the token id or by the operator of the token id in order to transfer the ERC721 token. To be mentioned, both functions `safeTransferFrom(...)` have a hook that calls the recipient contract.
 
 Looking at LSP7 & LSP8 we have unified `transfer(...)` & `transferBatch(...)` functions in both contracts. Those functions contain a hook which is executed conditionally and can be used in any of the above cases.
+
+## LSP8 NFT extensions
+
+The `@lukso/lsp8-contracts` package includes token extensions (similarly to OpenZeppelin contracts) that enables to include functionalities for building your token through inheritance.
+
+- [`LSP8Burnable.sol](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.md)`: exposes a public `burn(...)` function that allows any NFT holder or operator to burn a specific NFT tokenId.
+- [`LSP8CappedSupply.sol](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.md)`: enable to specify a maximum supply on deployment / initialization, which cap the maximum amount of NFT that can be minted in the collection.
+- [`LSP8Enumerable.sol](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md)`: functionality to enumerate the list of NFTs in a collection.
+
+## Custom logic for transfers
+
+The `LSP8IdenfitiableDigitalAsset` contract implementation includes the `_beforeTokenTransfer` and `_afterTokenTransfer` functions that offer the ability to specify custom logic that can run before or after the token transfer has happen (= before or after the balances in the contract state have been updated).
 
 ## Setting metadata for one or multiple tokenIds
 
