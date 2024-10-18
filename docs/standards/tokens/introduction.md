@@ -34,6 +34,16 @@ As for features, these standards are just representing **incremental tokenIds** 
 
 ![Tokens & NFT Standards LSP4, LSP7 and LSP8](/img/standards/LUKSO-Tokens-NFT-Standards.jpeg)
 
+## Random Notes taken from other places
+
+Their functions are simpler, more straight forward and unified.
+
+**Similar function names**
+
+Both functions in LSP7 and LSP8 have the same name (`transfer`) to transfer assets. This is easier compared to ERC20 and ERC721 that use different naming (`transfer` for ERC20 vs `transferFrom` in ERC721 to transfer tokens as the token owner).
+
+Looking at LSP7 & LSP8 we have unified `transfer(...)` & `transferBatch(...)` functions in both contracts. Those functions contain a hook which is executed conditionally and can be used in any of the above cases.
+
 ## References
 
 - [NFT NYC - Building Blocks for the New Creative Economy (Fabian Vogelsteller, Youtube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)
