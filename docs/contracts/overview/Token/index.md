@@ -20,7 +20,7 @@ The **LSP7DigitalAsset** contract represents digital assets for fungible tokens 
 
 ## Installation & Usage
 
-The LSP7 smart contracts and their ABIs are available are available as their own individual package. To use them, install `@lukso/lsp7-contracts` as a dependency in your project.
+The LSP7 smart contracts and their ABIs are available are available in their own individual package. To use them, install `@lukso/lsp7-contracts` as a dependency in your project.
 
 <Tabs groupId="provider-lib">
   <TabItem value="npm" label="npm" default>
@@ -46,7 +46,7 @@ pnpm add @lukso/lsp7-contracts
   </TabItem>
 </Tabs>
 
-`LSP7DigitalAsset.sol` is an `abstract` contracts that is not deployable as is, because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_). You can either:
+`LSP7DigitalAsset.sol` is an `abstract` contract that is not deployable as is, because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_). You can either:
 
 - the `LSP7Mintable` preset contract that contains a public `mint(...)` function callable only by the contract's owner.
 - or extend the `LSP7DigitalAsset` contract (_see below_) and create your own supply mechanism by defining public methods that use the internal `_mint(...)` and `_burn(...)` functions.
