@@ -73,7 +73,7 @@ contract MyToken is LSP7DigitalAsset {
 
 ## LSP7 Tokens extensions
 
-The `@lukso/lsp7-contracts` package includes token extensions (similarly to OpenZeppelin contracts) that enables to include functionalities for building your token through inheritance.
+The `@lukso/lsp7-contracts` package includes token extensions (similarly to OpenZeppelin contracts) that can be added through inheritance. This enables to include specific functionalities for building your token.
 
 | Extension contract                                                                               | Description                                                                                                                   |
 | :----------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------- |
