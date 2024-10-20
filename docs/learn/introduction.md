@@ -46,7 +46,7 @@ The table below highlights the features of the LSPs and their benefits:
 | **📢 Notification and Reactivity**             | The 🆙 can be customized to react differently based on different events it receives. For instance, the default implementation automatically register new received assets.                                                                                                                                                                                                               |
 | **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Universal Profile, using a system of extensions. <br/><br/>See our guide [**Extending Universal Profile functionalities**](./universal-profile/advanced-guides/extend-profile-functionalities.md) for more details.                                                      |
 
-### UP Compared to Other Wallets
+### Universal Profiles Compared to Other Smart Wallets
 
 Below you can find the comparison between Universal Profiles and other smart contract accounts:
 
