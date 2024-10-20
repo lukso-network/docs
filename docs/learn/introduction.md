@@ -48,8 +48,6 @@ The table below highlights the features of the LSPs and their benefits:
 
 ### Universal Profiles Compared to Other Smart Wallets
 
-Below you can find the comparison between Universal Profiles and other smart contract accounts:
-
 |                                | Gnosis SAFE | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                                                                                  |
 | ------------------------------ | ----------- | --------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | Profile like information          | ❌           | ❌                          | ❌                                       | ✅                                                                                                  |
