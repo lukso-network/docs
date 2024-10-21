@@ -13,17 +13,19 @@ import TabItem from '@theme/TabItem';
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cpoczP3Y7Hk?si=iiYiBDaMG0vn9i_r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-:::caution
 
-This standard is for an API off-chain to create a relay service. For the on-chain part on how to construct message for relay transactions, see [LSP25 Execute Relay Call](./lsp25-execute-relay-call.md).
 
-:::
+
 
 :::success Relayer API
 
-To access our Relayer API, see our [**Relayer Developer Access**](../../tools/services/relayer-developer.md) page.
+Want to easily deploy a Universal Profile using our Developer Relayer API? See the [**Relayer Developer Access**](../../tools/services/relayer-developer.md) page.
 
 :::
+
+This standard is the off-chain API that any transaction relay service can implement to be compatible with the Universal Profile controller apps. See [the `up_addTransactionRelayer` RPC endpoint](https://docs.lukso.tech/tools/services/rpc-api#up_addTransactionRelayer) for more.
+
+To learn how to sign a transaction relay message see [LSP25 Execute Relay Call](./lsp25-execute-relay-call.md).
 
 ## POST `/execute`
 
