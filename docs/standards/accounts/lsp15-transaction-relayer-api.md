@@ -23,7 +23,7 @@ Want to easily deploy a Universal Profile using our Developer Relayer API? See t
 
 :::
 
-This standard is the off-chain API that any transaction relay service can implement to be compatible with the Universal Profile controller apps. See [the `up_addTransactionRelayer` RPC endpoint](https://docs.lukso.tech/tools/services/rpc-api#up_addTransactionRelayer) for more.
+This standard is the off-chain API that any transaction relay service can implement to be compatible with the [Universal Profile controller apps](../../../src/pages/docs.lukso.tech/install-up-browser-extension/). See [the `up_addTransactionRelayer` RPC endpoint](../../tools/services/rpc-api#up_addTransactionRelayer) for more.
 
 To learn how to sign a transaction relay message see [LSP25 Execute Relay Call](./lsp25-execute-relay-call.md).
 
