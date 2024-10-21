@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Set NFT Metadata
 
-The function [`setDataBatchForTokenIds(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple [data key-value](/standards/erc725.md#erc725y-generic-data-keyvalue-store) pairs at once for one or multiple tokenIds.
+The function [`setDataBatchForTokenIds(...)`](../../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple [data key-value](/standards/erc725.md#erc725y-generic-data-keyvalue-store) pairs at once for one or multiple tokenIds.
 
 ## Examples
 
@@ -226,4 +226,4 @@ Since LSP8 uses [ERC725Y](/standards/erc725#erc725y-generic-data-keyvalue-store)
 
 We have seen in the previous section [**how to set metadata for one or multiple tokenIds**](#setting-metadata-for-one-or-multiple-tokenids).
 
-The two functions `setDataForTokenId(...)` and `setDataBatchForTokenIds(...)` emit a [`TokenIdDataChanged`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#tokeniddatachanged) event. You can listen for this event in the LSP8 contract from your dApp, filtering for the `LSP4Metadata` data key to check if the metadata of a tokenId has been changed. You can do so by filtering the first parameter with the `tokenId` and the second parameter with the [bytes32 value of the `LSP4Metadata` data key](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata).
+The two functions `setDataForTokenId(...)` and `setDataBatchForTokenIds(...)` emit a [`TokenIdDataChanged`](../../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#tokeniddatachanged) event. You can listen for this event in the LSP8 contract from your dApp, filtering for the `LSP4Metadata` data key to check if the metadata of a tokenId has been changed. You can do so by filtering the first parameter with the `tokenId` and the second parameter with the [bytes32 value of the `LSP4Metadata` data key](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata).

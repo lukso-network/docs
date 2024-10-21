@@ -21,7 +21,7 @@ import Erc721LSP8Table from '@site/src/components/Erc721LSP8Table';
 
 :::info Resources
 
-See the [contract overview](../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page for the interface differences between ERC721 and LSP8.
+See the [contract overview](../../contracts/overview/NFT/index.md#comparisons-with-erc20--erc721) page for the interface differences between ERC721 and LSP8.
 
 :::
 

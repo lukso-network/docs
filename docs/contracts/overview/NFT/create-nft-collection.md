@@ -45,8 +45,8 @@ contract BasicNFTCollection is LSP8IdentifiableDigitalAsset {
 
 The `@lukso/lsp8-contracts` package includes token extensions (similarly to OpenZeppelin contracts) that can be added through inheritance. This enables to include specific functionalities for building your token.
 
-| Extension contract                                                                                 | Description                                                                                                                                  |
-| :------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`LSP8Burnable.sol`](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.md)         | exposes a public `burn(...)` function that allows any NFT holder or operator to burn a specific NFT tokenId.                                 |
-| [`LSP8CappedSupply.sol`](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.md) | enable to specify a maximum supply on deployment / initialization, which cap the maximum amount of NFT that can be minted in the collection. |
-| [`LSP8Enumerable.sol`](../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md)     | functionality to enumerate the list of NFTs in a collection.                                                                                 |
+| Extension contract                                                                                    | Description                                                                                                                                  |
+| :---------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`LSP8Burnable.sol`](../../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.md)         | exposes a public `burn(...)` function that allows any NFT holder or operator to burn a specific NFT tokenId.                                 |
+| [`LSP8CappedSupply.sol`](../../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.md) | enable to specify a maximum supply on deployment / initialization, which cap the maximum amount of NFT that can be minted in the collection. |
+| [`LSP8Enumerable.sol`](../../contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.md)     | functionality to enumerate the list of NFTs in a collection.                                                                                 |

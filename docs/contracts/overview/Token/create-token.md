@@ -75,10 +75,10 @@ contract MyToken is LSP7DigitalAsset {
 
 The `@lukso/lsp7-contracts` package includes token extensions (similarly to OpenZeppelin contracts) that can be added through inheritance. This enables to include specific functionalities for building your token.
 
-| Extension contract                                                                               | Description                                                                                                                   |
-| :----------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------- |
-| [`LSP7Burnable.sol`](../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md)         | Exposes a public `burn(...)` function that allows any token holder or operator to burn any amount of tokens.                  |
-| [`LSP7CappedSupply.sol`](../contracts/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.md) | Enable to specify a maximum supply on deployment / initialization, which cap the maximum amount of tokens that can be minted. |
+| Extension contract                                                                        | Description                                                                                                                   |
+| :---------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| [`LSP7Burnable.sol`](../../contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md)         | Exposes a public `burn(...)` function that allows any token holder or operator to burn any amount of tokens.                  |
+| [`LSP7CappedSupply.sol`](../../contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.md) | Enable to specify a maximum supply on deployment / initialization, which cap the maximum amount of tokens that can be minted. |
 
 If your token contract uses the proxy pattern with initialize functions, use the `InitAbstract` version of these extension contracts (_e.g: `LSP7Burnable` -> `LSP7BurnableInitAbstract`_).
 
