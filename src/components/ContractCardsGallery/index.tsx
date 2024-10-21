@@ -58,21 +58,21 @@ const Contracts_AccountsInteraction = [
 const Contracts_DigitalAssets = [
   {
     name: '🔍 LSP4 Digital Asset Metadata',
-    url: '/contracts/overview/DigitalAssets/#lsp4-digital-asset-metadata',
-    urlABI: '/contracts/contracts/LSP6KeyManager',
+    url: '',
+    urlABI: '/contracts/contracts/LSP4DigitalAssetMetadata',
     description:
       'Enables to add metadata to any digital asset contract (token or NFT).',
   },
   {
     name: '🪙 LSP7 Digital Asset',
-    url: '/contracts/overview/DigitalAssets/#lsp7-digital-asset',
+    url: '/contracts/overview/Token',
     urlABI: '/contracts/contracts/LSP7DigitalAsset',
     description:
       'Creates your own fungible token with the possibility to make it divisible or not.',
   },
   {
     name: '🎨 LSP8 Identifiable Digital Asset',
-    url: '/contracts/overview/DigitalAssets/#lsp8-identifiable-digital-asset',
+    url: '/contracts/overview/NFT',
     urlABI: '/contracts/contracts/LSP8IdentifiableDigitalAsset',
     description:
       'Creates a non-fungible token where each NFT can be represented differently (numbers, serial numbers, an ERC725Y contract per NFT...).',

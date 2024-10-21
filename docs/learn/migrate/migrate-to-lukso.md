@@ -62,7 +62,7 @@ Some real-life examples for a user's Universal Profile could be:
 
 :::info
 
-For more details on the different functions and features between ERC20 and LSP7 or ERC721 and LSP8, check the [**Contracts > Digital Assets**](../../contracts/overview/DigitalAssets.md) section.
+For more details on the different functions and features between ERC20 and LSP7 or ERC721 and LSP8, check the [**Contracts > Token**](../../contracts/overview/Token/index.md)or [**Contracts > NFT**](../../contracts/overview/NFT/index.md) sections.
 
 :::
 

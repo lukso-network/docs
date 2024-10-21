@@ -1,27 +1,20 @@
 ---
-title: 🖼️ Identifiable Digital Asset (NFT)
-sidebar_position: 5
+title: Set NFT Metadata
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## LSP8 Identifiable Digital Asset
+# Set NFT Metadata
 
-The **LSP8IdentifiableDigitalAsset** contract represents identifiable digital assets (NFTs) that can be uniquely traded and given metadata using the **[ERC725Y Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y)**.
-Each NFT is identified with a tokenId, based on **[ERC721](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol)**.
+The function [`setDataBatchForTokenIds(...)`](../../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple [data key-value](/standards/erc725.md#erc725y-generic-data-keyvalue-store) pairs at once for one or multiple tokenIds.
 
-A **bytes32** value is used for tokenId to allow many uses of token identification, including numbers, contract addresses, and hashed values (i.e., serial numbers).
+## Examples
 
-### Setting metadata for one or multiple tokenIds
+### Set multiple metadata at once on the same tokenId
 
-The function [`setDataBatchForTokenIds(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) can be used to set multiple data key-value pairs at once for one or multiple tokenIds.
-
-This function is flexible enough to enable to set one or multiple [data key-value](/standards/erc725).md#erc725y-generic-data-keyvalue-store) pairs for:
-
-#### case 1: a single tokenId
-
-To set for instance 3 x data key-value pairs for the same `tokenId`, the parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow:
+To set for instance 3 x data key-value pairs for the same `tokenId`, the parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` can be used as follow:
 
 <Tabs>
   
@@ -123,9 +116,9 @@ async function setMultipleDataForSingleTokenId(
 
 </Tabs>
 
-#### Case 2: different tokenIds
+### Set metadata on different tokenIds
 
-To set for instance the same data key-value pair (_e.g: `LSP4Metadata`_) for 3 x different `tokenId`s, the parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` will be as follow:
+To set for instance the same data key-value pair (_e.g: `LSP4Metadata`_) for 3 x different `tokenId`s, the parameters of `setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])` can be used as follow:
 
 <Tabs>
   
@@ -227,10 +220,10 @@ async function setMultipleDataForSingleTokenId(
 
 </Tabs>
 
-### Checking if the Metadata of a tokenId changed
+## Check if the metadata of a specific NFT (tokenId) has changed
 
 Since LSP8 uses [ERC725Y](/standards/erc725#erc725y-generic-data-keyvalue-store) under the hood, the URI pointing to the metadata of a specific tokenId can be changed inside the ERC725Y storage of the LSP8 contract.
 
 We have seen in the previous section [**how to set metadata for one or multiple tokenIds**](#setting-metadata-for-one-or-multiple-tokenids).
 
-The two functions `setDataForTokenId(...)` and `setDataBatchForTokenIds(...)` emit a [`TokenIdDataChanged`](../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#tokeniddatachanged) event. You can listen for this event in the LSP8 contract from your dApp, filtering for the `LSP4Metadata` data key to check if the metadata of a tokenId has been changed. You can do so by filtering the first parameter with the `tokenId` and the second parameter with the [bytes32 value of the `LSP4Metadata` data key](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata).
+The two functions `setDataForTokenId(...)` and `setDataBatchForTokenIds(...)` emit a [`TokenIdDataChanged`](../../contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#tokeniddatachanged) event. You can listen for this event in the LSP8 contract from your dApp, filtering for the `LSP4Metadata` data key to check if the metadata of a tokenId has been changed. You can do so by filtering the first parameter with the `tokenId` and the second parameter with the [bytes32 value of the `LSP4Metadata` data key](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata).

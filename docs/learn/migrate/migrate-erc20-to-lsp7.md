@@ -21,7 +21,7 @@ import Erc20LSP7Table from '@site/src/components/Erc20LSP7Table';
 
 :::info Resources
 
-See the [contract overview](../../contracts/overview/DigitalAssets#comparisons-with-erc20--erc721) page for the interface differences between ERC20 and LSP7.
+See the [contract overview](../../contracts/overview/Token/index.md#comparisons-with-erc20--erc721) page for the interface differences between ERC20 and LSP7.
 
 :::
 
