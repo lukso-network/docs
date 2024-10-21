@@ -48,18 +48,18 @@ The table below highlights the features of the LSPs and their benefits:
 
 ### Universal Profiles Compared to Other Smart Wallets
 
-|                                | Gnosis SAFE | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                                                                                  |
-| ------------------------------ | ----------- | --------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Profile like information          | ❌           | ❌                          | ❌                                       | ✅                                                                                                  |
-| Generic Information Storage    | ❌          | ❌                          | ❌                                      | ✅ Through [ERC725Y](../standards/accounts/lsp0-erc725account.md#erc725y---generic-key-value-store) |
-| Notifications and Reactability | ❌          | ❌                          | ❌                                      | ✅ Through [LSP1](../standards/accounts/lsp1-universal-receiver.md)                                 |
-| Permission System              | ❌          | ❌                          | ❌                                      | ✅ Through [LSP6](../standards/access-control/lsp6-key-manager.md)                                  |
-| Multisig                       | ✅          | ❌                          | ❌                                      | 🔶 Can be controlled by a multisig                                               |
-| Multi purpose                  | 🔶 (With future extension)          | 🔶 (With future extension)                         | 🔶 (With future extension)                                     | ✅ Can be a DAO, Organisation, Brand, AI, Robot, etc through and permissions [LSP6]                                             |
-| Gasless Experience             | ✅          | ✅                          | ✅                                      | ✅ via the [Transaction Relayer](../standards/accounts/lsp15-transaction-relayer-api.md)            |
-| Extensible                     | ✅          | ✅                          | ✅                                      | ✅ Through [LSP17](../standards/accounts/lsp17-contract-extension.md)                               |
-| Upgradeable Security           | ✅          | ✅                          | ✅                                      | ✅ Through [LSP14](../standards/access-control/lsp14-ownable-2-step.md)                             |
-| Pre and Post Execution Hooks   | ✅          | ✅                          | ✅                                      | ✅ Through [LSP20](../standards/accounts/lsp20-call-verification.md)                                |
+|                                | Gnosis SAFE                | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                                                                                  |
+| ------------------------------ | -------------------------- | --------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Profile like information       | ❌                         | ❌                          | ❌                                      | ✅                                                                                                  |
+| Generic Information Storage    | ❌                         | ❌                          | ❌                                      | ✅ Through [ERC725Y](../standards/accounts/lsp0-erc725account.md#erc725y---generic-key-value-store) |
+| Notifications and Reactability | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP1](../standards/accounts/lsp1-universal-receiver.md)                                 |
+| Permission System              | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP6](../standards/access-control/lsp6-key-manager.md)                                  |
+| Multisig                       | ✅                         | ❌                          | ❌                                      | 🔶 Can be controlled by a multisig                                                                  |
+| Multi purpose                  | 🔶 (With future extension) | 🔶 (With future extension)  | 🔶 (With future extension)              | ✅ Can be a DAO, Organisation, Brand, AI, Robot, etc through and permissions [LSP6]                 |
+| Gasless Experience             | ✅                         | ✅                          | ✅                                      | ✅ via the [Transaction Relayer](../standards/accounts/lsp15-transaction-relayer-api.md)            |
+| Extensible                     | ✅                         | ✅                          | ✅                                      | ✅ Through [LSP17](../standards/accounts/lsp17-contract-extension.md)                               |
+| Upgradeable Security           | ✅                         | ✅                          | ✅                                      | ✅ Through [LSP14](../standards/access-control/lsp14-ownable-2-step.md)                             |
+| Pre and Post Execution Hooks   | ✅                         | ✅                          | ✅                                      | ✅ Through [LSP20](../standards/accounts/lsp20-call-verification.md)                                |
 
 ### Features of LSP token standards over ERC20 and ERC721
 
