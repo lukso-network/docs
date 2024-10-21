@@ -50,7 +50,7 @@ pnpm add @lukso/lsp8-contracts
 
 `LSP8IdentifiableDigitalAsset.sol` is an `abstract` contract that is not deployable as is, because it does not contain any public functions by default to manage token supply (_e.g: no public `mint(...)` or `burn(...)` functions_). You can either:
 
-- the `LSP8Mintable` preset contract that contains a public `mint(...)` function callable only by the contract's owner.
+- use the `LSP8Mintable` preset contract that contains a public `mint(...)` function callable only by the contract's owner.
 - or extend the `LSP8IdentifiableDigitalAsset` contract (_see below_) and create your own supply mechanism by defining public methods that use the internal `_mint(...)` and `_burn(...)` functions.
 
 ## Comparisons with ERC721

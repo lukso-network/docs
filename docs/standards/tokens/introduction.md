@@ -34,11 +34,7 @@ As for features, these standards are just representing **incremental tokenIds** 
 
 ![Tokens & NFT Standards LSP4, LSP7 and LSP8](/img/standards/LUKSO-Tokens-NFT-Standards.jpeg)
 
-## Random Notes taken from other places
-
-Their functions are simpler, more straight forward and unified.
-
-**Similar function names**
+The functions of the LSP7 and LSP8 standards are overall simpler, more straightforward and unified, with a **similar function names** for both LSP7 and LSP8.yarn
 
 Both functions in LSP7 and LSP8 have the same name (`transfer`) to transfer assets. This is easier compared to ERC20 and ERC721 that use different naming (`transfer` for ERC20 vs `transferFrom` in ERC721 to transfer tokens as the token owner).
 

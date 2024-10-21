@@ -5,12 +5,6 @@ sidebar_position: 2
 
 # Customize transfer behaviour
 
-<!-- ## `force` parameter
-
-
-## Optional `data` during transfer
- -->
-
 ## `_beforeTokenTransfer` and `_afterTokenTransfer` hooks
 
 `The LSP7DigitalAsset contract` implementation includes two hooks to add custom behaviour to run logic before or after the total supply of tokens has been updated in the contract's storage. This can be done via the [`_beforeTokenTransfer(...)`](../../contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_beforetokentransfer) and [`_afterTokenTransfer(...)`](../../contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_aftertokentransfer) functions.
@@ -76,7 +70,7 @@ contract MyToken is LSP7DigitalAsset {
         bytes memory tokensReceivedTxValue = _getData(tokensReceivedTxDataKey);
 
         // sanity check to ensure we can abi-decode correctly
-        require(tokensSentTxValue.length == 32, "Invalid uint256 encoded value under `TokensSentTx:<address> data key");
+        require(tokensSentTxValue.length == 32, "Invalid uint256 encoded value under `TokensSentTx:<address>` data key");
         require(
             tokensReceivedTxValue.length == 32,
             "Invalid uint256 encoded value under `TokensReceivedTx:<address> data key"
@@ -96,8 +90,8 @@ contract MyToken is LSP7DigitalAsset {
 
 ```
 
-This example is minimalist and only stores a counter as a number. Still, any info related to the token transfer could be stored during the transfer (_e.g: the amount, the data passed, the gas price, the balance before and after, etc..._). This way, the storage of the token contract can act, for instance, as: 💡
+This example is minimalist and only stores a counter as a number. Still, any info related to the token transfer could be stored during the transfer (_e.g: the amount, the data passed, the gas price, the balance before and after, etc..._). This way, the storage of the token contract can act, for instance, as:
 
 - A _"mini explorer"_ for the token contract (without relying on a block explorer and reviewing the complete list of transactions).
 - To query the transactions for a user and provide an analytical view of their balance changes, demonstrating its data analysis capabilities.
-- Showcase which user, smart contract address or protocol are the most active users and traders for this token (being the ones with the higher count under the )
+- Showcase which user, smart contract address or protocol are the most active users and traders for this token (being the ones with the higher count under the `TokensSentTx:<address>` data key).
