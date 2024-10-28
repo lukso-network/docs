@@ -63,25 +63,26 @@ async function getPermissionedAddresses() {
   const controllerAddresses = await erc725.getData('AddressPermissions[]');
 
   if (!controllerAddresses) {
-    console.error('No controllers listed under this Universal Profile ');
+    console.log('No controllers listed under this Universal Profile ');
+  } else {
+    console.log(controllerAddresses);
+    // {
+    //   key: '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3',
+    //   name: 'AddressPermissions[]',
+    //    value: [
+    //      '0x5F606b5b237623463a90F63230F9b929321dbCBa',
+    //      '0xa1061408e55c971fD129eF5561dFB953d598dAD7'
+    //    ]
+    // }
   }
-
-  console.log(controllerAddresses);
-  // {
-  //   key: '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3',
-  //   name: 'AddressPermissions[]',
-  //    value: [
-  //      '0x5F606b5b237623463a90F63230F9b929321dbCBa',
-  //      '0xa1061408e55c971fD129eF5561dFB953d598dAD7'
-  //    ]
-  // }
 }
 ```
 
 <!-- TODO: double check this, it might be incorrect -->
+
 <!-- :::tip
 
-If you want to retrieve a controller address individually, you can use the [`AddressPermissions[index]`](/standards/access-control/lsp6-key-manager/#permissions) within the [`getData()`](../../../tools/libraries/erc725js/methods/#getdata) function of the contract or 🛠️[`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library.
+If you want to retrieve the address of the controller stored at a specific index in the array, you can use the [`AddressPermissions[index]`](/standards/access-control/lsp6-key-manager/#permissions) data key as a parameter to the [`getData()`](../../../tools/libraries/erc725js/methods/#getdata) function of 🛠️[`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library.
 
 ::: -->
 
@@ -125,12 +126,12 @@ async function getPermissionedAddresses() {
     for (let i = 0; i < controllerAddresses.value.length; i++) {
       const address = controllerAddresses.value[i] as string;
 
-      const addressPermission = await erc725.getData({
+      const permissionsValue = await erc725.getData({
         keyName: 'AddressPermissions:Permissions:<address>',
         dynamicKeyParts: address,
       });
 
-      console.log(addressPermission);
+      console.log(permissionsValue);
       // {
       //   key: '0x4b80742de2bf82acb3630000a1061408e55c971fd129ef5561dfb953d598dad7',
       //   name: 'AddressPermissions:Permissions:a1061408e55c971fD129eF5561dFB953d598dAD7',
@@ -159,11 +160,11 @@ async function getPermissionedAddresses() {
     // ...
 
     // Decode the permission of each address
-    const decodedPermission = erc725.decodePermissions(addressPermission.value as string);
+    const decodedPermissions = erc725.decodePermissions(permissionsValue.value as string);
 
     // Display the permission in a readable format
     console.log(
-      `Decoded permission for ${address} = ` + JSON.stringify(decodedPermission, null, 2),
+      `Decoded permission for ${address} = ` + JSON.stringify(decodedPermissions, null, 2),
     );
     // Decoded permission for 0x5F606b5b237623463a90F63230F9b929321dbCBa = {
     //   "CHANGEOWNER": true,
