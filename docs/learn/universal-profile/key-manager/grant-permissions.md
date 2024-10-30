@@ -72,7 +72,7 @@ First initialize _erc725.js_ with the JSON schema of the LSP6 Key Manager. The s
 import { ERC725 } from '@erc725/erc725.js';
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
-// step 1 - initialize erc725.js with the ERC725Y permissions data keys from LSP6 Key Manager
+// step 1 - initialize erc725.js with the schemas of the permissions data keys from LSP6 Key Manager
 const erc725 = new ERC725(
   LSP6Schema,
   myUniversalProfileAddress,
@@ -95,8 +95,10 @@ Let's consider in our example that we want to grant the permission `SUPER_SETDAT
 To do so, we will use the [`encodePermissions(..)`](../../../tools/libraries/erc725js/methods#encodepermissions) function, a convenience function from the _erc725.js_ library to encode permissions as their raw `bytes32` value. The function takes as an input will an object of all permissions that will be set.
 
 ```ts
-// Create the permissions for our future controller
-const beneficiaryPermissions = erc725.encodePermissions({
+// Create the raw permissions value to allow an address
+// to set any data keys (except LSP17 extensions and LSP1 Universal Receiver Delegates)
+// on our Universal Profile
+const permissionSetAnyDataKey = erc725.encodePermissions({
   SUPER_SETDATA: true,
 });
 ```
@@ -104,7 +106,7 @@ const beneficiaryPermissions = erc725.encodePermissions({
 If you want to grant more than one permission, simply pass the other available permissions in the object. For instance, to also grant permission to transfer the LYX of the UP:
 
 ```ts
-const beneficiaryPermissions = erc725.encodePermissions({
+const multiplePermissions = erc725.encodePermissions({
   SUPER_SETDATA: true,
   TRANSFERVALUE: true,
 });
@@ -118,27 +120,30 @@ As we learnt, permissions of controllers live inside the Universal Profile stora
 | Add our `beneficiaryAddress`.                       | By adding the `beneficiaryAddress` inside the `AddressPermissions[]` Array, and increment the `AddressPermissions[]` array length (+1).                                |
 
 ```ts title="Encode the data key and values for the permissions"
-const beneficiaryAddress = '0xcafecafecafecafecafecafecafecafecafecafe'; // address that we want to grant permission to
+// address to give permissions to (can be an EOA or a smart contract)
+const newControllerAddress = '0xcafecafecafecafecafecafecafecafecafecafe';
 
-const addressPermissionsArray = await erc725.getData('AddressPermissions[]');
-const currentControllerAddresses = addressPermissionsArray.value;
-const currentControllerLength = currentControllerAddresses.length;
+// Retrieve the list of addresses that have permissions on the Universal Profile (= controllers)
+const addressPermissionsArrayValue = await erc725.getData(
+  'AddressPermissions[]',
+);
+const numberOfControllers = addressPermissionsArrayValue.value.length;
 
-// Encode the key-value pairs of the controller permission
+// Encode the set of key-value pairs to set a new controller with permissions on the Universal Profile
 const permissionData = erc725.encodeData([
-  // the permission of the beneficiary address
+  // this sets the permission `SUPER_SETDATA` to the new controller address
   {
     keyName: 'AddressPermissions:Permissions:<address>',
     dynamicKeyParts: beneficiaryAddress,
     value: beneficiaryPermissions,
   },
-  // Add this new address in the list of controllers.
-  // This is done Incremented list of permissioned controllers addresses
+  // The `AddressPermissions[]` array contains the list of permissioned addresses (= controllers)
+  // This adds the `newControllerAddress` in this list at the end (at the last index) and increment the array length.
   {
     keyName: 'AddressPermissions[]',
-    value: [myBeneficiaryAddress],
-    startingIndex: currentControllerLength,
-    totalArrayLength: currentControllerLength + 1,
+    value: [newControllerAddress],
+    startingIndex: numberOfControllers,
+    totalArrayLength: numberOfControllers + 1,
   },
 ]);
 ```
@@ -160,13 +165,17 @@ The last and final step is to simply call the [`setDataBatch(...)`](../../../con
 
 ```ts
 import { ether } from 'ethers';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // Connect the UP Browser Extension and retrieve our UP Address
 const provider = new ethers.BrowserProvider(window.lukso);
 const accounts = await provider.send('eth_requestAccounts', []);
 
 // Create an instance of the UniversalProfile contract
-const universalProfile = new ethers.Contract(accounts[0], UniversalProfile.abi);
+const universalProfile = new ethers.Contract(
+  accounts[0],
+  UniversalProfileArtifact.abi,
+);
 
 // Send the transaction
 await myUniversalProfile
@@ -180,6 +189,7 @@ await myUniversalProfile
 
 ```ts
 import Web3 from 'web3';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 // Connect the UP Browser Extension and retrieve our UP Address
 const provider = new Web3(window.lukso);
@@ -187,7 +197,7 @@ const accounts = await provider.eth.requestAccounts();
 
 // Create an instance of the UniversalProfile contract
 const myUniversalProfile = new web3.eth.Contract(
-  UniversalProfile.abi,
+  UniversalProfileArtifact.abi,
   accounts[0],
 );
 
@@ -205,7 +215,7 @@ await myUniversalProfile.methods
 
 ## Testing the permissions
 
-We can now check that the permissions have been correctly set by querying the `AddressPermissions:Permissions:<beneficiaryAddress>` data key on the Universal Profile.
+We can now check that the permissions have been correctly set by querying the `AddressPermissions:Permissions:<address>` data key on the Universal Profile.
 
 If everything went well, the code snippet below should return you an object with the permission `SETDATA` set to `true`.
 
@@ -214,9 +224,9 @@ If everything went well, the code snippet below should return you an object with
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
-const result = await myUniversalProfile.methods.getData(data.keys[0]).call();
+const result = await myUniversalProfile.getData(permissionData.keys[0]);
 console.log(
-  `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
+  `The beneficiary address ${newControllerAddress} has now the following permissions:`,
   ERC725.decodePermissions(result),
 );
 ```
@@ -226,9 +236,27 @@ console.log(
 <TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
 
 ```ts
-const result = await myUniversalProfile.getData(data.keys[0]);
+const result = await myUniversalProfile.methods
+  .getData(permissionData.keys[0])
+  .call();
 console.log(
-  `The beneficiary address ${beneficiaryAddress} has now the following permissions:`,
+  `The beneficiary address ${newControllerAddress} has now the following permissions:`,
+  ERC725.decodePermissions(result),
+);
+```
+
+  </TabItem>
+
+<TabItem value="erc725js" label="erc725js" attributes={{className: "tab_erc725"}}>
+
+```ts
+const result = await erc725.getData({
+  keyName: 'AddressPermissions:Permissions:<address>',
+  dynamicKeyParts: newControllerAddress,
+});
+
+console.log(
+  `The beneficiary address ${newControllerAddress} has now the following permissions:`,
   ERC725.decodePermissions(result),
 );
 ```
