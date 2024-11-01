@@ -12,6 +12,7 @@ type Props = {
     cardContent: Array<{
       linkPath: string;
       linkText: string;
+      newTab?: boolean;
     }>;
   }>;
 };
@@ -20,7 +21,7 @@ export default function CardWithImage({ CardData }: Props) {
   return (
     <div className="cardwithimage">
       {CardData.map((item, index) => (
-        <Card sx={{ maxWidth: 345 }} key={index}>
+        <Card sx={{ width: '48%' }} key={index}>
           <CardMedia
             sx={{ height: 140 }}
             image={item.image}
@@ -30,11 +31,16 @@ export default function CardWithImage({ CardData }: Props) {
             <Typography gutterBottom variant="h5" component="div">
               {item.cardHeading}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography color="text.secondary">
               <ul>
                 {item.cardContent.map((link, index) => (
                   <li key={index}>
-                    <a href={link.linkPath}>{link.linkText}</a>
+                    <a
+                      href={link.linkPath}
+                      target={link.newTab ? '_blank' : '_self'}
+                    >
+                      {link.linkText}
+                    </a>
                   </li>
                 ))}
               </ul>

@@ -1,0 +1,78 @@
+[
+  {
+    "image": "/img/learn/DEVELOPERS_dApp.png",
+    "imageTitle": "Dapp Developer Icon",
+    "cardHeading": "Dapp Developer",
+    "cardContent": [
+      {
+        "linkText": "Learn how to develop with Universal Profiles",
+        "linkPath": "../learn/universal-profile/getting-started"
+      },
+      {
+        "linkText": "Explore code examples in our playground repository",
+        "linkPath": "https://github.com/lukso-network/lukso-playground",
+        "newTab": true
+      }
+    ]
+  },
+  {
+    "image": "/img/learn/DEVELOPERS_SmartContract.png",
+    "imageTitle": "Smart Contract Developer Icon",
+    "cardHeading": "Smart Contract Developer",
+    "cardContent": [
+      {
+        "linkText": "Get started with Tokens and NFTs",
+        "linkPath": "../learn/digital-assets/getting-started"
+      },
+      {
+        "linkText": "Create a token",
+        "linkPath": "../learn/digital-assets/token/create-lsp7-token"
+      },
+      {
+        "linkText": "Create an Automatic Token Forwarder for your UP",
+        "linkPath": "../learn/universal-profile/universal-receiver/create-receiver-forwarder"
+      }
+    ]
+  },
+  {
+    "image": "/img/learn/DEVELOPERS_migrate.png",
+    "imageTitle": "Quickstart Integration",
+    "cardHeading": "Quickstart Integration",
+    "cardContent": [
+      {
+        "linkText": "Migrate to LUKSO",
+        "linkPath": "../learn/migrate/migrate-to-lukso"
+      },
+      {
+        "linkText": "Refactor a Solidity ERC20 token to LSP7",
+        "linkPath": "../learn/migrate/migrate-erc20-to-lsp7"
+      },
+      {
+        "linkText": "Refactor a Solidity ERC721 NFT to LSP8",
+        "linkPath": "../learn/migrate/migrate-erc721-to-lsp8"
+      }
+    ]
+  },
+  {
+    "image": "/img/learn/HEX_FINAL_V1A.png",
+    "imageTitle": "Join the Community",
+    "cardHeading": "Join the Community",
+    "cardContent": [
+      {
+        "linkText": "Visit our support website",
+        "linkPath": "https://support.lukso.network/",
+        "newTab": true
+      },
+      {
+        "linkText": "Join the Developer community on Discord",
+        "linkPath": "https://discord.com/channels/359064931246538762/585786253992132609",
+        "newTab": true
+      },
+      {
+        "linkText": "Contact the tech team",
+        "linkPath": "https://support.lukso.network/contact-us",
+        "newTab": true
+      }
+    ]
+  }
+]
