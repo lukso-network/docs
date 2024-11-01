@@ -24,7 +24,7 @@ To start your clients and contribute to the LUKSO testnet network, you have 3 op
 
 ### 📟 With the LUKSO CLI
 
-Difficulty: Medium 🌶️🌶️
+> **Difficulty:** Medium 🌶️🌶️
 
 For the main information, please refer to the [mainnet version](../mainnet/running-a-node.md#-with-the-lukso-cli) of this article. The only difference to run a testnet node with the CLI is to append the `--testnet` flag to the commands:
 
@@ -52,7 +52,7 @@ For more options, check the [LUKSO CLI documentation](https://github.com/lukso-n
 
 ### 🚢 With Docker
 
-Difficulty: Hard 🌶️🌶️🌶️
+> **Difficulty:** Hard 🌶️🌶️🌶️
 
 The process is similar to the [mainnet version](../mainnet/running-a-node.md#-with-docker). You will simply need to use the [testnet genesis files](https://github.com/lukso-network/network-configs/tree/main/testnet/shared) instead of the mainnet ones.
 
@@ -67,7 +67,7 @@ wget -O ./configs/config.yaml https://raw.githubusercontent.com/lukso-network/ne
 
 ### 📄 With your own clients
 
-Difficulty: Advanced 🌶️🌶️🌶️🌶️
+> **Difficulty:** Advanced 🌶️🌶️🌶️🌶️
 
 The process is similar to the [mainnet version](../mainnet/running-a-node.md#-with-your-own-clients). You will have to use the files in the `testnet` folder instead of the `mainnet` folder.
 

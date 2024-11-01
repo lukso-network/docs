@@ -31,7 +31,21 @@ The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps
 
 The testnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/testnet/shared) repo.
 
-### 3rd party RPC providers
+## Add LUKSO Testnet to Wallets
+
+You can add the LUKSO Mainnet to any of your existing wallets like [MetaMask](https://metamask.io/), [Rabby](https://rabby.io/), [Rainbow](https://rainbow.me/), [Coinbase Wallet](https://www.coinbase.com/de/wallet), [Trust Wallet](https://trustwallet.com/de), and others using the following parameters or button:
+
+| Setting               | Value                                             |
+| --------------------- | ------------------------------------------------- |
+| Network Name          | LUKSO Testnet                                     |
+| RPC URL               | https://rpc.testnet.lukso.network (rate limited)  |
+| Chain ID / Network ID | 4201                                              |
+| Currency Symbol       | LYXt                                              |
+| Block explorer URL    | https://explorer.execution.testnet.lukso.network/ |
+
+<AddNetworkButton networkName="testnet"/>
+
+## 3rd party RPC providers
 
 Developers can use the services of the following 3rd party providers:
 
@@ -51,17 +65,3 @@ We highly recommend that developers fetch and store profile or asset data using 
 This gateway is intended for development purposes. We do not guarantee any SLA, and rate limits may apply.
 
 :::
-
-## Add LUKSO Testnet to Wallets
-
-You can add the LUKSO Mainnet to any of your existing wallets like [MetaMask](https://metamask.io/), [Rabby](https://rabby.io/), [Rainbow](https://rainbow.me/), [Coinbase Wallet](https://www.coinbase.com/de/wallet), [Trust Wallet](https://trustwallet.com/de), and others using the following parameters or button:
-
-| Setting               | Value                                             |
-| --------------------- | ------------------------------------------------- |
-| Network Name          | LUKSO Testnet                                     |
-| RPC URL               | https://rpc.testnet.lukso.network (rate limited)  |
-| Chain ID / Network ID | 4201                                              |
-| Currency Symbol       | LYXt                                              |
-| Block explorer URL    | https://explorer.execution.testnet.lukso.network/ |
-
-<AddNetworkButton networkName="testnet"/>

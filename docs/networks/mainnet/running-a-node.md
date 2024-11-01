@@ -172,7 +172,7 @@ To start your clients and contribute to the LUKSO network, you have 4 options.
 
 ### 📦 With Dappnode
 
-Difficulty: Easy 🌶️
+> **Difficulty:** Easy 🌶️
 
 ![dappnode screenshot](https://docs.dappnode.io/assets/images/lukso-staking-screenshot-605e7ed6329f5a73b11a6b8cc4015c9c.png)
 
@@ -182,7 +182,7 @@ LUKSO has partnered with [Dappnode](https://dappnode.com/) ([announcement](https
 
 ### 📟 With the LUKSO CLI
 
-Difficulty: Medium 🌶️🌶️
+> **Difficulty:** Medium 🌶️🌶️
 
 The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. The LUKSO CLI is officially supported for Ubuntu, Debian and macOS running on either x86 Intel and AMD Processors or Single Board ARM Computers.
 
@@ -318,7 +318,7 @@ To enable more advanced monitoring for your node, you can check the official [`n
 
 ### 🚢 With Docker
 
-Difficulty: Hard 🌶️🌶️🌶️
+> **Difficulty:** Hard 🌶️🌶️🌶️
 
 We provide a basic repository with examples of `docker-compose.yml` files to run the LUKSO network.
 
