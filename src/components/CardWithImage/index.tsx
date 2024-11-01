@@ -19,7 +19,7 @@ type Props = {
 
 export default function CardWithImage({ CardData }: Props) {
   return (
-    <div className="cardwithimage">
+    <div className="cardwithimage" style={{ marginBottom: '5rem' }}>
       {CardData.map((item, index) => (
         <Card sx={{ width: '48%' }} key={index}>
           <CardMedia

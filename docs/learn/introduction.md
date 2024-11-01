@@ -1,11 +1,84 @@
 ---
 sidebar_label: '🌏 Overview'
-description: Overview of the benefits of using LUKSO Standard Proposals (LSPs)
+description: 'Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKSO intended for?'
 ---
+
+import CardWithImage from '@site/src/components/CardWithImage';
+import Chip from '@site/src/components/Chip';
+
+import discoverContent from './discover-content.json';
 
 # 🌏 Overview
 
-This page highlights the benefits of using the LUKSO Standard Proposals (LSPs) and outlines the differences between building on LUKSO compared to other EVM chains.
+## What is LUKSO?
+
+LUKSO is a Layer 1 EVM chain that uses an unmodified version of Ethereum. It can be bootstrapped by any Ethereum client [_configured to connect to the LUKSO network_](../networks/mainnet/running-a-node) and is fundamentally the same as Ethereum at the network level.
+
+**BUT** it comes with [**a new set of smart contract standards**](../standards/introduction.md) called <strong style={{ color: "#FE005B" }}>L</strong>UKSO <strong style={{ color: "#FE005B" }}>S</strong>tandards <strong style={{ color: "#FE005B" }}>P</strong>roposals (<strong style={{ color: "#FE005B" }}>LSP</strong>s) and a [**set of tools**](../tools/libraries/getting-started.md) that can be used to create innovative protocols and dApps that can not be build using old standards.
+
+<CardWithImage CardData={discoverContent} />
+
+## What makes LUKSO unique?
+
+<table>
+  <thead>
+    <tr>
+      <th>🆙 **Universal Profiles** 🆙</th>
+      <th>🪙 **Tokens** 🪙</th>
+      <th>🌅 **NFTs** 🌅</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Smart contract based profiles are the essential foundation for a better
+        web3 experience.
+      </td>
+      <td>
+        Extensible Token that move us beyond DeFi. The future of blockchain is
+        social.
+      </td>
+      <td>
+        Flexible NFTs that are extensible and directly composable with Universal
+        Profiles.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div className="chip-container">
+          <Chip label="Visual" />
+          <Chip label="Upgradeable" />
+          <Chip label="Security" />
+          <Chip label="Gas-less" />
+          <Chip label="Smart" />
+          <Chip label="Extensible" />
+        </div>
+      </td>
+      <td>
+        <div className="chip-container">
+          <Chip label="Safer" />
+          <Chip label="Token Icons" />
+          <Chip label="Unlimited Metadata" />
+          <Chip label="Updatable" />
+          <Chip label="Extensible" />
+          <Chip label="Notifying" />
+          <Chip label="Unified" />
+        </div>
+      </td>
+      <td>
+        <div className="chip-container">
+          <Chip label="Authentic" />
+          <Chip label="Safer" />
+          <Chip label="Unlimited Metadata" />
+          <Chip label="Updatable" />
+          <Chip label="Better IDs" />
+          <Chip label="Iteratable" />
+          <Chip label="Batch Transfers" />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Why New Standards?
 
@@ -33,65 +106,3 @@ By integrating different LSPs in unique ways, LUKSO solves fundamental blockchai
         <td><h3>🇨🇭🔪 Multi-purpose</h3>The ability to serve various roles (like being a DAO, organization, Brands, AI, robot, etc.) showcases the versatility of the contract. This flexibility is important for supporting a wide range of applications and adapting to different use cases.</td>
     </tr>
 </table>
-
-## Key Benefits
-
-The table below highlights the features of the LSPs and their benefits:
-
-| Feature                                        | Benefits                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **🗄️ Metadata in one place**                   | When using traditional web3 wallets, a user has to fill in its same infos again every time it creates a new account on a new dApp (_e.g: username, biography, social media accounts_) <br/> <br/>Universal Profile stores user data in one single place (the 🆙 contract storage). This allows any dApp to retrieve the same information, and makes dApp onboarding easier and faster.  |
-| **⛽️ Gas-Less transactions**                  | Universal Profiles enable gas-less transactions. The relayer pay the gas fees and does not require the user to hold native tokens to pay for the transaction fee. <br/> <br/>Without a [Transaction Relay Service](../standards/accounts/lsp15-transaction-relayer-api.md), the [controller](./concepts.md#controller) of the Universal Profile must be funded to execute transactions. |
-| **🔑 Multi-Control through permissions**       | Universal Profiles can be controlled by multiple EOAs with various permission levels. Controllers can be on different devices or represent dApps, each with specific access rights, such as token transfers, playlist management, or account recovery.                                                                                                                                  |
-| **📢 Notification and Reactivity**             | The 🆙 can be customized to react differently based on different events it receives. For instance, the default implementation automatically register new received assets.                                                                                                                                                                                                               |
-| **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Universal Profile, using a system of extensions. <br/><br/>See our guide [**Extending Universal Profile functionalities**](./universal-profile/advanced-guides/extend-profile-functionalities.md) for more details.                                                      |
-
-### Universal Profiles Compared to Other Smart Wallets
-
-|                                | Gnosis SAFE                | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                                                                                  |
-| ------------------------------ | -------------------------- | --------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Profile like information       | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP3](../standards/metadata/lsp3-profile-metadata)                                      |
-| Generic Information Storage    | ❌                         | ❌                          | ❌                                      | ✅ Through [ERC725Y](../standards/accounts/lsp0-erc725account.md#erc725y---generic-key-value-store) |
-| Notifications and Reactability | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP1](../standards/accounts/lsp1-universal-receiver.md)                                 |
-| Permission System              | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP6](../standards/access-control/lsp6-key-manager.md)                                  |
-| Multisig                       | ✅                         | ❌                          | ❌                                      | 🔶 Can be controlled by a multisig                                                                  |
-| Multi purpose                  | 🔶 (With future extension) | 🔶 (With future extension)  | 🔶 (With future extension)              | ✅ Can be a DAO, Organisation, Brand, AI, Robot, etc through and permissions [LSP6]                 |
-| Gasless Experience             | ✅                         | ✅                          | ✅                                      | ✅ via the [Transaction Relayer](../standards/accounts/lsp15-transaction-relayer-api.md)            |
-| Extensible                     | ✅                         | ✅                          | ✅                                      | ✅ Through [LSP17](../standards/accounts/lsp17-contract-extension.md)                               |
-| Upgradeable Security           | ✅                         | ✅                          | ✅                                      | ✅ Through [LSP14](../standards/access-control/lsp14-ownable-2-step.md)                             |
-| Pre and Post Execution Hooks   | ✅                         | ✅                          | ✅                                      | ✅ Through [LSP20](../standards/accounts/lsp20-call-verification.md)                                |
-
-### Features of LSP token standards over ERC20 and ERC721
-
-The benefits offered by the LUKSO Token standards are summarized in the table below:
-
-| Feature                                        | Benefits                                                                                                                                                                                                                                                                                                                                             |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **🔘 Similar function signatures**             | Both [LSP7](../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../standards/tokens/LSP8-Identifiable-Digital-Asset.md) use the same `transfer(...)` signature with the same parameter. The only exception is that LSP7 transfer a `uint256` amount while LSP8 transfer a `bytes32` token ID.                                                      |
-| **🗄️ Dynamic Metadata**                        | Like Universal Profile, Digital Assets like LSP7 and LSP8 can hold as many metadata as they want, allowing to storing various information and create systems such as dynamic NFTs.                                                                                                                                                                   |
-| **📢 Notify on Transfer**                      | Sender & Receiver are notified on each token transfer, allowing them to react accordingly based on the type of token they sent / received.                                                                                                                                                                                                           |
-| **⚙️ Extendability with pluggable Extensions** | New features (like new function selectors not present by default in the smart contract code) can be added to a Digital Asset, using a system of extensions.                                                                                                                                                                                          |
-| **✋🏻 Safety to prevent accidental transfers**  | The `transfer(...)` function of [LSP7](../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../standards/tokens/LSP8-Identifiable-Digital-Asset.md) contain a [`bool force`](../standards/tokens/LSP7-Digital-Asset#force-mint-and-transfer) parameter that can prevent accidental transfer to addresses that cannot hold or re-transfer the token. |
-
-:::success
-Interested to migrate? Visit our guides:
-
-- [Migrate ERC20 to LSP7](./migrate/migrate-erc20-to-lsp7.md)
-- [Migrate ERC721 to LSP8](./migrate/migrate-erc721-to-lsp8.md)
-  :::
-
-## Building on LUKSO
-
-<div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kJ5_6LN6mZc?si=7NWn-odkk8KmSDLz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-
-### Developer Resources
-
-LUKSO is an L1 EVM-based Blockchain. All tools and tutorials for Ethereum also work for LUKSO by default.
-
-Developers building on LUKSO can write smart contracts in any EVM-based smart contract languages (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
-
-- [Awesome LUKSO, a comprehensive list of awesome LUKSO resources!](https://github.com/lukso-network/awesome-lukso)
-- [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
-- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)

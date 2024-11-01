@@ -1,5 +1,5 @@
 ---
-sidebar_label: '🏎️ Quick Start'
+sidebar_label: '🏎️ Developer Quickstart'
 description: Introduction to the LUKSO Ecosystem - why choose LUKSO? Who is LUKSO intended for?
 title: 'Quick Start'
 ---
@@ -11,132 +11,79 @@ import Chip from '@site/src/components/Chip';
 import discoverContent from './discover-content.json';
 import developerContent from './developer-content.json';
 
-# Quick Start
+# Developer Quickstart
 
-## What is LUKSO?
+<CardWithImage CardData={developerContent}/>
 
-LUKSO is a Layer 1 EVM chain that uses an unmodified version of Ethereum. It can be bootstrapped by any Ethereum client [_configured to connect to the LUKSO network_](../networks/mainnet/running-a-node) and is fundamentally the same as Ethereum at the network level.
+## Building dApps with Universal Profiles
 
-**BUT** it comes with [**a new set of smart contract standards**](../standards/introduction.md) called <strong style={{ color: "#FE005B" }}>L</strong>UKSO <strong style={{ color: "#FE005B" }}>S</strong>tandards <strong style={{ color: "#FE005B" }}>P</strong>roposals (<strong style={{ color: "#FE005B" }}>LSP</strong>s) and a [**set of tools**](../tools/libraries/getting-started.md) that can be used to create innovative protocols and dApps that can not be build using old standards.
+When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙](../../standards/accounts/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
 
-<CardWithImage CardData={discoverContent} />
+<div style={{
+  display: 'flex',
+  margin: '5rem 0 5rem 0',
+  gap: "1rem"
+}}>
 
-## What makes LUKSO unique?
+<div style={{ width: '32%' }}>
 
-<table>
-  <thead>
-    <tr>
-      <th>🆙 **Universal Profiles** 🆙</th>
-      <th>🪙 **Tokens** 🪙</th>
-      <th>🌅 **NFTs** 🌅</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-        Smart contract based profiles are the essential foundation for a better
-        web3 experience.
-      </td>
-      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-        Extensible Token that move us beyond DeFi. The future of blockchain is
-        social.
-      </td>
-      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-        Flexible NFTs that are extensible and directly composable with Universal
-        Profiles.
-      </td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-        <div className="chip-container">
-          <Chip label="Visual" />
-          <Chip label="Upgradeable" />
-          <Chip label="Security" />
-          <Chip label="Gas-less" />
-          <Chip label="Smart" />
-          <Chip label="Extensible" />
-        </div>
-      </td>
-      <td>
-        <div className="chip-container">
-          <Chip label="Safer" />
-          <Chip label="Token Icons" />
-          <Chip label="Unlimited Metadata" />
-          <Chip label="Updatable" />
-          <Chip label="Extensible" />
-          <Chip label="Notifying" />
-          <Chip label="Unified" />
-        </div>
-      </td>
-      <td>
-        <div className="chip-container">
-          <Chip label="Authentic" />
-          <Chip label="Safer" />
-          <Chip label="Unlimited Metadata" />
-          <Chip label="Updatable" />
-          <Chip label="Better IDs" />
-          <Chip label="Iteratable" />
-          <Chip label="Batch Transfers" />
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-## Where to start?
-
-### Play around with Universal Profile
-
-<div>
-  <CallToActionButton
+<CallToActionButton
     icon="material-symbols:counter-1"
     color="white"
     target="_blank"
-    link="https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
-    text="Install the Universal Profile Browser Extension 🧩"
+    link="/install-up-browser-extension"
+    text="1 - Install the Universal Profile Browser Extension 🧩"
   />
 
-{' '}
-
-<div
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-    fontSize: '3em',
-  }}
->
-  <p>⬇</p>
 </div>
 
-{' '}
+<div style={{ width: '36%' }}>
 
 <CallToActionButton
-  icon="material-symbols:counter-2"
-  color="white"
-  target="_blank"
-  link="https://my.universalprofile.cloud"
-  text="Create your Universal Profile 🆙"
-/>
+    icon="material-symbols:counter-2"
+    color="white"
+    target="_blank"
+    link="https://my.universalprofile.cloud"
+    text="2 - Create your Universal Profile 🆙 on universalprofile.cloud"
+  />
 
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      fontSize: '3em',
-    }}
-  >
-    <p>⬇</p>
-  </div>
 </div>
 
+<div style={{ width: '28%' }}>
+
 <CallToActionButton
-  icon="material-symbols:counter-3"
-  color="white"
-  target="_blank"
-  link="https://www.lukso.network/ecosystem"
-  text="Explore the dApps Ecosystem 🌐"
-/>
+    icon="material-symbols:counter-3"
+    color="white"
+    link="/learn/universal-profile/connect-profile/connect-up"
+    text="3 - Start building dApps on LUKSO! 🫡"
+  />
 
-### Start building on LUKSO
+</div>
 
-<CardWithImage CardData={developerContent} />
+</div>
+
+:::note Manual Deployment
+
+You can also create new [Universal Profiles](../../standards/accounts/introduction.md) by ⚒️ [deploying them programmatically](./advanced-guides/deploy-up-with-lsp23.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/accounts/lsp15-transaction-relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
+
+:::
+
+:::tip Relayer API
+
+If you want to deploy Universal Profiles for your users, please check out our [Relayer API](../../tools/services/relayer-developer.md).
+
+:::
+
+## Resources for Builders
+
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kJ5_6LN6mZc?si=7NWn-odkk8KmSDLz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+LUKSO is an L1 EVM-based Blockchain. All tools and tutorials for Ethereum also work for LUKSO by default.
+
+Developers building on LUKSO can write smart contracts in any EVM-based smart contract languages (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
+
+- [Awesome LUKSO, a comprehensive list of awesome LUKSO resources!](https://github.com/lukso-network/awesome-lukso)
+- [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
+- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
