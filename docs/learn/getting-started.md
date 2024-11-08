@@ -17,7 +17,7 @@ import developerContent from './developer-content.json';
 
 ## Building dApps with Universal Profiles
 
-When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙](../../standards/accounts/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
+When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙](../standards/accounts/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
 
 <div style={{
   display: 'flex',
@@ -64,13 +64,13 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
 
 :::note Manual Deployment
 
-You can also create new [Universal Profiles](../../standards/accounts/introduction.md) by ⚒️ [deploying them programmatically](./advanced-guides/deploy-up-with-lsp23.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../../standards/accounts/lsp15-transaction-relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
+You can also create new [Universal Profiles](../standards/accounts/introduction.md) by ⚒️ [deploying it programmatically](./universal-profile/advanced-guides/deploy-up-with-lsp23.md). However, please keep in mind that you would also have to deploy your own [Transaction Relay Service](../standards/accounts/lsp15-transaction-relayer-api.md) to allow gasless onboarding. Customly deployed profiles will not receive free monthly transaction quota through the LUKSO Transaction Relay Service.
 
 :::
 
 :::tip Relayer API
 
-If you want to deploy Universal Profiles for your users, please check out our [Relayer API](../../tools/services/relayer-developer.md).
+If you want to deploy Universal Profiles for your users, please check out our [Relayer API](../tools/services/relayer-developer.md).
 
 :::
 

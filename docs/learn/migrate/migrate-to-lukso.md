@@ -36,8 +36,8 @@ Developers are encouraged to use LSP standards to enhance the experience using t
 
 Interested to migrate your token or NFT collection? See our hands-on developer guides:
 
-- [Migrate from ERC20 to LSP7](./migrate/migrate-erc20-to-lsp7.md)
-- [Migrate from ERC721 to LSP8](./migrate/migrate-erc721-to-lsp8.md)
+- [Migrate from ERC20 to LSP7](./migrate-erc20-to-lsp7.md)
+- [Migrate from ERC721 to LSP8](./migrate-erc721-to-lsp8.md)
 
 :::
 
