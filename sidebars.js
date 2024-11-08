@@ -43,7 +43,7 @@ module.exports = {
     },
   ],
   learnSidebar: [
-    'learn/introduction',
+    'learn/overview',
     'learn/benefits-lukso-standards',
     'learn/getting-started',
     {

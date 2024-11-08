@@ -168,6 +168,7 @@ export default {
             from: '/learn/expert-guides/utilize-ipfs-storage',
             to: '/learn/other-guides/utilize-ipfs-storage',
           },
+
           // Tools
           {
             from: '/tools/partners',
@@ -354,56 +355,12 @@ export default {
             to: '/standards/tokens/introduction',
           },
           {
-            from: '/standards/access-control/lsp6-key-manager',
-            to: '/standards/access-control/lsp6-key-manager',
-          },
-          {
-            from: '/standards/access-control/lsp14-ownable-2-step',
-            to: '/standards/access-control/lsp14-ownable-2-step',
-          },
-          {
-            from: '/standards/accounts/introduction',
-            to: '/standards/accounts/introduction',
-          },
-          {
-            from: '/standards/accounts/lsp0-erc725account',
-            to: '/standards/accounts/lsp0-erc725account',
-          },
-          {
-            from: '/standards/accounts/lsp1-universal-receiver',
-            to: '/standards/accounts/lsp1-universal-receiver',
-          },
-          {
-            from: '/standards/accounts/lsp1-universal-receiver-delegate',
-            to: '/standards/accounts/lsp1-universal-receiver-delegate',
-          },
-          {
-            from: '/standards/accounts/lsp9-vault',
-            to: '/standards/accounts/lsp9-vault',
-          },
-          {
-            from: '/standards/accounts/lsp17-contract-extension',
-            to: '/standards/accounts/lsp17-contract-extension',
-          },
-          {
-            from: '/standards/accounts/lsp20-call-verification',
-            to: '/standards/accounts/lsp20-call-verification',
-          },
-          {
             from: '/standards/faq/channel-nonce',
             to: '/standards/accounts/lsp25-execute-relay-call',
           },
           {
             from: '/standards/generic-standards/lsp26-follower-system',
             to: '/standards/accounts/lsp26-follower-system',
-          },
-          {
-            from: '/standards/accounts/lsp15-transaction-relayer-api',
-            to: '/standards/accounts/lsp15-transaction-relayer-api',
-          },
-          {
-            from: '/standards/factories/lsp16-universal-factory',
-            to: '/standards/factories/lsp16-universal-factory',
           },
         ],
       },
