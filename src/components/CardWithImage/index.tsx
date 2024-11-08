@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 type Props = {
   CardData: Array<{
-    image: string;
+    image?: string;
     imageTitle: string;
     cardHeading: string;
     cardContent: Array<{
@@ -22,11 +22,13 @@ export default function CardWithImage({ CardData }: Props) {
     <div className="cardwithimage" style={{ marginBottom: '5rem' }}>
       {CardData.map((item, index) => (
         <Card sx={{ width: '48%' }} key={index}>
-          <CardMedia
-            sx={{ height: 140 }}
-            image={item.image}
-            title={item.imageTitle}
-          />
+          {item.image && (
+            <CardMedia
+              sx={{ height: 140 }}
+              image={item.image}
+              title={item.imageTitle}
+            />
+          )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {item.cardHeading}
