@@ -11,7 +11,7 @@ This feature is currently in private beta. If you are interested, please [contac
 
 :::
 
-The LUKSO Relayer API provides developers with powerful tools to create and manage Universal Profiles, as well as facilitate gasless transactions for users by registering.
+The LUKSO Relayer API allows developer to create and manage Universal Profiles, as well as facilitate gasless transactions for users by registering.
 
 ## Key Features
 
@@ -20,13 +20,13 @@ Developers can use the LUKSO Relayer API to:
 - Deploy Universal Profiles
 - Register existing Universal Profiles
 
-Organizations and applications can use the Relayer API to deploy Universal Profiles and register on behalf of their users, enabling gas-free transactions.
+Organizations and applications can use the Relayer API to deploy Universal Profiles and register on behalf of their users. By leveraging the LUKSO Relayer API, you can create seamless, user-friendly experiences for your decentralized applications on the LUKSO network.
 
 ### 1. Deploy Universal Profiles
 
 The Relayer API allows you to deploy Universal Profiles for your users using two different ways:
 
-#### Option 1: Using `lsp6ControllerAddress` and `lsp3Profile` as arguments:
+#### Option 1: Using `lsp6ControllerAddress` and [`lsp3Profile`](../../learn/universal-profile/metadata/edit-profile#create-a-new-lsp3profile-json-file) as arguments:
 
 ```mermaid
 sequenceDiagram
@@ -43,7 +43,7 @@ sequenceDiagram
     Relayer-->>App: Return UP Address
 ```
 
-Provide a list of controller addresses `lsp6ControllerAddress` and metadata `lsp3Profile` to set up the Universal Profile.
+Provide a list of permissioned addresses `lsp6ControllerAddress` and set the Universal Profile's metadata with `lsp3Profile`.
 
 ```javascript
 async function deployUniversalProfile() {
@@ -51,16 +51,17 @@ async function deployUniversalProfile() {
   const url = 'https://relayer-api.testnet.lukso.network/api/universal-profile';
 
   const data = {
+    // list of permissioned addresses
     lsp6ControllerAddress: ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'],
-    lsp3Profile:
-      '0x6f357c6a3e2e3b435dd1ee4b8a2435722ee5533ea3f6cf6cb44c7fc278ac57ea1480295e697066733a2f2f516d5861714d67646971664b7931384373574768534a4c62626136316f6676666857387175506e6e6a6e76625966',
+    // encoded LSP3 Profile
+    lsp3Profile: '0x6f357c6a3e2e3b435dd1ee4b8a2435722ee5533ea3f6cf6cb44c7f...',
   };
 
   try {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'X-API-KEY': apiKey,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
@@ -104,11 +105,14 @@ This method allows for deterministic deployment across different chains.
 async function deployUniversalProfileWithSalt() {
   const apiKey = 'your-api-key';
   const url = 'https://relayer-api.testnet.lukso.network/api/universal-profile';
-
+  // generate random salt
   const salt = ethers.utils.randomBytes(32);
+  // list of permissioned addresses
   const lsp6Controllers = ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'];
-  const lsp3Profile = '0x6f357c6a...'; // Encoded LSP3 Profile Data
+  // Encoded LSP3 Profile Data
+  const lsp3Profile = '0x6f357c6a...';
 
+  // generate postDeploymentCallData with controllers and metadata
   const postDeploymentCallData = generatePostDeploymentCallData(
     lsp6Controllers,
     lsp3Profile,
@@ -123,7 +127,7 @@ async function deployUniversalProfileWithSalt() {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'X-API-KEY': apiKey,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
@@ -145,7 +149,7 @@ deployUniversalProfileWithSalt();
 
 ### 2. Register Existing Universal Profiles
 
-You can register existing Universal Profiles with the Relayer to enable gasless transactions for your users.
+You can register existing Universal Profiles with the Relayer to enable gasless transactions for your users. Currently, registered Universal Profiles to the LUKSO Relayer API gets a certain quota amount of gas(20 millions) per month.
 
 ```javascript
 async function registerUniversalProfile() {
@@ -161,7 +165,7 @@ async function registerUniversalProfile() {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'X-API-KEY': apiKey,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
@@ -179,8 +183,8 @@ registerUniversalProfile();
 
 ## Integration Guide
 
-1. Obtain API credentials by filling out the access request form.
-2. Use the provided API key in the `X-API-KEY` header for all requests.
+1. Obtain API credentials by filling out the [access request form](https://forms.gle/rhWA25m3jjuPNPva9).
+2. Use the provided API key in the `Authorization` header for all requests.
 3. Implement error handling for various HTTP status codes (400, 401, 403, 404, 429, 500).
 
 ## API Documentation
@@ -193,5 +197,3 @@ registerUniversalProfile();
 - For technical issues or questions, contact our support team at [support@lukso.network](mailto:support@lukso.network).
 - Join our [Discord community](https://discord.com/invite/lukso) for discussions and updates.
 - Explore the [LUKSO documentation](https://docs.lukso.tech/) for more information on building with Universal Profiles.
-
-By leveraging the LUKSO Relayer API, you can create seamless, user-friendly experiences for your decentralized applications on the LUKSO network.
