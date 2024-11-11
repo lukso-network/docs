@@ -7,6 +7,8 @@ import Box from '../components/Box';
 import CallToActionButton from '../components/CallToActionButton';
 import Headline from '../components/Headline';
 
+import CustomAccordion from '../components/Accordion';
+
 import NetworksIcon from '../../static/img/icons/icon-networks-gradient.png';
 import StandardsIcon from '../../static/img/icons/icon-standards-gradient.png';
 import ToolsIcon from '../../static/img/icons/icon-tools-gradient.png';
@@ -16,11 +18,61 @@ import FAQIcon from '../../static/img/icons/icon-faq-gradient.png';
 import DappsGallery from '../components/DappsGallery';
 import SeparatorWithTitle from '../components/SeperatorWithTitle';
 
+const accordionData = [
+  { summary: 'General', details: 'some answers' },
+  {
+    summary: 'Universal Profiles',
+    details: 'some answers',
+  },
+  {
+    summary: 'Tokens & NFTs',
+    details: 'some answers',
+  },
+  {
+    summary: 'Network & Validators',
+    details: 'some answers',
+  },
+  {
+    summary: 'Wallets & Controller dApps',
+    details: 'some answers',
+  },
+];
+// const accordionData = [
+//   { summary: 'Why is there new standards on LUKSO?', details: 'some answers' },
+//   {
+//     summary: 'Why is LUKSO a Layer 1 and not a Layer 2?',
+//     details: 'some answers',
+//   },
+//   {
+//     summary:
+//       'What are the advantages offered by the LUKSO LSP Standards compared to the ERC Standards?',
+//     details: 'some answers',
+//   },
+//   {
+//     summary:
+//       'What are the key differences between the LUKSO LSP Standards and the Ethereum ERC Standards?',
+//     details: 'some answers',
+//   },
+//   {
+//     summary: 'What can be built using the LUKSO Standards?',
+//     details: 'some answers',
+//   },
+// ];
+
 function Index() {
   return (
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
         <Headline />
+        <div>
+          {accordionData.map((item, index) => (
+            <CustomAccordion
+              summary={item.summary}
+              details={item.details}
+              index={index}
+            />
+          ))}
+        </div>
         <div style={{ marginTop: '3em' }}>
           <CallToActionButton
             text="🏁 Getting Started 🏁"
