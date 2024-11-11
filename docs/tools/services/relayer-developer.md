@@ -11,154 +11,188 @@ This feature is currently in private beta. If you are interested, please [contac
 
 :::
 
-If you are building on LUKSO, you can request a developer access to our relayer to create Universal Profiles for your users.
+The LUKSO Relayer API provides developers with powerful tools to create and manage Universal Profiles, as well as facilitate gasless transactions for users by registering.
 
-## Request access
+## Key Features
 
-Please fill out [this form](https://forms.gle/rhWA25m3jjuPNPva9) to request access to our relayer.
+Developers can use the LUKSO Relayer API to:
+
+- Deploy Universal Profiles
+- Register existing Universal Profiles
+
+Organizations and applications can use the Relayer API to deploy Universal Profiles and register on behalf of their users, enabling gas-free transactions.
+
+### 1. Deploy Universal Profiles
+
+The Relayer API allows you to deploy Universal Profiles for your users using two different ways:
+
+#### Option 1: Using `lsp6ControllerAddress` and `lsp3Profile` as arguments:
+
+```mermaid
+sequenceDiagram
+    participant App
+    participant Relayer
+    participant LUKSO Network
+
+    App->>Relayer: POST /api/universal-profile with:
+    Note over App,Relayer: - lsp6ControllerAddress[]<br>- lsp3Profile metadata
+    Relayer->>LUKSO Network: Deploy UP Contract
+    Relayer->>LUKSO Network: Set Controllers
+    Relayer->>LUKSO Network: Set LSP3 Metadata
+    LUKSO Network-->>Relayer: Deployment Success
+    Relayer-->>App: Return UP Address
+```
+
+Provide a list of controller addresses `lsp6ControllerAddress` and metadata `lsp3Profile` to set up the Universal Profile.
+
+```javascript
+async function deployUniversalProfile() {
+  const apiKey = 'your-api-key';
+  const url = 'https://relayer-api.testnet.lukso.network/api/universal-profile';
+
+  const data = {
+    lsp6ControllerAddress: ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'],
+    lsp3Profile:
+      '0x6f357c6a3e2e3b435dd1ee4b8a2435722ee5533ea3f6cf6cb44c7fc278ac57ea1480295e697066733a2f2f516d5861714d67646971664b7931384373574768534a4c62626136316f6676666857387175506e6e6a6e76625966',
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-API-KEY': apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Universal Profile deployed:', result);
+  } catch (error) {
+    console.error('Error deploying Universal Profile:', error.message);
+  }
+}
+
+deployUniversalProfile();
+```
+
+#### Option 2: Using `salt` and [`postDeploymentCallData`](../../learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata) as arguments:
+
+```mermaid
+sequenceDiagram
+    participant App
+    participant Relayer
+    participant LUKSO Network
+
+    Note over App: Generate random salt
+    Note over App: Prepare postDeploymentCallData<br>(controllers + metadata)
+    App->>Relayer: POST /api/universal-profile with:
+    Note over App,Relayer: - salt<br>- postDeploymentCallData
+    Relayer->>LUKSO Network: Deploy UP Contract<br>with deterministic address
+    Relayer->>LUKSO Network: Execute postDeployment setup
+    LUKSO Network-->>Relayer: Deployment Success
+    Relayer-->>App: Return UP Address
+```
+
+This method allows for deterministic deployment across different chains.
+
+```javascript
+async function deployUniversalProfileWithSalt() {
+  const apiKey = 'your-api-key';
+  const url = 'https://relayer-api.testnet.lukso.network/api/universal-profile';
+
+  const salt = ethers.utils.randomBytes(32);
+  const lsp6Controllers = ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'];
+  const lsp3Profile = '0x6f357c6a...'; // Encoded LSP3 Profile Data
+
+  const postDeploymentCallData = generatePostDeploymentCallData(
+    lsp6Controllers,
+    lsp3Profile,
+  );
+
+  const data = {
+    salt,
+    postDeploymentCallData,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-API-KEY': apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Universal Profile deployed:', result);
+  } catch (error) {
+    console.error('Error deploying Universal Profile:', error.message);
+  }
+}
+
+deployUniversalProfileWithSalt();
+```
+
+### 2. Register Existing Universal Profiles
+
+You can register existing Universal Profiles with the Relayer to enable gasless transactions for your users.
+
+```javascript
+async function registerUniversalProfile() {
+  const apiKey = 'your-api-key';
+  const url = 'https://relayer-api.testnet.lukso.network/api/users';
+
+  const data = {
+    universalProfileAddress: '0x1234567890123456789012345678901234567890',
+    // userId: 'optional-user-id-for-existing-users',
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-API-KEY': apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    console.log('Universal Profile registered:', result);
+
+  } catch (error) {
+    console.error('Error registering Universal Profile:', error.message);
+  }
+}
+
+registerUniversalProfile();
+```
+
+## Integration Guide
+
+1. Obtain API credentials by filling out the access request form.
+2. Use the provided API key in the `X-API-KEY` header for all requests.
+3. Implement error handling for various HTTP status codes (400, 401, 403, 404, 429, 500).
 
 ## API Documentation
 
 - Testnet: [https://relayer-api.testnet.lukso.network/](https://relayer-api.testnet.lukso.network/docs#/)
 - Mainnet: [https://relayer-api.mainnet.lukso.network/](https://relayer-api.mainnet.lukso.network/docs#/)
 
-## Features
+## Support and Resources
 
-### Deploy Universal Profiles
+- For technical issues or questions, contact our support team at [support@lukso.network](mailto:support@lukso.network).
+- Join our [Discord community](https://discord.com/invite/lukso) for discussions and updates.
+- Explore the [LUKSO documentation](https://docs.lukso.tech/) for more information on building with Universal Profiles.
 
-You can deploy Universal Profiles for users by providing either:
-
-- OPTION 1: a list of controller addresses (`lsp6ControllerAddress`) and metadata (`lsp3Profile`)
-- OPTION 2: a `salt` and [`postDeploymentCallData`](../../learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata)
-
-In this process, you might need to use the [`up_import`](../../tools/services/rpc-api.md#up_import) RPC call from the [Universal Profile Extension](/install-up-browser-extension) in order to add the deployed UP to the browser extension.
-
-<details>
-  <summary>OPTION 1: lsp6ControllerAddress & lsp3Profile</summary>
-
-```javascript title="lsp6ControllerAddress: LSP6 controller addresses to set on the deployed Universal Profile with default controller permissions."
-lsp6ControllerAddress: ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'];
-```
-
-```javascript title="lsp3Profile: LSP3 metadata to set on the deployed universal profile. Needs to be passed as a VerifiableURI-encoded value."
-lsp3Profile: '0x6f357c6a3e2e3b435dd1ee4b8a2435722ee5533ea3f6cf6cb44c7fc278ac57ea1480295e697066733a2f2f516d5861714d67646971664b7931384373574768534a4c62626136316f6676666857387175506e6e6a6e76625966';
-```
-
-```javascript title="💁‍♀️ How to create a VerifiableURI-encoded value from a JSON:"
-// My custom JSON file
-const json = JSON.stringify({
-    myProperty: 'is a string',
-    anotherProperty: {
-        sdfsdf: 123456
-    }
-})
-
-const verfiableUriIdentifier = '0x0000'
-
-// Get the bytes4 representation of the verification method
-const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
-> '0x6f357c6a'
-
-// Get the hash of the JSON file (verification data)
-const verificationData = web3.utils.keccak256(json)
-> '0x820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361'
-
-// Get the verification data length and padd it as 2 bytes
-const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex((verificationData.substring(2).length) / 2), 4);
-> 0x0020
-
-// store the JSON anywhere and encode the URL
-const url = web3.utils.utf8ToHex('ifps://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx')
-> '0x696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455a4c6a7452504466573834554178'
-
-
-// final result (to be stored on chain)
-const VerfiableURI =  verfiableUriIdentifier + verificationMethod.substring(2) + verificationDatalength.substring(2) + verificationData.substring(2) + url.substring(2)
-                      ^                        ^                                 ^                                     ^                               ^
-                      0000                     6f357c6a                          0020                                  820464ddfac1be...               696670733a2f2...
-
-// structure of the VerifiableURI
-0x0000 + 6f357c6a +       0020 +                    820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361 + 696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455a4c6a7452504466573834554178
-  ^      ^                ^                         ^                                                                  ^
-  0000   keccak256(utf8)  verificationDatalength    verificationData                                                   encoded URL
-
-// example value
-0x00006f357c6a0020820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455a4c6a7452504466573834554178
-```
-
-ℹ️ More info on [`VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri)
-
-</details>
-
-<details>
-  <summary>OPTION 2: salt & postDeploymentCallData</summary>
-
-**Why is it useful to deploy UP to pass salt and postDeploymentCallData?**
-
-To be able to deploy a UP on the same address across different chains.
-
-**How to generate each parameter?**
-
-```javascript title="salt: A 32 bytes salt used to compute the deployment address of the contract."
-const salt = '0x' + crypto.randomBytes(32).toString('hex');
-```
-
-```javascript title="postDeploymentCallData: Calldata which will be executed on the ERC725Account contract after deployment. Should contain the encoded setDataBatch transaction to set the initial permissions and LSP3 Profile Data"
-
-generatePostDeploymentCallData(
-    lsp6Controllers: string[],
-    lsp3Profile?: string,
-  ) {
-    const permissionData: {
-      keyName: string;
-      dynamicKeyParts?: string;
-      value: string[] | string;
-    }[] = [
-      {
-        keyName: 'AddressPermissions[]',
-        value: lsp6Controllers,
-      },
-    ];
-
-    for (const controller of lsp6Controllers) {
-      permissionData.push({
-        keyName: 'AddressPermissions:Permissions:<address>',
-        dynamicKeyParts: controller,
-        value: ERC725.encodePermissions(DEFAULT_CONTROLLER_PERMISSIONS),
-      });
-    }
-
-    const erc725js = new ERC725(LSP6Schema);
-    const { keys, values } = erc725js.encodeData(permissionData);
-
-    if (lsp3Profile) {
-      keys.push(ERC725YDataKeys.LSP3.LSP3Profile);
-      values.push(lsp3Profile);
-    }
-
-    const postDeploymentCallData = ethers.utils.defaultAbiCoder.encode(
-      ['bytes32[]', 'bytes[]'],
-      [keys, values],
-    );
-
-    return postDeploymentCallData;
-  }
-```
-
-</details>
-
-Please refer to the [Swagger](https://relayer-api.testnet.lukso.network/docs#/External%20Api%20Endpoints/UniversalProfileController_deployUniversalProfile) docs for more information.
-
-### Register Users and Universal Profiles
-
-If your project has already created Universal Profiles (UP) for your users, you can register these profiles to our relayer so they can benefit from the gasless transactions experience provided by the LUKSO relayer.
-
-#### How it works
-
-- Developer provides a Universal Profile (UP) address to be registered in the LUKSO relayer.
-
-  - If the UP is not already registered, the relayer creates a new `User` with the new UP attached.
-  - New `User` is granted the default gas quota (20m).
-
-- Developer may also provide a `User ID`, to register a Universal Profile for an already created User.
-  - For example a Developer may build a platform where enterprise users can deploy Universal Profiles for their organisation, we can attach multiple Universal Profiles per organisation
+By leveraging the LUKSO Relayer API, you can create seamless, user-friendly experiences for your decentralized applications on the LUKSO network.
