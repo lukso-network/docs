@@ -24,29 +24,6 @@ import AddNetworkButton from '@site/src/components/AddNetworkButton'
 
 The mainnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/mainnet/shared) repo.
 
-## 3rd party RPC providers
-
-Developers can use the services of the following 3rd party providers:
-
-- [Thirdweb](https://thirdweb.com/) RPC URL: `https://42.rpc.thirdweb.com`
-- [SigmaCore](https://sigmacore.io) RPC URL: `https://rpc.lukso.sigmacore.io` (increased-limit packages available)
-- [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io` (requires API key)
-- [Envio](https://envio.dev/) RPC URL: `https://lukso.rpc.hypersync.xyz` (optimized read-only)
-
-We recommend developers to use these RPC providers over our public RPC URL as they provide better performance and stability.
-
-## IPFS Storage
-
-We highly recommend that developers fetch and store profile or asset data using **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or [Infura](https://docs.infura.io/networks/ipfs) for production needs, ensuring distribution and availability across the IPFS network. We do not provide an official gateway for uploading asset data. For development purposes, you may use the following RPC to fetch data:
-
-- IPFS Download (for development only): `https://api.universalprofile.cloud/ipfs`
-
-:::caution Availability
-
-This gateway is intended for development purposes. We do not guarantee any SLA, and rate limits may apply.
-
-:::
-
 ## Add LUKSO to Wallets
 
 You can add the LUKSO to any of your existing wallets like [MetaMask](https://metamask.io/), [Rabby](https://rabby.io/), [Rainbow](https://rainbow.me/), [Coinbase Wallet](https://www.coinbase.com/de/wallet), [Trust Wallet](https://trustwallet.com/de), and others using the following parameters or button:
@@ -72,9 +49,32 @@ You can use your hardware wallet with MetaMask. You will simply need to:
 
 :::
 
+## 3rd party RPC providers
+
+Developers can use the services of the following 3rd party providers:
+
+- [Thirdweb](https://thirdweb.com/) RPC URL: `https://42.rpc.thirdweb.com`
+- [SigmaCore](https://sigmacore.io) RPC URL: `https://rpc.lukso.sigmacore.io` (increased-limit packages available)
+- [NowNodes](https://nownodes.io/) RPC URL: `https://lukso.nownodes.io` (requires API key)
+- [Envio](https://envio.dev/) RPC URL: `https://lukso.rpc.hypersync.xyz` (optimized read-only)
+
+We recommend developers to use these RPC providers over our public RPC URL as they provide better performance and stability.
+
 ## Network Architecture
 
-LUKSO's Blockchain Architecture runs the Ethereum protocol and consists of 2 to 4 clients:
+The LUKSO's Blockchain runs an **unmodified version** of the Ethereum protocol. The network architecture consists of 2 to 4 clients:
 
 - The consensus client running Casper the Friendly Finality Gadget (Casper FFG) plus LMD-GHOST fork choice algorithm ([More on the Gasper Consensus](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/gasper/))
 - The execution client, [running the Ethereum Virtual Machine](https://ethereum.org/en/developers/docs/ethereum-stack/)
+
+## IPFS Storage
+
+We highly recommend that developers fetch and store profile or asset data using **their own IPFS gateway** solutions like [Pinata](https://docs.pinata.cloud/docs/welcome-to-pinata) or [Infura](https://docs.infura.io/networks/ipfs) for production needs, ensuring distribution and availability across the IPFS network. We do not provide an official gateway for uploading asset data. For development purposes, you may use the following RPC to fetch data:
+
+- IPFS Download (for development only): `https://api.universalprofile.cloud/ipfs`
+
+:::caution Availability
+
+This gateway is intended for development purposes. We do not guarantee any SLA, and rate limits may apply.
+
+:::

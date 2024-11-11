@@ -43,8 +43,9 @@ module.exports = {
     },
   ],
   learnSidebar: [
+    'learn/overview',
+    'learn/benefits-lukso-standards',
     'learn/getting-started',
-    'learn/introduction',
     {
       type: 'category',
       label: '🔀 Migrate to LUKSO',

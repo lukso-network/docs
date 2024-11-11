@@ -7,7 +7,12 @@ type Props = {
 
 const ColorChips = ({ label }: Props) => (
   <Chip
-    sx={{ backgroundColor: '#feebf2', fontWeight: 'bold' }}
+    sx={{
+      color: 'white',
+      backgroundImage:
+        'linear-gradient(to bottom right, rgba(235,29,113,2), rgba(235,29,113,0.40))',
+      fontWeight: 'bold',
+    }}
     label={label}
     variant="outlined"
   />

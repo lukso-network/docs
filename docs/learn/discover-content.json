@@ -1,0 +1,41 @@
+[
+  {
+    "image": "",
+    "imageTitle": "LSP Standards Icon",
+    "cardHeading": "🧱 LUKSO Standards (LSPs)",
+    "cardContent": [
+      {
+        "linkText": "Discover the main building blocks of LUKSO",
+        "linkPath": "../../standards/introduction"
+      },
+      {
+        "linkText": "Learn the benefits of using the LUKSO Standards",
+        "linkPath": "./introduction"
+      },
+      {
+        "linkText": "Deep dive into the specs of the LSPs",
+        "linkPath": "https://github.com/lukso-network/LIPs/tree/main/LSPs",
+        "newTab": true
+      }
+    ]
+  },
+  {
+    "image": "",
+    "imageTitle": "Validator Icon",
+    "cardHeading": "🧬 Network & Validators",
+    "cardContent": [
+      {
+        "linkText": "Connect your wallet to the LUKSO Mainnet",
+        "linkPath": "../../networks/mainnet/parameters#add-lukso-to-wallets"
+      },
+      {
+        "linkText": "Run a LUKSO node",
+        "linkPath": "../../networks/mainnet/running-a-node"
+      },
+      {
+        "linkText": "Become a Validator",
+        "linkPath": "../../networks/mainnet/become-a-validator"
+      }
+    ]
+  }
+]
