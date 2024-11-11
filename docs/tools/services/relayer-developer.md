@@ -169,7 +169,6 @@ async function registerUniversalProfile() {
 
     const result = await response.json();
     console.log('Universal Profile registered:', result);
-
   } catch (error) {
     console.error('Error registering Universal Profile:', error.message);
   }
