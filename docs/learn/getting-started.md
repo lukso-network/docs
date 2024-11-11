@@ -87,3 +87,36 @@ Developers building on LUKSO can write smart contracts in any EVM-based smart co
 - [Awesome LUKSO, a comprehensive list of awesome LUKSO resources!](https://github.com/lukso-network/awesome-lukso)
 - [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
 - [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
+
+## Code Repositories
+
+Want to dive into the code directly? Check the following repos 😉
+
+### Next.js Boilerplate
+
+The [`tools-dapp-boilerplate`](https://github.com/lukso-network/tools-dapp-boilerplate) is a Next.js repository that gives you a fully working dApp with lot of ready to use components and features:
+
+<div style={{textAlign: 'center'}}>
+
+<img
+  src="https://github.com/lukso-network/tools-dapp-boilerplate/raw/main/img/front_page.png"
+  alt="LUKSO Boilerplate"
+/>
+
+</div>
+
+### Playground
+
+The [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository is a great place to start playing around with dApps. It includes:
+
+- ready-to-go network configurations with LUKSO [Mainnet](../networks/mainnet/parameters.md) and [Testnet](../networks/testnet/parameters.md).
+- a full Hardhat setup to work with smart contracts.
+- example scripts to fetch profile and asset metadata, update them, and even more code examples!
+- sample contracts for Tokens, NFTs and Universal Receivers to build smart contracts based on the [LSP standards](./benefits-lukso-standards.md).
+- scripts to deploy and verify contracts on the network.
+
+<div style={{textAlign: 'center'}}>
+
+<img src="/img/guides/playground_dapp.png" alt="LUKSO Playground dApp" />
+
+</div>

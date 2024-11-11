@@ -24,13 +24,20 @@ For more information on specific topics, see the following pages:
 LUKSO is EVM-compatible. Any traditional web3 wallet (_e.g: Metamask_) can interact with LUKSO dApps.
 
 1. Simply [add the LUKSO network in your wallet](../../networks/testnet/parameters.md) and switch to the LUKSO chain.
-2. any Ethereum smart contract can be redeployed on LUKSO by connecting to a [LUKSO RPC endpoint](../../networks/mainnet/parameters).
+2. Any Ethereum smart contract can be redeployed on LUKSO by connecting to a [LUKSO RPC endpoint](../../networks/mainnet/parameters).
+3. Allow Universal Profiles to log-in to your dApp is easy and not different than other web3 wallet. Check our dedicated guide [**Connect 🆙**](../../learn/universal-profile/connect-profile/connect-up.md)!
 
 You can start holding assets (LYX, tokens, and NFTs), transfer them, and deploy and interact with smart contracts.
 
-Developers are encouraged to use LSP standards to enhance the experience using their projects. Some codebases may need adjustments to convert ERC interactions to LSP interactions. More details are provided below.
-
 ## From ERCs → to LSPs
+
+:::info Why using the LSP standards?
+
+Wondering what are the benefits and features of the LSPs and Universal Profiles compared to ERCs and traditional web3 wallets?
+
+Learn more under our dedicated page [**Benefits of LUKSO Standards**](../benefits-lukso-standards.md) to see how your project can leverage the LUKSO standard and tech!
+
+:::
 
 :::success Useful guides
 
@@ -52,6 +59,8 @@ For more details on the different functions and Solidity interface, see the foll
 
 Developers are encouraged to leverage the LSPs (**L**UKSO **S**tandards **P**roposals) to develop smart contracts, protocols and applications on LUKSO. The LSPs offer flexible functionalities that can:
 
-- enable more complex and various features.
+- enable more complex and various features not available with ERCs.
 - be tailored to suit different use cases.
 - bring a better experience to end dApp users.
+
+Some codebases may need adjustments to convert ERC interactions to LSP interactions. We provide guides above to help with such refactoring.
