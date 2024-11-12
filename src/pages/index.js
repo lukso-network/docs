@@ -256,14 +256,13 @@ function Index() {
               className="networks"
               content="Participate as node operator or interact on LUKSO's networks."
             />
-            <div style={{ margin: '0 2rem' }}>
+            <div style={{ margin: '0 1rem' }}>
               {networksData.map((item, index) => (
-                <CustomAccordion
-                  key={index}
-                  summary={item.title}
-                  details={item.link}
-                  index={index}
-                />
+                <ul key={index}>
+                  <li className={styles.guideBox}>
+                    <a href={item.link}>{item.title}</a>
+                  </li>
+                </ul>
               ))}
             </div>
           </div>
