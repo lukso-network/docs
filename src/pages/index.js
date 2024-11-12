@@ -63,33 +63,57 @@ function Index() {
   return (
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
       <div className={styles.container}>
-        <Headline />
-        <div>
-          {accordionData.map((item, index) => (
-            <CustomAccordion
-              summary={item.summary}
-              details={item.details}
-              index={index}
-            />
-          ))}
-        </div>
-        <div style={{ marginTop: '3em' }}>
-          <CallToActionButton
-            text="🏁 Getting Started 🏁"
-            link="/learn/getting-started"
-            color="white"
-            icon="material-symbols:keyboard-double-arrow-right"
-          />
+        <div className={styles.twoColumnSection}>
+          <div className={styles.leftColumn}>
+            <Headline />
+            <div className={styles.ctaButtons}>
+              <CallToActionButton
+                text="🏁 Getting Started 🏁"
+                link="/learn/getting-started"
+                color="white"
+                icon="material-symbols:keyboard-double-arrow-right"
+              />
 
-          <div style={{ marginTop: '3em' }}>
-            <CallToActionButton
-              text="Download 🆙 Browser Extension"
-              link="install-up-browser-extension"
-              color="white"
-              icon="material-symbols:extension"
-            />
+              <div style={{ marginTop: '3em' }}>
+                <CallToActionButton
+                  text="Download 🆙 Browser Extension"
+                  link="install-up-browser-extension"
+                  color="white"
+                  icon="material-symbols:extension"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.rightColumn}>
+            <div className={styles.guideBoxes}>
+              <a href="/guides/smart-contracts" className={styles.guideBox}>
+                <h3>Smart Contract Development</h3>
+                <p>Learn how to build and deploy smart contracts on LUKSO</p>
+              </a>
+              <a href="/guides/universal-profiles" className={styles.guideBox}>
+                <h3>Universal Profiles</h3>
+                <p>
+                  Create and manage blockchain identities with LSP standards
+                </p>
+              </a>
+              <a href="/guides/digital-assets" className={styles.guideBox}>
+                <h3>Digital Assets</h3>
+                <p>
+                  Build and interact with tokens and NFTs using LSP7 and LSP8
+                </p>
+              </a>
+              <a href="/guides/dapp-integration" className={styles.guideBox}>
+                <h3>Migrate to LUKSO</h3>
+                <p>
+                  The overview of the differences between building on LUKSO vs
+                  other EVM chains.
+                </p>
+              </a>
+            </div>
           </div>
         </div>
+
         <div className={styles.cardContainer}>
           <Box
             icon={GuidesIcon}
@@ -135,6 +159,16 @@ function Index() {
             className="partners"
             content="Check out LUKSO ecosystem tools and services."
           />
+        </div>
+        <div>
+          {accordionData.map((item, index) => (
+            <CustomAccordion
+              key={index}
+              summary={item.summary}
+              details={item.details}
+              index={index}
+            />
+          ))}
         </div>
         <SeparatorWithTitle title={'Projects building on LUKSO'} />
         <DappsGallery />
