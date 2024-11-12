@@ -36,6 +36,31 @@ const accordionData = [
     details: 'some answers',
   },
 ];
+
+const toolsData = [
+  { title: 'LSP Smart Contracts Packages', link: '' },
+  { title: 'ERC725.JS', link: '' },
+  { title: 'LUKSO Relayer API', link: '' },
+  { title: 'EIP191-Signer.JS', link: '' },
+  { title: 'LSP-Utils.JS', link: '' },
+];
+
+const networksData = [
+  {
+    title: 'Add LUKSO Network to your wallet',
+    link: '/networks/mainnet/parameters#add-lukso-to-wallets',
+  },
+  {
+    title: 'Becoming a Validator',
+    link: '/networks/mainnet/become-a-validator',
+  },
+  { title: 'Block Explorers', link: '/networks/mainnet/parameters' },
+  {
+    title: 'Running a Node',
+    link: '/networks/mainnet/running-a-node#starting-a-node',
+  },
+];
+
 // const accordionData = [
 //   { summary: 'Why is there new standards on LUKSO?', details: 'some answers' },
 //   {
@@ -105,17 +130,17 @@ function Index() {
                 </p>
                 <ul>
                   <li>
-                    <a href="#">
+                    <a href="/learn/universal-profile/connect-profile/connect-up">
                       Integrate the 🆙 Browser Extension easily in your dApp.
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/tools/services/relayer-developer#1-deploy-universal-profiles">
                       Create a Universal Profile easily with the relayer API
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/tools/integrations">
                       Integrate our various toolings, such as oracles, RPC
                       providers or data indexers.
                     </a>
@@ -130,26 +155,26 @@ function Index() {
                 </p>
                 <ul>
                   <li>
-                    <a href="#">
+                    <a href="/learn/universal-profile/metadata/edit-profile">
                       Customize your Universal Profile to your own image or
                       branding.
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/learn/universal-profile/key-manager/grant-permissions">
                       Allow 3rd party addresses to control your Universal
                       Profile.
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/learn/universal-profile/universal-receiver/create-receiver-forwarder">
                       Automate forwarding a % of tokens received by your
                       Universal Profile.
                     </a>
                   </li>
                 </ul>
               </div>
-              <a href="/guides/digital-assets" className={styles.guideBox}>
+              <div className={styles.guideBox}>
                 <h3>Digital Assets</h3>
                 <p style={{ margin: '1rem 0' }}>
                   Create Build and interact with tokens and NFTs using LSP7 and
@@ -157,27 +182,27 @@ function Index() {
                 </p>
                 <ul>
                   <li>
-                    <a href="#">
+                    <a href="/learn/digital-assets/token/create-lsp7-token">
                       Create a fungible token based on the LSP7 standard.
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/learn/digital-assets/nft/create-nft-collection-lsp8">
                       Create an NFT collection based on the LSP8 standard.
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/learn/digital-assets/nft/set-nft-metadata">
                       Set the metadata of specific NFTs in a collection.
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/learn/digital-assets/nft/create-nft-collection-with-lsp7-tokenId">
                       Create complex collections of sub-collections.
                     </a>
                   </li>
                 </ul>
-              </a>
+              </div>
             </div>
           </div>
         </div>
@@ -191,7 +216,7 @@ function Index() {
               link="./faq/lukso/general-information"
               title="What is LUKSO?"
               className="faq"
-              content="...."
+              content="Discover the features and benefits of the LUKSO Standards (LSPs)."
             />
             <div style={{ margin: '0 2rem' }}>
               {accordionData.map((item, index) => (
@@ -212,13 +237,16 @@ function Index() {
               className="tools"
               content="Explore tools that help you to interact with Universal Profiles and Digital Assets."
             />
-            <ul>
-              <li>smart contracts packages</li>
-              <li>erc725.js</li>
-              <li>relayer API</li>
-              <li>eip191-signer.js</li>
-              <li>lsp-utils.js</li>
-            </ul>
+            <div style={{ margin: '0 2rem' }}>
+              {toolsData.map((item, index) => (
+                <CustomAccordion
+                  key={index}
+                  summary={item.title}
+                  details={item.link}
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
           <div>
             <Box
@@ -228,6 +256,16 @@ function Index() {
               className="networks"
               content="Participate as node operator or interact on LUKSO's networks."
             />
+            <div style={{ margin: '0 2rem' }}>
+              {networksData.map((item, index) => (
+                <CustomAccordion
+                  key={index}
+                  summary={item.title}
+                  details={item.link}
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <div></div>

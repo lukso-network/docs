@@ -54,7 +54,7 @@
     content: '';
     position: absolute;
     top: 5%;
-    bottom: 0;
+    bottom: 3%;
     left: 50%;
     width: 0.1px;
     background: var(--ifm-color-emphasis-300);
@@ -102,8 +102,7 @@
   text-decoration: none;
 
   &:hover {
-    background-color: #eaeaea83;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
@@ -115,7 +114,7 @@
 
   p {
     margin: 0;
-    color: #666;
+    color: #585858;
     font-size: 0.95rem;
     line-height: 1.4;
   }
