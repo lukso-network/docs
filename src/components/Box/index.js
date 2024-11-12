@@ -4,7 +4,7 @@ import styles from './Box.module.scss';
 
 export default function Box({ icon, link, title, content, className }) {
   return (
-    <Link style={{ textDecoration: 'none', textAlign: 'center' }} to={link}>
+    <Link style={{ textDecoration: 'none', textAlign: 'left' }} to={link}>
       <div className={`${styles.card} ${className}`}>
         <div
           className={`${styles.img} img`}

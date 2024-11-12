@@ -13,7 +13,6 @@ import NetworksIcon from '../../static/img/icons/icon-networks-gradient.png';
 import StandardsIcon from '../../static/img/icons/icon-standards-gradient.png';
 import ToolsIcon from '../../static/img/icons/icon-tools-gradient.png';
 import PartnersIcon from '../../static/img/icons/icon-partners-gradient.png';
-import GuidesIcon from '../../static/img/icons/icon-guides-gradient.png';
 import FAQIcon from '../../static/img/icons/icon-faq-gradient.png';
 import DappsGallery from '../components/DappsGallery';
 import SeparatorWithTitle from '../components/SeperatorWithTitle';
@@ -67,14 +66,16 @@ function Index() {
           <div className={styles.leftColumn}>
             <Headline />
             <div className={styles.ctaButtons}>
-              <CallToActionButton
-                text="🏁 Getting Started 🏁"
-                link="/learn/getting-started"
-                color="white"
-                icon="material-symbols:keyboard-double-arrow-right"
-              />
+              <div style={{ display: 'inline-block' }}>
+                <CallToActionButton
+                  text="🏁 Getting Started 🏁"
+                  link="/learn/getting-started"
+                  color="white"
+                  icon="material-symbols:keyboard-double-arrow-right"
+                />
+              </div>
 
-              <div style={{ marginTop: '3em' }}>
+              <div style={{ display: 'inline-block', marginLeft: '1rem' }}>
                 <CallToActionButton
                   text="Download 🆙 Browser Extension"
                   link="install-up-browser-extension"
@@ -86,57 +87,146 @@ function Index() {
           </div>
 
           <div className={styles.rightColumn}>
+            {/* <div className={styles.cardContainer}>
+              <Box
+                icon={StandardsIcon}
+                link="./learn/getting-started"
+                title="Useful Guides"
+                // className="standards"
+                content="Our quickest guides to get your started building on LUKSO."
+              />
+            </div> */}
             <div className={styles.guideBoxes}>
-              <a href="/guides/smart-contracts" className={styles.guideBox}>
-                <h3>Smart Contract Development</h3>
-                <p>Learn how to build and deploy smart contracts on LUKSO</p>
-              </a>
-              <a href="/guides/universal-profiles" className={styles.guideBox}>
-                <h3>Universal Profiles</h3>
-                <p>
-                  Create and manage blockchain identities with LSP standards
+              <div className={styles.guideBox}>
+                <h3>Quickstart integrations</h3>
+                <p style={{ margin: '1rem 0' }}>
+                  Looking to migrate your project to LUKSO? Or starting from
+                  scratch?
                 </p>
-              </a>
+                <ul>
+                  <li>
+                    <a href="#">
+                      Integrate the 🆙 Browser Extension easily in your dApp.
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Create a Universal Profile easily with the relayer API
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Integrate our various toolings, such as oracles, RPC
+                      providers or data indexers.
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className={styles.guideBox}>
+                <h3>Universal Profiles</h3>
+                <p style={{ margin: '1rem 0' }}>
+                  Discover the world of Universal Profiles 🆙 and what you can
+                  do with them.
+                </p>
+                <ul>
+                  <li>
+                    <a href="#">
+                      Customize your Universal Profile to your own image or
+                      branding.
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Allow 3rd party addresses to control your Universal
+                      Profile.
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Automate forwarding a % of tokens received by your
+                      Universal Profile.
+                    </a>
+                  </li>
+                </ul>
+              </div>
               <a href="/guides/digital-assets" className={styles.guideBox}>
                 <h3>Digital Assets</h3>
-                <p>
-                  Build and interact with tokens and NFTs using LSP7 and LSP8
+                <p style={{ margin: '1rem 0' }}>
+                  Create Build and interact with tokens and NFTs using LSP7 and
+                  LSP8
                 </p>
-              </a>
-              <a href="/guides/dapp-integration" className={styles.guideBox}>
-                <h3>Migrate to LUKSO</h3>
-                <p>
-                  The overview of the differences between building on LUKSO vs
-                  other EVM chains.
-                </p>
+                <ul>
+                  <li>
+                    <a href="#">
+                      Create a fungible token based on the LSP7 standard.
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Create an NFT collection based on the LSP8 standard.
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Set the metadata of specific NFTs in a collection.
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Create complex collections of sub-collections.
+                    </a>
+                  </li>
+                </ul>
               </a>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className={styles.cardContainer}>
-          <Box
-            icon={GuidesIcon}
-            link="./learn/getting-started"
-            title="LEARN"
-            className="learn"
-            content="Learn about integrating standards within contracts and dApps."
-          />
-          <Box
-            icon={StandardsIcon}
-            link="./standards/introduction"
-            title="STANDARDS"
-            className="standards"
-            content="Discover new smart contract standards that will change the way we interact with Blockchain."
-          />
-          <Box
-            icon={ToolsIcon}
-            link="./tools/libraries/getting-started"
-            title="TOOLS"
-            className="tools"
-            content="Explore tools that help you to interact with Universal Profiles and NFT2.0."
-          />
+      <div className={styles.container}>
+        <div className={styles.twoColumnSection}>
+          <div className={styles.leftColumn}>
+            <div className={styles.cardContainer}>
+              <Box
+                icon={FAQIcon}
+                link="./faq/lukso/general-information"
+                title="What is LUKSO?"
+                className="faq"
+                content="...."
+              />
+            </div>
+            {accordionData.map((item, index) => (
+              <CustomAccordion
+                key={index}
+                summary={item.summary}
+                details={item.details}
+                index={index}
+              />
+            ))}
+          </div>
+
+          <div className={styles.rightColumn}>
+            <div className={styles.cardContainer}>
+              <Box
+                icon={ToolsIcon}
+                link="./tools/libraries/getting-started"
+                title="TOOLS"
+                className="tools"
+                content="Explore tools that help you to interact with Universal Profiles and Digital Assets."
+              />
+            </div>
+            <ul>
+              <li>smart contracts packages</li>
+              <li>erc725.js</li>
+              <li>relayer API</li>
+              <li>eip191-signer.js</li>
+              <li>lsp-utils.js</li>
+            </ul>
+          </div>
         </div>
+      </div>
+
+      <div className={styles.container}>
         <div className={styles.cardContainer}>
           <Box
             icon={NetworksIcon}
@@ -145,32 +235,9 @@ function Index() {
             className="networks"
             content="Participate as node operator or interact on LUKSO's networks."
           />
-          <Box
-            icon={FAQIcon}
-            link="./faq/lukso/general-information"
-            title="FAQ"
-            className="faq"
-            content="Read frequently asked questions about the project and network."
-          />
-          <Box
-            icon={PartnersIcon}
-            link="./tools/integrations"
-            title="INTEGRATIONS"
-            className="partners"
-            content="Check out LUKSO ecosystem tools and services."
-          />
         </div>
-        <div>
-          {accordionData.map((item, index) => (
-            <CustomAccordion
-              key={index}
-              summary={item.summary}
-              details={item.details}
-              index={index}
-            />
-          ))}
-        </div>
-        <SeparatorWithTitle title={'Projects building on LUKSO'} />
+        <div></div>
+        <SeparatorWithTitle title={'Popular dApps built on LUKSO'} />
         <DappsGallery />
       </div>
     </Layout>
