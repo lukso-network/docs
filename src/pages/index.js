@@ -184,37 +184,34 @@ function Index() {
       </div>
 
       <div className={styles.container}>
-        <div className={styles.twoColumnSection}>
-          <div className={styles.leftColumn}>
-            <div className={styles.cardContainer}>
-              <Box
-                icon={FAQIcon}
-                link="./faq/lukso/general-information"
-                title="What is LUKSO?"
-                className="faq"
-                content="...."
-              />
+        <div className={styles.cardContainer}>
+          <div>
+            <Box
+              icon={FAQIcon}
+              link="./faq/lukso/general-information"
+              title="What is LUKSO?"
+              className="faq"
+              content="...."
+            />
+            <div style={{ margin: '0 2rem' }}>
+              {accordionData.map((item, index) => (
+                <CustomAccordion
+                  key={index}
+                  summary={item.summary}
+                  details={item.details}
+                  index={index}
+                />
+              ))}
             </div>
-            {accordionData.map((item, index) => (
-              <CustomAccordion
-                key={index}
-                summary={item.summary}
-                details={item.details}
-                index={index}
-              />
-            ))}
           </div>
-
-          <div className={styles.rightColumn}>
-            <div className={styles.cardContainer}>
-              <Box
-                icon={ToolsIcon}
-                link="./tools/libraries/getting-started"
-                title="TOOLS"
-                className="tools"
-                content="Explore tools that help you to interact with Universal Profiles and Digital Assets."
-              />
-            </div>
+          <div>
+            <Box
+              icon={ToolsIcon}
+              link="./tools/libraries/getting-started"
+              title="TOOLS"
+              className="tools"
+              content="Explore tools that help you to interact with Universal Profiles and Digital Assets."
+            />
             <ul>
               <li>smart contracts packages</li>
               <li>erc725.js</li>
@@ -223,18 +220,15 @@ function Index() {
               <li>lsp-utils.js</li>
             </ul>
           </div>
-        </div>
-      </div>
-
-      <div className={styles.container}>
-        <div className={styles.cardContainer}>
-          <Box
-            icon={NetworksIcon}
-            link="./networks/mainnet/parameters/"
-            title="NETWORKS"
-            className="networks"
-            content="Participate as node operator or interact on LUKSO's networks."
-          />
+          <div>
+            <Box
+              icon={NetworksIcon}
+              link="./networks/mainnet/parameters/"
+              title="NETWORKS"
+              className="networks"
+              content="Participate as node operator or interact on LUKSO's networks."
+            />
+          </div>
         </div>
         <div></div>
         <SeparatorWithTitle title={'Popular dApps built on LUKSO'} />

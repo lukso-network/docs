@@ -1,3 +1,7 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
 .container {
   display: flex;
   justify-content: center;
@@ -7,7 +11,7 @@
 
 .cardContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
   justify-self: center;
 
@@ -44,7 +48,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  margin-bottom: 3rem;
   position: relative;
 
   &::after {
@@ -69,13 +72,14 @@
 }
 
 .leftColumn {
+  padding: 1.25rem 5rem;
   display: flex;
   flex-direction: column;
   margin-right: 5rem;
 }
 
 .rightColumn {
-  padding: 2.5rem 5rem;
+  padding: 1.25rem 5rem;
   margin-top: 1rem;
 }
 
