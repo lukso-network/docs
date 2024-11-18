@@ -21,23 +21,24 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
 
 <div style={{
   display: 'flex',
-  margin: '5rem 0 5rem 0',
-  gap: "1rem"
+  flexDirection: 'column',
+  margin: '3rem 0',
+  gap: "1rem",
 }}>
 
-<div style={{ width: '32%' }}>
+<div style={{ width: '100%' }}>
 
 <CallToActionButton
     icon="material-symbols:counter-1"
     color="white"
     target="_blank"
     link="/install-up-browser-extension"
-    text="Install the Universal Profile Browser Extension 🧩"
+    text="Install the UP Browser Extension 🧩"
   />
 
 </div>
 
-<div style={{ width: '36%' }}>
+<div style={{ width: '100%' }}>
 
 <CallToActionButton
     icon="material-symbols:counter-2"
@@ -49,7 +50,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
 
 </div>
 
-<div style={{ width: '28%' }}>
+<div style={{ width: '100%' }}>
 
 <CallToActionButton
     icon="material-symbols:counter-3"
