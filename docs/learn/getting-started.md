@@ -33,7 +33,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
     color="white"
     target="_blank"
     link="/install-up-browser-extension"
-    text="Install the UP Browser Extension 🧩"
+    text="Install the UP Browser Extension🧩"
   />
 
 </div>

@@ -26,7 +26,6 @@ function Index() {
             text="🏁 Getting Started 🏁"
             link="/learn/getting-started"
             color="white"
-            icon="material-symbols:keyboard-double-arrow-right"
           />
 
           <div style={{ marginTop: '3em' }}>

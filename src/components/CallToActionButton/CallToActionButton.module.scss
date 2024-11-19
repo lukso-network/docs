@@ -11,7 +11,7 @@
   background-color: var(--color-cta-background-blue);
   border-radius: 40px;
   padding: 10px 20px;
-  width: 400px;
+  width: auto;
   max-width: 500px;
   margin-bottom: 30px;
 
@@ -34,5 +34,13 @@
 
   a:hover {
     color: white !important;
+  }
+
+  .iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 20px 0px 0px;
+    height: 100%;
   }
 }
