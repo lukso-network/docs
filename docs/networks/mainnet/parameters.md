@@ -20,7 +20,7 @@ import AddNetworkButton from '@site/src/components/AddNetworkButton'
 | Consensus Status Page    | [https://stats.consensus.mainnet.lukso.network](https://stats.consensus.mainnet.lukso.network)       |
 | Launchpad                | [https://deposit.mainnet.lukso.network](https://deposit.mainnet.lukso.network)                       |
 | Checkpoints              | [https://checkpoints.mainnet.lukso.network](https://checkpoints.mainnet.lukso.network)               |
-| Blockscout API           | `https://explorer.execution.mainnet.lukso.network/api`                                               |
+| Blockscout API           | `https://api.explorer.execution.mainnet.lukso.network/api`                                           |
 
 The mainnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/mainnet/shared) repo.
 
