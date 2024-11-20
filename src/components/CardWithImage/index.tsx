@@ -19,12 +19,37 @@ type Props = {
 
 export default function CardWithImage({ CardData }: Props) {
   return (
-    <div className="cardwithimage" style={{ marginBottom: '5rem' }}>
+    <div
+      className="cardwithimage"
+      style={{
+        marginBottom: '5rem',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '1rem',
+        justifyContent: 'center',
+      }}
+    >
       {CardData.map((item, index) => (
-        <Card sx={{ width: '48%' }} key={index}>
+        <Card
+          sx={{
+            width: {
+              xs: '100%', // full width on mobile
+              sm: '85%', // slightly smaller on tablet
+              md: '48%', // original width on desktop
+            },
+            maxWidth: '600px', // prevent cards from getting too wide
+          }}
+          key={index}
+        >
           {item.image && (
             <CardMedia
-              sx={{ height: 140 }}
+              sx={{
+                height: {
+                  xs: 200, // taller on mobile
+                  sm: 180,
+                  md: 140, // original height on desktop
+                },
+              }}
               image={item.image}
               title={item.imageTitle}
             />
