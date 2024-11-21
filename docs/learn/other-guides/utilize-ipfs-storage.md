@@ -132,15 +132,99 @@ const file = createReadStream('./path-to-your-file');
 
 const { result_id, ipfs_url } = await provider.uploadToCascade(file);
 console.log(result_id, ipfs_url);
+
+
+// upload folder
+const results = await provider.uploadFolderToCascade("./examples");
+
+if (results.length > 0) {
+  for (const result of results) {
+    if (result) {
+      console.log("File Name:", result.file_name);
+      console.log("IPFS Url:", result.ipfs_url);
+      console.log("Result Id:", result.result_id);
+    }
+  }
+}
 ```
 
 **Using Cascade**
 
-````js
+```js
 import { CascadeUploader } from '@lukso/data-provider-cascade';
 
 
 const provider = new CascadeUploader(import.meta.env.CASCADE_API_KEY);
+```
+
+React Example
+
+```ts
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { CascadeUploader } from "@lukso/data-provider-cascade";
+import { urlResolver } from "./shared";
+
+export interface Props {
+  apiKey: string;
+}
+
+export default function UploadLocal({ apiKey }: Props) {
+  const provider = useMemo(
+    () => new CascadeUploader(apiKey),
+    []
+  );
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [url, setUrl] = useState("");
+  const [hash, setHash] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  const upload = useCallback(async () => {
+    const file = fileInput?.current?.files?.item(0) as File;
+    const formData = new FormData();
+    formData.append("file", file); // FormData keys are called fields
+    const { hash, url } = await provider.upload(file);
+    setUrl(url);
+    setHash(hash);
+    const destination = urlResolver.resolveUrl(url);
+    setImageUrl(destination);
+  }, []);
+
+  return (
+    <div>
+      <input ref={fileInput} type="file" accept="image/*" />
+      <button onClick={upload}>Upload</button>
+      <div className="url">{url}</div>
+      <div>
+        <img className="image" src={imageUrl} alt="uploaded image" />
+      </div>
+    </div>
+  );
+}
+```
+
+Can use above component like following.
+
+```js
+<Upload client:only="react" apiKey="import.meta.env.CASCADE_API_KEY" />
+```
+
+API endpoint example
+
+```ts
+import type { APIContext } from 'astro';
+import { CascadeUploader } from '@lukso/data-provider-cascade';
+
+export async function POST({ request }: APIContext) {
+  const formData = await request.formData();
+  const file = formData.get('file');
+
+  const provider = new CascadeUploader(import.meta.env.CASCADE_API_KEY);
+
+  const { hash, url } = await provider.upload(file);
+  return new Response(JSON.stringify({ Hash: url }), {
+    headers: { contentType: 'application/json' },
+  });
+}
 ```
 
 ### Sense
@@ -155,6 +239,19 @@ const file = createReadStream('./path-to-your-file');
 
 const { result_id, ipfs_url } = await provider.uploadToSense(file);
 console.log(result_id, ipfs_url);
+
+// upload folder
+const results = await provider.uploadFolderToSense("./examples");
+
+if (results.length > 0) {
+  for (const result of results) {
+    if (result) {
+      console.log("File Name:", result.file_name);
+      console.log("IPFS Url:", result.ipfs_url);
+      console.log("Result Id:", result.result_id);
+    }
+  }
+}
 ````
 
 **Using Sense**
