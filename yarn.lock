@@ -2688,19 +2688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@mdx-js/react@npm:3.0.1"
-  dependencies:
-    "@types/mdx": ^2.0.0
-  peerDependencies:
-    "@types/react": ">=16"
-    react: ">=16"
-  checksum: 1063a597264f6a8840aa13274a99beef8983a88dd45b0c5b8e48e6216bc23d33e247da8e2d95d6e1874483f8b4e0903b166ce5046874aa7ffa2b1333057dcddf
-  languageName: node
-  linkType: hard
-
-"@mdx-js/react@npm:^3.0.0":
+"@mdx-js/react@npm:3.1.0, @mdx-js/react@npm:^3.0.0":
   version: 3.1.0
   resolution: "@mdx-js/react@npm:3.1.0"
   dependencies:
@@ -10457,7 +10445,7 @@ __metadata:
     "@emotion/react": ^11.13.3
     "@emotion/styled": ^11.13.0
     "@iconify/react": ^5.0.1
-    "@mdx-js/react": 3.0.1
+    "@mdx-js/react": 3.1.0
     "@mui/icons-material": ^6.0.2
     "@mui/material": ^6.0.2
     "@svgr/webpack": ^8.1.0
