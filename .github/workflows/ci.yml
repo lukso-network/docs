@@ -30,6 +30,12 @@ jobs:
       - name: Prettier 🎨
         run: yarn run prettier
 
+      - name: Check spelling errors in code snippets 🔍
+        uses: codespell-project/actions-codespell@v2
+        with:
+          check_filenames: true
+          check_hidden: true
+
       - name: Build 🧱
         run: yarn run build
 
