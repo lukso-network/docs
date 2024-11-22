@@ -1,10 +1,12 @@
 # This workflow checks for common grammar and spelling mistake in markdown docs files.
 name: Spellcheck
-on: workflow_dispatch
+on:
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
-    name: Spellcheck
+    name: Check Grammar and Spelling errors
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -15,12 +17,12 @@ jobs:
       - name: Install ⚙️
         run: yarn install --frozen-lockfile
 
-      - name: Spellcheck 📝
-        uses: rojopolis/spellcheck-github-actions@0.33.0
+      - name: Check spelling errors in code snippets 🔍
+        uses: codespell-project/actions-codespell@v2
         with:
-          source_files: docs/**/*.md docs/**/*.mdx
-          task_name: Markdown
-          output_file: spellcheck-output.txt
+          check_filenames: true
+          check_hidden: true
+          skip: yarn.lock,./node_modules/**/*,./node_modules/.*,./yarn/**/*,./.yarn/**/*
 
       - name: Output Spellcheck Results 📝
         uses: actions/upload-artifact@v3
