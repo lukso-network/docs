@@ -368,14 +368,14 @@ export default {
   ],
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
-    announcementBar: {
-      id: 'mainnet_hardfork',
-      content:
-        '🔊 <a target="_blank" rel="noopener noreferrer" href="https://luksovalidators.substack.com/p/lukso-dencun-hard-fork-mainnet"> Hard Fork on LUKSO Mainnet</a>: We ask all Mainnet node operators and validators to implement the Dencun hard fork on their LUKSO Mainnet nodes.',
-      backgroundColor: '#84A2E2',
-      textColor: '#1C1E21',
-      isCloseable: false,
-    },
+    // announcementBar: {
+    //   id: 'mainnet_hardfork',
+    //   content:
+    //     '🔊 <a target="_blank" rel="noopener noreferrer" href="https://luksovalidators.substack.com/p/lukso-dencun-hard-fork-mainnet"> Hard Fork on LUKSO Mainnet</a>: We ask all Mainnet node operators and validators to implement the Dencun hard fork on their LUKSO Mainnet nodes.',
+    //   backgroundColor: '#84A2E2',
+    //   textColor: '#1C1E21',
+    //   isCloseable: false,
+    // },
     navbar: {
       title: 'LUKSO',
       logo: {
