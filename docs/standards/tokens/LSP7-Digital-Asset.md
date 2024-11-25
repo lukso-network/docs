@@ -61,7 +61,7 @@ To ensure a flexible and generic asset representation, the token contract should
 
 :::caution
 
-When LSP7 assets are transfered, the LSP7 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokenreceiver).
+When LSP7 assets are transferred, the LSP7 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokenreceiver).
 
 **These methods will make external calls** to the [`universalReceiver(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) functions of both the sender and recipient.
 

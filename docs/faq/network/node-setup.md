@@ -30,7 +30,7 @@ Currently, LUKSO officially supports Geth, Erigon, Lighthouse, and Prysm. All cl
 
 ## Should I run an archive or a full node?
 
-A full node downloads the entire blockchain and validates all blocks and transactions against the network's consensus rules. It stores the **current state of the network, including account balances, contracts, storage, and other informatio**n. However, it does not keep all historical states. If you need to check the balance of an account at a specific block height in the past, a full node cannot provide this information directly.
+A full node downloads the entire blockchain and validates all blocks and transactions against the network's consensus rules. It stores the **current state of the network, including account balances, contracts, storage, and other information**. However, it does not keep all historical states. If you need to check the balance of an account at a specific block height in the past, a full node cannot provide this information directly.
 
 An archive node is a particular type of full node. It also downloads the entire blockchain and validates all blocks and transactions like a full node. In addition to the current state of the network, it **also stores all historical states since the genesis block**. Keeping the entire historical state makes an archive node much more storage extensive than a full node, but it allows you to query any historical state directly on the node.
 
@@ -72,7 +72,7 @@ You can further read about setting up automation within the [service guide](http
 
 Yes, running multiple nodes from the same home network is possible. What matters is the public IP of the node devices, which will be different. However, when you run multiple nodes in one network, you must modify and forward the ports they use, so they do not communicate over the same channel and block each other.
 
-## Is there a way to save time on synching during the node setup?
+## Is there a way to save time on syncing during the node setup?
 
 Yes. You can use the LUKSO checkpoint synchronization service to **dramatically speed up the process of synchronizing** the consensus client. If enabled, your node will begin syncing from a recently finalized consensus checkpoint instead of genesis. It will then download the rest of the blockchain data while your consensus runs. The shortcut is ideal for fresh installations, validator migration, or recovery.
 

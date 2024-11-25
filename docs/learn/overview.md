@@ -72,7 +72,7 @@ LUKSO is a Layer 1 EVM chain that uses an unmodified version of Ethereum. It can
           <Chip label="Unlimited Metadata" />
           <Chip label="Updatable" />
           <Chip label="Better IDs" />
-          <Chip label="Iteratable" />
+          <Chip label="Iterable" />
           <Chip label="Batch Transfers" />
         </div>
       </td>
