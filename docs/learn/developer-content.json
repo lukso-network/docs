@@ -22,15 +22,15 @@
     "cardContent": [
       {
         "linkText": "Get started with Tokens and NFTs",
-        "linkPath": "../learn/digital-assets/getting-started"
+        "linkPath": "./digital-assets/getting-started"
       },
       {
         "linkText": "Create a token",
-        "linkPath": "../learn/digital-assets/token/create-lsp7-token"
+        "linkPath": "./digital-assets/token/create-lsp7-token"
       },
       {
         "linkText": "Create an Automatic Token Forwarder for your UP",
-        "linkPath": "../learn/universal-profile/universal-receiver/create-receiver-forwarder"
+        "linkPath": "./universal-profile/universal-receiver/create-receiver-forwarder"
       }
     ]
   },
@@ -41,15 +41,15 @@
     "cardContent": [
       {
         "linkText": "Migrate to LUKSO",
-        "linkPath": "../learn/migrate/migrate-to-lukso"
+        "linkPath": "./migrate/migrate-to-lukso"
       },
       {
         "linkText": "Refactor a Solidity ERC20 token to LSP7",
-        "linkPath": "../learn/migrate/migrate-erc20-to-lsp7"
+        "linkPath": "./migrate/migrate-erc20-to-lsp7"
       },
       {
         "linkText": "Refactor a Solidity ERC721 NFT to LSP8",
-        "linkPath": "../learn/migrate/migrate-erc721-to-lsp8"
+        "linkPath": "./migrate/migrate-erc721-to-lsp8"
       }
     ]
   },
