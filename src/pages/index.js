@@ -18,22 +18,53 @@ import DappsGallery from '../components/DappsGallery';
 import SeparatorWithTitle from '../components/SeperatorWithTitle';
 
 const accordionData = [
-  { summary: 'General', details: 'some answers' },
+  {
+    summary: 'General',
+    icon: 'material-symbols:counter-1',
+    details: [
+      {
+        question: 'Why is there new standards on LUKSO?',
+        answer: 'some answers',
+      },
+      {
+        question: 'Why is LUKSO a Layer 1 and not a Layer 2?',
+        answer: 'some answers',
+      },
+      {
+        question:
+          'What are the advantages offered by the LUKSO LSP Standards compared to the ERC Standards?',
+        answer: 'some answers',
+      },
+      {
+        question:
+          'What are the key differences between the LUKSO LSP Standards and the Ethereum ERC Standards?',
+        answer: 'some answers',
+      },
+      {
+        question: 'What can be built using the LUKSO Standards?',
+        answer: 'some answers',
+      },
+    ],
+  },
   {
     summary: 'Universal Profiles',
-    details: 'some answers',
+    icon: 'material-symbols:counter-1',
+    details: [],
   },
   {
     summary: 'Tokens & NFTs',
-    details: 'some answers',
+    icon: 'material-symbols:counter-1',
+    details: [],
   },
   {
     summary: 'Network & Validators',
-    details: 'some answers',
+    icon: 'material-symbols:counter-1',
+    details: [],
   },
   {
     summary: 'Wallets & Controller dApps',
-    details: 'some answers',
+    icon: 'material-symbols:counter-1',
+    details: [],
   },
 ];
 
@@ -61,32 +92,10 @@ const networksData = [
   },
 ];
 
-// const accordionData = [
-//   { summary: 'Why is there new standards on LUKSO?', details: 'some answers' },
-//   {
-//     summary: 'Why is LUKSO a Layer 1 and not a Layer 2?',
-//     details: 'some answers',
-//   },
-//   {
-//     summary:
-//       'What are the advantages offered by the LUKSO LSP Standards compared to the ERC Standards?',
-//     details: 'some answers',
-//   },
-//   {
-//     summary:
-//       'What are the key differences between the LUKSO LSP Standards and the Ethereum ERC Standards?',
-//     details: 'some answers',
-//   },
-//   {
-//     summary: 'What can be built using the LUKSO Standards?',
-//     details: 'some answers',
-//   },
-// ];
-
 function Index() {
   return (
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
-      <div className={styles.container}>
+      <div className={styles.container} style={{ marginBottom: '3rem' }}>
         <div className={styles.twoColumnSection}>
           <div className={styles.leftColumn}>
             <Headline />
@@ -112,100 +121,116 @@ function Index() {
           </div>
 
           <div className={styles.rightColumn}>
-            {/* <div className={styles.cardContainer}>
-              <Box
-                icon={StandardsIcon}
-                link="./learn/getting-started"
-                title="Useful Guides"
-                // className="standards"
-                content="Our quickest guides to get your started building on LUKSO."
-              />
-            </div> */}
-            <div className={styles.guideBoxes}>
-              <div className={styles.guideBox}>
-                <h3>Quickstart integrations</h3>
-                <p style={{ margin: '1rem 0' }}>
-                  Looking to migrate your project to LUKSO? Or starting from
-                  scratch?
-                </p>
-                <ul>
-                  <li>
-                    <a href="/learn/universal-profile/connect-profile/connect-up">
-                      Integrate the 🆙 Browser Extension easily in your dApp.
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/tools/services/relayer-developer#1-deploy-universal-profiles">
-                      Create a Universal Profile easily with the relayer API
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/tools/integrations">
-                      Integrate our various toolings, such as oracles, RPC
-                      providers or data indexers.
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.guideBox}>
-                <h3>Universal Profiles</h3>
-                <p style={{ margin: '1rem 0' }}>
-                  Discover the world of Universal Profiles 🆙 and what you can
-                  do with them.
-                </p>
-                <ul>
-                  <li>
-                    <a href="/learn/universal-profile/metadata/edit-profile">
-                      Customize your Universal Profile to your own image or
-                      branding.
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/learn/universal-profile/key-manager/grant-permissions">
-                      Allow 3rd party addresses to control your Universal
-                      Profile.
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/learn/universal-profile/universal-receiver/create-receiver-forwarder">
-                      Automate forwarding a % of tokens received by your
-                      Universal Profile.
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.guideBox}>
-                <h3>Digital Assets</h3>
-                <p style={{ margin: '1rem 0' }}>
-                  Create Build and interact with tokens and NFTs using LSP7 and
-                  LSP8
-                </p>
-                <ul>
-                  <li>
-                    <a href="/learn/digital-assets/token/create-lsp7-token">
-                      Create a fungible token based on the LSP7 standard.
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/learn/digital-assets/nft/create-nft-collection-lsp8">
-                      Create an NFT collection based on the LSP8 standard.
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/learn/digital-assets/nft/set-nft-metadata">
-                      Set the metadata of specific NFTs in a collection.
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/learn/digital-assets/nft/create-nft-collection-with-lsp7-tokenId">
-                      Create complex collections of sub-collections.
-                    </a>
-                  </li>
-                </ul>
-              </div>
+            <div>
+              {accordionData.map((item, index) => (
+                <CustomAccordion
+                  key={index}
+                  summary={item.summary}
+                  details={item.details}
+                  index={index}
+                />
+              ))}
             </div>
           </div>
         </div>
+      </div>
+
+      <div className={styles.container}>
+        <div className={styles.cardContainer}>
+          <div>
+            <Box
+              icon={StandardsIcon}
+              link="./learn/getting-started"
+              title="Developer Quickstarts"
+              // className="standards"
+              content="Our quickest guides to get your started building on LUKSO."
+            />
+          </div>
+          <div className={styles.guideBox}>
+            <h3>Integration guides</h3>
+            <p style={{ margin: '1rem 0' }}>
+              Looking to migrate your project to LUKSO? Or starting from
+              scratch?
+            </p>
+            <ul>
+              <li>
+                <a href="/learn/universal-profile/connect-profile/connect-up">
+                  Integrate Universal Profile in your dApp
+                </a>
+              </li>
+              <li>
+                <a href="/tools/services/relayer-developer#1-deploy-universal-profiles">
+                  Create a Universal Profile with the relayer API
+                </a>
+              </li>
+              <li>
+                <a href="/tools/integrations">
+                  Integrate our various toolings, such as oracles, RPC providers
+                  or data indexers.
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.guideBox}>
+            <h3>Universal Profiles</h3>
+            <p style={{ margin: '1rem 0' }}>
+              Discover the world of Universal Profiles 🆙 and what you can do
+              with them.
+            </p>
+            <ul>
+              <li>
+                <a href="/learn/universal-profile/metadata/edit-profile">
+                  Customize your Universal Profile to your own image or
+                  branding.
+                </a>
+              </li>
+              <li>
+                <a href="/learn/universal-profile/key-manager/grant-permissions">
+                  Allow 3rd party addresses to control your Universal Profile.
+                </a>
+              </li>
+              <li>
+                <a href="/learn/universal-profile/universal-receiver/create-receiver-forwarder">
+                  Automate forwarding a % of tokens received by your Universal
+                  Profile.
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>&nbsp;</div>
+          <div className={styles.guideBox}>
+            <h3>Digital Assets</h3>
+            <p style={{ margin: '1rem 0' }}>
+              Create Build and interact with tokens and NFTs using LSP7 and LSP8
+            </p>
+            <ul>
+              <li>
+                <a href="/learn/digital-assets/token/create-lsp7-token">
+                  Create a fungible token based on the LSP7 standard.
+                </a>
+              </li>
+              <li>
+                <a href="/learn/digital-assets/nft/create-nft-collection-lsp8">
+                  Create an NFT collection based on the LSP8 standard.
+                </a>
+              </li>
+              <li>
+                <a href="/learn/digital-assets/nft/set-nft-metadata">
+                  Set the metadata of specific NFTs in a collection.
+                </a>
+              </li>
+              <li>
+                <a href="/learn/digital-assets/nft/create-nft-collection-with-lsp7-tokenId">
+                  Create complex collections of sub-collections.
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>&nbsp;</div>
+        </div>
+
+        <SeparatorWithTitle title={'Popular dApps built on LUKSO'} />
+        <DappsGallery />
       </div>
 
       <div className={styles.container}>
@@ -218,17 +243,8 @@ function Index() {
               className="faq"
               content="Discover the features and benefits of the LUKSO Standards (LSPs)."
             />
-            <div style={{ margin: '0 2rem' }}>
-              {accordionData.map((item, index) => (
-                <CustomAccordion
-                  key={index}
-                  summary={item.summary}
-                  details={item.details}
-                  index={index}
-                />
-              ))}
-            </div>
           </div>
+
           <div>
             <Box
               icon={ToolsIcon}
@@ -248,6 +264,7 @@ function Index() {
               ))}
             </div>
           </div>
+
           <div>
             <Box
               icon={NetworksIcon}
@@ -267,9 +284,6 @@ function Index() {
             </div>
           </div>
         </div>
-        <div></div>
-        <SeparatorWithTitle title={'Popular dApps built on LUKSO'} />
-        <DappsGallery />
       </div>
     </Layout>
   );

@@ -5,14 +5,21 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import { Icon } from '@iconify/react';
+
 type AccordionData = {
   index: number; // index of the accordion line
   summary: string; // summary or heading of the accordion line
-  details: string; // any html data you want to see appearing in the dropdown.
+  icon: string;
+  details: {
+    question: string;
+    answer: string;
+  }[]; // any html data you want to see appearing in the dropdown.
 };
 
 const CustomAccordion: React.FC<AccordionData> = ({
   summary,
+  icon,
   details,
   index,
 }) => {
@@ -20,12 +27,35 @@ const CustomAccordion: React.FC<AccordionData> = ({
     <Accordion key={index}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1-content"
-        id="panel1-header"
+        aria-controls="panel-content"
+        id="panel-header"
       >
-        {summary}
+        <h3>
+          {' '}
+          <Icon
+            icon={icon}
+            // style={{ width: '1.75em', height: '1.75em', marginRight: '0.5em' }}
+          />
+          {summary}
+        </h3>
       </AccordionSummary>
-      <AccordionDetails>{details}</AccordionDetails>
+      <AccordionDetails>
+        {details.length > 0 &&
+          details.map(({ question, answer }, index) => {
+            return (
+              <Accordion key={index}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={'panel' + index + '-content'}
+                  id={'panel' + index + '-header'}
+                >
+                  {question}
+                </AccordionSummary>
+                <AccordionDetails>{answer}</AccordionDetails>
+              </Accordion>
+            );
+          })}
+      </AccordionDetails>
     </Accordion>
   );
 };
