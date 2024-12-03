@@ -14,15 +14,26 @@ export default function CallToActionButton({
   return (
     <div className={styles.ctaContainer}>
       <a
-        style={{ backgroundColor: bgColor, display: 'flex' }}
+        style={{
+          backgroundColor: bgColor,
+          display: 'flex',
+          alignItems: 'center',
+        }}
         className={styles.ctaButton}
         href={link}
         target={target}
       >
-        <Icon
-          icon={icon}
-          style={{ width: '1.75em', height: '1.75em', marginRight: '0.5em' }}
-        />
+        <span className={styles.iconWrapper}>
+          <Icon
+            icon={icon}
+            style={{
+              minWidth: '24px',
+              width: '24px',
+              height: '24px',
+              flexShrink: 0,
+            }}
+          />
+        </span>
         <strong style={{ color: color }}>{text}</strong>
       </a>
     </div>

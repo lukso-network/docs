@@ -6,7 +6,7 @@
     "cardContent": [
       {
         "linkText": "Learn how to develop with Universal Profiles",
-        "linkPath": "../learn/universal-profile/getting-started"
+        "linkPath": "#building-dapps-with-universal-profiles"
       },
       {
         "linkText": "Explore code examples in our playground repository",
