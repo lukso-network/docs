@@ -7,6 +7,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 2rem;
+  //max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .cardContainer {
@@ -41,47 +45,6 @@
   }
 }
 
-.twoColumnSection {
-  background-repeat: no-repeat;
-  background-position: right -40px;
-  background-size: contain;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 5%;
-    bottom: 3%;
-    left: 50%;
-    width: 0.1px;
-    background: var(--ifm-color-emphasis-300);
-    transform: translateX(-50%);
-  }
-
-  @media (max-width: 996px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-
-    &::after {
-      display: none;
-    }
-  }
-}
-
-.leftColumn {
-  padding: 1.25rem 0 1.25rem 5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.rightColumn {
-  padding: 1.25rem 5rem;
-  margin-top: 1rem;
-}
-
 .ctaButtons {
   margin-top: 3rem;
 }
@@ -95,6 +58,7 @@
 .guideBox {
   display: block;
   background-color: #f5f5f577;
+  text-align: left;
   border-radius: 8px;
   padding: 1.5rem;
   transition: all 0.2s ease;
@@ -117,3 +81,4 @@
     line-height: 1.4;
   }
 }
+

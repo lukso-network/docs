@@ -1,14 +1,10 @@
 .headline {
-  background-image: url('../../../static/img/icons/ellipse-top-gradient.png');
-  background-repeat: no-repeat;
-  background-position: center -30px;
-  background-size: contain;
   min-height: 500px;
   margin-bottom: -250px;
+  text-align: center;
 
   padding-top: 1.25rem;
   padding-bottom: 1rem;
-  text-align: left;
 
   h1 {
     font-family: var(--ifm-heading-font-family);

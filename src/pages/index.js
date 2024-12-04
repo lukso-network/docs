@@ -17,6 +17,8 @@ import FAQIcon from '../../static/img/icons/icon-faq-gradient.png';
 import DappsGallery from '../components/DappsGallery';
 import SeparatorWithTitle from '../components/SeperatorWithTitle';
 
+import SearchBarWrapper from '../theme/SearchBar';
+
 const accordionData = [
   {
     summary: 'General',
@@ -95,62 +97,80 @@ const networksData = [
 function Index() {
   return (
     <Layout description="Network, Standards, Tools and Guides for development on LUKSO and related standards.">
-      <div className={styles.container} style={{ marginBottom: '3rem' }}>
-        <div className={styles.twoColumnSection}>
-          <div className={styles.leftColumn}>
-            <Headline />
-            <div className={styles.ctaButtons}>
-              <div style={{ display: 'inline-block' }}>
-                <CallToActionButton
-                  text="🏁 Getting Started 🏁"
-                  link="/learn/getting-started"
-                  color="white"
-                  icon="material-symbols:keyboard-double-arrow-right"
-                />
-              </div>
+      <div className={styles.container}>
+        <Headline />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <SearchBarWrapper />
+        </div>
 
-              <div style={{ display: 'inline-block', marginLeft: '1rem' }}>
-                <CallToActionButton
-                  text="Download 🆙 Browser Extension"
-                  link="install-up-browser-extension"
-                  color="white"
-                  icon="material-symbols:extension"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.rightColumn}>
-            <div>
-              {accordionData.map((item, index) => (
-                <CustomAccordion
-                  key={index}
-                  summary={item.summary}
-                  details={item.details}
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
+        <div>
+          {accordionData.map((item, index) => (
+            <CustomAccordion
+              key={index}
+              summary={item.summary}
+              details={item.details}
+              index={index}
+            />
+          ))}
         </div>
       </div>
 
       <div className={styles.container}>
-        <div className={styles.cardContainer}>
-          <div>
-            <Box
-              icon={StandardsIcon}
-              link="./learn/getting-started"
-              title="Developer Quickstarts"
-              // className="standards"
-              content="Our quickest guides to get your started building on LUKSO."
-            />
-          </div>
-          <div className={styles.guideBox}>
-            <h3>Integration guides</h3>
-            <p style={{ margin: '1rem 0' }}>
-              Looking to migrate your project to LUKSO? Or starting from
-              scratch?
+        <h2>DEVELOPER QUICKSTART</h2>
+        <p>Our quickest guides to get you building</p>
+
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1rem',
+            marginBottom: '3rem',
+          }}
+        >
+          <CallToActionButton
+            text="Download UP Browser Extension"
+            link="/install-up-browser-extension"
+            color="white"
+            icon="material-symbols:extension"
+          />
+          <CallToActionButton
+            text="Start Building on LUKSO"
+            link="/learn/getting-started"
+            color="white"
+            icon="material-symbols:flag-sharp"
+          />
+        </div>
+
+        <div
+          className={styles.cardContainer}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            gap: '2rem',
+          }}
+        >
+          <div className={styles.guideBox} style={{ flex: 1 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1rem',
+              }}
+            >
+              <div
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  backgroundColor: '#ddd',
+                }}
+              >
+                {/* Placeholder for Integration Guide icon */}
+              </div>
+              <h3>Integration Guide</h3>
+            </div>
+            <p style={{ marginBottom: '2rem' }}>
+              Looking to migrate your project to LUKSO?
             </p>
             <ul>
               <li>
@@ -171,11 +191,29 @@ function Index() {
               </li>
             </ul>
           </div>
-          <div className={styles.guideBox}>
-            <h3>Universal Profiles</h3>
-            <p style={{ margin: '1rem 0' }}>
-              Discover the world of Universal Profiles 🆙 and what you can do
-              with them.
+
+          <div className={styles.guideBox} style={{ flex: 1 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1rem',
+              }}
+            >
+              <div
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  backgroundColor: '#ddd',
+                }}
+              >
+                {/* Placeholder for Universal Profiles icon */}
+              </div>
+              <h3>Universal Profiles</h3>
+            </div>
+            <p style={{ marginBottom: '2rem' }}>
+              Discover Universal Profiles and a new world of possibilities
             </p>
             <ul>
               <li>
@@ -197,11 +235,30 @@ function Index() {
               </li>
             </ul>
           </div>
-          <div>&nbsp;</div>
-          <div className={styles.guideBox}>
-            <h3>Digital Assets</h3>
-            <p style={{ margin: '1rem 0' }}>
-              Create Build and interact with tokens and NFTs using LSP7 and LSP8
+
+          <div className={styles.guideBox} style={{ flex: 1 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1rem',
+              }}
+            >
+              <div
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  backgroundColor: '#ddd',
+                }}
+              >
+                {/* Placeholder for Digital Assets icon */}
+              </div>
+              <h3>Digital Assets</h3>
+            </div>
+            <p style={{ marginBottom: '2rem' }}>
+              Create, Build and interact with our evolved tokens and NFTs with
+              LSP7 and LSP8
             </p>
             <ul>
               <li>
@@ -226,13 +283,19 @@ function Index() {
               </li>
             </ul>
           </div>
-          <div>&nbsp;</div>
         </div>
-
-        <SeparatorWithTitle title={'Popular dApps built on LUKSO'} />
+      </div>
+      {/* <SeparatorWithTitle title={'Popular dApps built on LUKSO'} /> */}
+      <h2 style={{ textAlign: 'center' }}>Popular dApps built on LUKSO</h2>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <DappsGallery />
       </div>
-
       <div className={styles.container}>
         <div className={styles.cardContainer}>
           <div>
