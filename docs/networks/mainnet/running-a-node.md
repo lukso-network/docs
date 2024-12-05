@@ -76,7 +76,7 @@ The LUKSO network currently supports the following clients versions:
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ledgerwatch/erigon"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://erigon.gitbook.io/erigon"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon?tab=readme-ov-file#erigon-discord-server"><DiscordIcon /></a></td>
-    <td>Alpha & Beta</td>
+    <td>Stable</td>
     <td>Linux, Win, macOS, ARM</td>
     <td><a href="https://go.dev/">Golang</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
