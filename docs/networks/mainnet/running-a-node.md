@@ -152,6 +152,17 @@ The LUKSO network currently supports the following clients versions:
     <td><a href="https://www.java.com/">Java</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
   </tr>
+  <tr>
+    <td><a href="https://nimbus.team/">Nimbus</a></td>
+    <td><a href="https://github.com/status-im/nimbus-eth2/releases/tag/v24.10.0">v24.10.0</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/status-im/nimbus-eth2"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://nimbus.guide/index.html"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/XRxWahP"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS</td>
+    <td><a href="https://nim-lang.org/">Nim</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
 </table>
 
 :::caution
