@@ -262,7 +262,7 @@ The synchronization process will take multiple hours for the node to finalize.
 
 :::
 
-:::caution Sync Delay
+:::caution Lighthouse Sync
 
 Starting from the current version of the Lighthouse client software, it is mandatory to use checkpoint sync for initializing a fresh node. Without this, the node will fail to start and log the following error message: Syncing from genesis is insecure and incompatible with data availability checks. You should instead perform a checkpoint sync from a trusted node using the --checkpoint-sync-url option: `lukso start --checkpoint-sync` or use additional flag to force regular Lighthouse sync: `lukso start --lighthouse-allow-insecure-genesis-sync`
 
