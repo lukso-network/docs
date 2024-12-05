@@ -61,7 +61,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://geth.ethereum.org/">Geth</a></td>
-    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.14.7">v1.14.7</a></td>
+    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.14.12">v1.14.12</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ethereum/go-ethereum"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://geth.ethereum.org/docs"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/nthXNEv"><DiscordIcon /></a></td>
@@ -121,7 +121,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://prysmaticlabs.com/">Prysm</a></td>
-    <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.4">v5.0.4</a></td>
+    <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v5.1.2">v5.1.2</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/prysmaticlabs/prysm"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.prylabs.network/docs/getting-started"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/prysmaticlabs"><DiscordIcon /></a></td>
