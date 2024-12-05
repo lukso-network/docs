@@ -303,7 +303,7 @@ See the [**Metadata Management**](../digital-assets/metadata-management/edit-tok
 
 LSP7 allows for more flexible and extensible metadata. The [`LSP4Metadata`](../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) is a JSON object that can contain many information about the token, including:
 
-- 🌐 **official link to websites** (_e.g: project website, social medias, community channels, etc..._).
+- 🌐 **official link to websites** (_e.g: project website, social media, community channels, etc..._).
 - 🖼️ **images** (token icon and backgrounds) to display the token in dApps, explorers, or decentralised exchanges.
 - 🏷️ **custom attributes** (can be displayed as badges on UIs).
 

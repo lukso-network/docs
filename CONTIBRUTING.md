@@ -75,5 +75,5 @@ description: 'LUKSO ecosystem feature requests: developer events, hackathons, gr
 
 ```markdown
 [Global Page](`./install-up-browser-extension`)
-[Internal Documentation Page](`../standards/indroduction.md`)
+[Internal Documentation Page](`../standards/introduction.md`)
 ```

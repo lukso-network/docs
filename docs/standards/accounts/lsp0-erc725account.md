@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'LSP0 - ERC725 Account'
 sidebar_position: 2
-descriotion: LUKSO's LSP0 - ERC725 Account.
+description: LUKSO's LSP0 - ERC725 Account.
 ---
 
 # LSP0 - ERC725 Account

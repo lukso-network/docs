@@ -267,4 +267,4 @@ console.log(
 
 Finally, to test the actual permissions, you can do this guide using a `beneficiaryAddress` that you have control over.
 
-You can try the [**Edit Universal Profile**](../metadata/edit-profile.md) guide, using this new 3rd party address that you have control over to test if it can successfull edit the profile details. This will give you guarantee that this `beneficiaryAddress` has the `SETDATA` permission working.
+You can try the [**Edit Universal Profile**](../metadata/edit-profile.md) guide, using this new 3rd party address that you have control over to test if it can successful edit the profile details. This will give you guarantee that this `beneficiaryAddress` has the `SETDATA` permission working.

@@ -9,7 +9,7 @@ The **LSP1 type Ids** listed below correspond to unique identifiers used across 
 They are used by various smart contracts to notify sender and recipients contracts implementing LSP1 about various incoming or outgoing information.
 For instance, notify a sender that some LSP7 tokens are being transferred from its balance, or a recipient about receiving some LSP7 tokens.
 
-The type Ids listed below cna be exported and accessed from the `@lukso/lsp-smart-contracts` package as follow:
+The type Ids listed below can be exported and accessed from the `@lukso/lsp-smart-contracts` package as follow:
 
 ```js
 import { LSP1_TYPE_IDS } from "@lukso/lsp-smart-contracts";

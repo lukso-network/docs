@@ -109,7 +109,7 @@ const STANDARDS = [
     title: '💸 LSP18',
     name: 'Royalties',
     link: 'https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-18-Royalties.md',
-    text: 'Set of data keys to store informations about royalty recipient addresses and their claimable percentage.',
+    text: 'Set of data keys to store information about royalty recipient addresses and their claimable percentage.',
   },
   {
     title: '🔄 LSP20',

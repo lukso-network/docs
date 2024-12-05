@@ -69,7 +69,7 @@ It requests that the user provides an Ethereum address that should sign the tran
 
 #### Returns
 
-`string` - on a successful call the method returns a signature, a string representing hex encoded bytes or an error with code `4001` - if the user rejects the requets
+`string` - on a successful call the method returns a signature, a string representing hex encoded bytes or an error with code `4001` - if the user rejects the requests
 
 ### personal_sign
 

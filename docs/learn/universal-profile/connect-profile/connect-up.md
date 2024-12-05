@@ -131,7 +131,7 @@ Both libraries come with built-in UI elements and allow you to support multiple 
     <td style={{ minWidth: "25rem" }}><li>Customizable Connection Window</li>
     <li>Remains connection on Page Refresh</li>
     <li>Lists supported <a href="https://eips.ethereum.org/EIPS/eip-1193">EIP-1193</a> Extensions</li>
-    <li>Automatically detects <a href="hhttps://eips.ethereum.org/EIPS/eip-6963">EIP-6963</a> Extensions</li>
+    <li>Automatically detects <a href="https://eips.ethereum.org/EIPS/eip-6963">EIP-6963</a> Extensions</li>
     <li>Requires <a href="https://cloud.walletconnect.com">Wallet Connect Account ID</a></li></td>
   </tr>
 </table>

@@ -14,7 +14,7 @@ There are two default implementations of the LSP1 Delegate contracts available, 
 
 ## Routing
 
-The Universal Profile implementation allows for attaching multiple instances of Universal Receiver Delegate to it. This is due to LSP1 Routing. You could have a single General Purpose Unviersal Receiver Delegate and multiple instances of Specific Unviersal Receiver Delegate.
+The Universal Profile implementation allows for attaching multiple instances of Universal Receiver Delegate to it. This is due to LSP1 Routing. You could have a single General Purpose Universal Receiver Delegate and multiple instances of Specific Universal Receiver Delegate.
 
 A General Purpose Universal Receiver Delegate has its address stored under the [LSP1UniversalReceiverDelegate Singleton](/standards/accounts/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-singleton) data key. This contract will be called on any LSP1 hook, meaning that it can potentially react on any [TypeID](../type-ids.md#universal-receiver-type-ids).
 

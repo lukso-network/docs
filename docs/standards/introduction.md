@@ -1,6 +1,6 @@
 ---
 title: 'Introduction'
-description: Introduction to LSPs (LUKSO Standars Proposals).
+description: Introduction to LSPs (LUKSO Standard Proposals).
 ---
 
 import StandardsGallery from '@site/src/components/StandardsGallery';
