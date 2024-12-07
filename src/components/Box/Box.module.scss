@@ -12,28 +12,20 @@
 
   transition: all 200ms ease-out 10ms;
 
+  .title {
+    font-weight: 'bold';
+  }
+
   p {
     margin-bottom: 0;
     line-height: 1.25rem;
   }
 
-  a {
-    max-width: 100%;
-  }
-
-  h3 {
-    margin-top: -40px;
-  }
+  // a {
+  //   max-width: 100%;
+  // }
 
   &:hover {
     transform: scale(1.05);
   }
-}
-
-.img {
-  width: 100%;
-  padding-bottom: 100%;
-  margin-left: 25px;
-  background-size: contain;
-  background-repeat: no-repeat;
 }

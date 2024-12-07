@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -23,6 +23,13 @@ const CustomAccordion: React.FC<AccordionData> = ({
   details,
   index,
 }) => {
+  // const [expanded, setExpanded] = useState<string | false>(false);
+
+  // const handleChange =
+  //   (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+  //     setExpanded(isExpanded ? panel : false);
+  //   };
+
   return (
     <Accordion key={index}>
       <AccordionSummary
@@ -43,11 +50,12 @@ const CustomAccordion: React.FC<AccordionData> = ({
         {details.length > 0 &&
           details.map(({ question, answer }, index) => {
             return (
-              <Accordion key={index}>
+              <Accordion key={index} style={{ textAlign: 'left' }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={'panel' + index + '-content'}
                   id={'panel' + index + '-header'}
+                  style={{ fontWeight: '500' }}
                 >
                   {question}
                 </AccordionSummary>
