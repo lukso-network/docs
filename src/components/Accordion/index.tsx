@@ -1,32 +1,71 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import { Icon } from '@iconify/react';
+
 type AccordionData = {
+  index: number; // index of the accordion line
   summary: string; // summary or heading of the accordion line
-  details: string; // any html data you want to see appearing in the dropdown.
+  icon: string;
+  details: {
+    question: string;
+    answer: string;
+  }[]; // any html data you want to see appearing in the dropdown.
 };
 
-type Props = AccordionData[];
+const CustomAccordion: React.FC<AccordionData> = ({
+  summary,
+  icon,
+  details,
+  index,
+}) => {
+  // const [expanded, setExpanded] = useState<string | false>(false);
 
-export default function CustomAccordion(accordionData: Props) {
+  // const handleChange =
+  //   (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+  //     setExpanded(isExpanded ? panel : false);
+  //   };
+
   return (
-    <div>
-      {accordionData.map((item, index) => (
-        <Accordion key={index}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-          >
-            {item.summary}
-          </AccordionSummary>
-          <AccordionDetails>{item.details}</AccordionDetails>
-        </Accordion>
-      ))}
-    </div>
+    <Accordion key={index}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel-content"
+        id="panel-header"
+      >
+        <h3>
+          {' '}
+          <Icon
+            icon={icon}
+            // style={{ width: '1.75em', height: '1.75em', marginRight: '0.5em' }}
+          />
+          {summary}
+        </h3>
+      </AccordionSummary>
+      <AccordionDetails>
+        {details.length > 0 &&
+          details.map(({ question, answer }, index) => {
+            return (
+              <Accordion key={index} style={{ textAlign: 'left' }}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={'panel' + index + '-content'}
+                  id={'panel' + index + '-header'}
+                  style={{ fontWeight: '500' }}
+                >
+                  {question}
+                </AccordionSummary>
+                <AccordionDetails>{answer}</AccordionDetails>
+              </Accordion>
+            );
+          })}
+      </AccordionDetails>
+    </Accordion>
   );
-}
+};
+
+export default CustomAccordion;
