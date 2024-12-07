@@ -1,0 +1,17 @@
+.separatorWithTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .separator {
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .title {
+    line-height: 1rem;
+    font-weight: bold;
+  }
+}

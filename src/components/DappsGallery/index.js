@@ -1,48 +1,56 @@
 import React from 'react';
 import styles from './DappsGallery.module.scss';
-//image imports
+
+// images
 import UniversalSwaps from '../../../static/img/universalswaps.png';
 import Stakingverse from '../../../static/img/tools/stakingverse_logo.png';
-import UniversalPage from '../../../static/img/tools/universalpage_logo.png';
 import Commonground from '../../../static/img/cg.png';
+import UniversalPage from '../../../static/img/tools/universalpage_logo.png';
 import LSP8 from '../../../static/img/lsp8app.png';
-import UpTurn from '../../../static/img/upturn-scaled.png';
+
+import LogoDappNode from '../../../static/img/tools/dappnode_logo.png';
+import LogoEnvio from '../../../static/img/tools/envio_logo.png';
+import LogoAPI3 from '../../../static/img/tools/api3_logo.jpeg';
+import LogoDIA from '../../../static/img/tools/dia_logo.png';
+import LogoTransak from '../../../static/img/tools/transak_logo.png';
+import LogoRamp from '../../../static/img/tools/ramp-network-logo.png';
 
 const dapps = [
   {
-    name: 'Universal Swaps',
-    imageUrl: UniversalSwaps,
+    name: 'DappNode',
+    imageUrl: LogoDappNode,
     link: 'https://universalswaps.io/',
-    backgroundColor: '#fddce7',
+    backgroundColor: 'white',
   },
   {
-    name: 'Stakingverse',
-    imageUrl: Stakingverse,
+    name: 'Envio',
+    imageUrl: LogoEnvio,
     link: 'https://stakingverse.io/',
-    backgroundColor: '#1E1E1E',
+    backgroundColor: 'white',
   },
+
   {
-    name: 'Commonground',
-    imageUrl: Commonground,
-    link: 'https://app.cg/',
-    backgroundColor: '#404bbb',
-  },
-  {
-    name: 'LSP8.APP',
-    imageUrl: LSP8,
+    name: 'API3',
+    imageUrl: LogoAPI3,
     link: 'https://lsp8.app/',
-    backgroundColor: '#2d1b46',
+    backgroundColor: 'white',
   },
   {
-    name: 'Universal Page',
-    imageUrl: UniversalPage,
+    name: 'DIA',
+    imageUrl: LogoDIA,
     link: 'https://universal.page/',
-    backgroundColor: '#5049df',
+    backgroundColor: 'white',
   },
   {
-    name: 'UP Turn',
-    imageUrl: UpTurn,
+    name: 'Transak',
+    imageUrl: LogoTransak,
     link: 'https://upturn.live/',
+    backgroundColor: 'white',
+  },
+  {
+    name: 'Ramp',
+    imageUrl: LogoRamp,
+    link: 'https://app.cg/',
     backgroundColor: 'white',
   },
 ];
