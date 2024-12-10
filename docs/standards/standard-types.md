@@ -5,6 +5,12 @@ description: 'Discover the different type of LUKSO Standards Proposals: smart co
 
 # Types of LSPs Standards
 
+:::tip
+
+See the **[LSP Detection Guide](../learn/standard-detection.md)** to lean how to check standardized metadata and ERC165 interface IDs.
+
+:::
+
 There are two types of **LSP** standards used to interact with smart contracts on the LUKSO blockchain.
 
 | Standard Type           | Description                                                                                                                                                | Examples                                                                                                                                                                                                  |
@@ -13,11 +19,3 @@ There are two types of **LSP** standards used to interact with smart contracts o
 | **Metadata Standards**  | **Standardize a set of ERC725Y data keys**. <br/> Informs about the data set by default on the contract and which data keys to query to retrieve such data | [LSP3-Profile-Metadata](./metadata/lsp3-profile-metadata.md) <br/> [LSP4-DigitalAsset-Metadata](./tokens/LSP4-Digital-Asset-Metadata.md) <br/> [LSP10ReceivedVaults](./metadata/lsp10-received-vaults.md) |
 
 ![Interface and metadata standards](/img/standards/standard-detection/standard-detection.jpeg)
-
-## Interface Checks
-
-:::tip
-
-See the **[LSP Detection Guide](../learn/standard-detection.md)** to lean how to check standardized metadata storage and interfaces.
-
-:::
