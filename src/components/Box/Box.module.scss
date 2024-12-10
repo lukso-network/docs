@@ -1,5 +1,5 @@
 .card {
-  color: var(--ifm-font-color-base);
+  // color: var(--ifm-font-color-base);
   width: 100%;
   height: 100%;
   flex-direction: row;
@@ -8,32 +8,24 @@
   padding: 1rem;
   border-radius: 1.5625rem;
 
-  background-color: var(--ifm-background-color);
+  // background-color: var(--ifm-background-color);
 
   transition: all 200ms ease-out 10ms;
+
+  .title {
+    font-weight: 'bold';
+  }
 
   p {
     margin-bottom: 0;
     line-height: 1.25rem;
   }
 
-  a {
-    max-width: 100%;
-  }
-
-  h3 {
-    margin-top: -40px;
-  }
+  // a {
+  //   max-width: 100%;
+  // }
 
   &:hover {
     transform: scale(1.05);
   }
-}
-
-.img {
-  width: 100%;
-  padding-bottom: 100%;
-  margin-left: 25px;
-  background-size: contain;
-  background-repeat: no-repeat;
 }

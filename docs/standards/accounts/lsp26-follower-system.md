@@ -7,7 +7,7 @@ description: LUKSO's LSP26 Follower System for managing on-chain following relat
 
 # LSP26 - Follower System
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP26 - Follower System](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-26-FollowerSystem.md)
 

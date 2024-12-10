@@ -6,7 +6,7 @@ description: 'LUKSO LSP5 - Received Assets: a standard for referencing and keepi
 
 # LSP5 - Received Assets
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP5 - Received Assets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-5-ReceivedAssets.md)
 

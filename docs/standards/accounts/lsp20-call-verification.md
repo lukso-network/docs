@@ -6,7 +6,7 @@ description: LUKSO's LSP20 - Call Verification for delegating the the verificati
 
 # LSP20 - Call Verification
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP20 - Call Verification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-20-CallVerification.md)
 

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # LSP6 - Key Manager
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP6 - Key Manager](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md)
 

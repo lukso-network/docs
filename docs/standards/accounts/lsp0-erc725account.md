@@ -6,7 +6,7 @@ descriotion: LUKSO's LSP0 - ERC725 Account.
 
 # LSP0 - ERC725 Account
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP0 - ERC725Account](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md)
 
@@ -51,6 +51,8 @@ An **ERC725Account** is a blockchain account system that can be utilized by indi
 - **[LSP20-CallVerification](../../standards/accounts/lsp20-call-verification.md)** provides a unified and standard way for all addresses to **interact directly with the account**. This streamlines the interaction process considering the ownership setup, and enhancing accessibility and developer experience.
 
 ![LSP0 modules diagram](/img/standards/lsp0/LSP0-modules-diagram.jpeg)
+
+## Specification
 
 ### ERC725X - Generic Executor
 

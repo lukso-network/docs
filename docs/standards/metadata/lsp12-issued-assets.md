@@ -6,7 +6,7 @@ description: LUKSO LSP12 - Issued Assets for keeping track of all the assets iss
 
 # LSP12 - Issued Assets
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP12 - Issued Assets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-12-IssuedAssets.md)
 

@@ -6,7 +6,7 @@ description: LUKSO LSP1 Universal Receiver Delegate.
 
 # LSP1 - Universal Receiver
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP1 - Universal Receiver](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md)
 
@@ -96,7 +96,3 @@ Overriding and customizing the `universalReceiver(..)` function is an option for
 The address of the **external contract** can be stored and changed inside the contract storage. This way, users can customize such contracts to implement a specific logic that is changeable at any time.
 
 ![Multiple Universal Receiver Delegate](/img/standards/lsp1/multiple-urd.jpeg)
-
-## References
-
-- [LUKSO Standards Proposals: LSP1 - Universal Receiver (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md)

@@ -6,7 +6,7 @@ description: LUKSO's LSP17 - Contract Extension for enabling smart contracts to 
 
 # LSP17 - Contract Extension
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP17 - Contract Extension](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md)
 
@@ -46,7 +46,9 @@ As shown in the figure above, smart contract B **changed the extension** of the 
 
 This system of extensions allows for a smart contract to evolve and adapt to changes that may arise in the future. By implementing this system, smart contracts can become more versatile and capable of supporting a broader range of functionalities, even after deployment.
 
-### Specification
+## Specification
+
+### Extendable vs Extension contracts
 
 This standard defines two types of contracts:
 
@@ -82,7 +84,7 @@ As the extensions are called using the **CALL** opcode not **DELEGATECALL**, it'
 
 However, it is important to be aware that **adding random contracts as extensions carelessly** can be problematic as the extensions will have the extendable contract as their caller (`msg.sender`), which can lead to impersonating the extendable contract in certain situations.
 
-### Example
+## Example
 
 A decentralized exchange cannot accept safe ERC721 or ERC1155 transfers unless it implements specific functions with specific return values. This ensures that the contract knows how to handle these tokens, thus making the transfer safe.
 

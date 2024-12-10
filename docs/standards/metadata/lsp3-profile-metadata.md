@@ -6,7 +6,7 @@ description: 'LUKSO LSP3-Profile-Metadata: a Metadata standard that defines spec
 
 # LSP3 - Profile Metadata
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP3 - Profile Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md)
 

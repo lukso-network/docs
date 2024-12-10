@@ -6,7 +6,7 @@ description: LUKSO LSP1 Universal Receiver for notifying upon incoming transacti
 
 # LSP1 - Universal Receiver Delegate
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP1 - Universal Receiver Delegate](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-1-UniversalReceiver.md#specification-of-the-universalreceiverdelegate)
 

@@ -423,16 +423,22 @@ export default {
         {
           to: '/install-up-browser-extension',
           position: 'right',
-          label: '🆙 Extension',
+          label: '🆙 Browser Extension',
         },
         {
           href: 'https://support.lukso.network/contact-us',
-          label: 'Contact Us',
+          label: 'Help Center',
           position: 'right',
         },
         {
           href: 'https://github.com/lukso-network/',
           className: 'header-github-link',
+          position: 'right',
+        },
+        // TODO: add Discord icon (need to add the icon in `custom.css`)
+        {
+          href: 'https://discord.com/invite/lukso',
+          className: 'header-discord-link',
           position: 'right',
         },
       ],
@@ -441,6 +447,7 @@ export default {
       appId: '2C4F8KVKCI',
       apiKey: '27e4c8037f1e5b053cf1bf1d4d60c408',
       indexName: 'lukso_docs',
+      placeholder: 'Search anything...',
       contextualSearch: true,
       // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
       externalUrlRegex: 'docs\\.lukso\\.tech',

@@ -6,7 +6,7 @@ description: LUKSO's LSP23 Linked Contracts Factory to allow the deployment of p
 
 # LSP23 Linked Contracts Factory
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP23 - Linked Contracts Factory](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md)
 
