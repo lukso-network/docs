@@ -1,6 +1,11 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { CardContent, Typography } from '@mui/material';
+import {
+  CardContent,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { CarouselProps } from 'react-material-ui-carousel/dist/components/types';
 import CallToActionButton from '../CallToActionButton/index';
@@ -23,25 +28,6 @@ import LSP8AppLogo from '../../../static/img/dapps/lsp8app-logo.png';
 import FamilyLyxLogo from '../../../static/img/dapps/family-lyx-logo.png';
 import TxCityLogo from '../../../static/img/dapps/txcity-io-logo.webp';
 import TxsAppLogo from '../../../static/img/dapps/txs-app-logo.png';
-
-const carouselConfig: CarouselProps = {
-  interval: 8000,
-  stopAutoPlayOnHover: true,
-  autoPlay: false,
-  animation: 'slide',
-  duration: 1000,
-  swipe: true,
-  navButtonsAlwaysVisible: true,
-};
-
-type Item = {
-  name: string;
-  description: string;
-  contentPosition?: 'left' | 'middle' | 'right'; // TODO: delete this property (not used)
-  image: string;
-  backgroundColor: string;
-  link: string;
-};
 
 // // template
 // {
@@ -171,26 +157,57 @@ var items: Item[] = [
   // },
 ];
 
-const firstItems = items.slice(0, 4);
-const secondItems = items.slice(4, 8);
-const thirdItems = items.slice(8, 12);
+const carouselConfig: CarouselProps = {
+  interval: 8000,
+  stopAutoPlayOnHover: true,
+  autoPlay: false,
+  animation: 'slide',
+  duration: 1000,
+  swipe: true,
+  navButtonsAlwaysVisible: true,
+};
 
-console.log(firstItems);
-console.log(secondItems);
+type Item = {
+  name: string;
+  description: string;
+  contentPosition?: 'left' | 'middle' | 'right'; // TODO: delete this property (not used)
+  image: string;
+  backgroundColor: string;
+  link: string;
+};
 
-const DappsCarousel = () => (
-  <Carousel className={styles.Example} {...carouselConfig}>
-    <DappsBanner dapps={firstItems} />
-    <DappsBanner dapps={secondItems} />
-    <DappsBanner dapps={thirdItems} />
-  </Carousel>
-);
+const DappsCarousel = () => {
+  const firstItems = items.slice(0, 4);
+  const secondItems = items.slice(4, 8);
+  const thirdItems = items.slice(8, 12);
+
+  // Adjust to 1 item per slide for mobile screens
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  // Group slides dynamically based on screen size
+  const groupedItems = isMobile
+    ? items.map((item) => [item])
+    : [firstItems, secondItems, thirdItems];
+
+  return (
+    <Carousel className={styles.Example} {...carouselConfig}>
+      {groupedItems.map((group) => {
+        return <DappsBanner dapps={group} isMobile={isMobile} />;
+      })}
+    </Carousel>
+  );
+};
 
 type DappsBannerProps = {
+  isMobile: boolean;
   dapps: Item[];
 };
 
-const DappsBanner: React.FC<DappsBannerProps> = ({ dapps }) => {
+export const DappsBanner: React.FC<DappsBannerProps> = ({
+  dapps,
+  isMobile,
+}) => {
   const Element: React.FC<{ dapp: Item }> = ({ dapp }) => (
     <CardContent className={styles.Content}>
       <div
@@ -205,7 +222,6 @@ const DappsBanner: React.FC<DappsBannerProps> = ({ dapps }) => {
       <Typography variant="h5" className={styles.Title}>
         {dapp.name}
       </Typography>
-      {/* <Typography className={styles.Caption}>{dapp.description}</Typography> */}
       <p>{dapp.description}</p>
       <CallToActionButton
         icon="material-symbols:search"
@@ -221,7 +237,8 @@ const DappsBanner: React.FC<DappsBannerProps> = ({ dapps }) => {
     <Grid container spacing={1}>
       {dapps.map((item, index) => (
         // 12 columns layout, so `3` as value gives us 4 items per banner
-        <Grid size={3}>
+        // otherwise 1 item per slide for mobile screens
+        <Grid size={isMobile ? 12 : 3}>
           <Element dapp={item} key={index} />
         </Grid>
       ))}

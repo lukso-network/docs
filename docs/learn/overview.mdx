@@ -7,6 +7,8 @@ import Link from '@docusaurus/Link';
 import CardWithContent from '@site/src/components/CardWithContent';
 import Chip from '@site/src/components/Chip';
 
+import styles from './learn.module.scss';
+
 # 🌏 Overview
 
 ## What is LUKSO?
@@ -15,25 +17,27 @@ LUKSO is a Layer 1 EVM chain that uses an unmodified version of Ethereum. It can
 
 **BUT** it comes with [**a new set of smart contract standards**](../standards/introduction.md) called <strong style={{ color: "#FE005B" }}>L</strong>UKSO <strong style={{ color: "#FE005B" }}>S</strong>tandards <strong style={{ color: "#FE005B" }}>P</strong>roposals (<strong style={{ color: "#FE005B" }}>LSP</strong>s) and a [**set of tools**](../tools/libraries/getting-started.md) that can be used to create innovative protocols and dApps that can not be build using old standards.
 
-{/* TODO: refactor to use `<Link>` */}
+<div className={styles.containerQuickstartCards}>
 
 <CardWithContent title="🧱 LUKSO Standards (LSPs)">
   <ul>
-    <li><a href="../../standards/introduction" target="_blank">Discover the main building blocks of LUKSO</a></li>
-    <li><a href="./introduction" target="_blank">Learn the benefits of using the LUKSO Standards</a></li>
-    <li><a href="https://github.com/lukso-network/LIPs/tree/main/LSPs" target="_blank">Deep dive into the specs of the LSPs</a></li>
+    <li><Link to="../../standards/introduction">Discover the main building blocks of LUKSO</Link></li>
+    <li><Link to="./introduction">Learn the benefits of using the LUKSO Standards</Link></li>
+    <li><a href="https://github.com/lukso-network/LIPs/tree/main/LSPs">Deep dive into the specs of the LSPs</a></li>
   </ul>
 
 </CardWithContent>
 
 <CardWithContent title="🧬 Network & Validators">
   <ul>
-    <li><a href="../../networks/mainnet/parameters#add-lukso-to-wallets" target="_blank">Connect your wallet to the LUKSO Mainnet</a></li>
-    <li><a href="../../networks/mainnet/running-a-node" target="_blank">Run a LUKSO node</a></li>
-    <li><a href="../../networks/mainnet/become-a-validator" target="_blank">Become a Validator</a></li>
+    <li><Link to="../../networks/mainnet/parameters#add-lukso-to-wallets">Connect your wallet to the LUKSO Mainnet</Link></li>
+    <li><Link to="../../networks/mainnet/running-a-node">Run a LUKSO node</Link></li>
+    <li><Link to="../../networks/mainnet/become-a-validator">Become a Validator</Link></li>
   </ul>
 
 </CardWithContent>
+
+</div>
 
 ## What makes LUKSO unique?
 

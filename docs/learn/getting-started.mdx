@@ -9,11 +9,13 @@ import Chip from '@site/src/components/Chip';
 import CardWithContent from '@site/src/components/CardWithContent';
 import LinksBox from '@site/src/components/LinksBox';
 
+import styles from './learn.module.scss';
+
 import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 
 # Developer Quickstart
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+<div className={styles.containerQuickstartCards}>
 
 <CardWithContent title="Dapp Developer" image={DeveloperBannerImage}>
   <ul>
@@ -116,12 +118,13 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
 
 <div style={{
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   margin: '3rem 0',
   gap: "1rem",
+  width: '100%',
+  justifyContent: 'center',
+  flexWrap: 'wrap'
 }}>
-
-<div style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
 
 <CallToActionButton
   icon="material-symbols:counter-1"
@@ -146,9 +149,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
 
 </div>
 
-</div>
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+<div className={styles.containerDeployProfiles}>
 
 <CardWithContent title="Using the Relayer API">
 

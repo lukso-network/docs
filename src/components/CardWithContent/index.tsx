@@ -4,6 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
+import styles from './CardWithContent.module.scss';
+
 type Props = {
   image?: string;
   title: string;
@@ -16,23 +18,16 @@ export default function CardWithContent({
   children: content,
 }: Props) {
   return (
-    <div
-      className="cardwithimage"
-      style={{
-        // display: 'flex',
-        // flexWrap: 'wrap',
-        gap: '1rem',
-      }}
-    >
+    <div className={styles.cardWithContent}>
       <Card
-      // sx={{
-      //   width: {
-      //     xs: '100%', // full width on mobile
-      //     sm: '85%', // slightly smaller on tablet
-      //     md: '48%', // original width on desktop
-      //   },
-      //   maxWidth: '600px', // prevent cards from getting too wide
-      // }}
+        sx={{
+          width: {
+            xs: '100%', // full width on mobile
+            sm: '85%', // slightly smaller on tablet
+            md: '50%', // original width on desktop
+          },
+          maxWidth: '600px', // prevent cards from getting too wide
+        }}
       >
         {image && (
           <CardMedia

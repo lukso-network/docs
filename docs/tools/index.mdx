@@ -1,9 +1,13 @@
 ---
 id: tools
+title: Tools
+sidebar_position: 1
 ---
 
 import ReferenceCard from '@site/src/components/ReferenceCard';
 import CodeBlock from '@theme/CodeBlock';
+
+import styles from './tools.module.scss';
 
 import SolidityLogo from '@site/static/img/tools/solidity-logo.png';
 import FoundryLogo from '@site/static/img/tools/foundry-logo.png';
@@ -14,7 +18,7 @@ Explore the different tools available for developers to build dApps, smart contr
 
 ## APIs
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+<div className={styles.referenceCardGrid}>
 
 <ReferenceCard name="⛽️ Relayer API" links={[ 
   {label: 'Documentation', to: '/tools/apis/relayer-api' },
@@ -46,7 +50,7 @@ Available RPC endpoints for the Universal Profile Browser Extension 🧩.
 
 ## Javascript libraries
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+<div className={styles.referenceCardGrid}>
 
 <ReferenceCard name="erc725.js" showAsCode={true} links={[ 
   {label: 'Documentation', to: '/tools/dapps/erc725js/getting-started' },
@@ -180,7 +184,7 @@ Skeleton repository to create a transaction relayer service compliant with the [
 
 ## Smart Contracts
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+<div className={styles.referenceCardGrid}>
 
 <ReferenceCard name="LSP Smart Contracts" links={[ 
   {label: 'Overview', to: '/tools/lsp-smart-contracts/getting-started' },
@@ -265,7 +269,7 @@ Foundry repository template with pre-installed `@lukso/lsp-smart-contracts` pack
 
 ## Others
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+<div className={styles.referenceCardGrid}>
 
 <ReferenceCard name="🔍 Explorer & Debuggers" links={[ 
   {label: 'Blockscout', to: 'https://explorer.lukso.network' },

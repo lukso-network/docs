@@ -12,7 +12,7 @@ import ToolsIcon from '../../static/img/icons/icon-tools-gradient.png';
 
 import LogoDappNode from '../../static/img/tools/dappnode_logo.png';
 import LogoEnvio from '../../static/img/tools/envio_logo.png';
-import LogoAPI3 from '../../static/img/tools/api3_logo.jpeg';
+import LogoAPI3 from '../../static/img/tools/api3-logo.png';
 import LogoDIA from '../../static/img/tools/dia_logo.png';
 import LogoTransak from '../../static/img/tools/transak_logo.png';
 import LogoRamp from '../../static/img/tools/ramp-network-logo.png';
@@ -185,47 +185,46 @@ function Index() {
         </div>
       </div>
 
+      {/* margin: 0 to remove the default left-right margin for the background image to span full width */}
       <div className={styles.container} style={{ margin: 0 }}>
-        <div className={`${styles.containerCard} ${styles.containerLukso}`}>
-          <div>
-            <div className={styles.subheader}>
-              <Link to="/learn/overview">
-                <h1>What is LUKSO?</h1>
-              </Link>
-              <p>
-                An EVM-based Blockchain built for social, culture and creators.
-              </p>
-              <p style={{ paddingBottom: '3rem' }}>
-                Providing the foundation to unify our digital lives.
-              </p>
-            </div>
+        <div className={styles.containerLukso}>
+          <div className={styles.subheader}>
+            <Link to="/learn/overview">
+              <h1>What is LUKSO?</h1>
+            </Link>
+            <p>
+              An EVM-based Blockchain built for social, culture and creators.
+            </p>
+            <p style={{ paddingBottom: '3rem' }}>
+              Providing the foundation to unify our digital lives.
+            </p>
           </div>
-          <div>
-            <div className={styles.subheader}>
-              <Link to="/standards/introduction">
-                <h1>What are the LUKSO LSP Standards?</h1>
-              </Link>
-              <p>
-                A holistic set of new blockchain standards that are EVM
-                compatible.
-              </p>
-              <p style={{ paddingBottom: '3rem' }}>
-                To create protocols and applications social and user-centric.
-              </p>
-            </div>
+
+          <div className={styles.subheader}>
+            <Link to="/standards/introduction">
+              <h1>What are the LUKSO LSP Standards?</h1>
+            </Link>
+            <p>
+              A holistic set of new blockchain standards that are EVM
+              compatible.
+            </p>
+            <p style={{ paddingBottom: '3rem' }}>
+              To create protocols and applications social and user-centric.
+            </p>
           </div>
         </div>
       </div>
 
       <div className={styles.container}>
-        <div className={styles.containerCard}>
-          <div>
+        <div className={styles.containerBoxes}>
+          <div className={styles.guideBox}>
             <Box
               icon={NetworksIcon}
               link="./networks/mainnet/parameters/"
               title="LUKSO Network"
               className="networks"
               content="Running a node or integrate the LUKSO network in your dApp."
+              maxImageWidth="200px"
             />
             <LinksBox
               links={[
@@ -234,7 +233,7 @@ function Index() {
                   link: '/networks/mainnet/parameters#add-lukso-to-wallets',
                   showAsCode: false,
                   description:
-                    'Connect to the LUKSO network in one click or see the available RPC endpoints for Mainnet and Testnet.',
+                    'Connect to LUKSO Mainnet or Testnet in one click or see the available RPC endpoints.',
                 },
                 {
                   title: 'Block Explorer',
@@ -260,13 +259,14 @@ function Index() {
               ]}
             />
           </div>
-          <div>
+          <div className={styles.guideBox}>
             <Box
               icon={ToolsIcon}
               link="./tools"
               title="Tools"
               className="tools"
-              content="To help you interact with Universal Profiles and Digital Assets easily."
+              content="To help you interact with Universal Profiles and Digital Assets."
+              maxImageWidth="200px"
             />
             <LinksBox
               links={[
