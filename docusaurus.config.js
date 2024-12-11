@@ -439,7 +439,6 @@ export default {
           className: 'header-github-link',
           position: 'right',
         },
-        // TODO: add Discord icon (need to add the icon in `custom.css`)
         {
           href: 'https://discord.com/invite/lukso',
           className: 'header-discord-link',
@@ -451,7 +450,6 @@ export default {
       appId: '2C4F8KVKCI',
       apiKey: '27e4c8037f1e5b053cf1bf1d4d60c408',
       indexName: 'lukso_docs',
-      placeholder: 'Search anything...',
       contextualSearch: true,
       // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
       externalUrlRegex: 'docs\\.lukso\\.tech',

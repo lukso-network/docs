@@ -5,6 +5,15 @@
   top: calc(var(--ifm-navbar-height) + 1rem);
 }
 
+.feedbacks {
+  margin-top: 3rem;
+}
+
+.feedbacks p {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
 @media (max-width: 996px) {
   .tableOfContents {
     display: none;

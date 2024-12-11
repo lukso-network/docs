@@ -3,6 +3,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
+  a p {
+    margin: 0;
+  }
 }
 
 .containerDeployProfiles {

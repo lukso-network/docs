@@ -301,6 +301,10 @@ table#erc721-to-lsp8-table tr {
   background-color: transparent;
 }
 
-#container-search button.DocSearch.DocSearch-Button {
+#home-search button.DocSearch.DocSearch-Button {
   width: 25rem;
+}
+
+footer {
+  margin-top: 3rem;
 }

@@ -37,10 +37,7 @@ const CustomAccordion: React.FC<AccordionData> = ({
       >
         <h3>
           {' '}
-          <Icon
-            icon={icon}
-            // style={{ width: '1.75em', height: '1.75em', marginRight: '0.5em' }}
-          />
+          <Icon icon={icon} />
           {summary}
         </h3>
       </AccordionSummary>

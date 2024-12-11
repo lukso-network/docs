@@ -7,50 +7,52 @@ title: 'Quick Start'
 import CallToActionButton from '@site/src/components/CallToActionButton';
 import Chip from '@site/src/components/Chip';
 import CardWithContent from '@site/src/components/CardWithContent';
-import LinksBox from '@site/src/components/LinksBox';
+import LinkCards from '@site/src/components/LinkCards';
+import Link from '@docusaurus/Link';
 
 import styles from './learn.module.scss';
 
-import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
+import DappBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
+import SmartContractBannerImage from '../../static/img/learn/DEVELOPERS_SmartContract.png';
 
 # Developer Quickstart
 
 <div className={styles.containerQuickstartCards}>
 
-<CardWithContent title="Dapp Developer" image={DeveloperBannerImage}>
+<CardWithContent title="Dapp Developer" image={DappBannerImage}>
   <ul>
     <li>
-      <a href="#building-dapps-with-universal-profiles">
-        <span>Learn how to develop with Universal Profiles</span>
-      </a>
+      <Link to="#building-dapps-with-universal-profiles">
+        Learn how to develop with Universal Profiles
+      </Link>
     </li>
     <li>
-      <a
-        href="https://github.com/lukso-network/lukso-playground"
-        target="_blank"
-      >
-        <span>Explore code examples in the LUKSO playground</span>
-      </a>
+      <Link href="https://github.com/lukso-network/lukso-playground">
+        Explore code examples in the LUKSO playground
+      </Link>
     </li>
   </ul>
 </CardWithContent>
 
-<CardWithContent title="Smart Contract Developer" image={DeveloperBannerImage}>
+<CardWithContent
+  title="Smart Contract Developer"
+  image={SmartContractBannerImage}
+>
   <ul>
     <li>
-      <a href="../learn/digital-assets/getting-started">
-        <span>Get started with Tokens and NFTs</span>
-      </a>
+      <Link to="../learn/digital-assets/getting-started">
+        Get started with Tokens and NFTs
+      </Link>
     </li>
     <li>
-      <a href="../learn/digital-assets/token/create-lsp7-token">
-        <span>Create a token</span>
-      </a>
+      <Link to="../learn/digital-assets/token/create-lsp7-token">
+        Create a token
+      </Link>
     </li>
     <li>
-      <a href="../learn/universal-profile/universal-receiver/create-receiver-forwarder">
-        <span>Create an Automatic Token Forwarder for your UP</span>
-      </a>
+      <Link to="../learn/universal-profile/universal-receiver/create-receiver-forwarder">
+        Create an Automatic Token Forwarder for your UP
+      </Link>
     </li>
   </ul>
 </CardWithContent>
@@ -58,17 +60,17 @@ import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 <CardWithContent title="Quickstart Integration">
   <ul>
     <li>
-      <a href="../learn/migrate/migrate-to-lukso">Migrate to LUKSO</a>
+      <Link to="../learn/migrate/migrate-to-lukso">Migrate to LUKSO</Link>
     </li>
     <li>
-      <a href="../learn/migrate/migrate-erc20-to-lsp7">
-        <span>Refactor a Solidity ERC20 token to LSP7</span>
-      </a>
+      <Link to="../learn/migrate/migrate-erc20-to-lsp7">
+        Refactor a Solidity ERC20 token to LSP7
+      </Link>
     </li>
     <li>
-      <a href="../learn/migrate/migrate-erc721-to-lsp8">
-        <span>Refactor a Solidity ERC721 NFT to LSP8</span>
-      </a>
+      <Link to="../learn/migrate/migrate-erc721-to-lsp8">
+        Refactor a Solidity ERC721 NFT to LSP8
+      </Link>
     </li>
   </ul>
 </CardWithContent>
@@ -76,22 +78,17 @@ import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 <CardWithContent title="Join the Community">
   <ul>
     <li>
-      <a href="https://support.lukso.network/" target="_blank">
-        <span>Visit our support website</span>
-      </a>
+      <Link to="https://support.lukso.network/">Visit our support website</Link>
     </li>
     <li>
-      <a
-        href="https://discord.com/channels/359064931246538762/585786253992132609"
-        target="_blank"
-      >
-        <span>Join the Developer community on Discord</span>
-      </a>
+      <Link to="https://discord.com/channels/359064931246538762/585786253992132609">
+        Join the Developer community on Discord
+      </Link>
     </li>
     <li>
-      <a href="https://support.lukso.network/contact-us" target="_blank">
-        <span>Contact the tech team</span>
-      </a>
+      <Link to="https://support.lukso.network/contact-us">
+        Contact the tech team
+      </Link>
     </li>
   </ul>
 </CardWithContent>
@@ -144,7 +141,7 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
   icon="material-symbols:counter-3"
   color="white"
   link="/learn/universal-profile/connect-profile/connect-up"
-  text="Explore the guides to start building dApps on LUKSO!"
+  text="Explore guides to start building dApps on LUKSO! 👷🏻‍♂️"
 />
 
 </div>
@@ -153,16 +150,20 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
 
 <CardWithContent title="Using the Relayer API">
 
-If you are looking to build a dApp that needs to create Universal Profiles, you can use the [LUKSO Relayer API](../tools/services/relayer-developer.md) to do that easily programmatically.
+The [LUKSO Relayer API](../tools/services/relayer-developer.md) allows you to easily create and deploy Universal Profiles from your dApp in Javascript.
 
-Your users will benefit from a free monthly gas quota and therefore, will be able to submit transactions without requiring to pay for gas. A great benefit for onboarding new users quickly and easily into your dApp!
+Your users will benefit from a free monthly gas quota and will be able to submit transactions without requiring to pay for gas. A great way to onboard new users quickly and easily into your dApp!
+
+🔌 [**Deploy with the LUKSO Relayer API**](../tools/services/relayer-developer.md).
 
 </CardWithContent>
 
 <CardWithContent title="Manual Deployment">
-If you prefer to create a Universal Profile manually, use the LSP23 Linked Contracts Factory contract on LUKSO Mainnet. This factory contract can help you to deploy a Universal Profile + its Key Manager. Follow our guide:
+If you prefer to create a Universal Profile manually, use the LSP23 Linked Contracts Factory contract on LUKSO Mainnet.
 
-➡️ [**Deploy 🆙 with LSP23 Linked Contract Factory**](./universal-profile/advanced-guides/deploy-up-with-lsp23.md).
+This factory contract can help you to deploy a Universal Profile + its Key Manager. However, you will have to set the metadata and permissions as well on deployment. Follow our guide below.
+
+🏭 [**Deploy with LSP23 Linked Contract Factory**](./universal-profile/advanced-guides/deploy-up-with-lsp23.md).
 
 </CardWithContent>
 
@@ -193,7 +194,7 @@ LUKSO is a Layer 1 EVM Blockchain. All tools and tutorials for Ethereum also wor
 
 Developers building on LUKSO can write smart contracts in any EVM-based smart contract languages (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
 
-<LinksBox
+<LinkCards
   links={[
     {
       title: 'Tutorials for Universal Profiles',
