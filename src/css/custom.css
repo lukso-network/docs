@@ -196,6 +196,7 @@ html[data-theme='dark'] .tools .img {
 a.imageLink {
   display: inline-block;
   position: relative;
+  margin-bottom: 0.5rem;
 }
 
 a.imageLink img {

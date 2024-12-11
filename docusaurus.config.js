@@ -247,8 +247,12 @@ export default {
             to: '/tools/services/rpc-api',
           },
           {
-            from: '/tools/getting-started',
+            from: '/tools/getting-started', // legacy tools path
             to: '/tools/libraries/getting-started',
+          },
+          {
+            from: '/tools/libraries/getting-started', // tools path before re-branding
+            to: '/tools',
           },
           {
             from: '/tools/indexer',
@@ -385,13 +389,13 @@ export default {
       items: [
         {
           type: 'doc',
-          docId: 'learn/getting-started',
+          docId: 'learn/overview',
           position: 'left',
           label: 'Learn',
         },
         {
           type: 'doc',
-          docId: 'tools/libraries/getting-started',
+          docId: 'tools/tools',
           position: 'left',
           label: 'Tools',
         },

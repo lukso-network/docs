@@ -1,7 +1,7 @@
 ---
 id: integrations
 title: 🪢 Integrations
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # 🪢 Integrations

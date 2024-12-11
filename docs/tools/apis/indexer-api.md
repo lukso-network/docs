@@ -1,13 +1,13 @@
 ---
-title: 📑 Indexer API
-sidebar_position: 1
+title: 🔍 Indexer API
+sidebar_position: 2
 ---
 
 # Indexer API
 
 :::info 🔓 Private Beta access
 
-This feature is currently in private beta. If you are interested, please [contact us](https://forms.gle/rhWA25m3jjuPNPva9).
+This feature is currently in private beta. If you are interested, please [fill in this form](https://forms.gle/rhWA25m3jjuPNPva9).
 
 :::
 

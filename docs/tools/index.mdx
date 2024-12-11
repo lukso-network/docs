@@ -1,0 +1,299 @@
+---
+id: tools
+---
+
+import ReferenceCard from '@site/src/components/ReferenceCard';
+import CodeBlock from '@theme/CodeBlock';
+
+import SolidityLogo from '@site/static/img/tools/solidity-logo.png';
+import FoundryLogo from '@site/static/img/tools/foundry-logo.png';
+
+# Tools
+
+Explore the different tools available for developers to build dApps, smart contracts and protocols more easily on LUKSO.
+
+## APIs
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+
+<ReferenceCard name="⛽️ Relayer API" links={[ 
+  {label: 'Documentation', to: '/tools/apis/relayer-api' },
+]}>
+
+Deploy Universal Profiles easily, execute gas-free transactions up to a free monthly gas quota.
+
+</ReferenceCard>
+
+<ReferenceCard name="🔍 Indexer API" links={[ 
+  {label: 'Documentation', to: '/tools/apis/indexer-api' },
+]}>
+
+Query easily any information about Universal Profiles and LSP7/8 Digital Assets.
+
+</ReferenceCard>
+
+<ReferenceCard name="🆙 RPC API" links={[ 
+  {label: 'Documentation', to: '/tools/apis/up-rpc-api' },
+]}>
+
+Available RPC endpoints for the Universal Profile Browser Extension 🧩.
+
+</ReferenceCard>
+
+</div>
+
+<br />
+
+## Javascript libraries
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+
+<ReferenceCard name="erc725.js" showAsCode={true} links={[ 
+  {label: 'Documentation', to: '/tools/dapps/erc725js/getting-started' },
+  {label: 'GitHub', to: 'https://github.com/ERC725Alliance/erc725.js' },
+]}>
+
+<a
+  class="imageLink"
+  href="https://www.npmjs.com/package/@erc725/erc725.js"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    style={{ verticalAlign: 'middle' }}
+    alt="npm badge"
+    class="shield-badge"
+    src="https://img.shields.io/npm/v/@erc725/erc725.js.svg?style=flat&label=%40erc725%2Ferc725.js"
+  />
+</a>
+
+```bash
+npm install @erc725/erc725.js
+```
+
+Fetch any metadata easily from Universal Profiles, Tokens and NFTs. Includes helper functions to encode and prepare metadata before setting.
+
+</ReferenceCard>
+
+<ReferenceCard name="lsp-utils.js" showAsCode={true} links={[ 
+  {label: 'Overview', to: '/tools/dapps/lsp-utils/getting-started' },
+  {label: 'GitHub', to: 'https://github.com/lukso-network/lsp-utils' },
+]}>
+
+<a
+  class="imageLink"
+  href="https://www.npmjs.com/package/@lukso/lsp-utils"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    style={{ verticalAlign: 'middle' }}
+    alt="npm badge"
+    class="shield-badge"
+    src="https://img.shields.io/npm/v/@lukso/lsp-utils.svg?style=flat&label=%40lukso%2Flsp-utils"
+  />
+</a>
+
+```bash
+npm install @lukso/lsp-utils
+```
+
+High level helper functions to `getProfileMetadata(...)`, `decodeAllowedCalls(...)`, `decodeAllowedERC725YDataKeys(...)` to read / encode metadata efficiently and avoid dealing with low level encoding / decoding.
+
+</ReferenceCard>
+
+<ReferenceCard name="eip191-signer.js" showAsCode={true} links={[ 
+  {label: 'Overview', to: '/tools/dapps/eip191-signerjs/getting-started' },
+  {label: 'GitHub', to: 'https://github.com/lukso-network/tools-eip191-signer' },
+]}>
+
+<a
+  class="imageLink"
+  href="https://www.npmjs.com/package/@lukso/eip191-signer.js"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    style={{ verticalAlign: 'middle' }}
+    alt="npm badge"
+    class="shield-badge"
+    src="https://img.shields.io/npm/v/@lukso/eip191-signer.js.svg?style=flat&label=%40lukso%2Feip191-signer.js"
+  />
+</a>
+
+```bash
+npm install @lukso/eip191-signer.js
+```
+
+Sign EIP-191 messages with a private key, to be used for preparing gas-less transactions for the relayer.
+
+</ReferenceCard>
+
+<ReferenceCard name="web3-onboard-config"  links={[ 
+  {label: 'GitHub', to: 'https://github.com/lukso-network/web3-onboard-config' },
+]}>
+
+<a
+  class="imageLink"
+  href="https://www.npmjs.com/package/@lukso/web3-onboard-config"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    style={{ verticalAlign: 'middle' }}
+    alt="npm badge"
+    class="shield-badge"
+    src="https://img.shields.io/npm/v/@lukso/web3-onboard-config.svg?style=flat&label=%40lukso%2Fweb3-onboard-config"
+  />
+</a>
+
+Universal Profile Integration for Web3-Onboard to easily integrate Universal Profiles in your dApp.
+
+</ReferenceCard>
+
+<ReferenceCard name="mock relayer"  links={[ 
+  {label: 'GitHub', to: 'https://github.com/lukso-network/tools-mock-relayer' },
+]}>
+
+<a
+  class="imageLink"
+  href="https://github.com/lukso-network/tools-mock-relayer"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    style={{ verticalAlign: 'middle' }}
+    alt="Github badgen badge"
+    class="shield-badge"
+    src="https://img.shields.io/badge/Github-white?logo=github&logoColor=black&link=https%3A%2F%2Fgithub.com%2Flukso-network%2Ftools-mock-relayer
+    "
+  />
+</a>
+
+Skeleton repository to create a transaction relayer service compliant with the [LSP15 Standard Transaction Relay Service API](../standards/accounts/lsp15-transaction-relayer-api.md).
+
+</ReferenceCard>
+
+</div>
+
+<br />
+
+## Smart Contracts
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+
+<ReferenceCard name="LSP Smart Contracts" links={[ 
+  {label: 'Overview', to: '/tools/lsp-smart-contracts/getting-started' },
+  {label: 'GitHub', to: 'https://github.com/lukso-network/lsp-smart-contracts' },
+]}>
+
+<a
+  href="https://github.com/lukso-network/lsp-smart-contracts"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ 
+      display: 'flex',
+      justifyContent: 'center'
+   }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem'
+
+    }}
+    src={SolidityLogo}
+
+/>
+
+</a>
+
+<a
+  class="imageLink"
+  href="https://www.npmjs.com/package/@lukso/lsp-smart-contracts"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
+>
+  <img
+    style={{ verticalAlign: 'middle' }}
+    alt="npm badge"
+    class="shield-badge"
+    src="https://img.shields.io/npm/v/@lukso/lsp-smart-contracts.svg?style=flat&label=%40lukso%2Flsp-smart-contracts"
+  />
+</a>
+
+The reference Solidity implementation of the LUKSO LSP Standards. Available as whole umbrella package or individual packages for specific LSPs.
+
+</ReferenceCard>
+
+<ReferenceCard name="Foundry Template" links={[ 
+  {label: 'GitHub', to: 'https://github.com/lukso-network/lukso-foundry-template' },
+]}>
+
+<a
+  class=""
+  href="https://github.com/lukso-network/lukso-foundry-template"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ 
+      display: 'flex',
+      justifyContent: 'center'
+   }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem'
+    }}
+    src={FoundryLogo}
+
+/>
+
+</a>
+
+Foundry repository template with pre-installed `@lukso/lsp-smart-contracts` package and example contracts ready to use.
+
+</ReferenceCard>
+
+</div>
+
+<br />
+
+## Others
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem'}}>
+
+<ReferenceCard name="🔍 Explorer & Debuggers" links={[ 
+  {label: 'Blockscout', to: 'https://explorer.lukso.network' },
+  {label: 'erc725-inspect', to: 'https://erc725-inspect.lukso.tech/' },
+  {label: 'txs.app', to: 'https://txs.app' },
+]}>
+
+Inspector tools available for developers to easily retrieve the list of metadata and permission from Universal Profile and digital assets, as well as decoding and visualizing transactions easily.
+
+</ReferenceCard>
+
+<ReferenceCard name="🪢 Integrated Partners" links={[ 
+  {label: 'Envio', to: 'https://docs.envio.dev/blog/envio-data-indexing-supports-developers-building-on-lukso' },
+  {label: 'API3', to: 'https://market.api3.org/lukso' },
+  {label: 'DIA', to: 'https://docs.diadata.org/use-nexus-product/nexus/data-delivery-usage/integrated-blockchains/lukso-price-oracles' },
+  {label: 'DappNode', to: '/networks/mainnet/running-a-node#-with-dappnode' },
+]}>
+
+Discover the third-party services and tools that are integrated with LUKSO to provide additional functionalities and services.
+
+</ReferenceCard>
+
+<ReferenceCard name="🏭 Node Docker Factory" links={[ 
+  {label: 'Documentation', to: '/tools/docker-factory' },
+]}>
+
+Discover the third-party services and tools that are integrated with LUKSO to provide additional functionalities and services.
+
+</ReferenceCard>
+
+</div>

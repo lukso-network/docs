@@ -188,7 +188,6 @@ function Index() {
       <div className={styles.container} style={{ margin: 0 }}>
         <div className={`${styles.containerCard} ${styles.containerLukso}`}>
           <div>
-            {/* TODO: re-use component `TitleWithSeparator` but pass `<p>` tags as children */}
             <div className={styles.subheader}>
               <Link to="/learn/overview">
                 <h1>What is LUKSO?</h1>
@@ -202,7 +201,6 @@ function Index() {
             </div>
           </div>
           <div>
-            {/* TODO: re-use component `TitleWithSeparator` but pass `<p>` tags as children */}
             <div className={styles.subheader}>
               <Link to="/standards/introduction">
                 <h1>What are the LUKSO LSP Standards?</h1>
@@ -265,7 +263,7 @@ function Index() {
           <div>
             <Box
               icon={ToolsIcon}
-              link="./tools/libraries/getting-started"
+              link="./tools"
               title="Tools"
               className="tools"
               content="To help you interact with Universal Profiles and Digital Assets easily."

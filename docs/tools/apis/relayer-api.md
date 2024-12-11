@@ -1,6 +1,6 @@
 ---
 title: ⛽️ Relayer API
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Relayer API
