@@ -1,0 +1,19 @@
+// ideally these styles should be moved to the component level (since the component is used in the markdown file)
+.containerQuickstartCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  a p {
+    margin: 0;
+  }
+}
+
+.containerDeployProfiles {
+  display: flex;
+  flex-wrap: no-wrap;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+}

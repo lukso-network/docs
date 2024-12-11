@@ -1,0 +1,37 @@
+.containerBoxLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+
+  a {
+    max-width: 100% !important;
+  }
+}
+
+.boxLink {
+  display: block;
+  background-color: #f5f5f598;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #eaeaea83;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
