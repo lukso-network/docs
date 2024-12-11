@@ -5,6 +5,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import styles from './accordion.module.scss';
+
 import { Icon } from '@iconify/react';
 
 type AccordionData = {
@@ -46,20 +48,22 @@ const CustomAccordion: React.FC<AccordionData> = ({
           {summary}
         </h3>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails style={{ padding: '0' }}>
         {details.length > 0 &&
           details.map(({ question, answer }, index) => {
             return (
-              <Accordion key={index} style={{ textAlign: 'left' }}>
+              <Accordion key={index} className={styles.innerAccordion}>
                 <AccordionSummary
+                  className={styles.innerAccordionHeading}
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={'panel' + index + '-content'}
                   id={'panel' + index + '-header'}
-                  style={{ fontWeight: '500' }}
                 >
                   {question}
                 </AccordionSummary>
-                <AccordionDetails>{answer}</AccordionDetails>
+                <AccordionDetails className={styles.innerAccordionContent}>
+                  {answer}
+                </AccordionDetails>
               </Accordion>
             );
           })}

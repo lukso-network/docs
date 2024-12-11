@@ -1,18 +1,28 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
+import { CardContent, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import { CarouselProps } from 'react-material-ui-carousel/dist/components/types';
+import CallToActionButton from '../CallToActionButton/index';
+
 import styles from './Carousel.module.scss';
 
-import { CardContent, Typography, Button } from '@mui/material';
-import Grid from '@mui/material/Grid2';
-
-import UniversalSwaps from '../../../static/img/universalswaps.png';
-import Stakingverse from '../../../static/img/tools/stakingverse_logo.png';
-import Commonground from '../../../static/img/cg.png';
-import UniversalPage from '../../../static/img/tools/universalpage_logo.png';
-import LSP8 from '../../../static/img/lsp8app.png';
-import UpTurn from '../../../static/img/upturn-scaled.png';
-import ImagePlaceholder from '../../../static/img/image-placeholder.jpeg';
+// images
+import UniversalEverythingLogo from '../../../static/img/dapps/universaleverything-io-logo.png';
+import UniversalSwapsLogo from '../../../static/img/dapps/universalswaps-logo.png';
+import UniversalPageLogo from '../../../static/img/dapps/universalpage-logo.png';
+import StakingverseLogo from '../../../static/img/dapps/stakingverse-logo.png';
+import CommongroundLogo from '../../../static/img/dapps/common-ground-logo.png';
+import DefolioLogo from '../../../static/img/dapps/defolio-logo.png';
+import UFeedLogo from '../../../static/img/dapps/ufeed-logo.png';
+import UpTurnLogo from '../../../static/img/dapps/upturn-logo-scaled.png';
+import LSP8AppLogo from '../../../static/img/dapps/lsp8app-logo.png';
+// TODO: define if we add some popular NFT collections or not
+// import ChillwhaleLogo from '../../../static/img/dapps/chillwhale-logo.jpg';
+// import CupCoLogo from '../../../static/img/dapps/cupco-logo.webp';
+import FamilyLyxLogo from '../../../static/img/dapps/family-lyx-logo.png';
+import TxCityLogo from '../../../static/img/dapps/txcity-io-logo.webp';
+import TxsAppLogo from '../../../static/img/dapps/txs-app-logo.png';
 
 const carouselConfig: CarouselProps = {
   interval: 8000,
@@ -33,130 +43,130 @@ type Item = {
   link: string;
 };
 
+// // template
+// {
+//   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+//   contentPosition: 'left',
+//   image: ImagePlaceholder,
+//   backgroundColor: '#fcfcfc',
+//   link: 'https://...',
+// },
 var items: Item[] = [
   // TODO: just use image and re-use top name props to simplify
   // banner 1 ----------------
   {
     name: 'Universal Everything',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
-    image: ImagePlaceholder,
+    description: 'Explorer and wallet for Universal Profiles.',
+    image: UniversalEverythingLogo,
     backgroundColor: '#fcfcfc',
     link: 'https://universaleverything.io/',
   },
   {
     name: 'Universal Swaps',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'Defi made social for swaps and tokens liquidity.',
     contentPosition: 'left',
-    image: UniversalSwaps,
+    image: UniversalSwapsLogo,
     backgroundColor: '#fddce7',
     link: 'https://universalswaps.io/',
   },
   {
     name: 'Universal Page',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'NFT marketplace and staking solution on LUKSO.',
     contentPosition: 'middle',
-    image: UniversalPage,
+    image: UniversalPageLogo,
     backgroundColor: '#5049df',
     link: 'https://universal.page/',
   },
   {
     name: 'Stakingverse',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'Stake your LYX and start earning staking rewards.',
     contentPosition: 'middle',
-    image: Stakingverse,
+    image: StakingverseLogo,
     backgroundColor: '#1E1E1E',
     link: 'https://stakingverse.io/',
   },
   // banner 2 ----------------
   {
     name: 'Common Ground',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'The social app for all web3 communities.',
     contentPosition: 'right',
-    image: Commonground,
+    image: CommongroundLogo,
     backgroundColor: '#404bbb',
     link: 'https://app.cg/',
   },
   {
     name: 'DeFolio',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'Universal Profiles management platform.',
     contentPosition: 'right',
-    image: ImagePlaceholder,
+    image: DefolioLogo,
     backgroundColor: '#fcfcfc',
     link: 'https://www.de-folio.com/',
   },
   {
     name: 'UFeed',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'Social network and feed on LUKSO',
     contentPosition: 'left',
-    image: ImagePlaceholder,
+    image: UFeedLogo,
     backgroundColor: '#fcfcfc',
     link: 'https://ufeed.io/',
   },
   {
     name: 'UP Turn',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'Token generator app for digital assets on LUKSO.',
     contentPosition: 'right',
-    image: UpTurn,
+    image: UpTurnLogo,
     backgroundColor: 'white',
     link: 'https://upturn.live/',
   },
   // banner 3 ----------------
   {
     name: 'LSP8.APP',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'Track and analyze LSP8 NFT rarity and value.',
     contentPosition: 'left',
-    image: LSP8,
+    image: LSP8AppLogo,
     backgroundColor: '#2d1b46',
     link: 'https://lsp8.app/',
   },
   {
-    name: 'Chillwhale',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
-    contentPosition: 'left',
-    image: ImagePlaceholder,
-    backgroundColor: '#fcfcfc',
-    link: 'https://chillwhales.com/',
-  },
-  {
-    name: 'CupCo',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
-    contentPosition: 'left',
-    image: ImagePlaceholder,
-    backgroundColor: '#fcfcfc',
-    link: 'https://...',
-  },
-  {
     name: 'Family LYX',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'Phygital garments powered by LUKSO standards.',
     contentPosition: 'left',
-    image: ImagePlaceholder,
-    backgroundColor: '#fcfcfc',
+    image: FamilyLyxLogo,
+    backgroundColor: '#31353A',
     link: 'https://www.familylyx.com/',
   },
-  // banner 4 ----------------
   {
     name: 'Txs.app',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'User friendly transaction explorer for LUKSO.',
     contentPosition: 'left',
-    image: ImagePlaceholder,
+    image: TxsAppLogo,
     backgroundColor: '#fcfcfc',
     link: 'https://txs.app/',
   },
+
   {
     name: 'TxCity.io',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+    description: 'LUKSO live Blockchain transaction visualizer.',
     contentPosition: 'left',
-    image: ImagePlaceholder,
+    image: TxCityLogo,
     backgroundColor: '#fcfcfc',
     link: 'https://txcity.io/v/eth-lukso',
   },
-  // // template
+  // banner 4 ----------------
   // {
-  //   name: '',
+  //   name: 'Chillwhale',
   //   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
   //   contentPosition: 'left',
-  //   image: ImagePlaceholder,
-  //   backgroundColor: '#fcfcfc',
+  //   image: ChillwhaleLogo,
+  //   backgroundColor: '#9F9596',
+  //   link: 'https://chillwhales.com/',
+  // },
+  // {
+  //   name: 'CupCo',
+  //   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+  //   contentPosition: 'left',
+  //   image: CupCoLogo,
+  //   backgroundColor: '#262626',
   //   link: 'https://...',
   // },
 ];
@@ -164,7 +174,6 @@ var items: Item[] = [
 const firstItems = items.slice(0, 4);
 const secondItems = items.slice(4, 8);
 const thirdItems = items.slice(8, 12);
-const fourthItems = items.slice(12);
 
 console.log(firstItems);
 console.log(secondItems);
@@ -174,7 +183,6 @@ const DappsCarousel = () => (
     <DappsBanner dapps={firstItems} />
     <DappsBanner dapps={secondItems} />
     <DappsBanner dapps={thirdItems} />
-    <DappsBanner dapps={fourthItems} />
   </Carousel>
 );
 
@@ -197,14 +205,15 @@ const DappsBanner: React.FC<DappsBannerProps> = ({ dapps }) => {
       <Typography variant="h5" className={styles.Title}>
         {dapp.name}
       </Typography>
-      <Typography className={styles.Caption}>{dapp.description}</Typography>
-      <Button
-        className={styles.ViewButton}
-        variant="outlined"
-        style={{ marginTop: '1rem' }}
-      >
-        View
-      </Button>
+      {/* <Typography className={styles.Caption}>{dapp.description}</Typography> */}
+      <p>{dapp.description}</p>
+      <CallToActionButton
+        icon="material-symbols:search"
+        text="Visit dApp"
+        link={dapp.link}
+        color="white"
+        newTab={true}
+      />
     </CardContent>
   );
 

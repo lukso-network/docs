@@ -34,7 +34,26 @@
   justify-content: space-between;
 }
 
+.containerLukso {
+  padding: 0 !important;
+  position: relative;
+  width: 100%;
+}
+
+.containerLukso::before {
+  content: '';
+  position: absolute;
+  background-image: url('../../static/img/lukso-bg.png');
+  background-size: cover;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.35;
+}
+
 .subheader {
+  position: relative;
   padding-top: 2rem;
 
   p {

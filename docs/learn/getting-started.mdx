@@ -7,6 +7,7 @@ title: 'Quick Start'
 import CallToActionButton from '@site/src/components/CallToActionButton';
 import Chip from '@site/src/components/Chip';
 import CardWithContent from '@site/src/components/CardWithContent';
+import LinksBox from '@site/src/components/LinksBox';
 
 import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 
@@ -26,7 +27,7 @@ import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
         href="https://github.com/lukso-network/lukso-playground"
         target="_blank"
       >
-        <span>Explore code examples in our playground repository</span>
+        <span>Explore code examples in the LUKSO playground</span>
       </a>
     </li>
   </ul>
@@ -99,17 +100,17 @@ import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 
 In order to follow the guides and tutorial of the LUKSO Developer documentation, you should have some basic knowledge and be familiar with the following:
 
-- Building general applications on Ethereum (find a good resource) -> Learning Tools of the Ethereum Foundation
+- Building general applications on Ethereum: [**Learning Tools of the Ethereum Foundation**](https://ethereum.org/en/developers/learning-tools/)
 - For smart contract developers:
-  - Smart contract development in [**Solidity**](https://docs.soliditylang.org) -> see this guide or tutorial from Cyfrin.io.
-  - If you pick a template, **Foundry** or **Hardhat**.
+  - Smart contract development in [**Solidity**](https://docs.soliditylang.org).
+  - If you pick a template, [**Foundry**](https://hardhat.org/docs) or [**Hardhat**](https://book.getfoundry.sh/).
 - For dApp developers:
-  - Basic programming skills in Javascript or Typescript.
-  - Using a javascript library to interaction with web3 applications like **web3.js**, **ethers** or **viem**.
+  - Basic programming skills in [**Javascript**](https://developer.mozilla.org/en-US/docs/Web/JavaScript) or [**Typescript**](https://www.typescriptlang.org/docs/).
+  - Using a javascript library to interaction with web3 applications like [**web3.js**](https://docs.web3js.org/), [**ethers**](https://docs.ethers.org/v6/) or [**viem**](https://viem.sh/).
 
 :::
 
-## Building dApps with Universal Profiles
+## Building dApps for Universal Profiles
 
 When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙](../standards/accounts/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
 
@@ -120,35 +121,27 @@ When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙]
   gap: "1rem",
 }}>
 
-<div style={{ width: '100%' }}>
+<div style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
 
 <CallToActionButton
   icon="material-symbols:counter-1"
-  text="Install the UP Browser Extension 🧩"
+  text="Download & Install the UP Browser Extension 🧩"
   link="/install-up-browser-extension"
   color="white"
 />
 
-</div>
-
-<div style={{ width: '100%' }}>
-
 <CallToActionButton
   icon="material-symbols:counter-2"
-  text="Create a Universal Profile 🆙"
-  link="https://my.universalprofile.cloud"
+  text="Create a Universal Profile and try it out 🆙"
+  link="https://universaleverything.io"
   color="white"
 />
-
-</div>
-
-<div style={{ width: '100%' }}>
 
 <CallToActionButton
   icon="material-symbols:counter-3"
   color="white"
   link="/learn/universal-profile/connect-profile/connect-up"
-  text="Start building dApps on LUKSO! 🫡"
+  text="Explore the guides to start building dApps on LUKSO!"
 />
 
 </div>
@@ -199,9 +192,31 @@ LUKSO is a Layer 1 EVM Blockchain. All tools and tutorials for Ethereum also wor
 
 Developers building on LUKSO can write smart contracts in any EVM-based smart contract languages (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
 
-- [Awesome LUKSO, a comprehensive list of awesome LUKSO resources!](https://github.com/lukso-network/awesome-lukso)
-- [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
-- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
+<LinksBox
+  links={[
+    {
+      title: 'Tutorials for Universal Profiles',
+      link: '/learn/universal-profiles',
+      showAsCode: false,
+      description:
+        'Learn how to connect your UP to a dApp, update the profile details (including pictures), transfer tokens and NFTs and more.',
+    },
+    {
+      title: 'Tutorials for Digital Assets',
+      link: '/learn/digital-assets',
+      showAsCode: false,
+      description:
+        'Learn how to create token and NFT collections, customize the metadata of an NFT and how to create collections of sub-collections.',
+    },
+    {
+      title: 'Awesome LUKSO!',
+      link: 'https://github.com/lukso-network/awesome-lukso',
+      showAsCode: false,
+      description:
+        'A comprehensive list of developer resources for LUKSO builders.',
+    },
+  ]}
+/>
 
 ## Code Repositories
 

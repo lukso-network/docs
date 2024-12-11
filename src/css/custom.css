@@ -139,33 +139,27 @@ html[data-theme='dark'] .header-discord-link:before {
   fill: #235865f2;
 }
 
-html[data-theme='dark'] .headline {
-  background-image: url('../../static/img/icons/ellipse-top-gradient-dark.png');
+/* TODO: have the same images for dark theme like before? (with `[file-name]-dark.png` */
+
+/* html[data-theme='dark'] .integrations .img {
+  background-image: url('../../static/img/icons/icon-integrations-gradient.png') !important;
+}
+
+html[data-theme='dark'] .universal-profile .img {
+  background-image: url('../../static/img/icons/icon-universal-profile-gradient-dark.png') !important;
+}
+
+html[data-theme='dark'] .digital-assets .img {
+  background-image: url('../../static/img/icons/icon-digital-assets-dark.png') !important;
 }
 
 html[data-theme='dark'] .networks .img {
   background-image: url('../../static/img/icons/icon-networks-gradient-dark.png') !important;
 }
 
-html[data-theme='dark'] .standards .img {
-  background-image: url('../../static/img/icons/icon-guides-dark.png') !important;
-}
-
 html[data-theme='dark'] .tools .img {
-  background-image: url('../../static/img/icons/icon-tools-gradient-dark.png') !important;
-}
-
-html[data-theme='dark'] .integrations .img {
-  background-image: url('../../static/img/icons/icon-partners-gradient-dark.png') !important;
-}
-
-html[data-theme='dark'] .guides .img {
-  background-image: url('../../static/img/icons/icon-guides-gradient-dark.png') !important;
-}
-
-html[data-theme='dark'] .faq .img {
-  background-image: url('../../static/img/icons/icon-faq-gradient-dark.png') !important;
-}
+  background-image: url('../../static/img/icons/icon-tools-dark.png') !important;
+} */
 
 .discord-logo {
   float: left;
@@ -321,6 +315,6 @@ table#erc721-to-lsp8-table tr {
   background-color: transparent;
 }
 
-button.DocSearch.DocSearch-Button {
+#container-search button.DocSearch.DocSearch-Button {
   width: 500px;
 }

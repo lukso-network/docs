@@ -6,6 +6,7 @@ import styles from './index.module.scss';
 import SearchBarWrapper from '../theme/SearchBar';
 
 // images
+import IntegrationIcon from '../../static/img/icons/icon-integrations-gradient.png';
 import NetworksIcon from '../../static/img/icons/icon-networks-gradient.png';
 import ToolsIcon from '../../static/img/icons/icon-tools-gradient.png';
 
@@ -24,7 +25,7 @@ import Box from '../components/Box';
 import CallToActionButton from '../components/CallToActionButton';
 import Headline from '../components/Headline';
 import CustomAccordion from '../components/Accordion';
-import Example from '../components/Carousel';
+import DappsSlider from '../components/Carousel';
 import LinksList from '../components/LinksList';
 import LinksBox from '../components/LinksBox';
 
@@ -79,11 +80,12 @@ function Index() {
         <div className={styles.containerBoxes}>
           <div className={styles.guideBox}>
             <Box
-              icon={NetworksIcon}
-              link="./networks/mainnet/parameters/"
+              icon={IntegrationIcon}
+              link="./learn/migrate/migrate-to-lukso/"
               title="Integration Guide"
-              className="networks"
+              className="integrations"
               content="Looking to migrate your project to LUKSO?"
+              maxImageWidth="200px"
             />
             <LinksList
               links={[
@@ -113,11 +115,12 @@ function Index() {
 
           <div className={styles.guideBox}>
             <Box
-              icon={NetworksIcon}
-              link="./networks/mainnet/parameters/"
+              icon={IntegrationIcon}
+              link="./learn/universal-profile/overview"
               title="Universal Profiles"
-              className="networks"
+              className="universal-profiles"
               content="Discover Universal Profiles and new world of possibilities"
+              maxImageWidth="200px"
             />
             <LinksList
               links={[
@@ -147,11 +150,12 @@ function Index() {
 
           <div className={styles.guideBox}>
             <Box
-              icon={NetworksIcon}
-              link="./networks/mainnet/parameters/"
+              icon={IntegrationIcon}
+              link="./learn/digital-assets/getting-started"
               title="Digital Assets"
               className="networks"
               content="Build token and NFTs with flexible metadata and new features."
+              maxImageWidth="200px"
             />
             <LinksList
               links={[
@@ -181,8 +185,8 @@ function Index() {
         </div>
       </div>
 
-      <div className={styles.container}>
-        <div className={styles.containerCard}>
+      <div className={styles.container} style={{ margin: 0 }}>
+        <div className={`${styles.containerCard} ${styles.containerLukso}`}>
           <div>
             {/* TODO: re-use component `TitleWithSeparator` but pass `<p>` tags as children */}
             <div className={styles.subheader}>
@@ -196,6 +200,28 @@ function Index() {
                 Providing the foundation to unify our digital lives.
               </p>
             </div>
+          </div>
+          <div>
+            {/* TODO: re-use component `TitleWithSeparator` but pass `<p>` tags as children */}
+            <div className={styles.subheader}>
+              <Link to="/standards/introduction">
+                <h1>What are the LUKSO LSP Standards?</h1>
+              </Link>
+              <p>
+                A holistic set of new blockchain standards that are EVM
+                compatible.
+              </p>
+              <p style={{ paddingBottom: '3rem' }}>
+                To create protocols and applications social and user-centric.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.container}>
+        <div className={styles.containerCard}>
+          <div>
             <Box
               icon={NetworksIcon}
               link="./networks/mainnet/parameters/"
@@ -217,7 +243,7 @@ function Index() {
                   link: '/networks/mainnet/parameters',
                   showAsCode: false,
                   description:
-                    'Browse transactions and interact with contracts.',
+                    'Browse transactions and interact with contracts on Blockscout.',
                 },
                 {
                   title: 'Running a Node',
@@ -237,19 +263,6 @@ function Index() {
             />
           </div>
           <div>
-            {/* TODO: re-use component `TitleWithSeparator` but pass `<p>` tags as children */}
-            <div className={styles.subheader}>
-              <Link to="/standards/introduction">
-                <h1>What are the LUKSO Standard Proposals (LSPs)?</h1>
-              </Link>
-              <p>
-                A holistic set of new blockchain standards that are EVM
-                compatible.
-              </p>
-              <p style={{ paddingBottom: '3rem' }}>
-                To create protocols and applications social and user-centric.
-              </p>
-            </div>
             <Box
               icon={ToolsIcon}
               link="./tools/libraries/getting-started"
@@ -348,7 +361,7 @@ function Index() {
       <div className={styles.container}>
         <TitleWithSeparator title="Popular dApps built on LUKSO" />
       </div>
-      <Example />
+      <DappsSlider />
     </Layout>
   );
 }
