@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Link from '@docusaurus/Link';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -16,6 +17,8 @@ type AccordionData = {
   details: {
     question: string;
     answer: string;
+    link?: string;
+    linkLabel?: string;
   }[]; // any html data you want to see appearing in the dropdown.
 };
 
@@ -25,13 +28,6 @@ const CustomAccordion: React.FC<AccordionData> = ({
   details,
   index,
 }) => {
-  // const [expanded, setExpanded] = useState<string | false>(false);
-
-  // const handleChange =
-  //   (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-  //     setExpanded(isExpanded ? panel : false);
-  //   };
-
   return (
     <Accordion key={index}>
       <AccordionSummary
@@ -50,7 +46,7 @@ const CustomAccordion: React.FC<AccordionData> = ({
       </AccordionSummary>
       <AccordionDetails style={{ padding: '0' }}>
         {details.length > 0 &&
-          details.map(({ question, answer }, index) => {
+          details.map(({ question, answer, link, linkLabel }, index) => {
             return (
               <Accordion key={index} className={styles.innerAccordion}>
                 <AccordionSummary
@@ -62,7 +58,10 @@ const CustomAccordion: React.FC<AccordionData> = ({
                   {question}
                 </AccordionSummary>
                 <AccordionDetails className={styles.innerAccordionContent}>
-                  {answer}
+                  <p>{answer}</p>
+                  <p>
+                    <Link to={link}>{linkLabel}</Link>
+                  </p>
                 </AccordionDetails>
               </Accordion>
             );
