@@ -68,7 +68,7 @@ lukso install --prysm-tag v4.0.8
 lukso install --lighthouse-tag v4.1.0
 
 # Manually overwrite Erigon Version
-# https://github.com/ledgerwatch/erigon/releases
+# https://github.com/erigontech/erigon/releases
 lukso install ---erigon-tag 2.52.1
 
 # Manually overwrite Teku Version
