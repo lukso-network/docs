@@ -68,6 +68,7 @@ lukso install --prysm-tag v4.0.8
 lukso install --lighthouse-tag v4.1.0
 
 # Manually overwrite Erigon Version
+# Please note that erigon underwent changes in repository structure, making the CLI unable to install versions <2.60.9
 # https://github.com/erigontech/erigon/releases
 lukso install ---erigon-tag 2.52.1
 
