@@ -47,15 +47,10 @@ export const Banner: React.FC<BannerProps> = ({ items, isMobile }) => {
           <img src={item.image} className={styles.itemCardImage} />
         </a>
       </div>
-      <Typography variant="h5">{item.name}</Typography>
-      <p>{item.description}</p>
-      <CallToActionButton
-        icon="material-symbols:search"
-        text="Visit dApp"
-        link={item.link}
-        color="white"
-        newTab={true}
-      />
+      <div style={{ textAlign: 'center' }}>
+        <Typography variant="h5">{item.name}</Typography>
+        <p>{item.description}</p>
+      </div>
     </CardContent>
   );
 

@@ -1,17 +1,19 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import clsx from 'clsx';
 
 // styles
 import styles from './index.module.scss';
 import SearchBarWrapper from '../theme/SearchBar';
 
 // images
-import IntegrationIcon from '../../static/img/icons/icon-integrations-gradient.png';
+import IntegrationGuidesIcon from '../../static/img/icons/icon-guides-integration.png';
+import UniversalProfileGuidesIcon from '../../static/img/icons/icon-guides-universal-profile.png';
+import DigitalAssetGuidesIcon from '../../static/img/icons/icon-guides-digital-asset.png';
 import NetworksIcon from '../../static/img/icons/icon-networks-gradient.png';
 import ToolsIcon from '../../static/img/icons/icon-tools-gradient.png';
 
 // components
-import Link from '@docusaurus/Link';
 import IconsGallery from '../components/IconsGallery';
 import TitleWithSeparator from '../components/TitleWithSeparator';
 import Box from '../components/Box';
@@ -79,39 +81,33 @@ function Index() {
           />
         </div>
 
-        <div className={styles.containerBoxes}>
+        <div className={styles.containerBoxes3Columns}>
           <div>
             <Box
-              icon={IntegrationIcon}
+              icon={IntegrationGuidesIcon}
               link="./learn/migrate/migrate-to-lukso/"
-              title="Integration Guide"
-              className="integrations"
-              content="Looking to migrate your project to LUKSO?"
-              maxImageWidth="200px"
+              title="Integration Guides"
+              content="Looking to migrate your project to LUKSO? Visit our integration guides."
             />
             <LinksBox links={migrateGuides} />
           </div>
 
           <div>
             <Box
-              icon={IntegrationIcon}
+              icon={UniversalProfileGuidesIcon}
               link="./learn/universal-profile/overview"
               title="Universal Profiles"
-              className="universal-profiles"
-              content="Discover Universal Profiles and new world of possibilities"
-              maxImageWidth="200px"
+              content="Discover the new mart account social by default and its features."
             />
             <LinksBox links={universalProfileGuides} />
           </div>
 
           <div>
             <Box
-              icon={IntegrationIcon}
+              icon={DigitalAssetGuidesIcon}
               link="./learn/digital-assets/getting-started"
               title="Digital Assets"
-              className="networks"
-              content="Build token and NFTs with flexible metadata and new features."
-              maxImageWidth="200px"
+              content="Build Tokens and NFTs with flexible metadata, transfer notifications, and more!"
             />
             <LinksBox links={digitalAssetsGuides} />
           </div>
@@ -119,52 +115,64 @@ function Index() {
       </div>
 
       {/* margin: 0 to remove the default left-right margin for the background image to span full width */}
-      <div className={styles.container} style={{ margin: 0 }}>
-        <div className={styles.containerLukso}>
-          <div className={styles.subheader}>
-            <Link to="/learn/overview">
-              <h1>What is LUKSO?</h1>
-            </Link>
+      <div className={clsx(styles.container, styles.containerLukso)}>
+        <div className={styles.containerBoxes2Columns}>
+          <div className={styles.headerHero}>
+            <h1>What is LUKSO?</h1>
             <p>
               An EVM-based Blockchain built for social, culture and creators.
             </p>
             <p>Providing the foundation to unify our digital lives.</p>
+            <div style={{ marginTop: '2rem' }}>
+              <CallToActionButton
+                icon="material-symbols:help"
+                text="Learn more"
+                link="/learn/overview"
+                color="white"
+              />
+            </div>
           </div>
 
-          <div className={styles.subheader}>
-            <Link to="/standards/introduction">
-              <h1>What are the LUKSO LSP Standards?</h1>
-            </Link>
+          <div className={styles.headerHero}>
+            <h1>What are the LUKSO LSP Standards?</h1>
             <p>
               A holistic set of new blockchain standards that are EVM
               compatible.
             </p>
             <p>To create protocols and applications social and user-centric.</p>
+            <div style={{ marginTop: '2rem' }}>
+              <CallToActionButton
+                icon="material-symbols:brick"
+                text="Learn more"
+                link="/standards/introduction"
+                color="white"
+              />
+            </div>
           </div>
         </div>
       </div>
 
       <div className={styles.container}>
-        <div className={styles.containerBoxes}>
-          <div className={styles.guideBox}>
+        <div className={styles.containerBoxes2Columns}>
+          <div>
             <Box
               icon={NetworksIcon}
               link="./networks/mainnet/parameters/"
               title="LUKSO Network"
-              className="networks"
-              content="Running a node or integrate the LUKSO network in your dApp."
-              maxImageWidth="200px"
+              content="Learn how to run a node or integrate the LUKSO network in your dApp."
+              maxImageWidth="300px"
+              position="center"
             />
             <LinkCards links={networkLinks} />
           </div>
-          <div className={styles.guideBox}>
+          <div>
             <Box
               icon={ToolsIcon}
               link="./tools"
               title="Tools"
-              className="tools"
-              content="To help you interact with Universal Profiles and Digital Assets."
-              maxImageWidth="200px"
+              content="APIs and libraries to interact with Universal Profiles and Digital Assets."
+              maxImageWidth="300px"
+              position="center"
             />
             <LinkCards links={toolsLinks} />
           </div>

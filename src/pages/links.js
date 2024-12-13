@@ -1,9 +1,24 @@
+// integration partner images
 import LogoDappNode from '../../static/img/tools/dappnode_logo.png';
 import LogoEnvio from '../../static/img/tools/envio_logo.png';
 import LogoAPI3 from '../../static/img/tools/api3-logo.png';
 import LogoDIA from '../../static/img/tools/dia_logo.png';
 import LogoTransak from '../../static/img/tools/transak_logo.png';
 import LogoRamp from '../../static/img/tools/ramp-network-logo.png';
+
+// dApps images
+import UniversalEverythingLogo from '@site/static/img/dapps/universaleverything-io-logo.png';
+import UniversalSwapsLogo from '@site/static/img/dapps/universalswaps-logo.png';
+import UniversalPageLogo from '@site/static/img/dapps/universalpage-logo.png';
+import StakingverseLogo from '@site/static/img/dapps/stakingverse-logo.png';
+import CommongroundLogo from '@site/static/img/dapps/common-ground-logo.png';
+import DefolioLogo from '@site/static/img/dapps/defolio-logo.png';
+import UFeedLogo from '@site/static/img/dapps/ufeed-logo.png';
+import UpTurnLogo from '@site/static/img/dapps/upturn-logo-scaled.png';
+import LSP8AppLogo from '@site/static/img/dapps/lsp8app-logo.png';
+import FamilyLyxLogo from '@site/static/img/dapps/family-lyx-logo.png';
+import TxCityLogo from '@site/static/img/dapps/txcity-io-logo.webp';
+import TxsAppLogo from '@site/static/img/dapps/txs-app-logo.png';
 
 export const migrateGuides = [
   {
@@ -80,7 +95,7 @@ export const networkLinks = [
     link: '/networks/mainnet/parameters#add-lukso-to-wallets',
     showAsCode: false,
     description:
-      'Connect to LUKSO Mainnet or Testnet in one click or see the available RPC endpoints.',
+      'One-click connect to LUKSO Mainnet or Testnet (see the available RPC endpoints).',
   },
   {
     title: 'Block Explorer',
@@ -94,49 +109,49 @@ export const networkLinks = [
     link: '/networks/mainnet/running-a-node#starting-a-node',
     showAsCode: false,
     description:
-      'Be part in making the LUKSO Network secure and decentralized by running your own node.',
+      'Run your own node to make the LUKSO Network secure and decentralized.',
   },
   {
     title: 'Become a Validator',
     link: '/networks/mainnet/become-a-validator',
     showAsCode: false,
     description:
-      'Run your own validator node and start earning rewards! (available with DappNode!)',
+      'Run your own validator node and start earning rewards. DappNode available!',
   },
 ];
 
 export const toolsLinks = [
   {
     title: 'Relayer API',
-    link: '',
+    link: '/tools',
     showAsCode: false,
     description:
-      'Create Universal Profiles easily and get your users to benefit from gas less transactions.',
+      'Create Universal Profiles easily and get users to benefit from gas less transactions.',
   },
   {
     title: 'Smart Contracts Packages',
-    link: '',
+    link: '/tools',
     showAsCode: false,
     description:
       'The smart contract implementation of the LSP standards in Solidity.',
   },
   {
     title: 'erc725.js',
-    link: '',
+    link: '/tools',
     showAsCode: true,
     description:
       'Set and retrieve data easily in Universal Profile and Digital Assets.',
   },
   {
     title: 'eip191-signer.js',
-    link: '',
+    link: '/tools',
     showAsCode: true,
     description:
       'Sign data easily to submit gas-less transactions via execute relay calls.',
   },
   {
     title: 'lsp-utils.js',
-    link: '',
+    link: '/tools',
     showAsCode: true,
     description:
       'Easy to use helper functions to interact with smart contracts powered by the LSPs.',
@@ -182,20 +197,6 @@ export const integrationPartners = [
     backgroundColor: 'white',
   },
 ];
-
-// images
-import UniversalEverythingLogo from '@site/static/img/dapps/universaleverything-io-logo.png';
-import UniversalSwapsLogo from '@site/static/img/dapps/universalswaps-logo.png';
-import UniversalPageLogo from '@site/static/img/dapps/universalpage-logo.png';
-import StakingverseLogo from '@site/static/img/dapps/stakingverse-logo.png';
-import CommongroundLogo from '@site/static/img/dapps/common-ground-logo.png';
-import DefolioLogo from '@site/static/img/dapps/defolio-logo.png';
-import UFeedLogo from '@site/static/img/dapps/ufeed-logo.png';
-import UpTurnLogo from '@site/static/img/dapps/upturn-logo-scaled.png';
-import LSP8AppLogo from '@site/static/img/dapps/lsp8app-logo.png';
-import FamilyLyxLogo from '@site/static/img/dapps/family-lyx-logo.png';
-import TxCityLogo from '@site/static/img/dapps/txcity-io-logo.webp';
-import TxsAppLogo from '@site/static/img/dapps/txs-app-logo.png';
 
 // image placeholder (uncomment to use)
 // import ImagePlaceholder from '@site/static/img/image-placeholder.jpeg';

@@ -7,6 +7,7 @@ type BoxProps = {
   link: string;
   title: string;
   content: string;
+  position?: 'right' | 'center';
   maxImageWidth?: string;
 };
 
@@ -15,24 +16,42 @@ const Box: React.FC<BoxProps> = ({
   link,
   title,
   content,
-  maxImageWidth,
-}) => (
-  <div
-    style={{
-      overflow: 'auto',
-      textAlign: 'left',
-      display: 'flex',
-      alignItems: 'center',
-    }}
-  >
-    <Link to={link}>
-      <img src={icon} style={{ maxWidth: maxImageWidth }} />
-    </Link>
-    <div style={{ justifyContent: 'center' }}>
+  position = 'right',
+  maxImageWidth = '200px',
+}) => {
+  const alignment = position == 'center' ? 'center' : 'left';
+  const leftPadding = position == 'center' ? '0' : '2.5rem';
+
+  const Image: React.FC = () => (
+    <div className={styles.image} style={{ alignItems: alignment }}>
+      <Link to={link}>
+        <img src={icon} style={{ maxWidth: maxImageWidth }} />
+      </Link>
+    </div>
+  );
+
+  const Text: React.FC = () => (
+    <div style={{ textAlign: alignment, paddingLeft: leftPadding }}>
       <h2 className={styles.title}>{title}</h2>
       <p>{content}</p>
     </div>
-  </div>
-);
+  );
+
+  return (
+    <div>
+      {position == 'center' ? (
+        <div>
+          <Image />
+          <Text />
+        </div>
+      ) : (
+        <div className={styles.rightBox}>
+          <Text />
+          <Image />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Box;

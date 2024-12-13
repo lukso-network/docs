@@ -4,37 +4,36 @@ const accordionData = [
     icon: 'material-symbols:counter-1',
     details: [
       {
-        question: 'Why is there new standards on LUKSO?',
+        question: 'Why are there new standards on LUKSO?',
         answer:
-          'LUKSO created a new set of Blockchain standard to solve the existing issues with other standards like ERCs. Such issues include security around tokens / NFTs approvals, limited metadata, lack of interoperability due to various token standards implementing different functions for notifications (or none), or the requirements for users to have to pay for gas. The LSP standards provide a better approach to these issues, such as a `universalReceiver` function (from the LSP1 Universal Receiver standard) to notify and react on these notifications, a flexible and extended metadata structure using ERC725Y, a more secure to manage permissions and approvals using the LSP6 Key Manager, and gas-less transactions to onboard users easily without requiring them to learn upfront the concept of gas and require them to acquire native tokens upfront.',
+          'LUKSO introduced new blockchain standards to address issues with existing ERCs, such as token/NFT approval security, limited metadata, lack of interoperability (ERC677, ERC777 and ERC1155 use each different callback hook functions to notify on token transfer), and requiring users to acquire native token upfront to pay for transaction fess (gas). LSP standards include features like universalReceiver (LSP1) for notifications, flexible metadata (ERC725Y), secure permissions management (LSP6 Key Manager), and gasless transactions (LSP25 Execute Relay Call) for easier user onboarding.',
         link: '/learn/overview#why-new-standards',
         linkLabel: 'Learn more',
       },
       {
         question: 'Why is LUKSO a Layer 1 and not a Layer 2?',
         answer:
-          'LUKSO was created as a Layer 1 and not a Layer 2 to start as its own ecosystem. This allows it to have its own community and set of applications from the start, compared to building new standards and applications on Ethereum where user base and different applications standards are used and congested. However, since LUKSO is an EVM-based network (the same tech stack as Ethereum), any tools and technology from Ethereum can be used to build on LUKSO as well. This allows developers to easily build with tools that they know and port their applications from Ethereum to LUKSO, and vice versa.',
+          "LUKSO was created as a Layer 1 to establish its own ecosystem, community, and applications, rather than building on Ethereum's congested standards. Being an EVM-based blockchain (same technology as Ethereum, unmodified), LUKSO supports any Ethereum tools, enabling developers to easily build and port applications between the two networks.",
         link: '/learn/overview',
         linkLabel: 'Learn more',
       },
       {
         question:
-          'What are the advantages offered by the LUKSO LSP Standards compared to the ERC Standards?',
+          'What are the advantages of the LUKSO LSP compared to the ERC Standards?',
         answer:
-          'The LSP standards offer various advantages for various use cases. This includes storing various form of data on Universal Profiles (e.g: user settings from a dApp, list of received assets, list of creators of a digital asset, followers, etc), sending gas-less transactions, fine-grained permissions management, in a secure way, and building applications that are more user centric and offer a better user experience in web3.',
+          'The LSP standards offer various advantages for various use cases. This includes storing various form of data on Universal Profiles (e.g: user settings from a dApp, list of received assets, list of creators of a digital asset, followers, etc), sending gas-less transactions, fine-grained permissions management. These allow to build user-centric web3 applications that offer a better experience to users.',
         link: '/learn/benefits-lukso-standards',
         linkLabel: 'Learn more',
       },
       {
-        question:
-          'What are the key differences between the LUKSO LSP Standards and the Ethereum ERC Standards?',
+        question: 'How do LUKSO LSP and Ethereum ERC Standards differ?',
         answer:
-          'The main differences between the LUKSO LSP Standards and the Ethereum ERC Standards are the following: \n 1. LUKSO LSP Standards are designed to be more secure and flexible. \n 2. LUKSO LSP Standards are designed to be more interoperable. \n 3. LUKSO LSP Standards are designed to be more developer friendly. \n 4. LUKSO LSP Standards are designed to be able to build applications that are more user centric, and offer a better user experience getting started with web3.',
+          'Compared to the Ethereum ERC Standards, the LUKSO LSP Standards are (1) more secure, (2) more flexible and interoperable, (3) more developer friendly, (4) focused on creating user-centric applications with an improved user experience for getting started interacting with web3.',
         link: '/learn/benefits-lukso-standards',
         linkLabel: 'Learn more',
       },
       {
-        question: 'What can be built using the LUKSO Standards?',
+        question: 'What can be built using the LUKSO LSP Standards?',
         answer:
           'Any form of dApps and protocols can be built using the LUKSO standards! From governance and DAO toolings to Tokens and complex NFT collections as well as recovery services.',
       },
@@ -47,47 +46,47 @@ const accordionData = [
       {
         question: 'How does a profile differ from a wallet?',
         answer:
-          'A Universal Profile has all the features of a traditional web3 wallet like Metamask, except that it is a smart account (powered by a smart contract). Overall, a Universal Profile (and the Universal Profile Browser Extension) is more user-friendly and more oriented for non-technical users, compared to wallet users who need to be familiar with safeguarding private keys, having to pay for gas, verifying opaque transactions in the wallet before confirming themIn addition, it offers more features than a smart account, such as fine-grained permissioning to allow you to control your profile from multiple devices',
+          'A Universal Profile is a smart account with all the features of a traditional wallet like Metamask, but more user-friendly and designed for non-technical users. It eliminates the need for managing private keys, paying gas, or verifying opaque transactions before confirming them. It also offers advanced features like fine-grained permissions for multi-device control.',
         link: '/learn/benefits-lukso-standards#universal-profiles-vs-smart-wallets',
         linkLabel: 'Learn more',
       },
       {
         question: 'How do I connect my dApp to a profile?',
         answer:
-          'The same way as you connect any wallet to a dApp. There is no difference. You can use any of the methods that you would use with other wallets (EIP-6963 Injected Provider Discovery, injected provider or Multi provider). See our dedicated page for a tutorial on how to connect your UP to your dApp and use Sign-in with Ethereum.',
+          'Like any other web3 wallet using methods like EIP-6963, injected provider or multi-providers). Check our tutorial for details on how to connect a UP to a dApp or using Sign-in with Ethereum.',
         link: '/learn/universal-profile/connect-profile/connect-up',
         linkLabel: 'see Tutorial',
       },
       {
         question: 'What kind of data can be stored on my profile?',
         answer:
-          "A Universal Profile can store (virtually) an unlimited amount of data. The data can be anything of any type. Examples of data that can be stored in a UP includes: list of issued and received assets, profile details (biography, profile and cover picture, website and social links), followers, permissions and dApps settings, your favourite musics, the list of community you are engaging with, etc... It's up to your imagination to invent what you want to store and fetch from your Universal Profile.",
+          'A Universal Profile can store unlimited data of any type, such as assets, profile details (biography, profile and cover picture, website and social links), followers, permissions, dApp settings, favorite music, communities and more. You can customize it to store and retrieve anything you could potentially imagine.',
       },
       {
         question: 'How do I read the data from a profile?',
         answer:
-          'There are various ways to read and fetch data from a Universal Profile. At the core level, it is done by calling the `getData` function on the Universal Profile smart contract with any web3 library, passing the data key you want to read information from. However, this is a very low-level and technical way to do so, and we provide various Javascript library such as _erc725.js_ or _lsp-utils.js_ which make it easier for you to fetch any data from a Universal Profile.',
+          'You can fetch data from a Universal Profile using (a) the getData function on the Universal Profile smart contract and decode the value, or (b) the easier-to-use libraries like erc725.js or lsp-utils.js which will do all the decoding for you.',
         link: '/learn/universal-profile/metadata/read-profile-data',
-        linkLabel: 'Learn more',
+        linkLabel: 'View guide',
       },
       {
         question: 'How do I change permissions on the Universal Profile?',
         answer:
-          'You can change permissions from a Universal Profile either from the UP Browser extension, or from a dApp. See our following guide to learn how to set permissions for any address.',
+          'Either via (a) the UP Browser extension, (b) a dApp with this functionality, or (c) programmatically via a script (see our guide below).',
         link: '/learn/universal-profile/key-manager/grant-permissions',
-        linkLabel: 'Learn more',
+        linkLabel: 'View guide',
       },
       {
         question: 'How do I send a gasless transaction?',
         answer:
-          "The Universal Profile browser extension automatically uses the relayer when a transaction screen appears. Alternatively, you can use our relayer API. See our documentation for more infos and guides. Otherwise, if you want an address to submit a transaction on behalf of another address and pay for the gas, you can follow our guide 'How to send relay transactions' to prepare the transaction data, sign it and dispatch it using any private key that holds funds to pay for the gas.",
+          'If you created your UP via universaleverything.io, the UP in your browser extension automatically allows you to send gas-free transactions. Otherwise, see our relayer API documentation to learn how to send transactions to our relayer who will dispatch the transaction and pay for the gas.',
         link: '/learn/universal-profile/key-manager/execute-relay-transactions',
-        linkLabel: 'Learn more',
+        linkLabel: 'View guide',
       },
       {
         question: 'How can I deploy a Universal Profile?',
         answer:
-          'There are 3 ways to deploy a Universal Profile (from the easiest to the hardest way): \n 1. create a Universal Profile using the UP Browser Extension \n 2. Use our relayer API to deploy a Universal Profile for your users and get them to benefit from gas-less transactions (up to a certain monthly quota) . \n 3. Using the LSP23 Universal Factory by interacting with the smart contract.',
+          '3 ways: (1) via the UP Browser Extension (easy 🌶️), (2) via the relayer API (intermediate 🌶️🌶️), (3) or via the LSP23 Universal Factory (advanced 🌶️🌶️🌶️).',
         link: '/learn/getting-started#building-dapps-for-universal-profiles',
         linkLabel: 'Learn more',
       },
@@ -98,35 +97,36 @@ const accordionData = [
     icon: 'material-symbols:counter-1',
     details: [
       {
-        question: 'How do I transfer a token or NFT',
+        question: 'How do I transfer a token or NFT?',
         answer:
-          'Depending if you are a user or developer, you can transfer a token or NFT by: \n - For users: using any dApp that allow this functionality (such as universaleverything.io). \n 2. For developers: by creating a script in your dApp that calls the `transfer(...)` function on the Token or NFT contract. \n Note that transferring a token or NFT does not necessarily need to be done by a Universal Profile. Since LUKSO is fully EVM-compatible, any wallet connected to the LUKSO network can trigger a transaction.',
+          'Users can transfer tokens or NFTs using a dApp like universaleverything.io. For developers, call the `transfer` function on the token or  NFT contract. Note that since LUKSO is fully EVM-compatible, transferring tokens / NFTs can be done by any wallet connected to the LUKSO network, by interacting with the token contract. It does not necessarily need to be done by a Universal Profile.',
+        link: null,
       },
       {
-        question: 'How do I read metadata from a Token or NFT',
+        question: 'How do I read metadata from a Token or NFT?',
         answer:
-          'You can read the metadata of the Token or NFT collection by calling the `getData(bytes32)` function with the parameter `LSP4Metadata` data key. We recommend using erc725.js to do this easily.',
+          'Either by (1) using the `getData(bytes32)` function with the `LSP4Metadata` data key and decode the result, or (2) use the erc725.js for convenience (will do the decoding for you).',
         link: '/learn/digital-assets/metadata-management/read-asset-data',
-        linkLabel: 'Learn more',
+        linkLabel: 'View guide',
       },
       {
-        question: 'How can I edit the metadata of my token, after deployment?',
+        question: 'How can I edit the metadata of my token after deployment?',
         answer:
-          'You can edit the metadata of your token by calling the `setData(bytes32,bytes)` function with the parameters `LSP4Metadata` for the data key and the second parameter data value as the hex encoded `VerifiableURI` of the JSON metadata. Use our guide to learn how to edit the token metadata.',
+          'By calling the `setData(bytes32,bytes)` with `LSP4Metadata` as the data key and the JSON metadata as the hex-encoded value.',
         link: '/learn/digital-assets/metadata-management/edit-token-metadata',
-        linkLabel: 'Learn more',
+        linkLabel: 'View guide',
       },
       {
-        question: 'How does LSP7 token standard differ from ERC20',
+        question: 'How does LSP7 token standard differ from ERC20?',
         answer:
-          'LSP7 differ from ERC20 in multiple ways. First the token contract can hold any metadata thanks to its ERC725Y storage. Second, the token contract notifies the sender and recipient on transfer, mint and burn via the `universalReceiver(...)` callback function. Third, the function `transfer` function of LSP7 includes a boolean `force` parameter that only allow to transfer tokens to contracts that implement a `universalReceiver(...)` function, so to ensure that can handle receiving the token and therefore hold it and re-transfer it. Finally the transfer function signature of LSP7 is similar to LSP8, which makes it easier for developer to reason about when building applications that deal with tokens and NFTs (compared to ERC20 and ERC721 which have two different functions `transfer(...)` and `safeTransferFrom(...)`.',
+          'LSP7 (1) supports ERC725Y storage for unlimited metadata, (2) notifies sender and recipient on token transfers, (3) uses a `force` parameter for more secure transfers, and (4) has a `transfer(...)` function signature similar to LSP8 which makes it easier for developer to reason (instead of learning multiple transfer function based on different standards, like ERC20, 721, 1155, etc...).',
         link: '/learn/benefits-lukso-standards#lsp78-token-standards-vs-erc20721',
         linkLabel: 'Learn more',
       },
       {
-        question: 'How does LSP8 token standard differ from ERC721',
+        question: 'How does LSP8 token standard differ from ERC721?',
         answer:
-          'LSP8 differ from ERC721 in multiple ways. First the NFT collection contract can hold any metadata thanks to its ERC725Y storage. Second, the NFT contract notifies the sender and recipient on transfer, mint and burn via the `universalReceiver(...)` callback function. Third, the function `transfer` function of LSP8 includes a boolean `force` parameter that only allow to transfer tokens to contracts that implement a `universalReceiver(...)` function, so to ensure that can handle receiving the token and therefore hold it and re-transfer it. Finally the transfer function signature of LSP8 is similar to LSP7, which makes it easier for developer to reason about when building applications that deal with tokens and NFTs (compared to ERC721 and ERC20 which have two different functions `safeTransferFrom(...)` and `transfer(...)`.',
+          'LSP8 (1) supports ERC725Y storage for unlimited metadata, (2) notifies sender and recipient on NFT transfers, (3) uses a `force` parameter for more secure transfers, and (4) has a `transfer(...)` function signature similar to LSP7 which makes it easier for developer to reason (instead of learning multiple transfer function based on different standards, like ERC20, 721, 1155, etc...)',
         link: '/learn/benefits-lukso-standards#lsp78-token-standards-vs-erc20721',
         linkLabel: 'Learn more',
       },
@@ -134,7 +134,7 @@ const accordionData = [
         question:
           'What are the benefits of the LSP7 and LSP8 token standards over the ERC20 / ERC721 standards?',
         answer:
-          "There are many that the LSP7 and LSP8 standards offer compared to ERC20 and ERC721. This include the ability for the token contract to contain as many customizable information as wanted (called 'metadata'), notifying the sender and recipient on token transfer (via callback hook functions) as well as easier to reason interface and set of functions for developers.",
+          'LSP7 and LSP8 offer improved features such as (1) unlimited metadata to store any type of information in the token contract, (2) transfer notifications via callback hooks, and (3) a simpler interface for developers. It also includes additional benefits over ERC20/721. See our dedicated page.',
         link: '/learn/benefits-lukso-standards#lsp78-token-standards-vs-erc20721',
         linkLabel: 'Learn more',
       },

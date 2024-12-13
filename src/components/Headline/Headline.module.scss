@@ -1,15 +1,11 @@
 .headline {
-  min-height: 500px;
-  margin-bottom: -300px;
   text-align: center;
 
-  padding-top: 1.25rem;
-  padding-bottom: 1rem;
+  padding-top: 3.5rem;
 
   h1 {
     font-family: var(--ifm-heading-font-family);
     font-size: 66px;
-    line-height: 1.7;
   }
 
   @media (max-width: 960px) {
@@ -22,7 +18,7 @@
     background-size: cover;
 
     h1 {
-      font-size: 40px;
+      font-size: 36px;
     }
   }
 }

@@ -1,4 +1,4 @@
-.separatorWithTitle {
+.titleWithSeparator {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,5 +13,9 @@
   .title {
     margin-block-end: 0.335rem;
     font-weight: bold;
+
+    @media (max-width: 960px) {
+      font-size: 1.75rem;
+    }
   }
 }

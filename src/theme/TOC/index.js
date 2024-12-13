@@ -26,6 +26,8 @@ export default function TOC({ className, ...props }) {
           <p>
             Found an error in the docs?
             <br />
+            Thinking of a missing guide?
+            <br />
             Give us feedback →
           </p>
         </a>
