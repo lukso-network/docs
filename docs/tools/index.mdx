@@ -11,6 +11,10 @@ import styles from './tools.module.scss';
 
 import SolidityLogo from '@site/static/img/tools/solidity-logo.png';
 import FoundryLogo from '@site/static/img/tools/foundry-logo.png';
+import EnvioLogo from '@site/static/img/tools/envio_logo.png';
+import API3Logo from '@site/static/img/tools/api3-logo.png';
+import DIALogo from '@site/static/img/tools/dia_logo.png';
+import DappnodeLogo from '@site/static/img/tools/dappnode_logo.png';
 
 # Tools
 
@@ -178,6 +182,14 @@ Skeleton repository to create a transaction relayer service compliant with the [
 
 </ReferenceCard>
 
+<ReferenceCard name="🏭 Node Docker Factory" links={[ 
+  {label: 'Documentation', to: '/tools/docker-factory' },
+]}>
+
+Create docker compose file to connect to LUKSO network.
+
+</ReferenceCard>
+
 </div>
 
 <br />
@@ -267,36 +279,159 @@ Foundry repository template with pre-installed `@lukso/lsp-smart-contracts` pack
 
 <br />
 
-## Others
+## Explorers & Debuggers
 
 <div className={styles.referenceCardGrid}>
 
-<ReferenceCard name="🔍 Explorer & Debuggers" links={[ 
-  {label: 'Blockscout', to: 'https://explorer.lukso.network' },
-  {label: 'erc725-inspect', to: 'https://erc725-inspect.lukso.tech/' },
-  {label: 'txs.app', to: 'https://txs.app' },
+<ReferenceCard name="🔍 Blockscout" links={[ 
+  {label: 'Mainnet explorer', to: 'https://explorer.lukso.network' },
+  {label: 'Testnet explorer', to: 'https://explorer.execution.testnet.lukso.network' },
 ]}>
 
-Inspector tools available for developers to easily retrieve the list of metadata and permission from Universal Profile and digital assets, as well as decoding and visualizing transactions easily.
+Network explorer for the LUKSO networks.
 
 </ReferenceCard>
 
-<ReferenceCard name="🪢 Integrated Partners" links={[ 
-  {label: 'Envio', to: 'https://docs.envio.dev/blog/envio-data-indexing-supports-developers-building-on-lukso' },
-  {label: 'API3', to: 'https://market.api3.org/lukso' },
-  {label: 'DIA', to: 'https://docs.diadata.org/use-nexus-product/nexus/data-delivery-usage/integrated-blockchains/lukso-price-oracles' },
-  {label: 'DappNode', to: '/networks/mainnet/running-a-node#-with-dappnode' },
+<ReferenceCard name="🔍 ERC725 Inspect" links={[ 
+  {label: 'View inspector', to: 'https://erc725-inspect.lukso.tech/' },
 ]}>
 
-Discover the third-party services and tools that are integrated with LUKSO to provide additional functionalities and services.
+Inspector tool for developers to easily retrieve the list of metadata and permission from Universal Profile and Digital Assets, as well as encoding and decoding data.
 
 </ReferenceCard>
 
-<ReferenceCard name="🏭 Node Docker Factory" links={[ 
-  {label: 'Documentation', to: '/tools/docker-factory' },
+<ReferenceCard name="🔍 Txs.app" links={[ 
+  {label: 'View explorer', to: 'https://txs.app' },
 ]}>
 
-Discover the third-party services and tools that are integrated with LUKSO to provide additional functionalities and services.
+Visualize transactions happening live in the LUKSO network decoded in a human readable manner.
+
+</ReferenceCard>
+
+</div>
+
+## Integrated partners
+
+:::caution
+
+Please note that the format of the data indexed by Envio might change in the future. This is also currently a free feature that might become a paid service in the future.
+
+:::
+
+Third-party services and tools that are integrated with LUKSO to provide additional functionalities and services.
+
+<div className={styles.referenceCardGrid}>
+
+<ReferenceCard name="Envio" links={[ 
+  {label: 'Docs', to: 'https://docs.envio.dev/blog/envio-data-indexing-supports-developers-building-on-lukso' },
+  {label: 'Playground', to: 'https://envio-testing.mainnet.lukso.dev' },
+]}>
+
+<a
+  href="https://docs.envio.dev/blog/envio-data-indexing-supports-developers-building-on-lukso"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ 
+      display: 'flex',
+      justifyContent: 'center'
+   }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem'
+    }}
+    src={EnvioLogo}
+
+/>
+
+</a>
+
+Indexer with playground to query data for Universal Profiles and Digital Assets in graphql.
+
+</ReferenceCard>
+
+<ReferenceCard name="API3" links={[ 
+  {label: 'Data feeds', to: 'https://market.api3.org/lukso' },
+]}>
+
+<a
+  href="https://market.api3.org/lukso"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ 
+      display: 'flex',
+      justifyContent: 'center'
+   }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem'
+    }}
+    src={API3Logo}
+
+/>
+
+</a>
+
+Oracle with different data feeds available for LUKSO.
+
+</ReferenceCard>
+
+<ReferenceCard name="DIA" links={[ 
+  {label: 'Data feeds', to: 'https://docs.diadata.org/use-nexus-product/nexus/data-delivery-usage/integrated-blockchains/lukso-price-oracles' },
+]}>
+
+<a
+  href="https://docs.diadata.org/use-nexus-product/nexus/data-delivery-usage/integrated-blockchains/lukso-price-oracles"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ 
+      display: 'flex',
+      justifyContent: 'center'
+   }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem'
+    }}
+    src={DIALogo}
+
+/>
+
+</a>
+
+Oracle with different data feeds available for LUKSO.
+
+</ReferenceCard>
+
+<ReferenceCard name="Dappnode" links={[ 
+  {label: 'Documentation', to: '/networks/mainnet/running-a-node#-with-dappnode' },
+]}>
+
+<a
+  href="/networks/mainnet/running-a-node#-with-dappnode"
+  target="_self"
+  rel="noopener noreferrer"
+  style={{ 
+      display: 'flex',
+      justifyContent: 'center'
+   }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem'
+    }}
+    src={DappnodeLogo}
+
+/>
+
+</a>
+
+Start running your own validator to stake and earn rewards.
 
 </ReferenceCard>
 

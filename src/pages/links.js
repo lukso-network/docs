@@ -123,38 +123,38 @@ export const networkLinks = [
 export const toolsLinks = [
   {
     title: 'Relayer API',
-    link: '/tools',
+    link: '/tools/apis/relayer-api',
     showAsCode: false,
     description:
       'Create Universal Profiles easily and get users to benefit from gas less transactions.',
   },
   {
     title: 'Smart Contracts Packages',
-    link: '/tools',
+    link: '/contracts',
     showAsCode: false,
     description:
       'The smart contract implementation of the LSP standards in Solidity.',
   },
   {
     title: 'erc725.js',
-    link: '/tools',
+    link: '/tools/dapps/erc725js/getting-started',
     showAsCode: true,
     description:
       'Set and retrieve data easily in Universal Profile and Digital Assets.',
   },
   {
-    title: 'eip191-signer.js',
-    link: '/tools',
-    showAsCode: true,
-    description:
-      'Sign data easily to submit gas-less transactions via execute relay calls.',
-  },
-  {
     title: 'lsp-utils.js',
-    link: '/tools',
+    link: '/tools/dapps/lsp-utils/getting-started',
     showAsCode: true,
     description:
       'Easy to use helper functions to interact with smart contracts powered by the LSPs.',
+  },
+  {
+    title: 'eip191-signer.js',
+    link: '/tools/dapps/eip191-signerjs/getting-started',
+    showAsCode: true,
+    description:
+      'Sign data easily to submit gas-less transactions via execute relay calls.',
   },
 ];
 
