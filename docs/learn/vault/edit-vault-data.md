@@ -363,7 +363,7 @@ const updateVaultURD = async (vaultURDAddress) => {
     });
 };
 
-// update the curent Vault's URD
+// update the current Vault's URD
 await updateVaultURD(vaultURDAddress);
 ```
 
@@ -395,7 +395,7 @@ const updateVaultURD = async (vaultURDAddress) => {
   );
 };
 
-// update the curent Vault's URD
+// update the current Vault's URD
 await updateVaultURD(vaultURDAddress);
 ```
 
@@ -477,7 +477,7 @@ const updateVaultURD = async (vaultURDAddress) => {
 
 // deploy a new Vault URD and retrieve its address
 const vaultURDAddress = await deployVaultURD();
-// update the curent Vault's URD
+// update the current Vault's URD
 await updateVaultURD(vaultURDAddress);
 ```
 
@@ -543,7 +543,7 @@ const updateVaultURD = async (vaultURDAddress) => {
 
 // deploy a new Vault URD and retrieve its address
 const vaultURDAddress = await deployVaultURD();
-// update the curent Vault's URD
+// update the current Vault's URD
 await updateVaultURD(vaultURDAddress);
 ```
 

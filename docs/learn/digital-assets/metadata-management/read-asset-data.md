@@ -67,7 +67,7 @@ Optionally, you can also find a full list of interface IDs on the [Contracts > I
 
 :::
 
-First, we need to check if the contract is a digital asset, as either an LSP7 or an LSP8 smart contract. To do so, we will do the same way as shown in the [**Interface Detection**](../../standard-detection.md#interface-detection) guide: call the `supportsInterface(bytes4)` function in te smart contract, checking for various interface IDs.
+First, we need to check if the contract is a digital asset, as either an LSP7 or an LSP8 smart contract. To do so, we will do the same way as shown in the [**Interface Detection**](../../standard-detection.md#interface-detection) guide: call the `supportsInterface(bytes4)` function in the smart contract, checking for various interface IDs.
 
 <Tabs groupId="web3-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}} default>
@@ -384,6 +384,6 @@ Based on the [token type](#detect-the-token-type), the information of the [LSP4 
 
 :::tip Token ID Entries
 
-- If your asset is a Token (`tokenType = 0`), individual metadata **cant be set**, due to the lack of token IDs.
+- If your asset is a Token (`tokenType = 0`), individual metadata **can't be set**, due to the lack of token IDs.
 - If your asset is an NFT (`tokenType = 1`), individual metadata **may be set in addition** to the global token information.
 - If your asset is a Collection (`tokenType = 2`), the token ID-specific medatada is **mandatory**.

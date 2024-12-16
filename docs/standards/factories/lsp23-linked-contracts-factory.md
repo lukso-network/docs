@@ -18,7 +18,7 @@ LSP 23 simplifies the deployment of interdependent smart contracts by providing 
 
 Deploying smart contracts that are interdependent can be a complex process. Often, two or more contracts need each other's addresses at deployment, creating a circular dependency that can be challenging to resolve.
 
-![Circular Depedency](/img/standards/lsp23/circular-dependency.jpeg)
+![Circular Dependency](/img/standards/lsp23/circular-dependency.jpeg)
 
 The LSP23 Linked Contracts Factory addresses this issue by providing a unified interface for deploying linked contracts with an optional post-deployment execution. This standard simplifies the deployment of complex contract systems, making it easier for developers to deploy interdependent contracts without the need for manual intervention.
 

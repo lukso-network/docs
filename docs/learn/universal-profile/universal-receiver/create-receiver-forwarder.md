@@ -31,7 +31,7 @@ This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contra
 
 :::
 
-In order to follow this guide, you will need the followings:
+In order to follow this guide, you will need the following:
 
 1. Download and install the [UP Browser extension](/install-up-browser-extension).
 2. Fund the main EOA controller of your 🆙 (See **[Step 1](#step-1---enable-your-controller-to-add-a-universal-receiver) bullet point 3** to retrieve its address) using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
@@ -210,7 +210,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
             return "Token not in allowlist";
         }
 
-        // extract data (we only need the amount that was transfered / minted)
+        // extract data (we only need the amount that was transferred / minted)
         (, , , uint256 amount, ) = abi.decode(
             data,
             (address, address, address, uint256, bytes)
@@ -395,7 +395,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
             return "Token not in allowlist";
         }
 
-        // extract data (we only need the amount that was transfered / minted)
+        // extract data (we only need the amount that was transferred / minted)
         (, , , uint256 amount, ) = abi.decode(
             data,
             (address, address, address, uint256, bytes)
@@ -691,7 +691,7 @@ console.log('✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡
 
 Now that all the pieces are connected, we can try it out!
 
-The expected behaviour is that **everytime the UP on which the custom LSP1 Forwarder contract has been set receives an allowed token (either through `transfer` or `mint`), it will automatically send a percentage to the specified recipient.**
+The expected behaviour is that **every time the UP on which the custom LSP1 Forwarder contract has been set receives an allowed token (either through `transfer` or `mint`), it will automatically send a percentage to the specified recipient.**
 
 Here are the test data:
 

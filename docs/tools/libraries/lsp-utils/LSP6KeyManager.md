@@ -27,7 +27,7 @@ v0.0.1
 
 **`Throws`**
 
-When teh bytes value of either `startingTimestamp` or `endingTimestamp` exceeds 16 bytes.
+When the bytes value of either `startingTimestamp` or `endingTimestamp` exceeds 16 bytes.
 
 **`See`**
 
@@ -169,7 +169,7 @@ Decode a hex value, containing a `BitArray` of permissions. The `AddressPermissi
 | Name                      | Type                                                                 | Description                                                                                                                                                                 |
 | :------------------------ | :------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `permissions`             | `BytesLike`                                                          | A hex value, containing a BitArray of permissions.                                                                                                                          |
-| `decodedPermissionsType?` | `"bigint"` \| `"boolean"` \| `"BytesLike"` \| `"LSP6PermissionName"` | Optional param, defaults to `LSP6PermissionName`. Can be used to specfiy the type of the return array. Options: - `BytesLike` - `bigint` - `boolean` - `LSP6PermissionName` |
+| `decodedPermissionsType?` | `"bigint"` \| `"boolean"` \| `"BytesLike"` \| `"LSP6PermissionName"` | Optional param, defaults to `LSP6PermissionName`. Can be used to specify the type of the return array. Options: - `BytesLike` - `bigint` - `boolean` - `LSP6PermissionName` |
 
 #### Returns
 
@@ -287,7 +287,7 @@ encodeAllowedCalls(
 
 ▸ **encodeAllowedERC725YDataKeys**(`dataKeys`): `string`
 
-Enocde a list of data keys as `{ "valueType": "bytes[CompactBytesArray]" }`. The result can be user for `AddressPermissions:AllowedERC725YDataKeys:<address>`
+Encode a list of data keys as `{ "valueType": "bytes[CompactBytesArray]" }`. The result can be user for `AddressPermissions:AllowedERC725YDataKeys:<address>`
 
 #### Parameters
 

@@ -58,7 +58,7 @@ By introducing a schema, we can represent contract storage in the same way acros
 
 LSP2 introduces new ways to encode data, depending on its type. From a single entry to multiple entries (like arrays or maps).
 
-A data key in the contract storage can be defined as a JSON object with properties that describe the key. The schema includes informations about the data key itself, as well as its value to explain what this data represents.
+A data key in the contract storage can be defined as a JSON object with properties that describe the key. The schema includes information about the data key itself, as well as its value to explain what this data represents.
 
 - the data `key` itself: the `bytes32` hex value used when calling [`setData`](../../contracts/contracts/ERC725/ERC725.md#setdata) or [`setDataBatch`](../../contracts/contracts/ERC725/ERC725.md#setdatabatch) on the smart contract.
 - the data key `name`: human readable version

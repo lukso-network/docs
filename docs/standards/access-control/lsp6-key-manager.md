@@ -63,7 +63,7 @@ While the Key Manager allows for a very fine-grained control over the Universal 
 
 **Good practices:**
 
-1. Split the permissions over the Universal Profile accross different devices, hardware wallets or a combination of both.
+1. Split the permissions over the Universal Profile across different devices, hardware wallets or a combination of both.
 2. Make sure to double or triple check when granting permissions to 3rd parties (other Universal Profiles, DApps, etc.).
 
 :::
@@ -93,7 +93,7 @@ The `ADDCONTROLLER` permission enables to grant permissions to new addresses tha
 
 The `ADDCONTROLLER` permission is needed to:
 
-- Give a new address some permission(s) by setting its permissions under `AddressPermissions:Permissions:<controller-address>` (this is also refered to _"adding a new controller"_)
+- Give a new address some permission(s) by setting its permissions under `AddressPermissions:Permissions:<controller-address>` (this is also referred to _"adding a new controller"_)
 - Add a new controller address in the list of `AddressPermissions[index]` at a specific `index`.
 - Increase the length of the `AddressPermissions[]` Array length (to describe that a new controller has been added).
 
@@ -775,7 +775,7 @@ A CompactBytesArray for these 3 different ERC725Y Data Keys would look like this
 }
 ```
 
-Below is an example use case. An ERC725Account can allow some applications to add/edit informations on its storage via `setData(...)`. The account can restrict such Dapps and protocols to edit the data keys that are only relevant to the logic of their applications.
+Below is an example use case. An ERC725Account can allow some applications to add/edit information on its storage via `setData(...)`. The account can restrict such Dapps and protocols to edit the data keys that are only relevant to the logic of their applications.
 
 ![LSP6 Allowed ERC725YDataKeys overview](/img/standards/lsp6/lsp6-allowed-erc725ydatakeys-overview.jpeg)
 

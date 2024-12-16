@@ -12,10 +12,10 @@ import TabItem from '@theme/TabItem';
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('../img/transfer-tokens-and-nfts.png').default}
-    alt="Transfering 1,000 CHILL tokens or a Chillwhale NFT between two Universal Profiles"
+    alt="Transferring 1,000 CHILL tokens or a Chillwhale NFT between two Universal Profiles"
   />
 <br/>
-<i>Transfering 1,000 CHILL tokens between two Universal Profiles.</i>
+<i>Transferring 1,000 CHILL tokens between two Universal Profiles.</i>
 <br /><br />
 </div>
 
@@ -66,7 +66,7 @@ Call the [LSP7 `transfer(address,address,uint256,bool,bytes)`](../../../contract
 
 > Since most tokens have 18 [`decimals()`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals), make sure to specify the `amount` with 18 decimals place. For instance, if you want to transfer 8 tokens the `amount` parameter will be: `8_000_000_000_000_000_000` ✅, not `8` ❌.
 
-> Otherwise, the transfer might have occured but you might not see the balance of the recipient updated, since you transferred only a tiny small amount (`8` for a token with 18 decimals is basically 1 / 1e18). To do so easily, use one of number utility function from _ethers.js_ or _web3.js_.
+> Otherwise, the transfer might have occurred but you might not see the balance of the recipient updated, since you transferred only a tiny small amount (`8` for a token with 18 decimals is basically 1 / 1e18). To do so easily, use one of number utility function from _ethers.js_ or _web3.js_.
 
 <Tabs groupId="web3-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>

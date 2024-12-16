@@ -21,7 +21,7 @@ LSP16 introduces a universal factory for deploying smart contracts using the CRE
 
 ## Introduction
 
-The use of different blockchain networks has brought with it a unique challenge: ensuring that an entity or user controlling an address on one chain can have the same control on another chain. For Externally Owned Accounts, this is known, as possesing the private key of the address means control over it regardless of the chain.
+The use of different blockchain networks has brought with it a unique challenge: ensuring that an entity or user controlling an address on one chain can have the same control on another chain. For Externally Owned Accounts, this is known, as possessing the private key of the address means control over it regardless of the chain.
 
 ![EOA Control](/img/standards/lsp16/EOA-Control.jpeg)
 
@@ -35,7 +35,7 @@ Therefore, it's preferable to opt for a situation that can allow for the creatio
 
 ## What does this standard represent?
 
-This standard defines a contract called **Universal Factory** which provide a way to deploy the same contracts at the same addresses accross different chains given few requirements.
+This standard defines a contract called **Universal Factory** which provide a way to deploy the same contracts at the same addresses across different chains given few requirements.
 
 ![UniversalFactory](/img/standards/lsp16/UniversalFactory.jpeg)
 
@@ -57,7 +57,7 @@ For initializable contracts, the initialization data is included into the salt t
 
 Additionally, it ensures that the same bytecode and salt will create the same contract address on different chains, given that the UniversalFactory contract was deployed on the same address on each chain.
 
-For a contract to be replicated at the same address accross different chain, it should be deployed using the same:
+For a contract to be replicated at the same address across different chain, it should be deployed using the same:
 
 - Bytecode
 - Salt

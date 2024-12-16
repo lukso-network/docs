@@ -14,7 +14,7 @@ const Contracts_AccountsInteraction = [
     url: '/contracts/overview/LSP1Delegate',
     urlABI: '/contracts/contracts/LSP6KeyManager',
     description:
-      'Allows to react on transfers and informations received (token transfers, notifications, etc...)',
+      'Allows to react on transfers and information received (token transfers, notifications, etc...)',
   },
 
   {
