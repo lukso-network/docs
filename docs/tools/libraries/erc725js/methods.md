@@ -515,13 +515,13 @@ ERC725.encodeData(
 import ERC725 from '@erc725/erc725.js';
 
 const schemas = [
-{
-          name: 'AddressPermissions:AllowedCalls:<address>',
-          key: '0x4b80742de2bf393a64c70000<address>',
-          keyType: 'MappingWithGrouping',
-          valueType: '(bytes4,address,bytes4,bytes4)[CompactBytesArray]',
-          valueContent: '(BitArray,Address,Bytes4,Bytes4)',
-        }
+  {
+    name: 'AddressPermissions:AllowedCalls:<address>',
+    key: '0x4b80742de2bf393a64c70000<address>',
+    keyType: 'MappingWithGrouping',
+    valueType: '(bytes4,address,bytes4,bytes4)[CompactBytesArray]',
+    valueContent: '(BitArray,Address,Bytes4,Bytes4)',
+  }
 ];
 
 ERC725.encodeData(
@@ -530,23 +530,25 @@ ERC725.encodeData(
       keyName: 'AddressPermissions:AllowedCalls:<address>',
       dynamicKeyParts: "0xcafecafecafecafecafecafecafecafecafecafe"
       value: [
-            '0x00000003', // CALL and TRANSFERVALUE
-            '0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0', // addresses are decoded as checksummed
-            '0x3e89ad98', // LSP0 interface ID
-            '0xffffffff', // any function
-          ],
-          [
-            '0x00000002', // CALL only
-            '0xF70Ce3b58f275A4c28d06C98615760dDe774DE57',
-            '0xffffffff', // any standard interface ID
-            '0x760d9bba', // function selector of `transfer(address,address,uint256,bool,bytes)`
-          ],
-          [
-            '0x00000001', // TRANSFERVALUE only
-            '0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f',
-            '0xffffffff', // any standard interface ID
-            '0xffffffff', // any function
-          ],
+        [
+          '0x00000003', // CALL and TRANSFERVALUE
+          '0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0', // addresses are decoded as checksummed
+          '0x3e89ad98', // LSP0 interface ID
+          '0xffffffff', // any function
+        ],
+        [
+          '0x00000002', // CALL only
+          '0xF70Ce3b58f275A4c28d06C98615760dDe774DE57',
+          '0xffffffff', // any standard interface ID
+          '0x760d9bba', // function selector of `transfer(address,address,uint256,bool,bytes)`
+        ],
+        [
+          '0x00000001', // TRANSFERVALUE only
+          '0xd3236aa1B8A4dDe5eA375fd1F2Fb5c354e686c9f',
+          '0xffffffff', // any standard interface ID
+          '0xffffffff', // any function
+        ],
+      ]
     },
   ],
   schemas,
@@ -1123,9 +1125,9 @@ myErc725.decodeValueType(
 // [ 10, 20, 30 ]
 
 myErc725.decodeValueType(
-  'uint256[CompactBytesArray]'',
-  '0x0020000000000000000000000000000000000000000000000000000000000000000500200000000000000000000000000000000000000000000000000000000000000008'
-)
+  'uint256[CompactBytesArray]',
+  '0x0020000000000000000000000000000000000000000000000000000000000000000500200000000000000000000000000000000000000000000000000000000000000008',
+);
 // [ 5, 8 ]
 ```
 
@@ -1941,8 +1943,8 @@ await myErc725.isValidSignature(
 // false
 ```
 
-[lsp6 keymanager permissions]: ../../../standards/access-control/lsp6-key-manager#permissions
-[lsp6 keymanager standard]: ../../../standards/access-control/lsp6-key-manager
+[lsp6 keymanager permissions]: ../../../../../standards/universal-profile/lsp6-key-manager#permissions
+[lsp6 keymanager standard]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
 [lsp-2 erc725yjsonschema]: https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md
 
 ### supportsInterface
@@ -1967,18 +1969,18 @@ The `interfaceId` is not the most secure way to check for a standard, as they co
 
 Either a string of the hexadecimal `interfaceID` as defined by [ERC165](https://eips.ethereum.org/EIPS/eip-165) or one of the predefined interface names:
 
-| interfaceName                   | Standard                                                                                                |
-| :------------------------------ | :------------------------------------------------------------------------------------------------------ |
-| `ERC1271`                       | [EIP-1271: Standard Signature Validation Method for Contracts](https://eips.ethereum.org/EIPS/eip-1271) |
-| `ERC725X`                       | [EIP-725: General execution standard](https://eips.ethereum.org/EIPS/eip-725)                           |
-| `ERC725Y`                       | [EIP-725: General key-value store](https://eips.ethereum.org/EIPS/eip-725)                              |
-| `LSP0ERC725Account`             | [LSP-0: ERC725 Account](../../../standards/accounts/lsp0-erc725account)                                 |
-| `LSP1UniversalReceiver`         | [LSP-1: Universal Receiver](../../../standards/accounts/lsp1-universal-receiver)                        |
-| `LSP1UniversalReceiverDelegate` | [LSP-1: Universal Receiver Delegate](../../../standards/accounts/lsp1-universal-receiver-delegate)      |
-| `LSP6KeyManager`                | [LSP-6: Key Manager](../../../standards/access-control/lsp6-key-manager)                                |
-| `LSP7DigitalAsset`              | [LSP-7: Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md)                                 |
-| `LSP8IdentifiableDigitalAsset`  | [LSP-8: Identifiable Digital Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md)       |
-| `LSP9Vault`                     | [LSP-9: Vault](../../../standards/accounts/lsp9-vault)                                                  |
+| interfaceName                   | Standard                                                                                                                   |
+| :------------------------------ | :------------------------------------------------------------------------------------------------------------------------- |
+| `ERC1271`                       | [EIP-1271: Standard Signature Validation Method for Contracts](https://eips.ethereum.org/EIPS/eip-1271)                    |
+| `ERC725X`                       | [EIP-725: General execution standard](https://eips.ethereum.org/EIPS/eip-725)                                              |
+| `ERC725Y`                       | [EIP-725: General key-value store](https://eips.ethereum.org/EIPS/eip-725)                                                 |
+| `LSP0ERC725Account`             | [LSP-0: ERC725 Account](https://docs.lukso.tech/standards/universal-profile/lsp0-erc725account)                            |
+| `LSP1UniversalReceiver`         | [LSP-1: Universal Receiver](https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver)                   |
+| `LSP1UniversalReceiverDelegate` | [LSP-1: Universal Receiver Delegate](https://docs.lukso.tech/standards/universal-profile/lsp1-universal-receiver-delegate) |
+| `LSP6KeyManager`                | [LSP-6: Key Manager](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager)                                 |
+| `LSP7DigitalAsset`              | [LSP-7: Digital Asset](https://docs.lukso.tech/standards/nft-2.0/LSP7-Digital-Asset)                                       |
+| `LSP8IdentifiableDigitalAsset`  | [LSP-8: Identifiable Digital Asset](https://docs.lukso.tech/standards/nft-2.0/LSP8-Identifiable-Digital-Asset)             |
+| `LSP9Vault`                     | [LSP-9: Vault](https://docs.lukso.tech/standards/universal-profile/lsp9-vault)                                             |
 
 :::info
 
@@ -2556,8 +2558,7 @@ myErc725.checkPermissions(requiredPermissions, grantedPermissions);
 ERC725.checkPermissions(requiredPermissions, grantedPermissions);
 ```
 
-Check if the required permissions are included in the granted permissions
-as defined by the [LSP6 KeyManager Standard](../../../standards/access-control/lsp6-key-manager.md).
+Check if the required permissions are included in the granted permissions as defined by the [LSP6 KeyManager Standard](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager).
 
 :::info
 
@@ -2631,7 +2632,7 @@ myErc725.checkPermissions(requiredPermissions, grantedPermissions);
 ERC725.encodePermissions(permissions);
 ```
 
-Encodes permissions into a hexadecimal string as defined by the [LSP6 KeyManager Standard](../../../standards/access-control/lsp6-key-manager.md).
+Encodes permissions into a hexadecimal string as defined by the [LSP6 KeyManager Standard](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager).
 
 :::info
 
@@ -2712,7 +2713,7 @@ myErc725.encodePermissions({
 ERC725.decodePermissions(permission);
 ```
 
-Decodes permissions from hexadecimal defined by the [LSP6 KeyManager Standard](../../../standards/access-control/lsp6-key-manager.md).
+Decodes permissions from hexadecimal defined by the [LSP6 KeyManager Standard](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager).
 
 :::info
 
