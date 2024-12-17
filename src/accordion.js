@@ -55,7 +55,7 @@ const accordionData = [
         answer:
           'Like any other web3 wallet using methods like EIP-6963, injected provider or multi-providers). Check our tutorial for details on how to connect a UP to a dApp or using Sign-in with Ethereum.',
         link: '/learn/universal-profile/connect-profile/connect-up',
-        linkLabel: 'see Tutorial',
+        linkLabel: 'See tutorial',
       },
       {
         question: 'What kind of data can be stored on my profile?',

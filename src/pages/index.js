@@ -25,7 +25,7 @@ import LinksBox from '../components/LinksBox';
 import LinkCards from '../components/LinkCards';
 
 // data
-import accordionData from './accordion.js';
+import accordionData from '../accordion.js';
 import {
   migrateGuides,
   universalProfileGuides,
@@ -34,7 +34,7 @@ import {
   networkLinks,
   integrationPartners,
   dappsSlider,
-} from './links.js';
+} from '../links.js';
 
 function Index() {
   return (

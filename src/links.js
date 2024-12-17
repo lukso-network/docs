@@ -1,10 +1,10 @@
 // integration partner images
-import LogoDappNode from '../../static/img/tools/dappnode_logo.png';
-import LogoEnvio from '../../static/img/tools/envio_logo.png';
-import LogoAPI3 from '../../static/img/tools/api3-logo.png';
-import LogoDIA from '../../static/img/tools/dia_logo.png';
-import LogoTransak from '../../static/img/tools/transak_logo.png';
-import LogoRamp from '../../static/img/tools/ramp-network-logo.png';
+import LogoDappNode from '../static/img/tools/dappnode_logo.png';
+import LogoEnvio from '../static/img/tools/envio_logo.png';
+import LogoAPI3 from '../static/img/tools/api3-logo.png';
+import LogoDIA from '../static/img/tools/dia_logo.png';
+import LogoTransak from '../static/img/tools/transak_logo.png';
+import LogoRamp from '../static/img/tools/ramp-network-logo.png';
 
 // dApps images
 import UniversalEverythingLogo from '@site/static/img/dapps/universaleverything-io-logo.png';
@@ -22,69 +22,69 @@ import TxsAppLogo from '@site/static/img/dapps/txs-app-logo.png';
 
 export const migrateGuides = [
   {
-    text: 'Discover the benefits of LSPs and Universal Profiles.',
+    text: 'Discover the benefits of LSPs and Universal Profiles',
     link: '/learn/benefits-lukso-standards',
   },
   {
-    text: 'Integrate Universal Profile in your dApp.',
+    text: 'Integrate Universal Profile in your dApp',
     link: '/learn/universal-profile/connect-profile/connect-up',
   },
   {
-    text: 'Deploy Universal Profiles with the relayer API.',
+    text: 'Deploy Universal Profiles with the relayer API',
     link: '/tools/services/relayer-developer#1-deploy-universal-profiles',
   },
   {
-    text: 'Convert your ERC20 token to the LSP7 standard.',
+    text: 'Convert your ERC20 token to the LSP7 standard',
     link: '/learn/migrate/migrate-erc20-to-lsp7',
   },
   {
-    text: 'Convert your NFT Collection to the LSP8 standard.',
+    text: 'Convert your NFT Collection to the LSP8 standard',
     link: '/learn/migrate/migrate-erc721-to-lsp8',
   },
 ];
 
 export const universalProfileGuides = [
   {
-    text: "Customize your profile's pictures and infos.",
+    text: "Customize your profile's pictures and infos",
     link: '/learn/universal-profile/metadata/edit-profile',
   },
   {
-    text: 'Learn how to transfer LYX, tokens or NFTs.',
+    text: 'Learn how to transfer LYX, tokens or NFTs',
     link: '/learn/universal-profile/universal-receiver/create-receiver-forwarder',
   },
   {
-    text: 'Perform multiple actions with batch transactions.',
+    text: 'Perform multiple actions with batch transactions',
     link: '/learn/universal-profile/universal-receiver/create-receiver-forwarder',
   },
   {
-    text: 'Control your Universal Profile from multiple addresses.',
+    text: 'Control your Universal Profile from multiple addresses',
     link: '/learn/universal-profile/key-manager/grant-permissions',
   },
   {
-    text: 'Configure which assets to allow receiving.',
+    text: 'Configure which assets to allow receiving',
     link: '/learn/universal-profile/universal-receiver/create-receiver-forwarder',
   },
 ];
 
 export const digitalAssetsGuides = [
   {
-    text: 'Create a fungible token with the LSP7 standard.',
+    text: 'Create a fungible token with the LSP7 standard',
     link: '/learn/digital-assets/token/create-lsp7-token',
   },
   {
-    text: 'Create an NFT collection using the LSP8 standard.',
+    text: 'Create an NFT collection using the LSP8 standard',
     link: '/learn/digital-assets/nft/create-nft-collection-lsp8',
   },
   {
-    text: 'Set the metadata of specific NFTs in a collection.',
+    text: 'Set the metadata of specific NFTs in a collection',
     link: '/learn/digital-assets/nft/set-nft-metadata',
   },
   {
-    text: 'Create complex collections of sub-collections.',
+    text: 'Create complex collections of sub-collections',
     link: '/learn/digital-assets/nft/create-nft-collection-with-lsp7-tokenId',
   },
   {
-    text: 'Transfer tokens and NFTs in batches for airdrops.',
+    text: 'Transfer tokens and NFTs in batches for airdrops',
     link: '/learn/digital-assets/transfer-batch',
   },
 ];
