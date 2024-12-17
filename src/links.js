@@ -31,7 +31,7 @@ export const migrateGuides = [
   },
   {
     text: 'Deploy Universal Profiles with the relayer API',
-    link: '/tools/services/relayer-developer#1-deploy-universal-profiles',
+    link: '/tools/apis/relayer-api#1-deploy-universal-profiles',
   },
   {
     text: 'Convert your ERC20 token to the LSP7 standard',
@@ -130,7 +130,7 @@ export const toolsLinks = [
   },
   {
     title: 'Smart Contracts Packages',
-    link: '/contracts',
+    link: '/contracts/introduction',
     showAsCode: false,
     description:
       'The smart contract implementation of the LSP standards in Solidity.',

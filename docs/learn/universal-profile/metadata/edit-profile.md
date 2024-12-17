@@ -16,7 +16,7 @@ To achieve this goal, we will perform the following steps:
 
 1. Create a JSON file that contains your profile details (`LSP3Profile` metadata).
 2. Upload this JSON file to [IPFS] using our [tools-data-providers](https://github.com/lukso-network/tools-data-providers) library.
-3. Set your new [profile metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key to your Universal Profile with our [erc725.js](../../../tools/libraries/erc725js/getting-started.md) library and `web3.js`.
+3. Set your new [profile metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key to your Universal Profile with our [erc725.js](../../../tools/dapps/erc725js/getting-started.md) library and `web3.js`.
 
 ![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
 

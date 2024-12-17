@@ -176,7 +176,7 @@ The following data keys can be fetched 👇
 | `LSP4TokenSymbol`                     | The utf8 hex characters of the string representing the asset's symbol.                                                                                            |
 | `LSP4TokenName`                       | The utf8 hex characters of the string representing the asset's name.                                                                                              |
 
-To retrieve and decode the value stored under this data keys, we will use [erc725.js](../../../tools/libraries/erc725js/getting-started.md) and instantiate the class with:
+To retrieve and decode the value stored under this data keys, we will use [erc725.js](../../../tools/dapps/erc725js/getting-started.md) and instantiate the class with:
 
 1. the LSP4 Schema that defines the data keys above and how to decode them
 2. the address of your digital asset
@@ -232,7 +232,7 @@ console.log(tokenSymbol);
 
 ### Global Token Information
 
-To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../../tools/libraries/erc725js/getting-started.md) library:
+To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../../tools/dapps/erc725js/getting-started.md) library:
 
 - [`fetchData('LSP4Metadata')`](../../../tools/libraries/erc725js/methods.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
 - [`getData(LSP4Metadata)`](../../../tools/libraries/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../../tools/libraries/erc725js/methods.md#decodedata).

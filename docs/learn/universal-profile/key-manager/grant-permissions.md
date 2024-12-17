@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 This guide will teach you how to grant [permissions](../../../standards/access-control/lsp6-key-manager.md#address-permissions) to any address so they can interact with your 🆙. You will learn:
 
-- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../tools/libraries/erc725js/getting-started.md).
+- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../tools/dapps/erc725js/getting-started.md).
 - How to set permissions for a third party `address` on your Universal Profile
 
 ![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpeg)
@@ -40,7 +40,7 @@ These permissions are stored in the Universal Profile. **We need to update thre
 
 To follow this guide, we will need the following libraries and packages:
 
-- [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) to encode the permissions
+- [`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) to encode the permissions
 - The [`lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) package to get the [Universal Profile's ABI](../../../standards/accounts/introduction.md)
 - `web3.js` or `ethers.js` to interact with our `UniversalProfile` smart contract.
 

@@ -30,7 +30,7 @@ If neither _Token ID Metadata_ nor _Base URI_ are set, you should fall back and 
 We will need the following dependencies to follow this guide:
 
 - [`lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) to import the LSP8 contract ABI.
-- [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) to easily get [ERC725Y](/standards/erc725.md) data keys and decode their values.
+- [`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) to easily get [ERC725Y](/standards/erc725.md) data keys and decode their values.
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
