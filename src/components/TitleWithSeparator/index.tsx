@@ -8,7 +8,7 @@ type Props = {
 
 export default function TitleWithSeparator({ title, children }: Props) {
   return (
-    <div className={styles.separatorWithTitle}>
+    <div className={styles.titleWithSeparator}>
       <h1 className={styles.title}>{title}</h1>
       {children}
       <hr className={styles.separator} />

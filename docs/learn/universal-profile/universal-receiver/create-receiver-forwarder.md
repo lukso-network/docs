@@ -37,7 +37,7 @@ In order to follow this guide, you will need the followings:
 2. Fund the main EOA controller of your 🆙 (See **[Step 1](#step-1---enable-your-controller-to-add-a-universal-receiver) bullet point 3** to retrieve its address) using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
 3. The address of the LSP7 token that you want to use to forward of portion of the amount received.
 4. The v0.14.0 [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) library installed.
-5. The [_erc725.js_](../../../tools/libraries/erc725js/getting-started.md) library installed to encode the data key / value to register our LSP1 Forwarder.
+5. The [_erc725.js_](../../../tools/dapps/erc725js/getting-started.md) library installed to encode the data key / value to register our LSP1 Forwarder.
 6. The [`dotenv`](https://www.npmjs.com/package/dotenv) package to load our main EOA controller private key into our script.
 
 ```bash

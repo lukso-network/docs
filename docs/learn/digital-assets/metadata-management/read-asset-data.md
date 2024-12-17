@@ -61,7 +61,7 @@ npm i @lukso/lsp-smart-contracts @erc725/erc725.js
 
 :::info
 
-If you are using the 📃 [lsp-smart-contracts](../../../tools/libraries/lsp-smart-contracts/getting-started) library, you can fetch the list of `interfaceId` directly from the package's [constants](../../../tools/libraries/lsp-smart-contracts/constants) called `INTERFACE_IDS`.
+If you are using the 📃 [lsp-smart-contracts](../../../tools/lsp-smart-contracts/getting-started) library, you can fetch the list of `interfaceId` directly from the package's [constants](../../../tools/lsp-smart-contracts/constants) called `INTERFACE_IDS`.
 
 Optionally, you can also find a full list of interface IDs on the [Contracts > Interface ID](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
 
@@ -176,7 +176,7 @@ The following data keys can be fetched 👇
 | `LSP4TokenSymbol`                     | The utf8 hex characters of the string representing the asset's symbol.                                                                                            |
 | `LSP4TokenName`                       | The utf8 hex characters of the string representing the asset's name.                                                                                              |
 
-To retrieve and decode the value stored under this data keys, we will use [erc725.js](../../../tools/libraries/erc725js/getting-started.md) and instantiate the class with:
+To retrieve and decode the value stored under this data keys, we will use [erc725.js](../../../tools/dapps/erc725js/getting-started.md) and instantiate the class with:
 
 1. the LSP4 Schema that defines the data keys above and how to decode them
 2. the address of your digital asset
@@ -200,9 +200,9 @@ const erc725js = new ERC725(
 
 We can fetch the digital asset data in three ways:
 
-1. using [`getData()`](../../../tools/libraries/erc725js/methods#getdata) without parameters. This will fetch the value of all data keys at once.
+1. using [`getData()`](../../../tools/dapps/erc725js/methods#getdata) without parameters. This will fetch the value of all data keys at once.
 2. using `getData("DataKeyName")` to fetch the value of a specific data key. For instance `getData("LSP4Metadata")`.
-3. using [`fetchData('LSP4Metadata')`](../../../tools/libraries/erc725js/methods.md#fetchdata) which decodes the `VerifiableURI` to extract the JSON metadata file link and fetch its content from IPFS (or another storage service).
+3. using [`fetchData('LSP4Metadata')`](../../../tools/dapps/erc725js/methods.md#fetchdata) which decodes the `VerifiableURI` to extract the JSON metadata file link and fetch its content from IPFS (or another storage service).
 
 ### Asset Name and Symbol
 
@@ -232,10 +232,10 @@ console.log(tokenSymbol);
 
 ### Global Token Information
 
-To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../../tools/libraries/erc725js/getting-started.md) library:
+To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../../tools/dapps/erc725js/getting-started.md) library:
 
-- [`fetchData('LSP4Metadata')`](../../../tools/libraries/erc725js/methods.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
-- [`getData(LSP4Metadata)`](../../../tools/libraries/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../../tools/libraries/erc725js/methods.md#decodedata).
+- [`fetchData('LSP4Metadata')`](../../../tools/dapps/erc725js/methods.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
+- [`getData(LSP4Metadata)`](../../../tools/dapps/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../../tools/dapps/erc725js/methods.md#decodedata).
 
 ```ts
 // Download and verify the asset metadata JSON file

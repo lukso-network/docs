@@ -1,31 +1,19 @@
-.card {
-  // color: var(--ifm-font-color-base);
-  width: 100%;
-  height: 100%;
-  flex-direction: row;
-  margin-bottom: 1rem;
+.image {
+  justify-content: center;
 
-  padding: 1rem;
-  border-radius: 1.5625rem;
-
-  // background-color: var(--ifm-background-color);
-
-  transition: all 200ms ease-out 10ms;
-
-  .title {
-    font-weight: 'bold';
-  }
-
-  p {
-    margin-bottom: 0;
-    line-height: 1.25rem;
-  }
-
-  // a {
-  //   max-width: 100%;
-  // }
-
-  &:hover {
+  img:hover {
     transform: scale(1.05);
+    transition: all 300ms ease-out;
+  }
+}
+
+.rightBox {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  @media (max-width: 680px) {
+    font-size: 1.3rem;
   }
 }

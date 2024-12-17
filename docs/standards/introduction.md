@@ -39,20 +39,6 @@ The **[default implementation of these standards in Solidity](../contracts/intro
 
 > See the [Contracts](../contracts/introduction.md) section for the Solidity implementation of these standards and their ABI docs.
 
-:::info Questions? Want to learn more?
-
-<div class="discord-logo">
-
-![Discord logo](./discord-logo.png)
-
-</div>
-
-Feel free to join the [LUKSO **Discord server**](https://discord.com/channels/359064931246538762/620552532602912769), and ask your questions in the [#standards](https://discord.com/channels/359064931246538762/620552532602912769) channel.
-
-Our team and community members look forward to helping you understand the standards.
-
-:::
-
 ## LSP Standard Specifications
 
 See [LUKSO Improvement Proposals - LIPs (GitHub)](https://github.com/lukso-network/LIPs) if you are looking for the design and formal specifications of each LSP Standards.

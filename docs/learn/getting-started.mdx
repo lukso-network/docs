@@ -7,47 +7,52 @@ title: 'Quick Start'
 import CallToActionButton from '@site/src/components/CallToActionButton';
 import Chip from '@site/src/components/Chip';
 import CardWithContent from '@site/src/components/CardWithContent';
+import LinkCards from '@site/src/components/LinkCards';
+import Link from '@docusaurus/Link';
 
-import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
+import styles from './learn.module.scss';
+
+import DappBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
+import SmartContractBannerImage from '../../static/img/learn/DEVELOPERS_SmartContract.png';
 
 # Developer Quickstart
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+<div className={styles.containerQuickstartCards}>
 
-<CardWithContent title="Dapp Developer" image={DeveloperBannerImage}>
+<CardWithContent title="Dapp Developer" image={DappBannerImage}>
   <ul>
     <li>
-      <a href="#building-dapps-with-universal-profiles">
-        <span>Learn how to develop with Universal Profiles</span>
-      </a>
+      <Link to="#building-dapps-for-universal-profiles">
+        Learn how to develop with Universal Profiles
+      </Link>
     </li>
     <li>
-      <a
-        href="https://github.com/lukso-network/lukso-playground"
-        target="_blank"
-      >
-        <span>Explore code examples in our playground repository</span>
-      </a>
+      <Link href="https://github.com/lukso-network/lukso-playground">
+        Explore code examples in the LUKSO playground
+      </Link>
     </li>
   </ul>
 </CardWithContent>
 
-<CardWithContent title="Smart Contract Developer" image={DeveloperBannerImage}>
+<CardWithContent
+  title="Smart Contract Developer"
+  image={SmartContractBannerImage}
+>
   <ul>
     <li>
-      <a href="../learn/digital-assets/getting-started">
-        <span>Get started with Tokens and NFTs</span>
-      </a>
+      <Link to="../learn/digital-assets/getting-started">
+        Get started with Tokens and NFTs
+      </Link>
     </li>
     <li>
-      <a href="../learn/digital-assets/token/create-lsp7-token">
-        <span>Create a token</span>
-      </a>
+      <Link to="../learn/digital-assets/token/create-lsp7-token">
+        Create a token
+      </Link>
     </li>
     <li>
-      <a href="../learn/universal-profile/universal-receiver/create-receiver-forwarder">
-        <span>Create an Automatic Token Forwarder for your UP</span>
-      </a>
+      <Link to="../learn/universal-profile/universal-receiver/create-receiver-forwarder">
+        Create an Automatic Token Forwarder for your UP
+      </Link>
     </li>
   </ul>
 </CardWithContent>
@@ -55,17 +60,17 @@ import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 <CardWithContent title="Quickstart Integration">
   <ul>
     <li>
-      <a href="../learn/migrate/migrate-to-lukso">Migrate to LUKSO</a>
+      <Link to="../learn/migrate/migrate-to-lukso">Migrate to LUKSO</Link>
     </li>
     <li>
-      <a href="../learn/migrate/migrate-erc20-to-lsp7">
-        <span>Refactor a Solidity ERC20 token to LSP7</span>
-      </a>
+      <Link to="../learn/migrate/migrate-erc20-to-lsp7">
+        Refactor a Solidity ERC20 token to LSP7
+      </Link>
     </li>
     <li>
-      <a href="../learn/migrate/migrate-erc721-to-lsp8">
-        <span>Refactor a Solidity ERC721 NFT to LSP8</span>
-      </a>
+      <Link to="../learn/migrate/migrate-erc721-to-lsp8">
+        Refactor a Solidity ERC721 NFT to LSP8
+      </Link>
     </li>
   </ul>
 </CardWithContent>
@@ -73,22 +78,17 @@ import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 <CardWithContent title="Join the Community">
   <ul>
     <li>
-      <a href="https://support.lukso.network/" target="_blank">
-        <span>Visit our support website</span>
-      </a>
+      <Link to="https://support.lukso.network/">Visit our support website</Link>
     </li>
     <li>
-      <a
-        href="https://discord.com/channels/359064931246538762/585786253992132609"
-        target="_blank"
-      >
-        <span>Join the Developer community on Discord</span>
-      </a>
+      <Link to="https://discord.com/channels/359064931246538762/585786253992132609">
+        Join the Developer community on Discord
+      </Link>
     </li>
     <li>
-      <a href="https://support.lukso.network/contact-us" target="_blank">
-        <span>Contact the tech team</span>
-      </a>
+      <Link to="https://support.lukso.network/contact-us">
+        Contact the tech team
+      </Link>
     </li>
   </ul>
 </CardWithContent>
@@ -99,76 +99,71 @@ import DeveloperBannerImage from '../../static/img/learn/DEVELOPERS_dApp.png';
 
 In order to follow the guides and tutorial of the LUKSO Developer documentation, you should have some basic knowledge and be familiar with the following:
 
-- Building general applications on Ethereum (find a good resource) -> Learning Tools of the Ethereum Foundation
+- Building general applications on Ethereum: [**Learning Tools of the Ethereum Foundation**](https://ethereum.org/en/developers/learning-tools/)
 - For smart contract developers:
-  - Smart contract development in [**Solidity**](https://docs.soliditylang.org) -> see this guide or tutorial from Cyfrin.io.
-  - If you pick a template, **Foundry** or **Hardhat**.
+  - Smart contract development in [**Solidity**](https://docs.soliditylang.org).
+  - If you pick a template, [**Foundry**](https://hardhat.org/docs) or [**Hardhat**](https://book.getfoundry.sh/).
 - For dApp developers:
-  - Basic programming skills in Javascript or Typescript.
-  - Using a javascript library to interaction with web3 applications like **web3.js**, **ethers** or **viem**.
+  - Basic programming skills in [**Javascript**](https://developer.mozilla.org/en-US/docs/Web/JavaScript) or [**Typescript**](https://www.typescriptlang.org/docs/).
+  - Using a javascript library to interaction with web3 applications like [**web3.js**](https://docs.web3js.org/), [**ethers**](https://docs.ethers.org/v6/) or [**viem**](https://viem.sh/).
 
 :::
 
-## Building dApps with Universal Profiles
+## Building dApps for Universal Profiles
 
 When building dApps on LUKSO, you are interacting with [Universal Profiles 🆙](../standards/accounts/introduction.md) through the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn). This page guides you on the first step to get started building on LUKSO with the 🆙 Browser Extension.
 
 <div style={{
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   margin: '3rem 0',
   gap: "1rem",
+  width: '100%',
+  justifyContent: 'center',
+  flexWrap: 'wrap'
 }}>
-
-<div style={{ width: '100%' }}>
 
 <CallToActionButton
   icon="material-symbols:counter-1"
-  text="Install the UP Browser Extension 🧩"
+  text="Download & Install the UP Browser Extension 🧩"
   link="/install-up-browser-extension"
   color="white"
 />
 
-</div>
-
-<div style={{ width: '100%' }}>
-
 <CallToActionButton
   icon="material-symbols:counter-2"
-  text="Create a Universal Profile 🆙"
-  link="https://my.universalprofile.cloud"
+  text="Create a Universal Profile and try it out 🆙"
+  link="https://universaleverything.io"
   color="white"
 />
-
-</div>
-
-<div style={{ width: '100%' }}>
 
 <CallToActionButton
   icon="material-symbols:counter-3"
   color="white"
   link="/learn/universal-profile/connect-profile/connect-up"
-  text="Start building dApps on LUKSO! 🫡"
+  text="Explore guides to start building dApps on LUKSO! 👷🏻‍♂️"
 />
 
 </div>
 
-</div>
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+<div className={styles.containerDeployProfiles}>
 
 <CardWithContent title="Using the Relayer API">
 
-If you are looking to build a dApp that needs to create Universal Profiles, you can use the [LUKSO Relayer API](../tools/services/relayer-developer.md) to do that easily programmatically.
+The [LUKSO Relayer API](../tools/apis/relayer-api.md) allows you to easily create and deploy Universal Profiles from your dApp in Javascript.
 
-Your users will benefit from a free monthly gas quota and therefore, will be able to submit transactions without requiring to pay for gas. A great benefit for onboarding new users quickly and easily into your dApp!
+Your users will benefit from a free monthly gas quota and will be able to submit transactions without requiring to pay for gas. A great way to onboard new users quickly and easily into your dApp!
+
+🔌 [**Deploy with the LUKSO Relayer API**](../tools/apis/relayer-api.md).
 
 </CardWithContent>
 
 <CardWithContent title="Manual Deployment">
-If you prefer to create a Universal Profile manually, use the LSP23 Linked Contracts Factory contract on LUKSO Mainnet. This factory contract can help you to deploy a Universal Profile + its Key Manager. Follow our guide:
+If you prefer to create a Universal Profile manually, use the LSP23 Linked Contracts Factory contract on LUKSO Mainnet.
 
-➡️ [**Deploy 🆙 with LSP23 Linked Contract Factory**](./universal-profile/advanced-guides/deploy-up-with-lsp23.md).
+This factory contract can help you to deploy a Universal Profile + its Key Manager. However, you will have to set the metadata and permissions as well on deployment. Follow our guide below.
+
+🏭 [**Deploy with LSP23 Linked Contract Factory**](./universal-profile/advanced-guides/deploy-up-with-lsp23.md).
 
 </CardWithContent>
 
@@ -176,7 +171,7 @@ If you prefer to create a Universal Profile manually, use the LSP23 Linked Contr
 
 :::caution
 
-Please note that Universal Profile created and deployed manually are not registered on the [LUKSO Transaction Relay Service](../tools/services/relayer-developer.md), do not get a free monthly gas quota, and as a result, do not benefit from gas-less transactions.
+Please note that Universal Profile created and deployed manually are not registered on the [LUKSO Transaction Relay Service](../tools/apis/relayer-api.md), do not get a free monthly gas quota, and as a result, do not benefit from gas-less transactions.
 
 :::
 
@@ -199,9 +194,31 @@ LUKSO is a Layer 1 EVM Blockchain. All tools and tutorials for Ethereum also wor
 
 Developers building on LUKSO can write smart contracts in any EVM-based smart contract languages (Solidity, Vyper, etc...), and use existing standards already developed for other Ethereum networks.
 
-- [Awesome LUKSO, a comprehensive list of awesome LUKSO resources!](https://github.com/lukso-network/awesome-lukso)
-- [What are the main features of LUKSO standards?](../faq/onboarding/lukso-standards.md#what-are-the-main-features-of-lsps)
-- [Learning Tools of the Ethereum Foundation](https://ethereum.org/en/developers/learning-tools/)
+<LinkCards
+  links={[
+    {
+      title: 'Tutorials for Universal Profiles',
+      link: '/learn/universal-profile/connect-profile/connect-up',
+      showAsCode: false,
+      description:
+        'Learn how to connect your UP to a dApp, update the profile details (including pictures), transfer tokens and NFTs and more.',
+    },
+    {
+      title: 'Tutorials for Digital Assets',
+      link: '/learn/digital-assets/getting-started',
+      showAsCode: false,
+      description:
+        'Learn how to create token and NFT collections, customize the metadata of an NFT and how to create collections of sub-collections.',
+    },
+    {
+      title: 'Awesome LUKSO!',
+      link: 'https://github.com/lukso-network/awesome-lukso',
+      showAsCode: false,
+      description:
+        'A comprehensive list of developer resources for LUKSO builders.',
+    },
+  ]}
+/>
 
 ## Code Repositories
 

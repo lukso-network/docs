@@ -1,25 +1,20 @@
 import React from 'react';
-import styles from './LinksBox.module.scss';
 import Link from '@docusaurus/Link';
 
-type LinksBoxProps = {
-  links: {
-    title: string;
-    link: string; // use relative path
-    description?: string;
-    showAsCode: boolean;
-  }[];
+import styles from './LinksBox.module.scss';
+
+type LinksProps = {
+  links: { text: string; link: string }[];
 };
 
-const LinksBox: React.FC<LinksBoxProps> = ({ links }) => (
-  <div className={styles.containerBoxLinks}>
-    {links.map((item) => (
-      <a href={item.link} className={styles.boxLink}>
-        <h3>{item.showAsCode ? <code>{item.title}</code> : item.title}</h3>
-        <p>{item.description}</p>
-      </a>
-    ))}
-  </div>
-);
-
-export default LinksBox;
+export default function LinksBox({ links }: LinksProps) {
+  return (
+    <ul className={styles.linksBox}>
+      {links.map(({ text, link }, index) => (
+        <li key={index}>
+          <Link to={link}>{text}</Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
