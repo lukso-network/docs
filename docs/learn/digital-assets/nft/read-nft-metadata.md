@@ -29,7 +29,7 @@ If neither _Token ID Metadata_ nor _Base URI_ are set, you should fall back and 
 
 We will need the following dependencies to follow this guide:
 
-- [`lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) to import the LSP8 contract ABI.
+- [`lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) to import the LSP8 contract ABI.
 - [`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) to easily get [ERC725Y](/standards/erc725.md) data keys and decode their values.
 
 <Tabs groupId="provider-lib">
@@ -385,7 +385,7 @@ After retrieving the metadata from the contract, you can continue to [retrieve t
 
 :::caution Version Support
 
-Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata from a Base URI. For previous LSP8 assets, the Base URI may be retrievable by calling the [`fetchData`](../../../tools/libraries/erc725js/methods.md#fetchdata) function as described in the [Global Token Information](#global-token-information) section.
+Assets created with LSP versions below 🛠️ [`@lukso/lsp-smart-contracts`](/tools/lsp-smart-contracts/getting-started.md) of `v0.14.0` lack support for retrieving token ID metadata from a Base URI. For previous LSP8 assets, the Base URI may be retrievable by calling the [`fetchData`](../../../tools/dapps/erc725js/methods.md#fetchdata) function as described in the [Global Token Information](#global-token-information) section.
 
 :::
 

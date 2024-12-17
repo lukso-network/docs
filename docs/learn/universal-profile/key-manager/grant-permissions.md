@@ -41,7 +41,7 @@ These permissions are stored in the Universal Profile. **We need to update thre
 To follow this guide, we will need the following libraries and packages:
 
 - [`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) to encode the permissions
-- The [`lsp-smart-contracts`](../../../tools/libraries/lsp-smart-contracts/getting-started.md) package to get the [Universal Profile's ABI](../../../standards/accounts/introduction.md)
+- The [`lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) package to get the [Universal Profile's ABI](../../../standards/accounts/introduction.md)
 - `web3.js` or `ethers.js` to interact with our `UniversalProfile` smart contract.
 
 <Tabs>
@@ -84,7 +84,7 @@ const erc725 = new ERC725(
 
 :::success Permissions List
 
-More permissions are available in _erc725.js_. See the [`encodePermissions(...)`](../../../tools/libraries/erc725js/methods.md#encodepermissions) function for a complete list.
+More permissions are available in _erc725.js_. See the [`encodePermissions(...)`](../../../tools/dapps/erc725js/methods.md#encodepermissions) function for a complete list.
 
 To learn about what each permission enables, see the [**Standards > LSP6 Key Manager > Permissions**](../../../standards/access-control/lsp6-key-manager.md#permissions) section.
 
@@ -92,7 +92,7 @@ To learn about what each permission enables, see the [**Standards > LSP6 Key Man
 
 Let's consider in our example that we want to grant the permission `SUPER_SETDATA` to a `beneficiaryAddress`, so that it can edit any of the Universal Profile metadata.
 
-To do so, we will use the [`encodePermissions(..)`](../../../tools/libraries/erc725js/methods#encodepermissions) function, a convenience function from the _erc725.js_ library to encode permissions as their raw `bytes32` value. The function takes as an input will an object of all permissions that will be set.
+To do so, we will use the [`encodePermissions(..)`](../../../tools/dapps/erc725js/methods#encodepermissions) function, a convenience function from the _erc725.js_ library to encode permissions as their raw `bytes32` value. The function takes as an input will an object of all permissions that will be set.
 
 ```ts
 // Create the raw permissions value to allow an address

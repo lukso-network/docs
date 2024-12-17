@@ -95,9 +95,9 @@ function Index() {
           <div>
             <Box
               icon={UniversalProfileGuidesIcon}
-              link="./learn/universal-profile/overview"
+              link="./learn/getting-started#building-dapps-for-universal-profiles"
               title="Universal Profiles"
-              content="Discover the new mart account social by default and its features."
+              content="Discover the new smart account social by default and its features."
             />
             <LinksBox links={universalProfileGuides} />
           </div>

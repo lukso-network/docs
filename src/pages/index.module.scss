@@ -11,6 +11,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
+
+  @media (max-width: 960px) {
+    width: 90%;
+  }
 }
 
 .containerButtons {

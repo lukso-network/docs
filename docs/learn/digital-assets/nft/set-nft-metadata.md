@@ -115,7 +115,7 @@ The next step is to encode the metadata. To do so, we need:
 - a JSON file that contains all the metadata of the specific NFT. This metadata has the same format as the `LSP4Metadata`.
 - the IPFS url where this JSON file has been uploaded
 
-The value will be encoded as a `VerifiableURI`. We will use the `encodeData` function from the [_erc725.js_](../../../tools/libraries/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
+The value will be encoded as a `VerifiableURI`. We will use the `encodeData` function from the [_erc725.js_](../../../tools/dapps/erc725js/methods.md#encodedata) library to encode a `VerifiableURI` easily.
 
 ```js title="encodeVerifiableURI.ts"
 import { ERC725 } from '@erc725/erc725.js';

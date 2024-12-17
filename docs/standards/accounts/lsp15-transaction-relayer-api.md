@@ -21,11 +21,11 @@ import TabItem from '@theme/TabItem';
 
 :::success Relayer API
 
-Want to easily deploy a Universal Profile using our Developer Relayer API? See the [**Relayer Developer Access**](../../tools/services/relayer-developer.md) page.
+Want to easily deploy a Universal Profile using our Developer Relayer API? See the [**Relayer Developer Access**](../../tools/apis/relayer-api.md) page.
 
 :::
 
-This standard is the off-chain API that any transaction relay service can implement to be compatible with the [Universal Profile controller apps](/install-up-browser-extension). See [the `up_addTransactionRelayer` RPC endpoint](../../tools/services/rpc-api#up_addTransactionRelayer) for more.
+This standard is the off-chain API that any transaction relay service can implement to be compatible with the [Universal Profile controller apps](/install-up-browser-extension). See [the `up_addTransactionRelayer` RPC endpoint](../../tools/apis/up-rpc-api#up_addTransactionRelayer) for more.
 
 To learn how to sign a transaction relay message see [LSP25 Execute Relay Call](./lsp25-execute-relay-call.md).
 

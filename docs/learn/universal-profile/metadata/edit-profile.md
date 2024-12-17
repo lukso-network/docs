@@ -198,7 +198,7 @@ To do so, we will use our [erc725.js] library, which helps us encode the data ea
 
 Once our erc725.js is initialized, we can encode the `LSP3Profile` data to generate a key and a value.
 
-To do so, we use the [`encodeData()`](../../../tools/libraries/erc725js/methods.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
+To do so, we use the [`encodeData()`](../../../tools/dapps/erc725js/methods.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
 
 - `keyName`: `LSP3Profile`, the name of the key we want to encode.
 - `value`: an object with:
@@ -301,7 +301,7 @@ You can now check your UP on the [profile explorer](https://universalprofile.clo
 
 `https://wallet.universalprofile.cloud/[UP ADDRESS]?network=testnet`
 
-[erc725.js]: ../../../tools/libraries/erc725js/getting-started
+[erc725.js]: ../../../tools/dapps/erc725js/getting-started
 [ipfs]: https://ipfs.io/
-[lsp-smart-contracts]: ../../../tools/libraries/lsp-smart-contracts/getting-started.md
+[lsp-smart-contracts]: ../../../tools/lsp-smart-contracts/getting-started.md
 [tools-data-providers]: https://github.com/lukso-network/tools-data-providers
