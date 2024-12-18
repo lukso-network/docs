@@ -6,7 +6,7 @@ description: LUKSO's LSP2 - ERC725Y JSON Schema for better abstraction on top of
 
 # LSP2 - ERC725Y JSON Schema
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP2 - ERC725Y JSON Schema](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md)
 
@@ -14,7 +14,7 @@ description: LUKSO's LSP2 - ERC725Y JSON Schema for better abstraction on top of
 
 :::success Recommendation
 
-Our [JavaScript library **erc725.js**](../../tools/libraries/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema without manually going through all the encoding complexity.
+Our [JavaScript library **erc725.js**](../../tools/dapps/erc725js/getting-started.md) makes it easy to read + write data encoded according to the LSP2 Schema without manually going through all the encoding complexity.
 
 :::
 
@@ -44,8 +44,6 @@ These two issues make it very hard for smart contracts to interact with each oth
 
 ## What does this standard represent?
 
-### Specification
-
 The LSP2 Standard aims to offer a better abstraction on top of the storage of a smart contract.
 
 This standard introduces a JSON schema that enables to represent the storage of a smart contract through more understandable data keys. It makes the data stored in a smart contract more organized.
@@ -54,17 +52,11 @@ This standard introduces a JSON schema that enables to represent the storage of 
 
 By introducing a schema, we can represent contract storage in the same way across contracts in the network. Everyone has a unified view of the data stored between smart contracts. Developers can quickly parse data, and contracts or interfaces can read or write data from or to the contract storage in the same manner. The standardization makes smart contracts **more interoperable with each other**.
 
-### How does LSP2 work?
+## Specification
 
-LSP2 introduces new ways to encode data, depending on its type. From a single entry to multiple entries (like arrays or maps).
+LSP2 introduces new ways to encode data, depending on its type. From single to multiple entries (like arrays or maps).
 
 A data key in the contract storage can be defined as a JSON object with properties that describe the key. The schema includes informations about the data key itself, as well as its value to explain what this data represents.
-
-- the data `key` itself: the `bytes32` hex value used when calling [`setData`](../../contracts/contracts/ERC725/ERC725.md#setdata) or [`setDataBatch`](../../contracts/contracts/ERC725/ERC725.md#setdatabatch) on the smart contract.
-- the data key `name`: human readable version
-- the `keyType` (_e.g., singleton, array, mapping_)
-- the `valueType`: how to encode or decode the data.
-- the `valueContent`: how to interpret the data being stored (is it some text? is it some URL? is it an address?)
 
 ```json
 {
@@ -75,6 +67,16 @@ A data key in the contract storage can be defined as a JSON object with properti
   "valueContent": "String"
 }
 ```
+
+Below are descriptions of what each properties in the JSON schema represent.
+
+| Property in JSON schema | Explanation                                                                                                                                                                                                                   |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data key `name`         | Describe what kind of metadata value is stored under this data key in a human readable way.                                                                                                                                   |
+| data `key` itself       | The `bytes32` hex value used when calling [`setData`](../../contracts/contracts/ERC725/ERC725.md#setdata) or [`setDataBatch`](../../contracts/contracts/ERC725/ERC725.md#setdatabatch) on the smart contract.                 |
+| `keyType`               | Define if the information stored under this data key is a single entry (_`Singleton`_), a list of items (_`Array`_), or map to a specific field like an address or unique identifier (_`Mapping` and `MappingWithGrouping`_). |
+| `valueType`             | Describe the low level type to be used to encode or decode the data.                                                                                                                                                          |
+| `valueContent`          | Describe how to interpret the data being fetched (_is it some text? is it some URL? is it an address? is it a JSON object?_)                                                                                                  |
 
 ## Data Key Types
 

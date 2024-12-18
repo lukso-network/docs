@@ -6,7 +6,7 @@ description: LUKSO LSP9 - Vault for holding assets and interacting with other sm
 
 # LSP9 - Vault
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP9 - Vault](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-9-Vault.md)
 
@@ -23,6 +23,8 @@ Third parties should be restricted when talking to a specific smart contract thr
 This standard defines a vault that can hold assets and interact with other contracts. It can **attach information** via [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) to itself, **execute, deploy or transfer value** to any other smart contract or EOA via [ERC725X](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725x). It can be **notified of incoming assets** via the [LSP1-UniversalReceiver](https://github.com/lukso-network/LIPs/blob/master/LSPs/LSP-1-UniversalReceiver.md) function.
 
 This standard uses the **[ERC173](https://eips.ethereum.org/EIPS/eip-173)** standard to provide ownership functions for owning and controlling the implementation contract.
+
+## Specification
 
 ### ERC725X - Generic Executor
 

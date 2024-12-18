@@ -70,7 +70,7 @@ export default function AddNetworkButton({ networkName }) {
 
   return (
     <button className={styles.button} onClick={addNetwork}>
-      ADD LUKSO {networkName.toUpperCase()}
+      Add LUKSO {networkName.toUpperCase()}
     </button>
   );
 }

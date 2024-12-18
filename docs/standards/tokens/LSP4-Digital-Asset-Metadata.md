@@ -6,7 +6,7 @@ description: LUKSO LSP4 - Digital Asset Metadata for defining data keys to descr
 
 # LSP4 - Digital Asset Metadata
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)
 
@@ -211,7 +211,3 @@ This data key refers to the **address(es)** of the **creator(s)** of the digital
   "valueContent": "(Bytes4,Number)"
 }
 ```
-
-## References
-
-- [LUKSO Standards Proposals: LSP4 - Digital Asset Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)

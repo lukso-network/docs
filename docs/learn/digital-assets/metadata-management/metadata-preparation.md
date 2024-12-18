@@ -121,7 +121,7 @@ To implement Cascade and Sense support, you can reference [this](./cascade-and-s
 
 :::tip Convenience Tool
 
-You can use the 🛠️ [`erc725.js`](../../../tools/libraries/erc725js/getting-started.md) library
+You can use the 🛠️ [`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) library
 to encode the LSP4 Metadata. The tool provides all necessary LSP schemas as well as the `encodeData()` function.
 
 :::

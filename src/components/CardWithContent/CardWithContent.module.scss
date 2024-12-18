@@ -1,0 +1,12 @@
+.cardWithContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px 10px;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+
+.cardWithContent > div {
+  flex: 1 0 100%;
+}
