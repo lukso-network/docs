@@ -3148,14 +3148,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/react@npm:^5.0.1":
-  version: 5.0.2
-  resolution: "@iconify/react@npm:5.0.2"
+"@iconify/react@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@iconify/react@npm:5.1.0"
   dependencies:
     "@iconify/types": ^2.0.0
   peerDependencies:
     react: ">=16"
-  checksum: daf8c8146068a35b91c43b719ea3e93355d0b5c28756373db3bede5f171ffa800225eca77a84509bea5f7a20b283bbdda4b418cecef76975b73b8a533f7e8910
+  checksum: 2b763c774b41d9322449a0cf19b91e3368234a424e969b32790540fbe0ea5ceb83c132a9ec5a9c03f25f869a6bf9394257b6118d38959e36a8943218f2c786da
   languageName: node
   linkType: hard
 
@@ -11735,7 +11735,7 @@ __metadata:
     "@docusaurus/types": latest
     "@emotion/react": ^11.13.3
     "@emotion/styled": ^11.13.0
-    "@iconify/react": ^5.0.1
+    "@iconify/react": ^5.1.0
     "@mdx-js/react": 3.1.0
     "@mui/icons-material": ^6.0.2
     "@mui/material": ^6.0.2
