@@ -11745,7 +11745,7 @@ __metadata:
     file-loader: ^6.2.0
     plugin-image-zoom: ^1.2.0
     prettier: ^3.3.2
-    prism-react-renderer: ^2.3.1
+    prism-react-renderer: ^2.4.1
     react: ^19.0.0
     react-dom: ^19.0.0
     react-material-ui-carousel: ^3.4.2
@@ -14591,7 +14591,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prism-react-renderer@npm:^2.3.0, prism-react-renderer@npm:^2.3.1":
+"prism-react-renderer@npm:^2.3.0":
   version: 2.4.0
   resolution: "prism-react-renderer@npm:2.4.0"
   dependencies:
@@ -14600,6 +14600,18 @@ __metadata:
   peerDependencies:
     react: ">=16.0.0"
   checksum: d15d944a8cbf05f7b04deecd2cf4ffb08229a6027918641b6f046cd8ab24b65ca4ebe4ac8e95a53a7d7cefb1bba8df3ce394fe4f1d75418e34fa92553dc63ef7
+  languageName: node
+  linkType: hard
+
+"prism-react-renderer@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "prism-react-renderer@npm:2.4.1"
+  dependencies:
+    "@types/prismjs": ^1.26.0
+    clsx: ^2.0.0
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: ddd5490a1335629addde9535db7872f0aee8dbce048818dd6e4c3972c779780af13d669c12d3f2fbb54c5b22d1578e50945099ef1a24dd445f33774e87d85e6e
   languageName: node
   linkType: hard
 
