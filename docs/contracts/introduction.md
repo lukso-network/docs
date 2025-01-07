@@ -160,7 +160,7 @@ The `@lukso/lsp-smart-contracts` repository contains two types of contracts:
 | Type                   | Description                                                                                                                 | Example                     |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | **Standard contracts** | One contract deployed per user. Deployed and initialized via a `constructor`.                                               | `LSP0ERC725Account.sol`     |
-| **Base contracts**     | Deploy one contract for all users. To be used as base contract behind proxies. Initialized via a `initalize(...)` function. | `LSP0ERC725AccountInit.sol` |
+| **Base contracts**     | Deploy one contract for all users. To be used as base contract behind proxies. Initialized via a `initialize(...)` function. | `LSP0ERC725AccountInit.sol` |
 
 ## LSP Recipes
 

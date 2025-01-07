@@ -18,7 +18,7 @@ The following format is used to sign data :
 In the case of an Ethereum Signed Message:
 
 - 1 byte version = `0x45`
-- version specific data = `thereum Signed Message:\n + len(message)`
+- version specific data = `Ethereum Signed Message:\n + len(message)`
 
 In the case of data with intended validator:
 

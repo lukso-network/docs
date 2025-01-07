@@ -371,7 +371,7 @@ main();
 
 ## Extending InterfaceIds
 
-Extending `interfaceIds` is crucial for Universal Profiles, as many protocols check for support of specific `interfaceIds` before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existance of the `supportsInterface` function.
+Extending `interfaceIds` is crucial for Universal Profiles, as many protocols check for support of specific `interfaceIds` before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existence of the `supportsInterface` function.
 
 ### Step 1: Create a Contract Supporting a Specific InterfaceId
 

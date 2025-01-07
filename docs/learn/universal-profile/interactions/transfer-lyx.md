@@ -12,11 +12,11 @@ import TabItem from '@theme/TabItem';
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('../img/transfer-lyx.png').default}
-    alt="Transfering 0.5 LYXt between two Universal Profiles"
+    alt="Transferring 0.5 LYXt between two Universal Profiles"
     width="400"
   />
 <br/>
-<i>Transfering 0.5 LYXt between two Universal Profiles.</i>
+<i>Transferring 0.5 LYXt between two Universal Profiles.</i>
 <br /><br />
 </div>
 

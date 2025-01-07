@@ -96,14 +96,14 @@ See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
 
 :::info
 
-- If some issues occured with generating the `dataKeys` or `dataValues` the `returnedMessage` will be an error message, otherwise it will be empty.
-- If an error occured when trying to use `setDataBatch(dataKeys,dataValues)`, it will return the raw error data back to the caller.
+- If some issues occurred with generating the `dataKeys` or `dataValues` the `returnedMessage` will be an error message, otherwise it will be empty.
+- If an error occurred when trying to use `setDataBatch(dataKeys,dataValues)`, it will return the raw error data back to the caller.
 
 :::
 
 :::caution Warning
 
-When the data stored in the ERC725Y storage of the LSP0 contract is corrupted (\_e.g: ([LSP-5-ReceivedAssets]'s Array length not 16 bytes long, the token received is already registered in `LSP5ReceivetAssets[]`, the token being sent is not sent as full balance, etc...), the function call will still pass and return (**not revert!**) and not modify any data key on the storage of the [LSP-0-ERC725Account].
+When the data stored in the ERC725Y storage of the LSP0 contract is corrupted (\_e.g: ([LSP-5-ReceivedAssets]'s Array length not 16 bytes long, the token received is already registered in `LSP5ReceivedAssets[]`, the token being sent is not sent as full balance, etc...), the function call will still pass and return (**not revert!**) and not modify any data key on the storage of the [LSP-0-ERC725Account].
 
 :::
 

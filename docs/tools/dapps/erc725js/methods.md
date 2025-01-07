@@ -278,7 +278,7 @@ myErc725.encodeData(
 const schemas = [
   {
     name: 'DynamicKey:<bytes4>:<string>',
-    key: '0xForDynamicKeysThisFieldIsIrrelevantAndWillBeOverwriten',
+    key: '0xForDynamicKeysThisFieldIsIrrelevantAndWillBeOverwritten',
     keyType: 'Mapping',
     valueType: 'bytes',
     valueContent: 'Address',
@@ -1477,7 +1477,7 @@ The name(s) (or the encoded name(s) as schema key) of the element(s) in the smar
 
 ```javascript title="Receiving all keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1523,7 +1523,7 @@ await myErc725.fetchData();
 
 ```javascript title="Receiving one key from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1552,7 +1552,7 @@ await myErc725.fetchData(['LSP1UniversalReceiverDelegate']);
 
 ```javascript title="Receiving multiple keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1642,7 +1642,7 @@ The name(s) (or the encoded name(s) as schema key) of the element(s) in the smar
 
 ```javascript title="Receiving all keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1695,7 +1695,7 @@ await myErc725.getData();
 
 ```javascript title="Receiving one key from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1746,7 +1746,7 @@ await myErc725.getData('LSP1UniversalReceiverDelegate');
 
 ```javascript title="Receiving multiple keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1778,7 +1778,7 @@ await myErc725.getData(['LSP3Profile', 'LSP1UniversalReceiverDelegate']);
 
 ```javascript title="Receiving dynamic keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const luksoUniversalProfile = '0x8363Cfe6c787218f0ADA0A4aBC289A8d9dfc2453';
 
 const myErc725 = new ERC725(LSP3Schemas, luksoUniversalProfile);
@@ -2730,7 +2730,7 @@ The encoded permission (32bytes hex).
 
 | Name                 | Type   | Description                                                                                        |
 | :------------------- | :----- | :------------------------------------------------------------------------------------------------- |
-| `decodedPermissions` | Object | An object specifying whether default LSP6 permissions are included in provided hexademical string. |
+| `decodedPermissions` | Object | An object specifying whether default LSP6 permissions are included in provided hexadecimal string. |
 
 #### Example
 

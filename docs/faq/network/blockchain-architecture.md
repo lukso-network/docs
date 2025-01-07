@@ -87,7 +87,7 @@ An epoch in PoS is a fixed period during which slots occur. It is a larger time 
 Epochs provide several vital functions:
 
 - **Validator Shuffling**: At the start of each epoch, a random selection process determines the active validators and assigns them to slots. This is done to ensure that the system remains decentralized and that no single validator can predict far in advance when they will be selected.
-- **Rewards and Penaltie**s: At the end of each epoch, rewards and penalties are calculated for validators. Validators that correctly proposed and attested to blocks receive rewards, while those who behaved maliciously or were offline are penalized.
+- **Rewards and Penalties**: At the end of each epoch, rewards and penalties are calculated for validators. Validators that correctly proposed and attested to blocks receive rewards, while those who behaved maliciously or were offline are penalized.
 - **Finality**: An epoch also plays a role in achieving finality. Finality refers to the point at which a block cannot be changed or removed from the blockchain. The finality is achieved in every epoch.
 
 ## What are slots?

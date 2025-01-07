@@ -210,7 +210,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
             return "Token not in allowlist";
         }
 
-        // extract data (we only need the amount that was transfered / minted)
+        // extract data (we only need the amount that was transferred / minted)
         (, , , uint256 amount, ) = abi.decode(
             data,
             (address, address, address, uint256, bytes)
@@ -395,7 +395,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
             return "Token not in allowlist";
         }
 
-        // extract data (we only need the amount that was transfered / minted)
+        // extract data (we only need the amount that was transferred / minted)
         (, , , uint256 amount, ) = abi.decode(
             data,
             (address, address, address, uint256, bytes)

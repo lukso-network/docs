@@ -176,7 +176,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
         <a class="imageLink" href="https://www.cookbook.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/cookbook_dev.png"/></a>
       </td>
       <td>
-        <a href="https://www.cookbook.dev/search" target="_blank">Cookbook</a> provides bundled smart contract libraries that can be directly used within Visual Studio Code, Foundry, Harthat, or Remix. Their webpage also features a ChatGPT integration to help learn and deploy LSPs.
+        <a href="https://www.cookbook.dev/search" target="_blank">Cookbook</a> provides bundled smart contract libraries that can be directly used within Visual Studio Code, Foundry, Hardhat, or Remix. Their webpage also features a ChatGPT integration to help learn and deploy LSPs.
         <ul>
           <li><a href="https://www.cookbook.dev/libraries/LSP-Contracts" target="_blank" rel="noopener noreferrer">Cookbook LSP Libraries</a></li>
           <li><a href="https://marketplace.visualstudio.com/items?itemName=cookbookdev.vscode-cookbook" target="_blank" rel="noopener noreferrer">Visual Studio Code Extension</a></li>

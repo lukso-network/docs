@@ -30,7 +30,7 @@ Currently, LUKSO officially supports Geth, Erigon, Lighthouse, and Prysm. All cl
 
 ## Should I run an archive or a full node?
 
-A full node downloads the entire blockchain and validates all blocks and transactions against the network's consensus rules. It stores the **current state of the network, including account balances, contracts, storage, and other informatio**n. However, it does not keep all historical states. If you need to check the balance of an account at a specific block height in the past, a full node cannot provide this information directly.
+A full node downloads the entire blockchain and validates all blocks and transactions against the network's consensus rules. It stores the **current state of the network, including account balances, contracts, storage, and other information**. However, it does not keep all historical states. If you need to check the balance of an account at a specific block height in the past, a full node cannot provide this information directly.
 
 An archive node is a particular type of full node. It also downloads the entire blockchain and validates all blocks and transactions like a full node. In addition to the current state of the network, it **also stores all historical states since the genesis block**. Keeping the entire historical state makes an archive node much more storage extensive than a full node, but it allows you to query any historical state directly on the node.
 

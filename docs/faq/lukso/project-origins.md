@@ -42,7 +42,7 @@ The official address of the Genesis Deposit Contract is [`0x42000421dd80d1e90e56
 
 The deposit contract called the external LYXe [ERC777](https://ethereum.org/de/developers/docs/standards/tokens/erc-777/) token contract to lock the deposit amounts. To prepare the genesis files of the mainnet launch featured a freeze. Therefore, the deposit contract featured checks if a public key has been registered, preventing duplicate deposits. Only static deposit amounts of 32 LYX were allowed.
 
-The freeze also came with a delay function to allow people to have time still after the LUKSO team triggered it. Each validator that went through the Genesis Launchpad stored not only the LYXe token but also a vote for the initial coin supply of the mainnet. The additional data was stored on-chain to have a publically verifiable source of the initial LYX supply and distribution.
+The freeze also came with a delay function to allow people to have time still after the LUKSO team triggered it. Each validator that went through the Genesis Launchpad stored not only the LYXe token but also a vote for the initial coin supply of the mainnet. The additional data was stored on-chain to have a publicly verifiable source of the initial LYX supply and distribution.
 
 ## How was the token supply of LUKSO determined?
 

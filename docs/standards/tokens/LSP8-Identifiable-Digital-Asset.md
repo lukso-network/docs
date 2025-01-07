@@ -125,7 +125,7 @@ During an **ERC721 token transfer**, the ownership of the tokenId is changed fro
 
 ![ERC721 Transfer](/img/standards/lsp8/erc721-transfer.jpeg)
 
-During an **LSP8 token transfer**, as well as updating the tokenId ownership, both the sender and recipient are informed of the transfer by calling the **[`universalReceiever(...)`](../accounts/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
+During an **LSP8 token transfer**, as well as updating the tokenId ownership, both the sender and recipient are informed of the transfer by calling the **[`universalReceiver(...)`](../accounts/lsp1-universal-receiver.md#lsp1---universal-receiver)** function on their profiles.
 
 ![LSP8 Transfer](/img/standards/lsp8/lsp8-transfer.jpeg)
 

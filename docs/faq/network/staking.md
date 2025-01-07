@@ -40,7 +40,7 @@ No. Rewards are given out for each validator key separately and do not increase 
 
 ## Are LYX/LYXt locked after they have been deposited?
 
-No, validators are not locked after depositing their stake. The locking **only occurred for genesis deposits** before the Shappella fork went live on the LUKSO mainnet. Please remember that the deposited LYX can only be exited from the network after they have been activated, which may take up to 24h. In addition, the exit process may also **take up to multiple hours** until it is picked up from the consensus. Please also note that it requires setting withdrawal credentials to withdraw your funds to an account.
+No, validators are not locked after depositing their stake. The locking **only occurred for genesis deposits** before the Shapella fork went live on the LUKSO mainnet. Please remember that the deposited LYX can only be exited from the network after they have been activated, which may take up to 24h. In addition, the exit process may also **take up to multiple hours** until it is picked up from the consensus. Please also note that it requires setting withdrawal credentials to withdraw your funds to an account.
 
 ## Are there different types of withdrawals for validators?
 
@@ -102,6 +102,6 @@ In case you have multiple wallets to make deposits from but you don't want to se
 
 ## How much stake will I lose for being offline?
 
-The exact calculation of penalties can be complex due to these variables, but there are rough estimates based on the [EVM Panelty Research](https://alonmuroch-65570.medium.com/how-long-will-it-take-an-inactive-eth2-validator-to-get-ejected-a6ce8f98fd1c). You will roughly lose 0.01 LYX/LYXt per validatory for being offline for an hour. After being offline for a whole day, it will increase to about 0.1 LYX/LYXt. After an entire offline week, it will be approximately 1 LYX/LYXt per validator.
+The exact calculation of penalties can be complex due to these variables, but there are rough estimates based on the [EVM Penalty Research](https://alonmuroch-65570.medium.com/how-long-will-it-take-an-inactive-eth2-validator-to-get-ejected-a6ce8f98fd1c). You will roughly lose 0.01 LYX/LYXt per validatory for being offline for an hour. After being offline for a whole day, it will increase to about 0.1 LYX/LYXt. After an entire offline week, it will be approximately 1 LYX/LYXt per validator.
 
 A validator will lose roughly 60% of their staked LYX after 18 days of inactivity. It takes around three weeks for the effective balance to fall to around 16 LYX/LYXt, which will cause the validator to be ejected from the PoS protocol. Remember, these are **rough estimates, and the penalties could differ** based on the network conditions. If the network is not finalizing, e.g., over one-third of the network is offline, penalties can ramp up significantly.

@@ -56,7 +56,7 @@ If you plan to become a validator for testnet, please contact `testnet-validator
 
 ## What happens when my validator is offline?
 
-In Proof of Stake, validators can be penalized for being offline. The **penalties for an offline validator are dynamically adjusted** based on the total amount of offline validators and their offline duration. You can find rough estemates within the [staking section](./staking.md) of the FAQ.
+In Proof of Stake, validators can be penalized for being offline. The **penalties for an offline validator are dynamically adjusted** based on the total amount of offline validators and their offline duration. You can find rough estimates within the [staking section](./staking.md) of the FAQ.
 
 This mechanism **incentivizes validators to stay online** and actively participate in the network's consensus process. Validators are expected to be online to propose and attest to blocks. If a validator is offline, they're not fulfilling their role, so their balance slowly leaks over time. The inactivity penalty is proportional to the square of the time the validator has been offline, meaning the penalty accelerates the longer the validator is offline.
 
