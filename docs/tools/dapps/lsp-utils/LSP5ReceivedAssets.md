@@ -12,7 +12,7 @@ Generate an array of Data Key/Value pairs to be set on the receiver address afte
 
 | Name               | Type               | Description                                                             |
 | :----------------- | :----------------- | :---------------------------------------------------------------------- |
-| `erc725YContract`  | `UniversalProfile` | The contract instance of the asset reciever.                            |
+| `erc725YContract`  | `UniversalProfile` | The contract instance of the asset receiver.                            |
 | `assetAddress`     | `BytesLike`        | The address of the asset being received (_e.g: an LSP7 or LSP8 token_). |
 | `assetInterfaceId` | `BytesLike`        | The interfaceID of the asset being received.                            |
 

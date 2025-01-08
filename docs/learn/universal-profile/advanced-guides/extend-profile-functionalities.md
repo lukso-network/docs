@@ -204,7 +204,7 @@ const TipMeFactory = new ethers.ContractFactory(
 const tipMeContract = await TipMeFactory.deploy();
 await tipMeContract.deployTransaction.wait();
 
-const tipMeExtensionAddress = tipMeContract.addres;
+const tipMeExtensionAddress = tipMeContract.address;
 
 console.log('Contract deployed at:', tipMeExtensionAddress);
 ```
@@ -371,7 +371,7 @@ main();
 
 ## Extending InterfaceIds
 
-Extending `interfaceIds` is crucial for Universal Profiles, as many protocols check for support of specific `interfaceIds` before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existance of the `supportsInterface` function.
+Extending `interfaceIds` is crucial for Universal Profiles, as many protocols check for support of specific `interfaceIds` before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existence of the `supportsInterface` function.
 
 ### Step 1: Create a Contract Supporting a Specific InterfaceId
 
@@ -443,7 +443,7 @@ const supportsInterfaceFactory = new ethers.ContractFactory(
 const supportsInterfaceContract = await supportsInterfaceFactory.deploy();
 await supportsInterfaceContract.deployTransaction.wait();
 
-const supportsInterfaceExtensionAddress = supportsInterfaceContract.addres;
+const supportsInterfaceExtensionAddress = supportsInterfaceContract.address;
 
 console.log('Contract deployed at:', tipMeExtensionAddress);
 ```
@@ -535,7 +535,7 @@ async function main() {
   const supportsInterfaceContract = await supportsInterfaceFactory.deploy();
   await supportsInterfaceContract.deployTransaction.wait();
 
-  const supportsInterfaceExtensionAddress = supportsInterfaceContract.addres;
+  const supportsInterfaceExtensionAddress = supportsInterfaceContract.address;
 
   const supportsInterfaceInterface = new ethers.Interface(SupportsInterfaceABI);
   const supportsInterfaceFunctionSelector =

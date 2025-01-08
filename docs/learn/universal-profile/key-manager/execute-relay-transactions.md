@@ -422,7 +422,7 @@ You can find more information about `executeRelayCall` within the [LSP6 Contract
 
 :::
 
-To execute a previously signed transaction, the relayer will need all the following informations:
+To execute a previously signed transaction, the relayer will need all the following information:
 
 - `signature` generated in **step 2.3**.
 - `nonce` of the signing controller.
@@ -430,7 +430,7 @@ To execute a previously signed transaction, the relayer will need all the follow
 - `abiPayload` as abi-encoded function call to execute on the 🆙.
 - `keyManagerAddress` associated with the Universal Profile we want to execute on.
 
-The relayer can now call the [`executeRelayCall`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall) function on the Key Manager (`keyManagerAddress`) of the profile, passing all these informations as function arguments.
+The relayer can now call the [`executeRelayCall`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall) function on the Key Manager (`keyManagerAddress`) of the profile, passing all these information as function arguments.
 
 <Tabs groupId="provider-lib">
 
