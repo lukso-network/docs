@@ -132,7 +132,7 @@ function executeBatch(
 ) external payable returns (bytes[]);
 ```
 
-\*Executing the following batch of payloads and sensind on the linked contract.
+\*Executing the following batch of payloads and sending on the linked contract.
 
 - payloads: `payloads`
 
@@ -241,7 +241,7 @@ function executeRelayCallBatch(
 
 _Executing a batch of relay calls (= meta-transactions)._
 
-Same as [`executeRelayCall`](#executerelaycall) but execute a batch of signed calldata payloads (abi-encoded function calls) in a single transaction. The `signatures` can be from multiple controllers, not necessarely the same controller, as long as each of these controllers that signed have the right permissions related to the calldata `payload` they signed.
+Same as [`executeRelayCall`](#executerelaycall) but execute a batch of signed calldata payloads (abi-encoded function calls) in a single transaction. The `signatures` can be from multiple controllers, not necessarily the same controller, as long as each of these controllers that signed have the right permissions related to the calldata `payload` they signed.
 
 <blockquote>
 

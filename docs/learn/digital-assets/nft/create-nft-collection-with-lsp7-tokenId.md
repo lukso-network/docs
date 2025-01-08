@@ -24,11 +24,11 @@ If you have been looking at the [LSP8 token standard](../../../standards/tokens/
 
 ## Use Case
 
-Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYGITAL COLLECTION. As you can see in the picture below, we have three medalions of different colours.s
+Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYGITAL COLLECTION. As you can see in the picture below, we have three medallions of different colours.
 
 ![KLxENDLESS PHYSITAL COLLECTION](../../../../static/img/learn/klxendless-physital-collection.png)
 
-Each medaillon has a supply limit and each medaillon collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the whole KLxENDLESS PHYSITAL collection and each medaillon will be a sub-collection (purple, blue or gold) will with a limited supply of NFTs [(Non-divisible LSP7 token)](../../../standards/tokens//LSP7-Digital-Asset.md).
+Each medallion has a supply limit and each medallion collection has its own metadata with different attributes. What we will do is create an [LSP8 collection](../../../standards/tokens//LSP8-Identifiable-Digital-Asset.md) that will represent the whole KLxENDLESS PHYSITAL collection and each medallion will be a sub-collection (purple, blue or gold) will with a limited supply of NFTs [(Non-divisible LSP7 token)](../../../standards/tokens//LSP7-Digital-Asset.md).
 
 ## Create the LSP7 Sub-Collection
 
@@ -581,7 +581,7 @@ We will do the same with the LSP7 Sub-Collection metadata. Let's create a `lsp7S
           "method": "keccak256(bytes)",
           "data": "0x88f3d704f3d534267c564019ce2b70a5733d070e71bf2c1f85b5fc487f47a46f"
         },
-        "url": "ifps://QmTDQGR26dSd3c4qJpmFwTh7gNRPnNbBf2Fg3gULypUag3",
+        "url": "ipfs://QmTDQGR26dSd3c4qJpmFwTh7gNRPnNbBf2Fg3gULypUag3",
         "fileType": "mp4"
       }
     ],

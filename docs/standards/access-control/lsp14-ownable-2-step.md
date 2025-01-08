@@ -34,7 +34,7 @@ What is needed is a safer mechanism for managing contract ownership.
 
 **LSP14 - Ownable2Step** is an extended version of [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) that uses a 2-step process for transferring and renouncing ownership.
 
-**LSP14 - Ownable2Step** modifies the processes of _tranferring and renouncing ownership_ in the following way:
+**LSP14 - Ownable2Step** modifies the processes of _transferring and renouncing ownership_ in the following way:
 
 1. For _transferring ownership_ the method `transferOwnership(...)` is modified in a way so the **address** passed as parameter will not be the owner directly but a pending owner. A new method is introduced, `acceptOwnership()`, which should be called by the **pending owner** in order for the process of _transferring ownership_ to be complete.
 
@@ -77,7 +77,7 @@ Each hook is executed whenever the _new owner confirms the process of transferri
 
 ### Renouncing the contract ownership
 
-The control of the contract is refully renounced _once the owner of the contract confirmes the ownership renouncement_. The 2 steps of ownership renouncement are described below:
+The control of the contract is refully renounced _once the owner of the contract confirms the ownership renouncement_. The 2 steps of ownership renouncement are described below:
 
 1. The owner initiates the process of ownership renouncement via the ['renounceOwnership()'](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#renounceownership) function.
 

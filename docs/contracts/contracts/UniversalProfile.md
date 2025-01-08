@@ -1289,7 +1289,7 @@ Emitted when calling an address `target` (EOA or contract) with `value`.
 
 | Name                          |   Type    | Description                                                                                          |
 | ----------------------------- | :-------: | ---------------------------------------------------------------------------------------------------- |
-| `operationType` **`indexed`** | `uint256` | The low-level call opcode used to call the `target` address (`CALL`, `STATICALL` or `DELEGATECALL`). |
+| `operationType` **`indexed`** | `uint256` | The low-level call opcode used to call the `target` address (`CALL`, `STATICCALL` or `DELEGATECALL`). |
 | `target` **`indexed`**        | `address` | The address to call. `target` will be unused if a contract is created (operation types 1 and 2).     |
 | `value`                       | `uint256` | The amount of native tokens transferred along the call (in Wei).                                     |
 | `selector` **`indexed`**      | `bytes4`  | The first 4 bytes (= function selector) of the data sent with the call.                              |

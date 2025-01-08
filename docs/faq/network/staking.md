@@ -40,7 +40,7 @@ No. Rewards are given out for each validator key separately and do not increase 
 
 ## Are LYX/LYXt locked after they have been deposited?
 
-No, validators are not locked after depositing their stake. The locking **only occurred for genesis deposits** before the Shappella fork went live on the LUKSO mainnet. Please remember that the deposited LYX can only be exited from the network after they have been activated, which may take up to 24h. In addition, the exit process may also **take up to multiple hours** until it is picked up from the consensus. Please also note that it requires setting withdrawal credentials to withdraw your funds to an account.
+No, validators are not locked after depositing their stake. The locking **only occurred for genesis deposits** before the Shapella fork went live on the LUKSO mainnet. Please remember that the deposited LYX can only be exited from the network after they have been activated, which may take up to 24h. In addition, the exit process may also **take up to multiple hours** until it is picked up from the consensus. Please also note that it requires setting withdrawal credentials to withdraw your funds to an account.
 
 ## Are there different types of withdrawals for validators?
 

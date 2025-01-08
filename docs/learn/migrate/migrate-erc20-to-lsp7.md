@@ -325,7 +325,7 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
             {
                 width: 256,
                 height: 256,
-                url: 'ifps://QmW5cF4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
+                url: 'ipfs://QmW5cF4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
                 verification: {
                     method: 'keccak256(bytes)',
                     data: '0x01299df007997de92a820c6c2ec1cb2d3f5aa5fc1adf294157de563eba39bb6f',
@@ -337,7 +337,7 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
                 {
                     width: 1024,
                     height: 974,
-                    url: 'ifps://QmW4wM4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
+                    url: 'ipfs://QmW4wM4r9yWeY1gUCtt7c6v3ve7Fzdg8CKvTS96NU9Uiwr',
                     verification: {
                         method: 'keccak256(bytes)',
                         data: '0xa9399df007997de92a820c6c2ec1cb2d3f5aa5fc1adf294157de563eba39bb6e',
@@ -352,7 +352,7 @@ const retrievedJsonMetadata = JSON.parse(ethers.toUtf8String(storedMetadata));
                 method: 'keccak256(bytes)',
                 data: '0x98fe032f81c43426fbcfb21c780c879667a08e2a65e8ae38027d4d61cdfe6f55',
             },
-            url: 'ifps://QmPJESHbVkPtSaHntNVY5F6JDLW8v69M2d6khXEYGUMn7N',
+            url: 'ipfs://QmPJESHbVkPtSaHntNVY5F6JDLW8v69M2d6khXEYGUMn7N',
             fileType: 'fbx'
         }],
         attributes: [

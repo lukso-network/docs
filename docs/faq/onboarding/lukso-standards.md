@@ -23,7 +23,7 @@ With LSPs, the mission is to have standards that facilitate using tools that abs
 - Assets can be **anchored** directly to the blockchain **account's storage** using [LSP1](/standards/accounts/lsp1-universal-receiver), abandoning complex data fetching.
 - Token IDs have an increased size and can map any serial number (for digital or physical products) on-chain, which also allows NFC integration.
 - Developers and users can safely utilize **events from asset contracts**, regulate allowlists and blocklists, customize UI and app workflows, or create consensus for asset transfers using LSP1 Delegate.
-- Assets have **built-in security for sending assets** to accounts without recovery, utiliszing account abstraction with their force parameter in [LSP7](/standards/tokens/LSP7-Digital-Asset) and [LSP8](/standards/tokens/LSP8-Identifiable-Digital-Asset).
+- Assets have **built-in security for sending assets** to accounts without recovery, utilizing account abstraction with their force parameter in [LSP7](/standards/tokens/LSP7-Digital-Asset) and [LSP8](/standards/tokens/LSP8-Identifiable-Digital-Asset).
 - Attached data can always be verified through hash integration in the [LSP2](/standards/metadata/lsp2-json-schema) schema.
 - Assets can be **organized and managed in vaults** using [LSP9](/standards/accounts/lsp9-vault). Here, multiple services and games can have permissioned access for updating the asset data of user accounts.
 - For NFTs, individual token IDs from a collection can have **separate metadata**, upgrades, creators, and behaviors, instead of just being limited to the logic of the mint contract.

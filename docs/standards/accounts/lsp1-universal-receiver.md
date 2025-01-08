@@ -66,7 +66,7 @@ For example, **to notify the recipient that he is about to receive tokens**, dur
 - bytes32 `typeId`: **Hash**('ERCXXXXTokenReceived')
 - bytes `data`: **packedData**(amount of token sent, the sender address, the block timestamp)
 
-In this way, instead of **listening to all the events of the token contrats on the network**, and checking which one of these transfers is relative to the recipient, users can listen to the **[UniversalReceiver](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver-1)** event on the contract implementing the `universalReceiver(..)` and know the token transfer details.
+In this way, instead of **listening to all the events of the token contracts on the network**, and checking which one of these transfers is relative to the recipient, users can listen to the **[UniversalReceiver](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver-1)** event on the contract implementing the `universalReceiver(..)` and know the token transfer details.
 
 As well as emitting an event, the `universalReceiver(...)` function can implement **custom logic** to make the contract behave differently based on the data received. Some ideas include:
 
