@@ -40,7 +40,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-material-ui-carousel": "^3.4.2",
-    "sass": "^1.77.8",
+    "sass": "^1.83.1",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
