@@ -16,9 +16,9 @@ As an example for this guide, the transaction that will be executed without requ
 
 ## What are Relay Transactions?
 
-The [LSP6 KeyManager](../../../standards/universal-profile/lsp6-key-manager.md) standard empowers any user to execute a transaction on behalf of a [Universal Profile](../../../standards/universal-profile/introduction.md), provided they possess a valid transaction signed by a key that controls the Universal Profile. This capability significantly enhances the user's control and flexibility in managing their transactions.
+The [LSP6 KeyManager](../../../standards/access-control/lsp6-key-manager.md) standard empowers any user to execute a transaction on behalf of a [Universal Profile](../../../standards/accounts/introduction.md), provided they possess a valid transaction signed by a key that controls the Universal Profile. This capability significantly enhances the user's control and flexibility in managing their transactions.
 
-Relayed execution enables the creation of [Transaction Relayer Services](../../../standards/relayer-api.md), which can execute transactions on behalf of users, _without having any control over their Universal Profile_. Relayers abstract away the gas from users.
+Relayed execution enables the creation of [Transaction Relayer Services](../../../standards/accounts/lsp15-transaction-relayer-api.md), which can execute transactions on behalf of users, _without having any control over their Universal Profile_. Relayers abstract away the gas from users.
 
 Another example use case would be Alice sending an encoded transaction that updates the LSP3Profile picture of her Universal Profile to a second user, Bob, who executes the transaction and pays the gas cost on behalf of Alice.
 
@@ -32,7 +32,7 @@ This aims to help onboard new users to web3! 💪🏻
 
 :::info Execution Rights
 
-To execute relay calls, the address [signing the relay transaction](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager#how-to-sign-relay-transactions) need the [`EXECUTE_RELAY_CALL`](https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager/#permissions) permission.
+To execute relay calls, the address [signing the relay transaction](https://docs.lukso.tech/standards/access-control/lsp6-key-manager#how-to-sign-relay-transactions) need the [`EXECUTE_RELAY_CALL`](https://docs.lukso.tech/standards/access-control/lsp6-key-manager/#permissions) permission.
 
 :::
 
@@ -66,7 +66,7 @@ npm install web3 @lukso/lsp-smart-contracts @lukso/eip191-signer.js
 
 ## Step 1 - Prepare the contact instances
 
-First, create an instance of the [Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md) contract (at the defined address) and its [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md). The Key Manager's address can be obtained by calling the [`owner()`](../../../contracts/contracts/UniversalProfile.md#owner) function on the Universal Profile.
+First, create an instance of the [Universal Profile](../../../standards/accounts/lsp0-erc725account.md) contract (at the defined address) and its [Key Manager](../../../standards/access-control/lsp6-key-manager.md). The Key Manager's address can be obtained by calling the [`owner()`](../../../contracts/contracts/UniversalProfile.md#owner) function on the Universal Profile.
 
 <Tabs groupId="provider-lib">
 
@@ -194,12 +194,12 @@ function executeRelayCall(
 ) external payable returns (bytes);
 ```
 
-| Parameter           |                                                                                                                                                                                                                                                                                                                                                                     |
-| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `nonce`             | The nonce of the address (= controller) that will sign the `executeRelayCall`. Retrieved via [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) on the [Key Manager](../../../standards/universal-profile/lsp6-key-manager.md)                                                                                                    |
-| `channelId`         | The channel where the call will be registered after execution. Define to execute the call either in parallel (across different channels) of other relay calls, or require it to be executed after another call. <br/> <br/> 📓 See [**"Out of order execution"**](../../../standards/universal-profile/lsp6-key-manager.md#out-of-order-execution) for more details |
-| `validityTimestamp` | Define the time interval during which the payload can be executed. Use a value of `0` to make the transaction always valid for an undefinite period of time. <br/> <br/> 📓 See section [**Contracts > Execute Relay Calls > Validity Timestamps**](../../../contracts/overview/ExecuteRelayCall.md#validity-timestamps) for more details.                          |
-| `payload`           | The actual function being called (as an abi-encoded calldata from [**step 2**](#step-2---encode-the-calldata)) on the Universal Profile contract. In this example, the transaction payload will be a basic LYX transfer.                                                                                                                                            |
+| Parameter           |                                                                                                                                                                                                                                                                                                                                                                  |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `nonce`             | The nonce of the address (= controller) that will sign the `executeRelayCall`. Retrieved via [`getNonce`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#getnonce) on the [Key Manager](../../../standards/access-control/lsp6-key-manager.md)                                                                                                    |
+| `channelId`         | The channel where the call will be registered after execution. Define to execute the call either in parallel (across different channels) of other relay calls, or require it to be executed after another call. <br/> <br/> 📓 See [**"Out of order execution"**](../../../standards/access-control/lsp6-key-manager.md#out-of-order-execution) for more details |
+| `validityTimestamp` | Define the time interval during which the payload can be executed. Use a value of `0` to make the transaction always valid for an undefinite period of time. <br/> <br/> 📓 See section [**Contracts > Execute Relay Calls > Validity Timestamps**](../../../contracts/overview/ExecuteRelayCall.md#validity-timestamps) for more details.                       |
+| `payload`           | The actual function being called (as an abi-encoded calldata from [**step 2**](#step-2---encode-the-calldata)) on the Universal Profile contract. In this example, the transaction payload will be a basic LYX transfer.                                                                                                                                         |
 
 <Tabs groupId="provider-lib">
 
@@ -261,13 +261,13 @@ const abiPayload = universalProfile.methods
 
 :::tip Signature Details
 
-For more information regarding the construction of an LSP25 signature, see [**"Signing Relay Transactions"**](../../../standards/universal-profile/lsp6-key-manager.md#how-to-sign-relay-transactions).
+For more information regarding the construction of an LSP25 signature, see [**"Signing Relay Transactions"**](../../../standards/access-control/lsp6-key-manager.md#how-to-sign-relay-transactions).
 
 :::
 
 The next step for the client side is to sign the transaction message. This is done using the private key of a controller that has some permission on the Universal Profile to execute the transaction on, without needing us to pay for the gas.
 
-To do that, we will use our convenience library [_eip191-signer_](../../../tools/eip191-signerjs/getting-started.md) which make the signing for us.
+To do that, we will use our convenience library [_eip191-signer_](../../../tools/dapps/eip191-signerjs/getting-started.md) which make the signing for us.
 
 The transaction message is constructed by encoding and signing the following:
 
@@ -422,7 +422,7 @@ You can find more information about `executeRelayCall` within the [LSP6 Contract
 
 :::
 
-To execute a previously signed transaction, the relayer will need all the following informations:
+To execute a previously signed transaction, the relayer will need all the following information:
 
 - `signature` generated in **step 2.3**.
 - `nonce` of the signing controller.
@@ -430,7 +430,7 @@ To execute a previously signed transaction, the relayer will need all the follow
 - `abiPayload` as abi-encoded function call to execute on the 🆙.
 - `keyManagerAddress` associated with the Universal Profile we want to execute on.
 
-The relayer can now call the [`executeRelayCall`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall) function on the Key Manager (`keyManagerAddress`) of the profile, passing all these informations as function arguments.
+The relayer can now call the [`executeRelayCall`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall) function on the Key Manager (`keyManagerAddress`) of the profile, passing all these information as function arguments.
 
 <Tabs groupId="provider-lib">
 

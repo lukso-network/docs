@@ -35,7 +35,7 @@ To achieve this goal, we will perform the following steps:
 
 :::info
 
-Read the standard docs about including [LSP17-ContractExtension in the Universal Profile](../../../standards/universal-profile/lsp0-erc725account.md#lsp17---contract-extension).
+Read the standard docs about including [LSP17-ContractExtension in the Universal Profile](../../../standards/accounts/lsp0-erc725account.md#lsp17---contract-extension).
 
 :::
 
@@ -204,7 +204,7 @@ const TipMeFactory = new ethers.ContractFactory(
 const tipMeContract = await TipMeFactory.deploy();
 await tipMeContract.deployTransaction.wait();
 
-const tipMeExtensionAddress = tipMeContract.addres;
+const tipMeExtensionAddress = tipMeContract.address;
 
 console.log('Contract deployed at:', tipMeExtensionAddress);
 ```
@@ -217,7 +217,7 @@ The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and
 
 :::
 
-We need to encode the function selector of `tipMe(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/generic-standards/lsp17-contract-extension.md) standard.
+We need to encode the function selector of `tipMe(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/accounts/lsp17-contract-extension.md) standard.
 
 #### Prepare data key and data value
 
@@ -371,7 +371,7 @@ main();
 
 ## Extending InterfaceIds
 
-Extending `interfaceIds` is crucial for Universal Profiles, as many protocols check for support of specific `interfaceIds` before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existance of the `supportsInterface` function.
+Extending `interfaceIds` is crucial for Universal Profiles, as many protocols check for support of specific `interfaceIds` before executing calls to certain functions. Extending interfaceIds typically follows a similar approach to extending functions, with the main distinction being the existence of the `supportsInterface` function.
 
 ### Step 1: Create a Contract Supporting a Specific InterfaceId
 
@@ -443,7 +443,7 @@ const supportsInterfaceFactory = new ethers.ContractFactory(
 const supportsInterfaceContract = await supportsInterfaceFactory.deploy();
 await supportsInterfaceContract.deployTransaction.wait();
 
-const supportsInterfaceExtensionAddress = supportsInterfaceContract.addres;
+const supportsInterfaceExtensionAddress = supportsInterfaceContract.address;
 
 console.log('Contract deployed at:', tipMeExtensionAddress);
 ```
@@ -456,7 +456,7 @@ The address calling the `setData(..)` function needs to have `ADDEXTENSIONS` and
 
 :::
 
-We need to encode the function selector of `supportsInterface(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/generic-standards/lsp17-contract-extension.md) standard.
+We need to encode the function selector of `supportsInterface(..)` and store it in the Universal Profile with a specific data key according to the [LSP17-ContractExtension](../../../standards/accounts/lsp17-contract-extension.md) standard.
 
 ```js
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
@@ -535,7 +535,7 @@ async function main() {
   const supportsInterfaceContract = await supportsInterfaceFactory.deploy();
   await supportsInterfaceContract.deployTransaction.wait();
 
-  const supportsInterfaceExtensionAddress = supportsInterfaceContract.addres;
+  const supportsInterfaceExtensionAddress = supportsInterfaceContract.address;
 
   const supportsInterfaceInterface = new ethers.Interface(SupportsInterfaceABI);
   const supportsInterfaceFunctionSelector =

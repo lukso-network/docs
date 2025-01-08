@@ -6,7 +6,7 @@ description: LUKSO LSP4 - Digital Asset Metadata for defining data keys to descr
 
 # LSP4 - Digital Asset Metadata
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP4 - Digital Asset Metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)
 
@@ -98,7 +98,7 @@ By mixing contract standards (LSP7/8), token types (Token, NFT, Collection) and 
 
 :::tip Recommendation
 
-Make sure to understand the **[ERC725Y Generic Key/Value Store](../lsp-background/erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../generic-standards/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
+Make sure to understand the **[ERC725Y Generic Key/Value Store](../erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../metadata/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 
 :::
 
@@ -162,7 +162,7 @@ LSP4 defines 3 default token types (see [table above](./LSP4-Digital-Asset-Metad
 }
 ```
 
-The value attached to this data key repesents the type of token of the digital asset. The defaults values are:
+The value attached to this data key represents the type of token of the digital asset. The defaults values are:
 
 - 0 (Token)
 - 1 (NFT)
@@ -190,7 +190,7 @@ The value attached to this data key is a [`VerifiableURI`](https://github.com/lu
 
 ### `LSP4Creators`
 
-This data key refers to the **address(es)** of the **creator(s)** of the digital asset. It can help to check the **asset authenticity** when combined with **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
+This data key refers to the **address(es)** of the **creator(s)** of the digital asset. It can help to check the **asset authenticity** when combined with **[LSP12-IssuedAssets](../metadata/lsp12-issued-assets.md)**.
 
 ```json
 {
@@ -211,7 +211,3 @@ This data key refers to the **address(es)** of the **creator(s)** of the digital
   "valueContent": "(Bytes4,Number)"
 }
 ```
-
-## References
-
-- [LUKSO Standards Proposals: LSP4 - Digital Asset Metadata (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)

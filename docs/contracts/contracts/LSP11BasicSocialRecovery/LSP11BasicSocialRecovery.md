@@ -353,7 +353,7 @@ Leaves the contract without owner. It will not be possible to call `onlyOwner` f
 function selectNewController(address addressSelected) external nonpayable;
 ```
 
-select an address to be a potentiel controller address if he reaches the guardian threshold and provide the correct secret string Requirements:
+select an address to be a potential controller address if he reaches the guardian threshold and provide the correct secret string Requirements:
 
 - only guardians can select an address
 
@@ -559,7 +559,7 @@ function _cleanStorage(
 ) internal nonpayable;
 ```
 
-Remove the guardians choice after a successfull recovery process
+Remove the guardians choice after a successful recovery process
 To avoid keeping unnecessary state
 
 <br/>
@@ -745,7 +745,7 @@ event SelectedNewController(
 );
 ```
 
-_Emitted when a guardian select a new potentiel controller address for the target_
+_Emitted when a guardian select a new potential controller address for the target_
 
 #### Parameters
 
@@ -1057,21 +1057,21 @@ reverts when the plain secret produce a different hash than the secret hash orig
 
 <!-- DOCS -->
 
-[ERC725]: https://docs.lukso.tech/standards/lsp-background/erc725
-[UniversalProfile]: https://docs.lukso.tech/standards/universal-profile/introduction
-[LSP0ERC725Account]: https://docs.lukso.tech/standards/universal-profile/lsp0-erc725account
-[LSP1UniversalReceiver]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver
-[LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver-delegate
-[LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema
+[ERC725]: https://docs.lukso.tech/standards/erc725
+[UniversalProfile]: https://docs.lukso.tech/standards/accounts/introduction
+[LSP0ERC725Account]: https://docs.lukso.tech/standards/accounts/lsp0-erc725account
+[LSP1UniversalReceiver]: https://docs.lukso.tech/standards/accounts/lsp1-universal-receiver
+[LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/accounts/lsp1-universal-receiver-delegate
+[LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/metadata/lsp2-json-schema
 [LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata
-[LSP5ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp5-received-assets
-[LSP6KeyManager]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
+[LSP5ReceivedVaults]: https://docs.lukso.tech/standards/metadata/lsp5-received-assets
+[LSP6KeyManager]: https://docs.lukso.tech/standards/access-control/lsp6-key-manager
 [LSP7DigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP7-Digital-Asset
 [LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP8-Identifiable-Digital-Asset
-[LSP10ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp10-received-vaults
-[LSP14Ownable2Step]: https://docs.lukso.tech/standards/generic-standards/lsp14-ownable-2-step
-[LSP17ContractExtension]: https://docs.lukso.tech/standards/generic-standards/lsp17-contract-extension
-[LSP20CallVerification]: https://docs.lukso.tech/standards/generic-standards/lsp20-call-verification
+[LSP10ReceivedVaults]: https://docs.lukso.tech/standards/metadata/lsp10-received-vaults
+[LSP14Ownable2Step]: https://docs.lukso.tech/standards/access-control/lsp14-ownable-2-step
+[LSP17ContractExtension]: https://docs.lukso.tech/standards/accounts/lsp17-contract-extension
+[LSP20CallVerification]: https://docs.lukso.tech/standards/accounts/lsp20-call-verification
 
 <!-- DATA KEYS -->
 

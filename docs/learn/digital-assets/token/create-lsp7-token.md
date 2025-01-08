@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 
 # 🪙 Create a LSP7 Token
 
-This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../../contracts/introduction.md) of our documentation.
+This guide will walk you through the process of creating and deploying a custom [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) and pre-mint a certain amount of tokens to the token owner. To build a smart contract using LSPs, you can **inherit functionality** from modular and standardized presets in the [`@lukso/lsp-smart-contracts`](/tools/lsp-smart-contracts/getting-started.md) library. To learn more about the contract standards itself, please refer to the [Contracts section](../../../contracts/introduction.md) of our documentation.
 
 :::tip
 
-You can learn about the project setup and Hardhat workflow by checking the [Getting Started](../../getting-started.mdx) section.
+You can learn about the project setup and Hardhat & Foundry workflow by checking the [Getting Started](../../../tools/#smart-contracts) section.
 
 :::
 
@@ -129,7 +129,7 @@ deployToken()
   });
 ```
 
-If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](../../getting-started.mdx) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
+If you have not yet setup the LUKSO networks and private keys in Hardhat, please check out the previous [Getting Started](../../../learn/getting-started.mdx) guide for smart contract developers. If you set up the Hardhat configuration, you can execute the deployment script using the following command:
 
 ```bash
 npx hardhat --network luksoTestnet run scripts/deployLSP7AsUP.ts
@@ -155,7 +155,7 @@ module.exports = [
 ];
 ```
 
-To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](../../getting-started.mdx) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
+To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](../../../learn/getting-started.mdx) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
 
 ```bash
 npx hardhat verify <myTokenAddress> --constructor-args ./verify/myCustomToken.ts --network luksoTestnet

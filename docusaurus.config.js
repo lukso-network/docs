@@ -30,10 +30,14 @@ export default {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          //Learn home
+          // Learn home
           {
             from: '/learn/what-is-lukso',
-            to: '/learn/getting-started',
+            to: '/learn/overview',
+          },
+          {
+            from: '/learn/introduction',
+            to: '/learn/overview',
           },
 
           // Learn/Smart Contract Developer
@@ -96,8 +100,8 @@ export default {
           },
           // Learn/Universal Profile
           {
-            from: '/learn/universal-profile/transfer-lsp7-token',
-            to: '/learn/universal-profile/interactions/transfer-lsp7-token',
+            from: '/learn/universal-profile/interactions/transfer-lsp7-token',
+            to: '/learn/universal-profile/interactions/transfer-tokens-and-nfts',
           },
           {
             from: '/learn/universal-profile/transfer-lyx',
@@ -164,11 +168,81 @@ export default {
             from: '/learn/expert-guides/utilize-ipfs-storage',
             to: '/learn/other-guides/utilize-ipfs-storage',
           },
+
           // Tools
           {
             from: '/tools/partners',
             to: '/tools/integrations',
           },
+          {
+            from: '/tools/eip191-signerjs/getting-started',
+            to: '/tools/dapps/eip191-signerjs/getting-started',
+          },
+          {
+            from: '/tools/erc725js/getting-started',
+            to: '/tools/dapps/erc725js/getting-started',
+          },
+          {
+            from: '/tools/erc725js/methods',
+            to: '/tools/dapps/erc725js/methods',
+          },
+          {
+            from: '/tools/erc725js/providers',
+            to: '/tools/dapps/erc725js/providers',
+          },
+          {
+            from: '/tools/erc725js/schemas',
+            to: '/tools/dapps/erc725js/schemas',
+          },
+          {
+            from: '/tools/lsp-utils/getting-started',
+            to: '/tools/dapps/lsp-utils/getting-started',
+          },
+          {
+            from: '/tools/lsp-utils/IPFS',
+            to: '/tools/dapps/lsp-utils/IPFS',
+          },
+          {
+            from: '/tools/lsp-utils/LSP3ProfileMetadata',
+            to: '/tools/dapps/lsp-utils/LSP3ProfileMetadata',
+          },
+          {
+            from: '/tools/lsp-utils/LSP4DigitalAssetMetadata',
+            to: '/tools/dapps/lsp-utils/LSP4DigitalAssetMetadata',
+          },
+          {
+            from: '/tools/lsp-utils/LSP5ReceivedAssets',
+            to: '/tools/dapps/lsp-utils/LSP5ReceivedAssets',
+          },
+          {
+            from: '/tools/lsp-utils/LSP6KeyManager',
+            to: '/tools/dapps/lsp-utils/LSP6KeyManager',
+          },
+          {
+            from: '/tools/lsp-utils/LSP12IssuedAssets',
+            to: '/tools/dapps/lsp-utils/LSP12IssuedAssets',
+          },
+          {
+            from: '/tools/lsp-utils/LSP23LinkedContractsFactory',
+            to: '/tools/dapps/lsp-utils/LSP23LinkedContractsFactory',
+          },
+          {
+            from: '/tools/rpc-api',
+            to: '/tools/apis/up-rpc-api',
+          },
+          {
+            from: '/tools/libraries/getting-started', // tools path before re-branding
+            to: '/tools',
+          },
+          {
+            from: '/tools/indexer',
+            to: '/tools/apis/indexer-api',
+          },
+          {
+            from: '/tools/relayer-developer',
+            to: '/tools/apis/relayer-api',
+          },
+
           // lsp-factory deprecation
           {
             from: '/tools/lsp-factoryjs/deployment/universal-profile',
@@ -179,20 +253,24 @@ export default {
             to: '/learn/digital-assets/getting-started',
           },
           {
+            from: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/dapps/lsp-factoryjs/getting-started',
+          },
+          {
             from: '/tools/lsp-factoryjs/classes/universal-profile',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/dapps/lsp-factoryjs/getting-started',
           },
           {
             from: '/tools/lsp-factoryjs/classes/lsp4-digital-asset-metadata',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/dapps/lsp-factoryjs/getting-started',
           },
           {
             from: '/tools/lsp-factoryjs/classes/lsp7-digital-asset',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/dapps/lsp-factoryjs/getting-started',
           },
           {
             from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
-            to: '/tools/lsp-factoryjs/getting-started',
+            to: '/tools/dapps/lsp-factoryjs/getting-started',
           },
           {
             from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
@@ -206,10 +284,67 @@ export default {
             from: '/learn/expert-guides/deploy-up-with-lsp23',
             to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
           },
-          //Standards
+
+          // Standards
+          {
+            from: '/standards/universal-profile/lsp0-erc725account',
+            to: '/standards/accounts/lsp0-erc725account',
+          },
+          {
+            from: '/standards/universal-profile/lsp6-key-manager',
+            to: '/standards/access-control/lsp6-key-manager',
+          },
+          {
+            from: '/standards/universal-profile/introduction',
+            to: '/standards/accounts/introduction',
+          },
+          {
+            from: '/standards/generic-standards/lsp1-universal-receiver-delegate',
+            to: '/standards/accounts/lsp1-universal-receiver-delegate',
+          },
+          {
+            from: '/standards/nft-2.0/LSP8-Identifiable-Digital-Asset',
+            to: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
+          },
+          {
+            from: '/standards/nft-2.0/LSP7-Digital-Asset',
+            to: '/standards/tokens/LSP7-Digital-Asset',
+          },
+          {
+            from: '/standards/lsp-background/erc725',
+            to: '/standards/erc725',
+          },
+          {
+            from: '/standards/standard-detection',
+            to: '/standards/standard-types',
+          },
+          {
+            from: '/standards/generic-standards/lsp3-profile-metadata',
+            to: '/standards/metadata/lsp3-profile-metadata',
+          },
+          {
+            from: '/standards/generic-standards/lsp5-received-assets',
+            to: '/standards/metadata/lsp5-received-assets',
+          },
+          {
+            from: '/standards/generic-standards/lsp10-received-vaults',
+            to: '/standards/metadata/lsp10-received-vaults',
+          },
+          {
+            from: '/standards/generic-standards/lsp12-issued-assets',
+            to: '/standards/metadata/lsp12-issued-assets',
+          },
           {
             from: '/standards/nft-2.0/introduction',
             to: '/standards/tokens/introduction',
+          },
+          {
+            from: '/standards/faq/channel-nonce',
+            to: '/standards/accounts/lsp25-execute-relay-call',
+          },
+          {
+            from: '/standards/generic-standards/lsp26-follower-system',
+            to: '/standards/accounts/lsp26-follower-system',
           },
         ],
       },
@@ -218,9 +353,9 @@ export default {
   themeConfig: {
     image: 'img/lukso-docs-opengraph.jpg',
     // announcementBar: {
-    //   id: 'hackathon',
+    //   id: 'mainnet_hardfork',
     //   content:
-    //     ' <a target="_blank" rel="noopener noreferrer" href="https://lukso.network/grants">LUKSO Grants Program</a>: Empowering the next wave of Web3 innovators. Applications now open!',
+    //     '🔊 <a target="_blank" rel="noopener noreferrer" href="https://luksovalidators.substack.com/p/lukso-dencun-hard-fork-mainnet"> Hard Fork on LUKSO Mainnet</a>: We ask all Mainnet node operators and validators to implement the Dencun hard fork on their LUKSO Mainnet nodes.',
     //   backgroundColor: '#84A2E2',
     //   textColor: '#1C1E21',
     //   isCloseable: false,
@@ -234,13 +369,13 @@ export default {
       items: [
         {
           type: 'doc',
-          docId: 'learn/getting-started',
+          docId: 'learn/overview',
           position: 'left',
           label: 'Learn',
         },
         {
           type: 'doc',
-          docId: 'tools/getting-started',
+          docId: 'tools/tools',
           position: 'left',
           label: 'Tools',
         },
@@ -272,16 +407,21 @@ export default {
         {
           to: '/install-up-browser-extension',
           position: 'right',
-          label: '🆙 Extension',
+          label: '🆙 Browser Extension',
         },
         {
           href: 'https://support.lukso.network/contact-us',
-          label: 'Contact Us',
+          label: 'Help Center',
           position: 'right',
         },
         {
           href: 'https://github.com/lukso-network/',
           className: 'header-github-link',
+          position: 'right',
+        },
+        {
+          href: 'https://discord.com/invite/lukso',
+          className: 'header-discord-link',
           position: 'right',
         },
       ],

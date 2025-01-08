@@ -40,7 +40,7 @@ npm install @erc725/erc725.js
 The parameters to provide to the erc725 instance are:
 
 - [Schema](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas): specifies which data keys will be used to retrieve data from the Universal Profile.
-- Univeral Profile address: the address of the Universal Profile you want to retrieve data from.
+- Universal Profile address: the address of the Universal Profile you want to retrieve data from.
 - Optional only for retrieving decoded data: RPC provider (web3, ethereum, ethers) or plain RPC url of [mainnet](../../../networks/mainnet/parameters.md) or [testnet](../../../networks/testnet/parameters.md) networks.
 
 ```js title="Creating an erc725 instance to read data from a Universal Profile"
@@ -59,7 +59,7 @@ const erc725js = new ERC725(
 
 ## Get all profile data
 
-Use the `await erc725js.getData()` functon from _erc725.js_ without passing any parameter.
+Use the `await erc725js.getData()` function from _erc725.js_ without passing any parameter.
 
 ```js title="Get all profile data"
 import { ERC725 } from '@erc725/erc725.js';
@@ -118,11 +118,11 @@ You can find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso
 
 We can also retrieve any of the specific data keys below:
 
-- `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](../../../standards/universal-profile/lsp3-profile-metadata#supportedstandardslsp3profile)
+- `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](../../../standards/metadata/lsp3-profile-metadata#supportedstandardslsp3profile)
 - `LSP3Profile` used to retrieve VerifiableURI encoded value. VerifiableURI is a reference to a JSON file that describes the Universal Profile meta data.
 - `LSP12IssuedAssets[]` used to retrieve assets the Universal Profile issued.
 - `LSP5ReceivedAssets[]` used to retrieve assets the Universal Profile received.
-- `LSP1UniversalReceiverDelegate` used to retrieve the [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver/) smart contract address set on the Universal Profile.
+- `LSP1UniversalReceiverDelegate` used to retrieve the [Universal Receiver Delegate](../../../standards/accounts/lsp1-universal-receiver/) smart contract address set on the Universal Profile.
 
 ### Get the `LSP3Profile` Metadata
 

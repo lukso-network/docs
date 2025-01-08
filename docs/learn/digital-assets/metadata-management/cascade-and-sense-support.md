@@ -98,7 +98,7 @@ if (results.length > 0) {
 
 ### Retrieve activation ticket transaction id
 
-To get activation ticket transaction status and id, you can use `retrieveTxId` funciton of provider.
+To get activation ticket transaction status and id, you can use `retrieveTxId` function of provider.
 
 ```
 const { result_id } = await provider.uploadToCascade(file);

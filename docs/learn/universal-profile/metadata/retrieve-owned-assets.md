@@ -16,19 +16,19 @@ Simply type the name of the Universal Profile or paste its address in the search
 
 :::
 
-Every Universal Profile deployed with the [**🧩 Universal Profile Browser Extension**](/install-up-browser-extension) comes with a 📢 [Universal Receiver delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) that register automatically the list of assets it owns.
+Every Universal Profile deployed with the [**🧩 Universal Profile Browser Extension**](/install-up-browser-extension) comes with a 📢 [Universal Receiver delegate](../../../standards/accounts/lsp1-universal-receiver-delegate.md) that register automatically the list of assets it owns.
 
-This guide shows you how to easily retrieve the list of owned asset, by fetching the values stored under the [`LSP5ReceivedAssets[]`](../../../standards/universal-profile/lsp5-received-assets.md#lsp5receivedassets) data key.
+This guide shows you how to easily retrieve the list of owned asset, by fetching the values stored under the [`LSP5ReceivedAssets[]`](../../../standards/metadata/lsp5-received-assets.md#lsp5receivedassets) data key.
 
 ## Using erc725.js
 
-The [erc725.js](../../../tools/erc725js/getting-started.md) enable us to do that easily.
+The [erc725.js](../../../tools/dapps/erc725js/getting-started.md) enable us to do that easily.
 
 ```bash
 npm i @erc725/erc725.js
 ```
 
-We can then simply import the JSON schema of the [LSP5ReceivedAssets](../../../standards/universal-profile/lsp5-received-assets.md), create an instance of the library connected to our Universal Profile and fetch the `LSP5ReceivedAssets[]` data key to retrieve all the asset addresses.
+We can then simply import the JSON schema of the [LSP5ReceivedAssets](../../../standards/metadata/lsp5-received-assets.md), create an instance of the library connected to our Universal Profile and fetch the `LSP5ReceivedAssets[]` data key to retrieve all the asset addresses.
 
 ```ts
 import { ERC725 } from '@erc725/erc725.js';

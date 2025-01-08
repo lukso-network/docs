@@ -12,7 +12,7 @@ If you want to experiment with simple code snippets for LSPs, please look at the
 
 ## Which tools can be used to develop dApps on LUKSO?
 
-We have a [full set of tools](../../tools/getting-started/) and libraries that you can use to build on LSPs and interact with Universal Profiles. You can also [install the latest Universal Profile Extension](/install-up-browser-extension) to connect Universal Profiles with dApps.
+We have a [full set of tools](../../tools/) and libraries that you can use to build on LSPs and interact with Universal Profiles. You can also [install the latest Universal Profile Extension](/install-up-browser-extension) to connect Universal Profiles with dApps.
 
 ## Where can I get LYXt for test deployments?
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Create a LSP1 Forwarder'
+sidebar_label: 'Create a Token Forwarder'
 sidebar_position: 2
 description: This smart contract tutorial guides you on how to create a LSP1 Delegate contract that forwards portion of received tokens automatically to any address.
 ---
@@ -7,9 +7,9 @@ description: This smart contract tutorial guides you on how to create a LSP1 Del
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create a LSP1 Forwarder
+# Create a Token Forwarder
 
-This guide will teach you how to create a basic custom [Universal Receiver Delegate](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md) contract for the following use-case:
+This guide will teach you how to create a basic custom [Universal Receiver Delegate](../../../standards/accounts/lsp1-universal-receiver-delegate.md) contract for the following use-case:
 
 > **"As a Universal Profile (UP) owner, I want to transfer part of the tokens I received to another UP"**.
 
@@ -31,13 +31,13 @@ This guide is working with version above 0.14.0 of the [`@lukso/lsp-smart-contra
 
 :::
 
-In order to follow this guide, you will need the followings:
+In order to follow this guide, you will need the following:
 
 1. Download and install the [UP Browser extension](/install-up-browser-extension).
 2. Fund the main EOA controller of your 🆙 (See **[Step 1](#step-1---enable-your-controller-to-add-a-universal-receiver) bullet point 3** to retrieve its address) using the [Testnet Faucet](https://faucet.testnet.lukso.network/).
 3. The address of the LSP7 token that you want to use to forward of portion of the amount received.
 4. The v0.14.0 [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) library installed.
-5. The [_erc725.js_](../../../tools/erc725js/getting-started.md) library installed to encode the data key / value to register our LSP1 Forwarder.
+5. The [_erc725.js_](../../../tools/dapps/erc725js/getting-started.md) library installed to encode the data key / value to register our LSP1 Forwarder.
 6. The [`dotenv`](https://www.npmjs.com/package/dotenv) package to load our main EOA controller private key into our script.
 
 ```bash
@@ -71,7 +71,7 @@ To re-transfer a portion of the tokens received, we can instruct the LSP1 Forwar
 - **method 1:** via the [**`execute(...)` function of the 🆙**](../../../contracts/contracts/UniversalProfile/UniversalProfile.md#execute).
 - **method 2:** directly on the LSP7 contract **after having authorized the LSP1 Forwarder as an operator via [`authorizeOperator(...)`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#authorizeoperator)**.
 
-For method 1 to work, the LSP1 Forwarder contract will need the permissions [`SUPER_CALL` + `REENTRANCY`](../../../standards/universal-profile/lsp6-key-manager.md#permissions) on the UP.
+For method 1 to work, the LSP1 Forwarder contract will need the permissions [`SUPER_CALL` + `REENTRANCY`](../../../standards/access-control/lsp6-key-manager.md#permissions) on the UP.
 
 For method 2 to work, the LSP1 Forwarder contract needs to be authorized as an operator at the LSP7 level (using [`authorizeOperator`](../../../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator)) with unlimited amount (`type(uint256).max`).
 
@@ -210,7 +210,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
             return "Token not in allowlist";
         }
 
-        // extract data (we only need the amount that was transfered / minted)
+        // extract data (we only need the amount that was transferred / minted)
         (, , , uint256 amount, ) = abi.decode(
             data,
             (address, address, address, uint256, bytes)
@@ -395,7 +395,7 @@ contract LSP1Forwarder is ERC165, ILSP1Delegate {
             return "Token not in allowlist";
         }
 
-        // extract data (we only need the amount that was transfered / minted)
+        // extract data (we only need the amount that was transferred / minted)
         (, , , uint256 amount, ) = abi.decode(
             data,
             (address, address, address, uint256, bytes)
@@ -538,7 +538,7 @@ Now that we have deployed our custom LSP1 Forwarder contract, we will register i
 
 We will register this LSP1 Forwarder for the LSP1 Type Id [`LSP7Tokens_RecipientNotification`](../../../contracts/type-ids.md#lsp7tokens_recipientnotification). This type Id is used to notify the Universal Profile that it received some new tokens.
 
-To do that, use the [`LSP1UniversalReceiverDelegate:<bytes32>`](../../../standards/generic-standards/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-mapping) Mapping data key, where the `<bytes32>` part will be the type Id. The _erc725.js_ library will enable us to do that easily.
+To do that, use the [`LSP1UniversalReceiverDelegate:<bytes32>`](../../../standards/accounts/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-mapping) Mapping data key, where the `<bytes32>` part will be the type Id. The _erc725.js_ library will enable us to do that easily.
 
 ```ts
 import ethers from 'ethers';
@@ -691,7 +691,7 @@ console.log('✅ LSP1 Forwarder contract authorized on My USDC Token for UP 🫡
 
 Now that all the pieces are connected, we can try it out!
 
-The expected behaviour is that **everytime the UP on which the custom LSP1 Forwarder contract has been set receives an allowed token (either through `transfer` or `mint`), it will automatically send a percentage to the specified recipient.**
+The expected behaviour is that **every time the UP on which the custom LSP1 Forwarder contract has been set receives an allowed token (either through `transfer` or `mint`), it will automatically send a percentage to the specified recipient.**
 
 Here are the test data:
 

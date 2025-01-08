@@ -54,7 +54,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
 Create a JavaScript file and add the following imports on the top of the file:
 
-- `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) permission.
+- `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../../standards/access-control/lsp6-key-manager.md#permissions) permission.
 - `universalProfileAddress`: address of your Universal Profile.
 
 <Tabs>
@@ -95,7 +95,7 @@ const universalProfileAddress = '0x...';
 
 ## Step 2 - Initialize the controller
 
-> **Requirement:** the EOA controller that we will use MUST have the [**`CHANGEOWNER`**](../../../standards/universal-profile/lsp6-key-manager.md#permissions) permission on the UP
+> **Requirement:** the EOA controller that we will use MUST have the [**`CHANGEOWNER`**](../../../standards/access-control/lsp6-key-manager.md#permissions) permission on the UP
 
 <Tabs>
 

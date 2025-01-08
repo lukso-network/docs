@@ -6,7 +6,7 @@ description: LUKSO LSP7 - Digital Asset for fungible assets.
 
 # LSP7 - Digital Asset
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP7 - Digital Asset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)
 
@@ -24,9 +24,7 @@ Fungible assets such as **[ERC20](https://eips.ethereum.org/EIPS/eip-20)**, **[E
 
 ![LSP7DigitalAsset features Introduction](/img/standards/lsp7/lsp7-intro.jpeg)
 
-## What does this Standard represent?
-
-### Specification
+## Specification
 
 **[LSP7-DigitalAsset](../../standards/tokens/LSP7-Digital-Asset.md)** is a standard that aims to describe fungible assets. The term _fungible_ means that these assets are **mutually interchangeable** (*e.g., *one token has the same value as another token).
 
@@ -49,7 +47,7 @@ When creating assets compliant with **LSP7-DigitalAsset** standard, it is possib
 
 :::tip Recommendation
 
-To mark the **asset authenticity**, it's advised to use a combination between **[LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)** and **[LSP12-IssuedAssets](../universal-profile/lsp12-issued-assets.md)**.
+To mark the **asset authenticity**, it's advised to use a combination between **[LSP4-DigitalAssetMetadata](./LSP4-Digital-Asset-Metadata.md)** and **[LSP12-IssuedAssets](../metadata/lsp12-issued-assets.md)**.
 
 :::
 
@@ -61,7 +59,7 @@ To ensure a flexible and generic asset representation, the token contract should
 
 :::caution
 
-When LSP7 assets are transfered, the LSP7 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokenreceiver).
+When LSP7 assets are transferred, the LSP7 contract will notify the token sender and recipient using [`_notifyTokenSender(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokensender) and [`_notifyTokenReceiver(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_notifytokenreceiver).
 
 **These methods will make external calls** to the [`universalReceiver(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) functions of both the sender and recipient.
 
@@ -75,11 +73,11 @@ During an **ERC20 token transfer**, the sender's balance is decreased, and the r
 
 ![ERC20 Transfer](/img/standards/lsp7/erc20-transfer.jpeg)
 
-During an **LSP7 token transfer**, as well as updating the balances, both the sender and recipient are informed of the transfer by calling their **[`universalReceiver(...)`](../generic-standards/lsp1-universal-receiver.md#lsp1---universal-receiver)** function (if these are both smart contracts).
+During an **LSP7 token transfer**, as well as updating the balances, both the sender and recipient are informed of the transfer by calling their **[`universalReceiver(...)`](../accounts/lsp1-universal-receiver.md#lsp1---universal-receiver)** function (if these are both smart contracts).
 
 ![LSP7DigitalAsset Transfer](/img/standards/lsp7/lsp7-transfer.jpeg)
 
-In this way, users are **informed** about the token transfers and approval and can decide how to **react on the transfer or approval**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../generic-standards/lsp1-universal-receiver-delegate.md)**.
+In this way, users are **informed** about the token transfers and approval and can decide how to **react on the transfer or approval**, either by accepting or rejecting the tokens, or implementing a custom logic to run on each transfer with the help of **[LSP1-UniversalReceiverDelegate](../accounts/lsp1-universal-receiver-delegate.md)**.
 
 If the sender and recipient are smart contracts that implement the LSP1 standard, the LSP7 token contract will notify them using the following `bytes32 typeIds` when calling their `universalReceiver(...)` function.
 
@@ -99,20 +97,16 @@ For instance, if the wrong address was pasted by mistake by the user in the inpu
 
 :::
 
-It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts](../universal-profile/lsp0-erc725account.md)** to interact on the blockchain. This includes sending and receiving tokens. EOAs can receive tokens, but should be used mainly to control these accounts, not to interact on the network or hold tokens.
+It is expected in the LUKSO's ecosystem to use **[smart contract-based accounts](../accounts/lsp0-erc725account.md)** to interact on the blockchain. This includes sending and receiving tokens. EOAs can receive tokens, but should be used mainly to control these accounts, not to interact on the network or hold tokens.
 
 To ensure a **safe asset transfer**, an additional boolean parameter was added to the [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) and [`_mint(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#_mint) functions:
 
-- If set to `false`, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard.
+- If set to `false`, the transfer will only pass if the recipient is a smart contract that implements the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard.
 
 ![Token Force Boolean False](/img/standards/lsp7/tokens-force-false.jpeg)
 
-- If set to `true`, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
+- If set to `true`, the transfer will not be dependent on the recipient, meaning **smart contracts** not implementing the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard and **EOAs** will be able to receive the tokens.
 
 ![Token Force Boolean True](/img/standards/lsp7/tokens-force-true.jpeg)
 
-Implementing the **[LSP1-UniversalReceiver](../generic-standards/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.
-
-## References
-
-- [LUKSO Standards Proposals: LSP7 - Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md)
+Implementing the **[LSP1-UniversalReceiver](../accounts/lsp1-universal-receiver.md)** standard will give a sign that the contract knows how to handle the tokens received.

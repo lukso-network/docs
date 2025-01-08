@@ -7,7 +7,7 @@ git clone --depth 1  --branch develop https://github.com/ERC725Alliance/erc725.j
 rm erc725.js/docs/README.md
 
 # Copy Docs
-rsync -av --progress erc725.js/docs/. ../docs/tools/erc725js --exclude technical-reference
+rsync -av --progress erc725.js/docs/. ../docs/tools/libraries/erc725js --exclude technical-reference
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ rsync -av --progress erc725.js/docs/. ../docs/tools/erc725js --exclude technical
 git clone --depth 1 --branch develop https://github.com/lukso-network/tools-eip191-signer
 
 # Copy Docs
-rsync -av --progress tools-eip191-signer/docs/. ../docs/tools/eip191-signerjs
+rsync -av --progress tools-eip191-signer/docs/. ../docs/tools/libraries/eip191-signerjs
 
 
 cd ..

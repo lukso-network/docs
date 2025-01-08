@@ -1,6 +1,6 @@
 ---
-title: Extendable Contracts & Extensions Contracts
-sidebar_position: 4
+title: ⚙️ Extendable & Extension Contracts
+sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs';

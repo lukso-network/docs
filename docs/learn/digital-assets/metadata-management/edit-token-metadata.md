@@ -9,9 +9,13 @@ import TabItem from '@theme/TabItem';
 
 # Set LSP7 Token Metadata
 
-In this guide, you will learn how to edit the [`LSP4Metadata`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md).
+> 👇🏻 Hands on 📽️ _ethers.js_ workshop video for the [**Oxford Blockchain Society**](https://x.com/oxfordblocksoc) from March 2024.
 
-To edit an LSP7 Digital Asset metadata, you will need to:
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TZV_eOp77b8?si=iWMEWZ6mu30o-Bo5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+In this guide, you will learn how to edit the [`LSP4Metadata`](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) of an [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md). You will need to:
 
 1. get your assets ready (images, videos, etc.) and create a metadata JSON file
 2. upload these files using a preferred storage provider

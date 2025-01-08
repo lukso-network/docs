@@ -109,7 +109,7 @@ If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](../
 
 You have successfully deployed your **CustomUniversalReceiverDelegate** contract on LUKSO Testnet! 🙌🏻
 
-We now need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../../standards/generic-standards/lsp1-universal-receiver.md#extension)** inside the UP's storage. We will do that **via a custom script in step 2** using web3.js or ether.js.
+We now need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../../standards/accounts/lsp1-universal-receiver.md#extension)** inside the UP's storage. We will do that **via a custom script in step 2** using web3.js or ether.js.
 
 ### 2 - Install dependencies for script
 
@@ -369,7 +369,7 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
 The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is 0. It will also reject assets that are not allowed.
 
-Since this code will need **[SUPER_SETDATA Permission](../../../standards/universal-profile/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+Since this code will need **[SUPER_SETDATA Permission](../../../standards/access-control/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
 
 :::info
 

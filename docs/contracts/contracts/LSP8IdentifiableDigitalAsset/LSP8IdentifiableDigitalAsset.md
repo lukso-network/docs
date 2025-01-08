@@ -769,7 +769,7 @@ Transfer a given `tokenId` token from the `from` address to the `to` address. If
 | `from`    | `address` | The address that owns the given `tokenId`.                                                                                                                          |
 | `to`      | `address` | The address that will receive the `tokenId`.                                                                                                                        |
 | `tokenId` | `bytes32` | The token ID to transfer.                                                                                                                                           |
-| `force`   |  `bool`   | When set to `true`, the `to` address CAN be any addres. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
+| `force`   |  `bool`   | When set to `true`, the `to` address CAN be any address. When set to `false`, the `to` address MUST be a contract that supports the LSP1 UniversalReceiver standard. |
 | `data`    |  `bytes`  | Any additional data the caller wants included in the emitted event, and sent in the hooks of the `from` and `to` addresses.                                         |
 
 <br/>
@@ -1185,7 +1185,7 @@ function _beforeTokenTransfer(
 ```
 
 Hook that is called before any token transfer, including minting and burning.
-Allows to run custom logic before updating balances and notifiying sender/recipient by overriding this function.
+Allows to run custom logic before updating balances and notifying sender/recipient by overriding this function.
 
 #### Parameters
 
@@ -1210,7 +1210,7 @@ function _afterTokenTransfer(
 ```
 
 Hook that is called after any token transfer, including minting and burning.
-Allows to run custom logic after updating balances, but **before notifiying sender/recipient via LSP1** by overriding this function.
+Allows to run custom logic after updating balances, but **before notifying sender/recipient via LSP1** by overriding this function.
 
 #### Parameters
 
@@ -2240,21 +2240,21 @@ Reverts when trying to set `address(0)` as the contract owner when deploying the
 
 <!-- DOCS -->
 
-[ERC725]: https://docs.lukso.tech/standards/lsp-background/erc725
-[UniversalProfile]: https://docs.lukso.tech/standards/universal-profile/introduction
-[LSP0ERC725Account]: https://docs.lukso.tech/standards/universal-profile/lsp0-erc725account
-[LSP1UniversalReceiver]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver
-[LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/generic-standards/lsp1-universal-receiver-delegate
-[LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/generic-standards/lsp2-json-schema
+[ERC725]: https://docs.lukso.tech/standards/erc725
+[UniversalProfile]: https://docs.lukso.tech/standards/accounts/introduction
+[LSP0ERC725Account]: https://docs.lukso.tech/standards/accounts/lsp0-erc725account
+[LSP1UniversalReceiver]: https://docs.lukso.tech/standards/accounts/lsp1-universal-receiver
+[LSP1UniversalReceiverDelegate]: https://docs.lukso.tech/standards/accounts/lsp1-universal-receiver-delegate
+[LSP2ERC725YJSONSchema]: https://docs.lukso.tech/standards/metadata/lsp2-json-schema
 [LSP4DigitalAssetMetadata]: https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata
-[LSP5ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp5-received-assets
-[LSP6KeyManager]: https://docs.lukso.tech/standards/universal-profile/lsp6-key-manager
+[LSP5ReceivedVaults]: https://docs.lukso.tech/standards/metadata/lsp5-received-assets
+[LSP6KeyManager]: https://docs.lukso.tech/standards/access-control/lsp6-key-manager
 [LSP7DigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP7-Digital-Asset
 [LSP8IdentifiableDigitalAsset]: https://docs.lukso.tech/standards/tokens/LSP8-Identifiable-Digital-Asset
-[LSP10ReceivedVaults]: https://docs.lukso.tech/standards/universal-profile/lsp10-received-vaults
-[LSP14Ownable2Step]: https://docs.lukso.tech/standards/generic-standards/lsp14-ownable-2-step
-[LSP17ContractExtension]: https://docs.lukso.tech/standards/generic-standards/lsp17-contract-extension
-[LSP20CallVerification]: https://docs.lukso.tech/standards/generic-standards/lsp20-call-verification
+[LSP10ReceivedVaults]: https://docs.lukso.tech/standards/metadata/lsp10-received-vaults
+[LSP14Ownable2Step]: https://docs.lukso.tech/standards/access-control/lsp14-ownable-2-step
+[LSP17ContractExtension]: https://docs.lukso.tech/standards/accounts/lsp17-contract-extension
+[LSP20CallVerification]: https://docs.lukso.tech/standards/accounts/lsp20-call-verification
 
 <!-- DATA KEYS -->
 

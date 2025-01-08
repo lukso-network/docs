@@ -6,6 +6,10 @@ description: 'Run a Mainnet LUKSO node with one of the three options: Dappnode, 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import BookIcon from '../../../static/img/icons/book.svg'
+import DiscordIcon from '../../../static/img/icons/discord.svg'
+import GithubIcon from '../../../static/img/icons/github.svg'
+import protocolGuildIcon from '../../../static/img/icons/protocol-guild.png'
 
 :::success Node operators mailing list
 
@@ -21,7 +25,7 @@ Anyone is welcome to participate in the LUKSO network by running her/his own nod
 <img
     width="600px"
     src="/img/lukso-mainnet-genesis-nodes.png"
-    alt="A map fo the LUKSO mainnet network with genesis validators."
+    alt="A map of the LUKSO mainnet network with genesis validators."
 /><br/>
 <i>Map of the LUKSO genesis validators from the <a href="https://stats.execution.mainnet.lukso.network/">execution stats website</a> - 19.09.23</i>.
 </div>
@@ -43,26 +47,123 @@ The LUKSO network currently supports the following clients versions:
 
 **Execution Clients**
 
-| Client     | Version | Release                                                         |
-| ---------- | ------- | --------------------------------------------------------------- |
-| Geth       | v1.14.7 | https://github.com/ethereum/go-ethereum/releases/tag/v1.14.7    |
-| Erigon     | v2.60.4 | https://github.com/ledgerwatch/erigon/releases/tag/v2.60.4      |
-| Nethermind | v1.27.0 | https://github.com/NethermindEth/nethermind/releases/tag/1.27.0 |
-| Besu       | v24.7.0 | https://github.com/hyperledger/besu/releases/tag/24.7.0         |
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Version</th>
+    <th>Github</th>
+    <th>Docs</th>
+    <th>Chat</th>
+    <th>Status</th>
+    <th>Support</th>
+    <th>Language</th>
+    <th>Donate</th>
+  </tr>
+  <tr>
+    <td><a href="https://geth.ethereum.org/">Geth</a></td>
+    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.14.12">v1.14.12</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ethereum/go-ethereum"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://geth.ethereum.org/docs"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/nthXNEv"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS, ARM</td>
+    <td><a href="https://go.dev/">Golang</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://erigon.tech/">Erigon</a></td>
+    <td><a href="https://github.com/erigontech/erigon/releases/tag/v2.60.10">v2.60.10</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://erigon.gitbook.io/erigon"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon?tab=readme-ov-file#erigon-discord-server"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS, ARM</td>
+    <td><a href="https://go.dev/">Golang</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://www.hyperledger.org/projects/besu">Besu</a></td>
+    <td><a href="https://github.com/hyperledger/besu/releases/tag/24.7.0">v24.7.0</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/hyperledger/besu"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://besu.hyperledger.org/"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/hyperledger"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS</td>
+    <td><a href="https://www.java.com/">Java</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://www.nethermind.io/nethermind-client">Nethermind</a></td>
+    <td><a href="https://github.com/NethermindEth/nethermind/releases/tag/1.27.0">v1.27.0</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/NethermindEth/nethermind"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.nethermind.io/"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/PaCMRFdvWT"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS, ARM</td>
+    <td><a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# </a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+</table>
 
 **Consensus Clients**
 
-| Client     | Version | Release                                                    |
-| ---------- | ------- | ---------------------------------------------------------- |
-| Prysm      | v5.0.4  | https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.4 |
-| Lighthouse | v5.2.1  | https://github.com/sigp/lighthouse/releases/tag/v5.2.1     |
-| Teku       | v24.6.1 | https://github.com/Consensys/teku/releases/tag/24.6.1      |
-
-:::info
-
-In preparation for the [upcoming Dencun fork](https://luksovalidators.substack.com/p/preparing-for-the-dencun-fork) on LUKSO, we **highly recommend** node operators to [update their clients and network configurations](../advanced-guides/update-clients.md).
-
-:::
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Version</th>
+    <th>Github</th>
+    <th>Docs</th>
+    <th>Chat</th>
+    <th>Status</th>
+    <th>Support</th>
+    <th>Language</th>
+    <th>Donate</th>
+  </tr>
+  <tr>
+    <td><a href="https://prysmaticlabs.com/">Prysm</a></td>
+    <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v5.1.2">v5.1.2</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/prysmaticlabs/prysm"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.prylabs.network/docs/getting-started"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/prysmaticlabs"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS, ARM</td>
+    <td><a href="https://go.dev/">Golang</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://lighthouse.sigmaprime.io/">Lighthouse</a></td>
+    <td><a href="https://github.com/sigp/lighthouse/releases/tag/v5.2.1">v5.2.1</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/sigp/lighthouse"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://lighthouse-book.sigmaprime.io/"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/cyAszAh"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS, ARM</td>
+    <td><a href="https://www.rust-lang.org/">Rust</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://consensys.io/teku">Teku</a></td>
+    <td><a href="https://github.com/Consensys/teku/releases/tag/24.6.1">v24.6.1</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/Consensys/teku"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.teku.consensys.io/"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/consensys"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS</td>
+    <td><a href="https://www.java.com/">Java</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://nimbus.team/">Nimbus</a></td>
+    <td><a href="https://github.com/status-im/nimbus-eth2/releases/tag/v24.10.0">v24.10.0</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/status-im/nimbus-eth2"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://nimbus.guide/index.html"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/XRxWahP"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS</td>
+    <td><a href="https://nim-lang.org/">Nim</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
+</table>
 
 :::caution
 
@@ -76,7 +177,7 @@ To start your clients and contribute to the LUKSO network, you have 4 options.
 
 ### 📦 With Dappnode
 
-Difficulty: Easy 🌶️
+> **Difficulty:** Easy 🌶️
 
 ![dappnode screenshot](https://docs.dappnode.io/assets/images/lukso-staking-screenshot-605e7ed6329f5a73b11a6b8cc4015c9c.png)
 
@@ -86,7 +187,7 @@ LUKSO has partnered with [Dappnode](https://dappnode.com/) ([announcement](https
 
 ### 📟 With the LUKSO CLI
 
-Difficulty: Medium 🌶️🌶️
+> **Difficulty:** Medium 🌶️🌶️
 
 The [LUKSO CLI](https://github.com/lukso-network/tools-lukso-cli) is a command line tool to install, manage and set up nodes and validators of different clients for the LUKSO blockchain. It provides simple and unified commands to interact with your node and runs natively on your operating system. The LUKSO CLI is officially supported for Ubuntu, Debian and macOS running on either x86 Intel and AMD Processors or Single Board ARM Computers.
 
@@ -172,6 +273,12 @@ The synchronization process will take multiple hours for the node to finalize.
 
 :::
 
+:::caution Lighthouse Sync
+
+Starting from the current version of the Lighthouse client software, it is mandatory to use checkpoint sync for initializing a fresh node. Without this, the node will fail to start and log the following error message: Syncing from genesis is insecure and incompatible with data availability checks. You should instead perform a checkpoint sync from a trusted node using the --checkpoint-sync-url option: `lukso start --checkpoint-sync` or use additional flag to force regular Lighthouse sync: `lukso start --lighthouse-allow-insecure-genesis-sync`
+
+:::
+
 ```sh
 lukso start
 ```
@@ -222,7 +329,7 @@ To enable more advanced monitoring for your node, you can check the official [`n
 
 ### 🚢 With Docker
 
-Difficulty: Hard 🌶️🌶️🌶️
+> **Difficulty:** Hard 🌶️🌶️🌶️
 
 We provide a basic repository with examples of `docker-compose.yml` files to run the LUKSO network.
 

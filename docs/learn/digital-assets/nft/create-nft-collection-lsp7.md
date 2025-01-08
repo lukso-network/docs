@@ -6,7 +6,7 @@ description: Learn how to create an NFT Collection on LUKSO using LSP7 Digital A
 
 # Create an NFT Collection Using LSP7
 
-This tutorial explores how to create a collection of [digital assets](../../../standards/tokens/LSP7-Digital-Asset.md), where each digital asset is the same. This method is useful for minting large quantities of NFTs at once efficiently (eg: tickets for an event).
+This tutorial explores how to create a collection of [digital assets](/standards/tokens/LSP7-Digital-Asset.md), where each digital asset is the same. This method is useful for minting large quantities of NFTs at once efficiently (eg: tickets for an event).
 
 :::note
 
@@ -24,13 +24,13 @@ The full code of this example can be found in the smart contract section of the 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DMpeMswK12w?si=DqttxMJIv6c4H0FQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](../../../standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](../../../standards/lsp-background/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
+When creating smart contracts representing digital assets on LUKSO, you will need to specify the token type and data keys for the 📄 [LSP4 Digital Asset Metadata](/standards/tokens/LSP4-Digital-Asset-Metadata) that will be stored in the 🗂️ [ERC725Y](/standards/erc725.md#erc725y-generic-data-keyvalue-store) storage of the Digital Asset. There are three different [token types](/standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype):
 
 - `0` = Token
 - `1` = NFT
 - `2` = Collection
 
-For this example we will use the `Token` token type. You can create a custom 🌄 [LSP7 Digital Asset Token](../../../standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be minted by the [`owner`](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#owner) of the smart contract.
+For this example we will use the `Token` token type. You can create a custom 🌄 [LSP7 Digital Asset Token](/standards/tokens/LSP7-Digital-Asset.md) that extends [LSP7Mintable](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md) so that new assets can be minted by the [`owner`](../../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#owner) of the smart contract.
 
 ```solidity title="contracts/Example1/EventTicketsNFT.sol"
 // SPDX-License-Identifier: MIT

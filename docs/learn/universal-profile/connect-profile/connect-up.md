@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Connect a Universal Profile
 
-There are several methods to connect to a [Universal Profile](../../../standards/universal-profile/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
+There are several methods to connect to a [Universal Profile](../../../standards/accounts/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
 
 Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
 
@@ -25,7 +25,7 @@ Connecting to the [Universal Profile Browser Extension](https://chromewebstore.g
 
 :::success Request Handling
 
-The [Universal Profile Extension](/install-up-browser-extension) returns the address of the connected [Universal Profile](../../../standards/universal-profile/introduction.md). Making transactions is the same as with any wallet, you just use the profile address as a `from` in your transactions.
+The [Universal Profile Extension](/install-up-browser-extension) returns the address of the connected [Universal Profile](../../../standards/accounts/introduction.md). Making transactions is the same as with any wallet, you just use the profile address as a `from` in your transactions.
 
 :::
 
@@ -131,7 +131,7 @@ Both libraries come with built-in UI elements and allow you to support multiple 
     <td style={{ minWidth: "25rem" }}><li>Customizable Connection Window</li>
     <li>Remains connection on Page Refresh</li>
     <li>Lists supported <a href="https://eips.ethereum.org/EIPS/eip-1193">EIP-1193</a> Extensions</li>
-    <li>Automatically detects <a href="hhttps://eips.ethereum.org/EIPS/eip-6963">EIP-6963</a> Extensions</li>
+    <li>Automatically detects <a href="https://eips.ethereum.org/EIPS/eip-6963">EIP-6963</a> Extensions</li>
     <li>Requires <a href="https://cloud.walletconnect.com">Wallet Connect Account ID</a></li></td>
   </tr>
 </table>

@@ -24,7 +24,7 @@ Alongside each controller, we will also retrieve their associated permissions. A
 
 ## Setup
 
-We will use the [`erc725.js`](../../../tools/erc725js/getting-started.md) library to easily query and decode the [`AddressPermissions[]`](../../../standards/universal-profile/lsp6-key-manager.md#retrieving-list-of-controllers) and [`AddressPermissions:Permissions:<controller-address>`](../../../standards/universal-profile/lsp6-key-manager.md#address-permissions) data keys on the Universal Profile.
+We will use the [`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) library to easily query and decode the [`AddressPermissions[]`](../../../standards/access-control/lsp6-key-manager.md#retrieving-list-of-controllers) and [`AddressPermissions:Permissions:<controller-address>`](../../../standards/access-control/lsp6-key-manager.md#address-permissions) data keys on the Universal Profile.
 
 ```bash
 npm install @erc725/erc725.js
@@ -55,7 +55,7 @@ const erc725 = new ERC725(
 
 ## Step 2 - Get the list of controllers
 
-You can now simply query the [`AddressPermissions[]`](../../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions) data key with the [`getData('AddressPermissions[]')`](../../../tools/erc725js/methods.md#getdata) function from _erc725.js_. This will return you an array of addresses.
+You can now simply query the [`AddressPermissions[]`](../../../standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions) data key with the [`getData('AddressPermissions[]')`](../../../tools/dapps/erc725js/methods.md#getdata) function from _erc725.js_. This will return you an array of addresses.
 
 ```js title="Retrieve the list of addresses that have some permissions on the 🆙."
 async function getPermissionedAddresses() {
@@ -63,31 +63,32 @@ async function getPermissionedAddresses() {
   const controllerAddresses = await erc725.getData('AddressPermissions[]');
 
   if (!controllerAddresses) {
-    console.error('No controllers listed under this Universal Profile ');
+    console.log('No controllers listed under this Universal Profile ');
+  } else {
+    console.log(controllerAddresses);
+    // {
+    //   key: '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3',
+    //   name: 'AddressPermissions[]',
+    //    value: [
+    //      '0x5F606b5b237623463a90F63230F9b929321dbCBa',
+    //      '0xa1061408e55c971fD129eF5561dFB953d598dAD7'
+    //    ]
+    // }
   }
-
-  console.log(controllerAddresses);
-  // {
-  //   key: '0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3',
-  //   name: 'AddressPermissions[]',
-  //    value: [
-  //      '0x5F606b5b237623463a90F63230F9b929321dbCBa',
-  //      '0xa1061408e55c971fD129eF5561dFB953d598dAD7'
-  //    ]
-  // }
 }
 ```
 
 <!-- TODO: double check this, it might be incorrect -->
+
 <!-- :::tip
 
-If you want to retrieve a controller address individually, you can use the [`AddressPermissions[index]`](/standards/universal-profile/lsp6-key-manager/#permissions) within the [`getData()`](../../../tools/erc725js/methods/#getdata) function of the contract or 🛠️[`erc725.js`](../../../tools/erc725js/getting-started.md) library.
+If you want to retrieve the address of the controller stored at a specific index in the array, you can use the [`AddressPermissions[index]`](/standards/access-control/lsp6-key-manager/#permissions) data key as a parameter to the [`getData()`](../../../tools/libraries/erc725js/methods/#getdata) function of 🛠️[`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) library.
 
 ::: -->
 
 ## Step 3 - Get controller's permissions
 
-Now that we have all the controller's addresses, You can retrieve the permissions of each individual controller by querying the data key [`AddressPermissions:Permissions:<controller-address>`](../../../standards/universal-profile/lsp6-key-manager.md#retrieving-addresses-with-permissions). This involves 2 steps:
+Now that we have all the controller's addresses, You can retrieve the permissions of each individual controller by querying the data key [`AddressPermissions:Permissions:<controller-address>`](../../../standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions). This involves 2 steps:
 
 1. Get the raw encoded `bytes32` permission for the controller.
 2. Decode this permission value to get an object listing which permissions are set or not for this controller.
@@ -125,12 +126,12 @@ async function getPermissionedAddresses() {
     for (let i = 0; i < controllerAddresses.value.length; i++) {
       const address = controllerAddresses.value[i] as string;
 
-      const addressPermission = await erc725.getData({
+      const permissionsValue = await erc725.getData({
         keyName: 'AddressPermissions:Permissions:<address>',
         dynamicKeyParts: address,
       });
 
-      console.log(addressPermission);
+      console.log(permissionsValue);
       // {
       //   key: '0x4b80742de2bf82acb3630000a1061408e55c971fd129ef5561dfb953d598dad7',
       //   name: 'AddressPermissions:Permissions:a1061408e55c971fD129eF5561dFB953d598dAD7',
@@ -145,7 +146,7 @@ async function getPermissionedAddresses() {
 
 The `value` above `0x0000...0008` in the object does not give us a lot of information. This is because **permissions are encoded as a [`BitArray`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#BitArray)**.
 
-Luckily, we don't need to understand the complexity behind the scene to understand the permissions that are set. After retrieving these encoded permission values, we can use again the [`decodePermissions(...)`](../../../tools/erc725js/methods#decodepermissions) function from the [_erc725.js_](../../../tools/erc725js/getting-started.md) library to decode them easily.
+Luckily, we don't need to understand the complexity behind the scene to understand the permissions that are set. After retrieving these encoded permission values, we can use again the [`decodePermissions(...)`](../../../tools/dapps/erc725js/methods#decodepermissions) function from the [_erc725.js_](../../../tools/dapps/erc725js/getting-started.md) library to decode them easily.
 
 The function returns an object showing which permissions the controller has with `true` or `false`.
 
@@ -159,11 +160,11 @@ async function getPermissionedAddresses() {
     // ...
 
     // Decode the permission of each address
-    const decodedPermission = erc725.decodePermissions(addressPermission.value as string);
+    const decodedPermissions = erc725.decodePermissions(permissionsValue.value as string);
 
     // Display the permission in a readable format
     console.log(
-      `Decoded permission for ${address} = ` + JSON.stringify(decodedPermission, null, 2),
+      `Decoded permission for ${address} = ` + JSON.stringify(decodedPermissions, null, 2),
     );
     // Decoded permission for 0x5F606b5b237623463a90F63230F9b929321dbCBa = {
     //   "CHANGEOWNER": true,

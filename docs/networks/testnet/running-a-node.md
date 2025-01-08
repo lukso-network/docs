@@ -8,13 +8,7 @@ description: 'Run a Testnet LUKSO node with one of the three options: Dappnode, 
 
 :::info
 
-Running a testnet node is very similar to running a mainnet node. Therefore, we recommand you to read the [mainnet version](../mainnet/running-a-node.md) first and to adjust the commands with the instructions provided here.
-
-:::
-
-:::info
-
-In preparation for the [upcoming Dencun fork](https://luksovalidators.substack.com/p/preparing-for-the-dencun-fork) on LUKSO, we **highly recommend** node operators to [update their clients and network configurations](../advanced-guides/update-clients.md) based on the [latest supported clients](../mainnet/running-a-node.md#supported-clients-versions).
+Running a testnet node is very similar to running a mainnet node. Therefore, we recommend you to read the [mainnet version](../mainnet/running-a-node.md) first and to adjust the commands with the instructions provided here.
 
 :::
 
@@ -24,7 +18,7 @@ To start your clients and contribute to the LUKSO testnet network, you have 3 op
 
 ### 📟 With the LUKSO CLI
 
-Difficulty: Medium 🌶️🌶️
+> **Difficulty:** Medium 🌶️🌶️
 
 For the main information, please refer to the [mainnet version](../mainnet/running-a-node.md#-with-the-lukso-cli) of this article. The only difference to run a testnet node with the CLI is to append the `--testnet` flag to the commands:
 
@@ -52,7 +46,7 @@ For more options, check the [LUKSO CLI documentation](https://github.com/lukso-n
 
 ### 🚢 With Docker
 
-Difficulty: Hard 🌶️🌶️🌶️
+> **Difficulty:** Hard 🌶️🌶️🌶️
 
 The process is similar to the [mainnet version](../mainnet/running-a-node.md#-with-docker). You will simply need to use the [testnet genesis files](https://github.com/lukso-network/network-configs/tree/main/testnet/shared) instead of the mainnet ones.
 
@@ -67,7 +61,7 @@ wget -O ./configs/config.yaml https://raw.githubusercontent.com/lukso-network/ne
 
 ### 📄 With your own clients
 
-Difficulty: Advanced 🌶️🌶️🌶️🌶️
+> **Difficulty:** Advanced 🌶️🌶️🌶️🌶️
 
 The process is similar to the [mainnet version](../mainnet/running-a-node.md#-with-your-own-clients). You will have to use the files in the `testnet` folder instead of the `mainnet` folder.
 
