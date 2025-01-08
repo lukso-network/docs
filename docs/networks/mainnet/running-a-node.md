@@ -25,7 +25,7 @@ Anyone is welcome to participate in the LUKSO network by running her/his own nod
 <img
     width="600px"
     src="/img/lukso-mainnet-genesis-nodes.png"
-    alt="A map fo the LUKSO mainnet network with genesis validators."
+    alt="A map of the LUKSO mainnet network with genesis validators."
 /><br/>
 <i>Map of the LUKSO genesis validators from the <a href="https://stats.execution.mainnet.lukso.network/">execution stats website</a> - 19.09.23</i>.
 </div>

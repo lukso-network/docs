@@ -138,7 +138,7 @@ console.log('LSP16UniversalFactory exists: ', isLSP16FactoryDeployed);
 If `Nick Factory` doesn't exist, we'll need to deploy it:
 
 ```js title="main.js"
-// The private key should not be comitted to a public GitHub repository.
+// The private key should not be committed to a public GitHub repository.
 const signer = new ethers.Wallet('<private-key>', provider);
 
 if (!isNickFactoryDeployed) {
@@ -400,7 +400,7 @@ The code will run, just need to:
 - Replace `<private-key>` with a private key containing funds.
 - Add the full bytecode when deploying the `LSP16UniversalFactory` from `Nick Factory`.
 
-> **Note:** The private key should not be comitted to a public GitHub repository.
+> **Note:** The private key should not be committed to a public GitHub repository.
 
 ```js title="main.js"
 import { ethers } from 'ethers';
@@ -431,7 +431,7 @@ async function main() {
   console.log('Nick Factory exists: ', isNickFactoryDeployed);
   console.log('LSP16UniversalFactory exists: ', isLSP16FactoryDeployed);
 
-  // The private key should not be comitted to a public GitHub repository
+  // The private key should not be committed to a public GitHub repository
   const signer = new ethers.Wallet('<private-key>', provider);
 
   if (!isNickFactoryDeployed) {

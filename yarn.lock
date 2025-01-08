@@ -8182,9 +8182,9 @@ __metadata:
   linkType: hard
 
 "cssdb@npm:^8.2.1":
-  version: 8.2.2
-  resolution: "cssdb@npm:8.2.2"
-  checksum: 0098a659654991aa8866eea9b32c0f072898d002f48bb8b25dbb8210e458a3758ce9614d3e328973c08b574df5900f4c1e1bb8d84e9229aa17d9e633dbd81306
+  version: 8.2.1
+  resolution: "cssdb@npm:8.2.1"
+  checksum: 5b1278bedff49c26979bac3574de85bceb4fa6e9f365a2b287b0b929303df9d9762ed60aba62ef1b44bfd9eb6dc2263b300d7d241356a4eece1efe912083bef5
   languageName: node
   linkType: hard
 
