@@ -30,7 +30,7 @@ With LSPs, the mission is to have standards that facilitate using tools that abs
 
 ## What's the recommended language for LSP development?
 
-If you want to build on the LUKSO blockchain, the recommended programming language is Solidity. It is the implementation language of LSPs, the most commonly used language for the EVM, and the default implementation langauge for LSPs.
+If you want to build on the LUKSO blockchain, the recommended programming language is Solidity. It is the implementation language of LSPs, the most commonly used language for the EVM, and the default implementation language for LSPs.
 
 ## Why are LSPs not proposed as ERCs?
 

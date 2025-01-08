@@ -162,7 +162,7 @@ LSP4 defines 3 default token types (see [table above](./LSP4-Digital-Asset-Metad
 }
 ```
 
-The value attached to this data key repesents the type of token of the digital asset. The defaults values are:
+The value attached to this data key represents the type of token of the digital asset. The defaults values are:
 
 - 0 (Token)
 - 1 (NFT)

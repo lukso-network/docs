@@ -8,7 +8,7 @@ description: 'Run a Testnet LUKSO node with one of the three options: Dappnode, 
 
 :::info
 
-Running a testnet node is very similar to running a mainnet node. Therefore, we recommand you to read the [mainnet version](../mainnet/running-a-node.md) first and to adjust the commands with the instructions provided here.
+Running a testnet node is very similar to running a mainnet node. Therefore, we recommend you to read the [mainnet version](../mainnet/running-a-node.md) first and to adjust the commands with the instructions provided here.
 
 :::
 
