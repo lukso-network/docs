@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # LSP8 - Identifiable Digital Asset
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP8 - Identifiable Digital Asset](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)
 
@@ -27,8 +27,6 @@ Non-Fungible assets such as **[ERC721](https://eips.ethereum.org/EIPS/eip-721)**
 - More interaction between the asset contract and the asset _sender/recipient_ **via token hooks**.
 
 ![LSP8IdentifiableDigitalAsset features Introduction](/img/standards/lsp8/lsp8-intro.jpeg)
-
-## What does this Standard represent?
 
 ### Specification
 
@@ -170,7 +168,3 @@ The LSP8 standard offers ways to set metadata for the whole LSP8 collection as w
 - The generic metadata and information related to the whole LSP8 collection can be updated using [`setData(bytes32,bytes)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) or [`setDataBatch(bytes[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch), passing the `bytes32` data key of [`LSP4Metadata`](./LSP4-Digital-Asset-Metadata.md#lsp4metadata) as the first argument.
 
 - Alternatively, the generic information and metadata specific to a `tokenId` can be set using the [`setDataForTokenId`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatafortokenid) or [`setDataBatchForTokenIds(bytes32[],bytes32[],bytes[])`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatchfortokenids) functions.
-
-## References
-
-- [LUKSO Standards Proposals: LSP8 - Identifiable Digital Asset (Standard Specification, GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)

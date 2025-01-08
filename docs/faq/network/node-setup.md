@@ -16,7 +16,7 @@ Currently, LUKSO officially supports Geth, Erigon, Lighthouse, and Prysm. All cl
 
 - **[Geth](https://github.com/ethereum/go-ethereum)** is the most popular and widely used Ethereum execution client. It's written in the Go programming language. Geth can be used for various tasks, including creating smart contracts, transferring tokens, mining ether, and exploring block history. It's developed and maintained by the Ethereum Foundation.
 
-- **[Erigon](https://github.com/ledgerwatch/erigon)** is an Ethereum execution client that aims to offer a more efficient and faster alternative to Geth. It's written in Go and includes several optimizations to reduce the amount of data stored and improve processing speed. However, these optimizations can make Erigon more complex to maintain and update.
+- **[Erigon](https://github.com/erigontech/erigon)** is an Ethereum execution client that aims to offer a more efficient and faster alternative to Geth. It's written in Go and includes several optimizations to reduce the amount of data stored and improve processing speed. However, these optimizations can make Erigon more complex to maintain and update.
 
 - **[Nethermind](https://github.com/NethermindEth/nethermind)** is an Ethereum execution client built on .NET framework and developed by Nethermind. Its plugin system makes it especially easy to configure and use it. Combining this with a very stable runtime, this makes it a great client to use on the network.
 

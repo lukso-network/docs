@@ -267,7 +267,7 @@ For more information regarding the construction of an LSP25 signature, see [**"S
 
 The next step for the client side is to sign the transaction message. This is done using the private key of a controller that has some permission on the Universal Profile to execute the transaction on, without needing us to pay for the gas.
 
-To do that, we will use our convenience library [_eip191-signer_](../../../tools/libraries/eip191-signerjs/getting-started.md) which make the signing for us.
+To do that, we will use our convenience library [_eip191-signer_](../../../tools/dapps/eip191-signerjs/getting-started.md) which make the signing for us.
 
 The transaction message is constructed by encoding and signing the following:
 

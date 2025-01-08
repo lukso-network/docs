@@ -7,7 +7,13 @@ description: LUKSO's Transaction Relay Service API Standard.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Transaction Relay Service API Standard
+# LSP15 - Transaction Relay Service API
+
+:::info Standard Specification
+
+[LSP15 - Transaction Relayer API](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-15-TransactionRelayServiceAPI.md)
+
+:::
 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cpoczP3Y7Hk?si=iiYiBDaMG0vn9i_r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -15,11 +21,11 @@ import TabItem from '@theme/TabItem';
 
 :::success Relayer API
 
-Want to easily deploy a Universal Profile using our Developer Relayer API? See the [**Relayer Developer Access**](../../tools/services/relayer-developer.md) page.
+Want to easily deploy a Universal Profile using our Developer Relayer API? See the [**Relayer Developer Access**](../../tools/apis/relayer-api.md) page.
 
 :::
 
-This standard is the off-chain API that any transaction relay service can implement to be compatible with the [Universal Profile controller apps](/install-up-browser-extension). See [the `up_addTransactionRelayer` RPC endpoint](../../tools/services/rpc-api#up_addTransactionRelayer) for more.
+This standard is the off-chain API that any transaction relay service can implement to be compatible with the [Universal Profile controller apps](/install-up-browser-extension). See [the `up_addTransactionRelayer` RPC endpoint](../../tools/apis/up-rpc-api#up_addTransactionRelayer) for more.
 
 To learn how to sign a transaction relay message see [LSP25 Execute Relay Call](./lsp25-execute-relay-call.md).
 
@@ -148,5 +154,4 @@ Quota systems could also use a Pay As You Go model, in which case totalQuota and
 
 ## Resources
 
-- [LSP-15-TransactionRelayerAPI (GitHub)](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-15-TransactionRelayServiceAPI.md)
 - [Mock relayer repository (GitHub)](https://github.com/lukso-network/tools-mock-relayer)

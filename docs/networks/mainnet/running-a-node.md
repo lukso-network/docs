@@ -61,7 +61,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://geth.ethereum.org/">Geth</a></td>
-    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.14.7">v1.14.7</a></td>
+    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.14.12">v1.14.12</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ethereum/go-ethereum"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://geth.ethereum.org/docs"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/nthXNEv"><DiscordIcon /></a></td>
@@ -72,11 +72,11 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://erigon.tech/">Erigon</a></td>
-    <td><a href="https://github.com/erigontech/erigon/releases/tag/v2.60.4">v2.60.4</a></td>
-    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ledgerwatch/erigon"><GithubIcon /></a></td>
+    <td><a href="https://github.com/erigontech/erigon/releases/tag/v2.60.10">v2.60.10</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://erigon.gitbook.io/erigon"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon?tab=readme-ov-file#erigon-discord-server"><DiscordIcon /></a></td>
-    <td>Alpha & Beta</td>
+    <td>Stable</td>
     <td>Linux, Win, macOS, ARM</td>
     <td><a href="https://go.dev/">Golang</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
@@ -121,7 +121,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://prysmaticlabs.com/">Prysm</a></td>
-    <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.4">v5.0.4</a></td>
+    <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v5.1.2">v5.1.2</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/prysmaticlabs/prysm"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.prylabs.network/docs/getting-started"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/prysmaticlabs"><DiscordIcon /></a></td>
@@ -152,13 +152,18 @@ The LUKSO network currently supports the following clients versions:
     <td><a href="https://www.java.com/">Java</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
   </tr>
+  <tr>
+    <td><a href="https://nimbus.team/">Nimbus</a></td>
+    <td><a href="https://github.com/status-im/nimbus-eth2/releases/tag/v24.10.0">v24.10.0</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/status-im/nimbus-eth2"><GithubIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://nimbus.guide/index.html"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/XRxWahP"><DiscordIcon /></a></td>
+    <td>Stable</td>
+    <td>Linux, Win, macOS</td>
+    <td><a href="https://nim-lang.org/">Nim</a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://protocol-guild.readthedocs.io/en/latest/index.html"><img style={{verticalAlign: 'middle'}} src={protocolGuildIcon}/></a></td>
+  </tr>
 </table>
-
-:::info
-
-In preparation for the [upcoming Dencun fork](https://luksovalidators.substack.com/p/preparing-for-the-dencun-fork) on LUKSO, we **highly recommend** node operators to [update their clients and network configurations](../advanced-guides/update-clients.md).
-
-:::
 
 :::caution
 
@@ -265,6 +270,12 @@ lukso start --checkpoint-sync
 :::caution Sync Delay
 
 The synchronization process will take multiple hours for the node to finalize.
+
+:::
+
+:::caution Lighthouse Sync
+
+Starting from the current version of the Lighthouse client software, it is mandatory to use checkpoint sync for initializing a fresh node. Without this, the node will fail to start and log the following error message: Syncing from genesis is insecure and incompatible with data availability checks. You should instead perform a checkpoint sync from a trusted node using the --checkpoint-sync-url option: `lukso start --checkpoint-sync` or use additional flag to force regular Lighthouse sync: `lukso start --lighthouse-allow-insecure-genesis-sync`
 
 :::
 

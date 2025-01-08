@@ -6,7 +6,7 @@ description: LUKSO's LSP16 - Universal Factory for deploying the same smart cont
 
 # LSP16 - Universal Factory
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP16 - Universal Factory](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md)
 
@@ -41,7 +41,7 @@ This standard defines a contract called **Universal Factory** which provide a wa
 
 This multi-chain compatibility eliminates the **risk of asset loss** due to mismatched contracts and addresses. Further, it opens up the possibility of establishing a kind of multi-chain identity, which is particularly beneficial for factory, registry, and account-based contracts.
 
-### Specification
+## Specification
 
 :::tip
 
@@ -63,7 +63,7 @@ For a contract to be replicated at the same address across different chain, it s
 - Salt
 - Initialization Data (If the contract is initializable)
 
-### Example
+## Example
 
 Suppose Alice wants to deploy a **UniversalProfile** on **LUKSO Mainnet** owned by her EOA. If she deploys the UniversalProfile using the UniversalFactory on LUKSO, she can later deploy the same UniversalProfile owned by her EOA on **Ethereum Mainnet** using the UniversalFactory with **producing the same address**.
 

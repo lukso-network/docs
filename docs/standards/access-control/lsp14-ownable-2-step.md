@@ -6,7 +6,7 @@ description: "LUKSO's LSP14 - Ownable2Step: an extended version of EIP173 - Cont
 
 # LSP14 - Ownable 2-Step
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP14 - Ownable 2-Step](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-14-Ownable2Step.md)
 
@@ -41,6 +41,8 @@ What is needed is a safer mechanism for managing contract ownership.
 2. For _renouncing ownership_ the method `renounceOwnership()` is modified in the following way. The **owner** of the contract need to firstly initiate the process of _renouncing ownership_ which starts a countdown of **200 blocks** which are broken into two _distinct periods_. The **first 100 blocks** are meant to be waited, a period when one can reflect upon the desire of renouncing ownership of the contract. The **second 100 blocks** are meant for confirming the ownership renouncement process. After a total of **200 blocks** pass from the initiation, the process is restarted.
 
 In addition, this standard defines hooks that call the **[universalReceiver(...)](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function of the current owner and new owner, if these addresses are contracts that implement LSP1.
+
+## Specification
 
 ### Transferring the contract ownership
 

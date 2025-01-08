@@ -6,7 +6,7 @@ description: LUKSO LSP10 - Received Vaults for keeping track of all the vaults o
 
 # LSP10 - Received Vaults
 
-:::info Standard Document
+:::info Standard Specification
 
 [LSP10 - Received Vaults](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-10-ReceivedVaults.md)
 

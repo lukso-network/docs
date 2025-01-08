@@ -247,7 +247,7 @@ const symbol = ethers.toUtf8String(symbolValue); // COOL
 
 <TabItem value="erc725.js" label="erc725.js" attributes={{className: "tab_erc725"}}>
 
-You can also obtain the [full schema definition](../../tools/libraries/erc725js/schemas.md) of the LSP4 Metadata from [`@erc725/erc725.js`](../../tools/libraries/erc725js/getting-started.md) library. **This library will also help you to [encode easily](../../tools/libraries/erc725js/methods.md#encodedata) data key value pairs.**
+You can also obtain the [full schema definition](../../tools/dapps/erc725js/schemas.md) of the LSP4 Metadata from [`@erc725/erc725.js`](../../tools/dapps/erc725js/getting-started.md) library. **This library will also help you to [encode easily](../../tools/dapps/erc725js/methods.md#encodedata) data key value pairs.**
 
 ```javascript
 import { ERC725 } from '@erc725/erc725.js';
