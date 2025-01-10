@@ -39,6 +39,10 @@ export default {
             from: '/learn/introduction',
             to: '/learn/overview',
           },
+          {
+            from: '/learn/universal-profile/getting-started',
+            to: '/learn/getting-started',
+          },
 
           // Learn/Smart Contract Developer
           {
@@ -173,6 +177,10 @@ export default {
           {
             from: '/tools/partners',
             to: '/tools/integrations',
+          },
+          {
+            from: '/tools/getting-started',
+            to: '/tools',
           },
           {
             from: '/tools/eip191-signerjs/getting-started',
