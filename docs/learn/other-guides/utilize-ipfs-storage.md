@@ -133,16 +133,15 @@ const file = createReadStream('./path-to-your-file');
 const { result_id, ipfs_url } = await provider.uploadToCascade(file);
 console.log(result_id, ipfs_url);
 
-
 // upload folder
-const results = await provider.uploadFolderToCascade("./examples");
+const results = await provider.uploadFolderToCascade('./examples');
 
 if (results.length > 0) {
   for (const result of results) {
     if (result) {
-      console.log("File Name:", result.file_name);
-      console.log("IPFS Url:", result.ipfs_url);
-      console.log("Result Id:", result.result_id);
+      console.log('File Name:', result.file_name);
+      console.log('IPFS Url:', result.ipfs_url);
+      console.log('Result Id:', result.result_id);
     }
   }
 }
@@ -152,7 +151,6 @@ if (results.length > 0) {
 
 ```js
 import { CascadeUploader } from '@lukso/data-provider-cascade';
-
 
 const provider = new CascadeUploader(import.meta.env.CASCADE_API_KEY);
 ```
@@ -241,18 +239,18 @@ const { result_id, ipfs_url } = await provider.uploadToSense(file);
 console.log(result_id, ipfs_url);
 
 // upload folder
-const results = await provider.uploadFolderToSense("./examples");
+const results = await provider.uploadFolderToSense('./examples');
 
 if (results.length > 0) {
   for (const result of results) {
     if (result) {
-      console.log("File Name:", result.file_name);
-      console.log("IPFS Url:", result.ipfs_url);
-      console.log("Result Id:", result.result_id);
+      console.log('File Name:', result.file_name);
+      console.log('IPFS Url:', result.ipfs_url);
+      console.log('Result Id:', result.result_id);
     }
   }
 }
-````
+```
 
 **Using Sense**
 
