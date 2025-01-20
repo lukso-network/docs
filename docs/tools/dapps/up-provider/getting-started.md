@@ -77,33 +77,8 @@ const web3 = new Web3(provider as SupportedProviders<EthExecutionAPI>);
 
 </Tabs>
 
-## `up-provider` as a parent page
-
-Mini-apps can be hosted on a parent page by passing UP connections to a parent provider like `window.ethereum`.
-
-```js
-import { UPClientChannel, createUPProviderConnector } from '@lukso/up-provider';
-
-// Pass in the provider you want the page to use.
-const providerConnector = createUPProviderConnector(originalProvider, [
-  'https://rpc.mainnet.lukso.network',
-]);
-// or later on call
-// globalProvider.setupProvider(originalProvider, ['https://rpc.mainnet.lukso.network'])
-
-providerConnector.on('channelCreated', ({ channel, id }) => {
-  // Called when an iframe connects.
-  // then channel can control the connection.
-  // Usually you would store this in a ref and use it within a dialog to control the connection.
-
-  // for example
-  channel.enabled = true;
-  // The addresses and chainId it will cause addressChanged and chainChanged events on the client provider.
-  channel.setAllowedAccounts([profileAddress, ...extraAddresses]);
-});
-```
-
 ## Resources
 
 - [GitHub repo](https://github.com/lukso-network/tools-up-provider/)
 - [NPM package](https://www.npmjs.com/package/@lukso/up-provider)
+- [Try out the example mini-app on your grid!](https://nextjs.miniapp-example.lukso.tech/)
