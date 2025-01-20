@@ -29,19 +29,19 @@ import { createWalletClient, createPublicClient, custom } from 'viem';
 import { lukso } from 'viem/chains';
 
 // Construct the up-provider
-const provider = createClientUPProvider()
+const provider = createClientUPProvider();
 
 // Create public client if you need direct connection to RPC
 const publicClient = createPublicClient({
   chain: lukso,
   transport: http(),
-})
+});
 
 // Create wallet client to connect to provider
 const walletClient = createWalletClient({
   chain: lukso,
   transport: custom(provider),
-})
+});
 ```
 
   </TabItem>
@@ -77,16 +77,17 @@ const web3 = new Web3(provider as SupportedProviders<EthExecutionAPI>);
 
 </Tabs>
 
-
 ## `up-provider` as a parent page
 
 Mini-apps can be hosted on a parent page by passing UP connections to a parent provider like `window.ethereum`.
 
 ```js
-import { UPClientChannel, createUPProviderConnector } from '@lukso/up-provider'
+import { UPClientChannel, createUPProviderConnector } from '@lukso/up-provider';
 
 // Pass in the provider you want the page to use.
-const providerConnector = createUPProviderConnector(originalProvider, ['https://rpc.mainnet.lukso.network'])
+const providerConnector = createUPProviderConnector(originalProvider, [
+  'https://rpc.mainnet.lukso.network',
+]);
 // or later on call
 // globalProvider.setupProvider(originalProvider, ['https://rpc.mainnet.lukso.network'])
 
@@ -98,10 +99,11 @@ providerConnector.on('channelCreated', ({ channel, id }) => {
   // for example
   channel.enabled = true;
   // The addresses and chainId it will cause addressChanged and chainChanged events on the client provider.
-  channel.setAllowedAccounts([profileAddress, ...extraAddresses])
-})
+  channel.setAllowedAccounts([profileAddress, ...extraAddresses]);
+});
 ```
 
 ## Resources
+
 - [GitHub repo](https://github.com/lukso-network/tools-up-provider/)
 - [NPM package](https://www.npmjs.com/package/@lukso/up-provider)
