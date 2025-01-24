@@ -70,7 +70,7 @@ The 52 bytes of additional calldata appended to the call to the extension contra
 
 ### Extension Re-usability
 
-While contracts can deploy and customize their own extensions, many smart contracts **share almost the same logic** for certain functions. In this case, the same extensions can be re-used by different contracts supporting LSP17.
+While contracts can deploy and customize their own extensions, many smart contracts **share almost the same logic** for certain functions. In this case, the same extensions can be reused by different contracts supporting LSP17.
 
 For example, **_smart contract A & B_** are two independent contracts that implement different functions but share the same logic for verifying signatures. Therefore, they can use the same extension for signature validation for the `isValidSignature(..)` function.
 
