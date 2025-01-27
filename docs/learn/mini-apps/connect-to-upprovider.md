@@ -1,14 +1,28 @@
 ---
-sidebar_label: '🔌 Connect to UP Provider'
-description: 'How to integrate your mini-app with the UP Provider'
+sidebar_label: '🔌 Connect to a mini-app'
+description: 'How to connect your mini-app using the UP Provider'
 sidebar_position: 1
 ---
 
-# Connect to UP Provider
+# Connect to a mini-app
 
-## Overview
+<img width="300" alt="Screenshot 2025-01-27 at 14 15 22" src="https://github.com/user-attachments/assets/7f0b7875-c402-440d-b77f-935cf90f241d" align="right" />
 
-The UP Provider is a library that allows you to connect your mini-app to the Universal Profile Browser Extension. It enables your application to interact with Universal Profiles, handle wallet connections, and manage account states.
+Mini-apps are dApps that run in an iframe of a parent page that hosts them. [universaleverything.io](https://universaleverything.io) is such a website.
+An example of mini-apps can be found at [the app-store profile](https://universaleverything.io/0x7b258dD350227CFc9Da1EDD7f4D978f7Df20fD40) (See on the right).
+
+For users connecting to a mini-app would mean to connect to each mini-app via a connect button, web3 modal, or wallet connect process. This makes connecting to mini-apps cumbersome and not fun.
+
+The [up-provider](https://github.com/lukso-network/tools-up-provider) solves this by giving mini-apps a way for the user visiting the parent page, to connect to the mini-app directly with one-click.
+
+**Additionally the mini-app has access to `context addresses`**, which in the case of [universaleverything.io](https://universaleverything.io) is the universal profile under which the mini-app is hosted.
+
+The up-provider is a [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compatible provider, meaning it will work with all major web3 libraries. For examples using viem, web3.js or ethers, [see the readme of the up-provider](https://github.com/lukso-network/tools-up-provider/blob/main/README.md#provider-for-mini-apps).
+
+.   
+.   
+.   
+
 
 ## Installation
 
@@ -16,9 +30,9 @@ The UP Provider is a library that allows you to connect your mini-app to the Uni
 npm install @lukso/up-provider
 ```
 
-## Basic Usage
+## Example implementation using react
 
-Here's a step-by-step guide to implement UP Provider connection in your React application:
+Here's a step-by-step guide to implement UP Provider connection in your react application:
 
 1. First, import the necessary dependencies:
 
@@ -40,12 +54,12 @@ const [accounts, setAccounts] = useState<Array<`0x${string}`>>([]);
 const [contextAccounts, setContextAccounts] = useState<Array<`0x${string}`>>(
   [],
 );
-const [walletConnected, setWalletConnected] = useState(false);
+const [profileConnected, setProfileConnected] = useState(false);
 
 // Helper to check connection status
 const updateConnected = useCallback(
   (_accounts: Array<`0x${string}`>, _contextAccounts: Array<`0x${string}`>) => {
-    setWalletConnected(_accounts.length > 0 && _contextAccounts.length > 0);
+    setProfileConnected(_accounts.length > 0 && _contextAccounts.length > 0);
   },
   [],
 );
@@ -94,20 +108,20 @@ useEffect(() => {
 
 The `createClientUPProvider()` function creates a new instance of the UP Provider. This should be done outside your component to maintain a single instance.
 
-### State Management
+### State variables
 
-This implementation manages three main states:
+This implementation gives you access to:
 
-- `accounts`: Array of connected wallet accounts
-- `contextAccounts`: Array of context accounts (current active Universal Profile)
-- `walletConnected`: Boolean indicating if the wallet is connected
+- `accounts`: Array of connected accounts, in our case the universal profile of the visitor
+- `contextAccounts`: Array of context accounts, which in our case is the universal profile on [universaleverything.io](https://universaleverything.io) where the mini-app is hosted under.
+- `profileConnected`: Boolean indicating if a user is connected to the mini-app
 
 ### Event Handling
 
 The provider emits two important events:
 
-- `accountsChanged`: Triggered when the connected accounts change
-- `contextAccountsChanged`: Triggered when the active Universal Profile changes
+- `accountsChanged`: Triggered when the connected accounts change, this is universal profile of the visitor
+- `contextAccountsChanged`: Triggered when the context accounts change, this is the universal profile on [universaleverything.io](https://universaleverything.io) where the mini-app is hosted under.
 
 ### Cleanup
 
