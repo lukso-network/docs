@@ -19,11 +19,6 @@ The [up-provider](https://github.com/lukso-network/tools-up-provider) solves thi
 
 The up-provider is a [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compatible provider, meaning it will work with all major web3 libraries. For examples using viem, web3.js or ethers, [see the readme of the up-provider](https://github.com/lukso-network/tools-up-provider/blob/main/README.md#provider-for-mini-apps).
 
-.   
-.   
-.   
-
-
 ## Installation
 
 ```bash
