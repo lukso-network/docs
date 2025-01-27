@@ -538,7 +538,7 @@ To grant permission(s) to a controller, set the following data key-value pair in
 
 A caller can craft a payload via `ERC725X.execute(...)` to be sent back to the KeyManager, leading to potential re-entrancy attacks.
 
-Such transaction flow can lead an initial caller to use more permissions than allowed initially by re-using the permissions granted to the linked ERC725Account's address.
+Such transaction flow can lead an initial caller to use more permissions than allowed initially by reusing the permissions granted to the linked ERC725Account's address.
 
 :::
 
