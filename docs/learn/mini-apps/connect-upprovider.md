@@ -26,7 +26,7 @@ This makes the user experience cumbersome.
 
 The [up-provider](../../tools/dapps/up-provider/getting-started) solves this by giving Mini-Apps a way for the user visiting the parent page, to connect to the Mini-App directly with one-click.
 
-**Additionally**, the Mini-App has access to `context addresses`, which in the case of [universaleverything.io](https://universaleverything.io) is the Universal Profile under which the Mini-App is hosted.
+Additionally, **the Mini-App has access to `context addresses`**, which in the case of [universaleverything.io](https://universaleverything.io) is the Universal Profile under which the Mini-App is hosted in the Grid.
 
 > The up-provider is a [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compatible provider, meaning it will work with all major web3 libraries. For examples using viem, web3.js or ethers, [see the readme of the up-provider](https://github.com/lukso-network/tools-up-provider/blob/main/README.md#provider-for-mini-apps).
 
