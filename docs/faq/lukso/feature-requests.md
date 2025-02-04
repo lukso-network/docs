@@ -16,7 +16,7 @@ Yes, developers have several options for financial support when building on LUKS
 
 ## Will LUKSO be listed on additional exchanges?
 
-At the moment, LUKSO is available on [KuCoin](https://www.kucoin.com/de), [Crypto.com](https://crypto.com/), and [Gate.io](https://www.gate.io/). As the network continues to expand, additionl exchanges may consider joining. It is important to note that this decision is entirely at the discretion of the exchanges.
+At the moment, LUKSO is available on [KuCoin](https://www.kucoin.com/de), [Crypto.com](https://crypto.com/), and [Gate.io](https://www.gate.io/). As the network continues to expand, additional exchanges may consider joining. It is important to note that this decision is entirely at the discretion of the exchanges.
 
 ## Will there be a Mobile Application for Universal Profiles?
 

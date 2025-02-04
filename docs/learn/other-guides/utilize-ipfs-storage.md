@@ -254,7 +254,7 @@ if (results.length > 0) {
 
 **Using Sense**
 
-To upload files via IPFS using Sense Protocol, please setup api key and add thata as environment variables.
+To upload files via IPFS using Sense Protocol, please setup api key and add that as environment variables.
 
 ```ts
 import { SenseUploader } from '@lukso/data-provider-sense';

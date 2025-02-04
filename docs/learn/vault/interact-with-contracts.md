@@ -39,7 +39,7 @@ To complete this mini-guide, we will need:
 
 :::info
 
-The chosen EOA needs to have [**CALL Permission**](../../standards/access-control/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/access-control/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Pemrission**](../../standards/access-control/lsp6-key-manager.md#super-permissions)
+The chosen EOA needs to have [**CALL Permission**](../../standards/access-control/lsp6-key-manager.md#permissions) together with [**AllowedCalls**](../../standards/access-control/lsp6-key-manager.md#allowed-calls) or [**SUPER_CALL Permission**](../../standards/access-control/lsp6-key-manager.md#super-permissions)
 
 :::
 

@@ -13,7 +13,7 @@ Add LSP4 Creators to the digital asset contract that supports ERC725Y.
 | Name           | Type                     | Description                                                                          |
 | :------------- | :----------------------- | :----------------------------------------------------------------------------------- |
 | `digitalAsset` | `BytesLike` \| `ERC725Y` | -                                                                                    |
-| `newCreators`  | `Issuer`[]               | An array of creators which specifies the address and interface id of each creatotor. |
+| `newCreators`  | `Issuer`[]               | An array of creators which specifies the address and interface id of each creator. |
 | `signer?`      | `Signer` \| `Wallet`     | The signer that will send the transaction.                                           |
 
 #### Returns
