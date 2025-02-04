@@ -10,7 +10,7 @@ sidebar_position: 1
 
 ## What are Mini-Apps?
 
-Mini-Apps are dApps that run in an iframe of a parent page that hosts them. [universaleverything.io](https://universaleverything.io) is such a website. You can see examples of Mini-Apps in action at [the app-store profile](https://universaleverything.io/0x7b258dD350227CFc9Da1EDD7f4D978f7Df20fD40).
+Mini-Apps are dApps that run in an iframe of a parent page that hosts them. You can see [examples of Mini-Apps in action on universaleverything.io](https://universaleverything.io/0x7b258dD350227CFc9Da1EDD7f4D978f7Df20fD40).
 
 ## The Challenge with Mini-Apps
 
