@@ -141,6 +141,33 @@ const accordionData = [
     ],
   },
   {
+    summary: 'Mini-Apps',
+    icon: 'material-symbols:counter-1',
+    details: [
+      {
+        question: 'What is a Mini-App?',
+        answer:
+          'Mini-App is a dApp that run in an iframe of a parent page that hosts them. You can then add them to your Grid on Universal Everything.',
+        link: '/learn/mini-apps/connect-upprovider',
+        linkLabel: 'Learn more',
+      },
+      {
+        question: 'How does a Mini-App connect to a user?',
+        answer:
+          'The UP Provider empowers the Mini-Apps to connect to the user visiting the parent page with one-click.',
+        link: '/learn/mini-apps/connect-upprovider#introducing-the-up-provider',
+        linkLabel: 'Learn more about UP Provider',
+      },
+      {
+        question: 'How do I test Mini-Apps locally?',
+        answer:
+          'To test Mini-Apps locally on Universal Everything, you need to expose your Mini-App to an URL. Check out our guide to learn how to do this with localtunnel.',
+        link: '/learn/mini-apps/testing-miniapps',
+        linkLabel: 'See guide',
+      },
+    ],
+  },
+  {
     summary: 'Network & Validators',
     icon: 'material-symbols:counter-1',
     details: [

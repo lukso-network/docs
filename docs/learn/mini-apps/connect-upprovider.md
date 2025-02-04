@@ -1,23 +1,34 @@
 ---
-sidebar_label: '🔌 Connect to a mini-app'
-description: 'How to connect your mini-app using the UP Provider'
+sidebar_label: '🔌 Connect to a Mini-App'
+description: 'How to connect your Mini-App using the UP Provider'
 sidebar_position: 1
 ---
 
-# Connect to a mini-app
+# Connect to a Mini-App
 
 <img width="300" alt="Screenshot 2025-01-27 at 14 15 22" src="https://github.com/user-attachments/assets/7f0b7875-c402-440d-b77f-935cf90f241d" align="right" />
 
-Mini-apps are dApps that run in an iframe of a parent page that hosts them. [universaleverything.io](https://universaleverything.io) is such a website.
-An example of mini-apps can be found at [the app-store profile](https://universaleverything.io/0x7b258dD350227CFc9Da1EDD7f4D978f7Df20fD40) (See on the right).
+## What are Mini-Apps?
 
-For users connecting to a mini-app would mean to connect to each mini-app via a connect button, web3 modal, or wallet connect process. This makes connecting to mini-apps cumbersome and not fun.
+Mini-Apps are dApps that run in an iframe of a parent page that hosts them. You can see [examples of Mini-Apps in action on universaleverything.io](https://universaleverything.io/0x7b258dD350227CFc9Da1EDD7f4D978f7Df20fD40).
 
-The [up-provider](https://github.com/lukso-network/tools-up-provider) solves this by giving mini-apps a way for the user visiting the parent page, to connect to the mini-app directly with one-click.
+## The Challenge with Mini-Apps
 
-**Additionally the mini-app has access to `context addresses`**, which in the case of [universaleverything.io](https://universaleverything.io) is the universal profile under which the mini-app is hosted.
+Traditionally, users would need to connect to each Mini-App individually through:
 
-The up-provider is a [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compatible provider, meaning it will work with all major web3 libraries. For examples using viem, web3.js or ethers, [see the readme of the up-provider](https://github.com/lukso-network/tools-up-provider/blob/main/README.md#provider-for-mini-apps).
+- Connect buttons
+- Web3 modals
+- WalletConnect processes
+
+This makes the user experience cumbersome.
+
+## Introducing the UP Provider
+
+The [up-provider](../../tools/dapps/up-provider/getting-started) solves this by giving Mini-Apps a way for the user visiting the parent page, to connect to the Mini-App directly with one-click.
+
+Additionally, **the Mini-App has access to `context addresses`**, which in the case of [universaleverything.io](https://universaleverything.io) is the Universal Profile under which the Mini-App is hosted in the Grid.
+
+> The up-provider is a [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compatible provider, meaning it will work with all major web3 libraries. For examples using viem, web3.js or ethers, [see the readme of the up-provider](https://github.com/lukso-network/tools-up-provider/blob/main/README.md#provider-for-mini-apps).
 
 ## Installation
 
@@ -25,9 +36,9 @@ The up-provider is a [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compati
 npm install @lukso/up-provider
 ```
 
-## Example implementation using react
+## Example implementation using React
 
-Here's a step-by-step guide to implement UP Provider connection in your react application:
+Here's a step-by-step guide to implement UP Provider connection in your React application:
 
 1. First, import the necessary dependencies:
 
