@@ -20,7 +20,7 @@ Traditionally, users would need to connect to each Mini-App individually through
 - Web3 modals
 - WalletConnect processes
 
-This makes the user experience cumbersome and frustrating.
+This makes the user experience cumbersome.
 
 ## Introducing the UP Provider
 
