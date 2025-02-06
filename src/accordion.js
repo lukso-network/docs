@@ -9,13 +9,17 @@ const accordionData = [
         question: 'Why are there new standards on LUKSO?',
         answer: (
           <>
-            LUKSO introduced new blockchain standards to address issues with existing{' '}
-            <TermTooltip category="blockchain" term="ERC" />
-            , such as token/NFT approval security, limited metadata, lack of interoperability (ERC677, ERC777 and ERC1155 use each different callback hook functions to notify on token transfer), and requiring users to acquire native token upfront to pay for transaction fees (
+            LUKSO introduced new blockchain standards to address issues with
+            existing <TermTooltip category="blockchain" term="ERC" />
+            , such as token/NFT approval security, limited metadata, lack of
+            interoperability (ERC677, ERC777 and ERC1155 use each different
+            callback hook functions to notify on token transfer), and requiring
+            users to acquire native token upfront to pay for transaction fees (
             <TermTooltip category="blockchain" term="gas" />
             ). LSP standards include features like{' '}
-            <TermTooltip category="blockchain" term="universalReceiver" />
-            {' '}for notifications, flexible metadata, secure permissions management, and gasless transactions for easier user onboarding.
+            <TermTooltip category="blockchain" term="universalReceiver" /> for
+            notifications, flexible metadata, secure permissions management, and
+            gasless transactions for easier user onboarding.
           </>
         ),
         link: '/learn/overview#why-new-standards',
@@ -58,11 +62,14 @@ const accordionData = [
         question: 'How does a profile differ from a wallet?',
         answer: (
           <>
-            A{' '}
-            <TermTooltip category="profiles" term="universalProfile" />
-            {' '}is a smart account with all the features of a traditional wallet like MetaMask, but more user-friendly and designed for non-technical users. It eliminates the need for managing private keys, paying gas, or verifying opaque transactions before confirming them. It also offers advanced features like{' '}
-            <TermTooltip category="profiles" term="permissions" />
-            {' '}for multi-device control.
+            A <TermTooltip category="profiles" term="universalProfile" /> is a
+            smart account with all the features of a traditional wallet like
+            MetaMask, but more user-friendly and designed for non-technical
+            users. It eliminates the need for managing private keys, paying gas,
+            or verifying opaque transactions before confirming them. It also
+            offers advanced features like{' '}
+            <TermTooltip category="profiles" term="permissions" /> for
+            multi-device control.
           </>
         ),
         link: '/learn/benefits-lukso-standards#universal-profiles-vs-smart-wallets',
