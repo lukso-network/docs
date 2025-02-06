@@ -1,12 +1,12 @@
 ---
 sidebar_label: '🧪 Testing Mini-Apps Locally'
-description: 'How to run and test your mini-app locally'
+description: 'How to run and test your Mini-App locally'
 sidebar_position: 2
 ---
 
 # 🧪 Testing Mini-Apps Locally
 
-To test mini-apps in action on Universal Everything, we need to expose our mini-app to an URL that can be accessed by the UP Provider.
+To test Mini-Apps in action on Universal Everything, we need to expose our Mini-App to an URL that can be accessed by the UP Provider.
 
 We will be using [localtunnel](https://github.com/localtunnel/localtunnel) for this purpose.
 
@@ -23,10 +23,10 @@ npm install -g localtunnel
 In a new terminal window, run the following command:
 
 ```bash
-lt --port <PORT> // localhost port that your mini-app is running on (e.g. 3000)
+lt --port <PORT> // localhost port that your Mini-App is running on (e.g. 3000)
 ```
 
-Running the command will generate a random URL. Initial visit to this URL will ask for a password, you can use **your IP address** to access your mini-app.
+Running the command will generate a random URL. Initial visit to this URL will ask for a password, you can use **your IP address** to access your Mini-App.
 
 ![localtunnel-visit](/img/learn/localtunnel-visit.png)
 
@@ -38,4 +38,4 @@ If you don't have your IP address in hand, you can visit the URL on the page to 
 
 ## Test your Mini-App on Universal Everything
 
-Go to your Universal Profile on Universal Everything, and add your mini-app with using the provided URL to your Grid.
+Go to your Universal Profile on Universal Everything, and add your Mini-App with using the provided URL to your Grid.
