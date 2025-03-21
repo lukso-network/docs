@@ -85,7 +85,7 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
       {
         "hashFunction": "keccak256(bytes)",
         "hash": "0x98fe032f81c43426fbcfb21c780c879667a08e2a65e8ae38027d4d61cdfe6f55",
-        "url": "ifps://QmPJESHbVkPtSaHntNVY5F6JDLW8v69M2d6khXEYGUMn7N",
+        "url": "ipfs://QmPJESHbVkPtSaHntNVY5F6JDLW8v69M2d6khXEYGUMn7N",
         "fileType": "fbx"
       }
     ],
@@ -101,14 +101,14 @@ Inside the JSON file, the keys `profileImage` and `backgroundImage` can accept a
         "height": 1013,
         "hashFunction": "keccak256(bytes)",
         "hash": "0x98fe032f81c43426fbcfb21c780c879667a08e2a65e8ae38027d4d61cdfe6f55",
-        "url": "ifps://QmPJESHbVkPtSaHntNVY5F6JDLW8v69M2d6khXEYGUMn7N"
+        "url": "ipfs://QmPJESHbVkPtSaHntNVY5F6JDLW8v69M2d6khXEYGUMn7N"
       },
       {
         "width": 1024,
         "height": 576,
         "hashFunction": "keccak256(bytes)",
         "hash": "0xfce1c7436a77a009a97e48e4e10c92e89fd95fe1556fc5c62ecef57cea51aa37",
-        "url": "ifps://QmZc9uMJxyUeUpuowJ7AD6MKoNTaWdVNcBj72iisRyM9Su"
+        "url": "ipfs://QmZc9uMJxyUeUpuowJ7AD6MKoNTaWdVNcBj72iisRyM9Su"
       }
     ]
   }

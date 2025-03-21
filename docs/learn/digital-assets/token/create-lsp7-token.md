@@ -155,7 +155,7 @@ module.exports = [
 ];
 ```
 
-To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](../../../learn/getting-started.mdx) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _paramter file_, and _network_:
+To verify the deployed token, you can use the **blockscout API properties** set up within the [Getting Started](../../../learn/getting-started.mdx) section. If you configured the API, you will be able to run the verification by specifying the _token address_, _parameter file_, and _network_:
 
 ```bash
 npx hardhat verify <myTokenAddress> --constructor-args ./verify/myCustomToken.ts --network luksoTestnet
