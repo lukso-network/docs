@@ -45,8 +45,8 @@ There are 4 x main popular combination of LSP7 / LSP8 + the `LSP4TokenType`.
         <td>A collection of unique items</td>
         <td></td>
         <td>✓</td>
-        <td>✓</td>
         <td></td>
+        <td>✓</td>
         <td></td>
     </tr>
     <tr>
