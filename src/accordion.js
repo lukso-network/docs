@@ -1,3 +1,5 @@
+import TermTooltip from './components/TermTooltip';
+
 const accordionData = [
   {
     summary: 'General',
@@ -5,21 +7,34 @@ const accordionData = [
     details: [
       {
         question: 'Why are there new standards on LUKSO?',
-        answer:
-          'LUKSO introduced new blockchain standards to address issues with existing ERCs, such as token/NFT approval security, limited metadata, lack of interoperability (ERC677, ERC777 and ERC1155 use each different callback hook functions to notify on token transfer), and requiring users to acquire native token upfront to pay for transaction fess (gas). LSP standards include features like universalReceiver (LSP1) for notifications, flexible metadata (ERC725Y), secure permissions management (LSP6 Key Manager), and gasless transactions (LSP25 Execute Relay Call) for easier user onboarding.',
+        answer: (
+          <>
+            LUKSO introduced new blockchain standards to address issues with
+            existing <TermTooltip category="blockchain" term="ERC" />
+            , such as token/NFT approval security, limited metadata, lack of
+            interoperability (ERC677, ERC777 and ERC1155 use each different
+            callback hook functions to notify on token transfer), and requiring
+            users to acquire native token upfront to pay for transaction fees (
+            <TermTooltip category="blockchain" term="gas" />
+            ). LSP standards include features like{' '}
+            <TermTooltip category="blockchain" term="universalReceiver" /> for
+            notifications, flexible metadata, secure permissions management, and
+            gasless transactions for easier user onboarding.
+          </>
+        ),
         link: '/learn/overview#why-new-standards',
         linkLabel: 'Learn more',
       },
       {
-        question: 'Why is LUKSO a Layer 1 and not a Layer 2?',
+        question: 'Why is LUKSO a Layer 1 and not a Layer 2 network?',
         answer:
-          "LUKSO was created as a Layer 1 to establish its own ecosystem, community, and applications, rather than building on Ethereum's congested standards. Being an EVM-based blockchain (same technology as Ethereum, unmodified), LUKSO supports any Ethereum tools, enabling developers to easily build and port applications between the two networks.",
+          "LUKSO was created as a Layer 1 network to establish its own ecosystem, communities, and applications, rather than building on Ethereum's congested standards. Being an EVM-based blockchain (same technology as Ethereum, unmodified), LUKSO supports any Ethereum tools, enabling developers to easily build and port applications between the two networks.",
         link: '/learn/overview',
         linkLabel: 'Learn more',
       },
       {
         question:
-          'What are the advantages of the LUKSO LSP compared to the ERC Standards?',
+          'What are the advantages of the LUKSO Standard Proposals (LSP) compared to the Ethereum Request for Comments (ERC) Standards?',
         answer:
           'The LSP standards offer various advantages for various use cases. This includes storing various form of data on Universal Profiles (e.g: user settings from a dApp, list of received assets, list of creators of a digital asset, followers, etc), sending gas-less transactions, fine-grained permissions management. These allow to build user-centric web3 applications that offer a better experience to users.',
         link: '/learn/benefits-lukso-standards',
@@ -35,18 +50,28 @@ const accordionData = [
       {
         question: 'What can be built using the LUKSO LSP Standards?',
         answer:
-          'Any form of dApps and protocols can be built using the LUKSO standards! From governance and DAO toolings to Tokens and complex NFT collections as well as recovery services.',
+          'Any form of dApps and protocols can be built using the LUKSO standards. From governance and DAO toolings to Tokens, Tickets, Real-World-Assets and complex evolving NFT collections as well as recovery services and multi-factor authorizations through detailed permissions.',
       },
     ],
   },
   {
-    summary: 'Universal Profiles',
+    summary: 'Universal Profiles (UP)',
     icon: 'material-symbols:counter-1',
     details: [
       {
         question: 'How does a profile differ from a wallet?',
-        answer:
-          'A Universal Profile is a smart account with all the features of a traditional wallet like Metamask, but more user-friendly and designed for non-technical users. It eliminates the need for managing private keys, paying gas, or verifying opaque transactions before confirming them. It also offers advanced features like fine-grained permissions for multi-device control.',
+        answer: (
+          <>
+            A <TermTooltip category="profiles" term="universalProfile" /> is a
+            smart account with all the features of a traditional wallet like
+            MetaMask, but more user-friendly and designed for non-technical
+            users. It eliminates the need for managing private keys, paying gas,
+            or verifying opaque transactions before confirming them. It also
+            offers advanced features like{' '}
+            <TermTooltip category="profiles" term="permissions" /> for
+            multi-device control.
+          </>
+        ),
         link: '/learn/benefits-lukso-standards#universal-profiles-vs-smart-wallets',
         linkLabel: 'Learn more',
       },
@@ -172,7 +197,7 @@ const accordionData = [
     icon: 'material-symbols:counter-1',
     details: [
       {
-        question: 'What is the RPC endpoint for LUKSO',
+        question: 'What is the Remote Procedure Call (RPC) endpoint for LUKSO?',
         answer:
           'There are multiple RPC endpoints available to connect to the LUKSO network. See our dedicated page for more infos.',
         link: '/networks/mainnet/parameters',
@@ -205,20 +230,20 @@ const accordionData = [
     icon: 'material-symbols:counter-1',
     details: [
       {
-        question: 'How do I add LUKSO to my wallet like MetaMask',
+        question: 'How do I add LUKSO to my wallet like MetaMask?',
         answer:
           'Visit our Networks page and add one of the available LUKSO RPC endpoint, chain ID (42 for Mainnet, 4201 for Testnet) and the Blockscout explorer in your wallet. We also have a one click button to add the network to your wallet.',
         link: '/networks/mainnet/parameters#add-lukso-to-wallets',
         linkLabel: 'Learn more',
       },
       {
-        question: 'How do I install the Universal Profile Browser Extension',
+        question: 'How do I install the Universal Profile Browser Extension?',
         answer: 'Visit our page in the docs to download the 🆙 Browser.',
         link: '/install-up-browser-extension',
         linkLabel: 'Learn more',
       },
       {
-        question: 'How do I install the Universal Profile Mobile App',
+        question: 'How do I install the Universal Profile Mobile App?',
         answer:
           'The UP Mobile app is currently in beta and under testing by our beta testers. It will soon be available on the App Store and Google Play Store for the public and will be available for the public to download.',
       },
