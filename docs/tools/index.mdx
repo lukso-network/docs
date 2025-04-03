@@ -16,6 +16,7 @@ import API3Logo from '@site/static/img/tools/api3-logo.png';
 import DIALogo from '@site/static/img/tools/dia_logo.png';
 import DappnodeLogo from '@site/static/img/tools/dappnode_logo.png';
 import RemixLogo from '@site/static/img/tools/remix-ide.png';
+import Gateway from '@site/static/img/tools/gateway-logo.png';
 
 # Tools
 
@@ -236,21 +237,20 @@ Create docker compose file to connect to LUKSO network.
   href="https://github.com/lukso-network/lsp-smart-contracts"
   target="_blank"
   rel="noopener noreferrer"
-  style={{ 
-      display: 'flex',
-      justifyContent: 'center'
-   }}
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
 >
   <img
     style={{
       verticalAlign: 'middle',
-      padding: '0 2rem 2rem'
-
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
     }}
     src={SolidityLogo}
-
-/>
-
+  />
 </a>
 
 <a
@@ -280,24 +280,23 @@ The reference Solidity implementation of the LUKSO LSP Standards. Available as w
 ]}>
 
 <a
-  class=""
   href="https://github.com/lukso-network/lukso-foundry-template"
   target="_blank"
   rel="noopener noreferrer"
-  style={{ 
-      display: 'flex',
-      justifyContent: 'center'
-   }}
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
 >
   <img
     style={{
       verticalAlign: 'middle',
-      padding: '0 2rem 2rem'
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
     }}
     src={FoundryLogo}
-
-/>
-
+  />
 </a>
 
 Foundry repository template with pre-installed `@lukso/lsp-smart-contracts` package and example contracts ready to use.
@@ -310,27 +309,26 @@ Foundry repository template with pre-installed `@lukso/lsp-smart-contracts` pack
 ]}>
 
 <a
-  class=""
   href="/tools/lsp-smart-contracts/working-with-remix"
   target="_blank"
   rel="noopener noreferrer"
-  style={{ 
-      display: 'flex',
-      justifyContent: 'center'
-   }}
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
 >
   <img
     style={{
       verticalAlign: 'middle',
-      padding: '0 2rem 2rem'
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
     }}
     src={RemixLogo}
-
-/>
-
+  />
 </a>
 
-Remix IDE is a browser-based development environment that allows you to write, test, and deploy smart contracts directly from your web browser. The guide shows you how to use Remix IDE with LUKSO's LSP smart contracts.
+Developers can utilize Remix IDE, browser-based development environment, to write, test, and deploy LSP smart contracts.
 
 </ReferenceCard>
 
@@ -390,76 +388,48 @@ Third-party services and tools that are integrated with LUKSO to provide additio
   href="https://docs.envio.dev/blog/envio-data-indexing-supports-developers-building-on-lukso"
   target="_blank"
   rel="noopener noreferrer"
-  style={{ 
-      display: 'flex',
-      justifyContent: 'center'
-   }}
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
 >
   <img
     style={{
       verticalAlign: 'middle',
-      padding: '0 2rem 2rem'
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
     }}
     src={EnvioLogo}
-
-/>
-
+  />
 </a>
 
 Indexer with playground to query data for Universal Profiles and Digital Assets in graphql.
 
 </ReferenceCard>
 
-<ReferenceCard name="API3" links={[ 
-  {label: 'Data feeds', to: 'https://market.api3.org/lukso' },
-]}>
-
-<a
-  href="https://market.api3.org/lukso"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{ 
-      display: 'flex',
-      justifyContent: 'center'
-   }}
->
-  <img
-    style={{
-      verticalAlign: 'middle',
-      padding: '0 2rem 2rem'
-    }}
-    src={API3Logo}
-
-/>
-
-</a>
-
-Oracle with different data feeds available for LUKSO.
-
-</ReferenceCard>
-
 <ReferenceCard name="DIA" links={[ 
-  {label: 'Data feeds', to: 'https://docs.diadata.org/use-nexus-product/nexus/data-delivery-usage/integrated-blockchains/lukso-price-oracles' },
+  {label: 'Data feeds', to: 'https://www.diadata.org/blog/post/lukso-partners-with-dia-oracles-mainnet/' },
 ]}>
 
 <a
-  href="https://docs.diadata.org/use-nexus-product/nexus/data-delivery-usage/integrated-blockchains/lukso-price-oracles"
+  href="https://www.diadata.org/blog/post/lukso-partners-with-dia-oracles-mainnet/"
   target="_blank"
   rel="noopener noreferrer"
-  style={{ 
-      display: 'flex',
-      justifyContent: 'center'
-   }}
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
 >
   <img
     style={{
       verticalAlign: 'middle',
-      padding: '0 2rem 2rem'
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
     }}
     src={DIALogo}
-
-/>
-
+  />
 </a>
 
 Oracle with different data feeds available for LUKSO.
@@ -474,23 +444,51 @@ Oracle with different data feeds available for LUKSO.
   href="/networks/mainnet/running-a-node#-with-dappnode"
   target="_self"
   rel="noopener noreferrer"
-  style={{ 
-      display: 'flex',
-      justifyContent: 'center'
-   }}
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
 >
   <img
     style={{
       verticalAlign: 'middle',
-      padding: '0 2rem 2rem'
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
     }}
     src={DappnodeLogo}
-
-/>
-
+  />
 </a>
 
 Start running your own validator to stake and earn rewards.
+
+</ReferenceCard>
+
+<ReferenceCard name="Gateway VRF" links={[ 
+  {label: 'Website', to: 'https://gateway.fm/' },
+]}>
+
+<a
+  href="https://gateway.fm/"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
+    }}
+    src={Gateway}
+  />
+</a>
+
+Verifiable Random Function (VRF) coming to LUKSO, and it will be powered by Gateway.
 
 </ReferenceCard>
 
