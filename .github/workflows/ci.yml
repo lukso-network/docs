@@ -74,7 +74,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
-          yarn wrangler pages deploy --project-name "${CF_PROJECT_NAME}" dist ${{ steps.extract_branch.outputs.branch }} | tee output.log
+          yarn dlx wrangler@4.7.1 pages deploy --project-name "${CF_PROJECT_NAME}" dist ${{ steps.extract_branch.outputs.branch }} | tee output.log
           sed < output.log -n 's#.*Take a peek over at \(.*\)$#specific_url=\1#p' >> $GITHUB_OUTPUT
         id: deploy
 
