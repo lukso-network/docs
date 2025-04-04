@@ -68,15 +68,14 @@ jobs:
           fi
         id: extract_branch
 
-      - name: Deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          wranglerVersion: 4.7.1
-          command: pages deploy --project-name "${CF_PROJECT_NAME}" build ${{ steps.extract_branch.outputs.branch }} | tee output.log
-          postCommands: |
-            sed < output.log -n 's#.*Take a peek over at \(.*\)$#specific_url=\1#p' >> $GITHUB_OUTPUT
+      - name: 🚀 Deploy
+        if: ${{ steps.extract_branch.outputs.branch_name != '' }}
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          yarn wrangler pages deploy --project-name "${CF_PROJECT_NAME}" dist ${{ steps.extract_branch.outputs.branch }} | tee output.log
+          sed < output.log -n 's#.*Take a peek over at \(.*\)$#specific_url=\1#p' >> $GITHUB_OUTPUT
         id: deploy
 
       - name: Create commit comment
