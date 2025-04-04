@@ -359,7 +359,17 @@ export default {
     ],
   ],
   themeConfig: {
-    image: 'img/lukso-docs-opengraph.jpg',
+    image: 'img/lukso-docs-og.jpg',
+    metadata: [
+      {
+        name: 'title',
+        content: 'LUKSO Developer Documentation',
+      },
+      {
+        name: 'description',
+        content: 'Network, Standards, Tools and Guides for development on LUKSO and LSP smart contracts.',
+      }
+    ],
     // announcementBar: {
     //   id: 'mainnet_hardfork',
     //   content:
