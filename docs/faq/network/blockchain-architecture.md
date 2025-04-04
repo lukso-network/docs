@@ -43,7 +43,7 @@ The LUKSO Mainnet is up to date with [every Ethereum fork](https://ethereum.org/
 Having a variety of clients in a blockchain network and improving our client diversity is critically important. Client diversity refers to utilizing different software clients in a blockchain network developed by various teams and in other programming languages to improve the following:
 
 - **Security and Resilience**: Client diversity increases the robustness of the network. If there's a bug in one client, it doesn't bring down the entire network because other clients can continue to operate. This decentralization and redundancy is a fundamental aspect of blockchain security and resilience.
-- **Decentralization and Governanc**e: Client diversity promotes decentralization in the development and governance of the Ethereum network. It prevents any team or entity from having too much influence over the network's growth.
+- **Decentralization and Governance**: Client diversity promotes decentralization in the development and governance of the Ethereum network. It prevents any team or entity from having too much influence over the network's growth.
 
 For Ethereum, **client diversity has proven essential** in maintaining the network's robustness during several incidents. One of the most notable incidents were the [Shanghai DoS Attacks in 2016](https://blog.ethereum.org/2016/09/22/ethereum-network-currently-undergoing-dos-attack), the [OpenEthereum Consensus Bug in 2020](https://www.coindesk.com/tech/2020/08/27/buggy-code-release-knocks-13-of-ethereum-nodes-offline/), and the [Prysm Client Incident in 2023](https://offchain.medium.com/post-mortem-report-ethereum-mainnet-finality-05-11-2023-95e271dfd8b2). You can find an overview of these bugs within the [extended client section](https://docs.luksoverse.io/docs/mainnet/complete-node-guide/blockchain-clients/client-setups) by the community.
 
@@ -87,7 +87,7 @@ An epoch in PoS is a fixed period during which slots occur. It is a larger time 
 Epochs provide several vital functions:
 
 - **Validator Shuffling**: At the start of each epoch, a random selection process determines the active validators and assigns them to slots. This is done to ensure that the system remains decentralized and that no single validator can predict far in advance when they will be selected.
-- **Rewards and Penaltie**s: At the end of each epoch, rewards and penalties are calculated for validators. Validators that correctly proposed and attested to blocks receive rewards, while those who behaved maliciously or were offline are penalized.
+- **Rewards and Penalties**: At the end of each epoch, rewards and penalties are calculated for validators. Validators that correctly proposed and attested to blocks receive rewards, while those who behaved maliciously or were offline are penalized.
 - **Finality**: An epoch also plays a role in achieving finality. Finality refers to the point at which a block cannot be changed or removed from the blockchain. The finality is achieved in every epoch.
 
 ## What are slots?

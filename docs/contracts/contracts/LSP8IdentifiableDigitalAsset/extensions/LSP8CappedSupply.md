@@ -729,7 +729,7 @@ function tokenSupplyCap() external view returns (uint256);
 
 _The maximum supply amount of tokens allowed to exist is `_TOKEN_SUPPLY_CAP`._
 
-Get the maximum number of tokens that can exist to circulate. Once [`totalSupply`](#totalsupply) reaches reaches [`totalSuuplyCap`](#totalsuuplycap), it is not possible to mint more tokens.
+Get the maximum number of tokens that can exist to circulate. Once [`totalSupply`](#totalsupply) reaches reaches [`totalSupplyCap`](#totalsuuplycap), it is not possible to mint more tokens.
 
 #### Returns
 

@@ -44,7 +44,7 @@ A full list of LSP1 TypeIds that can be filtered from the `UniversalReceiver` ev
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-// This code is only used for guides puprose, it is working but not verified nor audited.
+// This code is only used for guides purpose, it is working but not verified nor audited.
 
 // modules
 import {LSP1UniversalReceiverDelegateUP} from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";
@@ -344,7 +344,7 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
     /**
      * @dev Reverts when the asset being transferred is not allowed. If allowed, the address of the asset
      * will be registered inside the storage, and removed when balance of the asset equal 0, according to
-     * the LSP5-ReceivedAssers standard.
+     * the LSP5-ReceivedAssets standard.
      *
      * @param caller The address of the asset informing the `universalReceiver(..)` function on the UniversalProfile.
      * @param value The amount of native tokens sent by the caller to the universalReceiver function on the UniversalProfile.

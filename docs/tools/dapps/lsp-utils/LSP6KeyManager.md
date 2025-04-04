@@ -308,7 +308,7 @@ v0.0.1
 **`Throws`**
 
 - When one of `dataKeys[index]` is not hex.
-- When one of `dataKeys[index]` has a length of 0 bytes or bigger thsn 32 bytes.
+- When one of `dataKeys[index]` has a length of 0 bytes or bigger than 32 bytes.
 
 **`See`**
 

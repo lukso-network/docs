@@ -278,7 +278,7 @@ myErc725.encodeData(
 const schemas = [
   {
     name: 'DynamicKey:<bytes4>:<string>',
-    key: '0xForDynamicKeysThisFieldIsIrrelevantAndWillBeOverwriten',
+    key: '0xForDynamicKeysThisFieldIsIrrelevantAndWillBeOverwritten',
     keyType: 'Mapping',
     valueType: 'bytes',
     valueContent: 'Address',
@@ -982,7 +982,7 @@ myErc725.decodeData(
         method: 'keccak256(utf8)',
         data: '0x820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361'
       },
-      url: 'ifps://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx',
+      url: 'ipfs://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx',
     },
   },
 ];
@@ -1477,7 +1477,7 @@ The name(s) (or the encoded name(s) as schema key) of the element(s) in the smar
 
 ```javascript title="Receiving all keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1523,7 +1523,7 @@ await myErc725.fetchData();
 
 ```javascript title="Receiving one key from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1552,7 +1552,7 @@ await myErc725.fetchData(['LSP1UniversalReceiverDelegate']);
 
 ```javascript title="Receiving multiple keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1642,7 +1642,7 @@ The name(s) (or the encoded name(s) as schema key) of the element(s) in the smar
 
 ```javascript title="Receiving all keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1695,7 +1695,7 @@ await myErc725.getData();
 
 ```javascript title="Receiving one key from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1746,7 +1746,7 @@ await myErc725.getData('LSP1UniversalReceiverDelegate');
 
 ```javascript title="Receiving multiple keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const universalProfileAddress = '0x0F4180da178ed1C71398a57ca8Cb177F69591f1f';
 
 const myErc725 = new ERC725(LSP3Schemas, universalProfileAddress);
@@ -1778,7 +1778,7 @@ await myErc725.getData(['LSP3Profile', 'LSP1UniversalReceiverDelegate']);
 
 ```javascript title="Receiving dynamic keys from the schema"
 import ERC725 from '@erc725/erc725.js';
-import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.sjon';
+import LSP3Schemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 const luksoUniversalProfile = '0x8363Cfe6c787218f0ADA0A4aBC289A8d9dfc2453';
 
 const myErc725 = new ERC725(LSP3Schemas, luksoUniversalProfile);
@@ -2097,7 +2097,7 @@ const verifiableURI = myErc725.encodeDataSourceWithHash(
     method: 'keccak256(utf8)',
     data: '0x820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361',
   },
-  'ifps://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx',
+  'ipfs://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx',
 );
 /**
 0x00006f357c6a0020820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455a4c6a7452504466573834554178
@@ -2178,7 +2178,7 @@ verification: {
     data: '820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361',
     method: 'keccak256(utf8)',
   }
-url: 'ifps://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx'
+url: 'ipfs://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx'
 */
 ```
 
