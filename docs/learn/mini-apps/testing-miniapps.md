@@ -18,7 +18,7 @@ We will be using [localtunnel](https://github.com/localtunnel/localtunnel) for t
 
 ## Prerequisites
 
--  **Node.js and npm**: Ensure Node.js is installed on your system. If not, download and install it from the [official Node.js website](https://nodejs.org/).
+- **Node.js and npm**: Ensure Node.js is installed on your system. If not, download and install it from the [official Node.js website](https://nodejs.org/).
 
 ## Install `localtunnel`
 
