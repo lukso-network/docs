@@ -25,50 +25,7 @@ First, create a `package.json` file with the required LSP smart contract depende
 }
 ```
 
-## Creating an LSP7 Token Contract
-
-Here's an example of a simple LSP7 token contract that includes minting and burning capabilities:
-
-```solidity
-// SPDX-License-Identifier: Apache-2.0
-pragma solidity ^0.8.9;
-
-import {
-    LSP7Mintable
-} from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol";
-import {
-    LSP7Burnable
-} from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol";
-
-import {
-    _LSP4_TOKEN_TYPE_TOKEN
-} from "@lukso/lsp-smart-contracts/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol";
-
-contract LSP7Mint is LSP7Mintable, LSP7Burnable {
-    constructor(
-        string memory name,
-        string memory symbol,
-        address contractOwner,
-        uint256 lsp4TokenType,
-        bool isNonDivisible
-    ) LSP7Mintable(name, symbol, contractOwner, lsp4TokenType, isNonDivisible) {
-    }
-}
-```
-
-## Deploying the Contract
-
-When deploying the contract, you'll need to provide the following constructor parameters:
-
-| Parameter        | Value              | Description                                     |
-| ---------------- | ------------------ | ----------------------------------------------- |
-| `name`           | "My Awesome Token" | The name of your token                          |
-| `symbol`         | "MAT"              | The token symbol                                |
-| `contractOwner`  | Your UP address    | The address that will own the contract          |
-| `lsp4TokenType`  | 0                  | Token type (0 = token, 1 = NFT, 2 = collection) |
-| `isNonDivisible` | false              | If true, decimals = 0; if false, decimals = 18  |
-
-### Deploying using the Universal Profile browser extension
+## Deploying using the Universal Profile browser extension
 
 To deploy your smart contract using the Universal Profile browser extension:
 

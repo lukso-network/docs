@@ -34,30 +34,15 @@ A full list of LSP1 TypeIds that can be filtered from the `UniversalReceiver` ev
 
 ### 1 - Deploy contract via Remix
 
+:::info Deploy using Universal Profiles
+
+To deploy your smart contract using the Universal Profile browser extension, please visit our [Remix guide](../../../tools/lsp-smart-contracts/working-with-remix.md#deploying-using-the-universal-profile-browser-extension)
+
+:::
+
 1. First go to the **[Remix's website](https://remix.ethereum.org/)**. Create a new solidity file `UniversalReceiverDelegate.sol` under the **contracts** folder.
 
 ![Creating Universal Receiver Delegate in Remix](/img/guides/lsp1/remix-creating-file.jpeg)
-
-:::warning Setting Up Dependencies
-
-In order to work with LSPs, you need to create a `package.json` file with the required LSP smart contract dependencies to the root of your project:
-
-```json
-{
-  "dependencies": {
-    "@erc725/smart-contracts-v8": "npm:@erc725/smart-contracts@8.0.0",
-    "@erc725/smart-contracts": "^7.0.0",
-    "@openzeppelin/contracts": "^4.9.3",
-    "@lukso/lsp1-contracts": "~0.15.0",
-    "@lukso/lsp2-contracts": "~0.15.0",
-    "@lukso/lsp14-contracts": "~0.15.0",
-    "@lukso/lsp17contractextension-contracts": "~0.15.0",
-    "@lukso/lsp20-contracts": "~0.15.0"
-  }
-}
-```
-
-:::
 
 2. Copy the code snippet below inside the file. It contains the logic for rejecting any LSP7 & LSP8 assets being transferred to the Universal Profile.
 
@@ -114,15 +99,6 @@ Please make sure to unlock MetaMask and disable Browser Extension while doing th
 4. Then navigate to the **Deploy & Run Transactions** tab and choose _Injected Provider_ as the environment.
 
 ![Compiling contract in Remix](/img/guides/lsp1/remix-compiling-contract.jpeg)
-
-:::info Deploy using Universal Profiles
-To deploy your smart contract using the Universal Profile browser extension:
-
-- Click on the _Customize this list_ option in the Environment field
-- Activate the option of Injected Provider - Universal Profile under the _Deploy using a Browser Extension_.
-
-![Injected Provider Selection in Remix](/img/tools/Injected-Provider.png)
-:::
 
 You should be connected to LUKSO Testnet in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
 If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](../../../networks/testnet/parameters.md).
