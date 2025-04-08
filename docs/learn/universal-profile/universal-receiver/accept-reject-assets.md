@@ -34,6 +34,12 @@ A full list of LSP1 TypeIds that can be filtered from the `UniversalReceiver` ev
 
 ### 1 - Deploy contract via Remix
 
+:::info Deploy using Universal Profiles
+
+To deploy your smart contract using the Universal Profile browser extension, please visit our [Remix guide](../../../tools/lsp-smart-contracts/working-with-remix.md#deploying-using-the-universal-profile-browser-extension)
+
+:::
+
 1. First go to the **[Remix's website](https://remix.ethereum.org/)**. Create a new solidity file `UniversalReceiverDelegate.sol` under the **contracts** folder.
 
 ![Creating Universal Receiver Delegate in Remix](/img/guides/lsp1/remix-creating-file.jpeg)
