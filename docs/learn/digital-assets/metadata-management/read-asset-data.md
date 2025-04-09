@@ -235,7 +235,7 @@ console.log(tokenSymbol);
 To fetch the whole JSON file of the asset's metadata, you can use the following 2 functions of the [`erc725js`](../../../tools/dapps/erc725js/getting-started.md) library:
 
 - [`fetchData('LSP4Metadata')`](../../../tools/dapps/erc725js/methods.md#fetchdata): This will download and decode the content of `VerifiableURI` as JSON.
-- [`getData(LSP4Metadata)`](../../../tools/dapps/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` maunually using [`decodeData(...)`](../../../tools/dapps/erc725js/methods.md#decodedata).
+- [`getData(LSP4Metadata)`](../../../tools/dapps/erc725js/methods#getdata): This will retrieve the raw data value from the smart contract. You will then need to decode the `VerifiableURI` manually using [`decodeData(...)`](../../../tools/dapps/erc725js/methods.md#decodedata).
 
 ```ts
 // Download and verify the asset metadata JSON file
@@ -386,4 +386,4 @@ Based on the [token type](#detect-the-token-type), the information of the [LSP4 
 
 - If your asset is a Token (`tokenType = 0`), individual metadata **can't be set**, due to the lack of token IDs.
 - If your asset is an NFT (`tokenType = 1`), individual metadata **may be set in addition** to the global token information.
-- If your asset is a Collection (`tokenType = 2`), the token ID-specific medatada is **mandatory**.
+- If your asset is a Collection (`tokenType = 2`), the token ID-specific metadata is **mandatory**.

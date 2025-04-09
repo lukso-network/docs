@@ -407,7 +407,7 @@ const testLSP6 = async () => {
   console.log(
     `The new owner of the Universal Profile is: ${universalProfileOwner}`,
   );
-  console.log(`The old LSP6 Key Manager is at address: ${keyManagerAdderss}`);
+  console.log(`The old LSP6 Key Manager is at address: ${keyManagerAddress}`);
 
   const keyManager = new web3.eth.Contract(
     LSP6KeyManager.abi,

@@ -115,7 +115,7 @@ const reEncodedVerifiableURI = decodeDataSourceWithHash(
 // verification: {
 //     data: '820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361',
 //     method: 'keccak256(utf8)',
-//     source: 'ifps://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx'
+//     source: 'ipfs://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx'
 //   },
 
 const verifiableURI = encodeDataSourceWithHash(
@@ -123,7 +123,7 @@ const verifiableURI = encodeDataSourceWithHash(
     method: 'keccak256(utf8)',
     data: '820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361',
   },
-  'ifps://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx',
+  'ipfs://QmYr1VJLwerg6pEoscdhVGugo39pa6rycEZLjtRPDfW84UAx',
 );
 // 0x00006f357c6a0020820464ddfac1bec070cc14a8daf04129871d458f2ca94368aae8391311af6361696670733a2f2f516d597231564a4c776572673670456f73636468564775676f3339706136727963455a4c6a7452504466573834554178
 ```

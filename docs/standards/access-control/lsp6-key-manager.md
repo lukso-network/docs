@@ -194,7 +194,7 @@ _Example:_
 
 One of the best uses for this permission is the following scenario:
 
-1. The ERC725Acccount linked to the Key Manager makes an external call to a _contract A_.
+1. The ERC725Account linked to the Key Manager makes an external call to a _contract A_.
 2. _Contract A_ will make some internal updates using the received data.
 3. The _contract A_ will then call back the ERC725Account **(via the Key Manager)** with another payload that will update the account storage.
 
@@ -627,7 +627,7 @@ If you want to have multiple different interactions, you MUST add each of the de
 <details>
     <summary><strong>Example 1:</strong> allow only to <code>CALL</code> a specific LSP0 at a specific address</summary>
 
-To allow a controller to only do `CALL` to any function on a LSP0ERC725Account (interface ID `0x3e89ad98`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the following value for the CompactBYytesArray of allowed calls will be used:
+To allow a controller to only do `CALL` to any function on a LSP0ERC725Account (interface ID `0x3e89ad98`) deployed at address `0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`, the following value for the CompactBytesArray of allowed calls will be used:
 
 `0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`
 
