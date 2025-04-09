@@ -64,12 +64,11 @@ jobs:
             echo "branch=--branch pr-${PR_NUMBER}" >> $GITHUB_OUTPUT
           else
             echo "branch_name=" >> $GITHUB_OUTPUT
-            echo "branch=" >> $GITHUB_OUTPUT
+            echo "branch=--branch main" >> $GITHUB_OUTPUT
           fi
         id: extract_branch
 
       - name: 🚀 Deploy
-        if: ${{ steps.extract_branch.outputs.branch_name != '' }}
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
