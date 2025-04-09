@@ -34,7 +34,7 @@ export default function Erc721LSP8Table() {
             </pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr style={{ backgroundColor: '#65b033' }}>
           <td>
             <pre language="solidity">balanceOf(address owner)</pre>
           </td>

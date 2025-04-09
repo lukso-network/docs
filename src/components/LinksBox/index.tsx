@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import { useColorMode } from '@docusaurus/theme-common';
 
 import styles from './LinksBox.module.scss';
 
@@ -8,8 +9,11 @@ type LinksProps = {
 };
 
 export default function LinksBox({ links }: LinksProps) {
+  const { colorMode } = useColorMode();
+  const isDarkTheme = colorMode === 'dark';
+  
   return (
-    <ul className={styles.linksBox}>
+    <ul className={`${styles.linksBox} ${isDarkTheme ? styles.darkMode : ''}`}>
       {links.map(({ text, link }, index) => (
         <li key={index}>
           <Link to={link}>{text}</Link>

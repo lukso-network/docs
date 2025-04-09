@@ -34,7 +34,7 @@ export default function Erc20LSP7Table() {
             </pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr style={{ backgroundColor: '#65b033' }}>
           <td>
             <pre language="solidity">decimals()</pre>
           </td>
@@ -42,7 +42,7 @@ export default function Erc20LSP7Table() {
             <pre language="solidity">decimals()</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr style={{ backgroundColor: '#65b033' }}>
           <td>
             <pre language="solidity">totalSupply()</pre>
           </td>
@@ -50,7 +50,7 @@ export default function Erc20LSP7Table() {
             <pre language="solidity">totalSupply()</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr style={{ backgroundColor: '#65b033' }}>
           <td>
             <pre language="solidity">balanceOf(address account)</pre>
           </td>
