@@ -22,8 +22,6 @@ Every Universal Profile deployed with the [**🧩 Universal Profile Browser Exte
 
 This guide shows you how to easily retrieve the list of owned asset, by fetching the values stored under the [`LSP5ReceivedAssets[]`](../../../standards/metadata/lsp5-received-assets.md#lsp5receivedassets) data key.
 
-
-
 <CodeSandbox src="https://codesandbox.io/embed/qxqdn8?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
 
 ## Using erc725.js
