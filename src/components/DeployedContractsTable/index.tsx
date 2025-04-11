@@ -8,6 +8,8 @@ const {
   UniversalProfileInit,
   LSP6KeyManagerInit,
   LSP1UniversalReceiverDelegateUP,
+  LSP7MintableInit,
+  LSP8MintableInit,
 } = CONTRACT_VERSIONS;
 
 export const BaseContractsTable = () => {
@@ -15,12 +17,16 @@ export const BaseContractsTable = () => {
     UniversalProfileInit,
     LSP6KeyManagerInit,
     LSP1UniversalReceiverDelegateUP,
+    LSP7MintableInit,
+    LSP8MintableInit,
   ];
 
   const baseContractNames = Object.keys({
     UniversalProfileInit,
     LSP6KeyManagerInit,
     LSP1UniversalReceiverDelegateUP,
+    LSP7MintableInit,
+    LSP8MintableInit,
   });
 
   return (
