@@ -4,6 +4,8 @@ sidebar_position: 1
 description: Learn how to retrieve the list of controller addresses and their associated permissions from a Universal Profile on LUKSO.
 ---
 
+import CodeSandbox from "@site/src/components/CodeSandbox";
+
 # Get List of Permissioned Addresses
 
 :::tip Code repository
@@ -21,6 +23,8 @@ Alongside each controller, we will also retrieve their associated permissions. A
 3. **decode these permissions** in a human readable way
 
 ![Get controller addresses](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
+
+<CodeSandbox src="https://codesandbox.io/embed/857dlw?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=11&hidenavigation=1&theme=dark" />
 
 ## Setup
 
