@@ -1,14 +1,14 @@
 ---
-sidebar_label: 'Cascade And Sense Support For NFTs'
+sidebar_label: 'Cascade and Sense Support'
 sidebar_position: 6
-description: 'Introduction to implementation cascade and sense protocol of nfts at LUKSO network'
+description: 'Introduction to implementation Cascade and Sense Protocol of NFTs at LUKSO network'
 ---
 
-# Tokens & NFT 2.0
+# Cascade and Sense Support for NFT Metadata
 
 :::success Useful Tip
 
-The [guide section](../../digital-assets/token/create-lsp7-token.md) will walk you through uploading images and metadata to Cascade and Sense protocol on [LUKSO Testnet](../../../networks/testnet/parameters.md).
+This guide will walk you through uploading images and metadata to Cascade and Sense Protocol on [LUKSO Testnet](../../../networks/testnet/parameters.md).
 
 :::
 
@@ -16,28 +16,26 @@ The [guide section](../../digital-assets/token/create-lsp7-token.md) will walk y
 
 [Cascade](https://cascade.pastel.network) is a protocol that allows users to store data permanently in a highly redundant, distributed fashion with a single upfront fee.
 
-[Sense](https://sense.pastel.network) is a lightweight protocol on the Pastel Network, built to assess the relative rareness of a given NFT against near-duplicate meta-data. Sense can recognize even the most subtle similarities between two digital collectibles, even if one has been transformed. The protocol goes beyond the standard “digital fingerprint” approach to establishing the rareness of an NFT, and actually looks at the rareness of the pixel patterns in data. While digital fingerprints do allow users to verify that an NFT was created by a particular creator, this is a fairly weak form of rareness. Sense solves this problem by assigning a ‘Relative Rareness Score’ to quantify how rare an NFT is relative to all NFTs in the underlying dataset.
+[Sense](https://sense.pastel.network) is a lightweight protocol on the Pastel Network, built to assess the relative rareness of a given NFT against near-duplicate metadata.
 
 ## Uploading files to Cascade and Sense Protocol
 
-To upload files to Cascade and Sense protocol, you need gateway api key.
+To upload files to Cascade and Sense Protocol, you need gateway api key.
 
 ### Upload files to Cascade Protocol
 
-You can use CascadeUploader of `@lukso/data-provider-cascade` library to upload files to Cascade Protocol and retrieve result id and ipfs link.
+You can use CascadeUploader of `@lukso/data-provider-cascade` library to upload files to Cascade Protocol and retrieve result id and IPFS link.
 
-```
-import { createReadStream } from "node:fs";
-import { CascadeUploader } from "@lukso/data-provider-cascade";
-import { config } from "dotenv";
+```javascript
+import { createReadStream } from 'node:fs';
+import { CascadeUploader } from '@lukso/data-provider-cascade';
+import { config } from 'dotenv';
 
-config({ path: "./.env.test" });
+config({ path: './.env.test' });
 
-const provider = new CascadeUploader(
-	process.env.CASCADE_API_KEY || ""
-);
+const provider = new CascadeUploader(process.env.CASCADE_API_KEY || '');
 
-const file = createReadStream("./examples/test-image.png");
+const file = createReadStream('./examples/test-image.png');
 
 const result = await provider.uploadToCascade(file);
 
@@ -46,14 +44,14 @@ if (result) {
 }
 
 // upload folder
-const results = await provider.uploadFolderToCascade("./examples");
+const results = await provider.uploadFolderToCascade('./examples');
 
 if (results.length > 0) {
   for (const result of results) {
     if (result) {
-      console.log("File Name:", result.file_name);
-      console.log("IPFS Url:", result.ipfs_url);
-      console.log("Result Id:", result.result_id);
+      console.log('File Name:', result.file_name);
+      console.log('IPFS Url:', result.ipfs_url);
+      console.log('Result Id:', result.result_id);
     }
   }
 }
@@ -63,18 +61,16 @@ if (results.length > 0) {
 
 You can use SenseUploader of `@lukso/data-provider-sense` library to upload files to Sense Protocol and retrieve result id and ipfs link.
 
-```
-import { createReadStream } from "node:fs";
-import { SenseUploader } from "@lukso/data-provider-sense";
-import { config } from "dotenv";
+```javascript
+import { createReadStream } from 'node:fs';
+import { SenseUploader } from '@lukso/data-provider-sense';
+import { config } from 'dotenv';
 
-config({ path: "./.env.test" });
+config({ path: './.env.test' });
 
-const provider = new SenseUploader(
-	process.env.SENSE_API_KEY || ""
-);
+const provider = new SenseUploader(process.env.SENSE_API_KEY || '');
 
-const file = createReadStream("./examples/test-image.png");
+const file = createReadStream('./examples/test-image.png');
 
 const result = await provider.uploadToSense(file);
 
@@ -83,14 +79,14 @@ if (result) {
 }
 
 // upload folder
-const results = await provider.uploadFolderToSense("./examples");
+const results = await provider.uploadFolderToSense('./examples');
 
 if (results.length > 0) {
   for (const result of results) {
     if (result) {
-      console.log("File Name:", result.file_name);
-      console.log("IPFS Url:", result.ipfs_url);
-      console.log("Result Id:", result.result_id);
+      console.log('File Name:', result.file_name);
+      console.log('IPFS Url:', result.ipfs_url);
+      console.log('Result Id:', result.result_id);
     }
   }
 }
@@ -100,7 +96,7 @@ if (results.length > 0) {
 
 To get activation ticket transaction status and id, you can use `retrieveTxId` function of provider.
 
-```
+```javascript
 const { result_id } = await provider.uploadToCascade(file);
 const { status, tx_id } = await provider.retrieveTxId(result_id);
 console.log(tx_id);
@@ -108,9 +104,9 @@ console.log(tx_id);
 
 ## Add Cascade and Sense's result id and activation ticket id to metadata
 
-After you upload files to Cascade and Sense protocol, you need to save those information at metadata of nft.
+After you upload files to Cascade and Sense Protocol, you need to save those information at metadata of nft.
 
-```
+```json
 {
   ... other properties
   cascadeId: "fc67a80d-0d4a-4065-868f-8c9bd1d0efb6", // Cascade upload result id
