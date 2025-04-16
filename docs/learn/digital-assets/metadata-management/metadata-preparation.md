@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Metadata Preparation'
-sidebar_position: 3
+sidebar_position: 2
 description: Learn how to prepare and use assets for LUKSO Universal Profiles and digital assets (LSP7 / LSP8).
 ---
 
@@ -19,10 +19,34 @@ This guide will walk you through all necessary steps to prepare the asset data.
 To add metadata to your contract, you have to follow these steps:
 
 1. Upload each media file (icon, picture, image, video, etc) and get it's `URLs` or `IPFS CID`.
-2. Use the file hashes and URLs to generate the final [LSP4 Metadata JSON File](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)
-3. Upload the [LSP4 Metadata JSON File](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) to get its `URL` or `IPFS CID`.
+2. Use the file hashes and URLs to generate the final [LSP4 Metadata JSON file](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)
+3. Upload the [LSP4 Metadata JSON file](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) to get its `URL` or `IPFS CID`.
 4. Encode the LSP4 Metadata JSON file URL as a `VerifiableURI`.
-5. Write the reference to the JSON file on the contract.
+5. Write the **reference to the JSON file** to your token contract.
+
+```mermaid
+
+%%{init: {'themeVariables': { 'actorBkg': '#E0F7FA', 'actorBorder': '#006064', 'sequenceNumberColor': '#00695C', 'mainBkg': '#F1F8E9'}}}%%
+sequenceDiagram
+    participant U as Developer
+    participant S as Storage (e.g. IPFS)
+    participant G as Metadata JSON
+    participant C as Smart Contract
+
+    U->>S: Upload Media Files (icon, image, video, etc.)
+    S-->>U: Return File URLs or IPFS CIDs
+
+    U->>G: Provide File Hashes and URLs
+    G-->>U: Build-up the LSP4 Metadata JSON
+
+    U->>S: Upload LSP4 Metadata JSON
+    S-->>U: Return URL or IPFS CID
+
+    U-->>U: Encode URL as VerifiableURI
+
+    U->>C: Write VerifiableURI to Contract
+
+```
 
 ## 1 - File Uploads
 
@@ -39,7 +63,20 @@ To upload the files (assets and metadata JSON file), you have mainly two options
 | Centralized Storage   | Centralized storage solutions are user-friendly and can be a good starting point for those new to the ecosystem or participating in hackathons. However, they rely on a single point of control, which may not align with the decentralized ethos of blockchain technology. | [AWS S3](https://aws.amazon.com/s3/), [Google Cloud](https://cloud.google.com/storage?hl=en), [Dropbox](https://www.dropbox.com/), etc. |
 | Decentralized Storage | Decentralized storage solutions align with the decentralized nature of blockchain and offer benefits like _redundancy_, _censorship resistance_, and _permanent storage_. However, they might be more complex to interact with.                                             | [IPFS](https://ipfs.tech/), [Arweave](https://www.arweave.org/), [Filecoin](https://filecoin.io/), etc.                                 |
 
+:::info Uploading files to IPFS
+
+You can visit our [Use IPFS Storage](../../other-guides/utilize-ipfs-storage.md) guide to upload your files to IPFS using the LUKSO [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers) library. To upload your metadata to IPFS using the Cascade and Sense Protocol, you can visit [Cascade and Sense Support](./cascade-and-sense-support.md) guide.
+
+:::
+
 ## 2 - Generate the JSON File
+
+The JSON content is used as input for encoding the metadata according to the [LSP4](/standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standard. After you filled your metadata file with content, upload it to a preferred storage solution.
+
+To ensure the authenticity of the images, please **generate the hash** of the uploaded files and set them within the `"verification"` field of the JSON Metadata:
+
+- Define **the used hash function** within the `"method"` element
+- Add and **generated hexadecimal hash** within the `"data"` element
 
 After uploading the media files, you can attach their links to a JSON File in the following structure:
 
@@ -102,18 +139,9 @@ After uploading the media files, you can attach their links to a JSON File in th
 
 </details>
 
-The JSON content is then used as input for encoding the metadata according to the [LSP4](/standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4---digital-asset-metadata) standard. After you filled your metadata file with content, upload it to a preferred storage solution.
+:::warning Prettified JSON
 
-:::info Data Verification
-
-To ensure the authenticity of the images, please **generate the hash** of the uploaded files and set them within the `"verification"` field of the JSON Metadata:
-
-- Define **the used hash function** within the `"method"` element
-- Add and **generated hexadecimal hash** within the `"data"` element
-
-:::info Cascade and Sense Support
-
-To implement Cascade and Sense support, you can reference [this](./cascade-and-sense-support.md).
+While the example above is formatted for readability, minifying the JSON file (removing whitespace and formatting) is recommended as it makes hash verification more consistent.
 
 :::
 
