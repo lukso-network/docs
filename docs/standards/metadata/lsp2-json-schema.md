@@ -271,13 +271,13 @@ LSP2 differs in terms of how data is encoded depending on its type. As a basic s
 
 **Similarities**
 
-- any array types (_e.g: `uintM[]`, `bytesN[]`, `bool`, etc..._) in LSP2 are ABI encoded the same way as the ABI specification.
+- any array types (_e.g: `uintM[]`, `bytesN[]`, `bool[]`, etc..._) in LSP2 are ABI encoded the same way as the ABI specification.
 
 Below is a table that describe the LSP2 encoding format for `valueTypes`.
 
 | `valueType`                                                                      | Encoding                                                                            | Example                                                                             |
 | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `bool`                                                                           | `0x01` (for `true`) or `0x00` (for `false`)                                         |                                                                                     |
+| `bool`                                                                           | `0x01` or `0x00`                                                                    | `true` --> `0x01` / `false` --> `0x00`                                              |
 | `string`                                                                         | as utf8 hex bytes <br/> **without padding ❌**                                      | `"Hello"` --> `0x48656c6c6f`                                                        |
 | `address`                                                                        | as a 20 bytes long address                                                          | `0x388C818CA8B9251b393131C08a736A67ccB19297`                                        |
 | `uint256`                                                                        | as a hex value 32 bytes long <br/> **left padded** with zeros to fill 32 bytes      | number `5` --> `0x0000000000000000000000000000000000000000000000000000000000000005` |
