@@ -3,8 +3,9 @@ import Link from '@docusaurus/Link';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import createCustomTheme from '../../theme/themedComponents';
 
 import styles from './accordion.module.scss';
 
@@ -32,48 +33,7 @@ const CustomAccordion: React.FC<AccordionData> = ({
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
   
-  // Create a theme that adapts to dark/light mode
-  const theme = createTheme({
-    components: {
-      MuiAccordion: {
-        styleOverrides: {
-          root: {
-            backgroundColor: isDarkTheme ? '#1b1b1d' : 'var(--ifm-background-color)',
-            color: isDarkTheme ? 'var(--ifm-color-primary-lightest)' : '#1b1b1d',
-            borderColor: isDarkTheme ? 'var(--ifm-color-emphasis-300)' : 'var(--ifm-color-emphasis-200)',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            boxShadow: 'var(--ifm-global-shadow-lw)',
-          }
-        }
-      },
-      MuiAccordionSummary: {
-        styleOverrides: {
-          root: {
-            backgroundColor: isDarkTheme ? '#1b1b1d' : 'var(--ifm-background-surface-color)',
-          },
-          content: {
-            margin: '8px 0',
-          }
-        }
-      },
-      MuiAccordionDetails: {
-        styleOverrides: {
-          root: {
-            backgroundColor: isDarkTheme ? '#1b1b1d' : 'var(--ifm-background-color)',
-            padding: 0,
-          }
-        }
-      },
-      MuiSvgIcon: {
-        styleOverrides: {
-          root: {
-            color: 'var(--ifm-color-primary)',
-          }
-        }
-      }
-    },
-  });
+  const theme = createCustomTheme(isDarkTheme);
 
   return (
     <ThemeProvider theme={theme}>

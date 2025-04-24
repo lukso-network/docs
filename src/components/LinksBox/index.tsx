@@ -13,7 +13,7 @@ export default function LinksBox({ links }: LinksProps) {
   const isDarkTheme = colorMode === 'dark';
   
   return (
-    <ul className={`${styles.linksBox} ${isDarkTheme ? styles.darkMode : ''}`}>
+    <ul className={`${styles.linksBox} ${isDarkTheme ? 'darkModeInteractive' : ''}`}>
       {links.map(({ text, link }, index) => (
         <li key={index}>
           <Link to={link}>{text}</Link>

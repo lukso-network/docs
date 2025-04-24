@@ -19,7 +19,7 @@ const LinkCards: React.FC<LinkCardsProps> = ({ links }) => {
   return (
     <div className={styles.containerBoxLinks}>
       {links.map((item) => (
-        <Link to={item.link} className={`${styles.boxLink} ${isDarkTheme ? styles.darkMode : ''}`}>
+        <Link key={item.link} to={item.link} className={`${styles.boxLink} ${isDarkTheme ? 'darkModeInteractive' : ''}`}>
           <h3>{item.showAsCode ? <code>{item.title}</code> : item.title}</h3>
           <p>{item.description}</p>
         </Link>

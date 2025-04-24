@@ -37,15 +37,7 @@
   }
 }
 
-.darkMode {
-  background-color: #2a2a2cdd;
-  
-  &:hover {
-    background-color: #35353acc;
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
-  }
-  
-  p {
-    color: #aaa;
-  }
+/* Add specific dark mode styles for elements within this component */
+[data-theme='dark'] .boxLink p {
+  color: #aaa;
 }

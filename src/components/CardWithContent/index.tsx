@@ -3,8 +3,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { useColorMode } from '@docusaurus/theme-common';
+import createCustomTheme from '../../theme/themedComponents';
 
 import styles from './CardWithContent.module.scss';
 
@@ -22,37 +23,7 @@ export default function CardWithContent({
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
   
-  // Create a theme that adapts to dark/light mode
-  const theme = createTheme({
-    components: {
-      MuiCard: {
-        styleOverrides: {
-          root: {
-            backgroundColor: isDarkTheme ? '#1b1b1d' : 'var(--ifm-background-color)',
-            color: isDarkTheme ? 'var(--ifm-color-primary-lightest)' : '#1b1b1d',
-            borderColor: isDarkTheme ? 'var(--ifm-color-emphasis-300)' : 'var(--ifm-color-emphasis-200)',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            boxShadow: 'var(--ifm-global-shadow-lw)',
-          }
-        }
-      },
-      MuiCardContent: {
-        styleOverrides: {
-          root: {
-            backgroundColor: isDarkTheme ? '#1b1b1d' : 'var(--ifm-background-color)',
-          }
-        }
-      },
-      MuiTypography: {
-        styleOverrides: {
-          root: {
-            color: isDarkTheme ? 'var(--ifm-color-primary-lightest)' : 'inherit',
-          }
-        }
-      }
-    },
-  });
+  const theme = createCustomTheme(isDarkTheme);
 
   return (
     <div className={styles.cardWithContent}>
