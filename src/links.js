@@ -296,7 +296,7 @@ export const dappsSlider = [
     description: 'Distribute tokens to specific set of Universal Profiles.',
     image: AirdropLogo,
     backgroundColor: '#fcfcfc',
-    link: 'https://airdrop.lukso.network/',
+    link: 'https://airdropper.universaleverything.io/',
   },
   // banner 4 ----------------
   // TODO: define if we add some popular NFT collections or not. If yes add these import below at the top of the file
