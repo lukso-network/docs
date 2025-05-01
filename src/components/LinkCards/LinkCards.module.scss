@@ -36,3 +36,8 @@
     line-height: 1.4;
   }
 }
+
+/* Add specific dark mode styles for elements within this component */
+[data-theme='dark'] .boxLink p {
+  color: #aaa;
+}
