@@ -8,13 +8,15 @@ import CodeSandbox from "@site/src/components/CodeSandbox";
 
 # Get List of Permissioned Addresses
 
+<CodeSandbox src="https://codesandbox.io/embed/857dlw?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=11&hidenavigation=1&theme=dark" />
+
+This guide shows how to retrieve the list of addresses that have some permissions on a Universal Profile. We commonly call these addresses **controllers**.
+
 :::tip Code repository
 
 You can find the scripts of this guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground) repository.
 
 :::
-
-This guide shows how to retrieve the list of addresses that have some permissions on a Universal Profile. We commonly call these addresses **controllers**.
 
 Alongside each controller, we will also retrieve their associated permissions. All of this will involve 3 steps:
 
@@ -23,8 +25,6 @@ Alongside each controller, we will also retrieve their associated permissions. A
 3. **decode these permissions** in a human readable way
 
 ![Get controller addresses](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
-
-<CodeSandbox src="https://codesandbox.io/embed/857dlw?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=11&hidenavigation=1&theme=dark" />
 
 ## Setup
 

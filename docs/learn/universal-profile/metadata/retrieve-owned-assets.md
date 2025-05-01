@@ -8,7 +8,7 @@ import CodeSandbox from "@site/src/components/CodeSandbox";
 
 # Get Profile's Owned Assets
 
-![Retrieve Universal Profile's owned assets](../img/retrieved-up-owned-assets.png)
+<CodeSandbox src="https://codesandbox.io/embed/qxqdn8?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
 
 :::success Tip
 
@@ -18,11 +18,11 @@ Simply type the name of the Universal Profile or paste its address in the search
 
 :::
 
+![Retrieve Universal Profile's owned assets](../img/retrieved-up-owned-assets.png)
+
 Every Universal Profile deployed with the [**🧩 Universal Profile Browser Extension**](/install-up-browser-extension) comes with a 📢 [Universal Receiver delegate](../../../standards/accounts/lsp1-universal-receiver-delegate.md) that register automatically the list of assets it owns.
 
 This guide shows you how to easily retrieve the list of owned asset, by fetching the values stored under the [`LSP5ReceivedAssets[]`](../../../standards/metadata/lsp5-received-assets.md#lsp5receivedassets) data key.
-
-<CodeSandbox src="https://codesandbox.io/embed/qxqdn8?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
 
 ## Using erc725.js
 

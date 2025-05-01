@@ -18,6 +18,8 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 <CodeSandbox src="https://codesandbox.io/embed/cvp8d9?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=11&hidenavigation=1&theme=dark" />
 
+On LUKSO, [Digital Assets](/standards/tokens/introduction.md) are created using the [LSP7 - Digital Asset](/standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Identifiable Digital Asset](/standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. The data of each digital asset lives in its own [ERC725Y](/standards/erc725.md#erc725y-generic-data-keyvalue-store) storage. This tutorial teaches you how to fetch and read this data.
+
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
     src={require('/img/learn/asset_view.png').default}
@@ -28,8 +30,6 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 <i>A <a href="https://wallet.universalprofile.cloud/asset/0x0514A829C832639Afcc02D257154A9DaAD8fa21B?network=testnet">LSP7 Token</a> as seen on UniversalEverything</i>
 <br /><br />
 </div>
-
-On LUKSO, [Digital Assets](/standards/tokens/introduction.md) are created using the [LSP7 - Digital Asset](/standards/tokens/LSP7-Digital-Asset.md) and [LSP8 - Identifiable Digital Asset](/standards/tokens/LSP8-Identifiable-Digital-Asset.md) standards. The data of each digital asset lives in its own [ERC725Y](/standards/erc725.md#erc725y-generic-data-keyvalue-store) storage. This tutorial teaches you how to fetch and read this data.
 
 :::info Preparation
 

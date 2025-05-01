@@ -10,6 +10,8 @@ import CodeSandbox from "@site/src/components/CodeSandbox";
 
 # Read Data from your Universal Profile
 
+<CodeSandbox src="https://codesandbox.io/embed/twl5hf?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
+
 :::success 💡 Tips
 
 Use our [ERC725 inspect](https://erc725-inspect.lukso.tech) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher) or [🔎 Inspector](https://erc725-inspect.lukso.tech/data-fetcher).
@@ -23,8 +25,6 @@ A Universal Profile is a smart contract that uses a generic key-value store (ERC
 ERC725Y data keys are defined by their **ERC725Y JSON schema**. The schema is an object describing the information (= value) stored under this data key. Therefore, a list of schemas let us know which ERC725Y data keys we can set and **which information we can retrieve and edit from the Universal Profile**.
 
 ![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/lsp2/ERC725Y-JSON-Schema-explained.jpeg)
-
-<CodeSandbox src="https://codesandbox.io/embed/twl5hf?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
 
 :::info
 
