@@ -308,3 +308,12 @@ table#erc721-to-lsp8-table tr {
 footer {
   margin-top: 3rem;
 }
+
+[data-theme='dark'] .darkModeInteractive {
+  background-color: #2a2a2cdd; /* Base from LinkCards */
+}
+
+[data-theme='dark'] .darkModeInteractive:hover {
+  background-color: #35353acc; /* Hover from LinkCards */
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1); /* Common shadow */
+}
