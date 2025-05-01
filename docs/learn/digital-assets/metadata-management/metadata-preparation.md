@@ -16,10 +16,12 @@ This guide will walk you through all necessary steps to prepare the asset data.
 
 ## Metadata Preparation Flow
 
-To add metadata to your contract, you have to follow these steps:
+To set the metadata of a digital asset, you have to follow these steps:
 
 1. Upload each media file (icon, picture, image, video, etc) and get it's `URLs` or `IPFS CID`.
-2. Use the file hashes and URLs to generate the final [LSP4 Metadata JSON file](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md)
+2. Inside the [LSP4 Metadata JSON file](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md#lsp4metadata) , set the following values under each `"images"`:
+   - under `verification.data`, set the hash of the media file.
+   - under `url`, set the value `ipfs://<IPFS CID>` (obtained from Step 1)
 3. Upload the [LSP4 Metadata JSON file](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-4-DigitalAsset-Metadata.md) to get its `URL` or `IPFS CID`.
 4. Encode the LSP4 Metadata JSON file URL as a `VerifiableURI`.
 5. Write the **reference to the JSON file** to your token contract.
@@ -65,7 +67,9 @@ To upload the files (assets and metadata JSON file), you have mainly two options
 
 :::info Uploading files to IPFS
 
-You can visit our [Use IPFS Storage](../../other-guides/utilize-ipfs-storage.md) guide to upload your files to IPFS using the LUKSO [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers) library. To upload your metadata to IPFS using the Cascade and Sense Protocol, you can visit [Cascade and Sense Support](./cascade-and-sense-support.md) guide.
+See our guide [**"Use IPFS Storage"**](../../other-guides/utilize-ipfs-storage.md) to learn how to upload your files to IPFS using the LUKSO [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers) library.
+
+<!-- To upload your metadata to IPFS using the Cascade and Sense Protocol, you can visit [Cascade and Sense Support](./cascade-and-sense-support.md) guide. -->
 
 :::
 
@@ -76,7 +80,7 @@ The JSON content is used as input for encoding the metadata according to the [LS
 To ensure the authenticity of the images, please **generate the hash** of the uploaded files and set them within the `"verification"` field of the JSON Metadata:
 
 - Define **the used hash function** within the `"method"` element
-- Add and **generated hexadecimal hash** within the `"data"` element
+- Add the **hash digest** (_e.g: 32 bytes long for keccak256_) within the `"data"` element
 
 After uploading the media files, you can attach their links to a JSON File in the following structure:
 
