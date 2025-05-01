@@ -567,17 +567,40 @@ async function pluginLlmsTxt(context) {
       const { siteDir } = context;
       const contentDir = path.join(siteDir, 'docs');
       const allMdx = [];
+      const excludedDirs = ['faq', 'networks']; // Directories to exclude
 
-      // recursive function to get all mdx and md files
       const getMdxFiles = async (dir) => {
         const entries = await fs.promises.readdir(dir, { withFileTypes: true });
 
         for (const entry of entries) {
           const fullPath = path.join(dir, entry.name);
           if (entry.isDirectory()) {
+            const relativePath = path.relative(contentDir, fullPath);
+            if (excludedDirs.some(exDir => relativePath.startsWith(exDir))) {
+              continue;
+            }
             await getMdxFiles(fullPath);
-          } else if (entry.name.endsWith('.mdx') || entry.name.endsWith('.md')) {
-            const content = await fs.promises.readFile(fullPath, 'utf8');
+          } else if (entry.isFile() && (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))) {
+            let content = await fs.promises.readFile(fullPath, 'utf8');
+
+            // --- Content Cleaning Start ---
+
+            // Remove Markdown image links: ![alt text](path/to/image.png)
+            content = content.replace(/!\[.*?\]\(.*?\)/g, '');
+
+            // Remove HTML img tags: <img src="..." alt="...">
+            content = content.replace(/<img[^>]*>/g, '');
+
+            // Remove HTML comments: <!-- ... -->
+            content = content.replace(/<!--[\s\S]*?-->/g, '');
+
+            // Attempt to remove potential JSX Component tags (opening/self-closing and closing)
+            // Targets tags starting with an uppercase letter. May need refinement.
+            content = content.replace(/<\/?([A-Z][^>\s]*)[^>]*>/g, '');
+
+
+            // --- Content Cleaning End ---
+
             allMdx.push(content);
           }
         }
