@@ -39,7 +39,7 @@ A Universal Profile contains a function called [`executeBatch(...)`](../../../co
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
-import { ethers, hexlify, toUtf8Bytes } from 'ethers';
+import { ethers, hexlify, toUtf8Bytes, ZeroAddress } from 'ethers';
 import { OPERATION_TYPES } from '@lukso/lsp-smart-contracts';
 
 import UniversalProfileArtifacts from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -49,7 +49,7 @@ const universalProfile = await provider.getSigner();
 console.log('UP address: ', universalProfile);
 
 const upContract = new Contract(
-  universalProfile, // Universal Profile address
+  universalProfile.address, // Universal Profile address
   UniversalProfileArtifacts.abi,
   universalProfile, // signer that will sign the transaction
 );
@@ -60,9 +60,13 @@ const operationTypes = [
   OPERATION_TYPES.CALL, // 0
 ];
 
-const lyxRecipients = ['0x...', '0x...', '0x...'];
+// Use ZeroAddress or actual recipient addresses
+const lyxRecipients = [ZeroAddress, ZeroAddress, ZeroAddress];
+// const lyxRecipients = ['0x...', '0x...', '0x...']; // Example with actual addresses
 
-const lyxAmounts = [parseEther('1'), parseEther('2'), parseEther('3')];
+// Use actual amounts or 0 if just sending data
+const lyxAmounts = [0, 0, 0];
+// const lyxAmounts = [parseEther('1'), parseEther('2'), parseEther('3')]; // Example with actual amounts
 
 const data = [
   '0x', // transferring LYX without any data
