@@ -6,8 +6,11 @@ description: Learn how to read profile data from your Universal Profile.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeSandbox from "@site/src/components/CodeSandbox";
 
 # Read Data from your Universal Profile
+
+<CodeSandbox src="https://codesandbox.io/embed/twl5hf?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
 
 :::success 💡 Tips
 
