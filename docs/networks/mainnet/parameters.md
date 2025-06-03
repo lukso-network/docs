@@ -8,19 +8,20 @@ import AddNetworkButton from '@site/src/components/AddNetworkButton'
 
 # Network Parameters
 
-| Setting                  | Value                                                                                                |
-| ------------------------ | ---------------------------------------------------------------------------------------------------- |
-| Network Name             | LUKSO                                                                                                |
-| Genesis Fork Version     | 0x42000001                                                                                           |
-| Chain ID / Network ID    | 42                                                                                                   |
-| Currency Symbol          | LYX                                                                                                  |
-| Execution Block Explorer | [https://explorer.lukso.network](https://explorer.lukso.network)                                     |
-| Execution Status Page    | [https://stats.execution.mainnet.lukso.network](https://stats.execution.mainnet.lukso.network)       |
-| Consensus Block Explorer | [https://explorer.consensus.mainnet.lukso.network](https://explorer.consensus.mainnet.lukso.network) |
-| Consensus Status Page    | [https://stats.consensus.mainnet.lukso.network](https://stats.consensus.mainnet.lukso.network)       |
-| Launchpad                | [https://deposit.mainnet.lukso.network](https://deposit.mainnet.lukso.network)                       |
-| Checkpoints              | [https://checkpoints.mainnet.lukso.network](https://checkpoints.mainnet.lukso.network)               |
-| Blockscout API           | `https://explorer.execution.mainnet.lukso.network/api`                                               |
+| Setting                    | Value                                                                                                |
+| -------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Network Name               | LUKSO                                                                                                |
+| Genesis Fork Version       | 0x42000001                                                                                           |
+| Chain ID / Network ID      | 42                                                                                                   |
+| Currency Symbol            | LYX                                                                                                  |
+| Execution Block Explorer   | [https://explorer.lukso.network](https://explorer.lukso.network)                                     |
+| Execution Status Page      | [https://stats.execution.mainnet.lukso.network](https://stats.execution.mainnet.lukso.network)       |
+| Consensus Block Explorer   | [https://explorer.consensus.mainnet.lukso.network](https://explorer.consensus.mainnet.lukso.network) |
+| Consensus Status Page      | [https://stats.consensus.mainnet.lukso.network](https://stats.consensus.mainnet.lukso.network)       |
+| Client Diversity Dashboard | [https://clientdiversity.lukso.network/](https://clientdiversity.lukso.network/)                     |
+| Launchpad                  | [https://deposit.mainnet.lukso.network](https://deposit.mainnet.lukso.network)                       |
+| Checkpoints                | [https://checkpoints.mainnet.lukso.network](https://checkpoints.mainnet.lukso.network)               |
+| Blockscout API             | `https://explorer.execution.mainnet.lukso.network/api`                                               |
 
 The mainnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/mainnet/shared) repo.
 
