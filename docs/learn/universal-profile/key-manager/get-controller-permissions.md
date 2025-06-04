@@ -4,6 +4,8 @@ sidebar_position: 1
 description: Learn how to retrieve the list of controller addresses and their associated permissions from a Universal Profile on LUKSO.
 ---
 
+import ERC725 from '@site/static/img/tools/erc725-tools.png';
+
 # Get List of Permissioned Addresses
 
 :::tip Code repository
@@ -21,6 +23,11 @@ Alongside each controller, we will also retrieve their associated permissions. A
 3. **decode these permissions** in a human readable way
 
 ![Get controller addresses](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
+
+:::tip ERC725 Inspect
+[ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) allows you get all controllers of a Universal Profile under the `AddressPermissions[]` section.
+<img style={{ verticalAlign: 'right' }} src={ERC725} />
+:::
 
 ## Setup
 

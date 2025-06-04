@@ -43,6 +43,8 @@ Before following this guide, it is recommended to be a bit familiar with the tok
 
 You can use the 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector) tool for inspecting assets within the browser.
 
+<img style={{ verticalAlign: 'right' }} src={ERC725} />
+
 :::
 
 ## Setup
@@ -229,6 +231,8 @@ console.log(tokenSymbol);
 }
 */
 ```
+
+import ERC725 from '@site/static/img/tools/erc725-tools.png';
 
 ### Global Token Information
 
