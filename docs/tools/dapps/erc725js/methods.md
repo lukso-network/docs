@@ -5,7 +5,7 @@ title: 'Methods'
 
 import CodeSandbox from "@site/src/components/CodeSandbox";
 
-<CodeSandbox />
+<CodeSandbox src="https://codesandbox.io/embed/c4tfhf?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=11&hidenavigation=1&theme=dark" />
 
 ## Encoding
 
