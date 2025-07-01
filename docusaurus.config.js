@@ -362,7 +362,7 @@ export default {
     pluginLlmsTxt,
   ],
   themeConfig: {
-    image: 'img/lukso-docs-og.jpg',
+    image: 'img/lukso-docs-og.png',
     metadata: [
       {
         name: 'title',
