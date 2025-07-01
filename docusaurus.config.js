@@ -560,6 +560,8 @@ export default {
   ],
 };
 
+//Custom plugin for llms.txt file from the Prisma documentation
+//Check later if there's an official Docusaurus plugin for this
 async function pluginLlmsTxt(context) {
   return {
     name: 'llms-txt-plugin',
