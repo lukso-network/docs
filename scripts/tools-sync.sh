@@ -3,7 +3,7 @@
 # Pull erc725.js repo
 mkdir tmpDocsSync 
 cd tmpDocsSync
-git clone --depth 1  --branch develop https://github.com/ERC725Alliance/erc725.js.git
+git clone --depth 1  --branch main https://github.com/ERC725Alliance/erc725.js.git
 rm erc725.js/docs/README.md
 
 # Copy Docs
