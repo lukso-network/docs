@@ -301,6 +301,22 @@ export default {
             to: '/standards/accounts/lsp0-erc725account',
           },
           {
+            from: '/standards/generic-standards/lsp2-json-schema',
+            to: '/standards/metadata/lsp2-json-schema',
+          },
+          {
+            from: '/standards/universal-profile/lsp9-vault',
+            to: '/standards/accounts/lsp9-vault',
+          },
+          {
+            from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
+            to: '/standards/accounts/lsp1-universal-receiver-delegate',
+          },
+          {
+            from: '/standards/generic-standards/lsp1-universal-receiver',
+            to: '/standards/accounts/lsp1-universal-receiver',
+          },
+          {
             from: '/standards/universal-profile/lsp6-key-manager',
             to: '/standards/access-control/lsp6-key-manager',
           },
