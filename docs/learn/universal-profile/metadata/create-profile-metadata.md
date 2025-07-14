@@ -6,11 +6,19 @@ sidebar_label: Storing Custom Data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-While Universal Profiles are defined by a set of LUKSO Standard Proposals (LSPs), their underlying technology, **[ERC725Y](../../../standards/erc725.md#erc725y-data-representation)**, makes them generic key-value data stores. This means you are not limited to the data keys defined by standards like [LSP3 Profile Metadata](../../../standards/metadata/lsp3-profile-metadata.md). You can define and set your own, completely custom data keys.
+Universal Profiles are powered by **[LSP2](../../../standards/metadata/lsp2-json-schema.md)**, a standard that allows them to function as generic key-value data stores. Beyond the predefined data keys from standards like [LSP3 Profile Metadata](../../../standards/metadata/lsp3-profile-metadata.md), you can define and set your own completely custom data keys.
+
+![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/lsp2/ERC725Y-JSON-Schema-explained.jpeg)
 
 This is incredibly powerful for dApps, allowing them to store application-specific information directly on a user's profile without needing a centralized database. For instance, a Web3 e-commerce dApp could store a user's preferred apparel sizes, or a gaming dApp could store a player's settings.
 
 This guide will walk you through defining a custom data key, creating its associated data, and storing it on a Universal Profile. We will use the example of creating an `ApparelSize` key to store a JSON object with a user's clothing sizes.
+
+:::tip
+
+Please check out [LSP2 - ERC725Y JSON Schema](../../../standards/metadata/lsp2-json-schema) to see which properties fits best to your needs.
+
+:::
 
 ## Goal
 
@@ -23,10 +31,9 @@ By the end of this guide, you will be able to:
 
 ## Prerequisites
 
-- You have a Universal Profile address and an Externally Owned Account (EOA) that has permission to modify the profile's data.
-- You have access to a LUKSO RPC node. We'll use the [public LUKSO Testnet RPC](https://rpc.testnet.lukso.network).
+- You have a Universal Profile address and and exported the private key of your Browser Extension which has permission to modify the profile's data.
 
-## Step 1: Install Dependencies
+### Step 1: Install Dependencies
 
 We'll use `erc725.js` to handle schema encoding and a web3 library to interact with the blockchain.
 
@@ -47,25 +54,23 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 </TabItem>
 </Tabs>
 
-## Step 2: Define a Custom Schema
+### Step 2: Define a Custom Schema
 
 The first step is to define your custom data key. According to the **[LSP2 ERC725YJSONSchema](../../../standards/metadata/lsp2-json-schema.md)** standard, schemas define the name, `bytes32` key, and value format for a piece of data.
 
-Create a file named `MyCustomSchema.json`. For our example, we'll define a key named `ApparelSize`. Its `bytes32` representation is `keccak256('ApparelSize')`. We'll specify that its value will contain the JSON data directly (`JSON`), not a reference to an external file.
+Create a file named `MyCustomSchema.json`. For our example, we'll define a key named `ApparelSize`. Its `bytes32` representation is `keccak256('ApparelSize')`. We'll specify that its value will contain bytes data (`String`), which we'll use to store stringified JSON.
 
 ```json title="MyCustomSchema.json"
-[
-  {
-    "name": "ApparelSize",
-    "key": "0x66f6b3595283a81a38c4b693e43795679c6d5b4df15a1acbad668b556f875322",
-    "keyType": "Singleton",
-    "valueContent": "JSON",
-    "valueType": "bytes"
-  }
-]
+{
+  "name": "ApparelSize",
+  "key": "0xcd8932f38e23d65fad0812bc71a809914f4121ede95affc39f8a43a63f660065",
+  "keyType": "Singleton",
+  "valueContent": "String",
+  "valueType": "bytes"
+}
 ```
 
-## Step 3: Prepare Your Data
+### Step 3: Prepare Your Data
 
 Next, create the JSON object that contains the actual data for your custom key. Since we're storing the data directly on-chain, we don't need to upload it to IPFS.
 
@@ -77,15 +82,15 @@ Next, create the JSON object that contains the actual data for your custom key. 
 }
 ```
 
-This JSON object will be encoded and stored directly in your Universal Profile's ERC725Y storage.
+This JSON object will be stringified, encoded as a string, and stored directly in your Universal Profile's ERC725Y storage.
 
-## Step 4: Encode and Set the Custom Data
+### Step 4: Encode and Set the Custom Data
 
 Now, we'll write a script to put all the pieces together. It will:
 
 1. Load your custom schema.
 2. Define your JSON data object.
-3. Encode the `ApparelSize` data key and value using the JSON directly.
+3. Stringify the JSON object and encode it as a string for the `ApparelSize` data key.
 4. Send a transaction to your Universal Profile to store the data.
 
 Create a file named `set-custom-data.js`:
@@ -150,11 +155,16 @@ async function setCustomData() {
   };
 
   // 3. Encode the custom data using your schema
-  const erc725 = new ERC725(MyCustomSchema);
-  const { key, value } = erc725.encodeData({
-    keyName: 'ApparelSize',
-    value: apparelData, // Pass the JSON object directly
-  });
+  const erc725 = new ERC725([MyCustomSchema]);
+  const encodedData = erc725.encodeData([
+    {
+      keyName: 'ApparelSize',
+      value: JSON.stringify(apparelData), // Pass the JSON string directly
+    },
+  ]);
+
+  const key = encodedData.keys[0];
+  const value = encodedData.values[0];
 
   // 4. Encode the `setData` call to be executed on the UP
   const setDataCalldata = encodeFunctionData({
@@ -213,11 +223,16 @@ async function setCustomData() {
   };
 
   // 3. Encode the custom data using your schema
-  const erc725 = new ERC725(MyCustomSchema);
-  const { key, value } = erc725.encodeData({
-    keyName: 'ApparelSize',
-    value: apparelData, // Pass the JSON object directly
-  });
+  const erc725 = new ERC725([MyCustomSchema]);
+  const encodedData = erc725.encodeData([
+    {
+      keyName: 'ApparelSize',
+      value: JSON.stringify(apparelData), // Stringify the JSON object
+    },
+  ]);
+
+  const key = encodedData.keys[0];
+  const value = encodedData.values[0];
 
   // 4. Construct the `setData` call to be executed on the UP
   const setDataPayload = upContract.methods.setData(key, value).encodeABI();
@@ -253,7 +268,7 @@ Then, run the script:
 node set-custom-data.js
 ```
 
-## Step 5: Verify the Custom Data
+### Step 5: Verify the Custom Data
 
 You can verify that your custom data has been set by reading it directly from your Universal Profile. This script requires your custom schema to decode the on-chain data correctly.
 
@@ -275,14 +290,15 @@ const publicClient = createPublicClient({
   transport: http('https://rpc.testnet.lukso.network'),
 });
 
-const erc725 = new ERC725(MyCustomSchema, UP_ADDRESS, publicClient, {});
+const erc725 = new ERC725([MyCustomSchema], UP_ADDRESS, publicClient, {});
 
 async function getCustomData() {
   const customData = await erc725.getData('ApparelSize');
   console.log('Custom "ApparelSize" data:', customData.value);
 
-  // The value is already the decoded JSON object
-  console.log('Decoded JSON Content:', customData.value);
+  // Parse the JSON string back to an object
+  const parsedData = JSON.parse(customData.value);
+  console.log('Parsed JSON Content:', parsedData);
 }
 
 getCustomData().catch(console.error);
@@ -298,14 +314,15 @@ const MyCustomSchema = require('./MyCustomSchema.json');
 const RPC_ENDPOINT = 'https://rpc.testnet.lukso.network';
 const UP_ADDRESS = '0x...'; // Your Universal Profile address
 
-const erc725 = new ERC725(MyCustomSchema, UP_ADDRESS, RPC_ENDPOINT, {});
+const erc725 = new ERC725([MyCustomSchema], UP_ADDRESS, RPC_ENDPOINT, {});
 
 async function getCustomData() {
   const customData = await erc725.getData('ApparelSize');
   console.log('Custom "ApparelSize" data:', customData.value);
 
-  // The value is already the decoded JSON object
-  console.log('Decoded JSON Content:', customData.value);
+  // Parse the JSON string back to an object
+  const parsedData = JSON.parse(customData.value);
+  console.log('Parsed JSON Content:', parsedData);
 }
 
 getCustomData().catch(console.error);
@@ -314,28 +331,14 @@ getCustomData().catch(console.error);
 </TabItem>
 </Tabs>
 
-Run this script to see the decoded `ApparelSize` JSON data directly from your Universal Profile. Since we're storing the data directly on-chain, `erc725.js` automatically decodes it back to the original JSON object.
+Run this script to see the decoded `ApparelSize` data from your Universal Profile. Since we're storing the data as a string on-chain, `erc725.js` returns the stringified JSON, which we then parse back to the original object.
 
 ## Use Cases
 
-Storing custom data on Universal Profiles opens up numerous possibilities for dApps:
+Storing custom data on Universal Profiles opens up numerous possibilities for dApps and mini-apps:
 
 - **E-commerce**: Store customer preferences, sizes, purchase history
 - **Gaming**: Store player stats, achievements, game preferences
-- **Social**: Store custom profile themes, privacy settings, social connections
-- **Healthcare**: Store patient preferences, medical alert information (with proper privacy considerations)
 - **Education**: Store certifications, course progress, learning preferences
 
 Your custom data keys can be as simple or complex as needed, and you can define multiple schemas for different types of data within the same Universal Profile. The key is to design your schema thoughtfully and consistently so that your dApp and others can reliably read and interact with the data.
-
-## Benefits of On-Chain Storage
-
-By storing JSON data directly on-chain instead of using IPFS references, you gain several advantages:
-
-- **Immediate availability**: No dependency on external storage networks
-- **Guaranteed persistence**: Data lives as long as the blockchain exists
-- **No broken links**: No risk of IPFS content becoming unavailable
-- **Atomic updates**: Data changes happen in the same transaction as other contract interactions
-- **Lower complexity**: No need to manage IPFS uploads and hash calculations
-
-However, keep in mind that storing large amounts of data on-chain can be more expensive in terms of gas costs. This approach works best for smaller JSON objects like user preferences, settings, or metadata that needs to be highly available and persistent.
