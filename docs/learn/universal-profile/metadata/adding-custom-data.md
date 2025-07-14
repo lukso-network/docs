@@ -1,18 +1,20 @@
 ---
-title: Storing Custom Data
-sidebar_label: Storing Custom Data
+title: Adding Custom Data
+sidebar_label: Adding Custom Data
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Universal Profiles are powered by **[LSP2](../../../standards/metadata/lsp2-json-schema.md)**, a standard that allows them to function as generic key-value data stores. Beyond the predefined data keys from standards like [LSP3 Profile Metadata](../../../standards/metadata/lsp3-profile-metadata.md), you can define and set your own completely custom data keys.
+Universal Profiles are powered by **[LSP2](../../../standards/metadata/lsp2-json-schema.md)**, a standard that allows them to function as generic key-value data stores. Beyond the [predefined data keys](../../../tools/lsp-smart-contracts/constants) from standards like [LSP3 Profile Metadata](../../../standards/metadata/lsp3-profile-metadata.md), you can define and set your own completely custom data keys.
 
 ![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/lsp2/ERC725Y-JSON-Schema-explained.jpeg)
 
 This is incredibly powerful for dApps, allowing them to store application-specific information directly on a user's profile without needing a centralized database. For instance, a Web3 e-commerce dApp could store a user's preferred apparel sizes, or a gaming dApp could store a player's settings.
 
 This guide will walk you through defining a custom data key, creating its associated data, and storing it on a Universal Profile. We will use the example of creating an `ApparelSize` key to store a JSON object with a user's clothing sizes.
+
+![Universal Profile stores the UP owners ApparelSize](/img/guides/adding-custom-data.jpg)
 
 :::tip
 
@@ -74,7 +76,7 @@ Create a file named `MyCustomSchema.json`. For our example, we'll define a key n
 
 Next, create the JSON object that contains the actual data for your custom key. Since we're storing the data directly on-chain, we don't need to upload it to IPFS.
 
-```json title="apparel-sizes.json"
+```json title="apparel-sizes"
 {
   "shoeSize": "US 10",
   "shirtSize": "M",
@@ -83,6 +85,12 @@ Next, create the JSON object that contains the actual data for your custom key. 
 ```
 
 This JSON object will be stringified, encoded as a string, and stored directly in your Universal Profile's ERC725Y storage.
+
+:::caution
+
+Since the data saved to blockchain is public and permanent, please avoid storing sensitive information.
+
+:::
 
 ### Step 4: Encode and Set the Custom Data
 
@@ -269,6 +277,14 @@ node set-custom-data.js
 ```
 
 ### Step 5: Verify the Custom Data
+
+:::success 💡 Tips
+
+Use our [ERC725 inspect](https://erc725-inspect.lukso.tech) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher).
+
+Simply paste your Universal Profile address in the search field and use the custom schema we defined in [MyCustomSchema.json](#step-2-define-a-custom-schema).
+
+:::
 
 You can verify that your custom data has been set by reading it directly from your Universal Profile. This script requires your custom schema to decode the on-chain data correctly.
 

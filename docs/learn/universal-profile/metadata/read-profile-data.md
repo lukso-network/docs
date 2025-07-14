@@ -14,7 +14,7 @@ import CodeSandbox from "@site/src/components/CodeSandbox";
 
 :::success 💡 Tips
 
-Use our [ERC725 inspect](https://erc725-inspect.lukso.tech) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher) or [🔎 Inspector](https://erc725-inspect.lukso.tech/data-fetcher).
+Use our [ERC725 inspect](https://erc725-inspect.lukso.tech) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher) or [🔎 Inspector](https://erc725-inspect.lukso.tech/inspector).
 
 Simply paste your Universal Profile address in the search field and choose the data key from which to retrieve data. The value stored will be returned both as encoded and decoded.
 
