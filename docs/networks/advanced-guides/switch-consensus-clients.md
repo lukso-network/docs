@@ -13,6 +13,16 @@ Client diversity refers to utilizing different software clients in a blockchain 
 - **Security and Resilience**: Client diversity increases the robustness of the network. If there's a bug in one client, it doesn't bring down the entire network because other clients can continue to operate. This decentralization and redundancy is a fundamental aspect of blockchain security and resilience.
 - **Decentralization and Governance**: Client diversity promotes decentralization in the development and governance of the Ethereum network. It prevents any team or entity from having too much influence over the network's growth.
 
+## Monitor Client Diversity
+
+You can monitor the current state of client diversity on LUKSO using the [Client Diversity Dashboard](https://clientdiversity.lukso.network/). This dashboard provides real-time insights into:
+
+- **Consensus Client Distribution**: Shows the percentage of each consensus client (Lighthouse, Prysm, Teku, Nimbus) based on produced blocks
+- **Execution Client Distribution**: Displays the distribution of execution clients (Geth, Erigon, Besu, Nethermind) based on node count
+- **Risk Assessment**: Indicates when client distribution becomes dangerous (> 50%) or reaches the safety goal (< 33%)
+
+The dashboard helps you understand which clients are over-represented and which minority clients you should consider switching to in order to improve the network's resilience.
+
 :::info
 
 Most validator nodes on the LUKSO mainnet are running with Geth and Prysm. Node operators are responsible to ensure they split their client usage evenly to the extent of officially supported clients and validators.
