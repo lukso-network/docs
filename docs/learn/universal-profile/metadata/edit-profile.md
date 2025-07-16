@@ -4,6 +4,8 @@ sidebar_position: 2
 description: Learn how to edit the LSP3Profile Metadata of a Universal Profile using web3.js or ethers.js.
 ---
 
+import ERC725 from '@site/static/img/tools/erc725-tools.png';
+
 # Edit a Universal Profile
 
 This guide will teach you how to **customize our Universal Profile** programmatically in JavaScript and includes:
@@ -294,6 +296,11 @@ await universalProfileContract.methods.setData(
 ```
 
 <!-- prettier-ignore-end -->
+
+:::tip ERC725 Inspect
+You can also validate your LSP3Profile metadata of your Universal Profile using the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/).
+<img style={{ verticalAlign: 'right' }} src={ERC725} />
+:::
 
 ## Visualize our updated Universal Profile
 

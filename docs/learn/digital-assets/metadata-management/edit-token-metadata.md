@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Set LSP7 Token Metadata'
-sidebar_position: 2
+sidebar_position: 3
 description: Learn how to update LSP4 Metadata of digital assets on LUKSO.
 ---
 
