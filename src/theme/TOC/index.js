@@ -9,6 +9,12 @@ import DiscordLogo from '../../../static/img/icons/discord.svg';
 const LINK_CLASS_NAME = 'table-of-contents__link toc-highlight';
 const LINK_ACTIVE_CLASS_NAME = 'table-of-contents__link--active';
 export default function TOC({ className, ...props }) {
+  const handleAssistantClick = () => {
+    const currentUrl = window.location.href;
+    const assistantUrl = `https://chatgpt.com/g/g-681a44ae29108191b12d97296ab25912-lukso-assistant?hints=search&prompt=Read+from+${encodeURIComponent(currentUrl)}+so+I+can+ask+questions+about+it`;
+    window.open(assistantUrl, '_blank', 'noreferrer');
+  };
+
   return (
     <div className={clsx(styles.tableOfContents, 'thin-scrollbar', className)}>
       <TOCItems
@@ -31,20 +37,24 @@ export default function TOC({ className, ...props }) {
             Give us feedback →
           </p>
         </a>
-        <a
+        <button
           className="table-of-contents table-of-contents__link toc-highlight"
-          href="https://discord.com/channels/359064931246538762/620552532602912769"
-          target="_blank"
-          rel="noreferrer"
+          onClick={handleAssistantClick}
+          style={{ 
+            background: 'none', 
+            border: 'none', 
+            width: '100%', 
+            textAlign: 'left',
+            cursor: 'pointer',
+            font: 'inherit',
+            color: 'inherit',
+            padding: 'inherit'
+          }}
         >
           <p>
-            <strong>Questions? Want to learn more?</strong>
+            <strong>Questions? Ask about this page to LUKSO Assistant!</strong>
           </p>
-          <p>
-            Ask your questions to the team or community on the LUKSO Discord
-            server.
-          </p>
-        </a>
+        </button>
       </div>
       <div></div>
     </div>
