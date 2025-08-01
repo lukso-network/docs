@@ -379,7 +379,12 @@ export default {
   ],
   themeConfig: {
     image: 'img/lukso-docs-og.png',
+
     metadata: [
+      {
+        name: 'google-site-verification',
+        content: 'eTTwR-Xukq1jGJm8UhSlRW0cl-WqbAH8Mp47v6fEb7Q',
+      },
       {
         name: 'title',
         content: 'LUKSO Developer Documentation',
@@ -565,7 +570,6 @@ export default {
           trackingID: 'G-2XGVSVVVD4',
           anonymizeIP: true,
         },
-
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
@@ -594,11 +598,14 @@ async function pluginLlmsTxt(context) {
           const fullPath = path.join(dir, entry.name);
           if (entry.isDirectory()) {
             const relativePath = path.relative(contentDir, fullPath);
-            if (excludedDirs.some(exDir => relativePath.startsWith(exDir))) {
+            if (excludedDirs.some((exDir) => relativePath.startsWith(exDir))) {
               continue;
             }
             await getMdxFiles(fullPath);
-          } else if (entry.isFile() && (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))) {
+          } else if (
+            entry.isFile() &&
+            (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))
+          ) {
             let content = await fs.promises.readFile(fullPath, 'utf8');
 
             // --- Content Cleaning Start ---
@@ -615,7 +622,6 @@ async function pluginLlmsTxt(context) {
             // Attempt to remove potential JSX Component tags (opening/self-closing and closing)
             // Targets tags starting with an uppercase letter. May need refinement.
             content = content.replace(/<\/?([A-Z][^>\s]*)[^>]*>/g, '');
-
 
             // --- Content Cleaning End ---
 
