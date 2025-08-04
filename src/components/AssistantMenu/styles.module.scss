@@ -12,15 +12,18 @@
 }
 
 .mainButton {
-  padding: 12px 20px !important;
+  padding: 4px 14px !important;
   background-color: transparent !important;
   color: var(--ifm-font-color-base) !important;
-  border: 2px solid var(--ifm-color-emphasis-600) !important;
-  border-radius: 12px !important;
-  font-size: 16px !important;
-  font-weight: 400 !important;
+  border: 1.5px solid var(--ifm-color-emphasis-600) !important;
+  border-radius: 16px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  min-height: 32px !important;
+  height: 32px !important;
   text-transform: none !important;
   transition: all 0.2s ease !important;
+  line-height: 1.2 !important;
 }
 
 .mainButton:hover {
@@ -34,9 +37,13 @@
 
 .buttonText {
   font-weight: 500;
+  padding: 0 2px;
+  font-size: 14px;
 }
 
 .dropdownIcon {
+  width: 18px !important;
+  height: 18px !important;
   transition: transform 0.2s ease;
 }
 

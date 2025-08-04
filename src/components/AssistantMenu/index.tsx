@@ -81,7 +81,7 @@ export default function AssistantMenu({ currentPath }) {
           onClickAction={copyPageContent}
         />
         <AssistantOption
-          icon="mdi:comment-question-outline"
+          icon="simple-icons:openai"
           title="Open in LUKSO GPT Assistant"
           description="Ask a question about this page"
           onClickAction={openChatGPTAssistant}
