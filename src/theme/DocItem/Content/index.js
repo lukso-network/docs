@@ -1,11 +1,10 @@
-import React from 'react';
 import clsx from 'clsx';
 import { ThemeClassNames } from '@docusaurus/theme-common';
 import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import { useLocation } from '@docusaurus/router';
 import Heading from '@theme/Heading';
 import MDXContent from '@theme/MDXContent';
-import CopyPageButton from '@site/src/components/CopyPageButton';
+import AssistantMenu from '@site/src/components/AssistantMenu';
 
 /**
  Title can be declared inside md content or declared through
@@ -37,7 +36,7 @@ export default function DocItemContent({ children }) {
         </header>
       )}
       <div className="copy-page-button-container">
-        <CopyPageButton currentPath={location.pathname} />
+        <AssistantMenu currentPath={location.pathname} />
       </div>
       <MDXContent>{children}</MDXContent>
     </div>
