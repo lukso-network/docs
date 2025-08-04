@@ -7,11 +7,11 @@ export default function CopyPageButton({ currentPath }) {
   const [isOpen, setIsOpen] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState('Copy page');
   const dropdownRef = useRef(null);
-  
+
   // Try to use hooks, but fall back to props if not in router context
   let location = { pathname: currentPath || '' };
   let siteConfig = { url: 'https://docs.lukso.tech' };
-  
+
   try {
     // Only use hooks if we're in a proper React context
     if (typeof window !== 'undefined') {
@@ -41,51 +41,59 @@ export default function CopyPageButton({ currentPath }) {
     try {
       // Get the markdown content container
       const markdownContainer = document.querySelector('.markdown');
-      
+
       if (!markdownContainer) {
         console.error('Could not find markdown content');
         return;
       }
-      
+
       // Clone the markdown container to manipulate it without affecting the DOM
       const clonedContainer = markdownContainer.cloneNode(true);
-      
+
       // Remove the copy page button container from the cloned content
-      const copyButtonContainer = clonedContainer.querySelector('.copy-page-button-container');
+      const copyButtonContainer = clonedContainer.querySelector(
+        '.copy-page-button-container',
+      );
       if (copyButtonContainer) {
         copyButtonContainer.remove();
       }
-      
+
       // Get the page title
-      const titleElement = document.querySelector('h1') || document.querySelector('.docTitle_src-theme-DocItem-Layout-styles-module');
-      const title = titleElement ? titleElement.textContent : 'Documentation Page';
-      
+      const titleElement =
+        document.querySelector('h1') ||
+        document.querySelector(
+          '.docTitle_src-theme-DocItem-Layout-styles-module',
+        );
+      const title = titleElement
+        ? titleElement.textContent
+        : 'Documentation Page';
+
       // Get the current page URL
       const pathname = location.pathname || currentPath || '';
       const currentPageUrl = `${siteConfig.url}${pathname}`;
-      
+
       // Extract text content from the cloned container (excluding button texts)
-      const textContent = clonedContainer.textContent || clonedContainer.innerText || '';
-      
+      const textContent =
+        clonedContainer.textContent || clonedContainer.innerText || '';
+
       // Format the content for clipboard with title and URL on same line
       const formattedContent = `# ${title} - ${currentPageUrl}\n\n${textContent}`;
-      
+
       // Copy to clipboard
       await navigator.clipboard.writeText(formattedContent);
-      
+
       // Show feedback
       setCopyFeedback('Copied to Clipboard!');
       // Don't close the dropdown so user can see the feedback
-      
+
       // Reset feedback after 1 second
       setTimeout(() => {
         setCopyFeedback('Copy page');
       }, 1000);
-      
     } catch (error) {
       console.error('Failed to copy content:', error);
       setCopyFeedback('Copy failed');
-      
+
       // Reset feedback after 1 second
       setTimeout(() => {
         setCopyFeedback('Copy page');
@@ -97,13 +105,13 @@ export default function CopyPageButton({ currentPath }) {
     // Get the full URL of the current page without hash
     const pathname = location.pathname || currentPath || '';
     const currentPageUrl = `${siteConfig.url}${pathname}`;
-    
+
     // Create the ChatGPT URL with the prompt
     const chatGptUrl = `https://chatgpt.com/g/g-681a44ae29108191b12d97296ab25912-lukso-assistant?hints=search&prompt=${encodeURIComponent(`Fetch the document at ${currentPageUrl}. I want to review its content so I can ask targeted questions.`)}`;
-    
+
     // Open in a new tab
     window.open(chatGptUrl, '_blank', 'noopener,noreferrer');
-    
+
     setIsOpen(false);
   };
 
@@ -133,13 +141,10 @@ export default function CopyPageButton({ currentPath }) {
           />
         </svg>
       </button>
-      
+
       {isOpen && (
         <div className={styles.dropdown}>
-          <button
-            className={styles.dropdownItem}
-            onClick={handleCopyPage}
-          >
+          <button className={styles.dropdownItem} onClick={handleCopyPage}>
             <svg
               className={styles.dropdownItemIcon}
               width="16"
@@ -164,13 +169,12 @@ export default function CopyPageButton({ currentPath }) {
               />
             </svg>
             <span className={styles.dropdownItemText}>{copyFeedback}</span>
-            <span className={styles.dropdownItemDescription}>Copy the page content for LLMs</span>
+            <span className={styles.dropdownItemDescription}>
+              Copy the page content for LLMs
+            </span>
           </button>
-          
-          <button
-            className={styles.dropdownItem}
-            onClick={handleOpenAssistant}
-          >
+
+          <button className={styles.dropdownItem} onClick={handleOpenAssistant}>
             <svg
               className={styles.dropdownItemIcon}
               width="16"
@@ -187,8 +191,12 @@ export default function CopyPageButton({ currentPath }) {
                 strokeLinejoin="round"
               />
             </svg>
-            <span className={styles.dropdownItemText}>Open with LUKSO Assistant</span>
-            <span className={styles.dropdownItemDescription}>Ask questions about this page</span>
+            <span className={styles.dropdownItemText}>
+              Open with LUKSO Assistant
+            </span>
+            <span className={styles.dropdownItemDescription}>
+              Ask questions about this page
+            </span>
           </button>
         </div>
       )}
