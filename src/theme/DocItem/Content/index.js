@@ -6,6 +6,7 @@ import { useLocation } from '@docusaurus/router';
 import Heading from '@theme/Heading';
 import MDXContent from '@theme/MDXContent';
 import CopyPageButton from '@site/src/components/CopyPageButton';
+
 /**
  Title can be declared inside md content or declared through
  front matter and added manually. To make both cases consistent,
@@ -20,15 +21,13 @@ function useSyntheticTitle() {
   const { metadata, frontMatter, contentTitle } = useDoc();
   const shouldRender =
     !frontMatter.hide_title && typeof contentTitle === 'undefined';
-  if (!shouldRender) {
-    return null;
-  }
-  return metadata.title;
+
+  return shouldRender ? metadata.title : null;
 }
+
 export default function DocItemContent({ children }) {
   const syntheticTitle = useSyntheticTitle();
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   return (
     <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>
@@ -37,11 +36,9 @@ export default function DocItemContent({ children }) {
           <Heading as="h1">{syntheticTitle}</Heading>
         </header>
       )}
-      {!isHomePage && (
-        <div className="copy-page-button-container">
-          <CopyPageButton currentPath={location.pathname} />
-        </div>
-      )}
+      <div className="copy-page-button-container">
+        <CopyPageButton currentPath={location.pathname} />
+      </div>
       <MDXContent>{children}</MDXContent>
     </div>
   );

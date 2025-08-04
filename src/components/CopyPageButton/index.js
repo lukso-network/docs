@@ -1,12 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { Icon } from '@iconify/react';
+import {
+  Menu,
+  MenuItem,
+  Button,
+  ListItemIcon,
+  ListItemText,
+  Box,
+} from '@mui/material';
 import styles from './styles.module.css';
 
 export default function CopyPageButton({ currentPath }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [copyFeedback, setCopyFeedback] = useState('Copy page');
-  const dropdownRef = useRef(null);
+  const open = Boolean(anchorEl);
 
   // Try to use hooks, but fall back to props if not in router context
   let location = { pathname: currentPath || '' };
@@ -24,18 +33,13 @@ export default function CopyPageButton({ currentPath }) {
     // Keep the default values
   }
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleCopyPage = async () => {
     try {
@@ -112,94 +116,85 @@ export default function CopyPageButton({ currentPath }) {
     // Open in a new tab
     window.open(chatGptUrl, '_blank', 'noopener,noreferrer');
 
-    setIsOpen(false);
+    handleClose();
   };
 
   return (
-    <div className={styles.copyPageButton} ref={dropdownRef}>
-      <button
+    <div className={styles.copyPageButton}>
+      <Button
+        id="copy-page-button"
         className={styles.mainButton}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
+        onClick={handleClick}
+        aria-controls={open ? 'copy-page-menu' : undefined}
         aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        endIcon={
+          <Icon
+            icon="mdi:chevron-down"
+            className={`${styles.dropdownIcon} ${open ? styles.dropdownIconOpen : ''}`}
+            width="20"
+            height="20"
+          />
+        }
       >
         <span className={styles.buttonText}>Copy Page</span>
-        <svg
-          className={`${styles.dropdownIcon} ${isOpen ? styles.dropdownIconOpen : ''}`}
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M3 4.5L6 7.5L9 4.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
+      </Button>
 
-      {isOpen && (
-        <div className={styles.dropdown}>
-          <button className={styles.dropdownItem} onClick={handleCopyPage}>
-            <svg
-              className={styles.dropdownItemIcon}
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M13.3333 6H7.33333C6.59695 6 6 6.59695 6 7.33333V13.3333C6 14.0697 6.59695 14.6667 7.33333 14.6667H13.3333C14.0697 14.6667 14.6667 14.0697 14.6667 13.3333V7.33333C14.6667 6.59695 14.0697 6 13.3333 6Z"
-                stroke="currentColor"
-                strokeWidth="1.33333"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3.33333 10H2.66667C2.31305 10 1.97391 9.85952 1.72386 9.60948C1.47381 9.35943 1.33333 9.02029 1.33333 8.66667V2.66667C1.33333 2.31305 1.47381 1.97391 1.72386 1.72386C1.97391 1.47381 2.31305 1.33333 2.66667 1.33333H8.66667C9.02029 1.33333 9.35943 1.47381 9.60948 1.72386C9.85952 1.97391 10 2.31305 10 2.66667V3.33333"
-                stroke="currentColor"
-                strokeWidth="1.33333"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className={styles.dropdownItemText}>{copyFeedback}</span>
-            <span className={styles.dropdownItemDescription}>
-              Copy the page content for LLMs
-            </span>
-          </button>
+      <Menu
+        id="copy-page-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'copy-page-button',
+        }}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        slotProps={{
+          paper: {
+            className: styles.dropdown,
+            elevation: 3,
+          },
+        }}
+      >
+        <MenuItem onClick={handleCopyPage} className={styles.dropdownItem}>
+          <ListItemIcon className={styles.dropdownItemIcon}>
+            <Icon icon="mdi:content-copy" width="16" height="16" />
+          </ListItemIcon>
+          <Box>
+            <ListItemText
+              primary={copyFeedback}
+              secondary="Copy the page content for LLMs"
+              primaryTypographyProps={{ className: styles.dropdownItemText }}
+              secondaryTypographyProps={{
+                className: styles.dropdownItemDescription,
+              }}
+            />
+          </Box>
+        </MenuItem>
 
-          <button className={styles.dropdownItem} onClick={handleOpenAssistant}>
-            <svg
-              className={styles.dropdownItemIcon}
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M14 10.6667C14 11.0203 13.8595 11.3594 13.6095 11.6095C13.3594 11.8595 13.0203 12 12.6667 12H4L1.33333 14.6667V3.33333C1.33333 2.97971 1.47381 2.64057 1.72386 2.39052C1.97391 2.14048 2.31305 2 2.66667 2H12.6667C13.0203 2 13.3594 2.14048 13.6095 2.39052C13.8595 2.64057 14 2.97971 14 3.33333V10.6667Z"
-                stroke="currentColor"
-                strokeWidth="1.33333"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className={styles.dropdownItemText}>
-              Open with LUKSO Assistant
-            </span>
-            <span className={styles.dropdownItemDescription}>
-              Ask questions about this page
-            </span>
-          </button>
-        </div>
-      )}
+        <MenuItem onClick={handleOpenAssistant} className={styles.dropdownItem}>
+          <ListItemIcon className={styles.dropdownItemIcon}>
+            <Icon icon="mdi:comment-question-outline" width="16" height="16" />
+          </ListItemIcon>
+          <Box>
+            <ListItemText
+              primary="Open with LUKSO Assistant"
+              secondary="Ask questions about this page"
+              primaryTypographyProps={{ className: styles.dropdownItemText }}
+              secondaryTypographyProps={{
+                className: styles.dropdownItemDescription,
+              }}
+            />
+          </Box>
+        </MenuItem>
+      </Menu>
     </div>
   );
 }
