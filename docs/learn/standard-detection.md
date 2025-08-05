@@ -87,7 +87,7 @@ import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProf
 import { SupportedStandards } from '@lukso/lsp-smart-contracts';
 import Web3 from 'web3';
 
-// Connect to the LUKSO network
+// Connect to the LUKSO Testnet
 const web3 = new Web3('https://rpc.testnet.lukso.network');
 
 // Create an instance of the Universal Profile
@@ -144,7 +144,7 @@ console.log(supportsLSP3Metadata); // true or false
     import { SupportedStandards } from '@lukso/lsp-smart-contracts';
     import { ethers } from 'ethers';
 
-    // Connect to the LUKSO network
+    // Connect to the LUKSO Testnet
     const provider = new ethers.JsonRpcProvider(
       'https://rpc.testnet.lukso.network',
     );
