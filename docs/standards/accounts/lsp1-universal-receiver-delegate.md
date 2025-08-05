@@ -20,7 +20,7 @@ To better understand this standard, it is well-advised first to check the origin
 
 ## Introduction
 
-Once deployed, the code of a smart contract **can not be changed**. However, builders can decide how their smart contracts implement the [`universalReceiver(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) function.
+Once deployed, the code of a smart contract **can not be changed**. However, builders can decide how their smart contracts implement the [`universalReceiver(...)`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) function.
 
 Therefore, it is advised not to hardcode how the smart contract should handle and react to specific calls inside the `universalReceiver(...)` function. Instead, it should delegate this functionality to another external contract. Developers could then customize such contracts to implement a specific logic, that is **changeable anytime** by updating the reference to a new contract in the `universalReceiver(..)` function.
 
@@ -30,7 +30,7 @@ Therefore, it is advised not to hardcode how the smart contract should handle an
 
 :::success recommendation
 
-Smart contracts implementing the [LSP1-UniversalReceiverDelegate](../../standards/accounts/lsp1-universal-receiver-delegate.md) standard SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1-UniversalReceiverDelegate standard.
+Smart contracts implementing the [LSP1-UniversalReceiverDelegate](/standards/accounts/lsp1-universal-receiver-delegate.md) standard SHOULD **register** the **[LSP1UniversalReceiverDelegate InterfaceId](../../contracts/interface-ids.md) using ERC165**. This way, other contracts can be aware that the contract supports the LSP1-UniversalReceiverDelegate standard.
 
 :::
 
@@ -66,7 +66,7 @@ In summary, delegation provides a flexible way for smart contracts to handle and
 
 ## Implementations
 
-There are several implementations of the standard. The **[LSP1UniversalReceiverDelegateUP](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/)** contract is one of them and is used as a delegate to the `universalReceiver(...)` function of **UniversalProfile** contract.
+There are several implementations of the standard. The **[LSP1UniversalReceiverDelegateUP](/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/)** contract is one of them and is used as a delegate to the `universalReceiver(...)` function of **UniversalProfile** contract.
 
 At the moment, this contract allows to:
 

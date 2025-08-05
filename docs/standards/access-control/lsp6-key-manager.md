@@ -25,7 +25,7 @@ For instance, you can set permissions for different addresses, allowing them to 
 
 ## Introduction
 
-An [LSP0ERC725Account](./../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md) on its own comes with limited usability. Since it is an **owned contract**, only the account's owner can write data into it or use it to interact with other smart contracts.
+An [LSP0ERC725Account](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md) on its own comes with limited usability. Since it is an **owned contract**, only the account's owner can write data into it or use it to interact with other smart contracts.
 
 Here comes the Key Manager. A smart contract that controls a LSP0ERC725Account, acting as its new owner. It functions as a gateway for the **account** contract and allows not only one main contract owner but multiple **controllers** to interact with the LSP0ERC725Account.
 
@@ -53,7 +53,7 @@ Permissions for addresses are not stored on the Key Manager. Instead, they are *
 
 :::tip
 
-You can use the [`encodePermissions(...)`](../../../../tools/dapps/erc725js/methods#encodepermissions) and [`decodePermissions(...)`](../../../../tools/dapps/erc725js/methods#decodepermissions) functions from the [_erc725.js_](../../../../tools/dapps/erc725js/getting-started) tool to easily **encode and decode permissions values** or **combine multiple permissions together**.
+You can use the [`encodePermissions(...)`](/tools/dapps/erc725js/methods#encodepermissions) and [`decodePermissions(...)`](/tools/dapps/erc725js/methods#decodepermissions) functions from the [_erc725.js_](/tools/dapps/erc725js/getting-started) tool to easily **encode and decode permissions values** or **combine multiple permissions together**.
 
 :::
 
@@ -79,7 +79,7 @@ Click on the toggles below to **learn more about the features enabled by each pe
     </p>
 
 The `CHANGEOWNER` permission enables to change the owner of the linked ERC725Account.
-Using this permission, you can easily upgrade the [`LSP6KeyManager`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) attached to the Account by transferring ownership to a new Key Manager.
+Using this permission, you can easily upgrade the [`LSP6KeyManager`](/contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) attached to the Account by transferring ownership to a new Key Manager.
 
 </details>
 
@@ -154,9 +154,9 @@ The `CHANGEEXTENSIONS` permission enables editing LSP17 extension contract addre
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000000020</code>
     </p>
 
-The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific [Type IDs](../accounts/lsp1-universal-receiver.md#what-does-this-standard-represent) when no contracts extension was initially set up for a specific Type ID.
+The `ADDUNIVERSALRECEIVERDELEGATE` permission enables to add new LSP1UniversalReceiverDelegate extension contracts for specific [Type IDs](/standards/accounts/lsp1-universal-receiver#what-does-this-standard-represent) when no contracts extension was initially set up for a specific Type ID.
 
-See [**LSP1 Universal Receiver > extension**](../accounts/lsp1-universal-receiver.md#extension) for more details.
+See [**LSP1 Universal Receiver > extension**](/standards/accounts/lsp1-universal-receiver#extension) for more details.
 
 > **NB** this permission also enables to set the address of the default LSP1UniversalReceiverDelegate contract under the `LSP1UniversalReceiverDelegate` data key if no address was set in the first place.
 
@@ -173,7 +173,7 @@ The `CHANGEUNIVERSALRECEIVERDELEGATE` permission enables two things:
 1. edit the address of the default LSP1UniversalReceiverDelegate contract (linked under the `LSP1UniversalReceiverDelegate` data key).
 2. edit the addresses of the LSP1UniversalReceiverDelegate extension contracts linked to specific Type IDs.
 
-See [**LSP1 Universal Receiver > extension**](../accounts/lsp1-universal-receiver.md#extension) for more details.
+See [**LSP1 Universal Receiver > extension**](/standards/accounts/lsp1-universal-receiver#extension) for more details.
 
 </details>
 
@@ -220,7 +220,7 @@ Such restrictions can be applied using the LSP6 data `AddressPermissions:Allowed
 
 <br/>
 
-> **Note:** For simple native token transfers, no data (`""`) should be passed to the fourth parameter of the [`execute`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
+> **Note:** For simple native token transfers, no data (`""`) should be passed to the fourth parameter of the [`execute`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#execute) function of the Account contract. For instance: `account.execute(operationCall, recipient, amount, "")`
 >
 > The caller will need the permission `CALL` to send any data along the LYX transfer.
 
@@ -333,7 +333,7 @@ Developers can use the `DECRYPT` permission to decrypt data or messages, for ins
         <b>value = </b><code>0x0000000000000000000000000000000000000000000000000000000000200000</code>
     </p>
 
-The permission `SIGN` enables a controller to authenticate on behalf of the UP. It can be used primarily in Web 2.0 apps to [sign login messages](../../learn/universal-profile/connect-profile/siwe.md).
+The permission `SIGN` enables a controller to authenticate on behalf of the UP. It can be used primarily in Web 2.0 apps to [sign login messages](/learn/universal-profile/connect-profile/siwe.md).
 
 </details>
 
@@ -455,16 +455,16 @@ permissions: EDITPERMISSIONS + SETDATA
 
 :::tip
 
-The convenience function [`getData(...)`](../../tools/dapps/erc725js/methods.md#getdata) from [_erc725.js_](../../../../tools/dapps/erc725js/getting-started) will return you the whole list of controllers when providing the `AddressPermission[]` array data key as a parameter.
+The convenience function [`getData(...)`](/tools/dapps/erc725js/methods.md#getdata) from [_erc725.js_](/tools/dapps/erc725js/getting-started) will return you the whole list of controllers when providing the `AddressPermission[]` array data key as a parameter.
 
 :::
 
-You can obtain the list of controllers that have some permissions on the linked ERC725Account by reading the `AddressPermission[]` data key via [`getData(...)`](../../contracts/contracts/ERC725/ERC725.md#getdata).
+You can obtain the list of controllers that have some permissions on the linked ERC725Account by reading the `AddressPermission[]` data key via [`getData(...)`](/contracts/contracts/ERC725/ERC725.md#getdata).
 
 - **key:** `0xdf30dba06db6a30e65354d9a64c609861f089545ca58c6b4dbe31a5f338cb0e3`
 - **value return:** the total number of address that have some permissions set (= array length)
 
-Each controller can be retrieved by accessing each index in the array (see [LSP2 > Array docs](../metadata/lsp2-json-schema.md#array) and [LSP2 > Array Standard specs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#array) for more detailed instructions).
+Each controller can be retrieved by accessing each index in the array (see [LSP2 > Array docs](/standards/metadata/lsp2-json-schema#array) and [LSP2 > Array Standard specs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#array) for more detailed instructions).
 
 ```json
 {
@@ -489,11 +489,11 @@ _if the `AddressPermission[]` array data key returns `0x000000000000000000000000
 
 ## Types of permissions
 
-| Permission Type                                        | Description                                                                                                                                                                                               | `bytes32` data key                    |
-| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [**Address Permissions**](#address-permissions)        | defines a set of [**permissions**](#permissions) for a controller.                                                                                                                                        | `0x4b80742de2bf82acb3630000<address>` |
-| [**Allowed Calls**](#allowed-calls)                    | defines a set of interactions (action + address + function + standard) allowed for a controller.                                                                                                          | `0x4b80742de2bf393a64c70000<address>` |
-| [**Allowed ERC725Y Data Keys**](#allowed-erc725y-keys) | defines a list of ERC725Y Data Keys a controller is only allowed to set via [`setData(...)`](../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata-array) on the linked ERC725Account. | `0x4b80742de2bf866c29110000<address>` |
+| Permission Type                                        | Description                                                                                                                                                                                          | `bytes32` data key                    |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [**Address Permissions**](#address-permissions)        | defines a set of [**permissions**](#permissions) for a controller.                                                                                                                                   | `0x4b80742de2bf82acb3630000<address>` |
+| [**Allowed Calls**](#allowed-calls)                    | defines a set of interactions (action + address + function + standard) allowed for a controller.                                                                                                     | `0x4b80742de2bf393a64c70000<address>` |
+| [**Allowed ERC725Y Data Keys**](#allowed-erc725y-keys) | defines a list of ERC725Y Data Keys a controller is only allowed to set via [`setData(...)`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#setdata-array) on the linked ERC725Account. | `0x4b80742de2bf866c29110000<address>` |
 
 > [See LSP6 for more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-6-KeyManager.md#erc725y-data-keys)
 
@@ -797,7 +797,7 @@ As a result, this provide context for the Dapp on which data they can operate on
 
 ## Types of Execution
 
-Since the LSP6 Key Manager incorporate the [LSP20 Call Verification](../accounts/lsp20-call-verification.md) and the [LSP25 Execute Relay Call](../accounts/lsp25-execute-relay-call.md) standards, it allows to interact with the linked target contract in multiple ways.
+Since the LSP6 Key Manager incorporate the [LSP20 Call Verification](/standards/accounts/lsp20-call-verification) and the [LSP25 Execute Relay Call](/standards/accounts/lsp25-execute-relay-call) standards, it allows to interact with the linked target contract in multiple ways.
 
 Let's give some context to understand the different types of execution flow and the roles of each actor based on that.
 
@@ -811,11 +811,11 @@ Let's give some context to understand the different types of execution flow and 
 
 There are 3 ways to interact with the contract linked with the Key Manager.
 
-| Interaction type                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                    | Characteristics                                                                                                                                                                                                                                                                                                                                                                                                                |
-| :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Direct execution** <br/> _via Key Manager_                                                                       | The end user (Alice) sends the **payload** directly to the Key Manager via [`execute(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#execute)                                                                                                                                                                                                                                                | Caller = end user (Alice). <br/><span style={{color: "red"}}>**👎🏻 Alice pays for the gas fees.**</span>                                                                                                                                                                                                                                                                                                                        |
-| **Relay execution** <br/> _via Key Manager_                                                                        | The end user (Alice) signs a **payload** using the LSP25 signature format. <br/> A relayer (Bob) dispatches the transaction for the user to the Key Manager via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).                                                                                                                                        | Caller = relayer (Bob). <br/> The signer is the end user (Alice). <br/><span style={{color: "green"}}>**👍🏻 Alice does not pay for the gas fees (this method allows Alice to offload her gas fees to Bob).**</span>                                                                                                                                                                                                             |
-| **Direct execution** <br/> _on the target contract (e.g: a 🆙)_ <br/><br/> **verified via LSP20-CallVerification** | The end user (Alice) interacts directly with the target contract (_e.g., a Universal Profile_) by calling any of its public functions. This bypasses the Key Manager, sending the call directly to the contract. The contract will forward the call to the Key Manager’s [`lsp20VerifyCall`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#lsp20verifycall) function for permission verification. | Caller = end user (Alice). <br/> <span style={{ color: "red"}}>**👎🏻 Alice pays for the gas fees.**</span> <br/> <span style={{ color: "green"}}>**👍🏻 User can call the function directly on the contract without going through the Key Manager.**</span> <br/> <span style={{ color: "blue"}}>**👌🏻 Simplifies interaction. No need to abi-encode function call first and send the encoded payload to the Key Manager.**</span> |
+| Interaction type                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                               | Characteristics                                                                                                                                                                                                                                                                                                                                                                                                                |
+| :----------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Direct execution** <br/> _via Key Manager_                                                                       | The end user (Alice) sends the **payload** directly to the Key Manager via [`execute(...)`](/contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#execute)                                                                                                                                                                                                                                                | Caller = end user (Alice). <br/><span style={{color: "red"}}>**👎🏻 Alice pays for the gas fees.**</span>                                                                                                                                                                                                                                                                                                                        |
+| **Relay execution** <br/> _via Key Manager_                                                                        | The end user (Alice) signs a **payload** using the LSP25 signature format. <br/> A relayer (Bob) dispatches the transaction for the user to the Key Manager via [`executeRelayCall(...)`](/contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).                                                                                                                                        | Caller = relayer (Bob). <br/> The signer is the end user (Alice). <br/><span style={{color: "green"}}>**👍🏻 Alice does not pay for the gas fees (this method allows Alice to offload her gas fees to Bob).**</span>                                                                                                                                                                                                             |
+| **Direct execution** <br/> _on the target contract (e.g: a 🆙)_ <br/><br/> **verified via LSP20-CallVerification** | The end user (Alice) interacts directly with the target contract (_e.g., a Universal Profile_) by calling any of its public functions. This bypasses the Key Manager, sending the call directly to the contract. The contract will forward the call to the Key Manager’s [`lsp20VerifyCall`](/contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#lsp20verifycall) function for permission verification. | Caller = end user (Alice). <br/> <span style={{ color: "red"}}>**👎🏻 Alice pays for the gas fees.**</span> <br/> <span style={{ color: "green"}}>**👍🏻 User can call the function directly on the contract without going through the Key Manager.**</span> <br/> <span style={{ color: "blue"}}>**👌🏻 Simplifies interaction. No need to abi-encode function call first and send the encoded payload to the Key Manager.**</span> |
 
 > **Note:** the **payload** corresponds to the abi-encoded function call on the contract linked to the Key Manager.
 >
@@ -827,19 +827,19 @@ In all cases, whether the end user interacts directly or via relayer, it must ha
 
 :::info
 
-When signing relay calls with the LSP25 signature format, make sure to use the Key Manager's address as the 3rd parameter (_LSP25 Implementation address_) of the data to sign. See [**Standards > LSP25 > Parameters to generate a LSP25 signature**](../accounts/lsp25-execute-relay-call#parameters-to-generate-a-lsp25-signature) for more details.
+When signing relay calls with the LSP25 signature format, make sure to use the Key Manager's address as the 3rd parameter (_LSP25 Implementation address_) of the data to sign. See [**Standards > LSP25 > Parameters to generate a LSP25 signature**](/standards/accounts/lsp25-execute-relay-call#parameters-to-generate-a-lsp25-signature) for more details.
 
 :::
 
 :::success
 
-See our Learn section for a Key Manager guide on [**How to sign and execute relay transactions**](../../learn/universal-profile/key-manager/execute-relay-transactions.md)
+See our Learn section for a Key Manager guide on [**How to sign and execute relay transactions**](/learn/universal-profile/key-manager/execute-relay-transactions.md)
 
 :::
 
 In the case of direct execution, the user (being a permissioned address) is the caller (`msg.sender`) and call the `execute(...)` function on the Key Manager.
 
-In the case of relay execution, the permissioned address **A** signs a payload and the relay service **B** executes the payload on behalf of the signer via [`executeRelayCall(...)`](../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
+In the case of relay execution, the permissioned address **A** signs a payload and the relay service **B** executes the payload on behalf of the signer via [`executeRelayCall(...)`](/contracts/contracts/LSP6KeyManager/LSP6KeyManager.md#executerelaycall).
 
 ![Direct vs Relay Execution](/img/standards/lsp6/lsp6-direct-vs-relay-execution.jpeg)
 
