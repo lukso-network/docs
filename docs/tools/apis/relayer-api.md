@@ -26,7 +26,7 @@ Organizations and applications can use the Relayer API to deploy Universal Profi
 
 The Relayer API allows you to deploy Universal Profiles for your users using two different ways:
 
-#### Option 1: Using `lsp6ControllerAddress` and [`lsp3Profile`](../../learn/universal-profile/metadata/edit-profile#create-a-new-lsp3profile-json-file) as arguments:
+#### Option 1: Using `lsp6ControllerAddress` and [`lsp3Profile`](/learn/universal-profile/metadata/edit-profile#create-a-new-lsp3profile-json-file) as arguments:
 
 ```mermaid
 sequenceDiagram
@@ -81,7 +81,7 @@ async function deployUniversalProfile() {
 deployUniversalProfile();
 ```
 
-#### Option 2: Using `salt` and [`postDeploymentCallData`](../../learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata) as arguments:
+#### Option 2: Using `salt` and [`postDeploymentCallData`](/learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata) as arguments:
 
 ```mermaid
 sequenceDiagram

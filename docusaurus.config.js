@@ -11,6 +11,7 @@ export default {
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'warn',
   onBrokenMarkdownLinks: 'warn',
+  trailingSlash: true,
   favicon: 'img/favicon.png',
   organizationName: 'lukso-network', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
@@ -371,6 +372,11 @@ export default {
           {
             from: '/standards/generic-standards/lsp26-follower-system',
             to: '/standards/accounts/lsp26-follower-system',
+          },
+          // Add redirect for moved benefits-lukso-standards page
+          {
+            from: '/learn/overview/benefits-lukso-standards/',
+            to: '/learn/benefits-lukso-standards',
           },
         ],
       },
