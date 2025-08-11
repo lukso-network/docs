@@ -100,6 +100,7 @@ module.exports = {
     //     },
     //   ],
     // },
+    'learn/ai-tools',
     {
       type: 'category',
       label: '🗺️ Other Guides',
