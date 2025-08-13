@@ -31,7 +31,7 @@ export default function AssistantMenu({ currentPath }) {
   const openChatGPTAssistant = () => {
     // Get the full URL of the current page without hash
     const pathname = location.pathname || currentPath || '';
-    const prompt = `Fetch the document at ${encodeURIComponent(siteConfig.url + pathname)}. I want to review its content so I can ask targeted questions.`;
+    const prompt = `Fetch the document at ${encodeURIComponent(siteConfig.url + pathname)}/. I want to review its content so I can ask targeted questions.`;
 
     // Create the ChatGPT URL with the prompt
     const chatGptUrl = `https://chatgpt.com/g/g-681a44ae29108191b12d97296ab25912-lukso-assistant?hints=search&prompt=${prompt}`;
