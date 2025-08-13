@@ -26,7 +26,7 @@ All the contracts, sample metadata, and scripts of this guide are available in t
 <br /><br />
 </div>
 
-A Universal Profile contains a function called [`executeBatch(...)`](../../../contracts/contracts/UniversalProfile.md#executebatch) to perform batch transaction. With some thinking, we will see that this function can enables a countless number of creative use cases. Below are some useful and simple example code snippets covered, around transferring LYX, tokens and NFTs to one or multiple different addresses.
+A Universal Profile contains a function called [`executeBatch(...)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#executebatch) to perform batch transaction. With some thinking, we will see that this function can enables a countless number of creative use cases. Below are some useful and simple example code snippets covered, around transferring LYX, tokens and NFTs to one or multiple different addresses.
 
 ## Transfer Examples
 

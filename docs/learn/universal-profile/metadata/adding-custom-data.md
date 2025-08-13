@@ -6,7 +6,7 @@ sidebar_label: Adding Custom Data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Universal Profiles are powered by **[LSP2](../../../standards/metadata/lsp2-json-schema.md)**, a standard that allows them to function as generic key-value data stores. Beyond the [predefined data keys](../../../tools/lsp-smart-contracts/constants) from standards like [LSP3 Profile Metadata](../../../standards/metadata/lsp3-profile-metadata.md), you can define and set your own completely custom data keys.
+Universal Profiles are powered by **[LSP2](/standards/metadata/lsp2-json-schema.md)**, a standard that allows them to function as generic key-value data stores. Beyond the [predefined data keys](/tools/lsp-smart-contracts/constants) from standards like [LSP3 Profile Metadata](/standards/metadata/lsp3-profile-metadata.md), you can define and set your own completely custom data keys.
 
 ![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/lsp2/ERC725Y-JSON-Schema-explained.jpeg)
 
@@ -18,7 +18,7 @@ This guide will walk you through defining a custom data key, creating its associ
 
 :::tip
 
-Please check out [LSP2 - ERC725Y JSON Schema](../../../standards/metadata/lsp2-json-schema) to see which properties fits best to your needs.
+Please check out [LSP2 - ERC725Y JSON Schema](/standards/metadata/lsp2-json-schema) to see which properties fits best to your needs.
 
 :::
 
@@ -58,7 +58,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ### Step 2: Define a Custom Schema
 
-The first step is to define your custom data key. According to the **[LSP2 ERC725YJSONSchema](../../../standards/metadata/lsp2-json-schema.md)** standard, schemas define the name, `bytes32` key, and value format for a piece of data.
+The first step is to define your custom data key. According to the **[LSP2 ERC725YJSONSchema](/standards/metadata/lsp2-json-schema.md)** standard, schemas define the name, `bytes32` key, and value format for a piece of data.
 
 Create a file named `MyCustomSchema.json`. For our example, we'll define a key named `ApparelSize`. Its `bytes32` representation is `keccak256('ApparelSize')`. We'll specify that its value will contain bytes data (`String`), which we'll use to store stringified JSON.
 

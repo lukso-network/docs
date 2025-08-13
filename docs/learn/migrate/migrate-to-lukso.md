@@ -12,7 +12,7 @@ This page gives an overview of the differences between building on LUKSO vs othe
 
 For more information on specific topics, see the following pages:
 
-- [Introduction to the LSPs](../../standards/introduction.md).
+- [Introduction to the LSPs](/standards/introduction.md).
 - [Concepts & Glossary](../concepts.md) if you are not understanding certain terms.
 - [Features & Benefits of Universal Profiles](../benefits-lukso-standards.md#universal-profiles-vs-smart-wallets) compared to traditional wallets.
 - [Features & Benefits of LSP7/8 Token standards over](../benefits-lukso-standards.md#features-of-lsp-token-standards-over-erc20-and-erc721) compared to traditional wallets.
@@ -23,9 +23,9 @@ For more information on specific topics, see the following pages:
 
 LUKSO is EVM-compatible. Any traditional web3 wallet (_e.g: Metamask_) can interact with LUKSO dApps.
 
-1. Simply [add the LUKSO network in your wallet](../../networks/testnet/parameters.md) and switch to the LUKSO chain.
-2. Any Ethereum smart contract can be redeployed on LUKSO by connecting to a [LUKSO RPC endpoint](../../networks/mainnet/parameters).
-3. Allow Universal Profiles to log-in to your dApp is easy and not different than other web3 wallet. Check our dedicated guide [**Connect 🆙**](../../learn/universal-profile/connect-profile/connect-up.md)!
+1. Simply [add the LUKSO network in your wallet](/networks/testnet/parameters.md) and switch to the LUKSO chain.
+2. Any Ethereum smart contract can be redeployed on LUKSO by connecting to a [LUKSO RPC endpoint](/networks/mainnet/parameters).
+3. Allow Universal Profiles to log-in to your dApp is easy and not different than other web3 wallet. Check our dedicated guide [**Connect 🆙**](/learn/universal-profile/connect-profile/connect-up.md)!
 
 You can start holding assets (LYX, tokens, and NFTs), transfer them, and deploy and interact with smart contracts.
 
@@ -52,8 +52,8 @@ Interested to migrate your token or NFT collection? See our hands-on developer g
 
 For more details on the different functions and Solidity interface, see the following pages and sections:
 
-- [**Digital Asset (Token) > Comparison with ERC20**](../../contracts/overview/Token/index.md#comparisons-with-erc20).
-- [**Identifiable Digital Asset (NFT) > Comparison with ERC721**](../../contracts/overview/NFT/index.md#comparisons-with-erc721).
+- [**Digital Asset (Token) > Comparison with ERC20**](/contracts/overview/Token/index.md#comparisons-with-erc20).
+- [**Identifiable Digital Asset (NFT) > Comparison with ERC721**](/contracts/overview/NFT/index.md#comparisons-with-erc721).
 
 :::
 

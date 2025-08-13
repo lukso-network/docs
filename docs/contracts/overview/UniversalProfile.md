@@ -23,11 +23,11 @@ A `UniversalProfile` has all the basic functionalities of an _Externally Owned A
 - [`universalReceiver(...)`](#universalreceiver): brings notification of incoming calls and assets.
 - [`setData(...)`](#setdata): offers to set information in the account storage.
 
-All ownable functions such as [`execute(..)`](../contracts/UniversalProfile.md#execute), [`executeBatch(..)`](../contracts/UniversalProfile.md#executebatch), [`setData(..)`](../contracts/UniversalProfile.md#setdata), [`setDataBatch(..)`](../contracts/UniversalProfile.md#setdatabatch), [`transferOwnership(..)`](../contracts/UniversalProfile.md#transferownership), and [`renounceOwnership(..)`](../contracts/UniversalProfile.md#renounceownership) can be called by the owner
+All ownable functions such as [`execute(..)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#execute), [`executeBatch(..)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#executebatch), [`setData(..)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#setdata), [`setDataBatch(..)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#setdatabatch), [`transferOwnership(..)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#transferownership), and [`renounceOwnership(..)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#renounceownership) can be called by the owner
 
 The contract also includes the [LSP20-CallVerification](/standards/accounts/lsp0-erc725account.md#lsp20---call-verification) at its core. Meaning if the contract is owned by another contract, LSP20 enables to interact with the contract directly without having to resolve through its owner first. This allows seamless integrations with other contracts, protocols and dApps, as the contract can be called directly, making the developer experience easier.
 
-To illustrate, if another address than the owner calls the [`execute(..)`](../contracts/UniversalProfile.md#execute) function, the account contract will:
+To illustrate, if another address than the owner calls the [`execute(..)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#execute) function, the account contract will:
 
 1. Forward the call to the owner.
 2. The execution of the function will only continue if the owner returns the `LSP20 MAGIC VALUE`, indicating that the caller is allowed to execute the function.
@@ -38,7 +38,7 @@ The structure allows the account to have a more dynamic and adaptable approach f
 
 ## Extensions
 
-An [`LSP0ERC725Account`](../contracts/LSP0ERC725Account/LSP0ERC725Account.md) has the functionalities of [`LSP17Extendable`](../contracts/LSP17ContractExtension/LSP17Extendable.md) built-in. This allows extending its behavior with functions it does not support natively in its interface.
+An [`LSP0ERC725Account`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md) has the functionalities of [`LSP17Extendable`](/contracts/contracts/LSP17ContractExtension/LSP17Extendable.md) built-in. This allows extending its behavior with functions it does not support natively in its interface.
 
 However, calls to the `fallback` function will revert if no extension is registered for the function selector that was called.
 
@@ -51,7 +51,7 @@ The only exception is the `0x00000000` function selector, which returns in order
 :::caution
 
 If your Universal Profile calls an extension to perform some security check, verification or validation, you should not rely on the extension to revert to ensure
-the validation failed, but check the `bytes` returned by the extension through [`_fallbackLSP17Extendable`](../contracts/LSP17ContractExtension/LSP17Extendable.md#_fallbacklsp17extendable).
+the validation failed, but check the `bytes` returned by the extension through [`_fallbackLSP17Extendable`](/contracts/contracts/LSP17ContractExtension/LSP17Extendable.md#_fallbacklsp17extendable).
 
 :::
 
@@ -63,9 +63,9 @@ For example, a contract might perform some kind of validation in an extension (_
 
 However, since the function's selector is `0x00000000` and the LSP0 account doesn't have this extension registered, the `fallback` function will `return` instead of reverting, giving the contract the impression that the user is authorized.
 
-> See [`_fallbackLSP17Extendable`](../contracts/LSP17ContractExtension/LSP17Extendable.md#_fallbacklsp17extendable) for more details.
+> See [`_fallbackLSP17Extendable`](/contracts/contracts/LSP17ContractExtension/LSP17Extendable.md#_fallbacklsp17extendable) for more details.
 
-In such case, make sure to double that an extension is registered first for the `0x00000000` selector via [`_getExtension`](../contracts/LSP17ContractExtension/LSP17Extendable.md#_getextension).
+In such case, make sure to double that an extension is registered first for the `0x00000000` selector via [`_getExtension`](/contracts/contracts/LSP17ContractExtension/LSP17Extendable.md#_getextension).
 
 :::
 
@@ -73,7 +73,7 @@ In such case, make sure to double that an extension is registered first for the 
 
 Unlike private keys and EOAs that cannot hold any metadata, a UniversalProfile is a blockchain based account that can have any info attached to it.
 
-You can do so using the [`setData(bytes32,bytes)`](../contracts/UniversalProfile.md#setdata) and [`setDataBatch(bytes32[],bytes[])`](../contracts/UniversalProfile.md#setdatabatch) functions to add, update or delete any metadata in your Universal Profile.
+You can do so using the [`setData(bytes32,bytes)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#setdata) and [`setDataBatch(bytes32[],bytes[])`](/contracts/contracts/UniversalProfile/UniversalProfile.md#setdatabatch) functions to add, update or delete any metadata in your Universal Profile.
 
 ### Updating your `LSP3Profile` metadata.
 
