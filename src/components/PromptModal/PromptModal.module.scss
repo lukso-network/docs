@@ -1,0 +1,314 @@
+// Modern PromptModal styles with animations but no SVGs
+
+// Modal Dialog Container
+.modalDialog {
+  z-index: 9999 !important;
+  
+  .MuiDialog-container {
+    backdrop-filter: blur(8px);
+  }
+}
+
+// Modal Backdrop
+.modalBackdrop {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+// Modal Paper (Main Container)
+.modalPaper {
+  position: relative !important;
+  overflow: hidden !important;
+  border: none !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.modalPaperLight {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.modalPaperDark {
+  background: rgba(30, 30, 30, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+
+
+// Modal Header
+.modalHeader {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.modalTitle {
+  padding: 24px 32px 20px !important;
+  margin: 0 !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  
+  .MuiTypography-root {
+    margin: 0 !important;
+  }
+}
+
+.titleContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.titleText {
+  color: var(--ifm-color-emphasis-900);
+  font-weight: 600;
+}
+
+.closeButton {
+  color: var(--ifm-color-emphasis-700) !important;
+  background: var(--ifm-color-emphasis-200) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  border-radius: 8px !important;
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 20px !important;
+  font-weight: 300 !important;
+  
+  &:hover {
+    background: var(--ifm-color-emphasis-300) !important;
+    border-color: var(--ifm-color-emphasis-400) !important;
+    color: var(--ifm-color-emphasis-900) !important;
+  }
+}
+
+// Modal Content
+.modalContent {
+  padding: 0 32px 24px !important;
+  position: relative;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.description {
+  margin: 0 0 24px 0 !important;
+  padding: 20px 24px !important;
+  background: linear-gradient(135deg, rgba(0, 122, 204, 0.1), rgba(0, 122, 204, 0.05)) !important;
+  border: 1px solid rgba(0, 122, 204, 0.2) !important;
+  border-radius: 12px !important;
+  color: var(--ifm-color-emphasis-800) !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #007acc, #0056b3);
+    border-radius: 2px;
+  }
+}
+
+
+
+// Code Container
+.codeContainer {
+  position: relative;
+  margin-top: 8px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.codeHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.codeLanguage {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6981ec;
+  background: rgba(105, 129, 236, 0.1);
+  padding: 4px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(105, 129, 236, 0.2);
+}
+
+.codeLines {
+  font-size: 12px;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+.copyButton {
+  background: #6981ec !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  min-width: 90px !important;
+  
+  &:hover {
+    background: #5a6fd9 !important;
+  }
+}
+
+.copyButtonSuccess {
+  background: #28a745 !important;
+  
+  &:hover {
+    background: #20c997 !important;
+  }
+}
+
+.codeBlock {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 24px !important;
+  margin: 0 !important;
+  overflow: auto !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  max-height: 450px !important;
+  min-height: 120px !important;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+  position: relative;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.codeBlockLight {
+  background: linear-gradient(135deg, #fafbfc, #f6f8fa) !important;
+  color: #24292f !important;
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.codeBlockDark {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d) !important;
+  color: #f8f8f2 !important;
+}
+
+// Modal Actions
+.modalActions {
+  padding: 20px 32px 24px !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  justify-content: flex-end !important;
+}
+
+.closeActionButton {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: var(--ifm-color-emphasis-700) !important;
+  border-radius: 8px !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .modalTitle {
+    padding: 20px 24px 16px !important;
+    font-size: 1.3rem !important;
+  }
+  
+  .modalContent {
+    padding: 0 24px 20px !important;
+  }
+  
+  .modalActions {
+    padding: 16px 24px 20px !important;
+  }
+  
+  .codeHeader {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .copyButton {
+    align-self: flex-end !important;
+  }
+}
+

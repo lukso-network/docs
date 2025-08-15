@@ -82,6 +82,67 @@ export default function createCustomTheme(isDarkTheme: boolean) {
           },
         },
       },
+      MuiDialog: {
+        styleOverrides: {
+          paper: {
+            backgroundColor: 'var(--ifm-background-color)',
+            color: isDarkTheme
+              ? 'var(--ifm-color-primary-lightest)'
+              : 'var(--ifm-font-color-base)',
+            borderColor: isDarkTheme
+              ? 'var(--ifm-color-emphasis-300)'
+              : 'var(--ifm-color-emphasis-200)',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            boxShadow: 'var(--ifm-global-shadow-lw)',
+          },
+        },
+      },
+      MuiDialogTitle: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'var(--ifm-background-color)',
+            color: isDarkTheme
+              ? 'var(--ifm-color-primary-lightest)'
+              : 'var(--ifm-font-color-base)',
+            borderBottom: `1px solid ${isDarkTheme
+              ? 'var(--ifm-color-emphasis-300)'
+              : 'var(--ifm-color-emphasis-200)'}`,
+          },
+        },
+      },
+      MuiDialogContent: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'var(--ifm-background-color)',
+            color: isDarkTheme
+              ? 'var(--ifm-color-primary-lightest)'
+              : 'var(--ifm-font-color-base)',
+          },
+        },
+      },
+      MuiDialogActions: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'var(--ifm-background-color)',
+            borderTop: `1px solid ${isDarkTheme
+              ? 'var(--ifm-color-emphasis-300)'
+              : 'var(--ifm-color-emphasis-200)'}`,
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            color: 'var(--ifm-color-primary)',
+            '&:hover': {
+              backgroundColor: isDarkTheme
+                ? 'var(--ifm-color-emphasis-200)'
+                : 'var(--ifm-color-emphasis-100)',
+            },
+          },
+        },
+      },
     },
   });
 }

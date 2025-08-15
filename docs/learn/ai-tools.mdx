@@ -1,32 +1,52 @@
 ---
 title: AI Tools
 sidebar_position: 6
-sidebar_label: "🦾 AI Tools"
+sidebar_label: '🦾 AI Tools'
 description: Prompts and helper guides for working with LUKSO using AI‑powered IDE tools.
 ---
 
 import LinkCards from '@site/src/components/LinkCards';
 
-Welcome to the AI Tools page. This is a short mock page to demonstrate where AI-related tooling docs will live.
+## Page Assistant
 
-## How to use
+Each page of our documentation contains a button for helping you research the topic deeper with AI.
+:::info Page Assistant
+![Page assistant example](../../static/img/learn/page_assistant.png)
+:::
 
-Copy a prompt to a file in your repo (for example `ai/prompts/<topic>.md`). Then include the file when chatting with your AI assistant.
+## Prompts for working with [**LUKSO Standard Proposals**](/standards/introduction/)
 
-- With Cursor, add it as project rules or reference the file with `@Files`.
-- With GitHub Copilot, use `#<filename>`.
-- With Zed, use `/file`.
-
-These prompts are starting points. Adjust versions, file paths, and naming to fit your project.
-
-## Prompts
+#### Start trying out the novel features of LSPs with AI using the prompts below ⤵️
 
 <LinkCards
+  enableModal={true}
   links={[
-    { title: 'Update profile image/icon', link: '/learn/ai-tools/update-profile-image', description: 'Script a change to a UP profile image or a token icon.', showAsCode: false },
-    { title: 'React to follower/token events', link: '/learn/ai-tools/react-to-events', description: 'Listen to events and trigger actions when followers or new tokens arrive.', showAsCode: false },
-    { title: 'Grid mini‑app boilerplate', link: '/learn/ai-tools/grid-miniapp-boilerplate', description: 'Scaffold a Grid mini‑app with recommended structure.', showAsCode: false },
-    { title: 'Import my profile', link: '/learn/ai-tools/import-profile', description: 'Generate code that loads a Universal Profile and metadata.', showAsCode: false },
-    { title: 'Grant permissions', link: '/learn/ai-tools/grant-permissions', description: 'Guide to grant someone permissions to use your profile.', showAsCode: false },
+    {
+      title: 'Update the 🆙 metadata',
+      link: '/learn/ai-tools/update-profile-image',
+      description: 'Building with Universal Profiles? Learn how to change profile metadata!',
+      showAsCode: false,
+    },
+    {
+      title: 'Automate your 🆙s behaviour',
+      link: '/learn/ai-tools/react-to-events',
+      description:
+        'Listen to events and trigger actions when followers or new tokens arrive.',
+      showAsCode: false,
+    },
+    {
+      title: 'Start building mini-apps',
+      link: '/learn/ai-tools/grid-miniapp-boilerplate',
+      description: 'Scaffold a Grid mini‑app with recommended structure.',
+      showAsCode: false,
+    },
+    {
+      title: 'Add/Remove permission of a 🆙 controller',
+      link: '/learn/ai-tools/grant-permissions',
+      description: 'Guide to grant someone permissions to use your profile.',
+      showAsCode: false,
+    },
   ]}
 />
+
+
