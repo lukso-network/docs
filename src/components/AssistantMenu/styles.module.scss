@@ -113,6 +113,19 @@
   background-color: var(--ifm-color-emphasis-200) !important;
 }
 
+[data-theme='dark'] :global(.MuiMenu-paper) {
+  background-color: var(--ifm-background-surface-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+}
+
+[data-theme='dark'] :global(.MuiMenuItem-root) {
+  color: var(--ifm-font-color-base) !important;
+}
+
+[data-theme='dark'] :global(.MuiMenuItem-root:hover) {
+  background-color: var(--ifm-color-emphasis-200) !important;
+}
+
 [data-theme='dark'] .dropdown {
   background-color: var(--ifm-background-surface-color) !important;
   border-color: var(--ifm-color-emphasis-300) !important;

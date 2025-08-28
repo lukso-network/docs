@@ -82,7 +82,7 @@ export default function AssistantMenu({ currentPath }) {
         />
         <AssistantOption
           icon="simple-icons:openai"
-          title="Open in LUKSO GPT Assistant"
+          title="Open in LUKSO Assistant"
           description="Ask a question about this page"
           onClickAction={openChatGPTAssistant}
         />
