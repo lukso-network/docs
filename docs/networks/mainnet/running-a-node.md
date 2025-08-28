@@ -61,7 +61,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://geth.ethereum.org/">Geth</a></td>
-    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.16.1">v1.16.1</a></td>
+    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.15.11">v1.15.11</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ethereum/go-ethereum"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://geth.ethereum.org/docs"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/nthXNEv"><DiscordIcon /></a></td>
