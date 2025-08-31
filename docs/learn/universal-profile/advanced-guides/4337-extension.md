@@ -34,7 +34,7 @@ In order to integrate the 4337 extension, you must first deploy the [`Extension4
 
 ### Extend your Universal Profile with the 4337 Extension
 
-Once you have deployed the 4337 extension, you can extend your Universal Profile with the 4337 extension by adding support to the `validateUserOp` (selector `0xfff35b72`) function in your Universal Profile contract. You can follow the following [tutorial](https://www.youtube.com/watch?v=0KxkLZHFa0E) to add an extension to your Universal Profile.
+Once you have deployed the 4337 extension, you can extend your Universal Profile with the 4337 extension by adding support to the `validateUserOp` (selector `0x3a871cdd`) function in your Universal Profile contract. You can follow the following [tutorial](https://www.youtube.com/watch?v=0KxkLZHFa0E) to add an extension to your Universal Profile.
 
 ## Using the 4337 Extension
 
