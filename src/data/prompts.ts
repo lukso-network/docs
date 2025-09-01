@@ -9,7 +9,7 @@ export const promptsData = {
 - Use LSP3Profile metadata standard for profile data
 
 ## Universal Profile Image Update Process
-1. Upload image to IPFS using @lukso/data-provider-ipfs-http-client
+1. Upload image to IPFS using @lukso/data-provider-ipfs-http-client, using either the local IPFS node or a supported service like Pinata or Infura.
 2. Create LSP3 metadata with verification hash and IPFS URL
 3. Update Universal Profile using setData() with LSP3Profile data key
 4. Verify changes by reading the updated metadata
@@ -19,7 +19,7 @@ Install these packages:
 npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts @lukso/data-provider-ipfs-http-client
 
 ## Network Configuration
-- LUKSO Mainnet RPC: https://rpc.lukso.gateway.fm
+- LUKSO Mainnet RPC: https://rpc.mainnet.lukso.network
 - LUKSO Testnet RPC: https://rpc.testnet.lukso.network
 - Chain ID: 42 (mainnet), 4201 (testnet)
 
@@ -36,56 +36,87 @@ npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts @lukso/data-prov
 - Use proper error handling for network requests
 - Always verify metadata changes after updates
 
-Goal: Write a complete script that uploads an image to IPFS, creates proper LSP3 metadata with verification, and updates the Universal Profile's profile image or cover image. Include error handling and verification steps.`,
+Goal: Write a complete script that uploads an image to IPFS, creates proper LSP3 metadata with verification, and updates the Universal Profile's profile image or cover image. Include error handling and verification steps. Addition to the guidelines above, utilize the documentation for editing the Universal Profile data: https://docs.lukso.tech/learn/universal-profile/metadata/edit-profile/ `,
 
-  '/learn/ai-tools/react-to-events': `You are an expert LUKSO blockchain developer. When creating event listeners and automation for Universal Profiles, follow these guidelines:
+  '/learn/ai-tools/react-to-events': `You are an expert LUKSO blockchain developer. When creating an automated follow-back system for Universal Profiles, follow these guidelines:
 
 ## Core Requirements
 - Use LUKSO LSP standards (@lukso/lsp-smart-contracts)
-- Implement LSP1 Universal Receiver Delegate for automatic reactions
-- Use ethers.js or web3.js for event listening and contract interactions
-- Use @erc725/erc725.js for metadata handling
-- Connect to LUKSO network (Mainnet RPC: https://rpc.lukso.gateway.fm, Testnet: https://rpc.testnet.lukso.network)
+- Implement custom LSP1 Universal Receiver Delegate for automatic follow-back
+- Use ethers.js or web3.js for contract interactions
+- Use @erc725/erc725.js for LSP26 follower system data
+- Connect to LUKSO network (Mainnet RPC: https://rpc.mainnet.lukso.network, Testnet: https://rpc.testnet.lukso.network)
 
-## Event Types to Monitor
-1. Token/NFT Transfers - LSP7/LSP8 transfer events
-2. Universal Receiver Notifications - LSP1 universalReceiver calls
-3. Profile Data Changes - DataChanged events on Universal Profile
-4. Permission Changes - AddressPermissions modifications
-5. Asset Reception - LSP5ReceivedAssets updates
+## Trigger Events for Auto Follow-Back
+1. **New Followers** - LSP26 Follower System
+   - Detect when someone follows your Universal Profile
+   - Extract follower's Universal Profile address from event data
 
-## Universal Receiver Delegate Pattern
-- Deploy LSP1UniversalReceiverDelegateUP contract for automatic reactions
-- Set SUPER_SETDATA and REENTRANCY permissions for the delegate
-- Register delegate using LSP1UniversalReceiverDelegate data key
-- Implement universalReceiverDelegate function for custom logic
+2. **Token/NFT Received** - LSP7/LSP8 transfers
+   - Detect when someone sends tokens/NFTs to your Universal Profile
+   - Extract sender's address from transfer event
+
+## Universal Receiver Delegate Implementation
+
+### 1. Deploy Custom Follow-Back URD Contract
+- Create contract inheriting from LSP1UniversalReceiverDelegateUP
+- Override universalReceiverDelegate function with follow-back logic
+- Handle these specific LSP1_TYPE_IDS:
+  - LSP7Tokens_RecipientNotification for token arrivals
+  - LSP8Tokens_RecipientNotification for NFT arrivals
+  - LSP26FollowerSystem typeIds for new followers
+
+### 2. Set Required URD Permissions
+Grant these permissions to your URD contract:
+- CALL permission to execute follow transactions
+- SUPER_SETDATA permission to update LSP26 follower data
+- REENTRANCY permission for safe delegate calls
+
+### 3. Register URD on Your Universal Profile
+Set the LSP1UniversalReceiverDelegate data key to point to your deployed URD address
 
 ## Required Dependencies
 Install these packages:
 npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
 
-## Event Listening Patterns
-- Use contract.on() for real-time event monitoring
-- Filter events by Universal Profile address
-- Parse event data using ABI decoding
-- Handle LSP1_TYPE_IDS for different notification types
-- Implement retry logic for failed reactions
+## Follow-Back Logic Implementation
 
-## Common Use Cases
-- Auto-forward percentage of received tokens
-- Update LSP5ReceivedAssets array automatically
-- Trigger notifications for new followers
-- Save asset metadata to profile storage
-- Execute batch transactions based on events
+### URD Contract Core Function
+The universalReceiverDelegate function should:
+1. Check if typeId indicates a follower or token event
+2. Extract the sender's Universal Profile address
+3. Execute follow-back transaction using LSP26 follower system
+4. Update your LSP26 following data accordingly
 
-## Security Considerations
-- Validate event sources and data integrity
-- Use allowlists for trusted token contracts
-- Implement rate limiting for automated actions
-- Ensure proper permission checks before executing reactions
-- Handle reentrancy safely in delegate contracts
+### LSP26 Follow-Back Transaction
+To follow back a Universal Profile:
+- Use LSP26 follow function or data key updates
+- Add follower's address to your following list
+- Update LSP26 follower count metadata
+- Ensure transaction is executed with proper permissions
 
-Goal: Create a robust event monitoring system that listens to Universal Profile events and executes automated responses. Include LSP1 Universal Receiver Delegate implementation, event filtering, and practical reaction examples.`,
+## Security & Anti-Spam Measures
+- Validate sender addresses are legitimate Universal Profiles
+- Implement cooldown period to prevent spam follows
+- Use allowlist for trusted senders (optional)
+- Rate limit follow-back actions per time period
+- Verify follower/token events are authentic before reacting
+
+## Testing Process
+1. Deploy custom follow-back URD on testnet
+2. Set URD permissions on test Universal Profile
+3. Test with mock followers and token transfers
+4. Verify automatic follow-back executes correctly
+5. Test spam prevention and rate limiting
+6. Deploy to mainnet after thorough testing
+
+## Gas Optimization
+- Batch multiple follow-back operations if possible
+- Use efficient data structures for follower tracking
+- Monitor gas costs and optimize URD logic
+- Consider using relay services for gasless follow-backs
+
+Goal: Create a simple automated system that automatically follows back any Universal Profile that either follows you or sends you tokens/NFTs. The system should use LSP1 Universal Receiver Delegate to detect these events and execute follow-back transactions using the LSP26 follower system.`,
 
   '/learn/ai-tools/grid-miniapp-boilerplate': `You are an expert LUKSO Grid mini-app developer. When scaffolding Grid mini-apps, follow these guidelines:
 

@@ -64,7 +64,6 @@ const LinkCards: React.FC<LinkCardsProps> = ({ links, enableModal = false }) => 
           open={modalOpen}
           onClose={() => setModalOpen(false)}
           title={selectedPrompt.title}
-          description={selectedPrompt.description}
           promptPath={selectedPrompt.link}
         />
       )}
