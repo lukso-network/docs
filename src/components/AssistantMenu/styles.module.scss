@@ -16,7 +16,6 @@
   background-color: transparent !important;
   color: var(--ifm-font-color-base) !important;
   border: 1.5px solid var(--ifm-color-emphasis-600) !important;
-  border-radius: 16px !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   min-height: 32px !important;
@@ -57,6 +56,9 @@
   border: 1px solid var(--ifm-color-emphasis-200) !important;
   border-radius: 8px !important;
   overflow: hidden !important;
+}
+
+.dropdownMenu {
   margin-top: 8px !important;
 }
 
@@ -74,11 +76,15 @@
 .dropdownItem {
   padding: 12px 16px !important;
   transition: background-color 0.15s ease !important;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200) !important;
 }
 
 .dropdownItem:last-child {
   border-bottom: none !important;
+}
+
+.menuDivider {
+  margin: 12px 6px !important;
+  background-color: var(--ifm-color-emphasis-100) !important;
 }
 
 .dropdownItem:hover {
@@ -91,7 +97,7 @@
 
 .dropdownItemIcon {
   color: var(--ifm-color-primary) !important;
-  min-width: 40px !important;
+  min-width: 48px !important;
 }
 
 .dropdownItemText {

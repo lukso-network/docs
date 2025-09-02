@@ -9,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Box,
+  Divider,
 } from '@mui/material';
 import styles from './styles.module.scss';
 
@@ -31,7 +32,7 @@ export default function AssistantMenu({ currentPath }) {
   const openChatGPTAssistant = () => {
     // Get the full URL of the current page without hash
     const pathname = location.pathname || currentPath || '';
-    const prompt = `Fetch the document at ${encodeURIComponent(siteConfig.url + pathname)}/. I want to review its content so I can ask targeted questions.`;
+    const prompt = `Fetch the document at ${encodeURIComponent(siteConfig.url + pathname)}. I want to review its content so I can ask targeted questions.`;
 
     // Create the ChatGPT URL with the prompt
     const chatGptUrl = `https://chatgpt.com/g/g-681a44ae29108191b12d97296ab25912-lukso-assistant?hints=search&prompt=${prompt}`;
@@ -71,6 +72,7 @@ export default function AssistantMenu({ currentPath }) {
         }}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        className={styles.dropdownMenu}
       >
         <AssistantOption
           icon="mdi:content-copy"
@@ -85,6 +87,19 @@ export default function AssistantMenu({ currentPath }) {
           title="Open in LUKSO Assistant"
           description="Ask a question about this page"
           onClickAction={openChatGPTAssistant}
+        />
+        <Divider className={styles.menuDivider} />
+        <AssistantOption
+          icon="mdi:file-document-outline"
+          title="LLMs.txt"
+          description="Documentation index for LLMs"
+          onClickAction={() => window.open('/llms.txt', '_blank')}
+        />
+        <AssistantOption
+          icon="mdi:book-open-page-variant"
+          title="Full Documentation"
+          description="Complete documentation as text"
+          onClickAction={() => window.open('/llms-full.txt', '_blank')}
         />
       </Menu>
     </div>
