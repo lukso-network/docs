@@ -363,7 +363,7 @@ export default {
             { label: 'Careers', href: 'https://jobs.lukso.network/jobs' },
             {
               label: 'Privacy Policy',
-              href: 'https://lukso.network/privacy',
+              href: 'https://lukso.network/legal/privacy-policy',
             },
             {
               label: 'LUKSO Grants Program',

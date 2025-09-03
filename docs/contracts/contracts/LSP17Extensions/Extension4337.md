@@ -5,12 +5,12 @@
 
 :::info Standard Specifications
 
-[`LSP-17-Extensions`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md)
+[`LSP-17-Extensions`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md)
 
 :::
 :::info Solidity implementation
 
-[`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol)
+[`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol)
 
 :::
 
@@ -23,8 +23,8 @@ When marked as 'public', a method can be called both externally and internally, 
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#constructor)
-- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#constructor)
+- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol)
 
 :::
 
@@ -44,8 +44,8 @@ constructor(address entryPoint_);
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#version)
-- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#version)
+- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol)
 - Function signature: `VERSION()`
 - Function selector: `0xffa1ad74`
 
@@ -69,8 +69,8 @@ _Contract version._
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#entrypoint)
-- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#entrypoint)
+- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol)
 - Function signature: `entryPoint()`
 - Function selector: `0xb0d691fe`
 
@@ -94,8 +94,8 @@ Get the address of the Entry Point contract that will execute the user operation
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#supportsinterface)
-- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#supportsinterface)
+- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -125,8 +125,8 @@ See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#validateuserop)
-- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#validateuserop)
+- Solidity implementation: [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol)
 - Function signature: `validateUserOp(UserOperation,bytes32,uint256)`
 - Function selector: `0xe86fc51e`
 

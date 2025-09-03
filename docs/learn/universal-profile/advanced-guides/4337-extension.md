@@ -30,7 +30,7 @@ The controller of the Universal Profile that will use the 4337 extension must ha
 
 ### Deployment of the 4337 Extension
 
-In order to integrate the 4337 extension, you must first deploy the [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol) or have the address of an already deployed instance of the 4337 extension contract.
+In order to integrate the 4337 extension, you must first deploy the [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol) or have the address of an already deployed instance of the 4337 extension contract.
 
 ### Extend your Universal Profile with the 4337 Extension
 

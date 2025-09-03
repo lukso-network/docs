@@ -5,7 +5,7 @@
 
 :::info Standard Specifications
 
-[`LSP-17-Extensions`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md)
+[`LSP-17-Extensions`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md)
 
 :::
 :::info Solidity implementation
@@ -25,7 +25,7 @@ When marked as 'public', a method can be called both externally and internally, 
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#version)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#version)
 - Solidity implementation: [`OnERC721ReceivedExtension.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/OnERC721ReceivedExtension.sol)
 - Function signature: `VERSION()`
 - Function selector: `0xffa1ad74`
@@ -50,7 +50,7 @@ _Contract version._
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#onerc721received)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#onerc721received)
 - Solidity implementation: [`OnERC721ReceivedExtension.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/OnERC721ReceivedExtension.sol)
 - Function signature: `onERC721Received(address,address,uint256,bytes)`
 - Function selector: `0x150b7a02`
@@ -89,7 +89,7 @@ See [`IERC721Receiver-onERC721Received`](#ierc721receiver-onerc721received). Alw
 
 :::note References
 
-- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-17-Extensions.md#supportsinterface)
+- Specification details: [**LSP-17-Extensions**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-17-ContractExtension.md#supportsinterface)
 - Solidity implementation: [`OnERC721ReceivedExtension.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/OnERC721ReceivedExtension.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
