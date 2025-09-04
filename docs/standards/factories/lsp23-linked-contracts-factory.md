@@ -34,7 +34,7 @@ Like [`LSP16`](./lsp16-universal-factory.md), the `LSP23` standard addresses the
 
 :::tip
 
-Check the [**LSP23 LinkedContractsFactory contract functions**](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/docs/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.md) to know how to deploy contracts at the same address across different chains.
+Check the [**LSP23 LinkedContractsFactory contract functions**](/contracts/contracts/LSP23LinkedContractsFactory/) to know how to deploy contracts at the same address across different chains.
 :::
 
 The `LSP23LinkedContractsFactory` contract provides two main functions for deploying linked contracts: [`deployContracts`](../../contracts/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.md#deploycontracts) and [`deployERC1167Proxies`](../../contracts/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.md#deployerc1167proxies). Both functions allow the deployment of primary and secondary contracts, with optional post-deployment modules.

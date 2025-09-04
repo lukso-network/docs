@@ -134,7 +134,7 @@ This guide will store our Universal Profile metadata on [IPFS]. We can add edit 
 
 1. Creating a new JSON file with new or updated info (**☑️ done in the previous step**).
 2. Uploading the file to IPFS.
-3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
+3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
 
 ![LSP3Profile Metadata as JSON file on IPFS (diagram)](../img/profile-metadata-ipfs-explained.jpeg)
 

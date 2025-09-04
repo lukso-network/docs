@@ -5,12 +5,12 @@
 
 :::info Standard Specifications
 
-[`LSP-23-LinkedContractsDeployment`](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md)
+[`LSP-23-LinkedContractsDeployment`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md)
 
 :::
 :::info Solidity implementation
 
-[`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+[`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 
 :::
 
@@ -23,8 +23,8 @@ When marked as 'public', a method can be called both externally and internally, 
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#computeaddresses)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#computeaddresses)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Function signature: `computeAddresses(ILSP23LinkedContractsFactory.PrimaryContractDeployment,ILSP23LinkedContractsFactory.SecondaryContractDeployment,address,bytes)`
 - Function selector: `0xdecfb0b9`
 
@@ -64,8 +64,8 @@ function computeAddresses(
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#computeerc1167addresses)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#computeerc1167addresses)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Function signature: `computeERC1167Addresses(ILSP23LinkedContractsFactory.PrimaryContractDeploymentInit,ILSP23LinkedContractsFactory.SecondaryContractDeploymentInit,address,bytes)`
 - Function selector: `0x8da85898`
 
@@ -105,8 +105,8 @@ function computeERC1167Addresses(
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#deploycontracts)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#deploycontracts)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Function signature: `deployContracts(ILSP23LinkedContractsFactory.PrimaryContractDeployment,ILSP23LinkedContractsFactory.SecondaryContractDeployment,address,bytes)`
 - Function selector: `0xf830c0ab`
 
@@ -146,8 +146,8 @@ function deployContracts(
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#deployerc1167proxies)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#deployerc1167proxies)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Function signature: `deployERC1167Proxies(ILSP23LinkedContractsFactory.PrimaryContractDeploymentInit,ILSP23LinkedContractsFactory.SecondaryContractDeploymentInit,address,bytes)`
 - Function selector: `0x17c042c4`
 
@@ -243,8 +243,8 @@ function _generatePrimaryContractProxySalt(struct ILSP23LinkedContractsFactory.P
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#deployedcontracts)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#deployedcontracts)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Event signature: `DeployedContracts(address,address,ILSP23LinkedContractsFactory.PrimaryContractDeployment,ILSP23LinkedContractsFactory.SecondaryContractDeployment,address,bytes)`
 - Event topic hash: `0x1ea27dabd8fd1508e844ab51c2fd3d9081f2684346857f9187da6d4a1aa7d3e6`
 
@@ -273,8 +273,8 @@ Emitted when a primary and secondary contract are deployed.
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#deployederc1167proxies)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#deployederc1167proxies)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Event signature: `DeployedERC1167Proxies(address,address,ILSP23LinkedContractsFactory.PrimaryContractDeploymentInit,ILSP23LinkedContractsFactory.SecondaryContractDeploymentInit,address,bytes)`
 - Event topic hash: `0xb03dbe7a02c063899f863d542410b5b038c8f537045be3a26e7144e0074e1c7b`
 
@@ -305,8 +305,8 @@ Emitted when proxies of a primary and secondary contract are deployed.
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#invalidvaluesum)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#invalidvaluesum)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Error signature: `InvalidValueSum()`
 - Error hash: `0x2fd9ca91`
 
@@ -326,8 +326,8 @@ Reverts when the `msg.value` sent is not equal to the sum of value used for the 
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#primarycontractproxyinitfailureerror)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#primarycontractproxyinitfailureerror)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Error signature: `PrimaryContractProxyInitFailureError(bytes)`
 - Error hash: `0x4364b6ee`
 
@@ -353,8 +353,8 @@ Reverts when the deployment & initialisation of the contract has failed.
 
 :::note References
 
-- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/lips/tree/main/LSPs/LSP-23-LinkedContractsDeployment.md#secondarycontractproxyinitfailureerror)
-- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP23LinkedContractsDeployment/LSP23LinkedContractsFactory.sol)
+- Specification details: [**LSP-23-LinkedContractsDeployment**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-23-LinkedContractsFactory.md#secondarycontractproxyinitfailureerror)
+- Solidity implementation: [`LSP23LinkedContractsFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp23-contracts/contracts/LSP23LinkedContractsFactory.sol)
 - Error signature: `SecondaryContractProxyInitFailureError(bytes)`
 - Error hash: `0x9654a854`
 
@@ -490,9 +490,7 @@ Reverts when the deployment & initialisation of the secondary contract has faile
 [`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Errors.sol
 [`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadataInitAbstract.sol
 [`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/ontracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
-[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Compatibility.sol
 [`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol
-[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/ILSP4Compatibility.sol
 [`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Errors.sol
 [`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6SetDataModule.sol
 [`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerCore.sol
@@ -506,28 +504,20 @@ Reverts when the deployment & initialisation of the secondary contract has faile
 [`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManager.sol
 [`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInit.sol
 [`LSP7DigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol
-[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20InitAbstract.sol
-[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20.sol
 [`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol
 [`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetInitAbstract.sol
 [`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol
 [`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupplyInitAbstract.sol
 [`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol
 [`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInitAbstract.sol
-[`LSP7CompatibleERC20MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInitAbstract.sol
 [`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol
-[`LSP7CompatibleERC20Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20Mintable.sol
 [`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Errors.sol
-[`LSP7CompatibleERC20MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInit.sol
 [`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInit.sol
-[`ILSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/ILSP7CompatibleERC20.sol
 [`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/ILSP7Mintable.sol
 [`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol
 [`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7BurnableInitAbstract.sol
 [`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Constants.sol
 [`LSP8IdentifiableDigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetCore.sol
-[`LSP8CompatibleERC721InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721InitAbstract.sol
-[`LSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721.sol
 [`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol
 [`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8EnumerableInitAbstract.sol
 [`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.sol
@@ -535,12 +525,8 @@ Reverts when the deployment & initialisation of the secondary contract has faile
 [`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.sol
 [`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetInitAbstract.sol
 [`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInitAbstract.sol
-[`ILSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/ILSP8CompatibleERC721.sol
 [`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol
-[`LSP8CompatibleERC721MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInitAbstract.s
 [`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol
-[`LSP8CompatibleERC721Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol
-[`LSP8CompatibleERC721MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInit.sol
 [`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Errors.sol
 [`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInit.sol
 [`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.sol

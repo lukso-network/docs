@@ -129,7 +129,7 @@ We can also retrieve any of the specific data keys below:
 
 ### Get the `LSP3Profile` Metadata
 
-One of the main ERC725Y data keys of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key. It is a standardized key that refers to the **metadata of the Universal Profile**.
+One of the main ERC725Y data keys of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key. It is a standardized key that refers to the **metadata of the Universal Profile**.
 
 This metadata takes the form of a reference to a JSON file. To retrieve the content of the JSON file (stored on IPFS, or in any other storage service), we need to use the `fetchData(...)` function from _erc725.js_. This will download the JSON file and verify its hash automatically.
 

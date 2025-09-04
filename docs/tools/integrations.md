@@ -136,7 +136,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
       <td>
         <a href="https://docs.dappnode.io/" target="_blank">Dappnode</a> provides physical node machines and client software images for easy validator onboarding and maintenance.
         <ul>
-          <li><a href="https://dappnode.com/collections/all/products/lukso-home" target="_blank" rel="noopener noreferrer">LUKSO Node</a></li>
+          <li><a href="https://dappnode.com/collections/frontpage" target="_blank" rel="noopener noreferrer">LUKSO Node</a></li>
           <li><a href="https://docs.dappnode.io/docs/user/staking/lukso/solo" target="_blank" rel="noopener noreferrer">Dappnode Software</a></li>
           <li><a href="https://github.com/dappnode/DAppNodePackage-lukso-geth" target="_blank" rel="noopener noreferrer">Geth Execution Image</a></li>
           <li><a href="https://github.com/dappnode/DAppNodePackage-prysm-lukso" target="_blank" rel="noopener noreferrer">Prysm Consensus Image</a></li>

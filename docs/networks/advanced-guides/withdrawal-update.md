@@ -261,7 +261,7 @@ A **maximum of 16 validator keys** can update their withdrawal credentials **per
 ## Client Documentation
 
 - [Prysm Withdrawal Guide](https://docs.prylabs.network/docs/wallet/withdraw-validator)
-- [Lighthouse Exit Description](https://lighthouse-book.sigmaprime.io/voluntary-exit.html#withdrawal-of-exited-funds)
+- [Lighthouse Exit Description](https://lighthouse-book.sigmaprime.io/validator_voluntary_exit.html)
 - [Updating Teku Credentials](https://docs.teku.consensys.io/how-to/update-withdrawal-keys)
 
 ## Further Reads

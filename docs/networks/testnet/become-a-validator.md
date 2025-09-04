@@ -72,7 +72,7 @@ The instructions are the same as for mainnet node, please refer to [mainnet vali
 
 If you are a pro user or want to set up the testnet node in a cloud environment, you can follow the instructions in the following repositories to manually configure the Ethereum clients:
 
-- [Network Configurations](https://github.com/lukso-network/network-configs/testnet)
+- [Network Configurations](https://github.com/lukso-network/network-configs/tree/main/testnet)
 - [Client Specifications](https://github.com/lukso-network/network-configs#binary-applications)
 
 ## Need Help?
