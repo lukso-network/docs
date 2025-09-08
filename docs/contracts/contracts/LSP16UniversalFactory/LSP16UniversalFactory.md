@@ -10,7 +10,7 @@
 :::
 :::info Solidity implementation
 
-[`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+[`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 
 :::
 
@@ -38,7 +38,7 @@ When marked as 'public', a method can be called both externally and internally, 
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#computeaddress)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Function signature: `computeAddress(bytes32,bytes32,bool,bytes)`
 - Function selector: `0x3b315680`
 
@@ -77,7 +77,7 @@ Computes the address of a contract to be deployed using CREATE2, based on the in
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#computeerc1167address)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Function signature: `computeERC1167Address(address,bytes32,bool,bytes)`
 - Function selector: `0xe888edcb`
 
@@ -116,7 +116,7 @@ Computes the address of an ERC1167 proxy contract based on the input parameters.
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#deploycreate2)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Function signature: `deployCreate2(bytes,bytes32)`
 - Function selector: `0x26736355`
 
@@ -153,7 +153,7 @@ Deploys a contract using the CREATE2 opcode. The address where the contract will
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#deploycreate2andinitialize)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Function signature: `deployCreate2AndInitialize(bytes,bytes32,bytes,uint256,uint256)`
 - Function selector: `0xcdbd473a`
 
@@ -196,7 +196,7 @@ Deploys a contract using the CREATE2 opcode. The address where the contract will
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#deployerc1167proxy)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Function signature: `deployERC1167Proxy(address,bytes32)`
 - Function selector: `0x49d8abed`
 
@@ -233,7 +233,7 @@ Deploys an ERC1167 minimal proxy contract using the CREATE2 opcode. The address 
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#deployerc1167proxyandinitialize)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Function signature: `deployERC1167ProxyAndInitialize(address,bytes32,bytes)`
 - Function selector: `0x5340165f`
 
@@ -272,7 +272,7 @@ Deploys an ERC1167 minimal proxy contract using the CREATE2 opcode. The address 
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#generatesalt)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Function signature: `generateSalt(bytes32,bool,bytes)`
 - Function selector: `0x1a17ccbf`
 
@@ -360,7 +360,7 @@ Bubble the revert reason if present, revert with `ContractInitializationFailed` 
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#contractcreated)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Event signature: `ContractCreated(address,bytes32,bytes32,bool,bytes)`
 - Event topic hash: `0x8872a323d65599f01bf90dc61c94b4e0cc8e2347d6af4122fccc3e112ee34a84`
 
@@ -399,7 +399,7 @@ Emitted whenever a contract is created.
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#contractinitializationfailed)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Error signature: `ContractInitializationFailed()`
 - Error hash: `0xc1ee8543`
 
@@ -420,7 +420,7 @@ Reverts when there is no revert reason bubbled up by the created contract when i
 :::note References
 
 - Specification details: [**LSP-16-UniversalFactory**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-16-UniversalFactory.md#invalidvaluesum)
-- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
+- Solidity implementation: [`LSP16UniversalFactory.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp16-contracts/contracts/LSP16UniversalFactory.sol)
 - Error signature: `InvalidValueSum()`
 - Error hash: `0x2fd9ca91`
 
