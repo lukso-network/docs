@@ -10,7 +10,7 @@
 :::
 :::info Solidity implementation
 
-[`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+[`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 
 :::
 
@@ -28,7 +28,7 @@ When marked as 'public', a method can be called both externally and internally, 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#fallback)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 
 :::
 
@@ -63,7 +63,7 @@ This function is executed when:
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#receive)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 
 :::
 
@@ -82,7 +82,7 @@ Reverts whenever someone tries to send native tokens to a LSP7 contract.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#authorizeoperator)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `authorizeOperator(address,uint256,bytes)`
 - Function selector: `0xb49506fd`
 
@@ -119,7 +119,7 @@ Sets an `amount` of tokens that an `operator` has access from the caller's balan
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#authorizedamountfor)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `authorizedAmountFor(address,address)`
 - Function selector: `0x65aeaa95`
 
@@ -154,7 +154,7 @@ Get the amount of tokens `operator` address has access to from `tokenOwner`. Ope
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#balanceof)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `balanceOf(address)`
 - Function selector: `0x70a08231`
 
@@ -185,7 +185,7 @@ Get the number of tokens owned by `tokenOwner`. If the token is divisible (the [
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#batchcalls)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `batchCalls(bytes[])`
 - Function selector: `0x6963d438`
 
@@ -224,7 +224,7 @@ Allows a caller to batch different function calls in one call. Perform a `delega
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#decimals)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `decimals()`
 - Function selector: `0x313ce567`
 
@@ -249,7 +249,7 @@ Returns the number of decimals used to get its user representation. If the asset
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#decreaseallowance)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `decreaseAllowance(address,address,uint256,bytes)`
 - Function selector: `0x78381670`
 
@@ -284,7 +284,7 @@ Atomically decreases the allowance granted to `operator` by the caller. This is 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#getdata)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `getData(bytes32)`
 - Function selector: `0x54f6127f`
 
@@ -317,7 +317,7 @@ Get in the ERC725Y storage the bytes data stored at a specific data key `dataKey
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#getdatabatch)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `getDataBatch(bytes32[])`
 - Function selector: `0xdedff9c6`
 
@@ -352,7 +352,7 @@ Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#getoperatorsof)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `getOperatorsOf(address)`
 - Function selector: `0xd72fc29a`
 
@@ -383,7 +383,7 @@ Returns all `operator` addresses that are allowed to transfer or burn on behalf 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#increaseallowance)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `increaseAllowance(address,uint256,bytes)`
 - Function selector: `0x2bc1da82`
 
@@ -416,7 +416,7 @@ Atomically increases the allowance granted to `operator` by the caller. This is 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#owner)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -441,7 +441,7 @@ Returns the address of the current owner.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#renounceownership)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
 
@@ -460,7 +460,7 @@ Leaves the contract without owner. It will not be possible to call `onlyOwner` f
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#revokeoperator)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `revokeOperator(address,address,bool,bytes)`
 - Function selector: `0x30d0dc37`
 
@@ -493,7 +493,7 @@ Enables `tokenOwner` to remove `operator` for its tokens, disallowing it to send
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#setdata)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `setData(bytes32,bytes)`
 - Function selector: `0x7f23690c`
 
@@ -543,7 +543,7 @@ Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#setdatabatch)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `setDataBatch(bytes32[],bytes[])`
 - Function selector: `0x97902421`
 
@@ -593,7 +593,7 @@ Batch data setting function that behaves the same as [`setData`](#setdata) but a
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#supportsinterface)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -624,7 +624,7 @@ Returns true if this contract implements the interface defined by `interfaceId`.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#totalsupply)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `totalSupply()`
 - Function selector: `0x18160ddd`
 
@@ -649,7 +649,7 @@ Returns the number of existing tokens that have been minted in this contract.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#transfer)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `transfer(address,address,uint256,bool,bytes)`
 - Function selector: `0x760d9bba`
 
@@ -684,7 +684,7 @@ Transfers an `amount` of tokens from the `from` address to the `to` address and 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#transferbatch)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `transferBatch(address[],address[],uint256[],bool[],bytes[])`
 - Function selector: `0x2d7667c9`
 
@@ -719,7 +719,7 @@ Same as [`transfer(...)`](#`transfer) but transfer multiple tokens based on the 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#transferownership)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -1175,7 +1175,7 @@ CALL opcode, passing the [`msg.data`](#msg.data) appended with the 20 bytes of t
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#datachanged)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Event signature: `DataChanged(bytes32,bytes)`
 - Event topic hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
 
@@ -1203,7 +1203,7 @@ Emitted when data at a specific `dataKey` was changed to a new value `dataValue`
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#operatorauthorizationchanged)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Event signature: `OperatorAuthorizationChanged(address,address,uint256,bytes)`
 - Event topic hash: `0xf772a43bfdf4729b196e3fb54a818b91a2ca6c49d10b2e16278752f9f515c25d`
 
@@ -1236,7 +1236,7 @@ Emitted when `tokenOwner` enables `operator` for `amount` tokens.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#operatorrevoked)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Event signature: `OperatorRevoked(address,address,bool,bytes)`
 - Event topic hash: `0x0ebf5762d8855cbe012d2ca42fb33a81175e17c8a8751f8859931ba453bd4167`
 
@@ -1269,7 +1269,7 @@ Emitted when `tokenOwner` disables `operator` for `amount` tokens and set its [`
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#ownershiptransferred)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Event signature: `OwnershipTransferred(address,address)`
 - Event topic hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
 
@@ -1296,7 +1296,7 @@ event OwnershipTransferred(
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#transfer)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Event signature: `Transfer(address,address,address,uint256,bool,bytes)`
 - Event topic hash: `0x3997e418d2cef0b3b0e907b1e39605c3f7d32dbd061e82ea5b4a770d46a160a6`
 
@@ -1335,7 +1335,7 @@ Emitted when the `from` transferred successfully `amount` of tokens to `to`.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
 - Error hash: `0x97da5f95`
 
@@ -1354,7 +1354,7 @@ Reverts when one of the array parameter provided to [`setDataBatch`](#setdatabat
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
 - Error hash: `0x3bcc8979`
 
@@ -1373,7 +1373,7 @@ Reverts when there is not the same number of elements in the `datakeys` and `dat
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#erc725y_msgvaluedisallowed)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `ERC725Y_MsgValueDisallowed()`
 - Error hash: `0xf36ba737`
 
@@ -1392,7 +1392,7 @@ Reverts when sending value to the [`setData`](#setdata) or [`setDataBatch`](#set
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#invalidextensionaddress)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `InvalidExtensionAddress(bytes)`
 - Error hash: `0x42bfe79f`
 
@@ -1417,7 +1417,7 @@ reverts when the bytes retrieved from the LSP17 data key is not a valid address 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#invalidfunctionselector)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `InvalidFunctionSelector(bytes)`
 - Error hash: `0xe5099ee3`
 
@@ -1442,7 +1442,7 @@ reverts when the contract is called with a function selector not valid (less tha
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp4tokennamenoteditable)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP4TokenNameNotEditable()`
 - Error hash: `0x85c169bd`
 
@@ -1461,7 +1461,7 @@ Reverts when trying to edit the data key `LSP4TokenName` after the digital asset
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp4tokensymbolnoteditable)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP4TokenSymbolNotEditable()`
 - Error hash: `0x76755b38`
 
@@ -1480,7 +1480,7 @@ Reverts when trying to edit the data key `LSP4TokenSymbol` after the digital ass
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp4tokentypenoteditable)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP4TokenTypeNotEditable()`
 - Error hash: `0x4ef6d7fb`
 
@@ -1499,7 +1499,7 @@ Reverts when trying to edit the data key `LSP4TokenType` after the digital asset
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7amountexceedsauthorizedamount)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7AmountExceedsAuthorizedAmount(address,uint256,address,uint256)`
 - Error hash: `0xf3a6b691`
 
@@ -1532,7 +1532,7 @@ reverts when `operator` of `tokenOwner` send an `amount` of tokens larger than t
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7amountexceedsbalance)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7AmountExceedsBalance(uint256,address,uint256)`
 - Error hash: `0x08d47949`
 
@@ -1563,7 +1563,7 @@ reverts when sending an `amount` of tokens larger than the current `balance` of 
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7batchcallfailed)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7BatchCallFailed(uint256)`
 - Error hash: `0xb774c284`
 
@@ -1590,7 +1590,7 @@ Reverts when a batch call failed.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotsendwithaddresszero)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7CannotSendWithAddressZero()`
 - Error hash: `0xd2d5ec30`
 
@@ -1615,7 +1615,7 @@ reverts when trying to:
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7cannotuseaddresszeroasoperator)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7CannotUseAddressZeroAsOperator()`
 - Error hash: `0x6355e766`
 
@@ -1634,7 +1634,7 @@ reverts when trying to set the zero address as an operator.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7decreaseallowancenotauthorized)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7DecreaseAllowanceNotAuthorized(address,address,address)`
 - Error hash: `0x98ce2945`
 
@@ -1665,7 +1665,7 @@ Reverts when the call to decrease allowance is not authorized.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7decreasedallowancebelowzero)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7DecreasedAllowanceBelowZero()`
 - Error hash: `0x0ef76c35`
 
@@ -1684,7 +1684,7 @@ Reverts when trying to decrease an operator's allowance to more than its current
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7invalidtransferbatch)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7InvalidTransferBatch()`
 - Error hash: `0x263eee8d`
 
@@ -1703,7 +1703,7 @@ reverts when the array parameters used in [`transferBatch`](#transferbatch) have
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7notifytokenreceivercontractmissinglsp1interface)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7NotifyTokenReceiverContractMissingLSP1Interface(address)`
 - Error hash: `0xa608fbb6`
 
@@ -1730,7 +1730,7 @@ reverts if the `tokenReceiver` does not implement LSP1 when minting or transferr
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7notifytokenreceiveriseoa)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7NotifyTokenReceiverIsEOA(address)`
 - Error hash: `0x26c247f4`
 
@@ -1755,7 +1755,7 @@ reverts if the `tokenReceiver` is an EOA when minting or transferring tokens wit
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7revokeoperatornotauthorized)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7RevokeOperatorNotAuthorized(address,address,address)`
 - Error hash: `0x1a525b32`
 
@@ -1786,7 +1786,7 @@ Reverts when the call to revoke operator is not authorized.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7tokencontractcannotholdvalue)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7TokenContractCannotHoldValue()`
 - Error hash: `0x388f5adc`
 
@@ -1807,7 +1807,7 @@ Error occurs when sending native tokens to the LSP7 contract without sending any
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#lsp7tokenownercannotbeoperator)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `LSP7TokenOwnerCannotBeOperator()`
 - Error hash: `0xdab75047`
 
@@ -1826,7 +1826,7 @@ reverts when trying to authorize or revoke the token's owner as an operator.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#noextensionfoundforfunctionselector)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `NoExtensionFoundForFunctionSelector(bytes4)`
 - Error hash: `0xbb370b2b`
 
@@ -1851,7 +1851,7 @@ reverts when there is no extension for the function selector being called with
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#operatorallowancecannotbeincreasedfromzero)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `OperatorAllowanceCannotBeIncreasedFromZero(address)`
 - Error hash: `0xcba6e977`
 
@@ -1876,7 +1876,7 @@ Reverts when token owner call [`increaseAllowance`](#increaseallowance) for an o
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#ownablecallernottheowner)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `OwnableCallerNotTheOwner(address)`
 - Error hash: `0xbf1169c5`
 
@@ -1901,7 +1901,7 @@ Reverts when only the owner is allowed to call the function.
 :::note References
 
 - Specification details: [**LSP-7-DigitalAsset**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md#ownablecannotsetzeroaddressasowner)
-- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol)
+- Solidity implementation: [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/contracts/LSP7DigitalAsset.sol)
 - Error signature: `OwnableCannotSetZeroAddressAsOwner()`
 - Error hash: `0x1ad8836c`
 
@@ -1934,7 +1934,7 @@ Reverts when trying to set `address(0)` as the contract owner when deploying the
 [LSP-0-ERC725Account]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-0-ERC725Account.md
 [LSP-1-UniversalReceiver]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-1-UniversalReceiver.md
 [LSP-2-ERC725YJSONSchema]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-2-ERC725YJSONSchema.md
-[LSP-3-UniversalProfile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md
+[LSP-3-Profile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-Profile-Metadata.md
 [LSP-4-DigitalAsset-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-4-DigitalAsset-Metadata.md
 [LSP-5-ReceivedAssets]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-5-ReceivedAssets.md
 [LSP-6-KeyManager]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-6-KeyManager.md
@@ -2010,97 +2010,97 @@ Reverts when trying to set `address(0)` as the contract owner when deploying the
 
 <!-- SOLIDITY IMPLEMENTATION -->
 
-[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol
-[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Utils.sol
-[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInitAbstract.sol
-[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/ILSP0ERC725Account.sol
-[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725Account.sol
-[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInit.sol
-[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Constants.sol
-[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInitAbstract.sol
-[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfile.sol
-[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInit.sol
-[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol
-[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Utils.sol
-[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol
-[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiver.sol
-[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Constants.sol
-[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Errors.sol
-[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadataInitAbstract.sol
+[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountCore.sol
+[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0Utils.sol
+[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountInitAbstract.sol
+[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/ILSP0ERC725Account.sol
+[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725Account.sol
+[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountInit.sol
+[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0Constants.sol
+[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfileInitAbstract.sol
+[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol
+[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfileInit.sol
+[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1UniversalReceiverDelegateUP.sol
+[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/LSP1Utils.sol
+[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1UniversalReceiverDelegateVault.sol
+[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol
+[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/LSP1Constants.sol
+[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1Errors.sol
+[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4DigitalAssetMetadataInitAbstract.sol
 [`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/ontracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
-[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Compatibility.sol
-[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol
-[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/ILSP4Compatibility.sol
-[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Errors.sol
-[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6SetDataModule.sol
-[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerCore.sol
-[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6ExecuteModule.sol
-[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Utils.sol
-[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Constants.sol
-[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/ILSP6KeyManager.sol
-[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Errors.sol
-[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6OwnershipModule.sol
-[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInitAbstract.sol
-[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManager.sol
-[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInit.sol
-[`LSP7DigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol
-[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20InitAbstract.sol
-[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20.sol
-[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol
-[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetInitAbstract.sol
-[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol
-[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupplyInitAbstract.sol
-[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol
-[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInitAbstract.sol
-[`LSP7CompatibleERC20MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInitAbstract.sol
-[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol
-[`LSP7CompatibleERC20Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20Mintable.sol
-[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Errors.sol
-[`LSP7CompatibleERC20MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInit.sol
-[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInit.sol
-[`ILSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/ILSP7CompatibleERC20.sol
-[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/ILSP7Mintable.sol
-[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol
-[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7BurnableInitAbstract.sol
-[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Constants.sol
-[`LSP8IdentifiableDigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetCore.sol
-[`LSP8CompatibleERC721InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721InitAbstract.sol
-[`LSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721.sol
-[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol
-[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8EnumerableInitAbstract.sol
-[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.sol
-[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupplyInitAbstract.sol
-[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.sol
-[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetInitAbstract.sol
-[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInitAbstract.sol
-[`ILSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/ILSP8CompatibleERC721.sol
-[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol
-[`LSP8CompatibleERC721MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInitAbstract.s
-[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol
-[`LSP8CompatibleERC721Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol
-[`LSP8CompatibleERC721MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInit.sol
-[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Errors.sol
-[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInit.sol
-[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.sol
-[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/ILSP8Mintable.sol
-[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.s
-[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol
-[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/ILSP14Ownable2Step.sol
-[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Constants.sol
-[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Errors.sol
-[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extendable.sol
-[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extension.sol
-[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Constants.sol
-[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Errors.sol
-[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Utils.sol
-[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20CallVerification.sol
-[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/ILSP20CallVerifier.sol
-[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Constants.sol
-[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Errors.sol
-[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol
-[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Utils.sol
-[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Constants.sol
-[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Utils.sol
-[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Constants.sol
+[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Compatibility.sol
+[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Constants.sol
+[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/ILSP4Compatibility.sol
+[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Errors.sol
+[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6SetDataModule.sol
+[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerCore.sol
+[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6ExecuteModule.sol
+[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Utils.sol
+[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Constants.sol
+[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/ILSP6KeyManager.sol
+[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Errors.sol
+[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6OwnershipModule.sol
+[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInitAbstract.sol
+[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManager.sol
+[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInit.sol
+
+[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CompatibleERC20InitAbstract.sol
+[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CompatibleERC20.sol
+[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/ILSP7DigitalAsset.sol
+[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAssetInitAbstract.sol
+[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CappedSupply.sol
+[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CappedSupplyInitAbstract.sol
+[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol
+[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7MintableInitAbstract.sol
+[`LSP7CompatibleERC20MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7CompatibleERC20MintableInitAbstract.sol
+[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7Mintable.sol
+[`LSP7CompatibleERC20Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7CompatibleERC20Mintable.sol
+[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7Errors.sol
+[`LSP7CompatibleERC20MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7CompatibleERC20MintableInit.sol
+[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7MintableInit.sol
+[`ILSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/ILSP7CompatibleERC20.sol
+[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/ILSP7Mintable.sol
+[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7Burnable.sol
+[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7BurnableInitAbstract.sol
+[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7Constants.sol
+[`LSP8IdentifiableDigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8IdentifiableDigitalAssetCore.sol
+[`LSP8CompatibleERC721InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CompatibleERC721InitAbstract.sol
+[`LSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CompatibleERC721.sol
+[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/ILSP8IdentifiableDigitalAsset.sol
+[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8EnumerableInitAbstract.sol
+[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8Enumerable.sol
+[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CappedSupplyInitAbstract.sol
+[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CappedSupply.sol
+[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8IdentifiableDigitalAssetInitAbstract.sol
+[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8MintableInitAbstract.sol
+[`ILSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/ILSP8CompatibleERC721.sol
+[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol
+[`LSP8CompatibleERC721MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8CompatibleERC721MintableInitAbstract.s
+[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8Mintable.sol
+[`LSP8CompatibleERC721Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8CompatibleERC721Mintable.sol
+[`LSP8CompatibleERC721MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8CompatibleERC721MintableInit.sol
+[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8Errors.sol
+[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8MintableInit.sol
+[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8Burnable.sol
+[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/ILSP8Mintable.sol
+[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8Constants.s
+[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Ownable2Step.sol
+[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/ILSP14Ownable2Step.sol
+[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Constants.sol
+[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Errors.sol
+[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Extendable.sol
+[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Extension.sol
+[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Constants.sol
+[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Errors.sol
+[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Utils.sol
+[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20CallVerification.sol
+[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/ILSP20CallVerifier.sol
+[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20Constants.sol
+[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20Errors.sol
+[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp2-contracts/contracts/LSP2Utils.sol
+[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp5-contracts/contracts/LSP5Utils.sol
+[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp5-contracts/contracts/LSP5Constants.sol
+[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp10-contracts/contracts/LSP10Utils.sol
+[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp10-contracts/contracts/LSP10Constants.sol
 
 <!-- prettier-ignore-end -->
