@@ -24,7 +24,7 @@ If you have been looking at the [LSP8 token standard](../../../standards/tokens/
 
 ## Use Case
 
-Let's take the example of [The Dematerialised](https://thedematerialised.com), and more precisely their KLxENDLESS PHYGITAL COLLECTION. As you can see in the picture below, we have three medalions of different colours.s
+Let's take the example of [The Dematerialised](https://x.com/dematerialised), and more precisely their KLxENDLESS PHYGITAL COLLECTION. As you can see in the picture below, we have three medalions of different colours.s
 
 ![KLxENDLESS PHYSITAL COLLECTION](../../../../static/img/learn/klxendless-physital-collection.png)
 
@@ -54,8 +54,8 @@ This is just an example. You can adjust these parameters according to your needs
 
 Let's start creating an `LSP7SubCollection.sol` file in the `contracts/` folder and import:
 
-- the [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol) contract
-- the [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol) contract
+- the [`LSP7DigitalAsset.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol) contract
+- the [`LSP4DigitalAssetMetadata.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp4-contracts/contracts/LSP4DigitalAssetMetadata.sol) contract
 - the [`_LSP4_SUPPORTED_STANDARDS_KEY`](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
 - the [`_LSP4_SUPPORTED_STANDARDS_VALUE`](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#supportedstandardslsp4digitalasset) constant
 - the [`_LSP4_METADATA_KEY`](../../../standards//tokens/LSP4-Digital-Asset-Metadata.md#lsp4metadata) constant

@@ -30,7 +30,7 @@ The controller of the Universal Profile that will use the 4337 extension must ha
 
 ### Deployment of the 4337 Extension
 
-In order to integrate the 4337 extension, you must first deploy the [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/contracts/LSP17Extensions/Extension4337.sol) or have the address of an already deployed instance of the 4337 extension contract.
+In order to integrate the 4337 extension, you must first deploy the [`Extension4337.sol`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp17-contracts/contracts/Extension4337.sol) or have the address of an already deployed instance of the 4337 extension contract.
 
 ### Extend your Universal Profile with the 4337 Extension
 
@@ -38,4 +38,4 @@ Once you have deployed the 4337 extension, you can extend your Universal Profile
 
 ## Using the 4337 Extension
 
-Once you have extended your Universal Profile with the 4337 extension and followed all the prerequisites above, bundlers can call the `handleOps` function of the [`EntryPoint`](https://docs.stackup.sh/docs/erc-4337-overview#entrypoint) contract to execute `UserOperations` on your Universal Profile.
+Once you have extended your Universal Profile with the 4337 extension and followed all the prerequisites above, bundlers can call the `handleOps` function of the [`EntryPoint`](https://eips.ethereum.org/EIPS/eip-4337#entrypoint-interface) contract to execute `UserOperations` on your Universal Profile.

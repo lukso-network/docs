@@ -109,9 +109,7 @@
 [`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/LSP1Constants.sol
 [`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4DigitalAssetMetadataInitAbstract.sol
 [`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
-[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Compatibility.sol
 [`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Constants.sol
-[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/ILSP4Compatibility.sol
 [`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Errors.sol
 [`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6SetDataModule.sol
 [`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerCore.sol
@@ -124,8 +122,6 @@
 [`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInitAbstract.sol
 [`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManager.sol
 [`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInit.sol
-[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CompatibleERC20InitAbstract.sol
-[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CompatibleERC20.sol
 [`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/ILSP7DigitalAsset.sol
 [`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAssetInitAbstract.sol
 [`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CappedSupply.sol
