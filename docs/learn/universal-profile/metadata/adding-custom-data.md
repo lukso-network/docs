@@ -280,13 +280,15 @@ node set-custom-data.js
 
 :::success 💡 Tips
 
-Use our [ERC725 inspect](https://erc725-inspect.lukso.tech) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher).
+Use our [ERC725 inspect](https://erc725-inspect.lukso.tech/inspector?network=mainnet) tool to easily retrieve data from your 🆙.
 
-Simply paste your Universal Profile address in the search field and use the custom schema we defined in [MyCustomSchema.json](#step-2-define-a-custom-schema).
+Simply enter your Universal Profile address to inspector and use the schema we defined in [MyCustomSchema.json](#step-2-define-a-custom-schema).
+
+![ERC725 inspect](/img/learn/custom-key-reading.png)
 
 :::
 
-You can verify that your custom data has been set by reading it directly from your Universal Profile. This script requires your custom schema to decode the on-chain data correctly.
+You can also verify that your custom data has been set by reading it directly from your Universal Profile. This script requires your custom schema to decode the on-chain data correctly.
 
 Create `get-custom-data.js`:
 

@@ -745,7 +745,7 @@ The deployed contract address should be printed in the console. Make sure to cop
 
 #### Check the deployed contract
 
-If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector).
+If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector?network=mainnet).
 By pasting the address of the contract, you should see that it supports:
 
 - [ERC725Y](/standards/metadata/lsp2-json-schema.md)
@@ -947,7 +947,7 @@ Let's run the script using `npx hardhat run scripts/mintLSP7SubCollections.ts --
 
 #### Check the deployed contract
 
-If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector).
+If you happen to have deployed the contract on one of our network (Testnet or Mainnet), you can check the contract on our [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector?network=mainnet).
 By pasting the address of the contract, you should see that it supports:
 
 - [ERC725Y](../../../standards/metadata/lsp2-json-schema.md)

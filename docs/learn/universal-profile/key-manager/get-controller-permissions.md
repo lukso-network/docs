@@ -28,7 +28,7 @@ Alongside each controller, we will also retrieve their associated permissions. A
 ![Get controller addresses](/img/standards/lsp6/lsp6-address-permissions-array.jpeg)
 
 :::tip ERC725 Inspect
-[ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) allows you get all controllers of a Universal Profile under the `AddressPermissions[]` section.
+[ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/?network=mainnet) allows you get all controllers of a Universal Profile under the `AddressPermissions[]` section.
 <img style={{ verticalAlign: 'right' }} src={ERC725} />
 :::
 
