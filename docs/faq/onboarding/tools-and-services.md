@@ -24,7 +24,7 @@ If you want to experiment with the Universal Profile Extension and its interacti
 
 ## Can I check what LSP standards are used for specific contracts?
 
-Yes. You can use the in-browser [inspection tool](https://erc725-inspect.lukso.tech/).
+Yes. You can use the in-browser [inspection tool](https://erc725-inspect.lukso.tech/?network=mainnet).
 
 ## What is social recovery?
 
