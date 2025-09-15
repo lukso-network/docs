@@ -280,9 +280,14 @@ node set-custom-data.js
 
 :::success 💡 Tips
 
-Use our [ERC725 inspect](https://erc725-inspect.lukso.tech/inspector?network=mainnet) tool to easily retrieve data from your 🆙.
+You can use the [ERC725 Inspect tool](https://erc725-inspect.lukso.tech/inspector?network=mainnet) to easily retrieve the custom metadata set on your 🆙:
 
-Simply enter your Universal Profile address to inspector and use the schema we defined in [MyCustomSchema.json](#step-2-define-a-custom-schema).
+1. Go to the [🔍 inspector page](https://erc725-inspect.lukso.tech/inspector?network=mainnet).
+2. Paste your **Universal Profile address** in the search field
+3. Paste the custom schema we defined in **[MyCustomSchema.json](#step-2-define-a-custom-schema)** (or the custom schema you created) in the Custom Key Reading section.
+4. Click the **Get Data** button
+
+The tool will retrieve the decoded data for you according to the custom schema!
 
 ![ERC725 inspect](/img/learn/custom-key-reading.png)
 
