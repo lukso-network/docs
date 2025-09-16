@@ -82,7 +82,7 @@ By mixing contract standards (LSP7/8), token types (Token, NFT, Collection) and 
     <td>Represents the information of a single NFT, that has multiple ownable amounts or IDs.</td>
     <td>COULD be set for each individual token ID.</td>
     <td>COULD be set for each individual token ID.</td>
-    <td>Each individual token ID COULD have its own custom metadata specific for the token ID, but MUST NOT be a different NFT, just different metadata per item in the NFT. <a href="./LSP8-Identifiable-Digital-Asset">See LSP8 for details</a>.</td>
+    <td>Each individual token ID COULD have its own custom metadata specific for the token ID, but MUST NOT be a different NFT, just different metadata per item in the NFT. <a href="/standards/tokens/LSP8-Identifiable-Digital-Asset/">See LSP8 for details</a>.</td>
   </tr>
   <tr>
     <td>LSP8</td>
@@ -90,7 +90,7 @@ By mixing contract standards (LSP7/8), token types (Token, NFT, Collection) and 
     <td>Represents the information of the collection.</td>
     <td>MUST be set for each individual token ID.</td>
     <td>MUST be set for each individual token ID.</td>
-    <td>Each individual token ID represents its own NFT, <code>LSP4Metadata</code> and <code>LSP8TokenIdFormat</code> must be set for each of them in case the individual token IDs are LSP8. <a href="./LSP8-Identifiable-Digital-Asset">See LSP8 for details</a>.</td>
+    <td>Each individual token ID represents its own NFT, <code>LSP4Metadata</code> and <code>LSP8TokenIdFormat</code> must be set for each of them in case the individual token IDs are LSP8. <a href="/standards/tokens/LSP8-Identifiable-Digital-Asset/">See LSP8 for details</a>.</td>
   </tr>
 </table>
 

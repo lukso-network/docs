@@ -90,6 +90,13 @@ const accordionData = [
         link: '/learn/getting-started#building-dapps-for-universal-profiles',
         linkLabel: 'Learn more',
       },
+      {
+        question: 'How can I setup a recovery for my Universal Profile?',
+        answer:
+          "Created your profile and don't want to lose access to it? Set up a recovery for your Universal Profile using our guide below.",
+        link: 'https://support.lukso.network/universalprofilecloud/Recovery/set-wallet-recovery',
+        linkLabel: 'See guide',
+      },
     ],
   },
   {
@@ -137,6 +144,33 @@ const accordionData = [
           'LSP7 and LSP8 offer improved features such as (1) unlimited metadata to store any type of information in the token contract, (2) transfer notifications via callback hooks, and (3) a simpler interface for developers. It also includes additional benefits over ERC20/721. See our dedicated page.',
         link: '/learn/benefits-lukso-standards#lsp78-token-standards-vs-erc20721',
         linkLabel: 'Learn more',
+      },
+    ],
+  },
+  {
+    summary: 'Mini-Apps',
+    icon: 'material-symbols:counter-1',
+    details: [
+      {
+        question: 'What is a Mini-App?',
+        answer:
+          'Mini-App is a dApp that run in an iframe of a parent page that hosts them. You can then add them to your Grid on Universal Everything.',
+        link: '/learn/mini-apps/connect-upprovider',
+        linkLabel: 'Learn more',
+      },
+      {
+        question: 'How does a Mini-App connect to a user?',
+        answer:
+          'The UP Provider empowers the Mini-Apps to connect to the user visiting the parent page with one-click.',
+        link: '/learn/mini-apps/connect-upprovider#introducing-the-up-provider',
+        linkLabel: 'Learn more about UP Provider',
+      },
+      {
+        question: 'How do I test Mini-Apps locally?',
+        answer:
+          'To test Mini-Apps locally on Universal Everything, you need to expose your Mini-App to an URL. Check out our guide to learn how to do this with localtunnel.',
+        link: '/learn/mini-apps/testing-miniapps',
+        linkLabel: 'See guide',
       },
     ],
   },

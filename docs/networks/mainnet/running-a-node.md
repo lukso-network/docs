@@ -61,7 +61,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://geth.ethereum.org/">Geth</a></td>
-    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.14.12">v1.14.12</a></td>
+    <td><a href="https://github.com/ethereum/go-ethereum/releases/tag/v1.15.11">v1.15.11</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/ethereum/go-ethereum"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://geth.ethereum.org/docs"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/nthXNEv"><DiscordIcon /></a></td>
@@ -72,7 +72,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://erigon.tech/">Erigon</a></td>
-    <td><a href="https://github.com/erigontech/erigon/releases/tag/v2.60.10">v2.60.10</a></td>
+    <td><a href="https://github.com/erigontech/erigon/releases/tag/v3.0.12">v3.0.12</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://erigon.gitbook.io/erigon"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/erigontech/erigon?tab=readme-ov-file#erigon-discord-server"><DiscordIcon /></a></td>
@@ -83,7 +83,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://www.hyperledger.org/projects/besu">Besu</a></td>
-    <td><a href="https://github.com/hyperledger/besu/releases/tag/24.7.0">v24.7.0</a></td>
+    <td><a href="https://github.com/hyperledger/besu/releases/tag/25.7.0">v25.7.0</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/hyperledger/besu"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://besu.hyperledger.org/"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/hyperledger"><DiscordIcon /></a></td>
@@ -94,7 +94,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://www.nethermind.io/nethermind-client">Nethermind</a></td>
-    <td><a href="https://github.com/NethermindEth/nethermind/releases/tag/1.27.0">v1.27.0</a></td>
+    <td><a href="https://github.com/NethermindEth/nethermind/releases/tag/1.32.2">v1.32.2</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/NethermindEth/nethermind"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.nethermind.io/"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/PaCMRFdvWT"><DiscordIcon /></a></td>
@@ -121,7 +121,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://prysmaticlabs.com/">Prysm</a></td>
-    <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v5.1.2">v5.1.2</a></td>
+    <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v6.0.4">v6.0.4</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/prysmaticlabs/prysm"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.prylabs.network/docs/getting-started"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/prysmaticlabs"><DiscordIcon /></a></td>
@@ -132,7 +132,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://lighthouse.sigmaprime.io/">Lighthouse</a></td>
-    <td><a href="https://github.com/sigp/lighthouse/releases/tag/v5.2.1">v5.2.1</a></td>
+    <td><a href="https://github.com/sigp/lighthouse/releases/tag/v7.0.1">v7.0.1</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/sigp/lighthouse"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://lighthouse-book.sigmaprime.io/"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/cyAszAh"><DiscordIcon /></a></td>
@@ -143,7 +143,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://consensys.io/teku">Teku</a></td>
-    <td><a href="https://github.com/Consensys/teku/releases/tag/24.6.1">v24.6.1</a></td>
+    <td><a href="https://github.com/Consensys/teku/releases/tag/25.6.0">v25.6.0</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/Consensys/teku"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.teku.consensys.io/"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/consensys"><DiscordIcon /></a></td>
@@ -154,7 +154,7 @@ The LUKSO network currently supports the following clients versions:
   </tr>
   <tr>
     <td><a href="https://nimbus.team/">Nimbus</a></td>
-    <td><a href="https://github.com/status-im/nimbus-eth2/releases/tag/v24.10.0">v24.10.0</a></td>
+    <td><a href="https://github.com/status-im/nimbus-eth2/releases/tag/v25.5.0">v25.5.0</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/status-im/nimbus-eth2"><GithubIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://nimbus.guide/index.html"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/XRxWahP"><DiscordIcon /></a></td>

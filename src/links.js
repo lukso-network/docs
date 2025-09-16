@@ -19,6 +19,7 @@ import LSP8AppLogo from '@site/static/img/dapps/lsp8app-logo.png';
 import FamilyLyxLogo from '@site/static/img/dapps/family-lyx-logo.png';
 import TxCityLogo from '@site/static/img/dapps/txcity-io-logo.webp';
 import TxsAppLogo from '@site/static/img/dapps/txs-app-logo.png';
+import AirdropLogo from '@site/static/img/dapps/airdrop-logo.png';
 
 export const migrateGuides = [
   {
@@ -162,38 +163,38 @@ export const integrationPartners = [
   {
     name: 'DappNode',
     image: LogoDappNode,
-    url: 'https://universalswaps.io/',
+    url: 'https://dappnode.com',
     backgroundColor: 'white',
   },
   {
     name: 'Envio',
     image: LogoEnvio,
-    url: 'https://stakingverse.io/',
+    url: 'https://envio.dev',
     backgroundColor: 'white',
   },
 
   {
     name: 'API3',
     image: LogoAPI3,
-    url: 'https://lsp8.app/',
+    url: 'https://api3.org',
     backgroundColor: 'white',
   },
   {
     name: 'DIA',
     image: LogoDIA,
-    url: 'https://universal.page/',
+    url: 'https://www.diadata.org',
     backgroundColor: 'white',
   },
   {
     name: 'Transak',
     image: LogoTransak,
-    url: 'https://upturn.live/',
+    url: 'https://transak.com',
     backgroundColor: 'white',
   },
   {
     name: 'Ramp',
     image: LogoRamp,
-    url: 'https://app.cg/',
+    url: 'https://ramp.network',
     backgroundColor: 'white',
   },
 ];
@@ -219,7 +220,7 @@ export const dappsSlider = [
   },
   {
     name: 'Universal Swaps',
-    description: 'Defi made social for swaps and tokens liquidity.',
+    description: 'DeFi made social for swaps and tokens liquidity.',
     image: UniversalSwapsLogo,
     backgroundColor: '#fddce7',
     link: 'https://universalswaps.io/',
@@ -235,7 +236,7 @@ export const dappsSlider = [
     name: 'Stakingverse',
     description: 'Stake your LYX and start earning staking rewards.',
     image: StakingverseLogo,
-    backgroundColor: '#1E1E1E',
+    backgroundColor: '#140e23',
     link: 'https://stakingverse.io/',
   },
   // banner 2 ----------------
@@ -269,13 +270,6 @@ export const dappsSlider = [
   },
   // banner 3 ----------------
   {
-    name: 'LSP8.APP',
-    description: 'Track and analyze LSP8 NFT rarity and value.',
-    image: LSP8AppLogo,
-    backgroundColor: '#2d1b46',
-    link: 'https://lsp8.app/',
-  },
-  {
     name: 'Family LYX',
     description: 'Phygital garments powered by LUKSO standards.',
     image: FamilyLyxLogo,
@@ -295,7 +289,14 @@ export const dappsSlider = [
     description: 'LUKSO live Blockchain transaction visualizer.',
     image: TxCityLogo,
     backgroundColor: '#fcfcfc',
-    link: 'https://txcity.io/v/eth-lukso',
+    link: 'https://txcity.io/v/lukso',
+  },
+  {
+    name: 'Airdrop Tool',
+    description: 'Distribute tokens to specific set of Universal Profiles.',
+    image: AirdropLogo,
+    backgroundColor: '#fcfcfc',
+    link: 'https://airdropper.universaleverything.io/',
   },
   // banner 4 ----------------
   // TODO: define if we add some popular NFT collections or not. If yes add these import below at the top of the file

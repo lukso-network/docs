@@ -90,7 +90,7 @@ It can be decoded as:
 
 > **Note:** although custom permissions can be created, this might not prevent from collisions where third party applications may treat the same custom permission differently.
 
-The permission system of the Key Manager is versatile enough to allow new custom permissions to be created, for specific application use cases, aside from the default ones. Since the permissions use `bytes32` as type, the range is large enough to fit up to 256 permissions in total ([32 bytes = 256 bits](../../standards/access-control/lsp6-key-manager#address-permissions)).
+The permission system of the Key Manager is versatile enough to allow new custom permissions to be created, for specific application use cases, aside from the default ones. Since the permissions use `bytes32` as type, the range is large enough to fit up to 256 permissions in total ([32 bytes = 256 bits](/standards/access-control/lsp6-key-manager#address-permissions)).
 
 For instance, data stored under some data keys could be very sensitive for some specific dApp (_e.g: represent the :up: user settings for this dApp._), and a developer might not necessarily want to use the **Allowed ERC725Y Data Keys** for this particular data key.
 
