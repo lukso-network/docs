@@ -15,6 +15,10 @@ This package is currently in the early stages of development. Feel free to [repo
 
 The `@erc725/erc725.js` package allows you to retrieve, encode and decode data easily from any ERC725Y smart contracts using ERC725Y JSON Schemas.
 
+:::tip ERC725 Inspect
+You can easily retrieve the list of metadata and permissions from Universal Profile and Digital Assets, as well as encoding and decoding data using the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/?network=mainnet).
+:::
+
 ## Installation
 
 :::info
@@ -35,7 +39,7 @@ There are 3 main ways to use _erc725.js_.
 
 ### Option 1: use a schema for encoding / decoding data
 
-Create an instance of `ERC725` with just a [schema](https://docs.lukso.tech/tools/libraries/erc725js/schemas). **Useful for just encoding / decoding data.**
+Create an instance of `ERC725` with just a [schema](https://docs.lukso.tech/tools/erc725js/schemas). **Useful for just encoding / decoding data.**
 
 ```js
 import ERC725, { ERC725JSONSchema } from '@erc725/erc725.js';

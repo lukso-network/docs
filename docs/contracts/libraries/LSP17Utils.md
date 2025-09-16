@@ -10,7 +10,7 @@
 :::
 :::info Solidity implementation
 
-[`LSP17Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp17contractextension-contracts/contracts/LSP17Extendable.sol)
+[`LSP17Utils.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Extendable.sol)
 
 :::
 
