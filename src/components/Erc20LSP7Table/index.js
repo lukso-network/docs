@@ -34,7 +34,7 @@ export default function Erc20LSP7Table() {
             </pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr style={{ backgroundColor: '#65b033' }}>
           <td>
             <pre language="solidity">decimals()</pre>
           </td>
@@ -42,7 +42,7 @@ export default function Erc20LSP7Table() {
             <pre language="solidity">decimals()</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr style={{ backgroundColor: '#65b033' }}>
           <td>
             <pre language="solidity">totalSupply()</pre>
           </td>
@@ -50,7 +50,7 @@ export default function Erc20LSP7Table() {
             <pre language="solidity">totalSupply()</pre>
           </td>
         </tr>
-        <tr style={{ backgroundColor: '#dcfce7' }}>
+        <tr style={{ backgroundColor: '#65b033' }}>
           <td>
             <pre language="solidity">balanceOf(address account)</pre>
           </td>
@@ -101,7 +101,7 @@ export default function Erc20LSP7Table() {
               <br />
               );
             </pre>
-            <a href="../../contracts/contracts/LSP7DigitalAsset/#authorizeoperator">
+            <a href="/contracts/contracts/LSP7DigitalAsset/#authorizeoperator">
               🔍 Function details
             </a>
             <br />
@@ -126,7 +126,7 @@ export default function Erc20LSP7Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <a href="../../contracts/contracts/LSP7DigitalAsset/#revokeoperator">
+            <a href="/contracts/contracts/LSP7DigitalAsset/#revokeoperator">
               🔍 Function details
             </a>
           </td>
@@ -146,7 +146,7 @@ export default function Erc20LSP7Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <a href="../../contracts/contracts/LSP7DigitalAsset/#increaseallowance">
+            <a href="/contracts/contracts/LSP7DigitalAsset/#increaseallowance">
               🔍 Function details
             </a>
           </td>
@@ -166,7 +166,7 @@ export default function Erc20LSP7Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <a href="../../contracts/contracts/LSP7DigitalAsset/#decreaseallowance">
+            <a href="/contracts/contracts/LSP7DigitalAsset/#decreaseallowance">
               🔍 Function details
             </a>
           </td>
@@ -194,7 +194,7 @@ export default function Erc20LSP7Table() {
               Pass the <code>msg.sender</code> address as <code>from</code>{' '}
               parameter.
             </p>
-            <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
+            <a href="/contracts/contracts/LSP7DigitalAsset/#transfer">
               🔍 Function details
             </a>
           </td>
@@ -232,7 +232,7 @@ export default function Erc20LSP7Table() {
               Use <code>msg.sender</code> as an operator and use a different{' '}
               <code>from</code> address to transfer tokens from.
             </p>
-            <a href="../../contracts/contracts/LSP7DigitalAsset/#transfer">
+            <a href="/contracts/contracts/LSP7DigitalAsset/#transfer">
               🔍 Function details
             </a>
           </td>
@@ -256,12 +256,12 @@ export default function Erc20LSP7Table() {
               Transfer the same token to multiple recipients in a single
               transaction.{' '}
               <i>
-                <a href="http://docs.lukso.tech/learn/digital-assets/transfer-batch">
+                <a href="/learn/digital-assets/transfer-batch/">
                   See our examples code snippets.
                 </a>
               </i>
             </p>
-            <a href="../../contracts/contracts/LSP7DigitalAsset/#transferbatch">
+            <a href="/contracts/contracts/LSP7DigitalAsset/#transferbatch">
               🔍 Function details
             </a>
           </td>
@@ -281,7 +281,7 @@ export default function Erc20LSP7Table() {
                 <li>Update the token contract metadata.</li>
                 <li>etc...</li>
               </ol>
-              <a href="../../contracts/contracts/LSP7DigitalAsset/#batchcalls">
+              <a href="/contracts/contracts/LSP7DigitalAsset/#batchcalls">
                 🔍 Function details
               </a>
             </p>

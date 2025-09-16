@@ -4,11 +4,9 @@
 
 # These owners will be the default owners for everything in
 
-# the repo. Unless a later match takes precedence, @Hugoo will be requested for
+# the repo.
 
 # review when someone opens a pull request.
-
-* @Hugoo
 
 /docs/standards/ @CJ42 @YamenMerhi
 

@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Node Setup'
 sidebar_position: 4
-description: 'LUKSO node setup and supported clients: Geth, Erigon, Nethermind, Besu, Prysm, Lighthouse, Teku.'
+description: 'LUKSO node setup and supported clients: Geth, Erigon, Nethermind, Besu, Prysm, Lighthouse, Teku, Nimbus'
 ---
 
 # Node Setup
@@ -27,6 +27,8 @@ Currently, LUKSO officially supports Geth, Erigon, Lighthouse, and Prysm. All cl
 - **[Lighthouse](https://github.com/sigp/lighthouse)** is an Ethereum consensus client written in Rust and developed by Sigma Prime. From a security perspective, Lighthouse leverages Rust's safety features and undergoes regular security audits to protect against potential vulnerabilities. Regarding efficiency, Lighthouse is designed to perform well even on low-spec hardware, making it accessible to a wide range of users with different skill levels.
 
 - **[Teku](https://github.com/Consensys/teku)** is an Ethereum consensus client written in Java and developed by Consensys. It provides users with a similar experience of running a node as with using other clients, but with additional features, such as external key management (using tools like [Web3signer](https://github.com/Consensys/web3signer)).
+
+- **[Nimbus (Eth2)](https://github.com/status-im/nimbus-eth2)** is an Ethereum consensus client written in Nim and developed by Status. It provides users with an additional light client implementation, which is useful when available hardware is limited.
 
 ## Should I run an archive or a full node?
 
