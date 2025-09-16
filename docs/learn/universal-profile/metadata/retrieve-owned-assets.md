@@ -4,17 +4,21 @@ sidebar_position: 3
 description: Learn how to retrieve the list of assets owned by a Universal Profile.
 ---
 
+import CodeSandbox from "@site/src/components/CodeSandbox";
+
 # Get Profile's Owned Assets
 
-![Retrieve Universal Profile's owned assets](../img/retrieved-up-owned-assets.png)
+<CodeSandbox src="https://codesandbox.io/embed/qxqdn8?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
 
 :::success Tip
 
-To see the list of assets a Universal Profile owns (Tokens and NFTs), go to [🔗 UniversalProfile.cloud](https://universalprofile.cloud/). This will list the UP's owned tokens and NFTs with their images.
+To see the list of assets a Universal Profile owns (Tokens and NFTs), go to [🔗 UniversalEverything.io](https://universaleverything.io/). This will list the UP's owned tokens and NFTs with their images.
 
 Simply type the name of the Universal Profile or paste its address in the search field, or use the following link, pasting its address at the end: `https://universalprofile.cloud/0x<universal-profile-address>`.
 
 :::
+
+![Retrieve Universal Profile's owned assets](../img/retrieved-up-owned-assets.png)
 
 Every Universal Profile deployed with the [**🧩 Universal Profile Browser Extension**](/install-up-browser-extension) comes with a 📢 [Universal Receiver delegate](../../../standards/accounts/lsp1-universal-receiver-delegate.md) that register automatically the list of assets it owns.
 
@@ -60,7 +64,7 @@ const result = await erc725js.getData('LSP5ReceivedAssets[]');
 
 Alternatively, our convenience UI tool ERC725-Inspect enables you to retrieve the list of **LSP5 Received Assets** easily. Simply:
 
-1. Go to [https://erc725-inspect.lukso.tech/](https://erc725-inspect.lukso.tech/)
+1. Go to [https://erc725-inspect.lukso.tech/](https://erc725-inspect.lukso.tech/?network=mainnet)
 2. Select the network at the top right.
 3. Paste the address of the Universal Profile on the search field
 4. Scroll down until you reach the data key **`LSP5ReceivedAssets[]`**

@@ -9,9 +9,9 @@ import TabItem from '@theme/TabItem';
 
 # Grant Permissions
 
-This guide will teach you how to grant [permissions](../../../standards/access-control/lsp6-key-manager.md#address-permissions) to any address so they can interact with your 🆙. You will learn:
+This guide will teach you how to grant [permissions](/standards/access-control/lsp6-key-manager.md#address-permissions) to any address so they can interact with your 🆙. You will learn:
 
-- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](../../../tools/dapps/erc725js/getting-started.md).
+- How permissions in the LSP6 Key Manager work + how to create them using [_erc725.js_](/tools/dapps/erc725js/getting-started.md).
 - How to set permissions for a third party `address` on your Universal Profile
 
 ![Give permissions to 3rd parties overview](/img/guides/lsp6/grant-permissions-to-3rd-parties-overview.jpeg)
@@ -26,22 +26,22 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 The Key Manager enables to give permissions to any third-party address to perform certain actions on our Universal Profile (UP). This includes editing the UP's metadata, transferring LYX, tokens, and NFTs, and making any other interactions on behalf of the UP. We call such addresses **controllers**, as they can *"control"* a specific Universal Profile according to their permissions on this particular UP.
 
-The diagram above shows that when Alice sends a transaction to the [Universal Profile](../../../standards/accounts/introduction.md), the UP will first call its [Key Manager](../../../standards/access-control/lsp6-key-manager.md) to verify that Alice is authorised to execute this action by checking its **permissions**. If the check is successful, the transaction gets executed. Otherwise, it reverts.
+The diagram above shows that when Alice sends a transaction to the [Universal Profile](/standards/accounts/introduction.md), the UP will first call its [Key Manager](/standards/access-control/lsp6-key-manager.md) to verify that Alice is authorised to execute this action by checking its **permissions**. If the check is successful, the transaction gets executed. Otherwise, it reverts.
 
 These permissions are stored in the Universal Profile. **We need to update three data keys in the Universal Profile's storage when adding and granting a new controller some permissions**.
 
-| :file_cabinet: ERC725Y data key                                                                                                     | :page_with_curl: Description                                 | :pen: **What should we update?**                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| [`AddressPermissions[]`](../../../standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions)               | The number of addresses that have permissions on our UP.     | We need to **increment it by +1**.                                                 |
-| [`AddressPermissions[index]`](../../../standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions)          | holds a controller address at a specific index.              | We need to **add the beneficiary address at the new index**.                       |
-| [`AddressPermissions:Permissions:<beneficiary-address>`](../../../standards/access-control/lsp6-key-manager.md#address-permissions) | this data key holds the permissions of a controller address. | We need to **add the permissions of the beneficiary address** under this data key. |
+| :file_cabinet: ERC725Y data key                                                                                             | :page_with_curl: Description                                 | :pen: **What should we update?**                                                   |
+| --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| [`AddressPermissions[]`](/standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions)               | The number of addresses that have permissions on our UP.     | We need to **increment it by +1**.                                                 |
+| [`AddressPermissions[index]`](/standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions)          | holds a controller address at a specific index.              | We need to **add the beneficiary address at the new index**.                       |
+| [`AddressPermissions:Permissions:<beneficiary-address>`](/standards/access-control/lsp6-key-manager.md#address-permissions) | this data key holds the permissions of a controller address. | We need to **add the permissions of the beneficiary address** under this data key. |
 
 ## Setup
 
 To follow this guide, we will need the following libraries and packages:
 
-- [`erc725.js`](../../../tools/dapps/erc725js/getting-started.md) to encode the permissions
-- The [`lsp-smart-contracts`](../../../tools/lsp-smart-contracts/getting-started.md) package to get the [Universal Profile's ABI](../../../standards/accounts/introduction.md)
+- [`erc725.js`](/tools/dapps/erc725js/getting-started.md) to encode the permissions
+- The [`lsp-smart-contracts`](/tools/lsp-smart-contracts/getting-started.md) package to get the [Universal Profile's ABI](/standards/accounts/introduction.md)
 - `web3.js` or `ethers.js` to interact with our `UniversalProfile` smart contract.
 
 <Tabs>
@@ -84,15 +84,15 @@ const erc725 = new ERC725(
 
 :::success Permissions List
 
-More permissions are available in _erc725.js_. See the [`encodePermissions(...)`](../../../tools/dapps/erc725js/methods.md#encodepermissions) function for a complete list.
+More permissions are available in _erc725.js_. See the [`encodePermissions(...)`](/tools/dapps/erc725js/methods.md#encodepermissions) function for a complete list.
 
-To learn about what each permission enables, see the [**Standards > LSP6 Key Manager > Permissions**](../../../standards/access-control/lsp6-key-manager.md#permissions) section.
+To learn about what each permission enables, see the [**Standards > LSP6 Key Manager > Permissions**](/standards/access-control/lsp6-key-manager.md#permissions) section.
 
 :::
 
 Let's consider in our example that we want to grant the permission `SUPER_SETDATA` to a `beneficiaryAddress`, so that it can edit any of the Universal Profile metadata.
 
-To do so, we will use the [`encodePermissions(..)`](../../../tools/dapps/erc725js/methods#encodepermissions) function, a convenience function from the _erc725.js_ library to encode permissions as their raw `bytes32` value. The function takes as an input will an object of all permissions that will be set.
+To do so, we will use the [`encodePermissions(..)`](/tools/dapps/erc725js/methods#encodepermissions) function, a convenience function from the _erc725.js_ library to encode permissions as their raw `bytes32` value. The function takes as an input will an object of all permissions that will be set.
 
 ```ts
 // Create the raw permissions value to allow an address
@@ -152,7 +152,7 @@ const permissionData = erc725.encodeData([
 
 We have now all the encoded data needed to setup the permissions of this third party address on our Universal Profile! 💪🏻
 
-The last and final step is to simply call the [`setDataBatch(...)`](../../../contracts/contracts/UniversalProfile#setdatabatch) function on the `UniversalProfile` contract, passing the data keys and values previously encoded in **step 2**. The steps in the code will be:
+The last and final step is to simply call the [`setDataBatch(...)`](/contracts/contracts/UniversalProfile#setdatabatch) function on the `UniversalProfile` contract, passing the data keys and values previously encoded in **step 2**. The steps in the code will be:
 
 1. Create an instance of the Universal Profile smart contract. You will need:
    - the `UniversalProfile` ABI from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package.

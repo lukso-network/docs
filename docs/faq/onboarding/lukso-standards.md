@@ -75,6 +75,6 @@ Creating a hybrid between a physical and a digital asset on LUKSO involves using
 In the blockchain world, verifying the creator of digital assets is crucial to prevent scams and ensure authenticity. There are two primary LSP standards for creator verification:
 
 - [LSP12 Issued Assets](/standards/metadata/lsp12-issued-assets/)
-- and [LSP4](../../contracts/contracts/LSP4DigitalAssetMetadata/) having a [Creators List](/standards/tokens/LSP4-Digital-Asset-Metadata/#lsp4creators)
+- and [LSP4](/contracts/contracts/LSP4DigitalAssetMetadata/) having a [Creators List](/standards/tokens/LSP4-Digital-Asset-Metadata/#lsp4creators)
 
 During the creation of an asset, Universal Profiles can be referenced as [LSP4Creators](/standards/tokens/LSP4-Digital-Asset-Metadata/#lsp4creators). However, to verify the creator, these profiles must also link to the asset on their [ERC725Y data storage](/standards/erc725.md#erc725y-data-representation) using the [LSP12 Issued Assets](/standards/metadata/lsp12-issued-assets/) array. The cross-check ensures that creators get the recognition they deserve and users can trust the authenticity of assets. Platforms can then check if the asset is referenced on the Universal Profile, preventing impersonation and spam.

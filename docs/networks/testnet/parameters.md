@@ -23,7 +23,6 @@ The Public Testnet runs alongside the LUKSO mainnet for developers to test dApps
 | Execution Block Explorer | [https://explorer.execution.testnet.lukso.network](https://explorer.execution.testnet.lukso.network) |
 | Execution Status Page    | [https://stats.execution.testnet.lukso.network](https://stats.execution.testnet.lukso.network)       |
 | Consensus Block Explorer | [https://explorer.consensus.testnet.lukso.network](https://explorer.consensus.testnet.lukso.network) |
-| Consensus Status Page    | [https://stats.consensus.testnet.lukso.network](https://stats.consensus.testnet.lukso.network)       |
 | Faucet                   | [https://faucet.testnet.lukso.network](https://faucet.testnet.lukso.network)                         |
 | Launchpad                | [https://deposit.testnet.lukso.network](https://deposit.testnet.lukso.network)                       |
 | Checkpoints              | [https://checkpoints.testnet.lukso.network](https://checkpoints.testnet.lukso.network)               |

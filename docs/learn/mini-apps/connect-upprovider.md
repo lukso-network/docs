@@ -24,7 +24,7 @@ This makes the user experience cumbersome.
 
 ## Introducing the UP Provider
 
-The [up-provider](../../tools/dapps/up-provider/getting-started) solves this by giving Mini-Apps a way for the user visiting the parent page, to connect to the Mini-App directly with one-click.
+The [up-provider](/tools/dapps/up-provider/getting-started) solves this by giving Mini-Apps a way for the user visiting the parent page, to connect to the Mini-App directly with one-click.
 
 Additionally, **the Mini-App has access to `context addresses`**, which in the case of [universaleverything.io](https://universaleverything.io) is the Universal Profile under which the Mini-App is hosted in the Grid.
 

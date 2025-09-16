@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 
 # Accept & Reject Assets
 
-Each user can create a **Universal Receiver Delegate** contract with some **custom logic**, which can run automatically on calls to the **[`universalReceiver(..)`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function of the user's Universal Profile based on specific typeIds.
+Each user can create a **Universal Receiver Delegate** contract with some **custom logic**, which can run automatically on calls to the **[`universalReceiver(..)`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function of the user's Universal Profile based on specific typeIds.
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
 
 ## Reject any Assets
 
-To **reject any assets** received by the Universal Profile, we need to create a Universal Receiver Delegate contract that reverts when there is an asset transfer (LSP7 & LSP8). The [`typeId`](../../../contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) parameter will give us more context on the call being made.
+To **reject any assets** received by the Universal Profile, we need to create a Universal Receiver Delegate contract that reverts when there is an asset transfer (LSP7 & LSP8). The [`typeId`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) parameter will give us more context on the call being made.
 
 | 📢 Type ID to notify when receiving an LSP7 token 🪙                 |
 | :------------------------------------------------------------------- |
@@ -28,11 +28,17 @@ To **reject any assets** received by the Universal Profile, we need to create a 
 
 :::success TypeIds available
 
-A full list of LSP1 TypeIds that can be filtered from the `UniversalReceiver` event can be found under the [**contract > Universal Receiver TypeIds**](../../../contracts/type-ids.md)
+A full list of LSP1 TypeIds that can be filtered from the `UniversalReceiver` event can be found under the [**contract > Universal Receiver TypeIds**](/contracts/type-ids.md)
 
 :::
 
 ### 1 - Deploy contract via Remix
+
+:::info Deploy using Universal Profiles
+
+To deploy your smart contract using the Universal Profile browser extension, please visit our [Remix guide](/tools/lsp-smart-contracts/working-with-remix.md#deploying-using-the-universal-profile-browser-extension)
+
+:::
 
 1. First go to the **[Remix's website](https://remix.ethereum.org/)**. Create a new solidity file `UniversalReceiverDelegate.sol` under the **contracts** folder.
 
@@ -95,7 +101,7 @@ Please make sure to unlock MetaMask and disable Browser Extension while doing th
 ![Compiling contract in Remix](/img/guides/lsp1/remix-compiling-contract.jpeg)
 
 You should be connected to LUKSO Testnet in MetaMask and Remix and have enough LYXt in the EOA used to deploy the URD.
-If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](../../../networks/testnet/parameters.md).
+If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](/networks/testnet/parameters.md).
 
 ![Connect to LUKSO Testnet in Remix](/img/guides/lsp1/remix-connect-testnet.jpg)
 
@@ -109,7 +115,7 @@ If you do not have enough LYXt, request them from the [LUKSO Testnet Faucet](../
 
 You have successfully deployed your **CustomUniversalReceiverDelegate** contract on LUKSO Testnet! 🙌🏻
 
-We now need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](../../../standards/accounts/lsp1-universal-receiver.md#extension)** inside the UP's storage. We will do that **via a custom script in step 2** using web3.js or ether.js.
+We now need to set its address under the **[LSP1-UniversalReceiverDelegate Data Key](/standards/accounts/lsp1-universal-receiver.md#extension)** inside the UP's storage. We will do that **via a custom script in step 2** using web3.js or ether.js.
 
 ### 2 - Install dependencies for script
 
@@ -140,10 +146,10 @@ npm install web3 @lukso/lsp-smart-contracts
 
 ### 3 - Create instance of the 🆙
 
-First we need to create an instance of the [`UniversalProfile`](../../../contracts/contracts/UniversalProfile.md) contract. We will need:
+First we need to create an instance of the [`UniversalProfile`](/contracts/contracts/UniversalProfile/UniversalProfile.md) contract. We will need:
 
-- the `UniversalProfile` ABI from the [`@lukso/lsp-smart-contracts`](../../../contracts/introduction.md) package.
-- the Universal Profile's address, retrieved by [connecting to the UP Browser Extension](../connect-profile/connect-up.md)
+- the `UniversalProfile` ABI from the [`@lukso/lsp-smart-contracts`](/contracts/introduction.md) package.
+- the Universal Profile's address, retrieved by [connecting to the UP Browser Extension](/learn/universal-profile/connect-profile/connect-up.md)
 
 <Tabs>
 
@@ -369,7 +375,7 @@ contract CustomUniversalReceiverDelegate is LSP1UniversalReceiverDelegateUP  {
 
 The code above will register the address of the assets allowed and remove them when the UP's balance for this asset is 0. It will also reject assets that are not allowed.
 
-Since this code will need **[SUPER_SETDATA Permission](../../../standards/access-control/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
+Since this code will need **[SUPER_SETDATA Permission](/standards/access-control/lsp6-key-manager.md#super-permissions)**, after deploying it, you will set the address of the URD in the storage using the code from the **[Set the address of the URD in the storage](./deploy-universal-receiver.md#set-the-address-of-the-urd-in-the-storage)** section.
 
 :::info
 

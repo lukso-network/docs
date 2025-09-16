@@ -25,7 +25,15 @@ The LSP23 Linked Contract Factory is used to deploy a full Universal Profile (wi
 
 Below are the base implementation contracts deployed on mainnet.
 
-They contain all the core logic of the **Universal Profile** 🆙, **LSP6 Key Manager** 🔐 and **LSP1 Universal Receiver Delegate** 📣. Proxies pointing to these implementations must be initialized via the `initialize(...)` function to work.
+They contain all the core logic of the:
+
+- **Universal Profile** 🆙
+- **LSP6 Key Manager** 🔐
+- **LSP1 Universal Receiver Delegate** 📣
+- **LSP7 Digital Asset** (Mintable preset where the `owner()` can call the `mint(...)` function)
+- **LSP8 Identifiable Digital Asset** (Mintable preset where the `owner()` can call the `mint(...)` function)
+
+Proxies pointing to these implementations must be initialized via the `initialize(...)` function to work.
 
 The Universal Profile and Key Manager contracts of each users are deployed as EIP1167 minimal proxy, with their bytecode pointing to these implementation contracts. Finally, each Universal Profile has its **default** Universal Receiver Delegate contract linked to its 🆙 contract via the [`LSP1UniversalReceiverDelegate`](/standards/accounts/lsp1-universal-receiver-delegate.md#lsp1universalreceiverdelegate-singleton) data key.
 
