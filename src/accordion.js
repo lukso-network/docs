@@ -90,6 +90,13 @@ const accordionData = [
         link: '/learn/getting-started#building-dapps-for-universal-profiles',
         linkLabel: 'Learn more',
       },
+      {
+        question: 'How can I setup a recovery for my Universal Profile?',
+        answer:
+          "Created your profile and don't want to lose access to it? Set up a recovery for your Universal Profile using our guide below.",
+        link: 'https://support.lukso.network/universalprofilecloud/Recovery/set-wallet-recovery',
+        linkLabel: 'See guide',
+      },
     ],
   },
   {

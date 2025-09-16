@@ -34,7 +34,7 @@ One way to solve this problem is to create generic metadata keys that would regi
 
 :::tip Recommendation
 
-Make sure to understand the **[ERC725Y Generic Key/Value Store](../erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](../metadata/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
+Make sure to understand the **[ERC725Y Generic Key/Value Store](../erc725.md#erc725y---generic-data-keyvalue-store)** and **[LSP2 - ERC725YJSONSchema](/standards/metadata/lsp2-json-schema.md)** Standards before going through the ERC725Y Data Keys.
 
 :::
 
@@ -67,7 +67,7 @@ This data key represents a map key, both holding:
 - an [ERC165 interface ID](https://eips.ethereum.org/EIPS/eip-165) to quickly identify the standard used by each asset smart contract (without the need to query the asset contracts directly).
 - the index in the [`LSP5ReceivedAssets[]`](#lsp5receivedassets-) Array where the received asset addresses are stored.
 
-The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](../accounts/lsp1-universal-receiver-delegate.md)).
+The `LSP5ReceivedAssetsMap` data key also helps to prevent adding duplications to the array when automatically added via smart contract (_e.g., _ an [LSP1-UniversalReceiverDelegate](/standards/accounts/lsp1-universal-receiver-delegate.md)).
 
 ```json
 {
@@ -87,10 +87,10 @@ The data keys are also set on the **sender Universal Profile** to remove the tok
 
 :::
 
-If set when transferring tokens, these data keys are automatically updated in the Universal Profile storage via the [LSP1UniversalReceiverDelegateUP](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md) contract.
+If set when transferring tokens, these data keys are automatically updated in the Universal Profile storage via the [LSP1UniversalReceiverDelegateUP](/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md) contract.
 
 :::note
-Check the [token transfer scenario](../accounts/lsp1-universal-receiver-delegate#token-transfer-scenario) for more details.
+Check the [token transfer scenario](/standards/accounts/lsp1-universal-receiver-delegate#token-transfer-scenario) for more details.
 :::
 
 ![Token transfer detailed flow](/img/standards/lsp5/detailed-token-transfer.jpeg)

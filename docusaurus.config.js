@@ -1,4 +1,6 @@
 import { themes as prismThemes } from 'prism-react-renderer';
+import path from 'path';
+import fs from 'fs';
 
 export default {
   title: 'LUKSO Tech Documentation',
@@ -9,6 +11,7 @@ export default {
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'warn',
   onBrokenMarkdownLinks: 'warn',
+  trailingSlash: true,
   favicon: 'img/favicon.png',
   organizationName: 'lukso-network', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
@@ -32,10 +35,6 @@ export default {
         redirects: [
           // Learn home
           {
-            from: '/learn/what-is-lukso',
-            to: '/learn/overview',
-          },
-          {
             from: '/learn/introduction',
             to: '/learn/overview',
           },
@@ -43,141 +42,12 @@ export default {
             from: '/learn/universal-profile/getting-started',
             to: '/learn/getting-started',
           },
-
-          // Learn/Smart Contract Developer
-          {
-            from: '/learn/smart-contract-developers/getting-started',
-            to: '/learn/digital-assets/getting-started',
-          },
-          {
-            from: '/learn/smart-contract-developers/create-lsp7-token',
-            to: '/learn/digital-assets/token/create-lsp7-token',
-          },
-          {
-            from: '/learn/smart-contract-developers/retrieve-token-type',
-            to: '/learn/digital-assets/retrieve-token-type',
-          },
-          // Learn/Expert guides
-          {
-            from: '/learn/expert-guides/key-manager/execute-relay-transactions',
-            to: '/learn/universal-profile/key-manager/execute-relay-transactions',
-          },
-          {
-            from: '/learn/expert-guides/key-manager/upgrade-key-manager',
-            to: '/learn/universal-profile/advanced-guides/upgrade-key-manager',
-          },
-          {
-            from: '/learn/expert-guides/universal-receiver/deploy-universal-receiver',
-            to: '/learn/universal-profile/universal-receiver/deploy-universal-receiver',
-          },
-          {
-            from: '/learn/expert-guides/universal-receiver/create-receiver-forwarder',
-            to: '/learn/universal-profile/universal-receiver/create-receiver-forwarder',
-          },
-          {
-            from: '/learn/expert-guides/vault/create-a-vault',
-            to: '/learn/vault/create-a-vault',
-          },
-          {
-            from: '/learn/expert-guides/vault/edit-vault-data',
-            to: '/learn/vault/edit-vault-data',
-          },
-          {
-            from: '/learn/expert-guides/accept-reject-assets',
-            to: '/learn/universal-profile/universal-receiver/accept-reject-assets',
-          },
-          {
-            from: '/learn/expert-guides/vault/grant-vault-permissions',
-            to: '/learn/vault/grant-vault-permissions',
-          },
-          {
-            from: '/learn/expert-guides/key-manager/get-controller-permissions',
-            to: '/learn/universal-profile/key-manager/get-controller-permissions',
-          },
-          {
-            from: '/learn/expert-guides/key-manager/grant-permissions',
-            to: '/learn/universal-profile/key-manager/grant-permissions',
-          },
-          {
-            from: '/learn/expert-guides/vault/interact-with-contracts',
-            to: '/learn/vault/interact-with-contracts',
-          },
           // Learn/Universal Profile
           {
             from: '/learn/universal-profile/interactions/transfer-lsp7-token',
             to: '/learn/universal-profile/interactions/transfer-tokens-and-nfts',
           },
-          {
-            from: '/learn/universal-profile/transfer-lyx',
-            to: '/learn/universal-profile/interactions/transfer-lyx',
-          },
-          {
-            from: '/learn/universal-profile/interact-with-contracts',
-            to: '/learn/universal-profile/interactions/interact-with-contracts',
-          },
-          {
-            from: '/learn/universal-profile/connect-profile/multi-provider',
-            to: '/learn/universal-profile/connect-profile/connect-up',
-          },
-          {
-            from: '/learn/universal-profile/interactions/deploy-token-with-metadata',
-            to: '/learn/universal-profile/interactions/batch-transactions',
-          },
-          // Learn/dApp Developer
-          {
-            from: '/learn/dapp-developer/standard-detection',
-            to: '/learn/standard-detection',
-          },
-
-          {
-            from: '/learn/dapp-developer/connect-profile',
-            to: '/learn/universal-profile/connect-profile/connect-up',
-          },
-          {
-            from: '/learn/dapp-developer/read-asset-data',
-            to: '/learn/digital-assets/metadata-management/read-asset-data',
-          },
-          // Learn/Digital Assets
-          {
-            from: '/learn/digital-assets/mint-lsp7-token',
-            to: '/learn/universal-profile/interactions/interact-with-contracts',
-          },
-          {
-            from: '/learn/digital-assets/create-lsp7-token',
-            to: '/learn/digital-assets/token/create-lsp7-token',
-          },
-          {
-            from: '/learn/assets',
-            to: '/learn/digital-assets/metadata-management/metadata-preparation',
-          },
-          // Learn/Universal Receiver
-          {
-            from: '/learn/universal-receiver/deploy-receiver-forwarder',
-            to: '/learn/universal-profile/universal-receiver/create-receiver-forwarder',
-          },
-          // Learn/Expert Guides
-          {
-            from: '/learn/expert-guides/deploy-multichain-contracts',
-            to: '/learn/other-guides/deploy-multichain-contracts',
-          },
-          {
-            from: '/learn/expert-guides/NFC-NFT',
-            to: '/learn/other-guides/NFC-NFT',
-          },
-          {
-            from: '/learn/expert-guides/run-graph-node',
-            to: '/learn/other-guides/run-graph-node',
-          },
-          {
-            from: '/learn/expert-guides/utilize-ipfs-storage',
-            to: '/learn/other-guides/utilize-ipfs-storage',
-          },
-
           // Tools
-          {
-            from: '/tools/partners',
-            to: '/tools/integrations',
-          },
           {
             from: '/tools/getting-started',
             to: '/tools',
@@ -251,52 +121,26 @@ export default {
             to: '/tools/apis/relayer-api',
           },
 
-          // lsp-factory deprecation
-          {
-            from: '/tools/lsp-factoryjs/deployment/universal-profile',
-            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
-          },
-          {
-            from: '/tools/lsp-factoryjs/deployment/digital-asset',
-            to: '/learn/digital-assets/getting-started',
-          },
-          {
-            from: '/tools/lsp-factoryjs/getting-started',
-            to: '/tools/dapps/lsp-factoryjs/getting-started',
-          },
-          {
-            from: '/tools/lsp-factoryjs/classes/universal-profile',
-            to: '/tools/dapps/lsp-factoryjs/getting-started',
-          },
-          {
-            from: '/tools/lsp-factoryjs/classes/lsp4-digital-asset-metadata',
-            to: '/tools/dapps/lsp-factoryjs/getting-started',
-          },
-          {
-            from: '/tools/lsp-factoryjs/classes/lsp7-digital-asset',
-            to: '/tools/dapps/lsp-factoryjs/getting-started',
-          },
-          {
-            from: '/tools/lsp-factoryjs/classes/lsp8-identifiable-digital-asset',
-            to: '/tools/dapps/lsp-factoryjs/getting-started',
-          },
-          {
-            from: '/learn/expert-guides/universal-profile/deploy-universal-profile',
-            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
-          },
-          {
-            from: '/learn/expert-guides/universal-profile/create-profile',
-            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
-          },
-          {
-            from: '/learn/expert-guides/deploy-up-with-lsp23',
-            to: '/learn/universal-profile/advanced-guides/deploy-up-with-lsp23',
-          },
-
           // Standards
           {
             from: '/standards/universal-profile/lsp0-erc725account',
             to: '/standards/accounts/lsp0-erc725account',
+          },
+          {
+            from: '/standards/generic-standards/lsp2-json-schema',
+            to: '/standards/metadata/lsp2-json-schema',
+          },
+          {
+            from: '/standards/universal-profile/lsp9-vault',
+            to: '/standards/accounts/lsp9-vault',
+          },
+          {
+            from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
+            to: '/standards/accounts/lsp1-universal-receiver-delegate',
+          },
+          {
+            from: '/standards/generic-standards/lsp1-universal-receiver',
+            to: '/standards/accounts/lsp1-universal-receiver',
           },
           {
             from: '/standards/universal-profile/lsp6-key-manager',
@@ -354,21 +198,33 @@ export default {
             from: '/standards/generic-standards/lsp26-follower-system',
             to: '/standards/accounts/lsp26-follower-system',
           },
+          // Add redirect for moved benefits-lukso-standards page
+          {
+            from: '/learn/overview/benefits-lukso-standards/',
+            to: '/learn/benefits-lukso-standards',
+          },
         ],
       },
     ],
+    pluginLlmsTxt,
   ],
   themeConfig: {
-    image: 'img/lukso-docs-og.jpg',
+    image: 'img/lukso-docs-og.png',
+
     metadata: [
+      {
+        name: 'google-site-verification',
+        content: 'eTTwR-Xukq1jGJm8UhSlRW0cl-WqbAH8Mp47v6fEb7Q',
+      },
       {
         name: 'title',
         content: 'LUKSO Developer Documentation',
       },
       {
         name: 'description',
-        content: 'Network, Standards, Tools and Guides for development on LUKSO and LSP smart contracts.',
-      }
+        content:
+          'Network, Standards, Tools and Guides for development on LUKSO and LSP smart contracts.',
+      },
     ],
     // announcementBar: {
     //   id: 'mainnet_hardfork',
@@ -507,7 +363,7 @@ export default {
             { label: 'Careers', href: 'https://jobs.lukso.network/jobs' },
             {
               label: 'Privacy Policy',
-              href: 'https://lukso.network/privacy',
+              href: 'https://lukso.network/legal/privacy-policy',
             },
             {
               label: 'LUKSO Grants Program',
@@ -545,7 +401,6 @@ export default {
           trackingID: 'G-2XGVSVVVD4',
           anonymizeIP: true,
         },
-
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
@@ -555,3 +410,104 @@ export default {
     ],
   ],
 };
+
+//Custom plugin for llms.txt file from the Prisma documentation
+//Check later if there's an official Docusaurus plugin for this
+async function pluginLlmsTxt(context) {
+  return {
+    name: 'llms-txt-plugin',
+    loadContent: async () => {
+      const { siteDir } = context;
+      const contentDir = path.join(siteDir, 'docs');
+      const allMdx = [];
+      const excludedDirs = ['faq', 'networks']; // Directories to exclude
+
+      const getMdxFiles = async (dir) => {
+        const entries = await fs.promises.readdir(dir, { withFileTypes: true });
+
+        for (const entry of entries) {
+          const fullPath = path.join(dir, entry.name);
+          if (entry.isDirectory()) {
+            const relativePath = path.relative(contentDir, fullPath);
+            if (excludedDirs.some((exDir) => relativePath.startsWith(exDir))) {
+              continue;
+            }
+            await getMdxFiles(fullPath);
+          } else if (
+            entry.isFile() &&
+            (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))
+          ) {
+            let content = await fs.promises.readFile(fullPath, 'utf8');
+
+            // --- Content Cleaning Start ---
+
+            // Remove Markdown image links: ![alt text](path/to/image.png)
+            content = content.replace(/!\[.*?\]\(.*?\)/g, '');
+
+            // Remove HTML img tags: <img src="..." alt="...">
+            content = content.replace(/<img[^>]*>/g, '');
+
+            // Remove HTML comments: <!-- ... -->
+            content = content.replace(/<!--[\s\S]*?-->/g, '');
+
+            // Attempt to remove potential JSX Component tags (opening/self-closing and closing)
+            // Targets tags starting with an uppercase letter. May need refinement.
+            content = content.replace(/<\/?([A-Z][^>\s]*)[^>]*>/g, '');
+
+            // --- Content Cleaning End ---
+
+            allMdx.push(content);
+          }
+        }
+      };
+
+      await getMdxFiles(contentDir);
+      return { allMdx };
+    },
+    postBuild: async ({ content, routes, outDir }) => {
+      // Access allMdx without type assertion
+      const { allMdx } = content;
+
+      // Write concatenated MDX content
+      const concatenatedPath = path.join(outDir, 'llms-full.txt');
+      await fs.promises.writeFile(concatenatedPath, allMdx.join('\n\n---\n\n'));
+
+      // we need to dig down several layers:
+      // find PluginRouteConfig marked by plugin.name === "docusaurus-plugin-content-docs"
+      const docsPluginRouteConfig = routes.filter(
+        (route) => route.plugin.name === 'docusaurus-plugin-content-docs',
+      )[0];
+
+      // docsPluginRouteConfig has a routes property has a record with the path "/" that contains all docs routes.
+      const allDocsRouteConfig = docsPluginRouteConfig.routes?.filter(
+        (route) => route.path === '/',
+      )[0];
+
+      // A little type checking first
+      if (!allDocsRouteConfig?.props?.version) {
+        return;
+      }
+
+      // this route config has a `props` property that contains the current documentation.
+      const currentVersionDocsRoutes = allDocsRouteConfig.props.version.docs;
+
+      // for every single docs route we now parse a path (which is the key) and a title
+      const docsRecords = Object.entries(currentVersionDocsRoutes).map(
+        ([path, record]) => {
+          return `- [${record.title}](${path}): ${record.description}`;
+        },
+      );
+
+      // Build up llms.txt file
+      const llmsTxt = `# ${context.siteConfig.title}\n\n## Docs\n\n${docsRecords.join('\n')}`;
+
+      // Write llms.txt file
+      const llmsTxtPath = path.join(outDir, 'llms.txt');
+      try {
+        fs.writeFileSync(llmsTxtPath, llmsTxt);
+      } catch (err) {
+        throw err;
+      }
+    },
+  };
+}
