@@ -16,7 +16,7 @@ The **`interfaceId`** and the **`SupportedStandards:{StandardName}`** data key i
 
 :::tip
 
-Use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/) to check standards interfaces and metadata of smart contract addresses easily.
+Use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/?network=mainnet) to check standards interfaces and metadata of smart contract addresses easily.
 
 :::
 
