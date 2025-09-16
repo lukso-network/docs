@@ -17,7 +17,7 @@ For normal user using the UP Browser Extension, their UP is currently setup with
 
 :::
 
-This advanced guide shows how to upgrade the [`LSP6KeyManager`](../../../contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) of your UP, which is the [`owner()`](../../../contracts/contracts/UniversalProfile.md#owner) of the [`UniversalProfile`](../../../contracts/contracts/UniversalProfile.md). We will:
+This advanced guide shows how to upgrade the [`LSP6KeyManager`](/contracts/contracts/LSP6KeyManager/LSP6KeyManager.md) of your UP, which is the [`owner()`](/contracts/contracts/UniversalProfile/UniversalProfile.md#owner) of the [`UniversalProfile`](/contracts/contracts/UniversalProfile/UniversalProfile.md). We will:
 
 1. Deploy a new `LSP6KeyManager` contract on LUKSO Testnet.
 2. Upgrade by transferring ownership of the UniversalProfile to the newly deployed `LSP6KeyManager`.
@@ -54,7 +54,7 @@ npm install web3 @lukso/lsp-smart-contracts
 
 Create a JavaScript file and add the following imports on the top of the file:
 
-- `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](../../../standards/access-control/lsp6-key-manager.md#permissions) permission.
+- `privateKey`: private key of a controller address, **MUST** have [**CHANGEOWNER**](/standards/access-control/lsp6-key-manager.md#permissions) permission.
 - `universalProfileAddress`: address of your Universal Profile.
 
 <Tabs>
@@ -95,7 +95,7 @@ const universalProfileAddress = '0x...';
 
 ## Step 2 - Initialize the controller
 
-> **Requirement:** the EOA controller that we will use MUST have the [**`CHANGEOWNER`**](../../../standards/access-control/lsp6-key-manager.md#permissions) permission on the UP
+> **Requirement:** the EOA controller that we will use MUST have the [**`CHANGEOWNER`**](/standards/access-control/lsp6-key-manager.md#permissions) permission on the UP
 
 <Tabs>
 
@@ -190,7 +190,7 @@ await newKeyManager
 
 ### Step 5.1 - Transfer Ownership to your new Key Manager
 
-Create a calldata for the [`transferOwnership(address)`](../../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
+Create a calldata for the [`transferOwnership(address)`](/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#transferownership) function and shift the ownership of your Universal Profile from your current LSP6 Key Manager.
 
 <Tabs>
 
@@ -220,7 +220,7 @@ await universalProfile.methods.transferOwnership(newKeyManager.address).send({
 
 ### Step 5.2 - Accept Ownership from your new Key Manager
 
-Create a calldata for the [`acceptOwnership()`](../../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
+Create a calldata for the [`acceptOwnership()`](/contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#acceptownership) function and take the ownership of your Universal Profile from your new LSP6 Key Manager.
 
 <Tabs>
 

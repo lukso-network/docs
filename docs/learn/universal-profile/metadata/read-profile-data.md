@@ -6,12 +6,15 @@ description: Learn how to read profile data from your Universal Profile.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeSandbox from "@site/src/components/CodeSandbox";
 
 # Read Data from your Universal Profile
 
+<CodeSandbox src="https://codesandbox.io/embed/twl5hf?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=12&hidenavigation=1&theme=dark" />
+
 :::success 💡 Tips
 
-Use our [ERC725 inspect](https://erc725-inspect.lukso.tech) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher) or [🔎 Inspector](https://erc725-inspect.lukso.tech/data-fetcher).
+Use our [ERC725 inspect](https://erc725-inspect.lukso.tech/?network=mainnet) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher?network=mainnet) or [🔎 Inspector](https://erc725-inspect.lukso.tech/inspector?network=mainnet).
 
 Simply paste your Universal Profile address in the search field and choose the data key from which to retrieve data. The value stored will be returned both as encoded and decoded.
 
@@ -41,7 +44,7 @@ The parameters to provide to the erc725 instance are:
 
 - [Schema](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas): specifies which data keys will be used to retrieve data from the Universal Profile.
 - Universal Profile address: the address of the Universal Profile you want to retrieve data from.
-- Optional only for retrieving decoded data: RPC provider (web3, ethereum, ethers) or plain RPC url of [mainnet](../../../networks/mainnet/parameters.md) or [testnet](../../../networks/testnet/parameters.md) networks.
+- Optional only for retrieving decoded data: RPC provider (web3, ethereum, ethers) or plain RPC url of [mainnet](/networks/mainnet/parameters.md) or [testnet](/networks/testnet/parameters.md) networks.
 
 ```js title="Creating an erc725 instance to read data from a Universal Profile"
 import { ERC725 } from '@erc725/erc725.js';
@@ -112,21 +115,21 @@ console.log(encodedProfileData);
 
 :::success Tips
 
-You can find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso.tech/data-fetcher) tool or in the [erc725 repo](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas).
+You can find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso.tech/data-fetcher?network=mainnet) tool or in the [erc725 repo](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas).
 
 :::
 
 We can also retrieve any of the specific data keys below:
 
-- `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](../../../standards/metadata/lsp3-profile-metadata#supportedstandardslsp3profile)
+- `SupportedStandards:LSP3Profile` used to know if the contract contains some metadata to display as a profile. [More details found here](/standards/metadata/lsp3-profile-metadata#supportedstandardslsp3profile)
 - `LSP3Profile` used to retrieve VerifiableURI encoded value. VerifiableURI is a reference to a JSON file that describes the Universal Profile meta data.
 - `LSP12IssuedAssets[]` used to retrieve assets the Universal Profile issued.
 - `LSP5ReceivedAssets[]` used to retrieve assets the Universal Profile received.
-- `LSP1UniversalReceiverDelegate` used to retrieve the [Universal Receiver Delegate](../../../standards/accounts/lsp1-universal-receiver/) smart contract address set on the Universal Profile.
+- `LSP1UniversalReceiverDelegate` used to retrieve the [Universal Receiver Delegate](/standards/accounts/lsp1-universal-receiver/) smart contract address set on the Universal Profile.
 
 ### Get the `LSP3Profile` Metadata
 
-One of the main ERC725Y data keys of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key. It is a standardized key that refers to the **metadata of the Universal Profile**.
+One of the main ERC725Y data keys of the Universal Profile is the [`LSP3Profile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key. It is a standardized key that refers to the **metadata of the Universal Profile**.
 
 This metadata takes the form of a reference to a JSON file. To retrieve the content of the JSON file (stored on IPFS, or in any other storage service), we need to use the `fetchData(...)` function from _erc725.js_. This will download the JSON file and verify its hash automatically.
 

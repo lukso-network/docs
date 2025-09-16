@@ -15,7 +15,7 @@ The [🆙 Browser Extension](/install-up-browser-extension) offers a better use
 
 |                                | Gnosis SAFE                | Base Smart Contract Account | EIP 6900 Modular Smart Contract account | Universal Profiles                                                                                  |
 | ------------------------------ | -------------------------- | --------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Profile like information       | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP3](../standards/metadata/lsp3-profile-metadata)                                      |
+| Profile like information       | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP3](/standards/metadata/lsp3-profile-metadata)                                        |
 | Generic Information Storage    | ❌                         | ❌                          | ❌                                      | ✅ Through [ERC725Y](../standards/accounts/lsp0-erc725account.md#erc725y---generic-key-value-store) |
 | Notifications and Reactability | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP1](../standards/accounts/lsp1-universal-receiver.md)                                 |
 | Permission System              | ❌                         | ❌                          | ❌                                      | ✅ Through [LSP6](../standards/access-control/lsp6-key-manager.md)                                  |
@@ -186,7 +186,7 @@ In the web3 ecosystem, many contracts can hold, send and receive assets (_e.g: �
 
 ### ✋🏻 Safety to prevent accidental transfers
 
-The `transfer(...)` function of [LSP7](../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../standards/tokens/LSP8-Identifiable-Digital-Asset.md) contains a [`bool force`](../standards/tokens/LSP7-Digital-Asset#force-mint-and-transfer) parameter to prevent accidental transfers like:
+The `transfer(...)` function of [LSP7](../standards/tokens/LSP7-Digital-Asset.md) and [LSP8](../standards/tokens/LSP8-Identifiable-Digital-Asset.md) contains a [`bool force`](/standards/tokens/LSP7-Digital-Asset#force-mint-and-transfer) parameter to prevent accidental transfers like:
 
 - when an incorrect address was pasted in an input field on a dApp or blockchain explorer.
 - when an incorrect `address` parameter was passed within an internal transaction of a complex interaction.

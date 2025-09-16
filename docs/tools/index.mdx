@@ -17,10 +17,23 @@ import DIALogo from '@site/static/img/tools/dia_logo.png';
 import DappnodeLogo from '@site/static/img/tools/dappnode_logo.png';
 import RemixLogo from '@site/static/img/tools/remix-ide.png';
 import Gateway from '@site/static/img/tools/gateway-logo.png';
+import ERC725 from '@site/static/img/tools/erc725-tools.png';
 
 # Tools
 
 Explore the different tools available for developers to build dApps, smart contracts and protocols more easily on LUKSO.
+
+## ERC725 Tools
+
+<ReferenceCard name="🔍 Inspector Tool" links={[ 
+  {label: 'View inspector', to: 'https://erc725-inspect.lukso.tech/?network=mainnet' },
+]}>
+
+Inspector tool for developers to easily retrieve the list of metadata and permission from Universal Profile and Digital Assets, as well as encoding and decoding data.
+
+<img style={{ verticalAlign: 'right' }} src={ERC725} />
+
+</ReferenceCard>
 
 ## APIs
 
@@ -47,6 +60,127 @@ Query easily any information about Universal Profiles and LSP7/8 Digital Assets.
 ]}>
 
 Available RPC endpoints for the Universal Profile Browser Extension 🧩.
+
+</ReferenceCard>
+
+</div>
+
+<br />
+
+## Smart Contracts
+
+<div className={styles.referenceCardGrid}>
+
+<ReferenceCard name="LSP Smart Contracts" links={[ 
+  {label: 'Overview', to: '/tools/lsp-smart-contracts/getting-started' },
+  {label: 'GitHub', to: 'https://github.com/lukso-network/lsp-smart-contracts' },
+]}>
+
+<a
+  href="https://github.com/lukso-network/lsp-smart-contracts"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
+      height: '100px',
+      width: 'auto',
+      objectFit: 'contain',
+    }}
+    src={SolidityLogo}
+  />
+</a>
+
+<a
+  class="imageLink"
+  href="https://www.npmjs.com/package/@lukso/lsp-smart-contracts"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
+>
+  <img
+    style={{ verticalAlign: 'middle' }}
+    alt="npm badge"
+    class="shield-badge"
+    src="https://img.shields.io/npm/v/@lukso/lsp-smart-contracts.svg?style=flat&label=%40lukso%2Flsp-smart-contracts"
+  />
+</a>
+
+The reference Solidity implementation of the LUKSO LSP Standards. Available as whole umbrella package or individual packages for specific LSPs.
+
+</ReferenceCard>
+
+<ReferenceCard name="Foundry Template" links={[ 
+  {label: 'GitHub', to: 'https://github.com/lukso-network/lukso-foundry-template' },
+]}>
+
+<a
+  href="https://github.com/lukso-network/lukso-foundry-template"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
+      height: '100px',
+      width: 'auto',
+      objectFit: 'contain',
+    }}
+    src={FoundryLogo}
+  />
+</a>
+
+Foundry repository template with pre-installed `@lukso/lsp-smart-contracts` package and example contracts ready to use.
+
+</ReferenceCard>
+
+<ReferenceCard name="Working with Remix IDE" links={[ 
+  {label: 'Website', to: 'https://remix.ethereum.org/' },
+  {label: 'Guide', to: '/tools/lsp-smart-contracts/working-with-remix' },
+]}>
+
+<a
+  href="/tools/lsp-smart-contracts/working-with-remix"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+  }}
+>
+  <img
+    style={{
+      verticalAlign: 'middle',
+      padding: '0 2rem 2rem',
+      cursor: 'pointer',
+      pointerEvents: 'none',
+      height: '100px',
+      width: 'auto',
+      objectFit: 'contain',
+    }}
+    src={RemixLogo}
+  />
+</a>
+
+Write and deploy LSP smart contracts quickly and easily with the Remix IDE, a ready-to-use browser-based development environment.
 
 </ReferenceCard>
 
@@ -224,128 +358,7 @@ Create docker compose file to connect to LUKSO network.
 
 <br />
 
-## Smart Contracts
-
-<div className={styles.referenceCardGrid}>
-
-<ReferenceCard name="LSP Smart Contracts" links={[ 
-  {label: 'Overview', to: '/tools/lsp-smart-contracts/getting-started' },
-  {label: 'GitHub', to: 'https://github.com/lukso-network/lsp-smart-contracts' },
-]}>
-
-<a
-  href="https://github.com/lukso-network/lsp-smart-contracts"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-  }}
->
-  <img
-    style={{
-      verticalAlign: 'middle',
-      padding: '0 2rem 2rem',
-      cursor: 'pointer',
-      pointerEvents: 'none',
-      height: '100px',
-      width: 'auto',
-      objectFit: 'contain'
-    }}
-    src={SolidityLogo}
-  />
-</a>
-
-<a
-  class="imageLink"
-  href="https://www.npmjs.com/package/@lukso/lsp-smart-contracts"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-  }}
->
-  <img
-    style={{ verticalAlign: 'middle' }}
-    alt="npm badge"
-    class="shield-badge"
-    src="https://img.shields.io/npm/v/@lukso/lsp-smart-contracts.svg?style=flat&label=%40lukso%2Flsp-smart-contracts"
-  />
-</a>
-
-The reference Solidity implementation of the LUKSO LSP Standards. Available as whole umbrella package or individual packages for specific LSPs.
-
-</ReferenceCard>
-
-<ReferenceCard name="Foundry Template" links={[ 
-  {label: 'GitHub', to: 'https://github.com/lukso-network/lukso-foundry-template' },
-]}>
-
-<a
-  href="https://github.com/lukso-network/lukso-foundry-template"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-  }}
->
-  <img
-    style={{
-      verticalAlign: 'middle',
-      padding: '0 2rem 2rem',
-      cursor: 'pointer',
-      pointerEvents: 'none',
-      height: '100px',
-      width: 'auto',
-      objectFit: 'contain'
-    }}
-    src={FoundryLogo}
-  />
-</a>
-
-Foundry repository template with pre-installed `@lukso/lsp-smart-contracts` package and example contracts ready to use.
-
-</ReferenceCard>
-
-<ReferenceCard name="Working with Remix IDE" links={[ 
-  {label: 'Website', to: 'https://remix.ethereum.org/' },
-  {label: 'Guide', to: '/tools/lsp-smart-contracts/working-with-remix' },
-]}>
-
-<a
-  href="/tools/lsp-smart-contracts/working-with-remix"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-  }}
->
-  <img
-    style={{
-      verticalAlign: 'middle',
-      padding: '0 2rem 2rem',
-      cursor: 'pointer',
-      pointerEvents: 'none',
-      height: '100px',
-      width: 'auto',
-      objectFit: 'contain'
-    }}
-    src={RemixLogo}
-  />
-</a>
-
-Write and deploy LSP smart contracts quickly and easily with the Remix IDE, a ready-to-use browser-based development environment.
-
-</ReferenceCard>
-
-</div>
-
-<br />
-
-## Explorers & Debuggers
+## Explorers
 
 <div className={styles.referenceCardGrid}>
 
@@ -355,14 +368,6 @@ Write and deploy LSP smart contracts quickly and easily with the Remix IDE, a re
 ]}>
 
 Network explorer for the LUKSO networks.
-
-</ReferenceCard>
-
-<ReferenceCard name="🔍 ERC725 Inspect" links={[ 
-  {label: 'View inspector', to: 'https://erc725-inspect.lukso.tech/' },
-]}>
-
-Inspector tool for developers to easily retrieve the list of metadata and permission from Universal Profile and Digital Assets, as well as encoding and decoding data.
 
 </ReferenceCard>
 
@@ -410,7 +415,7 @@ Third-party services and tools that are integrated with LUKSO to provide additio
       pointerEvents: 'none',
       height: '100px',
       width: 'auto',
-      objectFit: 'contain'
+      objectFit: 'contain',
     }}
     src={EnvioLogo}
   />
@@ -441,7 +446,7 @@ Indexer with playground to query data for Universal Profiles and Digital Assets 
       pointerEvents: 'none',
       height: '100px',
       width: 'auto',
-      objectFit: 'contain'
+      objectFit: 'contain',
     }}
     src={DIALogo}
   />
@@ -472,7 +477,7 @@ Oracle with different data feeds available for LUKSO.
       pointerEvents: 'none',
       height: '100px',
       width: 'auto',
-      objectFit: 'contain'
+      objectFit: 'contain',
     }}
     src={DappnodeLogo}
   />
@@ -503,7 +508,7 @@ Start running your own validator to stake and earn rewards.
       pointerEvents: 'none',
       height: '100px',
       width: 'auto',
-      objectFit: 'contain'
+      objectFit: 'contain',
     }}
     src={Gateway}
   />

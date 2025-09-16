@@ -13,17 +13,22 @@ If you want to set up your own workflow for uploading and retrieving files using
 - [`tools-data-providers`](https://github.com/lukso-network/tools-data-providers)
 - [`service-ipfs-proxy`](https://github.com/lukso-network/service-ipfs-proxy)
 
-To use IPFS as a file service through _Pinata_, _Infura_, _Cascade_ and _Sense_ you will have to:
+To use IPFS as a file service through _Pinata_ or _Infura_ you will have to:
 
-1. **Setup your Gateway Account**: Register with [Pinata](https://www.pinata.cloud/), [Infura](https://www.infura.io/), or one the two other storage solutions integrated with LUKSO that provide additional benefits:
+1. **Setup your Gateway Account**: Register with [Pinata](https://www.pinata.cloud/) or [Infura](https://www.infura.io/).
+    <!-- or one the two other storage solutions integrated with LUKSO that provide additional benefits: -->
+   <!--  -->
+   <!-- - [Sense](https://sense.pastel.network) -->
+   <!-- - [Cascade](https://cascade.pastel.network) -->
 
-- [Sense](https://sense.pastel.network)
-- [Cascade](https://cascade.pastel.network)
-
+:::note
 Ensure the IPFS gateway is enabled on your Infura account. This will grant you access to their service endpoints.
+:::
 
-1. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura, Pinata, Sense and a shared secret of your choice. This setup allows for a customized Pinata gateway for uploads and enables downloads via a subscription.
-2. **Upload your File Content**: Use the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret. And also by using Sense or Cascade API key, you can upload to Sense protocol directly.
+2. **Configure your Proxy**: Deploy a proxy on Cloudflare using secrets from Infura or Pinata for a customized Pinata gateway for uploads and enables downloads via a subscription.
+3. **Upload your File Content**: Use the [LUKSO network tools for data providers](https://github.com/lukso-network/tools-data-providers) to upload content. You can upload directly to Pinata using your Pinata credentials or to the proxy with the shared secret.
+
+<!-- And also by using Sense or Cascade API key, you can upload to Sense protocol directly. -->
 
 This approach offers flexibility in how you upload and manage your asset data. While direct uploads to Infura are possible, the recommended method involves using the proxy to ensure reliability and ease of use.
 
@@ -33,7 +38,7 @@ The setup will use Pinata as a file provider. Pinata is an IPFS pinning service 
 
 - [IPFS Network Documentation](https://docs.ipfs.tech/)
 - [Pinata Developer Documentation](https://docs.pinata.cloud/introduction)
-- [Pastel Network Documentation](https://docs.pastel.network/sense-protocol/master)
+<!-- - [Pastel Network Documentation](https://docs.pastel.network/sense-protocol/master) -->
 
 :::
 
@@ -67,7 +72,7 @@ const customResolver = new UrlResolver([
 
 ## Uploading IPFS Files
 
-You can use our [tools-data-providers] library to upload files to IPFS. [The supported services](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages) by this library includes Pinata, Infura, Cascade, and Sense.
+You can use our [tools-data-providers] library to upload files to IPFS. [The supported services](https://github.com/lukso-network/tools-data-providers?tab=readme-ov-file#apps-and-packages) by this library includes Pinata, Infura, or a local IPFS node.
 
 ### Local IPFS Node
 
@@ -120,6 +125,7 @@ const provider = new IPFSHttpClientUploader(import.meta.env.INFURA_GATEWAY, {
 });
 ```
 
+<!--
 ### Cascade
 
 ```ts
@@ -329,7 +335,7 @@ export async function POST({ request }: APIContext) {
     headers: { contentType: 'application/json' },
   });
 }
-```
+``` -->
 
 :::info Proxy Configuration
 

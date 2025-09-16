@@ -1,11 +1,15 @@
+.accordionIcon {
+  margin-right: 0.5rem;
+}
+
 .innerAccordion {
   text-align: left;
-  padding: 0;
 }
+
 .innerAccordionHeading {
   font-weight: 500;
 }
 
 .innerAccordionContent {
-  padding: 16px;
+  padding: 16px !important;
 }
