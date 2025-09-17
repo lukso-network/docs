@@ -18,7 +18,7 @@ To achieve this goal, we will perform the following steps:
 
 1. Create a JSON file that contains your profile details (`LSP3Profile` metadata).
 2. Upload this JSON file to [IPFS] using our [tools-data-providers](https://github.com/lukso-network/tools-data-providers) library.
-3. Set your new [profile metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key to your Universal Profile with our [erc725.js](../../../tools/dapps/erc725js/getting-started.md) library and `web3.js`.
+3. Set your new [profile metadata](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key to your Universal Profile with our [erc725.js](/tools/dapps/erc725js/getting-started.md) library and `web3.js`.
 
 ![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
 
@@ -134,7 +134,7 @@ This guide will store our Universal Profile metadata on [IPFS]. We can add edit 
 
 1. Creating a new JSON file with new or updated info (**☑️ done in the previous step**).
 2. Uploading the file to IPFS.
-3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
+3. Change the reference of our [LSP3Profile](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md#lsp3profile) key to point to our uploaded JSON file.
 
 ![LSP3Profile Metadata as JSON file on IPFS (diagram)](../img/profile-metadata-ipfs-explained.jpeg)
 
@@ -200,7 +200,7 @@ To do so, we will use our [erc725.js] library, which helps us encode the data ea
 
 Once our erc725.js is initialized, we can encode the `LSP3Profile` data to generate a key and a value.
 
-To do so, we use the [`encodeData()`](../../../tools/dapps/erc725js/methods.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
+To do so, we use the [`encodeData()`](/tools/dapps/erc725js/methods.md#encodeData) function. We call it with an object containing the `keyName` and the `value`:
 
 - `keyName`: `LSP3Profile`, the name of the key we want to encode.
 - `value`: an object with:
@@ -298,7 +298,7 @@ await universalProfileContract.methods.setData(
 <!-- prettier-ignore-end -->
 
 :::tip ERC725 Inspect
-You can also validate your LSP3Profile metadata of your Universal Profile using the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/).
+You can also validate your LSP3Profile metadata of your Universal Profile using the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/?network=mainnet).
 <img style={{ verticalAlign: 'right' }} src={ERC725} />
 :::
 
@@ -308,7 +308,7 @@ You can now check your UP on the [profile explorer](https://universalprofile.clo
 
 `https://wallet.universalprofile.cloud/[UP ADDRESS]?network=testnet`
 
-[erc725.js]: ../../../tools/dapps/erc725js/getting-started
+[erc725.js]: /tools/dapps/erc725js/getting-started
 [ipfs]: https://ipfs.io/
-[lsp-smart-contracts]: ../../../tools/lsp-smart-contracts/getting-started.md
+[lsp-smart-contracts]: /tools/lsp-smart-contracts/getting-started.md
 [tools-data-providers]: https://github.com/lukso-network/tools-data-providers

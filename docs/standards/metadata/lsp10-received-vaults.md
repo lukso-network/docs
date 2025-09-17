@@ -75,7 +75,7 @@ The data keys are also set on the **sender's Universal Profile** to remove the v
 
 :::
 
-If set when transferring vaults, these data keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](../../contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.md) contract.
+If set when transferring vaults, these data keys are automatically updated in the UniversalProfile storage via the [LSP1UniversalReceiverDelegateUP](/contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP.md) contract.
 
 ![Vault transfer detailed flow](/img/standards/lsp10/detailed-vault-transfer.jpeg)
 

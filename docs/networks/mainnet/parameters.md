@@ -17,7 +17,6 @@ import AddNetworkButton from '@site/src/components/AddNetworkButton'
 | Execution Block Explorer   | [https://explorer.lukso.network](https://explorer.lukso.network)                                     |
 | Execution Status Page      | [https://stats.execution.mainnet.lukso.network](https://stats.execution.mainnet.lukso.network)       |
 | Consensus Block Explorer   | [https://explorer.consensus.mainnet.lukso.network](https://explorer.consensus.mainnet.lukso.network) |
-| Consensus Status Page      | [https://stats.consensus.mainnet.lukso.network](https://stats.consensus.mainnet.lukso.network)       |
 | Client Diversity Dashboard | [https://clientdiversity.lukso.network/](https://clientdiversity.lukso.network/)                     |
 | Launchpad                  | [https://deposit.mainnet.lukso.network](https://deposit.mainnet.lukso.network)                       |
 | Checkpoints                | [https://checkpoints.mainnet.lukso.network](https://checkpoints.mainnet.lukso.network)               |
