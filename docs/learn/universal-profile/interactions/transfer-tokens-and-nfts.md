@@ -25,7 +25,7 @@ The full code of this example can be found in the 👾 [lukso-playground](https:
 
 :::
 
-This guide will teach you how to transfer [LSP7 tokens](../../../standards/tokens/LSP7-Digital-Asset.md) or [LSP8 NFTs](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) from a [Universal Profile](../../../standards/accounts/lsp0-erc725account.md) to any address.
+This guide will teach you how to transfer [LSP7 tokens](/standards/tokens/LSP7-Digital-Asset.md) or [LSP8 NFTs](/standards/tokens/LSP8-Identifiable-Digital-Asset.md) from a [Universal Profile](/standards/accounts/lsp0-erc725account.md) to any address.
 
 ## Setup Dependencies
 
@@ -62,9 +62,9 @@ First, create an instance of the LSP7 or LSP8 contract. You will need:
 
 ### Transfer LSP7 tokens
 
-Call the [LSP7 `transfer(address,address,uint256,bool,bytes)`](../../../contracts/contracts/LSP7DigitalAsset/#transfer) function and pass the amount as 3rd parameter.
+Call the [LSP7 `transfer(address,address,uint256,bool,bytes)`](/contracts/contracts/LSP7DigitalAsset/#transfer) function and pass the amount as 3rd parameter.
 
-> Since most tokens have 18 [`decimals()`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals), make sure to specify the `amount` with 18 decimals place. For instance, if you want to transfer 8 tokens the `amount` parameter will be: `8_000_000_000_000_000_000` ✅, not `8` ❌.
+> Since most tokens have 18 [`decimals()`](/contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals), make sure to specify the `amount` with 18 decimals place. For instance, if you want to transfer 8 tokens the `amount` parameter will be: `8_000_000_000_000_000_000` ✅, not `8` ❌.
 
 > Otherwise, the transfer might have occurred but you might not see the balance of the recipient updated, since you transferred only a tiny small amount (`8` for a token with 18 decimals is basically 1 / 1e18). To do so easily, use one of number utility function from _ethers.js_ or _web3.js_.
 
@@ -134,7 +134,7 @@ await chillToken.methods
 
 :::info Notes on decimals
 
-If you are transferring LSP7 tokens with `0` as [`decimals()`](../../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals) or NFTs represented as LSP7 with [TokenType 1](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype), just pass the amount as a number without using the number formatting function.
+If you are transferring LSP7 tokens with `0` as [`decimals()`](/contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#decimals) or NFTs represented as LSP7 with [TokenType 1](/standards/tokens/LSP4-Digital-Asset-Metadata.md#lsp4tokentype), just pass the amount as a number without using the number formatting function.
 
 Here is an example to transfer 2 x digital trading cards from the **LUKSO Family Game** (series LFG03):
 
@@ -158,7 +158,7 @@ await luksoFamilyGameSeries03.transfer(
 
 ### Transfer LSP8 NFTs
 
-Call the [LSP8 `transfer(address,address,bytes32,bool,bytes)`](../../../contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer) function and pass the `tokenId` of the NFT from the collection you want to transfer as 3rd parameter.
+Call the [LSP8 `transfer(address,address,bytes32,bool,bytes)`](/contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer) function and pass the `tokenId` of the NFT from the collection you want to transfer as 3rd parameter.
 
 Make sure you specify the **_tokenId_ as a 32 bytes long value**, as shown in the code snippet below.
 

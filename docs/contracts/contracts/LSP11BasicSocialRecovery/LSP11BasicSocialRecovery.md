@@ -10,7 +10,7 @@
 :::
 :::info Solidity implementation
 
-[`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+[`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 
 :::
 
@@ -28,7 +28,7 @@ When marked as 'public', a method can be called both externally and internally, 
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#constructor)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 
 :::
 
@@ -52,7 +52,7 @@ _Sets the target and the owner addresses_
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#addguardian)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `addGuardian(address)`
 - Function selector: `0xa526d83b`
 
@@ -77,7 +77,7 @@ Adds a guardian of the targetCan be called only by the owner
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#getguardianchoice)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `getGuardianChoice(address)`
 - Function selector: `0xf6a22f02`
 
@@ -108,7 +108,7 @@ Returns the address of a controller that a `guardian` selected for in order to r
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#getguardians)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `getGuardians()`
 - Function selector: `0x0665f04b`
 
@@ -133,7 +133,7 @@ Returns the addresses of all guardians The guardians will select an address to b
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#getguardiansthreshold)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `getGuardiansThreshold()`
 - Function selector: `0x187c5348`
 
@@ -158,7 +158,7 @@ Returns the guardian threshold The guardian threshold represents the minimum num
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#getrecoverycounter)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `getRecoveryCounter()`
 - Function selector: `0xf79c8b77`
 
@@ -183,7 +183,7 @@ Returns the current recovery counter When a recovery process is successfully fin
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#getrecoverysecrethash)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `getRecoverySecretHash()`
 - Function selector: `0x8f9083bb`
 
@@ -208,7 +208,7 @@ Returns the recovery secret hash
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#isguardian)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `isGuardian(address)`
 - Function selector: `0x0c68ba21`
 
@@ -239,7 +239,7 @@ Returns TRUE if the address provided is a guardian, FALSE otherwise
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#owner)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -264,7 +264,7 @@ Returns the address of the current owner.
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#recoverownership)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `recoverOwnership(address,string,bytes32)`
 - Function selector: `0xae8481b2`
 
@@ -299,7 +299,7 @@ Recovers the ownership permissions of an address in the linked target and increm
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#removeguardian)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `removeGuardian(address)`
 - Function selector: `0x71404156`
 
@@ -324,7 +324,7 @@ Removes a guardian of the targetCan be called only by the owner
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#renounceownership)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
 
@@ -343,7 +343,7 @@ Leaves the contract without owner. It will not be possible to call `onlyOwner` f
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#selectnewcontroller)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `selectNewController(address)`
 - Function selector: `0xaa7806d6`
 
@@ -370,7 +370,7 @@ select an address to be a potential controller address if he reaches the guardia
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#setguardiansthreshold)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `setGuardiansThreshold(uint256)`
 - Function selector: `0x6bfed20b`
 
@@ -395,7 +395,7 @@ Sets the minimum number of selection by the guardians required so that an addres
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#setrecoverysecrethash)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `setRecoverySecretHash(bytes32)`
 - Function selector: `0xf799e38d`
 
@@ -422,7 +422,7 @@ Throws if hash provided is bytes32(0)
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#supportsinterface)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -453,7 +453,7 @@ See [`IERC165-supportsInterface`](#ierc165-supportsinterface).
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#target)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `target()`
 - Function selector: `0xd4b83992`
 
@@ -478,7 +478,7 @@ The address of an ERC725 contract where we want to recover and set permissions f
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#transferownership)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -571,7 +571,7 @@ To avoid keeping unnecessary state
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#guardianadded)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Event signature: `GuardianAdded(address)`
 - Event topic hash: `0x038596bb31e2e7d3d9f184d4c98b310103f6d7f5830e5eec32bffe6f1728f969`
 
@@ -596,7 +596,7 @@ _Emitted when setting a new guardian for the target_
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#guardianremoved)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Event signature: `GuardianRemoved(address)`
 - Event topic hash: `0xb8107d0c6b40be480ce3172ee66ba6d64b71f6b1685a851340036e6e2e3e3c52`
 
@@ -621,7 +621,7 @@ _Emitted when removing an existing guardian for the target_
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#guardiansthresholdchanged)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Event signature: `GuardiansThresholdChanged(uint256)`
 - Event topic hash: `0x7146d20a2c7b7c75c203774c9f241b61698fac43a4a81ccd828f0d8162392790`
 
@@ -646,7 +646,7 @@ _Emitted when changing the guardian threshold_
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#ownershiptransferred)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Event signature: `OwnershipTransferred(address,address)`
 - Event topic hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
 
@@ -673,7 +673,7 @@ event OwnershipTransferred(
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#recoveryprocesssuccessful)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Event signature: `RecoveryProcessSuccessful(uint256,address,bytes32,address[])`
 - Event topic hash: `0xf4ff8803d6b43af46d48c200977209829c2f42f19f27eda1c89dbf26a28009cd`
 
@@ -706,7 +706,7 @@ _Emitted when the recovery process is finished by the controller who reached the
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#secrethashchanged)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Event signature: `SecretHashChanged(bytes32)`
 - Event topic hash: `0x2e8c5419a62207ade549fe0b66c1c85c16f5e1ed654815dee3a3f3ac41770df3`
 
@@ -731,7 +731,7 @@ _Emitted when changing the secret hash_
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#selectednewcontroller)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Event signature: `SelectedNewController(uint256,address,address)`
 - Event topic hash: `0xe43f3c1093c69ab76b2cf6246090acb2f8eab7f19ba9942dfc8b8ec446e3a3de`
 
@@ -764,7 +764,7 @@ _Emitted when a guardian select a new potential controller address for the targe
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#addresszeronotallowed)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `AddressZeroNotAllowed()`
 - Error hash: `0x0855380c`
 
@@ -783,7 +783,7 @@ reverts when the address zero calls `recoverOwnership(..)` function
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#callerisnotguardian)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `CallerIsNotGuardian(address)`
 - Error hash: `0x5560e16d`
 
@@ -808,7 +808,7 @@ reverts when the caller is not a guardian
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#guardianalreadyexist)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `GuardianAlreadyExist(address)`
 - Error hash: `0xd52858db`
 
@@ -833,7 +833,7 @@ reverts when adding an already existing guardian
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#guardiandonotexist)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `GuardianDoNotExist(address)`
 - Error hash: `0x3d8e524e`
 
@@ -858,7 +858,7 @@ reverts when removing a non-existing guardian
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#guardiansnumbercannotgobelowthreshold)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `GuardiansNumberCannotGoBelowThreshold(uint256)`
 - Error hash: `0x27113777`
 
@@ -883,7 +883,7 @@ reverts when removing a guardian and the threshold is equal to the number of gua
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#ownablecallernottheowner)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `OwnableCallerNotTheOwner(address)`
 - Error hash: `0xbf1169c5`
 
@@ -908,7 +908,7 @@ Reverts when only the owner is allowed to call the function.
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#ownablecannotsetzeroaddressasowner)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `OwnableCannotSetZeroAddressAsOwner()`
 - Error hash: `0x1ad8836c`
 
@@ -927,7 +927,7 @@ Reverts when trying to set `address(0)` as the contract owner when deploying the
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#secrethashcannotbezero)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `SecretHashCannotBeZero()`
 - Error hash: `0x7f617002`
 
@@ -946,7 +946,7 @@ reverts when the secret hash provided is equal to bytes32(0)
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#thresholdcannotbehigherthanguardiansnumber)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `ThresholdCannotBeHigherThanGuardiansNumber(uint256,uint256)`
 - Error hash: `0xe3db80bd`
 
@@ -975,7 +975,7 @@ reverts when setting the guardians threshold to a number higher than the guardia
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#thresholdnotreachedforrecoverer)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `ThresholdNotReachedForRecoverer(address,uint256,uint256)`
 - Error hash: `0xf78f0507`
 
@@ -1006,7 +1006,7 @@ reverts when `recoverOwnership(..)` is called with a recoverer that didn't reach
 :::note References
 
 - Specification details: [**LSP-11-BasicSocialRecovery**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-11-BasicSocialRecovery.md#wrongplainsecret)
-- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
+- Solidity implementation: [`LSP11BasicSocialRecovery.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp-smart-contracts/contracts/LSP11BasicSocialRecovery/LSP11BasicSocialRecovery.sol)
 - Error signature: `WrongPlainSecret()`
 - Error hash: `0x6fa723c3`
 
@@ -1026,11 +1026,8 @@ reverts when the plain secret produce a different hash than the secret hash orig
 <!-- SPECS -->
 
 [ERC-165]: https://eips.ethereum.org/EIPS/eip-165
-[EIP-165]: https://eips.ethereum.org/EIPS/eip-165
 [ERC-173]: https://eips.ethereum.org/EIPS/eip-173
-[EIP-173]: https://eips.ethereum.org/EIPS/eip-173
 [ERC-191]: https://eips.ethereum.org/EIPS/eip-191
-[EIP-191]: https://eips.ethereum.org/EIPS/eip-191
 [ERC-725X]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725X
 [ERC-725Y]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725Y
 [ERC-725]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md
@@ -1039,7 +1036,7 @@ reverts when the plain secret produce a different hash than the secret hash orig
 [LSP-0-ERC725Account]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-0-ERC725Account.md
 [LSP-1-UniversalReceiver]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-1-UniversalReceiver.md
 [LSP-2-ERC725YJSONSchema]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-2-ERC725YJSONSchema.md
-[LSP-3-UniversalProfile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md
+[LSP-3-Profile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-Profile-Metadata.md
 [LSP-4-DigitalAsset-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-4-DigitalAsset-Metadata.md
 [LSP-5-ReceivedAssets]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-5-ReceivedAssets.md
 [LSP-6-KeyManager]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-6-KeyManager.md
@@ -1087,125 +1084,109 @@ reverts when the plain secret produce a different hash than the secret hash orig
 
 <!-- ERC725 LIBRARY -->
 
-[`ERC725.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725.sol
-[`ERC725Init.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Init.sol
-[`ERC725InitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725InitAbstract
-[`IERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725X.sol
-[`ERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725X.sol
-[`ERC725XCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XCore.sol
-[`ERC725XInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInit.sol
-[`ERC725XInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInitAbstract.sol
-[`IERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725Y.sol
-[`ERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Y.sol
-[`ERC725YCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YCore.sol
-[`ERC725YInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInit.sol
-[`ERC725YInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInitAbstract.soll
-[`OwnableUnset.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/custom/OwnableUnset.sol
+[`ERC725.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725.sol
+[`ERC725Init.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725Init.sol
+[`ERC725InitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725InitAbstract.sol
+[`IERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/interfaces/IERC725X.sol
+[`ERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725X.sol
+[`ERC725XCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v7.0.0/implementations/contracts/ERC725XCore.sol
+[`ERC725XInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725XInit.sol
+[`ERC725XInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725XInitAbstract.sol
+[`IERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/interfaces/IERC725Y.sol
+[`ERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725Y.sol
+[`ERC725YCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v7.0.0/implementations/contracts/ERC725YCore.sol
+[`ERC725YInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725YInit.sol
+[`ERC725YInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725YInitAbstract.soll
+[`OwnableUnset.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v7.0.0/implementations/contracts/custom/OwnableUnset.sol
 
 <!-- EXTERNAL LIBRARIES -->
 
-[`Create2.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Create2.sol
-[`ECDSA.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/cryptography/ECDSA.sol
-[`ERC165Checker.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165Checker.sol
-[`Address.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Address.sol
-[`ERC165.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165.sol
-[`EnumerableSet.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/structs/EnumerableSet.so
-[`Initializable.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/v4.9.2/contracts/proxy/utils/Initializable.sol
-[`BytesLib.sol`]: https://github.com/GNSPS/solidity-bytes-utils/blob/v0.8.0/contracts/BytesLib.sol
+[`Create2.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/Create2.sol
+[`ECDSA.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/cryptography/ECDSA.sol
+[`ERC165Checker.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/introspection/ERC165Checker.sol
+[`Address.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/Address.sol
+[`ERC165.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/introspection/ERC165.sol
+[`EnumerableSet.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/structs/EnumerableSet.so
+[`Initializable.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/v4.9.6/contracts/proxy/utils/Initializable.sol
+[`BytesLib.sol`]: https://github.com/GNSPS/solidity-bytes-utils/blob/v0.8.4/contracts/BytesLib.sol
 
 <!-- SOLIDITY IMPLEMENTATION -->
 
-[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol
-[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Utils.sol
-[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInitAbstract.sol
-[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/ILSP0ERC725Account.sol
-[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725Account.sol
-[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInit.sol
-[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Constants.sol
-[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInitAbstract.sol
-[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfile.sol
-[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInit.sol
-[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol
-[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Utils.sol
-[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol
-[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiver.sol
-[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Constants.sol
-[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Errors.sol
-[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadataInitAbstract.sol
-[`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/ontracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
-[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Compatibility.sol
-[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol
-[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/ILSP4Compatibility.sol
-[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Errors.sol
-[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6SetDataModule.sol
-[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerCore.sol
-[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6ExecuteModule.sol
-[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Utils.sol
-[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Constants.sol
-[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/ILSP6KeyManager.sol
-[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Errors.sol
-[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6OwnershipModule.sol
-[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInitAbstract.sol
-[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManager.sol
-[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInit.sol
-[`LSP7DigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol
-[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20InitAbstract.sol
-[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20.sol
-[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol
-[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetInitAbstract.sol
-[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol
-[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupplyInitAbstract.sol
-[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol
-[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInitAbstract.sol
-[`LSP7CompatibleERC20MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInitAbstract.sol
-[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol
-[`LSP7CompatibleERC20Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20Mintable.sol
-[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Errors.sol
-[`LSP7CompatibleERC20MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInit.sol
-[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInit.sol
-[`ILSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/ILSP7CompatibleERC20.sol
-[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/ILSP7Mintable.sol
-[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol
-[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7BurnableInitAbstract.sol
-[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Constants.sol
-[`LSP8IdentifiableDigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetCore.sol
-[`LSP8CompatibleERC721InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721InitAbstract.sol
-[`LSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721.sol
-[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol
-[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8EnumerableInitAbstract.sol
-[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.sol
-[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupplyInitAbstract.sol
-[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.sol
-[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetInitAbstract.sol
-[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInitAbstract.sol
-[`ILSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/ILSP8CompatibleERC721.sol
-[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol
-[`LSP8CompatibleERC721MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInitAbstract.s
-[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol
-[`LSP8CompatibleERC721Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol
-[`LSP8CompatibleERC721MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInit.sol
-[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Errors.sol
-[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInit.sol
-[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.sol
-[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/ILSP8Mintable.sol
-[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.s
-[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol
-[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/ILSP14Ownable2Step.sol
-[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Constants.sol
-[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Errors.sol
-[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extendable.sol
-[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extension.sol
-[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Constants.sol
-[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Errors.sol
-[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Utils.sol
-[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20CallVerification.sol
-[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/ILSP20CallVerifier.sol
-[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Constants.sol
-[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Errors.sol
-[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol
-[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Utils.sol
-[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Constants.sol
-[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Utils.sol
-[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Constants.sol
+[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountCore.sol
+[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0Utils.sol
+[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountInitAbstract.sol
+[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/ILSP0ERC725Account.sol
+[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725Account.sol
+[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountInit.sol
+[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0Constants.sol
+[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfileInitAbstract.sol
+[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol
+[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfileInit.sol
+[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1UniversalReceiverDelegateUP.sol
+[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1UniversalReceiverDelegateVault.sol
+[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1Errors.sol
+[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/LSP1Utils.sol
+[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol
+[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/LSP1Constants.sol
+[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4DigitalAssetMetadataInitAbstract.sol
+[`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
+[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Constants.sol
+[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Errors.sol
+[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6SetDataModule.sol
+[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerCore.sol
+[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6ExecuteModule.sol
+[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Utils.sol
+[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Constants.sol
+[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/ILSP6KeyManager.sol
+[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Errors.sol
+[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6OwnershipModule.sol
+[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInitAbstract.sol
+[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManager.sol
+[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInit.sol
+[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/ILSP7DigitalAsset.sol
+[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAssetInitAbstract.sol
+[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CappedSupply.sol
+[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CappedSupplyInitAbstract.sol
+[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol
+[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7MintableInitAbstract.sol
+[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7Mintable.sol
+[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7Errors.sol
+[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7MintableInit.sol
+[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/ILSP7Mintable.sol
+[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7Burnable.sol
+[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7BurnableInitAbstract.sol
+[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7Constants.sol
+[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/ILSP8IdentifiableDigitalAsset.sol
+[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8EnumerableInitAbstract.sol
+[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8Enumerable.sol
+[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CappedSupplyInitAbstract.sol
+[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CappedSupply.sol
+[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8IdentifiableDigitalAssetInitAbstract.sol
+[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8MintableInitAbstract.sol
+[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol
+[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8Mintable.sol
+[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8Errors.sol
+[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8MintableInit.sol
+[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8Burnable.sol
+[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/ILSP8Mintable.sol
+[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8Constants.s
+[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Ownable2Step.sol
+[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/ILSP14Ownable2Step.sol
+[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Constants.sol
+[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Errors.sol
+[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Extendable.sol
+[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Extension.sol
+[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Constants.sol
+[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Errors.sol
+[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Utils.sol
+[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20CallVerification.sol
+[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/ILSP20CallVerifier.sol
+[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20Constants.sol
+[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20Errors.sol
+[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp2-contracts/contracts/LSP2Utils.sol
+[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp5-contracts/contracts/LSP5Utils.sol
+[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp5-contracts/contracts/LSP5Constants.sol
+[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp10-contracts/contracts/LSP10Utils.sol
+[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp10-contracts/contracts/LSP10Constants.sol
 
 <!-- prettier-ignore-end -->
