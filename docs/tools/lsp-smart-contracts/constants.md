@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Constants
 
-The [`constants.ts`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/constants.ts) file exposes many useful variables.
+The [`constants.ts`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp-smart-contracts/constants.ts) file exposes many useful variables.
 
 ```ts
 import {

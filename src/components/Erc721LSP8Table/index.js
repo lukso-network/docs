@@ -65,7 +65,7 @@ export default function Erc721LSP8Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#authorizeoperator">
+            <a href="/contracts/contracts/LSP8IdentifiableDigitalAsset/#authorizeoperator">
               🔍 Function details
             </a>
           </td>
@@ -76,7 +76,7 @@ export default function Erc721LSP8Table() {
           </td>
           <td>
             <pre language="solidity">getOperatorsOf(bytes32 tokenId)</pre>
-            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#getoperatorsof">
+            <a href="/contracts/contracts/LSP8IdentifiableDigitalAsset/#getoperatorsof">
               🔍 Function details
             </a>
           </td>
@@ -108,7 +108,7 @@ export default function Erc721LSP8Table() {
               {'  '}bytes32 tokenId
               <br />)
             </pre>
-            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#isoperatorfor">
+            <a href="/contracts/contracts/LSP8IdentifiableDigitalAsset/#isoperatorfor">
               🔍 Function details
             </a>
           </td>
@@ -141,7 +141,7 @@ export default function Erc721LSP8Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer">
+            <a href="/contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer">
               🔍 Function details
             </a>
           </td>
@@ -177,7 +177,7 @@ export default function Erc721LSP8Table() {
             <p style={{ marginBottom: '1rem' }}>
               Set <code>force = false</code> for safe transfer behavior
             </p>
-            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer">
+            <a href="/contracts/contracts/LSP8IdentifiableDigitalAsset/#transfer">
               🔍 Function details
             </a>
           </td>
@@ -199,7 +199,7 @@ export default function Erc721LSP8Table() {
               {'  '}bytes memory data
               <br />)
             </pre>
-            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#revokeoperator">
+            <a href="/contracts/contracts/LSP8IdentifiableDigitalAsset/#revokeoperator">
               🔍 Function details
             </a>
           </td>
@@ -222,7 +222,7 @@ export default function Erc721LSP8Table() {
                 <li>etc...</li>
               </ol>
             </p>
-            <a href="../../contracts/contracts/LSP8IdentifiableDigitalAsset/#batchcalls">
+            <a href="/contracts/contracts/LSP8IdentifiableDigitalAsset/#batchcalls">
               🔍 Function details
             </a>
             {/* <li>

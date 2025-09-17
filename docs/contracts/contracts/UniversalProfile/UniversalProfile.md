@@ -5,12 +5,13 @@
 
 :::info Standard Specifications
 
-[`UniversalProfile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md)
+[`UniversalProfile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md)
+[`UniversalProfile`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-Profile-Metadata.md)
 
 :::
 :::info Solidity implementation
 
-[`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+[`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 
 :::
 
@@ -27,8 +28,8 @@ When marked as 'public', a method can be called both externally and internally, 
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#constructor)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#constructor)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 
 :::
 
@@ -66,8 +67,8 @@ Set `initialOwner` as the contract owner and the `SupportedStandards:LSP3Profile
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#fallback)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#fallback)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 
 :::
 
@@ -81,8 +82,8 @@ fallback() external payable;
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#receive)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#receive)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 
 :::
 
@@ -96,8 +97,8 @@ receive() external payable;
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#renounce_ownership_confirmation_delay)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#renounce_ownership_confirmation_delay)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `RENOUNCE_OWNERSHIP_CONFIRMATION_DELAY()`
 - Function selector: `0xead3fbdf`
 
@@ -122,8 +123,8 @@ function RENOUNCE_OWNERSHIP_CONFIRMATION_DELAY()
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#renounce_ownership_confirmation_period)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#renounce_ownership_confirmation_period)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `RENOUNCE_OWNERSHIP_CONFIRMATION_PERIOD()`
 - Function selector: `0x01bfba61`
 
@@ -148,8 +149,8 @@ function RENOUNCE_OWNERSHIP_CONFIRMATION_PERIOD()
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#version)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#version)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `VERSION()`
 - Function selector: `0xffa1ad74`
 
@@ -173,8 +174,8 @@ _Contract version._
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#acceptownership)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#acceptownership)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `acceptOwnership()`
 - Function selector: `0x79ba5097`
 
@@ -208,8 +209,8 @@ Transfer ownership of the contract from the current [`owner()`](#owner) to the [
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#batchcalls)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#batchcalls)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `batchCalls(bytes[])`
 - Function selector: `0x6963d438`
 
@@ -247,8 +248,8 @@ Allows a caller to batch different function calls in one call. Perform a `delega
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#execute)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#execute)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `execute(uint256,address,uint256,bytes)`
 - Function selector: `0x44c028fe`
 
@@ -315,8 +316,8 @@ Generic executor function to:
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#executebatch)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#executebatch)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `executeBatch(uint256[],address[],uint256[],bytes[])`
 - Function selector: `0x31858452`
 
@@ -384,8 +385,8 @@ Batch executor function that behaves the same as [`execute`](#execute) but allow
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#getdata)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdata)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `getData(bytes32)`
 - Function selector: `0x54f6127f`
 
@@ -417,8 +418,8 @@ Get in the ERC725Y storage the bytes data stored at a specific data key `dataKey
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#getdatabatch)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#getdatabatch)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `getDataBatch(bytes32[])`
 - Function selector: `0xdedff9c6`
 
@@ -452,8 +453,8 @@ Get in the ERC725Y storage the bytes data stored at multiple data keys `dataKeys
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#isvalidsignature)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#isvalidsignature)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `isValidSignature(bytes32,bytes)`
 - Function selector: `0x1626ba7e`
 
@@ -507,8 +508,8 @@ Handles two cases:
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#owner)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#owner)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `owner()`
 - Function selector: `0x8da5cb5b`
 
@@ -532,8 +533,8 @@ Returns the address of the current owner.
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#pendingowner)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#pendingowner)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `pendingOwner()`
 - Function selector: `0xe30c3978`
 
@@ -563,8 +564,8 @@ The address that ownership of the contract is transferred to. This address may u
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#renounceownership)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#renounceownership)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `renounceOwnership()`
 - Function selector: `0x715018a6`
 
@@ -602,8 +603,8 @@ Renounce ownership of the contract in a 2-step process.
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#setdata)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdata)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `setData(bytes32,bytes)`
 - Function selector: `0x7f23690c`
 
@@ -647,8 +648,8 @@ Sets a single bytes value `dataValue` in the ERC725Y storage for a specific data
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#setdatabatch)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#setdatabatch)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `setDataBatch(bytes32[],bytes[])`
 - Function selector: `0x97902421`
 
@@ -692,8 +693,8 @@ Batch data setting function that behaves the same as [`setData`](#setdata) but a
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#supportsinterface)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#supportsinterface)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `supportsInterface(bytes4)`
 - Function selector: `0x01ffc9a7`
 
@@ -725,8 +726,8 @@ Achieves the goal of [ERC-165] to detect supported interfaces and [LSP-17-Contra
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#transferownership)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#transferownership)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `transferOwnership(address)`
 - Function selector: `0xf2fde38b`
 
@@ -762,8 +763,8 @@ Initiate the process of transferring ownership of the contract by setting the ne
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#universalreceiver)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#universalreceiver)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Function signature: `universalReceiver(bytes32,bytes)`
 - Function selector: `0x6bb56a14`
 
@@ -1212,8 +1213,8 @@ function _revertWithLSP20DefaultError(
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#contractcreated)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#contractcreated)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `ContractCreated(uint256,address,uint256,bytes32)`
 - Event topic hash: `0xa1fb700aaee2ae4a2ff6f91ce7eba292f89c2f5488b8ec4c5c5c8150692595c3`
 
@@ -1247,8 +1248,8 @@ Emitted when a new contract was created and deployed.
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#datachanged)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#datachanged)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `DataChanged(bytes32,bytes)`
 - Event topic hash: `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2`
 
@@ -1275,8 +1276,8 @@ Emitted when data at a specific `dataKey` was changed to a new value `dataValue`
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#executed)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#executed)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `Executed(uint256,address,uint256,bytes4)`
 - Event topic hash: `0x4810874456b8e6487bd861375cf6abd8e1c8bb5858c8ce36a86a04dabfac199e`
 
@@ -1310,8 +1311,8 @@ Emitted when calling an address `target` (EOA or contract) with `value`.
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#ownershiprenounced)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#ownershiprenounced)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `OwnershipRenounced()`
 - Event topic hash: `0xd1f66c3d2bc1993a86be5e3d33709d98f0442381befcedd29f578b9b2506b1ce`
 
@@ -1331,8 +1332,8 @@ Emitted when the ownership of the contract has been renounced.
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#ownershiptransferstarted)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#ownershiptransferstarted)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `OwnershipTransferStarted(address,address)`
 - Event topic hash: `0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700`
 
@@ -1362,8 +1363,8 @@ Emitted when [`transferOwnership(..)`](#transferownership) was called and the fi
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#ownershiptransferred)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#ownershiptransferred)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `OwnershipTransferred(address,address)`
 - Event topic hash: `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0`
 
@@ -1389,8 +1390,8 @@ event OwnershipTransferred(
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#renounceownershipstarted)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#renounceownershipstarted)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `RenounceOwnershipStarted()`
 - Event topic hash: `0x81b7f830f1f0084db6497c486cbe6974c86488dcc4e3738eab94ab6d6b1653e7`
 
@@ -1410,8 +1411,8 @@ Emitted when starting the [`renounceOwnership(..)`](#renounceownership) 2-step p
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#universalreceiver)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#universalreceiver)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Event signature: `UniversalReceiver(address,uint256,bytes32,bytes,bytes)`
 - Event topic hash: `0x9c3ba68eb5742b8e3961aea0afc7371a71bf433c8a67a831803b64c064a178c2`
 
@@ -1451,8 +1452,8 @@ Emitted when the [`universalReceiver`](#universalreceiver) function was called w
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_contractdeploymentfailed)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_contractdeploymentfailed)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_ContractDeploymentFailed()`
 - Error hash: `0x0b07489b`
 
@@ -1470,8 +1471,8 @@ Reverts when contract deployment failed via [`execute`](#execute) or [`executeBa
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_createoperationsrequireemptyrecipientaddress)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_createoperationsrequireemptyrecipientaddress)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_CreateOperationsRequireEmptyRecipientAddress()`
 - Error hash: `0x3041824a`
 
@@ -1489,8 +1490,8 @@ Reverts when passing a `to` address that is not `address(0)` (= address zero) wh
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_executeparametersemptyarray)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_executeparametersemptyarray)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_ExecuteParametersEmptyArray()`
 - Error hash: `0xe9ad2b5f`
 
@@ -1508,8 +1509,8 @@ Reverts when one of the array parameter provided to the [`executeBatch`](#execut
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_executeparameterslengthmismatch)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_executeparameterslengthmismatch)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_ExecuteParametersLengthMismatch()`
 - Error hash: `0x3ff55f4d`
 
@@ -1527,8 +1528,8 @@ Reverts when there is not the same number of elements in the `operationTypes`, `
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_insufficientbalance)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_insufficientbalance)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_InsufficientBalance(uint256,uint256)`
 - Error hash: `0x0df9a8f8`
 
@@ -1553,8 +1554,8 @@ Reverts when trying to send more native tokens `value` than available in current
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_msgvaluedisallowedindelegatecall)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_msgvaluedisallowedindelegatecall)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_MsgValueDisallowedInDelegateCall()`
 - Error hash: `0x5ac83135`
 
@@ -1572,8 +1573,8 @@ Reverts when trying to send native tokens (`value` / `values[]` parameter of [`e
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_msgvaluedisallowedinstaticcall)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_msgvaluedisallowedinstaticcall)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_MsgValueDisallowedInStaticCall()`
 - Error hash: `0x72f2bc6a`
 
@@ -1591,8 +1592,8 @@ Reverts when trying to send native tokens (`value` / `values[]` parameter of [`e
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_nocontractbytecodeprovided)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_nocontractbytecodeprovided)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_NoContractBytecodeProvided()`
 - Error hash: `0xb81cd8d9`
 
@@ -1610,8 +1611,8 @@ Reverts when no contract bytecode was provided as parameter when trying to deplo
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725x_unknownoperationtype)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725x_unknownoperationtype)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725X_UnknownOperationType(uint256)`
 - Error hash: `0x7583b3bc`
 
@@ -1635,8 +1636,8 @@ Reverts when the `operationTypeProvided` is none of the default operation types 
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725y_datakeysvaluesemptyarray)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725y_datakeysvaluesemptyarray)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725Y_DataKeysValuesEmptyArray()`
 - Error hash: `0x97da5f95`
 
@@ -1654,8 +1655,8 @@ Reverts when one of the array parameter provided to [`setDataBatch`](#setdatabat
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#erc725y_datakeysvalueslengthmismatch)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#erc725y_datakeysvalueslengthmismatch)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `ERC725Y_DataKeysValuesLengthMismatch()`
 - Error hash: `0x3bcc8979`
 
@@ -1673,8 +1674,8 @@ Reverts when there is not the same number of elements in the `datakeys` and `dat
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp14callernotpendingowner)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp14callernotpendingowner)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `LSP14CallerNotPendingOwner(address)`
 - Error hash: `0x451e4528`
 
@@ -1698,8 +1699,8 @@ Reverts when the `caller` that is trying to accept ownership of the contract is 
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp14cannottransferownershiptoself)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp14cannottransferownershiptoself)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `LSP14CannotTransferOwnershipToSelf()`
 - Error hash: `0xe052a6f8`
 
@@ -1719,8 +1720,8 @@ Reverts when trying to transfer ownership to the `address(this)`.
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp14mustacceptownershipinseparatetransaction)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp14mustacceptownershipinseparatetransaction)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `LSP14MustAcceptOwnershipInSeparateTransaction()`
 - Error hash: `0x5758dd07`
 
@@ -1740,8 +1741,8 @@ Reverts when pending owner accept ownership in the same transaction of transferr
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp14notinrenounceownershipinterval)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp14notinrenounceownershipinterval)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `LSP14NotInRenounceOwnershipInterval(uint256,uint256)`
 - Error hash: `0x1b080942`
 
@@ -1771,8 +1772,8 @@ Reverts when trying to renounce ownership before the initial confirmation delay.
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp20callverificationfailed)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp20callverificationfailed)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `LSP20CallVerificationFailed(bool,bytes4)`
 - Error hash: `0x9d6741e3`
 
@@ -1797,8 +1798,8 @@ reverts when the call to the owner does not return the LSP20 success value
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp20callingverifierfailed)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp20callingverifierfailed)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `LSP20CallingVerifierFailed(bool)`
 - Error hash: `0x8c6a8ae3`
 
@@ -1822,8 +1823,8 @@ reverts when the call to the owner fail with no revert reason
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#lsp20eoacannotverifycall)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#lsp20eoacannotverifycall)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `LSP20EOACannotVerifyCall(address)`
 - Error hash: `0x0c392301`
 
@@ -1847,8 +1848,8 @@ Reverts when the logic verifier is an Externally Owned Account (EOA) that cannot
 
 :::note References
 
-- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-3-UniversalProfile-Metadata.md#noextensionfoundforfunctionselector)
-- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/develop/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
+- Specification details: [**UniversalProfile**](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md#noextensionfoundforfunctionselector)
+- Solidity implementation: [`UniversalProfile.sol`](https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol)
 - Error signature: `NoExtensionFoundForFunctionSelector(bytes4)`
 - Error hash: `0xbb370b2b`
 
@@ -1874,11 +1875,8 @@ reverts when there is no extension for the function selector being called with
 <!-- SPECS -->
 
 [ERC-165]: https://eips.ethereum.org/EIPS/eip-165
-[EIP-165]: https://eips.ethereum.org/EIPS/eip-165
 [ERC-173]: https://eips.ethereum.org/EIPS/eip-173
-[EIP-173]: https://eips.ethereum.org/EIPS/eip-173
 [ERC-191]: https://eips.ethereum.org/EIPS/eip-191
-[EIP-191]: https://eips.ethereum.org/EIPS/eip-191
 [ERC-725X]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725X
 [ERC-725Y]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md#ERC725Y
 [ERC-725]: https://github.com/ERC725Alliance/ERC725/blob/main/docs/ERC-725.md
@@ -1887,7 +1885,7 @@ reverts when there is no extension for the function selector being called with
 [LSP-0-ERC725Account]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-0-ERC725Account.md
 [LSP-1-UniversalReceiver]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-1-UniversalReceiver.md
 [LSP-2-ERC725YJSONSchema]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-2-ERC725YJSONSchema.md
-[LSP-3-UniversalProfile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-UniversalProfile-Metadata.md
+[LSP-3-Profile-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-3-Profile-Metadata.md
 [LSP-4-DigitalAsset-Metadata]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-4-DigitalAsset-Metadata.md
 [LSP-5-ReceivedAssets]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-5-ReceivedAssets.md
 [LSP-6-KeyManager]: https://github.com/lukso-network/LIPs/tree/main/LSPs/LSP-6-KeyManager.md
@@ -1935,125 +1933,109 @@ reverts when there is no extension for the function selector being called with
 
 <!-- ERC725 LIBRARY -->
 
-[`ERC725.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725.sol
-[`ERC725Init.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Init.sol
-[`ERC725InitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725InitAbstract
-[`IERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725X.sol
-[`ERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725X.sol
-[`ERC725XCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XCore.sol
-[`ERC725XInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInit.sol
-[`ERC725XInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725XInitAbstract.sol
-[`IERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/interfaces/IERC725Y.sol
-[`ERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725Y.sol
-[`ERC725YCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YCore.sol
-[`ERC725YInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInit.sol
-[`ERC725YInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/ERC725YInitAbstract.soll
-[`OwnableUnset.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v5.1.0/implementations/contracts/custom/OwnableUnset.sol
+[`ERC725.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725.sol
+[`ERC725Init.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725Init.sol
+[`ERC725InitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725InitAbstract.sol
+[`IERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/interfaces/IERC725X.sol
+[`ERC725X.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725X.sol
+[`ERC725XCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v7.0.0/implementations/contracts/ERC725XCore.sol
+[`ERC725XInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725XInit.sol
+[`ERC725XInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725XInitAbstract.sol
+[`IERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/interfaces/IERC725Y.sol
+[`ERC725Y.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725Y.sol
+[`ERC725YCore.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v7.0.0/implementations/contracts/ERC725YCore.sol
+[`ERC725YInit.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725YInit.sol
+[`ERC725YInitAbstract.sol`]: https://github.com/ERC725Alliance/ERC725/blob/main/implementations/contracts/ERC725YInitAbstract.soll
+[`OwnableUnset.sol`]: https://github.com/ERC725Alliance/ERC725/blob/v7.0.0/implementations/contracts/custom/OwnableUnset.sol
 
 <!-- EXTERNAL LIBRARIES -->
 
-[`Create2.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Create2.sol
-[`ECDSA.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/cryptography/ECDSA.sol
-[`ERC165Checker.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165Checker.sol
-[`Address.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/Address.sol
-[`ERC165.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/introspection/ERC165.sol
-[`EnumerableSet.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.2/contracts/utils/structs/EnumerableSet.so
-[`Initializable.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/v4.9.2/contracts/proxy/utils/Initializable.sol
-[`BytesLib.sol`]: https://github.com/GNSPS/solidity-bytes-utils/blob/v0.8.0/contracts/BytesLib.sol
+[`Create2.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/Create2.sol
+[`ECDSA.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/cryptography/ECDSA.sol
+[`ERC165Checker.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/introspection/ERC165Checker.sol
+[`Address.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/Address.sol
+[`ERC165.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/introspection/ERC165.sol
+[`EnumerableSet.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/structs/EnumerableSet.so
+[`Initializable.sol`]: https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/v4.9.6/contracts/proxy/utils/Initializable.sol
+[`BytesLib.sol`]: https://github.com/GNSPS/solidity-bytes-utils/blob/v0.8.4/contracts/BytesLib.sol
 
 <!-- SOLIDITY IMPLEMENTATION -->
 
-[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountCore.sol
-[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Utils.sol
-[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInitAbstract.sol
-[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/ILSP0ERC725Account.sol
-[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725Account.sol
-[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0ERC725AccountInit.sol
-[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP0ERC725Account/LSP0Constants.sol
-[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInitAbstract.sol
-[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfile.sol
-[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/UniversalProfileInit.sol
-[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol
-[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Utils.sol
-[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateVault/LSP1UniversalReceiverDelegateVault.sol
-[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/ILSP1UniversalReceiver.sol
-[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Constants.sol
-[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP1UniversalReceiver/LSP1Errors.sol
-[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadataInitAbstract.sol
-[`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/ontracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
-[`LSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Compatibility.sol
-[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Constants.sol
-[`ILSP4Compatibility.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/ILSP4Compatibility.sol
-[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4Errors.sol
-[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6SetDataModule.sol
-[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerCore.sol
-[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6ExecuteModule.sol
-[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Utils.sol
-[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Constants.sol
-[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/ILSP6KeyManager.sol
-[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Errors.sol
-[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6Modules/LSP6OwnershipModule.sol
-[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInitAbstract.sol
-[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManager.sol
-[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP6KeyManager/LSP6KeyManagerInit.sol
-[`LSP7DigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetCore.sol
-[`LSP7CompatibleERC20InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20InitAbstract.sol
-[`LSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CompatibleERC20.sol
-[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol
-[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAssetInitAbstract.sol
-[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupply.sol
-[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7CappedSupplyInitAbstract.sol
-[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol
-[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInitAbstract.sol
-[`LSP7CompatibleERC20MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInitAbstract.sol
-[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7Mintable.sol
-[`LSP7CompatibleERC20Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20Mintable.sol
-[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Errors.sol
-[`LSP7CompatibleERC20MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7CompatibleERC20MintableInit.sol
-[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/LSP7MintableInit.sol
-[`ILSP7CompatibleERC20.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/ILSP7CompatibleERC20.sol
-[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/presets/ILSP7Mintable.sol
-[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.sol
-[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/extensions/LSP7BurnableInitAbstract.sol
-[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP7DigitalAsset/LSP7Constants.sol
-[`LSP8IdentifiableDigitalAssetCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetCore.sol
-[`LSP8CompatibleERC721InitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721InitAbstract.sol
-[`LSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CompatibleERC721.sol
-[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol
-[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8EnumerableInitAbstract.sol
-[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Enumerable.sol
-[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupplyInitAbstract.sol
-[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8CappedSupply.sol
-[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAssetInitAbstract.sol
-[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInitAbstract.sol
-[`ILSP8CompatibleERC721.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/ILSP8CompatibleERC721.sol
-[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol
-[`LSP8CompatibleERC721MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInitAbstract.s
-[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.sol
-[`LSP8CompatibleERC721Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721Mintable.sol
-[`LSP8CompatibleERC721MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8CompatibleERC721MintableInit.sol
-[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Errors.sol
-[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8MintableInit.sol
-[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.sol
-[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/presets/ILSP8Mintable.sol
-[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP8IdentifiableDigitalAsset/LSP8Constants.s
-[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Ownable2Step.sol
-[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/ILSP14Ownable2Step.sol
-[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Constants.sol
-[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP14Ownable2Step/LSP14Errors.sol
-[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extendable.sol
-[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Extension.sol
-[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Constants.sol
-[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Errors.sol
-[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP17ContractExtension/LSP17Utils.sol
-[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20CallVerification.sol
-[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/ILSP20CallVerifier.sol
-[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Constants.sol
-[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP20CallVerification/LSP20Errors.sol
-[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP2ERC725YJSONSchema/LSP2Utils.sol
-[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Utils.sol
-[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP5ReceivedAssets/LSP5Constants.sol
-[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Utils.sol
-[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/contracts/LSP10ReceivedVaults/LSP10Constants.sol
+[`LSP0ERC725AccountCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountCore.sol
+[`LSP0Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0Utils.sol
+[`LSP0ERC725AccountInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountInitAbstract.sol
+[`ILSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/ILSP0ERC725Account.sol
+[`LSP0ERC725Account.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725Account.sol
+[`LSP0ERC725AccountInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0ERC725AccountInit.sol
+[`LSP0Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp0-contracts/contracts/LSP0Constants.sol
+[`UniversalProfileInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfileInitAbstract.sol
+[`UniversalProfile.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfile.sol
+[`UniversalProfileInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/universalprofile-contracts/contracts/UniversalProfileInit.sol
+[`LSP1UniversalReceiverDelegateUP.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1UniversalReceiverDelegateUP.sol
+[`LSP1UniversalReceiverDelegateVault.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1UniversalReceiverDelegateVault.sol
+[`LSP1Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/blob/main/packages/lsp1delegate-contracts/contracts/LSP1Errors.sol
+[`LSP1Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/LSP1Utils.sol
+[`ILSP1UniversalReceiver.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol
+[`LSP1Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp1-contracts/contracts/LSP1Constants.sol
+[`LSP4DigitalAssetMetadataInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4DigitalAssetMetadataInitAbstract.sol
+[`LSP4DigitalAssetMetadata.sol`]: chttps://github.com/code-423n4/2023-06-lukso/tree/main/contracts/LSP4DigitalAssetMetadata/LSP4DigitalAssetMetadata.sol
+[`LSP4Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Constants.sol
+[`LSP4Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp4-contracts/contracts/LSP4Errors.sol
+[`LSP6SetDataModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6SetDataModule.sol
+[`LSP6KeyManagerCore.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerCore.sol
+[`LSP6ExecuteModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6ExecuteModule.sol
+[`LSP6Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Utils.sol
+[`LSP6Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Constants.sol
+[`ILSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/ILSP6KeyManager.sol
+[`LSP6Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Errors.sol
+[`LSP6OwnershipModule.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6Modules/LSP6OwnershipModule.sol
+[`LSP6KeyManagerInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInitAbstract.sol
+[`LSP6KeyManager.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManager.sol
+[`LSP6KeyManagerInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp6-contracts/contracts/LSP6KeyManagerInit.sol
+[`ILSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/ILSP7DigitalAsset.sol
+[`LSP7DigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAssetInitAbstract.sol
+[`LSP7CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CappedSupply.sol
+[`LSP7CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7CappedSupplyInitAbstract.sol
+[`LSP7DigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7DigitalAsset.sol
+[`LSP7MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7MintableInitAbstract.sol
+[`LSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7Mintable.sol
+[`LSP7Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7Errors.sol
+[`LSP7MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/LSP7MintableInit.sol
+[`ILSP7Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/presets/ILSP7Mintable.sol
+[`LSP7Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7Burnable.sol
+[`LSP7BurnableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/extensions/LSP7BurnableInitAbstract.sol
+[`LSP7Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp7-contracts/contracts/LSP7Constants.sol
+[`ILSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/ILSP8IdentifiableDigitalAsset.sol
+[`LSP8EnumerableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8EnumerableInitAbstract.sol
+[`LSP8Enumerable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8Enumerable.sol
+[`LSP8CappedSupplyInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CappedSupplyInitAbstract.sol
+[`LSP8CappedSupply.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8CappedSupply.sol
+[`LSP8IdentifiableDigitalAssetInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8IdentifiableDigitalAssetInitAbstract.sol
+[`LSP8MintableInitAbstract.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8MintableInitAbstract.sol
+[`LSP8IdentifiableDigitalAsset.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol
+[`LSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8Mintable.sol
+[`LSP8Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8Errors.sol
+[`LSP8MintableInit.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/LSP8MintableInit.sol
+[`LSP8Burnable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/extensions/LSP8Burnable.sol
+[`ILSP8Mintable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/presets/ILSP8Mintable.sol
+[`LSP8Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp8-contracts/contracts/LSP8Constants.s
+[`LSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Ownable2Step.sol
+[`ILSP14Ownable2Step.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/ILSP14Ownable2Step.sol
+[`LSP14Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Constants.sol
+[`LSP14Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp14-contracts/contracts/LSP14Errors.sol
+[`LSP17Extendable.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Extendable.sol
+[`LSP17Extension.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Extension.sol
+[`LSP17Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Constants.sol
+[`LSP17Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Errors.sol
+[`LSP17Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp17contractextension-contracts/contracts/LSP17Utils.sol
+[`LSP20CallVerification.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20CallVerification.sol
+[`ILSP20CallVerifier.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/ILSP20CallVerifier.sol
+[`LSP20Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20Constants.sol
+[`LSP20Errors.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp20-contracts/contracts/LSP20Errors.sol
+[`LSP2Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp2-contracts/contracts/LSP2Utils.sol
+[`LSP5Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp5-contracts/contracts/LSP5Utils.sol
+[`LSP5Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp5-contracts/contracts/LSP5Constants.sol
+[`LSP10Utils.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp10-contracts/contracts/LSP10Utils.sol
+[`LSP10Constants.sol`]: https://github.com/lukso-network/lsp-smart-contracts/tree/main/packages/lsp10-contracts/contracts/LSP10Constants.sol
 
 <!-- prettier-ignore-end -->

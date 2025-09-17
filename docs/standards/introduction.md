@@ -52,5 +52,4 @@ Developers wishing to understand the logic behind the standards and their tradeo
 - [Fabian Vogelsteller talks at BLOCKCHANCE 2021 about LUKSO (YouTube)](https://www.youtube.com/watch?v=aoZE_0Ey1SQ)
 - [Fabian Vogelsteller talks at NFT.NYC 2021 about the new Standards (YouTube)](https://www.youtube.com/watch?v=skA4Y-vvt5s)
 - [Developer DAO - Dev & Tell | Yamen - LUKSO Network (YouTube)](https://www.youtube.com/watch?v=1OeBpJIstSQ)
-- [LUKSO Build 🆙 #1 Hackathon (YouTube)](https://www.youtube.com/watch?v=veHqhpgGDr4)
 - [ERC725 Alliance website](https://erc725alliance.org/)
