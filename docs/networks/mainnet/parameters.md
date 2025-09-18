@@ -8,19 +8,19 @@ import AddNetworkButton from '@site/src/components/AddNetworkButton'
 
 # Network Parameters
 
-| Setting                    | Value                                                                                                |
-| -------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Network Name               | LUKSO                                                                                                |
-| Genesis Fork Version       | 0x42000001                                                                                           |
-| Chain ID / Network ID      | 42                                                                                                   |
-| Currency Symbol            | LYX                                                                                                  |
-| Execution Block Explorer   | [https://explorer.lukso.network](https://explorer.lukso.network)                                     |
-| Execution Status Page      | [https://stats.execution.mainnet.lukso.network](https://stats.execution.mainnet.lukso.network)       |
-| Consensus Block Explorer   | [https://explorer.consensus.mainnet.lukso.network](https://explorer.consensus.mainnet.lukso.network) |
-| Client Diversity Dashboard | [https://clientdiversity.lukso.network/](https://clientdiversity.lukso.network/)                     |
-| Launchpad                  | [https://deposit.mainnet.lukso.network](https://deposit.mainnet.lukso.network)                       |
-| Checkpoints                | [https://checkpoints.mainnet.lukso.network](https://checkpoints.mainnet.lukso.network)               |
-| Blockscout API             | `https://explorer.execution.mainnet.lukso.network/api`                                               |
+| Setting                       | Value                                                                                        |
+| ----------------------------- | -------------------------------------------------------------------------------------------- |
+| Network Name                  | LUKSO                                                                                        |
+| Genesis Fork Version          | 0x42000001                                                                                   |
+| Chain ID / Network ID         | 42                                                                                           |
+| Currency Symbol               | LYX                                                                                          |
+| 🔗 Execution Block Explorer   | [explorer.lukso.network](https://explorer.lukso.network)                                     |
+| 🔗 Execution Status Page      | [stats.execution.mainnet.lukso.network](https://stats.execution.mainnet.lukso.network)       |
+| 🔗 Consensus Block Explorer   | [explorer.consensus.mainnet.lukso.network](https://explorer.consensus.mainnet.lukso.network) |
+| 🔗 Client Diversity Dashboard | [clientdiversity.lukso.network](https://clientdiversity.lukso.network)                       |
+| 🔗 Launchpad                  | [deposit.mainnet.lukso.network](https://deposit.mainnet.lukso.network)                       |
+| 🔗 Checkpoints                | [checkpoints.mainnet.lukso.network](https://checkpoints.mainnet.lukso.network)               |
+| 🔌 Blockscout API             | `https://explorer.execution.mainnet.lukso.network/api`                                       |
 
 The mainnet network configs are defined or the [`lukso-network/network-configs`](https://github.com/lukso-network/network-configs/tree/main/mainnet/shared) repo.
 
@@ -28,13 +28,13 @@ The mainnet network configs are defined or the [`lukso-network/network-configs`]
 
 You can add the LUKSO to any of your existing wallets like [MetaMask](https://metamask.io/), [Rabby](https://rabby.io/), [Rainbow](https://rainbow.me/), [Coinbase Wallet](https://www.coinbase.com/de/wallet), [Trust Wallet](https://trustwallet.com/de), and others using the following parameters or button:
 
-| Setting               | Value                           |
-| --------------------- | ------------------------------- |
-| Network Name          | LUKSO                           |
-| RPC URL               | https://42.rpc.thirdweb.com     |
-| Chain ID / Network ID | 42                              |
-| Currency Symbol       | LYX                             |
-| Block explorer URL    | https://explorer.lukso.network/ |
+| Setting               | Value                            |
+| --------------------- | -------------------------------- |
+| Network Name          | LUKSO                            |
+| RPC URL               | `https://42.rpc.thirdweb.com`    |
+| Chain ID / Network ID | 42                               |
+| Currency Symbol       | LYX                              |
+| Block explorer URL    | `https://explorer.lukso.network` |
 
 <AddNetworkButton networkName="mainnet"/>
 
