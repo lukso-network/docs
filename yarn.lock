@@ -12587,7 +12587,7 @@ __metadata:
     react: ^19.0.0
     react-dom: ^19.0.0
     react-material-ui-carousel: ^3.4.2
-    sass: ^1.83.1
+    sass: ^1.93.0
     url-loader: ^4.1.1
   languageName: unknown
   linkType: soft
@@ -16913,9 +16913,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.83.1":
-  version: 1.83.1
-  resolution: "sass@npm:1.83.1"
+"sass@npm:^1.93.0":
+  version: 1.93.0
+  resolution: "sass@npm:1.93.0"
   dependencies:
     "@parcel/watcher": ^2.4.1
     chokidar: ^4.0.0
@@ -16926,7 +16926,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: 367a9f270c74a9ad2851955e1cf5b2a05e57d27aec4bf054be1da48eb49858076467b65ec180d8c4392b5c55c0f4d4ba644855f985652ffca15d68a20641d5e0
+  checksum: f26b69307d80efdfe6e225586be38ac3767629fc3a42ed662ec9d5d15262d1fc97df6204c1cbce2aa2e7647ceb4918dda58ca8a76706adee30e81157a74eeb1a
   languageName: node
   linkType: hard
 
