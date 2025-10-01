@@ -18,7 +18,8 @@ LUKSO uses the same technology as the Ethereum network. Therefore, guides and re
 
 ## How many LYX are needed to run a validator?
 
-Both the testnet and mainnet require 32 LYX per validator key. A single node can run multiple validators on one single node.
+Both the testnet and mainnet require 32 LYX per validator key. A single node can run multiple validators on one single node.  
+After the Pectra fork validators are able to stake between 32 and 2048 LYX per validator key, making validator management easier.
 
 ## How does a genesis validator differ from regular ones?
 
@@ -90,7 +91,7 @@ The validator wallet password is used to secure the wallet holding your Validato
 
 ## What is the validator withdrawal address?
 
-Staking withdrawals refer to **withdrawing earned rewards or the initial staked amount** of 32 LYX by validators participating in Proof-of-Stake. These staking withdrawals are automatically pushed to the withdrawal address set during the key generation process and are registered on-chain during the deposit. If set, the withdrawal address **cannot be changed once the stake is deposited**. If you want to update it, you must exit your validators to receive the funds on the current withdrawal address and set up new validator keys afterward.
+Staking withdrawals refer to **withdrawing earned rewards or the initial staked amount** by validators participating in Proof-of-Stake. These staking withdrawals are automatically pushed to the withdrawal address set during the key generation process and are registered on-chain during the deposit. If set, the withdrawal address **cannot be changed once the stake is deposited**. If you want to update it, you must exit your validators to receive the funds on the current withdrawal address and set up new validator keys afterward.
 
 ## What is the validator fee recipient address?
 
