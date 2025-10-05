@@ -82,7 +82,7 @@ contract CustomToken is LSP7Mintable, LSP7Burnable {
 
 :::info
 
-To adjust the parameters of the mint, please have a look at the related [LSP7 function documentation](/contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint). You can find the **full documentation** for [LSP7](/contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable#parameters-16) and other **presets** within the [Technical ABI Reference](https://docs.lukso.tech/contracts/contracts/ERC725/).
+To adjust the parameters of the mint, please have a look at the related [LSP7 function documentation](/contracts/contracts/LSP8IdentifiableDigitalAsset/presets/LSP8Mintable.md#mint). You can find the **full documentation** for [LSP7](/contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable#parameters-16) and other **presets** within the [Technical ABI Reference](/contracts/contracts/ERC725/).
 
 :::
 

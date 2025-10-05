@@ -68,7 +68,7 @@ npm i @lukso/lsp-smart-contracts @erc725/erc725.js
 
 If you are using the 📃 [lsp-smart-contracts](/tools/lsp-smart-contracts/getting-started) library, you can fetch the list of `interfaceId` directly from the package's [constants](/tools/lsp-smart-contracts/constants) called `INTERFACE_IDS`.
 
-Optionally, you can also find a full list of interface IDs on the [Contracts > Interface ID](https://docs.lukso.tech/contracts/interface-ids/) page and input them manually.
+Optionally, you can also find a full list of interface IDs on the [Contracts > Interface ID](/contracts/interface-ids/) page and input them manually.
 
 :::
 

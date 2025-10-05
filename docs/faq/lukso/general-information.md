@@ -12,7 +12,7 @@ LUKSO is a Layer-1 blockchain network dedicated to existing and coming digital l
 
 ## Will LUKSO be the main platform to integrate LSPs?
 
-The LUKSO blockchain is the first mover to integrate the [LUKSO Standard Proposals](https://docs.lukso.tech/standards/introduction) (LSPs). In conjunction with the surrounding ecosystem, Universal Profiles greatly enhance the interaction and convenience of using the blockchain and dApps. This advantage stems from the **seamless integration of Universal Profiles**. With a dedicated network like LUKSO, we can implement well-thought-out, upgradable standards directly from the start. This clean-cut approach allows us to bypass the challenges of retrofitting standards into an existing system. You can read more about it in the [Network Proposal](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) article or the [LSP Introduction](https://docs.lukso.tech/standards/introduction).
+The LUKSO blockchain is the first mover to integrate the [LUKSO Standard Proposals](/standards/introduction) (LSPs). In conjunction with the surrounding ecosystem, Universal Profiles greatly enhance the interaction and convenience of using the blockchain and dApps. This advantage stems from the **seamless integration of Universal Profiles**. With a dedicated network like LUKSO, we can implement well-thought-out, upgradable standards directly from the start. This clean-cut approach allows us to bypass the challenges of retrofitting standards into an existing system. You can read more about it in the [Network Proposal](https://medium.com/lukso/its-happening-the-genesis-validators-are-coming-ce5e07935df6) article or the [LSP Introduction](/standards/introduction).
 
 ## Who defined the LUKSO token supply?
 
