@@ -49,7 +49,7 @@ For Ethereum, **client diversity has proven essential** in maintaining the netwo
 
 ## How does Shapella enable validator withdrawals?
 
-[Shanghai and Capella](https://ethereum.org/en/history/) (Shapella) are the names of two Ethereum forks, often combined to one term. Shanghai is the fork's name on the execution client side, and Capella is the upgrade name on the consensus layer client side. The included EIPs can be found [here](https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/shanghai.md). The significant new features enable the **withdrawal of the validator's earnings and stake** from the network.
+[Shanghai and Capella](https://ethereum.org/en/history/) (Shapella) are the names of two Ethereum forks, often combined to one term. Shanghai is the fork's name on the execution client side, and Capella is the upgrade name on the consensus layer client side. The included EIPs can be found [here](https://github.com/ethereum/execution-specs/blob/mainnet/network-upgrades/mainnet-upgrades/shanghai.md). The significant new features enable the **withdrawal of the validator's earnings and stake** from the network.
 
 Validators participating in the network need to put down stakes. The withdrawal fork will **allow individuals to stop running their validators** to exit the blockchain with all their stakes or to **access their earned rewards** while keeping the node running.
 
