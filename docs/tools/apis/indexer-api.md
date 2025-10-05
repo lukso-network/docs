@@ -53,7 +53,7 @@ https://api.universalprofile.cloud/
 
 ### `GET /v1/:chainId/address/:address`
 
-Return [LSP4 - Digital Asset Metadata](https://docs.lukso.tech/standards/tokens/LSP4-Digital-Asset-Metadata/) or [LSP3 - Profile Metadata](https://docs.lukso.tech/standards/metadata/lsp3-profile-metadata). Loads data directly from Algolia and caches it for a while. Adding /TOKENID at the end will retrieve tokenId data for LSP8 tokens.
+Return [LSP4 - Digital Asset Metadata](/standards/tokens/LSP4-Digital-Asset-Metadata/) or [LSP3 - Profile Metadata](/standards/metadata/lsp3-profile-metadata). Loads data directly from Algolia and caches it for a while. Adding /TOKENID at the end will retrieve tokenId data for LSP8 tokens.
 
 ### `GET /v1/:chainId/stats`
 

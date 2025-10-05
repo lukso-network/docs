@@ -32,7 +32,7 @@ This aims to help onboard new users to web3! 💪🏻
 
 :::info Execution Rights
 
-To execute relay calls, the address [signing the relay transaction](https://docs.lukso.tech/standards/access-control/lsp6-key-manager#how-to-sign-relay-transactions) need the [`EXECUTE_RELAY_CALL`](https://docs.lukso.tech/standards/access-control/lsp6-key-manager/#permissions) permission.
+To execute relay calls, the address [signing the relay transaction](/standards/access-control/lsp6-key-manager#how-to-sign-relay-transactions) need the [`EXECUTE_RELAY_CALL`](/standards/access-control/lsp6-key-manager/#permissions) permission.
 
 :::
 
