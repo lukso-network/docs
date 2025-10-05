@@ -32,7 +32,7 @@ const CustomAccordion: React.FC<AccordionData> = ({
 }) => {
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
-  
+
   const theme = createCustomTheme(isDarkTheme);
 
   return (
@@ -57,7 +57,9 @@ const CustomAccordion: React.FC<AccordionData> = ({
                 <Accordion key={index} className={styles.innerAccordion}>
                   <AccordionSummary
                     className={styles.innerAccordionHeading}
-                    expandIcon={<ExpandMoreIcon className={styles.expandIcon} />}
+                    expandIcon={
+                      <ExpandMoreIcon className={styles.expandIcon} />
+                    }
                     aria-controls={'panel' + index + '-content'}
                     id={'panel' + index + '-header'}
                   >

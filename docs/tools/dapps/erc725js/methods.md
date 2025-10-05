@@ -2065,17 +2065,17 @@ The `interfaceId` is not the most secure way to check for a standard, as they co
 
 Either a string of the hexadecimal `interfaceID` as defined by [ERC165](https://eips.ethereum.org/EIPS/eip-165) or one of the predefined interface names:
 
-| interfaceName                   | Standard                                                                                                                   |
-| :------------------------------ | :------------------------------------------------------------------------------------------------------------------------- |
-| `ERC1271`                       | [EIP-1271: Standard Signature Validation Method for Contracts](https://eips.ethereum.org/EIPS/eip-1271)                    |
-| `ERC725X`                       | [EIP-725: General execution standard](https://eips.ethereum.org/EIPS/eip-725)                                              |
-| `ERC725Y`                       | [EIP-725: General key-value store](https://eips.ethereum.org/EIPS/eip-725)                                                 |
+| interfaceName                   | Standard                                                                                                           |
+| :------------------------------ | :----------------------------------------------------------------------------------------------------------------- |
+| `ERC1271`                       | [EIP-1271: Standard Signature Validation Method for Contracts](https://eips.ethereum.org/EIPS/eip-1271)            |
+| `ERC725X`                       | [EIP-725: General execution standard](https://eips.ethereum.org/EIPS/eip-725)                                      |
+| `ERC725Y`                       | [EIP-725: General key-value store](https://eips.ethereum.org/EIPS/eip-725)                                         |
 | `LSP0ERC725Account`             | [LSP-0: ERC725 Account](https://docs.lukso.tech/standards/accounts/lsp0-erc725account/)                            |
 | `LSP1UniversalReceiver`         | [LSP-1: Universal Receiver](https://docs.lukso.tech/standards/accounts/lsp1-universal-receiver/)                   |
 | `LSP1UniversalReceiverDelegate` | [LSP-1: Universal Receiver Delegate](https://docs.lukso.tech/standards/accounts/lsp1-universal-receiver-delegate/) |
-| `LSP6KeyManager`                | [LSP-6: Key Manager](https://docs.lukso.tech/standards/access-control/lsp6-key-manager/)                                 |
-| `LSP7DigitalAsset`              | [LSP-7: Digital Asset](https://docs.lukso.tech/standards/tokens/LSP7-Digital-Asset/)                                       |
-| `LSP8IdentifiableDigitalAsset`  | [LSP-8: Identifiable Digital Asset](https://docs.lukso.tech/standards/tokens/LSP8-Identifiable-Digital-Asset/)             |
+| `LSP6KeyManager`                | [LSP-6: Key Manager](https://docs.lukso.tech/standards/access-control/lsp6-key-manager/)                           |
+| `LSP7DigitalAsset`              | [LSP-7: Digital Asset](https://docs.lukso.tech/standards/tokens/LSP7-Digital-Asset/)                               |
+| `LSP8IdentifiableDigitalAsset`  | [LSP-8: Identifiable Digital Asset](https://docs.lukso.tech/standards/tokens/LSP8-Identifiable-Digital-Asset/)     |
 | `LSP9Vault`                     | [LSP-9: Vault](https://docs.lukso.tech/standards/accounts/lsp9-vault/)                                             |
 
 :::info
