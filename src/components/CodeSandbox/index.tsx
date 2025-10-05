@@ -4,16 +4,18 @@ interface CodeSandboxProps {
   src?: string;
 }
 
-const CodeSandbox: React.FC<CodeSandboxProps> = ({ 
-  src = "https://codesandbox.io/embed/c4tfhf?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=11&hidenavigation=1&theme=dark" 
+const CodeSandbox: React.FC<CodeSandboxProps> = ({
+  src = 'https://codesandbox.io/embed/c4tfhf?view=split+%2B+preview&module=%2Fsrc%2Findex.ts&previewwindow=console&fontsize=11&hidenavigation=1&theme=dark',
 }) => {
   return (
-    <div style={{
-      position: 'relative',
-      width: '100%',
-      paddingTop: '56.25%', // 16:9 aspect ratio
-      marginBottom: '2rem',
-    }}>
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        paddingTop: '56.25%', // 16:9 aspect ratio
+        marginBottom: '2rem',
+      }}
+    >
       <iframe
         src={src}
         style={{

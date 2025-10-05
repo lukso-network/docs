@@ -57,7 +57,7 @@ the validation failed, but check the `bytes` returned by the extension through [
 
 :::caution
 
-Be aware of [phantom functions](https://media.dedaub.com/phantom-functions-and-the-billion-dollar-no-op-c56f062ae49f) for functions in extensions with the `0x00000000` selector.
+Be aware of [phantom functions](https://dedaub.com/blog/phantom-functions-and-the-billion-dollar-no-op/) for functions in extensions with the `0x00000000` selector.
 
 For example, a contract might perform some kind of validation in an extension (_e.g: checking for permissions_), and expect the function to revert if the user is not authorized.
 

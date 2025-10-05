@@ -26,7 +26,54 @@ export default {
     mermaid: true,
   },
   themes: ['@docusaurus/theme-mermaid'],
-  plugins: ['docusaurus-plugin-sass', 'plugin-image-zoom', pluginLlmsTxt],
+  plugins: [
+    'docusaurus-plugin-sass',
+    'plugin-image-zoom',
+    pluginLlmsTxt,
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          // RPC API moved from standards to tools
+          {
+            from: '/standards/rpc-api',
+            to: '/tools/apis/up-rpc-api',
+          },
+          // L16 testnet deprecated, redirect to current testnet
+          {
+            from: '/networks/l16-testnet',
+            to: '/networks/testnet/parameters',
+          },
+          // Old dapp-developer structure reorganized
+          {
+            from: '/learn/dapp-developer/transfer-lyx',
+            to: '/learn/universal-profile/interactions/transfer-lyx',
+          },
+        ],
+        createRedirects(existingPath) {
+          // Redirect old lsp-factoryjs API docs to getting started
+          if (existingPath.includes('/tools/dapps/lsp-factoryjs')) {
+            return [
+              existingPath.replace(
+                '/tools/dapps/lsp-factoryjs',
+                '/tools/lsp-factoryjs',
+              ),
+            ];
+          }
+          // Redirect any old /learn/dapp-developer/ paths to appropriate sections
+          if (existingPath.includes('/learn/universal-profile/')) {
+            return [
+              existingPath.replace(
+                '/learn/universal-profile/',
+                '/learn/dapp-developer/',
+              ),
+            ];
+          }
+          return undefined;
+        },
+      },
+    ],
+  ],
   themeConfig: {
     image: 'img/lukso-docs-og.png',
 
@@ -224,6 +271,7 @@ export default {
           changefreq: 'weekly',
           priority: 0.5,
           filename: 'sitemap.xml',
+          ignorePatterns: ['/tags/**', '/search/**'],
         },
       },
     ],

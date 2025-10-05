@@ -22,7 +22,7 @@ export default function CardWithContent({
 }: Props) {
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
-  
+
   const theme = createCustomTheme(isDarkTheme);
 
   return (

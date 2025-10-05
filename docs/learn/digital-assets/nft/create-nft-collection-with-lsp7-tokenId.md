@@ -511,8 +511,7 @@ Let's start by creating a `lsp8CollectionMetadata.json` file in the `metadata/` 
     "description": "The Experiential Marketspace For Digital Goods",
     "links": [
       {
-        "title": "Website",
-        "url": "https://thedematerialised.com"
+        "title": "Website"
       }
     ],
     "icons": [],
@@ -547,8 +546,7 @@ We will do the same with the LSP7 Sub-Collection metadata. Let's create a `lsp7S
     "description": "Collaboration with Karl Largerfeld",
     "links": [
       {
-        "title": "Get yours now",
-        "url": "https://thedematerialised.com/shop/karl-lagerfeld/klxendless-medallion"
+        "title": "Get yours now"
       }
     ],
     "icons": [

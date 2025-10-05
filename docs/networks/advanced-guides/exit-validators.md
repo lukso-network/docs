@@ -51,5 +51,5 @@ If you are using Dappnode or a custom client, please refer to the following sour
 
 - [Exit Dappnode Validators](https://discourse.dappnode.io/t/how-to-exit-your-validator-from-the-ui/1745)
 - [Prysm Validator Exit Documentation](https://docs.prylabs.network/docs/wallet/exiting-a-validator)
-- [Lighthouse Withdrawal Guide](https://lighthouse-book.sigmaprime.io/voluntary-exit.html)
+- [Lighthouse Withdrawal Guide](https://lighthouse-book.sigmaprime.io/validator_voluntary_exit.html)
 - [How to exit Teku Validators](https://docs.teku.consensys.io/how-to/voluntarily-exit)
