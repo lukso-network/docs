@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/digital-assets).
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/dapps/digital-assets).
 
 :::
 
