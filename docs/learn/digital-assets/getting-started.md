@@ -44,7 +44,7 @@ First, clone the playground repository and navigate into the smart-contracts-har
 
 ```bash
 git clone https://github.com/lukso-network/lukso-playground.git
-cd lukso-playground/smart-contracts-hardhat
+cd lukso-playground/smart-contracts
 ```
 
 To install all the dependencies, run the below command:

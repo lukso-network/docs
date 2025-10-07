@@ -18,7 +18,7 @@ This guide will teach you how to grant [permissions](/standards/access-control/l
 
 :::info Code Examples
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/key-manager) repository.
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/dapps/key-manager) repository.
 
 :::
 

@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip Code repository
 
-All the contracts, sample metadata, and scripts of this guide are available in the [`lukso-playground`](https://github.com/lukso-network/lukso-playground/tree/main/smart-contracts-hardhat) repository.
+All the contracts, sample metadata, and scripts of this guide are available in the [`lukso-playground`](https://github.com/lukso-network/lukso-playground/tree/main/smart-contracts) repository.
 
 :::
 
