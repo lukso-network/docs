@@ -3,7 +3,7 @@ export const promptsData = {
 
 ## Core Requirements
 - Always use the LUKSO LSP standards (@lukso/lsp-smart-contracts)
-- Use either ethers.js or web3.js for blockchain interactions
+- Use viem for blockchain interactions
 - Use @erc725/erc725.js for encoding/decoding metadata
 - Connect to LUKSO network (Mainnet: chainId 42, Testnet: chainId 4201)
 - Use LSP3Profile metadata standard for profile data
@@ -16,7 +16,7 @@ export const promptsData = {
 
 ## Required Dependencies
 Install these packages:
-npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts @lukso/data-provider-ipfs-http-client
+npm install viem @erc725/erc725.js @lukso/lsp-smart-contracts @lukso/data-provider-ipfs-http-client
 
 ## Network Configuration
 - LUKSO Mainnet RPC: https://rpc.mainnet.lukso.network
@@ -43,7 +43,7 @@ Goal: Write a complete script that uploads an image to IPFS, creates proper LSP3
 ## Core Requirements
 - Use LUKSO LSP standards (@lukso/lsp-smart-contracts)
 - Implement custom LSP1 Universal Receiver Delegate for automatic follow-back
-- Use ethers.js or web3.js for contract interactions
+- Use viem for contract interactions
 - Use @erc725/erc725.js for LSP26 follower system data
 - Connect to LUKSO network (Mainnet RPC: https://rpc.mainnet.lukso.network, Testnet: https://rpc.testnet.lukso.network)
 
@@ -77,7 +77,7 @@ Set the LSP1UniversalReceiverDelegate data key to point to your deployed URD add
 
 ## Required Dependencies
 Install these packages:
-npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
+npm install viem @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Follow-Back Logic Implementation
 
@@ -191,7 +191,7 @@ Goal: Generate a complete, production-ready Grid mini-app boilerplate with prope
 ## Core Requirements
 - Use LUKSO LSP6 Key Manager standard for permission management
 - Use @erc725/erc725.js for encoding permissions and data keys
-- Use ethers.js or web3.js for blockchain interactions
+- Use viem for blockchain interactions
 - Connect to LUKSO network (Mainnet: chainId 42, Testnet: chainId 4201)
 - Ensure signer has ADDCONTROLLER and EDITPERMISSIONS authority
 
@@ -221,7 +221,7 @@ Goal: Generate a complete, production-ready Grid mini-app boilerplate with prope
 
 ## Required Dependencies
 Install these packages:
-npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts
+npm install viem @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## Permission Management Process
 1. Encode Permissions - Use ERC725.encodePermissions() with specific permission flags
