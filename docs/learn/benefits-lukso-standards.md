@@ -127,7 +127,7 @@ Interested to migrate your token or NFT collection? See our hands-on developer g
 
 :::
 
-### Comparison: ERC20 vs. LSP7 Transfer Authorization
+### ⚖️ ERC20 vs. LSP7 Transfer Authorization
 
 | Feature                    | ERC20                       | LSP7                                                                                                                |
 | -------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------- |
