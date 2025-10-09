@@ -127,6 +127,20 @@ Interested to migrate your token or NFT collection? See our hands-on developer g
 
 :::
 
+### Comparison: ERC20 vs. LSP7 Transfer Authorization
+
+| Feature                    | ERC20                       | LSP7                                                                                                                |
+| -------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **Basic Approval**         | ✅ Simple approve/allowance | ✅ Enhanced [authorizeOperator](/contracts/contracts/LSP7DigitalAsset/#authorizeoperator) with explicit token owner |
+| **Recipient Validation**   | ❌ No validation            | ✅ [Force parameter](/contracts/contracts/LSP7DigitalAsset/#parameters-13) + recipient callbacks                    |
+| **Transfer Context**       | ❌ None                     | ✅ [Data parameter](/contracts/contracts/LSP7DigitalAsset/#parameters-13) for context                               |
+| **Transfer Hooks**         | ❌ None                     | ✅ [LSP1](/standards/accounts/lsp1-universal-receiver.md) notifications for sender/receiver                         |
+| **Purpose Restrictions**   | ❌ None                     | ✅ [Extensible](/standards/accounts/lsp17-contract-extension/) with custom logic                                    |
+| **Time-Limited Approvals** | ❌ None                     | ✅ [Extensible](/standards/accounts/lsp17-contract-extension/) with expiration logic                                |
+| **Multi-Tier System**      | ❌ Not supported            | ✅ [Extensible](/standards/accounts/lsp17-contract-extension/) tiered permissions                                   |
+| **Transfer Rejection**     | ❌ Not possible             | ✅ Recipients can reject transfers                                                                                  |
+| **Contextual Data**        | ❌ None                     | ✅ Rich data with transfers                                                                                         |
+
 Below are the benefits offered by the LUKSO Token standards [**LSP7 Digital Asset**](../standards/tokens/LSP7-Digital-Asset.md) and [**LSP8 Identifiable Digital Asset**](../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
 
 | Feature                                                                                                           | Benefits                                                                                                                                                                                                                                                                                                                                                                                                                                              |
