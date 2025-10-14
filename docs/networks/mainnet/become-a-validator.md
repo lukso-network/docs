@@ -8,7 +8,8 @@ description: Become a LUKSO Mainnet validator using the LUKSO Deposit Launchpad 
 
 ![Deposit Launchpad](/img/network/mainnet-launchpad.png)
 
-To become a validator, you will need to use [LUKSO Deposit Launchpad](https://deposit.mainnet.lukso.network/) to deposit 32 LYX per validator. Once you have generated your keystore files (`keystore-xxx-[timestamp].json`) and deposited the LYX, you can adjust your node to run as a validator.
+To become a validator, you will need to use [LUKSO Deposit Launchpad](https://deposit.mainnet.lukso.network/) to deposit LYX for your validators. After the pectra fork, you can deposit between 32 and 2048 LYX per validator, depending on the amount specified when generating keys.  
+Once you have generated your keystore files (`keystore-xxx-[timestamp].json`) and deposited the LYX, you can adjust your node to run as a validator.
 
 :::caution Validator Keys
 
