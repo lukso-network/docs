@@ -44,7 +44,7 @@ const encodedLSP4Metadata = {
 
 :::tip Code repository
 
-You can find all the contracts, sample metadata, and scripts of the guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground/tree/main/smart-contracts-hardhat) repository.
+You can find all the contracts, sample metadata, and scripts of the guide within our [`lukso-playground`](https://github.com/lukso-network/lukso-playground/tree/main/smart-contracts) repository.
 
 :::
 

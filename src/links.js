@@ -254,20 +254,6 @@ export const dappsSlider = [
     backgroundColor: '#fcfcfc',
     link: 'https://www.de-folio.com/',
   },
-  {
-    name: 'UFeed',
-    description: 'Social network and feed on LUKSO',
-    image: UFeedLogo,
-    backgroundColor: '#fcfcfc',
-    link: 'https://ufeed.io/',
-  },
-  {
-    name: 'UP Turn',
-    description: 'Token generator app for digital assets on LUKSO.',
-    image: UpTurnLogo,
-    backgroundColor: 'white',
-    link: 'https://upturn.live/',
-  },
   // banner 3 ----------------
   {
     name: 'Family LYX',

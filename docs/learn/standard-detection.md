@@ -22,7 +22,7 @@ Use the [🔎 ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/?network=ma
 
 :::info
 
-⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/metadata-detection) repository.
+⌨️ The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/tree/main/dapps/metadata-detection) repository.
 
 :::
 

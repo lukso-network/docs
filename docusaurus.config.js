@@ -29,184 +29,50 @@ export default {
   plugins: [
     'docusaurus-plugin-sass',
     'plugin-image-zoom',
+    pluginLlmsTxt,
     [
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // Learn home
+          // RPC API moved from standards to tools
           {
-            from: '/learn/introduction',
-            to: '/learn/overview',
-          },
-          {
-            from: '/learn/universal-profile/getting-started',
-            to: '/learn/getting-started',
-          },
-          // Learn/Universal Profile
-          {
-            from: '/learn/universal-profile/interactions/transfer-lsp7-token',
-            to: '/learn/universal-profile/interactions/transfer-tokens-and-nfts',
-          },
-          // Tools
-          {
-            from: '/tools/getting-started',
-            to: '/tools',
-          },
-          {
-            from: '/tools/eip191-signerjs/getting-started',
-            to: '/tools/dapps/eip191-signerjs/getting-started',
-          },
-          {
-            from: '/tools/erc725js/getting-started',
-            to: '/tools/dapps/erc725js/getting-started',
-          },
-          {
-            from: '/tools/erc725js/methods',
-            to: '/tools/dapps/erc725js/methods',
-          },
-          {
-            from: '/tools/erc725js/providers',
-            to: '/tools/dapps/erc725js/providers',
-          },
-          {
-            from: '/tools/erc725js/schemas',
-            to: '/tools/dapps/erc725js/schemas',
-          },
-          {
-            from: '/tools/lsp-utils/getting-started',
-            to: '/tools/dapps/lsp-utils/getting-started',
-          },
-          {
-            from: '/tools/lsp-utils/IPFS',
-            to: '/tools/dapps/lsp-utils/IPFS',
-          },
-          {
-            from: '/tools/lsp-utils/LSP3ProfileMetadata',
-            to: '/tools/dapps/lsp-utils/LSP3ProfileMetadata',
-          },
-          {
-            from: '/tools/lsp-utils/LSP4DigitalAssetMetadata',
-            to: '/tools/dapps/lsp-utils/LSP4DigitalAssetMetadata',
-          },
-          {
-            from: '/tools/lsp-utils/LSP5ReceivedAssets',
-            to: '/tools/dapps/lsp-utils/LSP5ReceivedAssets',
-          },
-          {
-            from: '/tools/lsp-utils/LSP6KeyManager',
-            to: '/tools/dapps/lsp-utils/LSP6KeyManager',
-          },
-          {
-            from: '/tools/lsp-utils/LSP12IssuedAssets',
-            to: '/tools/dapps/lsp-utils/LSP12IssuedAssets',
-          },
-          {
-            from: '/tools/lsp-utils/LSP23LinkedContractsFactory',
-            to: '/tools/dapps/lsp-utils/LSP23LinkedContractsFactory',
-          },
-          {
-            from: '/tools/rpc-api',
+            from: '/standards/rpc-api',
             to: '/tools/apis/up-rpc-api',
           },
+          // L16 testnet deprecated, redirect to current testnet
           {
-            from: '/tools/libraries/getting-started', // tools path before re-branding
-            to: '/tools',
+            from: '/networks/l16-testnet',
+            to: '/networks/testnet/parameters',
           },
+          // Old dapp-developer structure reorganized
           {
-            from: '/tools/indexer',
-            to: '/tools/apis/indexer-api',
-          },
-          {
-            from: '/tools/relayer-developer',
-            to: '/tools/apis/relayer-api',
-          },
-
-          // Standards
-          {
-            from: '/standards/universal-profile/lsp0-erc725account',
-            to: '/standards/accounts/lsp0-erc725account',
-          },
-          {
-            from: '/standards/generic-standards/lsp2-json-schema',
-            to: '/standards/metadata/lsp2-json-schema',
-          },
-          {
-            from: '/standards/universal-profile/lsp9-vault',
-            to: '/standards/accounts/lsp9-vault',
-          },
-          {
-            from: '/standards/universal-profile/lsp1-universal-receiver-delegate',
-            to: '/standards/accounts/lsp1-universal-receiver-delegate',
-          },
-          {
-            from: '/standards/generic-standards/lsp1-universal-receiver',
-            to: '/standards/accounts/lsp1-universal-receiver',
-          },
-          {
-            from: '/standards/universal-profile/lsp6-key-manager',
-            to: '/standards/access-control/lsp6-key-manager',
-          },
-          {
-            from: '/standards/universal-profile/introduction',
-            to: '/standards/accounts/introduction',
-          },
-          {
-            from: '/standards/generic-standards/lsp1-universal-receiver-delegate',
-            to: '/standards/accounts/lsp1-universal-receiver-delegate',
-          },
-          {
-            from: '/standards/nft-2.0/LSP8-Identifiable-Digital-Asset',
-            to: '/standards/tokens/LSP8-Identifiable-Digital-Asset',
-          },
-          {
-            from: '/standards/nft-2.0/LSP7-Digital-Asset',
-            to: '/standards/tokens/LSP7-Digital-Asset',
-          },
-          {
-            from: '/standards/lsp-background/erc725',
-            to: '/standards/erc725',
-          },
-          {
-            from: '/standards/standard-detection',
-            to: '/standards/standard-types',
-          },
-          {
-            from: '/standards/generic-standards/lsp3-profile-metadata',
-            to: '/standards/metadata/lsp3-profile-metadata',
-          },
-          {
-            from: '/standards/generic-standards/lsp5-received-assets',
-            to: '/standards/metadata/lsp5-received-assets',
-          },
-          {
-            from: '/standards/generic-standards/lsp10-received-vaults',
-            to: '/standards/metadata/lsp10-received-vaults',
-          },
-          {
-            from: '/standards/generic-standards/lsp12-issued-assets',
-            to: '/standards/metadata/lsp12-issued-assets',
-          },
-          {
-            from: '/standards/nft-2.0/introduction',
-            to: '/standards/tokens/introduction',
-          },
-          {
-            from: '/standards/faq/channel-nonce',
-            to: '/standards/accounts/lsp25-execute-relay-call',
-          },
-          {
-            from: '/standards/generic-standards/lsp26-follower-system',
-            to: '/standards/accounts/lsp26-follower-system',
-          },
-          // Add redirect for moved benefits-lukso-standards page
-          {
-            from: '/learn/overview/benefits-lukso-standards/',
-            to: '/learn/benefits-lukso-standards',
+            from: '/learn/dapp-developer/transfer-lyx',
+            to: '/learn/universal-profile/interactions/transfer-lyx',
           },
         ],
+        createRedirects(existingPath) {
+          // Redirect old lsp-factoryjs API docs to getting started
+          if (existingPath.includes('/tools/dapps/lsp-factoryjs')) {
+            return [
+              existingPath.replace(
+                '/tools/dapps/lsp-factoryjs',
+                '/tools/lsp-factoryjs',
+              ),
+            ];
+          }
+          // Redirect any old /learn/dapp-developer/ paths to appropriate sections
+          if (existingPath.includes('/learn/universal-profile/')) {
+            return [
+              existingPath.replace(
+                '/learn/universal-profile/',
+                '/learn/dapp-developer/',
+              ),
+            ];
+          }
+          return undefined;
+        },
       },
     ],
-    pluginLlmsTxt,
   ],
   themeConfig: {
     image: 'img/lukso-docs-og.png',
@@ -405,6 +271,7 @@ export default {
           changefreq: 'weekly',
           priority: 0.5,
           filename: 'sitemap.xml',
+          ignorePatterns: ['/tags/**', '/search/**'],
         },
       },
     ],

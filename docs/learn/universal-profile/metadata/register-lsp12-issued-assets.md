@@ -19,7 +19,7 @@ In this guide you will learn how to set or update digital assets (either [LSP7 D
 
 :::info Code Examples
 
-The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/universal-profile/register-issued-assets-backend.ts) repository.
+The full code of this example can be found in the 👾 [lukso-playground](https://github.com/lukso-network/lukso-playground/blob/main/dapps/universal-profile/register-issued-assets-backend.ts) repository.
 
 :::
 

@@ -22,7 +22,7 @@ The Shapella update, which is responsible for enabling validator withdrawals, wa
 
 ### What was the L14 Testnet?
 
-The L14 was the initial testnet to showcase LUKSOs vision of Universal Profiles. It is maintained by LUKSO and used for the [Universal Profile Explorer](https://universalprofile.cloud/) and [The Dematerialised](https://thedematerialised.com/) Marketplace, which have already launched multiple digital asset sales. Regarding the tech, L14 still uses outdated ERC725 versions from 2020. Once the profiles and assets are migrated to the mainnet, those assets and profiles will be updated to the latest LSP standardizations.
+The L14 was the initial testnet to showcase LUKSOs vision of Universal Profiles. It is maintained by LUKSO and used for the [Universal Profile Explorer](https://universalprofile.cloud/) and The Dematerialised Marketplace, which have already launched multiple digital asset sales. Regarding the tech, L14 still uses outdated ERC725 versions from 2020. Once the profiles and assets are migrated to the mainnet, those assets and profiles will be updated to the latest LSP standardizations.
 
 ### What was the L15 Testnet?
 

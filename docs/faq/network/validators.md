@@ -108,5 +108,5 @@ Exiting a validator requires a signed message from your validator client. The LU
 If you use a custom setup, the exit process differs for each client. These are the links for the exit process for each supported consensus client:
 
 - [Exiting a Prysm validator](https://docs.prylabs.network/docs/wallet/exiting-a-validator)
-- [Exiting a Lighthouse validator](https://lighthouse-book.sigmaprime.io/voluntary-exit.html)
+- [Exiting a Lighthouse validator](https://lighthouse-book.sigmaprime.io/validator_voluntary_exit.html)
 - [Exiting a DAppNode validator](https://forum.dappnode.io/t/how-to-exit-an-eth2-validator/786)
