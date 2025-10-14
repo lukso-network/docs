@@ -14,7 +14,9 @@ For non-technical people, we suggest waiting until the [Dappnode](https://dappno
 
 ## Do I receive higher returns if I deposit more than 32 LYX?
 
-No, your validator key will not gain higher returns. It just needs 32 LYX to be activated.
+Base reward for validator is based on its effective balance.  
+After the Pectra fork, validators are able to increase their max effective balance to up to 2048 LYX. This means that the reward is approximately proportional to the amount of LYX staked.  
+This applies to proposing blocks as well - validator with more LYX staked will be more likely selected to propose a block. Because the amount is proportional to the effective balance, this means that e.g. 10 validators with 32 LYX staked will generate the same rewards as a single validator with 320 LYX staked.
 
 ## What rewards are included in the Annual Percentage Yield for staking?
 
@@ -51,7 +53,7 @@ Yes, there are two different types of withdrawals:
 
 ## How can I check if my withdrawal credentials are set?
 
-The validator deposit file contains a field known as withdrawal credentials. The first byte of this credential is known as the withdrawal prefix. This value is either `0x00` or `0x01`. The value is set on-chain when the deposit is made by a deposit tool. You can withdraw if your deposit file shows your withdrawal credential with `0x01`. If you have a validator with `0x00` withdrawal credentials, you will not immediately be able to withdraw. You need to set a withdrawal address before withdrawals are enabled and funds unlocked.
+The validator deposit file contains a field known as withdrawal credentials. The first byte of this credential is known as the withdrawal prefix. This value is either `0x00`, `0x01`, or, after the Pectra fork, `0x02`. The value is set on-chain when the deposit is made by a deposit tool. You can withdraw if your deposit file shows your withdrawal credential with `0x01` or `0x02`. If you have a validator with `0x00` withdrawal credentials, you will not immediately be able to withdraw. You need to set a withdrawal address before withdrawals are enabled and funds unlocked.
 
 ## How to set my withdrawal credentials?
 
