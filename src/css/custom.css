@@ -317,3 +317,8 @@ footer {
   background-color: #35353acc; /* Hover from LinkCards */
   box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1); /* Common shadow */
 }
+
+/* Bold navbar item for Apps link */
+.navbar-item-bold {
+  font-weight: bold;
+}

@@ -69,7 +69,7 @@ function Index() {
         <div className={styles.containerButtons}>
           <CallToActionButton
             icon="material-symbols:extension"
-            text="Download UP Browser Extension"
+            text="Download UP Apps"
             link="/install-up-browser-extension"
             color="white"
           />

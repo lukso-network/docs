@@ -3,22 +3,17 @@ import TabItem from '@theme/TabItem';
 
 import CallToActionButton from '../components/CallToActionButton';
 
-# Install the Universal Profile 🆙 Browser Extension
+# UP Apps
 
-:::info
-
-The UP Browser Extension is in a **BETA Phase**.
-
-:::
-
-The Universal Profile, your smart account on LUSKO, is conveniently accessible via the UP Browser Extension from your web browser. It is designed to be user-friendly and can be used seamlessly across multiple dApps
+Access your Universal Profile, your smart account on LUKSO, through multiple convenient applications. Whether you prefer using a browser extension or a mobile app, Universal Profile is designed to be user-friendly and can be used seamlessly across multiple dApps.
 
 Unlike traditional wallets, it prioritizes a profile-centric approach, giving you all the features of a Web3 wallet but with enhanced ease of use and security.
 
 Customizable and extensible, your Universal Profile effortlessly keeps your digital assets like tokens and NFTs organized and manageable. It also simplifies and secures the management of permissions granted to dApps, making your blockchain interactions safer and more controlled.
 
-Universal Profile makes interacting with the blockchain safe and straightforward. With the UP Browser Extension, navigating the web3 digital landscape has never been easier, safer and more intuitive than ever before.
+Universal Profile makes interacting with the blockchain safe and straightforward. With UP Apps, navigating the web3 digital landscape has never been easier, safer and more intuitive than ever before.
 
+## UP Browser Extension
 <div className="row" style={{ marginBottom: '2em', textAlign: 'center', justifyContent: 'center' }}>
 
   <div className="col">
@@ -51,6 +46,25 @@ Universal Profile makes interacting with the blockchain safe and straightforward
       bgColor="#303846"
       link="https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn"
       icon="mingcute:edge-fill"
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
+    />
+  </div>
+</div>
+
+## UP Mobile App
+
+Experience your Universal Profile on the go with the UP Mobile App. Access your digital assets, manage your profile, and interact with dApps directly from your mobile device.
+
+<div className="row" style={{ margin: '2em 0', textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
+  <div className="col">
+    <img src="/img/learn/up-mobile-app.jpg" alt="UP Mobile App" style={{ maxWidth: '280px' }} />
+  </div>
+  <div className="col">
+    <CallToActionButton
+      text="UP Mobile App for iOS and Android"
+      color="white"
+      link="https://my.universalprofile.cloud/apps"
+      icon="material-symbols:smartphone"
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
     />
   </div>

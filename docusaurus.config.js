@@ -147,7 +147,8 @@ export default {
         {
           to: '/install-up-browser-extension',
           position: 'right',
-          label: '🆙 Browser Extension',
+          label: '🆙 Apps',
+          className: 'navbar-item-bold',
         },
         {
           href: 'https://support.lukso.network/contact-us',
