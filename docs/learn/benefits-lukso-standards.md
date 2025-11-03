@@ -133,9 +133,9 @@ Interested to migrate your token or NFT collection? See our hands-on developer g
 | ------------------------ | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **Basic Approval**       | ✅ Simple approve/allowance | ✅ Enhanced [authorizeOperator](/contracts/contracts/LSP7DigitalAsset/#authorizeoperator) with explicit operator notification callback |
 | **Recipient Validation** | ❌ No validation            | ✅ [Force parameter](/contracts/contracts/LSP7DigitalAsset/#parameters-13) + recipient callbacks                                       |
-| **Transfer Context**     | ❌ None                     | ✅ [Data parameter](/contracts/contracts/LSP7DigitalAsset/#parameters-13) for context                                                  |
+| **Transfer Context**     | ❌ None                     | ✅ [Optional data parameter](/contracts/contracts/LSP7DigitalAsset/#parameters-13) to add context to transfers                         |
 | **Transfer Hooks**       | ❌ None                     | ✅ [LSP1](/standards/accounts/lsp1-universal-receiver.md) notifications for sender/receiver                                            |
-| **Transfer Rejection**   | ❌ Not possible             | ✅ Recipients can reject transfers                                                                                                     |
+| **Transfer Rejection**   | ❌ Not possible             | ✅ Recipients can reject transfers via custom [LSP1](/standards/accounts/lsp1-universal-receiver.md) Universal Receiver                |
 | **Contextual Data**      | ❌ None                     | ✅ Rich data with transfers                                                                                                            |
 
 Below are the benefits offered by the LUKSO Token standards [**LSP7 Digital Asset**](../standards/tokens/LSP7-Digital-Asset.md) and [**LSP8 Identifiable Digital Asset**](../standards/tokens/LSP8-Identifiable-Digital-Asset.md).
