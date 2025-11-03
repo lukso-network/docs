@@ -254,13 +254,12 @@ export const dappsSlider = [
     backgroundColor: '#fcfcfc',
     link: 'https://www.de-folio.com/',
   },
-  // banner 3 ----------------
   {
-    name: 'Family LYX',
-    description: 'Phygital garments powered by LUKSO standards.',
-    image: FamilyLyxLogo,
-    backgroundColor: '#31353A',
-    link: 'https://www.familylyx.com/',
+    name: 'Airdrop Tool',
+    description: 'Distribute tokens to specific set of Universal Profiles.',
+    image: AirdropLogo,
+    backgroundColor: '#fcfcfc',
+    link: 'https://airdropper.universaleverything.io/',
   },
   {
     name: 'Txs.app',
@@ -269,21 +268,21 @@ export const dappsSlider = [
     backgroundColor: '#fcfcfc',
     link: 'https://txs.app/',
   },
-
-  {
-    name: 'TxCity.io',
-    description: 'LUKSO live Blockchain transaction visualizer.',
-    image: TxCityLogo,
-    backgroundColor: '#fcfcfc',
-    link: 'https://txcity.io/v/lukso',
-  },
-  {
-    name: 'Airdrop Tool',
-    description: 'Distribute tokens to specific set of Universal Profiles.',
-    image: AirdropLogo,
-    backgroundColor: '#fcfcfc',
-    link: 'https://airdropper.universaleverything.io/',
-  },
+  // banner 3 ----------------
+  // {
+  //   name: 'TxCity.io',
+  //   description: 'LUKSO live Blockchain transaction visualizer.',
+  //   image: TxCityLogo,
+  //   backgroundColor: '#fcfcfc',
+  //   link: 'https://txcity.io/v/lukso',
+  // },
+  // {
+  //   name: 'Airdrop Tool',
+  //   description: 'Distribute tokens to specific set of Universal Profiles.',
+  //   image: AirdropLogo,
+  //   backgroundColor: '#fcfcfc',
+  //   link: 'https://airdropper.universaleverything.io/',
+  // },
   // banner 4 ----------------
   // TODO: define if we add some popular NFT collections or not. If yes add these import below at the top of the file
   // import ChillwhaleLogo from '@site/static/img/dapps/chillwhale-logo.jpg';
