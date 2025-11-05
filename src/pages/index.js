@@ -73,9 +73,7 @@ function Index() {
             link="/learn/getting-started"
             color="white"
           />
-        </div>
-        <div className={styles.container}>
-          <div className={styles.containerButtons}>
+          <div className={styles.containerButtonsClose}>
             <CallToActionButton
               icon="material-symbols:laptop-mac"
               text="UP Browser Extension"

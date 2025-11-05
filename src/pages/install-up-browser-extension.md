@@ -5,9 +5,15 @@ import CallToActionButton from '../components/CallToActionButton';
 
 # Universal Profile Apps
 
+:::info
+
+The Universal Profile apps are in **BETA Phase**.
+
+:::
+
 Universal Profile is a smart account on LUKSO, designed to be user-friendly for interacting with web3, and can be used seamlessly across multiple dApps.
 
-:::success
+:::success Universal Profile Apps
 
 You can access and use your Universal Profile through:
 
@@ -23,12 +29,6 @@ Customizable and extensible, your Universal Profile effortlessly keeps your digi
 Universal Profile makes interacting with the blockchain safe and straightforward. With UP Apps, navigating the web3 digital landscape has never been easier, safer and more intuitive than ever before.
 
 ## UP Browser Extension
-
-:::info
-
-The UP Browser Extension is in a **BETA Phase**.
-
-:::
 
 <div className="row" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2em', gap: '2em' }}>
   <div style={{ textAlign: 'center', flex: '0 0 300px' }}>
