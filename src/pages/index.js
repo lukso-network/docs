@@ -73,22 +73,20 @@ function Index() {
             link="/learn/getting-started"
             color="white"
           />
-          <div className={styles.containerButtonsClose}>
-            <CallToActionButton
-              icon="material-symbols:laptop-mac"
-              text="UP Browser Extension"
-              link="/install-up-browser-extension/#up-browser-extension"
-              bgColor="#6C5DD3"
-              color="white"
-            />
-            <CallToActionButton
-              icon="material-symbols:phone-iphone"
-              text="UP Mobile App"
-              link="/install-up-browser-extension/#up-mobile-app"
-              bgColor="#6C5DD3"
-              color="white"
-            />
-          </div>
+          <CallToActionButton
+            icon="material-symbols:laptop-mac"
+            text="UP Browser Extension"
+            link="/install-up-browser-extension/#up-browser-extension"
+            bgColor="#6C5DD3"
+            color="white"
+          />
+          <CallToActionButton
+            icon="material-symbols:phone-iphone"
+            text="UP Mobile App"
+            link="/install-up-browser-extension/#up-mobile-app"
+            bgColor="#6C5DD3"
+            color="white"
+          />
         </div>
         <div className={styles.containerBoxes3Columns}>
           <div>
