@@ -131,7 +131,7 @@ Experience your Universal Profile on the go with the UP Mobile App. Access your 
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <a href="https://erc725-inspect.lukso.tech/?network=mainnet">
+    <a href="https://erc725-inspect.lukso.tech/?network=lukso+mainnet">
       <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
 
       <h3>ERC725 Inspect</h3>

@@ -64,7 +64,7 @@ const result = await erc725js.getData('LSP5ReceivedAssets[]');
 
 Alternatively, our convenience UI tool ERC725-Inspect enables you to retrieve the list of **LSP5 Received Assets** easily. Simply:
 
-1. Go to [https://erc725-inspect.lukso.tech/](https://erc725-inspect.lukso.tech/?network=mainnet)
+1. Go to [https://erc725-inspect.lukso.tech/](https://erc725-inspect.lukso.tech/?network=lukso+mainnet)
 2. Select the network at the top right.
 3. Paste the address of the Universal Profile on the search field
 4. Scroll down until you reach the data key **`LSP5ReceivedAssets[]`**

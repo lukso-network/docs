@@ -14,7 +14,7 @@ import CodeSandbox from "@site/src/components/CodeSandbox";
 
 :::success 💡 Tips
 
-Use our [ERC725 inspect](https://erc725-inspect.lukso.tech/?network=mainnet) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher?network=mainnet) or [🔎 Inspector](https://erc725-inspect.lukso.tech/inspector?network=mainnet).
+Use our [ERC725 inspect](https://erc725-inspect.lukso.tech/?network=lukso+mainnet) tool to easily retrieve data from your 🆙 with the [🔍 Data Fetcher](https://erc725-inspect.lukso.tech/data-fetcher?network=lukso+mainnet) or [🔎 Inspector](https://erc725-inspect.lukso.tech/inspector?network=lukso+mainnet).
 
 Simply paste your Universal Profile address in the search field and choose the data key from which to retrieve data. The value stored will be returned both as encoded and decoded.
 
@@ -115,7 +115,7 @@ console.log(encodedProfileData);
 
 :::success Tips
 
-You can find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso.tech/data-fetcher?network=mainnet) tool or in the [erc725 repo](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas).
+You can find all data keys on the [ERC725Y Inspect](https://erc725-inspect.lukso.tech/data-fetcher?network=lukso+mainnet) tool or in the [erc725 repo](https://github.com/ERC725Alliance/erc725.js/tree/develop/schemas).
 
 :::
 

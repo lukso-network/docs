@@ -28,8 +28,8 @@ const ReferenceCard: React.FC<Props> = ({
       </div>
       <div className="card__footer">
         <div
-          className="button-group button-group--block"
-          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+          className="button-group"
+          style={{ display: 'grid', gridTemplateColumns: 'max-content max-content', justifyContent: 'center' }}
         >
           {links.map((item, index) => (
             <Link key={index} className="button button--secondary" to={item.to}>

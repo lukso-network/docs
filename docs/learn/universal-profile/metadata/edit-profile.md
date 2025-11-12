@@ -298,7 +298,7 @@ await universalProfileContract.methods.setData(
 <!-- prettier-ignore-end -->
 
 :::tip ERC725 Inspect
-You can also validate your LSP3Profile metadata of your Universal Profile using the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/?network=mainnet).
+You can also validate your LSP3Profile metadata of your Universal Profile using the [ERC725 Inspect Tool](https://erc725-inspect.lukso.tech/?network=lukso+mainnet).
 <img style={{ verticalAlign: 'right' }} src={ERC725} />
 :::
 
