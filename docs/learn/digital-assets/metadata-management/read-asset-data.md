@@ -44,7 +44,7 @@ Before following this guide, it is recommended to be a bit familiar with the tok
 
 :::success Check Assets Online
 
-You can use the 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector?network=mainnet) tool for inspecting assets within the browser.
+You can use the 🔎 [ERC725 Inspect](https://erc725-inspect.lukso.tech/inspector?network=lukso+mainnet) tool for inspecting assets within the browser.
 
 <img style={{ verticalAlign: 'right' }} src={ERC725} />
 

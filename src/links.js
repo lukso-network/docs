@@ -99,6 +99,13 @@ export const networkLinks = [
       'One-click connect to LUKSO Mainnet or Testnet (see the available RPC endpoints).',
   },
   {
+    title: 'RPC Endpoints',
+    link: '/networks/mainnet/parameters#3rd-party-rpc-providers',
+    showAsCode: false,
+    description:
+      'Use the RPC endpoints of third-party providers to connect to LUKSO Mainnet.',
+  },
+  {
     title: 'Block Explorer',
     link: '/networks/mainnet/parameters',
     showAsCode: false,
@@ -119,6 +126,12 @@ export const networkLinks = [
     description:
       'Run your own validator node and start earning rewards. DappNode available!',
   },
+  {
+    title: 'Client Diversity Dashboard',
+    link: 'https://clientdiversity.lukso.network/',
+    showAsCode: false,
+    description: 'Monitor the current state of client diversity on LUKSO.',
+  },
 ];
 
 export const toolsLinks = [
@@ -135,6 +148,13 @@ export const toolsLinks = [
     showAsCode: false,
     description:
       'The smart contract implementation of the LSP standards in Solidity.',
+  },
+  {
+    title: 'ERC725 Inspect Tool',
+    link: 'https://erc725-inspect.lukso.tech/?network=lukso+mainnet',
+    showAsCode: false,
+    description:
+      'Easily view and decode Universal Profile and Digital Asset metadata.',
   },
   {
     title: 'erc725.js',
