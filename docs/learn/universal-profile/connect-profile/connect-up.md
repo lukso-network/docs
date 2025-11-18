@@ -42,22 +42,151 @@ The [Universal Profile Extension](/install-up-browser-extension) returns the add
 
 ### Wagmi + RainbowKit
 
-#### Mermaid Diagram
+```mermaid
+sequenceDiagram
+    participant User
+    participant DApp
+    participant RainbowKit
+    participant Wagmi
+    participant UP Extension
 
-```
-<!-- TODO: Add Mermaid diagram -->
+    User->>DApp: Click Connect
+    DApp->>RainbowKit: Open Modal
+    RainbowKit->>Wagmi: Request Connection
+    Wagmi->>UP Extension: Initiate Connection
+    UP Extension->>Wagmi: Approve & Return UP Address
+    Wagmi->>RainbowKit: Connection Established
+    RainbowKit->>DApp: Return UP Address
 ```
 
-#### Install Dependencies
+**Step 1: Install Dependencies**
 
 ```sh
-# TODO: Add installation instructions
+npm install @rainbow-me/rainbowkit wagmi @tanstack/react-query viem
 ```
 
-#### Code Snippet
+**Step 2: Configure Wagmi with LUKSO and RainbowKit Connectors**
+
+Set up Wagmi configuration with LUKSO network and RainbowKit's Universal Profile wallet connector:
 
 ```js
-// TODO: Add Wagmi + RainbowKit code snippet
+import { WagmiProvider, createConfig, http } from 'wagmi';
+import { lukso } from 'wagmi/chains';
+import { connectorsForWallets } from '@rainbow-me/rainbowkit';
+import { universalProfilesWallet } from '@rainbow-me/rainbowkit/wallets';
+
+// Configure Wagmi with LUKSO network and RainbowKit connectors
+const config = createConfig({
+  chains: [lukso],
+  transports: {
+    [lukso.id]: http(),
+  },
+  connectors: connectorsForWallets(
+    [
+      {
+        groupName: 'Login with Universal Profile',
+        wallets: [universalProfilesWallet],
+      },
+    ],
+    { 
+      appName: 'LUKSO dApp', 
+      projectId: 'YOUR_PROJECT_ID' // Get your project ID from WalletConnect Cloud
+    },
+  ),
+});
+```
+
+**Step 3: Create the QueryClient**
+
+Create a QueryClient instance for React Query, which Wagmi uses under the hood to manage cache, background updates, and request deduplication:
+
+```js
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+```
+
+**Step 4: Wrap Your App with Providers**
+
+Import RainbowKit styles and wrap your application with the required providers in the correct order:
+
+```jsx
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import '@rainbow-me/rainbowkit/styles.css';
+
+function App() {
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>
+          {/* 
+            Place your main application content here. 
+            <YourAppContent />  
+
+            This ensures that all components within <YourAppContent /> 
+            have access to the connected wallet context provided by WagmiProvider,
+            enabling features like reading connection state or sending transactions.
+          */}
+        </RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+**Step 5: Add the Connect Button**
+
+Use RainbowKit's pre-built `ConnectButton` component to handle wallet connections:
+
+```jsx
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+function YourAppContent() {
+  return (
+    <div>
+      <ConnectButton />
+    </div>
+  );
+}
+```
+
+**Step 6: Access Connection State**
+
+Use Wagmi hooks to read the connected Universal Profile details and wallet balance:
+
+```js
+import { useAccount, useBalance } from 'wagmi';
+
+function YourAppContent() {
+  const { address, isConnected } = useAccount();
+  const { data: balance } = useBalance({
+    address: address,
+  });
+
+  return (
+    <div>
+      <ConnectButton />
+      
+      {!isConnected && (
+        <p>Connect your Universal Profile wallet to get started</p>
+      )}
+
+      {isConnected && (
+        <div>
+          <h2>Wallet Information</h2>
+          <p>
+            Address: <code>{address}</code>
+          </p>
+          {balance && (
+            <p>
+              Balance: {balance.formatted} {balance.symbol}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 ```
 
 ### Wagmi + ReOwn (WalletConnect)
@@ -204,6 +333,5 @@ const exampleDeepLink = exampleWcUri.replace(
 
 ## Helpful Resources
 
-- Check our sample implementations for NextJS on the [dApp Boilerplate](https://boilerplate.lukso.tech/).
-- Read Profile Data
-- LUKSO Mainnet Parameters, RPC Providers
+- Next Stop: [Read Universal Profile Data](/docs/learn/universal-profile/metadata/read-profile-data.md)
+- [LUKSO Mainnet Parameters, RPC Providers](/docs/networks/mainnet/parameters.md#add-lukso-to-wallets)
