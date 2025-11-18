@@ -77,6 +77,11 @@ import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { universalProfilesWallet } from '@rainbow-me/rainbowkit/wallets';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+// Create a new QueryClient instance for React Query,
+// which Wagmi uses under the hood to manage cache, background updates, and request deduplication.
+// This is required to provide <QueryClientProvider> higher up in your component tree.
+const queryClient = new QueryClient();
+
 // Configure Wagmi with LUKSO network and RainbowKit connectors
 const config = createConfig({
   chains: [lukso],
@@ -98,17 +103,7 @@ const config = createConfig({
 });
 ```
 
-**Step 3: Create the QueryClient**
-
-Create a QueryClient instance for React Query, which Wagmi uses under the hood to manage cache, background updates, and request deduplication:
-
-```js
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient();
-```
-
-**Step 4: Wrap Your App with Providers**
+**Step 3: Wrap Your App with Providers**
 
 Import RainbowKit styles and wrap your application with the required providers in the correct order:
 
@@ -136,7 +131,7 @@ function App() {
 }
 ```
 
-**Step 5: Add the Connect Button**
+**Step 4: Add the Connect Button**
 
 Use RainbowKit's pre-built `ConnectButton` component to handle wallet connections:
 
@@ -152,7 +147,7 @@ function YourAppContent() {
 }
 ```
 
-**Step 6: Access Connection State**
+**Step 5: Access Connection State**
 
 Use Wagmi hooks to read the connected Universal Profile details and wallet balance:
 
@@ -325,6 +320,47 @@ const exampleDeepLink = exampleWcUri.replace(
 </TabItem>
 
 </Tabs>
+
+## Connect with EIP-6963
+
+:::tip Example Implementation
+
+If you want to implement _Injected Provider Discovery_ you can visit our [Example EIP-6963 Test dApp](https://github.com/lukso-network/example-eip-6963-test-dapp).
+
+:::
+
+:::info Wallet Compatibility
+
+Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is the latest industry standardization, solving previous connectivity issues when having multiple wallet extensions installed at the same time.
+
+:::
+
+You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider](https://eips.ethereum.org/EIPS/eip-6963) standardization to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
+
+```js
+import { createWalletClient, custom } from 'viem';
+import { lukso } from 'viem/chains';
+
+let providers = [];
+
+window.addEventListener('eip6963:announceProvider', (event) => {
+  providers.push(event.detail);
+});
+
+// Request installed providers
+window.dispatchEvent(new Event('eip6963:requestProvider'));
+
+// ... pick a provider to instantiate (providers[n].info)
+
+// Create a wallet client using the selected provider
+const walletClient = createWalletClient({
+  chain: lukso,
+  transport: custom(providers[0].provider),
+});
+
+const accounts = await walletClient.requestAddresses();
+console.log('Connected with', accounts[0]);
+```
 
 ## Helpful Resources
 
