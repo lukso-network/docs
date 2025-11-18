@@ -4,23 +4,39 @@ sidebar_position: 1
 description: Learn how to connect your Universal Profile to a dApp (decentralized application) on LUKSO.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Connect a Universal Profile
 
-There are several methods to connect to a [Universal Profile](../../../standards/accounts/introduction.md), each catering to different developer requirements and scenarios. Below, we detail the most common approaches and explain why a developer might prefer one over the others.
+[Universal Profiles](../../../standards/accounts/introduction.md) can be accessed through **UP Apps** on LUKSO. There are two primary UP Apps available:
 
-## Universal Profiles Apps
-
-Universal Profiles can be accessed through **UP Apps**, which serve as the bridge between users and decentralized applications on LUKSO. There are two primary UP Apps available:
-
-### UP Browser Extension
+## UP Browser Extension
 
 The [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) is designed for desktop users who want to interact with dApps through their web browser. It provides a seamless experience for managing Universal Profiles and connecting to decentralized applications. The extension is compatible with modern browsers and supports standard wallet connection protocols.
 
-### UP Mobile App
+## UP Mobile App
 
 The Universal Profile Mobile App brings the power of Universal Profiles to mobile devices, allowing users to manage their profiles and interact with dApps on the go. The mobile app supports QR code scanning for quick connections and provides a native mobile experience for LUKSO ecosystem interactions.
 
-## Connection Methods
+## Multi-Provider Libraries
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Your App
+    participant Multi-Provider Libraries
+    participant Wagmi
+    participant UP Apps
+
+    User->>Your App: Click Connect
+    Your App->>Multi-Provider Libraries: Open Modal
+    Multi-Provider Libraries->>Wagmi: Request Connection
+    Wagmi->>UP Apps: Initiate Connection
+    UP Apps->>Wagmi: Approve & Return UP Address
+    Wagmi->>Multi-Provider Libraries: Connection Established
+    Multi-Provider Libraries->>Your App: Return UP Address
+```
 
 Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
 
@@ -40,29 +56,14 @@ The [Universal Profile Extension](/install-up-browser-extension) returns the add
 
 :::
 
-### Wagmi + RainbowKit
+<Tabs groupId="provider-lib">
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant DApp
-    participant RainbowKit
-    participant Wagmi
-    participant UP Extension
-
-    User->>DApp: Click Connect
-    DApp->>RainbowKit: Open Modal
-    RainbowKit->>Wagmi: Request Connection
-    Wagmi->>UP Extension: Initiate Connection
-    UP Extension->>Wagmi: Approve & Return UP Address
-    Wagmi->>RainbowKit: Connection Established
-    RainbowKit->>DApp: Return UP Address
-```
+<TabItem value="rainbowkit" label="Wagmi + RainbowKit" default>
 
 **Step 1: Install Dependencies**
 
 ```sh
-npm install @rainbow-me/rainbowkit wagmi @tanstack/react-query viem
+npm install @rainbow-me/rainbowkit wagmi @tanstack/react-query
 ```
 
 **Step 2: Configure Wagmi with LUKSO and RainbowKit Connectors**
@@ -74,6 +75,7 @@ import { WagmiProvider, createConfig, http } from 'wagmi';
 import { lukso } from 'wagmi/chains';
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { universalProfilesWallet } from '@rainbow-me/rainbowkit/wallets';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Configure Wagmi with LUKSO network and RainbowKit connectors
 const config = createConfig({
@@ -88,9 +90,9 @@ const config = createConfig({
         wallets: [universalProfilesWallet],
       },
     ],
-    { 
-      appName: 'LUKSO dApp', 
-      projectId: 'YOUR_PROJECT_ID' // Get your project ID from WalletConnect Cloud
+    {
+      appName: 'LUKSO dApp',
+      projectId: 'YOUR_PROJECT_ID', // Get your project ID from WalletConnect Cloud
     },
   ),
 });
@@ -166,7 +168,7 @@ function YourAppContent() {
   return (
     <div>
       <ConnectButton />
-      
+
       {!isConnected && (
         <p>Connect your Universal Profile wallet to get started</p>
       )}
@@ -189,20 +191,9 @@ function YourAppContent() {
 }
 ```
 
-### Wagmi + ReOwn (WalletConnect)
+</TabItem>
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant DApp
-    participant WalletConnect
-    participant UP Extension
-
-    User->>DApp: Click Connect
-    DApp->>WalletConnect: Request Connection
-    WalletConnect->>UP Extension: Initiate Pairing
-    UP Extension->>DApp: Return UP Address
-```
+<TabItem value="reown" label="Wagmi + ReOwn (WalletConnect)">
 
 **Step 1: Install Dependencies**
 
@@ -330,6 +321,10 @@ const exampleDeepLink = exampleWcUri.replace(
 ```
 
 :::
+
+</TabItem>
+
+</Tabs>
 
 ## Helpful Resources
 
