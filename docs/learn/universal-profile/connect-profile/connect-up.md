@@ -255,6 +255,8 @@ createAppKit({
 
 **Step 4: Wrap Your App with the Provider**
 
+Wrap your application with the required providers in the correct order:
+
 ```jsx
 function App() {
   return (
@@ -274,13 +276,7 @@ function App() {
 }
 ```
 
-**Step 5: Add the `Connect` button to your project**
-
-```jsx
-<appkit-button />
-```
-
-**Step 6: Access Connection State**
+**Step 5: Use the `Connect` button and access to connection state**
 
 Use `Wagmi` hooks to read the connected Universal Profile details:
 
