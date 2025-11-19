@@ -32,7 +32,25 @@ Connecting to the [Universal Profile Browser Extension](https://chromewebstore.g
 
 </div>
 
-## Multi-Provider Libraries
+## Connection Methods
+
+There are multiple ways to connect a dApp to Universal Profiles, from high-level libraries to low-level provider access.
+
+:::success Connect to UP
+
+Choose the method that best fits your application's needs:
+
+- **[Multi-Provider Libraries](#multi-provider-libraries)**: Best for most dApps. Provides a pre-built components and handles connection logic for multiple wallets (including Universal Profiles) automatically. Recommended for a seamless user experience.
+- **[Provider Injection](#provider-injection)**: Direct access to the `window.lukso` object. Useful for simple integrations or when you want full control over the connection process without external UI libraries.
+- **[EIP-6963: Provider Discovery](#eip-6963-provider-discovery)**: The modern standard for handling multiple installed wallet extensions. Solves conflicts when users have multiple wallets (e.g., MetaMask and Universal Profile Extension) installed simultaneously.
+
+:::
+
+### Multi-Provider Libraries
+
+Libraries like **RainbowKit** and **ReOwn** (formerly WalletConnect) simplify dApp development by abstracting complex wallet connection logic.
+
+The diagram below illustrates how these libraries mediate the connection flow between your application and the Universal Profile:
 
 ```mermaid
 sequenceDiagram
@@ -51,9 +69,15 @@ sequenceDiagram
     Multi-Provider Libraries->>Your App: Return UP Address
 ```
 
-<Tabs groupId="provider-lib">
+:::info 🛠️ Choose Your Library
 
-<TabItem value="rainbowkit" label="Wagmi + RainbowKit" default>
+Below, you can find the configuration steps for your preferred library. Both options fully support Universal Profiles and are built on top of **Wagmi**!
+
+:::
+
+<Tabs groupId="provider-lib" className="provider-tabs">
+
+<TabItem value="rainbowkit" label="🌈 Wagmi + RainbowKit" default>
 
 **Step 1: Install Dependencies**
 
@@ -144,36 +168,23 @@ function YourAppContent() {
 
 **Step 5: Access Connection State**
 
-Use Wagmi hooks to read the connected Universal Profile details and wallet balance:
+Use Wagmi hooks to read the connected Universal Profile details:
 
 ```js
-import { useAccount, useBalance } from 'wagmi';
+import { useAccount, useChainId } from 'wagmi';
 
 function YourAppContent() {
-  const { address, isConnected } = useAccount();
-  const { data: balance } = useBalance({
-    address: address,
-  });
+  const { address, isConnected, chain } = useAccount();
+  const chainId = useChainId();
 
   return (
     <div>
       <ConnectButton />
-
-      {!isConnected && (
-        <p>Connect your Universal Profile wallet to get started</p>
-      )}
-
       {isConnected && (
         <div>
-          <h2>Wallet Information</h2>
-          <p>
-            Address: <code>{address}</code>
-          </p>
-          {balance && (
-            <p>
-              Balance: {balance.formatted} {balance.symbol}
-            </p>
-          )}
+          <p>Address: {address}</p>
+          <p>Network: {chain?.name}</p>
+          <p>Chain ID: {chainId}</p>
         </div>
       )}
     </div>
@@ -183,7 +194,7 @@ function YourAppContent() {
 
 </TabItem>
 
-<TabItem value="reown" label="Wagmi + ReOwn (WalletConnect)">
+<TabItem value="reown" label="🔗 Wagmi + ReOwn (WalletConnect)">
 
 **Step 1: Install Dependencies**
 
@@ -303,7 +314,7 @@ DeepLink can be configured for QR login when using the UP Mobile app with _ReOwn
 
 Simply replace the `wc:` alias with `io.universaleverything.universalprofiles://wallet-connect/`:
 
-```ts
+```js
 const exampleWcUri =
   'wc:8c4d7a9e5f2b3c1d@2?relay-protocol=irn&symKey=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6';
 const exampleDeepLink = exampleWcUri.replace(
@@ -318,7 +329,76 @@ const exampleDeepLink = exampleWcUri.replace(
 
 </Tabs>
 
-## Connect with EIP-6963
+### Provider Injection
+
+You can use the `window.lukso` object, tailored for a direct integration with the UP Browser Extension. This approach allows developers to engage directly with the UP Browser Extension without the need to consider compatibility with other extensions.
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
+
+```sh
+npm install ethers
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
+
+```sh
+npm install web3
+```
+
+  </TabItem>
+</Tabs>
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
+
+```js
+import { ethers } from 'ethers';
+const provider = new ethers.BrowserProvider(window.lukso);
+
+const accounts = await provider.send('eth_requestAccounts', []);
+console.log('Connected with', accounts[0]);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
+
+```js
+import Web3 from 'web3';
+const provider = new Web3(window.lukso);
+
+const accounts = await provider.eth.requestAccounts();
+console.log('Connected with', accounts[0]);
+```
+
+  </TabItem>
+</Tabs>
+
+:::info Wallet Compatibility
+
+Alternatively to the `window.lukso`, the equivalent `window.ethereum` object can be called within [supported browsers](/install-up-browser-extension), just like other Ethereum wallets. Both follow the [EIP-1193 Ethereum Provider JavaScript API](https://eips.ethereum.org/EIPS/eip-1193). You can use a simple fallback to allow regular wallet connections, if the [Universal Profile Browser Extension](/install-up-browser-extension) is not installed:
+
+:::
+
+<Tabs groupId="provider-lib">
+  <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
+
+```js
+const provider = new ethers.BrowserProvider(window.lukso || window.ethereum);
+```
+
+  </TabItem>
+  <TabItem value="web3" label="web3"  attributes={{className: "tab_web3"}}>
+
+```js
+const provider = new Web3(window.lukso || window.ethereum);
+```
+
+  </TabItem>
+</Tabs>
+
+### EIP-6963: Provider Discovery
 
 :::tip Example Implementation
 
@@ -333,6 +413,14 @@ Using [EIP-6963 Provider Discovery](https://eips.ethereum.org/EIPS/eip-6963) is 
 :::
 
 You can listen to `eip6963:announceProvider` events following the [EIP-6963: Multi Injected Provider](https://eips.ethereum.org/EIPS/eip-6963) standardization to facilitate a more versatile connection to multiple wallet extensions. This method is beneficial for developers who require the ability to maintain low-level control over how different extensions are targeted and managed within their dApp.
+
+**Step 1: Install Dependencies**
+
+```sh
+npm install viem
+```
+
+**Step 2: Implement Provider Discovery**
 
 ```js
 import { createWalletClient, custom } from 'viem';
