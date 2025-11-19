@@ -9,15 +9,28 @@ import TabItem from '@theme/TabItem';
 
 # Connect a Universal Profile
 
-[Universal Profiles](../../../standards/accounts/introduction.md) can be accessed through **UP Apps** on LUKSO. There are two primary UP Apps available:
+[Universal Profiles](../../../standards/accounts/introduction.md) can be accessed through **[UP Apps](/install-up-browser-extension)** on LUKSO. There are two primary UP Apps available:
 
-## UP Browser Extension
+- [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) is designed for desktop users who want to interact with dApps through their web browser. It provides a seamless experience for managing Universal Profiles and connecting to decentralized applications. The extension is compatible with modern browsers and supports standard wallet connection protocols.
+- [Universal Profile Mobile App](/install-up-browser-extension/#up-mobile-app) brings the power of Universal Profiles to mobile devices, allowing users to manage their profiles and interact with dApps on the go.
 
-The [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) is designed for desktop users who want to interact with dApps through their web browser. It provides a seamless experience for managing Universal Profiles and connecting to decentralized applications. The extension is compatible with modern browsers and supports standard wallet connection protocols.
+:::success Request Handling
 
-## UP Mobile App
+The [Universal Profile Extension](/install-up-browser-extension) returns the address of the connected [Universal Profile](../../../standards/accounts/introduction.md). Making transactions is the same as with any wallet, you just use the profile address as a `from` in your transactions.
 
-The Universal Profile Mobile App brings the power of Universal Profiles to mobile devices, allowing users to manage their profiles and interact with dApps on the go. The mobile app supports QR code scanning for quick connections and provides a native mobile experience for LUKSO ecosystem interactions.
+:::
+
+Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
+
+<div style={{textAlign: 'center'}}>
+
+<img
+    src="/img/learn/up_extension_connect.png"
+    alt="Example of UP Connection Screen"
+    width="600"
+/>
+
+</div>
 
 ## Multi-Provider Libraries
 
@@ -37,24 +50,6 @@ sequenceDiagram
     Wagmi->>Multi-Provider Libraries: Connection Established
     Multi-Provider Libraries->>Your App: Return UP Address
 ```
-
-Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
-
-<div style={{textAlign: 'center'}}>
-
-<img
-    src="/img/learn/up_extension_connect.png"
-    alt="Example of UP Connection Screen"
-    width="600"
-/>
-
-</div>
-
-:::success Request Handling
-
-The [Universal Profile Extension](/install-up-browser-extension) returns the address of the connected [Universal Profile](../../../standards/accounts/introduction.md). Making transactions is the same as with any wallet, you just use the profile address as a `from` in your transactions.
-
-:::
 
 <Tabs groupId="provider-lib">
 
@@ -253,7 +248,8 @@ createAppKit({
 function App() {
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>
-      {/* 
+      <QueryClientProvider client={queryClient}>
+        {/* 
         Place your main application content here. 
         <YourAppContent />  
 
@@ -261,6 +257,7 @@ function App() {
         have access to the connected wallet context provided by WagmiProvider,
         enabling features like reading connection state or sending transactions.
       */}
+      </QueryClientProvider>
     </WagmiProvider>
   );
 }
