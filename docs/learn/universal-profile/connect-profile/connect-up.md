@@ -6,13 +6,32 @@ description: Learn how to connect your Universal Profile to a dApp (decentralize
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import LayersIcon from '@mui/icons-material/Layers';
 
 # Connect a Universal Profile
 
-[Universal Profiles](../../../standards/accounts/introduction.md) can be accessed through **[UP Apps](/install-up-browser-extension)** on LUKSO. There are two primary UP Apps available:
+[Universal Profiles](../../../standards/accounts/introduction.md) can connect to dApps on LUKSO using one of the two UP Apps available:
 
-- [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) is designed for desktop users who want to interact with dApps through their web browser. It provides a seamless experience for managing Universal Profiles and connecting to decentralized applications. The extension is compatible with modern browsers and supports standard wallet connection protocols.
-- [Universal Profile Mobile App](/install-up-browser-extension/#up-mobile-app) brings the power of Universal Profiles to mobile devices, allowing users to manage their profiles and interact with dApps on the go.
+- [🧩 UP Browser Extension](/install-up-browser-extension/#up-browser-extension)
+- [📱 UP Mobile App]
+
+Connecting your Universal Profile will trigger one the following connection screen.
+
+<div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+
+<img
+    src="/img/learn/connect-up-browser-extension.png"
+    alt="Example of UP Browser Extension Connection Screen"
+    height="600"
+/>
+
+<img
+    src="/img/learn/connect-up-mobile-app.png"
+    alt="Example of UP Mobile App Connection Screen"
+    height="600"
+/>
+
+</div>
 
 :::success Request Handling
 
@@ -20,64 +39,56 @@ The [Universal Profile Extension](/install-up-browser-extension) returns the add
 
 :::
 
-Connecting to the [Universal Profile Browser Extension](https://chromewebstore.google.com/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) will trigger the following connection screen:
-
-<div style={{textAlign: 'center'}}>
-
-<img
-    src="/img/learn/up_extension_connect.png"
-    alt="Example of UP Connection Screen"
-    width="600"
-/>
-
-</div>
-
 ## Connection Methods
 
-There are multiple ways to connect a dApp to Universal Profiles, from high-level libraries to low-level provider access.
+There are multiple ways to connect a dApp to Universal Profiles, from high-level libraries to low-level provider access. Choose the method that best fits your application's needs:
 
-:::success Connect to UP
+| Option                                              | Difficulty                                                                  | Recommended for                                                                                                                                                                                                                                   |
+| --------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**Third-Party Libraries**](#third-party-libraries) | **Easy** 🌶️ <br/> Plug in existing connectors and focus on UX.              | Most dApps. Provides pre-built components, ready-made modals, with multi-wallet support out of the box and connection logic handled automatically. <br/> **Recommended for quick and easy integration while keeping a seamless user experience.** |
+| [**Provider Injection**](#provider-injection)       | **Medium** 🌶️🌶️ <br/> Require to manage the `window.lukso` object.          | Lightweight builds needing minimal dependencies and full control over wallet connection logic. <br/> **Recommended for full control over the connection logic (_e.g: only allow UPs to connect_) and to build custom connection modals.**         |
+| [**Provider Discovery**](#provider-discovery)       | **Complex** 🌶️🌶️🌶️ <br/> Connect multiple wallet extensions simulatenously. | Advanced apps where users run several extensions (e.g., MetaMask + Universal Profile) simultaneously using EIP-6963. <br/> **Recommended for handling multiple connected wallets.**                                                               |
 
-Choose the method that best fits your application's needs:
+:::info
 
-- **[Multi-Provider Libraries](#multi-provider-libraries)**: Best for most dApps. Provides a pre-built components and handles connection logic for multiple wallets (including Universal Profiles) automatically. Recommended for a seamless user experience.
-- **[Provider Injection](#provider-injection)**: Direct access to the `window.lukso` object. Useful for simple integrations or when you want full control over the connection process without external UI libraries.
-- **[EIP-6963: Provider Discovery](#eip-6963-provider-discovery)**: The modern standard for handling multiple installed wallet extensions. Solves conflicts when users have multiple wallets (e.g., MetaMask and Universal Profile Extension) installed simultaneously.
+Currently, only the **third-party libraries** method can be used to connect the [📱 UP Mobile App] to a dApp.
 
 :::
 
-### Multi-Provider Libraries
+### Third-Party Libraries
 
-Libraries like **RainbowKit** and **ReOwn** (formerly WalletConnect) simplify dApp development by abstracting complex wallet connection logic.
+You can connect to Universal Profile using the following third-party libraries. These libraries simplify dApp development by abstracting complex wallet connection logic:
 
-The diagram below illustrates how these libraries mediate the connection flow between your application and the Universal Profile:
+- [**RainbowKit**](https://rainbowkit.com/docs/) (since [`v2.2.9`](https://github.com/rainbow-me/rainbowkit/releases/tag/%40rainbow-me%2Frainbowkit%402.2.9))
+- [**Reown AppKit**](https://docs.reown.com/appkit/overview) (formerly WalletConnect)
+
+<details>
+  <summary>See flow diagram on how third party libraries handle the connection flow with EIP-6963</summary>
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Your App
-    participant Multi-Provider Libraries
+    participant Third-Party Libraries
     participant Wagmi
     participant UP Apps
 
     User->>Your App: Click Connect
-    Your App->>Multi-Provider Libraries: Open Modal
-    Multi-Provider Libraries->>Wagmi: Request Connection
+    Your App->>Third-Party Libraries: Open Modal
+    Third-Party Libraries->>Wagmi: Request Connection
     Wagmi->>UP Apps: Initiate Connection
     UP Apps->>Wagmi: Approve & Return UP Address
-    Wagmi->>Multi-Provider Libraries: Connection Established
-    Multi-Provider Libraries->>Your App: Return UP Address
+    Wagmi->>Third-Party Libraries: Connection Established
+    Third-Party Libraries->>Your App: Return UP Address
 ```
 
-:::info 🛠️ Choose Your Library
+</details>
 
-Below, you can find the configuration steps for your preferred library. Both options fully support Universal Profiles and are built on top of **Wagmi**!
-
-:::
+Choose your preferred library and follow the configuration steps below. Both options are built on top of **Wagmi**!
 
 <Tabs groupId="provider-lib" className="provider-tabs">
 
-<TabItem value="rainbowkit" label="🌈 Wagmi + RainbowKit" default>
+<TabItem value="rainbowkit" label="🌈 RainbowKit" default>
 
 **Step 1: Install Dependencies**
 
@@ -93,15 +104,14 @@ Set up Wagmi configuration with LUKSO network and RainbowKit's Universal Profile
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { lukso } from 'wagmi/chains';
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
-import { universalProfilesWallet } from '@rainbow-me/rainbowkit/wallets';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// highlight-next-line
+import { universalProfilesWallet } from '@rainbow-me/rainbowkit/wallets';
 
-// Create a new QueryClient instance for React Query,
-// which Wagmi uses under the hood to manage cache, background updates, and request deduplication.
+// Wagmi uses QueryClient to manage cache, background updates, and request deduplication.
 // This is required to provide <QueryClientProvider> higher up in your component tree.
 const queryClient = new QueryClient();
 
-// Configure Wagmi with LUKSO network and RainbowKit connectors
 const config = createConfig({
   chains: [lukso],
   transports: {
@@ -111,6 +121,7 @@ const config = createConfig({
     [
       {
         groupName: 'Login with Universal Profile',
+        // highlight-next-line
         wallets: [universalProfilesWallet],
       },
     ],
@@ -194,7 +205,7 @@ function YourAppContent() {
 
 </TabItem>
 
-<TabItem value="reown" label="🔗 Wagmi + ReOwn (WalletConnect)">
+<TabItem value="reown" label={<><LayersIcon color="success" style={{verticalAlign: 'middle', marginRight: 6}} />Reown AppKit</>}>
 
 **Step 1: Install Dependencies**
 
@@ -213,8 +224,7 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { lukso } from '@reown/appkit/networks';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-// Create a new QueryClient instance for React Query,
-// which Wagmi uses under the hood to manage cache, background updates, and request deduplication.
+// Wagmi uses QueryClient to manage cache, background updates, and request deduplication.
 // This is required to provide <QueryClientProvider> higher up in your component tree.
 const queryClient = new QueryClient();
 
@@ -394,7 +404,7 @@ const provider = new Web3(window.lukso || window.ethereum);
   </TabItem>
 </Tabs>
 
-### EIP-6963: Provider Discovery
+### Provider Discovery
 
 :::tip Example Implementation
 
@@ -447,3 +457,5 @@ console.log('Connected with', accounts[0]);
 
 - Next Stop: [Read Universal Profile Data](/docs/learn/universal-profile/metadata/read-profile-data.md)
 - [LUKSO Mainnet Parameters, RPC Providers](/docs/networks/mainnet/parameters.md#add-lukso-to-wallets)
+
+[📱 UP Mobile App]: /install-up-browser-extension/#up-mobile-app
