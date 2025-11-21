@@ -224,6 +224,28 @@ table.lsp-features td {
   margin-right: 1em;
 }
 
+
+.tab_viem[aria-selected='true'] {
+  border-bottom-color: #2434a1;
+}
+
+.tab_viem {
+  color: #2434a1;
+}
+
+.tab_viem:before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('/static/img/learn/viem-logo.png') no-repeat center;
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  position: relative;
+  z-index: 100000;
+}
+
 .tab_web3[aria-selected='true'] {
   border-bottom-color: #f06922;
 }

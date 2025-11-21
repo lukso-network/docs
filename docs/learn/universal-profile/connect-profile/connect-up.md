@@ -47,7 +47,7 @@ There are multiple ways to connect a dApp to Universal Profiles, from high-level
 | --------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Third-Party Libraries**](#third-party-libraries) | **Easy** 🌶️ <br/> Plug in existing connectors and focus on UX.              | Most dApps. Provides pre-built components, ready-made modals, with multi-wallet support out of the box and connection logic handled automatically. <br/> **Recommended for quick and easy integration while keeping a seamless user experience.** |
 | [**Provider Injection**](#provider-injection)       | **Medium** 🌶️🌶️ <br/> Require to manage the `window.lukso` object.          | Lightweight builds needing minimal dependencies and full control over wallet connection logic. <br/> **Recommended for full control over the connection logic (_e.g: only allow UPs to connect_) and to build custom connection modals.**         |
-| [**Provider Discovery**](#provider-discovery)       | **Complex** 🌶️🌶️🌶️ <br/> Connect multiple wallet extensions simulatenously. | Advanced apps where users run several extensions (e.g., MetaMask + Universal Profile) simultaneously using EIP-6963. <br/> **Recommended for handling multiple connected wallets.**                                                               |
+| [**Provider Discovery**](#provider-discovery)       | **Complex** 🌶️🌶️🌶️ <br/> Connect multiple wallet extensions simultaneously. | Advanced apps where users run several extensions (e.g., MetaMask + Universal Profile) simultaneously using EIP-6963. <br/> **Recommended for handling multiple connected wallets.**                                                               |
 
 :::info
 
@@ -100,6 +100,12 @@ npm install @rainbow-me/rainbowkit wagmi @tanstack/react-query
 
 Set up Wagmi configuration with LUKSO network and RainbowKit's Universal Profile wallet connector:
 
+:::info Using the connectors
+
+`universalProfilesWallet` connector is required to integrate your app with the Universal Profiles Mobile App.
+
+:::
+
 ```js
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { lukso } from 'wagmi/chains';
@@ -117,6 +123,7 @@ const config = createConfig({
   transports: {
     [lukso.id]: http(),
   },
+  // highlight-start
   connectors: connectorsForWallets(
     [
       {
@@ -130,6 +137,7 @@ const config = createConfig({
       projectId: 'YOUR_PROJECT_ID', // Get your project ID from WalletConnect Cloud
     },
   ),
+  // highlight-end
 });
 ```
 
@@ -228,6 +236,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // This is required to provide <QueryClientProvider> higher up in your component tree.
 const queryClient = new QueryClient();
 
+// highlight-start
 const wagmiAdapter = new WagmiAdapter({
   projectId: 'YOUR_PROJECT_ID', // Get your project ID from ReOwn dashboard
   networks: [lukso],
@@ -235,6 +244,7 @@ const wagmiAdapter = new WagmiAdapter({
     [lukso.id]: http('https://rpc.mainnet.lukso.network'),
   },
 });
+// highlight-end
 ```
 
 **Step 3: Create the AppKit Modal**
@@ -249,6 +259,7 @@ const metadata = {
   icons: ['https://lukso.network/favicon.ico'],
 };
 
+// highlight-start
 createAppKit({
   adapters: [wagmiAdapter],
   projectId: 'YOUR_PROJECT_ID', // Get your project ID from ReOwn dashboard
@@ -261,6 +272,7 @@ createAppKit({
     socials: false,
   },
 });
+// highlight-end
 ```
 
 **Step 4: Wrap Your App with the Provider**
@@ -340,6 +352,13 @@ const exampleDeepLink = exampleWcUri.replace(
 You can use the `window.lukso` object, tailored for a direct integration with the UP Browser Extension. This approach allows developers to engage directly with the UP Browser Extension without the need to consider compatibility with other extensions.
 
 <Tabs groupId="provider-lib">
+  <TabItem value="viem" label="viem"  attributes={{className: "tab_viem"}}>
+
+```sh
+npm install viem
+```
+
+  </TabItem>
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```sh
@@ -357,6 +376,22 @@ npm install web3
 </Tabs>
 
 <Tabs groupId="provider-lib">
+  <TabItem value="viem" label="viem"  attributes={{className: "tab_viem"}}>
+
+```js
+import { createWalletClient, custom } from 'viem';
+import { lukso } from 'viem/chains';
+
+const client = createWalletClient({
+  chain: lukso,
+  transport: custom(window.lukso),
+});
+
+const accounts = await client.requestAddresses();
+console.log('Connected with', accounts[0]);
+```
+
+  </TabItem>
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
@@ -388,6 +423,20 @@ Alternatively to the `window.lukso`, the equivalent `window.ethereum` object can
 :::
 
 <Tabs groupId="provider-lib">
+  <TabItem value="viem" label="viem"  attributes={{className: "tab_viem"}}>
+
+```js
+import { createWalletClient, custom } from 'viem';
+import { lukso } from 'viem/chains';
+
+const client = createWalletClient({
+  chain: lukso,
+  // highlight-next-line
+  transport: custom(window.lukso || window.ethereum),
+});
+```
+
+  </TabItem>
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>
 
 ```js
