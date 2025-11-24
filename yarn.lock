@@ -12582,7 +12582,7 @@ __metadata:
     docusaurus-plugin-sass: ^0.2.6
     file-loader: ^6.2.0
     plugin-image-zoom: ^1.2.0
-    prettier: ^3.3.2
+    prettier: ^3.6.2
     prism-react-renderer: ^2.4.1
     react: ^19.0.0
     react-dom: ^19.0.0
@@ -15640,12 +15640,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.3.2":
-  version: 3.4.2
-  resolution: "prettier@npm:3.4.2"
+"prettier@npm:^3.6.2":
+  version: 3.6.2
+  resolution: "prettier@npm:3.6.2"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 061c84513db62d3944c8dc8df36584dad82883ce4e49efcdbedd8703dce5b173c33fd9d2a4e1725d642a3b713c932b55418342eaa347479bc4a9cca114a04cd0
+  checksum: 0206f5f437892e8858f298af8850bf9d0ef1c22e21107a213ba56bfb9c2387a2020bfda244a20161d8e3dad40c6b04101609a55d370dece53d0a31893b64f861
   languageName: node
   linkType: hard
 
