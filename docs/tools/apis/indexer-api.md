@@ -12,7 +12,7 @@ The LUKSO GraphQL Indexer provides a powerful way to query Universal Profiles, a
 ### GraphQL Endpoint
 
 ```
-https://envio.mainnet.lukso.dev/
+https://envio.mainnet.lukso.dev/v1/graphql
 ```
 
 ### Installation
@@ -28,7 +28,7 @@ npm install graphql-request graphql
 ```typescript
 import { request, gql } from 'graphql-request';
 
-const GRAPHQL_ENDPOINT = 'https://envio.mainnet.lukso.dev/';
+const GRAPHQL_ENDPOINT = 'https://envio.mainnet.lukso.dev/v1/graphql';
 
 // Example query
 const query = gql`
@@ -85,7 +85,7 @@ query SearchProfiles($search: String!) {
 ```typescript
 import { request, gql } from 'graphql-request';
 
-const GRAPHQL_ENDPOINT = 'https://envio.mainnet.lukso.dev/';
+const GRAPHQL_ENDPOINT = 'https://envio.mainnet.lukso.dev/v1/graphql';
 
 const searchProfilesQuery = gql`
   query SearchProfiles($search: String!) {
@@ -242,16 +242,18 @@ Query assets (LSP7 and LSP8 tokens) from the blockchain.
 
 ```graphql
 query GetAssets($limit: Int = 10, $offset: Int = 0) {
-  Asset(limit: $limit, offset: $offset, order_by: { createdAt: desc }) {
+  Asset(limit: $limit, offset: $offset, order_by: { createdTimestamp: desc }) {
     id
     name
-    symbol
-    tokenType
+    lsp4TokenSymbol
+    lsp4TokenType
     description
-    creators {
-      address
+    lsp4Creators {
+      profile {
+        address: id
+      }
     }
-    assetImages(where: { error: { _is_null: true } }, limit: 1) {
+    images(where: { error: { _is_null: true } }, limit: 1) {
       src
       url
       verified
@@ -269,16 +271,18 @@ query GetAssets($limit: Int = 10, $offset: Int = 0) {
 ```typescript
 const getAssetsQuery = gql`
   query GetAssets($limit: Int = 10, $offset: Int = 0) {
-    Asset(limit: $limit, offset: $offset, order_by: { createdAt: desc }) {
+    Asset(limit: $limit, offset: $offset, order_by: { createdTimestamp: desc }) {
       id
       name
-      symbol
-      tokenType
+      lsp4TokenSymbol
+      lsp4TokenType
       description
-      creators {
-        address
+      lsp4Creators {
+        profile {
+          address: id
+        }
       }
-      assetImages(where: { error: { _is_null: true } }, limit: 1) {
+      images(where: { error: { _is_null: true } }, limit: 1) {
         src
         url
         verified
@@ -315,9 +319,9 @@ query SearchAssets($search: String) {
   search_assets(args: { search: $search }) {
     id
     name
-    symbol
-    tokenType
-    assetImages(where: { error: { _is_null: true } }, limit: 1) {
+    lsp4TokenSymbol
+    lsp4TokenType
+    images(where: { error: { _is_null: true } }, limit: 1) {
       src
       url
     }
@@ -333,9 +337,9 @@ const searchAssetsQuery = gql`
     search_assets(args: { search: $search }) {
       id
       name
-      symbol
-      tokenType
-      assetImages(where: { error: { _is_null: true } }, limit: 1) {
+      lsp4TokenSymbol
+      lsp4TokenType
+      images(where: { error: { _is_null: true } }, limit: 1) {
         src
         url
       }
@@ -363,20 +367,22 @@ Query LSP7 (fungible) tokens with detailed metadata.
 
 ```graphql
 query GetLSP7Tokens($owner: String) {
-  Asset(where: { tokenType: { _eq: "LSP7" } }) {
+  Asset(where: { standard: { _eq: "LSP7" } }) {
     id
     name
-    symbol
-    tokenType
+    lsp4TokenSymbol
+    lsp4TokenType
     totalSupply
     description
-    assetImages(where: { error: { _is_null: true } }) {
+    images(where: { error: { _is_null: true } }) {
       src
       url
       verified
     }
-    creators {
-      address
+    lsp4Creators {
+      profile {
+        address: id
+      }
     }
   }
 }
@@ -387,20 +393,22 @@ query GetLSP7Tokens($owner: String) {
 ```typescript
 const getLSP7TokensQuery = gql`
   query GetLSP7Tokens {
-    Asset(where: { tokenType: { _eq: "LSP7" } }) {
+    Asset(where: { standard: { _eq: "LSP7" } }) {
       id
       name
-      symbol
-      tokenType
+      lsp4TokenSymbol
+      lsp4TokenType
       totalSupply
       description
-      assetImages(where: { error: { _is_null: true } }) {
+      images(where: { error: { _is_null: true } }) {
         src
         url
         verified
       }
-      creators {
-        address
+      lsp4Creators {
+        profile {
+          address: id
+        }
       }
     }
   }
@@ -424,13 +432,13 @@ Query LSP8 (non-fungible) tokens including individual token IDs and their metada
 
 ```graphql
 query GetLSP8NFTs($assetId: String!) {
-  Token(where: { assetId: { _eq: $assetId } }) {
+  Token(where: { asset_id: { _eq: $assetId } }) {
     id
     tokenId
-    assetId
+    asset_id
     name
     description
-    tokenImages(where: { error: { _is_null: true } }) {
+    images(where: { error: { _is_null: true } }) {
       src
       url
       verified
@@ -448,13 +456,13 @@ query GetLSP8NFTs($assetId: String!) {
 ```typescript
 const getLSP8NFTsQuery = gql`
   query GetLSP8NFTs($assetId: String!) {
-    Token(where: { assetId: { _eq: $assetId } }) {
+    Token(where: { asset_id: { _eq: $assetId } }) {
       id
       tokenId
-      assetId
+      asset_id
       name
       description
-      tokenImages(where: { error: { _is_null: true } }) {
+      images(where: { error: { _is_null: true } }) {
         src
         url
         verified
@@ -488,13 +496,15 @@ query GetAssetMetadata($assetId: String!) {
   Asset(where: { id: { _eq: $assetId } }) {
     id
     name
-    symbol
+    lsp4TokenSymbol
     description
-    tokenType
-    creators {
-      address
+    lsp4TokenType
+    lsp4Creators {
+      profile {
+        address: id
+      }
     }
-    assetImages(where: { error: { _is_null: true } }) {
+    images(where: { error: { _is_null: true } }) {
       width
       height
       src
@@ -504,7 +514,6 @@ query GetAssetMetadata($assetId: String!) {
     attributes {
       key
       value
-      type
     }
     links {
       title
@@ -522,13 +531,15 @@ const getAssetMetadataQuery = gql`
     Asset(where: { id: { _eq: $assetId } }) {
       id
       name
-      symbol
+      lsp4TokenSymbol
       description
-      tokenType
-      creators {
-        address
+      lsp4TokenType
+      lsp4Creators {
+        profile {
+          address: id
+        }
       }
-      assetImages(where: { error: { _is_null: true } }) {
+      images(where: { error: { _is_null: true } }) {
         width
         height
         src
@@ -538,7 +549,6 @@ const getAssetMetadataQuery = gql`
       attributes {
         key
         value
-        type
       }
       links {
         title
@@ -578,9 +588,9 @@ query SearchByCategory($categoryKey: String!, $categoryValue: String!) {
   ) {
     id
     name
-    symbol
-    tokenType
-    assetImages(where: { error: { _is_null: true } }, limit: 1) {
+    lsp4TokenSymbol
+    lsp4TokenType
+    images(where: { error: { _is_null: true } }, limit: 1) {
       src
       url
     }
@@ -616,9 +626,9 @@ const searchByCategoryQuery = gql`
     ) {
       id
       name
-      symbol
-      tokenType
-      assetImages(where: { error: { _is_null: true } }, limit: 1) {
+      lsp4TokenSymbol
+      lsp4TokenType
+      images(where: { error: { _is_null: true } }, limit: 1) {
         src
         url
       }
