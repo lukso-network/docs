@@ -266,6 +266,15 @@ query GetAssets($limit: Int = 10, $offset: Int = 0) {
 }
 ```
 
+**Variables:**
+
+```json
+{
+  "limit": 10,
+  "offset": 0
+}
+```
+
 **TypeScript Implementation:**
 
 ```typescript
@@ -316,16 +325,26 @@ Search for assets by name, symbol, or other criteria.
 
 ```graphql
 query SearchAssets($search: String) {
-  search_assets(args: { search: $search }) {
-    id
+  search_assets(args: { search_query: $search }) {
+    asset_id
     name
-    lsp4TokenSymbol
-    lsp4TokenType
-    images(where: { error: { _is_null: true } }, limit: 1) {
-      src
-      url
+    symbol
+    is_lsp7
+    asset {
+      images(where: { error: { _is_null: true } }, limit: 1) {
+        src
+        url
+      }
     }
   }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "search": "LUKSO"
 }
 ```
 
@@ -334,14 +353,16 @@ query SearchAssets($search: String) {
 ```typescript
 const searchAssetsQuery = gql`
   query SearchAssets($search: String) {
-    search_assets(args: { search: $search }) {
-      id
+    search_assets(args: { search_query: $search }) {
+      asset_id
       name
-      lsp4TokenSymbol
-      lsp4TokenType
-      images(where: { error: { _is_null: true } }, limit: 1) {
-        src
-        url
+      symbol
+      is_lsp7
+      asset {
+        images(where: { error: { _is_null: true } }, limit: 1) {
+          src
+          url
+        }
       }
     }
   }
@@ -366,8 +387,8 @@ Query LSP7 (fungible) tokens with detailed metadata.
 **Query:**
 
 ```graphql
-query GetLSP7Tokens($owner: String) {
-  Asset(where: { standard: { _eq: "LSP7" } }) {
+query GetLSP7Tokens {
+  Asset(where: { lsp4TokenType: { _eq: 0 } }, limit: 10) {
     id
     name
     lsp4TokenSymbol
@@ -388,12 +409,18 @@ query GetLSP7Tokens($owner: String) {
 }
 ```
 
+**Variables:**
+
+```json
+{}
+```
+
 **TypeScript Implementation:**
 
 ```typescript
 const getLSP7TokensQuery = gql`
   query GetLSP7Tokens {
-    Asset(where: { standard: { _eq: "LSP7" } }) {
+    Asset(where: { lsp4TokenType: { _eq: 0 } }, limit: 10) {
       id
       name
       lsp4TokenSymbol
@@ -451,6 +478,14 @@ query GetLSP8NFTs($assetId: String!) {
 }
 ```
 
+**Variables:**
+
+```json
+{
+  "assetId": "0x1234567890abcdef1234567890abcdef12345678"
+}
+```
+
 **TypeScript Implementation:**
 
 ```typescript
@@ -499,12 +534,7 @@ query GetAssetMetadata($assetId: String!) {
     lsp4TokenSymbol
     description
     lsp4TokenType
-    lsp4Creators {
-      profile {
-        address: id
-      }
-    }
-    images(where: { error: { _is_null: true } }) {
+    images(where: { error: { _is_null: true } }, order_by: { width: asc }) {
       width
       height
       src
@@ -515,11 +545,15 @@ query GetAssetMetadata($assetId: String!) {
       key
       value
     }
-    links {
-      title
-      url
-    }
   }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "assetId": "0x1234567890abcdef1234567890abcdef12345678"
 }
 ```
 
@@ -534,12 +568,7 @@ const getAssetMetadataQuery = gql`
       lsp4TokenSymbol
       description
       lsp4TokenType
-      lsp4Creators {
-        profile {
-          address: id
-        }
-      }
-      images(where: { error: { _is_null: true } }) {
+      images(where: { error: { _is_null: true } }, order_by: { width: asc }) {
         width
         height
         src
@@ -549,10 +578,6 @@ const getAssetMetadataQuery = gql`
       attributes {
         key
         value
-      }
-      links {
-        title
-        url
       }
     }
   }
@@ -570,7 +595,7 @@ async function getAssetMetadata(assetId: string) {
 
 ---
 
-### Search by Category/Tags
+### Search Assets by Attribute
 
 Filter assets or tokens by attributes and categories defined in their metadata.
 
@@ -606,8 +631,8 @@ query SearchByCategory($categoryKey: String!, $categoryValue: String!) {
 
 ```json
 {
-  "categoryKey": "category",
-  "categoryValue": "%art%"
+  "categoryKey": "Author",
+  "categoryValue": "%Deez%"
 }
 ```
 
@@ -648,8 +673,8 @@ async function searchByCategory(categoryKey: string, categoryValue: string) {
   return data.Asset;
 }
 
-// Example: Search for art-related assets
-const artAssets = await searchByCategory('category', 'art');
+// Example: Search for assets by Author
+const artAssets = await searchByCategory('Author', 'Deez');
 ```
 
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
@@ -775,6 +800,16 @@ query GetProfilesPaginated($limit: Int!, $offset: Int!, $nameFilter: String) {
     name
     fullName
   }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "limit": 10,
+  "offset": 0,
+  "nameFilter": "%lukso%"
 }
 ```
 
