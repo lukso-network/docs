@@ -5,15 +5,32 @@ sidebar_position: 2
 
 # Indexer API
 
-The LUKSO GraphQL Indexer provides a powerful way to query Universal Profiles, assets, LSP7 tokens, LSP8 NFTs, and metadata from the LUKSO blockchain. It offers flexible querying capabilities with support for filtering, pagination, and real-time subscriptions.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Getting Started
+The LUKSO Indexer provides a powerful way to query Universal Profiles, assets, LSP7 tokens, LSP8 NFTs, and metadata from the LUKSO blockchain. It offers flexible querying capabilities with support for filtering and real-time subscriptions.
 
-### GraphQL Endpoint
+## Get Started
+
+Based on your use case, you can choose between HTTP or WebSocket client for interacting with the indexer:
+
+- **[HTTP client](#http-client)**: Best for one-time queries, searches, and fetching data on demand
+- **[WebSocket client](#websocket-client)**: Best for real-time updates, monitoring changes, and live data feeds
+
+:::success Interactive Playground
+
+Explore the full GraphQL schema and test queries in the interactive playground:
+**[https://envio.mainnet.lukso.dev/](https://envio.mainnet.lukso.dev/)**
+
+:::
+
+**GraphQL Endpoint:**
 
 ```
 https://envio.mainnet.lukso.dev/v1/graphql
 ```
+
+## HTTP Client
 
 ### Installation
 
@@ -45,13 +62,29 @@ const data = await request(GRAPHQL_ENDPOINT, query);
 console.log(data);
 ```
 
-## Query Examples
+### Query Examples
 
-### Search Universal Profiles
+**Quick Navigation:**
+
+- [Search Universal Profiles](#search-universal-profiles)
+- [Get Profile Data by Address](#get-profile-data-by-address)
+- [Get Assets](#get-assets)
+- [Search Assets](#search-assets)
+- [Get LSP7 Tokens](#get-lsp7-tokens)
+- [Get LSP8 NFTs](#get-lsp8-nfts)
+- [Get LSP4 Digital Asset Metadata](#get-lsp4-digital-asset-metadata)
+- [Search Assets by Attribute](#search-assets-by-attribute)
+
+---
+
+<span id="search-universal-profiles"></span>
+
+**Search Universal Profiles**
 
 Search for profiles by name, address, or other identifiers using the `search_profiles` function.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query SearchProfiles($search: String!) {
@@ -80,7 +113,8 @@ query SearchProfiles($search: String!) {
 }
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 import { request, gql } from 'graphql-request';
@@ -143,15 +177,44 @@ const profiles = await searchProfiles('lukso');
 console.log(profiles);
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Profile {
+  id: String!
+  name: String
+  fullName: String
+  profileImages: [ProfileImageURL!]!
+  # ... other fields
+}
+
+type ProfileImageURL {
+  width: Int
+  src: String
+  url: String
+  verified: verificationstatus!
+  # ... other fields
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-### Get Profile Data by Address
+<span id="get-profile-data-by-address"></span>
+
+**Get Profile Data by Address**
 
 Fetch detailed profile information for a specific address.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query GetProfile($address: String!) {
@@ -191,7 +254,8 @@ query GetProfile($address: String!) {
 }
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 const getProfileQuery = gql`
@@ -230,15 +294,58 @@ async function getProfile(address: string) {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Profile {
+  id: String!
+  name: String
+  fullName: String
+  description: String
+  profileImages: [ProfileImageURL!]!
+  backgroundImages: [ProfileBackgroundImageURL!]!
+  links: [ProfileLink!]!
+  # ... other fields
+}
+
+type ProfileImageURL {
+  width: Int
+  src: String
+  url: String
+  verified: verificationstatus!
+}
+
+type ProfileBackgroundImageURL {
+  width: Int
+  src: String
+  url: String
+  verified: verificationstatus!
+}
+
+type ProfileLink {
+  title: String
+  url: String
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-### Get Assets
+<span id="get-assets"></span>
+
+**Get Assets**
 
 Query assets (LSP7 and LSP8 tokens) from the blockchain.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query GetAssets($limit: Int = 10, $offset: Int = 0) {
@@ -275,12 +382,17 @@ query GetAssets($limit: Int = 10, $offset: Int = 0) {
 }
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 const getAssetsQuery = gql`
   query GetAssets($limit: Int = 10, $offset: Int = 0) {
-    Asset(limit: $limit, offset: $offset, order_by: { createdTimestamp: desc }) {
+    Asset(
+      limit: $limit
+      offset: $offset
+      order_by: { createdTimestamp: desc }
+    ) {
       id
       name
       lsp4TokenSymbol
@@ -313,15 +425,55 @@ async function getAssets(limit: number = 10, offset: number = 0) {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Asset {
+  id: String!
+  name: String
+  lsp4TokenSymbol: String
+  lsp4TokenType: Int
+  description: String
+  lsp4Creators: [AssetCreators!]!
+  images: [AssetImageURL!]!
+  attributes: [AssetAttribute!]!
+  # ... other fields
+}
+
+type AssetCreators {
+  profile: Profile
+}
+
+type AssetImageURL {
+  src: String
+  url: String
+  verified: verificationstatus!
+}
+
+type AssetAttribute {
+  key: String
+  value: String
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-### Search Assets
+<span id="search-assets"></span>
+
+**Search Assets**
 
 Search for assets by name, symbol, or other criteria.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query SearchAssets($search: String) {
@@ -348,7 +500,8 @@ query SearchAssets($search: String) {
 }
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 const searchAssetsQuery = gql`
@@ -376,15 +529,38 @@ async function searchAssets(searchTerm: string) {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Asset {
+  images: [AssetImageURL!]!
+  # ... other fields
+}
+
+type AssetImageURL {
+  src: String
+  url: String
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-### Get LSP7 Tokens
+<span id="get-lsp7-tokens"></span>
+
+**Get LSP7 Tokens**
 
 Query LSP7 (fungible) tokens with detailed metadata.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query GetLSP7Tokens {
@@ -415,7 +591,8 @@ query GetLSP7Tokens {
 {}
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 const getLSP7TokensQuery = gql`
@@ -447,15 +624,50 @@ async function getLSP7Tokens() {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Asset {
+  id: String!
+  name: String
+  lsp4TokenSymbol: String
+  lsp4TokenType: Int
+  totalSupply: numeric
+  description: String
+  images: [AssetImageURL!]!
+  lsp4Creators: [AssetCreators!]!
+  # ... other fields
+}
+
+type AssetImageURL {
+  src: String
+  url: String
+  verified: verificationstatus!
+}
+
+type AssetCreators {
+  profile: Profile
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-### Get LSP8 NFTs
+<span id="get-lsp8-nfts"></span>
+
+**Get LSP8 NFTs**
 
 Query LSP8 (non-fungible) tokens including individual token IDs and their metadata.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query GetLSP8NFTs($assetId: String!) {
@@ -486,7 +698,8 @@ query GetLSP8NFTs($assetId: String!) {
 }
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 const getLSP8NFTsQuery = gql`
@@ -516,15 +729,50 @@ async function getLSP8NFTs(assetId: string) {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Token {
+  id: String!
+  tokenId: String!
+  asset_id: String
+  name: String
+  description: String
+  images: [TokenImageURL!]!
+  attributes: [TokenAttribute!]!
+  # ... other fields
+}
+
+type TokenImageURL {
+  src: String
+  url: String
+  verified: verificationstatus!
+}
+
+type TokenAttribute {
+  key: String
+  value: String
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-### Get LSP4 Digital Asset Metadata
+<span id="get-lsp4-digital-asset-metadata"></span>
+
+**Get LSP4 Digital Asset Metadata**
 
 Query [LSP4 Digital Asset Metadata](/standards/tokens/LSP4-Digital-Asset-Metadata/) for assets and tokens.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query GetAssetMetadata($assetId: String!) {
@@ -557,7 +805,8 @@ query GetAssetMetadata($assetId: String!) {
 }
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 const getAssetMetadataQuery = gql`
@@ -591,15 +840,52 @@ async function getAssetMetadata(assetId: string) {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Asset {
+  id: String!
+  name: String
+  lsp4TokenSymbol: String
+  description: String
+  lsp4TokenType: Int
+  images: [AssetImageURL!]!
+  attributes: [AssetAttribute!]!
+  # ... other fields
+}
+
+type AssetImageURL {
+  width: Int
+  height: Int
+  src: String
+  url: String
+  verified: verificationstatus!
+}
+
+type AssetAttribute {
+  key: String
+  value: String
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-### Search Assets by Attribute
+<span id="search-assets-by-attribute"></span>
+
+**Search Assets by Attribute**
 
 Filter assets or tokens by attributes and categories defined in their metadata.
 
-**Query:**
+<Tabs>
+  <TabItem value="query" label="Query" default>
 
 ```graphql
 query SearchByCategory($categoryKey: String!, $categoryValue: String!) {
@@ -636,7 +922,8 @@ query SearchByCategory($categoryKey: String!, $categoryValue: String!) {
 }
 ```
 
-**TypeScript Implementation:**
+  </TabItem>
+  <TabItem value="typescript" label="TypeScript">
 
 ```typescript
 const searchByCategoryQuery = gql`
@@ -677,21 +964,51 @@ async function searchByCategory(categoryKey: string, categoryValue: string) {
 const artAssets = await searchByCategory('Author', 'Deez');
 ```
 
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Relative Schema</summary>
+
+```graphql
+type Asset {
+  id: String!
+  name: String
+  lsp4TokenSymbol: String
+  lsp4TokenType: Int
+  images: [AssetImageURL!]!
+  attributes: [AssetAttribute!]!
+  # ... other fields
+}
+
+type AssetImageURL {
+  src: String
+  url: String
+}
+
+type AssetAttribute {
+  key: String
+  value: String
+}
+```
+
+</details>
+
 [**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
 
 ---
 
-## Advanced: WebSocket Client for Real-Time Updates
+## WebSocket Client
 
 For real-time data subscriptions, use the WebSocket protocol with the `graphql-ws` library.
 
-### Setup
+### Installation
 
 ```bash
 npm install graphql-ws
 ```
 
-### WebSocket Client Implementation
+### Basic Setup
 
 ```typescript
 import { type Client, createClient } from 'graphql-ws';
@@ -722,10 +1039,10 @@ export const useWSClient = (wsGraphqlHost: string, chain: Chain) => {
 };
 ```
 
-### Subscription Example
+### Usage Example
 
 ```typescript
-const wsClient = useWSClient('wss://envio.mainnet.lukso.dev/', lukso);
+const wsClient = useWSClient('wss://envio.mainnet.lukso.dev/v1/graphql', lukso);
 
 const subscription = wsClient.subscribe(
   {
@@ -761,29 +1078,6 @@ const subscription = wsClient.subscribe(
 subscription();
 ```
 
-### When to Use WebSocket vs HTTP
-
-- **HTTP (graphql-request)**: Best for one-time queries, searches, and fetching data on demand
-- **WebSocket (graphql-ws)**: Best for real-time updates, monitoring changes, and live data feeds
-
----
-
-## Interactive Playground
-
-Explore the full GraphQL schema and test queries in the interactive playground:
-
-**[https://envio.mainnet.lukso.dev/](https://envio.mainnet.lukso.dev/)**
-
-### Tips for Using the Playground
-
-1. **Explore the Schema**: Click the "Docs" button on the right to browse all available types and queries
-2. **Auto-complete**: Press `Ctrl+Space` to see available fields and arguments
-3. **Prettify**: Use `Shift+Ctrl+P` to format your queries
-4. **Test Variables**: Use the Variables panel at the bottom to test different inputs
-5. **Copy Queries**: Once satisfied, copy your queries directly into your code
-
----
-
 ## Pagination and Filtering
 
 Most queries support pagination and filtering:
@@ -813,23 +1107,8 @@ query GetProfilesPaginated($limit: Int!, $offset: Int!, $nameFilter: String) {
 }
 ```
 
-**Common Filter Operators:**
-
-- `_eq`: Equal to
-- `_neq`: Not equal to
-- `_gt`: Greater than
-- `_gte`: Greater than or equal to
-- `_lt`: Less than
-- `_lte`: Less than or equal to
-- `_ilike`: Case-insensitive pattern matching
-- `_is_null`: Check for null values
-- `_in`: Value in array
-
 ## Resources
 
-- [GraphQL Playground](https://envio.mainnet.lukso.dev/)
+- [LUKSO Indexer Playground](https://envio.mainnet.lukso.dev/)
 - [LSP4 - Digital Asset Metadata](/standards/tokens/LSP4-Digital-Asset-Metadata/)
 - [LSP3 - Profile Metadata](/standards/metadata/lsp3-profile-metadata/)
-- [GraphQL Documentation](https://graphql.org/learn/)
-- [graphql-request Library](https://github.com/jasonkuhrt/graphql-request)
-- [graphql-ws Library](https://github.com/enisdenjo/graphql-ws)
