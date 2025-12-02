@@ -7,6 +7,8 @@ sidebar_position: 2
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import MainnetIcon from '@site/static/img/icons/lukso-signet-fuschia.svg';
+import TestnetIcon from '@site/static/img/icons/lukso-signet-yellow.svg';
 
 The LUKSO Indexer provides a powerful way to query Universal Profiles, assets, LSP7 tokens, LSP8 NFTs, and metadata from the LUKSO blockchain. It offers flexible querying capabilities with support for filtering and real-time subscriptions.
 
@@ -19,16 +21,29 @@ Based on your use case, you can choose between HTTP or WebSocket client for inte
 
 :::success Interactive Playground
 
-Explore the full GraphQL schema and test queries in the interactive playground:
-**[https://envio.mainnet.lukso.dev/](https://envio.mainnet.lukso.dev/)**
+Explore the full schema and test queries in the interactive playground:
+**[https://envio.lukso-mainnet.universal.tech/](https://envio.lukso-mainnet.universal.tech/)**
 
 :::
 
 **GraphQL Endpoint:**
 
+<Tabs>
+  <TabItem value="mainnet" label={<><MainnetIcon style={{width: '20px', height: '20px', marginRight: '8px', marginTop: '4px', verticalAlign: 'text-bottom'}} /> Mainnet</>} default>
+
 ```
-https://envio.mainnet.lukso.dev/v1/graphql
+https://envio.lukso-mainnet.universal.tech/v1/graphql
 ```
+
+  </TabItem>
+  <TabItem value="testnet" label={<><TestnetIcon style={{width: '20px', height: '20px', marginRight: '8px', marginTop: '4px', verticalAlign: 'text-bottom'}} /> Testnet</>}>
+
+```
+https://envio.lukso-testnet.universal.tech/v1/graphql
+```
+
+  </TabItem>
+</Tabs>
 
 ## HTTP Client
 
@@ -45,7 +60,8 @@ npm install graphql-request graphql
 ```typescript
 import { request, gql } from 'graphql-request';
 
-const GRAPHQL_ENDPOINT = 'https://envio.mainnet.lukso.dev/v1/graphql';
+const GRAPHQL_ENDPOINT =
+  'https://envio.lukso-mainnet.universal.tech/v1/graphql';
 
 // Example query
 const query = gql`
@@ -119,7 +135,8 @@ query SearchProfiles($search: String!) {
 ```typescript
 import { request, gql } from 'graphql-request';
 
-const GRAPHQL_ENDPOINT = 'https://envio.mainnet.lukso.dev/v1/graphql';
+const GRAPHQL_ENDPOINT =
+  'https://envio.lukso-mainnet.universal.tech/v1/graphql';
 
 const searchProfilesQuery = gql`
   query SearchProfiles($search: String!) {
@@ -203,7 +220,7 @@ type ProfileImageURL {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -334,7 +351,7 @@ type ProfileLink {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -462,7 +479,7 @@ type AssetAttribute {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -549,7 +566,7 @@ type AssetImageURL {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -656,7 +673,7 @@ type AssetCreators {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -761,7 +778,7 @@ type TokenAttribute {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -874,7 +891,7 @@ type AssetAttribute {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -994,7 +1011,7 @@ type AssetAttribute {
 
 </details>
 
-[**Try it in the playground →**](https://envio.mainnet.lukso.dev/)
+[**Try it in the playground →**](https://envio.lukso-mainnet.universal.tech/)
 
 ---
 
@@ -1042,7 +1059,10 @@ export const useWSClient = (wsGraphqlHost: string, chain: Chain) => {
 ### Usage Example
 
 ```typescript
-const wsClient = useWSClient('wss://envio.mainnet.lukso.dev/v1/graphql', lukso);
+const wsClient = useWSClient(
+  'wss://envio.lukso-mainnet.universal.tech/v1/graphql',
+  lukso,
+);
 
 const subscription = wsClient.subscribe(
   {
@@ -1109,6 +1129,6 @@ query GetProfilesPaginated($limit: Int!, $offset: Int!, $nameFilter: String) {
 
 ## Resources
 
-- [LUKSO Indexer Playground](https://envio.mainnet.lukso.dev/)
+- [LUKSO Indexer Playground](https://envio.lukso-mainnet.universal.tech/)
 - [LSP4 - Digital Asset Metadata](/standards/tokens/LSP4-Digital-Asset-Metadata/)
 - [LSP3 - Profile Metadata](/standards/metadata/lsp3-profile-metadata/)
