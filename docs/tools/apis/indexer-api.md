@@ -47,15 +47,13 @@ https://envio.lukso-testnet.universal.tech/v1/graphql
 
 ## HTTP Client
 
-### Installation
-
-To interact with the indexer, install the `graphql-request` library:
+Install the `graphql-request` library to interact with the indexer:
 
 ```bash
 npm install graphql-request graphql
 ```
 
-### Basic Setup
+Once installed, you can start making queries:
 
 ```typescript
 import { request, gql } from 'graphql-request';
@@ -80,18 +78,14 @@ console.log(data);
 
 ### Query Examples
 
-**Quick Navigation:**
+The following examples demonstrate common use cases for querying the LUKSO Indexer:
 
-- [Search Universal Profiles](#search-universal-profiles)
-- [Get Profile Data by Address](#get-profile-data-by-address)
-- [Get Assets](#get-assets)
-- [Search Assets](#search-assets)
-- [Get LSP7 Tokens](#get-lsp7-tokens)
-- [Get LSP8 NFTs](#get-lsp8-nfts)
-- [Get LSP4 Digital Asset Metadata](#get-lsp4-digital-asset-metadata)
-- [Search Assets by Attribute](#search-assets-by-attribute)
-
----
+|                           |                                                                                                                             |
+| :------------------------ | :-------------------------------------------------------------------------------------------------------------------------- |
+| **👤 Universal Profiles** | [Search Universal Profiles](#search-universal-profiles) — [Get UP Data by Address](#get-profile-data-by-address)            |
+| **🎨 Digital Assets**     | [Get All Assets](#get-assets) — [Search Assets](#search-assets) — [Search Assets by Attribute](#search-assets-by-attribute) |
+| **🪙 Tokens & NFTs**      | [Get LSP7 Tokens](#get-lsp7-tokens) — [Get LSP8 NFTs](#get-lsp8-nfts)                                                       |
+| **📋 Metadata**           | [Get LSP4 Asset Metadata](#get-lsp4-digital-asset-metadata)                                                                 |
 
 <span id="search-universal-profiles"></span>
 
@@ -1017,52 +1011,20 @@ type AssetAttribute {
 
 ## WebSocket Client
 
-For real-time data subscriptions, use the WebSocket protocol with the `graphql-ws` library.
-
-### Installation
+For real-time data subscriptions, use the WebSocket protocol with the `graphql-ws` library:
 
 ```bash
 npm install graphql-ws
 ```
 
-### Basic Setup
+Once installed, you can subscribe to live updates:
 
 ```typescript
-import { type Client, createClient } from 'graphql-ws';
-import type { Chain } from 'viem';
-import { lukso, luksoTestnet } from 'viem/chains';
+import { createClient } from 'graphql-ws';
 
-const wsClients: Record<string, Client> = {};
-
-/**
- * Get web socket graphql client for a given chain
- *
- * @param wsGraphqlHost WebSocket GraphQL host URL
- * @param chain Chain to use
- * @returns web socket graphql client
- */
-export const useWSClient = (wsGraphqlHost: string, chain: Chain) => {
-  if (wsClients[chain.id]) return wsClients[chain.id];
-
-  if (chain.id !== lukso.id && chain.id !== luksoTestnet.id) {
-    throw new Error('Unsupported chain for GraphQL WebSocket client');
-  }
-
-  wsClients[chain.id] = createClient({
-    url: wsGraphqlHost,
-  });
-
-  return wsClients[chain.id];
-};
-```
-
-### Usage Example
-
-```typescript
-const wsClient = useWSClient(
-  'wss://envio.lukso-mainnet.universal.tech/v1/graphql',
-  lukso,
-);
+const wsClient = createClient({
+  url: 'wss://envio.lukso-mainnet.universal.tech/v1/graphql',
+});
 
 const subscription = wsClient.subscribe(
   {
@@ -1096,25 +1058,6 @@ const subscription = wsClient.subscribe(
 
 // Unsubscribe when done
 subscription();
-```
-
-## Pagination and Filtering
-
-Most queries support pagination and filtering:
-
-```graphql
-query GetProfilesPaginated($limit: Int!, $offset: Int!, $nameFilter: String) {
-  Profile(
-    limit: $limit
-    offset: $offset
-    where: { name: { _ilike: $nameFilter } }
-    order_by: { createdAt: desc }
-  ) {
-    id
-    name
-    fullName
-  }
-}
 ```
 
 **Variables:**
