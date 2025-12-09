@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 import MainnetIcon from '@site/static/img/icons/lukso-signet-fuschia.svg';
 import TestnetIcon from '@site/static/img/icons/lukso-signet-yellow.svg';
 
-The LUKSO Indexer provides a powerful way to query Universal Profiles, assets, LSP7 tokens, LSP8 NFTs, and metadata from the LUKSO blockchain. It offers flexible querying capabilities with support for filtering and real-time subscriptions.
+The [**Envio Indexer**](https://envio.lukso-mainnet.universal.tech/) provides a powerful way to query any information, past events or metadata from the LUKSO blockchain. It offers flexible querying capabilities with support for filtering and real-time subscriptions.
 
 ## Get Started
 
@@ -61,7 +61,7 @@ import { request, gql } from 'graphql-request';
 const GRAPHQL_ENDPOINT =
   'https://envio.lukso-mainnet.universal.tech/v1/graphql';
 
-// Example query
+// Example query to retrieve the Universal Profile's name and its images
 const query = gql`
   query {
     Profile(limit: 5) {
@@ -132,6 +132,8 @@ import { request, gql } from 'graphql-request';
 const GRAPHQL_ENDPOINT =
   'https://envio.lukso-mainnet.universal.tech/v1/graphql';
 
+// Query to search for Universal Profiles by name or address
+// Returns matching profiles with their images sorted by width (smallest first)
 const searchProfilesQuery = gql`
   query SearchProfiles($search: String!) {
     search_profiles(args: { search: $search }) {
@@ -183,9 +185,8 @@ async function searchProfiles(searchTerm: string): Promise<Profile[]> {
   }
 }
 
-// Usage
+// Usage: Search for profiles containing "lukso" in their name or address
 const profiles = await searchProfiles('lukso');
-console.log(profiles);
 ```
 
   </TabItem>
@@ -269,6 +270,8 @@ query GetProfile($address: String!) {
   <TabItem value="typescript" label="TypeScript">
 
 ```typescript
+// Query to fetch complete profile data for a specific Universal Profile address
+// Retrieves profile metadata, images, background images, and social links
 const getProfileQuery = gql`
   query GetProfile($address: String!) {
     Profile(where: { id: { _eq: $address } }) {
@@ -303,6 +306,9 @@ async function getProfile(address: string) {
   const data = await request(GRAPHQL_ENDPOINT, getProfileQuery, { address });
   return data.Profile[0];
 }
+
+// Usage: Fetch profile data for a specific address
+const profile = await getProfile('0x1234567890abcdef1234567890abcdef12345678');
 ```
 
   </TabItem>
@@ -397,6 +403,8 @@ query GetAssets($limit: Int = 10, $offset: Int = 0) {
   <TabItem value="typescript" label="TypeScript">
 
 ```typescript
+// Query to fetch assets (LSP7 tokens and LSP8 NFTs) with pagination
+// Returns assets ordered by creation time (newest first) with their metadata and images
 const getAssetsQuery = gql`
   query GetAssets($limit: Int = 10, $offset: Int = 0) {
     Asset(
@@ -434,6 +442,9 @@ async function getAssets(limit: number = 10, offset: number = 0) {
   });
   return data.Asset;
 }
+
+// Usage: Fetch the first 10 assets, or use offset for pagination
+const assets = await getAssets(10, 0);
 ```
 
   </TabItem>
@@ -515,6 +526,8 @@ query SearchAssets($search: String) {
   <TabItem value="typescript" label="TypeScript">
 
 ```typescript
+// Query to search for assets by name or symbol
+// Returns matching assets with their type (LSP7 or LSP8) and primary image
 const searchAssetsQuery = gql`
   query SearchAssets($search: String) {
     search_assets(args: { search_query: $search }) {
@@ -538,6 +551,9 @@ async function searchAssets(searchTerm: string) {
   });
   return data.search_assets;
 }
+
+// Usage: Search for assets by name or symbol
+const luksoAssets = await searchAssets('LUKSO');
 ```
 
   </TabItem>
@@ -606,6 +622,8 @@ query GetLSP7Tokens {
   <TabItem value="typescript" label="TypeScript">
 
 ```typescript
+// Query to fetch LSP7 (fungible) tokens
+// Filters assets by lsp4TokenType = 0 and returns token metadata with creator information
 const getLSP7TokensQuery = gql`
   query GetLSP7Tokens {
     Asset(where: { lsp4TokenType: { _eq: 0 } }, limit: 10) {
@@ -633,6 +651,9 @@ async function getLSP7Tokens() {
   const data = await request(GRAPHQL_ENDPOINT, getLSP7TokensQuery);
   return data.Asset;
 }
+
+// Usage: Fetch all LSP7 fungible tokens
+const lsp7Tokens = await getLSP7Tokens();
 ```
 
   </TabItem>
@@ -713,6 +734,8 @@ query GetLSP8NFTs($assetId: String!) {
   <TabItem value="typescript" label="TypeScript">
 
 ```typescript
+// Query to fetch individual LSP8 (non-fungible) tokens for a specific asset
+// Returns token IDs with their metadata, images, and custom attributes
 const getLSP8NFTsQuery = gql`
   query GetLSP8NFTs($assetId: String!) {
     Token(where: { asset_id: { _eq: $assetId } }) {
@@ -738,6 +761,9 @@ async function getLSP8NFTs(assetId: string) {
   const data = await request(GRAPHQL_ENDPOINT, getLSP8NFTsQuery, { assetId });
   return data.Token;
 }
+
+// Usage: Fetch all NFTs for a specific LSP8 collection
+const nfts = await getLSP8NFTs('0x1234567890abcdef1234567890abcdef12345678');
 ```
 
   </TabItem>
@@ -820,6 +846,8 @@ query GetAssetMetadata($assetId: String!) {
   <TabItem value="typescript" label="TypeScript">
 
 ```typescript
+// Query to fetch LSP4 Digital Asset Metadata for a specific asset
+// Retrieves comprehensive metadata including images sorted by size and custom attributes
 const getAssetMetadataQuery = gql`
   query GetAssetMetadata($assetId: String!) {
     Asset(where: { id: { _eq: $assetId } }) {
@@ -849,6 +877,11 @@ async function getAssetMetadata(assetId: string) {
   });
   return data.Asset[0];
 }
+
+// Usage: Fetch complete LSP4 metadata for an asset
+const metadata = await getAssetMetadata(
+  '0x1234567890abcdef1234567890abcdef12345678',
+);
 ```
 
   </TabItem>
@@ -937,6 +970,8 @@ query SearchByCategory($categoryKey: String!, $categoryValue: String!) {
   <TabItem value="typescript" label="TypeScript">
 
 ```typescript
+// Query to search for assets by specific attribute key-value pairs
+// Uses _ilike for case-insensitive pattern matching on attribute values
 const searchByCategoryQuery = gql`
   query SearchByCategory($categoryKey: String!, $categoryValue: String!) {
     Asset(
@@ -966,12 +1001,12 @@ const searchByCategoryQuery = gql`
 async function searchByCategory(categoryKey: string, categoryValue: string) {
   const data = await request(GRAPHQL_ENDPOINT, searchByCategoryQuery, {
     categoryKey,
-    categoryValue: `%${categoryValue}%`,
+    categoryValue: `%${categoryValue}%`, // Add wildcards for partial matching
   });
   return data.Asset;
 }
 
-// Example: Search for assets by Author
+// Usage: Search for assets by a specific attribute (e.g., Author name)
 const artAssets = await searchByCategory('Author', 'Deez');
 ```
 
@@ -1026,6 +1061,7 @@ const wsClient = createClient({
   url: 'wss://envio.lukso-mainnet.universal.tech/v1/graphql',
 });
 
+// Subscribe to profile updates for a specific Universal Profile address
 const subscription = wsClient.subscribe(
   {
     query: `
