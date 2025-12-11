@@ -54,6 +54,12 @@ https://envio.lukso-testnet.universal.tech/v1/graphql
 
 Install the `graphql-request` library to interact with the indexer:
 
+:::info graphql-request
+
+Any GraphQL client library will work for querying the LUKSO Indexer.
+
+:::
+
 ```bash
 npm install graphql-request graphql
 ```
