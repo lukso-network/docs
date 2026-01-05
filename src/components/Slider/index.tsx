@@ -5,8 +5,8 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  Grid,
 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 import { CarouselProps } from 'react-material-ui-carousel/dist/components/types';
 import CallToActionButton from '../CallToActionButton/index';
 
@@ -55,12 +55,12 @@ export const Banner: React.FC<BannerProps> = ({ items, isMobile }) => {
   );
 
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={1} sx={{ width: '100%' }}>
       {items.map((item, index) => (
         // 12 columns layout, so `3` as value gives us 4 items per banner
         // otherwise 1 item per slide for mobile screens
-        <Grid size={isMobile ? 12 : 3}>
-          <Element item={item} key={index} />
+        <Grid key={index} size={{ xs: isMobile ? 12 : 3 }}>
+          <Element item={item} />
         </Grid>
       ))}
     </Grid>
@@ -74,15 +74,10 @@ type SliderProps = {
 const Slider: React.FC<SliderProps> = ({ items }) => {
   const itemsPerSlide = 4;
 
-  const chunks = items.reduce<Item[][]>((resultArray, _, index) => {
-    const startSlice = index * itemsPerSlide;
-    const endSlice = startSlice + itemsPerSlide;
-
-    if (endSlice > items.length) return resultArray;
-
-    resultArray.push(items.slice(startSlice, endSlice));
-    return resultArray;
-  }, []);
+  const chunks: Item[][] = [];
+  for (let i = 0; i < items.length; i += itemsPerSlide) {
+    chunks.push(items.slice(i, i + itemsPerSlide));
+  }
 
   // Adjust to 1 item per slide for mobile screens
   const theme = useTheme();
@@ -93,8 +88,8 @@ const Slider: React.FC<SliderProps> = ({ items }) => {
 
   return (
     <Carousel {...carouselConfig}>
-      {groupedItems.map((group) => {
-        return <Banner items={group} isMobile={isMobile} />;
+      {groupedItems.map((group, index) => {
+        return <Banner key={index} items={group} isMobile={isMobile} />;
       })}
     </Carousel>
   );

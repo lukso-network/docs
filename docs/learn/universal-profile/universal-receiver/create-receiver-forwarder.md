@@ -251,12 +251,10 @@ Let's dive in some of the details of the [`universalReceiverDelegate(...)`](/con
 2. (lines 94-103) We checked that we are being notified by a smart contract. If we manage to call the `balanceOf(address)` function, we assume it is an LSP7 Token contract.
 3. (lines 107-109) We then ensure that this token is in our list of tokens to transfer some percentage of to another address.
 4. (lines 112-121) The LSP7 Token contract sent us in the notification `data` (function param line 79) the amount of tokens that were transferred.
-
    1. (line 112) We extract **only** this `amount` from the `data` received . The other infos in the data are not necessary so not used.
    2. (line 121) We calculate the proportion to re-transfer (local variable `tokensToTransfer`,) according to the `percentage` set (state variable line 37).
 
 5. (line 123-129) We encode a call to the [`transfer(...)`](/contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) function on the LSP7 Token contract, using the Solidity built-in function `encodeCall`. The 4 parameters being encoded for the function call are:
-
    - `from`: (`msg.sender`) = this UP that received the tokens.
    - `to`: (`recipient`) = the address that will receives the percentage of tokens.
    - `amount`: (`tokensToTransfer`) = the calculated percentage of the total amount received.
@@ -434,7 +432,6 @@ Let's dive in some of the details of the [`universalReceiverDelegate(...)`](/con
 2. (lines 94-103) We checked that we are being notified by a smart contract. If we manage to call the `balanceOf(address)` function, we assume it is an LSP7 Token contract.
 3. (lines 107-109) We then ensure that this token is in our list of tokens to transfer some percentage of to another address.
 4. (lines 112-121) The LSP7 Token contract sent us in the notification `data` (function param line 79) the amount of tokens that were transferred.
-
    1. (line 112) We extract **only** this `amount` from the `data` received . The other infos in the data are not necessary so not used.
    2. (line 121) We calculate the proportion to re-transfer (local variable `tokensToTransfer`,) according to the `percentage` set (state variable line 37).
 
