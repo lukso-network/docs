@@ -27,7 +27,6 @@ See also our [step by step Javascript guide](../../learn/universal-profile/key-m
 To obtain a valid signature that can be used by anyone to execute a relayed transaction (= meta transaction) on behalf of someone else, we must do the following:
 
 1. Gather 5 things:
-
    - 1. the **payload** (an abi-encoded function call) to be executed on the linked account.
    - 2. the **chain id** of the blockchain where the `payload` will be executed.
    - 3. the address of the smart contract implementing the [`ILSP25ExecuteRelayCall`](https://github.com/lukso-network/lsp-smart-contracts/blob/develop/packages/lsp25-contracts/contracts/ILSP25ExecuteRelayCall.sol) interface where the **payload** will be executed.

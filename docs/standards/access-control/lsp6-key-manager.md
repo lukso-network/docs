@@ -653,14 +653,12 @@ Consider the scenario where you want to give the following permissions to a cont
 The CompactBytesArray of allowed calls for this controller will be composed of the following entries:
 
 - `AllowedCalls[0]` = the 1st value in the CompactBytesArray will be **`0x002000000002CA41e4ea94c8fA99889c8EA2c8948768cBaf4bc03e89ad98ffffffff`**.
-
   - _Call Type_: **CALL and TRANSFERVALUE**, **0x00000003**;
   - _Address_: **`0xCA41e4ea94c8fA99889c8EA2c8948768cBaf4bc0`**;
   - _Standard_: **LSP0 interface ID = `0x3e89ad98`**;
   - _Function_: **any = `0xffffffff`**;
 
 - AllowedCalls[1] = the 2nd value in the CompactBytesArray will be **`0x002000000003F70Ce3b58f275A4c28d06C98615760dDe774DE57ffffffff760d9bba`**.
-
   - _Call Type_: **CALL**, **0x00000002**;
   - _Address_: **`0xF70Ce3b58f275A4c28d06C98615760dDe774DE57`**;
   - _Standard_: **any = `0xffffffff`**;
