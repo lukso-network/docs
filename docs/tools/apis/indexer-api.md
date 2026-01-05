@@ -5,60 +5,148 @@ sidebar_position: 2
 
 # Indexer API
 
-:::info 🔓 Private Beta access
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import MainnetIcon from '@site/static/img/icons/lukso-signet-fuschia.svg';
+import TestnetIcon from '@site/static/img/icons/lukso-signet-yellow.svg';
+import QueryExamples from '@site/src/components/QueryExamples';
 
-This feature is currently in private beta. If you are interested, please [fill in this form](https://forms.gle/rhWA25m3jjuPNPva9).
+The [**Envio Indexer**](https://envio.lukso-mainnet.universal.tech/) provides a powerful way to query any information, past events or metadata from the LUKSO blockchain. It offers flexible querying capabilities with support for filtering and real-time subscriptions.
+
+![Envio Indexer](/img/tools/envio_indexer.png)
+
+## Get Started
+
+This guide covers how to query the LUKSO Indexer using GraphQL, with practical examples and code samples.
+
+Choose the client that best fits your use case:
+
+- **[HTTP client](#http-client)**: Best for one-time queries, searches, and fetching data on demand
+- **[WebSocket client](#websocket-client)**: Best for real-time updates, monitoring changes, and live data feeds
+
+:::success Interactive Playground
+
+Explore the full schema and test queries in the interactive playground:
+**[https://envio.lukso-mainnet.universal.tech/](https://envio.lukso-mainnet.universal.tech/)**
 
 :::
 
-If you are building on LUKSO, you can request a developer access to our indexer. This will allow you to query Universal Profiles and LSP7/8 assets.
+**GraphQL Endpoint:**
 
-## [Algolia](https://www.algolia.com/)
-
-<p align="center">
-<img src="/img/tools/algolia_example.png" height="600px" alt="example of Algolia search"/>
-</p>
-
-Our backend system indexes profiles and assets and sends the data to Algolia.
-
-You can use the following Algolia API key to build a quick search engine for Universal Profiles and/or assets (as seen on the screenshot above). This is the technology that powers the search bar on [https://universalprofile.cloud/](https://universalprofile.cloud/).
+<Tabs>
+  <TabItem value="mainnet" label={<><MainnetIcon style={{width: '20px', height: '20px', marginRight: '8px', marginTop: '4px', verticalAlign: 'text-bottom'}} /> Mainnet</>} default>
 
 ```
-APPLICATION_ID = YHFN1WRCR5
-API_KEY = [request it from us]
+https://envio.lukso-mainnet.universal.tech/v1/graphql
 ```
 
-**Indices:**
-
-- `prod_mainnet_assets`
-- `prod_testnet_assets`
-- `prod_mainnet_universal_profiles`
-- `prod_testnet_universal_profiles`
-
-**Access Control Lists (ACLs):**
-
-- `search`
-
-### Resources
-
-- [Algolia Docs](https://www.algolia.com/doc/)
-
-## LUKSO API
-
-We provide the following API to help you get the nice information about the profiles and assets:
+  </TabItem>
+  <TabItem value="testnet" label={<><TestnetIcon style={{width: '20px', height: '20px', marginRight: '8px', marginTop: '4px', verticalAlign: 'text-bottom'}} /> Testnet</>}>
 
 ```
-https://api.universalprofile.cloud/
+https://envio.lukso-testnet.universal.tech/v1/graphql
 ```
 
-### `GET /v1/:chainId/address/:address`
+  </TabItem>
+</Tabs>
 
-Return [LSP4 - Digital Asset Metadata](/standards/tokens/LSP4-Digital-Asset-Metadata/) or [LSP3 - Profile Metadata](/standards/metadata/lsp3-profile-metadata). Loads data directly from Algolia and caches it for a while. Adding /TOKENID at the end will retrieve tokenId data for LSP8 tokens.
+## HTTP Client
 
-### `GET /v1/:chainId/stats`
+Install the `graphql-request` library to interact with the indexer:
 
-Get statistics of profile and asset indexes for the particular chain.
+:::info graphql-request
 
-### `GET /ipfs/:cid*`
+Any GraphQL client library will work for querying the LUKSO Indexer.
 
-Return content from IPFS gateways.
+:::
+
+```bash
+npm install graphql-request graphql
+```
+
+Once installed, you can start making queries:
+
+```typescript
+import { request, gql } from 'graphql-request';
+
+const GRAPHQL_ENDPOINT =
+  'https://envio.lukso-mainnet.universal.tech/v1/graphql';
+
+// Example query to retrieve the Universal Profile's name and its images
+const query = gql`
+  query {
+    Profile(limit: 5) {
+      id
+      name
+      fullName
+    }
+  }
+`;
+
+const data = await request(GRAPHQL_ENDPOINT, query);
+console.log(data);
+```
+
+### Query Examples
+
+Below are the most common use cases for querying the LUKSO Indexer:
+
+<QueryExamples />
+
+## WebSocket Client
+
+For real-time data subscriptions, use the WebSocket protocol with the `graphql-ws` library:
+
+```bash
+npm install graphql-ws
+```
+
+Once installed, you can subscribe to live updates:
+
+```typescript
+import { createClient } from 'graphql-ws';
+
+const wsClient = createClient({
+  url: 'wss://envio.lukso-mainnet.universal.tech/v1/graphql',
+});
+
+// Subscribe to profile updates for a specific Universal Profile address
+const subscription = wsClient.subscribe(
+  {
+    query: `
+      subscription OnProfileUpdate($profileId: String!) {
+        Profile(where: { id: { _eq: $profileId } }) {
+          id
+          name
+          fullName
+          profileImages(where: { error: { _is_null: true } }) {
+            src
+            url
+          }
+        }
+      }
+    `,
+    variables: { profileId: '0x...' },
+  },
+  {
+    next: (data) => {
+      console.log('Profile updated:', data);
+    },
+    error: (error) => {
+      console.error('Subscription error:', error);
+    },
+    complete: () => {
+      console.log('Subscription complete');
+    },
+  },
+);
+
+// Unsubscribe when done
+subscription();
+```
+
+## Resources
+
+- [LUKSO Indexer Playground](https://envio.lukso-mainnet.universal.tech/)
+- [LSP4 - Digital Asset Metadata](/standards/tokens/LSP4-Digital-Asset-Metadata/)
+- [LSP3 - Profile Metadata](/standards/metadata/lsp3-profile-metadata/)
