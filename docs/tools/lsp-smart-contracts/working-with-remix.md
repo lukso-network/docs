@@ -39,13 +39,11 @@ To deploy your smart contract using the Universal Profile browser extension:
 To verify your contract on the LUKSO Testnet:
 
 1. **Enable Contract Verification**
-
    - Open the _Plugin Manager_ in Remix
    - Activate the _Contract Verification_ tool
    - The verification icon will appear in the left menu
 
 2. **Configure Blockscout API**
-
    - Navigate to the Settings tab
    - Add the LUKSO Testnet Blockscout API:
      ```
