@@ -30,6 +30,8 @@ Universal Profile makes interacting with the blockchain safe and straightforward
 
 ## UP Browser Extension
 
+Use your Universal Profile to interact with dApps through your web browser on laptops and desktops.
+
 <div className="row" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2em', gap: '2em' }}>
   <div style={{ textAlign: 'center', flex: '0 0 300px' }}>
     <img src="/img/extension/up-extension-showcase-1.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', width: '100%' }} />

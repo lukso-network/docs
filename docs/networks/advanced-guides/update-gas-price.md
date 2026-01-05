@@ -111,7 +111,6 @@ If you are using Erigon, you can set the gas price within the [`erigon.toml`](ht
 
 1. Stop your client services
 2. Manually adjust the gas price by either:
-
    - adjusting the geth configuration file within your [network configuration](https://github.com/lukso-network/network-configs) files:
 
      ```text

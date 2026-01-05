@@ -224,6 +224,28 @@ table.lsp-features td {
   margin-right: 1em;
 }
 
+
+.tab_viem[aria-selected='true'] {
+  border-bottom-color: #2434a1;
+}
+
+.tab_viem {
+  color: #2434a1;
+}
+
+.tab_viem:before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('/static/img/learn/viem-logo.png') no-repeat center;
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  position: relative;
+  z-index: 100000;
+}
+
 .tab_web3[aria-selected='true'] {
   border-bottom-color: #f06922;
 }
@@ -321,4 +343,30 @@ footer {
 /* Bold navbar item for Apps link */
 .navbar-item-bold {
   font-weight: bold;
+}
+
+/* Provider tabs styling */
+.provider-tabs .tabs__item {
+  font-size: 1.05rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px 8px 0 0;
+  transition: background-color 0.2s ease;
+}
+
+.provider-tabs .tabs__item:hover {
+  background-color: rgba(105, 114, 225, 0.05);
+}
+
+.provider-tabs .tabs__item--active {
+  background-color: rgba(105, 114, 225, 0.1);
+  border-bottom: 2px solid var(--ifm-color-primary);
+  font-weight: bold;
+}
+
+html[data-theme='dark'] .provider-tabs .tabs__item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme='dark'] .provider-tabs .tabs__item--active {
+  background-color: rgba(255, 255, 255, 0.1);
 }
