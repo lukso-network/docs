@@ -49,6 +49,19 @@ export default {
             from: '/learn/dapp-developer/transfer-lyx',
             to: '/learn/universal-profile/interactions/transfer-lyx',
           },
+          // Redirects for moved standard pages (LSP0, LSP6, LSP3)
+          {
+            from: '/standards/universal-profile/lsp0-erc725account/',
+            to: '/standards/accounts/lsp0-erc725account/',
+          },
+          {
+            from: '/standards/universal-profile/lsp6-key-manager/',
+            to: '/standards/access-control/lsp6-key-manager/',
+          },
+          {
+            from: '/standards/universal-profile/lsp3-profile-metadata/',
+            to: '/standards/metadata/lsp3-profile-metadata/',
+          },
         ],
         createRedirects(existingPath) {
           // Redirect old lsp-factoryjs API docs to getting started
