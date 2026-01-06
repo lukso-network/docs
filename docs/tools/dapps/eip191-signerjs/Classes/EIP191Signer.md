@@ -161,6 +161,7 @@ Recovers the address which was used to sign the given message.
 ### Parameters
 
 1. `messageHash` - `String|Object`: **Either signed message already prefixed and hashed or Message object with the following values**:
+
    - `message` - `String`: The given message.
    - `messageHash` - `String`: The hash of the given message.
    - `r` - `String`: First 32 bytes of the signature.
