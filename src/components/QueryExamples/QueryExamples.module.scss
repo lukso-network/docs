@@ -25,7 +25,9 @@
   border-radius: 6px;
   margin-bottom: 0.25rem;
   font-size: 0.9rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   color: var(--ifm-font-color-base);
 
   &:hover {
