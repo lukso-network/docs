@@ -531,8 +531,7 @@ type TokenAttribute {
   {
     id: 'get-lsp4-metadata',
     title: 'Get LSP4 Digital Asset Metadata',
-    description:
-      'Query LSP4 Digital Asset Metadata for assets and tokens.',
+    description: 'Query LSP4 Digital Asset Metadata for assets and tokens.',
     query: `query GetAssetMetadata($assetId: String!) {
   Asset(where: { id: { _eq: $assetId } }) {
     id

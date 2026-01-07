@@ -59,12 +59,12 @@ We recommend developers to use these RPC providers over our public RPC URL as th
 
 The following third parties provide RPC endpoints to connect to LUKSO Mainnet.
 
-| Provider                          | RPC URL                                                               |
-| --------------------------------- | --------------------------------------------------------------------- |
-| [Thirdweb](https://thirdweb.com/) | `https://42.rpc.thirdweb.com`                                         |
-| [SigmaCore](https://sigmacore.io) | `https://rpc.lukso.sigmacore.io` (increased-limit packages available) |
-| [NowNodes](https://nownodes.io/)  | `https://lukso.nownodes.io` (requires API key)                        |
-| [Envio](https://envio.dev/)       | `https://lukso.rpc.hypersync.xyz` (optimized read-only)               |
+| Provider                          | RPC URL                                                 |
+| --------------------------------- | ------------------------------------------------------- |
+| [Thirdweb](https://thirdweb.com/) | `https://42.rpc.thirdweb.com`                           |
+| [SigmaCore](https://sigmacore.io) | `https://rpc.lukso.sigmacore.io` (requires API key)     |
+| [NowNodes](https://nownodes.io/)  | `https://lukso.nownodes.io` (requires API key)          |
+| [Envio](https://envio.dev/)       | `https://lukso.rpc.hypersync.xyz` (optimized read-only) |
 
 ## Network Architecture
 
