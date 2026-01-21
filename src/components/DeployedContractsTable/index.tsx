@@ -101,7 +101,7 @@ export const FactoryContractsTable = () => {
         </tr>
         <tr>
           <td>
-            <code>UniversalProfilePostDeploymentModule</code>
+            <code>UniversalProfileInitPostDeploymentModule</code>
           </td>
           <td>
             <a
