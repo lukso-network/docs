@@ -35,7 +35,7 @@
     "docusaurus-plugin-sass": "^0.2.6",
     "file-loader": "^6.2.0",
     "plugin-image-zoom": "^1.2.0",
-    "prettier": "^3.6.2",
+    "prettier": "^3.8.1",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
