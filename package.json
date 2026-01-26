@@ -24,7 +24,7 @@
     "@docusaurus/plugin-google-gtag": "latest",
     "@docusaurus/preset-classic": "latest",
     "@docusaurus/theme-mermaid": "latest",
-    "@emotion/react": "^11.13.3",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@iconify/react": "^5.2.0",
     "@mdx-js/react": "3.1.0",
