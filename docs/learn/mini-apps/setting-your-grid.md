@@ -6,11 +6,16 @@ sidebar_position: 0
 
 # Setting your Grid
 
-The [LSP28 The Grid](../../standards/access-control/lsp28-the-grid.md) standard allows you to create a customizable dashboard of widgets on your Universal Profile. This guide covers how to encode and set your grid data on-chain.
+<img
+src="/img/guides/setting-your-grid.jpg"
+alt="Example of a Universal Profile Grid with multiple widgets"
+style={{ maxWidth: '100%', borderRadius: '8px' }}
+/>
+
+The [LSP28 The Grid](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md) standard allows you to create a customizable dashboard of widgets on your Universal Profile. This guide covers how to encode and set your grid data on-chain.
 
 ## What You'll Learn
 
-- The VerifiableURI format for grid data
 - The JSON structure for your grid data
 - How to encode your grid data using `@erc725/erc725.js`
 - How to set the grid data via `setData` using viem or ethers
@@ -71,6 +76,12 @@ Your grid must follow this JSON format:
 }
 ```
 
+:::success
+
+For more details on all the available Grid properties (like embedding X or Instagram posts, or Elfsight widgets), see the [LSP28 specs](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md#grid-element-properties).
+
+:::
+
 ### Grid Item Properties
 
 | Property     | Type   | Description                            |
@@ -87,7 +98,7 @@ Use the `@erc725/erc725.js` library to encode your grid. You can store the data 
 <Tabs>
   <TabItem value="onchain" label="On-Chain (base64)">
 
-For on-chain storage, the verification method is `keccak256(bytes)`:
+For on-chain storage, the JSON is embedded directly as base64 in the VerifiableURI with verification method `keccak256(bytes)`:
 
 ```typescript
 import { ERC725 } from '@erc725/erc725.js';
@@ -109,7 +120,13 @@ const gridData = {
 const encodedData = ERC725.encodeData([
   {
     keyName: 'LSP28TheGrid',
-    value: JSON.stringify(gridData),
+    value: {
+      json: gridData, // The JSON object to encode as base64
+      verification: {
+        method: 'keccak256(bytes)',
+        data: '0x', // Hash computed automatically
+      },
+    },
   },
 ]);
 
