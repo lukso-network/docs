@@ -16,11 +16,11 @@ The [LSP28 The Grid](../../standards/access-control/lsp28-the-grid.md) standard 
 
 ## Prerequisites
 
-| Requirement | Description |
-|-------------|-------------|
-| **UP with KeyManager** | Your Universal Profile must have a KeyManager deployed |
+| Requirement                | Description                                                                             |
+| -------------------------- | --------------------------------------------------------------------------------------- |
+| **UP with KeyManager**     | Your Universal Profile must have a KeyManager deployed                                  |
 | **Controller permissions** | Your controller needs `SUPER_SETDATA` or specific `SETDATA` permission for the grid key |
-| **JSON grid data** | Your grid configuration as a JSON object |
+| **JSON grid data**         | Your grid configuration as a JSON object                                                |
 
 ## Understanding the Data Key
 
@@ -36,15 +36,16 @@ This key is derived from `keccak256('LSP28TheGrid')`.
 
 The grid data must be encoded as a [VerifiableURI](../../standards/standard-types.md#verifiableuri) following this structure:
 
-| Component | Bytes | Description |
-|-----------|-------|-------------|
-| `0x0000` | 2 | VerifiableURI prefix |
-| `8019f9b1` | 4 | Verification method (keccak256(bytes)) |
-| `0020` | 2 | Verification data length (32 bytes) |
-| `<hash>` | 32 | keccak256 hash of the JSON content |
-| `<url>` | variable | Base64 data URI or IPFS URL |
+| Component  | Bytes    | Description                            |
+| ---------- | -------- | -------------------------------------- |
+| `0x0000`   | 2        | VerifiableURI prefix                   |
+| `8019f9b1` | 4        | Verification method (keccak256(bytes)) |
+| `0020`     | 2        | Verification data length (32 bytes)    |
+| `<hash>`   | 32       | keccak256 hash of the JSON content     |
+| `<url>`    | variable | Base64 data URI or IPFS URL            |
 
 **Total structure:**
+
 ```
 0x0000 + 8019f9b1 + 0020 + <32-byte-hash> + <hex-encoded-url>
 ```
@@ -70,12 +71,12 @@ Your grid must follow this JSON format:
 
 ### Grid Item Properties
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `width` | number | Grid columns the item spans (1-12) |
-| `height` | number | Grid rows the item spans |
-| `type` | string | Widget type: `iframe`, `image`, `link` |
-| `properties` | object | Type-specific configuration |
+| Property     | Type   | Description                            |
+| ------------ | ------ | -------------------------------------- |
+| `width`      | number | Grid columns the item spans (1-12)     |
+| `height`     | number | Grid rows the item spans               |
+| `type`       | string | Widget type: `iframe`, `image`, `link` |
+| `properties` | object | Type-specific configuration            |
 
 ## Encoding with erc725.js
 
@@ -92,26 +93,26 @@ const gridData = {
       height: 1,
       type: 'iframe',
       properties: {
-        src: 'https://universalswaps.io'
-      }
+        src: 'https://universalswaps.io',
+      },
     },
     {
       width: 1,
       height: 1,
       type: 'iframe',
       properties: {
-        src: 'https://stakingverse.io'
-      }
-    }
-  ]
+        src: 'https://stakingverse.io',
+      },
+    },
+  ],
 };
 
 // Encode the JSON to a VerifiableURI
 const encodedData = ERC725.encodeData([
   {
     keyName: 'LSP28TheGrid',
-    value: JSON.stringify(gridData)
-  }
+    value: JSON.stringify(gridData),
+  },
 ]);
 
 console.log('Encoded value:', encodedData.values[0]);
@@ -131,19 +132,20 @@ import TabItem from '@theme/TabItem';
 import { createPublicClient, createWalletClient, http, custom } from 'viem';
 import { lukso } from 'viem/chains';
 
-const GRID_KEY = '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
+const GRID_KEY =
+  '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
 
 // Your encoded grid data from erc725.js
 const encodedGridData = '0x00008019f9b10020...'; // Full VerifiableURI
 
 const publicClient = createPublicClient({
   chain: lukso,
-  transport: http('https://rpc.mainnet.lukso.network')
+  transport: http('https://rpc.mainnet.lukso.network'),
 });
 
 const walletClient = createWalletClient({
   chain: lukso,
-  transport: custom(window.ethereum)
+  transport: custom(window.ethereum),
 });
 
 const [address] = await walletClient.getAddresses();
@@ -158,13 +160,13 @@ const hash = await walletClient.writeContract({
       stateMutability: 'nonpayable',
       inputs: [
         { name: 'dataKey', type: 'bytes32' },
-        { name: 'dataValue', type: 'bytes' }
+        { name: 'dataValue', type: 'bytes' },
       ],
-      outputs: []
-    }
+      outputs: [],
+    },
   ],
   functionName: 'setData',
-  args: [GRID_KEY, encodedGridData]
+  args: [GRID_KEY, encodedGridData],
 });
 
 await publicClient.waitForTransactionReceipt({ hash });
@@ -176,18 +178,19 @@ await publicClient.waitForTransactionReceipt({ hash });
 ```typescript
 import { ethers } from 'ethers';
 
-const GRID_KEY = '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
+const GRID_KEY =
+  '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
 
 // Your encoded grid data from erc725.js
 const encodedGridData = '0x00008019f9b10020...'; // Full VerifiableURI
 
-const provider = new ethers.JsonRpcProvider('https://rpc.mainnet.lukso.network');
+const provider = new ethers.JsonRpcProvider(
+  'https://rpc.mainnet.lukso.network',
+);
 const wallet = new ethers.Wallet('YOUR_PRIVATE_KEY', provider);
 
 // UP ABI for setData
-const upAbi = [
-  'function setData(bytes32 dataKey, bytes dataValue) external'
-];
+const upAbi = ['function setData(bytes32 dataKey, bytes dataValue) external'];
 
 const up = new ethers.Contract('0xYOUR_UP_ADDRESS', upAbi, wallet);
 
@@ -218,10 +221,10 @@ const upAbi = [
     stateMutability: 'nonpayable',
     inputs: [
       { name: 'dataKey', type: 'bytes32' },
-      { name: 'dataValue', type: 'bytes' }
+      { name: 'dataValue', type: 'bytes' },
     ],
-    outputs: []
-  }
+    outputs: [],
+  },
 ];
 
 const keyManagerAbi = [
@@ -230,15 +233,15 @@ const keyManagerAbi = [
     type: 'function',
     stateMutability: 'nonpayable',
     inputs: [{ name: 'payload', type: 'bytes' }],
-    outputs: [{ name: '', type: 'bytes' }]
-  }
+    outputs: [{ name: '', type: 'bytes' }],
+  },
 ];
 
 // Encode the UP.setData call
 const setDataPayload = encodeFunctionData({
   abi: upAbi,
   functionName: 'setData',
-  args: [GRID_KEY, encodedGridData]
+  args: [GRID_KEY, encodedGridData],
 });
 
 // Execute via KeyManager
@@ -246,7 +249,7 @@ const hash = await walletClient.writeContract({
   address: '0xYOUR_KEY_MANAGER_ADDRESS',
   abi: keyManagerAbi,
   functionName: 'execute',
-  args: [setDataPayload]
+  args: [setDataPayload],
 });
 ```
 
@@ -255,24 +258,24 @@ const hash = await walletClient.writeContract({
 
 ```typescript
 const upInterface = new ethers.Interface([
-  'function setData(bytes32 dataKey, bytes dataValue) external'
+  'function setData(bytes32 dataKey, bytes dataValue) external',
 ]);
 
 const keyManagerInterface = new ethers.Interface([
-  'function execute(bytes payload) external returns (bytes)'
+  'function execute(bytes payload) external returns (bytes)',
 ]);
 
 // Encode the UP.setData call
 const setDataPayload = upInterface.encodeFunctionData('setData', [
   GRID_KEY,
-  encodedGridData
+  encodedGridData,
 ]);
 
 // Execute via KeyManager
 const keyManager = new ethers.Contract(
   '0xYOUR_KEY_MANAGER_ADDRESS',
   keyManagerInterface,
-  wallet
+  wallet,
 );
 
 const tx = await keyManager.execute(setDataPayload);
@@ -290,7 +293,8 @@ Here's a complete script that combines encoding and setting:
 import { ERC725 } from '@erc725/erc725.js';
 import { ethers } from 'ethers';
 
-const GRID_KEY = '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
+const GRID_KEY =
+  '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
 
 const gridConfig = {
   LSP28TheGrid: [
@@ -300,10 +304,10 @@ const gridConfig = {
       type: 'iframe',
       properties: {
         src: 'https://universalswaps.io',
-        title: 'Universal Swaps'
-      }
-    }
-  ]
+        title: 'Universal Swaps',
+      },
+    },
+  ],
 };
 
 async function setGrid() {
@@ -311,34 +315,36 @@ async function setGrid() {
   const encoded = ERC725.encodeData([
     {
       keyName: 'LSP28TheGrid',
-      value: JSON.stringify(gridConfig)
-    }
+      value: JSON.stringify(gridConfig),
+    },
   ]);
 
   // 2. Set via KeyManager
-  const provider = new ethers.JsonRpcProvider('https://rpc.mainnet.lukso.network');
+  const provider = new ethers.JsonRpcProvider(
+    'https://rpc.mainnet.lukso.network',
+  );
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-  
+
   const km = new ethers.Contract(
     '0xYOUR_KEY_MANAGER',
     ['function execute(bytes) external returns (bytes)'],
-    wallet
+    wallet,
   );
 
   const up = new ethers.Contract(
     '0xYOUR_UP',
     ['function setData(bytes32,bytes) external'],
-    wallet
+    wallet,
   );
 
   const payload = up.interface.encodeFunctionData('setData', [
     GRID_KEY,
-    encoded.values[0]
+    encoded.values[0],
   ]);
 
   const tx = await km.execute(payload);
   await tx.wait();
-  
+
   console.log('Grid set! Transaction:', tx.hash);
 }
 
@@ -347,12 +353,12 @@ setGrid();
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
+| Issue                   | Solution                                                                                                   |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- |
 | **Grid not displaying** | Verify the VerifiableURI format — must include `0x0000` prefix, `8019f9b1` method, and `0020` length field |
-| **Transaction reverts** | Check your controller has `SETDATA` permission for the grid key |
-| **Wrong hash** | Ensure you're hashing the raw JSON bytes, not the string |
-| **IPFS not loading** | Use base64 data URI for immediate testing; switch to IPFS for production |
+| **Transaction reverts** | Check your controller has `SETDATA` permission for the grid key                                            |
+| **Wrong hash**          | Ensure you're hashing the raw JSON bytes, not the string                                                   |
+| **IPFS not loading**    | Use base64 data URI for immediate testing; switch to IPFS for production                                   |
 
 ## Next Steps
 
