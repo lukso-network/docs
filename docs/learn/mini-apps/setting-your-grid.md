@@ -284,7 +284,7 @@ const encodedGridData = '0x00008019f9b10020...'; // Full VerifiableURI
 const provider = new ethers.JsonRpcProvider(
   'https://rpc.mainnet.lukso.network',
 );
-const wallet = new ethers.Wallet('YOUR_PRIVATE_KEY', provider);
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
 // UP ABI for setData
 const upAbi = ['function setData(bytes32 dataKey, bytes dataValue) external'];
