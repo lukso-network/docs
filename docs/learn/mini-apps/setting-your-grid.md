@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
-    src="https://github.com/user-attachments/assets/58f7a882-a79c-4e84-9a07-f074d07b78ab"
+    src="/img/learn/grid-example.png"
     alt="LSP28 Grid layout on a Universal Profile"
     width="633"
   />
@@ -24,10 +24,10 @@ The **Grid** ([LSP28](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2
 
 This guide walks you through:
 
-1. Understanding the Grid JSON structure and all available element types
-2. Encoding the Grid as a [VerifiableURI](/standards/metadata/lsp2-json-schema.md#verifiableuri)
-3. encode the grid data either on-chain as base64 or off-chain on IPFS
-4. set it on your Universal Profile via `setData(bytes32,bytes)`
+1. Understanding the JSON structure of a Grid and all its available element types
+2. How to encode the Grid as a [VerifiableURI](/standards/metadata/lsp2-json-schema.md#verifiableuri)
+3. Encode the grid data either on-chain as base64 or off-chain on IPFS
+4. Set it on your Universal Profile via `setData(bytes32,bytes)`
 
 :::info What are Mini-Apps?
 Mini-Apps are dApps that run inside an `<iframe>` on a host page. The Grid standard provides the layout framework for embedding them. Learn more about connecting Mini-Apps in the [Connect to a Mini-App](/learn/mini-apps/connect-upprovider) guide.
@@ -65,11 +65,12 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## The LSP28 Data Key
 
-The Grid data is stored under a single [ERC725Y](http://docs.lukso.tech/standards/erc725/#erc725y-generic-data-keyvalue-store) data key:
+The Grid data is stored under a single [ERC725Y](http://docs.lukso.tech/standards/erc725/#erc725y-generic-data-keyvalue-store) data key.
 
-```
-LSP28TheGrid → keccak256('LSP28TheGrid')
-= 0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff
+To get the `bytes32` data key to set in the [`UniversalProfile`](/docs/contracts/contracts/UniversalProfile/UniversalProfile.md) smart contract via [`setData(bytes32,bytes)`](/docs/contracts/contracts/UniversalProfile/UniversalProfile.md#setdata), hash the string `'LSP28TheGrid'` using `keccak256`.
+
+```shell
+keccak256('LSP28TheGrid') = 0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff
 ```
 
 :::warning Draft Standard
@@ -92,7 +93,7 @@ The value is a **[VerifiableURI](/standards/metadata/lsp2-json-schema.md#verifia
 
 ## Grid JSON Structure
 
-The Grid JSON follows a specific format defined by the [LSP28 specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md). Below is the full structure with all available properties.
+The Grid follows a specific JSON format defined by the [LSP28 specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md). Below is the full structure with all available properties. You can have multiple grids on multiple tabs. The `"LSP28TheGrid:"` property accepts an array of objects.
 
 <details>
     <summary>See LSP28TheGrid JSON file template</summary>
@@ -183,6 +184,13 @@ The Grid JSON follows a specific format defined by the [LSP28 specification](htt
   ]
 }
 ```
+
+</details>
+
+<details>
+    <summary>Visual example of multiple Grids across tabs</summary>
+
+![Multiple grid tabs example](/img/learn/multi-grid-tabs-example.png)
 
 </details>
 
@@ -374,7 +382,7 @@ The spec defines the following built-in types. Custom types can also be created.
 Here is a complete Grid JSON with multiple element types:
 
 <details>
-<summary>Complete Grid JSON example</summary>
+<summary>Single Grid - JSON example</summary>
 
 ```json title="my-grid.json"
 {
@@ -442,32 +450,117 @@ Here is a complete Grid JSON with multiple element types:
 
 </details>
 
-## Understanding VerifiableURI Encoding
+<details>
+<summary>Multiple Grids across tabs - JSON example</summary>
 
-The Grid value stored on-chain is a **VerifiableURI** as defined in [LSP2 - ERC725Y JSON Schema](/standards/metadata/lsp2-json-schema.md#verifiableuri). It contains both a verification hash and the URI where the data can be found. This allows anyone to verify that the content at the URI hasn't been tampered with.
+```json
+{
+  "LSP28TheGrid": [
+    {
+      "title": "Art Gallery",
+      "gridColumns": 3,
+      "visibility": "public",
+      "grid": [
+        {
+          "width": 2,
+          "height": 2,
+          "type": "IMAGES",
+          "properties": {
+            "type": "carousel",
+            "images": [
+              "https://example.com/art1.jpg",
+              "https://example.com/art2.jpg"
+            ]
+          }
+        },
+        {
+          "width": 1,
+          "height": 1,
+          "type": "TEXT",
+          "properties": {
+            "title": "Welcome!",
+            "text": "Enjoy my latest artwork.",
+            "backgroundColor": "#fffaf0",
+            "textColor": "#302b29"
+          }
+        },
+        {
+          "width": 1,
+          "height": 1,
+          "type": "QR_CODE",
+          "properties": {
+            "data": "https://myartsite.example.com"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Mini-Apps",
+      "gridColumns": 3,
+      "visibility": "public",
+      "grid": [
+        {
+          "width": 2,
+          "height": 2,
+          "type": "IFRAME",
+          "properties": {
+            "src": "https://my-mini-app.example.com"
+          }
+        },
+        {
+          "width": 1,
+          "height": 2,
+          "type": "TEXT",
+          "properties": {
+            "title": "Try My App",
+            "text": "Interact with my custom mini-app here!",
+            "backgroundColor": "#e7f6f9",
+            "textColor": "#123456"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Social",
+      "gridColumns": 2,
+      "visibility": "public",
+      "grid": [
+        {
+          "width": 2,
+          "height": 1,
+          "type": "X",
+          "properties": {
+            "type": "post",
+            "username": "lukso",
+            "id": "1804519711377436675",
+            "theme": "light"
+          }
+        },
+        {
+          "width": 1,
+          "height": 1,
+          "type": "INSTAGRAM",
+          "properties": {
+            "type": "p",
+            "id": "CgNUIyjCDcV"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
 
-The binary format is:
-
-| Bytes         | Length   | Description                                            |
-| ------------- | -------- | ------------------------------------------------------ |
-| `0x0000`      | 2 bytes  | Header — `0x0000` indicates a VerifiableURI            |
-| `6f357c6a` (off-chain storage) <br/> or `8019f9b1` (on-chain storage) | 4 bytes  | Verification method: first 4 bytes of the keccak256 hash of the following words: <br/> - `"keccak256('utf8')"` = `bytes4(keccak256('keccak256(utf8)'))`, or <br/> - `"keccak256(bytes)"` = `bytes4(keccak256('keccak256(bytes)'))` |
-| `0020`        | 2 bytes  | Hash length — `32` bytes in hex                        |
-| `<32 bytes>`  | 32 bytes | `keccak256` hash of the JSON content                   |
-| `<url bytes>` | variable | UTF-8 encoded URI (e.g., `ipfs://Qm...` or `data:...`) |
-
-:::warning Don't Forget the Hash Length!
-A common mistake is to omit the `0020` (hash length) bytes from the VerifiableURI header. The full header for `keccak256(utf8)` is **`0x00006f357c6a0020`**, not just `0x00006f357c6a`. Missing the `0020` will make the data unreadable by clients.
-:::
-
-For **off-chain storage on IPFS** (where the JSON is uploaded to IPFS), the verification method is `keccak256(utf8)` with method ID `6f357c6a`. The header becomes `0x00006f357c6a0020`.
-
-For **on-chain base64** storage (where the JSON is embedded directly in the URI as `data:application/json;base64,...`), the verification method is to `keccak256(bytes)` with method ID `8019f9b1`. The header becomes `0x00008019f9b10020`.
+</details>
 
 ## Encoding the Grid Data
 
-:::info On-Chain vs IPFS
+:::success On-Chain vs IPFS
 Storing data on-chain as base64 is convenient for small grids but costs more gas to set as the JSON grows. For larger grids with many elements, IPFS is more cost-effective. The JSON content is identical either way — only the URI format differs.
+:::
+
+:::info About `VerifiableURI` encoding
+See the [**LSP2 > `valueContent` encoding > `VerifiableURI`**](/docs/standards/metadata/lsp2-json-schema.md#verifiableuri) section of the LSP2 page for more technical details on how a `VerifiableURI` value is generated.
 :::
 
 We use [erc725.js](/tools/dapps/erc725js/getting-started) to encode the Grid JSON into a `VerifiableURI` value. The library handles the hash computation and binary packing automatically.
@@ -502,15 +595,19 @@ const encodedData = erc725.encodeData([
     value: {
       hashFunction: 'keccak256(utf8)',
       hash: '0x...', // keccak256 hash of the Grid JSON string
-      url: 'ipfs://QmYourGridJsonCID',
+      url: 'ipfs://Qm<ipfs-cid-of-grid-json-file>',
     },
   },
 ]);
 
+// 0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff
 console.log('Data Key:', encodedData.keys[0]);
+
+// Encoded value must start with one of the following:
+// - 0x00006f357c6a0020... (off-chain storage)
+// - 0x00008019f9b10020... (on-chain storage)
 console.log('Encoded Value:', encodedData.values[0]);
 ```
-
 
 </TabItem>
 <TabItem value="base64" label="💾 On-Chain (base64)">
@@ -574,15 +671,19 @@ const encodedData = erc725.encodeData([
   },
 ]);
 
+// 0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff
 console.log('Data Key:', encodedData.keys[0]);
+
+// Encoded value must start with one of the following:
+// - 0x00006f357c6a0020... (off-chain storage)
+// - 0x00008019f9b10020... (on-chain storage)
 console.log('Encoded Value:', encodedData.values[0]);
 ```
-
 
 </TabItem>
 </Tabs>
 
-## Setting the Grid On-Chain
+## Setting the Grid
 
 Once you have the encoded data key-value pair, call [`setData(bytes32,bytes)`](/contracts/contracts/UniversalProfile/#setdata) on the Universal Profile contract.
 
@@ -590,7 +691,11 @@ Once you have the encoded data key-value pair, call [`setData(bytes32,bytes)`](/
 <TabItem value="viem" label="viem + wagmi" default>
 
 ```javascript title="set-grid-viem.jsx"
-import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import {
+  useAccount,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+} from 'wagmi';
 import { ERC725 } from '@erc725/erc725.js';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
@@ -618,7 +723,7 @@ function SetGrid() {
         value: {
           hashFunction: 'keccak256(utf8)',
           hash: '0x...', // keccak256 hash of your Grid JSON
-          url: 'ipfs://QmYourGridJsonCID', // or data:application/json;base64,...
+          url: 'ipfs://Qm<ipfs-cid-of-grid-json-file>', // or data:application/json;base64,...
         },
       },
     ]);
@@ -673,7 +778,7 @@ async function setGrid() {
       value: {
         hashFunction: 'keccak256(utf8)',
         hash: '0x...', // keccak256 hash of your Grid JSON
-        url: 'ipfs://QmYourGridJsonCID', // or data:application/json;base64,...
+        url: 'ipfs://Qm<ipfs-cid-of-grid-json-file>', // or data:application/json;base64,...
       },
     },
   ]);
@@ -731,7 +836,7 @@ async function setGrid() {
       value: {
         hashFunction: 'keccak256(utf8)',
         hash: '0x...', // keccak256 hash of your Grid JSON
-        url: 'ipfs://QmYourGridJsonCID', // or data:application/json;base64,...
+        url: 'ipfs://Qm<ipfs-cid-of-grid-json-file>', // or data:application/json;base64,...
       },
     },
   ]);
@@ -860,5 +965,5 @@ On-chain base64 storage costs more gas for large JSON payloads. Consider:
 - [LSP2 — ERC725Y JSON Schema (VerifiableURI)](/standards/metadata/lsp2-json-schema.md#verifiableuri)
 - [Connect to a Mini-App](/learn/mini-apps/connect-upprovider)
 - [Testing Mini-Apps Locally](/learn/mini-apps/testing-miniapps)
-- [erc725.js — Getting Started](/tools/dapps/erc725js/getting-started)
+- [erc725.js — Useful utility functions for `VerifiableURI`](/tools/dapps/erc725js/methods/#external-data-source-utilities-verifiableuri-and-jsonuri)
 - [Universal Everything](https://universaleverything.io)

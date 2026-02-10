@@ -286,3 +286,39 @@ Below is a table that describe the LSP2 encoding format for `valueTypes`.
 | `bytes4`                                                                         | as a hex value 4 bytes long <br/> **right padded** to fill 4 bytes                  | `0xcafecafe`                                                                        |
 | `bytesN` (from 1 to 32)                                                          | as a hex value **`N` bytes long** <br/> **right padded** to fill `N` bytes          |                                                                                     |
 | `bytes`                                                                          | as hex bytes of any length <br/> **without padding** ❌                             | `0xcafecafecafecafecafecafecafecafe...`                                             |
+
+## `valueContent` encoding
+
+### `VerifiableURI`
+
+A [`VerifiableURI`](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri) as defined by the **LSP2 - ERC725Y JSON Schema** is a type of encoding that allows anyone to verify that the content at the URI hasn't been tampered with.
+
+It contains both a verification hash and the URI where the data can be found. The encoding format is:
+
+| Bytes                                                                         | Length   | Description                                                                                                                                                                                                                        |
+| ----------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `0x0000`                                                                      | 2 bytes  | Header — `0x0000` indicates a VerifiableURI                                                                                                                                                                                        |
+| Storage options: <br/> - `6f357c6a` (off-chain) <br/> - `8019f9b1` (on-chain) | 4 bytes  | Verification method: first 4 bytes of the keccak256 hash of the following words: <br/> - `"keccak256('utf8')"` = `bytes4(keccak256('keccak256(utf8)'))`, or <br/> - `"keccak256(bytes)"` = `bytes4(keccak256('keccak256(bytes)'))` |
+| `0020`                                                                        | 2 bytes  | Hash length — `32` bytes in hex                                                                                                                                                                                                    |
+| `<32 bytes>`                                                                  | 32 bytes | `keccak256` hash of the JSON content                                                                                                                                                                                               |
+| `<url bytes>`                                                                 | variable | UTF-8 encoded URI (e.g., `ipfs://<ipfs-cid>` or `data:...`)                                                                                                                                                                        |
+
+:::warning Don't Forget the Hash Length!
+A common mistake is to omit the `0020` (hash length) bytes from the VerifiableURI header. The full header for `keccak256(utf8)` is **`0x00006f357c6a0020`**, not just `0x00006f357c6a`. Missing the `0020` will make the data unreadable by clients.
+:::
+
+For **off-chain storage on IPFS** (where the JSON file or image is uploaded to IPFS), the verification method is `keccak256(utf8)` with method ID `6f357c6a`.
+
+The encoded data **MUST have the following header:**
+
+```
+0x00006f357c6a0020...
+```
+
+For **on-chain storage in base64** (where the JSON file or image is embedded directly in the URI as `data:application/json;base64,...`), the verification method is to `keccak256(bytes)` with method ID `8019f9b1`.
+
+The encoded data **MUST have the following header:**
+
+```
+0x00008019f9b10020...
+```
