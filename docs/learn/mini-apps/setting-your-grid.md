@@ -11,8 +11,10 @@ The [LSP28 The Grid](../../standards/access-control/lsp28-the-grid.md) standard 
 ## What You'll Learn
 
 - The VerifiableURI format for grid data
-- How to encode your grid using `@erc725/erc725.js`
+- The JSON structure for your grid data
+- How to encode your grid data using `@erc725/erc725.js`
 - How to set the grid data via `setData` using viem or ethers
+- Choosing between storing your grid data on-chain encoded as base64 _vs_ off-chain in IPFS
 
 ## Prerequisites
 
@@ -24,7 +26,7 @@ The [LSP28 The Grid](../../standards/access-control/lsp28-the-grid.md) standard 
 
 ## Understanding the Data Key
 
-The grid data is stored at a specific ERC725Y key:
+The grid data is stored under the following ERC725Y data key:
 
 ```
 0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff
@@ -34,7 +36,7 @@ This key is derived from `keccak256('LSP28TheGrid')`.
 
 ## VerifiableURI Format
 
-The grid data must be encoded as a [VerifiableURI](../../standards/standard-types.md#verifiableuri) following this structure:
+The grid data must be encoded as a [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri) following this structure:
 
 | Component  | Bytes    | Description                            |
 | ---------- | -------- | -------------------------------------- |
@@ -80,11 +82,15 @@ Your grid must follow this JSON format:
 
 ## Encoding with erc725.js
 
-Use the `@erc725/erc725.js` library to encode your grid:
+Use the `@erc725/erc725.js` library to encode your grid. You can store the data either **on-chain** (base64 encoded) or **off-chain** (IPFS).
+
+<Tabs>
+  <TabItem value="onchain" label="On-Chain (base64)">
+
+For on-chain storage, the verification method is `keccak256(bytes)`:
 
 ```typescript
 import { ERC725 } from '@erc725/erc725.js';
-import LSP28TheGrid from '@lukso/lsp28-contracts/...'; // Schema import
 
 const gridData = {
   LSP28TheGrid: [
@@ -96,18 +102,10 @@ const gridData = {
         src: 'https://universalswaps.io',
       },
     },
-    {
-      width: 1,
-      height: 1,
-      type: 'iframe',
-      properties: {
-        src: 'https://stakingverse.io',
-      },
-    },
   ],
 };
 
-// Encode the JSON to a VerifiableURI
+// Encode the JSON to a VerifiableURI with on-chain base64
 const encodedData = ERC725.encodeData([
   {
     keyName: 'LSP28TheGrid',
@@ -116,7 +114,54 @@ const encodedData = ERC725.encodeData([
 ]);
 
 console.log('Encoded value:', encodedData.values[0]);
+// Format: 0x0000 + 8019f9b1 (keccak256(bytes)) + 0020 + hash + base64url
 ```
+
+  </TabItem>
+  <TabItem value="offchain" label="Off-Chain (IPFS)">
+
+For off-chain storage, upload to IPFS first, then encode the URL with verification method `keccak256(utf8)`:
+
+```typescript
+import { ERC725 } from '@erc725/erc725.js';
+
+const gridData = {
+  LSP28TheGrid: [
+    {
+      width: 1,
+      height: 1,
+      type: 'iframe',
+      properties: {
+        src: 'https://universalswaps.io',
+      },
+    },
+  ],
+};
+
+// 1. Upload JSON to IPFS (e.g., using nft.storage or Pinata)
+const ipfsCid = 'QmYourCidHere...'; // Your IPFS CID
+const ipfsUrl = `ipfs://${ipfsCid}`;
+
+// 2. Encode with off-chain URL
+const encodedData = ERC725.encodeData([
+  {
+    keyName: 'LSP28TheGrid',
+    value: {
+      url: ipfsUrl,
+      verification: {
+        method: 'keccak256(utf8)',
+        data: '0x', // Hash of the UTF-8 URL
+      },
+    },
+  },
+]);
+
+console.log('Encoded value:', encodedData.values[0]);
+// Format: 0x0000 + 8019f9b1 + 0020 + hash + hex-encoded-ipfs-url
+```
+
+  </TabItem>
+</Tabs>
 
 ## Setting Your Grid On-Chain
 
@@ -132,7 +177,7 @@ import TabItem from '@theme/TabItem';
 import { createPublicClient, createWalletClient, http, custom } from 'viem';
 import { lukso } from 'viem/chains';
 
-const GRID_KEY =
+const GRID_DATA_KEY =
   '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
 
 // Your encoded grid data from erc725.js
@@ -166,7 +211,7 @@ const hash = await walletClient.writeContract({
     },
   ],
   functionName: 'setData',
-  args: [GRID_KEY, encodedGridData],
+  args: [GRID_DATA_KEY, encodedGridData],
 });
 
 await publicClient.waitForTransactionReceipt({ hash });
@@ -178,7 +223,7 @@ await publicClient.waitForTransactionReceipt({ hash });
 ```typescript
 import { ethers } from 'ethers';
 
-const GRID_KEY =
+const GRID_DATA_KEY =
   '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
 
 // Your encoded grid data from erc725.js
@@ -195,7 +240,7 @@ const upAbi = ['function setData(bytes32 dataKey, bytes dataValue) external'];
 const up = new ethers.Contract('0xYOUR_UP_ADDRESS', upAbi, wallet);
 
 // Set the grid data
-const tx = await up.setData(GRID_KEY, encodedGridData);
+const tx = await up.setData(GRID_DATA_KEY, encodedGridData);
 await tx.wait();
 
 console.log('Grid updated! Transaction:', tx.hash);
@@ -241,7 +286,7 @@ const keyManagerAbi = [
 const setDataPayload = encodeFunctionData({
   abi: upAbi,
   functionName: 'setData',
-  args: [GRID_KEY, encodedGridData],
+  args: [GRID_DATA_KEY, encodedGridData],
 });
 
 // Execute via KeyManager
@@ -267,7 +312,7 @@ const keyManagerInterface = new ethers.Interface([
 
 // Encode the UP.setData call
 const setDataPayload = upInterface.encodeFunctionData('setData', [
-  GRID_KEY,
+  GRID_DATA_KEY,
   encodedGridData,
 ]);
 
@@ -293,7 +338,7 @@ Here's a complete script that combines encoding and setting:
 import { ERC725 } from '@erc725/erc725.js';
 import { ethers } from 'ethers';
 
-const GRID_KEY =
+const GRID_DATA_KEY =
   '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
 
 const gridConfig = {
@@ -338,7 +383,7 @@ async function setGrid() {
   );
 
   const payload = up.interface.encodeFunctionData('setData', [
-    GRID_KEY,
+    GRID_DATA_KEY,
     encoded.values[0],
   ]);
 
@@ -368,6 +413,6 @@ setGrid();
 
 ## References
 
-- [LSP28 The Grid Standard](../../standards/access-control/lsp28-the-grid.md)
+- [LSP28 The Grid Standard](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md)
 - [VerifiableURI Type](../../standards/standard-types.md#verifiableuri)
 - [erc725.js Documentation](/tools/libraries/erc725js/getting-started)
