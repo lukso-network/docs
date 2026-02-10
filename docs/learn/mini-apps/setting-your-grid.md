@@ -97,12 +97,12 @@ The Grid JSON follows a specific format defined by the [LSP28 specification](htt
 
 ### Main Properties
 
-| Property | Type | Required | Description |
-|---|---|---|---|
-| `title` | `string` | ✅ | Display name of the grid |
-| `gridColumns` | `number` | ✅ | Number of columns (recommended: `2`–`4`) |
-| `visibility` | `string` | ❌ | `"public"` or `"private"` — hint for interfaces |
-| `grid` | `array` | ✅ | Array of grid elements |
+| Property      | Type     | Required | Description                                     |
+| ------------- | -------- | -------- | ----------------------------------------------- |
+| `title`       | `string` | ✅       | Display name of the grid                        |
+| `gridColumns` | `number` | ✅       | Number of columns (recommended: `2`–`4`)        |
+| `visibility`  | `string` | ❌       | `"public"` or `"private"` — hint for interfaces |
+| `grid`        | `array`  | ✅       | Array of grid elements                          |
 
 :::info About `visibility`
 The `visibility` property is a **hint for interfaces only**. Setting it to `"private"` tells UIs to hide the grid from other users — but the data is still publicly readable on the blockchain. Interfaces should inform users that this is **not true privacy**.
@@ -112,12 +112,12 @@ The `visibility` property is a **hint for interfaces only**. Setting it to `"pri
 
 Each element in the `grid` array represents a tile with these common properties:
 
-| Property | Type | Required | Description |
-|---|---|---|---|
-| `width` | `number` | ✅ | Width in grid steps (recommended: `1`–`3`) |
-| `height` | `number` | ✅ | Height in grid steps (recommended: `1`–`3`) |
-| `type` | `string` | ✅ | Element type (see below) |
-| `properties` | `object` | ✅ | Type-specific configuration |
+| Property     | Type     | Required | Description                                 |
+| ------------ | -------- | -------- | ------------------------------------------- |
+| `width`      | `number` | ✅       | Width in grid steps (recommended: `1`–`3`)  |
+| `height`     | `number` | ✅       | Height in grid steps (recommended: `1`–`3`) |
+| `type`       | `string` | ✅       | Element type (see below)                    |
+| `properties` | `object` | ✅       | Type-specific configuration                 |
 
 ### Element Types
 
@@ -140,13 +140,13 @@ The spec defines the following built-in types. Custom types can also be created.
 }
 ```
 
-| Property | Required | Description |
-|---|---|---|
-| `src` | ✅ | URL of the iframe content |
-| `allow` | ❌ | Iframe [Permissions Policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#allow) |
-| `sandbox` | ❌ | Iframe [sandbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox) restrictions |
-| `allowfullscreen` | ❌ | Allow fullscreen mode |
-| `referrerpolicy` | ❌ | Referrer policy for the iframe |
+| Property          | Required | Description                                                                                             |
+| ----------------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `src`             | ✅       | URL of the iframe content                                                                               |
+| `allow`           | ❌       | Iframe [Permissions Policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#allow)     |
+| `sandbox`         | ❌       | Iframe [sandbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox) restrictions |
+| `allowfullscreen` | ❌       | Allow fullscreen mode                                                                                   |
+| `referrerpolicy`  | ❌       | Referrer policy for the iframe                                                                          |
 
 #### `TEXT` — Text Content Block
 
@@ -167,15 +167,15 @@ The spec defines the following built-in types. Custom types can also be created.
 }
 ```
 
-| Property | Required | Description |
-|---|---|---|
-| `title` | ❌ | Title text (supports **Markdown**) |
-| `titleColor` | ❌ | Override color for the title |
-| `text` | ❌ | Body text (supports **Markdown**) |
-| `textColor` | ❌ | Text color |
-| `backgroundColor` | ❌ | Background color (hex) |
-| `backgroundImage` | ❌ | Background image URL |
-| `link` | ❌ | Makes the entire box clickable |
+| Property          | Required | Description                        |
+| ----------------- | -------- | ---------------------------------- |
+| `title`           | ❌       | Title text (supports **Markdown**) |
+| `titleColor`      | ❌       | Override color for the title       |
+| `text`            | ❌       | Body text (supports **Markdown**)  |
+| `textColor`       | ❌       | Text color                         |
+| `backgroundColor` | ❌       | Background color (hex)             |
+| `backgroundImage` | ❌       | Background image URL               |
+| `link`            | ❌       | Makes the entire box clickable     |
 
 #### `IMAGES` — Image Gallery
 
@@ -194,10 +194,10 @@ The spec defines the following built-in types. Custom types can also be created.
 }
 ```
 
-| Property | Required | Description |
-|---|---|---|
-| `type` | ❌ | `"grid"` (default) or `"carousel"` |
-| `images` | ✅ | Array of image URLs |
+| Property | Required | Description                        |
+| -------- | -------- | ---------------------------------- |
+| `type`   | ❌       | `"grid"` (default) or `"carousel"` |
+| `images` | ✅       | Array of image URLs                |
 
 #### `X` — X/Twitter Embed
 
@@ -336,12 +336,12 @@ The Grid value stored on-chain is a **VerifiableURI** as defined in [LSP2 - ERC7
 
 The binary format is:
 
-| Bytes | Length | Description |
-|---|---|---|
-| `0x0000` | 2 bytes | Header — `0x0000` indicates a VerifiableURI |
-| `6f357c6a` | 4 bytes | Verification method: `keccak256('keccak256(utf8)')` |
-| `0020` | 2 bytes | Hash length — `32` bytes in hex |
-| `<32 bytes>` | 32 bytes | `keccak256` hash of the JSON content |
+| Bytes         | Length   | Description                                            |
+| ------------- | -------- | ------------------------------------------------------ |
+| `0x0000`      | 2 bytes  | Header — `0x0000` indicates a VerifiableURI            |
+| `6f357c6a`    | 4 bytes  | Verification method: `keccak256('keccak256(utf8)')`    |
+| `0020`        | 2 bytes  | Hash length — `32` bytes in hex                        |
+| `<32 bytes>`  | 32 bytes | `keccak256` hash of the JSON content                   |
 | `<url bytes>` | variable | UTF-8 encoded URI (e.g., `ipfs://Qm...` or `data:...`) |
 
 :::warning Don't Forget the Hash Length!
@@ -478,7 +478,12 @@ Call `setData(key, value)` directly on the Universal Profile contract from the c
 <TabItem value="viem" label="viem + wagmi" default>
 
 ```javascript title="set-grid-viem.js"
-import { createWalletClient, createPublicClient, http, getContract } from 'viem';
+import {
+  createWalletClient,
+  createPublicClient,
+  http,
+  getContract,
+} from 'viem';
 import { lukso } from 'viem/chains';
 import { privateKeyToAccount } from 'viem/accounts';
 import { ERC725 } from '@erc725/erc725.js';
@@ -543,7 +548,9 @@ async function setGrid() {
   console.log('✅ Grid set! Transaction hash:', txHash);
 
   // 4. Wait for confirmation
-  const receipt = await publicClient.waitForTransactionReceipt({ hash: txHash });
+  const receipt = await publicClient.waitForTransactionReceipt({
+    hash: txHash,
+  });
   console.log('Block:', receipt.blockNumber);
 }
 
@@ -767,6 +774,7 @@ Your controller EOA needs the `SETDATA` permission on the Universal Profile. Che
 <summary><strong>❌ High gas cost when setting Grid data</strong></summary>
 
 On-chain base64 storage costs more gas for large JSON payloads. Consider:
+
 - **Using IPFS** for grids with many elements
 - **Minimizing JSON** — remove unnecessary whitespace before base64 encoding
 - **Reducing elements** — start with fewer grid items and add more over time
