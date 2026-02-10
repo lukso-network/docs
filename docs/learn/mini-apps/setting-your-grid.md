@@ -11,22 +11,23 @@ import TabItem from '@theme/TabItem';
 
 <div style={{textAlign: 'center', color: 'grey'}}>
   <img
-    src={require('/img/guides/setting-your-grid.png').default}
+    src="https://github.com/user-attachments/assets/58f7a882-a79c-4e84-9a07-f074d07b78ab"
     alt="LSP28 Grid layout on a Universal Profile"
-    width="700"
+    width="633"
   />
 <br/>
 <i>A customizable Grid layout on a Universal Profile, hosting mini-apps, social embeds, and content.</i>
 <br /><br />
 </div>
 
-The **Grid** ([LSP28](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md)) is a standard that lets Universal Profiles display **customizable, modular layouts** made of mini-apps, social media embeds, images, text, and other interactive content. Think of it as a personal dashboard you can attach to any Universal Profile — or even to [LSP7](/standards/tokens/LSP7-Digital-Asset.md) and [LSP8](/standards/tokens/LSP8-Identifiable-Digital-Asset.md) token contracts.
+The **Grid** ([LSP28](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md)) is a standard that lets Universal Profiles display **customizable, modular layouts** made of mini-apps, social media embeds, images, text, and other interactive content. Think of it as a personal dashboard you can attach to any Universal Profile.
 
 This guide walks you through:
 
 1. Understanding the Grid JSON structure and all available element types
 2. Encoding the Grid as a [VerifiableURI](/standards/metadata/lsp2-json-schema.md#verifiableuri)
-3. Writing the encoded data on-chain to your Universal Profile
+3. encode the grid data either on-chain as base64 or off-chain on IPFS
+4. set it on your Universal Profile via `setData(bytes32,bytes)`
 
 :::info What are Mini-Apps?
 Mini-Apps are dApps that run inside an `<iframe>` on a host page. The Grid standard provides the layout framework for embedding them. Learn more about connecting Mini-Apps in the [Connect to a Mini-App](/learn/mini-apps/connect-upprovider) guide.
@@ -34,9 +35,7 @@ Mini-Apps are dApps that run inside an `<iframe>` on a host page. The Grid stand
 
 ## Prerequisites
 
-- A **Universal Profile** on LUKSO (mainnet or testnet)
-- A **controller EOA** private key with [`SETDATA` permission](/standards/access-control/lsp6-key-manager.md#permissions) on the profile
-- **Node.js** ≥ 18
+- A **Universal Profile** with the [UP Browser Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) installed
 
 ### Install Dependencies
 
@@ -44,7 +43,7 @@ Mini-Apps are dApps that run inside an `<iframe>` on a host page. The Grid stand
 <TabItem value="viem" label="viem + wagmi" default>
 
 ```shell
-npm install viem @erc725/erc725.js @lukso/lsp-smart-contracts
+npm install wagmi viem@2.x @tanstack/react-query @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
 
 </TabItem>
@@ -66,7 +65,7 @@ npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
 
 ## The LSP28 Data Key
 
-The Grid data is stored under a single [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md) data key:
+The Grid data is stored under a single [ERC725Y](http://docs.lukso.tech/standards/erc725/#erc725y-generic-data-keyvalue-store) data key:
 
 ```
 LSP28TheGrid → keccak256('LSP28TheGrid')
@@ -74,7 +73,7 @@ LSP28TheGrid → keccak256('LSP28TheGrid')
 ```
 
 :::warning Draft Standard
-LSP28 is currently a **draft** standard. The data key is not yet exported from `@lukso/lsp-smart-contracts`. We define the ERC725Y schema inline in this guide. Once the standard is finalized, import the key from the package instead of hardcoding it.
+LSP28 is currently a **draft** standard. The data key is not yet exported from `@lukso/lsp-smart-contracts`. We define the ERC725Y schema inline in this guide. Once the standard is finalized, import the data key from the package instead of hardcoding it.
 :::
 
 The ERC725Y JSON Schema for the Grid looks like this:
@@ -89,11 +88,103 @@ The ERC725Y JSON Schema for the Grid looks like this:
 }
 ```
 
-The value is a **[VerifiableURI](/standards/metadata/lsp2-json-schema.md#verifiableuri)** — a compact binary encoding that pairs a content hash with a URI pointing to the actual JSON data (either on IPFS or stored on-chain as base64).
+The value is a **[VerifiableURI](/standards/metadata/lsp2-json-schema.md#verifiableuri)** — a compact bytes encoding that pairs a content hash with a URI pointing to the actual JSON data (either on IPFS or stored on-chain as base64).
 
 ## Grid JSON Structure
 
 The Grid JSON follows a specific format defined by the [LSP28 specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md). Below is the full structure with all available properties.
+
+<details>
+    <summary>See LSP28TheGrid JSON file template</summary>
+
+```json
+{
+  "LSP28TheGrid": [
+    {
+      "title": "My Socials",
+      "gridColumns": 2,
+      "visibility": "private",
+      "grid": [
+        {
+          "width": 1,
+          "height": 3,
+          "type": "IFRAME",
+          "properties": {
+            "src": "...",
+            "allow": "accelerometer; autoplay; clipboard-write",
+            "sandbox": "allow-forms;allow-pointer-lock;allow-popups;allow-same-orig;allow-scripts;allow-top-navigation",
+            "allowfullscreen": true,
+            "referrerpolicy": "..."
+          }
+        },
+        {
+          "width": 2,
+          "height": 2,
+          "type": "TEXT",
+          "properties": {
+            "title": "My title",
+            "titleColor": "#000000",
+            "text": "My title",
+            "textColor": "#000000",
+            "backgroundColor": "#ffffff",
+            "backgroundImage": "https://myimage.jpg",
+            "link": "https://mylink.com"
+          }
+        },
+        {
+          "width": 2,
+          "height": 2,
+          "type": "IMAGES",
+          "properties": {
+            "type": "grid",
+            "images": ["<IMAGE_URL_1>", "<IMAGE_URL_2>"]
+          }
+        },
+        {
+          "width": 2,
+          "height": 1,
+          "type": "ELFSIGHT",
+          "properties": {
+            "id": "..."
+          }
+        },
+        {
+          "width": 2,
+          "height": 1,
+          "type": "X",
+          "properties": {
+            "type": "post",
+            "username": "feindura",
+            "id": "1804519711377436675",
+            "theme": "light",
+            "language": "en",
+            "donottrack": true
+          }
+        },
+        {
+          "width": 2,
+          "height": 2,
+          "type": "INSTAGRAM",
+          "properties": {
+            "type": "p",
+            "id": "..."
+          }
+        },
+        {
+          "width": 2,
+          "height": 1,
+          "type": "QR_CODE",
+          "properties": {
+            "data": "..."
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+</details>
 
 ### Main Properties
 
@@ -123,7 +214,8 @@ Each element in the `grid` array represents a tile with these common properties:
 
 The spec defines the following built-in types. Custom types can also be created.
 
-#### `IFRAME` — Embedded Web Content / Mini-Apps
+<details>
+    <summary><code>IFRAME</code> — Embedded Web Content / Mini-Apps</summary>
 
 ```json
 {
@@ -148,7 +240,10 @@ The spec defines the following built-in types. Custom types can also be created.
 | `allowfullscreen` | ❌       | Allow fullscreen mode                                                                                   |
 | `referrerpolicy`  | ❌       | Referrer policy for the iframe                                                                          |
 
-#### `TEXT` — Text Content Block
+</details>
+
+<details>
+    <summary><code>TEXT</code> — Text Content Block</summary>
 
 ```json
 {
@@ -177,7 +272,10 @@ The spec defines the following built-in types. Custom types can also be created.
 | `backgroundImage` | ❌       | Background image URL               |
 | `link`            | ❌       | Makes the entire box clickable     |
 
-#### `IMAGES` — Image Gallery
+</details>
+
+<details>
+    <summary><code>IMAGES</code> — Image Gallery</summary>
 
 ```json
 {
@@ -199,7 +297,10 @@ The spec defines the following built-in types. Custom types can also be created.
 | `type`   | ❌       | `"grid"` (default) or `"carousel"` |
 | `images` | ✅       | Array of image URLs                |
 
-#### `X` — X/Twitter Embed
+</details>
+
+<details>
+    <summary><code>X</code> — X/Twitter Embed</summary>
 
 ```json
 {
@@ -217,7 +318,10 @@ The spec defines the following built-in types. Custom types can also be created.
 }
 ```
 
-#### `INSTAGRAM` — Instagram Embed
+</details>
+
+<details>
+    <summary><code>INSTAGRAM</code> — Instagram Embed</summary>
 
 ```json
 {
@@ -231,7 +335,10 @@ The spec defines the following built-in types. Custom types can also be created.
 }
 ```
 
-#### `QR_CODE` — QR Code
+</details>
+
+<details>
+    <summary><code>QR_CODE</code> — QR Code</summary>
 
 ```json
 {
@@ -244,7 +351,10 @@ The spec defines the following built-in types. Custom types can also be created.
 }
 ```
 
-#### `ELFSIGHT` — Elfsight Widget
+</details>
+
+<details>
+    <summary><code>ELFSIGHT</code> — Elfsight Widget</summary>
 
 ```json
 {
@@ -256,6 +366,8 @@ The spec defines the following built-in types. Custom types can also be created.
   }
 }
 ```
+
+</details>
 
 ### Full Example
 
@@ -339,7 +451,7 @@ The binary format is:
 | Bytes         | Length   | Description                                            |
 | ------------- | -------- | ------------------------------------------------------ |
 | `0x0000`      | 2 bytes  | Header — `0x0000` indicates a VerifiableURI            |
-| `6f357c6a`    | 4 bytes  | Verification method: `keccak256('keccak256(utf8)')`    |
+| `6f357c6a` (off-chain storage) <br/> or `8019f9b1` (on-chain storage) | 4 bytes  | Verification method: first 4 bytes of the keccak256 hash of the following words: <br/> - `"keccak256('utf8')"` = `bytes4(keccak256('keccak256(utf8)'))`, or <br/> - `"keccak256(bytes)"` = `bytes4(keccak256('keccak256(bytes)'))` |
 | `0020`        | 2 bytes  | Hash length — `32` bytes in hex                        |
 | `<32 bytes>`  | 32 bytes | `keccak256` hash of the JSON content                   |
 | `<url bytes>` | variable | UTF-8 encoded URI (e.g., `ipfs://Qm...` or `data:...`) |
@@ -348,14 +460,24 @@ The binary format is:
 A common mistake is to omit the `0020` (hash length) bytes from the VerifiableURI header. The full header for `keccak256(utf8)` is **`0x00006f357c6a0020`**, not just `0x00006f357c6a`. Missing the `0020` will make the data unreadable by clients.
 :::
 
-For **on-chain base64** storage (where the JSON is embedded directly in the URI as `data:application/json;base64,...`), the verification method changes to `keccak256(bytes)` with method ID `8019f9b1`. The header becomes `0x00008019f9b10020`.
+For **off-chain storage on IPFS** (where the JSON is uploaded to IPFS), the verification method is `keccak256(utf8)` with method ID `6f357c6a`. The header becomes `0x00006f357c6a0020`.
+
+For **on-chain base64** storage (where the JSON is embedded directly in the URI as `data:application/json;base64,...`), the verification method is to `keccak256(bytes)` with method ID `8019f9b1`. The header becomes `0x00008019f9b10020`.
 
 ## Encoding the Grid Data
 
-We use [erc725.js](/tools/dapps/erc725js/getting-started) to encode the Grid JSON into a VerifiableURI value. The library handles the hash computation and binary packing automatically.
+:::info On-Chain vs IPFS
+Storing data on-chain as base64 is convenient for small grids but costs more gas to set as the JSON grows. For larger grids with many elements, IPFS is more cost-effective. The JSON content is identical either way — only the URI format differs.
+:::
+
+We use [erc725.js](/tools/dapps/erc725js/getting-started) to encode the Grid JSON into a `VerifiableURI` value. The library handles the hash computation and binary packing automatically.
 
 <Tabs groupId="storage-method">
 <TabItem value="ipfs" label="📦 IPFS Storage" default>
+
+:::success Tip — Uploading to IPFS
+You can use the [LUKSO data providers](https://github.com/lukso-network/tools-data-providers) library to upload your Grid JSON to IPFS. It supports local IPFS nodes, Pinata, Infura, and more.
+:::
 
 If your Grid JSON is hosted on IPFS, you provide the IPFS hash and URL:
 
@@ -373,7 +495,7 @@ const LSP28Schema = {
 
 const erc725 = new ERC725([LSP28Schema]);
 
-// After uploading your Grid JSON to IPFS, encode the reference
+// After uploading your Grid JSON to IPFS, encode the reference / IPFS CID of the file as shown below
 const encodedData = erc725.encodeData([
   {
     keyName: 'LSP28TheGrid',
@@ -389,9 +511,6 @@ console.log('Data Key:', encodedData.keys[0]);
 console.log('Encoded Value:', encodedData.values[0]);
 ```
 
-:::success Tip — Uploading to IPFS
-You can use the [LUKSO data providers](https://github.com/lukso-network/tools-data-providers) library to upload your Grid JSON to IPFS. It supports local IPFS nodes, Pinata, Infura, and more.
-:::
 
 </TabItem>
 <TabItem value="base64" label="💾 On-Chain (base64)">
@@ -459,41 +578,21 @@ console.log('Data Key:', encodedData.keys[0]);
 console.log('Encoded Value:', encodedData.values[0]);
 ```
 
-:::info On-Chain vs IPFS
-Storing data on-chain as base64 is convenient for small grids but costs more gas as the JSON grows. For larger grids with many elements, IPFS is more cost-effective. The JSON content is identical either way — only the URI format differs.
-:::
 
 </TabItem>
 </Tabs>
 
 ## Setting the Grid On-Chain
 
-Once you have the encoded key-value pair, call [`setData`](/contracts/contracts/ERC725/ERC725.md) on the Universal Profile contract. Modern Universal Profiles have the [Key Manager (LSP6)](/standards/access-control/lsp6-key-manager.md) built-in, so you call `setData` directly on the UP from a controller address.
-
-:::warning Do NOT Wrap in `execute()`
-Call `setData(key, value)` directly on the Universal Profile contract from the controller EOA. Do **not** wrap it in an `execute()` call — this causes a `REENTRANCY` error because `setData` is an internal operation, not an external call.
-:::
+Once you have the encoded data key-value pair, call [`setData(bytes32,bytes)`](/contracts/contracts/UniversalProfile/#setdata) on the Universal Profile contract.
 
 <Tabs groupId="provider-lib">
 <TabItem value="viem" label="viem + wagmi" default>
 
-```javascript title="set-grid-viem.js"
-import {
-  createWalletClient,
-  createPublicClient,
-  http,
-  getContract,
-} from 'viem';
-import { lukso } from 'viem/chains';
-import { privateKeyToAccount } from 'viem/accounts';
+```javascript title="set-grid-viem.jsx"
+import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { ERC725 } from '@erc725/erc725.js';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
-
-// --- Configuration ---
-const PRIVATE_KEY = '0x...'; // Controller EOA private key (with SETDATA permission)
-const UP_ADDRESS = '0x...'; // Your Universal Profile address
-const RPC_URL = 'https://rpc.lukso.network'; // Use https://rpc.testnet.lukso.network for testnet
-// ---------------------
 
 // LSP28 ERC725Y Schema
 const LSP28Schema = {
@@ -504,57 +603,41 @@ const LSP28Schema = {
   valueContent: 'VerifiableURI',
 };
 
-const account = privateKeyToAccount(PRIVATE_KEY);
+function SetGrid() {
+  const { address: UP_ADDRESS } = useAccount();
+  const { writeContract, data: txHash } = useWriteContract();
+  const { isSuccess } = useWaitForTransactionReceipt({ hash: txHash });
 
-const walletClient = createWalletClient({
-  account,
-  chain: lukso,
-  transport: http(RPC_URL),
-});
+  async function handleSetGrid() {
+    // 1. Encode the Grid data (see previous section)
+    const erc725 = new ERC725([LSP28Schema]);
 
-const publicClient = createPublicClient({
-  chain: lukso,
-  transport: http(RPC_URL),
-});
-
-async function setGrid() {
-  // 1. Encode the Grid data (see previous section)
-  const erc725 = new ERC725([LSP28Schema]);
-
-  const encodedData = erc725.encodeData([
-    {
-      keyName: 'LSP28TheGrid',
-      value: {
-        hashFunction: 'keccak256(utf8)',
-        hash: '0x...', // keccak256 hash of your Grid JSON
-        url: 'ipfs://QmYourGridJsonCID', // or data:application/json;base64,...
+    const encodedData = erc725.encodeData([
+      {
+        keyName: 'LSP28TheGrid',
+        value: {
+          hashFunction: 'keccak256(utf8)',
+          hash: '0x...', // keccak256 hash of your Grid JSON
+          url: 'ipfs://QmYourGridJsonCID', // or data:application/json;base64,...
+        },
       },
-    },
-  ]);
+    ]);
 
-  // 2. Get UP contract instance
-  const upContract = getContract({
-    address: UP_ADDRESS,
-    abi: UniversalProfile.abi,
-    client: walletClient,
-  });
+    // 2. Call setData on the UP — the Browser Extension handles signing
+    writeContract({
+      address: UP_ADDRESS,
+      abi: UniversalProfile.abi,
+      functionName: 'setData',
+      args: [encodedData.keys[0], encodedData.values[0]],
+    });
+  }
 
-  // 3. Call setData directly on the UP
-  const txHash = await upContract.write.setData([
-    encodedData.keys[0],
-    encodedData.values[0],
-  ]);
-
-  console.log('✅ Grid set! Transaction hash:', txHash);
-
-  // 4. Wait for confirmation
-  const receipt = await publicClient.waitForTransactionReceipt({
-    hash: txHash,
-  });
-  console.log('Block:', receipt.blockNumber);
+  return (
+    <button onClick={handleSetGrid}>
+      {isSuccess ? '✅ Grid set!' : 'Set Grid'}
+    </button>
+  );
 }
-
-setGrid().catch(console.error);
 ```
 
 </TabItem>
@@ -565,12 +648,6 @@ import { ethers } from 'ethers';
 import { ERC725 } from '@erc725/erc725.js';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-// --- Configuration ---
-const PRIVATE_KEY = '0x...'; // Controller EOA private key (with SETDATA permission)
-const UP_ADDRESS = '0x...'; // Your Universal Profile address
-const RPC_URL = 'https://rpc.lukso.network'; // Use https://rpc.testnet.lukso.network for testnet
-// ---------------------
-
 // LSP28 ERC725Y Schema
 const LSP28Schema = {
   name: 'LSP28TheGrid',
@@ -581,9 +658,11 @@ const LSP28Schema = {
 };
 
 async function setGrid() {
-  // 1. Connect to the network
-  const provider = new ethers.JsonRpcProvider(RPC_URL);
-  const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+  // 1. Connect via the UP Browser Extension
+  const provider = new ethers.BrowserProvider(window.lukso);
+  await provider.send('eth_requestAccounts', []);
+  const signer = await provider.getSigner();
+  const account = await signer.getAddress();
 
   // 2. Encode the Grid data
   const erc725 = new ERC725([LSP28Schema]);
@@ -599,9 +678,9 @@ async function setGrid() {
     },
   ]);
 
-  // 3. Create UP contract instance and call setData directly
+  // 3. Create UP contract instance and call setData
   const upContract = new ethers.Contract(
-    UP_ADDRESS,
+    account, // The Universal Profile address
     UniversalProfile.abi,
     signer,
   );
@@ -628,12 +707,6 @@ import Web3 from 'web3';
 import { ERC725 } from '@erc725/erc725.js';
 import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
-// --- Configuration ---
-const PRIVATE_KEY = '0x...'; // Controller EOA private key (with SETDATA permission)
-const UP_ADDRESS = '0x...'; // Your Universal Profile address
-const RPC_URL = 'https://rpc.lukso.network'; // Use https://rpc.testnet.lukso.network for testnet
-// ---------------------
-
 // LSP28 ERC725Y Schema
 const LSP28Schema = {
   name: 'LSP28TheGrid',
@@ -644,10 +717,10 @@ const LSP28Schema = {
 };
 
 async function setGrid() {
-  // 1. Connect to the network
-  const web3 = new Web3(RPC_URL);
-  const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-  web3.eth.accounts.wallet.add(account);
+  // 1. Connect via the UP Browser Extension
+  const web3 = new Web3(window.lukso);
+  await web3.eth.requestAccounts();
+  const accounts = await web3.eth.getAccounts();
 
   // 2. Encode the Grid data
   const erc725 = new ERC725([LSP28Schema]);
@@ -663,12 +736,12 @@ async function setGrid() {
     },
   ]);
 
-  // 3. Create UP contract instance and call setData directly
-  const upContract = new web3.eth.Contract(UniversalProfile.abi, UP_ADDRESS);
+  // 3. Create UP contract instance and call setData
+  const upContract = new web3.eth.Contract(UniversalProfile.abi, accounts[0]);
 
   const receipt = await upContract.methods
     .setData(encodedData.keys[0], encodedData.values[0])
-    .send({ from: account.address, gas: 300_000 });
+    .send({ from: accounts[0] });
 
   console.log('✅ Grid set! Transaction hash:', receipt.transactionHash);
   console.log('Block:', receipt.blockNumber);
@@ -696,7 +769,7 @@ const LSP28Schema = {
 };
 
 const UP_ADDRESS = '0x...';
-const RPC_URL = 'https://rpc.lukso.network';
+const RPC_URL = 'https://rpc.mainnet.lukso.network'; // Use https://rpc.testnet.lukso.network for testnet
 
 const erc725 = new ERC725([LSP28Schema], UP_ADDRESS, RPC_URL, {
   ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
@@ -763,7 +836,7 @@ Your controller EOA needs the `SETDATA` permission on the Universal Profile. Che
 <details>
 <summary><strong>❌ Grid doesn't show up on Universal Everything</strong></summary>
 
-1. Verify the data was written correctly by reading it back (see [Reading the Grid](#reading-the-grid))
+1. Verify the data was written correctly by reading it back. Use [**ERC725 Inspect Tool**](https://erc725-inspect.lukso.tech/inspector?address=0x26e7Da1968cfC61FB8aB2Aad039b5A083b9De21e) or see the [Reading the Grid guide](#reading-the-grid))
 2. Make sure the JSON structure matches the [LSP28 specification](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-28-TheGrid.md) — the top-level key must be `LSP28TheGrid` containing an array
 3. If using IPFS, ensure the CID is accessible and pinned
 4. Check that `visibility` is set to `"public"` (or omitted, which defaults to public)
