@@ -97,7 +97,11 @@ After uploading the media files, you can attach their links to a JSON File in th
         {
           "width": 60,
           "height": 60,
-          "url": "https://mycentralised-storage.com/filename.png"
+          "url": "https://mycentralised-storage.com/filename.png",
+          "verification": {
+            "method": "keccak256(bytes)",
+            "data": "0x<hashOfTheUploadedFile>"
+          }
         }
       ],
       "images": [
@@ -110,9 +114,8 @@ After uploading the media files, you can attach their links to a JSON File in th
               "method": "keccak256(bytes)",
               "data": "0x<hashOfTheUploadedFile>"
             }
-
-          }
-          {
+        },
+        {
             "width": 500,
             "height": 500,
             "url": "ipfs://[IPFS-CID]",
@@ -120,7 +123,6 @@ After uploading the media files, you can attach their links to a JSON File in th
               "method": "keccak256(bytes)",
               "data": "0x<hashOfTheUploadedFile>"
             }
-
           }
         ]
       ],
@@ -167,13 +169,15 @@ const LSP4JSON = {
 };
 
 const encodedLSP4Metadata = ERC725.encodeData(
-  {
-    keyName: 'LSP4Metadata',
-    value: {
-      json: LSP4JSON,
-      url: 'https://my-file-provider.com/my-file-link.json', // It can also be: ipfs://[CID]
+  [
+    {
+      keyName: 'LSP4Metadata',
+      value: {
+        json: LSP4JSON,
+        url: 'https://my-file-provider.com/my-file-link.json', // It can also be: ipfs://[CID]
+      },
     },
-  },
+  ],
   LSP4DigitalAssetSchema,
 );
 ```
