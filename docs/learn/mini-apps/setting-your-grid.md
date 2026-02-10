@@ -4,6 +4,9 @@ description: 'How to encode and set your LSP28 Grid on your Universal Profile'
 sidebar_position: 0
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Setting your Grid
 
 <img
@@ -43,18 +46,25 @@ This key is derived from `keccak256('LSP28TheGrid')`.
 
 The grid data must be encoded as a [VerifiableURI](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-2-ERC725YJSONSchema.md#verifiableuri) following this structure:
 
-| Component  | Bytes    | Description                            |
-| ---------- | -------- | -------------------------------------- |
-| `0x0000`   | 2        | VerifiableURI prefix                   |
-| `8019f9b1` | 4        | Verification method (keccak256(bytes)) |
-| `0020`     | 2        | Verification data length (32 bytes)    |
-| `<hash>`   | 32       | keccak256 hash of the JSON content     |
-| `<url>`    | variable | Base64 data URI or IPFS URL            |
+| Component | Bytes    | Description                         |
+| --------- | -------- | ----------------------------------- |
+| `0x0000`  | 2        | VerifiableURI prefix                |
+| method    | 4        | Verification method (see below)     |
+| `0020`    | 2        | Verification data length (32 bytes) |
+| `<hash>`  | 32       | keccak256 hash of the content       |
+| `<url>`   | variable | Base64 data URI or IPFS URL         |
+
+**Verification methods:**
+
+| Method ID  | Algorithm          | Use for                             |
+| ---------- | ------------------ | ----------------------------------- |
+| `8019f9b1` | `keccak256(bytes)` | On-chain: hash of raw JSON bytes    |
+| `6f357c6a` | `keccak256(utf8)`  | Off-chain: hash of UTF-8 URL string |
 
 **Total structure:**
 
 ```
-0x0000 + 8019f9b1 + 0020 + <32-byte-hash> + <hex-encoded-url>
+0x0000 + <method-id> + 0020 + <32-byte-hash> + <hex-encoded-url>
 ```
 
 ## Grid JSON Structure
@@ -103,6 +113,17 @@ For on-chain storage, the JSON is embedded directly as base64 in the VerifiableU
 ```typescript
 import { ERC725 } from '@erc725/erc725.js';
 
+// Define the LSP28 schema
+const LSP28_SCHEMA = [
+  {
+    name: 'LSP28TheGrid',
+    key: '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff',
+    keyType: 'Singleton',
+    valueType: 'VerifiableURI',
+    valueContent: 'VerifiableURI',
+  },
+];
+
 const gridData = {
   LSP28TheGrid: [
     {
@@ -116,8 +137,11 @@ const gridData = {
   ],
 };
 
+// Initialize ERC725 with schema
+const erc725 = new ERC725(LSP28_SCHEMA);
+
 // Encode the JSON to a VerifiableURI with on-chain base64
-const encodedData = ERC725.encodeData([
+const encodedData = erc725.encodeData([
   {
     keyName: 'LSP28TheGrid',
     value: {
@@ -142,6 +166,17 @@ For off-chain storage, upload to IPFS first, then encode the URL with verificati
 ```typescript
 import { ERC725 } from '@erc725/erc725.js';
 
+// Define the LSP28 schema
+const LSP28_SCHEMA = [
+  {
+    name: 'LSP28TheGrid',
+    key: '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff',
+    keyType: 'Singleton',
+    valueType: 'VerifiableURI',
+    valueContent: 'VerifiableURI',
+  },
+];
+
 const gridData = {
   LSP28TheGrid: [
     {
@@ -159,8 +194,11 @@ const gridData = {
 const ipfsCid = 'QmYourCidHere...'; // Your IPFS CID
 const ipfsUrl = `ipfs://${ipfsCid}`;
 
+// Initialize ERC725 with schema
+const erc725 = new ERC725(LSP28_SCHEMA);
+
 // 2. Encode with off-chain URL
-const encodedData = ERC725.encodeData([
+const encodedData = erc725.encodeData([
   {
     keyName: 'LSP28TheGrid',
     value: {
@@ -174,7 +212,7 @@ const encodedData = ERC725.encodeData([
 ]);
 
 console.log('Encoded value:', encodedData.values[0]);
-// Format: 0x0000 + 8019f9b1 + 0020 + hash + hex-encoded-ipfs-url
+// Format: 0x0000 + 6f357c6a (keccak256(utf8)) + 0020 + hash + hex-encoded-ipfs-url
 ```
 
   </TabItem>
@@ -183,9 +221,6 @@ console.log('Encoded value:', encodedData.values[0]);
 ## Setting Your Grid On-Chain
 
 Choose your preferred library:
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="viem" label="viem">
@@ -266,9 +301,17 @@ console.log('Grid updated! Transaction:', tx.hash);
   </TabItem>
 </Tabs>
 
-## Setting via KeyManager
+## Setting via KeyManager (Legacy Pattern)
 
-If your UP uses a KeyManager (recommended), execute via the KeyManager:
+:::info Modern Universal Profiles
+
+Most modern Universal Profiles have the KeyManager functionality built-in. You can simply call `setData()` directly on your UP address — it will automatically route through the built-in KeyManager.
+
+The separate KeyManager pattern below is for legacy UPs with external KeyManager contracts.
+
+:::
+
+For legacy UPs with a separate KeyManager contract:
 
 <Tabs>
   <TabItem value="viem" label="viem">
@@ -358,6 +401,17 @@ import { ethers } from 'ethers';
 const GRID_DATA_KEY =
   '0x724141d9918ce69e6b8afcf53a91748466086ba2c74b94cab43c649ae2ac23ff';
 
+// LSP28 Grid schema for ERC725
+const LSP28_SCHEMA = [
+  {
+    name: 'LSP28TheGrid',
+    key: GRID_DATA_KEY,
+    keyType: 'Singleton',
+    valueType: 'VerifiableURI',
+    valueContent: 'VerifiableURI',
+  },
+];
+
 const gridConfig = {
   LSP28TheGrid: [
     {
@@ -373,25 +427,28 @@ const gridConfig = {
 };
 
 async function setGrid() {
-  // 1. Encode the data
-  const encoded = ERC725.encodeData([
+  // 1. Initialize ERC725 with schema
+  const erc725 = new ERC725(LSP28_SCHEMA);
+
+  // 2. Encode the data (on-chain base64 example)
+  const encoded = erc725.encodeData([
     {
       keyName: 'LSP28TheGrid',
-      value: JSON.stringify(gridConfig),
+      value: {
+        json: gridConfig,
+        verification: {
+          method: 'keccak256(bytes)',
+          data: '0x',
+        },
+      },
     },
   ]);
 
-  // 2. Set via KeyManager
+  // 3. Set directly on your Universal Profile
   const provider = new ethers.JsonRpcProvider(
     'https://rpc.mainnet.lukso.network',
   );
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-
-  const km = new ethers.Contract(
-    '0xYOUR_KEY_MANAGER',
-    ['function execute(bytes) external returns (bytes)'],
-    wallet,
-  );
 
   const up = new ethers.Contract(
     '0xYOUR_UP',
@@ -399,12 +456,7 @@ async function setGrid() {
     wallet,
   );
 
-  const payload = up.interface.encodeFunctionData('setData', [
-    GRID_DATA_KEY,
-    encoded.values[0],
-  ]);
-
-  const tx = await km.execute(payload);
+  const tx = await up.setData(GRID_DATA_KEY, encoded.values[0]);
   await tx.wait();
 
   console.log('Grid set! Transaction:', tx.hash);
