@@ -6,8 +6,6 @@ sidebar_position: 0
 
 # Setting your Grid
 
-<img width="600" alt="LUKSO Agent Grid Example" src="https://universaleverything.io/0x293E96ebbf264ed7715cff2b67850517De70232a?grid=trade-$lukso" align="center" />
-
 The [LSP28 The Grid](../../standards/access-control/lsp28-the-grid.md) standard allows you to create a customizable dashboard of widgets on your Universal Profile. This guide covers how to encode and set your grid data on-chain.
 
 ## What You'll Learn
