@@ -172,7 +172,9 @@ Both values can be obtained from using our IPFS library.
 import { createReadStream } from 'fs';
 import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 
-const provider = new IPFSHttpClientUploader('https://api.pinata.cloud/pinning/pinFileToIPFS');
+const provider = new IPFSHttpClientUploader(
+  'https://api.pinata.cloud/pinning/pinFileToIPFS',
+);
 // Or use a local IPFS node: 'http://127.0.0.1:5001/api/v0/add'
 
 const file = createReadStream('./test-image.png');
@@ -194,7 +196,9 @@ import { IPFSHttpClientUploader } from '@lukso/data-provider-ipfs-http-client';
 // reference to the previously created JSON file (LSP3Profile metadata)
 import jsonFile from './LSP3Metadata.json';
 
-const ipfsProvider = new IPFSHttpClientUploader('https://api.pinata.cloud/pinning/pinFileToIPFS');
+const ipfsProvider = new IPFSHttpClientUploader(
+  'https://api.pinata.cloud/pinning/pinFileToIPFS',
+);
 // Or use a local IPFS node: 'http://127.0.0.1:5001/api/v0/add'
 
 async function editProfileInfo() {
