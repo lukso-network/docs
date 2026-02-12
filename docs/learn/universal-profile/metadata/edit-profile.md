@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 # Edit a Universal Profile
 
+![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
+
 This guide will teach you how to **customize your Universal Profile** programmatically in JavaScript and includes:
 
 - adding a profile and cover picture to your Universal Profile,
@@ -21,8 +23,6 @@ To achieve this goal, we will perform the following steps:
 2. Upload this JSON file to [IPFS](https://ipfs.io/) using our [tools-data-providers](https://github.com/lukso-network/tools-data-providers) library.
 3. Encode the metadata as a [VerifiableURI](/standards/metadata/lsp2-json-schema.md#verifiableuri) using [erc725.js](/tools/dapps/erc725js/getting-started.md).
 4. Set the encoded data on your Universal Profile via `setData(bytes32,bytes)`.
-
-![Universal Profile with pictures and infos on wallet.universalprofile.cloud](../img/edit-profile.png)
 
 ## Install the dependencies
 
@@ -341,7 +341,7 @@ You can validate your LSP3Profile metadata of your Universal Profile using the [
 
 ## Visualize your updated Universal Profile
 
-You can now check your UP on [Universal Everything](https://universaleverything.io) or the [profile explorer](https://wallet.universalprofile.cloud/) website:
+You can now check your Universal Profile with its updated images and descriptions on [Universal Everything](https://universaleverything.io).
 
 `https://universaleverything.io/[UP ADDRESS]`
 
