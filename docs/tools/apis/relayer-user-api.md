@@ -23,7 +23,7 @@ Requires an API key (`Authorization: Bearer <key>`).
 | --------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | **Base URL**    | `https://relayer-api.mainnet.lukso.network`                 | `https://relayer-api.testnet.lukso.network`                 |
 | **Deploy UP**   | `POST /api/universal-profile`                               | `POST /api/universal-profile`                               |
-| **Register UP** | `POST /api/users`                                           | `POST /api/users`                                           |
+| **Register UP** | `POST /api/universal-profile/register`                      | `POST /api/universal-profile/register`                      |
 | **API Docs**    | [Mainnet](https://relayer-api.mainnet.lukso.network/docs#/) | [Testnet](https://relayer-api.testnet.lukso.network/docs#/) |
 
 ## Integration Guide
@@ -120,7 +120,7 @@ Register existing Universal Profiles with the Relayer API to enable the monthly 
 
 ```javascript
 const response = await fetch(
-  'https://relayer-api.mainnet.lukso.network/api/users',
+  'https://relayer-api.mainnet.lukso.network/api/universal-profile/register',
   {
     method: 'POST',
     headers: {
