@@ -1,15 +1,9 @@
 ---
 title: ⛽ Transaction Relay API
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Transaction Relay API
-
-:::info 🔓 Private Beta access
-
-This feature is currently in private beta. If you are interested, please [contact us](https://forms.gle/rhWA25m3jjuPNPva9).
-
-:::
 
 The LUKSO Transaction Relay Service enables gasless transactions for Universal Profiles. Registered Universal Profiles receive a **free monthly gas quota of 20 million gas**.
 
