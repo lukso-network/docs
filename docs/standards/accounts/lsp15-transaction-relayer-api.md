@@ -67,7 +67,7 @@ Returns the available quota left for a registered Universal Profile.
   <summary>How to generate and verify the signature.</summary>
 
 <Tabs>
-  <TabItem value="web3" label="Web3">
+  <TabItem value="web3" label="Web3" attributes={{ className: "tab_web3" }}>
 
 ```js
 import { soliditySha3 } from 'web3-utils';
@@ -94,7 +94,7 @@ const signer = web3.eth.accounts.recover(message, signature.signature); // Signe
 ```
 
   </TabItem>
-  <TabItem value="ethers" label="Ethers">
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js
 // ...

@@ -40,14 +40,14 @@ By the end of this guide, you will be able to:
 We'll use `erc725.js` to handle schema encoding and a web3 library to interact with the blockchain.
 
 <Tabs groupId="provider-lib">
-<TabItem value="viem" label="viem" default>
+<TabItem value="viem" label="viem" attributes={{ className:"tab_viem" }} default>
 
 ```shell
 npm install viem @erc725/erc725.js @lukso/lsp-smart-contracts
 ```
 
 </TabItem>
-<TabItem value="web3" label="web3.js">
+<TabItem value="web3" label="web3.js" attributes={{ className: "tab_web3" }}>
 
 ```shell
 npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts
@@ -197,7 +197,7 @@ setCustomData().catch(console.error);
 ```
 
 </TabItem>
-<TabItem value="web3" label="web3.js">
+<TabItem value="web3" label="web3.js" attributes={{ className: "tab_web3" }}>
 
 ```javascript title="set-custom-data.js"
 const { Web3 } = require('web3');
@@ -328,7 +328,7 @@ getCustomData().catch(console.error);
 ```
 
 </TabItem>
-<TabItem value="web3" label="web3.js">
+<TabItem value="web3" label="web3.js" attributes={{ className: "tab_web3" }}>
 
 ```javascript title="get-custom-data.js"
 const { ERC725 } = require('@erc725/erc725.js');
