@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Edit Profile Data'
 sidebar_position: 2
-description: Learn how to edit the LSP3Profile Metadata of a Universal Profile using ethers.js or web3.js.
+description: Learn how to edit the LSP3Profile Metadata of a Universal Profile using viem + wagmi, ethers.js, or web3.js.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -26,15 +26,22 @@ To achieve this goal, we will perform the following steps:
 
 ## Install the dependencies
 
-<Tabs groupId="web3-lib">
-<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+<Tabs groupId="provider-lib">
+<TabItem value="viem" label="viem + wagmi" default>
+
+```shell
+npm install wagmi viem@2.x @tanstack/react-query @erc725/erc725.js @lukso/lsp-smart-contracts @lukso/data-provider-ipfs-http-client
+```
+
+</TabItem>
+<TabItem value="ethers" label="ethers">
 
 ```shell
 npm install ethers @erc725/erc725.js @lukso/lsp-smart-contracts @lukso/data-provider-ipfs-http-client
 ```
 
 </TabItem>
-<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
+<TabItem value="web3" label="web3.js">
 
 ```shell
 npm install web3 @erc725/erc725.js @lukso/lsp-smart-contracts @lukso/data-provider-ipfs-http-client
@@ -216,9 +223,14 @@ The next step is to **encode the data** to write it on our Universal Profile ERC
 
 We use our [erc725.js](/tools/dapps/erc725js/getting-started.md) library with the [`encodeData()`](/tools/dapps/erc725js/methods.md#encodeData) function. The library provides the LSP3 schema and handles VerifiableURI encoding automatically.
 
-There are two approaches:
+:::success On-Chain vs IPFS
+You can store the LSP3Profile metadata on IPFS (off-chain) or on-chain as base64. On-chain base64 is convenient for smaller metadata but costs more gas. For profiles with many images, IPFS is more cost-effective.
+:::
 
-### Option A: Using `json` + `url` (recommended)
+There are three approaches:
+
+<Tabs groupId="storage-method">
+<TabItem value="json-url" label="📦 json + url (recommended)" default>
 
 The simplest approach — pass the JSON object and URL, and erc725.js computes the hash for you:
 
@@ -247,7 +259,8 @@ console.log('Data Key:', encodedData.keys[0]);
 console.log('Encoded Value:', encodedData.values[0]);
 ```
 
-### Option B: Using `hash` + `url` (manual)
+</TabItem>
+<TabItem value="hash-url" label="📦 hash + url (manual)">
 
 If you already have the hash (e.g., from the IPFS upload), you can pass it directly:
 
@@ -272,12 +285,87 @@ console.log('Data Key:', encodedData.keys[0]);
 console.log('Encoded Value:', encodedData.values[0]);
 ```
 
+</TabItem>
+<TabItem value="base64" label="💾 On-Chain (base64)">
+
+For smaller profiles, you can store the entire JSON on-chain using a `data:` URI with base64 encoding — no IPFS needed:
+
+```javascript
+import { ERC725 } from '@erc725/erc725.js';
+import LSP3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
+import { keccak256, toUtf8Bytes } from 'ethers';
+
+// Your LSP3Profile JSON (from step 1)
+import lsp3ProfileJson from './LSP3Metadata.json';
+
+const erc725 = new ERC725(LSP3ProfileSchema);
+
+// Convert to base64 data URI
+const jsonString = JSON.stringify(lsp3ProfileJson);
+const base64Content = Buffer.from(jsonString).toString('base64');
+const dataUri = `data:application/json;base64,${base64Content}`;
+
+// Hash the JSON string
+const jsonHash = keccak256(toUtf8Bytes(jsonString));
+
+const encodedData = erc725.encodeData([
+  {
+    keyName: 'LSP3Profile',
+    value: {
+      hashFunction: 'keccak256(utf8)',
+      hash: jsonHash,
+      url: dataUri,
+    },
+  },
+]);
+
+console.log('Data Key:', encodedData.keys[0]);
+console.log('Encoded Value:', encodedData.values[0]);
+```
+
+</TabItem>
+</Tabs>
+
 ## Edit the Universal Profile
 
 Now that our updated data is encoded, we are ready to set it in our Universal Profile smart contract. The 🆙 [Universal Profile Extension](https://chrome.google.com/webstore/detail/universal-profiles/abpickdkkbnbcoepogfhkhennhfhehfn) handles all the transaction signing internally.
 
-<Tabs groupId="web3-lib">
-<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+<Tabs groupId="provider-lib">
+<TabItem value="viem" label="viem + wagmi" default>
+
+```javascript title="set-profile-viem.jsx"
+import {
+  useAccount,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+} from 'wagmi';
+import UniversalProfile from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+function EditProfile() {
+  const { address: UP_ADDRESS } = useAccount();
+  const { writeContract, data: txHash } = useWriteContract();
+  const { isSuccess } = useWaitForTransactionReceipt({ hash: txHash });
+
+  async function handleEditProfile() {
+    // encodedData from the previous encoding step
+    writeContract({
+      address: UP_ADDRESS,
+      abi: UniversalProfile.abi,
+      functionName: 'setData',
+      args: [encodedData.keys[0], encodedData.values[0]],
+    });
+  }
+
+  return (
+    <button onClick={handleEditProfile}>
+      {isSuccess ? '✅ Profile updated!' : 'Update Profile'}
+    </button>
+  );
+}
+```
+
+</TabItem>
+<TabItem value="ethers" label="ethers">
 
 ```javascript title="set-profile-ethers.js"
 import { ethers } from 'ethers';
@@ -307,7 +395,7 @@ console.log('✅ Profile updated! Transaction hash:', tx.hash);
 ```
 
 </TabItem>
-<TabItem value="web3" label="web3" attributes={{className: "tab_web3"}}>
+<TabItem value="web3" label="web3.js">
 
 ```javascript title="set-profile-web3.js"
 import Web3 from 'web3';
