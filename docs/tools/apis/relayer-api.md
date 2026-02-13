@@ -15,14 +15,14 @@ The LUKSO Relayer API enables gasless transactions and Universal Profile deploym
 
 ## API Endpoints
 
-|                            | Mainnet                                                                               | Testnet                                                                               |
-| -------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| **Base URL**               | `https://relayer.mainnet.lukso.network/api`                                           | `https://relayer.testnet.lukso.network/api`                                           |
-| **Execute Transaction**    | `POST .../api/execute`                                                                | `POST .../api/execute`                                                                |
-| **Deploy UP**              | `POST .../api/universal-profile`                                                      | `POST .../api/universal-profile`                                                      |
-| **Register UP**            | `POST .../api/users`                                                                  | `POST .../api/users`                                                                  |
-| **Check Quota**            | `POST .../api/quota`                                                                  | `POST .../api/quota`                                                                  |
-| **API Docs (Swagger)**     | [Mainnet Docs](https://relayer.mainnet.lukso.network/docs#/)                          | [Testnet Docs](https://relayer.testnet.lukso.network/docs#/)                          |
+|                         | Mainnet                                                      | Testnet                                                      |
+| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Base URL**            | `https://relayer.mainnet.lukso.network/api`                  | `https://relayer.testnet.lukso.network/api`                  |
+| **Execute Transaction** | `POST .../api/execute`                                       | `POST .../api/execute`                                       |
+| **Deploy UP**           | `POST .../api/universal-profile`                             | `POST .../api/universal-profile`                             |
+| **Register UP**         | `POST .../api/users`                                         | `POST .../api/users`                                         |
+| **Check Quota**         | `POST .../api/quota`                                         | `POST .../api/quota`                                         |
+| **API Docs (Swagger)**  | [Mainnet Docs](https://relayer.mainnet.lukso.network/docs#/) | [Testnet Docs](https://relayer.testnet.lukso.network/docs#/) |
 
 :::note Legacy URLs
 
