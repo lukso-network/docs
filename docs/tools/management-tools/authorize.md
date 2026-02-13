@@ -15,6 +15,16 @@ The [Authorize Controller](https://authorize.universalprofile.cloud/) tool lets 
 
 🔗 **[authorize.universalprofile.cloud](https://authorize.universalprofile.cloud/)**
 
+:::info Keep Your Initial Controller Key Safe
+
+The controller key your Universal Profile was originally created with is important — it's required if you ever want to deploy your profile across multiple networks. This key lives in the device where you first created your profile (the mobile app or the browser extension).
+
+**Back it up** using the backup feature in your app:
+- **UP Browser Extension** — use the built-in backup feature to export your key
+- **UP Mobile App** — backup feature coming soon
+
+:::
+
 ## Use Cases
 
 ### Migrate to a New Device
