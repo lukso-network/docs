@@ -1,9 +1,15 @@
 ---
-title: Authorize Controller
+title: 🔑 Authorize Controller
 sidebar_position: 1
 ---
 
 # Authorize Controller
+
+<div style={{textAlign: 'center', marginBottom: '2rem'}}>
+
+![Authorize Controller Tool](./img/authorize-tool.png)
+
+</div>
 
 The [Authorize Controller](https://authorize.universalprofile.cloud/) tool lets you manage controller keys on your Universal Profile. Use it to grant permissions to new controllers, migrate your profile to a new device, or import your profile into a new browser extension.
 
