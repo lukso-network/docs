@@ -11,22 +11,153 @@ This feature is currently in private beta. If you are interested, please [contac
 
 :::
 
-The LUKSO Relayer API allows developer to create and manage Universal Profiles, as well as facilitate gasless transactions for users by registering.
+The LUKSO Relayer API enables gasless transactions and Universal Profile deployment on LUKSO. Registered Universal Profiles receive a **free monthly gas quota of 20 million gas**.
 
-## Key Features
+## API Endpoints
 
-Developers can use the LUKSO Relayer API to:
+|                            | Mainnet                                                                               | Testnet                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Base URL**               | `https://relayer.mainnet.lukso.network/api`                                           | `https://relayer.testnet.lukso.network/api`                                           |
+| **Execute Transaction**    | `POST .../api/execute`                                                                | `POST .../api/execute`                                                                |
+| **Deploy UP**              | `POST .../api/universal-profile`                                                      | `POST .../api/universal-profile`                                                      |
+| **Register UP**            | `POST .../api/users`                                                                  | `POST .../api/users`                                                                  |
+| **Check Quota**            | `POST .../api/quota`                                                                  | `POST .../api/quota`                                                                  |
+| **API Docs (Swagger)**     | [Mainnet Docs](https://relayer.mainnet.lukso.network/docs#/)                          | [Testnet Docs](https://relayer.testnet.lukso.network/docs#/)                          |
 
-- Deploy Universal Profiles
-- Register existing Universal Profiles
+:::note Legacy URLs
 
-Organizations and applications can use the Relayer API to deploy Universal Profiles and register on behalf of their users. By leveraging the LUKSO Relayer API, you can create seamless, user-friendly experiences for your decentralized applications on the LUKSO network.
+The legacy URLs `https://relayer-api.mainnet.lukso.network` and `https://relayer-api.testnet.lukso.network` still work but the `relayer.{network}.lukso.network` format is preferred.
 
-### 1. Deploy Universal Profiles
+:::
 
-The Relayer API allows you to deploy Universal Profiles for your users using two different ways:
+## Execute Transactions (Gasless)
 
-#### Option 1: Using `lsp6ControllerAddress` and [`lsp3Profile`](/learn/universal-profile/metadata/edit-profile#create-a-new-lsp3profile-json-file) as arguments:
+Execute transactions through the relayer using [LSP25 relay calls](../../standards/access-control/lsp6-key-manager.md). The relayer pays for gas and the controller signs authorization.
+
+### How It Works
+
+1. **Encode the payload** — what you want the UP to do (e.g., `execute()`, `setData()`, `setDataBatch()`)
+2. **Get the nonce** from the Key Manager
+3. **Sign the message** using LSP25 format (EIP-191 v0)
+4. **Send to the relayer's** `/execute` endpoint
+
+### Request Body
+
+```json
+{
+  "address": "0x<UP_ADDRESS>",
+  "transaction": {
+    "abi": "0x<ENCODED_PAYLOAD>",
+    "signature": "0x<LSP25_SIGNATURE>",
+    "nonce": 0,
+    "validityTimestamps": "0x0"
+  }
+}
+```
+
+### LSP25 Signature Format
+
+```
+hash = keccak256(0x19 || 0x00 || keyManagerAddress || encodedMessage)
+
+encodedMessage = abi.encodePacked(
+  LSP25_VERSION,      // 25
+  chainId,            // 42 for mainnet, 4201 for testnet
+  nonce,
+  validityTimestamps,
+  msgValue,           // 0 for non-payable calls
+  payload
+)
+```
+
+:::warning EIP-191 Version 0
+
+Sign with `SigningKey.sign(hash)` — **NOT** `wallet.signMessage()`. This is EIP-191 version 0 (`0x00`), not version 0x45 (Ethereum Signed Message).
+
+:::
+
+### Example (ethers.js v6)
+
+```javascript
+import { ethers } from 'ethers';
+
+const provider = new ethers.JsonRpcProvider('https://42.rpc.thirdweb.com');
+const controllerPrivateKey = '0x...';
+const controllerAddress = '0x...'; // Address derived from controllerPrivateKey
+const upAddress = '0x...';
+
+// 1. Get Key Manager address
+const up = new ethers.Contract(
+  upAddress,
+  ['function owner() view returns (address)'],
+  provider,
+);
+const keyManagerAddress = await up.owner();
+
+// 2. Encode the payload (example: setData)
+const dataKey = '0x...'; // Your data key
+const dataValue = '0x...'; // Your data value
+const iface = new ethers.Interface(['function setData(bytes32,bytes)']);
+const payload = iface.encodeFunctionData('setData', [dataKey, dataValue]);
+
+// 3. Get nonce from Key Manager
+const km = new ethers.Contract(
+  keyManagerAddress,
+  ['function getNonce(address,uint128) view returns (uint256)'],
+  provider,
+);
+const nonce = await km.getNonce(controllerAddress, 0);
+
+// 4. Build LSP25 message and sign (EIP-191 v0)
+const chainId = 42; // 4201 for testnet
+const encodedMessage = ethers.solidityPacked(
+  ['uint256', 'uint256', 'uint256', 'uint256', 'uint256', 'bytes'],
+  [25, chainId, nonce, 0, 0, payload], // LSP25_VERSION=25, validityTimestamps=0, msgValue=0
+);
+const hash = ethers.keccak256(
+  ethers.concat(['0x19', '0x00', keyManagerAddress, encodedMessage]),
+);
+const signingKey = new ethers.SigningKey(controllerPrivateKey);
+const sig = signingKey.sign(hash);
+const signature = ethers.Signature.from(sig).serialized;
+
+// 5. Send to relayer
+const response = await fetch(
+  'https://relayer.mainnet.lukso.network/api/execute',
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      address: upAddress,
+      transaction: {
+        abi: payload,
+        signature,
+        nonce: Number(nonce),
+        validityTimestamps: '0x0',
+      },
+    }),
+  },
+);
+const result = await response.json();
+console.log('TX Hash:', result.transactionHash);
+```
+
+### Required Permissions
+
+The controller signing the relay call must have the **`EXECUTE_RELAY_CALL`** permission (`0x0000000000000000000000000000000000000000000000000000000000400000`).
+
+### Validity Timestamps
+
+- `0x0` — No time restriction (valid immediately, no expiry)
+- Custom: `(startTime << 128) | endTime` — Restrict when the signature is valid
+
+## Deploy Universal Profiles
+
+Deploy Universal Profiles using two methods:
+
+### Option 1: Controller Address + LSP3 Profile
+
+Provide controller addresses and LSP3 metadata directly.
 
 ```mermaid
 sequenceDiagram
@@ -34,54 +165,35 @@ sequenceDiagram
     participant Relayer
     participant LUKSO Network
 
-    App->>Relayer: POST /api/universal-profile with:
-    Note over App,Relayer: - lsp6ControllerAddress[]<br>- lsp3Profile metadata
-    Relayer->>LUKSO Network: Deploy UP Contract
-    Relayer->>LUKSO Network: Set Controllers
-    Relayer->>LUKSO Network: Set LSP3 Metadata
-    LUKSO Network-->>Relayer: Deployment Success
+    App->>Relayer: POST /api/universal-profile
+    Note over App,Relayer: lsp6ControllerAddress[]<br>lsp3Profile metadata
+    Relayer->>LUKSO Network: Deploy UP + Set Controllers + Set Metadata
+    LUKSO Network-->>Relayer: Success
     Relayer-->>App: Return UP Address
 ```
 
-Provide a list of permissioned addresses `lsp6ControllerAddress` and set the Universal Profile's metadata with `lsp3Profile`.
-
 ```javascript
-async function deployUniversalProfile() {
-  const apiKey = 'your-api-key';
-  const url = 'https://relayer-api.testnet.lukso.network/api/universal-profile';
-
-  const data = {
-    // list of permissioned addresses
-    lsp6ControllerAddress: ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'],
-    // encoded LSP3 Profile
-    lsp3Profile: '0x6f357c6a3e2e3b435dd1ee4b8a2435722ee5533ea3f6cf6cb44c7f...',
-  };
-
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    console.log('Universal Profile deployed:', result);
-  } catch (error) {
-    console.error('Error deploying Universal Profile:', error.message);
-  }
-}
-
-deployUniversalProfile();
+const response = await fetch(
+  'https://relayer.mainnet.lukso.network/api/universal-profile',
+  {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      lsp6ControllerAddress: ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'],
+      lsp3Profile: '0x6f357c6a...', // Encoded LSP3 Profile
+    }),
+  },
+);
+const result = await response.json();
+console.log('UP Address:', result.universalProfileAddress);
 ```
 
-#### Option 2: Using `salt` and [`postDeploymentCallData`](/learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata) as arguments:
+### Option 2: Salt + Post-Deployment Calldata
+
+Use a salt for deterministic deployment across chains.
 
 ```mermaid
 sequenceDiagram
@@ -89,111 +201,92 @@ sequenceDiagram
     participant Relayer
     participant LUKSO Network
 
-    Note over App: Generate random salt
-    Note over App: Prepare postDeploymentCallData<br>(controllers + metadata)
-    App->>Relayer: POST /api/universal-profile with:
-    Note over App,Relayer: - salt<br>- postDeploymentCallData
-    Relayer->>LUKSO Network: Deploy UP Contract<br>with deterministic address
-    Relayer->>LUKSO Network: Execute postDeployment setup
-    LUKSO Network-->>Relayer: Deployment Success
+    Note over App: Generate salt + postDeploymentCallData
+    App->>Relayer: POST /api/universal-profile
+    Note over App,Relayer: salt<br>postDeploymentCallData
+    Relayer->>LUKSO Network: Deploy with deterministic address
+    LUKSO Network-->>Relayer: Success
     Relayer-->>App: Return UP Address
 ```
 
-This method allows for deterministic deployment across different chains.
-
 ```javascript
-async function deployUniversalProfileWithSalt() {
-  const apiKey = 'your-api-key';
-  const url = 'https://relayer-api.testnet.lukso.network/api/universal-profile';
-  // generate random salt
-  const salt = ethers.utils.randomBytes(32);
-  // list of permissioned addresses
-  const lsp6Controllers = ['0x9d9b6B38049263d3bCE80fcA3314d9CbF00C9E9D'];
-  // Encoded LSP3 Profile Data
-  const lsp3Profile = '0x6f357c6a...';
+import { ethers } from 'ethers';
 
-  // generate postDeploymentCallData with controllers and metadata
-  const postDeploymentCallData = generatePostDeploymentCallData(
-    lsp6Controllers,
-    lsp3Profile,
-  );
+const salt = ethers.hexlify(ethers.randomBytes(32));
+const postDeploymentCallData = '0x...'; // See LSP23 deployment guide
 
-  const data = {
-    salt,
-    postDeploymentCallData,
-  };
-
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    console.log('Universal Profile deployed:', result);
-  } catch (error) {
-    console.error('Error deploying Universal Profile:', error.message);
-  }
-}
-
-deployUniversalProfileWithSalt();
+const response = await fetch(
+  'https://relayer.mainnet.lukso.network/api/universal-profile',
+  {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ salt, postDeploymentCallData }),
+  },
+);
+const result = await response.json();
+console.log('UP Address:', result.universalProfileAddress);
 ```
 
-### 2. Register Existing Universal Profiles
+See [Deploy UP with LSP23](/learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata) for generating `postDeploymentCallData`.
 
-You can register existing Universal Profiles with the Relayer to enable gasless transactions for your users. Currently, registered Universal Profiles to the LUKSO Relayer API gets a certain quota amount of gas(20 millions) per month.
+## Register Universal Profiles
+
+Register existing Universal Profiles to enable the monthly gas quota.
 
 ```javascript
-async function registerUniversalProfile() {
-  const apiKey = 'your-api-key';
-  const url = 'https://relayer-api.testnet.lukso.network/api/users';
+const response = await fetch(
+  'https://relayer.mainnet.lukso.network/api/users',
+  {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      universalProfileAddress: '0x1234567890123456789012345678901234567890',
+    }),
+  },
+);
+const result = await response.json();
+console.log('Registered:', result);
+```
 
-  const data = {
-    universalProfileAddress: '0x1234567890123456789012345678901234567890',
-    // userId: 'optional-user-id-for-existing-users',
-  };
+## Check Quota
 
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+Check remaining gas quota for a registered UP. Requires a signed timestamp for authentication.
 
-    const result = await response.json();
-    console.log('Universal Profile registered:', result);
-  } catch (error) {
-    console.error('Error registering Universal Profile:', error.message);
-  }
-}
+```javascript
+const timestamp = Math.floor(Date.now() / 1000);
+const message = `${upAddress}:${timestamp}`;
+const signature = await wallet.signMessage(message);
 
-registerUniversalProfile();
+const response = await fetch(
+  'https://relayer.mainnet.lukso.network/api/quota',
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      address: upAddress,
+      timestamp,
+      signature,
+    }),
+  },
+);
+const quota = await response.json();
+console.log('Remaining quota:', quota);
 ```
 
 ## Integration Guide
 
-1. Obtain API credentials by filling out the [access request form](https://forms.gle/rhWA25m3jjuPNPva9).
-2. Use the provided API key in the `Authorization` header for all requests.
-3. Implement error handling for various HTTP status codes (400, 401, 403, 404, 429, 500).
+1. **Request access** — Fill out the [access request form](https://forms.gle/rhWA25m3jjuPNPva9)
+2. **Use your API key** — Include in the `Authorization: Bearer <key>` header
+3. **Handle errors** — Implement handling for 400, 401, 403, 404, 429, 500 status codes
 
-## API Documentation
+## Support
 
-- Testnet: [https://relayer-api.testnet.lukso.network/](https://relayer-api.testnet.lukso.network/docs#/)
-- Mainnet: [https://relayer-api.mainnet.lukso.network/](https://relayer-api.mainnet.lukso.network/docs#/)
-
-## Support and Resources
-
-- For technical issues or questions, contact our support team at [support@lukso.network](mailto:support@lukso.network).
-- Join our [Discord community](https://discord.com/invite/lukso) for discussions and updates.
-- Explore the [LUKSO documentation](https://docs.lukso.tech/) for more information on building with Universal Profiles.
+- **Email**: [support@lukso.network](mailto:support@lukso.network)
+- **Discord**: [discord.com/invite/lukso](https://discord.com/invite/lukso)
+- **Documentation**: [docs.lukso.tech](https://docs.lukso.tech/)
