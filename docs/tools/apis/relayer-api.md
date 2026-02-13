@@ -11,35 +11,43 @@ This feature is currently in private beta. If you are interested, please [contac
 
 :::
 
-The LUKSO Relayer API enables gasless transactions and Universal Profile deployment on LUKSO. Registered Universal Profiles receive a **free monthly gas quota of 20 million gas**.
+The LUKSO Relayer services enable gasless transactions and Universal Profile deployment. Registered Universal Profiles receive a **free monthly gas quota of 20 million gas**.
 
 ## API Endpoints
 
-|                         | Mainnet                                                      | Testnet                                                      |
-| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **Base URL**            | `https://relayer.mainnet.lukso.network/api`                  | `https://relayer.testnet.lukso.network/api`                  |
-| **Execute Transaction** | `POST .../api/execute`                                       | `POST .../api/execute`                                       |
-| **Deploy UP**           | `POST .../api/universal-profile`                             | `POST .../api/universal-profile`                             |
-| **Register UP**         | `POST .../api/users`                                         | `POST .../api/users`                                         |
-| **Check Quota**         | `POST .../api/quota`                                         | `POST .../api/quota`                                         |
-| **API Docs (Swagger)**  | [Mainnet Docs](https://relayer.mainnet.lukso.network/docs#/) | [Testnet Docs](https://relayer.testnet.lukso.network/docs#/) |
+There are two separate services:
 
-:::note Legacy URLs
+### Relayer API (Deploy & Register)
 
-The legacy URLs `https://relayer-api.mainnet.lukso.network` and `https://relayer-api.testnet.lukso.network` still work but the `relayer.{network}.lukso.network` format is preferred.
+Requires an API key (`Authorization: Bearer <key>`).
 
-:::
+|                 | Mainnet                                                     | Testnet                                                     |
+| --------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| **Base URL**    | `https://relayer-api.mainnet.lukso.network`                 | `https://relayer-api.testnet.lukso.network`                 |
+| **Deploy UP**   | `POST /api/universal-profile`                               | `POST /api/universal-profile`                               |
+| **Register UP** | `POST /api/users`                                           | `POST /api/users`                                           |
+| **API Docs**    | [Mainnet](https://relayer-api.mainnet.lukso.network/docs#/) | [Testnet](https://relayer-api.testnet.lukso.network/docs#/) |
+
+### Transaction Relay Service (Execute Transactions)
+
+No API key required — uses LSP25 signatures for authorization.
+
+|                         | Mainnet                                 | Testnet                                 |
+| ----------------------- | --------------------------------------- | --------------------------------------- |
+| **Base URL**            | `https://relayer.mainnet.lukso.network` | `https://relayer.testnet.lukso.network` |
+| **Execute Transaction** | `POST /api/execute`                     | `POST /api/execute`                     |
+| **Check Quota**         | `POST /api/quota`                       | `POST /api/quota`                       |
 
 ## Execute Transactions (Gasless)
 
-Execute transactions through the relayer using [LSP25 relay calls](../../standards/access-control/lsp6-key-manager.md). The relayer pays for gas and the controller signs authorization.
+Execute transactions through the relay service using [LSP25 relay calls](../../standards/access-control/lsp6-key-manager.md). The relayer pays for gas; the controller signs authorization via LSP25.
 
 ### How It Works
 
 1. **Encode the payload** — what you want the UP to do (e.g., `execute()`, `setData()`, `setDataBatch()`)
 2. **Get the nonce** from the Key Manager
 3. **Sign the message** using LSP25 format (EIP-191 v0)
-4. **Send to the relayer's** `/execute` endpoint
+4. **Send to the relay service's** `/api/execute` endpoint
 
 ### Request Body
 
@@ -121,7 +129,7 @@ const signingKey = new ethers.SigningKey(controllerPrivateKey);
 const sig = signingKey.sign(hash);
 const signature = ethers.Signature.from(sig).serialized;
 
-// 5. Send to relayer
+// 5. Send to relay service (no API key needed)
 const response = await fetch(
   'https://relayer.mainnet.lukso.network/api/execute',
   {
@@ -153,7 +161,7 @@ The controller signing the relay call must have the **`EXECUTE_RELAY_CALL`** per
 
 ## Deploy Universal Profiles
 
-Deploy Universal Profiles using two methods:
+Deploy Universal Profiles using the Relayer API. Requires an API key.
 
 ### Option 1: Controller Address + LSP3 Profile
 
@@ -174,7 +182,7 @@ sequenceDiagram
 
 ```javascript
 const response = await fetch(
-  'https://relayer.mainnet.lukso.network/api/universal-profile',
+  'https://relayer-api.mainnet.lukso.network/api/universal-profile',
   {
     method: 'POST',
     headers: {
@@ -216,7 +224,7 @@ const salt = ethers.hexlify(ethers.randomBytes(32));
 const postDeploymentCallData = '0x...'; // See LSP23 deployment guide
 
 const response = await fetch(
-  'https://relayer.mainnet.lukso.network/api/universal-profile',
+  'https://relayer-api.mainnet.lukso.network/api/universal-profile',
   {
     method: 'POST',
     headers: {
@@ -234,11 +242,11 @@ See [Deploy UP with LSP23](/learn/universal-profile/advanced-guides/deploy-up-wi
 
 ## Register Universal Profiles
 
-Register existing Universal Profiles to enable the monthly gas quota.
+Register existing Universal Profiles with the Relayer API to enable the monthly gas quota. Requires an API key.
 
 ```javascript
 const response = await fetch(
-  'https://relayer.mainnet.lukso.network/api/users',
+  'https://relayer-api.mainnet.lukso.network/api/users',
   {
     method: 'POST',
     headers: {
@@ -256,7 +264,7 @@ console.log('Registered:', result);
 
 ## Check Quota
 
-Check remaining gas quota for a registered UP. Requires a signed timestamp for authentication.
+Check remaining gas quota for a registered UP using the relay service. Requires a signed timestamp for authentication (no API key).
 
 ```javascript
 const timestamp = Math.floor(Date.now() / 1000);
@@ -281,9 +289,10 @@ console.log('Remaining quota:', quota);
 
 ## Integration Guide
 
-1. **Request access** — Fill out the [access request form](https://forms.gle/rhWA25m3jjuPNPva9)
-2. **Use your API key** — Include in the `Authorization: Bearer <key>` header
-3. **Handle errors** — Implement handling for 400, 401, 403, 404, 429, 500 status codes
+1. **Request access** — Fill out the [access request form](https://forms.gle/rhWA25m3jjuPNPva9) to get an API key
+2. **Deploy or register UPs** — Use the Relayer API (`relayer-api.{network}.lukso.network`) with your API key
+3. **Execute gasless transactions** — Use the Transaction Relay Service (`relayer.{network}.lukso.network`) with LSP25 signatures
+4. **Handle errors** — Implement handling for 400, 401, 403, 404, 429, 500 status codes
 
 ## Support
 
