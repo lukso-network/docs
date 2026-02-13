@@ -1,7 +1,7 @@
 ---
-title: 🆙 RPC API
+title: 🆙 Additional RPC APIs
 description: LUKSO's RPC API supported methods.
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # 🆙 RPC API
