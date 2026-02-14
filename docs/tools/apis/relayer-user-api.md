@@ -111,7 +111,12 @@ sequenceDiagram
 ```
 
 ```javascript
-import { keccak256, encodeAbiParameters, getCreate2Address, randomBytes } from 'viem';
+import {
+  keccak256,
+  encodeAbiParameters,
+  getCreate2Address,
+  randomBytes,
+} from 'viem';
 import { ERC725 } from '@erc725/erc725.js';
 import LSP3ProfileMetadataSchemas from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
@@ -140,14 +145,18 @@ const dataValues = encodedData.values;
 // 3. Encode post-deployment calldata (ERC725Y data to set on the UP)
 const postDeploymentCalldata = encodeAbiParameters(
   [{ type: 'bytes32[]' }, { type: 'bytes[]' }],
-  [dataKeys, dataValues]
+  [dataKeys, dataValues],
 );
 
 // 4. (Optional) Calculate the deterministic UP address
-const linkedContractsFactoryAddress = '0x2300000A84D25dF63081feAa37ba6b62C4c89a30';
-const primaryImplementationContractAddress = '0x3024D38EA2434BA6635003Dc1BDC0daB5882ED4F'; // UP implementation
-const secondaryImplementationContractAddress = '0x2Fe3AeD98684E7351aD2D408A43cE09a738BF8a4'; // KM implementation
-const upPostDeploymentModuleAddress = '0x000000000066093407b6704B89793beFfD0D8F00';
+const linkedContractsFactoryAddress =
+  '0x2300000A84D25dF63081feAa37ba6b62C4c89a30';
+const primaryImplementationContractAddress =
+  '0x3024D38EA2434BA6635003Dc1BDC0daB5882ED4F'; // UP implementation
+const secondaryImplementationContractAddress =
+  '0x2Fe3AeD98684E7351aD2D408A43cE09a738BF8a4'; // KM implementation
+const upPostDeploymentModuleAddress =
+  '0x000000000066093407b6704B89793beFfD0D8F00';
 
 const secondaryContractInitializationCalldata = '0xc4d66de8'; // initialize() selector
 const secondaryContractAddControlledContractAddress = true;
@@ -172,15 +181,15 @@ const generatedSalt = keccak256(
       secondaryContractExtraInitializationParams,
       upPostDeploymentModuleAddress,
       postDeploymentCalldata,
-    ]
-  )
+    ],
+  ),
 );
 
 const upAddress = getCreate2Address({
   from: linkedContractsFactoryAddress,
   salt: generatedSalt,
   bytecodeHash: keccak256(
-    `0x3d602d80600a3d3981f3363d3d373d3d3d363d73${primaryImplementationContractAddress.slice(2)}5af43d82803e903d91602b57fd5bf3`
+    `0x3d602d80600a3d3981f3363d3d373d3d3d363d73${primaryImplementationContractAddress.slice(2)}5af43d82803e903d91602b57fd5bf3`,
   ),
 });
 
@@ -195,12 +204,18 @@ const response = await fetch(
       Authorization: 'Bearer YOUR_API_KEY',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ salt, postDeploymentCallData: postDeploymentCalldata }),
+    body: JSON.stringify({
+      salt,
+      postDeploymentCallData: postDeploymentCalldata,
+    }),
   },
 );
 const result = await response.json();
 console.log('Deployed UP Address:', result.universalProfileAddress);
-console.log('Matches prediction:', result.universalProfileAddress === upAddress);
+console.log(
+  'Matches prediction:',
+  result.universalProfileAddress === upAddress,
+);
 ```
 
 See [Deploy UP with LSP23](/learn/universal-profile/advanced-guides/deploy-up-with-lsp23#create-the-universal-profile-initialization-calldata) for more details on LSP23 deployments.
