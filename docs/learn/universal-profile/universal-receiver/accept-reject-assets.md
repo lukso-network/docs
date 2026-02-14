@@ -126,7 +126,7 @@ Make sure you have the following dependencies installed before beginning this tu
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```shell title="Install the dependencies"
 npm install ethers @lukso/lsp-smart-contracts
@@ -134,7 +134,7 @@ npm install ethers @lukso/lsp-smart-contracts
 
   </TabItem>
   
-  <TabItem value="web3" label="web3">
+  <TabItem value="web3" label="web3" attributes={{ className: "tab_viem" }}>
 
 ```shell title="Install the dependencies"
 npm install web3 @lukso/lsp-smart-contracts
@@ -153,7 +153,7 @@ First we need to create an instance of the [`UniversalProfile`](/contracts/contr
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Create instance of Universal Profile"
 import { ethers } from 'ethers';
@@ -200,7 +200,7 @@ Finally, we need to send the transaction that will update the URD of the Univers
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Update the Universal Profile's URD"
 import { ERC725YDataKeys } from '@lukso/lsp-smart-contracts';
@@ -245,7 +245,7 @@ await universalProfile.methods
 
 <Tabs>
 
-  <TabItem value="ethers" label="ethers">
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```typescript title="Update the Universal Profile URD"
 import { ethers } from 'ethers';
