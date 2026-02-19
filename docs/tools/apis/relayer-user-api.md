@@ -7,7 +7,7 @@ sidebar_position: 4
 
 :::info 🔓 Private Beta access
 
-This feature is currently in private beta. If you are interested, please [contact us](https://forms.gle/rhWA25m3jjuPNPva9).
+This feature is currently in private beta. If you are interested, please [contact us](https://forms.gle/U4JxTgieVUVo72aKA).
 
 :::
 
