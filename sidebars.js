@@ -15,6 +15,7 @@ module.exports = {
     'standards/introduction',
     'standards/erc725',
     'standards/standard-types',
+    'standards/event-reference',
     { type: 'html', value: '<hr/>', defaultStyle: false }, // -----
     {
       type: 'category',
