@@ -668,57 +668,57 @@ Emitted when an address unfollows another address. Neither parameter is indexed.
 
 The following LSP standards define data schemas, metadata formats, or API specifications and do **not** define any Solidity events:
 
-| Standard | Name | Why No Events |
-| :--- | :--- | :--- |
-| [**LSP2**](./metadata/lsp2-json-schema.md) | ERC725Y JSON Schema | Data encoding standard for key-value stores — no contract logic |
-| [**LSP3**](./metadata/lsp3-profile-metadata.md) | Profile Metadata | Metadata schema for Universal Profiles — stored via `DataChanged` events from [LSP0](#lsp0--erc725account) |
-| [**LSP4**](./tokens/LSP4-Digital-Asset-Metadata.md) | Digital Asset Metadata | Metadata schema for tokens/NFTs — stored via `DataChanged` events from [LSP7](#lsp7--digital-asset-fungible-token)/[LSP8](#lsp8--identifiable-digital-asset-non-fungible-token) |
-| [**LSP5**](./metadata/lsp5-received-assets.md) | Received Assets | Data key schema for tracking received assets — managed by [LSP1](./accounts/lsp1-universal-receiver-delegate.md) delegate |
-| [**LSP10**](./metadata/lsp10-received-vaults.md) | Received Vaults | Data key schema for tracking received vaults — managed by [LSP1](./accounts/lsp1-universal-receiver-delegate.md) delegate |
-| [**LSP12**](./metadata/lsp12-issued-assets.md) | Issued Assets | Data key schema for tracking issued assets — no contract logic |
-| [**LSP15**](./accounts/lsp15-transaction-relayer-api.md) | Transaction Relay Service API | HTTP API specification for relay services — no on-chain events |
-| [**LSP17**](./accounts/lsp17-contract-extension.md) | Contract Extension | Fallback extension mechanism — extensions emit their own events |
-| **LSP18** | Royalties | Royalty standard — no events defined in current spec |
-| [**LSP20**](./accounts/lsp20-call-verification.md) | Call Verification | Verification hook standard — no events defined |
-| [**LSP25**](./accounts/lsp25-execute-relay-call.md) | Execute Relay Call | Meta-transaction standard — uses [LSP6](#lsp6--keymanager) `PermissionsVerified` event |
-| **LSP28** | The Grid | Layout/presentation metadata — stored via `DataChanged` events |
+| Standard                                                 | Name                          | Why No Events                                                                                                                                                                   |
+| :------------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [**LSP2**](./metadata/lsp2-json-schema.md)               | ERC725Y JSON Schema           | Data encoding standard for key-value stores — no contract logic                                                                                                                 |
+| [**LSP3**](./metadata/lsp3-profile-metadata.md)          | Profile Metadata              | Metadata schema for Universal Profiles — stored via `DataChanged` events from [LSP0](#lsp0--erc725account)                                                                      |
+| [**LSP4**](./tokens/LSP4-Digital-Asset-Metadata.md)      | Digital Asset Metadata        | Metadata schema for tokens/NFTs — stored via `DataChanged` events from [LSP7](#lsp7--digital-asset-fungible-token)/[LSP8](#lsp8--identifiable-digital-asset-non-fungible-token) |
+| [**LSP5**](./metadata/lsp5-received-assets.md)           | Received Assets               | Data key schema for tracking received assets — managed by [LSP1](./accounts/lsp1-universal-receiver-delegate.md) delegate                                                       |
+| [**LSP10**](./metadata/lsp10-received-vaults.md)         | Received Vaults               | Data key schema for tracking received vaults — managed by [LSP1](./accounts/lsp1-universal-receiver-delegate.md) delegate                                                       |
+| [**LSP12**](./metadata/lsp12-issued-assets.md)           | Issued Assets                 | Data key schema for tracking issued assets — no contract logic                                                                                                                  |
+| [**LSP15**](./accounts/lsp15-transaction-relayer-api.md) | Transaction Relay Service API | HTTP API specification for relay services — no on-chain events                                                                                                                  |
+| [**LSP17**](./accounts/lsp17-contract-extension.md)      | Contract Extension            | Fallback extension mechanism — extensions emit their own events                                                                                                                 |
+| **LSP18**                                                | Royalties                     | Royalty standard — no events defined in current spec                                                                                                                            |
+| [**LSP20**](./accounts/lsp20-call-verification.md)       | Call Verification             | Verification hook standard — no events defined                                                                                                                                  |
+| [**LSP25**](./accounts/lsp25-execute-relay-call.md)      | Execute Relay Call            | Meta-transaction standard — uses [LSP6](#lsp6--keymanager) `PermissionsVerified` event                                                                                          |
+| **LSP28**                                                | The Grid                      | Layout/presentation metadata — stored via `DataChanged` events                                                                                                                  |
 
 ---
 
 ## Quick Reference — All Event Topic0 Hashes
 
-| Topic0 | Event | Standards |
-| :--- | :--- | :--- |
-| `0x4810874456b8e6487bd861375cf6abd8e1c8bb5858c8ce36a86a04dabfac199e` | `Executed` | LSP0, LSP9 |
-| `0xa1fb700aaee2ae4a2ff6f91ce7eba292f89c2f5488b8ec4c5c5c8150692595c3` | `ContractCreated` (with salt) | LSP0 |
-| `0x01c42bd7e97a66166063b02fce6924e6656b6c2c61966630165095c4fb0b7b2f` | `ContractCreated` (no salt) | LSP9 |
-| `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2` | `DataChanged` | LSP0, LSP7, LSP8, LSP9 |
-| `0x9c3ba68eb5742b8e3961aea0afc7371a71bf433c8a67a831803b64c064a178c2` | `UniversalReceiver` | LSP0, LSP1, LSP9 |
-| `0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700` | `OwnershipTransferStarted` | LSP0, LSP9, LSP14 |
-| `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0` | `OwnershipTransferred` | LSP0, LSP7, LSP8, LSP9, LSP14 |
-| `0x56272768d104766ae5e663c58927d0a9e47effb40b9a8f6644ac5dfbc9e56f84` | `RenounceOwnershipInitiated` | LSP0, LSP9 |
-| `0x81b7f830f1f0084db6497c486cbe6974c86488dcc4e3738eab94ab6d6b1653e7` | `RenounceOwnershipStarted` | LSP14 |
-| `0xd1f66c3d2bc1993a86be5e3d33709d98f0442381befcedd29f578b9b2506b1ce` | `OwnershipRenounced` | LSP0, LSP9, LSP14 |
-| `0xc0a62328f6bf5e3172bb1fcb2019f54b2c523b6a48e3513a2298fbf0150b781e` | `PermissionsVerified` | LSP6 |
-| `0x3997e418d2cef0b3b0e907b1e39605c3f7d32dbd061e82ea5b4a770d46a160a6` | `Transfer` (LSP7) | LSP7 |
-| `0xf772a43bfdf4729b196e3fb54a818b91a2ca6c49d10b2e16278752f9f515c25d` | `OperatorAuthorizationChanged` (LSP7) | LSP7 |
-| `0x0ebf5762d8855cbe012d2ca42fb33a81175e17c8a8751f8859931ba453bd4167` | `OperatorRevoked` (LSP7) | LSP7 |
-| `0xb333c813a7426a7a11e2b190cad52c44119421594b47f6f32ace6d8c7207b2bf` | `Transfer` (LSP8) | LSP8 |
-| `0x1b1b58aa2ec0cec2228b2d37124556d41f5a1f7b12f089171f896cc236671215` | `OperatorAuthorizationChanged` (LSP8) | LSP8 |
-| `0xc78cd419d6136f9f1c1c6aec1d3fae098cffaf8bc86314a8f2685e32fe574e3c` | `OperatorRevoked` (LSP8) | LSP8 |
-| `0xa6e4251f855f750545fe414f120db91c76b88def14d120969e5bb2d3f05debbb` | `TokenIdDataChanged` | LSP8 |
-| `0x7e71433ddf847725166244795048ecf3e3f9f35628254ecbf736056664233493` | `ValueReceived` | LSP9 |
-| `0x038596bb31e2e7d3d9f184d4c98b310103f6d7f5830e5eec32bffe6f1728f969` | `GuardianAdded` | LSP11 |
-| `0xb8107d0c6b40be480ce3172ee66ba6d64b71f6b1685a851340036e6e2e3e3c52` | `GuardianRemoved` | LSP11 |
-| `0x7146d20a2c7b7c75c203774c9f241b61698fac43a4a81ccd828f0d8162392790` | `GuardiansThresholdChanged` | LSP11 |
-| `0x2e8c5419a62207ade549fe0b66c1c85c16f5e1ed654815dee3a3f3ac41770df3` | `SecretHashChanged` | LSP11 |
-| `0xe43f3c1093c69ab76b2cf6246090acb2f8eab7f19ba9942dfc8b8ec446e3a3de` | `SelectedNewController` | LSP11 |
-| `0xf4ff8803d6b43af46d48c200977209829c2f42f19f27eda1c89dbf26a28009cd` | `RecoveryProcessSuccessful` | LSP11 |
-| `0x8872a323d65599f01bf90dc61c94b4e0cc8e2347d6af4122fccc3e112ee34a84` | `ContractCreated` (factory) | LSP16 |
-| `0x0e20ea3d6273aab49a7dabafc15cc94971c12dd63a07185ca810e497e4e87aa6` | `DeployedContracts` | LSP23 |
-| `0xe20570ed9bda3b93eea277b4e5d975c8933fd5f85f2c824d0845ae96c55a54fe` | `DeployedERC1167Proxies` | LSP23 |
-| `0xbccc71dc7842b86291138666aa18e133ee6d41aa71e6d7c650debad1a0576635` | `Follow` | LSP26 |
-| `0x083700fd0d85112c9d8c5823585c7542e8fadb693c9902e5bc590ab367f7a15e` | `Unfollow` | LSP26 |
+| Topic0                                                               | Event                                 | Standards                     |
+| :------------------------------------------------------------------- | :------------------------------------ | :---------------------------- |
+| `0x4810874456b8e6487bd861375cf6abd8e1c8bb5858c8ce36a86a04dabfac199e` | `Executed`                            | LSP0, LSP9                    |
+| `0xa1fb700aaee2ae4a2ff6f91ce7eba292f89c2f5488b8ec4c5c5c8150692595c3` | `ContractCreated` (with salt)         | LSP0                          |
+| `0x01c42bd7e97a66166063b02fce6924e6656b6c2c61966630165095c4fb0b7b2f` | `ContractCreated` (no salt)           | LSP9                          |
+| `0xece574603820d07bc9b91f2a932baadf4628aabcb8afba49776529c14a6104b2` | `DataChanged`                         | LSP0, LSP7, LSP8, LSP9        |
+| `0x9c3ba68eb5742b8e3961aea0afc7371a71bf433c8a67a831803b64c064a178c2` | `UniversalReceiver`                   | LSP0, LSP1, LSP9              |
+| `0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700` | `OwnershipTransferStarted`            | LSP0, LSP9, LSP14             |
+| `0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0` | `OwnershipTransferred`                | LSP0, LSP7, LSP8, LSP9, LSP14 |
+| `0x56272768d104766ae5e663c58927d0a9e47effb40b9a8f6644ac5dfbc9e56f84` | `RenounceOwnershipInitiated`          | LSP0, LSP9                    |
+| `0x81b7f830f1f0084db6497c486cbe6974c86488dcc4e3738eab94ab6d6b1653e7` | `RenounceOwnershipStarted`            | LSP14                         |
+| `0xd1f66c3d2bc1993a86be5e3d33709d98f0442381befcedd29f578b9b2506b1ce` | `OwnershipRenounced`                  | LSP0, LSP9, LSP14             |
+| `0xc0a62328f6bf5e3172bb1fcb2019f54b2c523b6a48e3513a2298fbf0150b781e` | `PermissionsVerified`                 | LSP6                          |
+| `0x3997e418d2cef0b3b0e907b1e39605c3f7d32dbd061e82ea5b4a770d46a160a6` | `Transfer` (LSP7)                     | LSP7                          |
+| `0xf772a43bfdf4729b196e3fb54a818b91a2ca6c49d10b2e16278752f9f515c25d` | `OperatorAuthorizationChanged` (LSP7) | LSP7                          |
+| `0x0ebf5762d8855cbe012d2ca42fb33a81175e17c8a8751f8859931ba453bd4167` | `OperatorRevoked` (LSP7)              | LSP7                          |
+| `0xb333c813a7426a7a11e2b190cad52c44119421594b47f6f32ace6d8c7207b2bf` | `Transfer` (LSP8)                     | LSP8                          |
+| `0x1b1b58aa2ec0cec2228b2d37124556d41f5a1f7b12f089171f896cc236671215` | `OperatorAuthorizationChanged` (LSP8) | LSP8                          |
+| `0xc78cd419d6136f9f1c1c6aec1d3fae098cffaf8bc86314a8f2685e32fe574e3c` | `OperatorRevoked` (LSP8)              | LSP8                          |
+| `0xa6e4251f855f750545fe414f120db91c76b88def14d120969e5bb2d3f05debbb` | `TokenIdDataChanged`                  | LSP8                          |
+| `0x7e71433ddf847725166244795048ecf3e3f9f35628254ecbf736056664233493` | `ValueReceived`                       | LSP9                          |
+| `0x038596bb31e2e7d3d9f184d4c98b310103f6d7f5830e5eec32bffe6f1728f969` | `GuardianAdded`                       | LSP11                         |
+| `0xb8107d0c6b40be480ce3172ee66ba6d64b71f6b1685a851340036e6e2e3e3c52` | `GuardianRemoved`                     | LSP11                         |
+| `0x7146d20a2c7b7c75c203774c9f241b61698fac43a4a81ccd828f0d8162392790` | `GuardiansThresholdChanged`           | LSP11                         |
+| `0x2e8c5419a62207ade549fe0b66c1c85c16f5e1ed654815dee3a3f3ac41770df3` | `SecretHashChanged`                   | LSP11                         |
+| `0xe43f3c1093c69ab76b2cf6246090acb2f8eab7f19ba9942dfc8b8ec446e3a3de` | `SelectedNewController`               | LSP11                         |
+| `0xf4ff8803d6b43af46d48c200977209829c2f42f19f27eda1c89dbf26a28009cd` | `RecoveryProcessSuccessful`           | LSP11                         |
+| `0x8872a323d65599f01bf90dc61c94b4e0cc8e2347d6af4122fccc3e112ee34a84` | `ContractCreated` (factory)           | LSP16                         |
+| `0x0e20ea3d6273aab49a7dabafc15cc94971c12dd63a07185ca810e497e4e87aa6` | `DeployedContracts`                   | LSP23                         |
+| `0xe20570ed9bda3b93eea277b4e5d975c8933fd5f85f2c824d0845ae96c55a54fe` | `DeployedERC1167Proxies`              | LSP23                         |
+| `0xbccc71dc7842b86291138666aa18e133ee6d41aa71e6d7c650debad1a0576635` | `Follow`                              | LSP26                         |
+| `0x083700fd0d85112c9d8c5823585c7542e8fadb693c9902e5bc590ab367f7a15e` | `Unfollow`                            | LSP26                         |
 
 ---
 
@@ -726,15 +726,15 @@ The following LSP standards define data schemas, metadata formats, or API specif
 
 These are not events themselves, but the `typeId` values used in [`UniversalReceiver`](#universalreceiver) events to categorize notifications:
 
-| TypeId | Value | Description |
-| :--- | :--- | :--- |
-| `LSP0ValueReceived` | `0x9c4705229491d365fb5434052e12a386d6771d976bea61070a8c694e8affea3d` | Native token (LYX) received by account |
-| `LSP7Tokens_SenderNotification` | `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` | Notifies sender of [LSP7](./tokens/LSP7-Digital-Asset.md) token transfer |
-| `LSP7Tokens_RecipientNotification` | `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` | Notifies recipient of [LSP7](./tokens/LSP7-Digital-Asset.md) token transfer |
-| `LSP8Tokens_SenderNotification` | `0xb23eae7e6d1564b295b4c3e3be402d9a2f0776c57bdf365903496f6fa481ab00` | Notifies sender of [LSP8](./tokens/LSP8-Identifiable-Digital-Asset.md) token transfer |
-| `LSP8Tokens_RecipientNotification` | `0x0b084a55ebf70fd3c06fd755269dac2212c4d3f0f4d09079780bfa50c1b2984d` | Notifies recipient of [LSP8](./tokens/LSP8-Identifiable-Digital-Asset.md) token transfer |
-| `LSP7Tokens_OperatorNotification` | `0x386072cc5a58e61263b434c722725f21031cd06e7c552cfaa06db5de8a320dbc` | Notifies operator of [LSP7](./tokens/LSP7-Digital-Asset.md) authorization change |
-| `LSP8Tokens_OperatorNotification` | `0x8a1c15a8799f71b547e08e2bcb2e85257e81b0a07eee2ce6712549eef1f00970` | Notifies operator of [LSP8](./tokens/LSP8-Identifiable-Digital-Asset.md) authorization change |
-| `LSP9ValueReceived` | `0x468cd1581d7bc001c3b685513d2b929b55437be34700410383d58f3aa1ea0abc` | Native token received by [vault](./accounts/lsp9-vault.md) |
-| `LSP26FollowNotification` | `0x8c6d5eb7e02ce4593cfc9d38d86efc080dc07fa95b82e0f8baaebad315bd2724` | Notifies of new follower ([LSP26](./accounts/lsp26-follower-system.md)) |
-| `LSP26UnfollowNotification` | `0x7a01f86c5b3c32e70e61951aa00e7ece6dcc720c5e591d3b0e514d0de8357df6` | Notifies of unfollower ([LSP26](./accounts/lsp26-follower-system.md)) |
+| TypeId                             | Value                                                                | Description                                                                                   |
+| :--------------------------------- | :------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
+| `LSP0ValueReceived`                | `0x9c4705229491d365fb5434052e12a386d6771d976bea61070a8c694e8affea3d` | Native token (LYX) received by account                                                        |
+| `LSP7Tokens_SenderNotification`    | `0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea` | Notifies sender of [LSP7](./tokens/LSP7-Digital-Asset.md) token transfer                      |
+| `LSP7Tokens_RecipientNotification` | `0x20804611b3e2ea21c480dc465142210acf4a2485947541770ec1fb87dee4a55c` | Notifies recipient of [LSP7](./tokens/LSP7-Digital-Asset.md) token transfer                   |
+| `LSP8Tokens_SenderNotification`    | `0xb23eae7e6d1564b295b4c3e3be402d9a2f0776c57bdf365903496f6fa481ab00` | Notifies sender of [LSP8](./tokens/LSP8-Identifiable-Digital-Asset.md) token transfer         |
+| `LSP8Tokens_RecipientNotification` | `0x0b084a55ebf70fd3c06fd755269dac2212c4d3f0f4d09079780bfa50c1b2984d` | Notifies recipient of [LSP8](./tokens/LSP8-Identifiable-Digital-Asset.md) token transfer      |
+| `LSP7Tokens_OperatorNotification`  | `0x386072cc5a58e61263b434c722725f21031cd06e7c552cfaa06db5de8a320dbc` | Notifies operator of [LSP7](./tokens/LSP7-Digital-Asset.md) authorization change              |
+| `LSP8Tokens_OperatorNotification`  | `0x8a1c15a8799f71b547e08e2bcb2e85257e81b0a07eee2ce6712549eef1f00970` | Notifies operator of [LSP8](./tokens/LSP8-Identifiable-Digital-Asset.md) authorization change |
+| `LSP9ValueReceived`                | `0x468cd1581d7bc001c3b685513d2b929b55437be34700410383d58f3aa1ea0abc` | Native token received by [vault](./accounts/lsp9-vault.md)                                    |
+| `LSP26FollowNotification`          | `0x8c6d5eb7e02ce4593cfc9d38d86efc080dc07fa95b82e0f8baaebad315bd2724` | Notifies of new follower ([LSP26](./accounts/lsp26-follower-system.md))                       |
+| `LSP26UnfollowNotification`        | `0x7a01f86c5b3c32e70e61951aa00e7ece6dcc720c5e591d3b0e514d0de8357df6` | Notifies of unfollower ([LSP26](./accounts/lsp26-follower-system.md))                         |
