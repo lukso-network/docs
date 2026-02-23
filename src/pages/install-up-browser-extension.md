@@ -122,17 +122,6 @@ Experience your Universal Profile on the go with the UP Mobile App. Access your 
   </div>
 
   <div className="col" style={{ marginBottom: '2em' }}>
-    <a href="https://txs.app">
-      <img src="/img/example-dapp-txs-app.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
-    
-      <h3>Txs.App</h3>
-
-      <i>Examine transactions happening in realtime in the LUKSO Network in a more user-friendly way!</i>
-    </a>
-
-  </div>
-
-  <div className="col" style={{ marginBottom: '2em' }}>
     <a href="https://erc725-inspect.lukso.tech/?network=lukso+mainnet">
       <img src="/img/example-dapp-erc725-inspect.png" alt="Overview of the UP Browser Extension" style={{ maxWidth: '300px', maxHeight: '160px' }} />
 
@@ -142,5 +131,4 @@ Experience your Universal Profile on the go with the UP Mobile App. Access your 
     </a>
 
   </div>
-
 </div>
