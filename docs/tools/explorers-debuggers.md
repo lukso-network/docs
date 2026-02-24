@@ -28,13 +28,3 @@ LUKSO Testnet
 ![ERC725-Inspect Tool](/img/tools/erc725-tools.png)
 
 </div>
-
-## Txs.app
-
-[Txs.app](https://txs.app) is a web app that deconstruct transactions on the LUKSO network. It displays interactions between Universal Profiles and smart contracts in plain human readable way, instead of using hex addresses and calldatas.
-
-<div style={{textAlign: 'center'}}>
-
-![Txs.app](/img/example-dapp-txs-app.png)
-
-</div>

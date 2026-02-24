@@ -18,8 +18,8 @@ import UpTurnLogo from '@site/static/img/dapps/upturn-logo-scaled.png';
 import LSP8AppLogo from '@site/static/img/dapps/lsp8app-logo.png';
 import FamilyLyxLogo from '@site/static/img/dapps/family-lyx-logo.png';
 import TxCityLogo from '@site/static/img/dapps/txcity-io-logo.webp';
-import TxsAppLogo from '@site/static/img/dapps/txs-app-logo.png';
 import AirdropLogo from '@site/static/img/dapps/airdrop-logo.png';
+import MomentsLogo from '@site/static/img/dapps/moments-logo.jpg';
 
 export const migrateGuides = [
   {
@@ -282,11 +282,11 @@ export const dappsSlider = [
     link: 'https://airdropper.universaleverything.io/',
   },
   {
-    name: 'Txs.app',
-    description: 'User friendly transaction explorer for LUKSO.',
-    image: TxsAppLogo,
-    backgroundColor: '#fcfcfc',
-    link: 'https://txs.app/',
+    name: 'Forever Moments',
+    description: 'Shared collections of memories, stored onchain forever',
+    image: MomentsLogo,
+    backgroundColor: '#293a54',
+    link: 'https://www.forevermoments.life/',
   },
   // banner 3 ----------------
   // {
