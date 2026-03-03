@@ -45,6 +45,10 @@ See [LUKSO Improvement Proposals - LIPs (GitHub)](https://github.com/lukso-netwo
 
 Developers wishing to understand the logic behind the standards and their tradeoffs within are well-advised to read these documents alongside the Solidity code itself.
 
+## Complete Event Reference
+
+- [Universal Receiver Event Reference](./event-reference.md#lsp1--universalreceiver)
+
 ## Further Resources
 
 - [The New Standard for Blockchain Accounts and NFT 2.0 (YouTube)](https://www.youtube.com/watch?v=7u0WGAS1k_Q)
