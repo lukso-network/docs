@@ -17,8 +17,8 @@ import { createIntlService, setIntlService } from '@lukso/core/services/intl';
 const intl = createIntlService({
   locale: 'de-DE',
   messages: {
-    connect_modal_title: 'Wir melden Sie an',
-    connect_modal_description: 'Melden Sie sich mit Ihrem Universalprofil an.',
+    connect_modal_title: 'Anmelden',
+    connect_modal_description: 'Mit Universal Profile anmelden.',
     // ... other keys
   },
 });
