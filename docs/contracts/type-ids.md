@@ -9,6 +9,7 @@ The **LSP1 Type IDs** listed below are unique identifiers used across the LSP st
 These Type IDs are sent as the `typeId` parameter when calling the `universalReceiver(bytes32 typeId, bytes data)` function on contracts implementing [LSP1](../standards/accounts/lsp1-universal-receiver.md). They allow contracts to identify what type of notification they are receiving and react accordingly.
 
 For instance:
+
 - Notify a sender that LSP7 tokens are being transferred from their balance
 - Notify a recipient about receiving LSP7 tokens
 - Notify a profile that they have a new follower
@@ -22,7 +23,7 @@ npm install @lukso/lsp-smart-contracts
 ```
 
 ```js
-import { LSP1_TYPE_IDS } from "@lukso/lsp-smart-contracts";
+import { LSP1_TYPE_IDS } from '@lukso/lsp-smart-contracts';
 
 // Type ID for receiving native tokens (LYX)
 LSP1_TYPE_IDS.LSP0ValueReceived;
@@ -234,20 +235,20 @@ LSP1_TYPE_IDS.LSP26FollowerSystem_FollowNotification;
 
 ### `LSP26FollowerSystem_FollowNotification`
 
-|                          |                                                                                                                           |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| **Name**                 | `"LSP26FollowerSystem_FollowNotification"`                                                                                |
-| **TypeID**               | `0x71e02f9f05bcd5816ec4f3134aa2e5a916669537ec6c77fe66ea595fabc2d51a`                                                      |
+|                          |                                                                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Name**                 | `"LSP26FollowerSystem_FollowNotification"`                                                                                      |
+| **TypeID**               | `0x71e02f9f05bcd5816ec4f3134aa2e5a916669537ec6c77fe66ea595fabc2d51a`                                                            |
 | **Used in:**             | [`follow(address)`](../standards/social/lsp26-follower-system.md) — notifies the followed address that they have a new follower |
-| **Solidity constant:**   | `_TYPEID_LSP26_FOLLOW`                                                                                                    |
-| **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_FollowNotification`                                                                    |
+| **Solidity constant:**   | `_TYPEID_LSP26_FOLLOW`                                                                                                          |
+| **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_FollowNotification`                                                                          |
 
 ### `LSP26FollowerSystem_UnfollowNotification`
 
-|                          |                                                                                                                                   |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| **Name**                 | `"LSP26FollowerSystem_UnfollowNotification"`                                                                                      |
-| **TypeID**               | `0x9d3c0b4012b69658977b099bdaa51eff0f0460f421fba96d15669506c00d1c4f`                                                              |
+|                          |                                                                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Name**                 | `"LSP26FollowerSystem_UnfollowNotification"`                                                                                    |
+| **TypeID**               | `0x9d3c0b4012b69658977b099bdaa51eff0f0460f421fba96d15669506c00d1c4f`                                                            |
 | **Used in:**             | [`unfollow(address)`](../standards/social/lsp26-follower-system.md) — notifies the unfollowed address that they lost a follower |
-| **Solidity constant:**   | `_TYPEID_LSP26_UNFOLLOW`                                                                                                          |
-| **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_UnfollowNotification`                                                                          |
+| **Solidity constant:**   | `_TYPEID_LSP26_UNFOLLOW`                                                                                                        |
+| **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_UnfollowNotification`                                                                        |
