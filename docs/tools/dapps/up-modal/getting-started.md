@@ -130,9 +130,7 @@ export function ConnectButton() {
   }, []);
 
   return (
-    <button onClick={() => connector?.showSignInModal()}>
-      Connect Wallet
-    </button>
+    <button onClick={() => connector?.showSignInModal()}>Connect Wallet</button>
   );
 }
 ```
@@ -195,11 +193,11 @@ export async function initConnector() {
 
 The modal automatically configures connection methods based on available wallets:
 
-| App                | How                                          |
-| ------------------ | -------------------------------------------- |
-| **UP Mobile**      | WalletConnect (deep link + QR code)          |
-| **UP Extension**   | Browser extension, detected via EIP-6963     |
-| **EOA wallets**    | Other EIP-6963 wallets (MetaMask, Coinbase, etc.) |
+| App              | How                                               |
+| ---------------- | ------------------------------------------------- |
+| **UP Mobile**    | WalletConnect (deep link + QR code)               |
+| **UP Extension** | Browser extension, detected via EIP-6963          |
+| **EOA wallets**  | Other EIP-6963 wallets (MetaMask, Coinbase, etc.) |
 
 ## Resources
 
