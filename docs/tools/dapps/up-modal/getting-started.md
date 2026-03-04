@@ -8,12 +8,27 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started
 
+<a href="https://www.npmjs.com/package/@lukso/up-modal" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm version" src="https://img.shields.io/npm/v/%40lukso%2Fup-modal?style=flat-square&color=2563eb"/></a> <a href="https://www.npmjs.com/package/@lukso/up-modal" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm downloads" src="https://img.shields.io/npm/dm/%40lukso%2Fup-modal?style=flat-square&color=2563eb"/></a>
+
+<br/><br/>
+
 The `@lukso/up-modal` package provides a connect modal for LUKSO Universal Profiles. It offers a responsive connection dialog with support for desktop and mobile, automatically detecting UP Mobile (via WalletConnect), UP Browser Extension (via EIP-6963), and other EOA wallets.
+
+<div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap'}}>
+  <img src="/img/tools/up-modal/modal-light.png" alt="Light theme" width="320" />
+  <img src="/img/tools/up-modal/modal-dark.png" alt="Dark theme" width="320" />
+</div>
 
 ## Installation
 
 ```bash
 npm install @lukso/up-modal
+```
+
+For advanced usage (watching connection state, custom wagmi config), also install the optional peer dependencies:
+
+```bash
+npm install @wagmi/core viem
 ```
 
 ## Minimal Setup
@@ -55,7 +70,34 @@ connector.destroyModal(); // close + remove from DOM
 ## Framework Integrations
 
 <Tabs groupId="framework">
-  <TabItem value="vue" label="Vue / Nuxt">
+  <TabItem value="vue" label="Vue 3">
+
+```html
+<template>
+  <button :disabled="!connector" @click="connector?.showSignInModal()">
+    Connect Wallet
+  </button>
+</template>
+
+<script setup lang="ts">
+import { setupLuksoConnector } from '@lukso/up-modal';
+import type { LuksoConnector } from '@lukso/up-modal';
+import { ref, onMounted } from 'vue';
+
+const connector = ref<LuksoConnector | null>(null);
+
+onMounted(async () => {
+  connector.value = await setupLuksoConnector({
+    theme: 'light',
+    onConnect: (event) => console.log('Connected:', event.detail),
+  });
+});
+</script>
+```
+
+  </TabItem>
+
+  <TabItem value="nuxt" label="Nuxt">
 
 **Plugin** (`plugins/lukso.client.ts`):
 
@@ -79,7 +121,7 @@ export { connector };
 
 **Component**:
 
-```vue
+```html
 <template>
   <button @click="connector?.showSignInModal()">Connect Wallet</button>
 </template>
@@ -89,53 +131,34 @@ import { connector } from '~/plugins/lukso.client';
 </script>
 ```
 
-**Accessing wagmiConfig** (for `@wagmi/vue`):
-
-```typescript
-import { useAccount } from '@wagmi/vue';
-
-// Pass connector.wagmiConfig to your wagmi provider
-const { wagmiConfig } = connector;
-```
-
   </TabItem>
 
   <TabItem value="react" label="React">
 
-**Initialization** (e.g. `src/main.tsx` or a provider):
-
-```typescript
+```tsx
 import { setupLuksoConnector } from '@lukso/up-modal';
 import type { LuksoConnector } from '@lukso/up-modal';
-
-export let connector: LuksoConnector | null = null;
-
-export async function initConnector() {
-  connector = await setupLuksoConnector({
-    theme: 'light',
-    onConnect: (event) => console.log('Connected:', event.detail),
-  });
-}
-```
-
-**Component**:
-
-```tsx
-import { connector, initConnector } from './connector';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function ConnectButton() {
+  const [connector, setConnector] = useState<LuksoConnector | null>(null);
+
   useEffect(() => {
-    initConnector();
+    setupLuksoConnector({
+      theme: 'light',
+      onConnect: (event) => console.log('Connected:', event.detail),
+    }).then(setConnector);
   }, []);
 
   return (
-    <button onClick={() => connector?.showSignInModal()}>Connect Wallet</button>
+    <button disabled={!connector} onClick={() => connector?.showSignInModal()}>
+      Connect Wallet
+    </button>
   );
 }
 ```
 
-**Watching connection state** (with wagmiConfig):
+**Watching connection state** (requires `@wagmi/core`):
 
 ```typescript
 import { watchConnection } from '@wagmi/core';
@@ -156,16 +179,16 @@ const stopWatching = watchConnection(connector.wagmiConfig, {
 ```typescript
 import { setupLuksoConnector } from '@lukso/up-modal';
 import type { LuksoConnector } from '@lukso/up-modal';
-import { writable } from 'svelte/store';
 
-export const connectorStore = writable<LuksoConnector | null>(null);
+export const connector: { current: LuksoConnector | null } = $state({
+  current: null,
+});
 
 export async function initConnector() {
-  const connector = await setupLuksoConnector({
+  connector.current = await setupLuksoConnector({
     theme: 'light',
     onConnect: (e) => console.log('Connected:', e.detail),
   });
-  connectorStore.set(connector);
 }
 ```
 
@@ -173,15 +196,14 @@ export async function initConnector() {
 
 ```svelte
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { connectorStore, initConnector } from '$lib/connector';
+  import { connector, initConnector } from '$lib/connector.svelte';
 
-  onMount(() => {
+  $effect(() => {
     initConnector();
   });
 </script>
 
-<button on:click={() => $connectorStore?.showSignInModal()}>
+<button onclick={() => connector.current?.showSignInModal()}>
   Connect Wallet
 </button>
 ```

@@ -20,11 +20,12 @@ Returns `Promise<LuksoConnector>`. Call once at app initialization.
 | `walletConnect.enabled`   | `boolean`                     | `true`        | Enable WalletConnect                    |
 | `walletConnect.projectId` | `string`                      | LUKSO default | WalletConnect project ID                |
 | `chains.defaultChainId`   | `number`                      | `42`          | Default chain (LUKSO mainnet)           |
-| `chains.enableTestnet`    | `boolean`                     | `true`        | Also enable LUKSO testnet (4201)        |
+| `chains.enableTestnet`    | `boolean`                     | `false`       | Also enable LUKSO testnet (4201)        |
 | `storage.key`             | `string`                      | `'up-wagmi'`  | localStorage key prefix for wagmi state |
-| `wagmiConfig`             | `Config`                      | auto-created  | Pass your own wagmi config              |
+| `wagmiConfig`             | `Config` (from `@wagmi/core`) | auto-created  | Pass your own wagmi config              |
 
-### `LuksoConnector` Methods
+
+## `LuksoConnector` Methods
 
 | Method              | Description                                                                          |
 | ------------------- | ------------------------------------------------------------------------------------ |

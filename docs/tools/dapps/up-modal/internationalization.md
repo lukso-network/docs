@@ -7,6 +7,12 @@ title: 'Internationalization'
 
 The modal ships with English (`en_US`) translations by default. You can customize any text string or add support for other languages.
 
+To customize translations, install `@lukso/core`:
+
+```bash
+npm install @lukso/core
+```
+
 ## Changing the Locale
 
 The modal uses the global `IntlService` from `@lukso/core`. If your app already sets up an intl service, the modal will use it automatically. Otherwise it creates a local English instance.
@@ -50,6 +56,7 @@ setIntlService(intl);
 
 ```typescript
 import { getIntlService } from '@lukso/core/services/intl';
+import germanMessages from '@lukso/core/translations/de_DE.json';
 
 const intl = getIntlService();
 intl?.setLocale('de-DE', germanMessages);
