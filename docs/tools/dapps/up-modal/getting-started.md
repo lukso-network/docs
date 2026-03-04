@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 <br/><br/>
 
-The `@lukso/up-modal` package provides a connect modal for LUKSO Universal Profiles. It offers a responsive connection dialog with support for desktop and mobile, automatically detecting UP Mobile (via WalletConnect), UP Browser Extension (via EIP-6963), and other EOA wallets.
+The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package provides a connect modal for LUKSO Universal Profiles. It offers a responsive connection dialog with support for desktop and mobile, automatically detecting UP Mobile (via WalletConnect), UP Browser Extension (via EIP-6963), and other EOA wallets.
 
 <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap'}}>
   <img src="/img/tools/up-modal/modal-light.png" alt="Light theme" width="320" />
