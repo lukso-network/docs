@@ -80,18 +80,18 @@ connector.destroyModal(); // close + remove from DOM
 </template>
 
 <script setup lang="ts">
-import { setupLuksoConnector } from '@lukso/up-modal';
-import type { LuksoConnector } from '@lukso/up-modal';
-import { ref, onMounted } from 'vue';
+  import { setupLuksoConnector } from '@lukso/up-modal';
+  import type { LuksoConnector } from '@lukso/up-modal';
+  import { ref, onMounted } from 'vue';
 
-const connector = ref<LuksoConnector | null>(null);
+  const connector = ref<LuksoConnector | null>(null);
 
-onMounted(async () => {
-  connector.value = await setupLuksoConnector({
-    theme: 'light',
-    onConnect: (event) => console.log('Connected:', event.detail),
+  onMounted(async () => {
+    connector.value = await setupLuksoConnector({
+      theme: 'light',
+      onConnect: (event) => console.log('Connected:', event.detail),
+    });
   });
-});
 </script>
 ```
 
@@ -127,7 +127,7 @@ export { connector };
 </template>
 
 <script setup lang="ts">
-import { connector } from '~/plugins/lukso.client';
+  import { connector } from '~/plugins/lukso.client';
 </script>
 ```
 

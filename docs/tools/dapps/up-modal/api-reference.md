@@ -24,7 +24,6 @@ Returns `Promise<LuksoConnector>`. Call once at app initialization.
 | `storage.key`             | `string`                      | `'up-wagmi'`  | localStorage key prefix for wagmi state |
 | `wagmiConfig`             | `Config` (from `@wagmi/core`) | auto-created  | Pass your own wagmi config              |
 
-
 ## `LuksoConnector` Methods
 
 | Method              | Description                                                                          |
