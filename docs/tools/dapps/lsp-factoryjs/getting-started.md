@@ -14,12 +14,12 @@ All contracts (LSP23 factory, base implementations) are deployed at the same det
 
 **LSP23 Factory Address:** `0x2300000A84D25dF63081feAa37ba6b62C4c89a30`
 
-| Network            | Chain ID |
-| ------------------ | -------- |
-| LUKSO Mainnet      | 42       |
-| LUKSO Testnet      | 4201     |
-| Ethereum Mainnet   | 1        |
-| BASE               | 8453     |
+| Network          | Chain ID |
+| ---------------- | -------- |
+| LUKSO Mainnet    | 42       |
+| LUKSO Testnet    | 4201     |
+| Ethereum Mainnet | 1        |
+| BASE             | 8453     |
 
 ## Installation
 
@@ -92,7 +92,8 @@ const contracts = await factory.UniversalProfile.deploy({
     '0xFullPermissionsAddress', // Gets ALL_PERMISSIONS by default
     {
       address: '0xLimitedAddress',
-      permissions: '0x0000000000000000000000000000000000000000000000000000000000000010',
+      permissions:
+        '0x0000000000000000000000000000000000000000000000000000000000000010',
     },
   ],
 });
