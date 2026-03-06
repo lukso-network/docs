@@ -8,10 +8,6 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started
 
-<a href="https://www.npmjs.com/package/@lukso/up-modal" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm version" src="https://img.shields.io/npm/v/%40lukso%2Fup-modal?style=flat-square&color=2563eb"/></a> <a href="https://www.npmjs.com/package/@lukso/up-modal" target="_blank" rel="noopener noreferrer"><img style={{verticalAlign: 'middle'}} alt="npm downloads" src="https://img.shields.io/npm/dm/%40lukso%2Fup-modal?style=flat-square&color=2563eb"/></a>
-
-<br/><br/>
-
 The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package provides a connect modal for LUKSO Universal Profiles. It offers a responsive connection dialog with support for desktop and mobile, automatically detecting UP Mobile (via WalletConnect), UP Browser Extension (via EIP-6963), and other EOA wallets.
 
 <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap'}}>
@@ -57,7 +53,7 @@ import { setupLuksoConnector } from '@lukso/up-modal';
 
 const connector = await setupLuksoConnector({
   walletConnect: {
-    projectId: 'YOUR_REOWN_PROJECT_ID',
+    projectId: 'YOUR_REOWN_PROJECT_ID', // get yours at https://cloud.reown.com
   },
 });
 ```
@@ -74,7 +70,7 @@ connector.showSignInModal();
 connector.showSignUpModal();
 ```
 
-![Sign Up](https://cdn.jsdelivr.net/npm/@lukso/up-modal/src/images/sign-up.png)
+<img src="/img/tools/up-modal/sign-up.png" alt="Sign Up" width="400" />
 
 ## Framework Integrations
 

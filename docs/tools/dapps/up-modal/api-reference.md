@@ -7,13 +7,13 @@ title: 'API Reference'
 
 ## `setupLuksoConnector`
 
-Returns `Promise<LuksoConnector>`. Call once at app initialization. Here is example with custom config:
+Returns `Promise<LuksoConnector>`. Call once at app initialization. Example with custom options:
 
 ```typescript
 const connector = await setupLuksoConnector({
   theme: 'dark',
   walletConnect: {
-    projectId: 'YOUR_REOWN_PROJECT_ID',
+    projectId: 'YOUR_REOWN_PROJECT_ID', // get yours at https://cloud.reown.com
   },
   chains: {
     enableTestnet: true,
