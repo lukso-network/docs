@@ -19,10 +19,27 @@ The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package p
   <img src="/img/tools/up-modal/modal-dark.png" alt="Dark theme" width="320" />
 </div>
 
+## What gets auto-detected
+
+Modal automatically configures:
+
+| App              | How                                                               |
+| ---------------- | ----------------------------------------------------------------- |
+| **UP Mobile**    | WalletConnect (deep link on mobile, QR code on desktop)           |
+| **UP Extension** | Browser extension, detected via EIP-6963                          |
+| **EOA wallets**  | Other EIP-6963 wallets (MetaMask, Coinbase, etc.)                 |
+
 ## Installation
 
 ```bash
+# pnpm
+pnpm add @lukso/up-modal
+
+# npm
 npm install @lukso/up-modal
+
+# yarn
+yarn add @lukso/up-modal
 ```
 
 For advanced usage (watching connection state, custom wagmi config), also install the optional peer dependencies:
@@ -33,39 +50,31 @@ npm install @wagmi/core viem
 
 ## Minimal Setup
 
-```typescript
-import { setupLuksoConnector } from '@lukso/up-modal';
-
-const connector = await setupLuksoConnector();
-
-// Open the modal
-connector.showSignInModal();
-```
-
-The `<connect-modal>` element is injected into `document.body` automatically on the first `showSignInModal()` call.
-
-### With Callbacks and Theme
+### Initialize modal
 
 ```typescript
+import { setupLuksoConnector } from '@lukso/up-modal'
+
 const connector = await setupLuksoConnector({
-  theme: 'light', // 'light' | 'dark' | 'auto'
-
-  onConnect: (event) => {
-    console.log('Connected:', event.detail);
-  },
-  onError: (event) => {
-    console.error('Error:', event.detail);
-  },
-  onClose: () => {
-    console.log('Modal closed');
-  },
-});
-
-connector.showSignInModal();
-connector.closeModal();
-connector.setTheme('dark'); // update theme at any time
-connector.destroyModal(); // close + remove from DOM
+  walletConnect: {
+    projectId: 'YOUR_REOWN_PROJECT_ID',
+  }
+})
 ```
+
+### Open the Sign In modal
+
+```typescript
+connector.showSignInModal()
+```
+
+### Open the Sign Up modal
+
+```typescript
+connector.showSignUpModal()
+```
+
+![Sign Up](https://cdn.jsdelivr.net/npm/@lukso/up-modal/src/images/sign-up.png)
 
 ## Framework Integrations
 
@@ -174,7 +183,7 @@ const stopWatching = watchConnection(connector.wagmiConfig, {
 
   <TabItem value="svelte" label="Svelte">
 
-**Initialization** (`src/lib/connector.ts`):
+**Initialization** (`src/lib/connector.svelte.ts`):
 
 ```typescript
 import { setupLuksoConnector } from '@lukso/up-modal';
@@ -196,7 +205,7 @@ export async function initConnector() {
 
 ```svelte
 <script lang="ts">
-  import { connector, initConnector } from '$lib/connector.svelte';
+  import { connector, initConnector } from '$lib/connector.svelte'
 
   $effect(() => {
     initConnector();
@@ -210,16 +219,6 @@ export async function initConnector() {
 
   </TabItem>
 </Tabs>
-
-## Auto-Detection
-
-The modal automatically configures connection methods based on available wallets:
-
-| App              | How                                               |
-| ---------------- | ------------------------------------------------- |
-| **UP Mobile**    | WalletConnect (deep link + QR code)               |
-| **UP Extension** | Browser extension, detected via EIP-6963          |
-| **EOA wallets**  | Other EIP-6963 wallets (MetaMask, Coinbase, etc.) |
 
 ## Resources
 

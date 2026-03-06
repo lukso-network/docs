@@ -7,7 +7,25 @@ title: 'API Reference'
 
 ## `setupLuksoConnector`
 
-Returns `Promise<LuksoConnector>`. Call once at app initialization.
+Returns `Promise<LuksoConnector>`. Call once at app initialization. Here is example with custom config:
+
+```typescript
+const connector = await setupLuksoConnector({
+  theme: 'dark',
+  walletConnect: {
+    projectId: 'YOUR_REOWN_PROJECT_ID',
+  },
+  chains: {
+    enableTestnet: true,
+  },
+  connectors: {
+    eoa: false,
+  },
+  onConnect: (event) => console.log('Connected:', event.detail),
+  onError: (event) => console.error('Error:', event.detail),
+  onClose: () => console.log('Modal closed'),
+})
+```
 
 ### Config Options
 
@@ -22,6 +40,9 @@ Returns `Promise<LuksoConnector>`. Call once at app initialization.
 | `chains.defaultChainId`   | `number`                      | `42`          | Default chain (LUKSO mainnet)           |
 | `chains.enableTestnet`    | `boolean`                     | `false`       | Also enable LUKSO testnet (4201)        |
 | `storage.key`             | `string`                      | `'up-wagmi'`  | localStorage key prefix for wagmi state |
+| `connectors.upMobile`     | `boolean`                     | `true`        | Show UP Mobile connector button         |
+| `connectors.upExtension`  | `boolean`                     | `true`        | Show UP Extension connector button      |
+| `connectors.eoa`          | `boolean`                     | `true`        | Show EOA wallets divider and button     |
 | `wagmiConfig`             | `Config` (from `@wagmi/core`) | auto-created  | Pass your own wagmi config              |
 
 ## `LuksoConnector` Methods
