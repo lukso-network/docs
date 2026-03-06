@@ -23,11 +23,11 @@ The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package p
 
 Modal automatically configures:
 
-| App              | How                                                               |
-| ---------------- | ----------------------------------------------------------------- |
-| **UP Mobile**    | WalletConnect (deep link on mobile, QR code on desktop)           |
-| **UP Extension** | Browser extension, detected via EIP-6963                          |
-| **EOA wallets**  | Other EIP-6963 wallets (MetaMask, Coinbase, etc.)                 |
+| App              | How                                                     |
+| ---------------- | ------------------------------------------------------- |
+| **UP Mobile**    | WalletConnect (deep link on mobile, QR code on desktop) |
+| **UP Extension** | Browser extension, detected via EIP-6963                |
+| **EOA wallets**  | Other EIP-6963 wallets (MetaMask, Coinbase, etc.)       |
 
 ## Installation
 
@@ -53,25 +53,25 @@ npm install @wagmi/core viem
 ### Initialize modal
 
 ```typescript
-import { setupLuksoConnector } from '@lukso/up-modal'
+import { setupLuksoConnector } from '@lukso/up-modal';
 
 const connector = await setupLuksoConnector({
   walletConnect: {
     projectId: 'YOUR_REOWN_PROJECT_ID',
-  }
-})
+  },
+});
 ```
 
 ### Open the Sign In modal
 
 ```typescript
-connector.showSignInModal()
+connector.showSignInModal();
 ```
 
 ### Open the Sign Up modal
 
 ```typescript
-connector.showSignUpModal()
+connector.showSignUpModal();
 ```
 
 ![Sign Up](https://cdn.jsdelivr.net/npm/@lukso/up-modal/src/images/sign-up.png)

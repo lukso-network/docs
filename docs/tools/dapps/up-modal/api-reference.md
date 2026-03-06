@@ -24,7 +24,7 @@ const connector = await setupLuksoConnector({
   onConnect: (event) => console.log('Connected:', event.detail),
   onError: (event) => console.error('Error:', event.detail),
   onClose: () => console.log('Modal closed'),
-})
+});
 ```
 
 ### Config Options
