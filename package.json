@@ -37,8 +37,8 @@
     "plugin-image-zoom": "^1.2.0",
     "prettier": "^3.8.1",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-material-ui-carousel": "^3.4.2",
     "sass": "^1.93.2",
     "url-loader": "^4.1.1"
@@ -69,6 +69,7 @@
     "lodash": "4.17.23",
     "svgo": "3.3.3",
     "immutable": "5.1.5",
-    "ajv@^6": "6.14.0"
+    "ajv@^6": "6.14.0",
+    "webpack": "5.105.0"
   }
 }
