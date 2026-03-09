@@ -1727,11 +1727,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cookbookdev/docsbot@npm:^4.21.23":
-  version: 4.24.7
-  resolution: "@cookbookdev/docsbot@npm:4.24.7"
+"@cookbookdev/docsbot@npm:^4.25.15":
+  version: 4.25.15
+  resolution: "@cookbookdev/docsbot@npm:4.25.15"
   dependencies:
     "@cookbookdev/sonner": 1.5.1
+    "@floating-ui/devtools": ^0.2.2
+    "@floating-ui/react-dom": ^2.1.2
     "@headlessui/react": ^1.7.18
     "@headlessui/tailwindcss": ^0.2.0
     "@lingui/detect-locale": ^4.11.4
@@ -1767,6 +1769,7 @@ __metadata:
     clsx: ^2.1.0
     cmdk-react17: ^1.0.0
     color2k: ^2.0.3
+    composed-offset-position: ^0.0.6
     fflate: ^0.8.2
     file-saver: ^2.0.5
     framer-motion: ^6.5.1
@@ -1792,9 +1795,9 @@ __metadata:
     use-sync-external-store: ^1.2.0
     viem: 2.9.16
   peerDependencies:
-    react: ^16.8 || ^17.0 || ^18.0
-    react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: be30a3cd9b0f18e05a5e178624cfb0b5c794f677557b26ab5adba6a8732c483e4bcdbac2fcfefb5074d1da2db44d9db63e3dc10b0ffb75788da3b166d0132862
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
+  checksum: 321b9b9841328c07f04f645411e5e9ea14578094afc7d106ad9979ac9c093cb82395f5df9d4f1b7febb8e0803494c49d9a884a813c1d5a5142b11cb45574c775
   languageName: node
   linkType: hard
 
@@ -3860,6 +3863,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/core@npm:^1.7.5":
+  version: 1.7.5
+  resolution: "@floating-ui/core@npm:1.7.5"
+  dependencies:
+    "@floating-ui/utils": ^0.2.11
+  checksum: 9dda28bb1d301305ba407ad61fc1acf0f498819a6976e0b9c0a91069d92fb4b4bc8d6cffd1c68c4c281cffd0f7d267cbc2e56ea622f91c342aaa060d5b73d5db
+  languageName: node
+  linkType: hard
+
+"@floating-ui/devtools@npm:^0.2.2":
+  version: 0.2.3
+  resolution: "@floating-ui/devtools@npm:0.2.3"
+  peerDependencies:
+    "@floating-ui/dom": ^1.0.0
+  checksum: eabac2273b8a8cc477a53ab78791e004760e56662a6d45e6509fe9da9739aa99de36beb11c8255f610ed6c8bef4a10828a4775e06310466d9383a7c54c3d3718
+  languageName: node
+  linkType: hard
+
 "@floating-ui/dom@npm:^1.0.0":
   version: 1.6.12
   resolution: "@floating-ui/dom@npm:1.6.12"
@@ -3867,6 +3888,16 @@ __metadata:
     "@floating-ui/core": ^1.6.0
     "@floating-ui/utils": ^0.2.8
   checksum: 956514ed100c0c853e73ace9e3c877b7e535444d7c31326f687a7690d49cb1e59ef457e9c93b76141aea0d280e83ed5a983bb852718b62eea581f755454660f6
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:^1.7.6":
+  version: 1.7.6
+  resolution: "@floating-ui/dom@npm:1.7.6"
+  dependencies:
+    "@floating-ui/core": ^1.7.5
+    "@floating-ui/utils": ^0.2.11
+  checksum: 0c1ba371a2e5b8cdbd6a88daafd8bb22cc415a5b50dbf23d829842c1551efe8e74fed5d34c89644fa8ee5dcf9b0470f9b2e9a3f82f91622abe6e1284b272d1c1
   languageName: node
   linkType: hard
 
@@ -3879,6 +3910,25 @@ __metadata:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
   checksum: 25bb031686e23062ed4222a8946e76b3f9021d40a48437bd747233c4964a766204b8a55f34fa8b259839af96e60db7c6e3714d81f1de06914294f90e86ffbc48
+  languageName: node
+  linkType: hard
+
+"@floating-ui/react-dom@npm:^2.1.2":
+  version: 2.1.8
+  resolution: "@floating-ui/react-dom@npm:2.1.8"
+  dependencies:
+    "@floating-ui/dom": ^1.7.6
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: f81777f92bfbdc3bdb852f3c15d2609ffcd207e15db7cd2b58680ea9bd0574ba37a472475dfb71dbfcbfbdef40792ab8120f327df2050d52193bafff8db9aa71
+  languageName: node
+  linkType: hard
+
+"@floating-ui/utils@npm:^0.2.11":
+  version: 0.2.11
+  resolution: "@floating-ui/utils@npm:0.2.11"
+  checksum: e98a2da3e36bd476460b0b85c3ba37c254516790d8c5eafa79ecf67bae7f2230c46d5fabce196aaf08bcd31586828e2df718cd2ccd1d333f18120f8adef66828
   languageName: node
   linkType: hard
 
@@ -8799,6 +8849,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"composed-offset-position@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "composed-offset-position@npm:0.0.6"
+  peerDependencies:
+    "@floating-ui/utils": ^0.2.5
+  checksum: f0e403f11a6a677631d39b5e7a742c242067c44c2278c6616362d46ee2b9a376dd9cb2d676640bf1f395cc69da52e5ebac9cd5b4f4dc51d9f4d6f2cb60d4a49b
+  languageName: node
+  linkType: hard
+
 "compressible@npm:~2.0.18":
   version: 2.0.18
   resolution: "compressible@npm:2.0.18"
@@ -13085,7 +13144,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lukso-docs@workspace:."
   dependencies:
-    "@cookbookdev/docsbot": ^4.21.23
+    "@cookbookdev/docsbot": ^4.25.15
     "@docusaurus/core": latest
     "@docusaurus/module-type-aliases": latest
     "@docusaurus/plugin-client-redirects": latest
