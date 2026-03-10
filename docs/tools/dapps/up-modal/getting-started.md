@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started
 
-The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package provides a connect modal for LUKSO Universal Profiles. It offers a responsive connection dialog with support for desktop and mobile, automatically detecting UP Mobile (via WalletConnect), UP Browser Extension (via EIP-6963), and other EOA wallets.
+The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package provides a connect modal for LUKSO Universal Profiles. It offers a responsive connection dialog with support for desktop and mobile, automatically detecting UP Mobile (via WalletConnect), UP Browser Extension (via EIP-6963), and other EOA wallets. Modal works with apps that use [Wagmi](https://wagmi.sh), a library to interract Ethereum. Wagmi handles the underlying connection management, so you can use its APIs alongside the modal.
 
 <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap'}}>
   <img src="/img/tools/up-modal/modal-light.png" alt="Light theme" width="320" />
@@ -38,7 +38,7 @@ npm install @lukso/up-modal
 yarn add @lukso/up-modal
 ```
 
-For advanced usage (watching connection state, custom wagmi config), also install the optional peer dependencies:
+Also install the required peer dependencies:
 
 ```bash
 npm install @wagmi/core viem
