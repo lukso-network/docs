@@ -108,7 +108,7 @@ export const connectorPromise: Promise<LuksoConnector> = setupLuksoConnector({
 
     function syncAddress() {
       const conn = getConnection(wagmiConfig);
-      address.value = conn?.isConnected ? conn.address ?? null : null;
+      address.value = conn?.isConnected ? (conn.address ?? null) : null;
     }
 
     syncAddress();
