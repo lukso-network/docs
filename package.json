@@ -26,8 +26,8 @@
     "@docusaurus/theme-mermaid": "latest",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@iconify/react": "^5.2.0",
-    "@mdx-js/react": "3.1.0",
+    "@iconify/react": "^6.0.2",
+    "@mdx-js/react": "3.1.1",
     "@mui/icons-material": "^7.3.9",
     "@mui/material": "^7.3.9",
     "@svgr/webpack": "^8.1.0",
@@ -40,7 +40,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-material-ui-carousel": "^3.4.2",
-    "sass": "^1.97.3",
+    "sass": "^1.98.0",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {

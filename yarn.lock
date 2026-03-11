@@ -3155,14 +3155,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/react@npm:^5.2.0":
-  version: 5.2.1
-  resolution: "@iconify/react@npm:5.2.1"
+"@iconify/react@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@iconify/react@npm:6.0.2"
   dependencies:
     "@iconify/types": ^2.0.0
   peerDependencies:
     react: ">=16"
-  checksum: 256dd60e197d63eac6aff193aff04336d11172af4b20891fa30286b0615e46c2d7ad53a345919f5e446e45838815e48b1cf16f2c743ac80862cf3adf20a73824
+  checksum: 8038cf3cc064a060dba3f794e4790a1d00c24350ff5fa1aabe94eb9ac1e5795cb2a81ac74928bd75e38878136f3244c5473d2aa579bf3144e92846cec8bb97a4
   languageName: node
   linkType: hard
 
@@ -3642,19 +3642,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@mdx-js/react@npm:3.1.0"
-  dependencies:
-    "@types/mdx": ^2.0.0
-  peerDependencies:
-    "@types/react": ">=16"
-    react: ">=16"
-  checksum: c5a9c495f43f498ece24a768762a1743abe2be33d050d7eab731beb754e631700547f039198c6262c998d9a443906bd78811c3fa38bc2fb37659848161dac331
-  languageName: node
-  linkType: hard
-
-"@mdx-js/react@npm:^3.0.0":
+"@mdx-js/react@npm:3.1.1, @mdx-js/react@npm:^3.0.0":
   version: 3.1.1
   resolution: "@mdx-js/react@npm:3.1.1"
   dependencies:
@@ -12282,8 +12270,8 @@ __metadata:
     "@docusaurus/types": latest
     "@emotion/react": ^11.14.0
     "@emotion/styled": ^11.14.1
-    "@iconify/react": ^5.2.0
-    "@mdx-js/react": 3.1.0
+    "@iconify/react": ^6.0.2
+    "@mdx-js/react": 3.1.1
     "@mui/icons-material": ^7.3.9
     "@mui/material": ^7.3.9
     "@svgr/webpack": ^8.1.0
@@ -12296,7 +12284,7 @@ __metadata:
     react: ^19.2.4
     react-dom: ^19.2.4
     react-material-ui-carousel: ^3.4.2
-    sass: ^1.97.3
+    sass: ^1.98.0
     url-loader: ^4.1.1
   languageName: unknown
   linkType: soft
@@ -16253,7 +16241,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.97.3":
+"sass@npm:^1.98.0":
   version: 1.98.0
   resolution: "sass@npm:1.98.0"
   dependencies:
