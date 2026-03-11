@@ -18,7 +18,7 @@
     "prettier:fix": "prettier \"src/**/*.js\" \"docs/**/*.md\" --write"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.21.23",
+    "@cookbookdev/docsbot": "^4.25.15",
     "@docusaurus/core": "latest",
     "@docusaurus/plugin-client-redirects": "latest",
     "@docusaurus/plugin-google-gtag": "latest",
@@ -28,8 +28,8 @@
     "@emotion/styled": "^11.14.1",
     "@iconify/react": "^5.2.0",
     "@mdx-js/react": "3.1.0",
-    "@mui/icons-material": "^7.3.2",
-    "@mui/material": "^7.3.7",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
     "@svgr/webpack": "^8.1.0",
     "clsx": "^2.1.1",
     "docusaurus-plugin-sass": "^0.2.6",
@@ -37,10 +37,10 @@
     "plugin-image-zoom": "^1.2.0",
     "prettier": "^3.8.1",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-material-ui-carousel": "^3.4.2",
-    "sass": "^1.93.2",
+    "sass": "^1.97.3",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
