@@ -77,27 +77,64 @@ connector.showSignUpModal();
 <Tabs groupId="framework">
   <TabItem value="vue" label="Vue 3">
 
+Full working [example](https://github.com/universal-everything/up-modal-vue-example).
+
+**`connector.ts`** (singleton, initialize once):
+
+```typescript
+import { setupLuksoConnector, type LuksoConnector } from '@lukso/up-modal';
+
+export const connectorPromise: Promise<LuksoConnector> = setupLuksoConnector({
+  theme: 'light',
+});
+```
+
+**`App.vue`**:
+
 ```html
-<template>
-  <button :disabled="!connector" @click="connector?.showSignInModal()">
-    Connect Wallet
-  </button>
-</template>
-
 <script setup lang="ts">
-  import { setupLuksoConnector } from '@lukso/up-modal';
-  import type { LuksoConnector } from '@lukso/up-modal';
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, onUnmounted } from 'vue';
+  import { getConnection, disconnect } from '@wagmi/core';
+  import { connectorPromise } from './connector';
 
-  const connector = ref<LuksoConnector | null>(null);
+  const address = ref<string | null>(null);
+  const connector = ref<Awaited<typeof connectorPromise> | null>(null);
+  const ready = ref(false);
+  let unwatch: (() => void) | null = null;
 
   onMounted(async () => {
-    connector.value = await setupLuksoConnector({
-      theme: 'light',
-      onConnect: (event) => console.log('Connected:', event.detail),
-    });
+    connector.value = await connectorPromise;
+    const { wagmiConfig } = connector.value;
+
+    function syncAddress() {
+      const conn = getConnection(wagmiConfig);
+      address.value = conn?.isConnected ? conn.address ?? null : null;
+    }
+
+    syncAddress();
+    ready.value = true;
+    unwatch = wagmiConfig.subscribe((s) => s.status, syncAddress);
   });
+
+  onUnmounted(() => unwatch?.());
+
+  function openModal() {
+    connector.value?.showSignInModal();
+  }
+
+  async function handleDisconnect() {
+    await disconnect(connector.value!.wagmiConfig);
+    address.value = null;
+  }
 </script>
+
+<template>
+  <div v-if="ready && address">
+    <p>Connected: {{ address }}</p>
+    <button @click="handleDisconnect">Disconnect</button>
+  </div>
+  <button v-else-if="ready" @click="openModal">Connect</button>
+</template>
 ```
 
   </TabItem>
@@ -139,6 +176,8 @@ export { connector };
   </TabItem>
 
   <TabItem value="react" label="React">
+
+Full working [example](https://github.com/universal-everything/up-modal-react-example).
 
 ```tsx
 import { setupLuksoConnector } from '@lukso/up-modal';
