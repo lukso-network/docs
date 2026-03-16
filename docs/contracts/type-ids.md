@@ -30,9 +30,15 @@ bytes32 typeId = keccak256("LSP7Tokens_SenderNotification");
 ```
 
 ```js
+// ethers v6
 import { keccak256, toUtf8Bytes } from 'ethers';
-
 const typeId = keccak256(toUtf8Bytes('LSP7Tokens_SenderNotification'));
+```
+
+```js
+// viem
+import { keccak256, toHex } from 'viem';
+const typeId = keccak256(toHex('LSP7Tokens_SenderNotification'));
 ```
 
 ## Using Type IDs in JavaScript
@@ -189,8 +195,8 @@ abi.encode(address operator, address from, address to, uint256 amount, bytes dat
 // On authorizeOperator / increaseAllowance / decreaseAllowance:
 abi.encode(address tokenOwner, uint256 allowance, bytes operatorNotificationData)
 
-// On revokeOperator:
-abi.encode(address tokenOwner, uint256 0, bytes operatorNotificationData)
+// On revokeOperator (allowance is always 0):
+abi.encode(address tokenOwner, uint256 allowance, bytes operatorNotificationData)
 ```
 
 ---
@@ -238,7 +244,7 @@ abi.encode(address operator, address from, address to, bytes32 tokenId, bytes da
 |                          |                                                                                                                                                                                                                                                                                   |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Name**                 | `"LSP8Tokens_OperatorNotification"`                                                                                                                                                                                                                                               |
-| **TypeID**               | `0x468cd1581d7bc001c3b685513d2b929b55437be34700410383d58f3aa1ea0abc`                                                                                                                                                                                                              |
+| **TypeID**               | `0x8a1c15a8799f71b547e08e2bcb2e85257e81b0a07eee2ce6712549eef1f00970`                                                                                                                                                                                                              |
 | **TypeID generation**    | `keccak256("LSP8Tokens_OperatorNotification")`                                                                                                                                                                                                                                    |
 | **Used in:**             | [`authorizeOperator(address,bytes32,bytes)`](./contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#authorizeoperator), [`revokeOperator(address,bytes32,bool,bytes)`](./contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#revokeoperator) |
 | **Solidity constant:**   | `_TYPEID_LSP8_TOKENOPERATOR`                                                                                                                                                                                                                                                      |
@@ -247,11 +253,11 @@ abi.encode(address operator, address from, address to, bytes32 tokenId, bytes da
 **Data encoding:**
 
 ```solidity
-// On authorizeOperator:
-abi.encode(address tokenOwner, bytes32 tokenId, bool true, bytes operatorNotificationData)
+// On authorizeOperator (authorized = true):
+abi.encode(address tokenOwner, bytes32 tokenId, bool authorized, bytes operatorNotificationData)
 
-// On revokeOperator:
-abi.encode(address tokenOwner, bytes32 tokenId, bool false, bytes operatorNotificationData)
+// On revokeOperator (authorized = false):
+abi.encode(address tokenOwner, bytes32 tokenId, bool authorized, bytes operatorNotificationData)
 ```
 
 ---
