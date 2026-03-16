@@ -21,7 +21,7 @@ Full code examples are available in the 👾 [lukso-playground](https://github.c
 
 ## What you will learn
 
-- How to restrict an automated staking bot to only call `deposit()` on a specific vault contract
+- How to restrict an automated staking bot to only call `deposit(address)` on a specific vault contract
 - How to lock a controller so it can only send LYX to one specific address
 - How to allow a DeFi bot to interact with any LSP7 token contract, but nothing else
 - How to give a team member the ability to update NFT metadata without being able to transfer tokens or drain LYX
@@ -45,7 +45,7 @@ Each Allowed Calls entry is a **32-byte packed value** stored under the `Address
 So a single 32-byte entry looks like:
 
 ```
-0x 00000002 9F49a95b0c3c9e2A6c77a16C177928294c0F6F04 ffffffff d0e30db0
+0x 00000002 9F49a95b0c3c9e2A6c77a16C177928294c0F6F04 ffffffff f340fa01
    ^-------  ^---------------------------------------  ^-------  ^-------
    calltype  address (20 bytes)                        standard  selector
 ```
@@ -58,7 +58,7 @@ When multiple entries are present they are encoded as a `CompactBytesArray` — 
 
 **Context:** You want an automated bot to stake LYX on [Stakingverse](https://stakingverse.io) without being able to drain your UP or interact with any other contract.
 
-The bot is granted `CALL` permission (see [Grant Permissions](./grant-permissions.md)), and its Allowed Calls list is restricted to a single entry: `deposit()` on the Stakingverse vault.
+The bot is granted `CALL` permission (see [Grant Permissions](./grant-permissions.md)), and its Allowed Calls list is restricted to a single entry: `deposit(address)` on the Stakingverse vault.
 
 <Tabs>
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
@@ -79,12 +79,12 @@ const erc725 = new ERC725(
   'https://rpc.lukso.network',
 );
 
-// CALL type (0x00000002) + vault address (20 bytes) + any standard (0xffffffff) + deposit() selector
+// CALL type (0x00000002) + vault address (20 bytes) + any standard (0xffffffff) + deposit(address) selector
 const depositEntry =
   `0x00000002` +
   STAKING_VAULT.slice(2) +
   `ffffffff` +
-  `d0e30db0`; // deposit()
+  `f340fa01`; // deposit(address)
 
 const encodedAllowedCalls = erc725.encodeData([
   {
@@ -125,12 +125,12 @@ const erc725 = new ERC725(
   'https://rpc.lukso.network',
 );
 
-// CALL type (0x00000002) + vault address (20 bytes) + any standard (0xffffffff) + deposit() selector
+// CALL type (0x00000002) + vault address (20 bytes) + any standard (0xffffffff) + deposit(address) selector
 const depositEntry =
   `0x00000002` +
   STAKING_VAULT.slice(2) +
   `ffffffff` +
-  `d0e30db0`; // deposit()
+  `f340fa01`; // deposit(address)
 
 const encodedAllowedCalls = erc725.encodeData([
   {
@@ -181,12 +181,12 @@ contract SetStakingBotAllowedCalls {
             )
         );
 
-        // 32-byte packed entry: CALL + vault + any standard + deposit() selector
+        // 32-byte packed entry: CALL + vault + any standard + deposit(address) selector
         bytes memory allowedCallEntry = abi.encodePacked(
             bytes4(0x00000002),    // CALL type
             STAKING_VAULT,         // target address (20 bytes)
             bytes4(0xffffffff),    // any interface standard
-            bytes4(0xd0e30db0)     // deposit() selector
+            bytes4(0xf340fa01)     // deposit(address) selector
         );
 
         // CompactBytesArray encoding: 2-byte length prefix per element
@@ -214,9 +214,9 @@ For better security, split staking and withdrawal into two separate controllers.
 const STAKING_BOT = '0xYourStakingBotAddress';
 const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 
-// Staking controller: deposit() only
+// Staking controller: deposit(address) only
 const depositEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `d0e30db0`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
 
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 const requestWithdrawalEntry =
@@ -254,9 +254,9 @@ await walletClient.writeContract({
 const STAKING_BOT = '0xYourStakingBotAddress';
 const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 
-// Staking controller: deposit() only
+// Staking controller: deposit(address) only
 const depositEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `d0e30db0`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
 
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 const requestWithdrawalEntry =
@@ -291,14 +291,14 @@ bytes memory requestEntry = abi.encodePacked(
     bytes4(0x00000002),   // CALL type
     STAKING_VAULT,         // target address
     bytes4(0xffffffff),    // any standard
-    bytes4(0xfbbdb3ae)     // withdraw(uint256,address)
+    bytes4(0x00f714ce)     // withdraw(uint256,address)
 );
 
 bytes memory claimEntry = abi.encodePacked(
     bytes4(0x00000002),   // CALL type
     STAKING_VAULT,         // target address
     bytes4(0xffffffff),    // any standard
-    bytes4(0x76657593)     // claim(uint256,address)
+    bytes4(0xddd5e1b2)     // claim(uint256,address)
 );
 
 // CompactBytesArray with two 32-byte entries
@@ -315,7 +315,7 @@ bytes memory compactEncoded = abi.encodePacked(
 
 **Context:** You want a controller that can call [`transferStake`](https://stakingverse.io) on the Stakingverse vault to convert your staked LYX into liquid **sLYX** tokens ([`0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d`](https://explorer.execution.mainnet.lukso.network/address/0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d)) — without being able to call any other function on the vault or any other contract.
 
-`transferStake(address to, uint256 amount, bytes calldata data)` — selector: `0x1c892b5a`
+`transferStake(address to, uint256 amount, bytes calldata data)` — selector: `0xf2f1042f`
 
 <Tabs>
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
@@ -362,7 +362,7 @@ import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/Unive
 const LIQUID_STAKING_CONTROLLER = '0xYourLiquidStakingControllerAddress';
 const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 
-// Restrict to transferStake(address,uint256,bytes) — selector 0x1c892b5a
+// Restrict to transferStake(address,uint256,bytes) — selector 0xf2f1042f
 const transferStakeEntry =
   `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `1c892b5a`;
 
@@ -390,12 +390,12 @@ await universalProfile.setDataBatch(encodedData.keys, encodedData.values);
 address constant STAKING_VAULT = 0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04;
 address constant SLYX_TOKEN    = 0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d;
 
-// transferStake(address,uint256,bytes) selector = 0x1c892b5a
+// transferStake(address,uint256,bytes) selector = 0xf2f1042f
 bytes memory transferStakeEntry = abi.encodePacked(
     bytes4(0x00000002),   // CALL type
     STAKING_VAULT,         // target: Stakingverse vault only
     bytes4(0xffffffff),    // any ERC165 standard
-    bytes4(0x1c892b5a)     // transferStake(address,uint256,bytes)
+    bytes4(0xf2f1042f)     // transferStake(address,uint256,bytes)
 );
 
 bytes memory compactEncoded = abi.encodePacked(uint16(32), transferStakeEntry);
