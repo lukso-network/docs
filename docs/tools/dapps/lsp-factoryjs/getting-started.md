@@ -24,7 +24,7 @@ All contracts (LSP23 factory, base implementations) are deployed at the same det
 ## Installation
 
 ```bash
-npm install @lukso/lsp-factory.js
+npm install @lukso/lsp-factory.js @erc725/erc725.js
 ```
 
 ## Setup
@@ -67,7 +67,7 @@ import { base } from 'viem/chains'; // BASE (8453)
 
 ## Deploying a Universal Profile
 
-Deploys an [LSP0 Universal Profile](../../../standards/accounts/lsp0-erc725account.md) and [LSP6 KeyManager](../../../standards/access-control/lsp6-key-manager.md) atomically via LSP23, then configures controller permissions and a Universal Receiver Delegate.
+Deploys an [LSP0 Universal Profile](../../../standards/accounts/lsp0-erc725account.md) and [LSP6 KeyManager](../../../standards/access-control/lsp6-key-manager.md) atomically via [LSP23 Factory](../../../standards/factories/lsp23-linked-contracts-factory.md), then configures controller permissions and a Universal Receiver Delegate.
 
 ```typescript
 const contracts = await factory.UniversalProfile.deploy({
@@ -83,17 +83,10 @@ console.log('KeyManager Address:', contracts.LSP6KeyManager.address);
 First, encode your LSP3Profile metadata using [erc725.js](https://docs.lukso.tech/tools/dapps/erc725js/getting-started):
 
 ```typescript
-import ERC725 from '@erc725/erc725.js';
+import { ERC725 } from '@erc725/erc725.js';
+import LSP3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json';
 
-const erc725 = new ERC725([
-  {
-    name: 'LSP3Profile',
-    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
-    keyType: 'Singleton',
-    valueType: 'bytes',
-    valueContent: 'VerifiableURI',
-  },
-]);
+const erc725 = new ERC725(LSP3ProfileSchema);
 
 const encoded = erc725.encodeData([
   {
@@ -122,13 +115,19 @@ const contracts = await factory.UniversalProfile.deploy(
 ### With custom controller permissions
 
 ```typescript
+import { ERC725 } from '@erc725/erc725.js';
+
+// Replace with the correct addresses for your controllers
+const adminController = '0x...';
+const restrictedController = '0x...';
+
 const contracts = await factory.UniversalProfile.deploy({
   controllerAddresses: [
-    '0xFullPermissionsAddress', // Gets ALL_PERMISSIONS by default
+    // Gets ALL_PERMISSIONS by default
+    adminController,
     {
-      address: '0xLimitedAddress',
-      permissions:
-        '0x0000000000000000000000000000000000000000000000000000000000000010',
+      address: restrictedController,
+      permissions: ERC725.encodePermissions({ SUPER_SETDATA: true }),
     },
   ],
 });
