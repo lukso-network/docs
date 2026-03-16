@@ -223,10 +223,10 @@ const depositEntry =
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 // These do NOT send LYX, so CALL (0x00000002) is correct
 const requestWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `fbbdb3ae`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `00f714ce`;
 
 const claimWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `76657593`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `ddd5e1b2`;
 
 const encodedData = erc725.encodeData([
   {
@@ -271,10 +271,10 @@ const depositEntry =
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 // These do NOT send LYX, so CALL (0x00000002) is correct
 const requestWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `fbbdb3ae`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `00f714ce`;
 
 const claimWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `76657593`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `ddd5e1b2`;
 
 const encodedData = erc725.encodeData([
   {
