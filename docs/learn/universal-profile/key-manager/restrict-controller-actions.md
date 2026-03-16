@@ -757,10 +757,10 @@ const METADATA_CONTROLLER = '0xYourMetadataControllerAddress';
 const MY_UP_ADDRESS = myUPAddress;
 
 const setDataEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `7f23690c`;
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `7f23690c`;
 
 const setDataBatchEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `97902421`;
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `97902421`;
 
 const encodedAllowedCalls = erc725.encodeData([
   {
@@ -790,10 +790,10 @@ const METADATA_CONTROLLER = '0xYourMetadataControllerAddress';
 const MY_UP_ADDRESS = myUPAddress;
 
 const setDataEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `7f23690c`;
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `7f23690c`;
 
 const setDataBatchEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `97902421`;
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `97902421`;
 
 const encodedAllowedCalls = erc725.encodeData([
   {
@@ -819,7 +819,7 @@ pragma solidity ^0.8.17;
 import {IERC725Y} from "@erc725/smart-contracts/contracts/interfaces/IERC725Y.sol";
 
 contract RestrictMetadataController {
-    bytes4 constant INTERFACE_ID_ERC725Y = 0x714df77c;
+    bytes4 constant INTERFACE_ID_ERC725Y = 0x629aa694;
     bytes4 constant SET_DATA_SELECTOR = 0x7f23690c;
     bytes4 constant SET_DATA_BATCH_SELECTOR = 0x97902421;
 
