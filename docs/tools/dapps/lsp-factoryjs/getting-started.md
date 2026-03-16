@@ -54,7 +54,15 @@ const factory = new LSPFactory(publicClient, walletClient);
 ```
 
 :::tip
-You can use any viem-supported chain. Just swap `luksoTestnet` for `lukso`, `mainnet`, `base`, etc.
+You can use any viem-supported chain. Just swap `luksoTestnet` for the chain you want to deploy to:
+
+```typescript
+import { lukso } from 'viem/chains'; // LUKSO Mainnet (42)
+import { luksoTestnet } from 'viem/chains'; // LUKSO Testnet (4201)
+import { mainnet } from 'viem/chains'; // Ethereum (1)
+import { base } from 'viem/chains'; // BASE (8453)
+```
+
 :::
 
 ## Deploying a Universal Profile
@@ -76,7 +84,11 @@ console.log('KeyManager Address:', contracts.LSP6KeyManager.address);
 const contracts = await factory.UniversalProfile.deploy(
   {
     controllerAddresses: ['0x...'],
-    lsp3DataValue: '0x...', // Pre-encoded LSP3Profile data (VerifiableURI)
+    // Use erc725.js to encode LSP3Profile metadata:
+    // import ERC725 from '@erc725/erc725.js';
+    // const encoded = erc725.encodeData([{ keyName: 'LSP3Profile', value: { json: metadata, url: 'ipfs://...' } }]);
+    // lsp3DataValue = encoded.values[0];
+    lsp3DataValue: '0x...', // Pre-encoded LSP3Profile VerifiableURI (see above)
   },
   {
     salt: '0x...', // bytes32 salt for deterministic address generation
@@ -138,8 +150,8 @@ const contracts = await factory.LSP7DigitalAsset.deploy({
   isNFT: false,
   digitalAssetMetadata: {
     verification: {
-      method: 'keccak256(utf8)',
-      data: '0x...',
+      method: 'keccak256(bytes)',
+      data: '0x...', // keccak256 hash of the JSON metadata file bytes
     },
     url: 'ipfs://Qm...',
   },
@@ -156,7 +168,13 @@ const contracts = await factory.LSP8IdentifiableDigitalAsset.deploy({
   symbol: 'MNFT',
   controllerAddress: '0x...',
   tokenType: 1, // 0 = Token, 1 = NFT, 2 = Collection
-  tokenIdFormat: 1, // Token ID format (e.g., 1 = Number)
+  // Token ID format constants (from @lukso/lsp8-contracts):
+  // 0 = UNIQUE_ID    (unique bytes32)
+  // 1 = NUMBER       (sequential uint256)
+  // 2 = STRING       (human-readable string)
+  // 3 = ADDRESS      (address packed in bytes32)
+  // 4 = HASH         (keccak256 hash)
+  tokenIdFormat: 1,
 });
 
 console.log('LSP8 Address:', contracts.LSP8IdentifiableDigitalAsset.address);
@@ -184,3 +202,9 @@ const contracts = await factory.UniversalProfile.deploy(
   },
 );
 ```
+
+## Next steps
+
+- [Edit Universal Profile metadata](../../../learn/universal-profile/metadata/edit-profile.md)
+- [Deploying tokens and NFTs](../../../learn/digital-assets/getting-started.md)
+- [LSP1 Notification Type IDs](../../../contracts/type-ids.md) — understanding notifications when deploying assets
