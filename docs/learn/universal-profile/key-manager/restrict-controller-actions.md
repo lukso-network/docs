@@ -20,7 +20,7 @@ Full code examples are available in the 👾 [lukso-playground](https://github.c
 
 :::
 
-## What you will learn
+## Examples you will learn
 
 - How to restrict an automated staking bot to only call `deposit(address)` on a specific vault contract
 - How to lock a controller so it can only send LYX to one specific address
@@ -79,14 +79,11 @@ const STAKING_BOT_ADDRESS = '0xYourBotAddress'; // replace with your bot address
 const erc725 = new ERC725(LSP6Schema);
 
 // TRANSFERVALUE|CALL type (0x00000003) — deposit(address) sends LYX to the vault
-const depositEntry =
-  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`; // deposit(address)
-
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [STAKING_BOT_ADDRESS],
-    value: [depositEntry],
+    value: [['0x00000003', STAKING_VAULT, '0xffffffff', '0xf340fa01']], // deposit(address)
   },
 ]);
 
@@ -123,14 +120,11 @@ const STAKING_BOT_ADDRESS = '0xYourBotAddress'; // replace with your bot address
 const erc725 = new ERC725(LSP6Schema);
 
 // TRANSFERVALUE|CALL type (0x00000003) — deposit(address) sends LYX to the vault
-const depositEntry =
-  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`; // deposit(address)
-
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [STAKING_BOT_ADDRESS],
-    value: [depositEntry],
+    value: [['0x00000003', STAKING_VAULT, '0xffffffff', '0xf340fa01']], // deposit(address)
   },
 ]);
 
@@ -218,27 +212,21 @@ const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 const erc725 = new ERC725(LSP6Schema);
 
 // Staking controller: deposit(address) — sends LYX, so TRANSFERVALUE|CALL (0x00000003)
-const depositEntry =
-  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
-
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 // These do NOT send LYX, so CALL (0x00000002) is correct
-const requestWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `00f714ce`;
-
-const claimWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `ddd5e1b2`;
-
 const encodedData = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [STAKING_BOT],
-    value: [depositEntry],
+    value: [['0x00000003', STAKING_VAULT, '0xffffffff', '0xf340fa01']], // deposit(address)
   },
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [WITHDRAWAL_BOT],
-    value: [requestWithdrawalEntry, claimWithdrawalEntry],
+    value: [
+      ['0x00000002', STAKING_VAULT, '0xffffffff', '0x00f714ce'], // withdraw(uint256,address)
+      ['0x00000002', STAKING_VAULT, '0xffffffff', '0xddd5e1b2'], // claim(uint256,address)
+    ],
   },
 ]);
 
@@ -266,27 +254,21 @@ const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 const erc725 = new ERC725(LSP6Schema);
 
 // Staking controller: deposit(address) — sends LYX, so TRANSFERVALUE|CALL (0x00000003)
-const depositEntry =
-  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
-
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 // These do NOT send LYX, so CALL (0x00000002) is correct
-const requestWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `00f714ce`;
-
-const claimWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `ddd5e1b2`;
-
 const encodedData = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [STAKING_BOT],
-    value: [depositEntry],
+    value: [['0x00000003', STAKING_VAULT, '0xffffffff', '0xf340fa01']], // deposit(address)
   },
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [WITHDRAWAL_BOT],
-    value: [requestWithdrawalEntry, claimWithdrawalEntry],
+    value: [
+      ['0x00000002', STAKING_VAULT, '0xffffffff', '0x00f714ce'], // withdraw(uint256,address)
+      ['0x00000002', STAKING_VAULT, '0xffffffff', '0xddd5e1b2'], // claim(uint256,address)
+    ],
   },
 ]);
 
@@ -343,15 +325,12 @@ const SLYX_TOKEN = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
 
 // Restrict to transferStake(address,uint256,bytes) only on the Stakingverse vault
 // transferStake does NOT send LYX — CALL type (0x00000002) is correct
-const transferStakeEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f2f1042f`;
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedData = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [LIQUID_STAKING_CONTROLLER],
-    value: [transferStakeEntry],
+    value: [['0x00000002', STAKING_VAULT, '0xffffffff', '0xf2f1042f']], // transferStake(address,uint256,bytes)
   },
 ]);
 
@@ -378,15 +357,12 @@ const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 const SLYX_TOKEN = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
 
 // Restrict to transferStake(address,uint256,bytes) — transferStake does NOT send LYX
-const transferStakeEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f2f1042f`;
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedData = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [LIQUID_STAKING_CONTROLLER],
-    value: [transferStakeEntry],
+    value: [['0x00000002', STAKING_VAULT, '0xffffffff', '0xf2f1042f']], // transferStake(address,uint256,bytes)
   },
 ]);
 
@@ -465,15 +441,12 @@ const CONTROLLER_ADDRESS = '0xYourPayrollController';
 const COLD_WALLET = '0xYourColdWalletAddress'; // the only permitted recipient
 
 // TRANSFERVALUE type (0x00000001) — sending native LYX uses TRANSFERVALUE, not CALL
-const coldWalletEntry =
-  `0x00000001` + COLD_WALLET.slice(2) + `ffffffff` + `ffffffff`;
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [CONTROLLER_ADDRESS],
-    value: [coldWalletEntry],
+    value: [['0x00000001', COLD_WALLET, '0xffffffff', '0xffffffff']], // send LYX to cold wallet
   },
 ]);
 
@@ -497,15 +470,12 @@ const CONTROLLER_ADDRESS = '0xYourPayrollController';
 const COLD_WALLET = '0xYourColdWalletAddress'; // the only permitted recipient
 
 // TRANSFERVALUE type (0x00000001) — sending native LYX uses TRANSFERVALUE, not CALL
-const coldWalletEntry =
-  `0x00000001` + COLD_WALLET.slice(2) + `ffffffff` + `ffffffff`;
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [CONTROLLER_ADDRESS],
-    value: [coldWalletEntry],
+    value: [['0x00000001', COLD_WALLET, '0xffffffff', '0xffffffff']], // send LYX to cold wallet
   },
 ]);
 
@@ -557,18 +527,19 @@ const DEFI_BOT = '0xYourDeFiBotAddress';
 
 // CALL type + any address + LSP7 interface ID + transfer() selector
 // transfer(address,address,uint256,bool,bytes) = 0x760d9bba
-const lsp7TransferEntry =
-  `0x00000002` +
-  `ffffffffffffffffffffffffffffffffffffffff` + // any address
-  `c52d6008` + // INTERFACE_ID_LSP7
-  `760d9bba`; // transfer(address,address,uint256,bool,bytes)
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [DEFI_BOT],
-    value: [lsp7TransferEntry],
+    value: [
+      [
+        '0x00000002',
+        '0xffffffffffffffffffffffffffffffffffffffff',
+        '0xc52d6008',
+        '0x760d9bba',
+      ],
+    ], // transfer(address,address,uint256,bool,bytes)
   },
 ]);
 
@@ -592,18 +563,19 @@ const DEFI_BOT = '0xYourDeFiBotAddress';
 
 // CALL type + any address + LSP7 interface ID + transfer() selector
 // transfer(address,address,uint256,bool,bytes) = 0x760d9bba
-const lsp7TransferEntry =
-  `0x00000002` +
-  `ffffffffffffffffffffffffffffffffffffffff` + // any address
-  `c52d6008` + // INTERFACE_ID_LSP7
-  `760d9bba`; // transfer(address,address,uint256,bool,bytes)
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [DEFI_BOT],
-    value: [lsp7TransferEntry],
+    value: [
+      [
+        '0x00000002',
+        '0xffffffffffffffffffffffffffffffffffffffff',
+        '0xc52d6008',
+        '0x760d9bba',
+      ],
+    ], // transfer(address,address,uint256,bool,bytes)
   },
 ]);
 
@@ -656,18 +628,12 @@ const NFT_CONTRACT = '0xYourLSP8ContractAddress'; // your specific NFT contract
 
 // CALL type + NFT contract + LSP8 interface ID + setDataForTokenId() selector
 // setDataForTokenId(bytes32,bytes32,bytes) = 0xd6c1407c
-const nftMetadataEntry =
-  `0x00000002` +
-  NFT_CONTRACT.slice(2) +
-  `3a271706` + // INTERFACE_ID_LSP8
-  `d6c1407c`; // setDataForTokenId(bytes32,bytes32,bytes)
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [MARKETING_MANAGER],
-    value: [nftMetadataEntry],
+    value: [['0x00000002', NFT_CONTRACT, '0x3a271706', '0xd6c1407c']], // setDataForTokenId(bytes32,bytes32,bytes)
   },
 ]);
 
@@ -692,18 +658,12 @@ const NFT_CONTRACT = '0xYourLSP8ContractAddress'; // your specific NFT contract
 
 // CALL type + NFT contract + LSP8 interface ID + setDataForTokenId() selector
 // setDataForTokenId(bytes32,bytes32,bytes) = 0xd6c1407c
-const nftMetadataEntry =
-  `0x00000002` +
-  NFT_CONTRACT.slice(2) +
-  `3a271706` + // INTERFACE_ID_LSP8
-  `d6c1407c`; // setDataForTokenId(bytes32,bytes32,bytes)
-
 const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [MARKETING_MANAGER],
-    value: [nftMetadataEntry],
+    value: [['0x00000002', NFT_CONTRACT, '0x3a271706', '0xd6c1407c']], // setDataForTokenId(bytes32,bytes32,bytes)
   },
 ]);
 
@@ -756,17 +716,14 @@ import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 const METADATA_CONTROLLER = '0xYourMetadataControllerAddress';
 const MY_UP_ADDRESS = myUPAddress;
 
-const setDataEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `7f23690c`;
-
-const setDataBatchEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `97902421`;
-
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [METADATA_CONTROLLER],
-    value: [setDataEntry, setDataBatchEntry],
+    value: [
+      ['0x00000002', MY_UP_ADDRESS, '0x629aa694', '0x7f23690c'],
+      ['0x00000002', MY_UP_ADDRESS, '0x629aa694', '0x97902421'],
+    ],
   },
 ]);
 
@@ -789,17 +746,14 @@ import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 const METADATA_CONTROLLER = '0xYourMetadataControllerAddress';
 const MY_UP_ADDRESS = myUPAddress;
 
-const setDataEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `7f23690c`;
-
-const setDataBatchEntry =
-  `0x00000002` + MY_UP_ADDRESS.slice(2) + `629aa694` + `97902421`;
-
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
     dynamicKeyParts: [METADATA_CONTROLLER],
-    value: [setDataEntry, setDataBatchEntry],
+    value: [
+      ['0x00000002', MY_UP_ADDRESS, '0x629aa694', '0x7f23690c'],
+      ['0x00000002', MY_UP_ADDRESS, '0x629aa694', '0x97902421'],
+    ],
   },
 ]);
 
