@@ -312,6 +312,113 @@ bytes memory compactEncoded = abi.encodePacked(
 </TabItem>
 </Tabs>
 
+### Liquid staking controller: convert stake to sLYX
+
+**Context:** You want a controller that can call [`transferStake`](https://stakingverse.io) on the Stakingverse vault to convert your staked LYX into liquid **sLYX** tokens ([`0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d`](https://explorer.execution.mainnet.lukso.network/address/0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d)) — without being able to call any other function on the vault or any other contract.
+
+`transferStake(address to, uint256 amount, bytes calldata data)` — selector: `0x1c892b5a`
+
+<Tabs>
+<TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```ts
+import { createWalletClient, http } from 'viem';
+import { lukso } from 'viem/chains';
+import ERC725 from '@erc725/erc725.js';
+
+const LIQUID_STAKING_CONTROLLER = '0xYourLiquidStakingControllerAddress';
+const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
+const SLYX_TOKEN   = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
+
+// Restrict to transferStake(address,uint256,bytes) only on the Stakingverse vault
+// When called, the `to` param should be set to the sLYX token address to receive liquid sLYX
+const transferStakeEntry =
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `1c892b5a`;
+
+const erc725 = new ERC725([]);
+const encodedData = erc725.encodeData([
+  {
+    keyName: 'AddressPermissions:AllowedCalls:<address>',
+    dynamicKeyParts: [LIQUID_STAKING_CONTROLLER],
+    value: [transferStakeEntry],
+  },
+]);
+
+await walletClient.writeContract({
+  address: myUPAddress,
+  abi: UniversalProfileArtifact.abi,
+  functionName: 'setDataBatch',
+  args: [encodedData.keys, encodedData.values],
+});
+```
+
+</TabItem>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```ts
+import ERC725 from '@erc725/erc725.js';
+import { ethers } from 'ethers';
+import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
+
+const LIQUID_STAKING_CONTROLLER = '0xYourLiquidStakingControllerAddress';
+const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
+
+// Restrict to transferStake(address,uint256,bytes) — selector 0x1c892b5a
+const transferStakeEntry =
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `1c892b5a`;
+
+const erc725 = new ERC725([]);
+const encodedData = erc725.encodeData([
+  {
+    keyName: 'AddressPermissions:AllowedCalls:<address>',
+    dynamicKeyParts: [LIQUID_STAKING_CONTROLLER],
+    value: [transferStakeEntry],
+  },
+]);
+
+const universalProfile = new ethers.Contract(
+  myUPAddress,
+  UniversalProfileArtifact.abi,
+  signer,
+);
+await universalProfile.setDataBatch(encodedData.keys, encodedData.values);
+```
+
+</TabItem>
+<TabItem value="solidity" label="Solidity" attributes={{className: "tab_solidity"}}>
+
+```solidity
+address constant STAKING_VAULT = 0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04;
+address constant SLYX_TOKEN    = 0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d;
+
+// transferStake(address,uint256,bytes) selector = 0x1c892b5a
+bytes memory transferStakeEntry = abi.encodePacked(
+    bytes4(0x00000002),   // CALL type
+    STAKING_VAULT,         // target: Stakingverse vault only
+    bytes4(0xffffffff),    // any ERC165 standard
+    bytes4(0x1c892b5a)     // transferStake(address,uint256,bytes)
+);
+
+bytes memory compactEncoded = abi.encodePacked(uint16(32), transferStakeEntry);
+
+bytes32 allowedCallsKey = bytes32(
+    abi.encodePacked(
+        bytes6(0x4b80742de2bf), // AddressPermissions:AllowedCalls: prefix
+        bytes2(0x0000),
+        LIQUID_STAKING_CONTROLLER
+    )
+);
+
+IERC725Y(myUPAddress).setData(allowedCallsKey, compactEncoded);
+```
+
+</TabItem>
+</Tabs>
+
+:::tip Calling transferStake
+When the restricted controller calls `transferStake`, it passes the **sLYX token address** (`0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d`) as the `to` param and the desired amount. If the recipient implements `IVaultStakeRecipient`, the vault will call `onVaultStakeReceived` — enabling automated liquid staking flows directly from your Universal Profile.
+:::
+
 ---
 
 ## Example 2: Send LYX to one address only
