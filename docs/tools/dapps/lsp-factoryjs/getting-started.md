@@ -80,15 +80,38 @@ console.log('KeyManager Address:', contracts.LSP6KeyManager.address);
 
 ### With LSP3 metadata and a deterministic salt
 
+First, encode your LSP3Profile metadata using [erc725.js](https://docs.lukso.tech/tools/dapps/erc725js/getting-started):
+
+```typescript
+import ERC725 from '@erc725/erc725.js';
+
+const erc725 = new ERC725([
+  {
+    name: 'LSP3Profile',
+    key: '0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5',
+    keyType: 'Singleton',
+    valueType: 'bytes',
+    valueContent: 'VerifiableURI',
+  },
+]);
+
+const encoded = erc725.encodeData([
+  {
+    keyName: 'LSP3Profile',
+    value: { json: metadata, url: 'ipfs://...' },
+  },
+]);
+
+const lsp3DataValue = encoded.values[0];
+```
+
+Then pass it into the deploy call:
+
 ```typescript
 const contracts = await factory.UniversalProfile.deploy(
   {
     controllerAddresses: ['0x...'],
-    // Use erc725.js to encode LSP3Profile metadata:
-    // import ERC725 from '@erc725/erc725.js';
-    // const encoded = erc725.encodeData([{ keyName: 'LSP3Profile', value: { json: metadata, url: 'ipfs://...' } }]);
-    // lsp3DataValue = encoded.values[0];
-    lsp3DataValue: '0x...', // Pre-encoded LSP3Profile VerifiableURI (see above)
+    lsp3DataValue, // Pre-encoded LSP3Profile VerifiableURI
   },
   {
     salt: '0x...', // bytes32 salt for deterministic address generation
