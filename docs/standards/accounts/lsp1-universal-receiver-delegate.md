@@ -22,13 +22,11 @@ To better understand this standard, it is well-advised first to check the origin
 
 Once deployed, the code of a smart contract **can not be changed**. However, builders can decide how their smart contracts implement the [`universalReceiver(...)`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver) function.
 
-Therefore, it is advised not to hardcode how the smart contract should handle and react to specific calls inside the `universalReceiver(...)` function. Instead, it should delegate this functionality to another external contract. Developers could then customize such contracts to implement a specific logic, that is **changeable anytime** by updating the reference to a new contract in the `universalReceiver(..)` function.
-
 ## Why Delegation?
 
 The ability to react to incoming calls with logic hardcoded within the `universalReceiver(...)` function has a key limitation: only fixed functionality can be coded at deployment time.
 
-Delegation solves this by forwarding the `universalReceiver(...)` call to an external smart contract, enabling upgradeability and allowing the behaviour to change over time without redeploying the original contract.
+Delegation solves this by forwarding the `universalReceiver(...)` call to an external smart contract, enabling upgradeability and allowing the behaviour to change over time without redeploying the original contract. Developers can customize such delegate contracts to implement specific logic, that is **changeable anytime** by updating the reference to a new contract.
 
 The delegation works by forwarding the call to a separate **UniversalReceiverDelegate** contract and calling the `universalReceiverDelegate(...)` function on it. Since the external contract doesn't have direct access to the original `msg.sender` and `msg.value`, these values are appended to the `msg.data`, allowing the delegate contract to extract them and understand the context of the original call.
 
