@@ -29,7 +29,7 @@ Full code examples are available in the 👾 [lukso-playground](https://github.c
 ## Prerequisites
 
 - A deployed Universal Profile (see [Deploy a Universal Profile](/learn/getting-started))
-- A controller address already granted `CALL` permission (see [Grant Permissions](./grant-permissions.md))
+- A controller address already granted `CALL` permission (and `TRANSFERVALUE` if the controller needs to send LYX) (see [Grant Permissions](./grant-permissions.md))
 
 ## How Allowed Calls work
 
@@ -37,7 +37,7 @@ Each Allowed Calls entry is a **32-byte packed value** stored under the `Address
 
 | Field | Size | Description |
 | --- | --- | --- |
-| Call type | 4 bytes | Type of call: `CALL` (`0x00000002`), `STATICCALL` (`0x00000001`), `DELEGATECALL` (`0x00000003`) |
+| Call type | 4 bytes | Bit flags: `TRANSFERVALUE` (`0x00000001`), `CALL` (`0x00000002`), `TRANSFERVALUE\|CALL` (`0x00000003`), `STATICCALL` (`0x00000004`), `DELEGATECALL` (`0x00000008`) |
 | Address | 20 bytes | Target contract address, or `0xffffffffffffffffffffffffffffffffffffffff` for any |
 | Standard | 4 bytes | Interface ID the target contract must support, or `0xffffffff` for any |
 | Function | 4 bytes | Function selector the controller may call, or `0xffffffff` for any |
@@ -58,30 +58,26 @@ When multiple entries are present they are encoded as a `CompactBytesArray` — 
 
 **Context:** You want an automated bot to stake LYX on [Stakingverse](https://stakingverse.io) without being able to drain your UP or interact with any other contract.
 
-The bot is granted `CALL` permission (see [Grant Permissions](./grant-permissions.md)), and its Allowed Calls list is restricted to a single entry: `deposit(address)` on the Stakingverse vault.
+The bot is granted `CALL` and `TRANSFERVALUE` permissions (see [Grant Permissions](./grant-permissions.md)), and its Allowed Calls list is restricted to a single entry: `deposit(address)` on the Stakingverse vault.
 
 <Tabs>
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
 
 ```ts
-import { ERC725 } from '@erc725/erc725.js';
+import ERC725 from '@erc725/erc725.js';
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
-import { createWalletClient, http } from 'viem';
+import { createWalletClient, custom } from 'viem';
 import { lukso } from 'viem/chains';
 import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 const STAKING_BOT_ADDRESS = '0xYourBotAddress'; // replace with your bot address
 
-const erc725 = new ERC725(
-  LSP6Schema,
-  myUPAddress,
-  'https://rpc.lukso.network',
-);
+const erc725 = new ERC725(LSP6Schema);
 
-// CALL type (0x00000002) + vault address (20 bytes) + any standard (0xffffffff) + deposit(address) selector
+// TRANSFERVALUE|CALL type (0x00000003) — deposit(address) sends LYX to the vault
 const depositEntry =
-  `0x00000002` +
+  `0x00000003` +
   STAKING_VAULT.slice(2) +
   `ffffffff` +
   `f340fa01`; // deposit(address)
@@ -96,8 +92,9 @@ const encodedAllowedCalls = erc725.encodeData([
 
 // Connect the UP Browser Extension and send the transaction
 const [account] = await window.lukso.request({ method: 'eth_requestAccounts' });
+const myUPAddress = account;
 
-const walletClient = createWalletClient({ account, chain: lukso, transport: http() });
+const walletClient = createWalletClient({ account, chain: lukso, transport: custom(window.lukso) });
 
 await walletClient.writeContract({
   address: myUPAddress,
@@ -111,7 +108,7 @@ await walletClient.writeContract({
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
-import { ERC725 } from '@erc725/erc725.js';
+import ERC725 from '@erc725/erc725.js';
 import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
@@ -119,15 +116,11 @@ import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/Unive
 const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 const STAKING_BOT_ADDRESS = '0xYourBotAddress'; // replace with your bot address
 
-const erc725 = new ERC725(
-  LSP6Schema,
-  myUPAddress,
-  'https://rpc.lukso.network',
-);
+const erc725 = new ERC725(LSP6Schema);
 
-// CALL type (0x00000002) + vault address (20 bytes) + any standard (0xffffffff) + deposit(address) selector
+// TRANSFERVALUE|CALL type (0x00000003) — deposit(address) sends LYX to the vault
 const depositEntry =
-  `0x00000002` +
+  `0x00000003` +
   STAKING_VAULT.slice(2) +
   `ffffffff` +
   `f340fa01`; // deposit(address)
@@ -143,6 +136,7 @@ const encodedAllowedCalls = erc725.encodeData([
 // Connect the UP Browser Extension and send the transaction
 const provider = new ethers.BrowserProvider(window.lukso);
 const signer = await provider.getSigner();
+const myUPAddress = await signer.getAddress();
 
 const universalProfile = new ethers.Contract(
   myUPAddress,
@@ -181,9 +175,10 @@ contract SetStakingBotAllowedCalls {
             )
         );
 
-        // 32-byte packed entry: CALL + vault + any standard + deposit(address) selector
+        // 32-byte packed entry: TRANSFERVALUE|CALL + vault + any standard + deposit(address) selector
+        // deposit(address) sends LYX, so call type must be TRANSFERVALUE|CALL (0x00000003)
         bytes memory allowedCallEntry = abi.encodePacked(
-            bytes4(0x00000002),    // CALL type
+            bytes4(0x00000003),    // TRANSFERVALUE|CALL type — deposit sends LYX
             STAKING_VAULT,         // target address (20 bytes)
             bytes4(0xffffffff),    // any interface standard
             bytes4(0xf340fa01)     // deposit(address) selector
@@ -211,14 +206,22 @@ For better security, split staking and withdrawal into two separate controllers.
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
 
 ```ts
+// See Example 1 for full viem setup (walletClient, myUPAddress, UniversalProfileArtifact)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
+const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 const STAKING_BOT = '0xYourStakingBotAddress';
 const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 
-// Staking controller: deposit(address) only
+const erc725 = new ERC725(LSP6Schema);
+
+// Staking controller: deposit(address) — sends LYX, so TRANSFERVALUE|CALL (0x00000003)
 const depositEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
+  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
 
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
+// These do NOT send LYX, so CALL (0x00000002) is correct
 const requestWithdrawalEntry =
   `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `fbbdb3ae`;
 
@@ -251,14 +254,22 @@ await walletClient.writeContract({
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
+// See Example 1 for full ethers setup (universalProfile, myUPAddress, signer)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
+const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 const STAKING_BOT = '0xYourStakingBotAddress';
 const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 
-// Staking controller: deposit(address) only
+const erc725 = new ERC725(LSP6Schema);
+
+// Staking controller: deposit(address) — sends LYX, so TRANSFERVALUE|CALL (0x00000003)
 const depositEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
+  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`;
 
 // Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
+// These do NOT send LYX, so CALL (0x00000002) is correct
 const requestWithdrawalEntry =
   `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `fbbdb3ae`;
 
@@ -288,14 +299,14 @@ await universalProfile.setDataBatch(encodedData.keys, encodedData.values);
 ```solidity
 // For the withdrawal controller, allow both requestWithdrawal and claimWithdrawal
 bytes memory requestEntry = abi.encodePacked(
-    bytes4(0x00000002),   // CALL type
+    bytes4(0x00000002),   // CALL type — withdraw does not send LYX
     STAKING_VAULT,         // target address
     bytes4(0xffffffff),    // any standard
     bytes4(0x00f714ce)     // withdraw(uint256,address)
 );
 
 bytes memory claimEntry = abi.encodePacked(
-    bytes4(0x00000002),   // CALL type
+    bytes4(0x00000002),   // CALL type — claim does not send LYX
     STAKING_VAULT,         // target address
     bytes4(0xffffffff),    // any standard
     bytes4(0xddd5e1b2)     // claim(uint256,address)
@@ -321,20 +332,20 @@ bytes memory compactEncoded = abi.encodePacked(
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
 
 ```ts
-import { createWalletClient, http } from 'viem';
-import { lukso } from 'viem/chains';
+// See Example 1 for full viem setup (walletClient, myUPAddress, UniversalProfileArtifact)
 import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
 const LIQUID_STAKING_CONTROLLER = '0xYourLiquidStakingControllerAddress';
 const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 const SLYX_TOKEN   = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
 
 // Restrict to transferStake(address,uint256,bytes) only on the Stakingverse vault
-// When called, the `to` param should be set to the sLYX token address to receive liquid sLYX
+// transferStake does NOT send LYX — CALL type (0x00000002) is correct
 const transferStakeEntry =
   `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `1c892b5a`;
 
-const erc725 = new ERC725([]);
+const erc725 = new ERC725(LSP6Schema);
 const encodedData = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -355,18 +366,20 @@ await walletClient.writeContract({
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
+// See Example 1 for full ethers setup (universalProfile, myUPAddress, signer)
 import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 import { ethers } from 'ethers';
 import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json';
 
 const LIQUID_STAKING_CONTROLLER = '0xYourLiquidStakingControllerAddress';
 const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 
-// Restrict to transferStake(address,uint256,bytes) — selector 0xf2f1042f
+// Restrict to transferStake(address,uint256,bytes) — transferStake does NOT send LYX
 const transferStakeEntry =
   `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `1c892b5a`;
 
-const erc725 = new ERC725([]);
+const erc725 = new ERC725(LSP6Schema);
 const encodedData = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -387,29 +400,42 @@ await universalProfile.setDataBatch(encodedData.keys, encodedData.values);
 <TabItem value="solidity" label="Solidity" attributes={{className: "tab_solidity"}}>
 
 ```solidity
-address constant STAKING_VAULT = 0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04;
-address constant SLYX_TOKEN    = 0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
 
-// transferStake(address,uint256,bytes) selector = 0xf2f1042f
-bytes memory transferStakeEntry = abi.encodePacked(
-    bytes4(0x00000002),   // CALL type
-    STAKING_VAULT,         // target: Stakingverse vault only
-    bytes4(0xffffffff),    // any ERC165 standard
-    bytes4(0xf2f1042f)     // transferStake(address,uint256,bytes)
-);
+import {IERC725Y} from "@erc725/smart-contracts/contracts/interfaces/IERC725Y.sol";
 
-bytes memory compactEncoded = abi.encodePacked(uint16(32), transferStakeEntry);
+contract SetLiquidStakingAllowedCalls {
+    address constant STAKING_VAULT = 0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04;
+    address constant SLYX_TOKEN    = 0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d;
 
-// Full key: 0x4b80742de2bf393a64c70000<controllerAddress>
-// MappingWithGrouping: bytes6 hash + bytes4 hash + bytes2(0x0000) + address
-bytes32 allowedCallsKey = bytes32(
-    abi.encodePacked(
-        bytes12(0x4b80742de2bf393a64c70000), // AddressPermissions:AllowedCalls:<address> full prefix
-        LIQUID_STAKING_CONTROLLER
-    )
-);
+    function restrictLiquidStakingController(
+        address universalProfile,
+        address LIQUID_STAKING_CONTROLLER
+    ) external {
+        // transferStake(address,uint256,bytes) selector = 0xf2f1042f
+        // transferStake does NOT send LYX — CALL type (0x00000002) is correct
+        bytes memory transferStakeEntry = abi.encodePacked(
+            bytes4(0x00000002),   // CALL type — transferStake does not send LYX
+            STAKING_VAULT,         // target: Stakingverse vault only
+            bytes4(0xffffffff),    // any ERC165 standard
+            bytes4(0xf2f1042f)     // transferStake(address,uint256,bytes)
+        );
 
-IERC725Y(myUPAddress).setData(allowedCallsKey, compactEncoded);
+        bytes memory compactEncoded = abi.encodePacked(uint16(32), transferStakeEntry);
+
+        // Full key: 0x4b80742de2bf393a64c70000<controllerAddress>
+        // MappingWithGrouping: bytes6 hash + bytes4 hash + bytes2(0x0000) + address
+        bytes32 allowedCallsKey = bytes32(
+            abi.encodePacked(
+                bytes12(0x4b80742de2bf393a64c70000), // AddressPermissions:AllowedCalls:<address> full prefix
+                LIQUID_STAKING_CONTROLLER
+            )
+        );
+
+        IERC725Y(universalProfile).setData(allowedCallsKey, compactEncoded);
+    }
+}
 ```
 
 </TabItem>
@@ -429,13 +455,18 @@ When the restricted controller calls `transferStake`, it passes the **sLYX token
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
 
 ```ts
+// See Example 1 for full viem setup (walletClient, myUPAddress, UniversalProfileArtifact)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
 const CONTROLLER_ADDRESS = '0xYourPayrollController';
 const COLD_WALLET = '0xYourColdWalletAddress'; // the only permitted recipient
 
-// CALL type + cold wallet (20 bytes) + any standard + any selector
+// TRANSFERVALUE type (0x00000001) — sending native LYX uses TRANSFERVALUE, not CALL
 const coldWalletEntry =
-  `0x00000002` + COLD_WALLET.slice(2) + `ffffffff` + `ffffffff`;
+  `0x00000001` + COLD_WALLET.slice(2) + `ffffffff` + `ffffffff`;
 
+const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -456,13 +487,18 @@ await walletClient.writeContract({
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
+// See Example 1 for full ethers setup (universalProfile, myUPAddress, signer)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
 const CONTROLLER_ADDRESS = '0xYourPayrollController';
 const COLD_WALLET = '0xYourColdWalletAddress'; // the only permitted recipient
 
-// CALL type + cold wallet (20 bytes) + any standard + any selector
+// TRANSFERVALUE type (0x00000001) — sending native LYX uses TRANSFERVALUE, not CALL
 const coldWalletEntry =
-  `0x00000002` + COLD_WALLET.slice(2) + `ffffffff` + `ffffffff`;
+  `0x00000001` + COLD_WALLET.slice(2) + `ffffffff` + `ffffffff`;
 
+const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -481,11 +517,12 @@ await universalProfile.setData(
 <TabItem value="solidity" label="Solidity" attributes={{className: "tab_solidity"}}>
 
 ```solidity
-address constant COLD_WALLET = 0xYourColdWalletAddress;
+address constant COLD_WALLET = address(0); // TODO: replace with your cold wallet address
 
-// CALL type + cold wallet address + any standard + any selector
+// TRANSFERVALUE type (0x00000001) + cold wallet address + any standard + any selector
+// Sending native LYX uses TRANSFERVALUE bit flag, not CALL
 bytes memory allowedCallEntry = abi.encodePacked(
-    bytes4(0x00000002),  // CALL type
+    bytes4(0x00000001),  // TRANSFERVALUE type — native LYX transfer
     COLD_WALLET,          // target address (20 bytes)
     bytes4(0xffffffff),   // any interface standard
     bytes4(0xffffffff)    // any function selector
@@ -510,6 +547,10 @@ bytes memory compactEncoded = abi.encodePacked(
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
 
 ```ts
+// See Example 1 for full viem setup (walletClient, myUPAddress, UniversalProfileArtifact)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
 const DEFI_BOT = '0xYourDeFiBotAddress';
 
 // CALL type + any address + LSP7 interface ID + transfer() selector
@@ -520,6 +561,7 @@ const lsp7TransferEntry =
   `c52d6008` + // INTERFACE_ID_LSP7
   `760d9bba`; // transfer(address,address,uint256,bool,bytes)
 
+const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -540,6 +582,10 @@ await walletClient.writeContract({
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
+// See Example 1 for full ethers setup (universalProfile, myUPAddress, signer)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
 const DEFI_BOT = '0xYourDeFiBotAddress';
 
 // CALL type + any address + LSP7 interface ID + transfer() selector
@@ -550,6 +596,7 @@ const lsp7TransferEntry =
   `c52d6008` + // INTERFACE_ID_LSP7
   `760d9bba`; // transfer(address,address,uint256,bool,bytes)
 
+const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -598,6 +645,10 @@ bytes memory compactEncoded = abi.encodePacked(
 <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
 
 ```ts
+// See Example 1 for full viem setup (walletClient, myUPAddress, UniversalProfileArtifact)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
 const MARKETING_MANAGER = '0xTeamMemberAddress';
 const NFT_CONTRACT = '0xYourLSP8ContractAddress'; // your specific NFT contract
 
@@ -609,6 +660,7 @@ const nftMetadataEntry =
   `3a271706` + // INTERFACE_ID_LSP8
   `d6c1407c`; // setDataForTokenId(bytes32,bytes32,bytes)
 
+const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -629,6 +681,10 @@ await walletClient.writeContract({
 <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```ts
+// See Example 1 for full ethers setup (universalProfile, myUPAddress, signer)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
 const MARKETING_MANAGER = '0xTeamMemberAddress';
 const NFT_CONTRACT = '0xYourLSP8ContractAddress'; // your specific NFT contract
 
@@ -640,6 +696,7 @@ const nftMetadataEntry =
   `3a271706` + // INTERFACE_ID_LSP8
   `d6c1407c`; // setDataForTokenId(bytes32,bytes32,bytes)
 
+const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
@@ -661,7 +718,7 @@ await universalProfile.setData(
 bytes4 constant INTERFACE_ID_LSP8 = 0x3a271706;
 bytes4 constant SET_DATA_FOR_TOKEN_ID_SELECTOR = 0xd6c1407c; // setDataForTokenId(bytes32,bytes32,bytes)
 
-address constant NFT_CONTRACT = 0xYourLSP8ContractAddress;
+address constant NFT_CONTRACT = address(0); // TODO: replace with your LSP8 NFT contract address
 
 // CALL type + specific NFT contract + LSP8 standard + setDataForTokenId() selector
 bytes memory allowedCallEntry = abi.encodePacked(
