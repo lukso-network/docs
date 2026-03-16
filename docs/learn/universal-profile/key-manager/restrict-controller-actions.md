@@ -347,7 +347,7 @@ const SLYX_TOKEN   = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
 // Restrict to transferStake(address,uint256,bytes) only on the Stakingverse vault
 // transferStake does NOT send LYX — CALL type (0x00000002) is correct
 const transferStakeEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `1c892b5a`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f2f1042f`;
 
 const erc725 = new ERC725(LSP6Schema);
 const encodedData = erc725.encodeData([
@@ -381,7 +381,7 @@ const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
 
 // Restrict to transferStake(address,uint256,bytes) — transferStake does NOT send LYX
 const transferStakeEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `1c892b5a`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `f2f1042f`;
 
 const erc725 = new ERC725(LSP6Schema);
 const encodedData = erc725.encodeData([
