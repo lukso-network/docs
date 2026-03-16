@@ -167,7 +167,7 @@ No additional data is sent with this notification (empty bytes `""`).
 | **Solidity constant:**   | `_TYPEID_LSP0_OwnershipTransferStarted`                                                              |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP0OwnershipTransferStarted`                                                         |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -217,7 +217,7 @@ const [currentOwner, pendingNewOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP0_OwnershipTransferred_SenderNotification`                                                                                                                                        |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP0OwnershipTransferred_SenderNotification`                                                                                                                                   |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -267,7 +267,7 @@ const [previousOwner, newOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP0_OwnershipTransferred_RecipientNotification`                                 |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP0OwnershipTransferred_RecipientNotification`                            |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -318,7 +318,7 @@ const [previousOwner, newOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP7_TOKENSSENDER`                                                                                                                                                                                   |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP7Tokens_SenderNotification`                                                                                                                                                                 |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -383,7 +383,7 @@ const [operator, from, to, amount, transferData] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP7_TOKENSRECIPIENT`                                                                                                                                                                                     |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification`                                                                                                                                                                   |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -448,7 +448,7 @@ const [operator, from, to, amount, transferData] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP7_TOKENOPERATOR`                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP7Tokens_OperatorNotification`                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -509,7 +509,7 @@ const [tokenOwner, allowance, operatorNotificationData] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP8_TOKENSSENDER`                                                                                                                                                                                                                           |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP8Tokens_SenderNotification`                                                                                                                                                                                                         |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -574,7 +574,7 @@ const [operator, from, to, tokenId, transferData] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP8_TOKENSRECIPIENT`                                                                                                                                                                                                                                     |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP8Tokens_RecipientNotification`                                                                                                                                                                                                                   |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -639,7 +639,7 @@ const [operator, from, to, tokenId, transferData] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP8_TOKENOPERATOR`                                                                                                                                                                                                                                                      |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP8Tokens_OperatorNotification`                                                                                                                                                                                                                                   |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -718,7 +718,7 @@ No additional data is sent with this notification (empty bytes `""`).
 | **Solidity constant:**   | `_TYPEID_LSP9_OwnershipTransferStarted`                                              |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP9OwnershipTransferStarted`                                         |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -768,7 +768,7 @@ const [currentOwner, pendingNewOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP9_OwnershipTransferred_SenderNotification`                                                                                                        |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP9OwnershipTransferred_SenderNotification`                                                                                                   |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -818,7 +818,7 @@ const [previousOwner, newOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP9_OwnershipTransferred_RecipientNotification`                 |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP9OwnershipTransferred_RecipientNotification`            |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -869,7 +869,7 @@ const [previousOwner, newOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP14_OwnershipTransferStarted`                                                             |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP14OwnershipTransferStarted`                                                        |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -919,7 +919,7 @@ const [currentOwner, pendingNewOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP14_OwnershipTransferred_SenderNotification`                                                                                                                                       |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP14OwnershipTransferred_SenderNotification`                                                                                                                                  |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -969,7 +969,7 @@ const [previousOwner, newOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP14_OwnershipTransferred_RecipientNotification`                                |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP14OwnershipTransferred_RecipientNotification`                           |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
@@ -1020,7 +1020,7 @@ const [previousOwner, newOwner] = decodeAbiParameters(
 | **Solidity constant:**   | `_TYPEID_LSP26_FOLLOW`                                                                                                            |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_FollowNotification`                                                                            |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 > **Note:** LSP26 uses `abi.encodePacked` (not `abi.encode`), so the data is 20 bytes (the raw address) rather than 32 bytes (ABI-padded).
 
@@ -1067,7 +1067,7 @@ address follower = address(bytes20(data));
 | **Solidity constant:**   | `_TYPEID_LSP26_UNFOLLOW`                                                                                                          |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_UnfollowNotification`                                                                          |
 
-:::success How to decode notification data?
+:::info How to decode notification data?
 
 > **Note:** LSP26 uses `abi.encodePacked` (not `abi.encode`), so the data is 20 bytes (the raw address) rather than 32 bytes (ABI-padded).
 
