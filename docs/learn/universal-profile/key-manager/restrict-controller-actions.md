@@ -176,8 +176,7 @@ contract SetStakingBotAllowedCalls {
         // Data key: AddressPermissions:AllowedCalls:<controllerAddress>
         bytes32 dataKey = bytes32(
             abi.encodePacked(
-                bytes6(0xef26ac33982a), // AddressPermissions:AllowedCalls: prefix
-                bytes2(0x0000),
+                bytes12(0x4b80742de2bf393a64c70000), // AddressPermissions:AllowedCalls:<address> full prefix
                 stakingBot
             )
         );
@@ -219,12 +218,12 @@ const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 const depositEntry =
   `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `d0e30db0`;
 
-// Withdrawal controller: requestWithdrawal(uint256) and claimWithdrawal()
+// Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 const requestWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `9ee679e8`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `fbbdb3ae`;
 
 const claimWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `6e66d84a`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `76657593`;
 
 const encodedData = erc725.encodeData([
   {
@@ -259,12 +258,12 @@ const WITHDRAWAL_BOT = '0xYourWithdrawalBotAddress';
 const depositEntry =
   `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `d0e30db0`;
 
-// Withdrawal controller: requestWithdrawal(uint256) and claimWithdrawal()
+// Withdrawal controller: withdraw(uint256,address) and claim(uint256,address)
 const requestWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `9ee679e8`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `fbbdb3ae`;
 
 const claimWithdrawalEntry =
-  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `6e66d84a`;
+  `0x00000002` + STAKING_VAULT.slice(2) + `ffffffff` + `76657593`;
 
 const encodedData = erc725.encodeData([
   {
@@ -292,14 +291,14 @@ bytes memory requestEntry = abi.encodePacked(
     bytes4(0x00000002),   // CALL type
     STAKING_VAULT,         // target address
     bytes4(0xffffffff),    // any standard
-    bytes4(0x9ee679e8)     // requestWithdrawal(uint256)
+    bytes4(0xfbbdb3ae)     // withdraw(uint256,address)
 );
 
 bytes memory claimEntry = abi.encodePacked(
     bytes4(0x00000002),   // CALL type
     STAKING_VAULT,         // target address
     bytes4(0xffffffff),    // any standard
-    bytes4(0x6e66d84a)     // claimWithdrawal()
+    bytes4(0x76657593)     // claim(uint256,address)
 );
 
 // CompactBytesArray with two 32-byte entries
@@ -401,10 +400,11 @@ bytes memory transferStakeEntry = abi.encodePacked(
 
 bytes memory compactEncoded = abi.encodePacked(uint16(32), transferStakeEntry);
 
+// Full key: 0x4b80742de2bf393a64c70000<controllerAddress>
+// MappingWithGrouping: bytes6 hash + bytes4 hash + bytes2(0x0000) + address
 bytes32 allowedCallsKey = bytes32(
     abi.encodePacked(
-        bytes6(0x4b80742de2bf), // AddressPermissions:AllowedCalls: prefix
-        bytes2(0x0000),
+        bytes12(0x4b80742de2bf393a64c70000), // AddressPermissions:AllowedCalls:<address> full prefix
         LIQUID_STAKING_CONTROLLER
     )
 );
