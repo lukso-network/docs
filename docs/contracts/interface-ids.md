@@ -40,3 +40,19 @@ const LSP0_INTERFACE_ID = INTERFACE_IDS.LSP0ERC725Account;
 </details>
 
 <InterfaceIdsTable />
+
+## Interface IDs vs Supported Standards
+
+Both serve to identify smart contracts, but they operate at different layers:
+
+### Interface IDs (ERC165)
+
+Interface IDs are used to detect **which functions** a smart contract implements. If you want to check whether a contract supports a specific set of functions, pass the `interfaceId` to the [`supportsInterface(bytes4)`](https://eips.ethereum.org/EIPS/eip-165) function. It will return `true` if the contract implements those functions, `false` otherwise.
+
+> **In short:** Interface IDs standardise the **functionalities** of a contract (the functions it supports).
+
+### Supported Standards (ERC725Y)
+
+The [Supported Standards](../standards/metadata/lsp2-json-schema.md) mapping is a specific [ERC725Y](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-725.md#erc725y) data key that a smart contract sets to signal which LSP metadata schema it follows (e.g., `SupportedStandards:LSP3Profile`). This tells dApps and tools what kind of metadata to expect in the contract's key-value store.
+
+> **In short:** Supported Standards standardise the **metadata** of a contract (the data in its key-value store).
