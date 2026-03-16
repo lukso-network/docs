@@ -4,6 +4,7 @@ sidebar_position: 3
 description: Learn how to restrict a controller to only specific contracts, functions, or token standards using LSP6 Key Manager Allowed Calls on LUKSO.
 ---
 
+import AllowedCallsReference from '@site/src/components/AllowedCallsReference';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -51,6 +52,9 @@ So a single 32-byte entry looks like:
 ```
 
 When multiple entries are present they are encoded as a `CompactBytesArray` — erc725.js handles this automatically.
+
+<AllowedCallsReference />
+
 
 ---
 
