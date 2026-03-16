@@ -12,11 +12,14 @@ The **LSP1 Type IDs** listed below are unique identifiers used across the LSP st
 
 These Type IDs are sent as the `typeId` parameter when calling the `universalReceiver(bytes32 typeId, bytes data)` function on contracts implementing [LSP1](../standards/accounts/lsp1-universal-receiver.md). They allow contracts to identify what type of notification they are receiving and react accordingly.
 
-For instance:
+When a Universal Profile receives a notification, its Universal Receiver function ([LSP1](../standards/accounts/lsp1-universal-receiver.md)) is called with a `typeId` and `data`. A connected [LSP1 Delegate](../standards/accounts/lsp1-universal-receiver-delegate.md) inspects the `typeId` to decide how to react. For example:
 
-- Notify a sender that LSP7 tokens are being transferred from their balance
-- Notify a recipient about receiving LSP7 tokens
-- Notify a profile that they have a new follower
+- Auto-register a received token / NFT in your list of received assets
+- Swap automatically a token received
+- Send a tip or an NFT to a new follower
+- Auto-split received LYX / LSP7 tokens between collaborators
+- Save a new follower to a subscriber list for future airdrops (NFT music tracks, vouchers, newsletter, etc...)
+- Any customisation you might want
 
 ## Notification Type IDs list
 
@@ -1099,3 +1102,11 @@ address unfollower = address(bytes20(data));
 </Tabs>
 
 :::
+
+---
+
+## See also
+
+- [Build a Universal Receiver Delegate](../standards/accounts/lsp1-universal-receiver-delegate.md)
+- [LSP1 Universal Receiver standard](../standards/accounts/lsp1-universal-receiver.md)
+- [lsp-smart-contracts constants reference](https://github.com/lukso-network/lsp-smart-contracts)
