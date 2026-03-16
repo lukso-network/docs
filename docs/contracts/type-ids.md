@@ -3,6 +3,9 @@ title: LSP1 Notification Type IDs
 sidebar_label: LSP1 Notification Type IDs
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # LSP1 Notification Type IDs
 
 The **LSP1 Type IDs** listed below are unique identifiers used across the LSP standards for the [Universal Receiver](../standards/accounts/lsp1-universal-receiver.md) notification mechanism.
@@ -15,39 +18,52 @@ For instance:
 - Notify a recipient about receiving LSP7 tokens
 - Notify a profile that they have a new follower
 
-### How Type IDs are generated
+## Notification Type IDs list
 
-Each Type ID is a `bytes32` value computed as the **keccak256 hash of the Type ID name string**. For example:
+| Standard | Type ID Name                                      | Link                                                  |
+| -------- | ------------------------------------------------- | ----------------------------------------------------- |
+| LSP0     | `LSP0ValueReceived`                               | [↓](#lsp0valuereceived)                               |
+| LSP0     | `LSP0OwnershipTransferStarted`                    | [↓](#lsp0ownershiptransferstarted)                    |
+| LSP0     | `LSP0OwnershipTransferred_SenderNotification`     | [↓](#lsp0ownershiptransferred_sendernotification)     |
+| LSP0     | `LSP0OwnershipTransferred_RecipientNotification`  | [↓](#lsp0ownershiptransferred_recipientnotification)  |
+| LSP7     | `LSP7Tokens_SenderNotification`                   | [↓](#lsp7tokens_sendernotification)                   |
+| LSP7     | `LSP7Tokens_RecipientNotification`                | [↓](#lsp7tokens_recipientnotification)                |
+| LSP7     | `LSP7Tokens_OperatorNotification`                 | [↓](#lsp7tokens_operatornotification)                 |
+| LSP8     | `LSP8Tokens_SenderNotification`                   | [↓](#lsp8tokens_sendernotification)                   |
+| LSP8     | `LSP8Tokens_RecipientNotification`                | [↓](#lsp8tokens_recipientnotification)                |
+| LSP8     | `LSP8Tokens_OperatorNotification`                 | [↓](#lsp8tokens_operatornotification)                 |
+| LSP9     | `LSP9ValueReceived`                               | [↓](#lsp9valuereceived)                               |
+| LSP9     | `LSP9OwnershipTransferStarted`                    | [↓](#lsp9ownershiptransferstarted)                    |
+| LSP9     | `LSP9OwnershipTransferred_SenderNotification`     | [↓](#lsp9ownershiptransferred_sendernotification)     |
+| LSP9     | `LSP9OwnershipTransferred_RecipientNotification`  | [↓](#lsp9ownershiptransferred_recipientnotification)  |
+| LSP14    | `LSP14OwnershipTransferStarted`                   | [↓](#lsp14ownershiptransferstarted)                   |
+| LSP14    | `LSP14OwnershipTransferred_SenderNotification`    | [↓](#lsp14ownershiptransferred_sendernotification)    |
+| LSP14    | `LSP14OwnershipTransferred_RecipientNotification` | [↓](#lsp14ownershiptransferred_recipientnotification) |
+| LSP26    | `LSP26FollowerSystem_FollowNotification`          | [↓](#lsp26followersystem_follownotification)          |
+| LSP26    | `LSP26FollowerSystem_UnfollowNotification`        | [↓](#lsp26followersystem_unfollownotification)        |
 
-```
-keccak256("LSP7Tokens_SenderNotification") = 0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea
-```
+## Using Type ID
 
-You can verify any Type ID by hashing its name:
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-bytes32 typeId = keccak256("LSP7Tokens_SenderNotification");
+import { _TYPEID_LSP7_TOKENSSENDER } from "@lukso/lsp7-contracts/contracts/LSP7Constants.sol";
+
+function universalReceiverDelegate(
+    address sender,
+    uint256 value,
+    bytes32 typeId,
+    bytes memory data
+) external returns (bytes memory) {
+    if (typeId == _TYPEID_LSP7_TOKENSSENDER) {
+        // handle LSP7 token sent notification
+    }
+}
 ```
 
-```js
-// ethers v6
-import { keccak256, toUtf8Bytes } from 'ethers';
-const typeId = keccak256(toUtf8Bytes('LSP7Tokens_SenderNotification'));
-```
-
-```js
-// viem
-import { keccak256, toHex } from 'viem';
-const typeId = keccak256(toHex('LSP7Tokens_SenderNotification'));
-```
-
-## Using Type IDs in JavaScript
-
-The Type IDs are available as constants from the [`@lukso/lsp-smart-contracts`](https://www.npmjs.com/package/@lukso/lsp-smart-contracts) npm package:
-
-```bash
-npm install @lukso/lsp-smart-contracts
-```
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
 ```js
 import { LSP1_TYPE_IDS } from '@lukso/lsp-smart-contracts';
@@ -62,9 +78,61 @@ LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification;
 LSP1_TYPE_IDS.LSP26FollowerSystem_FollowNotification;
 ```
 
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { LSP1_TYPE_IDS } from '@lukso/lsp-smart-contracts';
+
+// The constants are the same — they are plain bytes32 hex strings
+LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification;
+```
+
+  </TabItem>
+</Tabs>
+
 > **Note:** The JavaScript constants are exported from the `@lukso/lsp-smart-contracts` package. The corresponding Solidity constants are defined in each LSP's contract constants file (e.g., `LSP7Constants.sol`, `LSP26Constants.sol`).
 >
 > See the [lsp-smart-contracts repository](https://github.com/lukso-network/lsp-smart-contracts) for the full source code.
+
+<details>
+  <summary><strong>How Type IDs are generated</strong></summary>
+
+Each Type ID is a `bytes32` value computed as the **keccak256 hash of the Type ID name string**. For example:
+
+```
+keccak256("LSP7Tokens_SenderNotification") = 0x429ac7a06903dbc9c13dfcb3c9d11df8194581fa047c96d7a4171fc7402958ea
+```
+
+You can verify any Type ID by hashing its name:
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
+
+```solidity
+bytes32 typeId = keccak256("LSP7Tokens_SenderNotification");
+```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { keccak256, toUtf8Bytes } from 'ethers'; // ethers v6
+const typeId = keccak256(toUtf8Bytes('LSP7Tokens_SenderNotification'));
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { keccak256, toHex } from 'viem';
+const typeId = keccak256(toHex('LSP7Tokens_SenderNotification'));
+```
+
+  </TabItem>
+</Tabs>
+
+</details>
 
 ---
 
@@ -94,11 +162,46 @@ LSP1_TYPE_IDS.LSP26FollowerSystem_FollowNotification;
 | **Solidity constant:**   | `_TYPEID_LSP0_OwnershipTransferStarted`                                                              |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP0OwnershipTransferStarted`                                                         |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address currentOwner, address pendingNewOwner)
+// Encoding (inside the contract):
+bytes memory encodedData = abi.encode(address currentOwner, address pendingNewOwner);
+
+// Decoding (inside a Universal Receiver Delegate):
+(address currentOwner, address pendingNewOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [currentOwner, pendingNewOwner] = abiCoder.decode(
+  ['address', 'address'],
+  data,
+);
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [currentOwner, pendingNewOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP0OwnershipTransferred_SenderNotification`
 
@@ -111,15 +214,48 @@ abi.encode(address currentOwner, address pendingNewOwner)
 | **Solidity constant:**   | `_TYPEID_LSP0_OwnershipTransferred_SenderNotification`                                                                                                                                        |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP0OwnershipTransferred_SenderNotification`                                                                                                                                   |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
+// Encoding (inside the contract):
 // On acceptOwnership():
-abi.encode(address previousOwner, address newOwner)
-
+bytes memory encodedData = abi.encode(address previousOwner, address newOwner);
 // On renounceOwnership():
-abi.encode(address previousOwner, address(0))
+bytes memory encodedData = abi.encode(address previousOwner, address(0));
+
+// Decoding (inside a Universal Receiver Delegate):
+(address previousOwner, address newOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [previousOwner, newOwner] = abiCoder.decode(['address', 'address'], data);
+// newOwner is address(0) on renounceOwnership
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [previousOwner, newOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+// newOwner is address(0) on renounceOwnership
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP0OwnershipTransferred_RecipientNotification`
 
@@ -132,11 +268,43 @@ abi.encode(address previousOwner, address(0))
 | **Solidity constant:**   | `_TYPEID_LSP0_OwnershipTransferred_RecipientNotification`                                 |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP0OwnershipTransferred_RecipientNotification`                            |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address previousOwner, address newOwner)
+// Encoding:
+bytes memory encodedData = abi.encode(address previousOwner, address newOwner);
+
+// Decoding:
+(address previousOwner, address newOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [previousOwner, newOwner] = abiCoder.decode(['address', 'address'], data);
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [previousOwner, newOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+```
+
+  </TabItem>
+</Tabs>
 
 ---
 
@@ -153,12 +321,66 @@ abi.encode(address previousOwner, address newOwner)
 | **Solidity constant:**   | `_TYPEID_LSP7_TOKENSSENDER`                                                                                                                                                                                   |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP7Tokens_SenderNotification`                                                                                                                                                                 |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address operator, address from, address to, uint256 amount, bytes data)
+// Encoding (inside the contract):
+bytes memory encodedData = abi.encode(
+    address operator,
+    address from,
+    address to,       // address(0) when burning
+    uint256 amount,
+    bytes memory data
+);
+
+// Decoding (inside a Universal Receiver Delegate):
+(
+    address operator,
+    address from,
+    address to,
+    uint256 amount,
+    bytes memory transferData
+) = abi.decode(data, (address, address, address, uint256, bytes));
+```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [operator, from, to, amount, transferData] = abiCoder.decode(
+  ['address', 'address', 'address', 'uint256', 'bytes'],
+  data,
+);
 // `to` is address(0) when burning
 ```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [operator, from, to, amount, transferData] = decodeAbiParameters(
+  [
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'uint256' },
+    { type: 'bytes' },
+  ],
+  data,
+);
+// `to` is address(0) when burning
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP7Tokens_RecipientNotification`
 
@@ -171,12 +393,66 @@ abi.encode(address operator, address from, address to, uint256 amount, bytes dat
 | **Solidity constant:**   | `_TYPEID_LSP7_TOKENSRECIPIENT`                                                                                                                                                                                     |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification`                                                                                                                                                                   |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address operator, address from, address to, uint256 amount, bytes data)
+// Encoding (inside the contract):
+bytes memory encodedData = abi.encode(
+    address operator,
+    address from,      // address(0) when minting
+    address to,
+    uint256 amount,
+    bytes memory data
+);
+
+// Decoding (inside a Universal Receiver Delegate):
+(
+    address operator,
+    address from,
+    address to,
+    uint256 amount,
+    bytes memory transferData
+) = abi.decode(data, (address, address, address, uint256, bytes));
+```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [operator, from, to, amount, transferData] = abiCoder.decode(
+  ['address', 'address', 'address', 'uint256', 'bytes'],
+  data,
+);
 // `from` is address(0) when minting
 ```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [operator, from, to, amount, transferData] = decodeAbiParameters(
+  [
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'uint256' },
+    { type: 'bytes' },
+  ],
+  data,
+);
+// `from` is address(0) when minting
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP7Tokens_OperatorNotification`
 
@@ -189,15 +465,64 @@ abi.encode(address operator, address from, address to, uint256 amount, bytes dat
 | **Solidity constant:**   | `_TYPEID_LSP7_TOKENOPERATOR`                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP7Tokens_OperatorNotification`                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
+// Encoding (inside the contract):
 // On authorizeOperator / increaseAllowance / decreaseAllowance:
-abi.encode(address tokenOwner, uint256 allowance, bytes operatorNotificationData)
+bytes memory encodedData = abi.encode(
+    address tokenOwner,
+    uint256 allowance,
+    bytes memory operatorNotificationData
+);
 
 // On revokeOperator (allowance is always 0):
-abi.encode(address tokenOwner, uint256 allowance, bytes operatorNotificationData)
+bytes memory encodedData = abi.encode(
+    address tokenOwner,
+    uint256 allowance,   // 0
+    bytes memory operatorNotificationData
+);
+
+// Decoding (inside a Universal Receiver Delegate):
+(
+    address tokenOwner,
+    uint256 allowance,
+    bytes memory operatorNotificationData
+) = abi.decode(data, (address, uint256, bytes));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [tokenOwner, allowance, operatorNotificationData] = abiCoder.decode(
+  ['address', 'uint256', 'bytes'],
+  data,
+);
+// allowance is 0 on revokeOperator
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [tokenOwner, allowance, operatorNotificationData] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'uint256' }, { type: 'bytes' }],
+  data,
+);
+// allowance is 0 on revokeOperator
+```
+
+  </TabItem>
+</Tabs>
 
 ---
 
@@ -214,12 +539,66 @@ abi.encode(address tokenOwner, uint256 allowance, bytes operatorNotificationData
 | **Solidity constant:**   | `_TYPEID_LSP8_TOKENSSENDER`                                                                                                                                                                                                                           |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP8Tokens_SenderNotification`                                                                                                                                                                                                         |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address operator, address from, address to, bytes32 tokenId, bytes data)
+// Encoding (inside the contract):
+bytes memory encodedData = abi.encode(
+    address operator,
+    address from,
+    address to,         // address(0) when burning
+    bytes32 tokenId,
+    bytes memory data
+);
+
+// Decoding (inside a Universal Receiver Delegate):
+(
+    address operator,
+    address from,
+    address to,
+    bytes32 tokenId,
+    bytes memory transferData
+) = abi.decode(data, (address, address, address, bytes32, bytes));
+```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [operator, from, to, tokenId, transferData] = abiCoder.decode(
+  ['address', 'address', 'address', 'bytes32', 'bytes'],
+  data,
+);
 // `to` is address(0) when burning
 ```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [operator, from, to, tokenId, transferData] = decodeAbiParameters(
+  [
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'bytes32' },
+    { type: 'bytes' },
+  ],
+  data,
+);
+// `to` is address(0) when burning
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP8Tokens_RecipientNotification`
 
@@ -232,12 +611,66 @@ abi.encode(address operator, address from, address to, bytes32 tokenId, bytes da
 | **Solidity constant:**   | `_TYPEID_LSP8_TOKENSRECIPIENT`                                                                                                                                                                                                                                     |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP8Tokens_RecipientNotification`                                                                                                                                                                                                                   |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address operator, address from, address to, bytes32 tokenId, bytes data)
+// Encoding (inside the contract):
+bytes memory encodedData = abi.encode(
+    address operator,
+    address from,      // address(0) when minting
+    address to,
+    bytes32 tokenId,
+    bytes memory data
+);
+
+// Decoding (inside a Universal Receiver Delegate):
+(
+    address operator,
+    address from,
+    address to,
+    bytes32 tokenId,
+    bytes memory transferData
+) = abi.decode(data, (address, address, address, bytes32, bytes));
+```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [operator, from, to, tokenId, transferData] = abiCoder.decode(
+  ['address', 'address', 'address', 'bytes32', 'bytes'],
+  data,
+);
 // `from` is address(0) when minting
 ```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [operator, from, to, tokenId, transferData] = decodeAbiParameters(
+  [
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'address' },
+    { type: 'bytes32' },
+    { type: 'bytes' },
+  ],
+  data,
+);
+// `from` is address(0) when minting
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP8Tokens_OperatorNotification`
 
@@ -250,15 +683,71 @@ abi.encode(address operator, address from, address to, bytes32 tokenId, bytes da
 | **Solidity constant:**   | `_TYPEID_LSP8_TOKENOPERATOR`                                                                                                                                                                                                                                                      |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP8Tokens_OperatorNotification`                                                                                                                                                                                                                                   |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
+// Encoding (inside the contract):
 // On authorizeOperator (authorized = true):
-abi.encode(address tokenOwner, bytes32 tokenId, bool authorized, bytes operatorNotificationData)
+bytes memory encodedData = abi.encode(
+    address tokenOwner,
+    bytes32 tokenId,
+    bool authorized,    // true
+    bytes memory operatorNotificationData
+);
 
 // On revokeOperator (authorized = false):
-abi.encode(address tokenOwner, bytes32 tokenId, bool authorized, bytes operatorNotificationData)
+bytes memory encodedData = abi.encode(
+    address tokenOwner,
+    bytes32 tokenId,
+    bool authorized,    // false
+    bytes memory operatorNotificationData
+);
+
+// Decoding (inside a Universal Receiver Delegate):
+(
+    address tokenOwner,
+    bytes32 tokenId,
+    bool authorized,
+    bytes memory operatorNotificationData
+) = abi.decode(data, (address, bytes32, bool, bytes));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [tokenOwner, tokenId, authorized, operatorNotificationData] =
+  abiCoder.decode(['address', 'bytes32', 'bool', 'bytes'], data);
+// authorized = true on authorizeOperator, false on revokeOperator
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [tokenOwner, tokenId, authorized, operatorNotificationData] =
+  decodeAbiParameters(
+    [
+      { type: 'address' },
+      { type: 'bytes32' },
+      { type: 'bool' },
+      { type: 'bytes' },
+    ],
+    data,
+  );
+// authorized = true on authorizeOperator, false on revokeOperator
+```
+
+  </TabItem>
+</Tabs>
 
 ---
 
@@ -288,11 +777,46 @@ abi.encode(address tokenOwner, bytes32 tokenId, bool authorized, bytes operatorN
 | **Solidity constant:**   | `_TYPEID_LSP9_OwnershipTransferStarted`                                              |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP9OwnershipTransferStarted`                                         |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address currentOwner, address pendingNewOwner)
+// Encoding:
+bytes memory encodedData = abi.encode(address currentOwner, address pendingNewOwner);
+
+// Decoding:
+(address currentOwner, address pendingNewOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [currentOwner, pendingNewOwner] = abiCoder.decode(
+  ['address', 'address'],
+  data,
+);
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [currentOwner, pendingNewOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP9OwnershipTransferred_SenderNotification`
 
@@ -305,15 +829,48 @@ abi.encode(address currentOwner, address pendingNewOwner)
 | **Solidity constant:**   | `_TYPEID_LSP9_OwnershipTransferred_SenderNotification`                                                                                                        |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP9OwnershipTransferred_SenderNotification`                                                                                                   |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
+// Encoding:
 // On acceptOwnership():
-abi.encode(address previousOwner, address newOwner)
-
+bytes memory encodedData = abi.encode(address previousOwner, address newOwner);
 // On renounceOwnership():
-abi.encode(address previousOwner, address(0))
+bytes memory encodedData = abi.encode(address previousOwner, address(0));
+
+// Decoding:
+(address previousOwner, address newOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [previousOwner, newOwner] = abiCoder.decode(['address', 'address'], data);
+// newOwner is address(0) on renounceOwnership
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [previousOwner, newOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+// newOwner is address(0) on renounceOwnership
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP9OwnershipTransferred_RecipientNotification`
 
@@ -326,11 +883,43 @@ abi.encode(address previousOwner, address(0))
 | **Solidity constant:**   | `_TYPEID_LSP9_OwnershipTransferred_RecipientNotification`                 |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP9OwnershipTransferred_RecipientNotification`            |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address previousOwner, address newOwner)
+// Encoding:
+bytes memory encodedData = abi.encode(address previousOwner, address newOwner);
+
+// Decoding:
+(address previousOwner, address newOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [previousOwner, newOwner] = abiCoder.decode(['address', 'address'], data);
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [previousOwner, newOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+```
+
+  </TabItem>
+</Tabs>
 
 ---
 
@@ -347,11 +936,46 @@ abi.encode(address previousOwner, address newOwner)
 | **Solidity constant:**   | `_TYPEID_LSP14_OwnershipTransferStarted`                                                             |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP14OwnershipTransferStarted`                                                        |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address currentOwner, address pendingNewOwner)
+// Encoding:
+bytes memory encodedData = abi.encode(address currentOwner, address pendingNewOwner);
+
+// Decoding:
+(address currentOwner, address pendingNewOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [currentOwner, pendingNewOwner] = abiCoder.decode(
+  ['address', 'address'],
+  data,
+);
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [currentOwner, pendingNewOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+```
+
+  </TabItem>
+</Tabs>
 
 #### `LSP14OwnershipTransferred_SenderNotification`
 
@@ -364,15 +988,48 @@ abi.encode(address currentOwner, address pendingNewOwner)
 | **Solidity constant:**   | `_TYPEID_LSP14_OwnershipTransferred_SenderNotification`                                                                                                                                       |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP14OwnershipTransferred_SenderNotification`                                                                                                                                  |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
+// Encoding:
 // On acceptOwnership():
-abi.encode(address previousOwner, address newOwner)
-
+bytes memory encodedData = abi.encode(address previousOwner, address newOwner);
 // On renounceOwnership():
-abi.encode(address previousOwner, address(0))
+bytes memory encodedData = abi.encode(address previousOwner, address(0));
+
+// Decoding:
+(address previousOwner, address newOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [previousOwner, newOwner] = abiCoder.decode(['address', 'address'], data);
+// newOwner is address(0) on renounceOwnership
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [previousOwner, newOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+// newOwner is address(0) on renounceOwnership
+```
+
+  </TabItem>
+</Tabs>
 
 #### `LSP14OwnershipTransferred_RecipientNotification`
 
@@ -385,11 +1042,43 @@ abi.encode(address previousOwner, address(0))
 | **Solidity constant:**   | `_TYPEID_LSP14_OwnershipTransferred_RecipientNotification`                                |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP14OwnershipTransferred_RecipientNotification`                           |
 
-**Data encoding:**
+**Data encoding and decoding:**
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
 
 ```solidity
-abi.encode(address previousOwner, address newOwner)
+// Encoding:
+bytes memory encodedData = abi.encode(address previousOwner, address newOwner);
+
+// Decoding:
+(address previousOwner, address newOwner) = abi.decode(data, (address, address));
 ```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { AbiCoder } from 'ethers';
+
+const abiCoder = new AbiCoder();
+const [previousOwner, newOwner] = abiCoder.decode(['address', 'address'], data);
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { decodeAbiParameters } from 'viem';
+
+const [previousOwner, newOwner] = decodeAbiParameters(
+  [{ type: 'address' }, { type: 'address' }],
+  data,
+);
+```
+
+  </TabItem>
+</Tabs>
 
 ---
 
@@ -406,13 +1095,43 @@ abi.encode(address previousOwner, address newOwner)
 | **Solidity constant:**   | `_TYPEID_LSP26_FOLLOW`                                                                                                            |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_FollowNotification`                                                                            |
 
-**Data encoding:**
-
-```solidity
-abi.encodePacked(address follower)
-```
+**Data encoding and decoding:**
 
 > **Note:** LSP26 uses `abi.encodePacked` (not `abi.encode`), so the data is 20 bytes (the raw address) rather than 32 bytes (ABI-padded).
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
+
+```solidity
+// Encoding (inside the LSP26 contract):
+bytes memory encodedData = abi.encodePacked(address follower);
+
+// Decoding (inside a Universal Receiver Delegate):
+address follower = address(bytes20(data));
+```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { dataSlice, getAddress } from 'ethers';
+
+// data is 20 bytes (not ABI-padded)
+const follower = getAddress(dataSlice(data, 0, 20));
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { getAddress, slice } from 'viem';
+
+// data is 20 bytes (not ABI-padded)
+const follower = getAddress(slice(data, 0, 20));
+```
+
+  </TabItem>
+</Tabs>
 
 ### `LSP26FollowerSystem_UnfollowNotification`
 
@@ -425,10 +1144,40 @@ abi.encodePacked(address follower)
 | **Solidity constant:**   | `_TYPEID_LSP26_UNFOLLOW`                                                                                                          |
 | **JavaScript constant:** | `LSP1_TYPE_IDS.LSP26FollowerSystem_UnfollowNotification`                                                                          |
 
-**Data encoding:**
-
-```solidity
-abi.encodePacked(address unfollower)
-```
+**Data encoding and decoding:**
 
 > **Note:** LSP26 uses `abi.encodePacked` (not `abi.encode`), so the data is 20 bytes (the raw address) rather than 32 bytes (ABI-padded).
+
+<Tabs groupId="provider-lib">
+  <TabItem value="solidity" label="Solidity">
+
+```solidity
+// Encoding (inside the LSP26 contract):
+bytes memory encodedData = abi.encodePacked(address unfollower);
+
+// Decoding (inside a Universal Receiver Delegate):
+address unfollower = address(bytes20(data));
+```
+
+  </TabItem>
+  <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```js
+import { dataSlice, getAddress } from 'ethers';
+
+// data is 20 bytes (not ABI-padded)
+const unfollower = getAddress(dataSlice(data, 0, 20));
+```
+
+  </TabItem>
+  <TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```js
+import { getAddress, slice } from 'viem';
+
+// data is 20 bytes (not ABI-padded)
+const unfollower = getAddress(slice(data, 0, 20));
+```
+
+  </TabItem>
+</Tabs>
