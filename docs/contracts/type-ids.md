@@ -47,6 +47,12 @@ When a Universal Profile receives a notification, its Universal Receiver functio
 
 ## Using Type ID
 
+:::success Recommendation
+
+It is recommended to import each notification type ID from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) package to ensure the logic of your dApp or smart contract checks against the correct Type ID values.
+
+:::
+
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
 
@@ -80,7 +86,7 @@ LSP1_TYPE_IDS.LSP7Tokens_RecipientNotification;
   </TabItem>
   <TabItem value="solidity" label="Solidity">
 
-The Solidity constants are defined in each LSP's contract constants file (e.g., `LSP7Constants.sol`, `LSP26Constants.sol`). It is recommended to import them from the [`@lukso/lsp-smart-contracts`](https://github.com/lukso-network/lsp-smart-contracts) package to ensure the correct Type IDs are used.
+The Solidity constants are defined in each LSP's contract constants file (e.g., `LSP7Constants.sol`, `LSP26Constants.sol`).
 
 ```solidity
 import { _TYPEID_LSP7_TOKENSSENDER } from "@lukso/lsp7-contracts/contracts/LSP7Constants.sol";
