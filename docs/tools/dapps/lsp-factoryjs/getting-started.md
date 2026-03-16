@@ -6,7 +6,7 @@ sidebar_position: 1.1
 
 `@lukso/lsp-factory.js` is a helper library for deploying [Universal Profiles](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md), [LSP7 Digital Assets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md), and [LSP8 Identifiable Digital Assets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md).
 
-v4 uses [viem](https://viem.sh/) for all blockchain interactions and deploys contracts atomically via [LSP23LinkedContractsFactory](../../../standards/factories/lsp23-linked-contracts-factory.md).
+v4 uses [viem](https://viem.sh/) for all blockchain interactions and deploys contracts atomically via [LSP23LinkedContractsFactory](/standards/factories/lsp23-linked-contracts-factory).
 
 ## Supported Networks
 
@@ -67,7 +67,7 @@ import { base } from 'viem/chains'; // BASE (8453)
 
 ## Deploying a Universal Profile
 
-Deploys an [LSP0 Universal Profile](../../../standards/accounts/lsp0-erc725account.md) and [LSP6 KeyManager](../../../standards/access-control/lsp6-key-manager.md) atomically via [LSP23 Factory](../../../standards/factories/lsp23-linked-contracts-factory.md), then configures controller permissions and a Universal Receiver Delegate.
+Deploys an [LSP0 Universal Profile](/standards/accounts/lsp0-erc725account) and [LSP6 KeyManager](/standards/access-control/lsp6-key-manager) atomically via [LSP23 Factory](/standards/factories/lsp23-linked-contracts-factory), then configures controller permissions and a Universal Receiver Delegate.
 
 ```typescript
 const contracts = await factory.UniversalProfile.deploy({
@@ -147,7 +147,7 @@ const { upAddress, keyManagerAddress } =
 
 ## Deploying an LSP7 Digital Asset
 
-Deploys an [LSP7 Digital Asset](../../../standards/tokens/LSP7-Digital-Asset.md) (fungible token) as a minimal proxy:
+Deploys an [LSP7 Digital Asset](/standards/tokens/LSP7-Digital-Asset) (fungible token) as a minimal proxy:
 
 ```typescript
 const contracts = await factory.LSP7DigitalAsset.deploy({
@@ -182,7 +182,7 @@ const contracts = await factory.LSP7DigitalAsset.deploy({
 
 ## Deploying an LSP8 Identifiable Digital Asset
 
-Deploys an [LSP8 Identifiable Digital Asset](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) (NFT) as a minimal proxy:
+Deploys an [LSP8 Identifiable Digital Asset](/standards/tokens/LSP8-Identifiable-Digital-Asset) (NFT) as a minimal proxy:
 
 ```typescript
 const contracts = await factory.LSP8IdentifiableDigitalAsset.deploy({
@@ -227,6 +227,6 @@ const contracts = await factory.UniversalProfile.deploy(
 
 ## Next steps
 
-- [Edit Universal Profile metadata](../../../learn/universal-profile/metadata/edit-profile.md)
-- [Deploying tokens and NFTs](../../../learn/digital-assets/getting-started.md)
-- [LSP1 Notification Type IDs](../../../contracts/type-ids.md) — understanding notifications when deploying assets
+- [Edit Universal Profile metadata](/learn/universal-profile/metadata/edit-profile)
+- [Deploying tokens and NFTs](/learn/digital-assets/getting-started)
+- [LSP1 Notification Type IDs](/contracts/type-ids) — understanding notifications when deploying assets
