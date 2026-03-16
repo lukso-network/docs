@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Restrict What a Controller Can Do'
+sidebar_label: 'Restrict Controller Interactions'
 sidebar_position: 3
 description: Learn how to restrict a controller to only specific contracts, functions, or token standards using LSP6 Key Manager Allowed Calls on LUKSO.
 ---
@@ -8,11 +8,11 @@ import AllowedCallsReference from '@site/src/components/AllowedCallsReference';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Restrict What a Controller Can Do
+# Configure Controller Interactions
 
-Granting a controller the `CALL` permission lets it execute calls on behalf of your Universal Profile — but by itself that permission is too broad. An automated bot with `CALL` permission can theoretically interact with any contract your UP can reach. **Allowed Calls** add a second layer of access control by restricting _which_ contracts, _which_ interface standards, and _which_ function selectors a controller is allowed to call.
+Granting a controller the `SUPER_CALL` permission lets it execute calls on behalf of your Universal Profile — but by itself that permission is too broad. An address with the `SUPER_CALL` permission could theoretically interact with any contract your UP can reach.
 
-Think of permissions as the doors a controller can open, and Allowed Calls as the specific keys they are allowed to use once inside.
+Using the non-super permission `CALL` with some configured **Allowed Calls** add a better layer of access control by restricting _which_ contracts and which functions on a smart contract can be called. This can also be configured by _which_ interface standards for a more "opened restriction" level
 
 :::info
 
@@ -36,12 +36,12 @@ Full code examples are available in the 👾 [lukso-playground](https://github.c
 
 Each Allowed Calls entry is a **32-byte packed value** stored under the `AddressPermissions:AllowedCalls:<controllerAddress>` data key as a `CompactBytesArray`. The four fields are concatenated with no padding:
 
-| Field | Size | Description |
-| --- | --- | --- |
-| Call type | 4 bytes | Bit flags: `TRANSFERVALUE` (`0x00000001`), `CALL` (`0x00000002`), `TRANSFERVALUE\|CALL` (`0x00000003`), `STATICCALL` (`0x00000004`), `DELEGATECALL` (`0x00000008`) |
-| Address | 20 bytes | Target contract address, or `0xffffffffffffffffffffffffffffffffffffffff` for any |
-| Standard | 4 bytes | Interface ID the target contract must support, or `0xffffffff` for any |
-| Function | 4 bytes | Function selector the controller may call, or `0xffffffff` for any |
+| Field     | Size     | Description                                                                                                                                                        |
+| --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Call type | 4 bytes  | Bit flags: `TRANSFERVALUE` (`0x00000001`), `CALL` (`0x00000002`), `TRANSFERVALUE\|CALL` (`0x00000003`), `STATICCALL` (`0x00000004`), `DELEGATECALL` (`0x00000008`) |
+| Address   | 20 bytes | Target contract address, or `0xffffffffffffffffffffffffffffffffffffffff` for any                                                                                   |
+| Standard  | 4 bytes  | Interface ID the target contract must support, or `0xffffffff` for any                                                                                             |
+| Function  | 4 bytes  | Function selector the controller may call, or `0xffffffff` for any                                                                                                 |
 
 So a single 32-byte entry looks like:
 
@@ -54,7 +54,6 @@ So a single 32-byte entry looks like:
 When multiple entries are present they are encoded as a `CompactBytesArray` — erc725.js handles this automatically.
 
 <AllowedCallsReference />
-
 
 ---
 
@@ -81,10 +80,7 @@ const erc725 = new ERC725(LSP6Schema);
 
 // TRANSFERVALUE|CALL type (0x00000003) — deposit(address) sends LYX to the vault
 const depositEntry =
-  `0x00000003` +
-  STAKING_VAULT.slice(2) +
-  `ffffffff` +
-  `f340fa01`; // deposit(address)
+  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`; // deposit(address)
 
 const encodedAllowedCalls = erc725.encodeData([
   {
@@ -98,7 +94,11 @@ const encodedAllowedCalls = erc725.encodeData([
 const [account] = await window.lukso.request({ method: 'eth_requestAccounts' });
 const myUPAddress = account;
 
-const walletClient = createWalletClient({ account, chain: lukso, transport: custom(window.lukso) });
+const walletClient = createWalletClient({
+  account,
+  chain: lukso,
+  transport: custom(window.lukso),
+});
 
 await walletClient.writeContract({
   address: myUPAddress,
@@ -124,10 +124,7 @@ const erc725 = new ERC725(LSP6Schema);
 
 // TRANSFERVALUE|CALL type (0x00000003) — deposit(address) sends LYX to the vault
 const depositEntry =
-  `0x00000003` +
-  STAKING_VAULT.slice(2) +
-  `ffffffff` +
-  `f340fa01`; // deposit(address)
+  `0x00000003` + STAKING_VAULT.slice(2) + `ffffffff` + `f340fa01`; // deposit(address)
 
 const encodedAllowedCalls = erc725.encodeData([
   {
@@ -304,16 +301,16 @@ await universalProfile.setDataBatch(encodedData.keys, encodedData.values);
 // For the withdrawal controller, allow both requestWithdrawal and claimWithdrawal
 bytes memory requestEntry = abi.encodePacked(
     bytes4(0x00000002),   // CALL type — withdraw does not send LYX
-    STAKING_VAULT,         // target address
-    bytes4(0xffffffff),    // any standard
-    bytes4(0x00f714ce)     // withdraw(uint256,address)
+    STAKING_VAULT,        // target address
+    bytes4(0xffffffff),   // any standard
+    bytes4(0x00f714ce)    // withdraw(uint256,address)
 );
 
 bytes memory claimEntry = abi.encodePacked(
     bytes4(0x00000002),   // CALL type — claim does not send LYX
-    STAKING_VAULT,         // target address
-    bytes4(0xffffffff),    // any standard
-    bytes4(0xddd5e1b2)     // claim(uint256,address)
+    STAKING_VAULT,        // target address
+    bytes4(0xffffffff),   // any standard
+    bytes4(0xddd5e1b2)    // claim(uint256,address)
 );
 
 // CompactBytesArray with two 32-byte entries
@@ -342,7 +339,7 @@ import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
 
 const LIQUID_STAKING_CONTROLLER = '0xYourLiquidStakingControllerAddress';
 const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
-const SLYX_TOKEN   = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
+const SLYX_TOKEN = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
 
 // Restrict to transferStake(address,uint256,bytes) only on the Stakingverse vault
 // transferStake does NOT send LYX — CALL type (0x00000002) is correct
@@ -361,8 +358,8 @@ const encodedData = erc725.encodeData([
 await walletClient.writeContract({
   address: myUPAddress,
   abi: UniversalProfileArtifact.abi,
-  functionName: 'setDataBatch',
-  args: [encodedData.keys, encodedData.values],
+  functionName: 'setData',
+  args: [encodedData.keys[0], encodedData.values[0]],
 });
 ```
 
@@ -378,6 +375,7 @@ import UniversalProfileArtifact from '@lukso/lsp-smart-contracts/artifacts/Unive
 
 const LIQUID_STAKING_CONTROLLER = '0xYourLiquidStakingControllerAddress';
 const STAKING_VAULT = '0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04';
+const SLYX_TOKEN = '0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d';
 
 // Restrict to transferStake(address,uint256,bytes) — transferStake does NOT send LYX
 const transferStakeEntry =
@@ -397,7 +395,7 @@ const universalProfile = new ethers.Contract(
   UniversalProfileArtifact.abi,
   signer,
 );
-await universalProfile.setDataBatch(encodedData.keys, encodedData.values);
+await universalProfile.setData(encodedData.keys[0], encodedData.values[0]);
 ```
 
 </TabItem>
@@ -411,7 +409,7 @@ import {IERC725Y} from "@erc725/smart-contracts/contracts/interfaces/IERC725Y.so
 
 contract SetLiquidStakingAllowedCalls {
     address constant STAKING_VAULT = 0x9F49a95b0c3c9e2A6c77a16C177928294c0F6F04;
-    address constant SLYX_TOKEN    = 0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d;
+    address constant SLYX_TOKEN = 0x8a3982f0a7d154d11a5f43eec7f50e52ebbc8f7d;
 
     function restrictLiquidStakingController(
         address universalProfile,
@@ -421,9 +419,9 @@ contract SetLiquidStakingAllowedCalls {
         // transferStake does NOT send LYX — CALL type (0x00000002) is correct
         bytes memory transferStakeEntry = abi.encodePacked(
             bytes4(0x00000002),   // CALL type — transferStake does not send LYX
-            STAKING_VAULT,         // target: Stakingverse vault only
-            bytes4(0xffffffff),    // any ERC165 standard
-            bytes4(0xf2f1042f)     // transferStake(address,uint256,bytes)
+            STAKING_VAULT,        // target: Stakingverse vault only
+            bytes4(0xffffffff),   // any ERC165 standard
+            bytes4(0xf2f1042f)    // transferStake(address,uint256,bytes)
         );
 
         bytes memory compactEncoded = abi.encodePacked(uint16(32), transferStakeEntry);
@@ -527,9 +525,9 @@ address constant COLD_WALLET = address(0); // TODO: replace with your cold walle
 // Sending native LYX uses TRANSFERVALUE bit flag, not CALL
 bytes memory allowedCallEntry = abi.encodePacked(
     bytes4(0x00000001),  // TRANSFERVALUE type — native LYX transfer
-    COLD_WALLET,          // target address (20 bytes)
-    bytes4(0xffffffff),   // any interface standard
-    bytes4(0xffffffff)    // any function selector
+    COLD_WALLET,         // target address (20 bytes)
+    bytes4(0xffffffff),  // any interface standard
+    bytes4(0xffffffff)   // any function selector
 );
 
 bytes memory compactEncoded = abi.encodePacked(
@@ -624,7 +622,7 @@ bytes4 constant LSP7_TRANSFER_SELECTOR = 0x760d9bba; // transfer(address,address
 
 // CALL type + any address + LSP7 standard + transfer() selector
 bytes memory allowedCallEntry = abi.encodePacked(
-    bytes4(0x00000002),               // CALL type
+    bytes4(0x00000002),                // CALL type
     address(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF), // any address
     INTERFACE_ID_LSP7,                 // only LSP7-compliant contracts
     LSP7_TRANSFER_SELECTOR             // transfer(address,address,uint256,bool,bytes)
@@ -727,8 +725,8 @@ address constant NFT_CONTRACT = address(0); // TODO: replace with your LSP8 NFT 
 // CALL type + specific NFT contract + LSP8 standard + setDataForTokenId() selector
 bytes memory allowedCallEntry = abi.encodePacked(
     bytes4(0x00000002),           // CALL type
-    NFT_CONTRACT,                  // specific NFT contract (20 bytes)
-    INTERFACE_ID_LSP8,             // only LSP8-compliant contracts
+    NFT_CONTRACT,                 // specific NFT contract (20 bytes)
+    INTERFACE_ID_LSP8,            // only LSP8-compliant contracts
     SET_DATA_FOR_TOKEN_ID_SELECTOR // setDataForTokenId(bytes32,bytes32,bytes)
 );
 
@@ -740,6 +738,132 @@ bytes memory compactEncoded = abi.encodePacked(
 
 </TabItem>
 </Tabs>
+
+---
+
+## Example 5: Restrict a controller to UP data writes only
+
+**Context:** You want a controller that may update your Universal Profile metadata and permissions, but must not be able to execute arbitrary external calls. Restrict it to the ERC725Y write functions on the Universal Profile itself.
+
+<Tabs>
+<TabItem value="viem" label="viem" attributes={{className: "tab_viem"}}>
+
+```ts
+// See Example 1 for full viem setup (walletClient, myUPAddress, UniversalProfileArtifact)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
+const METADATA_CONTROLLER = '0xYourMetadataControllerAddress';
+const MY_UP_ADDRESS = myUPAddress;
+
+const setDataEntry =
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `7f23690c`;
+
+const setDataBatchEntry =
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `97902421`;
+
+const encodedAllowedCalls = erc725.encodeData([
+  {
+    keyName: 'AddressPermissions:AllowedCalls:<address>',
+    dynamicKeyParts: [METADATA_CONTROLLER],
+    value: [setDataEntry, setDataBatchEntry],
+  },
+]);
+
+await walletClient.writeContract({
+  address: myUPAddress,
+  abi: UniversalProfileArtifact.abi,
+  functionName: 'setData',
+  args: [encodedAllowedCalls.keys[0], encodedAllowedCalls.values[0]],
+});
+```
+
+</TabItem>
+<TabItem value="ethers" label="ethers" attributes={{className: "tab_ethers"}}>
+
+```ts
+// See Example 1 for full ethers setup (universalProfile, myUPAddress, signer)
+import ERC725 from '@erc725/erc725.js';
+import LSP6Schema from '@erc725/erc725.js/schemas/LSP6KeyManager.json';
+
+const METADATA_CONTROLLER = '0xYourMetadataControllerAddress';
+const MY_UP_ADDRESS = myUPAddress;
+
+const setDataEntry =
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `7f23690c`;
+
+const setDataBatchEntry =
+  `0x00000002` + MY_UP_ADDRESS.slice(2) + `714df77c` + `97902421`;
+
+const encodedAllowedCalls = erc725.encodeData([
+  {
+    keyName: 'AddressPermissions:AllowedCalls:<address>',
+    dynamicKeyParts: [METADATA_CONTROLLER],
+    value: [setDataEntry, setDataBatchEntry],
+  },
+]);
+
+await universalProfile.setData(
+  encodedAllowedCalls.keys[0],
+  encodedAllowedCalls.values[0],
+);
+```
+
+</TabItem>
+<TabItem value="solidity" label="Solidity" attributes={{className: "tab_solidity"}}>
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+import {IERC725Y} from "@erc725/smart-contracts/contracts/interfaces/IERC725Y.sol";
+
+contract RestrictMetadataController {
+    bytes4 constant INTERFACE_ID_ERC725Y = 0x714df77c;
+    bytes4 constant SET_DATA_SELECTOR = 0x7f23690c;
+    bytes4 constant SET_DATA_BATCH_SELECTOR = 0x97902421;
+
+    function restrictControllerToMetadataWrites(
+        address universalProfile,
+        address metadataController
+    ) external {
+        bytes32 allowedCallsKey = bytes32(
+            abi.encodePacked(
+                bytes12(0x4b80742de2bf393a64c70000),
+                metadataController
+            )
+        );
+
+        bytes memory setDataEntry = abi.encodePacked(
+            bytes4(0x00000002),      // CALL
+            universalProfile,        // only this UP
+            INTERFACE_ID_ERC725Y,    // must support ERC725Y
+            SET_DATA_SELECTOR        // setData(bytes32,bytes)
+        );
+
+        bytes memory setDataBatchEntry = abi.encodePacked(
+            bytes4(0x00000002),      // CALL
+            universalProfile,        // only this UP
+            INTERFACE_ID_ERC725Y,    // must support ERC725Y
+            SET_DATA_BATCH_SELECTOR  // setDataBatch(bytes32[],bytes[])
+        );
+
+        bytes memory compactEncoded = abi.encodePacked(
+            uint16(setDataEntry.length),
+            setDataEntry,
+            uint16(setDataBatchEntry.length),
+            setDataBatchEntry
+        );
+
+        IERC725Y(universalProfile).setData(allowedCallsKey, compactEncoded);
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+This pattern is safer than granting access to `execute(...)` or `executeBatch(...)` on the Universal Profile. If you allow `execute`, a controller can forward arbitrary calls to other contracts through the UP.
 
 ---
 
