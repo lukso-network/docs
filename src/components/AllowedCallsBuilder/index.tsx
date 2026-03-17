@@ -185,7 +185,19 @@ const CopyButton = ({ text }: { text: string }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // Fallback for non-secure contexts (HTTP Docusaurus previews)
+      const el = document.createElement('textarea');
+      el.value = text;
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
@@ -259,20 +271,17 @@ export default function AllowedCallsBuilder() {
   };
 
   const applyTemplate = (template: TemplateItem) => {
-    setEntries((current) => {
-      const first = current[0] ?? createDefaultEntry();
-      return [
-        {
-          ...first,
-          name: template.useCase,
-          callType: template.callType,
-          address: template.address,
-          standard: template.standard,
-          selector: template.selector,
-        },
-        ...current.slice(1),
-      ];
-    });
+    setEntries((current) => [
+      ...current,
+      {
+        ...createDefaultEntry(),
+        name: template.useCase,
+        callType: template.callType,
+        address: template.address,
+        standard: template.standard,
+        selector: template.selector,
+      },
+    ]);
   };
 
   return (
@@ -409,29 +418,47 @@ export default function AllowedCallsBuilder() {
                     </Stack>
 
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                      <FormControl fullWidth>
-                        <InputLabel id={`call-type-label-${entry.id}`}>
-                          Call type
-                        </InputLabel>
-                        <Select
-                          labelId={`call-type-label-${entry.id}`}
-                          value={entry.callType}
-                          label="Call type"
-                          onChange={(event) =>
-                            updateEntry(
-                              entry.id,
-                              'callType',
-                              event.target.value,
-                            )
-                          }
-                        >
-                          {callTypeOptions.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                              {option.label} — {option.value}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
+                      <Box sx={{ width: '100%' }}>
+                        <FormControl fullWidth>
+                          <InputLabel id={`call-type-label-${entry.id}`}>
+                            Call type
+                          </InputLabel>
+                          <Select
+                            labelId={`call-type-label-${entry.id}`}
+                            value={entry.callType}
+                            label="Call type"
+                            onChange={(event) =>
+                              updateEntry(
+                                entry.id,
+                                'callType',
+                                event.target.value,
+                              )
+                            }
+                          >
+                            {callTypeOptions.map((option) => (
+                              <MenuItem key={option.value} value={option.value}>
+                                {option.label} — {option.value}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                        {(entry.callType === '0x00000001' ||
+                          entry.callType === '0x00000003') && (
+                          <Typography
+                            variant="caption"
+                            color="warning.main"
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 0.5,
+                              mt: 0.5,
+                            }}
+                          >
+                            ⚠️ Grants permission to transfer LYX — use only for
+                            payable functions like <code>deposit(address)</code>
+                          </Typography>
+                        )}
+                      </Box>
 
                       <TextField
                         fullWidth
@@ -592,7 +619,7 @@ ${entries
     (entry) =>
       `      ['${entry.callType}', '${entry.address}', '${entry.standard}', '${entry.selector}'], // ${entry.name}`,
   )
-  .join('')}
+  .join('\n')}
     ],
   },
 ]);
