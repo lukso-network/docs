@@ -123,7 +123,7 @@ The LUKSO network currently supports the following clients versions:
     <td><a href="https://prysmaticlabs.com/">Prysm</a></td>
     <td><a href="https://github.com/prysmaticlabs/prysm/releases/tag/v6.0.4">v6.0.4</a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://github.com/prysmaticlabs/prysm"><GithubIcon /></a></td>
-    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://docs.prylabs.network/docs/getting-started"><BookIcon /></a></td>
+    <td style={{textAlign: 'center'}}><a class="imageLink" href="https://prysm.offchainlabs.com/docs/"><BookIcon /></a></td>
     <td style={{textAlign: 'center'}}><a class="imageLink" href="https://discord.com/invite/prysmaticlabs"><DiscordIcon /></a></td>
     <td>Stable</td>
     <td>Linux, Win, macOS, ARM</td>

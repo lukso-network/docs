@@ -12,7 +12,7 @@ Yes, developer meetings and events are planned to present our monthly tech progr
 
 ## Are there financial support opportunities available for developers?
 
-Yes, developers have several options for financial support when building on LUKSO. The [LUKSO Grants Program](https://lukso.network/grants) offers funding through periodic application cycles. Furthermore, developers can participate in regular hackathons, including the [BuildUP hackathon series](https://app.buidlbox.io/lukso/build-up-2). Stay tuned for opportunities to engage and receive support on [Twitter](https://twitter.com/lukso_io) and [Discord](https://discord.gg/lukso).
+Yes, developers have several options for financial support when building on LUKSO. The [LUKSO Grants Program](https://lukso.network/grants) offers funding through periodic application cycles. Stay tuned for opportunities to engage and receive support on [Twitter](https://twitter.com/lukso_io) and [Discord](https://discord.gg/lukso).
 
 ## Will LUKSO be listed on additional exchanges?
 

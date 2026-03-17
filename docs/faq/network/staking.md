@@ -62,7 +62,7 @@ If you created your validator keys with the [LUKSO Keygen CLI](https://github.co
 For details on how to enable withdrawals manually, have a look at these guides:
 
 - [Withdrawals Guide](https://notes.ethereum.org/@launchpad/withdrawals-guide) by Ethereum
-- [Withdraw Validator](https://docs.prylabs.network/docs/wallet/withdraw-validator) by Prylabs
+- [Withdraw Validator](https://prysm.offchainlabs.com/docs/manage-validator/withdraw-validator) by Prylabs
 
 ## Can I update my withdrawal credentials?
 

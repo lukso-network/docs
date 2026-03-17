@@ -21,7 +21,7 @@ After your node is synced up and running, you will be able to go through the com
 lukso validator exit
 ```
 
-The exit setup will be different depending on your consensus client. Within [Prysm](https://docs.prylabs.network/docs/getting-started), you can select all or a specific number of validators by navigating the user interface in the terminal and selecting the public keys. For [Lighthouse](https://lighthouse-book.sigmaprime.io/intro.html), you have to input your validator and exit one at a time.
+The exit setup will be different depending on your consensus client. Within [Prysm](https://prysm.offchainlabs.com/docs/), you can select all or a specific number of validators by navigating the user interface in the terminal and selecting the public keys. For [Lighthouse](https://lighthouse-book.sigmaprime.io/intro.html), you have to input your validator and exit one at a time.
 
 :::info Exit Submission
 
@@ -50,6 +50,6 @@ Your validators stay active until the full withdrawal exit time. Ensure your nod
 If you are using Dappnode or a custom client, please refer to the following sources:
 
 - [Exit Dappnode Validators](https://discourse.dappnode.io/t/how-to-exit-your-validator-from-the-ui/1745)
-- [Prysm Validator Exit Documentation](https://docs.prylabs.network/docs/wallet/exiting-a-validator)
+- [Prysm Validator Exit Documentation](https://prysm.offchainlabs.com/docs/manage-validator/exiting-a-validator)
 - [Lighthouse Withdrawal Guide](https://lighthouse-book.sigmaprime.io/validator_voluntary_exit.html)
 - [How to exit Teku Validators](https://docs.teku.consensys.io/how-to/voluntarily-exit)
