@@ -100,7 +100,7 @@ const templateCategories: TemplateCategory[] = [
         func: 'transfer(address,address,bytes32,bool,bytes)',
         callType: '0x00000002',
         address: ANY_ADDRESS,
-        standard: '0x49399145',
+        standard: '0x3a271706',
         selector: '0x511b6952',
       },
       {
