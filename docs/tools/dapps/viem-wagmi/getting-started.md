@@ -162,11 +162,11 @@ const txHash = await walletClient.writeContract({
   abi: lsp7DigitalAssetAbi,
   functionName: 'transfer',
   args: [
-    account,         // from
-    '0xRecipient',   // to
-    BigInt(100),     // amount
-    false,           // force: false = recipient must have a Universal Receiver
-    '0x',            // data
+    account, // from
+    '0xRecipient', // to
+    BigInt(100), // amount
+    false, // force: false = recipient must have a Universal Receiver
+    '0x', // data
   ],
 });
 ```
@@ -245,20 +245,20 @@ wagmi works well for read operations and standard wallet interactions. For advan
 
 ## Using with UP Provider (Grid mini-apps)
 
-For LUKSO Grid mini-apps, combine viem with [`@lukso/up-provider`](../dapps/up-provider/getting-started.md) for seamless one-click connect. The UP Provider handles the connection lifecycle while viem handles all contract interactions.
+For LUKSO Grid mini-apps, combine viem with [`@lukso/up-provider`](../up-provider/getting-started.md) for seamless one-click connect. The UP Provider handles the connection lifecycle while viem handles all contract interactions.
 
-See the [UP Provider documentation](../dapps/up-provider/getting-started.md) for setup details.
+See the [UP Provider documentation](../up-provider/getting-started.md) for setup details.
 
 ## Migration from ethers.js
 
 :::tip Coming from ethers.js?
 
-| ethers.js | viem |
-| --------- | ---- |
-| `Provider` | `PublicClient` |
-| `Signer` | `WalletClient` |
-| `Contract` | `getContract` / `readContract` |
-| `BigNumber` | `bigint` (native JS) |
-| `ethers.utils.parseEther` | `parseEther` (from viem) |
+| ethers.js                 | viem                           |
+| ------------------------- | ------------------------------ |
+| `Provider`                | `PublicClient`                 |
+| `Signer`                  | `WalletClient`                 |
+| `Contract`                | `getContract` / `readContract` |
+| `BigNumber`               | `bigint` (native JS)           |
+| `ethers.utils.parseEther` | `parseEther` (from viem)       |
 
 :::
