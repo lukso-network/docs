@@ -92,7 +92,7 @@ const templateCategories: TemplateCategory[] = [
         func: 'transfer(address,address,uint256,bool,bytes)',
         callType: '0x00000002',
         address: ANY_ADDRESS,
-        standard: '0xe33f65c3',
+        standard: '0xc52d6008',
         selector: '0x760d9bba',
       },
       {
@@ -203,11 +203,28 @@ const CopyButton = ({ text }: { text: string }) => {
   );
 };
 
+const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/;
+
+function computeDataKey(controllerAddress: string): string {
+  if (!ADDRESS_REGEX.test(controllerAddress)) return '';
+  const prefix = '4b80742de2bf393a64c70000';
+  const addr = controllerAddress.replace('0x', '').toLowerCase();
+  return '0x' + prefix + addr;
+}
+
 export default function AllowedCallsBuilder() {
   const [entries, setEntries] = useState<AllowedCallEntry[]>([
     createDefaultEntry(),
   ]);
   const [selectedTab, setSelectedTab] = useState(0);
+  const [controllerAddress, setControllerAddress] = useState('');
+
+  const isValidController =
+    controllerAddress === '' || ADDRESS_REGEX.test(controllerAddress);
+  const dataKey = useMemo(
+    () => computeDataKey(controllerAddress),
+    [controllerAddress],
+  );
 
   const compactBytesArray = useMemo(
     () => encodeCompactBytesArray(entries),
@@ -291,6 +308,26 @@ export default function AllowedCallsBuilder() {
             representation, where every 32-byte entry is prefixed by{' '}
             <code>0x0020</code>.
           </Alert>
+
+          <Box>
+            <TextField
+              label="Controller address"
+              placeholder="0x..."
+              value={controllerAddress}
+              onChange={(e) => setControllerAddress(e.target.value)}
+              fullWidth
+              size="small"
+              error={!isValidController}
+              helperText={
+                !isValidController
+                  ? 'Invalid EVM address — must be 0x followed by 40 hex characters'
+                  : dataKey
+                    ? `ERC725Y key: ${dataKey}`
+                    : 'Enter the address of the controller to compute the ERC725Y data key'
+              }
+              slotProps={{ htmlInput: { spellCheck: false } }}
+            />
+          </Box>
 
           <Box>
             <Tabs
@@ -548,7 +585,7 @@ const erc725 = new ERC725(LSP6Schema);
 const encodedAllowedCalls = erc725.encodeData([
   {
     keyName: 'AddressPermissions:AllowedCalls:<address>',
-    dynamicKeyParts: ['0xControllerAddress'],
+    dynamicKeyParts: ['${controllerAddress || '0xYourControllerAddress'}'],
     value: [
 ${entries
   .map(
