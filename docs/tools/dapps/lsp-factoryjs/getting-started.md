@@ -4,9 +4,13 @@ sidebar_position: 1.1
 
 # Getting Started
 
-`@lukso/lsp-factory.js` is a helper library for deploying [Universal Profiles](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-0-ERC725Account.md), [LSP7 Digital Assets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-7-DigitalAsset.md), and [LSP8 Identifiable Digital Assets](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md).
+`@lukso/lsp-factory.js` makes it easy to deploy smart accounts and tokens on LUKSO (and other EVM chains). Instead of manually deploying and wiring up multiple contracts, the factory handles everything in a single call:
 
-v4 uses [viem](https://viem.sh/) for all blockchain interactions and deploys contracts atomically via [LSP23LinkedContractsFactory](/standards/factories/lsp23-linked-contracts-factory).
+- **[Universal Profiles](/standards/accounts/lsp0-erc725account)** — smart accounts with a built-in [Key Manager](/standards/access-control/lsp6-key-manager) for access control and a [Universal Receiver](/standards/accounts/lsp1-universal-receiver) for reacting to transactions
+- **[LSP7 Digital Assets](/standards/tokens/LSP7-Digital-Asset)** — fungible tokens (like ERC-20, but with more features)
+- **[LSP8 Identifiable Digital Assets](/standards/tokens/LSP8-Identifiable-Digital-Asset)** — NFTs (like ERC-721, but with richer metadata)
+
+Under the hood, the library uses [LSP23](/standards/factories/lsp23-linked-contracts-factory) to deploy contracts atomically — meaning your Universal Profile and its Key Manager are created together in one transaction, so you never end up with a half-configured account.
 
 :::info Requirements
 
@@ -15,37 +19,13 @@ v4 uses [viem](https://viem.sh/) for all blockchain interactions and deploys con
 
 :::
 
-## Supported Networks
-
-All contracts (LSP23 factory, base implementations) are deployed at the same deterministic addresses across chains via the [Nick Factory (EIP-2470)](https://eips.ethereum.org/EIPS/eip-2470).
-
-**LSP23 Factory Address:** `0x2300000A84D25dF63081feAa37ba6b62C4c89a30`
-
-| Network          | Chain ID |
-| ---------------- | -------- |
-| LUKSO Mainnet    | 42       |
-| LUKSO Testnet    | 4201     |
-| Ethereum Mainnet | 1        |
-| BASE             | 8453     |
-
 ## Installation
 
 ```bash
 npm install @lukso/lsp-factory.js
 ```
 
-:::tip
-If you want to encode LSP3 profile metadata or custom controller permissions, also install [erc725.js](https://docs.lukso.tech/tools/dapps/erc725js/getting-started):
-
-```bash
-npm install @erc725/erc725.js
-```
-
-:::
-
-## Setup
-
-Create a [viem](https://viem.sh/) `PublicClient` (for reading) and `WalletClient` (for signing transactions), then pass them to `LSPFactory`:
+## Quick Start
 
 ```typescript
 import { createPublicClient, createWalletClient, http } from 'viem';
@@ -53,6 +33,7 @@ import { privateKeyToAccount } from 'viem/accounts';
 import { luksoTestnet } from 'viem/chains';
 import { LSPFactory } from '@lukso/lsp-factory.js';
 
+// 1. Set up your account and clients
 const account = privateKeyToAccount('0x...');
 
 const publicClient = createPublicClient({
@@ -66,37 +47,41 @@ const walletClient = createWalletClient({
   transport: http(),
 });
 
+// 2. Create the factory
 const factory = new LSPFactory(publicClient, walletClient);
+
+// 3. Deploy a Universal Profile
+const contracts = await factory.UniversalProfile.deploy({
+  controllerAddresses: [account.address],
+});
+
+console.log('UP Address:', contracts.LSP0ERC725Account.address);
+console.log('KeyManager:', contracts.LSP6KeyManager.address);
 ```
 
-:::tip
-You can use any viem-supported chain. Just swap `luksoTestnet` for the chain you want to deploy to:
+That's it — you now have a fully configured Universal Profile with a Key Manager, controller permissions, and a Universal Receiver Delegate, all deployed in one transaction.
+
+:::tip Switching networks
+Swap the chain import to deploy on any supported network:
 
 ```typescript
-import { lukso } from 'viem/chains'; // LUKSO Mainnet (42)
-import { luksoTestnet } from 'viem/chains'; // LUKSO Testnet (4201)
-import { mainnet } from 'viem/chains'; // Ethereum (1)
-import { base } from 'viem/chains'; // BASE (8453)
+import { lukso } from 'viem/chains'; // LUKSO Mainnet
+import { luksoTestnet } from 'viem/chains'; // LUKSO Testnet
+import { mainnet } from 'viem/chains'; // Ethereum
+import { base } from 'viem/chains'; // BASE
 ```
 
 :::
 
-## Deploying a Universal Profile
+## Universal Profile Options
 
-Deploys an [LSP0 Universal Profile](/standards/accounts/lsp0-erc725account) and [LSP6 KeyManager](/standards/access-control/lsp6-key-manager) atomically via [LSP23 Factory](/standards/factories/lsp23-linked-contracts-factory), then configures controller permissions and a Universal Receiver Delegate.
+### Adding profile metadata
 
-```typescript
-const contracts = await factory.UniversalProfile.deploy({
-  controllerAddresses: ['0x...'], // Addresses that will control the UP
-});
+To set a name, description, and avatar on your profile, encode the data with [erc725.js](https://docs.lukso.tech/tools/dapps/erc725js/getting-started) first:
 
-console.log('UP Address:', contracts.LSP0ERC725Account.address);
-console.log('KeyManager Address:', contracts.LSP6KeyManager.address);
+```bash
+npm install @erc725/erc725.js
 ```
-
-### With LSP3 metadata and a deterministic salt
-
-First, encode your LSP3Profile metadata using [erc725.js](https://docs.lukso.tech/tools/dapps/erc725js/getting-started):
 
 ```typescript
 import { ERC725 } from '@erc725/erc725.js';
@@ -111,38 +96,29 @@ const encoded = erc725.encodeData([
   },
 ]);
 
-const lsp3DataValue = encoded.values[0];
-```
-
-Then pass it into the deploy call:
-
-```typescript
 const contracts = await factory.UniversalProfile.deploy(
   {
     controllerAddresses: ['0x...'],
-    lsp3DataValue, // Pre-encoded LSP3Profile VerifiableURI
+    lsp3DataValue: encoded.values[0],
   },
   {
-    salt: '0x...', // bytes32 salt for deterministic address generation
+    salt: '0x...', // optional: makes the deployed address deterministic
   },
 );
 ```
 
-### With custom controller permissions
+### Setting controller permissions
+
+By default, every address in `controllerAddresses` gets full permissions. You can restrict specific controllers:
 
 ```typescript
 import { ERC725 } from '@erc725/erc725.js';
 
-// Replace with the correct addresses for your controllers
-const adminController = '0x...';
-const restrictedController = '0x...';
-
 const contracts = await factory.UniversalProfile.deploy({
   controllerAddresses: [
-    // Gets ALL_PERMISSIONS by default
-    adminController,
+    '0xAdmin...', // full permissions (ALL_PERMISSIONS)
     {
-      address: restrictedController,
+      address: '0xRestricted...',
       permissions: ERC725.encodePermissions({ SUPER_SETDATA: true }),
     },
   ],
@@ -151,33 +127,33 @@ const contracts = await factory.UniversalProfile.deploy({
 
 ### Pre-computing addresses
 
-Compute the UP and KeyManager addresses before deploying:
+If you need to know the contract addresses before deploying (e.g., for cross-contract references), use the same salt:
 
 ```typescript
 const { upAddress, keyManagerAddress } =
   await factory.UniversalProfile.computeAddress(
     { controllerAddresses: ['0x...'] },
-    { salt: '0x...' }, // Use the same salt you will deploy with
+    { salt: '0x...' },
   );
 ```
 
-## Deploying an LSP7 Digital Asset
+## Deploying Tokens
 
-Deploys an [LSP7 Digital Asset](/standards/tokens/LSP7-Digital-Asset) (fungible token) as a minimal proxy:
+### LSP7 — Fungible Tokens
 
 ```typescript
 const contracts = await factory.LSP7DigitalAsset.deploy({
   name: 'My Token',
   symbol: 'MTK',
-  controllerAddress: '0x...', // Owner of the token contract
+  controllerAddress: '0x...', // token contract owner
   tokenType: 0, // 0 = Token, 1 = NFT, 2 = Collection
-  isNFT: false, // Whether the token is non-divisible
+  isNFT: false, // true = non-divisible (0 decimals)
 });
 
-console.log('LSP7 Address:', contracts.LSP7DigitalAsset.address);
+console.log('Token address:', contracts.LSP7DigitalAsset.address);
 ```
 
-### With metadata
+#### With metadata
 
 ```typescript
 const contracts = await factory.LSP7DigitalAsset.deploy({
@@ -189,16 +165,14 @@ const contracts = await factory.LSP7DigitalAsset.deploy({
   digitalAssetMetadata: {
     verification: {
       method: 'keccak256(bytes)',
-      data: '0x...', // keccak256 hash of the JSON metadata file bytes
+      data: '0x...', // hash of the JSON metadata file
     },
     url: 'ipfs://Qm...',
   },
 });
 ```
 
-## Deploying an LSP8 Identifiable Digital Asset
-
-Deploys an [LSP8 Identifiable Digital Asset](/standards/tokens/LSP8-Identifiable-Digital-Asset) (NFT) as a minimal proxy:
+### LSP8 — NFTs
 
 ```typescript
 const contracts = await factory.LSP8IdentifiableDigitalAsset.deploy({
@@ -206,21 +180,25 @@ const contracts = await factory.LSP8IdentifiableDigitalAsset.deploy({
   symbol: 'MNFT',
   controllerAddress: '0x...',
   tokenType: 1, // 0 = Token, 1 = NFT, 2 = Collection
-  // Token ID format constants (from @lukso/lsp8-contracts):
-  // 0 = UNIQUE_ID    (unique bytes32)
-  // 1 = NUMBER       (sequential uint256)
-  // 2 = STRING       (human-readable string)
-  // 3 = ADDRESS      (address packed in bytes32)
-  // 4 = HASH         (keccak256 hash)
-  tokenIdFormat: 1,
+  tokenIdFormat: 1, // how token IDs are structured (see below)
 });
 
-console.log('LSP8 Address:', contracts.LSP8IdentifiableDigitalAsset.address);
+console.log('NFT address:', contracts.LSP8IdentifiableDigitalAsset.address);
 ```
 
-## Deployment Events
+**Token ID formats:**
 
-All `deploy` methods accept an `onDeployEvents` callback for tracking deployment progress:
+| Value | Format       | Description                    |
+| ----- | ------------ | ------------------------------ |
+| 0     | `UNIQUE_ID`  | Unique `bytes32`               |
+| 1     | `NUMBER`     | Sequential number              |
+| 2     | `STRING`     | Human-readable string          |
+| 3     | `ADDRESS`    | Address packed in `bytes32`    |
+| 4     | `HASH`       | `keccak256` hash               |
+
+## Tracking Deployment Progress
+
+All `deploy` methods accept an `onDeployEvents` callback:
 
 ```typescript
 const contracts = await factory.UniversalProfile.deploy(
@@ -241,12 +219,20 @@ const contracts = await factory.UniversalProfile.deploy(
 );
 ```
 
-## Version History
+## Supported Networks
 
-- **v4 (3.3.x)** — Complete rewrite: ethers.js replaced with [viem](https://viem.sh/), IPFS upload removed, atomic deployment via [LSP23](/standards/factories/lsp23-linked-contracts-factory). Node.js 22+ required.
-- **v3 and earlier** — Used ethers.js, included IPFS upload, deployed contracts individually.
+The factory contracts are deployed at the same addresses on all supported chains via deterministic deployment ([EIP-2470](https://eips.ethereum.org/EIPS/eip-2470)):
 
-## Next steps
+| Network          | Chain ID |
+| ---------------- | -------- |
+| LUKSO Mainnet    | 42       |
+| LUKSO Testnet    | 4201     |
+| Ethereum Mainnet | 1        |
+| BASE             | 8453     |
+
+**LSP23 Factory Address:** `0x2300000A84D25dF63081feAa37ba6b62C4c89a30`
+
+## Next Steps
 
 - [Edit Universal Profile metadata](/learn/universal-profile/metadata/edit-profile)
 - [Deploying tokens and NFTs](/learn/digital-assets/getting-started)
