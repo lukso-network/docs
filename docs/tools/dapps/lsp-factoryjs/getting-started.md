@@ -8,6 +8,13 @@ sidebar_position: 1.1
 
 v4 uses [viem](https://viem.sh/) for all blockchain interactions and deploys contracts atomically via [LSP23LinkedContractsFactory](/standards/factories/lsp23-linked-contracts-factory).
 
+:::info Requirements
+
+- Node.js >= 22
+- TypeScript >= 5.9
+
+:::
+
 ## Supported Networks
 
 All contracts (LSP23 factory, base implementations) are deployed at the same deterministic addresses across chains via the [Nick Factory (EIP-2470)](https://eips.ethereum.org/EIPS/eip-2470).
@@ -24,8 +31,17 @@ All contracts (LSP23 factory, base implementations) are deployed at the same det
 ## Installation
 
 ```bash
-npm install @lukso/lsp-factory.js @erc725/erc725.js
+npm install @lukso/lsp-factory.js
 ```
+
+:::tip
+If you want to encode LSP3 profile metadata or custom controller permissions, also install [erc725.js](https://docs.lukso.tech/tools/dapps/erc725js/getting-started):
+
+```bash
+npm install @erc725/erc725.js
+```
+
+:::
 
 ## Setup
 
@@ -224,6 +240,11 @@ const contracts = await factory.UniversalProfile.deploy(
   },
 );
 ```
+
+## Version History
+
+- **v4 (3.3.x)** — Complete rewrite: ethers.js replaced with [viem](https://viem.sh/), IPFS upload removed, atomic deployment via [LSP23](/standards/factories/lsp23-linked-contracts-factory). Node.js 22+ required.
+- **v3 and earlier** — Used ethers.js, included IPFS upload, deployed contracts individually.
 
 ## Next steps
 
