@@ -188,13 +188,13 @@ console.log('NFT address:', contracts.LSP8IdentifiableDigitalAsset.address);
 
 **Token ID formats:**
 
-| Value | Format       | Description                    |
-| ----- | ------------ | ------------------------------ |
-| 0     | `UNIQUE_ID`  | Unique `bytes32`               |
-| 1     | `NUMBER`     | Sequential number              |
-| 2     | `STRING`     | Human-readable string          |
-| 3     | `ADDRESS`    | Address packed in `bytes32`    |
-| 4     | `HASH`       | `keccak256` hash               |
+| Value | Format      | Description                 |
+| ----- | ----------- | --------------------------- |
+| 0     | `UNIQUE_ID` | Unique `bytes32`            |
+| 1     | `NUMBER`    | Sequential number           |
+| 2     | `STRING`    | Human-readable string       |
+| 3     | `ADDRESS`   | Address packed in `bytes32` |
+| 4     | `HASH`      | `keccak256` hash            |
 
 ## Tracking Deployment Progress
 
