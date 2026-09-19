@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'LSP20 - Call Verification'
 sidebar_position: 8
-description: LUKSO's LSP20 - Call Verification for delegating the the verification of a function call to another smart contract.
+description: LUKSO's LSP20 - Call Verification for direct Universal Profile calls, smart account permission checks, and delegated call verification.
 ---
 
 # LSP20 - Call Verification
@@ -67,5 +67,7 @@ When a Universal Profile is owned by a Key Manager, multiple controllers can use
 This creates development complexity, as interactions must be crafted, encoded and send to the Key Manager instead. Calling the Universal Profile directly is not possible.
 
 LSP20 being embedded in LSP0 (the smart contract based account under a Universal Profile) simplify this complexity, allowing anyone to interact directly with the Universal Profile without having to go through the Key Manager first. The LSP20 module embedded in the Universal Profile will see that the request does not come from the Key Manager directly, and will instead forward the request and the calldata back to the Key Manager to verify the permissions of the caller first.
+
+This is why LSP20 matters for smart account integrations: dApps can call the Universal Profile as the account they want to interact with, while the Key Manager remains responsible for checking LSP6 permissions, Allowed Calls, value, and calldata before execution.
 
 ![LSP20 with LSP6 Key Manager](/img/standards/lsp20/LSP20-example-LSP6.jpeg)

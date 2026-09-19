@@ -1,6 +1,7 @@
 ---
+title: 'EIP-4337 and Universal Profiles'
 sidebar_label: ' 🛠️ Integrate EIP-4337'
-description: 'Learn how to integrate the EIP-4337 extension into your Universal Profile.'
+description: 'Learn how EIP-4337 account abstraction relates to Universal Profiles and how to integrate the EIP-4337 extension.'
 sidebar_position: 2
 ---
 
@@ -9,6 +10,12 @@ sidebar_position: 2
 :::info
 This guide assumes that you are already familiar with the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) standard and [Universal Profiles](/standards/introduction.md).
 :::
+
+## EIP-4337 and Universal Profiles
+
+EIP-4337 defines a UserOperation flow with bundlers, an EntryPoint contract, and optional paymasters. Universal Profiles define the account layer on LUKSO: metadata, controllers, permissions, receiver behavior, relay execution, and extensions.
+
+The EIP-4337 extension lets Universal Profiles participate in 4337-style transaction routing while keeping the Universal Profile account model. Use it when your application specifically needs UserOperation infrastructure. Use the native LSP6 and LSP25 flow when your main requirement is permissioned relay execution for Universal Profiles.
 
 ## Prerequisites for Integration
 

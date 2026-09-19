@@ -1,13 +1,30 @@
 ---
+title: 'ERC721 vs LSP8: Migrate NFT Collections to LUKSO'
 sidebar_label: '🖼️ ERC721 to LSP8'
 sidebar_position: 3
-description: Learn how to migrate your ERC721 token to the LSP8 Identifiable Digital Asset standard on LUKSO.
+description: Learn how to migrate ERC721 NFT collections to LSP8 on LUKSO, including bytes32 token IDs, dynamic metadata, transfer hooks, and safe transfer behavior.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import Erc721LSP8Table from '@site/src/components/Erc721LSP8Table';
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData
+data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'ERC721 vs LSP8: Migrate NFT Collections to LUKSO',
+    description:
+      'Migration guide for ERC721 developers moving NFT collections to LSP8 Identifiable Digital Assets on LUKSO, covering token IDs, metadata, transfer hooks, and operators.',
+    author: { '@type': 'Organization', name: 'LUKSO' },
+    publisher: { '@type': 'Organization', name: 'LUKSO' },
+    mainEntityOfPage:
+      'https://docs.lukso.tech/learn/migrate/migrate-erc721-to-lsp8/',
+    isAccessibleForFree: true,
+  }}
+/>
 
 # 🖼️ Migrate ERC721 to LSP8
 
@@ -21,9 +38,21 @@ import Erc721LSP8Table from '@site/src/components/Erc721LSP8Table';
 
 :::info Resources
 
-See the [contract overview](../../contracts/overview/NFT/index.md#comparisons-with-erc20--erc721) page for the interface differences between ERC721 and LSP8.
+See the [contract overview](../../contracts/overview/NFT/index.md#comparisons-with-erc721) page for the interface differences between ERC721 and LSP8.
 
 :::
+
+## ERC721 vs LSP8 at a glance
+
+LSP8 covers NFT-style assets, but it does not copy ERC721 one-to-one. The main migration points are token ID format, metadata storage, transfer behavior, and operator authorization.
+
+| ERC721 concern                        | LSP8 migration point                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------- |
+| `uint256 tokenId`                     | LSP8 token IDs are `bytes32`, allowing numeric IDs and richer ID schemes. |
+| `tokenURI(tokenId)`                   | Collection and token metadata can be stored with LSP4/ERC725Y data keys.  |
+| `transferFrom` and `safeTransferFrom` | LSP8 `transfer(...)` includes `force` and `data` parameters.              |
+| `approve` and `setApprovalForAll`     | LSP8 uses token-specific operators.                                       |
+| Receiver safety                       | Transfers can require LSP1 support when `force` is `false`.               |
 
 ## Comparisons
 
@@ -124,7 +153,7 @@ There are 4 main differences for LSP8 to note:
 
 For full compatibility with ERC721 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the [**LSP1UniversalReceiver** interfaceId](../../contracts/interface-ids.md).
 
-> See the [**LSP8 Standard > `force` mint and transfer**](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks#force-mint-and-transfer) section for more details.
+> See the [**LSP8 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) section for more details.
 
 - **Additional `data` field**: for the `mint(...)`, `transfer(...)`, and [`burn(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/extensions/LSP8Burnable.md#burn) functions.
 
@@ -132,7 +161,21 @@ For full compatibility with ERC721 behavior, set this to empty bytes `""`. This 
 
 > See the [**LSP8 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP8-Identifiable-Digital-Asset.md#lsp1-token-hooks) section for more details.
 
-- **LSP8 metadata is generic**: via a [flexible data key / value store](<(../../standards/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdatabatch).
+- **LSP8 metadata is generic**: via a [flexible data key / value store](../../standards/erc725.md#erc725y-generic-data-keyvalue-store). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.md#getdatabatch).
+
+### Dynamic NFT metadata and safe transfers
+
+In ERC721 projects, dynamic NFT metadata usually depends on changing `tokenURI` responses or refreshing marketplace caches. LSP8 gives the collection a standardized ERC725Y storage surface, so collection metadata and token-specific metadata can be represented through LSP4 data keys instead of relying only on URI conventions.
+
+The `force` parameter is the main transfer-safety decision when migrating ERC721 safe transfer behavior:
+
+| Transfer goal                                                    | LSP8 setting                                     |
+| ---------------------------------------------------------------- | ------------------------------------------------ |
+| Match broad ERC721 transfer compatibility                        | Use `force` set to `true`.                       |
+| Require the recipient contract to support LSP1 receiver behavior | Use `force` set to `false`.                      |
+| Let a recipient react to incoming tokens                         | Pass contextual `data` and require LSP1 support. |
+
+Use `force` set to `false` when the recipient must be able to react to the NFT transfer, register the asset, or reject unsupported assets. Use `force` set to `true` only when the application intentionally allows transfers to addresses that do not implement LSP1.
 
 ### Interact with the Token Contract
 

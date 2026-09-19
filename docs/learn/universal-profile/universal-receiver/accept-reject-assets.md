@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Accept & Reject Assets'
 sidebar_position: 7
+description: Learn how Universal Profiles can accept, reject, register, or react to incoming LSP7 tokens and LSP8 NFTs with a Universal Receiver Delegate.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,6 +12,8 @@ import TabItem from '@theme/TabItem';
 Each user can create a **Universal Receiver Delegate** contract with some **custom logic**, which can run automatically on calls to the **[`universalReceiver(..)`](/contracts/contracts/LSP0ERC725Account/LSP0ERC725Account.md#universalreceiver)** function of the user's Universal Profile based on specific typeIds.
 
 ![LSP1UniversalReceiverDelegate-Guide](/img/guides/lsp1/UniversalReceiverDelegate-Guide.jpeg)
+
+Universal Receiver Delegates are the LUKSO pattern for receiver hooks. They let a Universal Profile decide how to react when it receives assets, including rejecting unsupported tokens, registering received assets, or forwarding a portion of received tokens to another address.
 
 ## Reject any Assets
 

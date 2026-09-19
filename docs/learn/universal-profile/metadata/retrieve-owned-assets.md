@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Get Profile Owned Assets'
 sidebar_position: 3
-description: Learn how to retrieve the list of assets owned by a Universal Profile.
+description: Learn how to discover tokens and NFTs owned by a Universal Profile using LSP5 Received Assets and ERC725Y data keys.
 ---
 
 import CodeSandbox from "@site/src/components/CodeSandbox";
@@ -23,6 +23,8 @@ Simply type the name of the Universal Profile or paste its address in the search
 Every Universal Profile deployed with the [**🧩 Universal Profile Browser Extension**](/install-up-browser-extension) comes with a 📢 [Universal Receiver delegate](../../../standards/accounts/lsp1-universal-receiver-delegate.md) that register automatically the list of assets it owns.
 
 This guide shows you how to easily retrieve the list of owned asset, by fetching the values stored under the [`LSP5ReceivedAssets[]`](../../../standards/metadata/lsp5-received-assets.md#lsp5receivedassets) data key.
+
+Unlike event-only token discovery, LSP5 lets dApps read the asset list from the Universal Profile storage itself. Indexers can still use token transfer events for history and balances, but `LSP5ReceivedAssets[]` provides a standard account-level inventory of received LSP7 and LSP8 assets.
 
 ## Using erc725.js
 

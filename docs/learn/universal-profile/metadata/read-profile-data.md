@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Read Profile Data'
 sidebar_position: 1
-description: Learn how to read profile data from your Universal Profile.
+description: Learn how to read Universal Profile metadata, ERC725Y data keys, received assets, issued assets, and smart account identity data.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -23,6 +23,12 @@ Simply paste your Universal Profile address in the search field and choose the d
 A Universal Profile is a smart contract that uses a generic key-value store (ERC725Y) as a storage design. This structure enables to attach any information to the Universal Profile by setting any **value** to any specific **data key**.
 
 ERC725Y data keys are defined by their **ERC725Y JSON schema**. The schema is an object describing the information (= value) stored under this data key. Therefore, a list of schemas let us know which ERC725Y data keys we can set and **which information we can retrieve and edit from the Universal Profile**.
+
+## Profile metadata and identity
+
+Externally Owned Accounts do not have a standard place to store profile metadata. Universal Profiles use ERC725Y data keys and LSP3 Profile Metadata so dApps can read the same profile name, images, links, received assets, issued assets, and app-specific data from the account itself.
+
+This makes the Universal Profile address the stable identity for login, display, ownership, and social features, while controllers and private keys can be added, restricted, or revoked separately through the Key Manager.
 
 ![Universal Profile + ERC725Y JSON schema (diagram)](/img/standards/lsp2/ERC725Y-JSON-Schema-explained.jpeg)
 

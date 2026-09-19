@@ -1,7 +1,8 @@
 ---
+title: 'Choose LSP7 or LSP8 for Tokens and NFTs'
 sidebar_label: '❓ Choose between LSP7 or LSP8'
 sidebar_position: 2
-description: Discover which standard is best suited for your token or NFT project between LSP7 or LSP8.
+description: Discover whether LSP7 or LSP8 is best for your token, NFT, collection, or ERC1155-style multi-asset project on LUKSO.
 ---
 
 # Choose between LSP7 or LSP8
@@ -144,3 +145,24 @@ flowchart TD
 
 - Each tokenId is a of `LSP8TokenIdFormat` of `Address`.
 - Each sub-collection is a smart contract that can be either an LSP7 or LSP8
+
+### Example Use Cases
+
+- a creator collection grouping several NFT drops.
+- a game collection grouping character, item, and badge contracts.
+- a brand collection grouping several editions or product lines.
+
+---
+
+## ERC1155-style multi-asset projects
+
+If you come from ERC1155, first decide whether your assets are mostly interchangeable quantities or unique identifiable items. LUKSO projects usually model these cases with LSP7 and LSP8 instead of one mixed contract interface.
+
+| ERC1155-style need                                           | LUKSO pattern                                 |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Many identical editions of one item                          | LSP7 with `LSP4TokenType` set to `NFT`        |
+| A collection of unique items                                 | LSP8 with `LSP4TokenType` set to `NFT`        |
+| A parent collection that points to several child collections | LSP8 with `LSP4TokenType` set to `Collection` |
+| Fungible game points, rewards, or credits                    | LSP7 with `LSP4TokenType` set to `Token`      |
+
+This split makes indexing and metadata clearer: fungible balances, semi-fungible editions, unique NFTs, and umbrella collections each expose their own LSP4/ERC725Y metadata and LSP1-aware transfer behavior.

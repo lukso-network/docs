@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'LSP14 - Ownable 2-Step'
 sidebar_position: 2
-description: "LUKSO's LSP14 - Ownable2Step: an extended version of EIP173 - Contract Ownership Standard for transferring and renouncing ownership."
+description: "LUKSO's LSP14 - Ownable2Step: a safer smart contract ownership transfer and renounce pattern extending EIP173."
 ---
 
 # LSP14 - Ownable 2-Step
@@ -30,6 +30,12 @@ Renouncing ownership of the contract in [EIP173 - Contract Ownership Standard](h
 
 What is needed is a safer mechanism for managing contract ownership.
 
+## Safe contract ownership transfer
+
+LSP14 reduces one-step ownership mistakes by separating ownership transfer into an initiation step and an acceptance step. The new owner must explicitly call `acceptOwnership()` before control changes, which helps prevent losing ownership to a mistyped address, an inaccessible account, or a contract that cannot manage the asset.
+
+The same safety principle applies to renouncing ownership. Instead of a single irreversible transaction, LSP14 requires an initiation period and a confirmation window before ownership is fully renounced.
+
 ## What does this standard represent ?
 
 **LSP14 - Ownable2Step** is an extended version of [EIP173 - Contract Ownership Standard](https://eips.ethereum.org/EIPS/eip-173) that uses a 2-step process for transferring and renouncing ownership.
@@ -52,7 +58,7 @@ The control of the contract is fully transferred _once the new owner has accepte
 
 ![Transfer Ownership](/img/standards/lsp14/transfer-ownership.jpeg)
 
-2. The new owner claims ownership of the contract by calling the [`acceptOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md #acceptownership)` function.
+2. The new owner claims ownership of the contract by calling the [`acceptOwnership()`](../../contracts/contracts/LSP14Ownable2Step/LSP14Ownable2Step.md#acceptownership) function.
 
 ![Accept Ownership](/img/standards/lsp14/accept-ownership.jpeg)
 

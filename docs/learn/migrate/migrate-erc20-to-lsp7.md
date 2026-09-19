@@ -1,13 +1,30 @@
 ---
+title: 'ERC20 vs LSP7: Migrate ERC20 Tokens to LUKSO'
 sidebar_label: '🪙 ERC20 to LSP7'
 sidebar_position: 2
-description: Learn how to migrate your ERC20 token to the LSP7 Digital Asset standard on LUKSO.
+description: Learn how to migrate ERC20 tokens to LSP7 on LUKSO, including token metadata, transfer hooks, operator permissions, and ERC20 approval differences.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import Erc20LSP7Table from '@site/src/components/Erc20LSP7Table';
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData
+data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'ERC20 vs LSP7: Migrate ERC20 Tokens to LUKSO',
+    description:
+      'Migration guide for ERC20 developers moving token logic to LSP7 Digital Assets on LUKSO, covering metadata, transfer hooks, operators, and approvals.',
+    author: { '@type': 'Organization', name: 'LUKSO' },
+    publisher: { '@type': 'Organization', name: 'LUKSO' },
+    mainEntityOfPage:
+      'https://docs.lukso.tech/learn/migrate/migrate-erc20-to-lsp7/',
+    isAccessibleForFree: true,
+  }}
+/>
 
 # 🪙 Migrate ERC20 to LSP7
 
@@ -21,9 +38,21 @@ import Erc20LSP7Table from '@site/src/components/Erc20LSP7Table';
 
 :::info Resources
 
-See the [contract overview](../../contracts/overview/Token/index.md#comparisons-with-erc20--erc721) page for the interface differences between ERC20 and LSP7.
+See the [contract overview](../../contracts/overview/Token/index.md#comparisons-with-erc20) page for the interface differences between ERC20 and LSP7.
 
 :::
+
+## ERC20 vs LSP7 at a glance
+
+LSP7 keeps the familiar EVM token model of balances and transfers, but it adds the LUKSO-specific surfaces that ERC20 does not standardize: extensible metadata through ERC725Y data keys, transfer data, optional receiver checks, and operator authorization.
+
+| ERC20 concern                                   | LSP7 migration point                                                                 |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `name()`, `symbol()`, and optional `decimals()` | Token information is stored as LSP4/ERC725Y data keys.                               |
+| `transfer` and `transferFrom`                   | LSP7 `transfer(...)` includes `force` and `data` parameters.                         |
+| Allowances and approvals                        | LSP7 uses operators for amount-based token authorization.                            |
+| Receiver behavior                               | Transfers can require LSP1 support when `force` is `false`.                          |
+| Indexing                                        | Index LSP7 `Transfer`, `OperatorAuthorizationChanged`, and `OperatorRevoked` events. |
 
 ## Comparisons
 
@@ -118,11 +147,11 @@ function transfer(
 
 There are 3 main differences for LSP7 to note
 
-- **Additional `force` parameter**: for the [`mint(...)`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#mint) and [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#ransfer) functions.
+- **Additional `force` parameter**: for the [`mint(...)`](../../contracts/contracts/LSP7DigitalAsset/presets/LSP7Mintable.md#mint) and [`transfer(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#transfer) functions.
 
 For full compatibility with ERC20 behavior (where the recipient can be any address), set this to `true`. Setting it to `false` will only allow the transfer to smart contract addresses supporting the [**LSP1UniversalReceiver** interfaceId](../../contracts/interface-ids.md).
 
-> See the [**LSP7 Standard > `force` mint and transfer**](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks#force-mint-and-transfer) section for more details.
+> See the [**LSP7 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) section for more details.
 
 - **Additional `data` field**: for the `mint(...)`, `transfer(...)`, and [`burn(...)`](../../contracts/contracts/LSP7DigitalAsset/extensions/LSP7Burnable.md#burn) functions.
 
@@ -130,9 +159,22 @@ For full compatibility with ERC20 behavior, set this to empty bytes `""`. This d
 
 > See the [**LSP7 Standard > LSP1 Token Hooks**](../../standards/tokens/LSP7-Digital-Asset.md#lsp1-token-hooks) section for more details.
 
-- **LSP7 metadata is generic**: via a [flexible data key / value store](<(../../standards/erc725.md#erc725y-generic-data-keyvalue-store)>). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdatabatch).
+- **LSP7 metadata is generic**: via a [flexible data key / value store](../../standards/erc725.md#erc725y-generic-data-keyvalue-store). It can be set and retrieved via [`setData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdata) / [`setDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#setdatabatch) and [`getData(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdata) / [`getDataBatch(...)`](../../contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.md#getdatabatch).
 
 ERC20 metadata is limited to `name()` and `symbol()`. LSP7 allows to store any data after deployment without limitations.
+
+### ERC20 approvals vs LSP7 operators
+
+ERC20 approvals store an allowance from an owner to a spender. This is simple, but it often leads to unlimited approvals, stale allowances, approval phishing, and approve-then-action user flows. LSP7 models token-level authorization with operators instead. An operator can be authorized for a specific amount and can receive LSP1-compatible notification data.
+
+Operators are still amount-based token authorizations, so they should not be treated as full account permissions. If a dApp needs a controller to call selected contracts, edit selected metadata, or submit relay transactions from a Universal Profile, use [LSP6 Key Manager permissions](../../learn/universal-profile/key-manager/grant-permissions.md) together with allowed calls or allowed ERC725Y data keys.
+
+| Use case                                                         | Recommended LUKSO primitive                      |
+| ---------------------------------------------------------------- | ------------------------------------------------ |
+| Let a marketplace move a bounded amount of one token             | LSP7 operator authorization                      |
+| Let an app call only selected contracts from a Universal Profile | LSP6 `CALL` with Allowed Calls                   |
+| Let a session edit selected profile data                         | LSP6 `SETDATA` with Allowed ERC725Y Data Keys    |
+| Let a Transaction Relay Service submit signed actions            | LSP25 relay execution with LSP6 relay permission |
 
 ### Interact with the Token Contract
 
