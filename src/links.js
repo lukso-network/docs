@@ -12,7 +12,7 @@ import UniversalSwapsLogo from '@site/static/img/dapps/universalswaps-logo.png';
 import UniversalPageLogo from '@site/static/img/dapps/universalpage-logo.png';
 import StakingverseLogo from '@site/static/img/dapps/stakingverse-logo.png';
 import CommongroundLogo from '@site/static/img/dapps/common-ground-logo.png';
-import DefolioLogo from '@site/static/img/dapps/defolio-logo.png';
+
 import UFeedLogo from '@site/static/img/dapps/ufeed-logo.png';
 import UpTurnLogo from '@site/static/img/dapps/upturn-logo-scaled.png';
 import LSP8AppLogo from '@site/static/img/dapps/lsp8app-logo.png';
@@ -267,13 +267,7 @@ export const dappsSlider = [
     backgroundColor: '#404bbb',
     link: 'https://app.cg/',
   },
-  {
-    name: 'DeFolio',
-    description: 'Universal Profiles management platform.',
-    image: DefolioLogo,
-    backgroundColor: '#fcfcfc',
-    link: 'https://www.de-folio.com/',
-  },
+
   {
     name: 'Airdrop Tool',
     description: 'Distribute tokens to specific set of Universal Profiles.',

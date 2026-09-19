@@ -18,7 +18,7 @@ You can find more information about firewall and port settings within the specif
 - [Erigon Port Specification](https://github.com/erigontech/erigon#default-ports-and-firewalls)
 - [Nethermind Port Specification](https://docs.nethermind.io/fundamentals/security/#networking-security)
 - [Besu Port Specification](https://besu.hyperledger.org/public-networks/how-to/connect/configure-ports)
-- [Prysm Port Specification](https://docs.prylabs.network/docs/prysm-usage/p2p-host-ip#configure-your-firewall)
+- [Prysm Port Specification](https://prysm.offchainlabs.com/docs/manage-connections/p2p-host-ip#configure-your-firewall)
 - [Lighthouse Port Specification](https://lighthouse-book.sigmaprime.io/advanced_networking.html#how-to-open-ports)
 - [Teku Port Specification](https://docs.teku.consensys.io/how-to/find-and-connect/improve-connectivity)
 
