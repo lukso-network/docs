@@ -66,6 +66,8 @@ The following third parties provide RPC endpoints to connect to LUKSO Mainnet.
 | [NowNodes](https://nownodes.io/)  | `https://lukso.nownodes.io` (requires API key)          |
 | [Envio](https://envio.dev/)       | `https://lukso.rpc.hypersync.xyz` (optimized read-only) |
 
+You can compare the live latency of these public LUKSO RPC endpoints across regions on the independent [OpenChainBench LUKSO RPC benchmark](https://openchainbench.com/benchmarks/lukso-rpc), which probes each provider's `eth_getBlockByNumber` round-trip every 60 seconds from three regions.
+
 ## Network Architecture
 
 The LUKSO's Blockchain runs an **unmodified version** of the Ethereum protocol. The network architecture consists of 2 to 4 clients:
