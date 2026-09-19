@@ -18,29 +18,29 @@
     "prettier:fix": "prettier \"src/**/*.js\" \"docs/**/*.md\" --write"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.21.23",
+    "@cookbookdev/docsbot": "^4.25.15",
     "@docusaurus/core": "latest",
     "@docusaurus/plugin-client-redirects": "latest",
     "@docusaurus/plugin-google-gtag": "latest",
     "@docusaurus/preset-classic": "latest",
     "@docusaurus/theme-mermaid": "latest",
-    "@emotion/react": "^11.13.3",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@iconify/react": "^5.2.0",
-    "@mdx-js/react": "3.1.0",
-    "@mui/icons-material": "^7.3.2",
-    "@mui/material": "^7.3.7",
+    "@iconify/react": "^6.0.2",
+    "@mdx-js/react": "3.1.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
     "@svgr/webpack": "^8.1.0",
     "clsx": "^2.1.1",
     "docusaurus-plugin-sass": "^0.2.6",
     "file-loader": "^6.2.0",
     "plugin-image-zoom": "^1.2.0",
-    "prettier": "^3.6.2",
+    "prettier": "^3.8.1",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-material-ui-carousel": "^3.4.2",
-    "sass": "^1.93.2",
+    "sass": "^1.98.0",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
@@ -63,5 +63,14 @@
   "engines": {
     "yarn": ">= 3.6.1",
     "node": ">=18.0"
+  },
+  "resolutions": {
+    "tar": "7.5.10",
+    "lodash": "4.17.23",
+    "svgo": "3.3.3",
+    "immutable": "5.1.5",
+    "ajv@^6": "6.14.0",
+    "webpack": "5.105.0",
+    "dompurify": "3.3.2"
   }
 }

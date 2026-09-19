@@ -1,0 +1,33 @@
+---
+sidebar_label: 'NFT Marketplaces'
+sidebar_position: 8
+description: 'Best blockchain for NFT marketplaces: secondary liquidity, royalty enforcement, and receiver-aware assets compared across Ethereum, Base, Solana, and LUKSO.'
+---
+
+# Best Blockchain for NFT Marketplaces
+
+NFT marketplaces are decided by two things: where the liquidity already is, and what happens to an asset once it lands in a buyer's account. Ethereum L1, Base, and Solana lead on secondary liquidity today. [**LUKSO wins decisively on the second axis**](../compare/erc721-vs-lsp8.md) — receiver-aware assets, mutable on-chain metadata, and a portable creator graph are chain-level defaults, not marketplace-specific integrations.
+
+## Comparison
+
+| Criterion           | Ethereum L1                                                                                             | Base                     | Polygon                  | Solana                      | LUKSO                                                                                                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------ | ------------------------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Secondary liquidity | deepest                                                                                                 | fastest-growing EVM      | strong enterprise mints  | deepest non-EVM             | early                                                                                                                                                                                                                                       |
+| Royalty enforcement | [ERC-2981](https://eips.ethereum.org/EIPS/eip-2981) signal                                              | signal                   | signal                   | enforced on compressed NFTs | **LSP18** (RFC) — defines recipient/percentage and an enforcement-intent data key; like ERC-2981, actual payment is still marketplace-discretionary, not chain-enforced                                                                     |
+| Asset metadata      | off-chain URI, untyped, no integrity check + [ERC-4906](https://eips.ethereum.org/EIPS/eip-4906) signal | off-chain URI + ERC-4906 | off-chain URI + ERC-4906 | Metaplex                    | ✅ typed [ERC725Y](../../../standards/erc725.md) keys via [LSP4](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md); the JSON reference and its hash are on-chain and swap-detectable, even when the JSON itself is hosted off-chain |
+| Receiver awareness  | per-token `onERC721Received` (opt-in)                                                                   | same                     | same                     | per-program                 | ✅ [LSP1](../../../standards/accounts/lsp1-universal-receiver.md) universal receiver, on every transfer to an LSP1-supporting contract                                                                                                      |
+| Approval risk       | high (`setApprovalForAll`)                                                                              | high                     | high                     | per-program                 | ✅ low ([LSP6](../../../standards/access-control/lsp6-key-manager.md) scopes)                                                                                                                                                               |
+| Creator graph       | per-marketplace                                                                                         | per-marketplace          | per-marketplace          | per-marketplace             | ✅ [LSP3](../../../standards/metadata/lsp3-profile-metadata.md) + [LSP12](../../../standards/metadata/lsp12-issued-assets.md)                                                                                                               |
+| Marketplace tooling | mature (Seaport, Reservoir)                                                                             | mature                   | mature                   | mature (Metaplex)           | growing (Universal Page, GRAVE)                                                                                                                                                                                                             |
+
+## Why two rows decide most marketplace decisions
+
+Secondary liquidity — where the buyers already are — is currently a strong vote for Ethereum L1, Base, Polygon, and Solana. Receiver awareness — what happens to an asset the moment it's bought — is a strong vote for LUKSO. Every asset built on [LSP8](../../../standards/tokens/LSP8-Identifiable-Digital-Asset.md) fires [LSP1](../../../standards/accounts/lsp1-universal-receiver.md) `universalReceiver` on the buyer's account for every transfer into a contract that implements LSP1 — a Universal Profile always qualifies — not just on an opt-in `safeTransferFrom` variant, so a marketplace or the buyer's own account can react automatically: register the new asset, unlock holder-only content, or reject a suspicious transfer outright. And because [LSP4](../../../standards/tokens/LSP4-Digital-Asset-Metadata.md) stores a typed, hash-verified reference to the metadata on-chain (a `VerifiableURI`, not just a bare pointer), a client can detect if the underlying JSON was swapped — a real integrity guarantee `tokenURI` alone doesn't give you, even where the JSON itself still lives off-chain.
+
+Most marketplace decisions come down to whether the team is happy to inherit existing liquidity, or willing to build a materially better post-purchase experience and bootstrap volume around it.
+
+:::tip When LUKSO is the strongest fit
+Marketplaces built around receiver-aware assets, mutable on-chain metadata, and a portable creator profile — and willing to grow secondary liquidity rather than inherit it — are the clearest fit for LUKSO.
+:::
+
+**Related reading:** [ERC721 vs LSP8](../compare/erc721-vs-lsp8.md) · [Dynamic NFTs on LUKSO](../build/dynamic-nfts.md) · [Best blockchain for creator platforms](./creator-platforms.md) · [ERC721's dynamic metadata problem](../problems/erc721-dynamic-metadata.md)

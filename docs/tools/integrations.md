@@ -58,13 +58,13 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
   <tbody>
     <tr>
       <td style={{ maxWidth: "20rem" }}>
-        <a class="imageLink" href="https://docs.diadata.org/" target="_blank" rel="noopener noreferrer"><img src="https://cms3.diadata.org/wp-content/uploads/2023/03/Token.png"/></a>
+        <a class="imageLink" href="https://docs.diadata.org/" target="_blank" rel="noopener noreferrer"><img src="https://cms3.diadata.org/wp-content/uploads/2026/03/DIA-Icon-Green.png"/></a>
       </td>
       <td>
-        <a class="imageLink" href="https://www.diadata.org/" target="_blank" rel="noopener noreferrer">DIA</a> is a cross-chain oracle provider that directly aggregates market data from a wide range of sources. Its first-party data sourcing is thorough, enabling unparalleled transparency and customizability for resilient price feeds for 20,000+ assets including ERC20s, NFTs, RWAs, LSTs, BRC20s and more.<br/><br/>The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
+        <a class="imageLink" href="https://www.diadata.org/" target="_blank" rel="noopener noreferrer">DIA</a> provides trustless blockchain oracles that price any asset, from real-time market feeds for liquid tokens to fundamental valuation for illiquid institutional assets. All data computation happens onchain, making every feed verifiable from source to chain.<br/><br/>The DIA oracle on LUKSO is free of use, production-ready and comes with a predefined list of feeds.
         <ul>
-          <li><a href="https://www.diadata.org/blog/post/lukso-partners-with-dia-oracles-mainnet/" target="_blank" rel="noopener noreferrer">Access DIA oracles on LUKSO</a></li>
-          <li><a href="https://t.me/DIABDteam" target="_blank" rel="noopener noreferrer">Request a new oracle</a></li>
+          <li><a href="https://www.diadata.org/docs/guides/chain-specific-guide/lukso" target="_blank" rel="noopener noreferrer">Access DIA oracles on LUKSO</a></li>
+          <li><a href="https://t.me/DIAOracles_Support_Bot" target="_blank" rel="noopener noreferrer">Request a new custom oracle</a></li>
         </ul>
       </td> 
     </tr>
