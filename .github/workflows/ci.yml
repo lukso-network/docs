@@ -6,6 +6,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 env:
   CF_PROJECT_NAME: tech-docs
   CF_BASE_URL: tech-docs-2ac
@@ -36,6 +39,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     needs: checks
+    if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
@@ -72,14 +80,16 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        shell: bash
         run: |
+          set -o pipefail
           yarn dlx wrangler@4.7.1 pages deploy --commit-dirty=true --project-name "${CF_PROJECT_NAME}" build ${{ steps.extract_branch.outputs.branch }} | tee output.log
           sed < output.log -n 's#.*Take a peek over at \(.*\)$#specific_url=\1#p' >> $GITHUB_OUTPUT
         id: deploy
 
       - name: Create commit comment
         uses: mshick/add-pr-comment@v2
-        if: ${{ github.event.number != '' }}
+        if: ${{ github.event_name == 'pull_request' }}
         with:
           message: |
             ### Deployed with **Cloudflare Pages** :cloud: :rocket: :ok:
