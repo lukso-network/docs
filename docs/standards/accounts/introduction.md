@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Introduction'
 sidebar_position: 1
-description: Introduction to LUKSO's Universal Profiles.
+description: Introduction to LUKSO Universal Profiles, smart contract accounts with metadata, permissions, asset receiving, relay execution, and recovery patterns.
 ---
 
 # Universal Profiles
@@ -18,6 +18,20 @@ You can also browse the already deployed Universal Profiles on [universalprofile
 Building an identity on top of keys is almost impossible because keys are likely to be leaked or lost forever. Holding assets and building a reputation on these keys makes it worse. A better representation of identity would be with blockchain-based accounts.
 
 Blockchain-based accounts can change the way of interacting on-chain, allowing the usage of multiple components together. Used in combination with a Controller (see **[LSP6 - Key Manager](../access-control/lsp6-key-manager.md)**), they could allow any entity to execute or set some data on your profile directly or via relay execution. Finally, developers could use contracts for social recovery if keys are lost. All these components together can enhance the blockchain experience.
+
+## Wallet vs Universal Profile
+
+A wallet is usually a signing interface around one or more private keys. A Universal Profile is the smart contract account that represents the user, creator, organization, or application on-chain. The Universal Profile address can stay the same while controllers, permissions, metadata, and recovery flows change over time.
+
+This distinction matters for dApps:
+
+| Builder question                                     | Universal Profile pattern                                      |
+| ---------------------------------------------------- | -------------------------------------------------------------- |
+| Where does profile identity live?                    | LSP3 Profile Metadata stored through ERC725Y data keys.        |
+| How can multiple devices or apps have scoped access? | LSP6 Key Manager permissions and restrictions.                 |
+| How does a smart account receive assets safely?      | LSP1 Universal Receiver and Universal Receiver Delegate logic. |
+| How can users act without holding gas first?         | LSP25 relay execution through a Transaction Relay Service.     |
+| How can the account evolve without changing address? | LSP17 extensions and LSP20 call verification patterns.         |
 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rzYT1_p2Mqk?si=2HSFAcfHU8qnkelV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

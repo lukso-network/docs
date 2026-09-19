@@ -1,11 +1,28 @@
 ---
+title: 'SIWE Login With Universal Profiles and EIP-1271'
 sidebar_label: 'UP Log-in & SIWE'
 sidebar_position: 2
-description: Learn how to log-in a Universal Profile using SIWE (Sign-In With Ethereum).
+description: Learn how to log in with a Universal Profile using SIWE and EIP-1271 smart contract signature verification.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData
+data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'SIWE Login With Universal Profiles and EIP-1271',
+    description:
+      'Guide for implementing Sign-In with Ethereum with LUKSO Universal Profiles, controller signatures, and EIP-1271 verification.',
+    author: { '@type': 'Organization', name: 'LUKSO' },
+    publisher: { '@type': 'Organization', name: 'LUKSO' },
+    mainEntityOfPage:
+      'https://docs.lukso.tech/learn/universal-profile/connect-profile/siwe/',
+    isAccessibleForFree: true,
+  }}
+/>
 
 # Log-in a Universal Profile (SIWE)
 
@@ -165,6 +182,12 @@ const hashedMessage = web3.eth.accounts.hashMessage(siweMessage);
 Your dApp has now received a message signed by the controller address of the Universal Profile. To finalise the login, you need to verify if the message was signed by an address which has the [`SIGN`](/standards/access-control/lsp6-key-manager.md#permissions) permission for this Universal Profile.
 
 To check the signature, you can use the [`isValidSignature(...)`](/contracts/contracts/UniversalProfile/UniversalProfile.md#isvalidsignature) method of the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standardization. If the signature is valid, the method will return the magic value `0x1626ba7e`, indicating a successful verification.
+
+### SIWE with smart contract accounts
+
+With an Externally Owned Account, a server can usually recover the signer from the SIWE message and compare it to the connected address. A Universal Profile is a smart contract account, so the Universal Profile address is the user identity while a controller signs the message.
+
+For Universal Profiles, verify SIWE logins through `isValidSignature(...)` on the Universal Profile. This lets the account decide whether the controller that produced the signature currently has the `SIGN` permission. If the controller is revoked later, future SIWE checks can fail without changing the Universal Profile address used as the application identity.
 
 <Tabs groupId="provider-lib">
   <TabItem value="ethers" label="ethers"  attributes={{className: "tab_ethers"}}>

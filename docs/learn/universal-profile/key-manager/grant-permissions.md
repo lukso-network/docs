@@ -1,11 +1,28 @@
 ---
+title: 'Universal Profile Permissions and Session Keys'
 sidebar_label: 'Grant Permissions'
 sidebar_position: 2
-description: Learn how to give some permissions to an address to perform specific actions on a Universal Profile on LUKSO.
+description: Learn how to grant Universal Profile permissions, session keys, app controllers, allowed calls, and allowed ERC725Y data keys on LUKSO.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import StructuredData from '@site/src/components/StructuredData';
+
+<StructuredData
+data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Universal Profile Permissions and Session Keys',
+    description:
+      'Guide for granting LSP6 Key Manager permissions to Universal Profile controllers, including app permissions, session keys, allowed calls, and allowed ERC725Y data keys.',
+    author: { '@type': 'Organization', name: 'LUKSO' },
+    publisher: { '@type': 'Organization', name: 'LUKSO' },
+    mainEntityOfPage:
+      'https://docs.lukso.tech/learn/universal-profile/key-manager/grant-permissions/',
+    isAccessibleForFree: true,
+  }}
+/>
 
 # Grant Permissions
 
@@ -35,6 +52,20 @@ These permissions are stored in the Universal Profile. **We need to update thre
 | [`AddressPermissions[]`](/standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions)               | The number of addresses that have permissions on our UP.     | We need to **increment it by +1**.                                                 |
 | [`AddressPermissions[index]`](/standards/access-control/lsp6-key-manager.md#retrieving-addresses-with-permissions)          | holds a controller address at a specific index.              | We need to **add the beneficiary address at the new index**.                       |
 | [`AddressPermissions:Permissions:<beneficiary-address>`](/standards/access-control/lsp6-key-manager.md#address-permissions) | this data key holds the permissions of a controller address. | We need to **add the permissions of the beneficiary address** under this data key. |
+
+### App permissions and session keys
+
+LSP6 permissions can be used for more than permanent owner devices. A controller can represent a dApp, backend service, temporary session, recovery setup, or automation contract. The important part is to grant only the permission bits and restrictions needed for that role.
+
+| Controller use case               | Permission pattern                                                    |
+| --------------------------------- | --------------------------------------------------------------------- |
+| Login-only controller             | `SIGN`                                                                |
+| Metadata editor                   | `SETDATA` with Allowed ERC725Y Data Keys                              |
+| App session for one protocol      | `CALL` with Allowed Calls                                             |
+| Transaction Relay Service flow    | `EXECUTE_RELAY_CALL`                                                  |
+| Full recovery or admin controller | Use broad permissions only when the controller is trusted accordingly |
+
+Allowed Calls and Allowed ERC725Y Data Keys are the scoping layer that turns a broad capability into an app-specific permission. Use them when a controller should only interact with selected contracts or selected data keys.
 
 ## Setup
 

@@ -1,6 +1,8 @@
 ---
+title: 'Gasless Transactions With LSP25 Relay Calls'
 sidebar_label: 'Execute Relay Transactions'
 sidebar_position: 3
+description: Learn how gasless transactions work with Universal Profiles, LSP25 Execute Relay Call, LSP6 permissions, and Transaction Relay Services.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -35,6 +37,14 @@ This aims to help onboard new users to web3! 💪🏻
 To execute relay calls, the address [signing the relay transaction](/standards/access-control/lsp6-key-manager#how-to-sign-relay-transactions) need the [`EXECUTE_RELAY_CALL`](/standards/access-control/lsp6-key-manager/#permissions) permission.
 
 :::
+
+## Gasless onboarding with LSP25
+
+Gasless onboarding means the user can authorize a Universal Profile action before holding native tokens for gas. The controller signs the LSP25 relay payload off-chain, then a Transaction Relay Service submits the transaction and pays the gas.
+
+This does not give the Transaction Relay Service control over the Universal Profile. The Key Manager verifies the signature, nonce, validity timestamps, and `EXECUTE_RELAY_CALL` permission before the payload is executed.
+
+Common gasless flows include creating or registering a Universal Profile, editing LSP3 Profile Metadata, transferring LYX during onboarding, or completing an app action sponsored by a dApp.
 
 ## Setup
 
