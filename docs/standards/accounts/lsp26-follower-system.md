@@ -2,7 +2,7 @@
 sidebar_label: 'LSP26 - Follower System'
 sidebar_position: 10
 title: 'LSP26 - Follower System'
-description: LUKSO's LSP26 Follower System for managing on-chain following relationships between addresses.
+description: LUKSO's LSP26 Follower System for managing on-chain social graph relationships, followers, follows, and profile notifications.
 ---
 
 # LSP26 - Follower System
@@ -73,6 +73,12 @@ LSP26 integrates with [LSP1-UniversalReceiver](../accounts/lsp1-universal-receiv
 - When unfollowing: Calls `universalReceiver` with `typeId`: `keccak256('LSP26FollowerSystem_UnfollowNotification')`
 
 This integration allows for real-time reactions to follower changes, enhancing the interactive capabilities of LSP26-compatible addresses.
+
+## On-chain social graph
+
+For social dApps, LSP26 provides a shared on-chain social graph instead of a follow list that only one application can read. Any app can query followers and following relationships through the same contract, index `Follow` and `Unfollow` events, and combine those relationships with Universal Profile metadata.
+
+Universal Profiles add the identity layer, while LSP1 notifications let profiles or other smart contracts react when they are followed or unfollowed. Use the batch functions when a product flow needs to follow or unfollow several addresses in one transaction.
 
 ## Deployment
 

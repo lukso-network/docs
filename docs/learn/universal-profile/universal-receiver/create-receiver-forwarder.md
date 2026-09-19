@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Create a Token Forwarder'
 sidebar_position: 2
-description: This smart contract tutorial guides you on how to create a LSP1 Delegate contract that forwards portion of received tokens automatically to any address.
+description: Create an LSP1 Universal Receiver Delegate that auto-forwards a portion of received LSP7 tokens from a Universal Profile.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,6 +16,8 @@ This guide will teach you how to create a basic custom [Universal Receiver Deleg
 We will this contract an **LSP1 Forwarder**. Every time our 🆙 will receive a specific [LSP7 token](/standards/tokens/LSP7-Digital-Asset.md), this contract will automatically transfer a certain percentage to another address we have defined.
 
 An example scenario could be: _"each time I receive USDT, I want to automatically transfer 20% to my wife's UP"_.
+
+This is an example of a receiver hook: the token transfer notifies the Universal Profile, the Universal Receiver Delegate receives the context, and the delegate runs custom logic for the incoming asset.
 
 ## Setup & Requirements
 

@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'LSP17 - Contract Extension'
 sidebar_position: 7
-description: LUKSO's LSP17 - Contract Extension for enabling smart contracts to support new functions through extensions.
+description: LUKSO's LSP17 - Contract Extension for adding smart contract functions after deployment through reusable extension contracts.
 ---
 
 # LSP17 - Contract Extension
@@ -27,6 +27,12 @@ Once a contract is deployed on the blockchain, it is not possible to modify the 
 What is required is a method to extend the functionalities of a smart contract even after it has been deployed, allowing it to continue to support new features over time.
 
 A possible solution to this problem is to establish a system of extensions that can be added to a smart contract, enabling it to **acquire new functionalities** without the need for redeployment.
+
+## Add functions after deployment
+
+LSP17 is the LUKSO pattern for smart contracts that need to support new function selectors after deployment without changing the contract address. Instead of redeploying the original contract, the extendable contract maps a function selector to an extension contract and forwards calls for that selector through its fallback logic.
+
+This is useful when a protocol, Universal Profile, marketplace, or asset contract needs to add support for new interfaces over time while keeping the original contract address and existing integrations.
 
 ## What does this standard represent ?
 
