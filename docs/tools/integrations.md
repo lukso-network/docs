@@ -37,7 +37,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://envio.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/envio_logo.png"/></a></td>
-      <td><a href="https://docs.envio.dev/docs/overview-hyperrpc" target="_blank">Envio</a> is a indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.</td>
+      <td><a href="https://docs.envio.dev/docs/HyperRPC/overview-hyperrpc" target="_blank">Envio</a> is an indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://sigmacore.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/sigmacore_logo.jpeg"/></a></td>
@@ -90,10 +90,10 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
       <td>
       Envio is a feature-rich indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.
         <ul>
-          <li><a href="https://docs.envio.dev/docs/getting-started" target="_blank" rel="noopener noreferrer">Quickstart</a></li>
-          <li><a href="https://docs.envio.dev/docs/hypersync/" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>
-          <li><a href="https://docs.envio.dev/docs/contract-import/" target="_blank" rel="noopener noreferrer">Contract Import</a></li>
-          <li><a href="https://docs.envio.dev/docs/hosted-service" target="_blank" rel="noopener noreferrer">Hosted Service</a></li>
+          <li><a href="https://docs.envio.dev/docs/HyperIndex/quickstart" target="_blank" rel="noopener noreferrer">Quickstart</a></li>
+          <li><a href="https://docs.envio.dev/docs/HyperSync/overview" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>
+          <li><a href="https://docs.envio.dev/docs/HyperIndex/quickstart#contract-import-methods" target="_blank" rel="noopener noreferrer">Contract Import</a></li>
+          <li><a href="https://docs.envio.dev/docs/HyperIndex/hosted-service" target="_blank" rel="noopener noreferrer">Envio Cloud</a></li>
         </ul>
       </td>
     </tr>
