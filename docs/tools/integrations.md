@@ -91,7 +91,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
       Envio is a feature-rich indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.
         <ul>
           <li><a href="https://docs.envio.dev/docs/getting-started" target="_blank" rel="noopener noreferrer">Quickstart</a></li>
-          <li><a href="https://docs.envio.dev/docs/hypersync/" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>
+          <li><a href="https://docs.envio.dev/docs/HyperIndex/hypersync" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>
           <li><a href="https://docs.envio.dev/docs/contract-import/" target="_blank" rel="noopener noreferrer">Contract Import</a></li>
           <li><a href="https://docs.envio.dev/docs/hosted-service" target="_blank" rel="noopener noreferrer">Hosted Service</a></li>
         </ul>
@@ -112,7 +112,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
 <tbody>
   <tr>
     <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://transak.com/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/transak_logo.png"/></a></td>
-    <td><a href="https://docs.transak.com/docs/transak-on-ramp" target="_blank">Transak</a> is a crypto on-ramp marketplace that can be integrated easily by developers using their API and SDK, to enable to purchase crypto easily on a website and UI.</td>
+    <td><a href="https://docs.transak.com/products/on-ramp" target="_blank">Transak</a> is a crypto on-ramp marketplace that can be integrated easily by developers using their API and SDK, to enable to purchase crypto easily on a website and UI.</td>
   </tr>
     <tr>
     <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://ramp.network/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/ramp-network-logo.png"/></a></td>
