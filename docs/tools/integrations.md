@@ -37,7 +37,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://envio.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/envio_logo.png"/></a></td>
-      <td><a href="https://docs.envio.dev/docs/HyperRPC/overview-hyperrpc" target="_blank">Envio</a> is an indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.</td>
+      <td><a href="https://docs.envio.dev/docs/HyperRPC/overview-hyperrpc" target="_blank">Envio</a> builds custom blockchain APIs and analytics. Teams use HyperIndex to serve contract data through a GraphQL API and HyperSync to query raw onchain data.</td>
     </tr>
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://sigmacore.io/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/sigmacore_logo.jpeg"/></a></td>
@@ -88,7 +88,7 @@ All the RPC URLs are listed under the [**Networks**](../networks/mainnet/paramet
     <tr>
       <td style={{ maxWidth: "20rem" }}><a class="imageLink" href="https://envio.dev/" target="_blank" rel="noopener noreferrer"><img src="/img/tools/envio_logo.png"/></a></td>
       <td>
-      Envio is a feature-rich indexing framework and data infrastructure provider speed-optimized for querying real-time and historical data.
+      Envio builds custom blockchain APIs and analytics. Teams use HyperIndex to serve contract data through a GraphQL API and HyperSync to query raw onchain data.
         <ul>
           <li><a href="https://docs.envio.dev/docs/HyperIndex/quickstart" target="_blank" rel="noopener noreferrer">Quickstart</a></li>
           <li><a href="https://docs.envio.dev/docs/HyperSync/overview" target="_blank" rel="noopener noreferrer">Envio HyperSync</a></li>
