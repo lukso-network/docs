@@ -14,6 +14,10 @@ If you want to experiment with simple code snippets for LSPs, please look at the
 
 We have a [full set of tools](/tools/) and libraries that you can use to build on LSPs and interact with Universal Profiles. You can also [install the latest Universal Profile Extension](/install-up-browser-extension) to connect Universal Profiles with dApps.
 
+## How do I connect my dApp to a Universal Profile?
+
+Start with [UP Modal](/tools/dapps/up-modal/getting-started/), LUKSO’s recommended connection tool for the UP!App and UP Browser Extension. Use the [provider guides](/learn/universal-profile/connect-profile/connect-up/) for a custom integration, or [UP Provider](/learn/mini-apps/connect-upprovider/) for Grid mini-apps.
+
 ## Where can I get LYXt for test deployments?
 
 Our official [Testnet Faucet](https://faucet.testnet.lukso.network) is handing out LYXt to deploy smart contracts to the LUKSO Testnet. You will need a Twitter account to request funds.

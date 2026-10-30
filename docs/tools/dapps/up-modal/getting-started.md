@@ -1,29 +1,33 @@
 ---
 sidebar_position: 1
-title: 'Getting Started'
+title: 'UP Modal: Connect Universal Profiles'
+sidebar_label: 'Getting Started'
+description: Connect Universal Profiles to your dApp with UP Modal, LUKSO’s recommended connection tool for the UP!App and UP Browser Extension.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Getting Started
+# UP Modal: Connect Universal Profiles
 
-The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package provides a connect modal for LUKSO Universal Profiles. It offers a responsive connection dialog with support for desktop and mobile, automatically detecting UP Mobile (via WalletConnect), UP Browser Extension (via EIP-6963), and other EOA wallets. Modal works with apps that use [Wagmi](https://wagmi.sh), a library to interact Ethereum. Wagmi handles the underlying connection management, so you can use its APIs alongside the modal.
+UP Modal is LUKSO’s recommended way to connect Universal Profiles to your dApp. It provides a ready-made connection flow for the UP!App and UP Browser Extension.
+
+The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package supports the UP!App (UP mobile app) via WalletConnect, the UP Browser Extension via EIP-6963, and other EOA wallets. It uses [Wagmi](https://wagmi.sh) for connection management, so you can use Wagmi APIs alongside the modal.
 
 <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap'}}>
   <img src="/img/tools/up-modal/modal-light.png" alt="Light theme" width="320" />
   <img src="/img/tools/up-modal/modal-dark.png" alt="Dark theme" width="320" />
 </div>
 
-## What gets auto-detected
+## Supported connections
 
-Modal automatically configures:
+UP Modal supports these connection methods:
 
-| App              | How                                                     |
-| ---------------- | ------------------------------------------------------- |
-| **UP Mobile**    | WalletConnect (deep link on mobile, QR code on desktop) |
-| **UP Extension** | Browser extension, detected via EIP-6963                |
-| **EOA wallets**  | Other EIP-6963 wallets (MetaMask, Coinbase, etc.)       |
+| App                      | How                                                     |
+| ------------------------ | ------------------------------------------------------- |
+| **UP!App**               | WalletConnect (deep link on mobile, QR code on desktop) |
+| **UP Browser Extension** | Browser extension, detected via EIP-6963                |
+| **EOA wallets**          | Other EIP-6963 wallets (MetaMask, Coinbase, etc.)       |
 
 ## Installation
 
@@ -38,27 +42,29 @@ npm install @lukso/up-modal
 yarn add @lukso/up-modal
 ```
 
-Also install the required peer dependencies:
+For the `setupLuksoConnector()` examples below, also install these peer dependencies. The package marks them optional, but its default Wagmi setup imports both at runtime:
 
 ```bash
-npm install @wagmi/core viem
+npm install @wagmi/core@^3 viem@^2
 ```
 
 ## Minimal Setup
 
 ### Initialize modal
 
+Initialize once in your app’s browser code, after the page has mounted:
+
 ```typescript
 import { setupLuksoConnector } from '@lukso/up-modal';
 
-const connector = await setupLuksoConnector({
-  walletConnect: {
-    projectId: 'YOUR_REOWN_PROJECT_ID', // get yours at https://cloud.reown.com
-  },
-});
+const connector = await setupLuksoConnector();
 ```
 
-### Open the Sign In modal
+The default setup uses LUKSO’s WalletConnect project ID. To use your own [Reown project](https://cloud.reown.com), pass `walletConnect: { projectId: 'YOUR_REOWN_PROJECT_ID' }` in the options. See the [API reference](./api-reference.md) for configuration.
+
+### Open the connection modal
+
+Call this from your Connect button’s click handler:
 
 ```typescript
 connector.showSignInModal();
@@ -257,5 +263,9 @@ export async function initConnector() {
 
 ## Resources
 
-- [GitHub repo](https://github.com/lukso-network/service-auth-simple/tree/main/packages/up-modal)
+- [API reference](./api-reference.md)
 - [NPM package](https://www.npmjs.com/package/@lukso/up-modal)
+- [Vue example](https://github.com/universal-everything/up-modal-vue-example)
+- [React example](https://github.com/universal-everything/up-modal-react-example)
+
+For custom connection interfaces, see the [provider guides](/learn/universal-profile/connect-profile/connect-up/). For Grid mini-apps, use [UP Provider](/learn/mini-apps/connect-upprovider/). Backend authentication is covered separately in the [Sign-In with Ethereum guide](/learn/universal-profile/connect-profile/siwe/).

@@ -53,7 +53,7 @@ To deploy your smart contract using the Universal Profile browser extension, ple
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-// This code is only used for guides puprose, it is working but not verified nor audited.
+// This code is only used for guides purpose, it is working but not verified nor audited.
 
 // modules
 import {LSP1UniversalReceiverDelegateUP} from "@lukso/lsp-smart-contracts/contracts/LSP1UniversalReceiver/LSP1UniversalReceiverDelegateUP/LSP1UniversalReceiverDelegateUP.sol";

@@ -295,6 +295,8 @@ export default {
 //Custom plugin for llms.txt file from the Prisma documentation
 //Check later if there's an official Docusaurus plugin for this
 async function pluginLlmsTxt(context) {
+  let docs = [];
+
   return {
     name: 'llms-txt-plugin',
     loadContent: async () => {
@@ -345,7 +347,13 @@ async function pluginLlmsTxt(context) {
       await getMdxFiles(contentDir);
       return { allMdx };
     },
-    postBuild: async ({ content, routes, outDir }) => {
+    allContentLoaded: ({ allContent }) => {
+      // Use resolved doc metadata: document IDs are not necessarily route URLs.
+      docs =
+        allContent['docusaurus-plugin-content-docs'].default.loadedVersions[0]
+          .docs;
+    },
+    postBuild: async ({ content, outDir }) => {
       // Access allMdx without type assertion
       const { allMdx } = content;
 
@@ -353,34 +361,26 @@ async function pluginLlmsTxt(context) {
       const concatenatedPath = path.join(outDir, 'llms-full.txt');
       await fs.promises.writeFile(concatenatedPath, allMdx.join('\n\n---\n\n'));
 
-      // we need to dig down several layers:
-      // find PluginRouteConfig marked by plugin.name === "docusaurus-plugin-content-docs"
-      const docsPluginRouteConfig = routes.filter(
-        (route) => route.plugin.name === 'docusaurus-plugin-content-docs',
-      )[0];
-
-      // docsPluginRouteConfig has a routes property has a record with the path "/" that contains all docs routes.
-      const allDocsRouteConfig = docsPluginRouteConfig.routes?.filter(
-        (route) => route.path === '/',
-      )[0];
-
-      // A little type checking first
-      if (!allDocsRouteConfig?.props?.version) {
-        return;
-      }
-
-      // this route config has a `props` property that contains the current documentation.
-      const currentVersionDocsRoutes = allDocsRouteConfig.props.version.docs;
-
-      // for every single docs route we now parse a path (which is the key) and a title
-      const docsRecords = Object.entries(currentVersionDocsRoutes).map(
-        ([path, record]) => {
-          return `- [${record.title}](${path}): ${record.description}`;
-        },
+      const docUrl = (doc) => {
+        const url = new URL(doc.permalink, context.siteConfig.url);
+        if (context.siteConfig.trailingSlash && !url.pathname.endsWith('/')) {
+          url.pathname += '/';
+        }
+        return url.href;
+      };
+      const docsRecords = docs.map(
+        (doc) => `- [${doc.title}](${docUrl(doc)}): ${doc.description}`,
+      );
+      const quickstart = docs.find(
+        (doc) => doc.id === 'tools/dapps/up-modal/getting-started',
+      );
+      const apiReference = docs.find(
+        (doc) => doc.id === 'tools/dapps/up-modal/api-reference',
       );
 
-      // Build up llms.txt file
-      const llmsTxt = `# ${context.siteConfig.title}\n\n## Docs\n\n${docsRecords.join('\n')}`;
+      // Keep the recommended connection path ahead of the full reference list.
+      const recommended = `## Connect Universal Profiles (recommended)\n\nUP Modal is LUKSO’s recommended tool to connect Universal Profiles to a dApp with the UP!App and UP Browser Extension.\n\n- [UP Modal quickstart](${docUrl(quickstart)}): Installation, minimal setup and framework examples.\n- [UP Modal API reference](${docUrl(apiReference)}): Connector configuration and methods.`;
+      const llmsTxt = `# ${context.siteConfig.title}\n\n> ${context.siteConfig.tagline}\n\n${recommended}\n\n## Docs\n\n${docsRecords.join('\n')}`;
 
       // Write llms.txt file
       const llmsTxtPath = path.join(outDir, 'llms.txt');
