@@ -53,9 +53,9 @@ const accordionData = [
       {
         question: 'How do I connect my dApp to a profile?',
         answer:
-          'Like any other web3 wallet using methods like EIP-6963, injected provider or multi-providers). Check our tutorial for details on how to connect a UP to a dApp or using Sign-in with Ethereum.',
-        link: '/learn/universal-profile/connect-profile/connect-up',
-        linkLabel: 'See tutorial',
+          'Start with UP Modal, LUKSO’s recommended tool to connect Universal Profiles to your dApp. Follow the quickstart for a ready-made connection flow for the UP!App and UP Browser Extension. The provider guides cover custom integrations.',
+        link: '/tools/dapps/up-modal/getting-started/',
+        linkLabel: 'Connect with UP Modal',
       },
       {
         question: 'What kind of data can be stored on my profile?',

@@ -45,6 +45,16 @@ function Index() {
           <SearchBarWrapper />
         </div>
 
+        <div className={clsx(styles.containerButtons, styles.connectionCta)}>
+          <CallToActionButton
+            icon="material-symbols:link"
+            text="Connect Universal Profiles"
+            link="/tools/dapps/up-modal/getting-started/"
+            bgColor="#6C5DD3"
+            color="white"
+          />
+        </div>
+
         <div className={styles.containerAccordion}>
           {accordionData.map((item, index) => (
             <CustomAccordion

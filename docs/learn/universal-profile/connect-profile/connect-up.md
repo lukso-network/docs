@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Connect UP with Providers'
 sidebar_position: 1
-description: Learn how to connect your Universal Profile to a dApp (decentralized application) on LUKSO.
+description: Connect Universal Profiles with UP Modal, LUKSO’s recommended connection tool, or explore custom provider integrations.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,10 +10,12 @@ import LayersIcon from '@mui/icons-material/Layers';
 
 # Connect a Universal Profile
 
+Start with [UP Modal](/tools/dapps/up-modal/getting-started/), LUKSO’s recommended way to connect Universal Profiles to your dApp. It provides a ready-made connection flow for the UP!App and UP Browser Extension. This guide also covers alternative libraries and lower-level providers for custom integrations.
+
 [Universal Profiles](../../../standards/accounts/introduction.md) can connect to dApps on LUKSO using one of the two UP Apps available:
 
 - [🧩 UP Browser Extension](/install-up-browser-extension/#up-browser-extension)
-- [📱 UP Mobile App]
+- [UP!App (UP mobile app)](/install-up-browser-extension/#up-mobile-app)
 
 Connecting your Universal Profile will trigger one the following connection screen.
 
@@ -43,15 +45,18 @@ The [Universal Profile Extension](/install-up-browser-extension) returns the add
 
 There are multiple ways to connect a dApp to Universal Profiles, from high-level libraries to low-level provider access. Choose the method that best fits your application's needs:
 
-| Option                                              | Difficulty                                                                  | Recommended for                                                                                                                                                                                                                                   |
-| --------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [**Third-Party Libraries**](#third-party-libraries) | **Easy** 🌶️ <br/> Plug in existing connectors and focus on UX.              | Most dApps. Provides pre-built components, ready-made modals, with multi-wallet support out of the box and connection logic handled automatically. <br/> **Recommended for quick and easy integration while keeping a seamless user experience.** |
-| [**Provider Injection**](#provider-injection)       | **Medium** 🌶️🌶️ <br/> Require to manage the `window.lukso` object.          | Lightweight builds needing minimal dependencies and full control over wallet connection logic. <br/> **Recommended for full control over the connection logic (_e.g: only allow UPs to connect_) and to build custom connection modals.**         |
-| [**Provider Discovery**](#provider-discovery)       | **Complex** 🌶️🌶️🌶️ <br/> Connect multiple wallet extensions simultaneously. | Advanced apps where users run several extensions (e.g., MetaMask + Universal Profile) simultaneously using EIP-6963. <br/> **Recommended for handling multiple connected wallets.**                                                               |
+| Option                                                 | Difficulty                                                                  | Recommended for                                                                                                                                                                                                                           |
+| ------------------------------------------------------ | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**UP Modal**](/tools/dapps/up-modal/getting-started/) | **Easy** 🌶️ <br/> Use LUKSO’s ready-made connection modal.                  | **Recommended default for connecting Universal Profiles**, with UP!App and UP Browser Extension support.                                                                                                                                  |
+| [**Third-Party Libraries**](#third-party-libraries)    | **Easy** 🌶️ <br/> Plug in existing connectors and focus on UX.              | dApps already using RainbowKit or Reown AppKit that want to keep their existing multi-wallet interface.                                                                                                                                   |
+| [**Provider Injection**](#provider-injection)          | **Medium** 🌶️🌶️ <br/> Require to manage the `window.lukso` object.          | Lightweight builds needing minimal dependencies and full control over wallet connection logic. <br/> **Recommended for full control over the connection logic (_e.g: only allow UPs to connect_) and to build custom connection modals.** |
+| [**Provider Discovery**](#provider-discovery)          | **Complex** 🌶️🌶️🌶️ <br/> Connect multiple wallet extensions simultaneously. | Advanced apps where users run several extensions (e.g., MetaMask + Universal Profile) simultaneously using EIP-6963. <br/> **Recommended for handling multiple connected wallets.**                                                       |
 
 :::info
 
-Currently, only the **third-party libraries** method can be used to connect the [📱 UP Mobile App] to a dApp.
+The UP!App connects through WalletConnect, supported by **UP Modal** and the third-party libraries below. Direct provider injection and EIP-6963 discovery apply to browser extensions.
+
+For Grid mini-apps, use [UP Provider](/learn/mini-apps/connect-upprovider/). For backend authentication after connecting, see [Sign-In with Ethereum](./siwe.md).
 
 :::
 
