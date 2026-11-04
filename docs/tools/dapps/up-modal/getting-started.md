@@ -14,9 +14,15 @@ UP Modal is LUKSO’s recommended way to connect Universal Profiles to your dApp
 
 The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package supports the UP!App (UP mobile app) via WalletConnect, the UP Browser Extension via EIP-6963, and other EOA wallets. It uses [Wagmi](https://wagmi.sh) for connection management, so you can use Wagmi APIs alongside the modal.
 
-<div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap'}}>
-  <img src="/img/tools/up-modal/modal-light.png" alt="Light theme" width="320" />
-  <img src="/img/tools/up-modal/modal-dark.png" alt="Dark theme" width="320" />
+<div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start'}}>
+  <div>
+    <img src="/img/tools/up-modal/modal-light.png" alt="Light theme on desktop, showing Browser Extension" width="320" />
+    <div><small>On desktop</small></div>
+  </div>
+  <div>
+    <img src="/img/tools/up-modal/modal-dark-mobile.png" alt="Dark theme on mobile, showing Get the UP! App" width="260" />
+    <div><small>On mobile</small></div>
+  </div>
 </div>
 
 ## Supported connections
