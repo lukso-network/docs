@@ -140,7 +140,7 @@ export const toolsLinks = [
     link: '/tools/dapps/up-modal/getting-started/',
     showAsCode: false,
     description:
-      'LUKSO’s recommended tool to connect Universal Profiles with the UP!App and UP Browser Extension.',
+      'LUKSO’s recommended tool to connect Universal Profiles with the UP! App and UP Browser Extension.',
   },
   {
     title: 'Relayer API',

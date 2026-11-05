@@ -53,7 +53,7 @@ const accordionData = [
       {
         question: 'How do I connect my dApp to a profile?',
         answer:
-          'Start with UP Modal, LUKSO’s recommended tool to connect Universal Profiles to your dApp. Follow the quickstart for a ready-made connection flow for the UP!App and UP Browser Extension. The provider guides cover custom integrations.',
+          'Start with UP Modal, LUKSO’s recommended tool to connect Universal Profiles to your dApp. Follow the quickstart for a ready-made connection flow for the UP! App and UP Browser Extension. The provider guides cover custom integrations.',
         link: '/tools/dapps/up-modal/getting-started/',
         linkLabel: 'Connect with UP Modal',
       },

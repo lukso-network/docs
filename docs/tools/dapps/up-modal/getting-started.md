@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: 'UP Modal: Connect Universal Profiles'
 sidebar_label: 'Getting Started'
-description: Connect Universal Profiles to your dApp with UP Modal, LUKSO’s recommended connection tool for the UP!App and UP Browser Extension.
+description: Connect Universal Profiles to your dApp with UP Modal, LUKSO’s recommended connection tool for the UP! App and UP Browser Extension.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 # UP Modal: Connect Universal Profiles
 
-UP Modal is LUKSO’s recommended way to connect Universal Profiles to your dApp. It provides a ready-made connection flow for the UP!App and UP Browser Extension.
+UP Modal is LUKSO’s recommended way to connect Universal Profiles to your dApp. It provides a ready-made connection flow for the UP! App and UP Browser Extension.
 
-The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package supports the UP!App (UP mobile app) via WalletConnect, the UP Browser Extension via EIP-6963, and other EOA wallets. It uses [Wagmi](https://wagmi.sh) for connection management, so you can use Wagmi APIs alongside the modal.
+The [`@lukso/up-modal`](https://www.npmjs.com/package/@lukso/up-modal) package supports the UP! App (UP mobile app) via WalletConnect, the UP Browser Extension via EIP-6963, and other EOA wallets. It uses [Wagmi](https://wagmi.sh) for connection management, so you can use Wagmi APIs alongside the modal.
 
 <div style={{textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start'}}>
   <div>
@@ -31,7 +31,7 @@ UP Modal supports these connection methods:
 
 | App                      | How                                                     |
 | ------------------------ | ------------------------------------------------------- |
-| **UP!App**               | WalletConnect (deep link on mobile, QR code on desktop) |
+| **UP! App**              | WalletConnect (deep link on mobile, QR code on desktop) |
 | **UP Browser Extension** | Browser extension, detected via EIP-6963                |
 | **EOA wallets**          | Other EIP-6963 wallets (MetaMask, Coinbase, etc.)       |
 

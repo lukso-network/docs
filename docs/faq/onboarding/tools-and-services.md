@@ -16,7 +16,7 @@ We have a [full set of tools](/tools/) and libraries that you can use to build o
 
 ## How do I connect my dApp to a Universal Profile?
 
-Start with [UP Modal](/tools/dapps/up-modal/getting-started/), LUKSO’s recommended connection tool for the UP!App and UP Browser Extension. Use the [provider guides](/learn/universal-profile/connect-profile/connect-up/) for a custom integration, or [UP Provider](/learn/mini-apps/connect-upprovider/) for Grid mini-apps.
+Start with [UP Modal](/tools/dapps/up-modal/getting-started/), LUKSO’s recommended connection tool for the UP! App and UP Browser Extension. Use the [provider guides](/learn/universal-profile/connect-profile/connect-up/) for a custom integration, or [UP Provider](/learn/mini-apps/connect-upprovider/) for Grid mini-apps.
 
 ## Where can I get LYXt for test deployments?
 
