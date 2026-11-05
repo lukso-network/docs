@@ -379,7 +379,7 @@ async function pluginLlmsTxt(context) {
       );
 
       // Keep the recommended connection path ahead of the full reference list.
-      const recommended = `## Connect Universal Profiles (recommended)\n\nUP Modal is LUKSO’s recommended tool to connect Universal Profiles to a dApp with the UP!App and UP Browser Extension.\n\n- [UP Modal quickstart](${docUrl(quickstart)}): Installation, minimal setup and framework examples.\n- [UP Modal API reference](${docUrl(apiReference)}): Connector configuration and methods.`;
+      const recommended = `## Connect Universal Profiles (recommended)\n\nUP Modal is LUKSO’s recommended tool to connect Universal Profiles to a dApp with the UP! App and UP Browser Extension.\n\n- [UP Modal quickstart](${docUrl(quickstart)}): Installation, minimal setup and framework examples.\n- [UP Modal API reference](${docUrl(apiReference)}): Connector configuration and methods.`;
       const llmsTxt = `# ${context.siteConfig.title}\n\n> ${context.siteConfig.tagline}\n\n${recommended}\n\n## Docs\n\n${docsRecords.join('\n')}`;
 
       // Write llms.txt file

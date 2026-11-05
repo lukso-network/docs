@@ -45,7 +45,6 @@ const intl = createIntlService({
   messages: {
     ...enMessages,
     connect_modal_title: 'Sign in to MyApp',
-    connect_modal_description: 'Connect your Universal Profile to continue',
   },
 });
 
@@ -67,10 +66,13 @@ intl?.setLocale('de-DE', germanMessages);
 
 | Key                                             | Default (English)                                                                                           |
 | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `connect_modal_title`                           | Let's log you in                                                                                            |
-| `connect_modal_description`                     | Log in with your Universal Profile                                                                          |
+| `connect_modal_title`                           | Log in with your Universal Profile (the single heading of the connect view)                                 |
+| `connect_modal_description`                     | Log in with your Universal Profile (not shown in the connect view, kept for compatibility)                  |
 | `connect_modal_connectors_passkey_wallet`       | Passkey Wallet                                                                                              |
-| `connect_modal_connectors_up_mobile`            | Mobile Application                                                                                          |
+| `connect_modal_connectors_up_mobile`            | Wallet Connect to the UP! App                                                                               |
+| `connect_modal_connectors_up_login`             | Login with your Universal Profile                                                                           |
+| `connect_modal_connectors_up_app_browser`       | Continue in the UP! App                                                                                     |
+| `connect_modal_up_app_browser_get_app`          | Get the UP! App                                                                                             |
 | `connect_modal_connectors_up_browser_extension` | Browser Extension                                                                                           |
 | `connect_modal_or`                              | Or                                                                                                          |
 | `connect_modal_or_info`                         | Log in with a different wallet                                                                              |
@@ -83,7 +85,11 @@ intl?.setLocale('de-DE', germanMessages);
 | `connect_modal_qr_code_description`             | Scan the below QR code with the Universal Profile mobile app to log in                                      |
 | `connect_modal_close`                           | Close modal                                                                                                 |
 | `connect_modal_go_back`                         | Go back                                                                                                     |
+| `connect_modal_wallet_connect_toast`            | Confirm on your connected device                                                                            |
+| `connect_modal_wallet_connect_toast_close`      | Dismiss                                                                                                     |
 | `sign_up_modal_title`                           | Create Universal Profile!                                                                                   |
 | `sign_up_modal_description`                     | Choose the device on which you want to create a profile. You can use either to interact with supported apps |
 | `sign_up_modal_use_mobile`                      | Install the Mobile Application                                                                              |
 | `sign_up_modal_install_extension`               | Install the Browser Extension                                                                               |
+
+The connect view shows one heading, taken from `connect_modal_title`; there is no separate subtitle. `connect_modal_description` stays in the catalog for compatibility, but the connect view does not render it, so override `connect_modal_title` to change that heading.

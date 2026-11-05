@@ -10,13 +10,15 @@ title: 'API Reference'
 Returns `Promise<LuksoConnector>`. Call once at app initialization. Example with custom options:
 
 ```typescript
+import { luksoTestnet } from 'viem/chains';
+
 const connector = await setupLuksoConnector({
   theme: 'dark',
   walletConnect: {
     projectId: 'YOUR_REOWN_PROJECT_ID', // get yours at https://cloud.reown.com
   },
   chains: {
-    enableTestnet: true,
+    additional: [luksoTestnet], // add LUKSO Testnet
   },
   connectors: {
     eoa: false,
@@ -29,21 +31,22 @@ const connector = await setupLuksoConnector({
 
 ### Config Options
 
-| Option                    | Type                          | Default       | Description                             |
-| ------------------------- | ----------------------------- | ------------- | --------------------------------------- |
-| `theme`                   | `'light' \| 'dark' \| 'auto'` | `'light'`     | Modal theme                             |
-| `onConnect`               | `(e: CustomEvent) => void`    | —             | Called on successful connection         |
-| `onError`                 | `(e: CustomEvent) => void`    | —             | Called on connection error              |
-| `onClose`                 | `() => void`                  | —             | Called when modal is closed             |
-| `walletConnect.enabled`   | `boolean`                     | `true`        | Enable WalletConnect                    |
-| `walletConnect.projectId` | `string`                      | LUKSO default | WalletConnect project ID                |
-| `chains.defaultChainId`   | `number`                      | `42`          | Default chain (LUKSO mainnet)           |
-| `chains.enableTestnet`    | `boolean`                     | `false`       | Also enable LUKSO testnet (4201)        |
-| `storage.key`             | `string`                      | `'up-wagmi'`  | localStorage key prefix for wagmi state |
-| `connectors.upMobile`     | `boolean`                     | `true`        | Show UP Mobile connector button         |
-| `connectors.upExtension`  | `boolean`                     | `true`        | Show UP Extension connector button      |
-| `connectors.eoa`          | `boolean`                     | `true`        | Show EOA wallets divider and button     |
-| `wagmiConfig`             | `Config` (from `@wagmi/core`) | auto-created  | Pass your own wagmi config              |
+| Option                    | Type                          | Default       | Description                                                  |
+| ------------------------- | ----------------------------- | ------------- | ------------------------------------------------------------ |
+| `theme`                   | `'light' \| 'dark' \| 'auto'` | `'light'`     | Modal theme                                                  |
+| `onConnect`               | `(e: CustomEvent) => void`    | —             | Called on successful connection                              |
+| `onError`                 | `(e: CustomEvent) => void`    | —             | Called on connection error                                   |
+| `onClose`                 | `() => void`                  | —             | Called when modal is closed                                  |
+| `walletConnect.enabled`   | `boolean`                     | `true`        | Enable WalletConnect                                         |
+| `walletConnect.projectId` | `string`                      | LUKSO default | WalletConnect project ID                                     |
+| `chains.defaultChainId`   | `number`                      | `42`          | Default chain (LUKSO mainnet)                                |
+| `chains.additional`       | `Chain[]` (from `viem`)       | `[]`          | Extra chains alongside LUKSO mainnet (e.g. `[luksoTestnet]`) |
+| `chains.skipChainSwitch`  | `boolean`                     | `false`       | Skip automatic chain switch on connect                       |
+| `storage.key`             | `string`                      | `'up-wagmi'`  | localStorage key prefix for wagmi state                      |
+| `connectors.upMobile`     | `boolean`                     | `true`        | Show UP! App connector button                                |
+| `connectors.upExtension`  | `boolean`                     | `true`        | Show UP Extension connector button                           |
+| `connectors.eoa`          | `boolean`                     | `true`        | Show EOA wallets divider and button                          |
+| `wagmiConfig`             | `Config` (from `@wagmi/core`) | auto-created  | Pass your own wagmi config                                   |
 
 ## `LuksoConnector` Methods
 
