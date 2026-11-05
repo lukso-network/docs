@@ -16,6 +16,8 @@ Make sure to edit these tools in their respective repos, otherwise changes in th
 
 ## Installation
 
+Use Node.js 22.23.4 or a newer patched 22.x release.
+
 ```console
 yarn install
 ```
