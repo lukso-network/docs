@@ -22,7 +22,7 @@ The controller key your Universal Profile was originally created with is importa
 **Back it up** using the backup feature in your app:
 
 - **UP Browser Extension** — use the built-in backup feature to export your key
-- **UP! App** — in Settings → Backup & Restore, use **Create file backup** to save a backup file that you keep. The app also keeps an automatic backup through your phone's backup service (iCloud Keychain on iOS, Google Block Store on Android). Whether that copy reaches your cloud account depends on your phone's backup settings, which the app can't see.
+- **UP! App** — in Settings → Backup & Restore, use **Create file backup** to save a backup file that you keep. The app can also keep an automatic backup through your phone's backup service (iCloud Keychain on iOS, Google Block Store on Android). It is on by default, except on Android phones whose Block Store can't encrypt backups end to end: there the app asks after your first profile whether to turn it on. You can turn it on or off anytime under **Automatic backup** in Settings → Backup & Restore. Whether that copy reaches your cloud account depends on your phone's backup settings, which the app can't see.
 
 :::
 
